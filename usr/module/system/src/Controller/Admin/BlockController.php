@@ -282,6 +282,17 @@ class BlockController extends ComponentController
                 if (!$blockRow->cloned && isset($values['template'])) {
                     unset($values['template']);
                 }
+                // Start add by voltan
+                if (isset($rootRow->config) && !empty($rootRow->config)) {
+                    $values['config'] = array();
+                    foreach ($rootRow->config as $name => $field) {
+                        if (isset($values[$name])) {
+                            $values['config'][$name] = $values[$name];
+                            unset($values[$name]);
+                        }
+                    }
+                }
+                // End add by voltan
                 $result = Pi::api('block', 'system')->updateBlock($blockRow, $values);
                 $message = _a('Block data saved successfully.');
                 $this->jump(
@@ -303,6 +314,13 @@ class BlockController extends ComponentController
             $rootRow = Pi::model('block_root')->find($blockRow->root);
             $form = new BlockModuleForm('block-edit', $rootRow, $blockRow->cloned);
             $values = $blockRow->toArray();
+            // Start add by voltan
+            if (isset($values['config']) && !empty($values['config'])) {
+                foreach ($values['config'] as $name => $value) {
+                    $values[$name] = $value;
+                }
+            }
+            // End add by voltan
             $form->setData($values);
             $form->setAttribute(
                 'action',

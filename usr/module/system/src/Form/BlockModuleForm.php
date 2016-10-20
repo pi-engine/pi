@@ -46,14 +46,14 @@ class BlockModuleForm extends BaseForm
      *
      * @return string[]
      */
-    public function getConfigs()
+    /* public function getConfigs()
     {
         $configs = array();
         foreach ($this->root->config as $config) {
             $configs[] = $config->name;
         }
         return $configs;
-    }
+    } */
 
     /**
      * {@inheritDoc}
@@ -178,7 +178,59 @@ class BlockModuleForm extends BaseForm
             'type'          => 'cache_level',
         ));
 
-        $this->addConfigFieldset();
+        //$this->addConfigFieldset();
+
+        // Load config field
+        if ($this->root->config) {
+
+            // extra_text
+            $this->add(array(
+                'name'  => 'extra_config',
+                'type'  => 'fieldset',
+                'options'   => array(
+                    'label' => __('Configs'),
+                )
+            ));
+
+            foreach ($this->root->config as $name => $field) {
+                $edit = array();
+                if (!empty($field['edit'])) {
+                    if (is_string($field['edit'])) {
+                        $edit['type'] = $field['edit'];
+                    } else {
+                        $edit = $field['edit'];
+                    }
+                }
+                $attributes = !empty($edit['attributes'])
+                    ? $edit['attributes'] : array();
+                $attributes['value'] = isset($field['value'])
+                    ? $field['value'] : null;
+                $attributes['description'] = empty($field['description'])
+                    ? '' : __($field['description']);
+
+                $options = array(
+                    'label'     => __($field['title']),
+                    'module'    => $this->root->module,
+                    'disable_inarray_validator' => true,
+                );
+                if (!empty($edit['options'])) {
+                    $options = array_merge($edit['options'], $options);
+                }
+
+                $element = array(
+                    'name'          => $name,
+                    'attributes'    => $attributes,
+                    'options'       => $options,
+                );
+                if (!empty($edit['type'])) {
+                    $element['type'] = $edit['type'];
+                }
+
+                //d($element);
+
+                $this->add($element);
+            }
+        }
 
         $this->add(array(
             'name'  => 'security',
@@ -214,7 +266,7 @@ class BlockModuleForm extends BaseForm
      *
      * @return void
      */
-    protected function addConfigFieldset()
+    /* protected function addConfigFieldset()
     {
         if (!$this->root->config) {
             return;
@@ -265,7 +317,7 @@ class BlockModuleForm extends BaseForm
 
             $configFieldset->add($element);
         }
-    }
+    } */
 
     /**
      * {@inheritDoc}
@@ -364,7 +416,19 @@ class BlockModuleForm extends BaseForm
             'allow_empty'   => true,
         ));
 
-        $this->addConfigFilter($inputFilter);
+        //$this->addConfigFilter($inputFilter);
+
+        // Load config filter
+        if ($this->root->config) {
+            foreach ($this->root->config as $name => $field) {
+                $element = array(
+                    'name'          => $name,
+                    'required'      => false,
+                    'allow_empty'   => true,
+                );
+                $inputFilter->add($element);
+            }
+        }
 
         return parent::isValid();
     }
@@ -375,7 +439,7 @@ class BlockModuleForm extends BaseForm
      * @param InputFilter $inputFilter
      * @return void
      */
-    protected function addConfigFilter($inputFilter)
+    /* protected function addConfigFilter($inputFilter)
     {
         if (!$this->root->config) {
             return;
@@ -396,5 +460,5 @@ class BlockModuleForm extends BaseForm
         }
 
         $inputFilter->add($configInputFilter, 'config');
-    }
+    } */
 }
