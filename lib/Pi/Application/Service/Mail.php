@@ -250,6 +250,7 @@ class Mail extends AbstractService
         if ($sender['mail']) {
             $message->setSender($sender['mail'], $sender['name']);
             $message->setFrom($sender['mail'], $sender['name']);
+            $message->setReplyTo($sender['mail'], $sender['name']);
         }
         $encoding = Pi::config('mail_encoding');
         if ($encoding) {
