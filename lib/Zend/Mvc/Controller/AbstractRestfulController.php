@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 namespace Zend\Mvc\Controller;
@@ -20,11 +20,10 @@ use Zend\Stdlib\ResponseInterface as Response;
  */
 abstract class AbstractRestfulController extends AbstractController
 {
-
     const CONTENT_TYPE_JSON = 'json';
 
     /**
-     * @var string
+     * {@inheritDoc}
      */
     protected $eventIdentifier = __CLASS__;
 
@@ -117,7 +116,7 @@ abstract class AbstractRestfulController extends AbstractController
      *
      * @return mixed
      */
-    public function deleteList()
+    public function deleteList($data)
     {
         $this->response->setStatusCode(405);
 
@@ -201,6 +200,7 @@ abstract class AbstractRestfulController extends AbstractController
      *
      * @param  $id
      * @param  $data
+     * @return array
      */
     public function patch($id, $data)
     {
@@ -347,6 +347,8 @@ abstract class AbstractRestfulController extends AbstractController
             // DELETE
             case 'delete':
                 $id = $this->getIdentifier($routeMatch, $request);
+                $data = $this->processBodyContent($request);
+
                 if ($id !== false) {
                     $action = 'delete';
                     $return = $this->delete($id);
@@ -354,7 +356,7 @@ abstract class AbstractRestfulController extends AbstractController
                 }
 
                 $action = 'deleteList';
-                $return = $this->deleteList();
+                $return = $this->deleteList($data);
                 break;
             // GET
             case 'get':
@@ -374,8 +376,8 @@ abstract class AbstractRestfulController extends AbstractController
                     $id = null;
                 }
                 $action = 'head';
-                $this->head($id);
-                $response = $e->getResponse();
+                $headResult = $this->head($id);
+                $response = ($headResult instanceof Response) ? clone $headResult : $e->getResponse();
                 $response->setContent('');
                 $return = $response;
                 break;

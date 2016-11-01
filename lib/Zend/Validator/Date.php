@@ -3,13 +3,14 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
 namespace Zend\Validator;
 
 use DateTime;
+use DateTimeImmutable;
 use Traversable;
 
 /**
@@ -126,12 +127,12 @@ class Date extends AbstractValidator
      */
     protected function convertToDateTime($param, $addErrors = true)
     {
-        if ($param instanceof DateTime) {
+        if ($param instanceof DateTime || $param instanceof DateTimeImmutable) {
             return $param;
         }
 
         $type = gettype($param);
-        if (!in_array($type, array('string', 'integer', 'array'))) {
+        if (!in_array($type, array('string', 'integer', 'double', 'array'))) {
             if ($addErrors) {
                 $this->error(self::INVALID);
             }
@@ -151,6 +152,17 @@ class Date extends AbstractValidator
     protected function convertInteger($value)
     {
         return date_create("@$value");
+    }
+
+    /**
+     * Attempts to convert an double into a DateTime object
+     *
+     * @param  double $value
+     * @return bool|DateTime
+     */
+    protected function convertDouble($value)
+    {
+        return DateTime::createFromFormat('U', $value);
     }
 
     /**

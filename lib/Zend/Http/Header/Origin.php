@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -20,7 +20,7 @@ class Origin implements HeaderInterface
     /**
      * @var string
      */
-    protected $value;
+    protected $value = '';
 
     public static function fromString($headerLine)
     {
@@ -44,7 +44,10 @@ class Origin implements HeaderInterface
      */
     public function __construct($value = null)
     {
-        $this->value = (string) $value;
+        if ($value) {
+            HeaderValue::assertValid($value);
+            $this->value = $value;
+        }
     }
 
     public function getFieldName()

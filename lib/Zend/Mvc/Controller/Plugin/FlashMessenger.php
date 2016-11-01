@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -151,23 +151,25 @@ class FlashMessenger extends AbstractPlugin implements IteratorAggregate, Counta
      * Add a message
      *
      * @param  string         $message
-     * @param  string         $namespace
+     * @param  null|string    $namespace
+     * @param  null|int       $hops
      * @return FlashMessenger Provides a fluent interface
      */
-    public function addMessage($message, $namespace = null)
+    public function addMessage($message, $namespace = null, $hops = 1)
     {
         $container = $this->getContainer();
+
         if (null === $namespace) {
             $namespace = $this->getNamespace();
         }
 
-        if (!$this->messageAdded) {
+        if (! $this->messageAdded) {
             $this->getMessagesFromContainer();
-            $container->setExpirationHops(1, null);
+            $container->setExpirationHops($hops, null);
         }
 
-        if (!isset($container->{$namespace})
-            || !($container->{$namespace} instanceof SplQueue)
+        if (! isset($container->{$namespace})
+            || ! $container->{$namespace} instanceof SplQueue
         ) {
             $container->{$namespace} = new SplQueue();
         }
@@ -190,7 +192,6 @@ class FlashMessenger extends AbstractPlugin implements IteratorAggregate, Counta
         $this->addMessage($message, self::NAMESPACE_INFO);
 
         return $this;
-
     }
 
     /**

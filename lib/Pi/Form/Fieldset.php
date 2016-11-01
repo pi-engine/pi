@@ -49,7 +49,7 @@ class Fieldset extends ZendFieldset
             'hidden'    => array(),
         );
 
-        foreach ($this->byName as $key => $value) {
+        foreach ($this->elements as $key => $value) {
             $type = $value->getAttribute('type');
             if ('hidden' == $type) {
                 $elements['hidden'][] = $value;

@@ -3,19 +3,18 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
 namespace Zend\InputFilter;
 
 use Traversable;
-use Zend\Filter\Exception;
 use Zend\Filter\FilterChain;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Validator\ValidatorInterface;
-use Zend\Validator\ValidatorChain;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Stdlib\ArrayUtils;
+use Zend\Validator\ValidatorChain;
+use Zend\Validator\ValidatorInterface;
 
 class Factory
 {
@@ -145,13 +144,17 @@ class Factory
     /**
      * Factory for input objects
      *
-     * @param  array|Traversable $inputSpecification
+     * @param  array|Traversable|InputProviderInterface $inputSpecification
      * @throws Exception\InvalidArgumentException
      * @throws Exception\RuntimeException
      * @return InputInterface|InputFilterInterface
      */
     public function createInput($inputSpecification)
     {
+        if ($inputSpecification instanceof InputProviderInterface) {
+            $inputSpecification = $inputSpecification->getInputSpecification();
+        }
+
         if (!is_array($inputSpecification) && !$inputSpecification instanceof Traversable) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable; received "%s"',
@@ -167,19 +170,20 @@ class Factory
 
         if (isset($inputSpecification['type'])) {
             $class = $inputSpecification['type'];
-
-            if ($this->getInputFilterManager()->has($class)) {
-                return $this->createInputFilter($inputSpecification);
-            }
-
-            if (!class_exists($class)) {
-                throw new Exception\RuntimeException(sprintf(
-                    'Input factory expects the "type" to be a valid class; received "%s"',
-                    $class
-                ));
-            }
         }
-        $input = new $class();
+
+        $managerInstance = null;
+        if ($this->getInputFilterManager()->has($class)) {
+            $managerInstance = $this->getInputFilterManager()->get($class);
+        }
+        if (! $managerInstance && ! class_exists($class)) {
+            throw new Exception\RuntimeException(sprintf(
+                'Input factory expects the "type" to be a valid class or a plugin name; received "%s"',
+                $class
+            ));
+        }
+
+        $input = $managerInstance ?: new $class;
 
         if ($input instanceof InputFilterInterface) {
             return $this->createInputFilter($inputSpecification);
@@ -207,9 +211,6 @@ class Factory
                     break;
                 case 'required':
                     $input->setRequired($value);
-                    if (isset($inputSpecification['allow_empty'])) {
-                        $input->setAllowEmpty($inputSpecification['allow_empty']);
-                    }
                     break;
                 case 'allow_empty':
                     $input->setAllowEmpty($value);
@@ -218,12 +219,26 @@ class Factory
                     }
                     break;
                 case 'continue_if_empty':
+                    if (!$input instanceof Input) {
+                        throw new Exception\RuntimeException(sprintf(
+                            '%s "continue_if_empty" can only set to inputs of type "%s"',
+                            __METHOD__,
+                            'Zend\InputFilter\Input'
+                        ));
+                    }
                     $input->setContinueIfEmpty($inputSpecification['continue_if_empty']);
                     break;
                 case 'error_message':
                     $input->setErrorMessage($value);
                     break;
                 case 'fallback_value':
+                    if (!$input instanceof Input) {
+                        throw new Exception\RuntimeException(sprintf(
+                            '%s "fallback_value" can only set to inputs of type "%s"',
+                            __METHOD__,
+                            'Zend\InputFilter\Input'
+                        ));
+                    }
                     $input->setFallbackValue($value);
                     break;
                 case 'break_on_failure':
@@ -269,13 +284,17 @@ class Factory
     /**
      * Factory for input filters
      *
-     * @param  array|Traversable $inputFilterSpecification
+     * @param  array|Traversable|InputFilterProviderInterface $inputFilterSpecification
      * @throws Exception\InvalidArgumentException
      * @throws Exception\RuntimeException
      * @return InputFilterInterface
      */
     public function createInputFilter($inputFilterSpecification)
     {
+        if ($inputFilterSpecification instanceof InputFilterProviderInterface) {
+            $inputFilterSpecification = $inputFilterSpecification->getInputFilterSpecification();
+        }
+
         if (!is_array($inputFilterSpecification) && !$inputFilterSpecification instanceof Traversable) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable; received "%s"',
@@ -367,7 +386,7 @@ class Factory
 
     /**
      * @param  ValidatorChain    $chain
-     * @param  array|Traversable $validators
+     * @param  string[]|ValidatorInterface[] $validators
      * @throws Exception\RuntimeException
      * @return void
      */

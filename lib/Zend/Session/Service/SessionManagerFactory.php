@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -65,6 +65,7 @@ class SessionManagerFactory implements FactoryInterface
         $config        = null;
         $storage       = null;
         $saveHandler   = null;
+        $validators    = array();
         $managerConfig = $this->defaultManagerConfig;
 
         if ($services->has('Zend\Session\Config\ConfigInterface')) {
@@ -103,8 +104,6 @@ class SessionManagerFactory implements FactoryInterface
             }
         }
 
-        $manager = new SessionManager($config, $storage, $saveHandler);
-
         // Get session manager configuration, if any, and merge with default configuration
         if ($services->has('Config')) {
             $configService = $services->get('Config');
@@ -113,16 +112,13 @@ class SessionManagerFactory implements FactoryInterface
             ) {
                 $managerConfig = array_merge($managerConfig, $configService['session_manager']);
             }
-            // Attach validators to session manager, if any
-            if (isset($managerConfig['validators'])) {
-                $chain = $manager->getValidatorChain();
-                foreach ($managerConfig['validators'] as $validator) {
-                    $validator = new $validator();
-                    $chain->attach('session.validate', array($validator, 'isValid'));
 
-                }
+            if (isset($managerConfig['validators'])) {
+                $validators = $managerConfig['validators'];
             }
         }
+
+        $manager = new SessionManager($config, $storage, $saveHandler, $validators);
 
         // If configuration enables the session manager as the default manager for container
         // instances, do so.

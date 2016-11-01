@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -52,6 +52,7 @@ class HelperPluginManager extends AbstractPluginManager
         'escapecss'           => 'Zend\View\Helper\EscapeCss',
         'escapeurl'           => 'Zend\View\Helper\EscapeUrl',
         'gravatar'            => 'Zend\View\Helper\Gravatar',
+        'htmltag'             => 'Zend\View\Helper\HtmlTag',
         'headlink'            => 'Zend\View\Helper\HeadLink',
         'headmeta'            => 'Zend\View\Helper\HeadMeta',
         'headscript'          => 'Zend\View\Helper\HeadScript',

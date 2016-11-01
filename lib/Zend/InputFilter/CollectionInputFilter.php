@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -13,27 +13,27 @@ use Traversable;
 
 class CollectionInputFilter extends InputFilter
 {
-    /*
+    /**
      * @var bool
      */
     protected $isRequired = false;
 
-    /*
+    /**
      * @var int
      */
     protected $count = null;
 
-    /*
-     * @var array
+    /**
+     * @var array[]
      */
     protected $collectionValues = array();
 
-    /*
-     * @var array
+    /**
+     * @var array[]
      */
     protected $collectionRawValues = array();
 
-    /*
+    /**
      * @var array
      */
     protected $collectionMessages = array();
@@ -140,6 +140,8 @@ class CollectionInputFilter extends InputFilter
     public function setData($data)
     {
         $this->data = $data;
+
+        return $this;
     }
 
     /**
@@ -200,11 +202,8 @@ class CollectionInputFilter extends InputFilter
     public function setValidationGroup($name)
     {
         if ($name === self::VALIDATE_ALL) {
-            $this->validationGroup = null;
-
-            return $this;
+            $name = null;
         }
-
         $this->validationGroup = $name;
 
         return $this;
@@ -229,7 +228,7 @@ class CollectionInputFilter extends InputFilter
     /**
      * Clear collectionValues
      *
-     * @access public
+     * @return array[]
      */
     public function clearValues()
     {
@@ -239,7 +238,7 @@ class CollectionInputFilter extends InputFilter
     /**
      * Clear collectionRawValues
      *
-     * @access public
+     * @return array[]
      */
     public function clearRawValues()
     {
