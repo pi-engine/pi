@@ -180,9 +180,10 @@ EOT;
             case 'list':
                 // Set script
                 $listScript =<<<'EOT'
+var MaPlace = {};
 $(function() {
     var Location = %s;
-    new Maplace({
+    var maPlace = new Maplace({
         locations: Location,
         map_div: "#%s",
         controls_title: "%s : ",
@@ -193,6 +194,8 @@ $(function() {
             mapTypeId: %s
         }
     }).Load();
+    MaPlace.location = Location;
+    MaPlace.object = maPlace;
 });
 EOT;
                 // Set item info on script
