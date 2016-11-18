@@ -95,15 +95,17 @@ abstract class AbstractSearch extends AbstractApi
      *
      * @param array $terms
      * @param array $condition
+     * @param array $columns
      *
      * @return Where
      */
-    protected function buildCondition(array $terms, array $condition = array())
+    protected function buildCondition(array $terms, array $condition = array(), array $columns = array())
     {
+        $columns = empty($columns) ? $this->searchIn : $columns;
         $where = Pi::db()->where()->or;
         // Create search term clause
         foreach ($terms as $term) {
-            foreach ($this->searchIn as $column) {
+            foreach ($columns as $column) {
                 $where->like($column, '%' . $term . '%')->or;
             }
         }
