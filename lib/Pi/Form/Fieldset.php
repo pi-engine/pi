@@ -17,6 +17,8 @@ use Zend\Form\Fieldset as ZendFieldset;
  *
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ *
+ * ToDo : fix for zend version 2.4.9
  */
 class Fieldset extends ZendFieldset
 {

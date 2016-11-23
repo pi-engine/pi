@@ -20,6 +20,8 @@ use Pi\Validator\Date as DateValidator;
  * Supports auto-detection of locale
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * 
+ * ToDo : fix for zend version 2.4.9
  */
 class DateSelect extends ZendDateSelect
 {

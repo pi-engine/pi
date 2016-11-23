@@ -19,6 +19,8 @@ use Zend\Form\Exception;
  * Fieldset helper
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * 
+ * ToDo : fix for zend version 2.4.9
  */
 class FormFieldset extends AbstractHelper
 {
