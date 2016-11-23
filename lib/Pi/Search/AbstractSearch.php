@@ -65,27 +65,52 @@ abstract class AbstractSearch extends AbstractApi
         $offset = 0,
         array $condition = array()
     ) {
+        $dataAll = array();
+        $countAll = 0;
         $terms = (array) $terms;
-        $model = $this->getModel();
-        $where = $this->buildCondition($terms, $condition);
-        $count = $model->count($where);
-        $data = array();
-        if ($count) {
-            $data = $this->fetchResult($model, $where, $limit, $offset);
+        $tables = $this->getTables();
+        foreach ($tables as $table) {
+            $model = $this->getModel($table);
+            $where = $this->buildCondition($terms, $condition);
+            $count = $model->count($where);
+            if ($count) {
+                $data = $this->fetchResult($model, $where, $limit, $offset, $table);
+                $dataAll = array_merge($dataAll, $data);
+                $countAll = $countAll + $count;
+            }
         }
-        $result = $this->buildResult($count, $data);
-
+        $result = $this->buildResult($countAll, $dataAll);
         return $result;
+    }
+
+    /**
+     * Get table list
+     *
+     * @return array
+     */
+    protected function getTables()
+    {
+        if (is_array($this->table)) {
+            $tables = $this->table;
+        } else {
+            $tables = array();
+            $tables[] = $this->table;
+        }
+
+        return $tables;
     }
 
     /**
      * Get table model
      *
+     * @param string $table
+     *
      * @return Model
      */
-    protected function getModel()
+    protected function getModel($table = '')
     {
-        $model = Pi::model($this->table, $this->module);
+        $table = empty($table) ? $this->table : $table;
+        $model = Pi::model($table, $this->module);
 
         return $model;
     }
@@ -95,15 +120,17 @@ abstract class AbstractSearch extends AbstractApi
      *
      * @param array $terms
      * @param array $condition
+     * @param array $columns
      *
      * @return Where
      */
-    protected function buildCondition(array $terms, array $condition = array())
+    protected function buildCondition(array $terms, array $condition = array(), array $columns = array())
     {
+        $columns = empty($columns) ? $this->searchIn : $columns;
         $where = Pi::db()->where()->or;
         // Create search term clause
         foreach ($terms as $term) {
-            foreach ($this->searchIn as $column) {
+            foreach ($columns as $column) {
                 $where->like($column, '%' . $term . '%')->or;
             }
         }
@@ -147,10 +174,11 @@ abstract class AbstractSearch extends AbstractApi
     /**
      * Fetch search result
      *
-     * @param Model $model
-     * @param Where $where
-     * @param int   $limit
-     * @param int   $offset
+     * @param Model  $model
+     * @param Where  $where
+     * @param int    $limit
+     * @param int    $offset
+     * @param string $table
      *
      * @return array
      */
@@ -158,7 +186,8 @@ abstract class AbstractSearch extends AbstractApi
         Model $model,
         Where $where,
         $limit = 0,
-        $offset = 0
+        $offset = 0,
+        $table = ''
     ) {
         $data = array();
         $select = $model->select();
@@ -177,8 +206,8 @@ abstract class AbstractSearch extends AbstractApi
                     $item[$field] = $this->buildContent($item[$field]);
                 }
             }
-            $item['url'] = $this->buildUrl($item);
-            $item['image'] = $this->buildImage($item);
+            $item['url'] = $this->buildUrl($item, $table);
+            $item['image'] = $this->buildImage($item, $table);
             $data[] = $item;
         }
 
@@ -202,11 +231,12 @@ abstract class AbstractSearch extends AbstractApi
     /**
      * Build item link URL
      *
-     * @param array $item
+     * @param array  $item
+     * @param string $table
      *
      * @return string
      */
-    protected function buildUrl(array $item)
+    protected function buildUrl(array $item, $table = '')
     {
         return Pi::url('www');
     }
@@ -214,11 +244,12 @@ abstract class AbstractSearch extends AbstractApi
     /**
      * Build item image URL
      *
-     * @param array $item
+     * @param array  $item
+     * @param string $table
      *
      * @return string
      */
-    protected function buildImage(array $item)
+    protected function buildImage(array $item, $table = '')
     {
         return '';
     }

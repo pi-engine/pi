@@ -221,7 +221,12 @@ EOT;
                     break;
 
                 case 'button':
-                    $labelPattern = '';
+                    $labelPattern = <<<EOT
+<div class="%label_size% control-label">
+    %mark_required%
+</div>
+EOT;
+                    
                     $elementPattern =<<<EOT
 <div class="%element_size% js-form-element">
     %element_content%
