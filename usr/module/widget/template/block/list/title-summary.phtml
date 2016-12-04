@@ -33,33 +33,37 @@ switch ($options['max_rows']) {
 }
 ?>
 <div class="widget-list widget-list-summary">
-    <?php foreach($items as $item) { ?>
-        <div class="media <?php echo $rows; ?>">
-            <div class="media-body">
-                <?php if (!empty($item['link'])) { ?>
-                    <h4 class="media-heading">
-                        <a href="<?php echo $item['link']; ?>"
-                           title="<?php echo _escape($item['caption']); ?>"
-                           class="pi-ellipsis pi-ellipsis-1"
-                           target="<?php echo $target; ?>"
-                        >
-                            <?php echo _escape($item['caption']); ?>
-                        </a>
-                    </h4>
-                <?php } else { ?>
-                    <h4 class="media-heading">
-                        <?php echo _escape($item['caption']); ?>
-                    </h4>
-                <?php } ?>
-                <div class="clearfix">
-                    <?php echo $item['summary']; ?>
-                    <?php if (!empty($item['link'])) { ?>
-                        <div class="pull-right">
-                            <a href="<?php echo $item['link']; ?>" target="<?php echo $target; ?>"><?php echo _b('More'); ?></a>
+    <div class="row clearfix">
+        <?php foreach($items as $item) { ?>
+            <div class="<?php echo $rows; ?>">
+                <div class="media">
+                    <div class="media-body">
+                        <?php if (!empty($item['link'])) { ?>
+                            <h4 class="media-heading">
+                                <a href="<?php echo $item['link']; ?>"
+                                   title="<?php echo _escape($item['caption']); ?>"
+                                   class="pi-ellipsis pi-ellipsis-1"
+                                   target="<?php echo $target; ?>"
+                                >
+                                    <?php echo _escape($item['caption']); ?>
+                                </a>
+                            </h4>
+                        <?php } else { ?>
+                            <h4 class="media-heading">
+                                <?php echo _escape($item['caption']); ?>
+                            </h4>
+                        <?php } ?>
+                        <div class="clearfix">
+                            <?php echo $item['summary']; ?>
+                            <?php if (!empty($item['link'])) { ?>
+                                <div class="pull-right">
+                                    <a href="<?php echo $item['link']; ?>" target="<?php echo $target; ?>"><?php echo _b('More'); ?></a>
+                                </div>
+                            <?php } ?>
                         </div>
-                    <?php } ?>
+                    </div>
                 </div>
             </div>
-        </div>
-    <?php } ?>
+        <?php } ?>
+    </div>
 </div>
