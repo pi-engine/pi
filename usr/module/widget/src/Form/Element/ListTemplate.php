@@ -22,8 +22,8 @@ class ListTemplate extends MediaTemplate
     protected function getStyles()
     {
         $styles = array(
-            $this->templateDir . '/title-only'      => _a('Title only'),
             $this->templateDir . '/title-summary'   => _a('Title and summary'),
+            $this->templateDir . '/title-only'      => _a('Title only'),
         );
         $styles += $this->getList();
 
