@@ -2,18 +2,52 @@
 $options    = (array) $block['options'];
 $items      = (array) $block['items'];
 $target     = empty($options['target_new']) ? '_self' : '_blank';
+switch ($options['max_rows']) {
+    case '0':
+        $rows = 'col-md-12 col-xs-12';
+        break;
+
+    case '1':
+        $rows = 'col-md-12 col-xs-12';
+        break;
+
+    case '2':
+        $rows = 'col-md-6 col-xs-6';
+        break;
+
+    case '3':
+        $rows = 'col-md-4 col-xs-4';
+        break;
+
+    case '4':
+        $rows = 'col-md-3 col-xs-4';
+        break;
+
+    case '6':
+        $rows = 'col-md-2 col-xs-3';
+        break;
+
+    case '12':
+        $rows = 'col-md-1 col-xs-2';
+        break;
+}
 ?>
 <div class="widget-list widget-list-title">
-    <ul>
+    <ul class="clearfix">
         <?php foreach($items as $item) { ?>
-        <li>
-            <a href="<?php echo $item['link']; ?>"
-                title="<?php echo _escape($item['caption']); ?>" 
-                target="<?php echo $target; ?>"
-            >
-                <?php echo _escape($item['caption']); ?>
-            </a>
-        </li>
+            <li class="<?php echo $rows; ?>">
+                <?php if (!empty($item['link'])) { ?>
+                    <a href="<?php echo $item['link']; ?>"
+                       title="<?php echo _escape($item['caption']); ?>"
+                       class="pi-ellipsis pi-ellipsis-1"
+                       target="<?php echo $target; ?>"
+                    >
+                        <?php echo _escape($item['caption']); ?>
+                    </a>
+                <?php } else { ?>
+                    <?php echo _escape($item['caption']); ?>
+                <?php } ?>
+            </li>
         <?php } ?>
     </ul>
 </div>
