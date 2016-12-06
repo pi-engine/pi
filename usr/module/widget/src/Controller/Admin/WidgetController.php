@@ -265,12 +265,19 @@ abstract class WidgetController extends ActionController
         }
         array_walk($list, function (&$item) {
             $item['editUrl'] = $this->url('', array(
-                'action'    => 'edit',
-                'id'        => $item['id']
+                'action'     => 'edit',
+                'id'         => $item['id']
+            ));
+            $item['editConfigUrl'] = $this->url('', array(
+                'module'     => 'system',
+                'controller' => 'block',
+                'action'     => 'edit',
+                'id'         => $item['block']['id'],
+                'name'       => 'widget',
             ));
             $item['deleteUrl'] = $this->url('', array(
-                'action'    => 'delete',
-                'id'        => $item['id']
+                'action'     => 'delete',
+                'id'         => $item['id']
             ));
         });
 
