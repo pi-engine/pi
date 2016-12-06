@@ -24,6 +24,7 @@ class ListTemplate extends MediaTemplate
         $styles = array(
             $this->templateDir . '/title-summary'   => _a('Title and summary'),
             $this->templateDir . '/title-only'      => _a('Title only'),
+            $this->templateDir . '/social-network'  => _a('Social network bar'),
         );
         $styles += $this->getList();
 
