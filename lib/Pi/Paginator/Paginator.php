@@ -230,7 +230,7 @@ class Paginator extends Pagit
         } elseif ($data instanceof Iterator) {
             $adapter = 'iterator';
         } elseif (is_integer($data)) {
-            $adapter = 'null';
+            $adapter = 'nullFill';
         } else {
             $type = (is_object($data)) ? get_class($data) : gettype($data);
             throw new Exception\InvalidArgumentException(
