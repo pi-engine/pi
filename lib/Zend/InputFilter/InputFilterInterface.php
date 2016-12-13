@@ -19,12 +19,9 @@ interface InputFilterInterface extends Countable
     /**
      * Add an input to the input filter
      *
-     * @param  InputInterface|InputFilterInterface|array|Traversable $input
-     *     Implementations MUST handle at least one of the specified types, and
-     *     raise an exception for any they cannot process.
+     * @param  InputInterface|InputFilterInterface|array $input
      * @param  null|string $name Name used to retrieve this input
      * @return InputFilterInterface
-     * @throws Exception\InvalidArgumentException if unable to handle the input type.
      */
     public function add($input, $name = null);
 
@@ -145,7 +142,7 @@ interface InputFilterInterface extends Countable
      * Should return an associative array of named input/message list pairs.
      * Pairs should only be returned for inputs that failed validation.
      *
-     * @return string[]
+     * @return array
      */
     public function getMessages();
 }

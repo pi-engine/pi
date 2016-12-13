@@ -13,27 +13,27 @@ use Traversable;
 
 class CollectionInputFilter extends InputFilter
 {
-    /**
+    /*
      * @var bool
      */
     protected $isRequired = false;
 
-    /**
+    /*
      * @var int
      */
     protected $count = null;
 
-    /**
-     * @var array[]
+    /*
+     * @var array
      */
     protected $collectionValues = array();
 
-    /**
-     * @var array[]
+    /*
+     * @var array
      */
     protected $collectionRawValues = array();
 
-    /**
+    /*
      * @var array
      */
     protected $collectionMessages = array();
@@ -140,8 +140,6 @@ class CollectionInputFilter extends InputFilter
     public function setData($data)
     {
         $this->data = $data;
-
-        return $this;
     }
 
     /**
@@ -228,7 +226,7 @@ class CollectionInputFilter extends InputFilter
     /**
      * Clear collectionValues
      *
-     * @return array[]
+     * @access public
      */
     public function clearValues()
     {
@@ -238,7 +236,7 @@ class CollectionInputFilter extends InputFilter
     /**
      * Clear collectionRawValues
      *
-     * @return array[]
+     * @access public
      */
     public function clearRawValues()
     {
