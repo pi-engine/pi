@@ -1,15 +1,16 @@
-Please contact us with following contacts:
 
-Email: dev@xoopsengine.org
-Pi Engine Team: https://github.com/pi-engine/pi/wiki/Pi-Team
-Pi Engine Website: http://www.pi-engine.org
-Pi Engine Github: http://github.com/pi-engine
-Pi Engine Code: https://github.com/pi-engine/pi
-Pi Engine Docs: https://github.com/pi-engine/pi/wiki
-Pi Engine Tickets: https://github.com/pi-engine/pi/issues
-Pi Engine Google+: https://plus.google.com/communities/113415243547871753745
-
-Pi demo websites:
-Pi Dialogue: http://pialog.org; http://pialogue.org
-Pi Demo: http://pi-demo.org
-Xoops/Pi: http://demo.xoopsengine.org
+                    Please contact us with following contacts:<br>
+<br>
+Email: dev@xoopsengine.org<br>
+Pi Engine Team: <a href="https://github.com/pi-engine/pi/wiki/Pi-Team" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Pi-Team</a><br>
+Pi Engine Website: <a href="http://www.pi-engine.org" target="_blank" title="Click to open">http://www.pi-engine.org</a><br>
+Pi Engine Github: <a href="http://github.com/pi-engine" target="_blank" title="Click to open">http://github.com/pi-engine</a><br>
+Pi Engine Code: <a href="https://github.com/pi-engine/pi" target="_blank" title="Click to open">https://github.com/pi-engine/pi</a><br>
+Pi Engine Docs: <a href="https://github.com/pi-engine/pi/wiki" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki</a><br>
+Pi Engine Tickets: <a href="https://github.com/pi-engine/pi/issues" target="_blank" title="Click to open">https://github.com/pi-engine/pi/issues</a><br>
+Pi Engine Google+: <a href="https://plus.google.com/communities/113415243547871753745" target="_blank" title="Click to open">https://plus.google.com/communities/113415243547871753745</a><br>
+<br>
+Pi demo websites:<br>
+Pi Dialogue: <a href="http://pialog.org" target="_blank" title="Click to open">http://pialog.org</a>; <a href="http://pialogue.org" target="_blank" title="Click to open">http://pialogue.org</a><br>
+Pi Demo: <a href="http://pi-demo.org" target="_blank" title="Click to open">http://pi-demo.org</a><br>
+Xoops/Pi: <a href="http://demo.xoopsengine.org" target="_blank" title="Click to open">http://demo.xoopsengine.org</a><br>
