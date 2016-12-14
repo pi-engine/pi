@@ -50,7 +50,7 @@ class InputFilterAbstractServiceFactory implements AbstractFactoryInterface
      * @param ServiceLocatorInterface $inputFilters
      * @param string                  $cName
      * @param string                  $rName
-     * @return InputFilterInterface
+     * @return \Zend\InputFilter\InputFilterInterface
      */
     public function createServiceWithName(ServiceLocatorInterface $inputFilters, $cName, $rName)
     {

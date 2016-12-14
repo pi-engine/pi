@@ -220,6 +220,7 @@ class Headers implements Countable, Iterator
         if (!is_string($headerFieldNameOrLine)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects its first argument to be a string; received "%s"',
+                __METHOD__,
                 (is_object($headerFieldNameOrLine)
                 ? get_class($headerFieldNameOrLine)
                 : gettype($headerFieldNameOrLine))

@@ -53,8 +53,6 @@ class Sender implements HeaderInterface
                 $senderName = null;
             }
             $senderEmail = $matches['email'];
-        } else {
-            $senderEmail = $value;
         }
 
         $header->setAddress($senderEmail, $senderName);

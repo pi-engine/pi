@@ -28,18 +28,20 @@ final class HeaderValue
     public static function filter($value)
     {
         $result = '';
-        $total  = strlen($value);
+        $tot    = strlen($value);
 
         // Filter for CR and LF characters, leaving CRLF + WSP sequences for
         // Long Header Fields (section 2.2.3 of RFC 2822)
-        for ($i = 0; $i < $total; $i += 1) {
+        for ($i = 0; $i < $tot; $i += 1) {
             $ord = ord($value[$i]);
-            if ($ord === 10 || $ord > 127) {
+            if (($ord < 32 || $ord > 126)
+                && $ord !== 13
+            ) {
                 continue;
             }
 
             if ($ord === 13) {
-                if ($i + 2 >= $total) {
+                if ($i + 2 >= $tot) {
                     continue;
                 }
 
@@ -70,28 +72,27 @@ final class HeaderValue
      */
     public static function isValid($value)
     {
-        $total = strlen($value);
-        for ($i = 0; $i < $total; $i += 1) {
+        $tot = strlen($value);
+        for ($i = 0; $i < $tot; $i += 1) {
             $ord = ord($value[$i]);
-
-            // bare LF means we aren't valid
-            if ($ord === 10 || $ord > 127) {
+            if (($ord < 32 || $ord > 126)
+                && $ord !== 13
+            ) {
                 return false;
             }
 
             if ($ord === 13) {
-                if ($i + 2 >= $total) {
+                if ($i + 2 >= $tot) {
                     return false;
                 }
 
                 $lf = ord($value[$i + 1]);
                 $sp = ord($value[$i + 2]);
 
-                if ($lf !== 10 || ! in_array($sp, [9, 32], true)) {
+                if ($lf !== 10 || $sp !== 32) {
                     return false;
                 }
 
-                // skip over the LF following this
                 $i += 2;
             }
         }

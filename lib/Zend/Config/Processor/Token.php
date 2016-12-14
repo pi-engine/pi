@@ -51,7 +51,6 @@ class Token implements ProcessorInterface
      *                                             to replace it with
      * @param    string $prefix
      * @param    string $suffix
-     * @internal param array $options
      * @return   Token
      */
     public function __construct($tokens = array(), $prefix = '', $suffix = '')
