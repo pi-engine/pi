@@ -102,7 +102,7 @@ class IndexController extends ActionController
                 $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
-            $markup = $this->params('type', 'text');
+            $markup = $this->params('type', 'html');
             $form = new PageForm('page-form', $markup);
             $form->setAttribute(
                 'action',
