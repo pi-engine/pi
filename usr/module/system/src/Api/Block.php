@@ -204,8 +204,14 @@ class Block extends AbstractApi
             }
         }
 
-        // Update template and content for non-cloned blocks
+        // Update title , description , template and content for non-cloned blocks
         $updates = array();
+        if (isset($block['title'])) {
+            $updates['title'] = $block['title'];
+        }
+        if (isset($block['description'])) {
+            $updates['description'] = $block['description'];
+        }
         if (isset($block['template'])) {
             $updates['template'] = $block['template'];
         }

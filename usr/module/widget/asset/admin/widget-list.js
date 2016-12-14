@@ -14,6 +14,7 @@
 
                     content.push({
                         "caption":  getVal('caption'),
+                        "icon":     getVal('icon'),
                         "link":     getVal('link'),
                         "summary":  getVal('summary')
 
@@ -74,6 +75,7 @@
         addItem: function() {
             this.collection.add({
                 caption : '',
+                icon    : '',
                 link    : '',
                 summary : ''
             });

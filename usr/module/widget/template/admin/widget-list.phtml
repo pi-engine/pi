@@ -20,29 +20,33 @@ echo $this->form($form);
 </div>
 
 <script id="widget-item-template" type="text/template">
-<div class="col-sm-6 col-md-3 widget-item">
-    <button type="button" class="close" title="<?php echo _a('Click to remove'); ?>">&times;</button>
-    <div class="thumbnail">
-        <p>
-            <label><?php echo _a('Caption'); ?></label>
-            <input type="text" value="<%= caption %>" name="<%= prefix %>caption" class="form-control">
-        </p>
-        <p>
-            <label><?php echo _a('Link'); ?></label>
-            <input type="text" value="<%= link %>" name="<%= prefix %>link" class="form-control">
-        </p>
-        <p>
-            <label><?php echo _a('Summary'); ?></label>
-            <textarea name="<%= prefix %>summary" class="form-control" rows="5"><%= summary %></textarea>
-        </p>
+    <div class="col-sm-6 col-md-3 widget-item">
+        <button type="button" class="close" title="<?php echo _a('Click to remove'); ?>">&times;</button>
+        <div class="thumbnail">
+            <p>
+                <label><?php echo _a('Caption'); ?></label>
+                <input type="text" value="<%= caption %>" name="<%= prefix %>caption" class="form-control">
+            </p>
+            <p>
+                <label><?php echo _a('Icon'); ?></label>
+                <input type="text" value="<%= icon %>" name="<%= prefix %>icon" class="form-control">
+            </p>
+            <p>
+                <label><?php echo _a('Link'); ?></label>
+                <input type="text" value="<%= link %>" name="<%= prefix %>link" class="form-control">
+            </p>
+            <p>
+                <label><?php echo _a('Summary'); ?></label>
+                <textarea name="<%= prefix %>summary" class="form-control" rows="5"><%= summary %></textarea>
+            </p>
+        </div>
     </div>
-</div>
 </script>
 
 <script src="<?php echo $this->assetModule('admin/widget-list.js'); ?>"></script>
 <script>
-widgetAction({
-    prefix: "block-",
-    items: <?php echo $content ?: json_encode(array()); ?>
-});
+    widgetAction({
+        prefix: "block-",
+        items: <?php echo $content ?: json_encode(array()); ?>
+    });
 </script>

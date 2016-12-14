@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2016-07-26 09:55+0430\n"
-"PO-Revision-Date: 2016-07-26 09:56+0430\n"
+"POT-Creation-Date: 2016-12-06 14:09+0330\n"
+"PO-Revision-Date: 2016-12-06 14:09+0330\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -91,68 +91,68 @@ msgstr ""
 msgid "Management of custom blocks/widgets."
 msgstr ""
 
-#: config/nav.php:15 config/permission.php:16
-msgid "Static widgets"
+#: config/nav.php:15 config/permission.php:13
+msgid "Script widgets"
 msgstr ""
 
-#: config/nav.php:24 config/nav.php:79 config/nav.php:113 config/nav.php:147
-#: config/nav.php:181 config/nav.php:215 config/nav.php:249 config/nav.php:284
+#: config/nav.php:25 config/nav.php:49 config/nav.php:104 config/nav.php:138
+#: config/nav.php:172 config/nav.php:206 config/nav.php:240 config/nav.php:274
 msgid "Widget list"
 msgstr ""
 
-#: config/nav.php:31 config/nav.php:86 config/nav.php:120 config/nav.php:154
-#: config/nav.php:188 config/nav.php:222 config/nav.php:256
+#: config/nav.php:31 template/admin/ng-script.phtml:11
+msgid "Activate"
+msgstr ""
+
+#: config/nav.php:40 config/permission.php:16
+msgid "Static widgets"
+msgstr ""
+
+#: config/nav.php:56 config/nav.php:111 config/nav.php:145 config/nav.php:179
+#: config/nav.php:213 config/nav.php:247 config/nav.php:281
 #: template/admin/ng.phtml:11
 msgid "Edit"
 msgstr ""
 
-#: config/nav.php:40
+#: config/nav.php:65
 msgid "Add HTML"
 msgstr ""
 
-#: config/nav.php:49
+#: config/nav.php:74
 msgid "Add text"
 msgstr ""
 
-#: config/nav.php:58
+#: config/nav.php:83
 msgid "Add markdown"
 msgstr ""
 
-#: config/nav.php:70 config/permission.php:19
+#: config/nav.php:95 config/permission.php:19
 msgid "List group"
 msgstr ""
 
-#: config/nav.php:95 config/nav.php:129 config/nav.php:163 config/nav.php:197
-#: config/nav.php:231 config/nav.php:265
+#: config/nav.php:120 config/nav.php:154 config/nav.php:188 config/nav.php:222
+#: config/nav.php:256 config/nav.php:290
 msgid "Add new"
 msgstr ""
 
-#: config/nav.php:104 config/permission.php:22
+#: config/nav.php:129 config/permission.php:22
 msgid "Media list"
 msgstr ""
 
-#: config/nav.php:138
+#: config/nav.php:163
 msgid "Carousel"
 msgstr ""
 
-#: config/nav.php:172
+#: config/nav.php:197
 msgid "Spotlight"
 msgstr ""
 
-#: config/nav.php:206 config/permission.php:31
+#: config/nav.php:231 config/permission.php:31
 msgid "Compound tabs"
 msgstr ""
 
-#: config/nav.php:240 config/permission.php:34
+#: config/nav.php:265 config/permission.php:34
 msgid "Video and audio"
-msgstr ""
-
-#: config/nav.php:274 config/permission.php:13
-msgid "Script widgets"
-msgstr ""
-
-#: config/nav.php:290 template/admin/ng-script.phtml:11
-msgid "Activate"
 msgstr ""
 
 #: config/permission.php:25
@@ -280,34 +280,34 @@ msgstr ""
 msgid "Markdown"
 msgstr ""
 
-#: src/Controller/Admin/WidgetController.php:289
-#: src/Controller/Admin/WidgetController.php:327
+#: src/Controller/Admin/WidgetController.php:296
+#: src/Controller/Admin/WidgetController.php:334
 msgid "Block data saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/WidgetController.php:297
-#: src/Controller/Admin/WidgetController.php:335
+#: src/Controller/Admin/WidgetController.php:304
+#: src/Controller/Admin/WidgetController.php:342
 msgid "Block data not saved."
 msgstr ""
 
-#: src/Controller/Admin/WidgetController.php:301
-#: src/Controller/Admin/WidgetController.php:337
+#: src/Controller/Admin/WidgetController.php:308
+#: src/Controller/Admin/WidgetController.php:344
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: src/Controller/Admin/WidgetController.php:312
+#: src/Controller/Admin/WidgetController.php:319
 msgid "Add a block"
 msgstr ""
 
-#: src/Controller/Admin/WidgetController.php:353
+#: src/Controller/Admin/WidgetController.php:360
 msgid "Block edit"
 msgstr ""
 
-#: src/Controller/Admin/WidgetController.php:370
+#: src/Controller/Admin/WidgetController.php:377
 msgid "The widget is removed."
 msgstr ""
 
-#: src/Controller/Admin/WidgetController.php:373
+#: src/Controller/Admin/WidgetController.php:380
 msgid "The widget is not removed."
 msgstr ""
 
@@ -362,11 +362,15 @@ msgid "Parallax Content Slider"
 msgstr ""
 
 #: src/Form/Element/ListTemplate.php:25
-msgid "Title only"
+msgid "Title and summary"
 msgstr ""
 
 #: src/Form/Element/ListTemplate.php:26
-msgid "Title and summary"
+msgid "Title only"
+msgstr ""
+
+#: src/Form/Element/ListTemplate.php:27
+msgid "Social network bar"
 msgstr ""
 
 #: src/Form/Element/MediaTemplate.php:48
@@ -374,15 +378,15 @@ msgid "Custom: "
 msgstr ""
 
 #: src/Form/Element/MediaTemplate.php:63
-msgid "Image on left"
+msgid "List of images on lines"
 msgstr ""
 
 #: src/Form/Element/MediaTemplate.php:64
-msgid "Image on right"
+msgid "Image on left"
 msgstr ""
 
 #: src/Form/Element/MediaTemplate.php:65
-msgid "List of images on lines"
+msgid "Image on right"
 msgstr ""
 
 #: src/Form/Element/SpotlightTemplate.php:25
@@ -459,6 +463,10 @@ msgid "Widget name already exists"
 msgstr ""
 
 #: template/admin/ng.phtml:12
+msgid "Edit configs"
+msgstr ""
+
+#: template/admin/ng.phtml:13
 msgid "Delete"
 msgstr ""
 
@@ -482,11 +490,15 @@ msgstr "主题更新失败。"
 msgid "Caption"
 msgstr ""
 
-#: template/admin/widget-list.phtml:31 template/admin/widget-media.phtml:40
+#: template/admin/widget-list.phtml:31
+msgid "Icon"
+msgstr ""
+
+#: template/admin/widget-list.phtml:35 template/admin/widget-media.phtml:40
 msgid "Link"
 msgstr ""
 
-#: template/admin/widget-list.phtml:35 template/admin/widget-media.phtml:44
+#: template/admin/widget-list.phtml:39 template/admin/widget-media.phtml:44
 #: template/admin/widget-video.phtml:44
 msgid "Summary"
 msgstr ""

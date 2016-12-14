@@ -60,9 +60,9 @@ class MediaTemplate extends Select
     protected function getStyles()
     {
         $styles = array(
+            $this->templateDir . '/image-list' => _a('List of images on lines'),
             $this->templateDir . '/image-left'  => _a('Image on left'),
             $this->templateDir . '/image-right' => _a('Image on right'),
-            $this->templateDir . '/image-list' => _a('List of images on lines'),
         );
         $styles += $this->getList();
 

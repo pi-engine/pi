@@ -131,6 +131,22 @@ return array(
             ),
             'filter'   => 'Module\User\Filter\Birthdate',
         ), */
+        'birthdate'  => array(
+            'type'  => 'account',
+            'name'  => 'birthdate',
+            'title' => _a('Birthdate'),
+            'edit'  => array(
+                'element'       => 'datepicker',
+                'options'       => array(
+                    'datepicker'    => array(
+                        'format'        => 'yyyy-mm-dd',
+                        'start_date'    => '1900-01-01',
+                        'end_date'      => '2030-12-31',
+                    ),
+                ),
+            ),
+            'filter'   => 'Module\User\Filter\Birthdate',
+        ),
         // Account: avatar
         'avatar'    => array(
             'type'      => 'account',

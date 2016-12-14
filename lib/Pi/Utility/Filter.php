@@ -486,16 +486,19 @@ namespace
      *
      * @param string        $text           Text to be cleaned
      * @param string|null   $replacement    Replacement for stripped characters
+     * @param array         $pattern        Custom pattern array
      * @return string
      */
-    function _strip($text, $replacement = null)
+    function _strip($text, $replacement = null, $pattern = array())
     {
-        $pattern = array(
-            "\t", "\r\n", "\r", "\n", "'", "\\",
-            '&nbsp;', ',', '.', ';', ':', ')', '(',
-            '"', '?', '!', '{', '}', '[', ']', '<', '>', '/', '+', '-', '_',
-            '*', '=', '@', '#', '$', '%', '^', '&'
-        );
+        if (empty($pattern)) {
+            $pattern = array(
+                "\t", "\r\n", "\r", "\n", "'", "\\",
+                '&nbsp;', ',', '.', ';', ':', ')', '(',
+                '"', '?', '!', '{', '}', '[', ']', '<', '>', '/', '+', '-', '_',
+                '*', '=', '@', '#', '$', '%', '^', '&'
+            );
+        }
         $replacement = (null === $replacement) ? ' ' : $replacement;
 
         // Strip HTML tags
