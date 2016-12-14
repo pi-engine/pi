@@ -93,8 +93,8 @@ class PageForm extends BaseForm
             'options' => array(
                 'label' => __('Template'),
                 'value_options' => array(
-                    'page-view' => __('Default'),
                     'page-view-simple' => __('Simple'),
+                    'page-view' => __('Default ( By panel )'),
                 ),
             ),
         ));

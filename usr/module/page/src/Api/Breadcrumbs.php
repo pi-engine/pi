@@ -26,11 +26,11 @@ class Breadcrumbs extends AbstractBreadcrumbs
         }
 
         // Set module link
-        $moduleData = Pi::registry('module')->read($this->getModule());
+        // $moduleData = Pi::registry('module')->read($this->getModule());
         $result = array(
-            array(
+            /* array(
                 'label' => $moduleData['title'],
-            ),
+            ), */
         );
 
         $model = Pi::model('page', $this->getModule());

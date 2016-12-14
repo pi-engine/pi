@@ -61,6 +61,7 @@ class Install extends BasicInstall
                 $content = '';
             }
             $meta['content'] = $content;
+            $meta['template'] = 'page-view-simple';
             $apiHandler->add($meta);
         }
 
