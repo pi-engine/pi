@@ -267,6 +267,31 @@ EOD;
             }
         }
 
+        // Update to version 1.2.7
+        if (version_compare($moduleVersion, '1.2.7', '<=')) {
+            // Check sitemap module active or not
+            if (Pi::service('module')->isActive('sitemap')) {
+                // Clean all page links on sitemap
+                Pi::api('sitemap', 'sitemap')->removeAll($this->module, 'page');
+                // Get list of pages
+                $select = $model->select();
+                $rowset = $model->selectWith($select);
+                foreach ($rowset as $row) {
+                    $loc = Pi::Url(Pi::service('url')->assemble(
+                        'page',
+                        $row->toArray()
+                    ));
+                    Pi::api('sitemap', 'sitemap')->groupLink(
+                        $loc,
+                        $row->active,
+                        $this->module,
+                        'page',
+                        $row->id
+                    );
+                }
+            }
+        }
+
         return true;
     }
 }
