@@ -211,6 +211,7 @@ class IndexController extends ActionController
         $id = $this->params('id');
         $row = $this->getModel('page')->find($id);
         if ($row) {
+            $page = $row->tpArray();
             if ($row->name) {
                 $this->removePage($row->name);
             }
@@ -218,6 +219,11 @@ class IndexController extends ActionController
             Pi::registry('page')->clear($this->getModule());
             Pi::registry('page', $this->getModule())->flush();
             Pi::registry('nav', $this->getModule())->flush();
+            // Clean sitemap
+            if (Pi::service('module')->isActive('sitemap')) {
+                $loc = Pi::url($this->url('page', $page));
+                Pi::api('sitemap', 'sitemap')->remove($loc);
+            }
         }
 
         return $this->jump(
