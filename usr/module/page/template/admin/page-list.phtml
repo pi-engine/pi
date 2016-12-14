@@ -46,12 +46,11 @@
                     <td>
                         <a class="btn btn-sm btn-primary btn-xs" href="<?php echo $this->url('', array('action' => 'edit', 'id' => $page['id'])); ?>"><?php echo _a('Edit'); ?></a>
                         <?php if ($page['active']) { ?>
-                            <a class="btn btn-sm btn-warning btn-xs" href="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>"><?php echo _a('Disable'); ?></a>
+                            <a class="btn btn-sm btn-warning btn-xs" href="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" onclick="return confirm('<?php echo _a('Are you sure to disable this page?'); ?>')"><?php echo _a('Disable'); ?></a>
                         <?php } else { ?>
-                            <a class="btn btn-sm btn-success btn-xs" href="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>"><?php echo _a('Enable'); ?></a>
+                            <a class="btn btn-sm btn-success btn-xs" href="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" onclick="return confirm('<?php echo _a('Are you sure to dnable this page?'); ?>')"><?php echo _a('Enable'); ?></a>
                         <?php }?>
-                        <a class="btn btn-sm btn-danger btn-xs" href="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>"
-                           onclick="return confirm('<?php echo _a('Are you sure to delete this page?'); ?>')"><?php echo _a('Delete'); ?></a>
+                        <a class="btn btn-sm btn-danger btn-xs" href="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>" onclick="return confirm('<?php echo _a('Are you sure to delete this page?'); ?>')"><?php echo _a('Delete'); ?></a>
                     </td>
                     <td>
                         <input type="text" name="order[<?php echo $page['id']; ?>]" value="<?php echo $page['nav_order']; ?>" class="form-control input-sm">
