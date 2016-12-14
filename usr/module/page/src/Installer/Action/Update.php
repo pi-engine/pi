@@ -24,7 +24,7 @@ class Update extends BasicUpdate
         $events = $this->events;
         $events->attach('update.pre', array($this, 'updateSchema'));
         parent::attachDefaultListeners();
-        
+
         return $this;
     }
 
@@ -61,7 +61,7 @@ EOD;
                 $this->setResult('db', array(
                     'status'    => false,
                     'message'   => 'SQL schema query failed: '
-                                   . $exception->getMessage(),
+                        . $exception->getMessage(),
                 ));
 
                 return false;
@@ -69,15 +69,15 @@ EOD;
 
             // Alter table field `time` to `time_created`
             $sql = sprintf('ALTER TABLE %s CHANGE `time` `time_created` int(10)'
-                           . ' unsigned NOT NULL default \'0\'',
-                           $table);
+                . ' unsigned NOT NULL default \'0\'',
+                $table);
             try {
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
                 $this->setResult('db', array(
                     'status'    => false,
                     'message'   => 'Table alter query failed: '
-                                   . $exception->getMessage(),
+                        . $exception->getMessage(),
                 ));
 
                 return false;
@@ -85,15 +85,15 @@ EOD;
 
             // Add table field `time_updated`
             $sql = sprintf('ALTER TABLE %s ADD `time_updated` int(10) unsigned'
-                           . ' NOT NULL default \'0\' AFTER `time_created`',
-                           $table);
+                . ' NOT NULL default \'0\' AFTER `time_created`',
+                $table);
             try {
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
                 $this->setResult('db', array(
                     'status'    => false,
                     'message'   => 'Table alter query failed: '
-                                   . $exception->getMessage(),
+                        . $exception->getMessage(),
                 ));
 
                 return false;
@@ -102,14 +102,14 @@ EOD;
             // Add table field `clicks`
             try {
                 $sql = sprintf('ALTER TABLE %s ADD `clicks` int(10)'
-                               . ' unsigned NOT NULL default \'0\'',
-                               $table);
+                    . ' unsigned NOT NULL default \'0\'',
+                    $table);
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
                 $this->setResult('db', array(
                     'status'    => false,
                     'message'   => 'Table alter query failed: '
-                                   . $exception->getMessage(),
+                        . $exception->getMessage(),
                 ));
 
                 return false;
@@ -118,13 +118,13 @@ EOD;
             // Drop not used table
             try {
                 $sql = sprintf('DROP TABLE IF EXISTS %s',
-                               Pi::model('stats', $this->module)->getTable());
+                    Pi::model('stats', $this->module)->getTable());
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
                 $this->setResult('db', array(
                     'status'    => false,
                     'message'   => 'Table drop failed: '
-                                   . $exception->getMessage(),
+                        . $exception->getMessage(),
                 ));
 
                 return false;
@@ -283,7 +283,7 @@ EOD;
                     ));
                     Pi::api('sitemap', 'sitemap')->groupLink(
                         $loc,
-                        $row->active,
+                        $row->active ? 1 : 2,
                         $this->module,
                         'page',
                         $row->id
