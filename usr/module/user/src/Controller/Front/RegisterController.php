@@ -492,6 +492,8 @@ class RegisterController extends ActionController
                     'email'     => $values['email'],
                     'uid'       => $uid,
                     'identity'  => $values['identity'],
+                    'name'      => $values['name'],
+                    
                 ));
             }
         // Activated by admin
@@ -501,6 +503,8 @@ class RegisterController extends ActionController
                     'email'     => $values['email'],
                     'uid'       => $uid,
                     'identity'  => $values['identity'],
+                    'name'      => $values['name'],
+                    
                 ));
             }
         // Activated by email
@@ -509,6 +513,8 @@ class RegisterController extends ActionController
                 'email'     => $values['email'],
                 'uid'       => $uid,
                 'identity'  => $values['identity'],
+                'name'      => $values['name'],
+                
             ));
             if (!$status) {
                 $result['message'] = __('Account activation email was not able to send, please contact admin.');
@@ -556,14 +562,14 @@ class RegisterController extends ActionController
                 $redirect = Pi::user()->data()->get($data['uid'], 'register_redirect');
                 $url = Pi::url(Pi::service('authentication')->getUrl('login', $redirect), true);
                 $params = array(
-                    'username'  => $data['identity'],
+                    'username'  => $data['name'],
                     'login_url' => $url,
                 );
                 break;
             case 'admin':
                 $template = 'register-success-html';
                 $params = array(
-                    'username'  => $data['identity'],
+                    'username'  => $data['name'],
                 );
                 break;
             case 'activation':
@@ -583,7 +589,7 @@ class RegisterController extends ActionController
                         'token'  => $token
                     )), true);
                     $params = array(
-                        'username'          => $data['identity'],
+                        'username'          => $data['name'],
                         'activation_url'    => $url,
                     );
                 }
