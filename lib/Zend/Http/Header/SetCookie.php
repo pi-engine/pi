@@ -302,6 +302,7 @@ class SetCookie implements MultipleHeaderInterface
      */
     public function setValue($value)
     {
+        HeaderValue::assertValid($value);
         $this->value = $value;
         return $this;
     }

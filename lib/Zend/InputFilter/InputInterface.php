@@ -15,8 +15,6 @@ use Zend\Validator\ValidatorChain;
 interface InputInterface
 {
     /**
-     * @deprecated 2.4.8 Add Zend\Validator\NotEmpty validator to the ValidatorChain and set this to `true`.
-     *
      * @param bool $allowEmpty
      * @return self
      */
@@ -71,8 +69,6 @@ interface InputInterface
     public function merge(InputInterface $input);
 
     /**
-     * @deprecated 2.4.8 Add Zend\Validator\NotEmpty validator to the ValidatorChain.
-     *
      * @return bool
      */
     public function allowEmpty();
@@ -123,7 +119,7 @@ interface InputInterface
     public function isValid();
 
     /**
-     * @return string[]
+     * @return array
      */
     public function getMessages();
 }

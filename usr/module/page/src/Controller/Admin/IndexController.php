@@ -90,7 +90,13 @@ class IndexController extends ActionController
                             'name'  => $values['name'],
                             'id'    => $id,
                         )));
-                        Pi::api('sitemap', 'sitemap')->singleLink($loc, $values['active'], $this->getModule(), 'page', $id);
+                        Pi::api('sitemap', 'sitemap')->singleLink(
+                            $loc,
+                            $values['active'] ? 1 : 2,
+                            $this->getModule(),
+                            'page',
+                            $id
+                        );
                     }
                     // Set jump
                     $message = _a('Page data saved successfully.');
@@ -102,7 +108,7 @@ class IndexController extends ActionController
                 $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
-            $markup = $this->params('type', 'text');
+            $markup = $this->params('type', 'html');
             $form = new PageForm('page-form', $markup);
             $form->setAttribute(
                 'action',
@@ -176,7 +182,12 @@ class IndexController extends ActionController
                         'name'  => $row->name,
                         'id'    => $row->id,
                     )));
-                    Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->active, $this->getModule(), 'page', $row->id);
+                    Pi::api('sitemap', 'sitemap')->singleLink($loc,
+                        $row->active ? 1 : 2,
+                        $this->getModule(),
+                        'page',
+                        $row->id
+                    );
                 }
                 $message = _a('Page data saved successfully.');
                 return $this->jump(array('action' => 'index'), $message);
@@ -211,6 +222,7 @@ class IndexController extends ActionController
         $id = $this->params('id');
         $row = $this->getModel('page')->find($id);
         if ($row) {
+            $page = $row->tpArray();
             if ($row->name) {
                 $this->removePage($row->name);
             }
@@ -218,6 +230,11 @@ class IndexController extends ActionController
             Pi::registry('page')->clear($this->getModule());
             Pi::registry('page', $this->getModule())->flush();
             Pi::registry('nav', $this->getModule())->flush();
+            // Clean sitemap
+            if (Pi::service('module')->isActive('sitemap')) {
+                $loc = Pi::url($this->url('page', $page));
+                Pi::api('sitemap', 'sitemap')->remove($loc);
+            }
         }
 
         return $this->jump(
@@ -241,6 +258,21 @@ class IndexController extends ActionController
         }
         Pi::registry('page', $this->getModule())->flush();
         Pi::registry('nav', $this->getModule())->flush();
+
+        if (Pi::service('module')->isActive('sitemap')) {
+            $loc = Pi::url($this->url('page', array(
+                'slug'  => $row->slug,
+                'name'  => $row->name,
+                'id'    => $row->id,
+            )));
+            Pi::api('sitemap', 'sitemap')->singleLink(
+                $loc,
+                $row->active ? 1 : 2,
+                $this->getModule(),
+                'page',
+                $row->id
+            );
+        }
 
         return $this->jump(
             array('action' => 'index'),

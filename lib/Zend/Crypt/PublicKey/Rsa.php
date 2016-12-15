@@ -246,11 +246,10 @@ class Rsa
      *
      * @param  string          $data
      * @param  Rsa\AbstractKey $key
-     * @param  null|int        $padding An OPENSSL_*_PADDING constant value.
      * @return string
      * @throws Rsa\Exception\InvalidArgumentException
      */
-    public function encrypt($data, Rsa\AbstractKey $key = null, $padding = null)
+    public function encrypt($data, Rsa\AbstractKey $key = null)
     {
         if (null === $key) {
             $key = $this->options->getPublicKey();
@@ -260,11 +259,7 @@ class Rsa
             throw new Exception\InvalidArgumentException('No key specified for the decryption');
         }
 
-        if (null === $padding) {
-            $encrypted = $key->encrypt($data);
-        } else {
-            $encrypted = $key->encrypt($data, $padding);
-        }
+        $encrypted = $key->encrypt($data);
 
         if ($this->options->getBinaryOutput()) {
             return $encrypted;
@@ -284,7 +279,6 @@ class Rsa
      * @param  string          $data
      * @param  Rsa\AbstractKey $key
      * @param  int             $mode Input encoding
-     * @param  null|int        $padding An OPENSSL_*_PADDING constant value.
      * @return string
      * @throws Rsa\Exception\InvalidArgumentException
      * @see Rsa::MODE_AUTO
@@ -294,8 +288,7 @@ class Rsa
     public function decrypt(
         $data,
         Rsa\AbstractKey $key = null,
-        $mode = self::MODE_AUTO,
-        $padding = null
+        $mode = self::MODE_AUTO
     ) {
         if (null === $key) {
             $key = $this->options->getPrivateKey();
@@ -321,10 +314,7 @@ class Rsa
                 break;
         }
 
-        if (null === $padding) {
-            return $key->decrypt($data);
-        }
-        return $key->decrypt($data, $padding);
+        return $key->decrypt($data);
     }
 
     /**

@@ -21,10 +21,10 @@ class IndexController extends ActionController
     protected function render($row)
     {
         if (!$row instanceof RowGateway || !$row->active) {
-            $title      = __('Page request');
-            $content    = __('The page requested does not exist.');
-            $markup     = '';
-            $url        = '';
+            $this->getResponse()->setStatusCode(404);
+            $this->terminate(__('The page requested does not exist.'), '', 'error-404');
+            $this->view()->setLayout('layout-simple');
+            return;
         } else {
             $content    = $row->content;
             $markup     = $row->markup ?: 'text';

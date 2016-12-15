@@ -108,6 +108,7 @@ class Page extends Standard
         $this->prefix .= $this->paramDelimiter . $url;
         $url = parent::assemble($params, $options);
         $this->prefix = $prefix;
+        $url = rtrim($url, '/');
 
         return $url;
     }

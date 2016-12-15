@@ -447,7 +447,9 @@ class Mail extends AbstractService
         if (!$tagged && in_array('body', $elements)) {
             $result['body'] = $content;
         }
-
+        
+        $result['subject'] = html_entity_decode($result['subject']);
+        
         return $result;
     }
 

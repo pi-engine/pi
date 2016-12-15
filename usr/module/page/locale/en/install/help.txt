@@ -1,88 +1,88 @@
-
-All documents and information could be found at [Pi Wiki](https://github.com/pi-engine/pi/wiki) or [P Engine Web](http://pi-engine.org).
-
-
-# Introduction
-* [Pi Project](https://github.com/pi-engine/pi/blob/master/README.md)
-* [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team)
-* [Pi VI](https://github.com/pi-engine/pi/wiki/Pi-VI)
-
-# User Guide
-  * Setup
-    * [Installation](https://github.com/pi-engine/pi/wiki/Pi-Installation)
-    * [Deployment](https://github.com/pi-engine/pi/wiki/Pi-Deployment)
-  * Operation guide
-    * [Nginx Deployment](https://github.com/pi-engine/pi/blob/master/doc/nginx.conf)
-    * [Nginx Virtual Host](https://github.com/pi-engine/pi/blob/master/doc/nginx-site.conf)
-
-# Developer Guide
-* Best Practices
-  * [Coding Standards](https://github.com/pi-engine/pi/wiki/Dev.Coding-Standards)
-  * [Database Schema](https://github.com/pi-engine/pi/wiki/Dev.Database-Schema)
-  * [Code Review](https://github.com/pi-engine/pi/wiki/Dev.Code-Review)
-  * [Pi Security](https://github.com/pi-engine/pi/wiki/Dev.Security)
-* Engine Development
-  * [Role Oriented Architecture (PPT)](https://github.com/pi-engine/pi/blob/master/doc/RoleOrientedAchitecture-20121201.pdf)
-  * [Backoffice Readme](https://github.com/pi-engine/pi/blob/master/doc/readme-backoffice.txt)
-* Module Development
-  * [Module Workflow](https://github.com/pi-engine/pi/wiki/Dev.Module-Workflow)
-  * [Module Structure](https://github.com/pi-engine/pi/wiki/Dev.Module-Structure)
-  * [Kernel APIs](https://github.com/pi-engine/pi/wiki/Dev.Kernel-APIs)
-  * [Configuration](https://github.com/pi-engine/pi/wiki/Dev.Module-Configuration)
-  * [Authorization](https://github.com/pi-engine/pi/wiki/Dev.Module-Authorization)
-  * [Custom setup](https://github.com/pi-engine/pi/wiki/Dev.Module-Installation)
-  * [Route](https://github.com/pi-engine/pi/wiki/Dev.Module-Route)
-  * [I18n](https://github.com/pi-engine/pi/wiki/Dev.Module-I18n)
-  * [Pagination](https://github.com/pi-engine/pi/wiki/Dev.Module-Pagination)
-  * [Session](https://github.com/pi-engine/pi/wiki/Dev.Module-Session)
-  * [Parameters](https://github.com/pi-engine/pi/wiki/Dev.Module-Parameters)
-  * [Databse](https://github.com/pi-engine/pi/wiki/Dev.Module-Database)
-  * [Form](https://github.com/pi-engine/pi/wiki/Dev.Module-Form)
-* Theme Design
-  * [Theme Structure](https://github.com/pi-engine/pi/wiki/Dev.Theme-Structure)
-  * [Theme Helpers](https://github.com/pi-engine/pi/wiki/Dev.Theme-Helpers)
-* Readme Readings
-  * [Permission](https://github.com/pi-engine/pi/blob/master/doc/readme-permission.txt)
-  * [Route](https://github.com/pi-engine/pi/blob/master/doc/readme-route.txt)
-  * [Taxonomy](https://github.com/pi-engine/pi/blob/master/doc/readme-taxonomy.txt)
-  * [Template](https://github.com/pi-engine/pi/blob/master/doc/readme-template.txt)
-
-# Translator Guide
-* [Translation Skeleton](https://github.com/pi-engine/pi/blob/master/doc/readme-i18n.txt)
-
-# Tutorials
-* [Training Checklist](https://github.com/pi-engine/pi/wiki/Tutorial.Training-Checklist)
-* [Course Schedule](https://github.com/pi-engine/pi/wiki/Tutorial.Course-Schedule)
-* Courses
-  * [Course 1: Introduction and Setup](https://github.com/pi-engine/pi/wiki/Tutorial.Introduction-And-Installation-I)
-  * [Course 2: Module Design](https://github.com/pi-engine/pi/wiki/Tutorial.Module-Design-I)
-  * [Course 3: Form Generation and Validation](https://github.com/pi-engine/pi/wiki/Tutorial.Form-Generation-and-Validation-I)
-  * [Course 4: Database Operation](https://github.com/pi-engine/pi/wiki/Tutorial.Database-Operation-I)
-  * [Course 5: Theme and Block](https://github.com/pi-engine/pi/wiki/Tutorial.Theme-and-Block-I)
-  * [Course 6: Navigation and Custom Navigation](https://github.com/pi-engine/pi/wiki/Tutorial.Navigation-and-Custom-Navigation)
-  * [Course 7: Custom Route](https://github.com/pi-engine/pi/wiki/Tutorial.Custom-Route)
-  * [Course 8: Authentication Management](https://github.com/pi-engine/pi/wiki/Tutorial.Authentication-Management-I)
-  * [Course 9: Others (APIs/Localization/Updating/Cache)](https://github.com/pi-engine/pi/wiki/Tutorial.Others-I:-Module-API)
-* Enhance
-  * [Course 11: Pi Engine Mechanism](https://github.com/pi-engine/pi/wiki/Toturial.Pi-Engine-Mechanism)
-
-# Front-end
-  * [Course Schedule](https://github.com/pi-engine/pi/wiki/front-end-course-schedule)
-  * Theme
-   * [Concept and compose](https://github.com/pi-engine/pi/wiki/concept-and-compose)
-   * [File structor and file explain](https://github.com/pi-engine/pi/wiki/file-structor-and-file-explain)
-   * Step by step
-   * [Advanced](https://github.com/pi-engine/pi/wiki/Theme-advance)
-  * Module
-   * [Concept and compose](https://github.com/pi-engine/pi/wiki/module-concept-and-compose)
-   * [File structor and file explain](https://github.com/pi-engine/pi/wiki/module-file)
-   * Step by step
-   * [Advanced](https://github.com/pi-engine/pi/wiki/Module-advance)
-  * Standard
-   * [css](https://github.com/pi-engine/pi/wiki/css-standard)
-   * js
-   * html
-   * phtml
-  * [API](https://github.com/pi-engine/pi/wiki/template-API)
-  * Backbone
-   * [Form validate demo](https://github.com/pi-engine/pi/wiki/Js-Backbone-demo)
+<br>
+All documents and information could be found at [Pi Wiki](<a href="https://github.com/pi-engine/pi/wiki" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki</a>) or [P Engine Web](<a href="http://pi-engine.org" target="_blank" title="Click to open">http://pi-engine.org</a>).<br>
+<br>
+<br>
+# Introduction<br>
+* [Pi Project](<a href="https://github.com/pi-engine/pi/blob/master/README.md" target="_blank" title="Click to open">https://github.com/pi-engine/pi/blob/master/README.md</a>)<br>
+* [Pi Team](<a href="https://github.com/pi-engine/pi/wiki/Pi-Team" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Pi-Team</a>)<br>
+* [Pi VI](<a href="https://github.com/pi-engine/pi/wiki/Pi-VI" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Pi-VI</a>)<br>
+<br>
+# User Guide<br>
+  * Setup<br>
+    * [Installation](<a href="https://github.com/pi-engine/pi/wiki/Pi-Installation" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Pi-Installation</a>)<br>
+    * [Deployment](<a href="https://github.com/pi-engine/pi/wiki/Pi-Deployment" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Pi-Deployment</a>)<br>
+  * Operation guide<br>
+    * [Nginx Deployment](<a href="https://github.com/pi-engine/pi/blob/master/doc/nginx.conf" target="_blank" title="Click to open">https://github.com/pi-engine/pi/blob/master/doc/nginx.conf</a>)<br>
+    * [Nginx Virtual Host](<a href="https://github.com/pi-engine/pi/blob/master/doc/nginx-site.conf" target="_blank" title="Click to open">https://github.com/pi-engine/pi/blob/master/doc/nginx-site.conf</a>)<br>
+<br>
+# Developer Guide<br>
+* Best Practices<br>
+  * [Coding Standards](<a href="https://github.com/pi-engine/pi/wiki/Dev.Coding-Standards" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Coding-Standards</a>)<br>
+  * [Database Schema](<a href="https://github.com/pi-engine/pi/wiki/Dev.Database-Schema" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Database-Schema</a>)<br>
+  * [Code Review](<a href="https://github.com/pi-engine/pi/wiki/Dev.Code-Review" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Code-Review</a>)<br>
+  * [Pi Security](<a href="https://github.com/pi-engine/pi/wiki/Dev.Security" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Security</a>)<br>
+* Engine Development<br>
+  * [Role Oriented Architecture (PPT)](<a href="https://github.com/pi-engine/pi/blob/master/doc/RoleOrientedAchitecture-20121201.pdf" target="_blank" title="Click to open">https://github.com/pi-engine/pi/blob/master/doc/RoleOrientedAchitecture-20121201.pdf</a>)<br>
+  * [Backoffice Readme](<a href="https://github.com/pi-engine/pi/blob/master/doc/readme-backoffice.txt" target="_blank" title="Click to open">https://github.com/pi-engine/pi/blob/master/doc/readme-backoffice.txt</a>)<br>
+* Module Development<br>
+  * [Module Workflow](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-Workflow" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-Workflow</a>)<br>
+  * [Module Structure](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-Structure" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-Structure</a>)<br>
+  * [Kernel APIs](<a href="https://github.com/pi-engine/pi/wiki/Dev.Kernel-APIs" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Kernel-APIs</a>)<br>
+  * [Configuration](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-Configuration" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-Configuration</a>)<br>
+  * [Authorization](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-Authorization" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-Authorization</a>)<br>
+  * [Custom setup](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-Installation" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-Installation</a>)<br>
+  * [Route](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-Route" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-Route</a>)<br>
+  * [I18n](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-I18n" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-I18n</a>)<br>
+  * [Pagination](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-Pagination" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-Pagination</a>)<br>
+  * [Session](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-Session" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-Session</a>)<br>
+  * [Parameters](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-Parameters" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-Parameters</a>)<br>
+  * [Databse](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-Database" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-Database</a>)<br>
+  * [Form](<a href="https://github.com/pi-engine/pi/wiki/Dev.Module-Form" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Module-Form</a>)<br>
+* Theme Design<br>
+  * [Theme Structure](<a href="https://github.com/pi-engine/pi/wiki/Dev.Theme-Structure" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Theme-Structure</a>)<br>
+  * [Theme Helpers](<a href="https://github.com/pi-engine/pi/wiki/Dev.Theme-Helpers" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Dev.Theme-Helpers</a>)<br>
+* Readme Readings<br>
+  * [Permission](<a href="https://github.com/pi-engine/pi/blob/master/doc/readme-permission.txt" target="_blank" title="Click to open">https://github.com/pi-engine/pi/blob/master/doc/readme-permission.txt</a>)<br>
+  * [Route](<a href="https://github.com/pi-engine/pi/blob/master/doc/readme-route.txt" target="_blank" title="Click to open">https://github.com/pi-engine/pi/blob/master/doc/readme-route.txt</a>)<br>
+  * [Taxonomy](<a href="https://github.com/pi-engine/pi/blob/master/doc/readme-taxonomy.txt" target="_blank" title="Click to open">https://github.com/pi-engine/pi/blob/master/doc/readme-taxonomy.txt</a>)<br>
+  * [Template](<a href="https://github.com/pi-engine/pi/blob/master/doc/readme-template.txt" target="_blank" title="Click to open">https://github.com/pi-engine/pi/blob/master/doc/readme-template.txt</a>)<br>
+<br>
+# Translator Guide<br>
+* [Translation Skeleton](<a href="https://github.com/pi-engine/pi/blob/master/doc/readme-i18n.txt" target="_blank" title="Click to open">https://github.com/pi-engine/pi/blob/master/doc/readme-i18n.txt</a>)<br>
+<br>
+# Tutorials<br>
+* [Training Checklist](<a href="https://github.com/pi-engine/pi/wiki/Tutorial.Training-Checklist" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Tutorial.Training-Checklist</a>)<br>
+* [Course Schedule](<a href="https://github.com/pi-engine/pi/wiki/Tutorial.Course-Schedule" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Tutorial.Course-Schedule</a>)<br>
+* Courses<br>
+  * [Course 1: Introduction and Setup](<a href="https://github.com/pi-engine/pi/wiki/Tutorial.Introduction-And-Installation-I" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Tutorial.Introduction-And-Installation-I</a>)<br>
+  * [Course 2: Module Design](<a href="https://github.com/pi-engine/pi/wiki/Tutorial.Module-Design-I" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Tutorial.Module-Design-I</a>)<br>
+  * [Course 3: Form Generation and Validation](<a href="https://github.com/pi-engine/pi/wiki/Tutorial.Form-Generation-and-Validation-I" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Tutorial.Form-Generation-and-Validation-I</a>)<br>
+  * [Course 4: Database Operation](<a href="https://github.com/pi-engine/pi/wiki/Tutorial.Database-Operation-I" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Tutorial.Database-Operation-I</a>)<br>
+  * [Course 5: Theme and Block](<a href="https://github.com/pi-engine/pi/wiki/Tutorial.Theme-and-Block-I" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Tutorial.Theme-and-Block-I</a>)<br>
+  * [Course 6: Navigation and Custom Navigation](<a href="https://github.com/pi-engine/pi/wiki/Tutorial.Navigation-and-Custom-Navigation" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Tutorial.Navigation-and-Custom-Navigation</a>)<br>
+  * [Course 7: Custom Route](<a href="https://github.com/pi-engine/pi/wiki/Tutorial.Custom-Route" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Tutorial.Custom-Route</a>)<br>
+  * [Course 8: Authentication Management](<a href="https://github.com/pi-engine/pi/wiki/Tutorial.Authentication-Management-I" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Tutorial.Authentication-Management-I</a>)<br>
+  * [Course 9: Others (APIs/Localization/Updating/Cache)](<a href="https://github.com/pi-engine/pi/wiki/Tutorial.Others-I:-Module-API" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Tutorial.Others-I:-Module-API</a>)<br>
+* Enhance<br>
+  * [Course 11: Pi Engine Mechanism](<a href="https://github.com/pi-engine/pi/wiki/Toturial.Pi-Engine-Mechanism" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Toturial.Pi-Engine-Mechanism</a>)<br>
+<br>
+# Front-end<br>
+  * [Course Schedule](<a href="https://github.com/pi-engine/pi/wiki/front-end-course-schedule" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/front-end-course-schedule</a>)<br>
+  * Theme<br>
+   * [Concept and compose](<a href="https://github.com/pi-engine/pi/wiki/concept-and-compose" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/concept-and-compose</a>)<br>
+   * [File structor and file explain](<a href="https://github.com/pi-engine/pi/wiki/file-structor-and-file-explain" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/file-structor-and-file-explain</a>)<br>
+   * Step by step<br>
+   * [Advanced](<a href="https://github.com/pi-engine/pi/wiki/Theme-advance" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Theme-advance</a>)<br>
+  * Module<br>
+   * [Concept and compose](<a href="https://github.com/pi-engine/pi/wiki/module-concept-and-compose" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/module-concept-and-compose</a>)<br>
+   * [File structor and file explain](<a href="https://github.com/pi-engine/pi/wiki/module-file" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/module-file</a>)<br>
+   * Step by step<br>
+   * [Advanced](<a href="https://github.com/pi-engine/pi/wiki/Module-advance" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Module-advance</a>)<br>
+  * Standard<br>
+   * [css](<a href="https://github.com/pi-engine/pi/wiki/css-standard" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/css-standard</a>)<br>
+   * js<br>
+   * html<br>
+   * phtml<br>
+  * [API](<a href="https://github.com/pi-engine/pi/wiki/template-API" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/template-API</a>)<br>
+  * Backbone<br>
+   * [Form validate demo](<a href="https://github.com/pi-engine/pi/wiki/Js-Backbone-demo" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Js-Backbone-demo</a>)
