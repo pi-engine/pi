@@ -234,7 +234,8 @@ function initialize() {
     var mapOptions = {
         zoom: %s,
         center: myLatlng,
-        mapTypeId: %s
+        mapTypeId: %s,
+        scrollwheel: false
     };
     var map = new google.maps.Map(document.getElementById('%s'), mapOptions);
     var marker = new google.maps.Marker({
