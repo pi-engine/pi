@@ -145,6 +145,7 @@ $(function() {
             avoidTolls: false
         },
         map_options: {
+            scrollwheel: false,
             mapTypeId: %s
         },
         afterRoute: function(distance) {
@@ -189,6 +190,7 @@ $(function() {
         controls_title: "%s : ",
         view_all_text: "%s : ",
         map_options: {
+            scrollwheel: false,
             set_center: [%s, %s],
             zoom: %s,
             mapTypeId: %s
