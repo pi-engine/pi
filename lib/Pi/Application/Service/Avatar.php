@@ -253,7 +253,7 @@ class Avatar extends AbstractService
         } else {
             $uploadConfig = $this->getOption('upload');
             $allowedExtensions = $uploadConfig['extension'];
-            $ext = is_string($source) ? trtolower(pathinfo($source, PATHINFO_EXTENSION)) : null;
+            $ext = is_string($source) ? strtolower(pathinfo($source, PATHINFO_EXTENSION)) : null;
             if ($ext && in_array($ext, $allowedExtensions)) {
                 $type = 'upload';
             } elseif (is_string($source) && preg_match('/[a-z0-9\-\_]/i', $source)) {
