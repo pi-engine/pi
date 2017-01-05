@@ -248,15 +248,15 @@ class Avatar extends AbstractService
      */
     public function getType($source)
     {
-        if (false !== strpos($source, '@')) {
+        if (is_string($source) && false !== strpos($source, '@')) {
             $type = 'gravatar';
         } else {
             $uploadConfig = $this->getOption('upload');
             $allowedExtensions = $uploadConfig['extension'];
-            $ext = strtolower(pathinfo($source, PATHINFO_EXTENSION));
+            $ext = is_string($source) ? trtolower(pathinfo($source, PATHINFO_EXTENSION)) : null;
             if ($ext && in_array($ext, $allowedExtensions)) {
                 $type = 'upload';
-            } elseif (preg_match('/[a-z0-9\-\_]/i', $source)) {
+            } elseif (is_string($source) && preg_match('/[a-z0-9\-\_]/i', $source)) {
                 $type = 'select';
             } else {
                 $type = '';
