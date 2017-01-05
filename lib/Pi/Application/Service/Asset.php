@@ -168,7 +168,7 @@ class Asset extends AbstractService
         $appendVersion = (null !== $appendVersion)
             ? (bool) $appendVersion
             : (bool) $this->getOption('append_version');
-        $version = $appendVersion ? filemtime($path) : '';
+        $version = ($appendVersion && file_exists($path)) ? filemtime($path) : '';
         if ($version) {
             $url .= '?' . $version;
         }
