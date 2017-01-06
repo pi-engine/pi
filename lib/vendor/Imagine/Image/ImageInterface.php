@@ -167,7 +167,7 @@ interface ImageInterface extends ManipulatorInterface
     /**
      * Returns the Image's meta data
      *
-     * @return Metadata\MetadataBag
+     * @return Metadata\MetadataInterface
      */
     public function metadata();
 }

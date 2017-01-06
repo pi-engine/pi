@@ -30,11 +30,10 @@ interface MetadataReaderInterface
      * Reads metadata from a binary string.
      *
      * @param $data The binary string to read.
-     * @param $originalResource An optional resource to gather stream metadata.
      *
      * @return MetadataBag
      */
-    public function readData($data, $originalResource = null);
+    public function readData($data);
 
     /**
      * Reads metadata from a stream.
