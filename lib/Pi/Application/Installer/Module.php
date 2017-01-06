@@ -157,7 +157,7 @@ class Module
         $status = true;
         $result = $event->getParam('result');
         foreach ($result as $action => $state) {
-            if ($state['status'] === false) {
+            if (is_array($state) && isset($state['status']) && $state['status'] === false) {
                 $status = false;
                 break;
             }

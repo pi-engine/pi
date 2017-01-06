@@ -166,7 +166,7 @@ class Install extends BasicInstall
                 $basename
             );
             
-            if (file_exists($srcFilename)) {
+            if (file_exists($srcFilename) && is_file($srcFilename)) {
                 $result = copy(
                     $srcFilename,
                     $destFilename . '/' . basename($basename)

@@ -94,6 +94,7 @@ class Admin extends AbstractController
         $this->setPersist(static::PERSIST_SITE, $this->vars);
 
         echo 1;
+        exit;
     }
 
     public function checkAction()
@@ -128,6 +129,7 @@ class Admin extends AbstractController
                 break;
         }
         echo $error;
+        exit;
     }
 
     public function submitAction()

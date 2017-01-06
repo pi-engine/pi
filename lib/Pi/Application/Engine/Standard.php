@@ -28,7 +28,7 @@ class Standard extends AbstractEngine
     /**
      * {@inheritDoc}
      */
-    const SECTION = self::FRONT;
+    const SECTION = 'front';
 
     /**
      * {@inheritDoc}
