@@ -15,6 +15,7 @@ How to build PI CKEditor Package?
 The Pi CKEditor package has to be made through CKEditor Builder http://ckeditor.com/builder
 Easiest way : select the right options in the web page (see below)
 Alternative way : use the build-config.js file from actual Pi CKEditor directory
+Dont't forget to keep index.hmtl files (history-1) for sec reason
 
 What options to select in the CKEditor Builder page?
 Choose standard package + all languages + add the above additional "Pi CKEditor plugins"
@@ -26,6 +27,22 @@ How to add a new plugin ?
 Go to the plugin area of CKEditor website
 Each time you want to add a new plugin, you have to build a new package of CKEditor from their website, to activate your new plugin.
 Alternatively you can copy/paste the new plugin from full package, but you have to activate it in config.js (config.extraPlugins value - see CKEditor docs) to make it work.
+
+
+January, 7th, 2017
+==================
+1. Upgrade to CKEditor 4.6.1 (using the full package from download page) - with the 2 previous custom config.js files (specific config.js for admin + front)
+I've kept the index.html file for sec reason (each main subdirectory)
+The main goal of this update is to ship into Pi a fresh updated package CKEditor, minimizing conflicts. 
+those plugin were not yet shipped (i.e. removed) since not all are 4.6x compliant yet (we will add them back if needed). 
+basewidget
+bootstrapVisibility
+bt_table
+btbutton
+btgrid
+btquicktable
+layoutmanager
+widget/images
 
 June, 22th, 2016
 =================
