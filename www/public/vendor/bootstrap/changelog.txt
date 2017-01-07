@@ -1,5 +1,10 @@
 Changelog
 
+January 07th, 2017 marc
+=======================
+1. Upgrade to Font-Awesome 4.7.0 and keep index.html sec file
+2. Upgrade to Bootstrap to v3.3.7 (keep Glyphicons to prevent from 404)
+
 June 22th, 2016 marc
 =====================
 1. Upgrade to Font-Awesome 4.6.3
