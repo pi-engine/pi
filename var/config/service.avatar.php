@@ -42,7 +42,7 @@ return array(
         //'default'   => 'http://pialog.org/static/avatar/normal.png',
         'extension' => 'png',
         'rate'      => 'g',
-        //'secure'    => true,
+        'secure'    => true,
 
         // Options for available size
         'size_list'  => array(
