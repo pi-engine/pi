@@ -286,7 +286,7 @@ $uid = Pi::user()->getId();
             </div>    
             <table class="attachment-list table table-condensed"></table>
             <!-- Starting attachment modal box -->
-            <?php include $this->template('./media-attachments-box.phtml'); ?>
+            <?php include $this->template('front/media-attachments-box.phtml'); ?>
         </div>
     </div>
     <div class="col-md-4">
@@ -375,7 +375,7 @@ $uid = Pi::user()->getId();
                         <?php 
                             if ($draft['time_save']) {
                                 echo sprintf(
-                                    __('Last edit at %s by %s', _date($draft['time_save']), (isset($userUpdate) ? $userUpdate['name'] : $user['name']))
+                                    __('Last edit at %s by %s'), _date($draft['time_save']), (isset($userUpdate) ? $userUpdate['name'] : $user['name'])
                                 );
                             }
                         ?> 
@@ -457,7 +457,7 @@ $uid = Pi::user()->getId();
                 </div>
             </div>
             <!-- Starting gallery modal box -->
-            <?php include $this->template('./media-gallery-box.phtml'); ?>
+            <?php include $this->template('front/media-gallery-box.phtml'); ?>
         </div>
         <?php } ?>
         <?php if (!empty($config['enable_tag']) and in_array('tag', $elements)) { ?>

@@ -117,7 +117,9 @@
         <span><?php echo _a('Upload'); ?></span>
         <input type="file" name="upload">
     </div>
-    <div class="text-muted" style="line-height: 0; margin: -140px 0 0 50px; font-size: 12px">
-        <?php echo sprintf(_a('Format supported: %s'), $configs['image_extension']); ?> (<?php echo $this->escape($configs['max_media_size']); ?>)
-    </div>
+    <?php if(isset($configs['image_extension'])) : ?>
+        <div class="text-muted" style="line-height: 0; margin: -140px 0 0 50px; font-size: 12px">
+            <?php echo sprintf(_a('Format supported: %s'), $configs['image_extension']); ?> (<?php echo $this->escape($configs['max_media_size']); ?>)
+        </div>
+    <?php endif; ?>
 </script>
