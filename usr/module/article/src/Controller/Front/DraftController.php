@@ -1102,25 +1102,27 @@ class DraftController extends ActionController
                     ),
                 );
             } else {
-                $imageSize = getimagesize(Pi::path($media['url']));
+                if(file_exists(Pi::path($media['url']))){
+                    $imageSize = getimagesize(Pi::path($media['url']));
 
-                $images[] = array(
-                    'id'           => $asset['id'],
-                    'title'        => $media['title'],
-                    'size'         => $media['size'],
-                    'w'            => $imageSize['0'],
-                    'h'            => $imageSize['1'],
-                    'downloadUrl'  => $this->url(
-                        '',
-                        array(
-                            'controller' => 'media',
-                            'action'     => 'download',
-                            'id'         => $media['id'],
-                        )
-                    ),
-                    'preview_url' => Pi::url($media['url']),
-                    'thumb_url'   => Pi::url(Media::getThumbFromOriginal($media['url'])),
-                );
+                    $images[] = array(
+                        'id'           => $asset['id'],
+                        'title'        => $media['title'],
+                        'size'         => $media['size'],
+                        'w'            => $imageSize['0'],
+                        'h'            => $imageSize['1'],
+                        'downloadUrl'  => $this->url(
+                            '',
+                            array(
+                                'controller' => 'media',
+                                'action'     => 'download',
+                                'id'         => $media['id'],
+                            )
+                        ),
+                        'preview_url' => Pi::url($media['url']),
+                        'thumb_url'   => Pi::url(Media::getThumbFromOriginal($media['url'])),
+                    );
+                }
             }
         }
 
