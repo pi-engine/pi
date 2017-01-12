@@ -48,7 +48,7 @@ $(document).ready(function(){
   });
 EOT;
 
-        $this->view->js(pi::url('static/js/jquery.hc-sticky.min.js'));
+        $this->view->js(pi::url('static/vendor/jquery/extension/jquery.hc-sticky.min.js'));
         $this->view->footScript()->appendScript($script);
 
         return $this;
