@@ -120,8 +120,14 @@ class PaginationControl extends ZendPaginationControl
                 $separator,
                 $sitename
             );
+            $prefix = sprintf('%s %s %s',
+                __('Page'),
+                _number($pages['current']),
+                trim($separator)
+            );
 
             $headTitle->setPostfix($postfix);
+            $this->view->headMeta()->prependName('description', $prefix);
         }
 
         if (isset($pages['previous'])) {
