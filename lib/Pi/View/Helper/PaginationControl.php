@@ -122,6 +122,7 @@ class PaginationControl extends ZendPaginationControl
             );
 
             $headTitle->setPostfix($postfix);
+            $this->view->headMeta()->appendName('description',$postfix);
         }
 
         if (isset($pages['previous'])) {
