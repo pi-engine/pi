@@ -1081,10 +1081,9 @@ class Paginator extends Pagit
             $options['reuse_matched_params'] = true;
         }
         
+        $queryOptions = array();
         if ($page != 1) {
-            $queryOptions = array(
-                $this->urlOptions['page_param'] => $page,
-            );
+            $queryOptions[$this->urlOptions['page_param']] = $page;
         }
         
         if (!empty($this->urlOptions['total_param'])) {
