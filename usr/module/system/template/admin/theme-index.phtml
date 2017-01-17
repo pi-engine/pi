@@ -23,7 +23,7 @@ $this->backbone();
         <legend><?php echo _a('Theme in use'); ?></legend>
         <div class="media" style="margin-top: 0;">
             <div class="col-md-4">
-                <img src="<?php echo $theme['screenshot']; ?>" alt="<?php echo _escape($theme['title']); ?>" class="img-responsive img-thumbnail pull-left" />
+                <img src="<?php echo $theme['screenshot']; ?>" alt="<?php echo isset($theme['title']) ? _escape($theme['title']) : ''; ?>" class="img-responsive img-thumbnail pull-left" />
 
             </div>
             <div class="media-body col-md-8">
