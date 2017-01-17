@@ -38,7 +38,7 @@ class Sticky extends AbstractHelper
 $(document).ready(function(){
     $("#sticky-sidebar").hcSticky({
         responsive : true,
-        top: $('#pi-header nav').height() + 20,
+        top: $('#pi-header nav').height() + $('#affixWrapper').height() + 20,
         stickTo: $('#sticky-container'),
         offResolutions: -992
     });
