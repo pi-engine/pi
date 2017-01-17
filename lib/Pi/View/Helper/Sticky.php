@@ -36,9 +36,19 @@ class Sticky extends AbstractHelper
 
         $script = <<<'EOT'
 $(document).ready(function(){
+    var affixWrapperHeight = 0;
+    
+    var affixWrapper = $('#affixWrapper');
+    
+    if(affixWrapper.length > 0){
+        affixWrapper.find('.nav').addClass('forceVisible');
+        var affixWrapperHeight = affixWrapper.height();
+        affixWrapper.find('.nav').removeClass('forceVisible');
+    }
+
     $("#sticky-sidebar").hcSticky({
         responsive : true,
-        top: $('#pi-header nav').height() + $('#affixWrapper').height() + 20,
+        top: $('#pi-header nav').height() + affixWrapperHeight + 20,
         stickTo: $('#sticky-container'),
         offResolutions: -992
     });
