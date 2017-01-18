@@ -392,11 +392,13 @@ EOT;
         }
 
         // Render submit button
-        $submit = '';
-        foreach ($elements['submit'] as $element) {
-            $submit .= $this->view->formElement($element) . " ";
-        }
-
+        if (isset($elements['submit']) && count($elements['submit'])) {
+            $submit = '';
+            foreach ($elements['submit'] as $element) {
+                $submit .= $this->view->formElement($element) . " ";
+            }
+            
+            $cancel = !empty($elements['cancel']) ? $this->view->formElement($elements['cancel']) : '';
             switch ($style) {
                 case 'popup':
                     $waiting = '<img src="' . $this->view->assetTheme('image/wait.gif') . '" class="hide">';
@@ -436,9 +438,7 @@ EOT;
             }
             
             $htmlForm .= $htmlSubmit . PHP_EOL;
-            
-        
-        $cancel = !empty($elements['cancel']) ? $this->view->formElement($elements['cancel']) : '';
+        }
         
         // Close of form content
         $htmlForm .= $this->closeTag();
