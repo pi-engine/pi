@@ -392,9 +392,10 @@ EOT;
         }
 
         // Render submit button
-        if (!empty($elements['submit'])) {
-            $submit = $this->view->formElement($elements['submit']);
-            $cancel = !empty($elements['cancel']) ? $this->view->formElement($elements['cancel']) : '';
+        $submit = '';
+        foreach ($elements['submit'] as $element) {
+            $submit .= $this->view->formElement($element) . " ";
+        }
 
             switch ($style) {
                 case 'popup':
@@ -433,10 +434,12 @@ EOT;
 EOT;
                     break;
             }
-
+            
             $htmlForm .= $htmlSubmit . PHP_EOL;
-        }
-
+            
+        
+        $cancel = !empty($elements['cancel']) ? $this->view->formElement($elements['cancel']) : '';
+        
         // Close of form content
         $htmlForm .= $this->closeTag();
 

@@ -108,13 +108,13 @@ class Form extends ZendForm
         $elements = array(
             'active'    => array(),
             'hidden'    => array(),
-            'submit'    => '',
+            'submit'    => array(),
         );
 
         foreach ($this->elements as $key => $value) {
             $type = $value->getAttribute('type');
             if ('submit' == $type) {
-                $elements['submit'] = $value;
+                $elements['submit'][] = $value;
             } elseif ('hidden' == $type) {
                 $elements['hidden'][] = $value;
             } else {
