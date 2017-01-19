@@ -103,6 +103,7 @@ abstract class AbstractWord extends FormInput
     {
         $attributes['type']  = 'hidden';
         $attributes['name'] .= '[id]';
+        $attributes['required'] = '';
 
         if (isset($attributes['id'])) {
             $attributes['id'] .= '-hidden';

@@ -1,7 +1,7 @@
-<div ng-if="blocks.length">
+<div data-ng-if="blocks.length">
   <div class="row" style="margin-bottom: 20px;">
     <div class="col-sm-3">
-      <input type="text" placeholder="{{'Search' | translate}}" class="form-control" ng-model="searchTitle">
+      <input type="text" placeholder="{{'Search' | translate}}" class="form-control" data-ng-model="searchTitle">
     </div>
   </div>
   <div class="table-responsive">
@@ -19,7 +19,7 @@
     			<td>
             <div class="dropdown">
               <button type="button" class="btn btn-default dropdown-toggle"
-                      ng-click="pageAction(block)">
+                      data-ng-click="pageAction(block)">
                 {{'Pages' | translate}}
                 <span class="caret"></span>
               </button>
@@ -43,16 +43,16 @@
     				<a class="btn btn-link" ng-href="{{block.editUrl}}">
                         {{'Edit' | translate}}
     				</a>
-                    <a class="btn btn-link" ng-if="block.clonable" ng-href="{{block.cloneUrl}}">
+                    <a class="btn btn-link" data-ng-if="block.clonable" ng-href="{{block.cloneUrl}}">
                         {{'Clone' | translate}}
                     </a>
-                    <a ng-if="block.cloned" class="btn btn-link" ng-href="{{block.deleteUrl}}">
+                    <a data-ng-if="block.cloned" class="btn btn-link" ng-href="{{block.deleteUrl}}">
                         {{'Delete' | translate}}
                     </a>
                 </td>
   	</table>
   </div>
 </div>
-<div ng-if="!blocks.length" class="alert alert-info">
+<div data-ng-if="!blocks.length" class="alert alert-info">
   {{'None' | translate}}
 </div>

@@ -35,27 +35,27 @@
           <i class="fa fa-bullhorn"></i>
         </span>
         <div class="media-body">
-          <div ng-show="!noticeEditing">
+          <div data-ng-show="!noticeEditing">
             <p>
               {{message.content}}
               <em class="text-muted" style="margin-left: 15px;">{{message.time}}</em>
-            <div ng-show="messagePerm">
-              <a ng-click="noticeEditing = 1">
+            <div data-ng-show="messagePerm">
+              <a data-ng-click="noticeEditing = 1">
                 <i class="fa fa-pencil"></i>
                 {{'EDIT' | translate}}
               </a>
             </div>
           </div>
-          <div ng-show="noticeEditing">
+          <div data-ng-show="noticeEditing">
             <p>
-              <textarea ng-model="messageContentCopy" class="form-control" rows="3" notice-focus="noticeEditing"></textarea>
+              <textarea data-ng-model="messageContentCopy" class="form-control" rows="3" notice-focus="noticeEditing"></textarea>
             <p class="text-muted">
               {{'ANNOUNCEMENT' | translate}}
             <div>
-              <button class="btn btn-default" ng-click="saveNoticeAction()">
+              <button class="btn btn-default" data-ng-click="saveNoticeAction()">
                 {{'SAVE' | translate}}
               </button>
-              <button class="btn btn-link" ng-click="noticeEditing = 0">
+              <button class="btn btn-link" data-ng-click="noticeEditing = 0">
                 {{'CANCEL' | translate}}
               </button>
             </div>
@@ -66,10 +66,10 @@
     <div class="panel panel-default">
       <div class="clearfix panel-heading">
         <div class="pull-right">
-          <button class="btn btn-default btn-sm" ng-click="linksEditing = 1" ng-show="!linksEditing">
+          <button class="btn btn-default btn-sm" data-ng-click="linksEditing = 1" data-ng-show="!linksEditing">
             {{'EDIT' | translate}}
           </button>
-          <button class="btn btn-default btn-sm" ng-click="saveLinksAction()" ng-show="linksEditing">
+          <button class="btn btn-default btn-sm" data-ng-click="saveLinksAction()" data-ng-show="linksEditing">
             {{'SAVE' | translate}}
           </button>
         </div>
@@ -78,41 +78,41 @@
         </h3>
       </div>
       <div class="panel-body" style="padding-bottom: 5px;">
-        <form class="well form-horizontal" style="padding-bottom: 0;" name="linkForm" ng-show="linkAddStatus">
+        <form class="well form-horizontal" style="padding-bottom: 0;" name="linkForm" data-ng-show="linkAddStatus">
           <div class="form-group">
             <label class="col-md-2 control-label">{{'TITLE' | translate}}</label>
             <div class="col-md-5">
-              <input type="text" class="form-control" ng-model="linkEntity.title" required>
+              <input type="text" class="form-control" data-ng-model="linkEntity.title" required>
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-2 control-label">{{'URL' | translate}}</label>
             <div class="col-md-5">
-              <input type="url" class="form-control" ng-model="linkEntity.url" required>
+              <input type="url" class="form-control" data-ng-model="linkEntity.url" required>
             </div>
           </div>
           <div class="form-group">
             <div class="col-md-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-info" ng-disabled="linkForm.$invalid" ng-click="addLink()">
+              <button type="submit" class="btn btn-info" ng-disabled="linkForm.$invalid" data-ng-click="addLink()">
                 {{'SAVE' | translate}}
               </button>
-              <button type="reset" class="btn btn-link" ng-click="linkAddStatus = 0">
+              <button type="reset" class="btn btn-link" data-ng-click="linkAddStatus = 0">
                 {{'CANCEL' | translate}}
               </button>
             </div>
           </div>
         </form>
-        <div class="row" ng-class="{'dashboard-links-editing' : linksEditing}" ui-sortable ng-model="links">
+        <div class="row" ng-class="{'dashboard-links-editing' : linksEditing}" ui-sortable data-ng-model="links">
           <div ng-repeat="item in links" class="col-md-3">
             <div class="dashboard-link">
-              <button type="button" class="invisible close" ng-click="removeLink($index)">&times;</button>
+              <button type="button" class="invisible close" data-ng-click="removeLink($index)">&times;</button>
               <a href="{{item.url}}" class="pi-ellipsis">
                 {{item.title}}
               </a>
             </div>
           </div>
           <div class="col-md-3">
-            <div class="dashboard-link dashboard-link-add" ng-click="linkAddStatus = 1">
+            <div class="dashboard-link dashboard-link-add" data-ng-click="linkAddStatus = 1">
               <i class="fa fa-plus fa-lg"></i>
             </div>
           </div>

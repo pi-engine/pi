@@ -6,17 +6,17 @@
                 <p class="widget-desc">{{item.block.description}}</p>
                 <ul class="list-inline">
                     <li>
-                        <a ng-if="item.editUrl" ng-href="{{item.editUrl}}">
+                        <a data-ng-if="item.editUrl" ng-href="{{item.editUrl}}">
                             {{'EDIT' | translate}}
                         </a>
                     </li>
                     <li>
-                        <a ng-if="item.editConfigUrl" ng-href="{{item.editConfigUrl}}" target="_blank">
+                        <a data-ng-if="item.editConfigUrl" ng-href="{{item.editConfigUrl}}" target="_blank">
                             {{'EDITCONFIG' | translate}}
                         </a>
                     </li>
                     <li>
-                        <a ng-if="item.deleteUrl" ng-href="{{item.deleteUrl}}">
+                        <a data-ng-if="item.deleteUrl" ng-href="{{item.deleteUrl}}">
                             {{'DELETE' | translate}}
                         </a>
                     </li>

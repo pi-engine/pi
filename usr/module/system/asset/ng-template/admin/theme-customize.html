@@ -1,6 +1,6 @@
 <div class="btn-group">
-    <button class="btn btn-primary" ng-click="compileAction()">{{'COMPILE' | translate}}</button>
-    <button class="btn btn-primary" ng-click="resetAction()">{{'RESET' | translate}}</button>
+    <button class="btn btn-primary" data-ng-click="compileAction()">{{'COMPILE' | translate}}</button>
+    <button class="btn btn-primary" data-ng-click="resetAction()">{{'RESET' | translate}}</button>
 </div>
 
 <div ng-repeat="section in sections" style="margin-bottom: 20px;">
@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-sm-4" ng-repeat="variable in subsection.variables">
         <label>{{variable.name}}</label>
-        <input type="text" ng-model="variable.defaultValue" class="form-control">
+        <input type="text" data-ng-model="variable.defaultValue" class="form-control">
         <div class="help-block" ng-bind-html="variable.docstring.html"></div>
       </div>
     </div>
@@ -19,7 +19,7 @@
 </div>
 
 <div class="btn-group">
-    <button class="btn btn-primary" ng-click="compileAction()">{{'COMPILE' | translate}}</button>
-    <button class="btn btn-primary" ng-click="resetAction()">{{'RESET' | translate}}</button>
+    <button class="btn btn-primary" data-ng-click="compileAction()">{{'COMPILE' | translate}}</button>
+    <button class="btn btn-primary" data-ng-click="resetAction()">{{'RESET' | translate}}</button>
 </div>
 

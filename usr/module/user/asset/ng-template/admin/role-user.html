@@ -3,14 +3,14 @@
   <div class="col-md-5">
     <form class="input-group" ng-submit="submit()" name="addForm" style="margin-bottom: 20px;">
       <span class="input-group-btn">
-        <select class="form-control" ng-model="entity.field" style="width: auto;">
+        <select class="form-control" data-ng-model="entity.field" style="width: auto;">
           <option value="uid">{{'UID' | translate}}
           <option value="identity">{{'USERNAME' | translate}}
           <option value="name">{{'DISPLAYNAME' | translate}}
           <option value="email">{{'EMAIL' | translate}}
         </select>
       </span>
-      <input class="form-control" type="text" ng-model="entity.data" required>
+      <input class="form-control" type="text" data-ng-model="entity.data" required>
       <span class="input-group-btn">
         <button class="btn btn-primary" ng-disabled="addForm.$invalid">
           {{'ADD_USER' | translate}}
@@ -19,7 +19,7 @@
     </form>
   </div>
 </div>
-<div class="row" ng-show="users.length">
+<div class="row" data-ng-show="users.length">
   <div class="col-md-8">
     <table class="table">
       <thead>
@@ -32,15 +32,15 @@
             <td>
               {{user.id}}
             <td>
-              <span ng-show="user.url">
+              <span data-ng-show="user.url">
                 <a href="{{user.url}}" target="_blank">{{user.name}}</a>
               </span>
-              <span ng-show="!user.url">
+              <span data-ng-show="!user.url">
                 {{user.name}}
               </span>
             <td>
               <button type="button" class="close" style="float: none;"
-                      ng-click="removeAction($index)">
+                      data-ng-click="removeAction($index)">
                 &times;
               </button>
     </table>
@@ -50,6 +50,6 @@
     </pagination>
   </div>
 </div>
-<div ng-show="!users.length" class="alert alert-info">
+<div data-ng-show="!users.length" class="alert alert-info">
   {{'NONE_USER' | translate}}
 </div>

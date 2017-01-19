@@ -91,7 +91,7 @@ class SocialSharing extends AbstractHtmlElement
    </a>
 </li>
 EOT;
-            $button = sprintf($template, $item['identifier'], $item['title'], $item['url'], $item['icon'], $item['title']);
+            $button = sprintf($template, $item['identifier'], $item['title'], str_replace(' ', '%20', $item['url']), $item['icon'], $item['title']);
 
             return $button;
         };

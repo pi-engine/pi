@@ -35,7 +35,7 @@
   <div>
     <div pi-tabs tabs-title="{{'TOP_10_IP' | translate}}">
       <div pi-panel="tab" ng-repeat="tab in tabs">
-        <table class="table" ng-if="tab.content">
+        <table class="table" data-ng-if="tab.content">
           <thead>
             <tr>
               <th>{{'IP_ADDRESS' | translate}}
@@ -45,7 +45,7 @@
               <td>{{item.ip_register}}
               <td class="text-center">{{item.count}}
         </table>
-        <div class="alert" ng-if="!tab.content.length">
+        <div class="alert" data-ng-if="!tab.content.length">
           {{'NONE_REGISTER' | translate}}
         </div>
       </div>
