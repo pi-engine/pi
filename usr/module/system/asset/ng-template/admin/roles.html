@@ -12,13 +12,13 @@
         <td>
           <div pi-hover-input="role" text="role.title"></div>
         <td class="text-center">
-          <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
-               ng-click="activeAction(role)">
+          <div class="pi-status" data-ng-class="{'active': role.active, 'disabled': !role.custom}"
+               data-ng-click="activeAction(role)">
             <div class="pi-status-director"></div>
           </div>
         <td>
-          <button class="btn btn-link" ng-if="role.custom"
-                  ng-click="deleteAction(role)">
+          <button class="btn btn-link" data-ng-if="role.custom"
+                  data-ng-click="deleteAction(role)">
             {{'DELETE' | translate}}
           </button>
 </table>
@@ -36,13 +36,13 @@
         <td>
           <div pi-hover-input="role" text="role.title"></div>
         <td class="text-center">
-          <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
-               ng-click="activeAction(role)">
+          <div class="pi-status" data-ng-class="{'active': role.active, 'disabled': !role.custom}"
+               data-ng-click="activeAction(role)">
             <div class="pi-status-director"></div>
           </div>
         <td>
-          <button class="btn btn-link" ng-if="role.custom"
-                  ng-click="deleteAction(role)">
+          <button class="btn btn-link" data-ng-if="role.custom"
+                  data-ng-click="deleteAction(role)">
             {{'DELETE' | translate}}
           </button>
 </table>
