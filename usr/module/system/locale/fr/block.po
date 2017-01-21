@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2016-04-28 20:46+0200\n"
-"PO-Revision-Date: 2016-04-28 20:47+0200\n"
+"POT-Creation-Date: 2017-01-21 19:00+0100\n"
+"PO-Revision-Date: 2017-01-21 19:00+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-KeywordsList: _b\n"
 "X-Poedit-Basepath: ../../../user\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -20,8 +20,11 @@ msgid "Avatar"
 msgstr "Avatar"
 
 #: template/block/completeness.phtml:21
-msgid "Please complete your profile information, to can use all website features"
-msgstr "Merci de finaliser la saisie de ton profil, afin de pouvoir utiliser toutes les fonctionnalités du site"
+msgid ""
+"Please complete your profile information, to can use all website features"
+msgstr ""
+"Merci de finaliser la saisie de ton profil, afin de pouvoir utiliser toutes "
+"les fonctionnalités du site"
 
 #: template/block/completeness.phtml:22
 msgid "update all"
@@ -32,7 +35,7 @@ msgstr "tout mettre à jour"
 msgid "%s%s Complete"
 msgstr "%s%s Finalisation"
 
-#: template/block/completeness.phtml:40 template/block/completeness.phtml:42
+#: template/block/completeness.phtml:40
 msgid "update"
 msgstr "mettre à jour"
 
