@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2017-01-21 18:57+0100\n"
-"PO-Revision-Date: 2017-01-21 18:59+0100\n"
+"POT-Creation-Date: 2017-01-21 19:09+0100\n"
+"PO-Revision-Date: 2017-01-21 19:19+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -72,8 +72,8 @@ msgid "Don't display message and notification"
 msgstr "Ne pas afficher les messages et notifications"
 
 #: config/block.php:63
-msgid "Boot message and notification"
-msgstr "Message et notification Initialisation"
+msgid "Message and notification separately"
+msgstr "Message et notification séparés"
 
 #: config/block.php:64
 msgid "Just message"
@@ -84,8 +84,8 @@ msgid "Just notification"
 msgstr "Seulement les notifications"
 
 #: config/block.php:66
-msgid "Merge message abd notification"
-msgstr "Merger message et notification"
+msgid "Merge message and notification"
+msgstr "Fusionner Message et Notification"
 
 #: config/block.php:72
 msgid "Display order"
@@ -113,7 +113,7 @@ msgstr "Fonctionnalités Pi"
 
 #: config/block.php:106
 msgid "Introduction to Pi Engine"
-msgstr "Quelques remarques à propose de Pi Engine"
+msgstr "Quelques remarques à propos de Pi Engine"
 
 #: config/config.php:21 src/Controller/Admin/ConfigController.php:95
 msgid "General"
@@ -855,7 +855,7 @@ msgstr "Vider le cache"
 
 #: config/nav.admin.php:270
 msgid "Asset publish"
-msgstr "Publier la ressource"
+msgstr "Publier Assets"
 
 #: config/nav.admin.php:281
 msgid "Toolkit"
@@ -1180,7 +1180,7 @@ msgstr "Global Module"
 #: src/Controller/Admin/CacheController.php:171
 #: src/Controller/Admin/PageController.php:97
 msgid "Module home"
-msgstr "Accueil Module"
+msgstr "HomePage"
 
 #: src/Controller/Admin/CacheController.php:195
 #: src/Controller/Admin/FlushController.php:93
@@ -2371,6 +2371,12 @@ msgstr "Thème mis à jour avec succès."
 #: template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr "Etes-vous certains de vouloir désinstaller ce thème?"
+
+#~ msgid "Boot message and notification"
+#~ msgstr "Message et notification Initialisation"
+
+#~ msgid "Merge message abd notification"
+#~ msgstr "Merger message et notification"
 
 #~ msgid "Cache level"
 #~ msgstr "Niveau de cache"

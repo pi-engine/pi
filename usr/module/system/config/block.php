@@ -60,10 +60,10 @@ return array(
                     'options'   => array(
                         'options'   => array(
                             'none'          => _a('Don\'t display message and notification'),
-                            'boot'          => _a('Boot message and notification'),
+                            'boot'          => _a('Message and notification separately'),
                             'message'       => _a('Just message'),
                             'notification'  => _a('Just notification'),
-                            'merge'         => _a('Merge message abd notification'),
+                            'merge'         => _a('Merge message and notification'),
                         ),
                     ),
                 ),
