@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2016-04-28 20:40+0200\n"
-"PO-Revision-Date: 2016-04-28 20:45+0200\n"
+"POT-Creation-Date: 2017-01-21 18:57+0100\n"
+"PO-Revision-Date: 2017-01-21 18:59+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -59,19 +59,59 @@ msgstr "Menu Dropdown"
 msgid "JavaScript"
 msgstr "JavaScript"
 
-#: config/block.php:59 config/nav.front.php:30
+#: config/block.php:55
+msgid "Display message"
+msgstr "Afficher Message"
+
+#: config/block.php:56
+msgid "Display message type"
+msgstr "Afficher le type de message"
+
+#: config/block.php:62
+msgid "Don't display message and notification"
+msgstr "Ne pas afficher les messages et notifications"
+
+#: config/block.php:63
+msgid "Boot message and notification"
+msgstr "Message et notification Initialisation"
+
+#: config/block.php:64
+msgid "Just message"
+msgstr "Seulement les messages"
+
+#: config/block.php:65
+msgid "Just notification"
+msgstr "Seulement les notifications"
+
+#: config/block.php:66
+msgid "Merge message abd notification"
+msgstr "Merger message et notification"
+
+#: config/block.php:72
+msgid "Display order"
+msgstr "Afficher Commande"
+
+#: config/block.php:79
+msgid "Display credit"
+msgstr "Afficher Crédit"
+
+#: config/block.php:86
+msgid "Display support"
+msgstr "Afficher Support"
+
+#: config/block.php:97 config/nav.front.php:30
 msgid "Login"
 msgstr "Connexion"
 
-#: config/block.php:60
+#: config/block.php:98
 msgid "User login block"
 msgstr "Bloc de connexion utilisateur"
 
-#: config/block.php:67
+#: config/block.php:105
 msgid "Pi feature"
 msgstr "Fonctionnalités Pi"
 
-#: config/block.php:68
+#: config/block.php:106
 msgid "Introduction to Pi Engine"
 msgstr "Quelques remarques à propose de Pi Engine"
 
@@ -1070,7 +1110,7 @@ msgid "Base block is not found."
 msgstr "Le bloc d'origine n'a pas été trouvé."
 
 #: src/Controller/Admin/BlockController.php:188
-#: src/Controller/Admin/BlockController.php:286
+#: src/Controller/Admin/BlockController.php:297
 msgid "Block data saved successfully."
 msgstr "Les données du bloc ont été enregistrées."
 
@@ -1079,7 +1119,7 @@ msgid "Block data not saved."
 msgstr "Les données du bloc n'ont pas été enregistrées."
 
 #: src/Controller/Admin/BlockController.php:198
-#: src/Controller/Admin/BlockController.php:293
+#: src/Controller/Admin/BlockController.php:304
 #: src/Controller/Admin/PageController.php:169
 #: src/Controller/Admin/PageController.php:280
 msgid "Invalid data, please check and re-submit."
@@ -1095,16 +1135,16 @@ msgstr "Clone - %s"
 msgid "Block clone from: %s"
 msgstr "Clone du bloc à partir de : %s"
 
-#: src/Controller/Admin/BlockController.php:299
+#: src/Controller/Admin/BlockController.php:310
 msgid "Block is not found."
 msgstr "Le bloc n'a pas été trouvé."
 
-#: src/Controller/Admin/BlockController.php:314
+#: src/Controller/Admin/BlockController.php:332
 #, php-format
 msgid "Block edit: %s"
 msgstr "Edition du bloc : %s"
 
-#: src/Controller/Admin/BlockController.php:334
+#: src/Controller/Admin/BlockController.php:352
 msgid "Block is deleted."
 msgstr "Le bloc a été supprimé"
 
@@ -1636,7 +1676,7 @@ msgstr "Aucune opération autorisée disponible"
 #: template/admin/block-list.phtml:18 template/admin/cache-list.phtml:14
 #: template/admin/dashboard-system.phtml:26 template/admin/event.phtml:17
 #: template/admin/flush-index.phtml:10 template/admin/module-available.phtml:9
-#: template/admin/module-index.phtml:9 template/admin/nav-index.phtml:10
+#: template/admin/module-index.phtml:7 template/admin/nav-index.phtml:10
 #: template/admin/page-list.phtml:13 template/admin/role.phtml:22
 #: template/admin/role.phtml:30
 msgid "Title"
@@ -1699,9 +1739,9 @@ msgstr "Déploiement"
 #: template/admin/asset-index.phtml:12 template/admin/block-list.phtml:21
 #: template/admin/event.phtml:18 template/admin/flush-index.phtml:11
 #: template/admin/module-available.phtml:12
-#: template/admin/module-index.phtml:13 template/admin/nav-data.phtml:116
-#: template/admin/nav-index.phtml:13 template/admin/page-list.phtml:14
-#: template/admin/role.phtml:28
+#: template/admin/module-index.phtml:11 template/admin/module-index.phtml:63
+#: template/admin/nav-data.phtml:116 template/admin/nav-index.phtml:13
+#: template/admin/page-list.phtml:14 template/admin/role.phtml:28
 msgid "Action"
 msgstr "Action"
 
@@ -1758,7 +1798,7 @@ msgid "50"
 msgstr "50"
 
 #: template/admin/block-list.phtml:19 template/admin/module-available.phtml:11
-#: template/admin/module-index.phtml:11 template/admin/theme-available.phtml:27
+#: template/admin/module-index.phtml:9 template/admin/theme-available.phtml:27
 #: template/admin/theme-index.phtml:58 template/admin/theme-installed.phtml:33
 msgid "Description"
 msgstr "Description"
@@ -2000,24 +2040,24 @@ msgstr "Oui"
 msgid "No"
 msgstr "Non"
 
-#: template/admin/module-available.phtml:8 template/admin/module-index.phtml:8
+#: template/admin/module-available.phtml:8 template/admin/module-index.phtml:6
 msgid "Icon"
 msgstr "Icône"
 
-#: template/admin/module-available.phtml:10
-#: template/admin/module-index.phtml:10 template/admin/theme-available.phtml:23
-#: template/admin/theme-index.phtml:56 template/admin/theme-installed.phtml:29
+#: template/admin/module-available.phtml:10 template/admin/module-index.phtml:8
+#: template/admin/theme-available.phtml:23 template/admin/theme-index.phtml:56
+#: template/admin/theme-installed.phtml:29
 msgid "Version"
 msgstr "Version"
 
 #: template/admin/module-available.phtml:34
-#: template/admin/module-index.phtml:38 template/admin/theme-available.phtml:18
+#: template/admin/module-index.phtml:36 template/admin/theme-available.phtml:18
 #: template/admin/theme-index.phtml:53 template/admin/theme-installed.phtml:22
 msgid "Detail"
 msgstr "Détail"
 
 #: template/admin/module-available.phtml:37
-#: template/admin/module-index.phtml:42
+#: template/admin/module-index.phtml:40
 msgid "Directory:"
 msgstr "Répertoire : "
 
@@ -2046,45 +2086,45 @@ msgstr "Retirer"
 msgid "Sort modules"
 msgstr "Trier les modules"
 
-#: template/admin/module-index.phtml:12
+#: template/admin/module-index.phtml:10
 msgid "Last Update"
 msgstr "Dernière mise à jour"
 
-#: template/admin/module-index.phtml:30
+#: template/admin/module-index.phtml:28
 msgid "Rename"
 msgstr "Renommer"
 
-#: template/admin/module-index.phtml:40
+#: template/admin/module-index.phtml:38
 msgid "Name:"
 msgstr "Nom :"
 
-#: template/admin/module-index.phtml:44
+#: template/admin/module-index.phtml:42
 msgid "Author"
 msgstr "Auteur"
 
-#: template/admin/module-index.phtml:61 template/admin/theme-installed.phtml:26
+#: template/admin/module-index.phtml:58 template/admin/theme-installed.phtml:26
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: template/admin/module-index.phtml:63
+#: template/admin/module-index.phtml:67
 msgid "Update all"
 msgstr "Tout mettre à jour"
 
-#: template/admin/module-index.phtml:65
-msgid "Are you sure to uninstall this module?"
-msgstr "Etes-vous certains de vouloir déinstaller ce module?"
-
-#: template/admin/module-index.phtml:65 template/admin/theme-installed.phtml:20
-msgid "Uninstall"
-msgstr "Désinstaller"
-
-#: template/admin/module-index.phtml:67
+#: template/admin/module-index.phtml:70
 msgid "Disable"
 msgstr "Désactiver"
 
-#: template/admin/module-index.phtml:69
+#: template/admin/module-index.phtml:72
 msgid "Enable"
 msgstr "Activer"
+
+#: template/admin/module-index.phtml:75
+msgid "Are you sure to uninstall this module?"
+msgstr "Etes-vous certains de vouloir déinstaller ce module?"
+
+#: template/admin/module-index.phtml:75 template/admin/theme-installed.phtml:20
+msgid "Uninstall"
+msgstr "Désinstaller"
 
 #: template/admin/module-operation.phtml:7
 #: template/admin/module-refresh.phtml:7
