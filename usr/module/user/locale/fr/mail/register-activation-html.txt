@@ -7,12 +7,12 @@
 [body]
 <p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
 
-<p style="margin-top: 5px">Un compte avec ton adresse email a été créé sur le site %site_name%.</p>
-<p style="margin-top: 5px">Merci de cliquer sur le lien suivant pour valider ton compte.<br>
+<p style="margin-top: 5px">Un compte avec votre adresse email a été créé sur le site %site_name%.</p>
+<p style="margin-top: 5px">Merci de cliquer sur le lien suivant pour valider votre compte.<br>
 <a href="%activation_url%">%activation_url%</a>
 </p>
 
-<p style="margin-top: 5px">Si tu n'as pas créé ce compte, merci de simplement ignorer cet email.</p>
+<p style="margin-top: 5px">Si vous n'avez pas créé ce compte, merci de simplement ignorer cet email.</p>
 
 <p style="margin-top: 10px">
     <a href="%site_url%" title="%site_name%">%site_name%</a>
