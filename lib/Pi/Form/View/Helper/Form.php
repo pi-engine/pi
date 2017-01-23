@@ -163,7 +163,7 @@ EOT;
 </label>
 EOT;
             $descPattern = <<<EOT
-<div class="text-muted">%desc_content%</div>
+<span style="display:block;" class="text-muted">%desc_content%</span>
 EOT;
             $required = __('Required');
             $markRequired = <<<EOT

@@ -20,14 +20,14 @@
       <td>
         <div pi-hover-input="item" text="item.title"></div>
       <td>
-        <i class="fa fa-check fa-lg text-success" ng-if="item.is_display"></i>
+        <i class="fa fa-check fa-lg text-success" data-ng-if="item.is_display"></i>
       <td>
-        <i class="fa fa-check fa-lg text-success" ng-if="item.is_search"></i>
+        <i class="fa fa-check fa-lg text-success" data-ng-if="item.is_search"></i>
       <td>
-        <i class="fa fa-check fa-lg text-success" ng-if="item.is_edit"></i>
+        <i class="fa fa-check fa-lg text-success" data-ng-if="item.is_edit"></i>
       <td>
-        <input type="checkbox" ng-if="item.is_edit" ng-change="requiredAction(item)"
-               ng-model="item.is_required" ng-true-value="1" ng-false-value="0">
+        <input type="checkbox" data-ng-if="item.is_edit" ng-change="requiredAction(item)"
+               data-ng-model="item.is_required" ng-true-value="1" ng-false-value="0">
       <td>{{item.module}}
 </table>
 <div class="page-header">
@@ -40,8 +40,8 @@
   <thead>
     <th width="30%">{{compound.title}}
     <th width="30%">
-      <input type="checkbox" ng-change="requiredAction(compound)" 
-             ng-model="compound.is_required" ng-true-value="1" ng-false-value="0">
+      <input type="checkbox" ng-change="requiredAction(compound)"
+             data-ng-model="compound.is_required" ng-true-value="1" ng-false-value="0">
       {{'REQUIRED' | translate}}
     <th>{{compound.module}}
   <tbody>
@@ -49,8 +49,8 @@
       <td style="padding-left: 20px;">
         <div pi-hover-input="item" text="item.title"></div>
       <td>
-        <input type="checkbox" ng-change="requiredAction(item)" 
-               ng-model="item.is_required" ng-true-value="1" ng-false-value="0">
+        <input type="checkbox" ng-change="requiredAction(item)"
+               data-ng-model="item.is_required" ng-true-value="1" ng-false-value="0">
       <td>
     </tr>
 </table>

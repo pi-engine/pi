@@ -8,11 +8,11 @@
         <div class="alert alert-info">
           {{'ACTIVITIES_DESC' | translate}}
         </div>
-        <div id="js-plugin-sortable" ui-sortable ng-model="displayList">
+        <div id="js-plugin-sortable" ui-sortable data-ng-model="displayList">
           <div class="pi-widget" ng-repeat="item in displayList">
             <span class="pull-right">
               <span class="muted">{{item.module}}</span>
-              <button class="close" ng-click="removeDisplay($index)">
+              <button class="close" data-ng-click="removeDisplay($index)">
                 &times;
               </button>
             </span>
@@ -29,7 +29,7 @@
       <div class="pi-widget">
         <span class="pull-right">
           <span class="text-muted">{{item.module}}</span>
-          <i class="fa fa-plus pi-icon-cursor" ng-click="addDisplay($index)"></i>
+          <i class="fa fa-plus pi-icon-cursor" data-ng-click="addDisplay($index)"></i>
         </span>
         {{item.title}}
         <span class="muted gutter">{{item.link}}</span>

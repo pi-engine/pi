@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2016-04-28 19:45+0200\n"
-"PO-Revision-Date: 2016-04-28 19:45+0200\n"
+"POT-Creation-Date: 2017-01-21 18:28+0100\n"
+"PO-Revision-Date: 2017-01-21 18:28+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -39,7 +39,7 @@ msgstr "Inscription"
 msgid "Account"
 msgstr "Compte"
 
-#: config/config.php:37 config/user.php:138
+#: config/config.php:37 config/user.php:154
 #: src/Controller/Admin/EditController.php:331
 msgid "Avatar"
 msgstr "Avatar"
@@ -555,74 +555,74 @@ msgstr "Nom"
 msgid "Gender"
 msgstr "Genre"
 
-#: config/user.php:110
+#: config/user.php:137
 msgid "Birthdate"
 msgstr "Date de naissance"
 
-#: config/user.php:149 template/admin/maintenance.phtml:50
+#: config/user.php:165 template/admin/maintenance.phtml:50
 #: template/admin/user.phtml:26 template/admin/user.phtml:48
 msgid "Active"
 msgstr "Confirmer"
 
-#: config/user.php:159 template/admin/maintenance.phtml:31
+#: config/user.php:175 template/admin/maintenance.phtml:31
 #: template/admin/maintenance.phtml:44 template/admin/user.phtml:30
 msgid "Register time"
 msgstr "Date inscription"
 
-#: config/user.php:169
+#: config/user.php:185
 msgid "Activation time"
 msgstr "Date activation"
 
-#: config/user.php:179 template/admin/maintenance.phtml:53
+#: config/user.php:195 template/admin/maintenance.phtml:53
 msgid "Disabled time"
 msgstr "Date désactivée"
 
-#: config/user.php:190 template/admin/maintenance.phtml:41
+#: config/user.php:206 template/admin/maintenance.phtml:41
 msgid "Deleted time"
 msgstr "Date supprimée"
 
-#: config/user.php:203
+#: config/user.php:219
 msgid "Level"
 msgstr "Niveau"
 
-#: config/user.php:212
+#: config/user.php:228
 msgid "Last modified"
 msgstr "Dernière modification"
 
-#: config/user.php:220
+#: config/user.php:236
 msgid "Personal website"
 msgstr "Site web personnel"
 
-#: config/user.php:228
+#: config/user.php:244
 msgid "Short bio"
 msgstr "Courte Bio"
 
-#: config/user.php:236
+#: config/user.php:252
 msgid "Signature"
 msgstr "Signature"
 
-#: config/user.php:245 template/admin/maintenance.phtml:32
+#: config/user.php:261 template/admin/maintenance.phtml:32
 #: template/admin/user.phtml:78 template/admin/user.phtml:83
 msgid "Register IP"
 msgstr "IP d\\'inscription"
 
-#: config/user.php:256
+#: config/user.php:272
 msgid "Social tools"
 msgstr "Réseaux sociaux"
 
-#: config/user.php:263
+#: config/user.php:279
 msgid "Tool name"
 msgstr "Nom réseau"
 
-#: config/user.php:266
+#: config/user.php:282
 msgid "ID or URL"
 msgstr "Numéro ou URL"
 
-#: config/user.php:276
+#: config/user.php:292
 msgid "User action"
 msgstr "Action utilisateur"
 
-#: config/user.php:288
+#: config/user.php:304
 msgid "Logout"
 msgstr "Se déconnecter"
 

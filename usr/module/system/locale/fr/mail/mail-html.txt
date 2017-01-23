@@ -2,11 +2,11 @@
 
 [format]html[/format]
 
-[subject]Greetings from %site_name% in HTML[/subject]
+[subject]Bienvenue sur %site_name% in HTML[/subject]
 
 [body]
-<div style="margin-bottom: 5px">Dear <strong>%username%</strong>:</div>
-<div style="margin: 5px">This is a greeting mail from %site_name%.</div>
+<div style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>:</div>
+<div style="margin: 5px">Ceci est un mail de bienveneu du site %site_name%.</div>
 <div style="margin-top: 10px">
     %site_adminname%<br />
     %site_adminmail%<br />

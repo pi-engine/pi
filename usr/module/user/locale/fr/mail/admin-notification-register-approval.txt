@@ -1,0 +1,16 @@
+[comment]Pi account register notification to admin[/comment]
+
+[format]html[/format]
+
+[subject]%site_name% - un nouveau Membre s'est inscrit[/subject]
+
+[body]
+<p style="margin-bottom: 5px">Chère/Cher Admin <strong>%site_name%</strong></p>
+
+<p style="margin-top: 5px">Un nouvel membre s'est enregistré sur le site avec l'adresse mail <strong>%email%</strong>, l'identité <strong>%identity%</strong> et le nom <strong>%name%</strong>.</p>
+<p style="margin-top: 5px">Vous devez activer ce compte membre depuis l'administration du site</p>
+
+<p style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+</p>
+[/body]
