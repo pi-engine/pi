@@ -16,8 +16,7 @@ use Zend\View\Helper\AbstractHelper;
 /**
  * WideContent
  *
- * Return html content or register as global for displaying behind de main container in main template / theme
- *
+ * Return html content (or register as global) for displaying behind the main container in main template / theme
  * To be used with some template code. For example :
  * --------------
  * ob_start();
@@ -27,6 +26,7 @@ use Zend\View\Helper\AbstractHelper;
  * --------------
  *
  * @package Pi\View\Helper
+ * @author esprit-dev / marc-pi
  */
 class WideContent extends AbstractHelper
 {
