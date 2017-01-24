@@ -575,3 +575,25 @@ form .icon-question-sign {
 .nav-tabs > li.active > a:focus {
     cursor: pointer;
 }
+
+.userbar-avatar-item{
+    line-height: 50px;
+    margin-right:5px;
+}
+
+.userbar-avatar-item .btn,
+.userbar-avatar-item .open .btn,
+.userbar-avatar-item .btn.active,
+.userbar-avatar-item .btn:active,
+.userbar-avatar-item .btn:hover,
+.userbar-avatar-item .btn:focus{
+    background-color:transparent!important;
+    color:white!important;
+    border:0!important;
+    box-shadow:none!important;
+    line-height: 28px;
+}
+
+.userbar-avatar-item a{
+    padding:12px 15px 10px 5px!important;
+}

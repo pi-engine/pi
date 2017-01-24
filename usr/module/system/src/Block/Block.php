@@ -49,7 +49,7 @@ class Block
         // Get uid
         $uid = Pi::user()->getId();
         // Get user
-        $parameters = array('id', 'identity', 'name', 'email');
+        $parameters = array('id', 'identity', 'name', 'email', 'first_name');
         $user = Pi::user()->get($uid, $parameters);
         $user['profileUrl'] = Pi::service('user')->getUrl('profile');
         $user['avatar'] = Pi::service('user')->avatar($uid, 'large' , array(
@@ -94,10 +94,11 @@ class Block
 
         if ('js' == $type) {
             $user = array(
-                'uid'       => Pi::service('user')->getUser()->get('id'),
-                'logout'    => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),
-                'login'     => Pi::url(Pi::service('authentication')->getUrl('login', $params)),
-                'register'  => Pi::url(Pi::service('user')->getUrl('register', $params)),
+                'uid'        => Pi::service('user')->getUser()->get('id'),
+                'first_name' => Pi::service('user')->getUser()->get('first_name'),
+                'logout'     => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),
+                'login'      => Pi::url(Pi::service('authentication')->getUrl('login', $params)),
+                'register'   => Pi::url(Pi::service('user')->getUrl('register', $params)),
             );
             $url = Pi::service('url')->assemble('default', array_replace($params, array(
                 'module'        => 'system',
@@ -114,14 +115,16 @@ class Block
         } else {
             $uid    = Pi::service('user')->getUser()->get('id');
             $name   = Pi::service('user')->getUser()->get('name');
-            $avatar = Pi::service('user')->getPersist('avatar-mini');
+            $avatar = Pi::service('user')->getPersist('avatar-small');
             if (!$avatar) {
-                $avatar = Pi::service('user')->avatar($uid, 'mini');
-                Pi::service('user')->setPersist('avatar-mini', $avatar);
+
+                $avatar = Pi::service('user')->avatar($uid, 'small');
+                Pi::service('user')->setPersist('avatar-small', $avatar);
             }
             $user = array(
                 'uid'       => Pi::service('user')->getId(),
                 'name'      => $name,
+                'first_name' => Pi::service('user')->getUser()->first_name,
                 'avatar'    => $avatar,
                 'profile'   => Pi::url(Pi::service('user')->getUrl('profile', $params)),
                 'logout'    => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),

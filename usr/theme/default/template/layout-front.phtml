@@ -215,7 +215,7 @@ $breadcrumbs = $this->breadcrumb(
                     <!-- Module content starts -->
                     <?php if (!empty($content)) { ?>
                         <div class="<?php echo $module; ?>">
-                            <div class="pi-module-content" ng-app="<?php echo $module; ?>">
+                            <div class="pi-module-content" data-ng-app="<?php echo $module; ?>">
                                 <?php echo $content; ?>
                             </div>
                             <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
@@ -280,7 +280,7 @@ $breadcrumbs = $this->breadcrumb(
     if ($footer) {
         echo $footer;
     } else {
-    ?>
+        ?>
         <div class="container">
             <div class="row">
                 <ul class="pi-footer-links muted list-inline">

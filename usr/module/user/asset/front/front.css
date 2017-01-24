@@ -288,3 +288,8 @@
 .user-js-reactivate-message {
   margin: 0 20px;
 }
+
+#pi-user.userSection .container {
+  max-width: none;
+  width: auto;
+}
