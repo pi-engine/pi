@@ -50,7 +50,7 @@ class FormDatepicker extends FormInput
         // Register script loading
         $view = $this->getView();
         $view->jquery();
-        
+        // quick fix to prevent multi-css load : need to improve ZF class usage
         if ($view->core_datepicker_initialized) {
             $bsLoad = array();
         } else {
@@ -60,7 +60,7 @@ class FormDatepicker extends FormInput
             );
         }
         $view->core_datepicker_initialized = true;
-        
+        // end fix 
         if (!empty($options['language'])) {
             $bsLoad[] = sprintf('datepicker/locales/bootstrap-datepicker.%s.js', $options['language']);
         }
