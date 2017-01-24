@@ -17,6 +17,8 @@ use Zend\View\Helper\AbstractHelper;
  * WideContent
  *
  * Return html content (or register as global) for displaying behind the main container in main template / theme
+ * Turnaround to be able to display wide image (full width) in template, for instance, despite the usage of BS container class in standard layout-front template
+ * This avoids us to have to change all templates in all modules for this use case : time saving
  * To be used with some template code. For example :
  * --------------
  * ob_start();
