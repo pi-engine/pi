@@ -189,7 +189,7 @@ $blockTemplate  = $this->template('block');
             <!-- Module content starts -->
             <?php if (!empty($content)) { ?>
                 <div class="<?php echo $module; ?>">
-                    <div class="pi-module-content" ng-app="<?php echo $module; ?>">
+                    <div class="pi-module-content" data-ng-app="<?php echo $module; ?>">
                         <?php echo $content; ?>
                     </div>
                     <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
@@ -256,41 +256,41 @@ $blockTemplate  = $this->template('block');
         if ($footer) {
             echo $footer;
         } else {
-        ?>
+            ?>
 
-        <ul class="pi-footer-links muted">
-            <li>
-                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                    &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
-                </a>
-            </li>
-            <li>·</li>
-            <li>
-                <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                    Powered by Pi Engine
-                </a>
-            </li>
-            <li>·</li>
+            <ul class="pi-footer-links muted">
+                <li>
+                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                        &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
+                    </a>
+                </li>
+                <li>·</li>
+                <li>
+                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                        Powered by Pi Engine
+                    </a>
+                </li>
+                <li>·</li>
 
-            <li>
-                <?php echo $this->page('about-us', __('About us'), array('target' => '_blank')); ?>
-            </li>
-            <li>·</li>
-            <li>
-                <?php echo $this->page('contact-us', __('Contact us'), array('target' => '_blank')); ?>
-            </li>
-            <li>·</li>
-            <li>
-                <?php echo $this->page('sitemap', __('Sitemap'), array('target' => '_blank', 'title' => __('Direct links to site elements'))); ?>
-            </li>
-            <li>·</li>
-            <li>
-                <?php echo $this->page('help', __('Get help')); ?>
-            </li>
-            <li>·</li>
+                <li>
+                    <?php echo $this->page('about-us', __('About us'), array('target' => '_blank')); ?>
+                </li>
+                <li>·</li>
+                <li>
+                    <?php echo $this->page('contact-us', __('Contact us'), array('target' => '_blank')); ?>
+                </li>
+                <li>·</li>
+                <li>
+                    <?php echo $this->page('sitemap', __('Sitemap'), array('target' => '_blank', 'title' => __('Direct links to site elements'))); ?>
+                </li>
+                <li>·</li>
+                <li>
+                    <?php echo $this->page('help', __('Get help')); ?>
+                </li>
+                <li>·</li>
 
-            <i class="fa fa-sm fa-spinner fa-spin" title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"></i>
-        </ul>
+                <i class="fa fa-sm fa-spinner fa-spin" title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"></i>
+            </ul>
         <?php } ?>
     </div>
 </div>

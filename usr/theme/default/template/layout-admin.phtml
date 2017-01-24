@@ -65,36 +65,36 @@ $module = Pi::service('module')->current();
 <!-- header: brand, navbar-nav, user link -->
 <header class="pi-header">
     <div class="navbar navbar-fixed-top" role="navigation">
-    <div class="navbar-header">
-        <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <i class="fa fa-bars"></i>
-        </button>
-        <a class="navbar-brand" href="<?php echo $this->url('home'); ?>">
-            <i class="fa fa-leaf"></i>
-            <strong>Pi</strong>
-        </a>
-    </div>
-    <nav class="navbar-collapse collapse">
-        <?php echo $this->adminNav()->modes('nav navbar-nav'); ?>
-        <ul class="nav navbar-nav navbar-right navbar-go-front">
-            <li>
-                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
-                    <i class="fa fa-external-link"></i>
-                    <?php _e('Front'); ?>
-                </a>
-            </li>
-        </ul>
-        <?php echo $this->widget('system-user-bar', array(
-            'type'         => 'flat',
-            'show_message' => 'merge',
-            'show_support' => 0,
-            'show_order'   => 0,
-            'show_credit'  => 0,
-            'params'       => array(
-                'section'  => Pi::engine()->application()->getSection(),
-            ),
-        )); ?>
-    </nav>
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>">
+                <i class="fa fa-leaf"></i>
+                <strong>Pi</strong>
+            </a>
+        </div>
+        <nav class="navbar-collapse collapse">
+            <?php echo $this->adminNav()->modes('nav navbar-nav'); ?>
+            <ul class="nav navbar-nav navbar-right navbar-go-front">
+                <li>
+                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
+                        <i class="fa fa-external-link"></i>
+                        <?php _e('Front'); ?>
+                    </a>
+                </li>
+            </ul>
+            <?php echo $this->widget('system-user-bar', array(
+                'type'         => 'flat',
+                'show_message' => 'merge',
+                'show_support' => 0,
+                'show_order'   => 0,
+                'show_credit'  => 0,
+                'params'       => array(
+                    'section'  => Pi::engine()->application()->getSection(),
+                ),
+            )); ?>
+        </nav>
     </div>
 </header>
 <section class="pi-section clearfix">
@@ -103,9 +103,9 @@ $module = Pi::service('module')->current();
             <?php echo $this->adminNav()->main('nav pi-modules-nav'); ?>
         </div>
     </aside>
-    <div class="pi-content" ng-app="<?php echo $module; ?>">
+    <div class="pi-content" data-ng-app="<?php echo $module; ?>">
         <div pi-message="alert"></div>
-        <nav class="pi-nav-top" id="pi-nav-top" ng-controller="piNavTopCtrl">
+        <nav class="pi-nav-top" id="pi-nav-top" data-ng-controller="piNavTopCtrl">
             <?php
             echo $this->adminNav()->top(array(
                 'ulClass'  => 'nav nav-tabs',

@@ -5,7 +5,7 @@
         var $this = $(this);
         var match = $this.find('a').attr('href').match(fragReg);
         if (!match) return false;
-        $this.removeClass('active').attr('ng-class', 'navClass("' + match[1] + '")');
+        $this.removeClass('active').attr('data-ng-class', 'navClass("' + match[1] + '")');
     });
     // For debug
     $(function () {
