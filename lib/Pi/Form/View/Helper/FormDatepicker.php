@@ -50,10 +50,17 @@ class FormDatepicker extends FormInput
         // Register script loading
         $view = $this->getView();
         $view->jquery();
-        $bsLoad = array(
-            'datepicker/datepicker.css',
-            'datepicker/bootstrap-datepicker.js'
-        );
+        
+        if ($view->core_datepicker_initialized) {
+            $bsLoad = array();
+        } else {
+            $bsLoad = array(
+                'datepicker/datepicker.css',
+                'datepicker/bootstrap-datepicker.js'
+            );
+        }
+        $view->core_datepicker_initialized = true;
+        
         if (!empty($options['language'])) {
             $bsLoad[] = sprintf('datepicker/locales/bootstrap-datepicker.%s.js', $options['language']);
         }
