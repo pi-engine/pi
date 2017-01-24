@@ -289,9 +289,7 @@
   margin: 0 20px;
 }
 
-@media (min-width: 1200px) {
-  #pi-user.userSection .container {
-    max-width: none;
-    width: auto;
-  }
+#pi-user.userSection .container {
+  max-width: none;
+  width: auto;
 }

@@ -32,7 +32,7 @@
                     </li>
                     <?php if (isset($block['user']['message'])) { ?>
                         <li>
-                            <a id="member-message" href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>">
+                            <a id="member-message" href="<?php echo $block['user']['message']; ?>" title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
                                 <?php echo _b('Message'); ?>
                                 <?php if($block['user']['count']) : ?>
                                     <span class="badge"><?php echo $block['user']['count']; ?></span>
@@ -42,7 +42,7 @@
                     <?php } else { ?>
                         <?php if (isset($block['user']['message_url'])) { ?>
                             <li>
-                                <a id="member-message" href="<?php echo $block['user']['message_url']; ?>" title="<?php echo _b('Message'); ?>">
+                                <a id="member-message" href="<?php echo $block['user']['message_url']; ?>" title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
                                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
                                     <?php echo _b('Message'); ?>
                                     <?php if($block['user']['message_count']) : ?>
@@ -53,7 +53,7 @@
                         <?php } ?>
                         <?php if (isset($block['user']['notification_url'])) { ?>
                             <li>
-                                <a id="member-notification" href="<?php echo $block['user']['notification_url']; ?>" title="<?php echo _b('Notification'); ?>">
+                                <a id="member-notification" href="<?php echo $block['user']['notification_url']; ?>" title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notifications'); ?>">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i>
                                     <?php echo _b('Notification'); ?>
                                     <?php if($block['user']['notification_count']) : ?>
@@ -65,7 +65,7 @@
                     <?php } ?>
                     <?php if (isset($block['user']['support_url'])) { ?>
                         <li>
-                            <a id="member-support" href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
+                            <a id="member-support" href="<?php echo $block['user']['support_url']; ?>" title="<?php echo $block['user']['support_count']; ?> <?php echo _b('ticket(s)'); ?>">
                                 <i class="fa fa-life-ring" aria-hidden="true"></i>
                                 <?php echo _b('Support'); ?>
                                 <?php if($block['user']['support_count']) : ?>
@@ -135,11 +135,11 @@ EOT;
                             <a href="<?php echo Pi::url('guide/manage/dashboard'); ?>" class="btn userBarAvatar">
                                 <?php echo $block['user']['avatar']; ?>
                                 <span>
-                                <?php echo _escape($block['user']['name']); ?>
-                                <?php if($block['user']['count']) : ?>
-                                    <span class="badge"><?php echo $block['user']['count']; ?></span>
-                                <?php endif; ?>
-                            </span>
+                                    <?php echo _escape($block['user']['name']); ?>
+                                    <?php if(isset($block['user']['count']) && $block['user']['count']) : ?>
+                                        <span class="badge"><?php echo $block['user']['count']; ?></span>
+                                    <?php endif; ?>
+                                </span>
                             </a>
                             <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="caret"></span>
@@ -156,7 +156,7 @@ EOT;
                                     <a title="Message" href="<?php echo Pi::url('message'); ?>">
                                         <i class="fa fa-envelope-o"></i> Message
 
-                                        <?php if($block['user']['count']) : ?>
+                                        <?php if(isset($block['user']['count']) && $block['user']['count']) : ?>
                                             <span class="badge"><?php echo $block['user']['count']; ?></span>
                                         <?php endif; ?>
                                     </a>
@@ -189,15 +189,9 @@ EOT;
                         </a>
                     </li>
                 <?php } else { ?>
-                    <li>
-                        <a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _escape($block['user']['name']); ?>">
-                            <?php echo $block['user']['avatar']; ?>
-                            <?php echo _escape($block['user']['name']); ?>
-                        </a>
-                    </li>
                     <?php if (isset($block['user']['message'])) { ?>
                         <li>
-                            <a href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>">
+                            <a href="<?php echo $block['user']['message']; ?>" title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
                                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
                                 <span>
                                     <?php echo _b('Message'); ?>
@@ -210,10 +204,10 @@ EOT;
                     <?php } else { ?>
                         <?php if (isset($block['user']['message_url'])) { ?>
                             <li>
-                                <a href="<?php echo $block['user']['message_url']; ?>" title="<?php echo _b('Message'); ?>">
+                                <a href="<?php echo $block['user']['message_url']; ?>" title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
                                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
                                     <span>
-                                        <?php echo _b('Message'); ?>
+                                        <span class="visible-xs-inline"><?php echo _b('Message'); ?></span>
                                         <?php if($block['user']['message_count']) : ?>
                                             <span class="badge"><?php echo $block['user']['message_count']; ?></span>
                                         <?php endif; ?>
@@ -223,10 +217,10 @@ EOT;
                         <?php } ?>
                         <?php if (isset($block['user']['notification_url'])) { ?>
                             <li>
-                                <a href="<?php echo $block['user']['notification_url']; ?>" title="<?php echo _b('Notification'); ?>">
+                                <a href="<?php echo $block['user']['notification_url']; ?>" title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i>
                                     <span>
-                                        <?php echo _b('Notification'); ?>
+                                        <span class="visible-xs-inline"><?php echo _b('Notification'); ?></span>
                                         <?php if($block['user']['notification_count']) : ?>
                                             <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
                                         <?php endif; ?>
@@ -271,19 +265,31 @@ EOT;
                             </a>
                         </li>
                     <?php } ?>
-                    <li>
-                        <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i>
-                            <span>
-                                <?php echo _b('Logout'); ?>
-                            </span>
-                        </a>
+
+                    <li class="userbar-avatar-item">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php if(!preg_match('#\/admin\/#', $this->url('', array(), null, true))) : ?>
+                                    <?php echo _b('Welcome'); ?>
+                                <?php endif; ?>
+                                <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
+                                <?php echo $block['user']['avatar']; ?>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                        <span>
+                                            <?php echo _b('Logout'); ?>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 <?php } ?>
             </ul>
-            <?php if(!preg_match('#\/admin\/#', $this->url('', array(), null, true))) : ?>
-                <span class="welcome-user-bar pull-right hidden-xs"><?php echo _b('Welcome'); ?> <?php echo isset($block['user']['first_name']) ? $block['user']['first_name'] : ''; ?></span>
-            <?php endif; ?>
 
             <?php break; ?>
         <?php } ?>
