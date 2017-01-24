@@ -16,12 +16,22 @@ use Zend\View\Helper\AbstractHelper;
 /**
  * Return is user section status
  *
+ * Usage inside a phtml template
+
+ * ```
+ *  // Load helper for current request URI
+ *  $userSection = $this->isUserSection();
+ * ```
+ *
  * @author Frédéric TISSOT <contact@espritdev.fr>
  */
 class IsUserSection extends AbstractHelper
 {
     /**
-     * {@inheritDoc}
+     * Invoke helper
+     *
+     * @param $module
+     * @return bool
      */
     public function __invoke($module)
     {
