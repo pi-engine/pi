@@ -45,6 +45,7 @@ return array(
                     'options'   => array(
                         'options'   => array(
                             'flat'      => _a('Flat'),
+                            'mixed'      => _a('Flat on account / dropdown on other pages'),
                             'dropdown'  => _a('Dropdown menu'),
                             'js'        => _a('JavaScript'),
                         ),
