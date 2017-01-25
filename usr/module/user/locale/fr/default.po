@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-01-25 14:59+0100\n"
-"PO-Revision-Date: 2017-01-25 14:59+0100\n"
+"POT-Creation-Date: 2017-01-25 15:02+0100\n"
+"PO-Revision-Date: 2017-01-25 15:02+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -102,41 +102,49 @@ msgstr "S'inscrire"
 msgid "Feed"
 msgstr "Fil"
 
-#: src/Api/Breadcrumbs.php:57 src/Controller/Front/AccountController.php:137
+#: src/Api/Breadcrumbs.php:57 src/Api/Breadcrumbs.php:70
+#: src/Api/Breadcrumbs.php:83 src/Api/Breadcrumbs.php:96
+#: src/Api/Breadcrumbs.php:127 src/Api/Breadcrumbs.php:140
+#: src/Api/Breadcrumbs.php:155
+msgid "Dashboard"
+msgstr "Tableau de Bord"
+
+#: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:137
+#: src/Controller/Front/DashboardController.php:46
 #: template/front/account-index.phtml:11
-#: template/front/profile-sidebar.phtml:53
+#: template/front/profile-sidebar.phtml:45
 msgid "Account settings"
 msgstr "Paramétrages du compte"
 
-#: src/Api/Breadcrumbs.php:63 src/Controller/Front/AvatarController.php:185
-#: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:61
-#: template/front/profile-topbar.phtml:135
+#: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:185
+#: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:53
+#: template/front/profile-topbar.phtml:140
 msgid "Change avatar"
 msgstr "Modifier sa photo"
 
-#: src/Api/Breadcrumbs.php:69 template/front/privacy-index.phtml:11
-#: template/front/profile-sidebar.phtml:73
+#: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:11
+#: template/front/profile-sidebar.phtml:65
 msgid "Privacy"
 msgstr "Confidentialité"
 
-#: src/Api/Breadcrumbs.php:77 src/Controller/Front/PasswordController.php:99
+#: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:99
 #: template/front/password-index.phtml:11
-#: template/front/profile-sidebar.phtml:57
+#: template/front/profile-sidebar.phtml:49
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
-#: src/Api/Breadcrumbs.php:83 src/Controller/Front/PasswordController.php:200
+#: src/Api/Breadcrumbs.php:111 src/Controller/Front/PasswordController.php:200
 #: src/Controller/Front/PasswordController.php:201
 #: src/Form/FindPasswordForm.php:52 template/front/login.phtml:32
 #: template/front/password-find.phtml:3
 msgid "Find password"
 msgstr "Trouver le mot de passe."
 
-#: src/Api/Breadcrumbs.php:93 src/Api/Nav.php:46
+#: src/Api/Breadcrumbs.php:121 src/Api/Nav.php:46
 msgid "Profile"
 msgstr "Profil"
 
-#: src/Api/Breadcrumbs.php:99 src/Api/Breadcrumbs.php:105
+#: src/Api/Breadcrumbs.php:134 src/Api/Breadcrumbs.php:147
 #: src/Controller/Front/ProfileController.php:189
 #: src/Controller/Front/ProfileController.php:237
 msgid "Edit profile"
@@ -212,6 +220,7 @@ msgid "It was failed to save new name. Please try later."
 msgstr "Le nouveau nom n'a pas été enregistré. Merci d'essayer plus tard."
 
 #: src/Controller/Front/AccountController.php:138
+#: src/Controller/Front/DashboardController.php:47
 #: template/front/account-index.phtml:11
 msgid "Basic settings"
 msgstr "Paramètres Généraux"
@@ -791,6 +800,70 @@ msgstr "Annuler"
 msgid "Uploading"
 msgstr "En téléchargement"
 
+#: template/front/dashboard-index.phtml:11
+msgid "Your dashboard"
+msgstr "Votre tableau de bord"
+
+#: template/front/dashboard-index.phtml:18
+#: template/front/dashboard-index.phtml:21
+#: template/front/profile-sidebar.phtml:76
+msgid "My items"
+msgstr "Mes éléments"
+
+#: template/front/dashboard-index.phtml:26
+#: template/front/dashboard-index.phtml:29
+#: template/front/profile-sidebar.phtml:78
+msgid "Sponsorship"
+msgstr "Parrainage"
+
+#: template/front/dashboard-index.phtml:39
+#: template/front/dashboard-index.phtml:42
+#: template/front/profile-sidebar.phtml:85
+msgid "My messages"
+msgstr "Mes messages"
+
+#: template/front/dashboard-index.phtml:47
+#: template/front/dashboard-index.phtml:50
+#: template/front/profile-sidebar.phtml:87
+msgid "My notifications"
+msgstr "Mes notifications"
+
+#: template/front/dashboard-index.phtml:58
+#: template/front/dashboard-index.phtml:61
+#: template/front/profile-sidebar.phtml:96
+msgid "My events"
+msgstr "Mes évènements"
+
+#: template/front/dashboard-index.phtml:70
+#: template/front/dashboard-index.phtml:73
+#: template/front/profile-sidebar.phtml:101
+msgid "My orders"
+msgstr "Mes commandes"
+
+#: template/front/dashboard-index.phtml:80
+#: template/front/dashboard-index.phtml:83
+#: template/front/profile-sidebar.phtml:104
+msgid "My credit"
+msgstr "Mes Crédits"
+
+#: template/front/dashboard-index.phtml:92
+#: template/front/dashboard-index.phtml:95
+#: template/front/profile-sidebar.phtml:109
+msgid "My favorites"
+msgstr "Mes favoris"
+
+#: template/front/dashboard-index.phtml:103
+#: template/front/dashboard-index.phtml:106
+#: template/front/profile-sidebar.phtml:113
+msgid "My videos"
+msgstr "Mes Vidéos"
+
+#: template/front/dashboard-index.phtml:115
+#: template/front/dashboard-index.phtml:118
+#: template/front/profile-sidebar.phtml:92
+msgid "My support tickets"
+msgstr "Mes tickets Assistance"
+
 #: template/front/login-disabled.phtml:3
 msgid "User login"
 msgstr "Connexion utilisateur"
@@ -882,44 +955,44 @@ msgstr "Etes-vous sûr de vouloir supprimer cet enregistrement?"
 msgid "Add %s"
 msgstr "Ajouter %s"
 
-#: template/front/profile-sidebar.phtml:35
-msgid "My videos"
-msgstr "Mes Vidéos"
+#: template/front/profile-sidebar.phtml:25
+msgid "View my profile"
+msgstr "Voir mon profil"
 
-#: template/front/profile-sidebar.phtml:44
+#: template/front/profile-sidebar.phtml:36
 msgid "My account"
 msgstr "Mon compte"
 
-#: template/front/profile-topbar.phtml:79
+#: template/front/profile-topbar.phtml:82
 msgid "Switch to public"
 msgstr "Basculer côté utilisateur"
 
-#: template/front/profile-topbar.phtml:84
+#: template/front/profile-topbar.phtml:88
 msgid "Settings"
 msgstr "Paramétrages"
 
-#: template/front/profile-topbar.phtml:90
+#: template/front/profile-topbar.phtml:95
 msgid "Quicklinks"
 msgstr "Liens rapides"
 
-#: template/front/profile-topbar.phtml:113
+#: template/front/profile-topbar.phtml:118
 msgid "Switch to own"
 msgstr "Basculer côté admin"
 
-#: template/front/profile-topbar.phtml:119
 #: template/front/profile-topbar.phtml:124
+#: template/front/profile-topbar.phtml:129
 msgid "Send message"
 msgstr "Envoyer un message"
 
-#: template/front/profile-topbar.phtml:143
+#: template/front/profile-topbar.phtml:148
 msgid "Gender:"
 msgstr "Genre : "
 
-#: template/front/profile-topbar.phtml:149
+#: template/front/profile-topbar.phtml:154
 msgid "Birthdate:"
 msgstr "Date de naissance :"
 
-#: template/front/profile-topbar.phtml:206
+#: template/front/profile-topbar.phtml:211
 msgid "More"
 msgstr "Plus"
 
@@ -1001,36 +1074,6 @@ msgstr "Demandez le renvoi du mail d'activation"
 #: template/front/register-index.phtml:130
 msgid "Already sent"
 msgstr "Déja envoyé"
-
-#~ msgid "View my profile"
-#~ msgstr "Voir mon profil"
-
-#~ msgid "My items"
-#~ msgstr "Mes éléments"
-
-#~ msgid "Sponsorship"
-#~ msgstr "Parrainage"
-
-#~ msgid "My messages"
-#~ msgstr "Mes messages"
-
-#~ msgid "My notifications"
-#~ msgstr "Mes notifications"
-
-#~ msgid "My support tickets"
-#~ msgstr "Mes tickets Assistance"
-
-#~ msgid "My events"
-#~ msgstr "Mes évènements"
-
-#~ msgid "My orders"
-#~ msgstr "Mes commandes"
-
-#~ msgid "My credit"
-#~ msgstr "Mes Crédits"
-
-#~ msgid "My favorites"
-#~ msgstr "Mes favoris"
 
 #~ msgid "Invalid user name: %formatHint%"
 #~ msgstr "Non utilisateur non valide : %formatHint%"
