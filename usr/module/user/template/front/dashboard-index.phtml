@@ -1,0 +1,128 @@
+<?php
+$this->css($this->assetModule('front/front.css'));
+$this->headMeta('noindex', 'robots');
+?>
+<div class="row">
+    <div class="col-md-3">
+        <?php include $this->template('./profile-sidebar.phtml'); ?>
+    </div>
+    <div class="col-md-9">
+        <div class="page-header">
+            <h1><?php _e('Your dashboard'); ?></h1>
+        </div>
+        <div class="row text-center">
+            <?php if (Pi::service('module')->isActive('guide')) { ?>
+                <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
+                <?php if ($guideConfig['manage_active']) { ?>
+                    <div class="col-md-3">
+                        <a class="thumbnail" title="<?php _e('My items'); ?>" href="<?php echo Pi::url($this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'))); ?>">
+                            <i class="fa fa-home fa-5x"></i>
+                            <div class="caption">
+                                <?php _e('My items'); ?>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a class="thumbnail" title="<?php _e('Sponsorship'); ?>" href="<?php echo Pi::url($this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'sponsor'))); ?>">
+                            <i class="fa fa-home fa-5x"></i>
+                            <div class="caption">
+                                <?php _e('Sponsorship'); ?>
+                            </div>
+                        </a>
+                    </div>
+                <?php } ?>
+            <?php } ?>
+            <?php if (Pi::service('module')->isActive('message')) { ?>
+                <?php $message = _number(Pi::api('api', 'message')->getUnread($uid, 'message')); ?>
+                <?php $notification = _number(Pi::api('api', 'message')->getUnread($uid, 'notification')); ?>
+                <div class="col-md-3">
+                    <a class="thumbnail" title="<?php _e('My messages'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'index'))); ?>">
+                        <i class="fa fa-home fa-5x"></i>
+                        <div class="caption">
+                            <?php _e('My messages'); ?> <span class="badge"><?php echo $message; ?></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a class="thumbnail" title="<?php _e('My notifications'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'message', 'controller' => 'notify', 'action' => 'index'))); ?>">
+                        <i class="fa fa-home fa-5x"></i>
+                        <div class="caption">
+                            <?php _e('My notifications'); ?> <span class="badge"><?php echo $notification; ?></span>
+                        </div>
+                    </a>
+                </div>
+            <?php } ?>
+
+            <?php if (Pi::service('module')->isActive('event')) { ?>
+                <div class="col-md-3">
+                    <a class="thumbnail" title="<?php _e('My events'); ?>" href="<?php echo Pi::url($this->url('event', array('module' => 'event', 'controller' => 'manage', 'action' => 'index'))); ?>">
+                        <i class="fa fa-home fa-5x"></i>
+                        <div class="caption">
+                            <?php _e('My events'); ?>
+                        </div>
+                    </a>
+                </div>
+            <?php } ?>
+
+            <?php if (Pi::service('module')->isActive('order')) { ?>
+                <?php $orderConfig = Pi::service('registry')->config->read('order'); ?>
+                <div class="col-md-3">
+                    <a class="thumbnail" title="<?php _e('My orders'); ?>" href="<?php echo Pi::url($this->url('order', array('module' => 'order', 'controller' => 'index', 'action' => 'index'))); ?>">
+                        <i class="fa fa-home fa-5x"></i>
+                        <div class="caption">
+                            <?php _e('My orders'); ?>
+                        </div>
+                    </a>
+                </div>
+                <?php if ($orderConfig['credit_active']) { ?>
+                    <?php $credit = Pi::api('credit', 'order')->getCredit($uid); ?>
+                    <div class="col-md-3">
+                        <a class="thumbnail" title="<?php _e('My credit'); ?>" href="<?php echo Pi::url($this->url('order', array('module' => 'order', 'controller' => 'credit', 'action' => 'index'))); ?>">
+                            <i class="fa fa-home fa-5x"></i>
+                            <div class="caption">
+                                <?php _e('My credit'); ?> <span class="badge"><?php echo $credit['amount_view']; ?></span>
+                            </div>
+                        </a>
+                    </div>
+                <?php } ?>
+            <?php } ?>
+
+            <?php if (Pi::service('module')->isActive('favourite')) { ?>
+                <div class="col-md-3">
+                    <a class="thumbnail" title="<?php _e('My favorites'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'favourite', 'controller' => 'index', 'action' => 'index'))); ?>">
+                        <i class="fa fa-home fa-5x"></i>
+                        <div class="caption">
+                            <?php _e('My favorites'); ?>
+                        </div>
+                    </a>
+                </div>
+            <?php } ?>
+
+            <?php if (Pi::service('module')->isActive('video')) { ?>
+                <div class="col-md-3">
+                    <a class="thumbnail" title="<?php _e('My videos'); ?>" href="<?php echo Pi::url($this->url('video', array('module' => 'video', 'controller' => 'channel', 'action' => 'index'))); ?>">
+                        <i class="fa fa-home fa-5x"></i>
+                        <div class="caption">
+                            <?php _e('My videos'); ?>
+                        </div>
+                    </a>
+                </div>
+            <?php } ?>
+
+            <?php if (Pi::service('module')->isActive('support')) { ?>
+                <?php $support = _number(Pi::api('ticket', 'support')->getCount($uid)); ?>
+                <div class="col-md-3">
+                    <a class="thumbnail" title="<?php _e('My support tickets'); ?>" href="<?php echo Pi::url($this->url('support', array('module' => 'support', 'controller' => 'index', 'action' => 'index'))); ?>">
+                        <i class="fa fa-home fa-5x"></i>
+                        <div class="caption">
+                            <?php _e('My support tickets'); ?> <span class="badge"><?php echo $support; ?></span>
+                        </div>
+                    </a>
+                </div>
+            <?php } ?>
+
+        </div>
+    </div>
+</div>
+
+
