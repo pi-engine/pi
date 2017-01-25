@@ -26,10 +26,10 @@ class Breadcrumbs extends AbstractBreadcrumbs
         $moduleData = Pi::registry('module')->read($this->getModule());
         $result = array(
             array(
-               'label' => $moduleData['title'],
-               'href'  => Pi::url(Pi::service('url')->assemble('user', array(
-                   'module' => $this->getModule(),
-               ))),
+                'label' => $moduleData['title'],
+                'href'  => Pi::url(Pi::service('url')->assemble('user', array(
+                    'module' => $this->getModule(),
+                ))),
             ),
         );
 
@@ -54,11 +54,25 @@ class Breadcrumbs extends AbstractBreadcrumbs
 
             case 'account':
                 $result[] = array(
+                    'label' => __('Dashboard'),
+                    'href'  => Pi::url(Pi::service('url')->assemble('user', array(
+                        'module' => $this->getModule(),
+                        'controller' => 'dashboard',
+                    ))),
+                );
+                $result[] = array(
                     'label' => __('Account settings'),
                 );
                 break;
 
             case 'avatar':
+                $result[] = array(
+                    'label' => __('Dashboard'),
+                    'href'  => Pi::url(Pi::service('url')->assemble('user', array(
+                        'module' => $this->getModule(),
+                        'controller' => 'dashboard',
+                    ))),
+                );
                 $result[] = array(
                     'label' => __('Change avatar'),
                 );
@@ -66,11 +80,25 @@ class Breadcrumbs extends AbstractBreadcrumbs
 
             case 'privacy':
                 $result[] = array(
+                    'label' => __('Dashboard'),
+                    'href'  => Pi::url(Pi::service('url')->assemble('user', array(
+                        'module' => $this->getModule(),
+                        'controller' => 'dashboard',
+                    ))),
+                );
+                $result[] = array(
                     'label' => __('Privacy'),
                 );
                 break;
 
             case 'password':
+                $result[] = array(
+                    'label' => __('Dashboard'),
+                    'href'  => Pi::url(Pi::service('url')->assemble('user', array(
+                        'module' => $this->getModule(),
+                        'controller' => 'dashboard',
+                    ))),
+                );
                 switch ($params['action']) {
                     case 'index':
                         $result[] = array(
@@ -96,17 +124,37 @@ class Breadcrumbs extends AbstractBreadcrumbs
 
                     case 'edit.profile':
                         $result[] = array(
+                            'label' => __('Dashboard'),
+                            'href'  => Pi::url(Pi::service('url')->assemble('user', array(
+                                'module' => $this->getModule(),
+                                'controller' => 'dashboard',
+                            ))),
+                        );
+                        $result[] = array(
                             'label' => __('Edit profile'),
                         );
                         break;
 
                     case 'edit.compound':
                         $result[] = array(
+                            'label' => __('Dashboard'),
+                            'href'  => Pi::url(Pi::service('url')->assemble('user', array(
+                                'module' => $this->getModule(),
+                                'controller' => 'dashboard',
+                            ))),
+                        );
+                        $result[] = array(
                             'label' => __('Edit profile'),
                         );
                         break;
                 }
-                break;    
+                break;
+
+            case 'dashboard':
+                $result[] = array(
+                    'label' => __('Dashboard'),
+                );
+                break;
         }
 
         return $result;
