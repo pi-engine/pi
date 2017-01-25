@@ -85,13 +85,16 @@ $module = Pi::service('module')->current();
                 </li>
             </ul>
             <?php echo $this->widget('system-user-bar', array(
-                'type'         => 'flat',
-                'show_message' => 'merge',
-                'show_support' => 0,
-                'show_order'   => 0,
-                'show_credit'  => 0,
-                'params'       => array(
-                    'section'  => Pi::engine()->application()->getSection(),
+                'type'            => 'flat',
+                'float'           => 'right',
+                'show_title'      => 1,
+                'show_message'    => 'merge',
+                'show_support'    => 0,
+                'show_order'      => 0,
+                'show_credit'     => 0,
+                'show_favourite'  => 0,
+                'params'          => array(
+                    'section'     => Pi::engine()->application()->getSection(),
                 ),
             )); ?>
         </nav>
