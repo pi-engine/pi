@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-01-21 18:57+0100\n"
-"PO-Revision-Date: 2017-01-21 18:57+0100\n"
+"POT-Creation-Date: 2017-01-25 14:41+0100\n"
+"PO-Revision-Date: 2017-01-25 14:41+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -104,24 +104,24 @@ msgstr ""
 
 #: src/Api/Breadcrumbs.php:57 src/Controller/Front/AccountController.php:137
 #: template/front/account-index.phtml:11
-#: template/front/profile-sidebar.phtml:31
+#: template/front/profile-sidebar.phtml:53
 msgid "Account settings"
 msgstr ""
 
 #: src/Api/Breadcrumbs.php:63 src/Controller/Front/AvatarController.php:185
-#: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:39
+#: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:61
 #: template/front/profile-topbar.phtml:135
 msgid "Change avatar"
 msgstr ""
 
 #: src/Api/Breadcrumbs.php:69 template/front/privacy-index.phtml:11
-#: template/front/profile-sidebar.phtml:51
+#: template/front/profile-sidebar.phtml:73
 msgid "Privacy"
 msgstr ""
 
 #: src/Api/Breadcrumbs.php:77 src/Controller/Front/PasswordController.php:99
 #: template/front/password-index.phtml:11
-#: template/front/profile-sidebar.phtml:35
+#: template/front/profile-sidebar.phtml:57
 msgid "Change password"
 msgstr "Changer de mot de passe"
 
@@ -865,48 +865,12 @@ msgstr ""
 msgid "Add %s"
 msgstr ""
 
-#: template/front/profile-sidebar.phtml:24
-msgid "View my profile"
-msgstr ""
-
-#: template/front/profile-sidebar.phtml:59
-msgid "My items"
-msgstr ""
-
-#: template/front/profile-sidebar.phtml:61
-msgid "Sponsorship"
-msgstr ""
-
-#: template/front/profile-sidebar.phtml:67
-msgid "My messages"
-msgstr ""
-
-#: template/front/profile-sidebar.phtml:69
-msgid "My notifications"
-msgstr ""
-
-#: template/front/profile-sidebar.phtml:73
-msgid "My support tickets"
-msgstr ""
-
-#: template/front/profile-sidebar.phtml:76
-msgid "My events"
-msgstr ""
-
-#: template/front/profile-sidebar.phtml:80
-msgid "My orders"
-msgstr ""
-
-#: template/front/profile-sidebar.phtml:83
-msgid "My credit"
-msgstr ""
-
-#: template/front/profile-sidebar.phtml:87
-msgid "My favorites"
-msgstr ""
-
-#: template/front/profile-sidebar.phtml:90
+#: template/front/profile-sidebar.phtml:35
 msgid "My videos"
+msgstr ""
+
+#: template/front/profile-sidebar.phtml:44
+msgid "My account"
 msgstr ""
 
 #: template/front/profile-topbar.phtml:79
