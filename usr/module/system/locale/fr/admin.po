@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2017-01-21 19:09+0100\n"
-"PO-Revision-Date: 2017-01-21 19:19+0100\n"
+"POT-Creation-Date: 2017-01-25 14:55+0100\n"
+"PO-Revision-Date: 2017-01-25 14:55+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -16,102 +16,126 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: config/block.php:18
-msgid "Site Info"
-msgstr "Information site"
-
-#: config/block.php:19
-msgid "Website information"
-msgstr "Information sur le site web"
-
-#: config/block.php:26 config/page.php:116
-msgid "User"
-msgstr "Utilisateur"
-
-#: config/block.php:27 config/config.php:41
-msgid "User account"
-msgstr "Compte utilisateur"
-
-#: config/block.php:34
 msgid "User bar"
 msgstr "Barre utilisateur"
 
-#: config/block.php:35
+#: config/block.php:19
 msgid "User profile or login bar"
 msgstr "Barre profil utilisateur ou de connexion"
 
-#: config/block.php:40
+#: config/block.php:24
 msgid "Display type"
 msgstr "Type d'affichage"
 
-#: config/block.php:41
+#: config/block.php:25
 msgid "Mode to render."
 msgstr "Mode à afficher."
 
-#: config/block.php:47
+#: config/block.php:31
 msgid "Flat"
 msgstr "A plat"
 
-#: config/block.php:48
+#: config/block.php:32
+msgid "Flat on account / dropdown on other pages"
+msgstr "A plat dans le Dashboard / dropdown sur les autres pages"
+
+#: config/block.php:33
 msgid "Dropdown menu"
 msgstr "Menu Dropdown"
 
-#: config/block.php:49
-msgid "JavaScript"
-msgstr "JavaScript"
+#: config/block.php:39
+msgid "User bar float"
+msgstr "UserBar flottante"
 
-#: config/block.php:55
+#: config/block.php:46
+msgid "User bar on Right"
+msgstr "UserBar à droite"
+
+#: config/block.php:47
+msgid "User bar on left"
+msgstr "UserBar à gauche"
+
+#: config/block.php:53
+msgid "Display title"
+msgstr "Afficher titre"
+
+#: config/block.php:54
+msgid "Display menu title or just display icons"
+msgstr "Afficher le titre ou seulement afficher les icones"
+
+#: config/block.php:60
 msgid "Display message"
 msgstr "Afficher Message"
 
-#: config/block.php:56
+#: config/block.php:61
 msgid "Display message type"
 msgstr "Afficher le type de message"
 
-#: config/block.php:62
+#: config/block.php:67
 msgid "Don't display message and notification"
 msgstr "Ne pas afficher les messages et notifications"
 
-#: config/block.php:63
+#: config/block.php:68
 msgid "Message and notification separately"
 msgstr "Message et notification séparés"
 
-#: config/block.php:64
+#: config/block.php:69
 msgid "Just message"
 msgstr "Seulement les messages"
 
-#: config/block.php:65
+#: config/block.php:70
 msgid "Just notification"
 msgstr "Seulement les notifications"
 
-#: config/block.php:66
+#: config/block.php:71
 msgid "Merge message and notification"
 msgstr "Fusionner Message et Notification"
 
-#: config/block.php:72
+#: config/block.php:77
 msgid "Display order"
 msgstr "Afficher Commande"
 
-#: config/block.php:79
+#: config/block.php:84
 msgid "Display credit"
 msgstr "Afficher Crédit"
 
-#: config/block.php:86
+#: config/block.php:91
 msgid "Display support"
 msgstr "Afficher Support"
 
-#: config/block.php:97 config/nav.front.php:30
+#: config/block.php:98
+msgid "Display favourite"
+msgstr "Afficher Favoris"
+
+#: config/block.php:109 config/nav.front.php:30
 msgid "Login"
 msgstr "Connexion"
 
-#: config/block.php:98
+#: config/block.php:110
 msgid "User login block"
 msgstr "Bloc de connexion utilisateur"
 
-#: config/block.php:105
+#: config/block.php:117 config/page.php:116
+msgid "User"
+msgstr "Utilisateur"
+
+#: config/block.php:118 config/config.php:41
+msgid "User account"
+msgstr "Compte utilisateur"
+
+#: config/block.php:125
+msgid "Site Info"
+msgstr "Information site"
+
+#: config/block.php:126
+msgid "Website information"
+msgstr "Information sur le site web"
+
+#: config/block.php:133
 msgid "Pi feature"
 msgstr "Fonctionnalités Pi"
 
-#: config/block.php:106
+#: config/block.php:134
 msgid "Introduction to Pi Engine"
 msgstr "Quelques remarques à propos de Pi Engine"
 
@@ -2371,6 +2395,9 @@ msgstr "Thème mis à jour avec succès."
 #: template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr "Etes-vous certains de vouloir désinstaller ce thème?"
+
+#~ msgid "JavaScript"
+#~ msgstr "JavaScript"
 
 #~ msgid "Boot message and notification"
 #~ msgstr "Message et notification Initialisation"
