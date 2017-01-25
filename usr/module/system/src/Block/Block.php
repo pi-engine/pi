@@ -121,11 +121,11 @@ class Block
                 'avatar'     => $avatar,
                 'profile'    => Pi::url(Pi::service('user')->getUrl('profile', $params)),
                 'logout'     => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),
-                'account'    => Pi::url(Pi::service('url')->assemble(
+                'dashboard'  => Pi::url(Pi::service('url')->assemble(
                     'user',
                     array(
                         'module'        => 'user',
-                        'controller'    => 'account',
+                        'controller'    => 'dashboard',
                         'action'        => 'index',
                     )
                 )),

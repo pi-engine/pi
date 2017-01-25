@@ -23,7 +23,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
             <?php } else { ?>
                 <li class="dropdown pi-userbar-header">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-info pi-userbar-avatar" onclick="window.open('<?php echo (isset($block['user']['dashboard_url'])) ? $block['user']['dashboard_url'] : $block['user']['account']; ?>');">
+                        <button type="button" class="btn btn-info pi-userbar-avatar" onclick="window.open('<?php echo (isset($block['user']['dashboard_url'])) ? $block['user']['dashboard_url'] : $block['user']['dashboard']; ?>');">
                             <?php echo $block['user']['avatar']; ?>
                             <?php echo _escape($block['user']['name']); ?>
                             <?php if(isset($block['count']) && $block['count']) { ?>
@@ -43,7 +43,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                                 </li>
                             <?php } ?>
                             <li>
-                                <a title="<?php echo _b('Manage account'); ?>" href="<?php echo $block['user']['account']; ?>">
+                                <a title="<?php echo _b('Manage account'); ?>" href="<?php echo $block['user']['dashboard']; ?>">
                                     <i class="fa fa-cogs"></i>
                                     <?php echo _b('Manage account'); ?>
                                 </a>
@@ -146,7 +146,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                 </li>
             <?php } else { ?>
                 <li class="pi-userbar-avatar">
-                    <a href="<?php echo $block['user']['account']; ?>">
+                    <a href="<?php echo $block['user']['dashboard']; ?>">
                         <?php echo $block['user']['avatar']; ?>
                         <?php if(!preg_match('#\/admin\/#', $this->url('', array(), null, true))) { ?>
                             <?php echo _b('Welcome'); ?>
