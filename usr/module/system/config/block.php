@@ -13,22 +13,6 @@
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 return array(
-    // Site info block
-    'site-info'   => array(
-        'title'         => _a('Site Info'),
-        'description'   => _a('Website information'),
-        'render'        => 'block::site',
-        'template'      => 'site-info',
-    ),
-
-    // User information block
-    'user'  => array(
-        'title'         => _a('User'),
-        'description'   => _a('User account'),
-        'render'        => 'block::user',
-        'template'      => 'user',
-    ),
-
     // User bar
     'user-bar'  => array(
         'title'         => _a('User bar'),
@@ -47,10 +31,30 @@ return array(
                             'flat'      => _a('Flat'),
                             'mixed'      => _a('Flat on account / dropdown on other pages'),
                             'dropdown'  => _a('Dropdown menu'),
-                            'js'        => _a('JavaScript'),
                         ),
                     ),
                 ),
+            ),
+            'float' => array(
+                'title'         => _a('User bar float'),
+                'description'   => '',
+                'value'         => 'right',
+                'edit'          => array(
+                    'type'      => 'select',
+                    'options'   => array(
+                        'options'   => array(
+                            'right' => _a('User bar on Right'),
+                            'left'  => _a('User bar on left'),
+                        ),
+                    ),
+                ),
+            ),
+            'show_title' => array(
+                'title' => _a('Display title'),
+                'description' => _a('Display menu title or just display icons'),
+                'edit' => 'checkbox',
+                'filter' => 'number_int',
+                'value' => 1,
             ),
             'show_message'      => array(
                 'title'         => _a('Display message'),
@@ -90,6 +94,13 @@ return array(
                 'filter' => 'number_int',
                 'value' => 1,
             ),
+            'show_favourite' => array(
+                'title' => _a('Display favourite'),
+                'description' => '',
+                'edit' => 'checkbox',
+                'filter' => 'number_int',
+                'value' => 1,
+            ),
         ),
     ),
 
@@ -99,6 +110,22 @@ return array(
         'description'   => _a('User login block'),
         'render'        => 'block::login',
         'template'      => 'login',
+    ),
+
+    // User information block
+    'user'  => array(
+        'title'         => _a('User'),
+        'description'   => _a('User account'),
+        'render'        => 'block::user',
+        'template'      => 'user',
+    ),
+
+    // Site info block
+    'site-info'   => array(
+        'title'         => _a('Site Info'),
+        'description'   => _a('Website information'),
+        'render'        => 'block::site',
+        'template'      => 'site-info',
     ),
 
     // Pi feature block
