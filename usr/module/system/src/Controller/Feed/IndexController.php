@@ -30,20 +30,24 @@ class IndexController extends FeedController
     {
         $feed = $this->getDataModel(array(
             'title'         => __('What\'s new'),
-            'description'   => __('Recent module updates.'),
+            'description'   => __('Recent module feeds.'),
             'date_created'  => time(),
         ));
-        $model = $this->getModel('update');
-        $select = $model->select()->order('time DESC')->limit(10);
-        $rowset = $model->selectWith($select);
-        foreach ($rowset as $row) {
-            $entry = array(
-                'title'         => $row->title,
-                'description'   => $row->content,
-                'date_modified' => (int) $row->time,
-                'link'          => $this->getHref($row),
-            );
-            $feed->entry = $entry;
+
+        $moduleList = Pi::registry('modulelist')->read();
+        unset($moduleList['system']);
+
+        foreach ($moduleList as $module) {
+            $feedClass = sprintf('Module\%s\Controller\Feed\IndexController', ucfirst($module['name']));
+            if (class_exists($feedClass)) {
+                $entry = array(
+                    'title'         => $module['title'],
+                    'description'   => sprintf(__('Resent feeds of %s module'), $module['title']),
+                    'date_modified' => (int) $module['update'],
+                    'link'          => $this->getHref($module),
+                );
+                $feed->entry = $entry;
+            }
         }
 
         return $feed;
@@ -55,21 +59,9 @@ class IndexController extends FeedController
      * @param AbstractRowGateway $row
      * @return string
      */
-    protected function getHref($row)
+    protected function getHref($module)
     {
-        $uri = $row->uri
-            ?: $this->url(
-                $row->route ? $row->route : 'default',
-                array(
-                    'module'        => $row->module,
-                    'controller'    => $row->controller,
-                    'action'        => $row->action,
-                    'params'        => empty($row->params)
-                            ? array()
-                            : parse_str($row->params)
-                )
-            );
-
+        $uri = sprintf('feed/%s', $module['name']);
         return Pi::url($uri, true);
     }
 }
