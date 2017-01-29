@@ -45,8 +45,18 @@ class Theme extends AbstractService
     public function current()
     {
         if (!$this->currentTheme) {
-            $this->currentTheme = ('front' == Pi::engine()->section())
-                    ? Pi::config('theme') : Pi::config('theme_admin');
+            switch (Pi::engine()->section()) {
+                case 'front':
+                case 'feed':
+                    $this->currentTheme = Pi::config('theme');
+                    break;
+
+                case 'admin':
+                    $this->currentTheme = Pi::config('theme_admin');
+                    break;
+            }
+            /* $this->currentTheme = ('front' == Pi::engine()->section())
+                    ? Pi::config('theme') : Pi::config('theme_admin'); */
             $this->currentTheme = $this->currentTheme ?: 'default';
         }
 
