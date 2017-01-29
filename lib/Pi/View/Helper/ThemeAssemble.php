@@ -117,6 +117,7 @@ class ThemeAssemble extends AbstractHelper
                 unset($moduleMeta['head_title']);
             }
         }
+
         // Set head meta
         foreach ($configMeta as $key => $value) {
             $meta = empty($moduleMeta[$key]) ? $value : $moduleMeta[$key];
@@ -125,6 +126,9 @@ class ThemeAssemble extends AbstractHelper
             }
             $headMeta->appendName($key, $meta);
         }
+
+        // Set shear image
+        $image = Pi::service('asset')->socialNetworkLogo();
 
         // Get informations
         $sitename = Pi::config('sitename');
@@ -159,22 +163,20 @@ class ThemeAssemble extends AbstractHelper
         $headMeta(Pi::url(), 'og:url', 'property');
         $headMeta($ogLocale, 'og:locale', 'property');
         $headMeta('website', 'og:type', 'property');
-        $headMeta(Pi::service('asset')->logo(), 'og:image', 'property');
+        $headMeta($image, 'og:image', 'property');
+
+        // Twitter Cards
+        $headMeta('summary', 'twitter:card');
+        $headMeta($twitter, 'twitter:site');
+        $headMeta($twitter, 'twitter:creator');
+        $headMeta($sitename, 'twitter:title');
+        $headMeta($description, 'twitter:description');
+        $headMeta($image, 'twitter:image');
+        $headMeta(Pi::url(), 'twitter:url');
 
         // Facebook
         if (!empty($facebook)) {
             $headMeta($facebook, 'fb:app_id', 'property');
-        }
-
-        // Twitter Cards
-        if (!empty($twitter)) {
-            $headMeta('summary', 'twitter:card');
-            $headMeta($twitter, 'twitter:site');
-            $headMeta($twitter, 'twitter:creator');
-            $headMeta($sitename, 'twitter:title');
-            $headMeta($description, 'twitter:description');
-            $headMeta(Pi::service('asset')->logo(), 'twitter:image');
-            $headMeta(Pi::url(), 'twitter:url');
         }
 
         // Pinterest

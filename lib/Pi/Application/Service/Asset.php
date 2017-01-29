@@ -940,4 +940,34 @@ class Asset extends AbstractService
 
         return $src;
     }
+
+    /**
+     * Get social network logo URL
+     *
+     * @param  string $name    social network logo filename
+     *
+     * @return string
+     */
+    public function socialNetworkLogo($name = '')
+    {
+        $src = '';
+        $name = $name ?: 'social-network.png';
+
+        $customFile = 'asset/custom/image/' . $name;
+        if (file_exists(Pi::path($customFile))) {
+            $src = Pi::url($customFile);
+        } else {
+            $theme = Pi::service('theme')->current();
+            $component = 'theme/' . $theme;
+            $asset = 'image/' . $name;
+            $file = $this->getAssetPath($component, $asset);
+            if (file_exists($file)) {
+                $src = $this->getAssetUrl($component, $asset);
+            } else {
+                $src = $this->logo();
+            }
+        }
+
+        return $src;
+    }
 }
