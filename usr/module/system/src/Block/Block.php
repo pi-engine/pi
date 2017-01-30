@@ -109,10 +109,10 @@ class Block
         } else {
             $uid    = Pi::service('user')->getUser()->get('id');
             $name   = Pi::service('user')->getUser()->get('name');
-            $avatar = Pi::service('user')->getPersist('avatar-mini');
+            $avatar = Pi::service('user')->getPersist('avatar-small');
             if (!$avatar) {
-                $avatar = Pi::service('user')->avatar($uid, 'mini');
-                Pi::service('user')->setPersist('avatar-mini', $avatar);
+                $avatar = Pi::service('user')->avatar($uid, 'small');
+                Pi::service('user')->setPersist('avatar-small', $avatar);
             }
             $user = array(
                 'uid'        => Pi::service('user')->getId(),

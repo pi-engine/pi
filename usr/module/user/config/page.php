@@ -52,14 +52,16 @@ return array(
         array(
             'title'         => _a('Profile view'),
             'controller'    => 'profile',
+            'action'    => 'index',
             'permission'    => 'profile-page',
-            'block'         => 0,
+            'block'         => 1,
         ),
         array(
             'title'         => _a('Activities view'),
             'controller'    => 'home',
+            'action'        => 'index',
             'permission'    => 'profile-page',
-            'block'         => 0,
+            'block'         => 1,
         ),
     ),
 );
