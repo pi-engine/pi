@@ -222,7 +222,7 @@ class IndexController extends ActionController
         $id = $this->params('id');
         $row = $this->getModel('page')->find($id);
         if ($row) {
-            $page = $row->tpArray();
+            $page = $row->toArray();
             if ($row->name) {
                 $this->removePage($row->name);
             }

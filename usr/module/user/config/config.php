@@ -82,6 +82,51 @@ $config = array(
         'value'         => _t('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
     ),
 
+    'side_menu' => array(
+        'title'         => _t('Active modules for show on side bar'),
+        'description'   => '',
+        'edit'          => array(
+            'type'      => 'multi_checkbox',
+            'options'   => array(
+                'options'       => array(
+                    'guide'         => _t('Guide'),
+                    'shop'          => _t('Shop'),
+                    'order'         => _t('Order'),
+                    'message'       => _t('Message'),
+                    'support'       => _t('Support'),
+                    'event'         => _t('Event'),
+                    'vote'          => _t('Vote'),
+                    'favourite'     => _t('Favourite'),
+                    'video'         => _t('Video'),
+                    'audio'         => _t('Audio'),
+                    'gallery'       => _t('Gallery'),
+                    'ask'           => _t('Ask'),
+                    'subscription'  => _t('Subscription'),
+                    'ads'           => _t('Ads'),
+                    'notification'  => _t('Notification'),
+                ),
+            ),
+        ),
+        'filter'        => 'array',
+        'value'         => array(
+            'guide',
+            'shop',
+            'order',
+            'message',
+            'support',
+            'event',
+            'vote',
+            'favourite',
+            'video',
+            'audio',
+            'gallery',
+            'ask',
+            'subscription',
+            'ads',
+            'notification',
+        ),
+    ),
+
     // Login
     'login_disable'     => array(
         'title'         => _t('Login disable'),

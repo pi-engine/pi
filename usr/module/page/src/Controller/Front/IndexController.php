@@ -26,14 +26,18 @@ class IndexController extends ActionController
             $this->view()->setLayout('layout-simple');
             return;
         } else {
-            $content    = $row->content;
-            $markup     = $row->markup ?: 'text';
+            $shearContent  = '';
+            $content       = $row->content;
+            $markup        = $row->markup ?: 'text';
+
             if ($content && 'phtml' != $markup) {
                 $content = Pi::service('markup')->compile(
-                    $content, 
+                    $content,
                     $markup
                 );
+                $shearContent = _strip($content);
             }
+
             $title = $row->title;
             $url = Pi::url($this->url('page', $row->toArray()));
             // update clicks
@@ -71,12 +75,13 @@ class IndexController extends ActionController
         } else {
             $this->view()->setTemplate('page-view');
         }
-        
+
         $this->view()->assign(array(
-            'title'     => $title,
-            'content'   => $content,
-            'markup'    => $markup,
-            'url'       => $url,
+            'title'         => $title,
+            'content'       => $content,
+            'markup'        => $markup,
+            'url'           => $url,
+            'shearContent'  => $shearContent,
         ));
     }
 
