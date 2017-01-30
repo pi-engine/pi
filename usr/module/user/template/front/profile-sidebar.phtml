@@ -15,17 +15,17 @@ array_walk($groups, function (&$group, $gid) {
 <div class="clearfix">
 
     <div class="thumbnail">
-        <a class="user-thumbnail" href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'dashboard'))); ?>">
+        <div class="user-thumbnail">
             <div class="media">
                 <div class="pull-left">
-                    <?php echo Pi::avatar()->get($uid, 'medium'); ?>
+                    <a href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'dashboard'))); ?>"><?php echo Pi::avatar()->get($uid, 'medium'); ?></a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading"><?php echo _escape($userName); ?></h4>
-                    <span class="text-muted"><?php _e('View my profile'); ?></span>
+                    <h4 class="media-heading"><a href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'dashboard'))); ?>"><?php echo _escape($userName); ?></a></h4>
+                    <span class="text-muted"><a href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'profile'))); ?>"><?php _e('View my profile'); ?></a></span>
                 </div>
             </div>
-        </a>
+        </div>
     </div>
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">

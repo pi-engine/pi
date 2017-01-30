@@ -1,6 +1,8 @@
 <?php
 $userSection = $this->isUserSection(Pi::service('module')->current());
-if($block['type'] == 'mixed'){
+$originalBlockType = $block['type'];
+
+if($block['type'] == 'mixed' || $block['type'] == 'mixed_light'){
     $block['type'] = $userSection ? 'flat' : 'dropdown';
 }
 $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
@@ -23,14 +25,14 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
             <?php } else { ?>
                 <li class="dropdown pi-userbar-header">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-info pi-userbar-avatar" onclick="window.open('<?php echo (isset($block['user']['dashboard_url'])) ? $block['user']['dashboard_url'] : $block['user']['dashboard']; ?>');">
+                        <button type="button" class="btn btn-primary pi-userbar-avatar" onclick="window.location='<?php echo $block['user']['dashboard']; ?>'">
                             <?php echo $block['user']['avatar']; ?>
-                            <?php echo _escape($block['user']['name']); ?>
+                            <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
                             <?php if(isset($block['count']) && $block['count']) { ?>
                                 <span class="badge"><?php echo _number($block['count']); ?></span>
                             <?php } ?>
                         </button>
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
@@ -124,6 +126,123 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                                 <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
                                     <i class="fa fa-sign-out"></i>
                                     <?php echo _b('Logout'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            <?php } ?>
+        </ul>
+    <?php } elseif($originalBlockType == 'mixed_light') { ?>
+        <ul class="nav navbar-nav<?php echo $floatClass; ?>">
+            <?php if (!$block['user']['uid']) { ?>
+                <li>
+                    <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>">
+                        <?php echo _b('Login'); ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block['user']['register']; ?>" title="<?php echo _b('Register'); ?>">
+                        <?php echo _b('Register'); ?>
+                    </a>
+                </li>
+            <?php } else { ?>
+                <?php if (isset($block['user']['message'])) { ?>
+                    <li>
+                        <a href="<?php echo $block['user']['message']; ?>" title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <span>
+                                    <?php echo _b('Message'); ?>
+                                <?php if($block['user']['count']) : ?>
+                                    <span class="badge"><?php echo $block['user']['count']; ?></span>
+                                <?php endif; ?>
+                                </span>
+                        </a>
+                    </li>
+                <?php } else { ?>
+                    <?php if (isset($block['user']['message_url'])) { ?>
+                        <li>
+                            <a href="<?php echo $block['user']['message_url']; ?>" title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                <span>
+                                        <span class="visible-xs-inline"><?php echo _b('Message'); ?></span>
+                                    <?php if($block['user']['message_count']) : ?>
+                                        <span class="badge"><?php echo $block['user']['message_count']; ?></span>
+                                    <?php endif; ?>
+                                    </span>
+                            </a>
+                        </li>
+                    <?php } ?>
+                    <?php if (isset($block['user']['notification_url'])) { ?>
+                        <li>
+                            <a href="<?php echo $block['user']['notification_url']; ?>" title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
+                                <i class="fa fa-bell-o" aria-hidden="true"></i>
+                                <span>
+                                        <span class="visible-xs-inline"><?php echo _b('Notification'); ?></span>
+                                    <?php if($block['user']['notification_count']) : ?>
+                                        <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
+                                    <?php endif; ?>
+                                    </span>
+                            </a>
+                        </li>
+                    <?php } ?>
+                <?php } ?>
+                <?php if (isset($block['user']['support_url'])) { ?>
+                    <li>
+                        <a href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
+                            <i class="fa fa-life-ring" aria-hidden="true"></i>
+                            <span>
+                                    <?php echo _b('Support'); ?>
+                                <?php if($block['user']['support_count']) : ?>
+                                    <span class="badge"><?php echo $block['user']['support_count']; ?></span>
+                                <?php endif; ?>
+                                </span>
+                        </a>
+                    </li>
+                <?php } ?>
+                <?php if (isset($block['user']['order'])) { ?>
+                    <li>
+                        <a href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
+                            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                            <span>
+                                    <?php echo _b('Follow up orders'); ?>
+                                </span>
+                        </a>
+                    </li>
+                <?php } ?>
+                <?php if (isset($block['user']['credit'])) { ?>
+                    <li>
+                        <a href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
+                            <i class="fa fa-archive" aria-hidden="true"></i>
+                            <span>
+                                    <?php echo _b('Credit'); ?>
+                                <?php if($block['user']['amount'] && intval($block['user']['amount'])) : ?>
+                                    <span class="badge"><?php echo $block['user']['amount']; ?></span>
+                                <?php endif; ?>
+                                </span>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <li class="userbar-avatar-item">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?php if(!preg_match('#\/admin\/#', $this->url('', array(), null, true))) : ?>
+                                <?php echo _b('Welcome'); ?>
+                            <?php endif; ?>
+                            <span class="avatar-name">
+                                <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
+                            </span>
+                            <?php echo $block['user']['avatar']; ?>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    <span>
+                                            <?php echo _b('Logout'); ?>
+                                        </span>
                                 </a>
                             </li>
                         </ul>

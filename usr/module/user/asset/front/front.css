@@ -22,14 +22,9 @@
 
 .user-avatar-header {
   padding: 15px 20px;
-  background-color: #565656;
+  background-color: #eee;
   margin-bottom: 20px;
-  color: #fff;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f7f7f', endColorstr='#4d4d4d', GradientType=0);
-  background-image: -moz-linear-gradient(top, #7f7f7f, #4d4d4d);
-  background-image: -webkit-linear-gradient(top, #7f7f7f, #4d4d4d);
-  background-image: -o-linear-gradient(top, #7f7f7f, #4d4d4d);
-  background-image: linear-gradient(to bottom, #7f7f7f, #4d4d4d);
+  /*color: #fff;*/
 }
 
 .user-name {
