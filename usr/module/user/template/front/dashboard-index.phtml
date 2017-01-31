@@ -10,7 +10,7 @@ $this->headMeta('noindex', 'robots');
         <div class="page-header">
             <h1><?php _e('Your dashboard'); ?></h1>
         </div>
-        <div class="row text-center">
+        <div class="row text-center match-height-list">
             <?php if (Pi::service('module')->isActive('guide')) { ?>
                 <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
                 <?php if ($guideConfig['manage_active']) { ?>
