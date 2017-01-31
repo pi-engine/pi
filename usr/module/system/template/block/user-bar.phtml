@@ -25,7 +25,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
             <?php } else { ?>
                 <li class="dropdown pi-userbar-header">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary pi-userbar-avatar" onclick="window.location='<?php echo $block['user']['dashboard']; ?>'">
+                        <button type="button" class="btn pi-userbar-avatar" onclick="window.location='<?php echo $block['user']['dashboard']; ?>'">
                             <?php echo $block['user']['avatar']; ?>
                             <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
                             <?php if(isset($block['count']) && $block['count']) { ?>
@@ -225,14 +225,16 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                 <?php } ?>
 
                 <li class="userbar-avatar-item">
+                    <?php if(!preg_match('#\/admin\/#', $this->url('', array(), null, true))) : ?>
+                        <?php echo _b('Welcome'); ?>
+                    <?php endif; ?>
+                    <span class="avatar-name">
+                        <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
+                    </span>
+
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <?php if(!preg_match('#\/admin\/#', $this->url('', array(), null, true))) : ?>
-                                <?php echo _b('Welcome'); ?>
-                            <?php endif; ?>
-                            <span class="avatar-name">
-                                <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
-                            </span>
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                             <?php echo $block['user']['avatar']; ?>
                             <span class="caret"></span>
                         </button>

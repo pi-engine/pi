@@ -1,7 +1,9 @@
 <?php
 $uid = Pi::user()->getId();
 $userName = Pi::user()->get($uid, 'name');
-$groups = Pi::registry('display_group', 'user')->read();
+if(!isset($groups)){
+    $groups = Pi::registry('display_group', 'user')->read();
+}
 array_walk($groups, function (&$group, $gid) {
     $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
     $group['url'] = Pi::service('url')->assemble('user', array(
@@ -23,7 +25,7 @@ $userConfig = Pi::service('registry')->config->read('user');
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading"><a href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'dashboard'))); ?>"><?php echo _escape($userName); ?></a></h4>
-                    <span class="text-muted"><a href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'profile'))); ?>"><?php _e('View my profile'); ?></a></span>
+                    <span class="text-muted"><a class="my-profile-link" href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'profile'))); ?>"><?php _e('View my profile'); ?></a></span>
                 </div>
             </div>
         </div>
@@ -39,7 +41,7 @@ $userConfig = Pi::service('registry')->config->read('user');
                 </h4>
             </div>
 
-            <div id="collapseOne" class="panel-collapse collapse <?php if($module == 'user') echo 'in' ?>" role="tabpanel" aria-labelledby="headingOne">
+            <div id="collapseOne" class="panel-collapse collapse <?php if($module == 'user' && $controller != 'dashboard') echo 'in' ?>" role="tabpanel" aria-labelledby="headingOne">
                 <div class="list-group">
                     <a href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'account')));?>"
                        class="list-group-item<?php if($controller == 'account') { echo ' active'; } ?>">
@@ -108,6 +110,11 @@ $userConfig = Pi::service('registry')->config->read('user');
 
         <?php if (in_array('favourite', $userConfig['side_menu']) && Pi::service('module')->isActive('favourite')) { ?>
             <a title="<?php _e('My favorites'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'favourite', 'controller' => 'index', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'favourite') {echo ' active';} ?>"><?php _e('My favorites'); ?></a>
+        <?php } ?>
+
+        <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
+        <?php if (in_array('guide_favourite', $userConfig['side_menu']) && Pi::service('module')->isActive('favourite') && Pi::service('module')->isActive('guide') && $guideConfig['favourite_bar']) { ?>
+            <a title="<?php _e('My favorites'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'guide', 'controller' => 'favourite', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'guide' && $controller == 'favourite') {echo ' active';} ?>"><?php _e('My favorites'); ?></a>
         <?php } ?>
 
         <?php if (in_array('video', $userConfig['side_menu']) && Pi::service('module')->isActive('video')) { ?>

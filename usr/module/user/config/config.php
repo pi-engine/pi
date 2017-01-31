@@ -97,6 +97,7 @@ $config = array(
                     'event'         => _t('Event'),
                     'vote'          => _t('Vote'),
                     'favourite'     => _t('Favourite'),
+                    'guide_favourite'     => _t('Guide favourite'),
                     'video'         => _t('Video'),
                     'audio'         => _t('Audio'),
                     'gallery'       => _t('Gallery'),
