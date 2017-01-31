@@ -320,3 +320,7 @@
 .my-profile-link{
   color:#525251;
 }
+
+.clickable-row, .clickable-cell {
+  cursor: pointer;
+}
