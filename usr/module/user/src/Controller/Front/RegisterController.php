@@ -154,7 +154,8 @@ class RegisterController extends ActionController
             return $this->redirect(
                 '',
                 array(
-                    'controller'    => 'profile',
+                    'module'        => 'user',
+                    'controller'    => 'dashboard',
                     'action'        => 'index'
                 )
             );
@@ -363,8 +364,11 @@ class RegisterController extends ActionController
         );
 
         $redirect = $this->params('redirect') ?: $this->url('' , array(
-            'controller'    => 'profile',
-            'action'        => 'index',
+            array(
+                'module'        => 'user',
+                'controller'    => 'dashboard',
+                'action'        => 'index'
+            )
         ));
 
         if (!$this->config('require_profile_complete')) {
@@ -710,7 +714,13 @@ class RegisterController extends ActionController
         }
 
         if (Pi::service('user')->hasIdentity()) {
-            $this->redirect()->toUrl(Pi::service('user')->getUrl('profile'));
+            $this->redirect()->toUrl($this->url('' , array(
+                array(
+                    'module'        => 'user',
+                    'controller'    => 'dashboard',
+                    'action'        => 'index'
+                )
+            )));
             return false;
         }
 

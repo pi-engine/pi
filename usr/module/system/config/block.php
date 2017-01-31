@@ -30,6 +30,7 @@ return array(
                         'options'   => array(
                             'flat'      => _a('Flat'),
                             'mixed'      => _a('Flat on account / dropdown on other pages'),
+                            'mixed_light' => _a('Flat on account / dropdown on other pages -- No title for notification/message only'),
                             'dropdown'  => _a('Dropdown menu'),
                         ),
                     ),
