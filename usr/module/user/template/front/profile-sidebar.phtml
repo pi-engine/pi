@@ -39,7 +39,7 @@ $userConfig = Pi::service('registry')->config->read('user');
                 </h4>
             </div>
 
-            <div id="collapseOne" class="panel-collapse collapse <?php if($module == 'user') echo 'in' ?>" role="tabpanel" aria-labelledby="headingOne">
+            <div id="collapseOne" class="panel-collapse collapse <?php if($module == 'user' && $controller != 'dashboard') echo 'in' ?>" role="tabpanel" aria-labelledby="headingOne">
                 <div class="list-group">
                     <a href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'account')));?>"
                        class="list-group-item<?php if($controller == 'account') { echo ' active'; } ?>">
