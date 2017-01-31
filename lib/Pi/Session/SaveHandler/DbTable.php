@@ -204,7 +204,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      *
      * @param string $id
      * @param string $data
-     * @return bool|int
+     * @return bool
      */
     public function write($id, $data)
     {
@@ -239,7 +239,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
             );
         }
 
-        return $return;
+        return (bool) $return;
     }
 
     /**
