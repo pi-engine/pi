@@ -27,10 +27,12 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                     <div class="btn-group">
                         <button type="button" class="btn pi-userbar-avatar" onclick="window.location='<?php echo $block['user']['dashboard']; ?>'">
                             <?php echo $block['user']['avatar']; ?>
-                            <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
-                            <?php if(isset($block['count']) && $block['count']) { ?>
-                                <span class="badge"><?php echo _number($block['count']); ?></span>
-                            <?php } ?>
+                            <span class="hidden-sm">
+                                <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
+                                <?php if(isset($block['count']) && $block['count']) { ?>
+                                    <span class="badge"><?php echo _number($block['count']); ?></span>
+                                <?php } ?>
+                            </span>
                         </button>
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="caret"></span>
@@ -225,11 +227,13 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                 <?php } ?>
 
                 <li class="userbar-avatar-item">
-                    <?php if(!preg_match('#\/admin\/#', $this->url('', array(), null, true))) : ?>
-                        <?php echo _b('Welcome'); ?>
-                    <?php endif; ?>
-                    <span class="avatar-name">
-                        <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
+                    <span class="hidden-sm">
+                        <?php if(!preg_match('#\/admin\/#', $this->url('', array(), null, true))) : ?>
+                            <?php echo _b('Welcome'); ?>
+                        <?php endif; ?>
+                        <span class="avatar-name">
+                            <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
+                        </span>
                     </span>
 
                     <div class="btn-group">

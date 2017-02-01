@@ -1,6 +1,8 @@
 <?php
 $uid = Pi::user()->getId();
 $userName = Pi::user()->get($uid, 'name');
+$firstName = Pi::user()->get($uid, 'first_name');
+
 if(!isset($groups)){
     $groups = Pi::registry('display_group', 'user')->read();
 }
@@ -24,8 +26,16 @@ $userConfig = Pi::service('registry')->config->read('user');
                     <a href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'dashboard'))); ?>"><?php echo Pi::avatar()->get($uid, 'medium'); ?></a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading"><a href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'dashboard'))); ?>"><?php echo _escape($userName); ?></a></h4>
-                    <span class="text-muted"><a class="my-profile-link" href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'profile'))); ?>"><?php _e('View my profile'); ?></a></span>
+                    <h4 class="media-heading">
+                        <a href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'dashboard'))); ?>">
+                            <?php echo _escape($firstName ?: $userName); ?>
+                        </a>
+                    </h4>
+                    <span class="text-muted">
+                        <a class="my-profile-link" href="<?php echo Pi::url($this->url('user', array('module' => 'user', 'controller' => 'profile'))); ?>">
+                            <?php _e('View my profile'); ?>
+                        </a>
+                    </span>
                 </div>
             </div>
         </div>

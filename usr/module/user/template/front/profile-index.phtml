@@ -18,7 +18,7 @@ $this->headMeta('noindex', 'robots');
             <?php foreach ($groups as $group) {?>
                 <div class="user-profile-item">
                     <div class="clearfix user-legend">
-                        <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
+                        <h4><?php echo _escape($group['title']);?></h4>
                         <?php
                         if ($group['compound']) {
                             $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['id']));

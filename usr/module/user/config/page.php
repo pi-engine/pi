@@ -63,5 +63,12 @@ return array(
             'permission'    => 'profile-page',
             'block'         => 1,
         ),
+        array(
+            'title'         => _a('Dashboard view'),
+            'controller'    => 'dashboard',
+            'action'        => 'index',
+            'permission'    => 'profile-page',
+            'block'         => 1,
+        ),
     ),
 );
