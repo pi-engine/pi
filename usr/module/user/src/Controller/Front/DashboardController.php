@@ -45,6 +45,7 @@ class DashboardController extends ActionController
          */
         $bookings = null;
         $itemList = null;
+        $countTotalBookings = null;
 
         if(Pi::service('module')->isActive('guide')){
 
@@ -70,6 +71,9 @@ class DashboardController extends ActionController
 
             if (count($items)) {
                 $bookings = Pi::api('booking', 'guide')->getActualBookings($items, array('status' => \Module\Guide\Model\Booking::STATUS_PENDING));
+
+                $select = Pi::model('booking', 'guide')->select()->where(array('item' => $items));
+                $countTotalBookings = Pi::model('booking', 'guide')->selectWith($select)->count();
             }
         }
 
@@ -77,6 +81,7 @@ class DashboardController extends ActionController
             'user'      => $user,
             'bookings'   => $bookings,
             'list' => $itemList,
+            'countTotalBookings' => $countTotalBookings,
         ));
 
         $this->view()->headTitle(__('Account settings'));
