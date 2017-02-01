@@ -6,7 +6,7 @@ $this->headMeta('noindex', 'robots');
 <div class="user-min-body">
     <?php foreach ($groups as $group) {?>
         <div class="clearfix user-legend">
-            <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
+            <h4><?php echo _escape($group['title']);?></h4>
             <div class="user-legend-linea"></div>
         </div>
         <?php if ($group['fields']) { ?>
