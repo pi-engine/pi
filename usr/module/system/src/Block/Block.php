@@ -110,8 +110,9 @@ class Block
             $uid    = Pi::service('user')->getUser()->get('id');
             $name   = Pi::service('user')->getUser()->get('name');
             $avatar = Pi::service('user')->getPersist('avatar-small');
+
             if (!$avatar) {
-                $avatar = Pi::service('user')->avatar($uid, 'small');
+                $avatar = Pi::service('user')->avatar($uid, 'small', array('width' => 16, 'height' => 16));
                 Pi::service('user')->setPersist('avatar-small', $avatar);
             }
             $user = array(

@@ -111,6 +111,7 @@ abstract class AbstractAvatar
      */
     public function get($uid, $size = '', $attributes = array())
     {
+        $attributes['width'] = 16;
         $result = false;
 
         $src = $this->getSource($uid, $size);
