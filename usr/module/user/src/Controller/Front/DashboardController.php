@@ -39,49 +39,8 @@ class DashboardController extends ActionController
         $user['uid']    = $uid;
         $user['id']     = $uid;
 
-
-        /*
-         * Get bookings
-         */
-        $bookings = null;
-        $itemList = null;
-        $countTotalBookings = null;
-
-        if(Pi::service('module')->isActive('guide')){
-
-            $owner = Pi::model('guide/owner')->find($uid, 'uid');
-
-            $guideModel = Pi::model('guide/item');
-            $where = array('owner' => $owner->id, 'item_type' => 'commercial');
-            $order = array('id DESC');
-            // Get list of item
-
-
-            $select = $guideModel->select()->where($where)->order($order);
-
-            $rowset = $guideModel->selectWith($select);
-
-            $items = array();
-            $itemList = array();
-            foreach ($rowset as $row) {
-                $item = Pi::api('item', 'guide')->canonizeItemLight($row);
-                $items[] = $row->id;
-                $itemList['commercial'][$row->id] = $item;
-            }
-
-            if (count($items)) {
-                $bookings = Pi::api('booking', 'guide')->getActualBookings($items, array('status' => \Module\Guide\Model\Booking::STATUS_PENDING));
-
-                $select = Pi::model('booking', 'guide')->select()->where(array('item' => $items));
-                $countTotalBookings = Pi::model('booking', 'guide')->selectWith($select)->count();
-            }
-        }
-
         $this->view()->assign(array(
             'user'      => $user,
-            'bookings'   => $bookings,
-            'list' => $itemList,
-            'countTotalBookings' => $countTotalBookings,
         ));
 
         $this->view()->headTitle(__('Account settings'));
