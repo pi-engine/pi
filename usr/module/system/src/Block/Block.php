@@ -43,13 +43,19 @@ class Block
      */
     public static function user()
     {
+        // Check user is login
         if (!Pi::service('user')->hasIdentity()) {
             return false;
         }
         // Get uid
         $uid = Pi::user()->getId();
         // Get user
-        $parameters = array('id', 'identity', 'name', 'email', 'first_name');
+        $parameters = array('id', 'identity', 'name', 'email');
+        // User module installed
+        if (Pi::service('module')->isActive('user')) {
+            $parameters[] = 'first_name';
+        }
+        // Get user
         $user = Pi::user()->get($uid, $parameters);
         $user['profileUrl'] = Pi::service('user')->getUrl('profile');
         $user['avatar'] = Pi::service('user')->avatar($uid, 'large' , array(
@@ -115,21 +121,30 @@ class Block
                 $avatar = Pi::service('user')->avatar($uid, 'small', array('width' => 16, 'height' => 16));
                 Pi::service('user')->setPersist('avatar-small', $avatar);
             }
-            $user = array(
-                'uid'        => Pi::service('user')->getId(),
-                'name'       => $name,
-                'first_name' => Pi::service('user')->getUser()->first_name,
-                'avatar'     => $avatar,
-                'profile'    => Pi::url(Pi::service('user')->getUrl('profile', $params)),
-                'logout'     => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),
-                'dashboard'  => Pi::url(Pi::service('url')->assemble(
+
+            // User module installed
+            $firstName = '';
+            $dashboard = Pi::service('user')->getUrl('profile', $params);
+            if (Pi::service('module')->isActive('user')) {
+                $firstName = Pi::service('user')->getUser()->first_name;
+                $dashboard = Pi::service('url')->assemble(
                     'user',
                     array(
                         'module'        => 'user',
                         'controller'    => 'dashboard',
                         'action'        => 'index',
                     )
-                )),
+                );
+            }
+
+            $user = array(
+                'uid'        => Pi::service('user')->getId(),
+                'name'       => $name,
+                'first_name' => $firstName,
+                'avatar'     => $avatar,
+                'profile'    => Pi::url(Pi::service('user')->getUrl('profile', $params)),
+                'logout'     => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),
+                'dashboard'  => Pi::url($dashboard),
             );
         }
 
