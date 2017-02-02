@@ -123,7 +123,8 @@ class Database extends AbstractController
         } catch (\Exception $e) {
             $error = $e->getMessage();
         }
-        if (!$error) {
+        // ToDo : fix CREATE DATABASE and add check database exist
+        /* if (!$error) {
             try {
                 // Create database if not exist
                 $sql = sprintf(
@@ -138,7 +139,7 @@ class Database extends AbstractController
             } catch (\Exception $e) {
                 $error = $e->getMessage();
             }
-        }
+        } */
         if (!$error) {
             try {
                 $sql = sprintf(
