@@ -14,5 +14,5 @@
     });
     // For set menu
     var height = $('#js-modules-nav').height();
-    $('.pi-sidebar').css({"min-height":height});
+    $('.pi-sidebar').css({"min-height":height + 25});
 })(jQuery)
