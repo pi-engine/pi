@@ -38,7 +38,7 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
-    protected function buildUrl(array $item)
+    protected function buildUrl(array $item, $table = '')
     {
         $url = Pi::api('api', $this->module)->url($item['id']);
 
