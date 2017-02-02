@@ -72,6 +72,7 @@ a:hover {
     padding: 10px;
 }
 
+.pi-block-title h2,
 .pi-block-title h3 {
     font-size: 1.2em;
     padding: 0;
