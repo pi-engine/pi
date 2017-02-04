@@ -71,7 +71,7 @@ abstract class AbstractSearch extends AbstractApi
         $tables = $this->getTables();
         foreach ($tables as $table) {
             $model = $this->getModel($table);
-            $where = $this->buildCondition($terms, $condition);
+            $where = $this->buildCondition($terms, $condition, array(), $table);
             $count = $model->count($where);
             if ($count) {
                 $data = $this->fetchResult($model, $where, $limit, $offset, $table);
@@ -118,13 +118,14 @@ abstract class AbstractSearch extends AbstractApi
     /**
      * Build query condition
      *
-     * @param array $terms
-     * @param array $condition
-     * @param array $columns
+     * @param array  $terms
+     * @param array  $condition
+     * @param array  $columns
+     * @param string $table
      *
      * @return Where
      */
-    protected function buildCondition(array $terms, array $condition = array(), array $columns = array())
+    protected function buildCondition(array $terms, array $condition = array(), array $columns = array(), $table = '')
     {
         $columns = empty($columns) ? $this->searchIn : $columns;
         $where = Pi::db()->where()->or;
