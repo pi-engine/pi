@@ -49,6 +49,10 @@ $config['category'] = array(
         'title'     => _t('Text processing'),
     ),
     array(
+        'name'      => 'cron',
+        'title'     => _t('Cron'),
+    ),
+    array(
         'name'      => 'mail',
         'title'     => _t('Mailing'),
     ),
@@ -677,6 +681,23 @@ $config['item'] = array(
         'description'   => '',
         'edit'          => 'text',
         'category'      => 'geo_tag',
+    ),
+
+    'cron_active' => array(
+        'category'      => 'cron',
+        'title'         => _a('Active cron'),
+        'description'   => '',
+        'edit'          => 'checkbox',
+        'filter'        => 'number_int',
+        'value'         => 0
+    ),
+
+    'cron_password' => array(
+        'category'      => 'cron',
+        'title'         => _a('Cron password'),
+        'edit'          => 'text',
+        'filter'        => 'string',
+        'value'         => md5(rand()),
     ),
 );
 

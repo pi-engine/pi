@@ -124,6 +124,12 @@ return array(
             'controller'    => 'asset',
             'permission'    => 'maintenance',
         ),
+        // cron
+        array(
+            'title'         => _a('Cron'),
+            'controller'    => 'cron',
+            'permission'    => 'maintenance',
+        ),
         // audit
         array(
             'title'         => _a('Auditing'),
