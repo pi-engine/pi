@@ -37,7 +37,7 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
-    protected function buildUrl(array $item)
+    protected function buildUrl(array $item, $table = '')
     {
         $url = Pi::service('url')->assemble(
             'default',
@@ -46,8 +46,8 @@ class Search extends AbstractSearch
                 'controller'    => 'index',
                 'action'        => 'list',
                 'tag'           => $item['term']
-        ));
-        
+            ));
+
         return $url;
     }
 }
