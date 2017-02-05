@@ -10,7 +10,10 @@
     <?php } ?>
     <div class="alert alert-info" role="alert">
         <?php echo sprintf(_a('Cron password is <strong>%s</strong> , you can change it from system configurations'), $cronPassword); ?>
+    </div>    <div class="alert alert-info" role="alert">
+        <?php echo sprintf(_a('Cron log save on <strong>%s/cron.log</strong>'), Pi::path('log')); ?>
     </div>
+
     <div class="form-group">
         <label for="cronUrl"><?php _e('Cron URL'); ?></label>
         <input type="text" class="form-control" id="cronUrl" value="<?php echo $this->escape($cronUrl); ?>">
