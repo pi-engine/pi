@@ -1,0 +1,29 @@
+<div class="clearfix">
+    <?php if ($cronActive) { ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo _a('Cron system is active, you can inactive it from system configurations'); ?>
+        </div>
+    <?php } else { ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo _a('Cron system is inactive, you can active it from system configurations'); ?>
+        </div>
+    <?php } ?>
+    <div class="alert alert-info" role="alert">
+        <?php echo sprintf(_a('Cron password is <strong>%s</strong> , you can change it from system configurations'), $cronPassword); ?>
+    </div>    <div class="alert alert-info" role="alert">
+        <?php echo sprintf(_a('Cron log save on <strong>%s/cron.log</strong>'), Pi::path('log')); ?>
+    </div>
+
+    <div class="form-group">
+        <label for="cronUrl"><?php _e('Cron URL'); ?></label>
+        <input type="text" class="form-control" id="cronUrl" value="<?php echo $this->escape($cronUrl); ?>">
+    </div>
+    <div class="form-group">
+        <label for="cronUrl"><?php _e('Cron Command'); ?></label>
+        <input type="text" class="form-control" id="cronCommand" value="GET <?php echo $this->escape($cronUrl); ?>">
+        <p class="help-block"><?php _e('Set cron command on your server and set cron time'); ?></p>
+    </div>
+    <div class="form-group">
+        <a target="_blank" class="btn btn-primary" href="<?php echo $this->escape($cronUrl); ?>" onclick="return confirm('<?php _e('Are you sure to do cron manfully?'); ?>')""><?php echo _a('Do cron manfully'); ?></a>
+    </div>
+</div>

@@ -84,6 +84,7 @@ class Notification extends AbstractService
 
     /**
      * Do cron
+     * Save cron log by Audit service on each module API
      *
      * @return array
      */
@@ -96,7 +97,7 @@ class Notification extends AbstractService
             if (Pi::service('module')->isActive(strtolower($module))) {
                 $class = sprintf('Module\%s\Api\Notification', ucfirst(strtolower($module)));
                 if (class_exists($class)) {
-                    if (function_exists('doCron')) {
+                    if (method_exists($class, 'doCron')) {
                         Pi::api('notification', strtolower($module))->doCron();
                     }
                 }
