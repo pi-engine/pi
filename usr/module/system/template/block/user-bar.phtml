@@ -1,7 +1,5 @@
 <?php
 $userSection = $this->isUserSection(Pi::service('module')->current());
-$originalBlockType = $block['type'];
-
 if($block['type'] == 'mixed' || $block['type'] == 'mixed_light'){
     $block['type'] = $userSection ? 'flat' : 'dropdown';
 }
@@ -110,7 +108,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                                     <a href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
                                         <i class="fa fa-archive"></i>
                                         <?php echo _b('Credit'); ?>
-                                        <?php if($block['user']['amount'] && intval($block['user']['amount'])) { ?>
+                                        <?php if($block['user']['amount']) { ?>
                                             <span class="badge"><?php echo $block['user']['amount']; ?></span>
                                         <?php } ?>
                                     </a>
@@ -135,7 +133,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                 </li>
             <?php } ?>
         </ul>
-    <?php } elseif($originalBlockType == 'mixed_light') { ?>
+    <?php } elseif($block['type'] == 'mixed_light') { ?>
         <ul class="nav navbar-nav<?php echo $floatClass; ?>">
             <?php if (!$block['user']['uid']) { ?>
                 <li>
@@ -153,12 +151,10 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                     <li>
                         <a href="<?php echo $block['user']['message']; ?>" title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
                             <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                            <span>
-                                    <?php echo _b('Message'); ?>
-                                <?php if($block['user']['count']) : ?>
-                                    <span class="badge"><?php echo $block['user']['count']; ?></span>
-                                <?php endif; ?>
-                                </span>
+                            <?php echo _b('Message'); ?>
+                            <?php if($block['user']['count']) { ?>
+                                <span class="badge"><?php echo $block['user']['count']; ?></span>
+                            <?php }; ?>
                         </a>
                     </li>
                 <?php } else { ?>
@@ -166,12 +162,10 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                         <li>
                             <a href="<?php echo $block['user']['message_url']; ?>" title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
                                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                <span>
-                                        <span class="visible-xs-inline"><?php echo _b('Message'); ?></span>
-                                    <?php if($block['user']['message_count']) : ?>
-                                        <span class="badge"><?php echo $block['user']['message_count']; ?></span>
-                                    <?php endif; ?>
-                                    </span>
+                                <span class="visible-xs-inline"><?php echo _b('Message'); ?></span>
+                                <?php if($block['user']['message_count']) { ?>
+                                    <span class="badge"><?php echo $block['user']['message_count']; ?></span>
+                                <?php } ?>
                             </a>
                         </li>
                     <?php } ?>
@@ -179,12 +173,10 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                         <li>
                             <a href="<?php echo $block['user']['notification_url']; ?>" title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
                                 <i class="fa fa-bell-o" aria-hidden="true"></i>
-                                <span>
-                                        <span class="visible-xs-inline"><?php echo _b('Notification'); ?></span>
-                                    <?php if($block['user']['notification_count']) : ?>
-                                        <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
-                                    <?php endif; ?>
-                                    </span>
+                                <span class="visible-xs-inline"><?php echo _b('Notification'); ?></span>
+                                <?php if($block['user']['notification_count']) { ?>
+                                    <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
+                                <?php } ?>
                             </a>
                         </li>
                     <?php } ?>
@@ -193,12 +185,10 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                     <li>
                         <a href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
                             <i class="fa fa-life-ring" aria-hidden="true"></i>
-                            <span>
-                                    <?php echo _b('Support'); ?>
-                                <?php if($block['user']['support_count']) : ?>
-                                    <span class="badge"><?php echo $block['user']['support_count']; ?></span>
-                                <?php endif; ?>
-                                </span>
+                            <?php echo _b('Support'); ?>
+                            <?php if($block['user']['support_count']) { ?>
+                                <span class="badge"><?php echo $block['user']['support_count']; ?></span>
+                            <?php } ?>
                         </a>
                     </li>
                 <?php } ?>
@@ -206,9 +196,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                     <li>
                         <a href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
                             <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                            <span>
-                                    <?php echo _b('Follow up orders'); ?>
-                                </span>
+                            <?php echo _b('Follow up orders'); ?>
                         </a>
                     </li>
                 <?php } ?>
@@ -216,29 +204,24 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                     <li>
                         <a href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
                             <i class="fa fa-archive" aria-hidden="true"></i>
-                            <span>
-                                    <?php echo _b('Credit'); ?>
-                                <?php if($block['user']['amount'] && intval($block['user']['amount'])) : ?>
-                                    <span class="badge"><?php echo $block['user']['amount']; ?></span>
-                                <?php endif; ?>
-                                </span>
+                            <?php echo _b('Credit'); ?>
+                            <?php if($block['user']['amount']) { ?>
+                                <span class="badge"><?php echo $block['user']['amount']; ?></span>
+                            <?php } ?>
                         </a>
                     </li>
                 <?php } ?>
-
                 <li class="userbar-avatar-item">
                     <span class="hidden-sm">
-                        <?php if(!preg_match('#\/admin\/#', $this->url('', array(), null, true))) : ?>
+                        <?php if(!preg_match('#\/admin\/#', $this->url('', array(), null, true))) { ?>
                             <?php echo _b('Welcome'); ?>
-                        <?php endif; ?>
+                        <?php } ?>
                         <span class="avatar-name">
                             <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
                         </span>
                     </span>
-
                     <div class="btn-group">
                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
                             <?php echo $block['user']['avatar']; ?>
                             <span class="caret"></span>
                         </button>
@@ -246,9 +229,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                             <li>
                                 <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                    <span>
-                                            <?php echo _b('Logout'); ?>
-                                        </span>
+                                    <?php echo _b('Logout'); ?>
                                 </a>
                             </li>
                         </ul>
@@ -337,7 +318,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                         <a href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
                             <i class="fa fa-archive"></i>
                             <?php echo $block['show_title'] ? _b('Credit') : ''; ?>
-                            <?php if($block['user']['amount'] && intval($block['user']['amount'])) { ?>
+                            <?php if($block['user']['amount']) { ?>
                                 <span class="badge"><?php echo $block['user']['amount']; ?></span>
                             <?php } ?>
                         </a>
