@@ -43,7 +43,7 @@ class IndexController extends FeedController
                 $entry = array(
                     'title'         => $module['title'],
                     'description'   => sprintf(__('Resent feeds of %s module'), $module['title']),
-                    'date_modified' => (int) $module['update'],
+                    'date_modified' => time(),
                     'link'          => $this->getHref($module),
                 );
                 $feed->entry = $entry;

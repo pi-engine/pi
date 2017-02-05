@@ -27,6 +27,9 @@ class TestController extends ActionController
      */
     public function indexAction()
     {
+        $this->redirect()->toRoute('home');
+        return;
+
         //$this->view()->setTemplate(false);
         $content = array();
 
@@ -45,7 +48,7 @@ EOT;
 
         $content['site name'] = __('site name');
         $content['locale'] = Pi::service('i18n')->locale
-                           . ' ' . Pi::service('i18n')->charset;
+            . ' ' . Pi::service('i18n')->charset;
 
         //Pi::service('user')->test('ss');
 
@@ -53,7 +56,7 @@ EOT;
         foreach ($content as $title => $data) {
             $string = $title && is_string($title)
                 ? '<dt style="margin-top: 1em;text-decoration: underline;">'
-                    . '<strong>' . $title . '</strong></dt>'
+                . '<strong>' . $title . '</strong></dt>'
                 : '';
             if (is_scalar($data)) {
                 $string .= $data;
@@ -75,6 +78,9 @@ EOT;
      */
     public function auditAction()
     {
+        $this->redirect()->toRoute('home');
+        return;
+
         $args = array(rand(), 'var1', 'var, val and exp');
         Pi::service('audit')->log('full', $args);
         Pi::service('audit')->log('csv', $args);
@@ -102,6 +108,9 @@ EOT;
      */
     public function mailAction()
     {
+        $this->redirect()->toRoute('home');
+        return;
+
         $this->view()->setTemplate(false);
 
         $to = array(
