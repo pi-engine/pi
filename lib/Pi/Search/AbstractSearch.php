@@ -130,11 +130,18 @@ abstract class AbstractSearch extends AbstractApi
         $columns = empty($columns) ? $this->searchIn : $columns;
         $where = Pi::db()->where()->or;
         // Create search term clause
-        foreach ($terms as $term) {
+        /* foreach ($terms as $term) {
             foreach ($columns as $column) {
                 $where->like($column, '%' . $term . '%')->or;
             }
+        } */
+        foreach ($columns as $column) {
+            foreach ($terms as $term) {
+                $where->like($column, '%' . $term . '%')->and;
+            }
+            $where->or;
         }
+
         // Canonize conditions
         if ($condition) {
             $meta = array_flip($this->meta);
