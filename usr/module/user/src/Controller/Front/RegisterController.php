@@ -91,6 +91,9 @@ class RegisterController extends ActionController
             'form'          => $form,
             'activation'    => $this->config('register_activation'),
         ));
+
+        $this->view()->footScript()->prependFile($this->view()->assetModule('front/validator.js'));
+
         $this->view()->setTemplate('register-index');
 
         $this->view()->headTitle(__('Register'));

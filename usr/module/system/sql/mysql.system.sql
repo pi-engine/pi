@@ -420,7 +420,7 @@ CREATE TABLE `{core.user_account}` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `identity` (`identity`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `name` (`name`),
+  KEY `name` (`name`),
 
   KEY `status` (`active`)
 );

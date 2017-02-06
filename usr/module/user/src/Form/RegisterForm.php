@@ -9,6 +9,8 @@
 
 namespace Module\User\Form;
 
+use Pi;
+
 /**
  * User registration form
  *
@@ -26,15 +28,16 @@ class RegisterForm extends UserForm
     {
         parent::init();
 
-        if($this->get('credential')){
-            $this->add(array(
-                'name'          => 'show_credential',
-                'type' => 'checkbox',
-                'attributes' => array(
-                    'description' => __('Show my password'),
-                ),
-            ), array('priority' => -100));
+        $piConfig = Pi::user()->config();
 
+        $this->setAttribute('data-toggle', 'validator');
+
+        $this->get('email')->setAttribute('data-error', 'Invalid email');
+
+        if($this->get('credential')){
+
+
+            $showPasswordLabel = __('Show my password');
             $showPasswordBtn = <<<HTML
 <label>
     <input
@@ -43,11 +46,23 @@ class RegisterForm extends UserForm
         type="checkbox"
     />
     
-    Show my password
+    $showPasswordLabel
 </label>
 HTML;
 
-            $this->get('credential')->setAttribute('description', $showPasswordBtn);
+            $this->get('credential')
+                ->setAttribute('description', $showPasswordBtn)
+                ->setAttribute('id', 'credential')
+                ->setAttribute('pattern', '^.{0,'.$piConfig['password_max'].'}$')
+                ->setAttribute('data-pattern-error', __("Must be less than ".$piConfig['password_max']." characters"))
+                ->setAttribute('data-minlength', $piConfig['password_min'])
+                ->setAttribute('data-minlength-error', __("Must be more than 8 characters"));
+
+
+            $passwordConfirmError = __('Whoops, these don\'t match');
+            $this->get('credential-confirm')
+                ->setAttribute('data-match', '#credential')
+                ->setAttribute('data-match-error', $passwordConfirmError);
         }
 
         $this->add(array(

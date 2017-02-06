@@ -92,7 +92,6 @@ class Username extends AbstractValidator
         );
 
         parent::__construct($options);
-        $this->setConfigOption();
     }
 
     /**
