@@ -45,11 +45,19 @@ class IsUserSection extends AbstractHelper
             foreach ($d as $value) {
                 $a[] = $value;
             }
-            if ($a[1]['controller'] == 'profile' && $a[1]['action'] == 'view') {
-                $userSection = false;
-            } else {
+
+            if ($a[1]['controller'] == 'profile' && $a[1]['action'] != 'view') {
                 $userSection = true;
             }
+
+            if ($a[1]['controller'] == 'password' && $a[1]['action'] != 'find') {
+                $userSection = true;
+            }
+
+            if (in_array($a[1]['controller'], array('account', 'avatar', 'privacy'))) {
+                $userSection = true;
+            }
+
         } elseif ($module == 'guide' && $uid > 0) {
             $d = (array) Pi::service('url')->getRouteMatch();
             foreach ($d as $value) {
