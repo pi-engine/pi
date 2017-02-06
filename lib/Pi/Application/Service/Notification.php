@@ -90,6 +90,7 @@ class Notification extends AbstractService
     public function cron()
     {
         // Set log
+        Pi::service('audit')->log('cron', '==========================================');
         Pi::service('audit')->log('cron', 'Start cron system');
         // Set module list
         $moduleList = $this->moduleList();
@@ -106,6 +107,7 @@ class Notification extends AbstractService
         }
         // Set log
         Pi::service('audit')->log('cron', 'End cron system');
+        Pi::service('audit')->log('cron', '==========================================');
     }
 
     /**
