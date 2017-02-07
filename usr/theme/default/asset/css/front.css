@@ -70,6 +70,8 @@ a:hover {
 
 .pi-block-title {
     padding: 10px;
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
 }
 
 .pi-block-title h2,

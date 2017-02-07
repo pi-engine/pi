@@ -271,8 +271,6 @@ abstract class WidgetController extends ActionController
             $item['editConfigUrl'] = $this->url('', array(
                 'module'     => 'system',
                 'controller' => 'block',
-                'action'     => 'edit',
-                'id'         => $item['block']['id'],
                 'name'       => 'widget',
             ));
             $item['deleteUrl'] = $this->url('', array(

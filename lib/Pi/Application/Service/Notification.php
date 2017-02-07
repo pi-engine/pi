@@ -84,12 +84,14 @@ class Notification extends AbstractService
 
     /**
      * Do cron
-     * Save cron log by Audit service on each module API
      *
      * @return array
      */
     public function cron()
     {
+        // Set log
+        Pi::service('audit')->log('cron', '==========================================');
+        Pi::service('audit')->log('cron', 'Start cron system');
         // Set module list
         $moduleList = $this->moduleList();
         // Check all modules
@@ -103,6 +105,9 @@ class Notification extends AbstractService
                 }
             }
         }
+        // Set log
+        Pi::service('audit')->log('cron', 'End cron system');
+        Pi::service('audit')->log('cron', '==========================================');
     }
 
     /**
