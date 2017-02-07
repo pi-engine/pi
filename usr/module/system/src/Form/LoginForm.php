@@ -50,6 +50,9 @@ class LoginForm extends BaseForm
             'options'       => array(
                 'fields'    => $config['login_field'],
             ),
+            'attributes' => array(
+                'autocomplete' => in_array('email', $config['login_field']) ? 'email' : 'username',
+            ),
         ));
 
         $this->add(array(
