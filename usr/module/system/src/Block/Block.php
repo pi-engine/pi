@@ -213,7 +213,8 @@ class Block
             $orderConfig = Pi::service('registry')->config->read('order');
             if ($orderConfig['credit_active']) {
                 $credit = Pi::api('credit', 'order')->getCredit();
-                $user['amount'] = $credit['amount_view'];
+                $user['amount'] = $credit['amount'];
+                $user['amount_view'] = $credit['amount_view'];
                 $user['credit'] = Pi::url(Pi::service('url')->assemble(
                     'order',
                     array(

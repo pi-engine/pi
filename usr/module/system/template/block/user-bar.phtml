@@ -112,8 +112,8 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                                         <a href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
                                             <i class="fa fa-archive"></i>
                                             <?php echo _b('Credit'); ?>
-                                            <?php if($block['user']['amount'] && intval($block['user']['amount'])) { ?>
-                                                <span class="badge"><?php echo $block['user']['amount']; ?></span>
+                                            <?php if($block['user']['amount']) { ?>
+                                                <span class="badge"><?php echo $block['user']['amount_view']; ?></span>
                                             <?php } ?>
                                         </a>
                                     </li>
@@ -221,8 +221,8 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                             <i class="fa fa-archive" aria-hidden="true"></i>
                             <span>
                                     <?php echo _b('Credit'); ?>
-                                <?php if($block['user']['amount'] && intval($block['user']['amount'])) : ?>
-                                    <span class="badge"><?php echo $block['user']['amount']; ?></span>
+                                <?php if($block['user']['amount']) : ?>
+                                    <span class="badge"><?php echo $block['user']['amount_view']; ?></span>
                                 <?php endif; ?>
                                 </span>
                         </a>
@@ -340,8 +340,8 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
                         <a href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
                             <i class="fa fa-archive"></i>
                             <?php echo $block['show_title'] ? _b('Credit') : ''; ?>
-                            <?php if($block['user']['amount'] && intval($block['user']['amount'])) { ?>
-                                <span class="badge"><?php echo $block['user']['amount']; ?></span>
+                            <?php if($block['user']['amount']) { ?>
+                                <span class="badge"><?php echo $block['user']['amount_view']; ?></span>
                             <?php } ?>
                         </a>
                     </li>
