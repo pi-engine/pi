@@ -1,6 +1,6 @@
 # Custom LosReCaptcha
 
-This library is a fork from https://packagist.org/packages/los/losrecaptcha.
+This library is a fork from https://github.com/Lansoweb/LosReCaptcha
 All src files are push to root directory in order to be autoloaded correctly.
 Now, this directory is loaded as standard library instead of ZF2 module.
 
