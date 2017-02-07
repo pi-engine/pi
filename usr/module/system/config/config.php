@@ -123,6 +123,22 @@ $config['item'] = array(
         'category'      => 'general',
     ),
 
+    'captcha_public_key' => array(
+        'title'         => _t('ReCaptcha Public Key'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'      => 'general',
+    ),
+
+    'captcha_private_key' => array(
+        'title'         => _t('ReCaptcha Private Key'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'      => 'general',
+    ),
+
     'foot_script'   => array(
         'title'         => _t('Foot scripts'),
         'description'   => _t('Scripts that will be appended to each page footer. Either naked or wrapped js scripts are allowed.'),
@@ -353,10 +369,19 @@ $config['item'] = array(
         'category'      => 'admin',
     ),
 
-    'admin_login_captcha'       => array(
+    'admin_login_captcha'  => array(
         'title'         => _t('Login CAPTCHA'),
         'description'   => _t('Enable CAPTCHA for admin login'),
-        'edit'          => 'checkbox',
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'       => array(
+                    0       => _t('No captcha'),
+                    1       => _t('Standard captcha'),
+                    2       => _t('New re-captcha'),
+                ),
+            ),
+        ),
         'value'         => 0,
         'filter'        => 'int',
         'category'      => 'admin',

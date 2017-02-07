@@ -32,10 +32,27 @@ class RegisterForm extends UserForm
 
         $this->setAttribute('data-toggle', 'validator');
 
-        $this->get('email')->setAttribute('data-error', 'Invalid email');
+        $url = Pi::url(Pi::service('url')->assemble('user', array(
+            'module' => 'user',
+            'controller' => 'register',
+            'action' => 'validateInput',
+        )));
+
+        if($this->has('email')){
+            $this->get('email')
+                ->setAttribute('data-error', __('Invalid email'))
+                ->setAttribute('data-remote', $url)
+                ->setAttribute('data-remote-error', __('Invalid email : must be unique, and no forbidden keyword'));
+        }
+
+        if($this->has('identity')){
+            $this->get('identity')
+                ->setAttribute('data-error', __('Invalid username'))
+                ->setAttribute('data-remote', $url)
+                ->setAttribute('data-remote-error', __('Invalid username : must be unique, and no forbidden keyword'));
+        }
 
         if($this->get('credential')){
-
 
             $showPasswordLabel = __('Show my password');
             $showPasswordBtn = <<<HTML

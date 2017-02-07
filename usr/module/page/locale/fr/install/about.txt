@@ -1,0 +1,51 @@
+<p>Pi is a multi-tenant application development engine for cloud ready SaaS platform with support for SSO/OAuth.
+Pi Engine is developed in PHP and MySQL upon frameworks including <a href="https://github.com/zendframework/zf2">Zend Framework</a>, <a href="https://github.com/jquery/jquery">jQuery</a>, <a href="https://github.com/angular/angular.js">AngularJS</a>, <a href="https://github.com/twbs/bootstrap">Bootstrap</a>, <a href="https://github.com/ckeditor/ckeditor-dev">CKEditor</a> as well as icons by <a href="http://fortawesome.github.io/Font-Awesome/icons/">FontAwesome</a>.</p>
+
+<p>Pi Engine is an open source project and follows the philosophy of open standard, open design, open development and open management. Pi is born as a complete open source project and intended to build a sustainable ecosystem that benefits all contributors and users.</p>
+
+<p>Pi Engine is developed by <a href="https://github.com/pi-engine/pi/wiki/Pi-Team">Pi Team</a> initially as a successor to Xoops Project since 2001.</p>
+
+<p><strong>Check out <a href="https://github.com/pi-engine/pi/blob/master/doc/releasenotes.md">Latest Release</a>.</strong></p>
+
+<h2>Highlights</h2>
+
+<ol>
+<li><strong>Sustainable ecosystem:</strong> A sustainable ecosystem built upon open standard, open source code, open development and open management on Github.</li>
+<li><strong>Engineered development:</strong> Quality ensured engineering development with short learning curve, low skill requirements with clean MVC architecture, semantic templating, sophisticated API and strict starndards.</li>
+<li><strong>Visualized management:</strong> Easy and responsive application and content management based on visualized management tools and interface with page and widget mechanism.</li>
+<li><strong>Agile workflow:</strong> Role oriented architecture and deployment skeleton supports manageable agile development workflow.</li>
+</ol>
+
+<h2>Features and practices</h2>
+
+<ul>
+<li>Multi-tenancy architecture and SSO/OAuth implementation</li>
+<li>Modularization and built-in support for multi-layer customization</li>
+<li>System components and services for fundamental functions</li>
+<li>Theming for presentation and appearance</li>
+<li>Design-friendly template engine</li>
+<li>DevOps oriented deployment skeleton</li>
+<li>Centralized security enhancement</li>
+</ul>
+
+<h2>Quick start</h2>
+
+<ul>
+<li>Documents at <a href="https://github.com/pi-engine/pi/wiki">Pi Wiki</a> and <a href="http://api.pialog.org">APIs</a>.</li>
+<li>Download the <a href="https://github.com/pi-engine/pi/zipball/master">latest stable code</a> and <a href="https://github.com/pi-engine/pi/zipball/develop">latest dev code</a>.</li>
+<li>Clone Pi repo <code>git clone git://github.com/pi-engine/pi.git</code>.</li>
+<li>Resources: <a href="https://github.com/pi-module">Pi modules</a>, <a href="https://github.com/pi-theme">Pi themes</a> and <a href="https://github.com/pi-engine/pi/blob/master/README-GIT.md">extensions</a>.</li>
+<li>GIT usage: <a href="/pi-engine/pi/blob/develop/README-GIT.md">README GIT</a></li>
+</ul>
+
+<h2>Development</h2>
+
+<p>You may contribute to Pi Engine by <a href="https://github.com/pi-engine/pi/blob/master/README-GIT.md">working on Pi code</a> and submit to Pi repo with <strong><a href="https://help.github.com/articles/using-pull-requests">Pull Request</a></strong> or submitting bug reports and feature requests to <strong><a href="https://github.com/pi-engine/pi/issues">Issue Tracker</a></strong>.</p>
+
+<h2>Copyright and License</h2>
+
+<p>The Engine is released under a <a href="https://pialog.org/license.txt">BSD 3-Clause License</a>.</p>
+
+<h2>Demo</h2>
+
+<p>Coming soon demo sites with shared deployment</p>

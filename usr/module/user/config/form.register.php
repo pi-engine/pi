@@ -11,7 +11,10 @@
 * User register form config
 */
 
-$captchaEnable = Pi::user()->config('register_captcha');
+$captchaMode = Pi::user()->config('register_captcha');
+$captchaPublicKey = Pi::config('captcha_public_key');
+$captchaPrivateKey = Pi::config('captcha_private_key');
+
 $termEnable = Pi::user()->config('register_term');
 $termUrl = Pi::user()->config('register_term_url');
 
@@ -23,6 +26,40 @@ if ($termEnable && !empty($termUrl)) {
     $termEnable = false;
     $term = '';
 }
+
+$captchaElement = false;
+
+if($captchaMode == 1){
+    $captchaElement = array(
+        'element' => array(
+            'name'          => 'captcha',
+            'type'          => 'captcha',
+            'options'       => array(
+                'label'     => _a('Please type the word.'),
+                'separator'         => '<br />',
+                'captcha_position'  => 'append',
+            ),
+            'attributes'    => array(
+                'required' => true,
+            ),
+        ),
+    );
+} elseif($captchaMode == 2 && $captchaPublicKey && $captchaPrivateKey){
+    $captchaElement = array(
+        'element' => array(
+            'name'          => 'captcha',
+            'type'          => 'captcha',
+            'options'       => array(
+                'captcha' => new \LosReCaptcha\Captcha\ReCaptcha(array(
+                        'site_key' => $captchaPublicKey,
+                        'secret_key' => $captchaPrivateKey,
+                    )
+                ),
+            ),
+        ),
+    );
+}
+
 
 return array(
     // Use user module field
@@ -64,20 +101,7 @@ return array(
         ),
     ),
 
-    'captcha' => !$captchaEnable ? false : array(
-        'element' => array(
-            //'name'          => 'captcha',
-            'type'          => 'captcha',
-            'options'       => array(
-                'label'     => __('Please type the word.'),
-                'separator'         => '<br />',
-                'captcha_position'  => 'append',
-            ),
-            'attributes'    => array(
-                'required' => true,
-            ),
-        ),
-    ),
+    'captcha' => $captchaElement,
 
     'term'  => !$termEnable ? false : array(
         'element' => array(
