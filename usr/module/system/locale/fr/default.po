@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-01-25 15:03+0100\n"
-"PO-Revision-Date: 2017-01-25 15:03+0100\n"
+"POT-Creation-Date: 2017-02-07 20:01+0100\n"
+"PO-Revision-Date: 2017-02-07 20:01+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -82,8 +82,13 @@ msgid "What's new"
 msgstr "Nouveautés"
 
 #: src/Controller/Feed/IndexController.php:33
-msgid "Recent module updates."
-msgstr "Mises à jour récentes du module"
+msgid "Recent module feeds."
+msgstr "Flux récent module"
+
+#: src/Controller/Feed/IndexController.php:45
+#, php-format
+msgid "Resent feeds of %s module"
+msgstr ""
 
 #: src/Controller/Front/LoginController.php:71
 #, php-format
@@ -105,7 +110,7 @@ msgstr "Il vous reste %d  essais"
 msgid "User login"
 msgstr "Connexion utilisateur"
 
-#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:122
+#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:125
 #: template/front/login-logout.phtml:13 template/front/register.phtml:6
 msgid "Login"
 msgstr "Connexion"
@@ -194,7 +199,7 @@ msgstr "Pseudo"
 msgid "Role"
 msgstr "Rôle"
 
-#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:58
+#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:61
 #: src/Form/RegisterForm.php:65
 msgid "Password"
 msgstr "Mot de passe"
@@ -226,11 +231,11 @@ msgstr ""
 "Le compte n'a pas été créé dans la base de donnée, merci d'essayer de "
 "nouveau."
 
-#: src/Controller/Front/TestController.php:46
+#: src/Controller/Front/TestController.php:49
 msgid "site name"
 msgstr "nom du site"
 
-#: src/Controller/Front/TestController.php:170
+#: src/Controller/Front/TestController.php:179
 #, php-format
 msgid "Greetings in raw body %d"
 msgstr "Remerciements dans le code source %d"
@@ -342,15 +347,15 @@ msgstr "Aucun"
 msgid "Please type the word"
 msgstr "Merci de saisir les caractères affichés"
 
-#: src/Form/LoginForm.php:70 src/Form/RegisterForm.php:89
+#: src/Form/LoginForm.php:73 src/Form/RegisterForm.php:89
 msgid "Please type the word."
 msgstr "Merci de saisir les caractères affichés."
 
-#: src/Form/LoginForm.php:81
+#: src/Form/LoginForm.php:84
 msgid "Remember me"
 msgstr "Se souvenir"
 
-#: src/Form/LoginForm.php:85
+#: src/Form/LoginForm.php:88
 msgid "Remember login status"
 msgstr "Se souvenir de moi"
 
@@ -571,6 +576,22 @@ msgstr "Seuls les caractèrs multi-byte et les espaces sont autorisés"
 msgid "Cancel"
 msgstr "Annuler"
 
+#: template/admin/cron-index.phtml:18
+msgid "Cron URL"
+msgstr ""
+
+#: template/admin/cron-index.phtml:22
+msgid "Cron Command"
+msgstr ""
+
+#: template/admin/cron-index.phtml:24
+msgid "Set cron command on your server and set cron time"
+msgstr ""
+
+#: template/admin/cron-index.phtml:27
+msgid "Are you sure to do cron manfully?"
+msgstr ""
+
 #: template/admin/theme-customize.phtml:19
 msgid "In process of compiling"
 msgstr "Compilation en cours"
@@ -667,6 +688,9 @@ msgstr "vous connecter"
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr "Vous vous êtes inscrits avec succès, merci d'aller à %s ou %s."
+
+#~ msgid "Recent module updates."
+#~ msgstr "Mises à jour récentes du module"
 
 #~ msgid "My videos"
 #~ msgstr "Mes vidéos"

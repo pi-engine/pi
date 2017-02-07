@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-01-25 15:02+0100\n"
-"PO-Revision-Date: 2017-01-25 15:02+0100\n"
+"POT-Creation-Date: 2017-02-07 19:57+0100\n"
+"PO-Revision-Date: 2017-02-07 19:59+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -92,7 +92,7 @@ msgstr "Merci de saisir le mot affiché"
 msgid "Login"
 msgstr "Se connecter"
 
-#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:96
+#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:99
 #: template/front/login-logout.phtml:26 template/front/login.phtml:35
 #: template/front/register-disabled.phtml:3
 msgid "Register"
@@ -112,24 +112,24 @@ msgstr "Tableau de Bord"
 #: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:137
 #: src/Controller/Front/DashboardController.php:46
 #: template/front/account-index.phtml:11
-#: template/front/profile-sidebar.phtml:45
+#: template/front/profile-sidebar.phtml:58
 msgid "Account settings"
 msgstr "Paramétrages du compte"
 
 #: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:185
-#: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:53
+#: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:66
 #: template/front/profile-topbar.phtml:140
 msgid "Change avatar"
 msgstr "Modifier sa photo"
 
 #: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:11
-#: template/front/profile-sidebar.phtml:65
+#: template/front/profile-sidebar.phtml:78
 msgid "Privacy"
 msgstr "Confidentialité"
 
 #: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:99
 #: template/front/password-index.phtml:11
-#: template/front/profile-sidebar.phtml:49
+#: template/front/profile-sidebar.phtml:62
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
@@ -246,7 +246,7 @@ msgid "Valid input."
 msgstr "Saisie non valide."
 
 #: src/Controller/Front/AccountController.php:308
-#: src/Controller/Front/RegisterController.php:342
+#: src/Controller/Front/RegisterController.php:346
 msgid "Invalid input."
 msgstr "Saisie non valide."
 
@@ -444,54 +444,54 @@ msgid "User ID or Profile group ID is invalid."
 msgstr ""
 "Le numéro utilisateur ou le numéro de groupe de profil n'est pas valide."
 
-#: src/Controller/Front/RegisterController.php:97
+#: src/Controller/Front/RegisterController.php:100
 #: template/front/register-index.phtml:13
 msgid "Account registration"
 msgstr "Création de compte"
 
-#: src/Controller/Front/RegisterController.php:165
+#: src/Controller/Front/RegisterController.php:169
 msgid "Activation token is invalid."
 msgstr "Le token de confirmation n'est pas valide."
 
-#: src/Controller/Front/RegisterController.php:231
+#: src/Controller/Front/RegisterController.php:235
 msgid "Account Activated successfully."
 msgstr "Le compte a été confirmé avec succès."
 
-#: src/Controller/Front/RegisterController.php:251
+#: src/Controller/Front/RegisterController.php:255
 msgid "Activation email sent failed."
 msgstr "L'envoi de l'email de confirmation-activation a échoué."
 
-#: src/Controller/Front/RegisterController.php:285
+#: src/Controller/Front/RegisterController.php:289
 msgid "Resend activation mail successfully."
 msgstr "Le mail de confirmation-activation a été renvoyé avec succès."
 
-#: src/Controller/Front/RegisterController.php:313
+#: src/Controller/Front/RegisterController.php:317
 msgid "Email was not found."
 msgstr "L'email n'a pas été trouvé."
 
-#: src/Controller/Front/RegisterController.php:318
+#: src/Controller/Front/RegisterController.php:322
 msgid "Account already activated."
 msgstr "Le compte est déjà confirmé."
 
-#: src/Controller/Front/RegisterController.php:329
+#: src/Controller/Front/RegisterController.php:333
 msgid "Activation mail sent successfully."
 msgstr "Le mail de confirmation-activation a été envoyé avec succès."
 
-#: src/Controller/Front/RegisterController.php:334
+#: src/Controller/Front/RegisterController.php:338
 msgid "Activation mail was not sent."
 msgstr "Le mail de confirmation-activation n'a pas été envoyé."
 
-#: src/Controller/Front/RegisterController.php:440
+#: src/Controller/Front/RegisterController.php:447
 msgid "User information was not completed and user account was not saved."
 msgstr ""
 "Toutes les informations utilisateurs n'ont pas été saisies, le compte n'a "
 "pas été crée."
 
-#: src/Controller/Front/RegisterController.php:465
+#: src/Controller/Front/RegisterController.php:472
 msgid "User account was not saved."
 msgstr "Le compte utilisateur n'a pas été enregistré."
 
-#: src/Controller/Front/RegisterController.php:488
+#: src/Controller/Front/RegisterController.php:495
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
@@ -499,7 +499,7 @@ msgstr ""
 "Le compte utilisateur a été crée avec succès mais la confirmation a échoué, "
 "merci de contacter l'administrateur."
 
-#: src/Controller/Front/RegisterController.php:520
+#: src/Controller/Front/RegisterController.php:527
 msgid "Account activation email was not able to send, please contact admin."
 msgstr ""
 "Le mail de confirmation-activation du compte n'a pu être envoyé, merci de "
@@ -574,6 +574,22 @@ msgstr "Confirmer"
 #: src/Form/MemberForm.php:106 src/Form/SearchForm.php:46
 msgid "Enable"
 msgstr "Activer"
+
+#: src/Form/RegisterForm.php:40
+msgid "Show my password"
+msgstr "Voir le mot de passe"
+
+#: src/Form/RegisterForm.php:57
+msgid "Must be less than "
+msgstr "Doit être moins que "
+
+#: src/Form/RegisterForm.php:59
+msgid "Must be more than 8 characters"
+msgstr ""
+
+#: src/Form/RegisterForm.php:62
+msgid "Whoops, these don't match"
+msgstr "Oups, ils ne coïncident pas"
 
 #: src/Form/ResendActivationForm.php:27
 msgid "Email address"
@@ -735,7 +751,7 @@ msgstr "Se connecter maintenant."
 msgid "View all"
 msgstr "Voir tout"
 
-#: template/front/activity-index.phtml:33 template/front/home-index.phtml:39
+#: template/front/activity-index.phtml:33 template/front/home-index.phtml:49
 #: template/front/profile-view.phtml:30
 msgid "No data available."
 msgstr "Aucune donnée disponible."
@@ -800,69 +816,82 @@ msgstr "Annuler"
 msgid "Uploading"
 msgstr "En téléchargement"
 
-#: template/front/dashboard-index.phtml:11
+#: template/front/dashboard-index.phtml:12
 msgid "Your dashboard"
 msgstr "Votre tableau de bord"
 
-#: template/front/dashboard-index.phtml:18
-#: template/front/dashboard-index.phtml:21
-#: template/front/profile-sidebar.phtml:76
+#: template/front/dashboard-index.phtml:22
+msgid "Your pending requests"
+msgstr "Vos demandes en attente"
+
+#: template/front/dashboard-index.phtml:30
+msgid "Shortcuts"
+msgstr "Raccourcis"
+
+#: template/front/dashboard-index.phtml:37
+#: template/front/dashboard-index.phtml:40
+#: template/front/profile-sidebar.phtml:89
 msgid "My items"
 msgstr "Mes éléments"
 
-#: template/front/dashboard-index.phtml:26
-#: template/front/dashboard-index.phtml:29
-#: template/front/profile-sidebar.phtml:78
+#: template/front/dashboard-index.phtml:49
+#: template/front/dashboard-index.phtml:52
+#: template/front/profile-sidebar.phtml:91
 msgid "Sponsorship"
 msgstr "Parrainage"
 
-#: template/front/dashboard-index.phtml:39
-#: template/front/dashboard-index.phtml:42
-#: template/front/profile-sidebar.phtml:85
+#: template/front/dashboard-index.phtml:63
+#: template/front/dashboard-index.phtml:66
+#: template/front/profile-sidebar.phtml:98
 msgid "My messages"
 msgstr "Mes messages"
 
-#: template/front/dashboard-index.phtml:47
-#: template/front/dashboard-index.phtml:50
-#: template/front/profile-sidebar.phtml:87
+#: template/front/dashboard-index.phtml:71
+#: template/front/dashboard-index.phtml:74
+#: template/front/profile-sidebar.phtml:100
 msgid "My notifications"
 msgstr "Mes notifications"
 
-#: template/front/dashboard-index.phtml:58
-#: template/front/dashboard-index.phtml:61
-#: template/front/profile-sidebar.phtml:96
+#: template/front/dashboard-index.phtml:82
+#: template/front/dashboard-index.phtml:85
+#: template/front/profile-sidebar.phtml:109
 msgid "My events"
 msgstr "Mes évènements"
 
-#: template/front/dashboard-index.phtml:70
-#: template/front/dashboard-index.phtml:73
-#: template/front/profile-sidebar.phtml:101
+#: template/front/dashboard-index.phtml:94
+#: template/front/dashboard-index.phtml:97
+#: template/front/profile-sidebar.phtml:114
 msgid "My orders"
 msgstr "Mes commandes"
 
-#: template/front/dashboard-index.phtml:80
-#: template/front/dashboard-index.phtml:83
-#: template/front/profile-sidebar.phtml:104
+#: template/front/dashboard-index.phtml:104
+#: template/front/dashboard-index.phtml:107
+#: template/front/profile-sidebar.phtml:117
 msgid "My credit"
 msgstr "Mes Crédits"
 
-#: template/front/dashboard-index.phtml:92
-#: template/front/dashboard-index.phtml:95
-#: template/front/profile-sidebar.phtml:109
+#: template/front/dashboard-index.phtml:116
+#: template/front/dashboard-index.phtml:119
+#: template/front/profile-sidebar.phtml:122
+#: template/front/profile-sidebar.phtml:127
 msgid "My favorites"
 msgstr "Mes favoris"
 
-#: template/front/dashboard-index.phtml:103
-#: template/front/dashboard-index.phtml:106
-#: template/front/profile-sidebar.phtml:113
+#: template/front/dashboard-index.phtml:127
+#: template/front/dashboard-index.phtml:130
+#: template/front/profile-sidebar.phtml:131
 msgid "My videos"
 msgstr "Mes Vidéos"
 
-#: template/front/dashboard-index.phtml:115
-#: template/front/dashboard-index.phtml:118
-#: template/front/profile-sidebar.phtml:92
+#: template/front/dashboard-index.phtml:139
+#: template/front/dashboard-index.phtml:142
+#: template/front/profile-sidebar.phtml:105
 msgid "My support tickets"
 msgstr "Mes tickets Assistance"
+
+#: template/front/home-index.phtml:12 template/front/profile-index.phtml:13
+msgid "My profile"
+msgstr "Mon profil"
 
 #: template/front/login-disabled.phtml:3
 msgid "User login"
@@ -937,12 +966,12 @@ msgid "Add new"
 msgstr "Ajouter un nouveau"
 
 #: template/front/profile-edit-compound.phtml:35
-#: template/front/profile-index.phtml:21
+#: template/front/profile-index.phtml:32
 msgid "Edit"
 msgstr "Editer"
 
 #: template/front/profile-edit-compound.phtml:46
-#: template/front/profile-index.phtml:34 template/front/profile-view.phtml:21
+#: template/front/profile-index.phtml:45 template/front/profile-view.phtml:21
 msgid "Unfiled"
 msgstr "Non rempli"
 
@@ -950,16 +979,16 @@ msgstr "Non rempli"
 msgid "Are you sure to delete this record?"
 msgstr "Etes-vous sûr de vouloir supprimer cet enregistrement?"
 
-#: template/front/profile-index.phtml:43
+#: template/front/profile-index.phtml:54
 #, php-format
 msgid "Add %s"
 msgstr "Ajouter %s"
 
-#: template/front/profile-sidebar.phtml:25
+#: template/front/profile-sidebar.phtml:36
 msgid "View my profile"
 msgstr "Voir mon profil"
 
-#: template/front/profile-sidebar.phtml:36
+#: template/front/profile-sidebar.phtml:49
 msgid "My account"
 msgstr "Mon compte"
 
