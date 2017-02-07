@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-02-07 20:01+0100\n"
-"PO-Revision-Date: 2017-02-07 20:01+0100\n"
+"POT-Creation-Date: 2017-02-07 20:12+0100\n"
+"PO-Revision-Date: 2017-02-07 20:12+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -110,7 +110,7 @@ msgstr "Il vous reste %d  essais"
 msgid "User login"
 msgstr "Connexion utilisateur"
 
-#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:125
+#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:151
 #: template/front/login-logout.phtml:13 template/front/register.phtml:6
 msgid "Login"
 msgstr "Connexion"
@@ -199,7 +199,7 @@ msgstr "Pseudo"
 msgid "Role"
 msgstr "Rôle"
 
-#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:61
+#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:94
 #: src/Form/RegisterForm.php:65
 msgid "Password"
 msgstr "Mot de passe"
@@ -347,15 +347,11 @@ msgstr "Aucun"
 msgid "Please type the word"
 msgstr "Merci de saisir les caractères affichés"
 
-#: src/Form/LoginForm.php:73 src/Form/RegisterForm.php:89
-msgid "Please type the word."
-msgstr "Merci de saisir les caractères affichés."
-
-#: src/Form/LoginForm.php:84
+#: src/Form/LoginForm.php:110
 msgid "Remember me"
 msgstr "Se souvenir"
 
-#: src/Form/LoginForm.php:88
+#: src/Form/LoginForm.php:114
 msgid "Remember login status"
 msgstr "Se souvenir de moi"
 
@@ -451,6 +447,10 @@ msgstr "Largeur de la page"
 #: src/Form/PageEditForm.php:36
 msgid "Action data"
 msgstr "Données actives"
+
+#: src/Form/RegisterForm.php:89
+msgid "Please type the word."
+msgstr "Merci de saisir les caractères affichés."
 
 #: src/Form/RoleForm.php:65
 msgid "Section"
