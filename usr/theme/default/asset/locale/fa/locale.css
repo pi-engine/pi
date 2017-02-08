@@ -6,19 +6,36 @@
  *  $this->css($this->assetLocale('locale.css'));
  * ```
  */
-@font-face {
-    font-family: 'WIranianSens';
-    src: url('IranianSansWeb-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
 
+/**
+ * Vazir font version 7.0.0
+ * From : https://github.com/rastikerdar/vazir-font
+ */
+@font-face {
+    font-family: Vazir;
+    src: url('Vazir.eot');
+    src: url('Vazir.eot?#iefix') format('embedded-opentype'),
+    url('Vazir.woff') format('woff'),
+    url('Vazir.ttf') format('truetype');
+    font-weight: normal;
 }
 
 @font-face {
-    font-family: 'WIranianSerif';
-    src: url('IranianSerifWeb-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+    font-family: Vazir;
+    src: url('Vazir-Bold.eot');
+    src: url('Vazir-Bold.eot?#iefix') format('embedded-opentype'),
+    url('Vazir-Bold.woff') format('woff'),
+    url('Vazir-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('Vazir-Light.eot');
+    src: url('Vazir-Light.eot?#iefix') format('embedded-opentype'),
+    url('Vazir-Light.woff') format('woff'),
+    url('Vazir-Light.ttf') format('truetype');
+    font-weight: 300;
 }
 
 /*******************************************************************************
@@ -30,12 +47,13 @@
  *******************************************************************************/
 html {
     direction: rtl;
-    font-family: 'WIranianSens', 'WIranianSerif', Tahoma;
+    font-family: 'Vazir', Tahoma;
 }
 
 body {
     direction: rtl;
-    font-family: 'WIranianSens', 'WIranianSerif', Tahoma;
+    font-family: 'Vazir', Tahoma;
+    font-size: 13px;
 }
 
 .flip.text-left {
@@ -1204,8 +1222,8 @@ th {
 }
 
 .dropdown-menu-right {
-    right: auto;
-    left: 0;
+    left: auto;
+    right: 0;
 }
 
 .dropdown-menu-left {
@@ -1837,7 +1855,11 @@ th {
     float: right !important;
 }
 
-/* Add by @voltan */
+/*
+ *
+ * Pi engine custom persian style
+ *
+ */
 .pagination {
     direction: ltr;
 }

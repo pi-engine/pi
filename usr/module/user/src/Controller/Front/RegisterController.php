@@ -91,6 +91,9 @@ class RegisterController extends ActionController
             'form'          => $form,
             'activation'    => $this->config('register_activation'),
         ));
+
+        $this->view()->footScript()->prependFile($this->view()->assetModule('front/validator.js'));
+
         $this->view()->setTemplate('register-index');
 
         $this->view()->headTitle(__('Register'));
@@ -725,5 +728,54 @@ class RegisterController extends ActionController
         }
 
         return true;
+    }
+
+    public function validateInputAction(){
+        Pi::service('log')->mute();
+
+        $data = (array) $this->params()->fromQuery();
+
+        $response = array(
+            'error' => false,
+            'message' => false
+        );
+
+        // Get register form
+        /* @var $form \Module\User\Form\RegisterForm */
+        $form = Pi::api('form', 'user')->loadForm('register');
+        $form->loadInputFilter();
+        $form->setData($data);
+
+        if($form->has('captcha')){
+            $form->remove('captcha');
+        }
+
+        $messages = array();
+
+        if(!$form->isValid()){
+            $messages = $form->getMessages();
+        };
+
+
+        $dataMessages = array_intersect_key($messages, $data);
+
+        if($dataMessages){
+            $firstElementMessages = array_shift($dataMessages);
+
+            foreach($firstElementMessages as $message){
+
+                $response['message'] = $message;
+            }
+
+            $response['error'] = true;
+
+            $this->getResponse()->setStatusCode(404);
+        }
+
+
+        $this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/json');;
+        $this->getResponse()->setContent(json_encode($response));
+
+        return $this->getResponse();
     }
 }

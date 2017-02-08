@@ -152,7 +152,7 @@ class Form extends FormHelper
             }
 
             $renderPattern = <<<EOT
-<div class="form-group%error_class%" data-name="%element_name%">
+<div class="form-group%error_class% has-feedback" data-name="%element_name%">
     %label_html%
     %element_html%
 </div>
@@ -181,7 +181,7 @@ EOT;
         </label>
     </div>
 </div>
-<div class="%error_size% help-block">%error_content%</div>
+<div class="%error_size% help-block with-errors">%error_content%</div>
 EOT;
                     break;
 
@@ -193,7 +193,7 @@ EOT;
         %desc_html%
     </div>
 </div>
-<div class="%error_size% help-block">%error_content%</div>
+<div class="%error_size% help-block with-errors">%error_content%</div>
 EOT;
                     break;
 
@@ -205,7 +205,7 @@ EOT;
         %desc_html%
     </div>
 </div>
-<div class="%error_size% help-block">%error_content%</div>
+<div class="%error_size% help-block with-errors">%error_content%</div>
 EOT;
                     break;
 
@@ -216,7 +216,7 @@ EOT;
         %element_content%
     </div>
 </div>
-<div class="%error_size% help-block">%error_content%</div>
+<div class="%error_size% help-block with-errors">%error_content%</div>
 EOT;
                     break;
 
@@ -232,7 +232,7 @@ EOT;
     %element_content%
     %desc_html%
 </div>
-<div class="%error_size% help-block">%error_content%</div>
+<div class="%error_size% help-block with-errors">%error_content%</div>
 EOT;
                     break;
 
@@ -240,9 +240,11 @@ EOT;
                     $elementPattern =<<<EOT
 <div class="%element_size% js-form-element">
     %element_content%
+    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
     %desc_html%
 </div>
-<div class="%error_size% help-block">%error_content%</div>
+
+<div class="%error_size% help-block with-errors">%error_content%</div>
 EOT;
                     break;
             }
@@ -418,7 +420,7 @@ EOT;
                         $submitSize = 'col-md-offset-2 col-md-10';
                     }
                     $htmlSubmit =<<<EOT
-        <div class="form-group">
+        <div class="form-group has-feedback">
             <div class="{$submitSize}">
                 {$submit}
                 {$cancel}
@@ -429,7 +431,7 @@ EOT;
 
                 default:
                     $htmlSubmit = <<<EOT
-        <div class="form-group">
+        <div class="form-group has-feedback">
             {$submit}
             {$cancel}
         </div>

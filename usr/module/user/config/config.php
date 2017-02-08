@@ -138,10 +138,19 @@ $config = array(
         'category'      => 'login',
     ),
 
-    'login_captcha'       => array(
+    'login_captcha'  => array(
         'title'         => _t('Login CAPTCHA'),
         'description'   => _t('Enable CAPTCHA for user login'),
-        'edit'          => 'checkbox',
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'       => array(
+                    0       => _t('No captcha'),
+                    1       => _t('Standard captcha'),
+                    2       => _t('New re-captcha'),
+                ),
+            ),
+        ),
         'value'         => 0,
         'filter'        => 'int',
         'category'      => 'login',
@@ -205,7 +214,16 @@ $config = array(
     'register_captcha'  => array(
         'title'         => _t('Register CAPTCHA'),
         'description'   => _t('Enable CAPTCHA for user registration'),
-        'edit'          => 'checkbox',
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'       => array(
+                    0       => _t('No captcha'),
+                    1       => _t('Standard captcha'),
+                    2       => _t('New re-captcha'),
+                ),
+            ),
+        ),
         'value'         => 1,
         'filter'        => 'int',
         'category'      => 'register',
