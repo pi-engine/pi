@@ -16,9 +16,9 @@ use Pi;
  * Notification service
  *
  * - Pi::service('notification')->send($to, $template, $information, $module, $uid);
- * - Pi::service('notification')->cron();
  * - Pi::service('notification')->smsToUser($content, $number);
  * - Pi::service('notification')->smsToAdmin($content, $number);
+ * - Pi::service('notification')->cron();
  *
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
@@ -83,6 +83,40 @@ class Notification extends AbstractService
     }
 
     /**
+     * Get list of active modules
+     *
+     * @param string       $content
+     * @param string       $number
+     *
+     * @return bool
+     */
+    public function smsToUser($content, $number = '')
+    {
+        if (!$this->active()) {
+            return;
+        }
+
+        return Pi::api('sms', 'notification')->sendTouser($content, $number);
+    }
+
+    /**
+     * Get list of active modules
+     *
+     * @param string       $content
+     * @param string       $number
+     *
+     * @return bool
+     */
+    public function smsToAdmin($content, $number = '')
+    {
+        if (!$this->active()) {
+            return;
+        }
+
+        return Pi::api('sms', 'notification')->sendToAdmin($content, $number);
+    }
+
+    /**
      * Do cron
      *
      * @return array
@@ -124,39 +158,5 @@ class Notification extends AbstractService
         }
 
         return $moduleList;
-    }
-
-    /**
-     * Get list of active modules
-     *
-     * @param string       $content
-     * @param string       $number
-     *
-     * @return bool
-     */
-    public function smsToUser($content, $number = '')
-    {
-        if (!$this->active()) {
-            return;
-        }
-
-        return Pi::api('sms', 'notification')->sendTouser($content, $number);
-    }
-
-    /**
-     * Get list of active modules
-     *
-     * @param string       $content
-     * @param string       $number
-     *
-     * @return bool
-     */
-    public function smsToAdmin($content, $number = '')
-    {
-        if (!$this->active()) {
-            return;
-        }
-
-        return Pi::api('sms', 'notification')->sendToAdmin($content, $number);
     }
 }
