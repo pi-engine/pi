@@ -16,9 +16,13 @@ use Pi;
  * Notification service
  *
  * - Pi::service('notification')->send($to, $template, $information, $module, $uid);
- * - Pi::service('notification')->cron();
  * - Pi::service('notification')->smsToUser($content, $number);
  * - Pi::service('notification')->smsToAdmin($content, $number);
+ *
+ * - ToDo : push notification to mobile applications ( android and ios )
+ * - ToDo : user setting for active / inactive push notification on website and mobile
+ * - ToDo : improve send sms on notification module and support local
+ * - Todo : improve notification module to support custom notification for change module contents
  *
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
@@ -80,50 +84,6 @@ class Notification extends AbstractService
         } catch (\Exception $e) {
             return false;
         }
-    }
-
-    /**
-     * Do cron
-     *
-     * @return array
-     */
-    public function cron()
-    {
-        // Set log
-        Pi::service('audit')->log('cron', '==========================================');
-        Pi::service('audit')->log('cron', 'Start cron system');
-        // Set module list
-        $moduleList = $this->moduleList();
-        // Check all modules
-        foreach ($moduleList as $module) {
-            if (Pi::service('module')->isActive(strtolower($module))) {
-                $class = sprintf('Module\%s\Api\Notification', ucfirst(strtolower($module)));
-                if (class_exists($class)) {
-                    if (method_exists($class, 'doCron')) {
-                        Pi::api('notification', strtolower($module))->doCron();
-                    }
-                }
-            }
-        }
-        // Set log
-        Pi::service('audit')->log('cron', 'End cron system');
-        Pi::service('audit')->log('cron', '==========================================');
-    }
-
-    /**
-     * Get list of active modules
-     *
-     * @return array
-     */
-    public function moduleList()
-    {
-        $moduleList = array();
-        $modules = Pi::registry('modulelist')->read('active');
-        foreach ($modules as $module) {
-            $moduleList[] = $module['name'];
-        }
-
-        return $moduleList;
     }
 
     /**
