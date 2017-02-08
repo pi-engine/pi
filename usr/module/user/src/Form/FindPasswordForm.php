@@ -9,7 +9,7 @@
 
 namespace Module\User\Form;
 
-//use Pi;
+use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -21,6 +21,39 @@ class FindPasswordForm extends BaseForm
 {
     public function init()
     {
+        $captchaMode = Pi::user()->config('register_captcha');
+        $captchaPublicKey = Pi::config('captcha_public_key');
+        $captchaPrivateKey = Pi::config('captcha_private_key');
+
+        $captchaElement = false;
+
+        if($captchaMode == 1){
+            $captchaElement = array(
+                'name'          => 'captcha',
+                'type'          => 'captcha',
+                'options'       => array(
+                    'label'     => _a('Please type the word.'),
+                    'separator'         => '<br />',
+                    'captcha_position'  => 'append',
+                ),
+                'attributes'    => array(
+                    'required' => true,
+                ),
+            );
+        } elseif($captchaMode == 2 && $captchaPublicKey && $captchaPrivateKey){
+            $captchaElement = array(
+                'name'          => 'captcha',
+                'type'          => 'captcha',
+                'options'       => array(
+                    'captcha' => new \LosReCaptcha\Captcha\ReCaptcha(array(
+                            'site_key' => $captchaPublicKey,
+                            'secret_key' => $captchaPrivateKey,
+                        )
+                    ),
+                ),
+            );
+        }
+
         $this->add(array(
             'name'       => 'email',
             'options'    => array(
@@ -31,14 +64,7 @@ class FindPasswordForm extends BaseForm
             ),
         ));
 
-        $this->add(array(
-            'name'    => 'captcha',
-            'options' => array(
-                'label'     => __('Please type the word'),
-                'separator' => '<br />',
-            ),
-            'type'    => 'captcha',
-        ));
+        $this->add($captchaElement);
 
         $this->add(array(
             'name' => 'security',
