@@ -42,14 +42,14 @@ class RegisterForm extends UserForm
             $this->get('email')
                 ->setAttribute('data-error', __('Invalid email'))
                 ->setAttribute('data-remote', $url)
-                ->setAttribute('data-remote-error', __('Invalid email : must be unique, and no forbidden keyword'));
+                ->setAttribute('data-remote-error', __('Oops. This email address is already taken or is forbidden'));
         }
 
         if($this->has('identity')){
             $this->get('identity')
                 ->setAttribute('data-error', __('Invalid username'))
                 ->setAttribute('data-remote', $url)
-                ->setAttribute('data-remote-error', __('Invalid username : must be unique, and no forbidden keyword'));
+                ->setAttribute('data-remote-error', __('Oops. This username is already taken, malformed or forbidden'));
         }
 
         if($this->get('credential')){

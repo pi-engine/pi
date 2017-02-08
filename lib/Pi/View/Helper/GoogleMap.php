@@ -257,29 +257,15 @@ EOT;
                     $locations['title']
                 );
 
-                // Set point script
-                $loadScript =<<<'EOT'
-function loadScript() {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = '%s';
-    document.body.appendChild(script);
-}
-window.onload = loadScript;
-EOT;
-
                 // Set url and key
-                $url = "https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize";
+                $url = "https://maps.googleapis.com/maps/api/js?v=3&callback=initialize";
                 if (!empty($apiKey)) {
                     $url = sprintf('%s&key=%s', $url, $apiKey);
                 }
 
-                // Set load script
-                $loadScript =  sprintf($loadScript, $url);
-
                 // Load script
                 $this->view->footScript()->appendScript($script);
-                $this->view->footScript()->appendScript($loadScript);
+                $this->view->footScript()->appendFile($url);
                 break;
         }
 
