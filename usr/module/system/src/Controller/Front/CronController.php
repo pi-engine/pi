@@ -31,16 +31,16 @@ class CronController extends ActionController
         // Get password
         if ($config['cron_active'] && !empty($config['cron_password']) && $password == $config['cron_password']) {
             // Do cron
-            Pi::service('notification')->cron();
+            Pi::service('cron')->start();
             // return
             return array(
-                'message' => 'Cron work fine !',
+                'message' => 'Cron system work fine, and cron process finished successfully.',
                 'status'  => 1,
                 'time'    => time(),
             );
         } else {
             return array(
-                'message' => 'Error : password not true!',
+                'message' => 'Error : password not true !',
                 'status'  => 0,
                 'time'    => time(),
             );

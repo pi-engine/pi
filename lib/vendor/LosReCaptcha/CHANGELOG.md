@@ -6,3 +6,15 @@ Now, this directory is loaded as standard library instead of ZF2 module.
 
 Only one file has been modified :
 vendor/LosReCaptcha/Captcha/ReCaptcha.php l.132 in order to return original class name, instead of ZF2 alias
+
+Function is :
+
+```
+    public function getHelperName()
+    {
+        /**
+         * HACK FROM FREDERIC TISSOT / MARC DEROUSSEAUX
+         */
+        return "LosReCaptcha\Form\View\Helper\Captcha\ReCaptcha";
+    }
+```
