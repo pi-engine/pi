@@ -19,6 +19,11 @@ use Pi;
  * - Pi::service('notification')->smsToUser($content, $number);
  * - Pi::service('notification')->smsToAdmin($content, $number);
  *
+ * - ToDo : push notification to mobile applications ( android and ios )
+ * - ToDo : user setting for active / inactive push notification on website and mobile
+ * - ToDo : improve send sms on notification module and support local
+ * - Todo : improve notification module to support custom notification for change module contents
+ *
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
 class Notification extends AbstractService
