@@ -63,7 +63,7 @@ class IsUserSection extends AbstractHelper
             foreach ($d as $value) {
                 $a[] = $value;
             }
-            if ($a[1]['controller'] == 'manage') {
+            if ($a[1]['controller'] == 'manage' && $a[1]['action'] != 'preview') {
                 $userSection = true;
             }
             if ($a[1]['controller'] == 'favourite') {
