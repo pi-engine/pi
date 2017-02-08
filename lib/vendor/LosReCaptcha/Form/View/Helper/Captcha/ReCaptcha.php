@@ -57,9 +57,11 @@ class ReCaptcha extends FormInput
         $responseName  = empty($name) ? 'recaptcha_response_field'  : $name . '[recaptcha_response_field]';
         $responseId    = $id . '-response';
 
-        $markup = $captcha->getService()->getHtml($name);
-        $hidden = $this->renderHiddenInput($responseName, $responseId);
-        $js     = $this->renderJsEvents($responseId);
+        $uniqueId = rand();
+
+        $markup = $captcha->getService()->getHtml($name, $uniqueId);
+        $hidden = $this->renderHiddenInput($responseName, $responseId, $uniqueId);
+        $js     = $this->renderJsEvents($responseId, $uniqueId);
 
         return $hidden . $markup . $js;
     }
@@ -69,16 +71,17 @@ class ReCaptcha extends FormInput
      *
      * @param  string $responseName
      * @param  string $responseId
+     * @param  string $uniqueId
      * @return string
      */
-    protected function renderHiddenInput($responseName, $responseId)
+    protected function renderHiddenInput($responseName, $responseId, $uniqueId)
     {
         $pattern        = '<input type="hidden" %s%s';
         $closingBracket = $this->getInlineClosingBracket();
 
         $attributes = $this->createAttributesString(array(
             'name' => $responseName,
-            'id'   => $responseId,
+            'id'   => $responseId . '-' . $uniqueId,
         ));
         $response = sprintf($pattern, $attributes, $closingBracket);
 
@@ -88,41 +91,23 @@ class ReCaptcha extends FormInput
     /**
      * Create the JS events used to bind the response value to the submitted form.
      *
-     * @param  string $challengeId
      * @param  string $responseId
+     * @param  string $uniqueId
      * @return string
      */
-    protected function renderJsEvents($responseId)
+    protected function renderJsEvents($responseId, $uniqueId)
     {
-        $elseif = 'else if'; // php-cs-fixer bug
         $js =<<<EOJ
 <script type="text/javascript" language="JavaScript">
-function windowOnLoad(fn)
-{
-    var old = window.onload;
-    window.onload = function () {
-        if (old) {
-            old();
-        }
-        fn();
-    };
-}
-function zendBindEvent(el, eventName, eventHandler)
-{
-    if (el.addEventListener) {
-        el.addEventListener(eventName, eventHandler, false);
-    } $elseif (el.attachEvent) {
-        el.attachEvent('on'+eventName, eventHandler);
-    }
-}
-windowOnLoad(function () {
-    zendBindEvent(
-        document.getElementById("$responseId").form,
-        'submit',
-        function (e) {
-            document.getElementById("$responseId").value = document.getElementById("g-recaptcha-response").value;
-        }
-    );
+
+$(window).load(function(){
+    var hiddenElement = $('#$responseId-$uniqueId');
+    var form = hiddenElement.parents('form');
+    
+    form.submit(function(){
+        var responseValue = form.find('.g-recaptcha-response').val();
+        hiddenElement.val(responseValue);
+    });
 });
 </script>
 EOJ;

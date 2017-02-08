@@ -9,6 +9,7 @@
 
 namespace Module\System\Block;
 
+use Module\User\Form\LoginForm;
 use Pi;
 use Module\System\Form\LoginForm as LoginFormSystem;
 use Module\User\Form\LoginForm as LoginFormUser;
@@ -274,6 +275,16 @@ class Block
         }
 
         $result['user'] = $user;
+
+        /*
+         * Login form
+         */
+        $processPath = Pi::service('url')->assemble('user', array('module' => 'user', 'controller' => 'login', 'action' => 'process'));
+        $loginForm = new LoginForm('login', Pi::user()->config());
+        $loginForm->setAttribute('action', Pi::url($processPath));
+
+        $result['loginForm'] = $loginForm;
+
         return $result;
     }
 

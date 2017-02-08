@@ -1,6 +1,7 @@
 <?php
 namespace LosReCaptcha\Service;
 
+use Pi;
 use Traversable;
 use LosReCaptcha\Service\Request\RequestInterface;
 use LosReCaptcha\Service\Request\Curl;
@@ -126,35 +127,41 @@ class ReCaptcha
      * This method uses the public key to fetch a recaptcha form.
      *
      * @param null|string $name Base name for recaptcha form elements
+     * @param string $uniqueId
      * @return string
      * @throws \LosReCaptcha\Service\Exception
      */
-    public function getHtml($name = null)
+    public function getHtml($name = null, $uniqueId)
     {
         $host = self::API_SERVER;
 
         $langOption = '';
 
-        if (isset($this->options['lang']) && !empty($this->options['lang'])) {
-            $langOption = "?hl={$this->options['lang']}";
+        $return = <<<HTML
+<div id="recaptcha_widget_$uniqueId" class="g-recaptcha" data-sitekey="{$this->siteKey}" data-theme="{$this->options['theme']}"></div>
+HTML;
+
+        if(empty($GLOBALS['recaptchaScriptLoaded'])){
+            $GLOBALS['recaptchaScriptLoaded'] = true;
+
+            $script = <<<JS
+var onloadCallback = function() {
+    
+    $('.g-recaptcha').each(function(){
+        var elementId = $(this).attr('id');
+        grecaptcha.render(document.getElementById(elementId), {
+            'sitekey' : '{$this->siteKey}'
+        });
+    });
+    
+};
+JS;
+            Pi::service('view')->getHelper('footScript')->appendScript($script);
+            Pi::service('view')->getHelper('footScript')->appendFile($host . '.js?onload=onloadCallback&render=explicit', 'text/javascript', array('async' => 'async', 'defer' => true));
+
         }
 
-        $return = <<<HTML
-<div id="recaptcha_widget" class="g-recaptcha" data-sitekey="{$this->siteKey}" data-theme="{$this->options['theme']}"></div>
-<noscript>
-    <div style="width: 302px; height: 352px;">
-        <div style="width: 302px; height: 352px; position: relative;">
-            <div style="width: 302px; height: 352px; position: absolute;">
-                <iframe src="{$host}/fallback?k={$this->siteKey}" frameborder="0" scrolling="no" style="width: 302px; height:352px; border-style: none;"></iframe>
-            </div>
-            <div style="width: 250px; height: 80px; position: absolute; border-style: none; bottom: 21px; left: 25px; margin: 0px; padding: 0px; right: 25px;">
-                <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 80px; border: 1px solid #c1c1c1; margin: 0px; padding: 0px; resize: none;" value=""></textarea>
-            </div>
-        </div>
-    </div>
-</noscript>
-<script type="text/javascript" src="{$host}.js{$langOption}" async defer></script>
-HTML;
+
 
         return $return;
     }
