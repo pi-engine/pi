@@ -87,6 +87,10 @@ class Comment extends AbstractService
                 'action'        => 'load',
             ));
             $content =<<<EOT
+            <a id="pi-comment-lead-anchor" style="display: block;
+    position: relative;
+    top: -250px;
+    visibility: hidden;"></a>
 <div id="pi-comment-lead" class="hidden"></div>
 <script>
     $.getJSON("{$callback}", {
