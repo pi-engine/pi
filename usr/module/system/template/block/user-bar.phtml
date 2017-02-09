@@ -12,7 +12,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
         <ul class="nav navbar-nav<?php echo $floatClass; ?>">
             <?php if (!$block['user']['uid']) { ?>
                 <li class="item-login">
-                    <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>">
+                    <a href="#" data-target="#loginRegisterModal" data-toggle="modal" title="<?php echo _b('Login'); ?>">
                         <i class="fa fa-sign-in"></i>
                         <span class="hidden-sm hidden-md"><?php echo _b('Login'); ?></span>
                     </a>
@@ -142,7 +142,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
         <ul class="nav navbar-nav<?php echo $floatClass; ?>">
             <?php if (!$block['user']['uid']) { ?>
                 <li>
-                    <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>">
+                    <a href="#" data-target="#loginRegisterModal" data-toggle="modal" title="<?php echo _b('Login'); ?>">
                         <?php echo _b('Login'); ?>
                     </a>
                 </li>
@@ -263,7 +263,7 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
         <ul class="nav navbar-nav<?php echo $floatClass; ?>">
             <?php if (!$block['user']['uid']) { ?>
                 <li>
-                    <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>">
+                    <a href="#" data-target="#loginRegisterModal" data-toggle="modal" title="<?php echo _b('Login'); ?>">
                         <?php echo _b('Login'); ?>
                     </a>
                 </li>
@@ -364,3 +364,15 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
         </ul>
     <?php } ?>
 </div>
+
+<?php
+    if (!$block['user']['uid']) {
+        ob_start();
+        include('partial/login-register-modal.phtml');
+        $modalContent = ob_get_clean();
+
+        /* @var \Pi\View\Helper\FootScript $footScript */
+        $footScript = $this->plugin('footScript');
+        $footScript->addHtml($modalContent);
+    }
+?>

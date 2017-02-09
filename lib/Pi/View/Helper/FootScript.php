@@ -37,6 +37,12 @@ class FootScript extends HeadScript
     protected $regKey = 'Pi_View_Helper_FootScript';
 
     /**
+     * Pure html
+     * @var string
+     */
+    protected $html;
+
+    /**
      * Create script HTML
      *
      * @param  mixed  $item        Item to convert
@@ -52,5 +58,19 @@ class FootScript extends HeadScript
         }
 
         return parent::itemToString($item, $indent, $escapeStart, $escapeEnd);
+    }
+
+    public function addHtml($content)
+    {
+
+        $this->html .= $content;
+    }
+
+    public function toString($indent = null)
+    {
+        $content = parent::toString($indent);
+        $content .= $this->html;
+
+        return $content;
     }
 }
