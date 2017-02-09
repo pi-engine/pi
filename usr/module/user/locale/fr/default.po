@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-02-07 19:57+0100\n"
-"PO-Revision-Date: 2017-02-07 19:59+0100\n"
+"POT-Creation-Date: 2017-02-09 09:41+0100\n"
+"PO-Revision-Date: 2017-02-09 09:44+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -71,22 +71,18 @@ msgstr "Rôle affecté"
 msgid "Role removed"
 msgstr "Rôle supprimé"
 
-#: config/form.register.php:20
+#: config/form.register.php:23
 msgid "Terms & Conditions"
 msgstr "Conditions générales utilisation et de vente (CGU/CGV)"
 
-#: config/form.register.php:21
+#: config/form.register.php:24
 #, php-format
 msgid "Accept %s"
 msgstr "Accepter %s"
 
-#: config/form.register.php:39
+#: config/form.register.php:76
 msgid "Confirm credential"
 msgstr "Confirmer le mot de passe"
-
-#: config/form.register.php:72 src/Form/ResendActivationForm.php:38
-msgid "Please type the word."
-msgstr "Merci de saisir le mot affiché"
 
 #: src/Api/Breadcrumbs.php:39 template/front/login-logout.phtml:23
 msgid "Login"
@@ -135,7 +131,7 @@ msgstr "Modifier le mot de passe"
 
 #: src/Api/Breadcrumbs.php:111 src/Controller/Front/PasswordController.php:200
 #: src/Controller/Front/PasswordController.php:201
-#: src/Form/FindPasswordForm.php:52 template/front/login.phtml:32
+#: src/Form/FindPasswordForm.php:78 template/front/login.phtml:32
 #: template/front/password-find.phtml:3
 msgid "Find password"
 msgstr "Trouver le mot de passe."
@@ -510,7 +506,7 @@ msgstr ""
 msgid "Username"
 msgstr "Nom de Compte"
 
-#: src/Form/AccountForm.php:38 src/Form/FindPasswordForm.php:27
+#: src/Form/AccountForm.php:38 src/Form/FindPasswordForm.php:60
 #: src/Form/MemberForm.php:48 src/Form/SearchForm.php:108
 msgid "Email"
 msgstr "Email"
@@ -545,10 +541,6 @@ msgstr "Nouvel email"
 msgid "Current password"
 msgstr "Mot de passe actuel"
 
-#: src/Form/FindPasswordForm.php:37
-msgid "Please type the word"
-msgstr "Merci de saisir le mot"
-
 #: src/Form/MemberForm.php:57 src/Form/PasswordForm.php:53
 #: src/Form/ResetPasswordForm.php:42
 msgid "New password"
@@ -575,25 +567,45 @@ msgstr "Confirmer"
 msgid "Enable"
 msgstr "Activer"
 
-#: src/Form/RegisterForm.php:40
+#: src/Form/RegisterForm.php:43
+msgid "Invalid email"
+msgstr "Mail non valide"
+
+#: src/Form/RegisterForm.php:45
+msgid "Oops. This email address is already taken or is forbidden"
+msgstr "Oups. Cette adresse e-mail est déjà prise ou est interdite"
+
+#: src/Form/RegisterForm.php:50
+msgid "Invalid username"
+msgstr "username non valide"
+
+#: src/Form/RegisterForm.php:52
+msgid "Oops. This username is already taken, malformed or forbidden"
+msgstr "Oups. Ce username est déjà pris, malformé ou interdit"
+
+#: src/Form/RegisterForm.php:57
 msgid "Show my password"
 msgstr "Voir le mot de passe"
 
-#: src/Form/RegisterForm.php:57
+#: src/Form/RegisterForm.php:74
 msgid "Must be less than "
 msgstr "Doit être moins que "
 
-#: src/Form/RegisterForm.php:59
+#: src/Form/RegisterForm.php:76
 msgid "Must be more than 8 characters"
 msgstr ""
 
-#: src/Form/RegisterForm.php:62
+#: src/Form/RegisterForm.php:79
 msgid "Whoops, these don't match"
 msgstr "Oups, ils ne coïncident pas"
 
 #: src/Form/ResendActivationForm.php:27
 msgid "Email address"
 msgstr "Adresse email"
+
+#: src/Form/ResendActivationForm.php:38
+msgid "Please type the word."
+msgstr "Merci de saisir le mot affiché"
 
 #: src/Form/RoleForm.php:44
 msgid "Name"
@@ -1103,6 +1115,9 @@ msgstr "Demandez le renvoi du mail d'activation"
 #: template/front/register-index.phtml:130
 msgid "Already sent"
 msgstr "Déja envoyé"
+
+#~ msgid "Please type the word"
+#~ msgstr "Merci de saisir le mot"
 
 #~ msgid "Invalid user name: %formatHint%"
 #~ msgstr "Non utilisateur non valide : %formatHint%"

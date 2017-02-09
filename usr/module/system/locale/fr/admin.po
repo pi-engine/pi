@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2017-02-07 20:11+0100\n"
-"PO-Revision-Date: 2017-02-07 20:11+0100\n"
+"POT-Creation-Date: 2017-02-09 09:40+0100\n"
+"PO-Revision-Date: 2017-02-09 09:40+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -1736,7 +1736,7 @@ msgstr "Le thème \"%s\" a été déinstallé."
 msgid "No permitted operation available."
 msgstr "Aucune opération autorisée disponible"
 
-#: src/Form/LoginForm.php:57
+#: src/Form/FindPasswordForm.php:36 src/Form/LoginForm.php:57
 msgid "Please type the word."
 msgstr ""
 
@@ -1928,29 +1928,24 @@ msgstr "Sélectionner un module sur la gauche pour définir les paramètres."
 msgid "No configuration available."
 msgstr "Aucun paramètre disponible."
 
-#: template/admin/cron-index.phtml:4
+#: template/admin/cron-index.phtml:12
 msgid "Cron system is active, you can inactive it from system configurations"
 msgstr ""
 
-#: template/admin/cron-index.phtml:8
-msgid "Cron system is inactive, you can active it from system configurations"
-msgstr ""
-
-#: template/admin/cron-index.phtml:12
+#: template/admin/cron-index.phtml:16
 #, php-format
 msgid ""
 "Cron password is <strong>%s</strong> , you can change it from system "
-"configurations"
+"configurations and Cron log save on <strong>%s/cron.log</strong>"
 msgstr ""
 
-#: template/admin/cron-index.phtml:14
-#, php-format
-msgid "Cron log save on <strong>%s/cron.log</strong>"
-msgstr ""
-
-#: template/admin/cron-index.phtml:27
+#: template/admin/cron-index.phtml:29
 msgid "Do cron manfully"
 msgstr "Gérer le cron manuellement"
+
+#: template/admin/cron-index.phtml:33
+msgid "Cron system is inactive, you can active it from system configurations"
+msgstr ""
 
 #: template/admin/dashboard-module.phtml:6
 msgid "About"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-02-07 20:12+0100\n"
-"PO-Revision-Date: 2017-02-07 20:12+0100\n"
+"POT-Creation-Date: 2017-02-09 09:40+0100\n"
+"PO-Revision-Date: 2017-02-09 09:40+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -106,6 +106,7 @@ msgid "You have %d times to try."
 msgstr "Il vous reste %d  essais"
 
 #: src/Controller/Front/LoginController.php:88
+#: template/block/partial/login-register-modal.phtml:19
 #: template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr "Connexion utilisateur"
@@ -156,8 +157,10 @@ msgstr ""
 
 #: src/Controller/Front/PasswordController.php:127
 #: src/Controller/Front/PasswordController.php:128
-#: src/Form/FindPasswordForm.php:51 template/front/login.phtml:17
-#: template/front/password-find.phtml:2 template/front/register.phtml:5
+#: src/Form/FindPasswordForm.php:79
+#: template/block/partial/login-register-modal.phtml:35
+#: template/front/login.phtml:17 template/front/password-find.phtml:2
+#: template/front/register.phtml:5
 msgid "Find password"
 msgstr "Rappel mot de passe"
 
@@ -187,7 +190,7 @@ msgid "Username"
 msgstr "Nom de Compte"
 
 #: src/Controller/Front/ProfileController.php:59
-#: src/Form/FindPasswordForm.php:26
+#: src/Form/FindPasswordForm.php:61
 msgid "Email"
 msgstr "Email"
 
@@ -217,6 +220,7 @@ msgstr "Inscription du compte utilisateur"
 
 #: src/Controller/Front/RegisterController.php:52
 #: src/Controller/Front/RegisterController.php:113
+#: template/block/partial/login-register-modal.phtml:38
 #: template/front/login-logout.phtml:14 template/front/login.phtml:20
 msgid "Register"
 msgstr "S'inscrire"
@@ -342,10 +346,6 @@ msgstr "Paramètres"
 #: src/Form/Element/Controller.php:53 src/Form/NavPageForm.php:78
 msgid "None"
 msgstr "Aucun"
-
-#: src/Form/FindPasswordForm.php:36
-msgid "Please type the word"
-msgstr "Merci de saisir les caractères affichés"
 
 #: src/Form/LoginForm.php:110
 msgid "Remember me"
@@ -576,20 +576,24 @@ msgstr "Seuls les caractèrs multi-byte et les espaces sont autorisés"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: template/admin/cron-index.phtml:18
+#: template/admin/cron-index.phtml:20
 msgid "Cron URL"
 msgstr ""
 
-#: template/admin/cron-index.phtml:22
+#: template/admin/cron-index.phtml:24
 msgid "Cron Command"
 msgstr ""
 
-#: template/admin/cron-index.phtml:24
+#: template/admin/cron-index.phtml:26
 msgid "Set cron command on your server and set cron time"
 msgstr ""
 
-#: template/admin/cron-index.phtml:27
-msgid "Are you sure to do cron manfully?"
+#: template/admin/cron-index.phtml:40
+msgid "Are you sure to do cron manually?"
+msgstr ""
+
+#: template/admin/cron-index.phtml:41
+msgid "manual cron in process"
 msgstr ""
 
 #: template/admin/theme-customize.phtml:19
@@ -688,6 +692,9 @@ msgstr "vous connecter"
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr "Vous vous êtes inscrits avec succès, merci d'aller à %s ou %s."
+
+#~ msgid "Please type the word"
+#~ msgstr "Merci de saisir les caractères affichés"
 
 #~ msgid "Recent module updates."
 #~ msgstr "Mises à jour récentes du module"
