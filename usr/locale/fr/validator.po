@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2017-01-25 15:03+0100\n"
-"PO-Revision-Date: 2017-01-25 15:03+0100\n"
+"POT-Creation-Date: 2017-02-09 14:33+0100\n"
+"PO-Revision-Date: 2017-02-09 14:53+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -52,17 +52,29 @@ msgstr "La donnée entrée n'est pas valide"
 msgid "An exception has been raised within the callback"
 msgstr "Une exception a été levée à l'intérieur du callback"
 
-#: Captcha.php:11
+#: Captcha.php:13
 msgid "Empty captcha value"
 msgstr "Value de Captcha vide"
 
-#: Captcha.php:12
+#: Captcha.php:14
 msgid "Captcha ID field is missing"
 msgstr "Le champ Captcha ID est manquant"
 
-#: Captcha.php:13
+#: Captcha.php:15
 msgid "Captcha value is wrong"
 msgstr "La valeur Captcha est erronnée."
+
+#: Captcha.php:20
+msgid "Missing captcha fields"
+msgstr "Merci de renseigner le Captcha"
+
+#: Captcha.php:21
+msgid "Failed to validate captcha"
+msgstr "Le Captcha n'a pas pu être validé"
+
+#: Captcha.php:22
+msgid "Captcha value is wrong: %value%"
+msgstr "La valeur de Captcha est erronée : %value%"
 
 #: CreditCard.php:10
 msgid "The input seems to contain an invalid checksum"
