@@ -77,7 +77,7 @@ HTML;
                 ->setAttribute('pattern', '^.{0,'.$piConfig['password_max'].'}$')
                 ->setAttribute('data-pattern-error', __("Must be less than ".$piConfig['password_max']." characters"))
                 ->setAttribute('data-minlength', $piConfig['password_min'])
-                ->setAttribute('data-minlength-error', __("Must be more than 8 characters"));
+                ->setAttribute('data-minlength-error', __("Must be more than " . $piConfig['password_min'] . " characters"));
 
 
             $passwordConfirmError = __('Whoops, these don\'t match');
