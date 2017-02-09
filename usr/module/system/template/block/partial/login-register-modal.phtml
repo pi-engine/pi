@@ -99,6 +99,10 @@ if($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()
         var action = button.data('action');
         var anchor = button.data('redirect-anchor');
 
+        if(typeof action == 'undefined' || !action){
+            action = 'login';
+        }
+
         var modal = $(this);
         modal.find('.modal-action-wrapper').hide();
         modal.find('.modal-action-wrapper[data-action="'+action+'"]').show();
@@ -112,7 +116,6 @@ if($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()
                 $(this).val(redirectValue);
             });
         }
-
     });
 
     $('.toggle-modal-action').click(function(){
