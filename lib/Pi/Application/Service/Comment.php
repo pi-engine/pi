@@ -89,7 +89,7 @@ class Comment extends AbstractService
             $content =<<<EOT
             <a id="pi-comment-lead-anchor" style="display: block;
     position: relative;
-    top: -250px;
+    top: -100px;
     visibility: hidden;"></a>
 <div id="pi-comment-lead" class="hidden"></div>
 <script>

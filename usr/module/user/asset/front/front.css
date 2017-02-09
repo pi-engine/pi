@@ -328,3 +328,7 @@
 .js-form-element{
   position:relative;
 }
+
+.ui-draggable-handle{
+  cursor: move;
+}
