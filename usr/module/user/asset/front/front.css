@@ -324,3 +324,7 @@
 .clickable-row, .clickable-cell {
   cursor: pointer;
 }
+
+.js-form-element{
+  position:relative;
+}
