@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2017-02-09 09:39+0100\n"
-"PO-Revision-Date: 2017-02-09 09:40+0100\n"
+"POT-Creation-Date: 2017-02-09 14:00+0100\n"
+"PO-Revision-Date: 2017-02-09 14:01+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -11,57 +11,119 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.11\n"
 "X-Poedit-KeywordsList: _b\n"
-"X-Poedit-Basepath: ../../../user\n"
+"X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/Block/Block.php:58
-msgid "Avatar"
-msgstr "Avatar"
-
-#: template/block/completeness.phtml:21
-msgid ""
-"Please complete your profile information, to can use all website features"
-msgstr ""
-"Merci de finaliser la saisie de ton profil, afin de pouvoir utiliser toutes "
-"les fonctionnalités du site"
-
-#: template/block/completeness.phtml:22
-msgid "update all"
-msgstr "tout mettre à jour"
-
-#: template/block/completeness.phtml:26
+#: src/Block/Block.php:32
 #, php-format
-msgid "%s%s Complete"
-msgstr "%s%s Finalisation"
+msgid "About %s"
+msgstr "A propos de %s"
 
-#: template/block/completeness.phtml:40
-msgid "update"
-msgstr "mettre à jour"
+#: src/Block/Block.php:34
+msgid "Site name"
+msgstr "Nom du Site"
 
-#~ msgid "About %s"
-#~ msgstr "A propos de %s"
+#: src/Block/Block.php:35
+msgid "Slogan"
+msgstr "Slogan"
 
-#~ msgid "Site name"
-#~ msgstr "Nom du Site"
+#: template/block/user-bar.phtml:15 template/block/user-bar.phtml:17
+#: template/block/user-bar.phtml:145 template/block/user-bar.phtml:146
+#: template/block/user-bar.phtml:266 template/block/user-bar.phtml:267
+msgid "Login"
+msgstr "Connexion"
 
-#~ msgid "Slogan"
-#~ msgstr "Slogan"
+#: template/block/user-bar.phtml:21 template/block/user-bar.phtml:22
+#: template/block/user-bar.phtml:150 template/block/user-bar.phtml:151
+#: template/block/user-bar.phtml:271 template/block/user-bar.phtml:272
+msgid "Register"
+msgstr "Inscription"
 
-#~ msgid "Login"
-#~ msgstr "Connexion"
+#: template/block/user-bar.phtml:45 template/block/user-bar.phtml:123
+#: template/block/user-bar.phtml:125 template/block/user-bar.phtml:351
+#: template/block/user-bar.phtml:353
+msgid "Favourite"
+msgstr "Favoris"
 
-#~ msgid "Register"
-#~ msgstr "Inscription"
+#: template/block/user-bar.phtml:47
+msgid "Guide dashboard"
+msgstr "Guide dashboard"
 
-#~ msgid "Profile"
-#~ msgstr "Profil"
+#: template/block/user-bar.phtml:52 template/block/user-bar.phtml:54
+msgid "Manage account"
+msgstr "Gérer compte"
 
-#~ msgid "Message"
-#~ msgstr "Message"
+#: template/block/user-bar.phtml:59 template/block/user-bar.phtml:70
+#: template/block/user-bar.phtml:157 template/block/user-bar.phtml:170
+#: template/block/user-bar.phtml:287 template/block/user-bar.phtml:298
+msgid "message(s)"
+msgstr "message(s)"
 
-#~ msgid "Logout"
-#~ msgstr "Déconnexion"
+#: template/block/user-bar.phtml:61 template/block/user-bar.phtml:72
+#: template/block/user-bar.phtml:160 template/block/user-bar.phtml:173
+#: template/block/user-bar.phtml:289 template/block/user-bar.phtml:300
+msgid "Message"
+msgstr "Message"
 
-#~ msgid "Settings"
-#~ msgstr "Paramètres"
+#: template/block/user-bar.phtml:81 template/block/user-bar.phtml:183
+#: template/block/user-bar.phtml:309
+msgid "notification(s)"
+msgstr "notification(s)"
+
+#: template/block/user-bar.phtml:83 template/block/user-bar.phtml:186
+#: template/block/user-bar.phtml:311
+msgid "Notification"
+msgstr "Notification"
+
+#: template/block/user-bar.phtml:93 template/block/user-bar.phtml:95
+#: template/block/user-bar.phtml:197 template/block/user-bar.phtml:200
+#: template/block/user-bar.phtml:321 template/block/user-bar.phtml:323
+msgid "Support"
+msgstr "Support"
+
+#: template/block/user-bar.phtml:104 template/block/user-bar.phtml:106
+#: template/block/user-bar.phtml:210 template/block/user-bar.phtml:213
+#: template/block/user-bar.phtml:332 template/block/user-bar.phtml:334
+msgid "Follow up orders"
+msgstr "Commandes"
+
+#: template/block/user-bar.phtml:112 template/block/user-bar.phtml:114
+#: template/block/user-bar.phtml:220 template/block/user-bar.phtml:223
+#: template/block/user-bar.phtml:340 template/block/user-bar.phtml:342
+msgid "Credit"
+msgstr "Crédit"
+
+#: template/block/user-bar.phtml:130 template/block/user-bar.phtml:132
+#: template/block/user-bar.phtml:250 template/block/user-bar.phtml:253
+#: template/block/user-bar.phtml:358 template/block/user-bar.phtml:360
+#: template/block/user.phtml:30 template/block/user.phtml:32
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: template/block/user-bar.phtml:235 template/block/user-bar.phtml:280
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: template/block/user.phtml:20 template/block/user.phtml:22
+msgid "Profile"
+msgstr "Profil"
+
+#: template/block/user.phtml:25 template/block/user.phtml:27
+msgid "Settings"
+msgstr "Paramètres"
+
+#~ msgid "Avatar"
+#~ msgstr "Avatar"
+
+#~ msgid "Please complete your profile information, to can use all website features"
+#~ msgstr "Merci de finaliser la saisie de ton profil, afin de pouvoir utiliser toutes les fonctionnalités du site"
+
+#~ msgid "update all"
+#~ msgstr "tout mettre à jour"
+
+#~ msgid "%s%s Complete"
+#~ msgstr "%s%s Finalisation"
+
+#~ msgid "update"
+#~ msgstr "mettre à jour"

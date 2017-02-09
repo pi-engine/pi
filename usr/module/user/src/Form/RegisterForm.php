@@ -28,9 +28,13 @@ class RegisterForm extends UserForm
     {
         parent::init();
 
+        $uniqueId = rand();
+        $elementId = 'register-' . $uniqueId;
+
         $piConfig = Pi::user()->config();
 
         $this->setAttribute('data-toggle', 'validator');
+        $this->setAttribute('id', $elementId);
 
         $url = Pi::url(Pi::service('url')->assemble('user', array(
             'module' => 'user',
@@ -78,7 +82,7 @@ HTML;
 
             $passwordConfirmError = __('Whoops, these don\'t match');
             $this->get('credential-confirm')
-                ->setAttribute('data-match', '#credential')
+                ->setAttribute('data-match', '#'.$elementId. ' [name=credential]')
                 ->setAttribute('data-match-error', $passwordConfirmError);
         }
 

@@ -76,6 +76,14 @@ $config = array(
         'filter'        => 'int',
     ),
 
+    'enable_modal' => array(
+        'title'         => _t('Enable modal for login / register'),
+        'description'   => _t('Login / register with modal, with GET redirect (hidden input instead)'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'int',
+    ),
+
     'head_keywords'     => array(
         'title'         => _t('Head keywords'),
         'description'   => _t('Head keywords for SEO.'),

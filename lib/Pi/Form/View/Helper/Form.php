@@ -300,10 +300,10 @@ EOT;
             $vars['element_content']    = $this->view->formElement($element);
             $vars['error_content']      = $this->view->formElementErrors($element);
             $vars['error_class']        = $element->getMessages() ? ' has-error' : '';
-            $vars['desc_content']       = $element->getAttribute('description');
+            $vars['desc_content']       = $element->getAttribute('description') . ($element->getAttribute('required') && !$element->getLabel() ? $markRequired : '');
             $vars['desc_html']          = $parsePattern($descPattern, $vars);
             $vars['label_content']      = $element->getLabel();
-            $vars['mark_required']      = $element->getAttribute('required') ? $markRequired : '';
+            $vars['mark_required']      = $element->getAttribute('required') && $element->getLabel() ? $markRequired : '';
             $vars['label_html']         = $parsePattern($labelPattern, $vars);
             $vars['element_html']       = $parsePattern($elementPattern, $vars);
 

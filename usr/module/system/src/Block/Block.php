@@ -280,10 +280,22 @@ class Block
          * Login form
          */
         $processPath = Pi::service('url')->assemble('user', array('module' => 'user', 'controller' => 'login', 'action' => 'process'));
-        $loginForm = new LoginForm('login', Pi::user()->config());
+        $loginForm = Pi::api('form', 'user')->loadForm('login');
         $loginForm->setAttribute('action', Pi::url($processPath));
 
+        /**
+         * Register form
+         */
+        $processPath = Pi::service('url')->assemble('user', array('module' => 'user', 'controller' => 'register'));
+        $registerForm = Pi::api('form', 'user')->loadForm('register');
+        $registerForm->setAttribute('action', Pi::url($processPath));
+
+
+        $view = Pi::service('view');
+        $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/validator.js', 'user'));
+
         $result['loginForm'] = $loginForm;
+        $result['registerForm'] = $registerForm;
 
         return $result;
     }

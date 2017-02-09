@@ -107,7 +107,7 @@ class LoginForm extends BaseForm
                 'name'          => 'rememberme',
                 'type'          => 'checkbox',
                 'options'       => array(
-                    'label' => __('Remember me'),
+//                    'label' => __('Remember me'),
                 ),
                 'attributes'    => array(
                     'value'         => '1',
