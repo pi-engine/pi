@@ -9,7 +9,7 @@
 
 namespace Module\User\Form;
 
-//use Pi;
+use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -52,6 +52,20 @@ class AccountForm extends BaseForm
             ),
         ));
 
+        if(Pi::service('module')->isActive('subscription')){
+            $this->add(array(
+                'name'       => 'newsletter',
+                'type'      => 'checkbox',
+                'options'    => array(
+                    'label' => __('Newsletter subscription'),
+                ),
+            ));
+
+            $people = $this->_getCurrentPeople();
+
+            $this->get('newsletter')->setValue((bool) $people);
+        }
+
         $this->add(array(
             'name'       => 'uid',
             'attributes' => array(
@@ -73,5 +87,53 @@ class AccountForm extends BaseForm
             ),
             'type'       => 'submit',
         ));
+    }
+
+    protected function _getCurrentPeople(){
+        $peopleModel = $this->getPeopleModel();
+        $select = $peopleModel->select();
+        $select->where(
+            array(
+                'uid' => Pi::user()->getId(),
+                'campaign' => 0,
+            )
+        );
+
+        $people = $peopleModel->selectWith($select)->current();
+
+        return $people;
+    }
+
+    protected function getPeopleModel(){
+        return Pi::model('people', 'subscription');
+    }
+
+    public function isValid()
+    {
+        $isValid = parent::isValid();
+
+        if($isValid && Pi::service('module')->isActive('subscription')){
+            $newsletterValue = $this->get('newsletter')->getValue();
+            $people = $this->_getCurrentPeople();
+
+            if($newsletterValue == 1 && !$people){
+                $peopleModel = $this->getPeopleModel();
+                $people = $peopleModel->createRow();
+
+                $values = array();
+                $values['campaign'] = 0;
+                $values['uid'] = Pi::user()->getId();
+                $values['status'] = 1;
+                $values['time_join'] = time();
+                $values['newsletter'] = 1;
+
+                $people->assign($values);
+                $people->save();
+            } elseif($newsletterValue == 0 && $people){
+                $people->delete();
+            }
+        }
+
+        return $isValid;
     }
 }

@@ -61,6 +61,16 @@ $this->headMeta('noindex', 'robots');
                 this.idVal       = $.trim(this.$el.find('[name=id]').val());
                 this.checkEmailRequest = null;
                 this.checkNameRequest = null;
+
+                if(typeof this.$newsletter != 'undefined'){
+                    this.newsletterInitVal = this.$newsletter.is( ":checked" );
+
+                    var obj = this;
+                    this.$newsletter.change(function(){
+                        obj.isNewsletterValid = obj.newsletterInitVal != $(this).is( ":checked" );
+                        obj.isValid();
+                    });
+                }
             },
 
             cacheElements: function() {
@@ -68,6 +78,7 @@ $this->headMeta('noindex', 'robots');
                 this.$submit = this.$('[name=submit]');
                 this.$email = this.$('[name=email]');
                 this.$name = this.$('[name=name]');
+                this.$newsletter = this.$('[name=newsletter]');
                 this.$confirm = $('.user-js-confirm');
                 this.$confirmPassword = $('.user-js-confirm-password');
                 this.$confirmBtn = $('.user-js-confirm-btn');
@@ -97,8 +108,9 @@ $this->headMeta('noindex', 'robots');
                     if (result.status) {
                         var emailVal = $.trim(this.$email.val());
                         var nameVal = $.trim(this.$name.val());
+                        var newsletterVal = $.trim(this.$newsletter.is( ":checked" ) ? 1 : 0);
 
-                        $.post(this.options.accountIndexUrl, { 'email': emailVal, 'name': nameVal, 'uid': this.uidVal, 'id': this.idVal}, $.proxy(function(result) {
+                        $.post(this.options.accountIndexUrl, { 'email': emailVal, 'name': nameVal, 'newsletter': newsletterVal, 'uid': this.uidVal, 'id': this.idVal}, $.proxy(function(result) {
                             this.$email.next().remove();
                             this.$name.next().remove();
 
@@ -244,7 +256,7 @@ $this->headMeta('noindex', 'robots');
             },
 
             isValid: function() {
-                if (this.isEmailValid || this.isNameValid) {
+                if (this.isEmailValid || this.isNameValid || this.isNewsletterValid) {
                     this.$submit.removeClass('disabled').removeAttr('disabled');
                 } else {
                     this.$submit.addClass('disabled').attr('disabled', 'disabled');
