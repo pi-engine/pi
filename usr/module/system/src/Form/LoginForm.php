@@ -43,39 +43,6 @@ class LoginForm extends BaseForm
     {
         $config = $this->config;
 
-        $captchaMode = $config['login_captcha'];
-        $captchaPublicKey = Pi::config('captcha_public_key');
-        $captchaPrivateKey = Pi::config('captcha_private_key');
-
-        $captchaElement = false;
-
-        if($captchaMode == 1){
-            $captchaElement = array(
-                'name'          => 'captcha',
-                'type'          => 'captcha',
-                'options'       => array(
-                    'label'     => _a('Please type the word.'),
-                    'separator'         => '<br />',
-                    'captcha_position'  => 'append',
-                ),
-                'attributes'    => array(
-                    'required' => true,
-                ),
-            );
-        } elseif($captchaMode == 2 && $captchaPublicKey && $captchaPrivateKey){
-            $captchaElement = array(
-                'name'          => 'captcha',
-                'type'          => 'captcha',
-                'options'       => array(
-                    'captcha' => new \LosReCaptcha\Captcha\ReCaptcha(array(
-                            'site_key' => $captchaPublicKey,
-                            'secret_key' => $captchaPrivateKey,
-                        )
-                    ),
-                ),
-            );
-        }
-
         // Get config data.
         $this->add(array(
             'name'          => 'identity',
@@ -98,7 +65,8 @@ class LoginForm extends BaseForm
             )
         ));
 
-        if ($captchaElement) {
+        $captchaMode = $config['login_captcha'];
+        if($captchaElement = Pi::service('form')->getReCaptcha($captchaMode)){
             $this->add($captchaElement);
         }
 

@@ -11,10 +11,6 @@
 * User register form config
 */
 
-$captchaMode = Pi::user()->config('register_captcha');
-$captchaPublicKey = Pi::config('captcha_public_key');
-$captchaPrivateKey = Pi::config('captcha_private_key');
-
 $termEnable = Pi::user()->config('register_term');
 $termUrl = Pi::user()->config('register_term_url');
 
@@ -27,39 +23,10 @@ if ($termEnable && !empty($termUrl)) {
     $term = '';
 }
 
-$captchaElement = false;
-
-if($captchaMode == 1){
-    $captchaElement = array(
-        'element' => array(
-            'name'          => 'captcha',
-            'type'          => 'captcha',
-            'options'       => array(
-                'label'     => _a('Please type the word.'),
-                'separator'         => '<br />',
-                'captcha_position'  => 'append',
-            ),
-            'attributes'    => array(
-                'required' => true,
-            ),
-        ),
-    );
-} elseif($captchaMode == 2 && $captchaPublicKey && $captchaPrivateKey){
-    $captchaElement = array(
-        'element' => array(
-            'name'          => 'captcha',
-            'type'          => 'captcha',
-            'options'       => array(
-                'captcha' => new \LosReCaptcha\Captcha\ReCaptcha(array(
-                        'site_key' => $captchaPublicKey,
-                        'secret_key' => $captchaPrivateKey,
-                    )
-                ),
-            ),
-        ),
-    );
-}
-
+$captchaMode = Pi::user()->config('register_captcha');
+$captchaElement = array(
+    'element' => Pi::service('form')->getReCaptcha($captchaMode)
+);
 
 return array(
     // Use user module field
