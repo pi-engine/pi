@@ -200,6 +200,15 @@ $config = array(
         'category'      => 'login',
     ),
 
+    'login_modal_title' => array(
+        'title'         => _t('Login modal title'),
+        'description'   => _t('Title text for login modal in modal header'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'      => 'login',
+    ),
+
     'login_description' => array(
         'title'         => _t('Login description'),
         'description'   => _t('Description text for login page side bar, html allowed'),
@@ -302,6 +311,15 @@ $config = array(
     'register_term_url' => array(
         'title'         => _t('Term and conditions page url'),
         'description'   => _t('Set term and conditions page url, if empty term and conditions check box not active'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'      => 'register',
+    ),
+
+    'register_modal_title' => array(
+        'title'         => _t('Register modal title'),
+        'description'   => _t('Title text for register modal in modal header'),
         'edit'          => 'text',
         'value'         => '',
         'filter'        => 'string',

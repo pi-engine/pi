@@ -199,22 +199,25 @@ class Form extends AbstractApi
         if (!file_exists($file)) {
             $file = Pi::path('module') . '/' . $filePath;
         }
-        $config     = include $file;
         $result     = array();
-        foreach ($config as $key => $value) {
-            if (false === $value) {
-                continue;
-            }
-            if (!is_string($key)) {
-                if (!$value) {
+
+        if(is_file($file)){
+            $config     = include $file;
+            foreach ($config as $key => $value) {
+                if (false === $value) {
                     continue;
                 }
-                if (is_string($value)) {
-                    $key    = $value;
-                    $value  = array();
+                if (!is_string($key)) {
+                    if (!$value) {
+                        continue;
+                    }
+                    if (is_string($value)) {
+                        $key    = $value;
+                        $value  = array();
+                    }
                 }
+                $result[$key] = (array) $value;
             }
-            $result[$key] = (array) $value;
         }
 
         return $result;

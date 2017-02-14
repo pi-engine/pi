@@ -1,13 +1,26 @@
 <?php
 
+$this->jQuery();
+$this->js($this->assetModule('front/jquery-ui.draggable.min.js', 'user'));
+
 $this->css($this->assetModule('front/front.css', 'user'));
 
 if (!empty(Pi::user()->config('login_description'))) {
-    $description = Pi::user()->config('login_description');
-    $class = 'col-md-6';
+    $descriptionLogin = Pi::user()->config('login_description');
+    $titleLogin = Pi::user()->config('login_modal_title');
+    $classLogin = 'col-md-6';
 } else {
-    $description = '';
-    $class = 'col-md-12';
+    $descriptionLogin = '';
+    $classLogin = 'col-md-12';
+}
+
+if (!empty(Pi::user()->config('register_description'))) {
+    $descriptionRegister = Pi::user()->config('register_description');
+    $titleRegister = Pi::user()->config('register_modal_title');
+    $classRegister = 'col-md-6';
+} else {
+    $descriptionRegister = '';
+    $classRegister = 'col-md-12';
 }
 
 /* @var \Module\User\Form\LoginForm $loginForm */
@@ -26,45 +39,52 @@ if($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?php echo __('Login / register') ?></h4>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span class="modal-action-wrapper" data-action="login"><?php echo $titleLogin ?: __('Login') ?></span>
+                    <span class="modal-action-wrapper" data-action="register"><?php echo $titleRegister ?: __('Register') ?></span>
+                </h4>
             </div>
             <div class="modal-body user-template">
-                <div class="row clearfix">
-                    <?php if (!empty($description)) { ?>
+                <div id="modal-login-wrapper" class="modal-action-wrapper row clearfix" data-action="login">
+                    <?php if (!empty($descriptionLogin)) { ?>
                         <div class="hidden-xs hidden-sm col-md-6">
-                            <?php echo $description; ?>
+                            <?php echo $descriptionLogin; ?>
                         </div>
                     <?php } ?>
-                    <div class="<?php echo $class; ?>">
+                    <div class="<?php echo $classLogin; ?>">
+                        <?php echo $this->form($loginForm, 'vertical'); ?>
 
-                        <div id="modal-login-wrapper" class="modal-action-wrapper" data-action="login">
-                            <?php echo $this->form($loginForm, 'vertical'); ?>
+                        <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
 
-                            <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
-
-                            <div class="clearfix user-action-bar">
-                                <h2><?php _e('Not already registered ?'); ?></h2>
-                                <p>
-                                    <a class="btn btn-default toggle-modal-action" title="<?php _e('Register'); ?>" href="#">
-                                        <?php _e('Register'); ?>
-                                    </a>
-                                </p>
-                            </div>
+                        <div class="clearfix user-action-bar">
+                            <h2><?php _e('Not already registered ?'); ?></h2>
+                            <p>
+                                <a class="btn btn-default toggle-modal-action" title="<?php _e('Register'); ?>" href="#">
+                                    <?php _e('Register'); ?>
+                                </a>
+                            </p>
                         </div>
+                    </div>
+                </div>
 
-                        <div id="modal-register-wrapper" class="modal-action-wrapper" data-action="register">
-                            <?php echo $this->form($registerForm, 'vertical'); ?>
+                <div id="modal-register-wrapper" class="modal-action-wrapper row clearfix" data-action="register">
+                    <?php if (!empty($descriptionRegister)) { ?>
+                        <div class="hidden-xs hidden-sm col-md-6">
+                            <?php echo $descriptionRegister; ?>
+                        </div>
+                    <?php } ?>
+                    <div class="<?php echo $classRegister; ?>">
+                        <?php echo $this->form($registerForm, 'vertical'); ?>
 
-                            <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
+                        <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
 
-                            <div class="clearfix user-action-bar">
-                                <h2><?php _e('Already registered ?'); ?></h2>
-                                <p>
-                                    <a class="btn btn-default toggle-modal-action" title="<?php _e('Login'); ?>" href="#">
-                                        <?php _e('Login'); ?>
-                                    </a>
-                                </p>
-                            </div>
+                        <div class="clearfix user-action-bar">
+                            <h2><?php _e('Already registered ?'); ?></h2>
+                            <p>
+                                <a class="btn btn-default toggle-modal-action" title="<?php _e('Login'); ?>" href="#">
+                                    <?php _e('Login'); ?>
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -77,13 +97,33 @@ if($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()
     $('#loginRegisterModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
         var action = button.data('action');
+        var anchor = button.data('redirect-anchor');
+
+        if(typeof action == 'undefined' || !action){
+            action = 'login';
+        }
+
         var modal = $(this);
         modal.find('.modal-action-wrapper').hide();
         modal.find('.modal-action-wrapper[data-action="'+action+'"]').show();
+
+        if(typeof anchor != 'undefined'){
+            modal.find('[name=redirect]').each(function(){
+                var redirectValue = $(this).val();
+
+                redirectValue = redirectValue + anchor;
+
+                $(this).val(redirectValue);
+            });
+        }
     });
 
     $('.toggle-modal-action').click(function(){
         $('#loginRegisterModal .modal-action-wrapper').toggle();
         return false;
+    });
+
+    $("#loginRegisterModal").draggable({
+        handle: ".modal-header"
     });
 </script>

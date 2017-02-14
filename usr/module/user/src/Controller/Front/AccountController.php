@@ -47,7 +47,9 @@ class AccountController extends ActionController
         $form           = new AccountForm('account');
         $data['uid']    = $uid;
         $data['id']     = $uid;
+
         $form->setData($data);
+
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setInputFilter(new AccountFilter);
