@@ -11,6 +11,7 @@
 namespace Pi\Application\Service;
 
 use Pi;
+use Zend\Http\Client;
 
 /**
  * Notification service
@@ -18,6 +19,7 @@ use Pi;
  * - Pi::service('notification')->send($to, $template, $information, $module, $uid);
  * - Pi::service('notification')->smsToUser($content, $number);
  * - Pi::service('notification')->smsToAdmin($content, $number);
+ * - Pi::service('notification')->fcm($data);
  *
  * - ToDo : push notification to mobile applications ( android and ios )
  * - ToDo : user setting for active / inactive push notification on website and mobile
@@ -28,6 +30,9 @@ use Pi;
  */
 class Notification extends AbstractService
 {
+    /** {@inheritDoc} */
+    protected $fileIdentifier = 'notification';
+
     /**
      * Is notification service available
      *
@@ -118,5 +123,70 @@ class Notification extends AbstractService
         }
 
         return Pi::api('sms', 'notification')->sendToAdmin($content, $number);
+    }
+
+    /**
+     * Google Firebase Cloud Messaging
+     *
+     * data array example
+     * $data = array(
+     *     'id'    => 123,
+     *     'title' => 'my title',
+     *     'body'  => 'my body',
+     * );
+     *
+     * @param $data
+     * @return array
+     */
+    public function fcm($data)
+    {
+        // Set result
+        $result = array(
+            'status' => 0,
+            'message' => 'Error'
+        );
+
+        // Get server key
+        $serverKey = $this->getOption('fcm_server_key');
+        if (empty($serverKey)) {
+            $result['message'] = 'Server key not set';
+            return $result;
+        }
+
+        // Get token or topic
+        $token = $this->getOption('fcm_token');
+        if (empty($token)) {
+            $result['message'] = 'Token not set';
+            return $result;
+        }
+
+        // APi url
+        $url = 'https://fcm.googleapis.com/fcm/send';
+
+        // Set field
+        $fields = array();
+        $fields['data'] = $data;
+        $fields['priority'] = 'high';
+        $fields['to'] = $token;
+
+        // Send
+        $config = array(
+            'adapter'   => 'Zend\Http\Client\Adapter\Curl',
+        );
+        $client = new Client($url, $config);
+        $headers = $client->getRequest()->getHeaders();
+        $headers->addHeaderLine('Authorization', 'key=' . $serverKey);
+        $client->setMethod('POST');
+        $client->setEncType('application/json');
+        $client->setRawBody(json_encode($fields));
+        $client->setHeaders($headers);
+        $response = $client->send();
+        if ($response->isSuccess()) {
+            $result['status'] = 1;
+            $result['message'] = 'Success';
+        } else {
+            $result['message'] = 'Error to send';
+        }
+        return $result;
     }
 }
