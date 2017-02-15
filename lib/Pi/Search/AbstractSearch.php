@@ -56,6 +56,7 @@ abstract class AbstractSearch extends AbstractApi
      * @param int           $limit
      * @param int           $offset
      * @param array         $condition
+     * @param array         $columns
      *
      * @return ResultSet
      */
@@ -63,7 +64,8 @@ abstract class AbstractSearch extends AbstractApi
         $terms,
         $limit  = 0,
         $offset = 0,
-        array $condition = array()
+        array $condition = array(),
+        array $columns = array()
     ) {
         $dataAll = array();
         $countAll = 0;
@@ -71,7 +73,7 @@ abstract class AbstractSearch extends AbstractApi
         $tables = $this->getTables();
         foreach ($tables as $table) {
             $model = $this->getModel($table);
-            $where = $this->buildCondition($terms, $condition, array(), $table);
+            $where = $this->buildCondition($terms, $condition, $columns, $table);
             $count = $model->count($where);
             if ($count) {
                 $data = $this->fetchResult($model, $where, $limit, $offset, $table);
@@ -127,7 +129,14 @@ abstract class AbstractSearch extends AbstractApi
      */
     protected function buildCondition(array $terms, array $condition = array(), array $columns = array(), $table = '')
     {
-        $columns = empty($columns) ? $this->searchIn : $columns;
+        // Set columns
+        if (empty($columns)) {
+            $columns = $this->searchIn;
+        } else {
+            $columns = array_intersect($columns, $this->searchIn);
+            $columns = empty($columns) ? $this->searchIn : $columns;
+        }
+
         $where = Pi::db()->where()->or;
         // Create search term clause
         /* foreach ($terms as $term) {
@@ -135,6 +144,7 @@ abstract class AbstractSearch extends AbstractApi
                 $where->like($column, '%' . $term . '%')->or;
             }
         } */
+
         foreach ($columns as $column) {
             foreach ($terms as $term) {
                 $where->like($column, '%' . $term . '%')->and;
