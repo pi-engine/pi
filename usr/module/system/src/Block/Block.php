@@ -276,26 +276,35 @@ class Block
 
         $result['user'] = $user;
 
-        /*
-         * Login form
-         */
-        $processPath = Pi::service('url')->assemble('user', array('module' => 'user', 'controller' => 'login', 'action' => 'process'));
-        $loginForm = Pi::api('form', 'user')->loadForm('login');
-        $loginForm->setAttribute('action', Pi::url($processPath));
+        if (Pi::service('module')->isActive('user')) {
 
-        /**
-         * Register form
-         */
-        $processPath = Pi::service('url')->assemble('user', array('module' => 'user', 'controller' => 'register'));
-        $registerForm = Pi::api('form', 'user')->loadForm('register');
-        $registerForm->setAttribute('action', Pi::url($processPath));
+            $enabledModal = Pi::user()->config('enable_modal');
+            if($enabledModal){
+                /*
+                * Login form
+                */
+                $processPath = Pi::service('url')->assemble('user', array('module' => 'user', 'controller' => 'login', 'action' => 'process'));
+                $loginForm = Pi::api('form', 'user')->loadForm('login');
+                $loginForm->setAttribute('action', Pi::url($processPath));
 
+                /**
+                 * Register form
+                 */
+                $processPath = Pi::service('url')->assemble('user', array('module' => 'user', 'controller' => 'register'));
+                $registerForm = Pi::api('form', 'user')->loadForm('register');
+                $registerForm->setAttribute('action', Pi::url($processPath));
 
-        $view = Pi::service('view');
-        $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/validator.js', 'user'));
+                $result['loginForm'] = $loginForm;
+                $result['registerForm'] = $registerForm;
+            }
 
-        $result['loginForm'] = $loginForm;
-        $result['registerForm'] = $registerForm;
+            /**
+             * Form validator JS
+             */
+            $view = Pi::service('view');
+            $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/validator.js', 'user'));
+
+        }
 
         return $result;
     }
