@@ -78,7 +78,7 @@ $config = array(
 
     'enable_modal' => array(
         'title'         => _t('Enable modal for login / register'),
-        'description'   => _t('Login / register with modal, with GET redirect (hidden input instead)'),
+        'description'   => _t('Login / register with modal, with GET redirect (hidden input instead). Modal template are located into system module, because used by user-bar template'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'int',
