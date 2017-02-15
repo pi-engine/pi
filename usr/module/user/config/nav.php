@@ -221,6 +221,17 @@ return array(
             'action'        => 'index',
         ),
 
+        'cgu'  => array(
+            'label'         => _t('CGU'),
+            'permission'    => array(
+                'resource'  => 'cgu',
+            ),
+            'route'         => 'admin',
+            'module'        => 'user',
+            'controller'    => 'cgu',
+            'action'        => 'index',
+        ),
+
         /*
         'import'  => array(
             'label'         => _t('Import'),

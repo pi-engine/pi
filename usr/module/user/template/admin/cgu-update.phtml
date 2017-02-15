@@ -1,0 +1,9 @@
+<div class="clearfix">
+    <h3><?php echo $this->escape($title); ?></h3>
+
+    <?php if($message) : ?>
+        <div class="alert alert-warning"><?php echo $this->escape($message); ?></div>
+    <?php endif; ?>
+
+    <?php echo $this->form($form); ?>
+</div>

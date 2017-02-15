@@ -87,5 +87,11 @@ return array(
                 //'admin',
             ),
         ),
+        'cgu'  => array(
+            'title'         => _a('CGU'),
+            'access'        => array(
+                //'admin',
+            ),
+        ),
     ),
 );

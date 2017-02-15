@@ -103,7 +103,27 @@ EOT;
             if (false === $status) {
                 return $status;
             }
+        }
 
+        if (version_compare($version, '1.4.6', '<')) {
+
+            $table = Pi::db()->prefix('cgu', 'user');
+            $sql =<<<'EOT'
+CREATE TABLE %s (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `version` varchar(255) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+EOT;
+            $sql = sprintf($sql, $table);
+            $status = $this->queryTable($sql);
+
+            if (false === $status) {
+                return $status;
+            }
         }
 
         return $status;

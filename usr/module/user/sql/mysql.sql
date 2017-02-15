@@ -210,3 +210,18 @@ CREATE TABLE `{log}` (
   PRIMARY KEY (`id`),
   KEY (`uid`)
 );
+
+
+
+--
+-- CGU TABLE
+--
+
+CREATE TABLE {cgu} (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `version` varchar(255) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

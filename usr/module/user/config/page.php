@@ -46,6 +46,10 @@ return array(
             'controller'    => 'inquiry',
             'permission'    => 'inquiry',
         ),
+        array(
+            'controller'    => 'cgu',
+            'permission'    => 'cgu',
+        ),
     ),
     // Front section
     'front' => array(
