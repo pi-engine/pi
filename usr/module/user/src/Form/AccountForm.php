@@ -126,6 +126,8 @@ class AccountForm extends BaseForm
                 $values['status'] = 1;
                 $values['time_join'] = time();
                 $values['newsletter'] = 1;
+                $values['email'] = null;
+                $values['mobile'] = null;
 
                 $people->assign($values);
                 $people->save();

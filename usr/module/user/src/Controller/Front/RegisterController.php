@@ -67,6 +67,7 @@ class RegisterController extends ActionController
                 } else {
                     // Complete register
                     $values = $form->getData();
+
                     $result = $this->completeRegister($values);
                     if (!empty($result['uid'])) {
                         $form = null;
@@ -537,6 +538,24 @@ class RegisterController extends ActionController
                 'name'      => $values['name'],
                 'uid'       => $uid,
             ));
+        }
+
+        // Add subscription
+        if (Pi::service('module')->isActive('subscription') && isset($values['newsletter']) && $values['newsletter'] == 1) {
+            $peopleModel = Pi::model('people', 'subscription');
+            $people = $peopleModel->createRow();
+
+            $values = array();
+            $values['campaign'] = 0;
+            $values['uid'] = $uid;
+            $values['status'] = 1;
+            $values['time_join'] = time();
+            $values['newsletter'] = 1;
+            $values['email'] = null;
+            $values['mobile'] = null;
+
+            $people->assign($values);
+            $people->save();
         }
 
         return $result;
