@@ -556,6 +556,15 @@ class RegisterController extends ActionController
 
             $people->assign($values);
             $people->save();
+
+            $log = array(
+                'uid' => $uid,
+                'module' => 'user',
+                'message' => __("User has subscribed to the newsletter"),
+                'timeline' => 'subscribe_newsletter',
+            );
+
+            Pi::api('log', 'user')->add(null, null, $log);
         }
 
         return $result;
