@@ -142,6 +142,7 @@ return array(
                         'format'        => 'yyyy-mm-dd',
                         'start_date'    => '1900-01-01',
                         'end_date'      => '2030-12-31',
+                        'startView'     => 'decade',
                     ),
                 ),
             ),
