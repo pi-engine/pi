@@ -56,6 +56,33 @@ class Log extends AbstractApi
     }
 
     /**
+     * Get timeline collection
+     * @param $uid
+     * @param $timeline
+     * @param $module
+     * @return null|\Zend\Db\ResultSet\ResultSetInterface
+     */
+    public function getTimelineCollectionByUserId($uid, $timeline, $module = null, $data = null)
+    {
+        $model = Pi::model('timeline_log', 'user');
+        $select = $model->select();
+        $select->where(array('uid' => $uid, 'timeline' => $timeline))
+            ->order('time DESC');
+
+        if($module){
+            $select->where(array('module' => $module));
+        }
+
+        if($data){
+            $select->where(array('data' => $data));
+        }
+
+        $rowset = $model->selectWith($select);
+
+        return $rowset;
+    }
+
+    /**
      * Write a log
      *
      * @param int       $uid

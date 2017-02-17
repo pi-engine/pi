@@ -67,6 +67,7 @@ class RegisterController extends ActionController
                 } else {
                     // Complete register
                     $values = $form->getData();
+
                     $result = $this->completeRegister($values);
                     if (!empty($result['uid'])) {
                         $form = null;
@@ -537,6 +538,48 @@ class RegisterController extends ActionController
                 'name'      => $values['name'],
                 'uid'       => $uid,
             ));
+        }
+
+        // Add subscription
+        if (Pi::service('module')->isActive('subscription') && isset($values['newsletter']) && $values['newsletter'] == 1) {
+            $peopleModel = Pi::model('people', 'subscription');
+            $people = $peopleModel->createRow();
+
+            $subscriptionValues = array();
+            $subscriptionValues['campaign'] = 0;
+            $subscriptionValues['uid'] = $uid;
+            $subscriptionValues['status'] = 1;
+            $subscriptionValues['time_join'] = time();
+            $subscriptionValues['newsletter'] = 1;
+            $subscriptionValues['email'] = null;
+            $subscriptionValues['mobile'] = null;
+
+            $people->assign($subscriptionValues);
+            $people->save();
+
+            $log = array(
+                'uid' => $uid,
+                'module' => 'user',
+                'message' => __("User has subscribed to the newsletter"),
+                'timeline' => 'subscribe_newsletter',
+            );
+
+            Pi::api('log', 'user')->add(null, null, $log);
+        }
+
+        // Get condition list
+        $condition = Pi::api('condition', 'user')->getLastEligibleCondition();
+
+        if($condition && isset($values['term']) && $values['term'] == 1){
+            $log = array(
+                'uid' => $uid,
+                'module' => 'user',
+                'message' => __("User has read and accept current terms and conditions. Version : " . $condition->version),
+                'data' => $condition->version,
+                'timeline' => 'accept_conditions',
+            );
+
+            Pi::api('log', 'user')->add(null, null, $log);
         }
 
         return $result;

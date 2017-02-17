@@ -86,6 +86,16 @@ HTML;
                 ->setAttribute('data-match-error', $passwordConfirmError);
         }
 
+        if(Pi::service('module')->isActive('subscription') && isset($piConfig['register_newsletter_optin']) && $piConfig['register_newsletter_optin'] == 1){
+            $this->add(array(
+                'name'       => 'newsletter',
+                'type'      => 'checkbox',
+                'attributes' => array(
+                    'description' => __('Newsletter subscription')
+                )
+            ));
+        }
+
         $this->add(array(
             'name'       => 'redirect',
             'type'       => 'hidden',

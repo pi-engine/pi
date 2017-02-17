@@ -14,13 +14,13 @@ $modalEnabled = Pi::user()->config('enable_modal');
     <ul class="nav navbar-nav<?php echo $floatClass; ?>">
         <?php if (!$block['user']['uid']) { ?>
             <li class="item-login">
-                <a href="<?php echo $modalEnabled ? '#' : Pi::api('user', 'user')->getUrl('login') ?>" data-target="#loginRegisterModal" data-action="login" <?php if($modalEnabled) : ?>data-toggle="modal"<?php endif; ?> title="<?php echo _b('Login'); ?>">
+                <a href="<?php echo $modalEnabled ? '#' : $block['user']['login'] ?>" data-target="#loginRegisterModal" data-action="login" <?php if($modalEnabled) : ?>data-toggle="modal"<?php endif; ?> title="<?php echo _b('Login'); ?>">
                     <i class="fa fa-sign-in"></i>
                     <span class="hidden-sm hidden-md"><?php echo _b('Login'); ?></span>
                 </a>
             </li>
             <li class="item-register">
-                <a href="<?php echo $modalEnabled ? '#' : Pi::api('user', 'user')->getUrl('register') ?>" data-target="#loginRegisterModal" data-action="register" <?php if($modalEnabled) : ?>data-toggle="modal"<?php endif; ?> title="<?php echo _b('Register'); ?>">
+                <a href="<?php echo $modalEnabled ? '#' : $block['user']['register'] ?>" data-target="#loginRegisterModal" data-action="register" <?php if($modalEnabled) : ?>data-toggle="modal"<?php endif; ?> title="<?php echo _b('Register'); ?>">
                     <?php echo _b('Register'); ?>
                 </a>
             </li>
@@ -337,7 +337,7 @@ $modalEnabled = Pi::user()->config('enable_modal');
 </div>
 
 <?php
-    if (!$block['user']['uid']) {
+    if ($modalEnabled && !$block['user']['uid']) {
         ob_start();
         include('partial/login-register-modal.phtml');
         $modalContent = ob_get_clean();

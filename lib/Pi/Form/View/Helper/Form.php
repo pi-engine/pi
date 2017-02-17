@@ -307,6 +307,13 @@ EOT;
             $vars['label_html']         = $parsePattern($labelPattern, $vars);
             $vars['element_html']       = $parsePattern($elementPattern, $vars);
 
+            /**
+             * If vertical and label is empty, remove label tag
+             */
+            if($style == 'vertical' && !$element->getLabel()){
+                $vars['label_html'] = '';
+            }
+
             $rendered = $parsePattern($renderPattern, $vars);
 
             return $rendered;

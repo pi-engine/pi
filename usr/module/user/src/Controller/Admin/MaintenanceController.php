@@ -88,6 +88,51 @@ class MaintenanceController extends ActionController
     }
 
     /**
+     * User log
+     */
+    public function timelineAction()
+    {
+        $uid = _get('uid');
+
+        // Check user exist
+        $isExist = Pi::api('user', 'user')->getUser($uid);
+        if (!$isExist) {
+            return $this->jumpTo404(_a('User was not found.'));
+        }
+
+        // Get user basic information and user data
+        $user = Pi::api('user', 'user')->get(
+            $uid,
+            array(
+                'identity',
+                'name',
+                'id',
+                'active',
+                'time_disabled',
+                'time_activated',
+                'time_created',
+                'ip_register',
+            )
+        );
+
+        // Time to string
+        $user['time_disabled']  = $user['time_disabled']
+            ? _date($user['time_disabled']) : 0;
+        $user['time_activated'] = $user['time_activated']
+            ? _date($user['time_activated']) : 0;
+        $user['time_created']   = $user['time_created']
+            ? _date($user['time_created']) : 0;
+
+        // Get user data
+        $last_login = Pi::user()->data()->get($uid, 'last_login');
+        $user['last_login']      = $last_login ? _date($last_login) : 0;
+        $user['last_login_ip']   = Pi::user()->data()->get($uid, 'last_login_ip');
+        $user['count_login']     = Pi::user()->data()->get($uid, 'count_login');
+
+        return $user;
+    }
+
+    /**
      * User log list
      */
     public function logListAction()

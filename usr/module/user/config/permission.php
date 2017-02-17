@@ -87,5 +87,11 @@ return array(
                 //'admin',
             ),
         ),
+        'condition'  => array(
+            'title'         => _a('Terms and conditions'),
+            'access'        => array(
+                //'admin',
+            ),
+        ),
     ),
 );

@@ -202,6 +202,14 @@ return array(
                     'action'        => '',
                     'fragment'      => '!/logs'
                 ),
+                'timeline_logs'      => array(
+                    'label'         => _t('Timeline log'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'maintenance',
+                    'action'        => '',
+                    'fragment'      => '!/timeline'
+                ),
                 'deleted'      => array(
                     'label'         => _t('Deleted users'),
                     'route'         => 'admin',
@@ -218,6 +226,17 @@ return array(
             'route'         => 'admin',
             'module'        => 'user',
             'controller'    => 'inquiry',
+            'action'        => 'index',
+        ),
+
+        'condition'  => array(
+            'label'         => _t('Terms and conditions'),
+            'permission'    => array(
+                'resource'  => 'condition',
+            ),
+            'route'         => 'admin',
+            'module'        => 'user',
+            'controller'    => 'condition',
             'action'        => 'index',
         ),
 

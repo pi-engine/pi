@@ -126,11 +126,32 @@ class AccountForm extends BaseForm
                 $values['status'] = 1;
                 $values['time_join'] = time();
                 $values['newsletter'] = 1;
+                $values['email'] = null;
+                $values['mobile'] = null;
 
                 $people->assign($values);
                 $people->save();
+
+                $log = array(
+                    'uid' => Pi::user()->getId(),
+                    'module' => 'user',
+                    'message' => __("User has subscribed to the newsletter"),
+                    'timeline' => 'subscribe_newsletter',
+                );
+
+                Pi::api('log', 'user')->add(null, null, $log);
+
             } elseif($newsletterValue == 0 && $people){
                 $people->delete();
+
+                $log = array(
+                    'uid' => Pi::user()->getId(),
+                    'module' => 'user',
+                    'message' => __("User has unsubscribed to the newsletter"),
+                    'timeline' => 'unsubscribe_newsletter',
+                );
+
+                Pi::api('log', 'user')->add(null, null, $log);
             }
         }
 

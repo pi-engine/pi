@@ -8,7 +8,7 @@ if (!empty(Pi::user()->config('login_description'))) {
     $class = 'col-md-12';
 }
 ?>
-<div class="clearfix">
+<div class="clearfix user-template">
     <div class="page-header">
         <h1><?php echo _escape($title); ?></h1>
     </div>
@@ -25,16 +25,21 @@ if (!empty(Pi::user()->config('login_description'))) {
         <?php } ?>
         <div class="<?php echo $class; ?>">
             <?php echo $this->form($form); ?>
-            <div class="user-action-bar">
-                <div class="col-md-offset-2 col-md-10">
-                    <ul class="list-inline">
-                        <li>
-                            <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
-                        </li>
-                        <li>
-                            <a title="<?php _e('Register'); ?>" href="<?php echo Pi::service('user')->getUrl('register'); ?>"><?php _e('Register'); ?></a>
-                        </li>
-                    </ul>
+            <div class="clearfix">
+                <div class="col-md-6 col-md-offset-3">
+                    <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>">
+                        <?php _e('Find password'); ?>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix user-action-bar">
+                <div class="col-md-6 col-md-offset-3">
+                    <h2><?php _e('Not registered yet ?'); ?></h2>
+                    <p>
+                        <a class="btn btn-default" title="<?php _e('Register'); ?>" href="<?php echo Pi::service('user')->getUrl('register'); ?>">
+                            <?php _e('Register'); ?>
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>

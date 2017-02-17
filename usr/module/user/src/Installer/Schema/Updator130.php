@@ -42,6 +42,11 @@ class Updator130 extends AbstractUpdator
      */
     protected function from110($version)
     {
+        /**
+         * Keep appended string from version number if user module is customized
+         */
+        $version = preg_replace('#\+(.*)$#', '', $version);
+
         $status = true;
 
         if (version_compare($version, '1.3.3', '<')) {
@@ -103,7 +108,41 @@ EOT;
             if (false === $status) {
                 return $status;
             }
+        }
 
+        if (version_compare($version, '1.4.6', '<')) {
+
+            $table = Pi::db()->prefix('condition', 'user');
+            $sql =<<<'EOT'
+CREATE TABLE %s (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `version` varchar(255) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active_at` timestamp NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+EOT;
+            $sql = sprintf($sql, $table);
+            $status = $this->queryTable($sql);
+
+            if (false === $status) {
+                return $status;
+            }
+        }
+
+        if (version_compare($version, '1.4.7', '<')) {
+
+            $table = Pi::db()->prefix('timeline_log', 'user');
+            $sql =<<<'EOT'
+ALTER TABLE %s ADD `data` VARCHAR(255) NOT NULL AFTER `message`;
+EOT;
+            $sql = sprintf($sql, $table);
+            $status = $this->queryTable($sql);
+
+            if (false === $status) {
+                return $status;
+            }
         }
 
         return $status;

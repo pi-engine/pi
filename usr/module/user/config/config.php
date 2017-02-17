@@ -78,7 +78,7 @@ $config = array(
 
     'enable_modal' => array(
         'title'         => _t('Enable modal for login / register'),
-        'description'   => _t('Login / register with modal, with GET redirect (hidden input instead)'),
+        'description'   => _t('Login / register with modal, with GET redirect (hidden input instead). Modal template are located into system module, because used by user-bar template'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'int',
@@ -222,6 +222,15 @@ $config = array(
     'register_disable'  => array(
         'title'         => _t('Register disable'),
         'description'   => _t('Disable user registration'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'int',
+        'category'      => 'register',
+    ),
+
+    'register_newsletter_optin'  => array(
+        'title'         => _t('Add newsletter optin when registering'),
+        'description'   => _t('Whatever the value, newletter optin will be always available on User Account, if Subscription module is installed'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'int',

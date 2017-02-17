@@ -167,6 +167,7 @@ CREATE TABLE `{timeline_log}` (
   `timeline`        varchar(64)     NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
   `message`         text,
+  `data`        varchar(64)     NOT NULL    default '',
   `link`            varchar(255)    NOT NULL    default '',
   `time`            int(11)         unsigned    NOT NULL,
 
@@ -210,3 +211,18 @@ CREATE TABLE `{log}` (
   PRIMARY KEY (`id`),
   KEY (`uid`)
 );
+
+
+
+--
+-- CGU TABLE
+--
+
+CREATE TABLE {condition} (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `version` varchar(255) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active_at` timestamp NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

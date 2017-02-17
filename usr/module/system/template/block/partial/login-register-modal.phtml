@@ -39,10 +39,10 @@ if($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">
+                <div class="modal-title" id="myModalLabel">
                     <span class="modal-action-wrapper" data-action="login"><?php echo $titleLogin ?: __('Login') ?></span>
                     <span class="modal-action-wrapper" data-action="register"><?php echo $titleRegister ?: __('Register') ?></span>
-                </h4>
+                </div>
             </div>
             <div class="modal-body user-template">
                 <div id="modal-login-wrapper" class="modal-action-wrapper row clearfix" data-action="login">
@@ -57,7 +57,7 @@ if($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()
                         <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
 
                         <div class="clearfix user-action-bar">
-                            <h2><?php _e('Not already registered ?'); ?></h2>
+                            <div class="user-action-bar-title"><?php _e('Not already registered ?'); ?></div>
                             <p>
                                 <a class="btn btn-default toggle-modal-action" title="<?php _e('Register'); ?>" href="#">
                                     <?php _e('Register'); ?>
@@ -76,10 +76,8 @@ if($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()
                     <div class="<?php echo $classRegister; ?>">
                         <?php echo $this->form($registerForm, 'vertical'); ?>
 
-                        <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
-
                         <div class="clearfix user-action-bar">
-                            <h2><?php _e('Already registered ?'); ?></h2>
+                            <div class="user-action-bar-title"><?php _e('Already registered ?'); ?></div>
                             <p>
                                 <a class="btn btn-default toggle-modal-action" title="<?php _e('Login'); ?>" href="#">
                                     <?php _e('Login'); ?>
