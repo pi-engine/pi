@@ -13,6 +13,7 @@ use Pi;
 use Pi\Application\Api\AbstractApi;
 use Pi\Db\Sql\Where;
 use Pi\User\Model\Local as UserModel;
+use Zend\Db\Sql\Expression;
 
 /**
  * Cgu API
@@ -33,14 +34,30 @@ class Condition extends AbstractApi
      * Get conditions list, order by created_at date
      * @return null|\Zend\Db\ResultSet\ResultSetInterface
      */
-    public function getConditionList()
+    public function getConditionList($filters = array())
     {
         // Get info
         $order = array('created_at DESC');
-        $select = Pi::model('condition', $this->getModule())->select()->order($order);
+        $select = Pi::model('condition', $this->getModule())->select()->order($order)->where($filters);
         $rowset = Pi::model('condition', $this->getModule())->selectWith($select);
 
         return $rowset;
+    }
+
+    /**
+     * Get last condition by active_at order
+     */
+    public function getLastEligibleCondition()
+    {
+        $model = Pi::model('condition', $this->getModule());
+
+        $select = $model->select()->order(array('active_at DESC'));
+        $select->where->lessThanOrEqualTo('active_at', new Expression("NOW()"));
+        $rowset = $model->selectWith($select);
+
+        $condition = $rowset->current();
+
+        return $condition;
     }
 
     /**

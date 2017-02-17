@@ -55,7 +55,7 @@ class ConditionForm extends BaseForm
             'attributes' => array(
                 'type' => 'file',
                 'description' => 'PDF only',
-                'required' => true,
+                'required' => false,
             )
         ));
 

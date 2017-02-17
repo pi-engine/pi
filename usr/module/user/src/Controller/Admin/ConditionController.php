@@ -28,7 +28,7 @@ class ConditionController extends ActionController
      */
     public function indexAction()
     {
-        // Get package list
+        // Get condition list
         $list = Pi::api('condition', 'user')->getConditionList();
         // Set view
         $this->view()->setTemplate('condition');
