@@ -228,6 +228,15 @@ $config = array(
         'category'      => 'register',
     ),
 
+    'register_newsletter_optin'  => array(
+        'title'         => _t('Add newsletter optin when registering'),
+        'description'   => _t('Whatever the value, newletter optin will be always available on User Account, if Subscription module is installed'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'int',
+        'category'      => 'register',
+    ),
+
     'register_captcha'  => array(
         'title'         => _t('Register CAPTCHA'),
         'description'   => _t('Enable CAPTCHA for user registration'),
