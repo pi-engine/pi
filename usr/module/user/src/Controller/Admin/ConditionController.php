@@ -11,16 +11,16 @@ namespace Module\User\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\User\Form\CguFilter;
-use Module\User\Form\CguForm;
+use Module\User\Form\ConditionFilter;
+use Module\User\Form\ConditionForm;
 use Pi\File\Transfer\Upload;
 
 /**
-* Cgu controller
+* Conditions controller
 *
 * @author Frédéric TISSOT <contact@espritdev.fr>
 */
-class CguController extends ActionController
+class ConditionController extends ActionController
 {
     /**
      * Default action
@@ -29,15 +29,16 @@ class CguController extends ActionController
     public function indexAction()
     {
         // Get package list
-        $list = Pi::api('cgu', 'user')->getCguList();
+        $list = Pi::api('condition', 'user')->getConditionList();
         // Set view
-        $this->view()->setTemplate('cgu');
+        $this->view()->setTemplate('condition');
         $this->view()->assign('list', $list);
     }
 
     public function updateAction()
     {
         $message = null;
+        $condition = null;
 
         if (!Pi::service('module')->isActive('user')) {
             $message = __('Please install user module !');
@@ -48,11 +49,11 @@ class CguController extends ActionController
         $id = $this->params('id');
 
         // Set form
-        $form = new CguForm('cgu');
+        $form = new ConditionForm('condition');
         $form->setAttribute('enctype', 'multipart/form-data');
 
         if ($id) {
-            $cgu = $this->getModel('cgu')->find($id)->toArray();
+            $condition = $this->getModel('condition')->find($id)->toArray();
             $form->get('filename')->setAttribute('required', null);
         }
 
@@ -60,7 +61,7 @@ class CguController extends ActionController
             $data = $this->request->getPost();
             $file = $this->request->getFiles();
 
-            $form->setInputFilter(new CguFilter());
+            $form->setInputFilter(new ConditionFilter());
 
             $form->setData($data);
             if ($form->isValid()) {
@@ -71,13 +72,13 @@ class CguController extends ActionController
                 // upload image
                 if (!empty($file['filename']['name'])) {
                     // Set upload path
-                    $destinationPath = Pi::path('upload/cgu');
+                    $destinationPath = Pi::path('upload/condition');
                     // Image name
                     // Upload
 
                     $finalPath = $destinationPath . '/' . $file['filename']['name'];
 
-                    if(!is_file($finalPath) || ($id && $cgu['filename'] == $file['filename']['name'])){
+                    if(!is_file($finalPath) || ($id && $condition['filename'] == $file['filename']['name'])){
                         $uploader = new Upload;
                         $uploader->setDestination($destinationPath);
                         $uploader->setRename($file['filename']['name']);
@@ -111,27 +112,27 @@ class CguController extends ActionController
 
                     // Save values
                     if (!empty($values['id'])) {
-                        $row = $this->getModel('cgu')->find($values['id']);
+                        $row = $this->getModel('condition')->find($values['id']);
                     } else {
-                        $row = $this->getModel('cgu')->createRow();
+                        $row = $this->getModel('condition')->createRow();
                     }
                     $row->assign($values);
                     $row->save();
 
-                    $message = __('Cgu data saved successfully.');
+                    $message = __('Condition data saved successfully.');
                     $url = array('action' => 'index');
                     $this->jump($url, $message);
                 }
             }
         } else {
             if ($id) {
-                $form->setData($cgu);
+                $form->setData($condition);
             }
         }
         // Set view
-        $this->view()->setTemplate('cgu-update');
+        $this->view()->setTemplate('condition-update');
         $this->view()->assign('form', $form);
-        $this->view()->assign('title', __('Add cgu'));
+        $this->view()->assign('title', __('Add condition'));
         $this->view()->assign('message', $message);
     }
 
@@ -139,12 +140,12 @@ class CguController extends ActionController
         // Get id
         $id = $this->params('id');
 
-        $return = Pi::api('cgu', 'user')->removeCgu($id);
+        $return = Pi::api('condition', 'user')->removeCondition($id);
 
         if($return){
-            $this->jump(array('action' => 'index'), __('Cgu has been deleted successfully'));
+            $this->jump(array('action' => 'index'), __('Condition file has been deleted successfully'));
         } else {
-            $this->jump(array('action' => 'index'), __('Error occured during cgu removing'));
+            $this->jump(array('action' => 'index'), __('Error occured during condition file removing'));
         }
     }
 }

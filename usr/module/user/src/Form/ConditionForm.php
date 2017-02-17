@@ -15,12 +15,12 @@ namespace Module\User\Form;
 use Pi;
 use Pi\Form\Form as BaseForm;
 
-class CguForm extends BaseForm
+class ConditionForm extends BaseForm
 {
     public function getInputFilter()
     {
         if (!$this->filter) {
-            $this->filter = new CguFilter;
+            $this->filter = new ConditionFilter;
         }
         return $this->filter;
     }
@@ -42,7 +42,7 @@ class CguForm extends BaseForm
             ),
             'attributes' => array(
                 'type' => 'text',
-                'description' => '',
+                'description' => 'xx.xx format only',
                 'required' => true,
             )
         ));

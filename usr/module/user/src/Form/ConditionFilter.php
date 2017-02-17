@@ -15,7 +15,7 @@ namespace Module\User\Form;
 use Pi;
 use Zend\InputFilter\InputFilter;
 
-class CguFilter extends InputFilter
+class ConditionFilter extends InputFilter
 {
     public function __construct($option = array())
     {
@@ -31,6 +31,14 @@ class CguFilter extends InputFilter
             'filters' => array(
                 array(
                     'name' => 'StringTrim',
+                ),
+            ),
+            'validators'    => array(
+                array(
+                    'name'      => 'Regex',
+                    'options'   => array(
+                        'pattern'   => '/[0-9*].[0-9*]/',
+                    ),
                 ),
             ),
         ));

@@ -47,8 +47,8 @@ return array(
             'permission'    => 'inquiry',
         ),
         array(
-            'controller'    => 'cgu',
-            'permission'    => 'cgu',
+            'controller'    => 'condition',
+            'permission'    => 'condition',
         ),
     ),
     // Front section

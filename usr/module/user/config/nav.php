@@ -221,14 +221,14 @@ return array(
             'action'        => 'index',
         ),
 
-        'cgu'  => array(
-            'label'         => _t('CGU'),
+        'condition'  => array(
+            'label'         => _t('Terms and conditions'),
             'permission'    => array(
-                'resource'  => 'cgu',
+                'resource'  => 'condition',
             ),
             'route'         => 'admin',
             'module'        => 'user',
-            'controller'    => 'cgu',
+            'controller'    => 'condition',
             'action'        => 'index',
         ),
 

@@ -42,6 +42,11 @@ class Updator130 extends AbstractUpdator
      */
     protected function from110($version)
     {
+        /**
+         * Keep appended string from version number if user module is customized
+         */
+        $version = preg_replace('#\+(.*)$#', '', $version);
+
         $status = true;
 
         if (version_compare($version, '1.3.3', '<')) {
@@ -107,7 +112,7 @@ EOT;
 
         if (version_compare($version, '1.4.6', '<')) {
 
-            $table = Pi::db()->prefix('cgu', 'user');
+            $table = Pi::db()->prefix('condition', 'user');
             $sql =<<<'EOT'
 CREATE TABLE %s (
   `id` int(11) NOT NULL AUTO_INCREMENT,

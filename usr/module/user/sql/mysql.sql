@@ -217,7 +217,7 @@ CREATE TABLE `{log}` (
 -- CGU TABLE
 --
 
-CREATE TABLE {cgu} (
+CREATE TABLE {condition} (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,

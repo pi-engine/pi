@@ -19,7 +19,7 @@ use Pi\User\Model\Local as UserModel;
  *
  * @author Frédéric TISSOT <contact@espritdev.fr>
  */
-class Cgu extends AbstractApi
+class Condition extends AbstractApi
 {
     /**
      * @{inheritDoc}
@@ -30,30 +30,30 @@ class Cgu extends AbstractApi
     protected $route = 'user';
 
     /**
-     * Get cgu list, order by created_at date
+     * Get conditions list, order by created_at date
      * @return null|\Zend\Db\ResultSet\ResultSetInterface
      */
-    public function getCguList()
+    public function getConditionList()
     {
         // Get info
         $order = array('created_at DESC');
-        $select = Pi::model('cgu', $this->getModule())->select()->order($order);
-        $rowset = Pi::model('cgu', $this->getModule())->selectWith($select);
+        $select = Pi::model('condition', $this->getModule())->select()->order($order);
+        $rowset = Pi::model('condition', $this->getModule())->selectWith($select);
 
         return $rowset;
     }
 
     /**
-     * Remove Cgu
+     * Remove condition
      * @param $id
      * @return boolean
      */
-    public function removeCgu($id)
+    public function removeCondition($id)
     {
-        $cgu = Pi::model('cgu', 'user')->find($id);
+        $condition = Pi::model('condition', 'user')->find($id);
 
-        if($cgu){
-            $cgu->delete();
+        if($condition){
+            $condition->delete();
             return true;
         } else {
             return false;

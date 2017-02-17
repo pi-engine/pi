@@ -87,8 +87,8 @@ return array(
                 //'admin',
             ),
         ),
-        'cgu'  => array(
-            'title'         => _a('CGU'),
+        'condition'  => array(
+            'title'         => _a('Terms and conditions'),
             'access'        => array(
                 //'admin',
             ),
