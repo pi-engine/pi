@@ -53,4 +53,30 @@ class ConditionController extends ActionController
         }
         exit;
     }
+
+    /**
+     * Accept last version of Term and condition
+     */
+    public function acceptAction()
+    {
+        Pi::service('log')->mute();
+
+        // Get condition list
+        $condition = Pi::api('condition', 'user')->getLastEligibleCondition();
+        $uid = Pi::user()->getId();
+
+        if($condition && $uid){
+            $log = array(
+                'uid' => $uid,
+                'module' => '',
+                'message' => __("User has read and accept current terms and conditions on checkout. Version : " . $condition->version),
+                'data' => $condition->version,
+                'timeline' => 'accept_conditions',
+            );
+
+            Pi::api('log', 'user')->add(null, null, $log);
+        }
+
+        exit;
+    }
 }
