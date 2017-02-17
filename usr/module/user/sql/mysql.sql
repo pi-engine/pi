@@ -167,6 +167,7 @@ CREATE TABLE `{timeline_log}` (
   `timeline`        varchar(64)     NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
   `message`         text,
+  `data`        varchar(64)     NOT NULL    default '',
   `link`            varchar(255)    NOT NULL    default '',
   `time`            int(11)         unsigned    NOT NULL,
 

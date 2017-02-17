@@ -131,6 +131,20 @@ EOT;
             }
         }
 
+        if (version_compare($version, '1.4.7', '<')) {
+
+            $table = Pi::db()->prefix('timeline_log', 'user');
+            $sql =<<<'EOT'
+ALTER TABLE %s ADD `data` VARCHAR(255) NOT NULL AFTER `message`;
+EOT;
+            $sql = sprintf($sql, $table);
+            $status = $this->queryTable($sql);
+
+            if (false === $status) {
+                return $status;
+            }
+        }
+
         return $status;
     }
 }

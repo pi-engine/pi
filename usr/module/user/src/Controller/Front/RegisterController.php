@@ -575,6 +575,7 @@ class RegisterController extends ActionController
                 'uid' => $uid,
                 'module' => 'user',
                 'message' => __("User has read and accept current terms and conditions. Version : " . $condition->version),
+                'data' => $condition->version,
                 'timeline' => 'accept_conditions',
             );
 
