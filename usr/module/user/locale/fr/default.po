@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-02-20 11:20+0100\n"
-"PO-Revision-Date: 2017-02-20 11:20+0100\n"
+"POT-Creation-Date: 2017-02-20 11:32+0100\n"
+"PO-Revision-Date: 2017-02-20 11:33+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -819,6 +819,10 @@ msgstr "Editer"
 #: template/admin/condition.phtml:32 template/admin/condition.phtml:34
 msgid "Remove"
 msgstr "Supprimer"
+
+#: template/admin/condition.phtml:44
+msgid "Shortcut : latest version of term and condition is available from"
+msgstr "Shortcut : la dernière version des CGU/CGV se trouve à cette adresse"
 
 #: template/front/account-index.phtml:21
 msgid "Verify identity"
