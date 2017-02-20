@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-02-15 11:03+0100\n"
-"PO-Revision-Date: 2017-02-15 11:03+0100\n"
+"POT-Creation-Date: 2017-02-20 11:25+0100\n"
+"PO-Revision-Date: 2017-02-20 11:25+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -112,8 +112,8 @@ msgstr "Connexion utilisateur"
 
 #: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:119
 #: template/block/partial/login-register-modal.phtml:43
-#: template/block/partial/login-register-modal.phtml:84
-#: template/block/partial/login-register-modal.phtml:85
+#: template/block/partial/login-register-modal.phtml:82
+#: template/block/partial/login-register-modal.phtml:83
 #: template/front/login-logout.phtml:13 template/front/register.phtml:6
 msgid "Login"
 msgstr "Connexion"
@@ -161,7 +161,6 @@ msgstr ""
 #: src/Controller/Front/PasswordController.php:128
 #: src/Form/FindPasswordForm.php:49
 #: template/block/partial/login-register-modal.phtml:57
-#: template/block/partial/login-register-modal.phtml:79
 #: template/front/login.phtml:17 template/front/password-find.phtml:2
 #: template/front/register.phtml:5
 msgid "Find password"
@@ -617,7 +616,7 @@ msgstr "Personnaliser"
 msgid "Not already registered ?"
 msgstr "Pas encore inscrit ?"
 
-#: template/block/partial/login-register-modal.phtml:82
+#: template/block/partial/login-register-modal.phtml:80
 msgid "Already registered ?"
 msgstr "Déjà inscrit ?"
 
