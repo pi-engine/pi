@@ -58,16 +58,20 @@ class Log extends AbstractApi
     /**
      * Get timeline collection
      * @param $uid
-     * @param $timeline
+     * @param $action
      * @param $module
      * @return null|\Zend\Db\ResultSet\ResultSetInterface
      */
-    public function getTimelineCollectionByUserId($uid, $timeline, $module = null, $data = null)
+    public function getLogCollectionByUserId($uid, $action, $module = null, $data = null)
     {
-        $model = Pi::model('timeline_log', 'user');
+        $model = Pi::model('log', 'user');
         $select = $model->select();
-        $select->where(array('uid' => $uid, 'timeline' => $timeline))
+        $select->where(array('uid' => $uid))
             ->order('time DESC');
+
+        $select->where->addPredicate(
+            new \Zend\Db\Sql\Predicate\Like('action', $action . '%')
+        );
 
         if($module){
             $select->where(array('module' => $module));
@@ -97,7 +101,7 @@ class Log extends AbstractApi
         if (!isset($log['time'])) {
             $log['time'] = time();
         }
-        $row = Pi::model('timeline_log', 'user')->createRow($log);
+        $row = Pi::model('log', 'user')->createRow($log);
         $row->save();
 
         return true;
