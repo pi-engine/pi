@@ -273,7 +273,7 @@ class Url extends AbstractService
      *
      * @return void
      */
-    public function redirect($url, $return = false)
+    public function redirect($url, $return = false, $returnCode = 302)
     {
         if ($return) {
             $requestUri = $this->getRequestUri();
@@ -286,7 +286,7 @@ class Url extends AbstractService
 
         $response = Pi::engine()->application()->getResponse();
         $response->getHeaders()->addHeaderLine('Location', $url);
-        $response->setStatusCode(302);
+        $response->setStatusCode($returnCode);
         $response->send();
         exit();
     }

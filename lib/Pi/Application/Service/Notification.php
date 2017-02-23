@@ -19,9 +19,8 @@ use Zend\Http\Client;
  * - Pi::service('notification')->send($to, $template, $information, $module, $uid);
  * - Pi::service('notification')->smsToUser($content, $number);
  * - Pi::service('notification')->smsToAdmin($content, $number);
- * - Pi::service('notification')->fcm($data);
+ * - Pi::service('notification')->fcm($data, $option);
  *
- * - ToDo : push notification to mobile applications ( android and ios )
  * - ToDo : user setting for active / inactive push notification on website and mobile
  * - ToDo : improve send sms on notification module and support local
  * - Todo : improve notification module to support custom notification for change module contents
@@ -127,18 +126,37 @@ class Notification extends AbstractService
 
     /**
      * Google Firebase Cloud Messaging
+     * more information on : https://firebase.google.com/docs/cloud-messaging
      *
-     * data array example
+     *
+     *
+     *
+     * Data is required for send message or notification as array
+     *
      * $data = array(
      *     'id'    => 123,
      *     'title' => 'my title',
      *     'body'  => 'my body',
      * );
      *
+     *
+     *
+     *
+     * You need update /var/config/service.notification.php and set server key / token,
+     * Option not required , but you can set custom setting if needed
+     *
+     * $option = array(
+     *     'priority'   => 'high',
+     *     'serverKey'  => 'SET_SERVER_KEY_HERE',
+     *     'token'      => '/topics/news',
+     * );
+     *
+     *
      * @param $data
+     * @param $option
      * @return array
      */
-    public function fcm($data)
+    public function fcm($data, $option = array())
     {
         // Set result
         $result = array(
@@ -146,16 +164,19 @@ class Notification extends AbstractService
             'message' => 'Error'
         );
 
+        // Check option priority
+        $option['priority'] = isset($option['priority']) ? $option['priority'] : 'high';
+
         // Get server key
-        $serverKey = $this->getOption('fcm_server_key');
-        if (empty($serverKey)) {
+        $option['serverKey'] = isset($option['serverKey']) ? $option['serverKey'] : $this->getOption('fcm_server_key');
+        if (empty($option['serverKey'])) {
             $result['message'] = 'Server key not set';
             return $result;
         }
 
         // Get token or topic
-        $token = $this->getOption('fcm_token');
-        if (empty($token)) {
+        $option['token'] = isset($option['token']) ? $option['token'] : $this->getOption('fcm_token');
+        if (empty($option['token'])) {
             $result['message'] = 'Token not set';
             return $result;
         }
@@ -165,9 +186,9 @@ class Notification extends AbstractService
 
         // Set field
         $fields = array();
+        $fields['priority'] = $option['priority'];
+        $fields['to'] = $option['token'];
         $fields['data'] = $data;
-        $fields['priority'] = 'high';
-        $fields['to'] = $token;
 
         // Send
         $config = array(
@@ -175,7 +196,7 @@ class Notification extends AbstractService
         );
         $client = new Client($url, $config);
         $headers = $client->getRequest()->getHeaders();
-        $headers->addHeaderLine('Authorization', 'key=' . $serverKey);
+        $headers->addHeaderLine('Authorization', 'key=' . $option['serverKey']);
         $client->setMethod('POST');
         $client->setEncType('application/json');
         $client->setRawBody(json_encode($fields));
@@ -184,6 +205,7 @@ class Notification extends AbstractService
         if ($response->isSuccess()) {
             $result['status'] = 1;
             $result['message'] = 'Success';
+            $result['fields'] = $fields;
         } else {
             $result['message'] = 'Error to send';
         }

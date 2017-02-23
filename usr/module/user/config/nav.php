@@ -202,6 +202,14 @@ return array(
                     'action'        => '',
                     'fragment'      => '!/logs'
                 ),
+                'timeline_logs'      => array(
+                    'label'         => _t('Timeline log'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'maintenance',
+                    'action'        => '',
+                    'fragment'      => '!/timeline'
+                ),
                 'deleted'      => array(
                     'label'         => _t('Deleted users'),
                     'route'         => 'admin',

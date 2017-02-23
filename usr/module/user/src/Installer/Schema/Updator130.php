@@ -119,7 +119,7 @@ CREATE TABLE %s (
   `version` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `active_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active_at` timestamp NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 EOT;

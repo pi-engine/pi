@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-02-09 10:11+0100\n"
-"PO-Revision-Date: 2017-02-09 14:01+0100\n"
+"POT-Creation-Date: 2017-02-20 11:25+0100\n"
+"PO-Revision-Date: 2017-02-20 11:25+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -106,12 +106,14 @@ msgid "You have %d times to try."
 msgstr "Il vous reste %d  essais"
 
 #: src/Controller/Front/LoginController.php:88
-#: template/block/partial/login-register-modal.phtml:19
 #: template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr "Connexion utilisateur"
 
-#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:151
+#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:119
+#: template/block/partial/login-register-modal.phtml:43
+#: template/block/partial/login-register-modal.phtml:82
+#: template/block/partial/login-register-modal.phtml:83
 #: template/front/login-logout.phtml:13 template/front/register.phtml:6
 msgid "Login"
 msgstr "Connexion"
@@ -157,8 +159,8 @@ msgstr ""
 
 #: src/Controller/Front/PasswordController.php:127
 #: src/Controller/Front/PasswordController.php:128
-#: src/Form/FindPasswordForm.php:79
-#: template/block/partial/login-register-modal.phtml:35
+#: src/Form/FindPasswordForm.php:49
+#: template/block/partial/login-register-modal.phtml:57
 #: template/front/login.phtml:17 template/front/password-find.phtml:2
 #: template/front/register.phtml:5
 msgid "Find password"
@@ -190,7 +192,7 @@ msgid "Username"
 msgstr "Nom de Compte"
 
 #: src/Controller/Front/ProfileController.php:59
-#: src/Form/FindPasswordForm.php:61
+#: src/Form/FindPasswordForm.php:28
 msgid "Email"
 msgstr "Email"
 
@@ -202,7 +204,7 @@ msgstr "Pseudo"
 msgid "Role"
 msgstr "Rôle"
 
-#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:94
+#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:61
 #: src/Form/RegisterForm.php:65
 msgid "Password"
 msgstr "Mot de passe"
@@ -220,7 +222,9 @@ msgstr "Inscription du compte utilisateur"
 
 #: src/Controller/Front/RegisterController.php:52
 #: src/Controller/Front/RegisterController.php:113
-#: template/block/partial/login-register-modal.phtml:38
+#: template/block/partial/login-register-modal.phtml:44
+#: template/block/partial/login-register-modal.phtml:62
+#: template/block/partial/login-register-modal.phtml:63
 #: template/front/login-logout.phtml:14 template/front/login.phtml:20
 msgid "Register"
 msgstr "S'inscrire"
@@ -347,11 +351,7 @@ msgstr "Paramètres"
 msgid "None"
 msgstr "Aucun"
 
-#: src/Form/LoginForm.php:110
-msgid "Remember me"
-msgstr "Se souvenir"
-
-#: src/Form/LoginForm.php:114
+#: src/Form/LoginForm.php:82
 msgid "Remember login status"
 msgstr "Se souvenir de moi"
 
@@ -612,6 +612,14 @@ msgstr "Reconstruire"
 msgid "Customize"
 msgstr "Personnaliser"
 
+#: template/block/partial/login-register-modal.phtml:60
+msgid "Not already registered ?"
+msgstr "Pas encore inscrit ?"
+
+#: template/block/partial/login-register-modal.phtml:80
+msgid "Already registered ?"
+msgstr "Déjà inscrit ?"
+
 #: template/front/login-disabled.phtml:5
 msgid "Sorry, login is temporarily disabled. Please come back later."
 msgstr ""
@@ -692,6 +700,12 @@ msgstr "vous connecter"
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr "Vous vous êtes inscrits avec succès, merci d'aller à %s ou %s."
+
+#~ msgid "Login / register"
+#~ msgstr "Connexion / S'inscrire"
+
+#~ msgid "Remember me"
+#~ msgstr "Se souvenir"
 
 #~ msgid "Please type the word"
 #~ msgstr "Merci de saisir les caractères affichés"

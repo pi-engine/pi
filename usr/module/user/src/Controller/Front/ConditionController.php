@@ -53,4 +53,28 @@ class ConditionController extends ActionController
         }
         exit;
     }
+
+    /**
+     * Accept last version of Term and condition
+     */
+    public function acceptAction()
+    {
+        Pi::service('log')->mute();
+
+        // Get condition list
+        $condition = Pi::api('condition', 'user')->getLastEligibleCondition();
+        $uid = Pi::user()->getId();
+
+        if($condition && $uid){
+            $log = array(
+                'uid' => $uid,
+                'data' => $condition->version,
+                'action' => 'accept_conditions_from_bar',
+            );
+
+            Pi::api('log', 'user')->add(null, null, $log);
+        }
+
+        exit;
+    }
 }

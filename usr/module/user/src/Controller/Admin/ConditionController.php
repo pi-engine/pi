@@ -81,9 +81,10 @@ class ConditionController extends ActionController
                     if(!is_file($finalPath) || ($id && $condition['filename'] == $file['filename']['name'])){
                         $uploader = new Upload;
                         $uploader->setDestination($destinationPath);
-                        $uploader->setRename($file['filename']['name']);
+                        $uploader->setRename(Pi::api('condition', 'user')->rename($file['filename']['name']));
                         $uploader->setExtension('pdf');
                         $uploader->setSize($this->config('image_size'));
+
 
                         if ($uploader->isValid()) {
                             $uploader->receive();
@@ -101,7 +102,10 @@ class ConditionController extends ActionController
                 }
 
                 if($isValid){
-                    if (isset($values['filename']) && $values['filename'] == '') {
+
+                    var_dump(isset($values['filename']));
+
+                    if (!isset($values['filename']) || (isset($values['filename']) && $values['filename'] == '')) {
                         unset($values['filename']);
                     }
 
@@ -116,6 +120,7 @@ class ConditionController extends ActionController
                     } else {
                         $row = $this->getModel('condition')->createRow();
                     }
+
                     $row->assign($values);
                     $row->save();
 
