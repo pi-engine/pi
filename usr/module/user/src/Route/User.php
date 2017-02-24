@@ -31,4 +31,13 @@ class User extends UserRoute
         'controller'    => 'index',
         'action'        => 'index'
     );
+
+    public function assemble(array $params = array(), array $options = array())
+    {
+        $url = parent::assemble($params, $options);
+
+        $finalUrl = rtrim($url, '/');
+
+        return $finalUrl;
+    }
 }

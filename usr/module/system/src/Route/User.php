@@ -259,6 +259,8 @@ class User extends Standard
             $url = $this->prefix . $urlSuffix;
         }
 
-        return $url;
+        $finalUrl = rtrim($url, '/');
+
+        return $finalUrl;
     }
 }
