@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2017-02-09 14:33+0100\n"
-"PO-Revision-Date: 2017-02-09 14:33+0100\n"
+"POT-Creation-Date: 2017-02-26 21:55+0100\n"
+"PO-Revision-Date: 2017-02-26 21:56+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -33,7 +33,7 @@ msgstr "Mise à niveau du Thème réussie."
 msgid "Theme asset publish failed."
 msgstr "La publication de la ressource Theme a échoué."
 
-#: lib/Pi/Application/Service/Comment.php:548
+#: lib/Pi/Application/Service/Comment.php:552
 msgid "Posted a new comment."
 msgstr "A publié un nouveau commentaire."
 
@@ -283,11 +283,11 @@ msgstr "Cliquez pour rafraîchir le CAPTCHA"
 msgid "Required"
 msgstr "Requis"
 
-#: lib/Pi/Form/View/Helper/Form.php:476
+#: lib/Pi/Form/View/Helper/Form.php:483
 msgid "Close"
 msgstr "Fermer"
 
-#: lib/Pi/Form/View/Helper/Form.php:477
+#: lib/Pi/Form/View/Helper/Form.php:484
 msgid "Form"
 msgstr "Formulaire"
 
@@ -320,6 +320,20 @@ msgstr ""
 #: lib/Pi/User/Model/AbstractModel.php:239
 msgid "Guest"
 msgstr "Invité"
+
+#: lib/Pi/View/Helper/Conditions.php:39
+msgid "New terms and conditions are available. Please accept them."
+msgstr ""
+"De nouvelles conditions générales d'utilisation et de vente sont "
+"disponibles. Merci de les accepter pour pouvoir continuer."
+
+#: lib/Pi/View/Helper/Conditions.php:40
+msgid "I agree"
+msgstr "J'accepte"
+
+#: lib/Pi/View/Helper/Conditions.php:41
+msgid "Read Term and conditions"
+msgstr "Lite des CGU/CGV"
 
 #: lib/Pi/View/Helper/GoogleMap.php:208
 msgid "Choose a location"
