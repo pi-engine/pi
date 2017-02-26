@@ -47,7 +47,7 @@ class Conditions extends AbstractHtmlElement
              */
 
             if($condition = Pi::api('condition', 'user')->getLastEligibleCondition()){
-                $timelineLogCollection = Pi::api('log', 'user')->getTimelineCollectionByUserId(Pi::user()->getId(), 'accept_conditions', null, $condition->version);
+                $timelineLogCollection = Pi::api('log', 'user')->getLogCollectionByUserId(Pi::user()->getId(), 'accept_conditions', null, $condition->version);
 
                 if(!$timelineLogCollection || $timelineLogCollection->count() == 0){
 

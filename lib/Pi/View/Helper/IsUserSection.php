@@ -50,6 +50,10 @@ class IsUserSection extends AbstractHelper
                 $userSection = true;
             }
 
+            if ($a[1]['controller'] == 'home' && $a[1]['action'] != 'view' && !isset($a[1]['uid'])) {
+                $userSection = true;
+            }
+
             if ($a[1]['controller'] == 'password' && $a[1]['action'] != 'find') {
                 $userSection = true;
             }

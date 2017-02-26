@@ -89,6 +89,8 @@ class HomeController extends ActionController
         $offset = (int) ($page -1) * $limit;
         $uid    = _get('uid');
 
+        Pi::service('authentication')->requireLogin();
+
         // Get timeline
         $count    = Pi::api('timeline', 'user')->getCount($uid);
         $timeline = Pi::api('timeline', 'user')->get($uid, $limit, $offset);

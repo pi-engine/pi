@@ -62,15 +62,20 @@ class Page extends Standard
         } else {
             $pName = empty($matches['name']) ? $name : $matches['name'];
             $pSlug = empty($matches['slug']) ? $name : $matches['slug'];
-            if ($pName || $pSlug) {
+
+            $filter = new \Pi\Filter\Slug;
+            $filtered_pName = $filter($pName);
+            $filtered_pSlug = $filter($pSlug);
+
+            if ($filtered_pName || $filtered_pSlug) {
                 foreach ($pageList as $id => $page) {
-                    if ($pName && $pName == $page['name']) {
-                        $action = $page['name'];
+                    if ($filtered_pName && $filtered_pName == $page['name']) {
+                        $action = $pName;
                         $matches['id'] = $id;
                         break;
                     }
-                    if ($pSlug && $pSlug == $page['slug']) {
-                        $action = $page['name'];
+                    if ($filtered_pSlug && $filtered_pSlug == $page['slug']) {
+                        $action = $pSlug;
                         $matches['id'] = $id;
                         break;
                     }
