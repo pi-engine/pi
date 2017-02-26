@@ -1,40 +1,27 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2017-02-26 21:55+0100\n"
-"PO-Revision-Date: 2017-02-26 21:56+0100\n"
-=======
-"POT-Creation-Date: 2017-02-23 11:55+0100\n"
-"PO-Revision-Date: 2017-02-23 11:55+0100\n"
->>>>>>> origin/develop
-"Last-Translator: Marc Desrousseaux\n"
-"Language-Team: Marc Desrousseaux\n"
-"Language: fr\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
-"X-Poedit-KeywordsList: __;_t;_e\n"
-"X-Poedit-Basepath: ../../..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: lib\n"
-"X-Poedit-SearchPath-1: www\n"
-"X-Poedit-SearchPath-2: usr/editor\n"
-"X-Poedit-SearchPath-3: usr/module/system/template/block\n"
-"X-Poedit-SearchPath-4: usr/module/user/src/form/RegisterForm.php\n"
+"Language: fr\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #: lib/Pi/Application/Installer/Theme.php:348
 msgid "Theme updated successfully."
-msgstr "Thème mis à jour avec succès."
+msgstr "Thème mis à  jour avec succès."
 
 #: lib/Pi/Application/Installer/Theme.php:355
 msgid "Theme failed to update."
-msgstr "Le Thème n'a pas réussi à être mis à jour."
+msgstr "Le Thème n'a pas réussi à se mettre à  jour."
 
 #: lib/Pi/Application/Installer/Theme.php:357
 msgid "Theme upgraded successfully."
-msgstr "Mise à niveau du Thème réussie."
+msgstr "Mise à  niveau du Thème réussie."
 
 #: lib/Pi/Application/Installer/Theme.php:362
 msgid "Theme asset publish failed."
@@ -87,14 +74,14 @@ msgid ""
 "A value for the identity was not provided prior to authentication with "
 "DbTable."
 msgstr ""
-"La valeur d'identitié n'a pas été fournie avant l'authentification avec "
+"La valeur d'identité n'a pas été fournie avant l'authentification avec "
 "DbTable."
 
 #: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
 msgid ""
 "A credential value was not provided prior to authentication with DbTable."
 msgstr ""
-"La valeur d'identitié n'a pas été fournie avant l'authentification avec "
+"La valeur d'identité n'a pas été fournie avant l'authentification avec "
 "DbTable."
 
 #: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
@@ -103,7 +90,7 @@ msgstr "Aucun enregistrement n'a pu être trouvé avec l'identité fournie."
 
 #: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
 msgid "More than one record matches the supplied identity."
-msgstr "Plus d'un enregistement correspond à l'identité founie."
+msgstr "Plus d'un enregistrement correspond à  l'identité fournie."
 
 #: lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
 msgid "Supplied credential is invalid."
@@ -312,7 +299,7 @@ msgstr "Mois"
 
 #: lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."
-msgstr "L'action demandée n'a pas été trouvée."
+msgstr "L'action demandée n'a pas été trouvée"
 
 #: lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
 #: usr/module/system/template/block/partial/login-register-modal.phtml:43
@@ -334,12 +321,8 @@ msgstr "Invité"
 #: lib/Pi/View/Helper/Conditions.php:39
 msgid "New terms and conditions are available. Please accept them."
 msgstr ""
-<<<<<<< HEAD
-"De nouvelles conditions générales d'utilisation et de vente sont "
-"disponibles. Merci de les accepter pour pouvoir continuer."
-=======
-"Les nouveaux termes et conditions sont disponibles. Merci de les accepter."
->>>>>>> origin/develop
+"De nouvelles conditions d'utilisation et de vente sont disponibles. Merci de "
+"les accepter avant de continuer."
 
 #: lib/Pi/View/Helper/Conditions.php:40
 msgid "I agree"
@@ -347,11 +330,7 @@ msgstr "J'accepte"
 
 #: lib/Pi/View/Helper/Conditions.php:41
 msgid "Read Term and conditions"
-<<<<<<< HEAD
-msgstr "Lite des CGU/CGV"
-=======
-msgstr "Lire les conditions d'utilisations"
->>>>>>> origin/develop
+msgstr "Liste des CGU/CGV"
 
 #: lib/Pi/View/Helper/GoogleMap.php:208
 msgid "Choose a location"
@@ -372,39 +351,39 @@ msgstr "Tags: "
 
 #: usr/module/user/src/form/RegisterForm.php:47
 msgid "Invalid email"
-msgstr ""
+msgstr "Email non valide"
 
 #: usr/module/user/src/form/RegisterForm.php:49
 msgid "Oops. This email address is already taken or is forbidden"
-msgstr ""
+msgstr "Oups. Cet adresse email est déjà prise ou est interdite"
 
 #: usr/module/user/src/form/RegisterForm.php:54
 msgid "Invalid username"
-msgstr ""
+msgstr "Nom utilisateur non valide"
 
 #: usr/module/user/src/form/RegisterForm.php:56
 msgid "Oops. This username is already taken, malformed or forbidden"
-msgstr ""
+msgstr "Oups. Ce nom utilisateur est déjà pris, malformé ou interdit"
 
 #: usr/module/user/src/form/RegisterForm.php:61
 msgid "Show my password"
-msgstr ""
+msgstr "Afficher le mot de passe"
 
 #: usr/module/user/src/form/RegisterForm.php:78
 msgid "Must be less than "
-msgstr ""
+msgstr "Doit contenir moins de "
 
 #: usr/module/user/src/form/RegisterForm.php:80
 msgid "Must be more than "
-msgstr ""
+msgstr "Doit contenir plus de "
 
 #: usr/module/user/src/form/RegisterForm.php:83
 msgid "Whoops, these don't match"
-msgstr ""
+msgstr "Oups, ils ne correspondent pas"
 
 #: usr/module/user/src/form/RegisterForm.php:94
 msgid "Newsletter subscription"
-msgstr ""
+msgstr "Inscription newslettre"
 
 #: www/setup/src/Controller/Admin.php:251
 msgid "Manager"
@@ -442,13 +421,13 @@ msgstr "Pas encore inscrit ?"
 
 #: usr/module/system/template/block/partial/login-register-modal.phtml:80
 msgid "Already registered ?"
-msgstr "Déjà inscrit ?"
+msgstr "Déjà inscrit ?"
 
 #~ msgid "No level"
 #~ msgstr "Aucun niveau"
 
 #~ msgid "Authenticated or not"
-#~ msgstr "Authentifié ou pas"
+#~ msgstr "AuthentifiÃ© ou pas"
 
 #~ msgid "Cache level"
 #~ msgstr "Niveau de cache"
