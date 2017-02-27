@@ -286,8 +286,10 @@ class Article extends Standard
             $url .= self::URL_DELIMITER . $parameter;
         }
 
-        return $this->prefix 
-            . $this->structureDelimiter 
-            . trim($url, $this->structureDelimiter);
+        $finalUrl = rtrim($this->prefix
+            . $this->structureDelimiter
+            . trim($url, $this->structureDelimiter), '/');
+
+        return $finalUrl;
     }
 }

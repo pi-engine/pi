@@ -350,7 +350,9 @@ class Standard implements RouteInterface
         }
         $url = ltrim($url, $this->paramDelimiter);
 
-        return $url;
+        $finalUrl = rtrim($url, '/');
+
+        return $finalUrl;
     }
 
     /**
@@ -394,7 +396,9 @@ class Standard implements RouteInterface
             $url = $structure . ($url ? $this->paramDelimiter . $url : '');
         }
 
-        return $url;
+        $finalUrl = rtrim($url, '/');
+
+        return $finalUrl;
     }
 
     /**
@@ -420,7 +424,9 @@ class Standard implements RouteInterface
                 . trim($this->prefix, $this->paramDelimiter)
             : '';
 
-        return $prefix . $this->paramDelimiter . $url;
+        $finalUrl = rtrim($prefix . $this->paramDelimiter . $url, '/');
+
+        return $finalUrl;
     }
 
     /**
