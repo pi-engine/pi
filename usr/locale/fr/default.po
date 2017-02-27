@@ -1,15 +1,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2017-02-27 18:10+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-KeywordsList: __;_t;_e;_a\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: lib\n"
+"X-Poedit-SearchPath-1: www\n"
+"X-Poedit-SearchPath-2: usr/editor\n"
+"X-Poedit-SearchPath-3: usr/custom/module/user/config/form.register.php\n"
 
 #: lib/Pi/Application/Installer/Theme.php:348
 msgid "Theme updated successfully."
@@ -34,6 +41,10 @@ msgstr "A publié un nouveau commentaire."
 #: lib/Pi/Application/Service/Editor.php:83
 msgid "Pi Default Editor"
 msgstr "Editeur par défaut Pi"
+
+#: lib/Pi/Application/Service/Form.php:37
+msgid "Please type the word."
+msgstr ""
 
 #: lib/Pi/Application/Service/Theme.php:143
 msgid "Full layout (header/footer and blocks)"
@@ -302,9 +313,6 @@ msgid "The requested action was not found."
 msgstr "L'action demandée n'a pas été trouvée"
 
 #: lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
-#: usr/module/system/template/block/partial/login-register-modal.phtml:43
-#: usr/module/system/template/block/partial/login-register-modal.phtml:82
-#: usr/module/system/template/block/partial/login-register-modal.phtml:83
 msgid "Login"
 msgstr "Connexion"
 
@@ -349,41 +357,18 @@ msgstr "Page"
 msgid "Tags: "
 msgstr "Tags :"
 
-#: usr/module/user/src/form/RegisterForm.php:47
-msgid "Invalid email"
-msgstr "Email non valide"
+#: usr/custom/module/user/config/form.register.php:19
+msgid "Terms & Conditions"
+msgstr ""
 
-#: usr/module/user/src/form/RegisterForm.php:49
-msgid "Oops. This email address is already taken or is forbidden"
-msgstr "Oups. Cet adresse email est déjà prise ou est interdite"
+#: usr/custom/module/user/config/form.register.php:20
+#, php-format
+msgid "Accept %s"
+msgstr ""
 
-#: usr/module/user/src/form/RegisterForm.php:54
-msgid "Invalid username"
-msgstr "Nom utilisateur non valide"
-
-#: usr/module/user/src/form/RegisterForm.php:56
-msgid "Oops. This username is already taken, malformed or forbidden"
-msgstr "Oups. Ce nom utilisateur est déjà pris, malformé ou interdit"
-
-#: usr/module/user/src/form/RegisterForm.php:61
-msgid "Show my password"
-msgstr "Afficher le mot de passe"
-
-#: usr/module/user/src/form/RegisterForm.php:78
-msgid "Must be less than "
-msgstr "Doit contenir moins de "
-
-#: usr/module/user/src/form/RegisterForm.php:80
-msgid "Must be more than "
-msgstr "Doit contenir plus de "
-
-#: usr/module/user/src/form/RegisterForm.php:83
-msgid "Whoops, these don't match"
-msgstr "Oups, ils ne correspondent pas"
-
-#: usr/module/user/src/form/RegisterForm.php:94
-msgid "Newsletter subscription"
-msgstr "Inscription newslettre"
+#: usr/custom/module/user/config/form.register.php:43
+msgid "Confirm credential"
+msgstr ""
 
 #: www/setup/src/Controller/Admin.php:251
 msgid "Manager"
@@ -405,23 +390,44 @@ msgstr "Equipe"
 msgid "Member"
 msgstr "Membre"
 
-#: usr/module/system/template/block/partial/login-register-modal.phtml:44
-#: usr/module/system/template/block/partial/login-register-modal.phtml:62
-#: usr/module/system/template/block/partial/login-register-modal.phtml:63
-msgid "Register"
-msgstr "S'enregistrer"
+#~ msgid "Invalid email"
+#~ msgstr "Email non valide"
 
-#: usr/module/system/template/block/partial/login-register-modal.phtml:57
-msgid "Find password"
-msgstr "Trouver le mot de passe."
+#~ msgid "Oops. This email address is already taken or is forbidden"
+#~ msgstr "Oups. Cet adresse email est déjà prise ou est interdite"
 
-#: usr/module/system/template/block/partial/login-register-modal.phtml:60
-msgid "Not already registered ?"
-msgstr "Pas encore inscrit ?"
+#~ msgid "Invalid username"
+#~ msgstr "Nom utilisateur non valide"
 
-#: usr/module/system/template/block/partial/login-register-modal.phtml:80
-msgid "Already registered ?"
-msgstr "Déjà inscrit ?"
+#~ msgid "Oops. This username is already taken, malformed or forbidden"
+#~ msgstr "Oups. Ce nom utilisateur est déjà pris, malformé ou interdit"
+
+#~ msgid "Show my password"
+#~ msgstr "Afficher le mot de passe"
+
+#~ msgid "Must be less than "
+#~ msgstr "Doit contenir moins de "
+
+#~ msgid "Must be more than "
+#~ msgstr "Doit contenir plus de "
+
+#~ msgid "Whoops, these don't match"
+#~ msgstr "Oups, ils ne correspondent pas"
+
+#~ msgid "Newsletter subscription"
+#~ msgstr "Inscription newslettre"
+
+#~ msgid "Register"
+#~ msgstr "S'enregistrer"
+
+#~ msgid "Find password"
+#~ msgstr "Trouver le mot de passe."
+
+#~ msgid "Not already registered ?"
+#~ msgstr "Pas encore inscrit ?"
+
+#~ msgid "Already registered ?"
+#~ msgstr "Déjà inscrit ?"
 
 #~ msgid "No level"
 #~ msgstr "Aucun niveau"
