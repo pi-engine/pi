@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2017-02-28 16:25+0100\n"
+"POT-Creation-Date: 2017-02-28 16:41+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
@@ -18,6 +18,7 @@ msgstr ""
 "X-Poedit-SearchPath-2: usr/editor\n"
 "X-Poedit-SearchPath-3: usr/module/user/src/Form/RegisterForm.php\n"
 "X-Poedit-SearchPath-4: usr/custom/module/user/config/form.register.php.dist\n"
+"X-Poedit-SearchPath-5: usr/module/user/config/form.register.php\n"
 "X-Poedit-SearchPathExcluded-0: www/static/js/bs-lessdoc-parser.js\n"
 
 #: lib/Pi/Application/Installer/Theme.php:348
@@ -359,6 +360,19 @@ msgstr "Page"
 msgid "Tags: "
 msgstr "Tags :"
 
+#: usr/module/user/config/form.register.php:19
+msgid "Terms & Conditions"
+msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
+
+#: usr/module/user/config/form.register.php:20
+#, php-format
+msgid "Accept the %s"
+msgstr "Accepter les %s"
+
+#: usr/module/user/config/form.register.php:43
+msgid "Confirm credential"
+msgstr "Confirmer le mot de passe"
+
 #: usr/module/user/src/Form/RegisterForm.php:47
 msgid "Invalid email"
 msgstr "Email non valide"
@@ -427,14 +441,8 @@ msgstr "Membre"
 #~ msgid "Already registered ?"
 #~ msgstr "Déjà inscrit ?"
 
-#~ msgid "Terms & Conditions"
-#~ msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
-
 #~ msgid "Accept %s"
 #~ msgstr "Accepter les %s"
-
-#~ msgid "Confirm credential"
-#~ msgstr "Confirmer le mot de passe"
 
 #~ msgid "No level"
 #~ msgstr "Aucun niveau"
