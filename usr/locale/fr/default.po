@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2017-02-28 15:51+0100\n"
+"POT-Creation-Date: 2017-02-28 16:25+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
@@ -415,15 +415,6 @@ msgstr "Equipe"
 msgid "Member"
 msgstr "Membre"
 
-#~ msgid "Terms & Conditions"
-#~ msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
-
-#~ msgid "Accept %s"
-#~ msgstr "Accepter les %s"
-
-#~ msgid "Confirm credential"
-#~ msgstr "Confirmer le mot de passe"
-
 #~ msgid "Register"
 #~ msgstr "S'enregistrer"
 
@@ -435,6 +426,15 @@ msgstr "Membre"
 
 #~ msgid "Already registered ?"
 #~ msgstr "Déjà inscrit ?"
+
+#~ msgid "Terms & Conditions"
+#~ msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
+
+#~ msgid "Accept %s"
+#~ msgstr "Accepter les %s"
+
+#~ msgid "Confirm credential"
+#~ msgstr "Confirmer le mot de passe"
 
 #~ msgid "No level"
 #~ msgstr "Aucun niveau"

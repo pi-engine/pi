@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-02-20 11:25+0100\n"
-"PO-Revision-Date: 2017-02-20 11:25+0100\n"
+"POT-Creation-Date: 2017-02-28 16:01+0100\n"
+"PO-Revision-Date: 2017-02-28 16:01+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -111,9 +111,9 @@ msgid "User login"
 msgstr "Connexion utilisateur"
 
 #: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:119
-#: template/block/partial/login-register-modal.phtml:43
-#: template/block/partial/login-register-modal.phtml:82
-#: template/block/partial/login-register-modal.phtml:83
+#: template/block/partial/login-register-modal.phtml:54
+#: template/block/partial/login-register-modal.phtml:93
+#: template/block/partial/login-register-modal.phtml:94
 #: template/front/login-logout.phtml:13 template/front/register.phtml:6
 msgid "Login"
 msgstr "Connexion"
@@ -160,7 +160,7 @@ msgstr ""
 #: src/Controller/Front/PasswordController.php:127
 #: src/Controller/Front/PasswordController.php:128
 #: src/Form/FindPasswordForm.php:49
-#: template/block/partial/login-register-modal.phtml:57
+#: template/block/partial/login-register-modal.phtml:68
 #: template/front/login.phtml:17 template/front/password-find.phtml:2
 #: template/front/register.phtml:5
 msgid "Find password"
@@ -222,9 +222,9 @@ msgstr "Inscription du compte utilisateur"
 
 #: src/Controller/Front/RegisterController.php:52
 #: src/Controller/Front/RegisterController.php:113
-#: template/block/partial/login-register-modal.phtml:44
-#: template/block/partial/login-register-modal.phtml:62
-#: template/block/partial/login-register-modal.phtml:63
+#: template/block/partial/login-register-modal.phtml:55
+#: template/block/partial/login-register-modal.phtml:73
+#: template/block/partial/login-register-modal.phtml:74
 #: template/front/login-logout.phtml:14 template/front/login.phtml:20
 msgid "Register"
 msgstr "S'inscrire"
@@ -612,11 +612,11 @@ msgstr "Reconstruire"
 msgid "Customize"
 msgstr "Personnaliser"
 
-#: template/block/partial/login-register-modal.phtml:60
+#: template/block/partial/login-register-modal.phtml:71
 msgid "Not already registered ?"
 msgstr "Pas encore inscrit ?"
 
-#: template/block/partial/login-register-modal.phtml:80
+#: template/block/partial/login-register-modal.phtml:91
 msgid "Already registered ?"
 msgstr "Déjà inscrit ?"
 
