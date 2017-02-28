@@ -27,10 +27,21 @@ if (!empty(Pi::user()->config('register_description'))) {
 $loginForm = $block['loginForm'];
 $registerForm = $block['registerForm'];
 
+
 if($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()){
     $redirect = Pi::service('url')->getRequestUri();
     $registerForm->get('redirect')->setValue($redirect);
 }
+
+if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
+    if($loginForm->has('redirect')){
+        $loginForm->remove('redirect');
+    }
+    if($registerForm->has('redirect')){
+        $registerForm->remove('redirect');
+    }
+}
+
 
 ?>
 

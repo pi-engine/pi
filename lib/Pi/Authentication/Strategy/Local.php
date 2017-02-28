@@ -216,7 +216,9 @@ class Local extends AbstractStrategy
     public function login(array $params = array())
     {
         $url = Pi::service('user')->getUrl('login', $params);
-        Pi::service('url')->redirect($url);
+        $url = strtok($url,'?');
+
+        Pi::service('url')->redirect($url, false, 301);
     }
 
     /**

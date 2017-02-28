@@ -559,9 +559,7 @@ class RegisterController extends ActionController
 
             $log = array(
                 'uid' => $uid,
-                'module' => 'user',
-                'message' => __("User has subscribed to the newsletter"),
-                'timeline' => 'subscribe_newsletter',
+                'action' => 'subscribe_newsletter_register',
             );
 
             Pi::api('log', 'user')->add(null, null, $log);
@@ -573,10 +571,8 @@ class RegisterController extends ActionController
         if($condition && isset($values['term']) && $values['term'] == 1){
             $log = array(
                 'uid' => $uid,
-                'module' => 'user',
-                'message' => __("User has read and accept current terms and conditions. Version : " . $condition->version),
                 'data' => $condition->version,
-                'timeline' => 'accept_conditions',
+                'action' => 'accept_conditions_register',
             );
 
             Pi::api('log', 'user')->add(null, null, $log);

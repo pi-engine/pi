@@ -68,10 +68,8 @@ class ConditionController extends ActionController
         if($condition && $uid){
             $log = array(
                 'uid' => $uid,
-                'module' => '',
-                'message' => __("User has read and accept current terms and conditions on checkout. Version : " . $condition->version),
                 'data' => $condition->version,
-                'timeline' => 'accept_conditions',
+                'action' => 'accept_conditions_from_bar',
             );
 
             Pi::api('log', 'user')->add(null, null, $log);

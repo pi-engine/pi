@@ -623,7 +623,9 @@ class Pi
      */
     public static function url($url = '', $absolute = false)
     {
-        return static::$host->url($url, $absolute);
+        $finalUrl = rtrim(static::$host->url($url, $absolute), '/');
+
+        return $finalUrl;
     }
 
     /**

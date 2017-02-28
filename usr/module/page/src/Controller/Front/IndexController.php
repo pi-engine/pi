@@ -95,6 +95,7 @@ class IndexController extends ActionController
         $id     = $this->params('id');
         $name   = $this->params('name');
         $slug   = $this->params('slug');
+        $action   = $this->params('action');
 
         $row = null;
         if ($id) {
@@ -104,6 +105,17 @@ class IndexController extends ActionController
         } elseif ($slug) {
             $row = $this->getModel('page')->find($name, 'slug');
         }
+
+        if($row){
+            if($slug && $slug != $row->slug){
+                return $this->redirect()->toRoute('', array('slug' => $row->slug))->setStatusCode(301);
+            }
+
+            if($action && $action != $row->slug){
+                return $this->redirect()->toRoute('', array('slug' => $row->slug))->setStatusCode(301);
+            }
+        }
+
         if ($row && $row->active) {
             $nav = Pi::registry('nav', $this->getModule())->read();
             if (isset($nav[$row->id])) {

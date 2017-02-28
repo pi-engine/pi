@@ -134,9 +134,7 @@ class AccountForm extends BaseForm
 
                 $log = array(
                     'uid' => Pi::user()->getId(),
-                    'module' => 'user',
-                    'message' => __("User has subscribed to the newsletter"),
-                    'timeline' => 'subscribe_newsletter',
+                    'action' => 'subscribe_newsletter_account',
                 );
 
                 Pi::api('log', 'user')->add(null, null, $log);
@@ -146,9 +144,7 @@ class AccountForm extends BaseForm
 
                 $log = array(
                     'uid' => Pi::user()->getId(),
-                    'module' => 'user',
-                    'message' => __("User has unsubscribed to the newsletter"),
-                    'timeline' => 'unsubscribe_newsletter',
+                    'action' => 'unsubscribe_newsletter_account',
                 );
 
                 Pi::api('log', 'user')->add(null, null, $log);

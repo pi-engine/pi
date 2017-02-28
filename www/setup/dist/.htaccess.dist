@@ -4,6 +4,11 @@
 # Enable runtime rewriting engine
 RewriteEngine On
 
+# If trailing slash at the end (only get method, no reencode query string)
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,NE,R=301]
+
 # Redirect homepage to a specified address inside the site
 #RewriteRule ^$ /%REDIRECT_URL% [R,L]
 

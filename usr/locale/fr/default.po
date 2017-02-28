@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2017-02-09 14:33+0100\n"
-"PO-Revision-Date: 2017-02-09 14:33+0100\n"
+"POT-Creation-Date: 2017-02-27 19:14+0100\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -10,20 +10,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.11\n"
-"X-Poedit-KeywordsList: __;_t;_e\n"
+"X-Poedit-KeywordsList: __;_t;_e;_a\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: lib\n"
 "X-Poedit-SearchPath-1: www\n"
 "X-Poedit-SearchPath-2: usr/editor\n"
+"X-Poedit-SearchPath-3: usr/custom/module/user/config\n"
 
 #: lib/Pi/Application/Installer/Theme.php:348
 msgid "Theme updated successfully."
-msgstr "Thème mis à jour avec succès."
+msgstr "Thème mis à jour avec succès."
 
 #: lib/Pi/Application/Installer/Theme.php:355
 msgid "Theme failed to update."
-msgstr "Le Thème n'a pas réussi à être mis à jour."
+msgstr "Le Thème n'a pas réussi à se mettre à jour."
 
 #: lib/Pi/Application/Installer/Theme.php:357
 msgid "Theme upgraded successfully."
@@ -31,15 +32,19 @@ msgstr "Mise à niveau du Thème réussie."
 
 #: lib/Pi/Application/Installer/Theme.php:362
 msgid "Theme asset publish failed."
-msgstr "La publication de la ressource Theme a échoué."
+msgstr "La publication de la ressource Thème a échoué."
 
-#: lib/Pi/Application/Service/Comment.php:548
+#: lib/Pi/Application/Service/Comment.php:552
 msgid "Posted a new comment."
 msgstr "A publié un nouveau commentaire."
 
 #: lib/Pi/Application/Service/Editor.php:83
 msgid "Pi Default Editor"
 msgstr "Editeur par défaut Pi"
+
+#: lib/Pi/Application/Service/Form.php:37
+msgid "Please type the word."
+msgstr "Merci de saisir le mot."
 
 #: lib/Pi/Application/Service/Theme.php:143
 msgid "Full layout (header/footer and blocks)"
@@ -80,14 +85,14 @@ msgid ""
 "A value for the identity was not provided prior to authentication with "
 "DbTable."
 msgstr ""
-"La valeur d'identitié n'a pas été fournie avant l'authentification avec "
+"La valeur d'identité n'a pas été fournie avant l'authentification avec "
 "DbTable."
 
 #: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
 msgid ""
 "A credential value was not provided prior to authentication with DbTable."
 msgstr ""
-"La valeur d'identitié n'a pas été fournie avant l'authentification avec "
+"La valeur d'identité n'a pas été fournie avant l'authentification avec "
 "DbTable."
 
 #: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
@@ -96,7 +101,7 @@ msgstr "Aucun enregistrement n'a pu être trouvé avec l'identité fournie."
 
 #: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
 msgid "More than one record matches the supplied identity."
-msgstr "Plus d'un enregistement correspond à l'identité founie."
+msgstr "Plus d'un enregistrement correspond à l'identité fournie."
 
 #: lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
 msgid "Supplied credential is invalid."
@@ -283,11 +288,11 @@ msgstr "Cliquez pour rafraîchir le CAPTCHA"
 msgid "Required"
 msgstr "Requis"
 
-#: lib/Pi/Form/View/Helper/Form.php:476
+#: lib/Pi/Form/View/Helper/Form.php:483
 msgid "Close"
 msgstr "Fermer"
 
-#: lib/Pi/Form/View/Helper/Form.php:477
+#: lib/Pi/Form/View/Helper/Form.php:484
 msgid "Form"
 msgstr "Formulaire"
 
@@ -305,7 +310,7 @@ msgstr "Mois"
 
 #: lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."
-msgstr "L'action demandée n'a pas été trouvée."
+msgstr "L'action demandée n'a pas été trouvée"
 
 #: lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
 msgid "Login"
@@ -320,6 +325,20 @@ msgstr ""
 #: lib/Pi/User/Model/AbstractModel.php:239
 msgid "Guest"
 msgstr "Invité"
+
+#: lib/Pi/View/Helper/Conditions.php:39
+msgid "New terms and conditions are available. Please accept them."
+msgstr ""
+"De nouvelles conditions d'utilisation et de vente sont disponibles. Merci de "
+"les accepter avant de continuer."
+
+#: lib/Pi/View/Helper/Conditions.php:40
+msgid "I agree"
+msgstr "J'accepte"
+
+#: lib/Pi/View/Helper/Conditions.php:41
+msgid "Read Term and conditions"
+msgstr "Liste des CGU/CGV"
 
 #: lib/Pi/View/Helper/GoogleMap.php:208
 msgid "Choose a location"
@@ -336,7 +355,7 @@ msgstr "Page"
 
 #: lib/Pi/View/Helper/Tag.php:92
 msgid "Tags: "
-msgstr "Tags: "
+msgstr "Tags :"
 
 #: www/setup/src/Controller/Admin.php:251
 msgid "Manager"
@@ -358,11 +377,59 @@ msgstr "Equipe"
 msgid "Member"
 msgstr "Membre"
 
+#~ msgid "Terms & Conditions"
+#~ msgstr "Conditions générales utilisation et de vente (CGU/CGV)"
+
+#~ msgid "Accept %s"
+#~ msgstr "Accepter les %s"
+
+#~ msgid "Confirm credential"
+#~ msgstr "Confirmer le mot de passe"
+
+#~ msgid "Invalid email"
+#~ msgstr "Email non valide"
+
+#~ msgid "Oops. This email address is already taken or is forbidden"
+#~ msgstr "Oups. Cet adresse email est déjà prise ou est interdite"
+
+#~ msgid "Invalid username"
+#~ msgstr "Nom utilisateur non valide"
+
+#~ msgid "Oops. This username is already taken, malformed or forbidden"
+#~ msgstr "Oups. Ce nom utilisateur est déjà pris, malformé ou interdit"
+
+#~ msgid "Show my password"
+#~ msgstr "Afficher le mot de passe"
+
+#~ msgid "Must be less than "
+#~ msgstr "Doit contenir moins de "
+
+#~ msgid "Must be more than "
+#~ msgstr "Doit contenir plus de "
+
+#~ msgid "Whoops, these don't match"
+#~ msgstr "Oups, ils ne correspondent pas"
+
+#~ msgid "Newsletter subscription"
+#~ msgstr "Inscription newslettre"
+
+#~ msgid "Register"
+#~ msgstr "S'enregistrer"
+
+#~ msgid "Find password"
+#~ msgstr "Trouver le mot de passe."
+
+#~ msgid "Not already registered ?"
+#~ msgstr "Pas encore inscrit ?"
+
+#~ msgid "Already registered ?"
+#~ msgstr "Déjà inscrit ?"
+
 #~ msgid "No level"
 #~ msgstr "Aucun niveau"
 
 #~ msgid "Authenticated or not"
-#~ msgstr "Authentifié ou pas"
+#~ msgstr "AuthentifiÃÂ© ou pas"
 
 #~ msgid "Cache level"
 #~ msgstr "Niveau de cache"

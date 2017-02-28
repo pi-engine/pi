@@ -76,7 +76,7 @@ class Redirect extends ZendRedirect
      */
     public function toRoute(
         $route = null,
-        array $params = array(),
+        $params = array(),
         $options = array(),
         $reuseMatchedParams = false
     ) {

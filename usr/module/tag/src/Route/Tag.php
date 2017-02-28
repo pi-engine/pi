@@ -87,7 +87,9 @@ class Tag extends Standard
                 . $this->keyValueDelimiter . $this->encode($value);
         }
 
-        return $url;
+        $finalUrl = rtrim($url, '/');
+
+        return $finalUrl;
     }
 
     /**
@@ -95,6 +97,8 @@ class Tag extends Standard
      */
     protected function assembleStructure(array $params, $url = '')
     {
-        return $url;
+        $finalUrl = rtrim($url, '/');
+
+        return $finalUrl;
     }
 }

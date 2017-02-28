@@ -148,14 +148,6 @@ class ThemeAssemble extends AbstractHelper
         $headMeta($sitename, 'author');
         $headMeta($sitename, 'generator');
 
-        // Dublin Core
-        $headMeta($sitename, 'dc:title', 'property', array('lang' => $locale));
-        $headMeta($slogan, 'dc:subject', 'property', array('lang' => $locale));
-        $headMeta($description, 'dc:description', 'property', array('lang' => $locale));
-        $headMeta('text', 'dc:type', 'property');
-        $headMeta($sitename, 'dc:publisher', 'property');
-        $headMeta($locale, 'dc:language', 'property');
-
         // Open Graph
         $headMeta($sitename, 'og:title', 'property');
         $headMeta($sitename, 'og:site_name', 'property');
