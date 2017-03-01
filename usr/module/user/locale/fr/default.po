@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-02-20 11:32+0100\n"
-"PO-Revision-Date: 2017-02-23 11:40+0100\n"
+"POT-Creation-Date: 2017-02-28 16:39+0100\n"
+"PO-Revision-Date: 2017-02-28 16:39+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -73,12 +73,12 @@ msgstr "Rôle supprimé"
 
 #: config/form.register.php:19
 msgid "Terms & Conditions"
-msgstr "Conditions générales utilisation et de vente (CGU/CGV)"
+msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
 
 #: config/form.register.php:20
 #, php-format
-msgid "Accept %s"
-msgstr "Accepter %s"
+msgid "Accept the %s"
+msgstr "Accepter les %s"
 
 #: config/form.register.php:43
 msgid "Confirm credential"
@@ -113,8 +113,7 @@ msgid "Account settings"
 msgstr "Paramétrages du compte"
 
 #: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:185
-#: template/front/avatar-index.phtml:44
-#: template/front/profile-sidebar.phtml:66
+#: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:66
 #: template/front/profile-topbar.phtml:140
 msgid "Change avatar"
 msgstr "Modifier sa photo"
@@ -368,21 +367,14 @@ msgstr "L'image a été supprimée avec succès."
 msgid "No active condition file"
 msgstr "Il n'y a pas encore de fichier CGU/CGV"
 
-#: src/Controller/Front/ConditionController.php:72
-msgid ""
-"User has read and accept current terms and conditions on checkout. Version : "
-msgstr ""
-"L'utilisateur a lu et accepté les CGU/CGV courantes depuis la page "
-"checkhout. Version : "
-
 #: src/Controller/Front/HomeController.php:77
-#: src/Controller/Front/HomeController.php:137
+#: src/Controller/Front/HomeController.php:139
 #, php-format
 msgid "%s activities"
 msgstr "Activités de %s"
 
 #: src/Controller/Front/HomeController.php:78
-#: src/Controller/Front/HomeController.php:138
+#: src/Controller/Front/HomeController.php:140
 #, php-format
 msgid "View %s activities"
 msgstr "Voir les activités de %s"
@@ -543,15 +535,6 @@ msgstr ""
 "Le mail de confirmation-activation du compte n'a pu être envoyé, merci de "
 "contacter l'administrateur."
 
-#: src/Controller/Front/RegisterController.php:563
-#: src/Form/AccountForm.php:138
-msgid "User has subscribed to the newsletter"
-msgstr "L'utilisateur s'est inscrit à la newslettre"
-
-#: src/Controller/Front/RegisterController.php:577
-msgid "User has read and accept current terms and conditions. Version : "
-msgstr "L'utilisateur a lu et accepté les CGU/CGV courantes. Version : "
-
 #: src/Form/AccountForm.php:27 src/Form/MemberForm.php:30
 #: src/Form/SearchForm.php:90
 msgid "Username"
@@ -580,10 +563,6 @@ msgstr "Inscription Newslettre"
 #: template/front/privacy-index.phtml:39
 msgid "Submit"
 msgstr "Valider"
-
-#: src/Form/AccountForm.php:150
-msgid "User has unsubscribed to the newsletter"
-msgstr "L'utilisateur s'est désinscrit de la newslettre"
 
 #: src/Form/ConditionForm.php:41 template/admin/condition.phtml:11
 msgid "Version"
@@ -873,7 +852,7 @@ msgstr "Se connecter maintenant."
 msgid "View all"
 msgstr "Voir tout"
 
-#: template/front/activity-index.phtml:33 template/front/home-index.phtml:49
+#: template/front/activity-index.phtml:33 template/front/home-index.phtml:54
 #: template/front/profile-view.phtml:30
 msgid "No data available."
 msgstr "Aucune donnée disponible."
@@ -1011,7 +990,7 @@ msgstr "Mes Vidéos"
 msgid "My support tickets"
 msgstr "Mes tickets Assistance"
 
-#: template/front/home-index.phtml:12 template/front/profile-index.phtml:13
+#: template/front/home-index.phtml:17 template/front/profile-index.phtml:13
 msgid "My profile"
 msgstr "Mon profil"
 
@@ -1225,13 +1204,30 @@ msgstr "Demandez le renvoi du mail d'activation"
 msgid "Already sent"
 msgstr "Déja envoyé"
 
-#: template/block/partial/login-register-modal.phtml:60
-msgid "Not already registered ?"
-msgstr "Pas encore inscrit ?"
+#~ msgid "Accept %s"
+#~ msgstr "Accepter %s"
 
-#: template/block/partial/login-register-modal.phtml:80
-msgid "Already registered ?"
-msgstr "Déjà inscrit ?"
+#~ msgid ""
+#~ "User has read and accept current terms and conditions on checkout. "
+#~ "Version : "
+#~ msgstr ""
+#~ "L'utilisateur a lu et accepté les CGU/CGV courantes depuis la page "
+#~ "checkhout. Version : "
+
+#~ msgid "User has subscribed to the newsletter"
+#~ msgstr "L'utilisateur s'est inscrit à la newslettre"
+
+#~ msgid "User has read and accept current terms and conditions. Version : "
+#~ msgstr "L'utilisateur a lu et accepté les CGU/CGV courantes. Version : "
+
+#~ msgid "User has unsubscribed to the newsletter"
+#~ msgstr "L'utilisateur s'est désinscrit de la newslettre"
+
+#~ msgid "Not already registered ?"
+#~ msgstr "Pas encore inscrit ?"
+
+#~ msgid "Already registered ?"
+#~ msgstr "Déjà inscrit ?"
 
 #~ msgid "Please type the word"
 #~ msgstr "Merci de saisir le mot"
