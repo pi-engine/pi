@@ -75,22 +75,36 @@ class ImageProcessing
      * @param string $source
      * @param string $target
      * @param string $commands
+     * @param string $cropping
      * 
      * @return void
      */
-    public function process($source, $target, $commands)
+    public function process($source, $target, $commands, $cropping = null)
     {
         $targetFolder = pathinfo($target, PATHINFO_DIRNAME);
         if (!file_exists($targetFolder)) {
             mkdir($targetFolder, 0777, true);
         }
+
         $this->image = $this->getImagineService()->open($source);
+
+        if($cropping){
+            $croppingData = json_decode($cropping);
+
+            if(!empty($croppingData)){
+                $croppingData = (object) $croppingData;
+                $this->image->crop(new Point($croppingData->x, $croppingData->y), new Box($croppingData->width, $croppingData->height));
+            }
+        }
+
         foreach ($this->analyseCommands($commands) as $command) {
             if ($this->runCommand($command)) {
                 continue;
             }
             $this->runCustomCommand($command);
         }
+
+
         
         $this->image->save($target);
     }

@@ -13,14 +13,18 @@ class Resize extends AbstractHelper
     /** @var  string*/
     protected $commands;
 
+    /** @var  string*/
+    protected $cropping;
+
     /**
      * @param $imgPath
      * @return $this
      */
-    public function __invoke($imgPath)
+    public function __invoke($imgPath, $cropping = null)
     {
         $this->imgParts = pathinfo($imgPath);
         $this->commands = '';
+        $this->cropping = $cropping;
 
         return $this;
     }
@@ -180,9 +184,8 @@ class Resize extends AbstractHelper
                 $imagine = new Imagine();
                 $imageProcessing = new ImageProcessing($imagine);
 
-
                 if ($source) {
-                    $imageProcessing->process($source, $target, str_replace('$','',$this->commands));
+                    $imageProcessing->process($source, $target, str_replace('$','',$this->commands), $this->cropping);
 
                 } else {
                     $imageProcessing->process404($target, str_replace('$','',$this->commands));
