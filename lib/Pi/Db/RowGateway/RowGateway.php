@@ -381,6 +381,20 @@ class RowGateway extends AbstractRowGateway
         return $rowsAffected;
     }
 
+    public function delete()
+    {
+        $affectedRows = parent::delete();
+
+        if($affectedRows == 1 && Pi::service('module')->isActive('media')){
+            $model = $this->getModel();
+            if($model instanceof \Pi\Application\Model\Model && $model->getMediaLinks()){
+                Pi::api('link', 'media')->removeLinks($this);
+            }
+        }
+
+        return $affectedRows;
+    }
+
     /**
      * Assign data
      *
