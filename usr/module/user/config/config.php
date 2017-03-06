@@ -98,6 +98,7 @@ $config = array(
             'options'   => array(
                 'options'       => array(
                     'guide'         => _t('Guide'),
+                    'media'         => _t('Media'),
                     'shop'          => _t('Shop'),
                     'order'         => _t('Order'),
                     'message'       => _t('Message'),
