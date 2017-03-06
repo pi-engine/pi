@@ -172,10 +172,9 @@ class Resize extends AbstractHelper
             }
 
             $target = 'upload/media/processed/'
+                . $this->commands . '/'
                 . str_replace('upload/media/original', '', $file)
-                . '.' . $this->commands
                 . '.' . $targetExtension;
-
 
             if(!is_file($target))
             {
