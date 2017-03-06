@@ -19,7 +19,7 @@ use Zend\Http\Client;
  * - Pi::service('notification')->send($to, $template, $information, $module, $uid);
  * - Pi::service('notification')->smsToUser($content, $number);
  * - Pi::service('notification')->smsToAdmin($content, $number);
- * - Pi::service('notification')->fcm($data, $option);
+ * - Pi::service('notification')->fcm($notification, $option);
  *
  * - ToDo : user setting for active / inactive push notification on website and mobile
  * - ToDo : improve send sms on notification module and support local
@@ -131,9 +131,9 @@ class Notification extends AbstractService
      *
      *
      *
-     * Data is required for send message or notification as array
+     * Notification is required for send message or notification as array
      *
-     * $data = array(
+     * $notification = array(
      *     'id'    => 123,
      *     'title' => 'my title',
      *     'body'  => 'my body',
@@ -152,11 +152,11 @@ class Notification extends AbstractService
      * );
      *
      *
-     * @param $data
+     * @param $notification
      * @param $option
      * @return array
      */
-    public function fcm($data, $option = array())
+    public function fcm($notification, $option = array())
     {
         // Set result
         $result = array(
@@ -188,7 +188,7 @@ class Notification extends AbstractService
         $fields = array();
         $fields['priority'] = $option['priority'];
         $fields['to'] = $option['token'];
-        $fields['data'] = $data;
+        $fields['notification'] = $notification;
 
         // Send
         $config = array(
