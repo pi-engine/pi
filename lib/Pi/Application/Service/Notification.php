@@ -160,8 +160,9 @@ class Notification extends AbstractService
     {
         // Set result
         $result = array(
-            'status' => 0,
-            'message' => 'Error'
+            'status'   => 0,
+            'message'  => '',
+            'fields'   => '',
         );
 
         // Check option priority
@@ -170,14 +171,14 @@ class Notification extends AbstractService
         // Get server key
         $option['serverKey'] = isset($option['serverKey']) ? $option['serverKey'] : $this->getOption('fcm_server_key');
         if (empty($option['serverKey'])) {
-            $result['message'] = 'Server key not set';
+            $result['message'] = __('Server key not set');
             return $result;
         }
 
         // Get token or topic
         $option['token'] = isset($option['token']) ? $option['token'] : $this->getOption('fcm_token');
         if (empty($option['token'])) {
-            $result['message'] = 'Token not set';
+            $result['message'] = __('Token not set');
             return $result;
         }
 
@@ -185,10 +186,11 @@ class Notification extends AbstractService
         $url = 'https://fcm.googleapis.com/fcm/send';
 
         // Set field
-        $fields = array();
-        $fields['priority'] = $option['priority'];
-        $fields['to'] = $option['token'];
-        $fields['notification'] = $notification;
+        $fields = array(
+            'priority'      => $option['priority'],
+            'to'            => $option['token'],
+            'notification'  => $notification,
+        );
 
         // Send
         $config = array(
@@ -203,11 +205,11 @@ class Notification extends AbstractService
         $client->setHeaders($headers);
         $response = $client->send();
         if ($response->isSuccess()) {
-            $result['status'] = 1;
-            $result['message'] = 'Success';
-            $result['fields'] = $fields;
+            $result['status']   = 1;
+            $result['message']  = __('Notification send successfully');
+            $result['fields']   = $fields;
         } else {
-            $result['message'] = 'Error to send';
+            $result['message']  = __('Error to send notification');
         }
         return $result;
     }
