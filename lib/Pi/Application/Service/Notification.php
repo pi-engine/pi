@@ -162,7 +162,7 @@ class Notification extends AbstractService
         $result = array(
             'status'   => 0,
             'message'  => '',
-            'response' => '',
+            'data'     => '',
         );
 
         // Check option priority
@@ -207,7 +207,11 @@ class Notification extends AbstractService
         if ($response->isSuccess()) {
             $result['status']   = 1;
             $result['message']  = __('Notification send successfully');
-            $result['response'] = json_decode($response->getBody(), true);
+            $result['data']     = array(
+                'response'      => json_decode($response->getBody(), true),
+                'priority'      => $option['priority'],
+                'to'            => $option['token'],
+            );
         } else {
             $result['message']  = __('Error to send notification');
         }
