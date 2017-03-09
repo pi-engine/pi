@@ -16,6 +16,8 @@ class Resize extends AbstractHelper
     /** @var  string*/
     protected $cropping;
 
+    protected $imgPath;
+
     /**
      * @var $quality;
      */
@@ -27,6 +29,7 @@ class Resize extends AbstractHelper
      */
     public function __invoke($imgPath, $cropping = null)
     {
+        $this->imgPath = $imgPath;
         $this->imgParts = pathinfo($imgPath);
         $this->commands = '';
         $this->cropping = $cropping;
@@ -75,10 +78,12 @@ class Resize extends AbstractHelper
      * @param $height
      * @return $this
      */
-    public function quality($value)
+    public function quality($value = null)
     {
-        $this->commands .= '$quality,' . $value;
-        $this->quality = $value;
+        if($value !== null && is_numeric($value)){
+            $this->commands .= '$quality,' . $value;
+            $this->quality = $value;
+        }
 
         return $this;
     }
@@ -171,6 +176,10 @@ class Resize extends AbstractHelper
      */
     public function __toString()
     {
+        if($this->commands == ''){
+            return \Pi::url($this->imgPath);
+        }
+
         $options = array();
 
         $options['quality'] = $this->quality;
