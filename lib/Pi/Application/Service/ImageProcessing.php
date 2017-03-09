@@ -79,7 +79,7 @@ class ImageProcessing
      * 
      * @return void
      */
-    public function process($source, $target, $commands, $cropping = null)
+    public function process($source, $target, $commands, $cropping = null, $options = array())
     {
         $targetFolder = pathinfo($target, PATHINFO_DIRNAME);
         if (!file_exists($targetFolder)) {
@@ -97,16 +97,16 @@ class ImageProcessing
             }
         }
 
+
+
         foreach ($this->analyseCommands($commands) as $command) {
             if ($this->runCommand($command)) {
                 continue;
             }
             $this->runCustomCommand($command);
         }
-
-
         
-        $this->image->save($target);
+        $this->image->save($target, $options);
     }
     
     /**
@@ -292,12 +292,24 @@ class ImageProcessing
     
     /**
      * Command image negative
-     * 
+     *
      * @return void
      */
     protected function imageNegative()
     {
         $this->image->effects()->negative();
+    }
+
+    /**
+     * Command image quality
+     *
+     * @return void
+     */
+    protected function imageQuality()
+    {
+        /**
+         * Legacy / Does nothing
+         */
     }
     
     /**
