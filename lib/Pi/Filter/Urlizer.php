@@ -418,7 +418,6 @@ class Urlizer extends AbstractFilter
      */
     private static function postProcessText($text, $separator, $excludeDot = false)
     {
-        echo $text;
         if (function_exists('mb_strtolower')) {
             $text = mb_strtolower($text);
         } else {

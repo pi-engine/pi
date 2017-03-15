@@ -9,11 +9,11 @@
 
 namespace Pi\Db\RowGateway;
 
+use Pi;
 use Pi\Db\Table\AbstractTableGateway;
 use Zend\Db\RowGateway\RowGateway as AbstractRowGateway;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Sql\Sql;
-use Zend\Db\RowGateway\Feature;
 use Zend\Db\RowGateway\Exception;
 
 /**
@@ -93,6 +93,14 @@ class RowGateway extends AbstractRowGateway
         $this->model = $model;
 
         return $this;
+    }
+
+    /**
+     * @return AbstractTableGateway
+     */
+    public function getModel()
+    {
+        return $this->model;
     }
 
     /**
@@ -364,8 +372,27 @@ class RowGateway extends AbstractRowGateway
             $this->populate($rowData, true);
         }
 
+        $model = $this->getModel();
+        if(Pi::service('module')->isActive('media') && $model instanceof \Pi\Application\Model\Model && $model->getMediaLinks()){
+            Pi::api('link', 'media')->updateLinks($this);
+        }
+
         // return rows affected
         return $rowsAffected;
+    }
+
+    public function delete()
+    {
+        $affectedRows = parent::delete();
+
+        if($affectedRows == 1 && Pi::service('module')->isActive('media')){
+            $model = $this->getModel();
+            if($model instanceof \Pi\Application\Model\Model && $model->getMediaLinks()){
+                Pi::api('link', 'media')->removeLinks($this);
+            }
+        }
+
+        return $affectedRows;
     }
 
     /**

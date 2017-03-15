@@ -93,6 +93,10 @@ $userConfig = Pi::service('registry')->config->read('user');
             <?php } ?>
         <?php } ?>
 
+        <?php if (in_array('media', $userConfig['side_menu']) && Pi::service('module')->isActive('media')) { ?>
+            <a title="<?php _e('My media'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'media', 'controller' => 'list', 'action' => 'index'))); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'media') {echo ' active';} ?>"><?php _e('My media'); ?></a>
+        <?php } ?>
+
         <?php if (in_array('message', $userConfig['side_menu']) && Pi::service('module')->isActive('message')) { ?>
             <?php $message = _number(Pi::api('api', 'message')->getUnread($uid, 'message')); ?>
             <a title="<?php _e('My messages'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'index'))); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'message') {echo ' active';} ?>"><?php _e('My messages'); ?> <span class="badge"><?php echo $message; ?></span></a>
