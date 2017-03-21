@@ -221,9 +221,9 @@ class Standard implements RouteInterface
                 . $this->paramDelimiter;
             */
             $prefix = trim($this->prefix, $this->paramDelimiter)
-                    . $this->paramDelimiter;
+                . $this->paramDelimiter;
             $path = trim($path, $this->paramDelimiter)
-                  . $this->paramDelimiter;
+                . $this->paramDelimiter;
             $prefixLength = strlen($prefix);
             if ($prefix != substr($path, 0, $prefixLength)) {
                 return null;
@@ -350,9 +350,11 @@ class Standard implements RouteInterface
         }
         $url = ltrim($url, $this->paramDelimiter);
 
-        $finalUrl = rtrim($url, '/');
+        /* $finalUrl = rtrim($url, '/');
 
-        return $finalUrl;
+        return $finalUrl; */
+
+        return $url;
     }
 
     /**
@@ -396,9 +398,11 @@ class Standard implements RouteInterface
             $url = $structure . ($url ? $this->paramDelimiter . $url : '');
         }
 
-        $finalUrl = rtrim($url, '/');
+        /* $finalUrl = rtrim($url, '/');
 
-        return $finalUrl;
+        return $finalUrl; */
+
+        return $url;
     }
 
     /**
@@ -421,12 +425,14 @@ class Standard implements RouteInterface
 
         $prefix = $this->prefix
             ? $this->paramDelimiter
-                . trim($this->prefix, $this->paramDelimiter)
+            . trim($this->prefix, $this->paramDelimiter)
             : '';
 
-        $finalUrl = rtrim($prefix . $this->paramDelimiter . $url, '/');
+        /* $finalUrl = rtrim($prefix . $this->paramDelimiter . $url, '/');
 
-        return $finalUrl;
+        return $finalUrl; */
+
+        return $prefix . $this->paramDelimiter . $url;
     }
 
     /**
