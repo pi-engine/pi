@@ -16,12 +16,20 @@ class Resize extends AbstractHelper
     /** @var  string*/
     protected $cropping;
 
+    protected $imgPath;
+
+    /**
+     * @var $quality;
+     */
+    protected $quality = 90;
+
     /**
      * @param $imgPath
      * @return $this
      */
     public function __invoke($imgPath, $cropping = null)
     {
+        $this->imgPath = $imgPath;
         $this->imgParts = pathinfo($imgPath);
         $this->commands = '';
         $this->cropping = $cropping;
@@ -61,6 +69,21 @@ class Resize extends AbstractHelper
     public function resize($width, $height)
     {
         $this->commands .= '$resize,' . $width . ',' . $height;
+
+        return $this;
+    }
+
+    /**
+     * @param $width
+     * @param $height
+     * @return $this
+     */
+    public function quality($value = null)
+    {
+        if($value !== null && is_numeric($value)){
+            $this->commands .= '$quality,' . $value;
+            $this->quality = $value;
+        }
 
         return $this;
     }
@@ -153,6 +176,14 @@ class Resize extends AbstractHelper
      */
     public function __toString()
     {
+        if($this->commands == ''){
+            return \Pi::url($this->imgPath);
+        }
+
+        $options = array();
+
+        $options['quality'] = $this->quality;
+
         try{
             $file = ($this->imgParts['dirname'] && $this->imgParts['dirname'] !== '.' ? $this->imgParts['dirname'] . '/' : '') . $this->imgParts['filename'];
 
@@ -172,10 +203,9 @@ class Resize extends AbstractHelper
             }
 
             $target = 'upload/media/processed/'
+                . $this->commands . '/'
                 . str_replace('upload/media/original', '', $file)
-                . '.' . $this->commands
                 . '.' . $targetExtension;
-
 
             if(!is_file($target))
             {
@@ -185,10 +215,10 @@ class Resize extends AbstractHelper
                 $imageProcessing = new ImageProcessing($imagine);
 
                 if ($source) {
-                    $imageProcessing->process($source, $target, str_replace('$','',$this->commands), $this->cropping);
+                    $imageProcessing->process($source, $target, preg_replace('#^\$#','',$this->commands), $this->cropping, $options);
 
                 } else {
-                    $imageProcessing->process404($target, str_replace('$','',$this->commands));
+                    $imageProcessing->process404($target, preg_replace('#^\$#','',$this->commands));
                 }
             }
         }
@@ -197,7 +227,7 @@ class Resize extends AbstractHelper
             return '';
         }
 
-        $filepath = '/upload/media/processed/' . str_replace('upload/media/original/', '', $file) . '.' . $this->commands . '.' . $targetExtension;
+        $filepath = '/upload/media/processed/' . $this->commands . '/' . str_replace('upload/media/original/', '', $file) . '.' . $targetExtension;
 
         return $filepath;
     }

@@ -27,4 +27,15 @@ class Model extends AbstractTableGateway
      * {@inheritDoc}
      */
     protected $rowClass = 'Pi\Db\RowGateway\RowGateway';
+
+    protected $mediaLinks = array();
+
+    /**
+     * Return media links
+     * @return array
+     */
+    public function getMediaLinks(){
+
+        return $this->mediaLinks;
+    }
 }
