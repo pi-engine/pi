@@ -277,17 +277,6 @@ return array(
         ),
     ),
 
-    'cron'     => array(
-        'label'         => _t('Cron'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'cron',
-        'action'        => 'index',
-        'permission'    => array(
-            'resource'  => 'maintenance',
-        ),
-    ),
-
     'toolkit'   => array(
         'label'         => _t('Toolkit'),
         'permission'    => array(

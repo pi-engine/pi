@@ -49,8 +49,8 @@ $config['category'] = array(
         'title'     => _t('Text processing'),
     ),
     array(
-        'name'      => 'cron',
-        'title'     => _t('Cron'),
+        'name'      => 're_captcha',
+        'title'     => _t('ReCaptcha'),
     ),
     array(
         'name'      => 'mail',
@@ -117,34 +117,16 @@ $config['item'] = array(
         'category'      => 'general',
     ),
 
-    'ga_account'   => array(
-        'title'         => _t('GA account'),
-        'description'   => _t('Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to the code `UA-XXXXXXXX-X; XXXX.tld`.'),
-        'category'      => 'general',
-    ),
-
-    'captcha_public_key' => array(
-        'title'         => _t('ReCaptcha Public Key'),
-		'description'   => _t('see https://www.google.com/recaptcha to create your public key dedicated to your website domain. Both keys are mandatory.'),
-        'edit'          => 'text',
-        'value'         => '',
-        'filter'        => 'string',
-        'category'      => 'general',
-    ),
-
-    'captcha_private_key' => array(
-        'title'         => _t('ReCaptcha Private Key'),
-		'description'   => _t('see https://www.google.com/recaptcha to create your private key dedicated to your website domain. Both keys are mandatory..'),
-        'edit'          => 'text',
-        'value'         => '',
-        'filter'        => 'string',
-        'category'      => 'general',
-    ),
-
     'foot_script'   => array(
         'title'         => _t('Foot scripts'),
         'description'   => _t('Scripts that will be appended to each page footer. Either naked or wrapped js scripts are allowed.'),
         'edit'          => 'textarea',
+        'category'      => 'general',
+    ),
+
+    'ga_account'   => array(
+        'title'         => _t('GA account'),
+        'description'   => _t('Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to the code `UA-XXXXXXXX-X; XXXX.tld`.'),
         'category'      => 'general',
     ),
 
@@ -710,21 +692,22 @@ $config['item'] = array(
         'category'      => 'geo_tag',
     ),
 
-    'cron_active' => array(
-        'category'      => 'cron',
-        'title'         => _a('Active cron'),
-        'description'   => '',
-        'edit'          => 'checkbox',
-        'filter'        => 'number_int',
-        'value'         => 0
+    'captcha_public_key' => array(
+        'title'         => _t('ReCaptcha Public Key'),
+        'description'   => _t('see https://www.google.com/recaptcha to create your public key dedicated to your website domain. Both keys are mandatory.'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'      => 're_captcha',
     ),
 
-    'cron_password' => array(
-        'category'      => 'cron',
-        'title'         => _a('Cron password'),
+    'captcha_private_key' => array(
+        'title'         => _t('ReCaptcha Private Key'),
+        'description'   => _t('see https://www.google.com/recaptcha to create your private key dedicated to your website domain. Both keys are mandatory..'),
         'edit'          => 'text',
+        'value'         => '',
         'filter'        => 'string',
-        'value'         => md5(rand()),
+        'category'      => 're_captcha',
     ),
 );
 
