@@ -185,6 +185,11 @@ class Resize extends AbstractHelper
         $options['quality'] = $this->quality;
 
         try{
+
+            if(empty($this->imgParts['dirname'])){
+                throw new \Exception('No dirname found');
+            }
+
             $file = ($this->imgParts['dirname'] && $this->imgParts['dirname'] !== '.' ? $this->imgParts['dirname'] . '/' : '') . $this->imgParts['filename'];
 
             if(!isset($this->imgParts['extension']) || $this->imgParts['extension'] == ''){
