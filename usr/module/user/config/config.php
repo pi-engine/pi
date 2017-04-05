@@ -451,7 +451,7 @@ $config = array(
         'category'      => 'account',
     ),
 
-    'email_backlist'    => array(
+    'email_blacklist'    => array(
         'title'         => _t('Email blacklist'),
         'description'   => _t('Forbidden email list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',
