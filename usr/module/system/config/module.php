@@ -21,7 +21,7 @@ return array(
         'description'   =>
             _a('For administration of core functions of the site.'),
         // Version number, required
-        'version'       => '3.5.10',
+        'version'       => '3.5.11',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional

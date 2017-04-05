@@ -1,89 +1,108 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2016-08-16 12:32+0430\n"
-"PO-Revision-Date: 2016-08-16 12:32+0430\n"
+"POT-Creation-Date: 2017-03-24 11:58+0430\n"
+"PO-Revision-Date: 2017-03-24 11:58+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-KeywordsList: _b\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/Block/Block.php:31
+#: src/Block/Block.php:32
 #, php-format
 msgid "About %s"
 msgstr "درباره %s"
 
-#: src/Block/Block.php:33
+#: src/Block/Block.php:34
 msgid "Site name"
 msgstr "نام سایت"
 
-#: src/Block/Block.php:34
+#: src/Block/Block.php:35
 msgid "Slogan"
 msgstr "شعار"
 
-#: template/block/user-bar.phtml:7 template/block/user-bar.phtml:8
-#: template/block/user-bar.phtml:92 template/block/user-bar.phtml:93
-#: template/block/user-bar.phtml:168 template/block/user-bar.phtml:169
+#: template/block/user-bar.phtml:17 template/block/user-bar.phtml:19
 msgid "Login"
 msgstr "ورود"
 
-#: template/block/user-bar.phtml:12 template/block/user-bar.phtml:13
-#: template/block/user-bar.phtml:97 template/block/user-bar.phtml:98
-#: template/block/user-bar.phtml:173 template/block/user-bar.phtml:174
+#: template/block/user-bar.phtml:23 template/block/user-bar.phtml:24
 msgid "Register"
 msgstr "ثبت نام"
 
-#: template/block/user-bar.phtml:20 template/block/user-bar.phtml:21
-#: template/block/user-bar.phtml:110 template/block/user.phtml:20
-#: template/block/user.phtml:22
-msgid "Profile"
-msgstr "حساب کاربری"
+#: template/block/user-bar.phtml:47 template/block/user-bar.phtml:125
+#: template/block/user-bar.phtml:127 template/block/user-bar.phtml:323
+#: template/block/user-bar.phtml:325
+msgid "Favourite"
+msgstr ""
 
-#: template/block/user-bar.phtml:26 template/block/user-bar.phtml:27
-#: template/block/user-bar.phtml:33 template/block/user-bar.phtml:34
-#: template/block/user-bar.phtml:114 template/block/user-bar.phtml:115
-#: template/block/user-bar.phtml:121 template/block/user-bar.phtml:122
-#: template/block/user-bar.phtml:186 template/block/user-bar.phtml:187
-#: template/block/user-bar.phtml:193 template/block/user-bar.phtml:194
+#: template/block/user-bar.phtml:49
+msgid "Guide dashboard"
+msgstr ""
+
+#: template/block/user-bar.phtml:54 template/block/user-bar.phtml:56
+msgid "Manage account"
+msgstr ""
+
+#: template/block/user-bar.phtml:61 template/block/user-bar.phtml:72
+#: template/block/user-bar.phtml:144 template/block/user-bar.phtml:157
+#: template/block/user-bar.phtml:259 template/block/user-bar.phtml:270
+msgid "message(s)"
+msgstr ""
+
+#: template/block/user-bar.phtml:63 template/block/user-bar.phtml:74
+#: template/block/user-bar.phtml:147 template/block/user-bar.phtml:160
+#: template/block/user-bar.phtml:261 template/block/user-bar.phtml:272
 msgid "Message"
 msgstr "پیام"
 
-#: template/block/user-bar.phtml:40 template/block/user-bar.phtml:41
-#: template/block/user-bar.phtml:128 template/block/user-bar.phtml:129
-#: template/block/user-bar.phtml:200 template/block/user-bar.phtml:201
+#: template/block/user-bar.phtml:83 template/block/user-bar.phtml:170
+#: template/block/user-bar.phtml:281
+msgid "notification(s)"
+msgstr ""
+
+#: template/block/user-bar.phtml:85 template/block/user-bar.phtml:173
+#: template/block/user-bar.phtml:283
 msgid "Notification"
 msgstr "آگاهی رسانی"
 
-#: template/block/user-bar.phtml:48 template/block/user-bar.phtml:49
-#: template/block/user-bar.phtml:135 template/block/user-bar.phtml:136
-#: template/block/user-bar.phtml:208 template/block/user-bar.phtml:209
+#: template/block/user-bar.phtml:95 template/block/user-bar.phtml:97
+#: template/block/user-bar.phtml:184 template/block/user-bar.phtml:187
+#: template/block/user-bar.phtml:293 template/block/user-bar.phtml:295
 msgid "Support"
 msgstr "پشتیبانی"
 
-#: template/block/user-bar.phtml:55 template/block/user-bar.phtml:56
-#: template/block/user-bar.phtml:143 template/block/user-bar.phtml:144
-#: template/block/user-bar.phtml:215 template/block/user-bar.phtml:216
+#: template/block/user-bar.phtml:106 template/block/user-bar.phtml:108
+#: template/block/user-bar.phtml:197 template/block/user-bar.phtml:200
+#: template/block/user-bar.phtml:304 template/block/user-bar.phtml:306
 msgid "Follow up orders"
 msgstr "پیگیری سفارش‌ها"
 
-#: template/block/user-bar.phtml:62 template/block/user-bar.phtml:63
-#: template/block/user-bar.phtml:150 template/block/user-bar.phtml:151
-#: template/block/user-bar.phtml:222 template/block/user-bar.phtml:223
+#: template/block/user-bar.phtml:114 template/block/user-bar.phtml:116
+#: template/block/user-bar.phtml:207 template/block/user-bar.phtml:210
+#: template/block/user-bar.phtml:312 template/block/user-bar.phtml:314
 msgid "Credit"
 msgstr "اعتبار"
 
-#: template/block/user-bar.phtml:68 template/block/user-bar.phtml:69
-#: template/block/user-bar.phtml:156 template/block/user-bar.phtml:228
-#: template/block/user-bar.phtml:229 template/block/user.phtml:30
-#: template/block/user.phtml:32
+#: template/block/user-bar.phtml:132 template/block/user-bar.phtml:134
+#: template/block/user-bar.phtml:237 template/block/user-bar.phtml:240
+#: template/block/user-bar.phtml:330 template/block/user-bar.phtml:332
+#: template/block/user.phtml:30 template/block/user.phtml:32
 msgid "Logout"
 msgstr "خروج"
+
+#: template/block/user-bar.phtml:222 template/block/user-bar.phtml:252
+msgid "Welcome"
+msgstr ""
+
+#: template/block/user.phtml:20 template/block/user.phtml:22
+msgid "Profile"
+msgstr "حساب کاربری"
 
 #: template/block/user.phtml:25 template/block/user.phtml:27
 msgid "Settings"

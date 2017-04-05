@@ -7,7 +7,13 @@
  * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
+// Pi boot with no engine bootup: current file is located in www/script/...
+$boot = dirname(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))))) . '/boot.php';
+include $boot;
+
 $content = $_POST['preview'];
+$content = Pi::service('security')->filter($content);
+$content = _escape($content);
 
 if (class_exists('MarkdownDocument')) {
     $markdown = MarkdownDocument::createFromString($content);
