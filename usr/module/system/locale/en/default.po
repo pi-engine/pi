@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2016-08-16 12:30+0430\n"
-"PO-Revision-Date: 2016-08-16 12:30+0430\n"
+"POT-Creation-Date: 2017-03-24 11:58+0430\n"
+"PO-Revision-Date: 2017-03-24 11:58+0430\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -81,7 +81,12 @@ msgid "What's new"
 msgstr ""
 
 #: src/Controller/Feed/IndexController.php:33
-msgid "Recent module updates."
+msgid "Recent module feeds."
+msgstr ""
+
+#: src/Controller/Feed/IndexController.php:45
+#, php-format
+msgid "Resent feeds of %s module"
 msgstr ""
 
 #: src/Controller/Front/LoginController.php:71
@@ -101,7 +106,10 @@ msgstr ""
 msgid "User login"
 msgstr ""
 
-#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:122
+#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:119
+#: template/block/partial/login-register-modal.phtml:54
+#: template/block/partial/login-register-modal.phtml:93
+#: template/block/partial/login-register-modal.phtml:94
 #: template/front/login-logout.phtml:13 template/front/register.phtml:6
 msgid "Login"
 msgstr ""
@@ -143,8 +151,10 @@ msgstr ""
 
 #: src/Controller/Front/PasswordController.php:127
 #: src/Controller/Front/PasswordController.php:128
-#: src/Form/FindPasswordForm.php:51 template/front/login.phtml:17
-#: template/front/password-find.phtml:2 template/front/register.phtml:5
+#: src/Form/FindPasswordForm.php:49
+#: template/block/partial/login-register-modal.phtml:68
+#: template/front/login.phtml:17 template/front/password-find.phtml:2
+#: template/front/register.phtml:5
 msgid "Find password"
 msgstr ""
 
@@ -174,7 +184,7 @@ msgid "Username"
 msgstr ""
 
 #: src/Controller/Front/ProfileController.php:59
-#: src/Form/FindPasswordForm.php:26
+#: src/Form/FindPasswordForm.php:28
 msgid "Email"
 msgstr ""
 
@@ -186,7 +196,7 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:58
+#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:61
 #: src/Form/RegisterForm.php:65
 msgid "Password"
 msgstr ""
@@ -204,6 +214,9 @@ msgstr ""
 
 #: src/Controller/Front/RegisterController.php:52
 #: src/Controller/Front/RegisterController.php:113
+#: template/block/partial/login-register-modal.phtml:55
+#: template/block/partial/login-register-modal.phtml:73
+#: template/block/partial/login-register-modal.phtml:74
 #: template/front/login-logout.phtml:14 template/front/login.phtml:20
 msgid "Register"
 msgstr ""
@@ -216,11 +229,11 @@ msgstr ""
 msgid "The account is not created in database, please try again."
 msgstr ""
 
-#: src/Controller/Front/TestController.php:46
+#: src/Controller/Front/TestController.php:49
 msgid "site name"
 msgstr ""
 
-#: src/Controller/Front/TestController.php:170
+#: src/Controller/Front/TestController.php:179
 #, php-format
 msgid "Greetings in raw body %d"
 msgstr ""
@@ -243,7 +256,7 @@ msgstr ""
 msgid "Birthdate"
 msgstr ""
 
-#: src/Form/AccountForm.php:93 src/Form/BlockModuleForm.php:207
+#: src/Form/AccountForm.php:93 src/Form/BlockModuleForm.php:259
 #: src/Form/ConfigForm.php:58 src/Form/MemberForm.php:157
 #: src/Form/ModuleForm.php:58 src/Form/NavForm.php:67
 #: src/Form/NavPageForm.php:131 src/Form/PageAddForm.php:93
@@ -319,7 +332,7 @@ msgstr ""
 msgid "Specified block container CSS class."
 msgstr ""
 
-#: src/Form/BlockModuleForm.php:227
+#: src/Form/BlockModuleForm.php:191
 msgid "Configs"
 msgstr ""
 
@@ -327,19 +340,7 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: src/Form/FindPasswordForm.php:36
-msgid "Please type the word"
-msgstr ""
-
-#: src/Form/LoginForm.php:70 src/Form/RegisterForm.php:89
-msgid "Please type the word."
-msgstr ""
-
-#: src/Form/LoginForm.php:81
-msgid "Remember me"
-msgstr ""
-
-#: src/Form/LoginForm.php:85
+#: src/Form/LoginForm.php:82
 msgid "Remember login status"
 msgstr ""
 
@@ -434,6 +435,10 @@ msgstr ""
 
 #: src/Form/PageEditForm.php:36
 msgid "Action data"
+msgstr ""
+
+#: src/Form/RegisterForm.php:89
+msgid "Please type the word."
 msgstr ""
 
 #: src/Form/RoleForm.php:65
@@ -574,6 +579,14 @@ msgstr ""
 
 #: template/admin/theme-index.phtml:35
 msgid "Customize"
+msgstr ""
+
+#: template/block/partial/login-register-modal.phtml:71
+msgid "Not already registered ?"
+msgstr ""
+
+#: template/block/partial/login-register-modal.phtml:91
+msgid "Already registered ?"
 msgstr ""
 
 #: template/front/login-disabled.phtml:5

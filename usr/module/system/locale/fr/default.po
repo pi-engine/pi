@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-02-28 16:01+0100\n"
-"PO-Revision-Date: 2017-02-28 16:01+0100\n"
+"POT-Creation-Date: 2017-03-24 11:58+0430\n"
+"PO-Revision-Date: 2017-03-24 11:58+0430\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -575,26 +575,6 @@ msgstr "Seuls les caractèrs multi-byte et les espaces sont autorisés"
 #: template/admin/cache-list.phtml:50
 msgid "Cancel"
 msgstr "Annuler"
-
-#: template/admin/cron-index.phtml:20
-msgid "Cron URL"
-msgstr ""
-
-#: template/admin/cron-index.phtml:24
-msgid "Cron Command"
-msgstr ""
-
-#: template/admin/cron-index.phtml:26
-msgid "Set cron command on your server and set cron time"
-msgstr ""
-
-#: template/admin/cron-index.phtml:40
-msgid "Are you sure to do cron manually?"
-msgstr ""
-
-#: template/admin/cron-index.phtml:41
-msgid "manual cron in process"
-msgstr ""
 
 #: template/admin/theme-customize.phtml:19
 msgid "In process of compiling"

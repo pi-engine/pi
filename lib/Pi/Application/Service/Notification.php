@@ -19,7 +19,7 @@ use Zend\Http\Client;
  * - Pi::service('notification')->send($to, $template, $information, $module, $uid);
  * - Pi::service('notification')->smsToUser($content, $number);
  * - Pi::service('notification')->smsToAdmin($content, $number);
- * - Pi::service('notification')->fcm($data, $option);
+ * - Pi::service('notification')->fcm($notification, $option);
  *
  * - ToDo : user setting for active / inactive push notification on website and mobile
  * - ToDo : improve send sms on notification module and support local
@@ -131,9 +131,9 @@ class Notification extends AbstractService
      *
      *
      *
-     * Data is required for send message or notification as array
+     * Notification is required for send message or notification as array
      *
-     * $data = array(
+     * $notification = array(
      *     'id'    => 123,
      *     'title' => 'my title',
      *     'body'  => 'my body',
@@ -152,16 +152,17 @@ class Notification extends AbstractService
      * );
      *
      *
-     * @param $data
+     * @param $notification
      * @param $option
      * @return array
      */
-    public function fcm($data, $option = array())
+    public function fcm($notification, $option = array())
     {
         // Set result
         $result = array(
-            'status' => 0,
-            'message' => 'Error'
+            'status'   => 0,
+            'message'  => '',
+            'data'     => '',
         );
 
         // Check option priority
@@ -170,14 +171,14 @@ class Notification extends AbstractService
         // Get server key
         $option['serverKey'] = isset($option['serverKey']) ? $option['serverKey'] : $this->getOption('fcm_server_key');
         if (empty($option['serverKey'])) {
-            $result['message'] = 'Server key not set';
+            $result['message'] = __('Server key not set');
             return $result;
         }
 
         // Get token or topic
         $option['token'] = isset($option['token']) ? $option['token'] : $this->getOption('fcm_token');
         if (empty($option['token'])) {
-            $result['message'] = 'Token not set';
+            $result['message'] = __('Token not set');
             return $result;
         }
 
@@ -185,10 +186,11 @@ class Notification extends AbstractService
         $url = 'https://fcm.googleapis.com/fcm/send';
 
         // Set field
-        $fields = array();
-        $fields['priority'] = $option['priority'];
-        $fields['to'] = $option['token'];
-        $fields['data'] = $data;
+        $fields = array(
+            'priority'      => $option['priority'],
+            'to'            => $option['token'],
+            'notification'  => $notification,
+        );
 
         // Send
         $config = array(
@@ -203,11 +205,15 @@ class Notification extends AbstractService
         $client->setHeaders($headers);
         $response = $client->send();
         if ($response->isSuccess()) {
-            $result['status'] = 1;
-            $result['message'] = 'Success';
-            $result['fields'] = $fields;
+            $result['status']   = 1;
+            $result['message']  = __('Notification send successfully');
+            $result['data']     = array(
+                'response'      => json_decode($response->getBody(), true),
+                'priority'      => $option['priority'],
+                'to'            => $option['token'],
+            );
         } else {
-            $result['message'] = 'Error to send';
+            $result['message']  = __('Error to send notification');
         }
         return $result;
     }
