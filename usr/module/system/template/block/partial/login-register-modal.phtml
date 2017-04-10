@@ -125,6 +125,16 @@ if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
                 $(this).val(redirectValue);
             });
         }
+        
+        if (button.data('redirect')) {
+            modal.find('[name=redirect]').each(function(){
+                var redirectValue = $(this).val();
+
+                redirectValue = redirectValue + anchor;
+                $(this).val(button.data('redirect'));
+            });
+        }
+        
     });
 
     $('.toggle-modal-action').click(function(){
