@@ -30,16 +30,8 @@ CREATE TABLE `{page}` (
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
-  UNIQUE KEY `slug` (`slug`)
-);
-
-
-# NOT used yet. Solely for demonstration, will be dropped
-CREATE TABLE `{stats}` (
-  `id`     INT(10) UNSIGNED                 NOT NULL AUTO_INCREMENT,
-  `page`   INT(10)                 UNSIGNED NOT NULL DEFAULT '0',
-  `clicks` INT(10)                 UNSIGNED NOT NULL DEFAULT '0',
-
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `page` (`page`)
+  UNIQUE KEY `slug` (`slug`),
+  KEY `title` (`title`),
+  KEY `time_created` (`time_created`),
+  KEY `active` (`active`)
 );
