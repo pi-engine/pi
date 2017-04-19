@@ -42,9 +42,7 @@ if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
     }
 }
 
-
 ?>
-
 <div class="modal fade" id="loginRegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -77,7 +75,6 @@ if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
                         </div>
                     </div>
                 </div>
-
                 <div id="modal-register-wrapper" class="modal-action-wrapper row clearfix" data-action="register">
                     <?php if (!empty($descriptionRegister)) { ?>
                         <div class="hidden-xs hidden-sm col-md-6">
@@ -101,7 +98,6 @@ if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
         </div>
     </div>
 </div>
-
 <script>
     $('#loginRegisterModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);

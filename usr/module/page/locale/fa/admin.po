@@ -1,156 +1,151 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2015-02-20 12:10+0330\n"
-"PO-Revision-Date: 2017-02-07 20:02+0100\n"
+"POT-Creation-Date: 2017-04-19 10:25+0430\n"
+"PO-Revision-Date: 2017-04-19 10:25+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/comment.php:18
+#: config/comment.php:18
 msgid "Page comments"
 msgstr "نظرات صفحه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:13
+#: config/config.php:13
 msgid "Social sharing items"
 msgstr "اشتراک در شبکه های اجتماعی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:24
+#: config/config.php:24
 msgid "Show breadcrumbs"
 msgstr "نمایش ناوبری"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/module.php:14
+#: config/module.php:14
 msgid "Page"
 msgstr "صفحه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/module.php:16
+#: config/module.php:16
 msgid "Single page for direct content display."
 msgstr "ابزار ساخت صفحات یکتا"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:13
+#: config/nav.php:13
 msgid "Custom site navigation"
 msgstr "ناوبری شخصی وب سایت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:21
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:45
+#: config/nav.php:21 src/Controller/Admin/IndexController.php:45
 msgid "Page list"
 msgstr "فهرست صفحات"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:28
+#: config/nav.php:28
 msgid "Edit page"
 msgstr "ویرایش صفحه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:35
+#: config/nav.php:35
 msgid "Delete page"
 msgstr "حذف صفحه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:44
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:124
+#: config/nav.php:44 src/Controller/Admin/IndexController.php:130
 msgid "Add a page"
 msgstr "صفحه جدید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:50
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/TemplateController.php:48
+#: config/nav.php:50 src/Controller/Admin/TemplateController.php:48
 msgid "Template list"
 msgstr "فهرست الگو ها"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:60
+#: config/nav.php:60
 msgid "Home"
 msgstr "خانه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:64
+#: config/nav.php:64
 msgid "About us"
 msgstr "درباره ما"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:69
+#: config/nav.php:69
 msgid "Contact us"
 msgstr "تماس با ما"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:74
+#: config/nav.php:74
 msgid "Terms of use"
 msgstr "شرایط استفاده"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:79
+#: config/nav.php:79
 msgid "Privacy guidelines"
 msgstr "حریم خصوصی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:84
+#: config/nav.php:84
 msgid "Join us"
 msgstr "به ما بپیوندید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:88
+#: config/nav.php:88
 msgid "Applications"
 msgstr "اپلیکشن ها"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:93
+#: config/nav.php:93
 msgid "Pi Engine"
 msgstr "پای انجین"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:96
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:181
+#: src/Controller/Admin/IndexController.php:102
+#: src/Controller/Admin/IndexController.php:192
 msgid "Page data saved successfully."
 msgstr "اطلاعات صفحه با موفقیت ذخیره شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:99
+#: src/Controller/Admin/IndexController.php:105
 msgid "Page data not saved."
 msgstr "اطلاعات صفحه ذخیره نشد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:102
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:184
+#: src/Controller/Admin/IndexController.php:108
+#: src/Controller/Admin/IndexController.php:195
 msgid "Invalid data, please check and re-submit."
 msgstr "اطلاعات اشتباه، لطفا بررسی کنید و دوباره ارسال کنید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:200
+#: src/Controller/Admin/IndexController.php:211
 msgid "Page edit"
 msgstr "ویرایش صفحه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:225
+#: src/Controller/Admin/IndexController.php:242
 msgid "Page deleted successfully."
 msgstr "صفحه با موفقیت حذف شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:247
+#: src/Controller/Admin/IndexController.php:279
 msgid "Page updated successfully."
 msgstr "صفحه با موفقیت به روز شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:269
+#: src/Controller/Admin/IndexController.php:301
 msgid "Page navigation menu updated successfully."
 msgstr "منو صفحه با موفقیت به روز شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:45
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:9
+#: src/Form/PageForm.php:45 template/admin/page-list.phtml:9
 msgid "Page title"
 msgstr "عنوان صفحه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:55
+#: src/Form/PageForm.php:55
 msgid "Unique name"
 msgstr "نام یکتا"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:59
+#: src/Form/PageForm.php:59
 msgid "Only alphabet, number and underscore allowed."
 msgstr "فقط حروف الفبای انگلیسی ، اعداد و علامت آندر لاین مجاز است"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:66
+#: src/Form/PageForm.php:66
 msgid "SEO slug"
 msgstr "اسلاگ"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:70
+#: src/Form/PageForm.php:70
 msgid "Unique slug for SEO URL, space is not allowed."
 msgstr "اسلاگ یکتا برای آدرس سئو - استفاده از اسپیس مجاز نیست"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:106
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:8
+#: src/Form/PageForm.php:106 template/admin/template-list.phtml:8
 msgid "Template name"
 msgstr "نام الگو"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:109
+#: src/Form/PageForm.php:109
 msgid ""
 "Select a template from `usr/custom/module/page/template/front/` w/o "
 "extension."
@@ -158,166 +153,172 @@ msgstr ""
 "انتخاب یک الگو از مسیر `usr/custom/module/page/template/front/` اگر موجود "
 "باشد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:132
+#: src/Form/PageForm.php:132
 msgid "Content"
 msgstr "متن"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:147
+#: src/Form/PageForm.php:147
 msgid "SEO settings"
 msgstr "تنظیمات سئو"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:155
+#: src/Form/PageForm.php:155
 msgid "SEO Title"
 msgstr "عنوان سئو"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:159
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:171
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:183
+#: src/Form/PageForm.php:159 src/Form/PageForm.php:171
+#: src/Form/PageForm.php:183
 msgid "To be used for HTML head meta."
 msgstr "برای استفاده به عنوان head meta در HTML"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:167
+#: src/Form/PageForm.php:167
 msgid "SEO Keywords"
 msgstr "کلمات کلیدی سئو"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:179
+#: src/Form/PageForm.php:179
 msgid "SEO Description"
 msgstr "توضیحات سئو"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:192
+#: src/Form/PageForm.php:192
 msgid "Active"
 msgstr "فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Installer/Action/Install.php:99
+#: src/Installer/Action/Install.php:100
 msgid "Demo for PHTML page"
 msgstr "نسخه نمایشی برای صفحه PHTML"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Installer/Action/Install.php:106
+#: src/Installer/Action/Install.php:107
 msgid "RSS Feed"
 msgstr "خوراک"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Installer/Action/Install.php:113
+#: src/Installer/Action/Install.php:114
 msgid "Sitemap"
 msgstr "نقشه سایت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Installer/Action/Install.php:121
+#: src/Installer/Action/Install.php:122
 msgid "XML Sitemap"
 msgstr "نقشه سایت XML"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Installer/Action/Install.php:132
+#: src/Installer/Action/Install.php:133
 msgid "Pages added."
 msgstr "صفحات اضافه شدند"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Validator/PageNameDuplicate.php:14
+#: src/Validator/PageNameDuplicate.php:14
 msgid "Page name already exists."
 msgstr "نام صفحه هم اکنون استفاده شده است"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Validator/PageSlugDuplicate.php:14
+#: src/Validator/PageSlugDuplicate.php:14
 msgid "Page slug already exists."
 msgstr "اسلاگ صفحه هم اکنون استفاده شده است"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Validator/PageTemplateAvailable.php:14
+#: src/Validator/PageTemplateAvailable.php:14
 msgid "Template file is not available."
 msgstr "فایل تمپلیت انتخابی موجود نیست"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:4
+#: template/admin/page-add.phtml:4
 msgid "Page content type:"
 msgstr "نوع متن صفحه :"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:5
-msgid "Only plaintext content is allowed."
-msgstr "فقط استفاده از متن ساده در صفحه مجاز است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:5
-msgid "Text"
-msgstr "Text"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:6
+#: template/admin/page-add.phtml:5
 msgid "HTML tags allowed in content."
 msgstr "استفاده از تگ های HTML در صفحه مجاز است"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:6
+#: template/admin/page-add.phtml:5
 msgid "HTML"
 msgstr "HTML"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:7
+#: template/admin/page-add.phtml:6
+msgid "Only plaintext content is allowed."
+msgstr "فقط استفاده از متن ساده در صفحه مجاز است"
+
+#: template/admin/page-add.phtml:6
+msgid "Text"
+msgstr "Text"
+
+#: template/admin/page-add.phtml:7
 msgid "Markdown syntax allowed in content."
 msgstr "استفاده از روش Markdown در صفحه مجاز است"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:7
+#: template/admin/page-add.phtml:7
 msgid "Markdown"
 msgstr "Markdown"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:8
+#: template/admin/page-add.phtml:8
 msgid "PHTML template."
 msgstr "الگوی PHTML"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:8
+#: template/admin/page-add.phtml:8
 msgid "PHTML"
 msgstr "PHTML"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:10
+#: template/admin/page-list.phtml:10
 msgid "Name"
 msgstr "نام"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:11
+#: template/admin/page-list.phtml:11
 msgid "Slug"
 msgstr "اسلاگ"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:12
+#: template/admin/page-list.phtml:12
 msgid "Type"
 msgstr "نوع"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:13
+#: template/admin/page-list.phtml:13
 msgid "Time published"
 msgstr "زمان انتشار"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:14
+#: template/admin/page-list.phtml:14
 msgid "Last Update"
 msgstr "آخرین به روز رسانی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:15
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:11
+#: template/admin/page-list.phtml:15 template/admin/template-list.phtml:11
 msgid "Action"
 msgstr "عملکرد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:47
+#: template/admin/page-list.phtml:47
 msgid "Edit"
 msgstr "ویرایش"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:49
+#: template/admin/page-list.phtml:49
+msgid "Are you sure to disable this page?"
+msgstr "آیا اطمینان دارید که میخواهید این صفحه را غیر فعال کنید؟"
+
+#: template/admin/page-list.phtml:49
 msgid "Disable"
 msgstr "غیر فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:51
+#: template/admin/page-list.phtml:51
+msgid "Are you sure to dnable this page?"
+msgstr "آیا اطمینان دارید که میخواهید این صفحه را فعال کنید؟"
+
+#: template/admin/page-list.phtml:51
 msgid "Enable"
 msgstr "فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
+#: template/admin/page-list.phtml:53
 msgid "Are you sure to delete this page?"
 msgstr "آیا اطمینان دارید که می خواهید این صفحه را حذف کنید؟"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
+#: template/admin/page-list.phtml:53
 msgid "Delete"
 msgstr "حذف"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:64
+#: template/admin/page-list.phtml:63
 msgid "Add to menu"
 msgstr "درج در منو"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:9
+#: template/admin/template-list.phtml:9
 msgid "Time modified"
 msgstr "زمان ویرایش"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:10
+#: template/admin/template-list.phtml:10
 msgid "Filesize"
 msgstr "حجم فایل"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:28
+#: template/admin/template-list.phtml:28
 msgid "View"
 msgstr "نمایش"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:29
+#: template/admin/template-list.phtml:29
 msgid "Add to page"
 msgstr "صفحه جدید"
 

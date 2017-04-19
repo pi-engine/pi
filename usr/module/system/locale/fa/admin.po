@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2017-03-24 11:58+0430\n"
-"PO-Revision-Date: 2017-03-24 11:58+0430\n"
+"POT-Creation-Date: 2017-04-19 10:20+0430\n"
+"PO-Revision-Date: 2017-04-19 10:23+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -36,13 +36,15 @@ msgstr "مسطح"
 
 #: config/block.php:32
 msgid "Flat on account / dropdown on other pages"
-msgstr ""
+msgstr "مسطح در حساب کاربری / کشویی در دیگر بخش ها"
 
 #: config/block.php:33
 msgid ""
 "Flat on account / dropdown on other pages -- No title for notification/message "
 "only"
 msgstr ""
+"مسطح در حساب کاربری / کشویی در دیگر بخش ها - بدون عنوان برای آگاهی رسانی و پیام "
+"و ..."
 
 #: config/block.php:34
 msgid "Dropdown menu"
@@ -50,23 +52,23 @@ msgstr "منوی کشویی"
 
 #: config/block.php:40
 msgid "User bar float"
-msgstr ""
+msgstr "محل نوار ابزار کاربر"
 
 #: config/block.php:47
 msgid "User bar on Right"
-msgstr ""
+msgstr "در سمت راست"
 
 #: config/block.php:48
 msgid "User bar on left"
-msgstr ""
+msgstr "در سمت چپ"
 
 #: config/block.php:54
 msgid "Display title"
-msgstr ""
+msgstr "نمایش عنوان"
 
 #: config/block.php:55
 msgid "Display menu title or just display icons"
-msgstr ""
+msgstr "نمایش عنوان گزینه ها در منو یا فقط نمایش آیکن"
 
 #: config/block.php:61
 msgid "Display message"
@@ -82,7 +84,7 @@ msgstr "پیام و آگاهی رسانی نمایش داده نشود"
 
 #: config/block.php:69
 msgid "Message and notification separately"
-msgstr ""
+msgstr "پیام و آگاهی رسانی به صورت جداگانه"
 
 #: config/block.php:70
 msgid "Just message"
@@ -94,7 +96,7 @@ msgstr "فقط آگاهی رسانی نمایش داده شود"
 
 #: config/block.php:72
 msgid "Merge message and notification"
-msgstr ""
+msgstr "ادغام پیام و آگاهی رسانی"
 
 #: config/block.php:78
 msgid "Display order"
@@ -110,7 +112,7 @@ msgstr "نمایش پشتیبانی"
 
 #: config/block.php:99
 msgid "Display favourite"
-msgstr ""
+msgstr "نمایش علاقه مندی ها"
 
 #: config/block.php:110 config/nav.front.php:30
 msgid "Login"
@@ -172,104 +174,76 @@ msgstr "ورود مدیریت"
 msgid "Text processing"
 msgstr "پردازش متن"
 
-#: config/config.php:53 config/nav.admin.php:300
+#: config/config.php:53
+msgid "ReCaptcha"
+msgstr "ریکپچا"
+
+#: config/config.php:57 config/nav.admin.php:300
 #: template/admin/audit-index.phtml:9
 msgid "Mailing"
 msgstr "ارسال میل"
 
-#: config/config.php:65
+#: config/config.php:69
 msgid "Site name"
 msgstr "نام سایت"
 
-#: config/config.php:66
+#: config/config.php:70
 msgid "Website name."
 msgstr "نام وب‌سایت"
 
-#: config/config.php:73
+#: config/config.php:77
 msgid "Slogan"
 msgstr "شعار"
 
-#: config/config.php:74
+#: config/config.php:78
 msgid "Website slogan."
 msgstr "شعار وب سایت"
 
-#: config/config.php:80
+#: config/config.php:84
 msgid "Locale"
 msgstr "انتخاب زبان"
 
-#: config/config.php:81
+#: config/config.php:85
 msgid "Locale for application content."
 msgstr "زبان برای محتوای برنامه"
 
-#: config/config.php:88
+#: config/config.php:92
 msgid "Charset"
 msgstr "کاراکترسِت"
 
-#: config/config.php:89
+#: config/config.php:93
 msgid "Charset for page display."
 msgstr "کاراکترست برای نمایش صفحه"
 
-#: config/config.php:95
+#: config/config.php:99
 msgid "Timezone"
 msgstr "منطقه زمانی"
 
-#: config/config.php:96
+#: config/config.php:100
 msgid "Timezone for application system."
 msgstr "منطقه زمانی برای سیستم برنامه"
 
-#: config/config.php:102
+#: config/config.php:106
 msgid "List count"
 msgstr "تعداد لیست"
 
-#: config/config.php:103
+#: config/config.php:107
 msgid "Number of items on a list."
 msgstr "تعداد گزینه‌های یک لیست"
 
-#: config/config.php:110
+#: config/config.php:114
 msgid "Footer"
 msgstr "فوتر"
 
-#: config/config.php:111
+#: config/config.php:115
 msgid "Content to be displayed on footer of front pages, HTML tags allowed."
 msgstr "محتوی برای نمایش در بخش فوتر در سمت کاربر، تگ های HTML مجاز است."
 
-#: config/config.php:117
-msgid "GA account"
-msgstr "حساب گوگل آنالیتیک"
-
-#: config/config.php:118
-msgid ""
-"Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to "
-"the code `UA-XXXXXXXX-X; XXXX.tld`."
-msgstr ""
-"شناسه ردیابی گوگل آنالیتیک `UA-XXXXXXXX-X` . برای جدا کردن میزبان ها ، کد را به "
-"شکل `UA-XXXXXXXX-X; XXXX.tld` درج نمایید."
-
-#: config/config.php:123
-msgid "ReCaptcha Public Key"
-msgstr ""
-
-#: config/config.php:124
-msgid ""
-"see https://www.google.com/recaptcha to create your public key dedicated to "
-"your website domain. Both keys are mandatory."
-msgstr ""
-
-#: config/config.php:132
-msgid "ReCaptcha Private Key"
-msgstr ""
-
-#: config/config.php:133
-msgid ""
-"see https://www.google.com/recaptcha to create your private key dedicated to "
-"your website domain. Both keys are mandatory.."
-msgstr ""
-
-#: config/config.php:141
+#: config/config.php:121
 msgid "Foot scripts"
 msgstr "اسکریپت‌های فوتر"
 
-#: config/config.php:142
+#: config/config.php:122
 msgid ""
 "Scripts that will be appended to each page footer. Either naked or wrapped js "
 "scripts are allowed."
@@ -277,83 +251,95 @@ msgstr ""
 "اسکریپت‌هایی که به فوتر هر صفحه متصل می‌شوند، به صورت خالص یا اسکریپت‌های جاوای "
 "پوشیده که مجاز هستند."
 
-#: config/config.php:148
+#: config/config.php:128
+msgid "GA account"
+msgstr "حساب گوگل آنالیتیک"
+
+#: config/config.php:129
+msgid ""
+"Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to "
+"the code `UA-XXXXXXXX-X; XXXX.tld`."
+msgstr ""
+"شناسه ردیابی گوگل آنالیتیک `UA-XXXXXXXX-X` . برای جدا کردن میزبان ها ، کد را به "
+"شکل `UA-XXXXXXXX-X; XXXX.tld` درج نمایید."
+
+#: config/config.php:134
 msgid "Theme"
 msgstr "قالب"
 
-#: config/config.php:155
+#: config/config.php:141
 msgid "Admin theme"
 msgstr "قالب مدیریت"
 
-#: config/config.php:183
+#: config/config.php:169
 msgid "Username format"
 msgstr "قالب شناسه‌ی کاربری"
 
-#: config/config.php:184
+#: config/config.php:170
 msgid "Format of username for registration."
 msgstr "قالب شناسه برای ثبت‌نام"
 
-#: config/config.php:189
+#: config/config.php:175
 msgid "Strict: alphabet or number only"
 msgstr "اسکریپت: حروف الفبا یا اعدا"
 
-#: config/config.php:190
+#: config/config.php:176
 msgid "Strict/space: alphabet, number or space only"
 msgstr "اسکریپت/اسپیس: حروف الفبا یا اعدا"
 
-#: config/config.php:191
+#: config/config.php:177
 msgid "Medium: ASCII characters"
 msgstr "متوسط: کاراکترهای ASCII"
 
-#: config/config.php:192
+#: config/config.php:178
 msgid "Medium/space: ASCII characters and spaces"
 msgstr "متوسط/اسپیس: کاراکترهای ASCII"
 
-#: config/config.php:193
+#: config/config.php:179
 msgid "Loose: multi-byte characters"
 msgstr "راحت: کاراکترهای مالتی بایت"
 
-#: config/config.php:194
+#: config/config.php:180
 msgid "Loose/space: multi-byte characters and spaces"
 msgstr "راحت/اسپیس: کاراکترهای مالتی بایت"
 
-#: config/config.php:204
+#: config/config.php:190
 msgid "Minimum username"
 msgstr "شناسه‌ی مینیمم"
 
-#: config/config.php:205
+#: config/config.php:191
 msgid "Minimum length of username for user registration"
 msgstr "حداقل طول شناسه‌ی کاربری برای ثبت‌نام کاربر"
 
-#: config/config.php:212
+#: config/config.php:198
 msgid "Maximum username"
 msgstr "حداکثر شناسه"
 
-#: config/config.php:213
+#: config/config.php:199
 msgid "Maximum length of username for user registration"
 msgstr "حدااکثر طول شناسه‌ی کاربر برای ثبت‌نام"
 
-#: config/config.php:220
+#: config/config.php:206
 msgid "Minimum password"
 msgstr "کلمه عبور حداقل"
 
-#: config/config.php:221
+#: config/config.php:207
 msgid "Minimum length of password for user registration"
 msgstr "حداکثر طول کلمه عبور در هنگام ثبت‌نام کاربر"
 
-#: config/config.php:228
+#: config/config.php:214
 msgid "Maximum password"
 msgstr "حداکثر کلمه عبور"
 
-#: config/config.php:229
+#: config/config.php:215
 msgid "Maximum length of password for user registration"
 msgstr "حداکثر طول کلمه عبور در هنگام ثبت‌نام کاربر"
 
-#: config/config.php:236
+#: config/config.php:222
 msgid "Username blacklist"
 msgstr "لیست سیاه نام کاربری"
 
-#: config/config.php:237
+#: config/config.php:223
 msgid ""
 "Reserved and forbidden username list. Separate each with a <strong>|</strong>, "
 "regexp syntax is allowed."
@@ -361,11 +347,11 @@ msgstr ""
 "فهرست شناسه‌های کاربری رزرو و یا ممنوع.  هر کدام را با یک  <strong>|</strong> از "
 "هم جدا کنید.  سیتکس رجکس قابل استفاده است."
 
-#: config/config.php:244
+#: config/config.php:230
 msgid "Email blacklist"
 msgstr "لیست سیاه ایمیل"
 
-#: config/config.php:245
+#: config/config.php:231
 msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax "
 "is allowed."
@@ -373,105 +359,105 @@ msgstr ""
 "فهرست شناسه‌های ممنوع. آن‌ها را با <strong>|</strong> از هم جدا کنید. .سینتکس "
 "ریجکس را می‌توان استفاده کرد."
 
-#: config/config.php:252 config/config.php:334
+#: config/config.php:238 config/config.php:320
 msgid "Remember me"
 msgstr "من را به خاطر بسپار"
 
-#: config/config.php:253 config/config.php:335
+#: config/config.php:239 config/config.php:321
 msgid "Days to remember login, 0 for disable."
 msgstr "روزهایی که برای لاگین باقی مانده، 0 روز تا غیر فعال شدن."
 
-#: config/config.php:260 config/config.php:342
+#: config/config.php:246 config/config.php:328
 msgid "Login field"
 msgstr "فیلد ورود"
 
-#: config/config.php:261
+#: config/config.php:247
 msgid "Identity field(s) for authentication."
 msgstr "فیلدها لازم برای شناسایی"
 
-#: config/config.php:269 config/config.php:351
+#: config/config.php:255 config/config.php:337
 #: template/admin/member-index.phtml:23
 msgid "Username"
 msgstr "شناسه کاربری"
 
-#: config/config.php:270 config/config.php:352
+#: config/config.php:256 config/config.php:338
 #: template/admin/member-index.phtml:25
 msgid "Email"
 msgstr "ایمیل"
 
-#: config/config.php:280 config/config.php:326
+#: config/config.php:266 config/config.php:312
 msgid "Maximum attempts"
 msgstr "ماکزیمم تلاش‌ها"
 
-#: config/config.php:281
+#: config/config.php:267
 msgid "Maximum attempts allowed to try for user login"
 msgstr "ماکزیمم تعداد تلاش‌های مجاز برای ورود کاربر"
 
-#: config/config.php:288 config/config.php:362
+#: config/config.php:274 config/config.php:348
 msgid "Login disable"
 msgstr "ورود غیرفعال شده است."
 
-#: config/config.php:289
+#: config/config.php:275
 msgid "Disable user login"
 msgstr "ورود کاربر عیرفعال شده است."
 
-#: config/config.php:297
+#: config/config.php:283
 msgid "Register disable"
 msgstr "غیرفعال‌سازی ثبت‌نام"
 
-#: config/config.php:298
+#: config/config.php:284
 msgid "Disable user registration"
 msgstr "ثبت‌نام کاربران غیرفعال شده است"
 
-#: config/config.php:306 config/config.php:371
+#: config/config.php:292 config/config.php:357
 msgid "Login CAPTCHA"
 msgstr "کپچا برای ورود"
 
-#: config/config.php:307
+#: config/config.php:293
 msgid "Enable CAPTCHA for user login"
 msgstr "فعال کردن کپچا برای ورود کاربران"
 
-#: config/config.php:315
+#: config/config.php:301
 msgid "Register CAPTCHA"
 msgstr "کپچا برای ثبت نام"
 
-#: config/config.php:316
+#: config/config.php:302
 msgid "Enable CAPTCHA for user registration"
 msgstr "فعال کردن کپچا برای ثبت‌نام کاربران"
 
-#: config/config.php:327
+#: config/config.php:313
 msgid "Maximum attempts allowed to try for admin login"
 msgstr "ماکزیمم تعداد تلاش‌هایی که برای ورود مدیر مجاز است."
 
-#: config/config.php:343
+#: config/config.php:329
 msgid "Identity field(s) for admin authentication."
 msgstr "فیلدهایی که برای شناسایی مدیر نیاز است."
 
-#: config/config.php:363
+#: config/config.php:349
 msgid "Disable admin login"
 msgstr "غیرفعال کردن ورود مدیر"
 
-#: config/config.php:372
+#: config/config.php:358
 msgid "Enable CAPTCHA for admin login"
 msgstr "فعال کردن کپچا برای ورود مدیر"
 
-#: config/config.php:377
+#: config/config.php:363
 msgid "No captcha"
-msgstr ""
+msgstr "بدون کپچا"
 
-#: config/config.php:378
+#: config/config.php:364
 msgid "Standard captcha"
-msgstr ""
+msgstr "کپچا استاندارد"
 
-#: config/config.php:379
+#: config/config.php:365
 msgid "New re-captcha"
-msgstr ""
+msgstr "ریکپچا گوگل"
 
-#: config/config.php:410
+#: config/config.php:396
 msgid "Head title for web page"
 msgstr "عنوان هدر برای صفحات وب سایت"
 
-#: config/config.php:418
+#: config/config.php:404
 msgid ""
 "The keywords meta tag is a series of keywords that represents the content of "
 "your site. Separated keywords by a comma."
@@ -479,17 +465,17 @@ msgstr ""
 "متا تگِ کلمات کلیدی مجموعه‌ای از کلمات کلیدی است که نماینده‌ی محتوای سایت هستند. "
 "این کلمات کلیدی را با ویرگول از هم جدا کنید."
 
-#: config/config.php:426
+#: config/config.php:412
 msgid ""
 "The description meta tag is a general description of what is contained in your "
 "web page"
 msgstr "متا تگ توضیح، توضیحی عمومی از محتوای صفحه‌ی وب است."
 
-#: config/config.php:435
+#: config/config.php:421
 msgid "Default number style"
 msgstr "فرمت پیش‌فرض اعداد."
 
-#: config/config.php:436
+#: config/config.php:422
 msgid ""
 "See http://www.php.net/manual/en/class.numberformatter.php#intl.numberformatter-"
 "constants.unumberformatstyle"
@@ -497,63 +483,63 @@ msgstr ""
 "این آدرس را ببینید: http://www.php.net/manual/en/class.numberformatter.php#intl."
 "numberformatter-constants.unumberformatstyle"
 
-#: config/config.php:441
+#: config/config.php:427
 msgid "Default format for the locale"
 msgstr "فرمت پیش‌فرض برای زبان"
 
-#: config/config.php:442
+#: config/config.php:428
 msgid "Decimal format defined by pattern"
 msgstr "فرمت ده‌دهی تعریف شده توسط الگو"
 
-#: config/config.php:443
+#: config/config.php:429
 msgid "Decimal format"
 msgstr "فرمت ده‌دهی"
 
-#: config/config.php:444
+#: config/config.php:430
 msgid "Percent format"
 msgstr "فرمت درصد"
 
-#: config/config.php:445
+#: config/config.php:431
 msgid "Scientific format"
 msgstr "فرمت علمی"
 
-#: config/config.php:446
+#: config/config.php:432
 msgid "Spellout rule-based format"
 msgstr "Spellout rule-based format"
 
-#: config/config.php:447
+#: config/config.php:433
 msgid "Ordinal rule-based format"
 msgstr "Ordinal rule-based format"
 
-#: config/config.php:448
+#: config/config.php:434
 msgid "Duration rule-based format"
 msgstr "Duration rule-based format"
 
-#: config/config.php:449
+#: config/config.php:435
 msgid "Rule-based format defined by pattern"
 msgstr "Rule-based format defined by pattern"
 
-#: config/config.php:458
+#: config/config.php:444
 msgid "Default pattern for selected number style"
 msgstr "،فرمت پیش‌فرض برای شیوه‌ی انتخاب شده‌ی اعداد"
 
-#: config/config.php:459
+#: config/config.php:445
 msgid "Only if required by style"
 msgstr "فقط اگر استایل به آن نیاز دارد."
 
-#: config/config.php:466
+#: config/config.php:452
 msgid "Default currency type"
 msgstr "فرمت پیش‌فرض پول"
 
-#: config/config.php:467
+#: config/config.php:453
 msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
 msgstr "کد سه رقمی ISO 4217 که مشخص کننده‌ی پول رایج است."
 
-#: config/config.php:474
+#: config/config.php:460
 msgid "Default calendar for the locale"
 msgstr "تقویم پیش‌فرض برای زبان انتخابی."
 
-#: config/config.php:475
+#: config/config.php:461
 msgid ""
 "\"persian\" is suggested for Persian language. See http://www.php.net/manual/en/"
 "class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
@@ -562,11 +548,11 @@ msgstr ""
 "net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants."
 "calendartypes"
 
-#: config/config.php:482
+#: config/config.php:468
 msgid "Default date type"
 msgstr "فرمت پیش‌فرض داده"
 
-#: config/config.php:483 config/config.php:502
+#: config/config.php:469 config/config.php:488
 msgid ""
 "See http://www.php.net/manual/en/class.intldateformatter.php#intl."
 "intldateformatter-constants"
@@ -574,43 +560,43 @@ msgstr ""
 "این آدرس را ببینید:  http://www.php.net/manual/en/class.intldateformatter."
 "php#intl.intldateformatter-constants"
 
-#: config/config.php:488 config/config.php:507
+#: config/config.php:474 config/config.php:493
 msgid "Do not include this element"
 msgstr "این جزو را لحاظ نکنید"
 
-#: config/config.php:489 config/config.php:508
+#: config/config.php:475 config/config.php:494
 msgid "Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 msgstr "فرمت کامل  (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 
-#: config/config.php:490 config/config.php:509
+#: config/config.php:476 config/config.php:495
 msgid "Long style (January 12, 1952 or 3:30:32pm)"
 msgstr "فرمت طولانی(January 12, 1952 or 3:30:32pm)"
 
-#: config/config.php:491 config/config.php:510
+#: config/config.php:477 config/config.php:496
 msgid "Medium style (Jan 12, 1952)"
 msgstr "فرمت متوسط (Jan 12, 1952)"
 
-#: config/config.php:492 config/config.php:511
+#: config/config.php:478 config/config.php:497
 msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
 msgstr "فرمت خلاصه شده که فقط شامل داده‌های ضروری است(12/13/52 or 3:30pm)"
 
-#: config/config.php:501
+#: config/config.php:487
 msgid "Default time type"
 msgstr "فرمت پیش‌فرض نوع"
 
-#: config/config.php:520
+#: config/config.php:506
 msgid "Default formatting pattern for date-time"
 msgstr "فرمت پیش‌فرض برای نمایش تاریخ زمان"
 
-#: config/config.php:521
+#: config/config.php:507
 msgid "See http://userguide.icu-project.org/formatparse/datetime"
 msgstr "این آدرس را ببینید: http://userguide.icu-project.org/formatparse/datetime"
 
-#: config/config.php:528
+#: config/config.php:514
 msgid "Default format for legacy date function"
 msgstr "فرمت پیش‌فرض برای نمایش تابع زمان"
 
-#: config/config.php:529
+#: config/config.php:515
 msgid ""
 "The format is required in case Intl extension is not available. See http://www."
 "php.net/manual/en/function.date.php"
@@ -618,43 +604,43 @@ msgstr ""
 "در صورتی که Intl در دسترس نباشد، قالب مورد نیاز است.  این آدرس را ببینید:  See "
 "http://www.php.net/manual/en/function.date.php"
 
-#: config/config.php:538
+#: config/config.php:524
 msgid "Admin email"
 msgstr "ایمیل مدیر"
 
-#: config/config.php:539
+#: config/config.php:525
 msgid "Admin email address for contact."
 msgstr "ایمیل مدیر برای برقراری ارتباط"
 
-#: config/config.php:545
+#: config/config.php:531
 msgid "Admin name"
 msgstr "نام مدیر"
 
-#: config/config.php:546
+#: config/config.php:532
 msgid "User name used to send emails"
 msgstr "شناسه‌‌ای که برای ارسال ایمیل استفاده می‌شود."
 
-#: config/config.php:551
+#: config/config.php:537
 msgid "Email encoding"
 msgstr "کدگذاری ایمیل"
 
-#: config/config.php:552
+#: config/config.php:538
 msgid "Encoding for email contents"
 msgstr "کذگذاری برای محتوای ایمیل"
 
-#: config/config.php:560
+#: config/config.php:546
 msgid "Text editor"
 msgstr "پردازنده‌ی متن"
 
-#: config/config.php:561
+#: config/config.php:547
 msgid "Default editor for text processing"
 msgstr "پردازنده‌ی پیش‌فرض برای پردازش متن"
 
-#: config/config.php:567
+#: config/config.php:553
 msgid "Enable word censoring"
 msgstr "فعال‌سازی سانسور کلمات"
 
-#: config/config.php:568
+#: config/config.php:554
 msgid ""
 "Words will be censored if this option is enabled. This option may be turned off "
 "for enhanced site speed."
@@ -662,11 +648,11 @@ msgstr ""
 "در صورتی که این گزینه فعال شود، کلمات سانسور می‌شوند. این گزینه را می‌توان برای "
 "بهبود سرعت سایت غیرفعال کرد."
 
-#: config/config.php:576
+#: config/config.php:562
 msgid "Words to censor"
 msgstr "کلماتی که باید سانسور شوند"
 
-#: config/config.php:577
+#: config/config.php:563
 msgid ""
 "Enter words that should be censored in user posts. Separate each with a \"|\", "
 "case insensitive."
@@ -674,69 +660,69 @@ msgstr ""
 "کلماتی را که می‌خواهید در پست‌های کاربران سانسور شوند وارد کنید.  کلمات را با  \"|"
 "\" از هم جدا کنید.  بزرگ و کوچکی مهم نیست."
 
-#: config/config.php:584
+#: config/config.php:570
 msgid "Word to replace censored words"
 msgstr "کلمات مورد نظر برای جایگزینی کلمات سانسور شده"
 
-#: config/config.php:585
+#: config/config.php:571
 msgid ""
 "Censored words will be replaced with the characters entered in this textbox"
 msgstr ""
 "کلمات سانسور شده با کارکترهایی که در این باکس وارد می‌شوند، جایگزین خواهند شد"
 
-#: config/config.php:592
+#: config/config.php:578
 msgid "Module themes"
 msgstr "قالب‌های ماژول"
 
-#: config/config.php:593
+#: config/config.php:579
 msgid "Themes for modules."
 msgstr "قالب‌های ماژول"
 
-#: config/config.php:601 config/nav.php:21
+#: config/config.php:587 config/nav.php:21
 msgid "Front navigation"
 msgstr "منو سمت کاربر"
 
-#: config/config.php:602
+#: config/config.php:588
 msgid "Global navigation for front end."
 msgstr "منوی سراسری برای سمت کاربر"
 
-#: config/config.php:609 config/nav.php:27
+#: config/config.php:595 config/nav.php:27
 msgid "Admin navigation"
 msgstr "منو سمت مدیر"
 
-#: config/config.php:610
+#: config/config.php:596
 msgid "Global navigation for admin."
 msgstr "منوی سراسری برای سمت مدیر"
 
-#: config/config.php:617
+#: config/config.php:603
 msgid "Meta title type"
 msgstr "نوع عنوان متا ( Meta title )"
 
-#: config/config.php:618
+#: config/config.php:604
 msgid "Set short or lang meta title type"
 msgstr "تنظیم نوع عنوان صفحه به صورت کوتاه یا بلند"
 
-#: config/config.php:623
+#: config/config.php:609
 msgid "Postfix by page - module - website titles"
 msgstr "پسوند با عنوان صفحه - ماژول - وب‌سایت"
 
-#: config/config.php:624
+#: config/config.php:610
 msgid "Postfix by page - website titles"
 msgstr "پسوند با عنوان صفحه - وب‌سایت"
 
-#: config/config.php:625
+#: config/config.php:611
 msgid "Prefix by website - module - page titles"
 msgstr "پیشوند با عنوان وب‌سایت - ماژول - صفحه"
 
-#: config/config.php:626
+#: config/config.php:612
 msgid "Prefix by website - page titles"
 msgstr "پیشوند با عنوان وب‌سایت - صفحه"
 
-#: config/config.php:627
+#: config/config.php:613
 msgid "Just page title"
 msgstr "فقط عنوان صفحه"
 
-#: config/config.php:638
+#: config/config.php:624
 msgid ""
 "The author meta tag defines the name of the author of the document being read. "
 "Supported data formats include the name, email address of the webmaster, "
@@ -745,23 +731,23 @@ msgstr ""
 "متا تگ نویسنده نام نویسنده‌ی مطلبی که در حال خوانده شدن است را مشخص می‌کند. "
 "قالب‌های قابل قبول شامل نام، آدرس ایمیل مدیر سایت، شرکت و یا آدرس سایت می‌شود."
 
-#: config/config.php:646
+#: config/config.php:632
 msgid "Generator of the document being read."
 msgstr "تولید کننده‌ی مقاله‌ای که در حال خوانده شدن است."
 
-#: config/config.php:653
+#: config/config.php:639
 msgid "Website local"
 msgstr "کد بومی سازی وب سایت"
 
-#: config/config.php:654
+#: config/config.php:640
 msgid "Set website local, like en_GB"
 msgstr "تنظیم کد بومی سازی وب سایت ، مشابه en_GB"
 
-#: config/config.php:661
+#: config/config.php:647
 msgid "Twitter account"
 msgstr "حساب کاربری در تویتر"
 
-#: config/config.php:662
+#: config/config.php:648
 msgid ""
 "Username for the website used in the Twitter card. Add @ before username like "
 "@PiEnable or leave it empty"
@@ -770,11 +756,11 @@ msgstr ""
 "نام کاربری حساب را وارد نمایید. قبل از نام کاربری حتما از @ استفاده کنید ، به "
 "طور مثال @PiEnable یا این گزینه را خالی بگذارید."
 
-#: config/config.php:668
+#: config/config.php:654
 msgid "Facebook app id"
 msgstr "شناسه آپ فیسبوک"
 
-#: config/config.php:669
+#: config/config.php:655
 msgid ""
 "Set facebook app id here for use open graph tags on facebook page, its your "
 "website facebook page id"
@@ -782,32 +768,56 @@ msgstr ""
 "اگر وب سایت شما در فیسبوک صفحه ای دارد ، شناسه آپ فیسبوک را برای استفاده از تگ "
 "های  اوپن گراف اینجا وارد کنید. این شناسه در اصل آی دی صفحه فیسبوک شما است"
 
-#: config/config.php:675
+#: config/config.php:661
 msgid "Pinterest domain verify"
 msgstr "کد تایید دامنه در سایت pinterest"
 
-#: config/config.php:676
+#: config/config.php:662
 msgid ""
 "Set pinterest domain verify code here, if your website have page on pinterest"
 msgstr ""
 "اگر وب سایت شما در pinterest صفحه ای دارد ، کد تایید دامنه وب سایت در pinterest "
 "را اینجا وارد کنید"
 
-#: config/config.php:682
+#: config/config.php:668
 msgid "Latitude"
 msgstr "عرض جغرافیایی ( Latitude )"
 
-#: config/config.php:689
+#: config/config.php:675
 msgid "Longitude"
 msgstr "طول جغرافیایی ( Longitude )"
 
-#: config/config.php:696
+#: config/config.php:682
 msgid "Placename"
 msgstr "نام مکان"
 
-#: config/config.php:703
+#: config/config.php:689
 msgid "Region"
 msgstr "منطقه"
+
+#: config/config.php:696
+msgid "ReCaptcha Site key"
+msgstr "کلید سایت (Site key) برای ریکپچا"
+
+#: config/config.php:697
+msgid ""
+"see https://www.google.com/recaptcha to create your public key dedicated to "
+"your website domain. Both keys are mandatory."
+msgstr ""
+"تنظیمات را در https://www.google.com/recaptcha انجام دهید و کلید عمومی را برای "
+"دامنه خود بسازید و وارد نمایید. هر دو کلید ضروری است"
+
+#: config/config.php:705
+msgid "ReCaptcha Secret key"
+msgstr "کلید رمز (Secret key) برای ریکپچا"
+
+#: config/config.php:706
+msgid ""
+"see https://www.google.com/recaptcha to create your private key dedicated to "
+"your website domain. Both keys are mandatory.."
+msgstr ""
+"تنظیمات را در https://www.google.com/recaptcha انجام دهید و کلید خصوصی را برای "
+"دامنه خود بسازید و وارد نمایید. هر دو کلید ضروری است"
 
 #: config/event.php:21
 msgid "Module installed"
@@ -2141,6 +2151,8 @@ msgid ""
 "Are you sure to update all module? make sure have backup from your website "
 "before use this option"
 msgstr ""
+"آیا اطمینان دارید که میخواهید تمام ماژول ها را به صورت هم زمان به روز کنید؟ "
+"لطفا قبل از این عمل از اطلاعات خود نسخه پشتیبان تهیه فرمایید"
 
 #: template/admin/module-index.phtml:62
 msgid "Update all"

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2015-09-01 10:32+0430\n"
-"PO-Revision-Date: 2015-09-01 10:34+0430\n"
+"POT-Creation-Date: 2017-04-18 20:20+0430\n"
+"PO-Revision-Date: 2017-04-18 20:22+0430\n"
 "Last-Translator: \n"
 "Language-Team: Pi Engine\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-KeywordsList: __;_t;_e\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: usr/editor\n"
@@ -29,9 +29,9 @@ msgstr "به روز رسانی قابل موفقیت آمیز بود"
 
 #: lib/Pi/Application/Installer/Theme.php:362
 msgid "Theme asset publish failed."
-msgstr "خطا در انتشار asse قالب"
+msgstr "خطا در انتشار asset قالب"
 
-#: lib/Pi/Application/Service/Comment.php:548
+#: lib/Pi/Application/Service/Comment.php:552
 msgid "Posted a new comment."
 msgstr "ارسال نظر جدید"
 
@@ -39,19 +39,35 @@ msgstr "ارسال نظر جدید"
 msgid "Pi Default Editor"
 msgstr "ادیتور پیشفرض پای"
 
-#: lib/Pi/Application/Service/Theme.php:133
+#: lib/Pi/Application/Service/Notification.php:174
+msgid "Server key not set"
+msgstr "کلید سرور تنظیم نشده است"
+
+#: lib/Pi/Application/Service/Notification.php:181
+msgid "Token not set"
+msgstr "توکن تنظیم شنده است"
+
+#: lib/Pi/Application/Service/Notification.php:209
+msgid "Notification send successfully"
+msgstr "آگاهی رسانی با موفقیت ارسال شد"
+
+#: lib/Pi/Application/Service/Notification.php:216
+msgid "Error to send notification"
+msgstr "خطا در ارسال آگاهی رسانی"
+
+#: lib/Pi/Application/Service/Theme.php:143
 msgid "Full layout (header/footer and blocks)"
 msgstr "چیدمان کامل ( هدر / فوتر و بلاک ها )"
 
-#: lib/Pi/Application/Service/Theme.php:134
+#: lib/Pi/Application/Service/Theme.php:144
 msgid "Simple layout (header/footer)"
 msgstr "چیدمان ساده ( هدر / فوتر )"
 
-#: lib/Pi/Application/Service/Theme.php:135
+#: lib/Pi/Application/Service/Theme.php:145
 msgid "Content only (with style)"
 msgstr "فقط محتوی ( با استایل )"
 
-#: lib/Pi/Application/Service/Theme.php:136
+#: lib/Pi/Application/Service/Theme.php:146
 msgid "Raw content (no style)"
 msgstr "محتوی خام ( بدون استایل )"
 
@@ -213,18 +229,15 @@ msgstr "خودکار"
 msgid "Language"
 msgstr "زبان"
 
-#: lib/Pi/Form/Element/LoginField.php:36
-#: lib/Pi/Form/Element/LoginField.php:78
+#: lib/Pi/Form/Element/LoginField.php:36 lib/Pi/Form/Element/LoginField.php:78
 msgid "Username"
 msgstr "نام کاربری"
 
-#: lib/Pi/Form/Element/LoginField.php:37
-#: lib/Pi/Form/Element/LoginField.php:81
+#: lib/Pi/Form/Element/LoginField.php:37 lib/Pi/Form/Element/LoginField.php:81
 msgid "Email"
 msgstr "ایمیل"
 
-#: lib/Pi/Form/Element/LoginField.php:84
-#: lib/Pi/Form/Element/LoginField.php:88
+#: lib/Pi/Form/Element/LoginField.php:84 lib/Pi/Form/Element/LoginField.php:88
 msgid "Identity"
 msgstr "هویت"
 
@@ -281,23 +294,23 @@ msgstr "برای تغییر تصویر کلیک کنید"
 msgid "Required"
 msgstr "ضروری"
 
-#: lib/Pi/Form/View/Helper/Form.php:455
+#: lib/Pi/Form/View/Helper/Form.php:483
 msgid "Close"
 msgstr "بستن"
 
-#: lib/Pi/Form/View/Helper/Form.php:456
+#: lib/Pi/Form/View/Helper/Form.php:484
 msgid "Form"
 msgstr "فرم"
 
-#: lib/Pi/Form/View/Helper/FormDateSelect.php:91
+#: lib/Pi/Form/View/Helper/FormDateSelect.php:93
 msgid "Day"
 msgstr "روز"
 
-#: lib/Pi/Form/View/Helper/FormDateSelect.php:92
+#: lib/Pi/Form/View/Helper/FormDateSelect.php:94
 msgid "Year"
 msgstr "سال"
 
-#: lib/Pi/Form/View/Helper/FormDateSelect.php:93
+#: lib/Pi/Form/View/Helper/FormDateSelect.php:95
 msgid "Month"
 msgstr "ماه"
 
@@ -318,15 +331,28 @@ msgstr "لطفا <a href=\"%s\" title=\"\">وارد شوید</a> و سپس به 
 msgid "Guest"
 msgstr "مهمان"
 
-#: lib/Pi/View/Helper/GoogleMap.php:203
+#: lib/Pi/View/Helper/Conditions.php:39
+msgid "New terms and conditions are available. Please accept them."
+msgstr "شرایط و مقررات جدید به روز شد ، لطفا آن را مطالعه و تایید فرمایید"
+
+#: lib/Pi/View/Helper/Conditions.php:40
+msgid "I agree"
+msgstr "موافق ام"
+
+#: lib/Pi/View/Helper/Conditions.php:41
+msgid "Read Term and conditions"
+msgstr "مطالعه شرایط و مقررات"
+
+#: lib/Pi/View/Helper/GoogleMap.php:208
 msgid "Choose a location"
 msgstr "انتخاب مکان"
 
-#: lib/Pi/View/Helper/GoogleMap.php:204
+#: lib/Pi/View/Helper/GoogleMap.php:209
 msgid "View all"
 msgstr "نمایش همه"
 
 #: lib/Pi/View/Helper/PaginationControl.php:118
+#: lib/Pi/View/Helper/PaginationControl.php:124
 msgid "Page"
 msgstr "صفحه"
 

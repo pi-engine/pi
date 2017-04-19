@@ -43,7 +43,7 @@ class Update extends BasicUpdate
 
             // Add table of stats, not used yet;
             // Solely for demonstration, will be dropped off by end of the udpate
-            $sql =<<<'EOD'
+            /* $sql =<<<'EOD'
 CREATE TABLE `{stats}` (
   `id`      int(10) unsigned        NOT NULL auto_increment,
   `page`    int(10)                 unsigned    NOT NULL default '0',
@@ -65,7 +65,7 @@ EOD;
                 ));
 
                 return false;
-            }
+            } */
 
             // Alter table field `time` to `time_created`
             $sql = sprintf('ALTER TABLE %s CHANGE `time` `time_created` int(10)'
@@ -116,7 +116,7 @@ EOD;
             }
 
             // Drop not used table
-            try {
+            /* try {
                 $sql = sprintf('DROP TABLE IF EXISTS %s',
                     Pi::model('stats', $this->module)->getTable());
                 $adapter->query($sql, 'execute');
@@ -128,7 +128,7 @@ EOD;
                 ));
 
                 return false;
-            }
+            } */
         }
 
         // Check for version 1.0.1
@@ -289,6 +289,48 @@ EOD;
                         $row->id
                     );
                 }
+            }
+        }
+
+        // Update to version 1.2.8
+        if (version_compare($moduleVersion, '1.2.8', '<=')) {
+            // Alter table add index `title`
+            $sql = sprintf("ALTER TABLE %s ADD INDEX `title` (`title`)", $table);
+            try {
+                $adapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+
+            // Alter table add index `time_created`
+            $sql = sprintf("ALTER TABLE %s ADD INDEX `time_created` (`time_created`)", $table);
+            try {
+                $adapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+
+            // Alter table add index `active`
+            $sql = sprintf("ALTER TABLE %s ADD INDEX `active` (`active`)", $table);
+            try {
+                $adapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
             }
         }
 
