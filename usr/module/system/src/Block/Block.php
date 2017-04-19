@@ -241,7 +241,7 @@ class Block
             $result['count'] = $result['count'] + $count;
         }
 
-        if ($options['show_favourite'] && Pi::service('module')->isActive('support') && $hasIdentity) {
+        if ($options['show_favourite'] && Pi::service('module')->isActive('favourite') && $hasIdentity) {
             if (Pi::service('module')->isActive('guide')) {
                 $user['favourite_url'] = Pi::url(Pi::service('url')->assemble(
                     'guide',

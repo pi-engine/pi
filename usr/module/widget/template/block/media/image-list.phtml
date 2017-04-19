@@ -12,45 +12,57 @@ switch ($options['max_rows']) {
         break;
 
     case '2':
-        $rows = 'col-md-6 col-xs-6';
+        $rows = 'col-md-6 col-xs-12';
         break;
 
     case '3':
-        $rows = 'col-md-4 col-xs-4';
+        $rows = 'col-md-4 col-xs-12';
         break;
 
     case '4':
-        $rows = 'col-md-3 col-xs-4';
+        $rows = 'col-md-3 col-xs-12';
         break;
 
     case '6':
-        $rows = 'col-md-2 col-xs-3';
+        $rows = 'col-md-2 col-xs-12';
         break;
 
     case '12':
-        $rows = 'col-md-1 col-xs-2';
+        $rows = 'col-md-1 col-xs-12';
         break;
 }
 ?>
-<div class="widget-media-list">
+<div class="widget-list widget-list-media">
     <div class="row clearfix">
         <?php foreach($items as $item) { ?>
             <div class="<?php echo $rows; ?>">
-                <div class="widget-media-list-image">
-                    <?php if (!empty($item['link'])) { ?>
-                        <a href="<?php echo $item['link']; ?>" target="<?php echo $target; ?>" title="<?php echo _escape($item['caption']); ?>">
+                <div class="widget-list-media-single text-center">
+                    <div class="widget-list-media-single-image">
+                        <?php if (!empty($item['link'])) { ?>
+                            <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>" target="<?php echo $target; ?>">
+                                <img src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
+                            </a>
+                        <?php } else { ?>
                             <img src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
-                        </a>
-                    <?php } else { ?>
-                        <img src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
+                        <?php } ?>
+                    </div>
+                    <?php if (!empty($item['summary'])) { ?>
+                        <?php if (!empty($item['caption'])) { ?>
+                            <h4 class="pi-ellipsis pi-ellipsis-1">
+                                <?php if (!empty($item['link'])) { ?>
+                                    <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>" target="<?php echo $target; ?>">
+                                        <?php echo _escape($item['caption']); ?>
+                                    </a>
+                                <?php } else { ?>
+                                    <?php echo _escape($item['caption']); ?>
+                                <?php } ?>
+                            </h4>
+                        <?php } ?>
+                        <div class="widget-list-media-single-summery clearfix text-left">
+                            <?php echo $item['summary']; ?>
+                        </div>
                     <?php } ?>
                 </div>
-                <?php if (!empty($item['summary'])) { ?>
-                    <h4><?php echo _escape($item['caption']); ?></h4>
-                    <div class="clearfix widget-media-list-summery">
-                        <?php echo $item['summary']; ?>
-                    </div>
-                <?php } ?>
             </div>
         <?php } ?>
     </div>

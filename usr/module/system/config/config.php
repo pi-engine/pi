@@ -693,7 +693,7 @@ $config['item'] = array(
     ),
 
     'captcha_public_key' => array(
-        'title'         => _t('ReCaptcha Public Key'),
+        'title'         => _t('ReCaptcha Site key'),
         'description'   => _t('see https://www.google.com/recaptcha to create your public key dedicated to your website domain. Both keys are mandatory.'),
         'edit'          => 'text',
         'value'         => '',
@@ -702,7 +702,7 @@ $config['item'] = array(
     ),
 
     'captcha_private_key' => array(
-        'title'         => _t('ReCaptcha Private Key'),
+        'title'         => _t('ReCaptcha Secret key'),
         'description'   => _t('see https://www.google.com/recaptcha to create your private key dedicated to your website domain. Both keys are mandatory..'),
         'edit'          => 'text',
         'value'         => '',
