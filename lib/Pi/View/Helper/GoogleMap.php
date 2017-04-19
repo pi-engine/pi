@@ -128,6 +128,15 @@ $(function() {
         {lat: %s, lon: %s, title: "%s"},
         {lat: %s, lon: %s, title: "%s"}
     ];
+    
+    var noPoi = [
+        {
+            featureType: "poi.business",
+            stylers: [
+              { visibility: "off" }
+            ]   
+        }
+    ];
     new Maplace({
         locations: Location,
         map_div: "#%s",
@@ -146,7 +155,8 @@ $(function() {
         },
         map_options: {
             scrollwheel: false,
-            mapTypeId: %s
+            mapTypeId: %s,
+            styles: noPoi
         },
         afterRoute: function(distance) {
             $("#km").text(": "+(distance/1000)+"km");
@@ -183,6 +193,14 @@ EOT;
                 $listScript =<<<'EOT'
 var MaPlace = {};
 $(function() {
+    var noPoi = [
+        {
+            featureType: "poi.business",
+            stylers: [
+              { visibility: "off" }
+            ]   
+        }
+    ];
     var Location = %s;
     var maPlace = new Maplace({
         locations: Location,
@@ -193,7 +211,9 @@ $(function() {
             scrollwheel: false,
             set_center: [%s, %s],
             zoom: %s,
-            mapTypeId: %s
+            mapTypeId: %s,
+            styles: noPoi
+            
         }
     }).Load();
     MaPlace.location = Location;
@@ -230,12 +250,22 @@ EOT;
                 // Set point script
                 $pointScript =<<<'EOT'
 function initialize() {
+    var noPoi = [
+        {
+            featureType: "poi.business",
+            stylers: [
+              { visibility: "off" }
+            ]   
+        }
+    ];
+    
     var myLatlng = new google.maps.LatLng(%s, %s);
     var mapOptions = {
         zoom: %s,
         center: myLatlng,
         mapTypeId: %s,
-        scrollwheel: false
+        scrollwheel: false,
+        styles: noPoi
     };
     var map = new google.maps.Map(document.getElementById('%s'), mapOptions);
     var marker = new google.maps.Marker({
