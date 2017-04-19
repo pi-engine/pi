@@ -387,7 +387,9 @@ EOT;
             // Render groups
         } else {
             foreach ($groups as $group) {
-                $htmlForm .= '<legend>' . _escape($group['label']) . '</legend>' . PHP_EOL;
+                if (!empty($group['label'])) {
+                    $htmlForm .= '<legend>' . _escape($group['label']) . '</legend>' . PHP_EOL;
+                }
                 foreach ($group['elements'] as $name) {
                     $element = $form->get($name);
                     $htmlForm .= $renderRow($element) . PHP_EOL;
