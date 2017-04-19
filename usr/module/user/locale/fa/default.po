@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2016-08-16 12:29+0430\n"
-"PO-Revision-Date: 2016-08-16 12:30+0430\n"
+"POT-Creation-Date: 2017-04-19 10:12+0430\n"
+"PO-Revision-Date: 2017-04-19 10:13+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -70,30 +70,26 @@ msgstr "نقش اضافه شد"
 msgid "Role removed"
 msgstr "نقش حذف شد"
 
-#: config/form.register.php:20
+#: config/form.register.php:19
 msgid "Terms & Conditions"
 msgstr "شرایط و مقررات"
 
-#: config/form.register.php:21
+#: config/form.register.php:20
 #, php-format
-msgid "Accept %s"
-msgstr "پذیرش %s"
+msgid "Accept the %s"
+msgstr "تایید %s"
 
-#: config/form.register.php:39
+#: config/form.register.php:43
 msgid "Confirm credential"
 msgstr "تایید واژه رمز"
-
-#: config/form.register.php:72 src/Form/ResendActivationForm.php:38
-msgid "Please type the word."
-msgstr "لطفا این عبارت را وارد کنید"
 
 #: src/Api/Breadcrumbs.php:39 template/front/login-logout.phtml:23
 msgid "Login"
 msgstr "ورود"
 
-#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:96
-#: template/front/login-logout.phtml:26 template/front/login.phtml:35
-#: template/front/register-disabled.phtml:3
+#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:100
+#: template/front/login-logout.phtml:26 template/front/login.phtml:39
+#: template/front/login.phtml:40 template/front/register-disabled.phtml:3
 msgid "Register"
 msgstr "ثبت نام"
 
@@ -101,41 +97,49 @@ msgstr "ثبت نام"
 msgid "Feed"
 msgstr "خوراک"
 
-#: src/Api/Breadcrumbs.php:57 src/Controller/Front/AccountController.php:137
+#: src/Api/Breadcrumbs.php:57 src/Api/Breadcrumbs.php:70
+#: src/Api/Breadcrumbs.php:83 src/Api/Breadcrumbs.php:96
+#: src/Api/Breadcrumbs.php:127 src/Api/Breadcrumbs.php:140
+#: src/Api/Breadcrumbs.php:155
+msgid "Dashboard"
+msgstr "داشبورد"
+
+#: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:139
+#: src/Controller/Front/DashboardController.php:46
 #: template/front/account-index.phtml:11
-#: template/front/profile-sidebar.phtml:31
+#: template/front/profile-sidebar.phtml:58
 msgid "Account settings"
 msgstr "تنظیمات حساب کاربری"
 
-#: src/Api/Breadcrumbs.php:63 src/Controller/Front/AvatarController.php:185
-#: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:39
-#: template/front/profile-topbar.phtml:135
+#: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:185
+#: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:66
+#: template/front/profile-topbar.phtml:140
 msgid "Change avatar"
 msgstr "تغییر آواتار"
 
-#: src/Api/Breadcrumbs.php:69 template/front/privacy-index.phtml:11
-#: template/front/profile-sidebar.phtml:51
+#: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:11
+#: template/front/profile-sidebar.phtml:78
 msgid "Privacy"
 msgstr "حریم خصوصی"
 
-#: src/Api/Breadcrumbs.php:77 src/Controller/Front/PasswordController.php:99
+#: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:99
 #: template/front/password-index.phtml:11
-#: template/front/profile-sidebar.phtml:35
+#: template/front/profile-sidebar.phtml:62
 msgid "Change password"
 msgstr "تغییر کلمه عبور"
 
-#: src/Api/Breadcrumbs.php:83 src/Controller/Front/PasswordController.php:200
+#: src/Api/Breadcrumbs.php:111 src/Controller/Front/PasswordController.php:200
 #: src/Controller/Front/PasswordController.php:201
-#: src/Form/FindPasswordForm.php:52 template/front/login.phtml:32
-#: template/front/password-find.phtml:3
+#: src/Form/FindPasswordForm.php:48 template/front/login.phtml:30
+#: template/front/login.phtml:31 template/front/password-find.phtml:3
 msgid "Find password"
 msgstr "یافتن کلمه عبور"
 
-#: src/Api/Breadcrumbs.php:93 src/Api/Nav.php:46
+#: src/Api/Breadcrumbs.php:121 src/Api/Nav.php:46
 msgid "Profile"
 msgstr "پروفایل"
 
-#: src/Api/Breadcrumbs.php:99 src/Api/Breadcrumbs.php:105
+#: src/Api/Breadcrumbs.php:134 src/Api/Breadcrumbs.php:147
 #: src/Controller/Front/ProfileController.php:189
 #: src/Controller/Front/ProfileController.php:237
 msgid "Edit profile"
@@ -173,6 +177,34 @@ msgstr "عضو"
 msgid "Following"
 msgstr "دنبال شونده"
 
+#: src/Controller/Admin/ConditionController.php:44
+msgid "Please install user module !"
+msgstr "لطفا ماژول کاربر را نصب نمایید !"
+
+#: src/Controller/Admin/ConditionController.php:95
+msgid "Problem in upload file. please try again"
+msgstr "خطا در بارگزاری فایل ، لطفا مجددا تلاش کنید"
+
+#: src/Controller/Admin/ConditionController.php:99
+msgid "Filename already exists. please try again"
+msgstr "فایل با این نام موجو است ، لطفا مجددا تلاش کنید"
+
+#: src/Controller/Admin/ConditionController.php:127
+msgid "Condition data saved successfully."
+msgstr "اطلاعات شرایط و مقررات با موفقیت ذخیره شد"
+
+#: src/Controller/Admin/ConditionController.php:140
+msgid "Add condition"
+msgstr "شرایط و مقررات جدید"
+
+#: src/Controller/Admin/ConditionController.php:151
+msgid "Condition file has been deleted successfully"
+msgstr "فایل شرایط و مققرات با موفقیت حذف شد"
+
+#: src/Controller/Admin/ConditionController.php:153
+msgid "Error occured during condition file removing"
+msgstr "خطا در هنگام حذف فایل شرایط و مقررات"
+
 #: src/Controller/Api/TimelineController.php:46
 msgid "Timeline post failed."
 msgstr "خطا در ارسال پست در نوار زمان"
@@ -181,7 +213,7 @@ msgstr "خطا در ارسال پست در نوار زمان"
 msgid "Timeline added successfully."
 msgstr "نوار زمان با موفقیت اضافه شد"
 
-#: src/Controller/Front/AccountController.php:76
+#: src/Controller/Front/AccountController.php:78
 msgid ""
 "A confirmation email has been sent to you. Please check your email and "
 "confirm."
@@ -189,53 +221,54 @@ msgstr ""
 "ایمیل فعال سازی برای شما ارسال شد. لطفا ایمیل خود را بررسی نمایید و تایید "
 "کنید."
 
-#: src/Controller/Front/AccountController.php:79
+#: src/Controller/Front/AccountController.php:81
 msgid "It was failed to send you confirmation email. Please try later."
 msgstr "خطا در ارسال ایمیل تایید ، لطفا بعدا تلاش کنید."
 
-#: src/Controller/Front/AccountController.php:91
+#: src/Controller/Front/AccountController.php:93
 msgid "Email has been changed successfully."
 msgstr "ایمیل با موفقیت تغییر یافت"
 
-#: src/Controller/Front/AccountController.php:94
+#: src/Controller/Front/AccountController.php:96
 msgid "It was failed to save new email. Please try later."
 msgstr "خطا در ثبت ایمیل جدید، لطفا بعدا تلاش کنید."
 
-#: src/Controller/Front/AccountController.php:110
+#: src/Controller/Front/AccountController.php:112
 msgid "Name has been changed successfully."
 msgstr "نام با موفقیت تغییر یافت"
 
-#: src/Controller/Front/AccountController.php:113
+#: src/Controller/Front/AccountController.php:115
 msgid "It was failed to save new name. Please try later."
 msgstr "خطا در ثبت نام جدید، لطفا بعدا تلاش کنید."
 
-#: src/Controller/Front/AccountController.php:138
+#: src/Controller/Front/AccountController.php:140
+#: src/Controller/Front/DashboardController.php:47
 #: template/front/account-index.phtml:11
 msgid "Basic settings"
 msgstr "تنظیمات پایه"
 
-#: src/Controller/Front/AccountController.php:153
+#: src/Controller/Front/AccountController.php:155
 msgid "Invalid data provided for email change."
 msgstr "اطلاعات اشتباه برای تغییر ایمیل"
 
-#: src/Controller/Front/AccountController.php:214
+#: src/Controller/Front/AccountController.php:216
 msgid "Email changed successfully."
 msgstr "ایمیل با موفقیت تغییر یافت"
 
-#: src/Controller/Front/AccountController.php:228
+#: src/Controller/Front/AccountController.php:230
 msgid "Incorrect password."
 msgstr "کلمه عبور اشتباه"
 
-#: src/Controller/Front/AccountController.php:244
+#: src/Controller/Front/AccountController.php:246
 msgid "Password verified."
 msgstr "واژه رمز تایید شد"
 
-#: src/Controller/Front/AccountController.php:260
+#: src/Controller/Front/AccountController.php:262
 msgid "Valid input."
 msgstr "ورودی صحیح"
 
-#: src/Controller/Front/AccountController.php:308
-#: src/Controller/Front/RegisterController.php:342
+#: src/Controller/Front/AccountController.php:310
+#: src/Controller/Front/RegisterController.php:347
 msgid "Invalid input."
 msgstr "ورودی اشتباه"
 
@@ -326,14 +359,18 @@ msgstr "تصویر حذف نشد"
 msgid "Image removed successfully."
 msgstr "تصویر با موفلقیت حذف شد"
 
+#: src/Controller/Front/ConditionController.php:52
+msgid "No active condition file"
+msgstr "هیچ فایل شرایط و مقرراتی فعال نیست"
+
 #: src/Controller/Front/HomeController.php:77
-#: src/Controller/Front/HomeController.php:137
+#: src/Controller/Front/HomeController.php:139
 #, php-format
 msgid "%s activities"
 msgstr "فعالیت های %s"
 
 #: src/Controller/Front/HomeController.php:78
-#: src/Controller/Front/HomeController.php:138
+#: src/Controller/Front/HomeController.php:140
 #, php-format
 msgid "View %s activities"
 msgstr "مشاهده فعالیت های %s"
@@ -431,52 +468,52 @@ msgstr "اطلاعات اضافی حساب کاربری حذف نشد"
 msgid "User ID or Profile group ID is invalid."
 msgstr "شناسه کاربر یا شناسه گروه حساب کاربری صحیح نیست"
 
-#: src/Controller/Front/RegisterController.php:97
+#: src/Controller/Front/RegisterController.php:101
 #: template/front/register-index.phtml:13
 msgid "Account registration"
 msgstr "ثبت نام"
 
-#: src/Controller/Front/RegisterController.php:165
+#: src/Controller/Front/RegisterController.php:170
 msgid "Activation token is invalid."
 msgstr "توکن فعال سازی صحیح نیست"
 
-#: src/Controller/Front/RegisterController.php:231
+#: src/Controller/Front/RegisterController.php:236
 msgid "Account Activated successfully."
 msgstr "حساب کاربری با موفقیت فعال شد"
 
-#: src/Controller/Front/RegisterController.php:251
+#: src/Controller/Front/RegisterController.php:256
 msgid "Activation email sent failed."
 msgstr "خطا در ارسال ایمیل فعال سازی"
 
-#: src/Controller/Front/RegisterController.php:285
+#: src/Controller/Front/RegisterController.php:290
 msgid "Resend activation mail successfully."
 msgstr "ارسال مجدد ایمیل فعال سازی با موفقیت انجام شد"
 
-#: src/Controller/Front/RegisterController.php:313
+#: src/Controller/Front/RegisterController.php:318
 msgid "Email was not found."
 msgstr "ایمیل یافت نشد"
 
-#: src/Controller/Front/RegisterController.php:318
+#: src/Controller/Front/RegisterController.php:323
 msgid "Account already activated."
 msgstr "حساب کاربری قبلا فعال شده است"
 
-#: src/Controller/Front/RegisterController.php:329
+#: src/Controller/Front/RegisterController.php:334
 msgid "Activation mail sent successfully."
 msgstr "ایمیل فعال سازی با موفقیت ارسال شد"
 
-#: src/Controller/Front/RegisterController.php:334
+#: src/Controller/Front/RegisterController.php:339
 msgid "Activation mail was not sent."
 msgstr "ایمیل فعال سازی ارسال نشد"
 
-#: src/Controller/Front/RegisterController.php:440
+#: src/Controller/Front/RegisterController.php:448
 msgid "User information was not completed and user account was not saved."
 msgstr "اطلاعات کاربری تکمیل نشده است و حساب کاربری در سیستم ثبت نشده است."
 
-#: src/Controller/Front/RegisterController.php:465
+#: src/Controller/Front/RegisterController.php:473
 msgid "User account was not saved."
 msgstr "حساب کاربری ذخیره نشد"
 
-#: src/Controller/Front/RegisterController.php:488
+#: src/Controller/Front/RegisterController.php:496
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
@@ -484,7 +521,7 @@ msgstr ""
 "حساب کاربری با موفقیت ثبت شده است اما فعال سازی آن با موفقیت همراه نبوده "
 "است، لطفا با مدیر تماس بگیرید"
 
-#: src/Controller/Front/RegisterController.php:514
+#: src/Controller/Front/RegisterController.php:528
 msgid "Account activation email was not able to send, please contact admin."
 msgstr "ناتوان در ارسال ایمیل فعال سازی، با مدیرتماس بگیرید"
 
@@ -503,14 +540,31 @@ msgstr "ایمیل"
 msgid "Display name"
 msgstr "نام نمایشی"
 
-#: src/Form/AccountForm.php:72 src/Form/CompoundForm.php:58
-#: src/Form/EditUserForm.php:45 src/Form/EmailForm.php:58
-#: src/Form/MemberForm.php:122 src/Form/PasswordForm.php:87
-#: src/Form/ProfileEditForm.php:42 src/Form/ResendActivationForm.php:47
-#: src/Form/ResetPasswordForm.php:73 src/Form/RoleForm.php:99
-#: template/front/account-index.phtml:37 template/front/privacy-index.phtml:39
+#: src/Form/AccountForm.php:60 src/Form/RegisterForm.php:94
+msgid "Newsletter subscription"
+msgstr "اشتراک خبرنامه"
+
+#: src/Form/AccountForm.php:86 src/Form/CompoundForm.php:58
+#: src/Form/ConditionForm.php:86 src/Form/EditUserForm.php:45
+#: src/Form/EmailForm.php:58 src/Form/MemberForm.php:122
+#: src/Form/PasswordForm.php:87 src/Form/ProfileEditForm.php:42
+#: src/Form/ResendActivationForm.php:47 src/Form/ResetPasswordForm.php:73
+#: src/Form/RoleForm.php:99 template/front/account-index.phtml:37
+#: template/front/privacy-index.phtml:39
 msgid "Submit"
 msgstr "ارسال"
+
+#: src/Form/ConditionForm.php:41 template/admin/condition.phtml:11
+msgid "Version"
+msgstr "نسخه"
+
+#: src/Form/ConditionForm.php:53
+msgid "File"
+msgstr "فایل"
+
+#: src/Form/ConditionForm.php:66 template/admin/condition.phtml:14
+msgid "Active at"
+msgstr "فعال"
 
 #: src/Form/Element/Gender.php:36
 msgid "Male"
@@ -527,10 +581,6 @@ msgstr "ایمیل جدید"
 #: src/Form/EmailForm.php:37 src/Form/PasswordForm.php:42
 msgid "Current password"
 msgstr "کلمه عبور فعلی"
-
-#: src/Form/FindPasswordForm.php:37
-msgid "Please type the word"
-msgstr "لطفا این واژه را وارد نمایید"
 
 #: src/Form/MemberForm.php:57 src/Form/PasswordForm.php:53
 #: src/Form/ResetPasswordForm.php:42
@@ -558,9 +608,45 @@ msgstr "فعالیت"
 msgid "Enable"
 msgstr "فعال"
 
+#: src/Form/RegisterForm.php:47
+msgid "Invalid email"
+msgstr "آدرس ایمیل اشتباه است"
+
+#: src/Form/RegisterForm.php:49
+msgid "Oops. This email address is already taken or is forbidden"
+msgstr "متاسفانه این ایمیل قبلا گرفته شده است"
+
+#: src/Form/RegisterForm.php:54
+msgid "Invalid username"
+msgstr "نام کاربری اشتباه است"
+
+#: src/Form/RegisterForm.php:56
+msgid "Oops. This username is already taken, malformed or forbidden"
+msgstr "این نام کاربری قبلا گرفته شده است یا فرمت آن صحیح نیست"
+
+#: src/Form/RegisterForm.php:61
+msgid "Show my password"
+msgstr "نمایش واژه رمز"
+
+#: src/Form/RegisterForm.php:78
+msgid "Must be less than "
+msgstr "باید کمتر باشد از"
+
+#: src/Form/RegisterForm.php:80
+msgid "Must be more than "
+msgstr "باید بیشتر باشد از "
+
+#: src/Form/RegisterForm.php:83
+msgid "Whoops, these don't match"
+msgstr "وارژه رمز وارد شده یکسان نیست"
+
 #: src/Form/ResendActivationForm.php:27
 msgid "Email address"
 msgstr "آدرس ایمیل"
+
+#: src/Form/ResendActivationForm.php:38
+msgid "Please type the word."
+msgstr "لطفا این عبارت را وارد کنید"
 
 #: src/Form/RoleForm.php:44
 msgid "Name"
@@ -671,6 +757,44 @@ msgstr "نام کاربری شما از حداقل مجاز %min% کارکتر �
 msgid "Username is more than %max% characters long"
 msgstr "نام کاربری شما از حداکثر مجاز %max% کارکتر بیشتر است"
 
+#: template/admin/condition.phtml:3 template/admin/condition.phtml:5
+msgid "Add file"
+msgstr "فایل جدید"
+
+#: template/admin/condition.phtml:7
+msgid "File list"
+msgstr "فهرست فایل ها"
+
+#: template/admin/condition.phtml:10
+msgid "ID"
+msgstr "شناسه"
+
+#: template/admin/condition.phtml:12
+msgid "Filename"
+msgstr "نام فایل"
+
+#: template/admin/condition.phtml:13
+msgid "Created at"
+msgstr "تاریخ ایجاد"
+
+#: template/admin/condition.phtml:15
+msgid "Action"
+msgstr "عملکرد"
+
+#: template/admin/condition.phtml:27 template/admin/condition.phtml:29
+#: template/front/profile-edit-compound.phtml:35
+#: template/front/profile-index.phtml:32
+msgid "Edit"
+msgstr "ویرایش"
+
+#: template/admin/condition.phtml:32 template/admin/condition.phtml:34
+msgid "Remove"
+msgstr "حذف"
+
+#: template/admin/condition.phtml:44
+msgid "Shortcut : latest version of term and condition is available from"
+msgstr "میانبر : آخرین نسخه شرایط و مقررات در دسترس است"
+
 #: template/front/account-index.phtml:21
 msgid "Verify identity"
 msgstr "تایید هویت"
@@ -685,15 +809,15 @@ msgstr ""
 msgid "Password"
 msgstr "کلمه عبور"
 
-#: template/front/account-index.phtml:172
+#: template/front/account-index.phtml:184
 msgid "Email is required."
 msgstr "وارد کردن ایمیل ضروری است"
 
-#: template/front/account-index.phtml:212
+#: template/front/account-index.phtml:224
 msgid "Display name is required."
 msgstr "وارد کردن نام نمایشی ضروری است"
 
-#: template/front/account-index.phtml:263
+#: template/front/account-index.phtml:275
 msgid "No change!"
 msgstr "بدون تغییر !"
 
@@ -718,7 +842,7 @@ msgstr "هم اکنون وارد شوید"
 msgid "View all"
 msgstr "همه شاخه ها"
 
-#: template/front/activity-index.phtml:33 template/front/home-index.phtml:39
+#: template/front/activity-index.phtml:33 template/front/home-index.phtml:54
 #: template/front/profile-view.phtml:30
 msgid "No data available."
 msgstr "هیچ اطلاعاتی در دسترس نیست"
@@ -781,6 +905,83 @@ msgstr "لغو"
 msgid "Uploading"
 msgstr "در حال بارگذاری"
 
+#: template/front/dashboard-index.phtml:12
+msgid "Your dashboard"
+msgstr "داشبورد"
+
+#: template/front/dashboard-index.phtml:22
+msgid "Your pending requests"
+msgstr "درخواست های در انتظار تایید شما"
+
+#: template/front/dashboard-index.phtml:30
+msgid "Shortcuts"
+msgstr "میانبر ها"
+
+#: template/front/dashboard-index.phtml:37
+#: template/front/dashboard-index.phtml:40
+#: template/front/profile-sidebar.phtml:89
+msgid "My items"
+msgstr "آیتم های من"
+
+#: template/front/dashboard-index.phtml:49
+#: template/front/dashboard-index.phtml:52
+#: template/front/profile-sidebar.phtml:91
+msgid "Sponsorship"
+msgstr "اسپانسر"
+
+#: template/front/dashboard-index.phtml:63
+#: template/front/dashboard-index.phtml:66
+#: template/front/profile-sidebar.phtml:103
+msgid "My messages"
+msgstr "پیام های من"
+
+#: template/front/dashboard-index.phtml:71
+#: template/front/dashboard-index.phtml:74
+#: template/front/profile-sidebar.phtml:105
+msgid "My notifications"
+msgstr "آگاهی رسانی های من"
+
+#: template/front/dashboard-index.phtml:82
+#: template/front/dashboard-index.phtml:85
+#: template/front/profile-sidebar.phtml:114
+msgid "My events"
+msgstr "رویداد های من"
+
+#: template/front/dashboard-index.phtml:94
+#: template/front/dashboard-index.phtml:97
+#: template/front/profile-sidebar.phtml:119
+msgid "My orders"
+msgstr "سفارش های من"
+
+#: template/front/dashboard-index.phtml:104
+#: template/front/dashboard-index.phtml:107
+#: template/front/profile-sidebar.phtml:122
+msgid "My credit"
+msgstr "اعتبار خرید من"
+
+#: template/front/dashboard-index.phtml:116
+#: template/front/dashboard-index.phtml:119
+#: template/front/profile-sidebar.phtml:127
+#: template/front/profile-sidebar.phtml:132
+msgid "My favorites"
+msgstr "مورد علاقه های من"
+
+#: template/front/dashboard-index.phtml:127
+#: template/front/dashboard-index.phtml:130
+#: template/front/profile-sidebar.phtml:136
+msgid "My videos"
+msgstr "ویدیو های من"
+
+#: template/front/dashboard-index.phtml:139
+#: template/front/dashboard-index.phtml:142
+#: template/front/profile-sidebar.phtml:110
+msgid "My support tickets"
+msgstr "درخواست های پشتیبانی من"
+
+#: template/front/home-index.phtml:17 template/front/profile-index.phtml:13
+msgid "My profile"
+msgstr "پروفال من"
+
 #: template/front/login-disabled.phtml:3
 msgid "User login"
 msgstr "ورود کاربر"
@@ -819,6 +1020,10 @@ msgstr ""
 msgid "You have logged in successfully, please go to %s."
 msgstr "با موفقیت وارد شدید. برمی گردید به %s"
 
+#: template/front/login.phtml:37
+msgid "Not registered yet ?"
+msgstr "هنوز ثبت نام نکرده اید؟"
+
 #: template/front/password-process.phtml:2
 msgid "Reset password"
 msgstr "بازیابی کلمه عبور"
@@ -850,13 +1055,8 @@ msgstr "به روز کردن %s"
 msgid "Add new"
 msgstr "اضافه کردن"
 
-#: template/front/profile-edit-compound.phtml:35
-#: template/front/profile-index.phtml:21
-msgid "Edit"
-msgstr "ویرایش"
-
 #: template/front/profile-edit-compound.phtml:46
-#: template/front/profile-index.phtml:34 template/front/profile-view.phtml:21
+#: template/front/profile-index.phtml:45 template/front/profile-view.phtml:21
 msgid "Unfiled"
 msgstr "تکمیل نشده"
 
@@ -864,85 +1064,57 @@ msgstr "تکمیل نشده"
 msgid "Are you sure to delete this record?"
 msgstr "آیا اطمینان دارید که میخواهید این مورد را حذف کنید"
 
-#: template/front/profile-index.phtml:43
+#: template/front/profile-index.phtml:54
 #, php-format
 msgid "Add %s"
 msgstr "اضافه کردن %s"
 
-#: template/front/profile-sidebar.phtml:24
+#: template/front/profile-sidebar.phtml:36
 msgid "View my profile"
 msgstr "نمایش پروفایل من"
 
-#: template/front/profile-sidebar.phtml:59
-msgid "My items"
-msgstr "آیتم های من"
+#: template/front/profile-sidebar.phtml:49
+msgid "My account"
+msgstr "حساب کاربری من"
 
-#: template/front/profile-sidebar.phtml:61
-msgid "Sponsorship"
-msgstr "اسپانسر"
+#: template/front/profile-sidebar.phtml:94
+msgid "My requests"
+msgstr "درخواست های من"
 
-#: template/front/profile-sidebar.phtml:67
-msgid "My messages"
-msgstr "پیام های من"
+#: template/front/profile-sidebar.phtml:98
+msgid "My media"
+msgstr "فایل های چند رسانه ای من"
 
-#: template/front/profile-sidebar.phtml:69
-msgid "My notifications"
-msgstr "آگاهی رسانی های من"
-
-#: template/front/profile-sidebar.phtml:73
-msgid "My support tickets"
-msgstr "درخواست های پشتیبانی من"
-
-#: template/front/profile-sidebar.phtml:76
-msgid "My events"
-msgstr "رویداد های من"
-
-#: template/front/profile-sidebar.phtml:80
-msgid "My orders"
-msgstr "سفارش های من"
-
-#: template/front/profile-sidebar.phtml:83
-msgid "My credit"
-msgstr "اعتبار خرید من"
-
-#: template/front/profile-sidebar.phtml:87
-msgid "My favorites"
-msgstr "مورد علاقه های من"
-
-#: template/front/profile-sidebar.phtml:90
-msgid "My videos"
-msgstr "ویدیو های من"
-
-#: template/front/profile-topbar.phtml:79
+#: template/front/profile-topbar.phtml:82
 msgid "Switch to public"
 msgstr "نمایش عمومی"
 
-#: template/front/profile-topbar.phtml:84
+#: template/front/profile-topbar.phtml:88
 msgid "Settings"
 msgstr "تنظیمات"
 
-#: template/front/profile-topbar.phtml:90
+#: template/front/profile-topbar.phtml:95
 msgid "Quicklinks"
 msgstr "لینک های سریع"
 
-#: template/front/profile-topbar.phtml:113
+#: template/front/profile-topbar.phtml:118
 msgid "Switch to own"
 msgstr "نمایش شخصی"
 
-#: template/front/profile-topbar.phtml:119
 #: template/front/profile-topbar.phtml:124
+#: template/front/profile-topbar.phtml:129
 msgid "Send message"
 msgstr "ارسال پیام شخصی"
 
-#: template/front/profile-topbar.phtml:143
+#: template/front/profile-topbar.phtml:148
 msgid "Gender:"
 msgstr "جنسیت:"
 
-#: template/front/profile-topbar.phtml:149
+#: template/front/profile-topbar.phtml:154
 msgid "Birthdate:"
 msgstr "تاریخ تولد:"
 
-#: template/front/profile-topbar.phtml:206
+#: template/front/profile-topbar.phtml:211
 msgid "More"
 msgstr "بیشتر"
 
@@ -1024,6 +1196,12 @@ msgstr "درخواست ارسال مجددا ایمیل فعال سازی"
 #: template/front/register-index.phtml:130
 msgid "Already sent"
 msgstr "قبلا ارسال شده است"
+
+#~ msgid "Accept %s"
+#~ msgstr "پذیرش %s"
+
+#~ msgid "Please type the word"
+#~ msgstr "لطفا این واژه را وارد نمایید"
 
 #~ msgid "View %s profile"
 #~ msgstr "مشاهده حساب کاربری %s"
