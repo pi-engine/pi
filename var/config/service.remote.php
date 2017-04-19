@@ -25,7 +25,7 @@ $config = array(
     // cURL specific configs
     'curl'      => array(
         // Timeout for connection, in seconds
-        'timeout'   => 1,
+        'timeout'   => 60,
         'maxredirects'  => 10,
         'curloptions'   => array(
             CURLOPT_FOLLOWLOCATION  => true,
