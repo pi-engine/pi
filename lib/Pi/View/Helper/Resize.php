@@ -232,9 +232,9 @@ class Resize extends AbstractHelper
             return '';
         }
 
-        $filepath = '/upload/media/processed/' . $this->commands . '/' . str_replace('upload/media/original/', '', $file) . '.' . $targetExtension;
+        $filepath = 'upload/media/processed/' . $this->commands . '/' . str_replace('upload/media/original/', '', $file) . '.' . $targetExtension;
 
-        return $filepath;
+        return \Pi::url($filepath);
     }
 
     /**

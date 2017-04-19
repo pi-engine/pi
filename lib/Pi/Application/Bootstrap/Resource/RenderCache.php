@@ -67,7 +67,11 @@ class RenderCache extends AbstractResource
             // Setup action cache strategy
             $sharedEvents = $events->getSharedManager();
             // Attach listeners to controller
-            $sharedEvents->attach(
+
+            /*
+             * Make listener callable from another script
+             */
+            $GLOBALS['cacheCheckActionCallback'] = $sharedEvents->attach(
                 'PI_CONTROLLER',
                 MvcEvent::EVENT_DISPATCH,
                 array($this, 'checkAction'),

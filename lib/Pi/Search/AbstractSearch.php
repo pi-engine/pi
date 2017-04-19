@@ -208,9 +208,17 @@ abstract class AbstractSearch extends AbstractApi
         $table = ''
     ) {
         $data = array();
+
         $select = $model->select();
         $select->where($where);
-        $select->columns(array_keys($this->meta));
+
+        $finalMeta = $this->meta;
+
+        if(isset($this->customMeta[get_class($model)])){
+            $finalMeta = $this->customMeta[get_class($model)];
+        }
+
+        $select->columns(array_keys($finalMeta));
         $select->limit($limit)->offset($offset);
         if ($this->order) {
             $select->order($this->order);
@@ -218,7 +226,7 @@ abstract class AbstractSearch extends AbstractApi
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
             $item = array();
-            foreach ($this->meta as $column => $field) {
+            foreach ($finalMeta as $column => $field) {
                 $item[$field] = $row[$column];
                 if ('content' == $field) {
                     $item[$field] = $this->buildContent($item[$field]);
