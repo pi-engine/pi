@@ -40,10 +40,10 @@ switch ($options['max_rows']) {
                     <div class="widget-list-media-single-image">
                         <?php if (!empty($item['link'])) { ?>
                             <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>" target="<?php echo $target; ?>">
-                                <img src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
+                                <img class="img-responsive" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
                             </a>
                         <?php } else { ?>
-                            <img src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
+                            <img class="img-responsive" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
                         <?php } ?>
                     </div>
                     <?php if (!empty($item['summary'])) { ?>
