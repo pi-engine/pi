@@ -305,6 +305,19 @@ class RowGateway extends AbstractRowGateway
         }
         /**#@-*/
 
+        /**
+         * Force null value for empty media
+         */
+        $model = $this->getModel();
+        if(Pi::service('module')->isActive('media') && $model instanceof \Pi\Application\Model\Model && $mediaLinks = $model->getMediaLinks()){
+
+            foreach($mediaLinks as $key){
+                if($this->$key == ''){
+                    $this->$key = null;
+                }
+            }
+        }
+
         if ($this->rowExistsInDatabase()) {
 
             // UPDATE
