@@ -312,8 +312,8 @@ class RowGateway extends AbstractRowGateway
         if(Pi::service('module')->isActive('media') && $model instanceof \Pi\Application\Model\Model && $mediaLinks = $model->getMediaLinks()){
 
             foreach($mediaLinks as $key){
-                if($this->$key == ''){
-                    $this->$key = null;
+                if($this->data[$key] == ''){
+                    $this->data[$key] = null;
                 }
             }
         }
