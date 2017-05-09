@@ -181,7 +181,7 @@ EOD;
         }
 
         // Drop homepage for blocks
-        if (version_compare($moduleVersion, '1.2.0', '<=')) {
+        if (version_compare($moduleVersion, '1.2.0', '<')) {
             Pi::model('page')->delete(array(
                 'section'       => 'front',
                 'module'        => $this->module,
@@ -206,7 +206,7 @@ EOD;
         }
 
         // Add `theme` `layout` fields
-        if (version_compare($moduleVersion, '1.2.1', '<=')) {
+        if (version_compare($moduleVersion, '1.2.1', '<')) {
             $sql =<<<'EOD'
 ALTER TABLE %s
 ADD  `theme`           varchar(64)             NOT NULL default '',
@@ -228,7 +228,7 @@ EOD;
         }
 
         // Add `template` field
-        if (version_compare($moduleVersion, '1.2.2', '<=')) {
+        if (version_compare($moduleVersion, '1.2.2', '<')) {
             $sql =<<<'EOD'
 ALTER TABLE %s
 ADD  `template`        varchar(64)             NOT NULL default '';
@@ -249,7 +249,7 @@ EOD;
         }
 
         // Update to version 1.2.6
-        if (version_compare($moduleVersion, '1.2.6', '<=')) {
+        if (version_compare($moduleVersion, '1.2.6', '<')) {
 
             // Alter table change `content` to MEDIUMTEXT
             $sql = sprintf("ALTER TABLE %s CHANGE `content` `content` MEDIUMTEXT",
@@ -268,7 +268,7 @@ EOD;
         }
 
         // Update to version 1.2.7
-        if (version_compare($moduleVersion, '1.2.7', '<=')) {
+        if (version_compare($moduleVersion, '1.2.7', '<')) {
             // Check sitemap module active or not
             if (Pi::service('module')->isActive('sitemap')) {
                 // Clean all page links on sitemap
@@ -293,7 +293,7 @@ EOD;
         }
 
         // Update to version 1.2.8
-        if (version_compare($moduleVersion, '1.2.8', '<=')) {
+        if (version_compare($moduleVersion, '1.2.8', '<')) {
             // Alter table add index `title`
             $sql = sprintf("ALTER TABLE %s ADD INDEX `title` (`title`)", $table);
             try {
