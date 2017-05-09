@@ -253,7 +253,7 @@ class Block
                 ));
             } else {
                 $user['favourite_url'] = Pi::url(Pi::service('url')->assemble(
-                    'favourite',
+                    'default',
                     array(
                         'module'        => 'favourite',
                         'controller'    => 'index',
