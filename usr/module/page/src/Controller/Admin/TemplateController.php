@@ -39,11 +39,17 @@ class TemplateController extends ActionController
                 'size'  => filesize($file),
             );
         };
-        $templates = Pi::service('file')->getList(
+        $baseTemplates = Pi::service('file')->getList(
             'custom/module/page/template/front',
             $filter
         );
 
+        $customTemplates = Pi::service('file')->getList(
+            Pi::path('theme') . '/'. Pi::config('theme') . '/custom/page',
+            $filter
+        );
+
+        $templates = array_merge($baseTemplates, $customTemplates);
         $this->view()->assign('templates', $templates);
         $this->view()->assign('title', _a('Template list'));
         $this->view()->setTemplate('template-list');
@@ -56,11 +62,21 @@ class TemplateController extends ActionController
     {
         Pi::service('log')->mute();
         $name = $this->params('name');
+
         $file = sprintf(
-            '%s/module/page/template/front/%s.phtml',
-            Pi::path('custom'),
+            '%s/'. Pi::config('theme') . '/custom/page/%s.phtml',
+            Pi::path('theme'),
             $name
         );
+
+        if (!is_readable($file)) {
+            $file = sprintf(
+                '%s/module/page/template/front/%s.phtml',
+                Pi::path('custom'),
+                $name
+            );
+        }
+
         if (is_readable($file)) {
             ob_start();
             highlight_file($file);

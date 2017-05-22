@@ -30,10 +30,19 @@ class PageTemplateAvailable extends AbstractValidator
 
         if ('phtml' == $context['markup']) {
             $file = sprintf(
-                '%s/module/page/template/front/%s.phtml',
-                Pi::path('custom'),
+                '%s/'. Pi::config('theme') . '/custom/page/%s.phtml',
+                Pi::path('theme'),
                 $value
             );
+
+            if (!is_readable($file)) {
+                $file = sprintf(
+                    '%s/module/page/template/front/%s.phtml',
+                    Pi::path('custom'),
+                    $value
+                );
+            }
+
             if (!is_readable($file)) {
                 $this->error(static::UNAVAILABLE);
                 return false;
