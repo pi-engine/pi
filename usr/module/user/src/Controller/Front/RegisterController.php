@@ -93,7 +93,7 @@ class RegisterController extends ActionController
             'activation'    => $this->config('register_activation'),
         ));
 
-        $this->view()->footScript()->prependFile($this->view()->assetModule('front/validator.js'));
+        $this->view()->footScript()->prependFile($this->view()->assetModule('front/validator.min.js'));
 
         $this->view()->setTemplate('register-index');
 
