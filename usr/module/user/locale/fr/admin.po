@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-02-28 16:01+0100\n"
-"PO-Revision-Date: 2017-02-28 16:01+0100\n"
+"POT-Creation-Date: 2017-05-22 13:23+0200\n"
+"PO-Revision-Date: 2017-05-22 13:24+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -27,7 +27,7 @@ msgstr "Pourcentage maximal pour activer l'affichage du bloc"
 msgid "Hide after complete main fields"
 msgstr "Disparaît après saisie complète des champs principaux"
 
-#: config/config.php:25
+#: config/config.php:25 config/config.php:208
 msgid "Login"
 msgstr "Connexion"
 
@@ -124,159 +124,163 @@ msgid "Guide"
 msgstr "Guide"
 
 #: config/config.php:101
+msgid "Media"
+msgstr "Media"
+
+#: config/config.php:102
 msgid "Shop"
 msgstr "Shop"
 
-#: config/config.php:102
+#: config/config.php:103
 msgid "Order"
 msgstr "Order"
 
-#: config/config.php:103
+#: config/config.php:104
 msgid "Message"
 msgstr "Message"
 
-#: config/config.php:104
+#: config/config.php:105
 msgid "Support"
 msgstr "Support"
 
-#: config/config.php:105
+#: config/config.php:106
 msgid "Event"
 msgstr "Event"
 
-#: config/config.php:106
+#: config/config.php:107
 msgid "Vote"
 msgstr "Vote"
 
-#: config/config.php:107
+#: config/config.php:108
 msgid "Favourite"
 msgstr "Favourite"
 
-#: config/config.php:108
+#: config/config.php:109
 msgid "Guide favourite"
 msgstr "Guide favourite"
 
-#: config/config.php:109
+#: config/config.php:110
 msgid "Video"
 msgstr "Video"
 
-#: config/config.php:110
+#: config/config.php:111
 msgid "Audio"
 msgstr "Audio"
 
-#: config/config.php:111
+#: config/config.php:112
 msgid "Gallery"
 msgstr "Gallery"
 
-#: config/config.php:112
+#: config/config.php:113
 msgid "Ask"
 msgstr "Ask"
 
-#: config/config.php:113
+#: config/config.php:114
 msgid "Subscription"
 msgstr "Subscription"
 
-#: config/config.php:114
+#: config/config.php:115
 msgid "Ads"
 msgstr "Ads"
 
-#: config/config.php:115
+#: config/config.php:116
 msgid "Notification"
 msgstr "Notification"
 
-#: config/config.php:141
+#: config/config.php:142
 msgid "Login disable"
 msgstr "Désactiver la connexion"
 
-#: config/config.php:142
+#: config/config.php:143
 msgid "Disable user login"
 msgstr "Désactiver la connexion utilisateur"
 
-#: config/config.php:150
+#: config/config.php:151
 msgid "Login CAPTCHA"
 msgstr "Connexion CAPTCHA"
 
-#: config/config.php:151
+#: config/config.php:152
 msgid "Enable CAPTCHA for user login"
 msgstr "Activer le CAPTCHA pour la connexion utilisateur"
 
-#: config/config.php:156 config/config.php:247
+#: config/config.php:157 config/config.php:248
 msgid "No captcha"
 msgstr "Pas de Captcha"
 
-#: config/config.php:157 config/config.php:248
+#: config/config.php:158 config/config.php:249
 msgid "Standard captcha"
 msgstr "Captcha Standard"
 
-#: config/config.php:158 config/config.php:249
+#: config/config.php:159 config/config.php:250
 msgid "New re-captcha"
 msgstr "New Re-captcha"
 
-#: config/config.php:168
+#: config/config.php:169
 msgid "Remember me"
 msgstr "Se souvenir"
 
-#: config/config.php:169
+#: config/config.php:170
 msgid "Days to remember login, 0 for disable."
 msgstr "Nb jours pour la fonction Se Souvenir, 0 pour désactiver"
 
-#: config/config.php:176
+#: config/config.php:177
 msgid "Login field"
 msgstr "Champs de connexion"
 
-#: config/config.php:177
+#: config/config.php:178
 msgid "Identity field(s) for authentication."
 msgstr "Champs d'identité utilisé(s) pour se connecter"
 
-#: config/config.php:185 config/user.php:26 template/admin/inquiry.phtml:17
+#: config/config.php:186 config/user.php:26 template/admin/inquiry.phtml:17
 #: template/admin/maintenance.phtml:30 template/admin/role.phtml:31
 #: template/admin/user.phtml:21 template/admin/user.phtml:43
 #: template/admin/user.phtml:67
 msgid "Username"
 msgstr "Nom compte"
 
-#: config/config.php:186 config/user.php:60 template/admin/inquiry.phtml:18
+#: config/config.php:187 config/user.php:60 template/admin/inquiry.phtml:18
 #: template/admin/maintenance.phtml:47 template/admin/role.phtml:33
 #: template/admin/user.phtml:44 template/admin/user.phtml:71
 msgid "Email"
 msgstr "Email"
 
-#: config/config.php:196
+#: config/config.php:197
 msgid "Maximum attempts"
 msgstr "Nb tentatives maximums"
 
-#: config/config.php:197
+#: config/config.php:198
 msgid "Maximum attempts allowed to try for user login"
 msgstr "Nb tentatives maximums autorisées pour se connecter"
 
-#: config/config.php:204
+#: config/config.php:205
 msgid "Login modal title"
 msgstr "Titre modale Connexion"
 
-#: config/config.php:205
+#: config/config.php:206
 msgid "Title text for login modal in modal header"
 msgstr "Texte du titre sur header modale Connexion"
 
-#: config/config.php:213
+#: config/config.php:214
 msgid "Login description"
 msgstr "Texte Connexion"
 
-#: config/config.php:214
+#: config/config.php:215
 msgid "Description text for login page side bar, html allowed"
 msgstr "Texte descriptif pour la page de connexion/sidebar, html autorisé"
 
-#: config/config.php:223
+#: config/config.php:224
 msgid "Register disable"
 msgstr "Désactiver l'inscription"
 
-#: config/config.php:224
+#: config/config.php:225
 msgid "Disable user registration"
 msgstr "Désactiver l'inscription utilisateur"
 
-#: config/config.php:232
+#: config/config.php:233
 msgid "Add newsletter optin when registering"
 msgstr "Ajouter une checkbox Optin newslettre lors inscription"
 
-#: config/config.php:233
+#: config/config.php:234
 msgid ""
 "Whatever the value, newletter optin will be always available on User "
 "Account, if Subscription module is installed"
@@ -284,199 +288,203 @@ msgstr ""
 "Quelque soit la valeur, la checkbox Opin newslettre sera toujours visible "
 "dans le Profil Compte Utilisateur, si le module Subscription est installé."
 
-#: config/config.php:241
+#: config/config.php:242
 msgid "Register CAPTCHA"
 msgstr "Inscription CAPTCHA"
 
-#: config/config.php:242
+#: config/config.php:243
 msgid "Enable CAPTCHA for user registration"
 msgstr "Activer le CAPTCHA pour l'inscription utilisateur"
 
-#: config/config.php:259 template/admin/inquiry.phtml:19
+#: config/config.php:260 template/admin/inquiry.phtml:19
 msgid "Activation"
 msgstr "Activation"
 
-#: config/config.php:260
+#: config/config.php:261
 msgid "Activation mode for user accounts"
 msgstr "Mode d'activation pour les comptes utilisateurs"
 
-#: config/config.php:265
+#: config/config.php:266
 msgid "Automatically activated"
 msgstr "Confirmé automatiquement"
 
-#: config/config.php:266
+#: config/config.php:267
 msgid "Activated by user email"
 msgstr "Confirmation par mail utilisateur"
 
-#: config/config.php:267
+#: config/config.php:268
 msgid "Activated by admin approval"
 msgstr "Confirmé par l'approbation administrateur"
 
-#: config/config.php:277
+#: config/config.php:278
 msgid "Activation expiration"
 msgstr "Expiration de l'activation"
 
-#: config/config.php:278
+#: config/config.php:279
 msgid "Expiration time for activation email (in hours)."
 msgstr "Durée d'expiration pour l'activation par mail (en heures)."
 
-#: config/config.php:285
+#: config/config.php:286
 msgid "Email notification"
 msgstr "Email de notification"
 
-#: config/config.php:286
+#: config/config.php:287
 msgid "Send email notification on register success by admin approval."
 msgstr ""
 "Envoyer un email de notification en cas de succès de l'inscription après la "
 "validation de l'admin"
 
-#: config/config.php:294
+#: config/config.php:295
 msgid "Email notification to admin"
 msgstr "Email de notification Admin"
 
-#: config/config.php:295
+#: config/config.php:296
 msgid "Send email notification for new user registration to admin"
 msgstr "Envoyer un email de notification à l'admin pour tout nouvel inscrit"
 
-#: config/config.php:303
+#: config/config.php:304
 msgid "Register complete"
 msgstr "Terminer l'inscription"
 
-#: config/config.php:304
+#: config/config.php:305
 msgid "Require user to complete register data in an extra form."
 msgstr ""
 "Exige de l'utilisateur qu'il termine son inscription via un formulaire "
 "additionnel"
 
-#: config/config.php:312
+#: config/config.php:313
 msgid "Register term and conditions"
 msgstr "CGU/CGV pour l'inscription"
 
-#: config/config.php:313
+#: config/config.php:314
 msgid "Show term and conditions check box to user"
 msgstr "Afficher la checkbox CGU/CGV côté utilisateur"
 
-#: config/config.php:321
+#: config/config.php:322
 msgid "Term and conditions page url"
 msgstr "URL de la page CGU/CGV"
 
-#: config/config.php:322
+#: config/config.php:323
 msgid ""
 "Set term and conditions page url, if empty term and conditions check box not "
 "active"
 msgstr ""
 "Indiquer l'url de la page CGU/CGV, si vide la checkbox ne sera pas active"
 
-#: config/config.php:330
+#: config/config.php:331
 msgid "Register modal title"
 msgstr "Titre modale Inscription"
 
-#: config/config.php:331
+#: config/config.php:332
 msgid "Title text for register modal in modal header"
 msgstr "Texte du titre sur header modale Inscription"
 
-#: config/config.php:339
+#: config/config.php:334
+msgid "Register"
+msgstr "S'inscrire"
+
+#: config/config.php:340
 msgid "Register description"
 msgstr "Texte Inscription"
 
-#: config/config.php:340
+#: config/config.php:341
 msgid "Description text for register page side bar, html allowed"
 msgstr ""
 "Texte descriptif pour la page d'inscription/sidebar, le html est autorisé"
 
-#: config/config.php:349
+#: config/config.php:350
 msgid "Username format"
 msgstr "Format Nom Compte"
 
-#: config/config.php:350
+#: config/config.php:351
 msgid "Format of username for registration."
 msgstr "Format du nom compte lors de l'inscription"
 
-#: config/config.php:355 config/config.php:391
+#: config/config.php:356 config/config.php:392
 msgid "Strict: alphabet or number only"
 msgstr "Strict : alphabet ou numérique seulement"
 
-#: config/config.php:356 config/config.php:392
+#: config/config.php:357 config/config.php:393
 msgid "Strict: alphabet, number or space only"
 msgstr "Strict : alphabétiques, numériques et espaces seulement"
 
-#: config/config.php:357 config/config.php:393
+#: config/config.php:358 config/config.php:394
 msgid "Medium: ASCII characters"
 msgstr "Medium : caractères ASCII"
 
-#: config/config.php:358 config/config.php:394
+#: config/config.php:359 config/config.php:395
 msgid "Medium: ASCII characters and spaces"
 msgstr "Moyen : caractères ASCII et espaces"
 
-#: config/config.php:359 config/config.php:395
+#: config/config.php:360 config/config.php:396
 msgid "Loose: multi-byte characters"
 msgstr "Bas : caractères multibytes"
 
-#: config/config.php:360 config/config.php:396
+#: config/config.php:361 config/config.php:397
 msgid "Loose: multi-byte characters and spaces"
 msgstr "Faible : caractères multi-bit et espaces"
 
-#: config/config.php:370
+#: config/config.php:371
 msgid "Minimum username"
 msgstr "Minimum Nom de Compte"
 
-#: config/config.php:371
+#: config/config.php:372
 msgid "Minimum length of username for user registration"
 msgstr "Longueur minimum du nom de compte utilisateur lors de l'inscription"
 
-#: config/config.php:378
+#: config/config.php:379
 msgid "Maximum username"
 msgstr "Nom compte utilisateur maximum"
 
-#: config/config.php:379
+#: config/config.php:380
 msgid "Maximum length of username for user registration"
 msgstr "Longueur maximum du nom compte utilisateur lors de l'inscription"
 
-#: config/config.php:385
+#: config/config.php:386
 msgid "Display name format"
 msgstr "Format du Nom"
 
-#: config/config.php:386
+#: config/config.php:387
 msgid "Format of display name for registration."
 msgstr "Format du Nom lors de l'inscription"
 
-#: config/config.php:406
+#: config/config.php:407
 msgid "Minimum display name"
 msgstr "Nom minimum"
 
-#: config/config.php:407
+#: config/config.php:408
 msgid "Minimum length of display name for user registration"
 msgstr "Longueur minimum du nom utilisateur lors de l'inscription"
 
-#: config/config.php:414
+#: config/config.php:415
 msgid "Maximum display name"
 msgstr "Nom maximum"
 
-#: config/config.php:415
+#: config/config.php:416
 msgid "Maximum length of display name for user registration"
 msgstr "Longueur maximum du nom utilisateur lors de l'inscription"
 
-#: config/config.php:422
+#: config/config.php:423
 msgid "Minimum password"
 msgstr "Mot de passe minimum"
 
-#: config/config.php:423
+#: config/config.php:424
 msgid "Minimum length of password for user registration"
 msgstr "Longueur minimale du mot de passe lors de l'inscription"
 
-#: config/config.php:430
+#: config/config.php:431
 msgid "Maximum password"
 msgstr "Mot de passe maximum"
 
-#: config/config.php:431
+#: config/config.php:432
 msgid "Maximum length of password for user registration"
 msgstr "Longueur maximale du mot de passe lors de l'inscription"
 
-#: config/config.php:438
+#: config/config.php:439
 msgid "Username blacklist"
 msgstr "Liste noire Nom compte utilisateur"
 
-#: config/config.php:439
+#: config/config.php:440
 msgid ""
 "Reserved and forbidden username list, separated with `|`, regexp syntax is "
 "allowed."
@@ -484,11 +492,11 @@ msgstr ""
 "Liste des noms compte utilisateurs réservés/interdits, séparés par `|`, la "
 "syntaxe regexp est autorisée."
 
-#: config/config.php:446
+#: config/config.php:447
 msgid "Display blacklist"
 msgstr "Liste noire Nom"
 
-#: config/config.php:447
+#: config/config.php:448
 msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
@@ -496,45 +504,45 @@ msgstr ""
 "Liste des noms réservés / interdits, séparés par `|`, la syntaxe regexp est "
 "autorisée."
 
-#: config/config.php:454
+#: config/config.php:455
 msgid "Email blacklist"
 msgstr "Liste noire Email"
 
-#: config/config.php:455
+#: config/config.php:456
 msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
 msgstr ""
 "Liste des emails interdits, séparés par `|`, la syntaxe regexp est autorisée"
 
-#: config/config.php:464
+#: config/config.php:465
 msgid "Max Avatar Width"
 msgstr "Largeur maximale avatar"
 
-#: config/config.php:465
+#: config/config.php:466
 msgid "Allowed image width, 0 for no limit"
 msgstr "Largeur autorisée de l'image, 0 pour aucune limite"
 
-#: config/config.php:472
+#: config/config.php:473
 msgid "Max Avatar Height"
 msgstr "Hauteur maximimale avatar"
 
-#: config/config.php:473
+#: config/config.php:474
 msgid "Allowed image height, 0 for no limit"
 msgstr "Hauteur autorisée de l'image, 0 pour aucune limite"
 
-#: config/config.php:480
+#: config/config.php:481
 msgid "Max File Size"
 msgstr "Taille maximal fichier"
 
-#: config/config.php:481
+#: config/config.php:482
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 "Taille autorisée de l'upload fichier avatar (en KB), 0 pour aucune limite"
 
-#: config/config.php:497
+#: config/config.php:498
 msgid "Temporary Path"
 msgstr "Chemin (path) temporaire"
 
-#: config/config.php:498
+#: config/config.php:499
 msgid "For temporary storage of avatar"
 msgstr "Pour stocker temporairement l'avatar"
 
