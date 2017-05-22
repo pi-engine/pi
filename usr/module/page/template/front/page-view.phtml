@@ -24,7 +24,20 @@ $this->headMeta($shearContent, 'twitter:description');
         <?php if ('phtml' == $markup && $content) { ?>
             <h1 class="article-header headline"><?php echo $this->escape($title); ?></h1>
             <div class="article-body">
-                <?php include $this->template('./' . $content); ?>
+                <?php
+
+                $file = sprintf(
+                    '%s/'. Pi::config('theme') . '/custom/page/%s.phtml',
+                    Pi::path('theme'),
+                    $content
+                );
+
+                ?>
+                <?php if($file) : ?>
+                    <?php include $this->template($file); ?>
+                <?php else : ?>
+                    <?php include $this->template('./' . $content); ?>
+                <?php endif; ?>
             </div>
             <?php if ($config['social_sharing']) { ?>
                 <div class="article-footer clearfix">

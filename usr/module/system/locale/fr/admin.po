@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2017-03-24 11:58+0430\n"
-"PO-Revision-Date: 2017-03-24 11:58+0430\n"
+"POT-Creation-Date: 2017-05-22 13:24+0200\n"
+"PO-Revision-Date: 2017-05-22 13:25+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -175,110 +175,78 @@ msgstr "Connexion Admin"
 msgid "Text processing"
 msgstr "Editeur de Texte et Mots censurés"
 
-#: config/config.php:53 config/nav.admin.php:300
+#: config/config.php:53
+msgid "ReCaptcha"
+msgstr "Recaptcha"
+
+#: config/config.php:57 config/nav.admin.php:300
 #: template/admin/audit-index.phtml:9
 msgid "Mailing"
 msgstr "Mailing"
 
-#: config/config.php:65
+#: config/config.php:69
 msgid "Site name"
 msgstr "Nom du site"
 
-#: config/config.php:66
+#: config/config.php:70
 msgid "Website name."
 msgstr "Nom du site web."
 
-#: config/config.php:73
+#: config/config.php:77
 msgid "Slogan"
 msgstr "Slogan"
 
-#: config/config.php:74
+#: config/config.php:78
 msgid "Website slogan."
 msgstr "Slogan du site web."
 
-#: config/config.php:80
+#: config/config.php:84
 msgid "Locale"
 msgstr "Paramètres régionaux"
 
-#: config/config.php:81
+#: config/config.php:85
 msgid "Locale for application content."
 msgstr "Paramètres régionaux pour le contenu de l'application."
 
-#: config/config.php:88
+#: config/config.php:92
 msgid "Charset"
 msgstr "Jeu de caractère"
 
-#: config/config.php:89
+#: config/config.php:93
 msgid "Charset for page display."
 msgstr "Jeu de cartactère pour l'affichage de page"
 
-#: config/config.php:95
+#: config/config.php:99
 msgid "Timezone"
 msgstr "Fuseau Horaire"
 
-#: config/config.php:96
+#: config/config.php:100
 msgid "Timezone for application system."
 msgstr "Fuseau horaire pour le système applicatif"
 
-#: config/config.php:102
+#: config/config.php:106
 msgid "List count"
 msgstr "Nbre Eléments Listes"
 
-#: config/config.php:103
+#: config/config.php:107
 msgid "Number of items on a list."
 msgstr "Nombre d'éléments affichés dans une liste"
 
-#: config/config.php:110
+#: config/config.php:114
 msgid "Footer"
 msgstr "Pied de page"
 
-#: config/config.php:111
+#: config/config.php:115
 msgid "Content to be displayed on footer of front pages, HTML tags allowed."
 msgstr ""
 "Contenu à affichager sur le pied de page dans les pages d'accueil, tags HTML "
 "autorisés."
 
-#: config/config.php:117
-msgid "GA account"
-msgstr "Compte GA"
-
-#: config/config.php:118
-msgid ""
-"Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append "
-"to the code `UA-XXXXXXXX-X; XXXX.tld`."
-msgstr ""
-"Google Analytics tracking ID `UA-XXXXXXXX-X`. Pour indiquer également le "
-"host, ajouter au code `UA-XXXXXXXX-X; XXXX.tld`."
-
-#: config/config.php:123
-msgid "ReCaptcha Public Key"
-msgstr "Clef publique ReCaptcha"
-
-#: config/config.php:124
-msgid ""
-"see https://www.google.com/recaptcha to create your public key dedicated to "
-"your website domain. Both keys are mandatory."
-msgstr ""
-"voir https://www.google.com/recaptcha pour créer votre clef publique dédiée "
-"à votre domaine. Les deux clefs sont obligatoires."
-
-#: config/config.php:132
-msgid "ReCaptcha Private Key"
-msgstr "CLef privée Recaptcha"
-
-#: config/config.php:133
-msgid ""
-"see https://www.google.com/recaptcha to create your private key dedicated to "
-"your website domain. Both keys are mandatory.."
-msgstr ""
-"voir https://www.google.com/recaptcha pour créer votre clef privée dédiée à "
-"votre domaine. Les deux clefs sont obligatoires."
-
-#: config/config.php:141
+#: config/config.php:121
 msgid "Foot scripts"
 msgstr "Scripts de pied de page"
 
-#: config/config.php:142
+#: config/config.php:122
 msgid ""
 "Scripts that will be appended to each page footer. Either naked or wrapped "
 "js scripts are allowed."
@@ -286,84 +254,96 @@ msgstr ""
 "Les scripts seront ajoutés dans le pied de page de chaque page.  Les scripts "
 "js bruts ou encapsulés sont autorisés. "
 
-#: config/config.php:148
+#: config/config.php:128
+msgid "GA account"
+msgstr "Compte GA"
+
+#: config/config.php:129
+msgid ""
+"Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append "
+"to the code `UA-XXXXXXXX-X; XXXX.tld`."
+msgstr ""
+"Google Analytics tracking ID `UA-XXXXXXXX-X`. Pour indiquer également le "
+"host, ajouter au code `UA-XXXXXXXX-X; XXXX.tld`."
+
+#: config/config.php:134
 msgid "Theme"
 msgstr "Thème"
 
-#: config/config.php:155
+#: config/config.php:141
 msgid "Admin theme"
 msgstr "Administration du Thème"
 
-#: config/config.php:183
+#: config/config.php:169
 msgid "Username format"
 msgstr "Format du Nom de Compte"
 
-#: config/config.php:184
+#: config/config.php:170
 msgid "Format of username for registration."
 msgstr "Format du nom de compte pour s'inscrire"
 
-#: config/config.php:189
+#: config/config.php:175
 msgid "Strict: alphabet or number only"
 msgstr "Strict : alphabétique ou numérique seulement"
 
-#: config/config.php:190
+#: config/config.php:176
 msgid "Strict/space: alphabet, number or space only"
 msgstr ""
 "Strict/Espaces : caractères alphabétiques, numériques ou espaces seulement"
 
-#: config/config.php:191
+#: config/config.php:177
 msgid "Medium: ASCII characters"
 msgstr "Medium : caractères ASCII"
 
-#: config/config.php:192
+#: config/config.php:178
 msgid "Medium/space: ASCII characters and spaces"
 msgstr "Moyen/espace : caractères ASCII et espaces"
 
-#: config/config.php:193
+#: config/config.php:179
 msgid "Loose: multi-byte characters"
 msgstr "Faible : caractères multibytes"
 
-#: config/config.php:194
+#: config/config.php:180
 msgid "Loose/space: multi-byte characters and spaces"
 msgstr "Bas/espaces : caractères multi-byte et espaces"
 
-#: config/config.php:204
+#: config/config.php:190
 msgid "Minimum username"
 msgstr "Minimum Nom de Compte"
 
-#: config/config.php:205
+#: config/config.php:191
 msgid "Minimum length of username for user registration"
 msgstr "Longueur minimum du nom de compte pour s'inscrire"
 
-#: config/config.php:212
+#: config/config.php:198
 msgid "Maximum username"
 msgstr "Maximum Nom de Compte"
 
-#: config/config.php:213
+#: config/config.php:199
 msgid "Maximum length of username for user registration"
 msgstr "Longueur maximum du nom de compte pour s'inscrire"
 
-#: config/config.php:220
+#: config/config.php:206
 msgid "Minimum password"
 msgstr "Mot de passe minimum"
 
-#: config/config.php:221
+#: config/config.php:207
 msgid "Minimum length of password for user registration"
 msgstr "Longueur minimum du mot de passe pour s'inscrire"
 
-#: config/config.php:228
+#: config/config.php:214
 msgid "Maximum password"
 msgstr "Mot de passe maximum"
 
-#: config/config.php:229
+#: config/config.php:215
 msgid "Maximum length of password for user registration"
 msgstr "Longueur maximum du mot de passe pour s'inscrire"
 
-#: config/config.php:236
+#: config/config.php:222
 msgid "Username blacklist"
 msgstr "Liste noire Nom de Compte"
 
-#: config/config.php:237
+#: config/config.php:223
 msgid ""
 "Reserved and forbidden username list. Separate each with a <strong>|</"
 "strong>, regexp syntax is allowed."
@@ -371,11 +351,11 @@ msgstr ""
 "Liste des noms de compte utilisateurs interdits et réservés. Séparer chaque "
 "valeur par <strong>|</strong>, la syntaxe regexp est autorisée."
 
-#: config/config.php:244
+#: config/config.php:230
 msgid "Email blacklist"
 msgstr "Liste noire email"
 
-#: config/config.php:245
+#: config/config.php:231
 msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
@@ -383,106 +363,106 @@ msgstr ""
 "Liste des noms de compte interdits. Séparer chaque valeur par <strong>|</"
 "strong>, la syntaxe regexp est autorisée."
 
-#: config/config.php:252 config/config.php:334
+#: config/config.php:238 config/config.php:320
 msgid "Remember me"
 msgstr "Se souvenir"
 
-#: config/config.php:253 config/config.php:335
+#: config/config.php:239 config/config.php:321
 msgid "Days to remember login, 0 for disable."
 msgstr "Nombre de jours pour la mémorisation du compte, 0 pour désactiver."
 
-#: config/config.php:260 config/config.php:342
+#: config/config.php:246 config/config.php:328
 msgid "Login field"
 msgstr "Champ de connexion"
 
-#: config/config.php:261
+#: config/config.php:247
 msgid "Identity field(s) for authentication."
 msgstr "Champs d'identification pour l'authentification"
 
-#: config/config.php:269 config/config.php:351
+#: config/config.php:255 config/config.php:337
 #: template/admin/member-index.phtml:23
 msgid "Username"
 msgstr "Nom du Compte"
 
-#: config/config.php:270 config/config.php:352
+#: config/config.php:256 config/config.php:338
 #: template/admin/member-index.phtml:25
 msgid "Email"
 msgstr "Email"
 
-#: config/config.php:280 config/config.php:326
+#: config/config.php:266 config/config.php:312
 msgid "Maximum attempts"
 msgstr "Tentatives maximum"
 
-#: config/config.php:281
+#: config/config.php:267
 msgid "Maximum attempts allowed to try for user login"
 msgstr "Tentatives maximum autorisées pour essayer de se connecter"
 
-#: config/config.php:288 config/config.php:362
+#: config/config.php:274 config/config.php:348
 msgid "Login disable"
 msgstr "Désactiver la connexion"
 
-#: config/config.php:289
+#: config/config.php:275
 msgid "Disable user login"
 msgstr "Désactiver la connexion utilisateur"
 
-#: config/config.php:297
+#: config/config.php:283
 msgid "Register disable"
 msgstr "Désactiver l'inscription"
 
-#: config/config.php:298
+#: config/config.php:284
 msgid "Disable user registration"
 msgstr "Désactiver l'inscription utilisateur"
 
-#: config/config.php:306 config/config.php:371
+#: config/config.php:292 config/config.php:357
 msgid "Login CAPTCHA"
 msgstr "Connexion CAPTCHA"
 
-#: config/config.php:307
+#: config/config.php:293
 msgid "Enable CAPTCHA for user login"
 msgstr "Activer le CAPTCHA pour la connexion utilisateur"
 
-#: config/config.php:315
+#: config/config.php:301
 msgid "Register CAPTCHA"
 msgstr "Inscription CAPTCHA"
 
-#: config/config.php:316
+#: config/config.php:302
 msgid "Enable CAPTCHA for user registration"
 msgstr "Activer le CAPTCHA pour l'inscription utilisateur"
 
-#: config/config.php:327
+#: config/config.php:313
 msgid "Maximum attempts allowed to try for admin login"
 msgstr ""
 "Tentatives maximum autorisées pour essayer de se connecter en tant qu'admin"
 
-#: config/config.php:343
+#: config/config.php:329
 msgid "Identity field(s) for admin authentication."
 msgstr "Champs d'identité pour l'authentification admin."
 
-#: config/config.php:363
+#: config/config.php:349
 msgid "Disable admin login"
 msgstr "Désactiver la connexion admin"
 
-#: config/config.php:372
+#: config/config.php:358
 msgid "Enable CAPTCHA for admin login"
 msgstr "Activer le CAPTCHA pour la connexion admin"
 
-#: config/config.php:377
+#: config/config.php:363
 msgid "No captcha"
 msgstr "Pas de captcha"
 
-#: config/config.php:378
+#: config/config.php:364
 msgid "Standard captcha"
 msgstr "Captcha standard"
 
-#: config/config.php:379
+#: config/config.php:365
 msgid "New re-captcha"
 msgstr "New re-captcha"
 
-#: config/config.php:410
+#: config/config.php:396
 msgid "Head title for web page"
 msgstr "Titre Header pour la page web"
 
-#: config/config.php:418
+#: config/config.php:404
 msgid ""
 "The keywords meta tag is a series of keywords that represents the content of "
 "your site. Separated keywords by a comma."
@@ -490,7 +470,7 @@ msgstr ""
 "Le tag meta keyworks est une série de mots clefs qui représentent le contenu "
 "de votre site. Séparer les mots par une virgule."
 
-#: config/config.php:426
+#: config/config.php:412
 msgid ""
 "The description meta tag is a general description of what is contained in "
 "your web page"
@@ -498,11 +478,11 @@ msgstr ""
 "Le tag meta description est une description générale du contenu de vos pages "
 "web"
 
-#: config/config.php:435
+#: config/config.php:421
 msgid "Default number style"
 msgstr "Style par défaut pour les nombres"
 
-#: config/config.php:436
+#: config/config.php:422
 msgid ""
 "See http://www.php.net/manual/en/class.numberformatter.php#intl."
 "numberformatter-constants.unumberformatstyle"
@@ -510,64 +490,64 @@ msgstr ""
 "Voir http://www.php.net/manual/en/class.numberformatter.php#intl."
 "numberformatter-constants.unumberformatstyle"
 
-#: config/config.php:441
+#: config/config.php:427
 msgid "Default format for the locale"
 msgstr "Format par défaut pour les paramètres régionaux"
 
-#: config/config.php:442
+#: config/config.php:428
 msgid "Decimal format defined by pattern"
 msgstr "Format de décimales définis par un canevas (pattern)"
 
-#: config/config.php:443
+#: config/config.php:429
 msgid "Decimal format"
 msgstr "Format de décimale"
 
-#: config/config.php:444
+#: config/config.php:430
 msgid "Percent format"
 msgstr "Format de pourcentage"
 
-#: config/config.php:445
+#: config/config.php:431
 msgid "Scientific format"
 msgstr "Format scientifique"
 
-#: config/config.php:446
+#: config/config.php:432
 msgid "Spellout rule-based format"
 msgstr "Format basé sur des règles spécifiques"
 
-#: config/config.php:447
+#: config/config.php:433
 msgid "Ordinal rule-based format"
 msgstr "Format basé sur des règles ordinales"
 
-#: config/config.php:448
+#: config/config.php:434
 msgid "Duration rule-based format"
 msgstr "Format basé sur des règles de durée"
 
-#: config/config.php:449
+#: config/config.php:435
 msgid "Rule-based format defined by pattern"
 msgstr "Format basé sur une règle définie par le canevas"
 
-#: config/config.php:458
+#: config/config.php:444
 msgid "Default pattern for selected number style"
 msgstr "Format par défaut pour le style de nombre sélectionné"
 
-#: config/config.php:459
+#: config/config.php:445
 msgid "Only if required by style"
 msgstr "Seulement si requis par le style"
 
-#: config/config.php:466
+#: config/config.php:452
 msgid "Default currency type"
 msgstr "Type de monnaie par défaut"
 
-#: config/config.php:467
+#: config/config.php:453
 msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
 msgstr ""
 "Les 3 lettres ISO 4217 du code monnaie indiquent la monnaie à utiliser. "
 
-#: config/config.php:474
+#: config/config.php:460
 msgid "Default calendar for the locale"
 msgstr "Calendrier par défaut pour les paramètres régionaux"
 
-#: config/config.php:475
+#: config/config.php:461
 msgid ""
 "\"persian\" is suggested for Persian language. See http://www.php.net/manual/"
 "en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
@@ -576,11 +556,11 @@ msgstr ""
 "manual/en/class.intldateformatter.php#intl.intldateformatter-constants."
 "calendartypes"
 
-#: config/config.php:482
+#: config/config.php:468
 msgid "Default date type"
 msgstr "Type de date par défaut"
 
-#: config/config.php:483 config/config.php:502
+#: config/config.php:469 config/config.php:488
 msgid ""
 "See http://www.php.net/manual/en/class.intldateformatter.php#intl."
 "intldateformatter-constants"
@@ -588,45 +568,45 @@ msgstr ""
 "Voir http://www.php.net/manual/en/class.intldateformatter.php#intl."
 "intldateformatter-constants"
 
-#: config/config.php:488 config/config.php:507
+#: config/config.php:474 config/config.php:493
 msgid "Do not include this element"
 msgstr "Ne pas inclure cet élément"
 
-#: config/config.php:489 config/config.php:508
+#: config/config.php:475 config/config.php:494
 msgid ""
 "Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 msgstr "Style Etendu (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 
-#: config/config.php:490 config/config.php:509
+#: config/config.php:476 config/config.php:495
 msgid "Long style (January 12, 1952 or 3:30:32pm)"
 msgstr "Style Long (January 12, 1952 or 3:30:32pm)"
 
-#: config/config.php:491 config/config.php:510
+#: config/config.php:477 config/config.php:496
 msgid "Medium style (Jan 12, 1952)"
 msgstr "Style Medium (Jan 12, 1952)"
 
-#: config/config.php:492 config/config.php:511
+#: config/config.php:478 config/config.php:497
 msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
 msgstr ""
 "Style le plus court, seulement les données essentielles (12/13/52 or 3:30pm)"
 
-#: config/config.php:501
+#: config/config.php:487
 msgid "Default time type"
 msgstr "Type d'heure par défaut"
 
-#: config/config.php:520
+#: config/config.php:506
 msgid "Default formatting pattern for date-time"
 msgstr "Format par défaut pour les dates et les heures"
 
-#: config/config.php:521
+#: config/config.php:507
 msgid "See http://userguide.icu-project.org/formatparse/datetime"
 msgstr "Voir http://userguide.icu-project.org/formatparse/datetime"
 
-#: config/config.php:528
+#: config/config.php:514
 msgid "Default format for legacy date function"
 msgstr "Format par défaut pour les fonctions date standards"
 
-#: config/config.php:529
+#: config/config.php:515
 msgid ""
 "The format is required in case Intl extension is not available. See http://"
 "www.php.net/manual/en/function.date.php"
@@ -634,43 +614,43 @@ msgstr ""
 "Le format est requis lorsque l'extension Intl n'est pas disponible. Se "
 "référer à http://www.php.net/manual/en/function.date.php"
 
-#: config/config.php:538
+#: config/config.php:524
 msgid "Admin email"
 msgstr "Email Admin"
 
-#: config/config.php:539
+#: config/config.php:525
 msgid "Admin email address for contact."
 msgstr "Adresse email de l'admin pour le contacter"
 
-#: config/config.php:545
+#: config/config.php:531
 msgid "Admin name"
 msgstr "Nom Admin"
 
-#: config/config.php:546
+#: config/config.php:532
 msgid "User name used to send emails"
 msgstr "Nom utilisateur pour l'envoi des emails"
 
-#: config/config.php:551
+#: config/config.php:537
 msgid "Email encoding"
 msgstr "Encodage mail"
 
-#: config/config.php:552
+#: config/config.php:538
 msgid "Encoding for email contents"
 msgstr "Encodage des contenus de mail"
 
-#: config/config.php:560
+#: config/config.php:546
 msgid "Text editor"
 msgstr "Editeur de texte"
 
-#: config/config.php:561
+#: config/config.php:547
 msgid "Default editor for text processing"
 msgstr "Editeur par défaut pour la gestion des textes"
 
-#: config/config.php:567
+#: config/config.php:553
 msgid "Enable word censoring"
 msgstr "Activer la censure de mots"
 
-#: config/config.php:568
+#: config/config.php:554
 msgid ""
 "Words will be censored if this option is enabled. This option may be turned "
 "off for enhanced site speed."
@@ -678,11 +658,11 @@ msgstr ""
 "Les mots seront censurés si cette option est activée. Cette option peut être "
 "désactivée pour améliorer la vitesse du site."
 
-#: config/config.php:576
+#: config/config.php:562
 msgid "Words to censor"
 msgstr "Mots à censurer"
 
-#: config/config.php:577
+#: config/config.php:563
 msgid ""
 "Enter words that should be censored in user posts. Separate each with a \"|"
 "\", case insensitive."
@@ -690,70 +670,70 @@ msgstr ""
 "Entrer les mots qui seront censurés dans les saisies utilisateurs. Séparer "
 "chaque mot par un  \"|\" , non sensible à la casse"
 
-#: config/config.php:584
+#: config/config.php:570
 msgid "Word to replace censored words"
 msgstr "Mot de remplacement pour les mots censurés"
 
-#: config/config.php:585
+#: config/config.php:571
 msgid ""
 "Censored words will be replaced with the characters entered in this textbox"
 msgstr ""
 "Les mots censurés seront remplacés par les caractères entrés dans cette zone "
 "de texte."
 
-#: config/config.php:592
+#: config/config.php:578
 msgid "Module themes"
 msgstr "Thèmes du module"
 
-#: config/config.php:593
+#: config/config.php:579
 msgid "Themes for modules."
 msgstr "Thèmes pour les modules."
 
-#: config/config.php:601 config/nav.php:21
+#: config/config.php:587 config/nav.php:21
 msgid "Front navigation"
 msgstr "Navigation côté utilisateur (front)"
 
-#: config/config.php:602
+#: config/config.php:588
 msgid "Global navigation for front end."
 msgstr "Système de navigation global pour le côté utilisateur."
 
-#: config/config.php:609 config/nav.php:27
+#: config/config.php:595 config/nav.php:27
 msgid "Admin navigation"
 msgstr "Navigation Admin"
 
-#: config/config.php:610
+#: config/config.php:596
 msgid "Global navigation for admin."
 msgstr "Navigation globale pour les admins."
 
-#: config/config.php:617
+#: config/config.php:603
 msgid "Meta title type"
 msgstr "Type de Meta Title"
 
-#: config/config.php:618
+#: config/config.php:604
 msgid "Set short or lang meta title type"
 msgstr "Définir le type de meta Title Short ou Lang"
 
-#: config/config.php:623
+#: config/config.php:609
 msgid "Postfix by page - module - website titles"
 msgstr "Postfix Page Title - module - Website"
 
-#: config/config.php:624
+#: config/config.php:610
 msgid "Postfix by page - website titles"
 msgstr "Postfix Page Title - Website"
 
-#: config/config.php:625
+#: config/config.php:611
 msgid "Prefix by website - module - page titles"
 msgstr "Préfix Website - module - Page Title"
 
-#: config/config.php:626
+#: config/config.php:612
 msgid "Prefix by website - page titles"
 msgstr "Préfix WebSite - Page Title"
 
-#: config/config.php:627
+#: config/config.php:613
 msgid "Just page title"
 msgstr "Seulement le Title de la page"
 
-#: config/config.php:638
+#: config/config.php:624
 msgid ""
 "The author meta tag defines the name of the author of the document being "
 "read. Supported data formats include the name, email address of the "
@@ -763,23 +743,23 @@ msgstr ""
 "lecture. Les formats de données supportés sont le nom, l'adresse email du "
 "webmaster, le nom de l'entreprise our l'URL."
 
-#: config/config.php:646
+#: config/config.php:632
 msgid "Generator of the document being read."
 msgstr "Générateur du document qui est lu."
 
-#: config/config.php:653
+#: config/config.php:639
 msgid "Website local"
 msgstr "Langue du Site"
 
-#: config/config.php:654
+#: config/config.php:640
 msgid "Set website local, like en_GB"
 msgstr "Définir la langue du site (ex: en_GB)"
 
-#: config/config.php:661
+#: config/config.php:647
 msgid "Twitter account"
 msgstr "Compte Twitter"
 
-#: config/config.php:662
+#: config/config.php:648
 msgid ""
 "Username for the website used in the Twitter card. Add @ before username "
 "like @PiEnable or leave it empty"
@@ -787,11 +767,11 @@ msgstr ""
 "Nom de compte du site utilisé dans les Twitter Cards. Ajouter @ avant le nom "
 "de compte (ex : @PiEnable) ou laisser vide"
 
-#: config/config.php:668
+#: config/config.php:654
 msgid "Facebook app id"
 msgstr "Facebook app id"
 
-#: config/config.php:669
+#: config/config.php:655
 msgid ""
 "Set facebook app id here for use open graph tags on facebook page, its your "
 "website facebook page id"
@@ -799,32 +779,56 @@ msgstr ""
 "Saisir ici le numéro d'app id Facebook pour utiliser les tags OpenGraph sur "
 "la page Facebook, c'est votre numéro page Facebook"
 
-#: config/config.php:675
+#: config/config.php:661
 msgid "Pinterest domain verify"
 msgstr "Vérification de domaine Pinterest"
 
-#: config/config.php:676
+#: config/config.php:662
 msgid ""
 "Set pinterest domain verify code here, if your website have page on pinterest"
 msgstr ""
 "Saisir le code Pinterest de vérification du domaine, si votre site a une "
 "page sur Pinterest"
 
-#: config/config.php:682
+#: config/config.php:668
 msgid "Latitude"
 msgstr "Latitude"
 
-#: config/config.php:689
+#: config/config.php:675
 msgid "Longitude"
 msgstr "Longitude"
 
-#: config/config.php:696
+#: config/config.php:682
 msgid "Placename"
 msgstr "Lieu"
 
-#: config/config.php:703
+#: config/config.php:689
 msgid "Region"
 msgstr "Région"
+
+#: config/config.php:696
+msgid "ReCaptcha Site key"
+msgstr "Clef publique Recaptcha"
+
+#: config/config.php:697
+msgid ""
+"see https://www.google.com/recaptcha to create your public key dedicated to "
+"your website domain. Both keys are mandatory."
+msgstr ""
+"voir https://www.google.com/recaptcha pour créer votre clef publique dédiée "
+"à votre domaine. Les deux clefs sont obligatoires."
+
+#: config/config.php:705
+msgid "ReCaptcha Secret key"
+msgstr "Clef privée Recaptcha"
+
+#: config/config.php:706
+msgid ""
+"see https://www.google.com/recaptcha to create your private key dedicated to "
+"your website domain. Both keys are mandatory.."
+msgstr ""
+"voir https://www.google.com/recaptcha pour créer votre clef privée dédiée à "
+"votre domaine. Les deux clefs sont obligatoires."
 
 #: config/event.php:21
 msgid "Module installed"
@@ -2447,6 +2451,9 @@ msgstr "Thème mis à jour avec succès."
 #: template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr "Etes-vous certains de vouloir désinstaller ce thème?"
+
+#~ msgid "ReCaptcha Public Key"
+#~ msgstr "Clef publique ReCaptcha"
 
 #~ msgid "Cron"
 #~ msgstr "Cron"

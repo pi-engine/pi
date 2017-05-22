@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-02-28 16:39+0100\n"
-"PO-Revision-Date: 2017-02-28 16:39+0100\n"
+"POT-Creation-Date: 2017-05-22 13:22+0200\n"
+"PO-Revision-Date: 2017-05-22 13:23+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -943,50 +943,50 @@ msgstr "Parrainage"
 
 #: template/front/dashboard-index.phtml:63
 #: template/front/dashboard-index.phtml:66
-#: template/front/profile-sidebar.phtml:98
+#: template/front/profile-sidebar.phtml:103
 msgid "My messages"
 msgstr "Mes messages"
 
 #: template/front/dashboard-index.phtml:71
 #: template/front/dashboard-index.phtml:74
-#: template/front/profile-sidebar.phtml:100
+#: template/front/profile-sidebar.phtml:105
 msgid "My notifications"
 msgstr "Mes notifications"
 
 #: template/front/dashboard-index.phtml:82
 #: template/front/dashboard-index.phtml:85
-#: template/front/profile-sidebar.phtml:109
+#: template/front/profile-sidebar.phtml:114
 msgid "My events"
 msgstr "Mes évènements"
 
 #: template/front/dashboard-index.phtml:94
 #: template/front/dashboard-index.phtml:97
-#: template/front/profile-sidebar.phtml:114
+#: template/front/profile-sidebar.phtml:119
 msgid "My orders"
 msgstr "Mes commandes"
 
 #: template/front/dashboard-index.phtml:104
 #: template/front/dashboard-index.phtml:107
-#: template/front/profile-sidebar.phtml:117
+#: template/front/profile-sidebar.phtml:122
 msgid "My credit"
 msgstr "Mes Crédits"
 
 #: template/front/dashboard-index.phtml:116
 #: template/front/dashboard-index.phtml:119
-#: template/front/profile-sidebar.phtml:122
 #: template/front/profile-sidebar.phtml:127
+#: template/front/profile-sidebar.phtml:132
 msgid "My favorites"
 msgstr "Mes favoris"
 
 #: template/front/dashboard-index.phtml:127
 #: template/front/dashboard-index.phtml:130
-#: template/front/profile-sidebar.phtml:131
+#: template/front/profile-sidebar.phtml:136
 msgid "My videos"
 msgstr "Mes Vidéos"
 
 #: template/front/dashboard-index.phtml:139
 #: template/front/dashboard-index.phtml:142
-#: template/front/profile-sidebar.phtml:105
+#: template/front/profile-sidebar.phtml:110
 msgid "My support tickets"
 msgstr "Mes tickets Assistance"
 
@@ -1091,6 +1091,14 @@ msgstr "Voir mon profil"
 #: template/front/profile-sidebar.phtml:49
 msgid "My account"
 msgstr "Mon compte"
+
+#: template/front/profile-sidebar.phtml:94
+msgid "My requests"
+msgstr "Mes demandes"
+
+#: template/front/profile-sidebar.phtml:98
+msgid "My media"
+msgstr "Mes medias"
 
 #: template/front/profile-topbar.phtml:82
 msgid "Switch to public"
