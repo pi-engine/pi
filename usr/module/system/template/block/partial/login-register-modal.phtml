@@ -61,6 +61,7 @@ if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
                         </div>
                     <?php } ?>
                     <div class="<?php echo $classLogin; ?>">
+                        <div class="user-action-bar-title"><?php _e('Login'); ?></div>
                         <?php echo $this->form($loginForm, 'vertical'); ?>
 
                         <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
@@ -82,6 +83,7 @@ if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
                         </div>
                     <?php } ?>
                     <div class="<?php echo $classRegister; ?>">
+                        <div class="user-action-bar-title"><?php _e('Register'); ?></div>
                         <?php echo $this->form($registerForm, 'vertical'); ?>
 
                         <div class="clearfix user-action-bar">
