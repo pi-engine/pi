@@ -98,7 +98,7 @@ class ReCaptcha extends FormInput
     protected function renderJsEvents($responseId, $uniqueId)
     {
         $js =<<<EOJ
-<script type="text/javascript" language="JavaScript">
+<script type="text/javascript">
 
 $(window).load(function(){
     var hiddenElement = $('#$responseId-$uniqueId');
