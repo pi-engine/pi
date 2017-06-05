@@ -187,7 +187,7 @@ $viewPreview = '<li class="inline">
 <script>
     $('#js-user-avatar').data('config', {
         source: '<?php echo $source? : 'local' ?>',
-        urlRoot: '<?php echo $this->url('', array('controller' => 'avatar')); ?>',
+        urlRoot: '<?php echo Pi::url($this->url('', array('controller' => 'avatar'))); ?>/',
         fake_id: '<?php echo $form->get('fake_id')->getValue(); ?>',
         format: '<?php echo $config['upload_extension']; ?>'.split(','),
         uploadText: '<?php _e('Upload avatar'); ?>',
