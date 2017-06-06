@@ -2,6 +2,7 @@
 
 namespace Pi\View\Helper;
 
+use Pi;
 use Zend\View\Helper\AbstractHelper;
 use Pi\Application\Service\ImageProcessing;
 use Imagine\Gd\Imagine;
@@ -17,6 +18,25 @@ class Resize extends AbstractHelper
     protected $cropping;
 
     protected $imgPath;
+
+    protected $defaultSizes = array(
+        'large' => array(
+            'width' => 1024,
+            'height' => 768
+        ),
+        'item' => array(
+            'width' => 800,
+            'height' => 600
+        ),
+        'medium' => array(
+            'width' => 640,
+            'height' => 480
+        ),
+        'thumbnail' => array(
+            'width' => 320,
+            'height' => 240
+        )
+    );
 
     /**
      * @var $quality;
@@ -38,44 +58,132 @@ class Resize extends AbstractHelper
     }
 
     /**
-     * @param $width
+     * Set custom module config
+     * @param string $module
+     * @return $this
+     */
+    public function setConfigModule($module)
+    {
+        if(is_string($module) && Pi::service('module')->isActive($module)){
+            $moduleConfig = Pi::service('registry')->config->read($module);
+            $defaultSizes = $this->getDefaultSizes();
+
+            if(!empty($moduleConfig['image_largew']) && !empty($moduleConfig['image_largeh'])){
+                $defaultSizes['large'] = array(
+                    'width' => $moduleConfig['image_largew'],
+                    'height' => $moduleConfig['image_largeh'],
+                );
+            }
+
+            if(!empty($moduleConfig['image_itemw']) && !empty($moduleConfig['image_itemh'])){
+                $defaultSizes['item'] = array(
+                    'width' => $moduleConfig['image_itemw'],
+                    'height' => $moduleConfig['image_itemh'],
+                );
+            }
+
+            if(!empty($moduleConfig['image_mediumw']) && !empty($moduleConfig['image_mediumh'])){
+                $defaultSizes['medium'] = array(
+                    'width' => $moduleConfig['image_mediumw'],
+                    'height' => $moduleConfig['image_mediumh'],
+                );
+            }
+
+            if(!empty($moduleConfig['image_thumbw']) && !empty($moduleConfig['image_thumbh'])){
+                $defaultSizes['thumbnail'] = array(
+                    'width' => $moduleConfig['image_thumbw'],
+                    'height' => $moduleConfig['image_thumbh'],
+                );
+            }
+
+            $this->setDefaultSizes($defaultSizes);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set default sizes
+     * @param array $defaultSizes
+     * @return $this
+     */
+    public function setDefaultSizes($defaultSizes){
+        $this->defaultSizes = $defaultSizes;
+
+        return $this;
+    }
+
+    /**
+     * Get default sizes
+     * @param array $defaultSizes
+     * @return array
+     */
+    public function getDefaultSizes(){
+        return $this->defaultSizes;
+    }
+
+    /**
+     * @param $widthOrSizeCode
      * @param $height
      * @return $this
      */
-    public function thumb($width, $height)
+    public function thumb($widthOrSizeCode, $height = null)
     {
+        if(is_string($widthOrSizeCode)){
+            $defaultSizes = $this->getDefaultSizes();
+            $width = $defaultSizes[$widthOrSizeCode]['width'];
+            $height = $defaultSizes[$widthOrSizeCode]['height'];
+        } else {
+            $width = $widthOrSizeCode;
+        }
+
         $this->commands .= '$thumb,' . $width . ',' . $height;
 
         return $this;
     }
 
     /**
-     * @param $width
+     * @param $widthOrSizeCode
      * @param $height
      * @return $this
      */
-    public function thumbcrop($width, $height)
+    public function thumbcrop($widthOrSizeCode, $height = null)
     {
+        if(is_string($widthOrSizeCode)){
+            $defaultSizes = $this->getDefaultSizes();
+            $width = $defaultSizes[$widthOrSizeCode]['width'];
+            $height = $defaultSizes[$widthOrSizeCode]['height'];
+        } else {
+            $width = $widthOrSizeCode;
+        }
+
         $this->commands .= '$thumbcrop,' . $width . ',' . $height;
 
         return $this;
     }
 
     /**
-     * @param $width
+     * @param $widthOrSizeCode
      * @param $height
      * @return $this
      */
-    public function resize($width, $height)
+    public function resize($widthOrSizeCode, $height = null)
     {
+        if(is_string($widthOrSizeCode)){
+            $defaultSizes = $this->getDefaultSizes();
+            $width = $defaultSizes[$widthOrSizeCode]['width'];
+            $height = $defaultSizes[$widthOrSizeCode]['height'];
+        } else {
+            $width = $widthOrSizeCode;
+        }
+
         $this->commands .= '$resize,' . $width . ',' . $height;
 
         return $this;
     }
 
     /**
-     * @param $width
-     * @param $height
+     * @param $value
      * @return $this
      */
     public function quality($value = null)
