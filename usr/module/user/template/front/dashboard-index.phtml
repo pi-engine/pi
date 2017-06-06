@@ -23,7 +23,11 @@ $this->headMeta('noindex', 'robots');
                         <?php echo $bookingBlockOutput ?>
                     </div>
                 <?php endif; ?>
-
+                <?php if (Pi::service('module')->isActive('guide')) { ?>
+                    <div class="col-md-8">
+                        <?php echo $this->widget('guide-items') ?>
+                    </div>
+                <?php } ?> 
                 <div class="<?php echo $bookingBlockOutput ? 'col-md-4' : 'col-sm-12' ?>">
                     <?php $colClass = $bookingBlockOutput ? 'col-md-6' : 'col-md-3' ?>
 
