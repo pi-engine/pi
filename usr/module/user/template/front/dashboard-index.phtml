@@ -1,10 +1,11 @@
 <?php
 $this->css($this->assetModule('front/front.css'));
 $this->headMeta('noindex', 'robots');
-
+$this->jQuery();
+$this->sticky();
 ?>
-<div class="row">
-    <div class="col-md-3">
+<div class="row" id="sticky-container">
+    <div class="col-md-3" >
         <?php include $this->template('./profile-sidebar.phtml'); ?>
     </div>
     <div class="col-md-9">
@@ -13,23 +14,25 @@ $this->headMeta('noindex', 'robots');
         </div>
 
 
-            <div class="row">
+            <div class="row" >
 
                 <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>
 
-                <?php if ($bookingBlockOutput) : ?>
-                    <div class="col-md-8">
+                <div class="col-md-8">
+                    <?php if ($bookingBlockOutput) : ?>
                         <h2><?php _e('Your pending requests'); ?></h2>
                         <?php echo $bookingBlockOutput ?>
-                    </div>
-                <?php endif; ?>
-
+                    <?php endif; ?>
+                    <?php if (Pi::service('module')->isActive('guide')) { ?>
+                            <?php echo $this->widget('guide-items') ?>
+                    <?php } ?> 
+                </div>
                 <div class="<?php echo $bookingBlockOutput ? 'col-md-4' : 'col-sm-12' ?>">
                     <?php $colClass = $bookingBlockOutput ? 'col-md-6' : 'col-md-3' ?>
 
                     <h2 class="<?php echo !$bookingBlockOutput ? 'hide' : '' ?>"><?php _e('Shortcuts'); ?></h2>
 
-                    <div class="row text-center match-height-list">
+                    <div class="row text-center match-height-list" id="sticky-sidebar">
                         <?php if (Pi::service('module')->isActive('guide')) { ?>
                             <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
                             <?php if ($guideConfig['manage_active']) { ?>

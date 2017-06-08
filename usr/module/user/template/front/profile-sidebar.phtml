@@ -17,7 +17,7 @@ array_walk($groups, function (&$group, $gid) {
 });
 $userConfig = Pi::service('registry')->config->read('user');
 ?>
-<div class="clearfix">
+<div class="clearfix" id="sticky-sidebar-manage">
 
     <div class="thumbnail">
         <div class="user-thumbnail">
@@ -137,3 +137,28 @@ $userConfig = Pi::service('registry')->config->read('user');
         <?php } ?>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+    if ($("#sticky-sidebar-manage").hcSticky == undefined) {
+        return;
+    }    
+    var affixWrapperHeight = 0;
+    var affixWrapper = $('#affixWrapper');
+    if(affixWrapper.length > 0){
+        affixWrapper.find('.nav').addClass('forceVisible');
+        var affixWrapperHeight = affixWrapper.height();
+        affixWrapper.find('.nav').removeClass('forceVisible');
+    }
+    $("#sticky-sidebar-manage").hcSticky({
+        responsive : true,
+        top: $('#pi-header nav').height() + affixWrapperHeight + 20,
+        stickTo: $('#sticky-container'),
+        offResolutions: -992
+    });
+    
+    $('#sticky-sidebar div.modal').insertAfter('.wrapper-sticky');
+    
+  });
+
+</script>

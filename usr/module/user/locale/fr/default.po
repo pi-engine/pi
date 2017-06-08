@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-05-22 13:22+0200\n"
-"PO-Revision-Date: 2017-05-22 13:23+0200\n"
+"POT-Creation-Date: 2017-06-07 22:07+0200\n"
+"PO-Revision-Date: 2017-06-07 22:07+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -917,75 +917,75 @@ msgstr "Annuler"
 msgid "Uploading"
 msgstr "En téléchargement"
 
-#: template/front/dashboard-index.phtml:12
+#: template/front/dashboard-index.phtml:13
 msgid "Your dashboard"
 msgstr "Votre tableau de bord"
 
-#: template/front/dashboard-index.phtml:22
+#: template/front/dashboard-index.phtml:23
 msgid "Your pending requests"
 msgstr "Vos demandes en attente"
 
-#: template/front/dashboard-index.phtml:30
+#: template/front/dashboard-index.phtml:33
 msgid "Shortcuts"
 msgstr "Raccourcis"
 
-#: template/front/dashboard-index.phtml:37
 #: template/front/dashboard-index.phtml:40
+#: template/front/dashboard-index.phtml:43
 #: template/front/profile-sidebar.phtml:89
 msgid "My items"
 msgstr "Mes éléments"
 
-#: template/front/dashboard-index.phtml:49
 #: template/front/dashboard-index.phtml:52
+#: template/front/dashboard-index.phtml:55
 #: template/front/profile-sidebar.phtml:91
 msgid "Sponsorship"
 msgstr "Parrainage"
 
-#: template/front/dashboard-index.phtml:63
 #: template/front/dashboard-index.phtml:66
+#: template/front/dashboard-index.phtml:69
 #: template/front/profile-sidebar.phtml:103
 msgid "My messages"
 msgstr "Mes messages"
 
-#: template/front/dashboard-index.phtml:71
 #: template/front/dashboard-index.phtml:74
+#: template/front/dashboard-index.phtml:77
 #: template/front/profile-sidebar.phtml:105
 msgid "My notifications"
 msgstr "Mes notifications"
 
-#: template/front/dashboard-index.phtml:82
 #: template/front/dashboard-index.phtml:85
+#: template/front/dashboard-index.phtml:88
 #: template/front/profile-sidebar.phtml:114
 msgid "My events"
 msgstr "Mes évènements"
 
-#: template/front/dashboard-index.phtml:94
 #: template/front/dashboard-index.phtml:97
+#: template/front/dashboard-index.phtml:100
 #: template/front/profile-sidebar.phtml:119
 msgid "My orders"
 msgstr "Mes commandes"
 
-#: template/front/dashboard-index.phtml:104
 #: template/front/dashboard-index.phtml:107
+#: template/front/dashboard-index.phtml:110
 #: template/front/profile-sidebar.phtml:122
 msgid "My credit"
 msgstr "Mes Crédits"
 
-#: template/front/dashboard-index.phtml:116
 #: template/front/dashboard-index.phtml:119
+#: template/front/dashboard-index.phtml:122
 #: template/front/profile-sidebar.phtml:127
 #: template/front/profile-sidebar.phtml:132
 msgid "My favorites"
 msgstr "Mes favoris"
 
-#: template/front/dashboard-index.phtml:127
 #: template/front/dashboard-index.phtml:130
+#: template/front/dashboard-index.phtml:133
 #: template/front/profile-sidebar.phtml:136
 msgid "My videos"
 msgstr "Mes Vidéos"
 
-#: template/front/dashboard-index.phtml:139
 #: template/front/dashboard-index.phtml:142
+#: template/front/dashboard-index.phtml:145
 #: template/front/profile-sidebar.phtml:110
 msgid "My support tickets"
 msgstr "Mes tickets Assistance"
