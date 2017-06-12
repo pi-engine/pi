@@ -38,6 +38,7 @@ CKEDITOR.editorConfig = function( config ) {
 
     // Allow all div classes (from theme and for Boostrap and FontAwesome), allow <a> with no href for using anchors, allow empty <i>
     config.extraAllowedContent = 'div(*)[*]{*}; a(*)[*]{*}; span(*)[*]{*};table(*)[*]{*}; p(*)[*]{*}; li(*)[*]{*}; ul(*)[*]{*}; img(*)[*]{*}';
+    config.protectedSource.push(/<i[^>]*><\/i>/g);
     CKEDITOR.dtd.$removeEmpty.i = 0;
     CKEDITOR.dtd.$removeEmpty.span = 0;
 
