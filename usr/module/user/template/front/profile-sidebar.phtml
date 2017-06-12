@@ -154,7 +154,8 @@ $userConfig = Pi::service('registry')->config->read('user');
         responsive : true,
         top: $('#pi-header nav').height() + affixWrapperHeight + 20,
         stickTo: $('#sticky-container'),
-        offResolutions: -992
+        offResolutions: -992, 
+        bottomEnd : -100
     });
     
     $('#sticky-sidebar div.modal').insertAfter('.wrapper-sticky');
