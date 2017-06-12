@@ -24,7 +24,7 @@ $this->sticky();
                         <?php echo $bookingBlockOutput ?>
                     <?php endif; ?>
                     <?php if (Pi::service('module')->isActive('guide')) { ?>
-                            <?php echo $this->widget('guide-items') ?>
+                            <?php echo $this->widget('guide-dashboard-items') ?>
                     <?php } ?> 
                 </div>
                 <div class="<?php echo $bookingBlockOutput ? 'col-md-4' : 'col-sm-12' ?>">
