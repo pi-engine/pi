@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-06-19 13:34+0200\n"
-"PO-Revision-Date: 2017-06-19 14:17+0200\n"
+"POT-Creation-Date: 2017-06-19 23:18+0200\n"
+"PO-Revision-Date: 2017-06-19 23:19+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -645,12 +645,14 @@ msgid "Show my password"
 msgstr "Voir le mot de passe"
 
 #: src/Form/RegisterForm.php:83
-msgid "Must be less than "
-msgstr "Doit être moins que "
+#, php-format
+msgid "Must be less than %s characters"
+msgstr "Doit compter moins de %s caractères"
 
 #: src/Form/RegisterForm.php:85
-msgid "Must be more than "
-msgstr "Doit compter au moins"
+#, php-format
+msgid "Must be more than %s characters"
+msgstr "Doit compter au moins %s caractères"
 
 #: src/Form/RegisterForm.php:88
 msgid "Whoops, these don't match"
