@@ -320,7 +320,11 @@
 .my-profile-link{
   color:#525251;
 }
-
+.register-information.row {display:table}
+.register-information.row .col-md-8 {display:table-cell; float:none;}
+.register-information.row .col-md-8 > div {padding:10px; }    
+.register-information.row .col-md-4 {display:table-cell; float:none;}
+.register-information.row .col-md-4 > div {padding:10px;}
 .clickable-row, .clickable-cell {
   cursor: pointer;
 }
@@ -328,6 +332,12 @@
 .js-form-element{
   position:relative;
 }
+
+.register-information.row {display:table}
+.register-information.row .col-md-8 {display:table-cell; float:none;}
+.register-information.row .col-md-8 > div {padding:10px; }    
+.register-information.row .col-md-4 {display:table-cell; float:none;}
+.register-information.row .col-md-4 > div {padding:10px;}
 
 .ui-draggable-handle{
   cursor: move;
