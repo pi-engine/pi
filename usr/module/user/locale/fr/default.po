@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2017-06-19 23:18+0200\n"
-"PO-Revision-Date: 2017-06-19 23:19+0200\n"
+"PO-Revision-Date: 2017-06-19 23:22+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -652,7 +652,7 @@ msgstr "Doit compter moins de %s caractères"
 #: src/Form/RegisterForm.php:85
 #, php-format
 msgid "Must be more than %s characters"
-msgstr "Doit compter au moins %s caractères"
+msgstr "Doit compter plus de %s caractères"
 
 #: src/Form/RegisterForm.php:88
 msgid "Whoops, these don't match"
