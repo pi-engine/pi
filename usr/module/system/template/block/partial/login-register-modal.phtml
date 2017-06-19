@@ -64,12 +64,12 @@ if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
                         <div class="user-action-bar-title"><?php _e('Login'); ?></div>
                         <?php echo $this->form($loginForm, 'vertical'); ?>
 
-                        <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
+                        <a class="find-password-link" title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
 
                         <div class="clearfix user-action-bar">
                             <div class="user-action-bar-title"><?php _e('Not already registered ?'); ?></div>
                             <p>
-                                <a class="btn btn-default toggle-modal-action" title="<?php _e('Register'); ?>" href="#">
+                                <a class="btn btn-default toggle-modal-action toggle-modal-action-register" title="<?php _e('Register'); ?>" href="#">
                                     <?php _e('Register'); ?>
                                 </a>
                             </p>
@@ -89,7 +89,7 @@ if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
                         <div class="clearfix user-action-bar">
                             <div class="user-action-bar-title"><?php _e('Already registered ?'); ?></div>
                             <p>
-                                <a class="btn btn-default toggle-modal-action" title="<?php _e('Login'); ?>" href="#">
+                                <a class="btn btn-default toggle-modal-action toggle-modal-action-login" title="<?php _e('Login'); ?>" href="#">
                                     <?php _e('Login'); ?>
                                 </a>
                             </p>

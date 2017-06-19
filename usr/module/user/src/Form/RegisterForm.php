@@ -34,7 +34,9 @@ class RegisterForm extends UserForm
         $piConfig = Pi::user()->config();
 
         $this->setAttribute('data-toggle', 'validator');
+        $this->setAttribute('data-html', true);
         $this->setAttribute('id', $elementId);
+        $this->setAttribute('onsubmit', "$('#$elementId').validator('destroy');");
 
         $url = Pi::url(Pi::service('url')->assemble('user', array(
             'module' => 'user',
@@ -43,10 +45,13 @@ class RegisterForm extends UserForm
         )));
 
         if($this->has('email')){
+
+            $passwordLink = Pi::service('user')->getUrl('password');
+
             $this->get('email')
                 ->setAttribute('data-error', __('Invalid email'))
                 ->setAttribute('data-remote', $url)
-                ->setAttribute('data-remote-error', __('Oops. This email address is already taken or is forbidden'));
+                ->setAttribute('data-remote-error', sprintf(__('Oops. This email address is already taken. Do you want to <a href="#" onclick="%s">login</a> or <a href="%s">recover your password</a> ?'), "$('.toggle-modal-action-login').click();return false;", $passwordLink));
         }
 
         if($this->has('identity')){
