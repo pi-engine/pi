@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-KeywordsList: __;_t;_e;_a\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -55,19 +55,19 @@ msgstr "Merci de saisir le mot."
 
 #: lib/Pi/Application/Service/Notification.php:174
 msgid "Server key not set"
-msgstr ""
+msgstr "Clef Serveur non définie"
 
 #: lib/Pi/Application/Service/Notification.php:181
 msgid "Token not set"
-msgstr ""
+msgstr "Token non défini"
 
 #: lib/Pi/Application/Service/Notification.php:209
 msgid "Notification send successfully"
-msgstr ""
+msgstr "Notification envoyée avec succès"
 
 #: lib/Pi/Application/Service/Notification.php:216
 msgid "Error to send notification"
-msgstr ""
+msgstr "Erreur dans l'envoi de la notification"
 
 #: lib/Pi/Application/Service/Theme.php:143
 msgid "Full layout (header/footer and blocks)"
@@ -414,7 +414,7 @@ msgstr "Accepter les %s"
 
 #: usr/module/user/src/Form/RegisterForm.php:47
 msgid "Invalid email"
-msgstr "Email non valide"
+msgstr "L'adresse Email doit avoir une forme valide (ex: xxxx@yyy.com)"
 
 #: usr/module/user/src/Form/RegisterForm.php:49
 msgid "Oops. This email address is already taken or is forbidden"
