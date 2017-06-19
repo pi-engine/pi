@@ -80,9 +80,9 @@ HTML;
                 ->setAttribute('description', $showPasswordBtn)
                 ->setAttribute('id', 'credential')
                 ->setAttribute('pattern', '^.{0,'.$piConfig['password_max'].'}$')
-                ->setAttribute('data-pattern-error', sprintf(__("Must be less than %s characters")), $piConfig['password_max'])
+                ->setAttribute('data-pattern-error', sprintf(__("Must be less than %s characters"), $piConfig['password_max']))
                 ->setAttribute('data-minlength', $piConfig['password_min'])
-                ->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters")), $piConfig['password_min']);
+                ->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $piConfig['password_min']));
 
 
             $passwordConfirmError = __('Whoops, these don\'t match');
