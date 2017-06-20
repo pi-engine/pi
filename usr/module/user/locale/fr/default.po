@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-06-19 23:18+0200\n"
-"PO-Revision-Date: 2017-06-19 23:22+0200\n"
+"POT-Creation-Date: 2017-06-20 14:03+0200\n"
+"PO-Revision-Date: 2017-06-20 14:08+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -550,7 +550,7 @@ msgstr "Email"
 msgid "Display name"
 msgstr "Nom"
 
-#: src/Form/AccountForm.php:60 src/Form/RegisterForm.php:99
+#: src/Form/AccountForm.php:60 src/Form/RegisterForm.php:160
 msgid "Newsletter subscription"
 msgstr "Inscription Newslettre"
 
@@ -640,21 +640,85 @@ msgstr "username non valide"
 msgid "Oops. This username is already taken, malformed or forbidden"
 msgstr "Oups. Ce username est déjà pris, malformé ou interdit"
 
-#: src/Form/RegisterForm.php:66
+#: src/Form/RegisterForm.php:69
 msgid "Show my password"
 msgstr "Voir le mot de passe"
 
+#: src/Form/RegisterForm.php:71
+msgid "Your password is too short"
+msgstr "Votre mot de passe est trop court"
+
+#: src/Form/RegisterForm.php:72
+msgid "Do not use your email as your password"
+msgstr "N'utilisez pas votre email comme mot de passe"
+
+#: src/Form/RegisterForm.php:73
+msgid "Your password cannot contain your username"
+msgstr "Votre mot de passe ne peut contenir votre nom utilisateur"
+
+#: src/Form/RegisterForm.php:74
+msgid "Use different character classes"
+msgstr ""
+
+#: src/Form/RegisterForm.php:75
+msgid "Too many repetitions"
+msgstr "Trop de répétitions"
+
+#: src/Form/RegisterForm.php:76
+msgid "Your password contains sequences"
+msgstr "Le mot de passe contient de séquences répétées"
+
+#: src/Form/RegisterForm.php:77
+msgid "Errors:"
+msgstr "Erreurs : "
+
+#: src/Form/RegisterForm.php:78
+msgid "Very week"
+msgstr "Trop faible"
+
+#: src/Form/RegisterForm.php:79
+msgid "Week"
+msgstr "Faible"
+
+#: src/Form/RegisterForm.php:80
+msgid "Normal"
+msgstr "Normal"
+
+#: src/Form/RegisterForm.php:81
+msgid "Medium"
+msgstr "Moyen"
+
+#: src/Form/RegisterForm.php:82
+msgid "Strong"
+msgstr "Fort"
+
 #: src/Form/RegisterForm.php:83
+msgid "Very Strong"
+msgstr "Robuste"
+
+#: src/Form/RegisterForm.php:140
 #, php-format
 msgid "Must be less than %s characters"
 msgstr "Doit compter moins de %s caractères"
 
-#: src/Form/RegisterForm.php:85
+#: src/Form/RegisterForm.php:142
 #, php-format
 msgid "Must be more than %s characters"
 msgstr "Doit compter plus de %s caractères"
 
-#: src/Form/RegisterForm.php:88
+#: src/Form/RegisterForm.php:143
+msgid "Invalid password"
+msgstr "Mot de passe non valide."
+
+#: src/Form/RegisterForm.php:145
+msgid ""
+"Password must contain at lease one uppercase letter, one lowercase letter "
+"and one digit character"
+msgstr ""
+"Le mot de passe doit contenir au moins 1 lettre majuscule, 1 lettre en "
+"minuscule et au moins 1 chiffre"
+
+#: src/Form/RegisterForm.php:149
 msgid "Whoops, these don't match"
 msgstr "Oups, ils ne coïncident pas"
 
@@ -751,13 +815,25 @@ msgstr "Le nom utilisateur a moins de %min% caractères"
 msgid "User name is more than %max% characters long"
 msgstr "Le nom utilisateur a plus de %max% caractères"
 
-#: src/Validator/Password.php:40
+#: src/Validator/Password.php:43
 msgid "Password is less than %min% characters long"
 msgstr "Le mot de passe a moins de %min% caractères"
 
-#: src/Validator/Password.php:41
+#: src/Validator/Password.php:44
 msgid "Password is more than %max% characters long"
 msgstr "Le mot de passe a plus de %max% caractères"
+
+#: src/Validator/Password.php:45
+msgid "Password must contain at least one uppercase letter"
+msgstr "Le mot de passe doit contenir au moins 1 lettre en majuscule"
+
+#: src/Validator/Password.php:46
+msgid "Password must contain at least one lowercase letter"
+msgstr "Le mot de passe doit contenir au moins 1 lettre en minuscule"
+
+#: src/Validator/Password.php:47
+msgid "Password must contain at least one digit character"
+msgstr "Le mot de passe doit contenir au moins 1 chiffre"
 
 #: src/Validator/UserEmail.php:36
 msgid "User email is reserved"
