@@ -70,19 +70,24 @@ class Password extends AbstractValidator
             return false;
         }
 
-        if (!preg_match('/[A-Z]/', $value)) {
-            $this->error(self::UPPER);
-            return false;
-        }
+        $piConfig = Pi::user()->config();
+        $strenghtenPassword = $piConfig['strenghten_password'];
 
-        if (!preg_match('/[a-z]/', $value)) {
-            $this->error(self::LOWER);
-            return false;
-        }
+        if($strenghtenPassword){
+            if (!preg_match('/[A-Z]/', $value)) {
+                $this->error(self::UPPER);
+                return false;
+            }
 
-        if (!preg_match('/\d/', $value)) {
-            $this->error(self::DIGIT);
-            return false;
+            if (!preg_match('/[a-z]/', $value)) {
+                $this->error(self::LOWER);
+                return false;
+            }
+
+            if (!preg_match('/\d/', $value)) {
+                $this->error(self::DIGIT);
+                return false;
+            }
         }
 
         return true;

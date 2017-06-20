@@ -65,6 +65,7 @@ class RegisterForm extends UserForm
 
             $minChars = $piConfig['password_min'];
             $maxChars = $piConfig['password_max'];
+            $strenghtenPassword = $piConfig['strenghten_password'];
 
             $showPasswordLabel = __('Show my password');
 
@@ -138,12 +139,15 @@ HTML;
                 ->setAttribute('id', 'credential')
                 ->setAttribute('pattern', '^.{0,'.$piConfig['password_max'].'}$')
                 ->setAttribute('data-pattern-error', sprintf(__("Must be less than %s characters"), $maxChars))
-                ->setAttribute('data-minlength', $piConfig['password_min'])
-                ->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
-                ->setAttribute('data-error', __('Invalid password'))
-                ->setAttribute('data-remote', $url)
-                ->setAttribute('data-remote-error', __('Password must contain at lease one uppercase letter, one lowercase letter and one digit character'))
-            ;
+                ->setAttribute('data-minlength', $piConfig['password_min']);
+
+            if($strenghtenPassword){
+                $this->get('credential')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
+                    ->setAttribute('data-error', __('Invalid password'))
+                    ->setAttribute('data-remote', $url)
+                    ->setAttribute('data-remote-error', __('Password must contain at lease one uppercase letter, one lowercase letter and one digit character'))
+                ;
+            }
 
 
             $passwordConfirmError = __('Whoops, these don\'t match');

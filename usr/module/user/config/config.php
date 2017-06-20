@@ -435,6 +435,15 @@ $config = array(
         'category'      => 'account',
     ),
 
+    'strenghten_password'     => array(
+        'title'         => _t('Strenghten password'),
+        'description'   => _t('Add some complexity to password filling'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'int',
+        'category'      => 'register',
+    ),
+
     'uname_blacklist'   => array(
         'title'         => _t('Username blacklist'),
         'description'   => _t('Reserved and forbidden username list, separated with `|`, regexp syntax is allowed.'),
