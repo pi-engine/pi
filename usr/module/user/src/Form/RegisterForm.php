@@ -63,7 +63,25 @@ class RegisterForm extends UserForm
 
         if($this->get('credential')){
 
+            $minChars = $piConfig['password_min'];
+            $maxChars = $piConfig['password_max'];
+
             $showPasswordLabel = __('Show my password');
+
+            $wordLength = __("Your password is too short");
+            $wordNotEmail = __("Do not use your email as your password");
+            $wordSimilarToUsername = __("Your password cannot contain your username");
+            $wordTwoCharacterClasses = __("Use different character classes");
+            $wordRepetitions = __("Too many repetitions");
+            $wordSequences = __("Your password contains sequences");
+            $errorList = __("Errors:");
+            $veryWeak = __("Very week");
+            $weak = __("Week");
+            $normal = __("Normal");
+            $medium = __("Medium");
+            $strong = __("Strong");
+            $veryStrong = __("Very Strong");
+
             $showPasswordBtn = <<<HTML
 <label>
     <input
@@ -74,15 +92,58 @@ class RegisterForm extends UserForm
     
     $showPasswordLabel
 </label>
+
+<script>
+
+    function translateThisThing(key){
+        console.log(key);
+        
+        var translations = {
+            "wordLength": "{$wordLength}",
+            "wordNotEmail": "{$wordNotEmail}",
+            "wordSimilarToUsername": "{$wordSimilarToUsername}",
+            "wordTwoCharacterClasses": "{$wordTwoCharacterClasses}",
+            "wordRepetitions": "{$wordRepetitions}",
+            "wordSequences": "{$wordSequences}",
+            "errorList": "{$errorList}",
+            "veryWeak": "{$veryWeak}",
+            "weak": "{$weak}",
+            "normal": "{$normal}",
+            "medium": "{$medium}",
+            "strong": "{$strong}",
+            "veryStrong": "{$veryStrong}"
+        };
+        
+        return translations[key];
+    };
+
+    $('[name="register"] #credential').not('.pwstrengthEnabled').addClass('pwstrengthEnabled').pwstrength({
+        common: {
+            minChar: {$minChars}
+        },
+        i18n : {
+            t: function (key) {
+            var result = translateThisThing(key); // Do your magic here
+
+            return result === key ? '' : result; // This assumes you return the
+            // key if no translation was found, adapt as necessary
+        }
+        }
+    });
+</script>
 HTML;
 
             $this->get('credential')
                 ->setAttribute('description', $showPasswordBtn)
                 ->setAttribute('id', 'credential')
                 ->setAttribute('pattern', '^.{0,'.$piConfig['password_max'].'}$')
-                ->setAttribute('data-pattern-error', sprintf(__("Must be less than %s characters"), $piConfig['password_max']))
+                ->setAttribute('data-pattern-error', sprintf(__("Must be less than %s characters"), $maxChars))
                 ->setAttribute('data-minlength', $piConfig['password_min'])
-                ->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $piConfig['password_min']));
+                ->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
+                ->setAttribute('data-error', __('Invalid password'))
+                ->setAttribute('data-remote', $url)
+                ->setAttribute('data-remote-error', __('Password must contain at lease one uppercase letter, one lowercase letter and one digit character'))
+            ;
 
 
             $passwordConfirmError = __('Whoops, these don\'t match');
