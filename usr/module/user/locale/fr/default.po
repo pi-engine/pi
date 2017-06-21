@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-06-21 08:07+0200\n"
-"PO-Revision-Date: 2017-06-21 08:07+0200\n"
+"POT-Creation-Date: 2017-06-21 14:19+0200\n"
+"PO-Revision-Date: 2017-06-21 15:43+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -49,7 +49,7 @@ msgstr "Profil utilisateur mis à jour"
 
 #: config/event.php:69
 msgid "Display name changed"
-msgstr "Nom modifié"
+msgstr "Le Nom Affiché a été modifié"
 
 #: config/event.php:75
 msgid "Email changed"
@@ -548,9 +548,9 @@ msgstr "Email"
 #: src/Form/AccountForm.php:48 src/Form/MemberForm.php:39
 #: src/Form/SearchForm.php:99
 msgid "Display name"
-msgstr "Nom"
+msgstr "Nom Affiché"
 
-#: src/Form/AccountForm.php:60 src/Form/RegisterForm.php:164
+#: src/Form/AccountForm.php:60 src/Form/RegisterForm.php:182
 msgid "Newsletter subscription"
 msgstr "Inscription Newslettre"
 
@@ -618,11 +618,11 @@ msgstr "Confirmer"
 msgid "Enable"
 msgstr "Activer"
 
-#: src/Form/RegisterForm.php:52
+#: src/Form/RegisterForm.php:53
 msgid "Invalid email"
 msgstr "L'adresse Email doit avoir une forme valide (ex: xxxx@yyy.com)"
 
-#: src/Form/RegisterForm.php:54
+#: src/Form/RegisterForm.php:55
 #, php-format
 msgid ""
 "Oops. This email address is already taken. Do you want to <a href=\"#\" "
@@ -632,93 +632,93 @@ msgstr ""
 "onclick=\"%s\">connecter</a> ou <a href=\"%s\">retrouver votre mot de passe</"
 "a> ?"
 
-#: src/Form/RegisterForm.php:59
+#: src/Form/RegisterForm.php:60
 msgid "Invalid username"
-msgstr "username non valide"
+msgstr "Nom de Compte non valide"
 
-#: src/Form/RegisterForm.php:61
+#: src/Form/RegisterForm.php:62
 msgid "Oops. This username is already taken, malformed or forbidden"
-msgstr "Oups. Ce username est déjà pris, malformé ou interdit"
+msgstr "Oups. Ce nom de compte est déjà pris, malformé ou interdit"
 
-#: src/Form/RegisterForm.php:70
+#: src/Form/RegisterForm.php:71
 msgid "Show my password"
 msgstr "Voir le mot de passe"
 
-#: src/Form/RegisterForm.php:72
+#: src/Form/RegisterForm.php:73
 msgid "Your password is too short"
 msgstr "Votre mot de passe est trop court"
 
-#: src/Form/RegisterForm.php:73
+#: src/Form/RegisterForm.php:74
 msgid "Do not use your email as your password"
 msgstr "N'utilisez pas votre email comme mot de passe"
 
-#: src/Form/RegisterForm.php:74
-msgid "Your password cannot contain your username"
-msgstr "Votre mot de passe ne peut contenir votre nom utilisateur"
-
 #: src/Form/RegisterForm.php:75
+msgid "Your password cannot contain your username"
+msgstr "Votre mot de passe ne peut contenir votre nom de compte"
+
+#: src/Form/RegisterForm.php:76
 msgid "Use different character classes"
 msgstr "Utiliser des caractères spéciaux"
 
-#: src/Form/RegisterForm.php:76
+#: src/Form/RegisterForm.php:77
 msgid "Too many repetitions"
 msgstr "Trop de répétitions"
 
-#: src/Form/RegisterForm.php:77
+#: src/Form/RegisterForm.php:78
 msgid "Your password contains sequences"
 msgstr "Le mot de passe contient de séquences répétées"
 
-#: src/Form/RegisterForm.php:78
+#: src/Form/RegisterForm.php:79
 msgid "Errors:"
 msgstr "Erreurs : "
 
-#: src/Form/RegisterForm.php:79
+#: src/Form/RegisterForm.php:80
 msgid "Very week"
 msgstr "Trop faible"
 
-#: src/Form/RegisterForm.php:80
+#: src/Form/RegisterForm.php:81
 msgid "Week"
 msgstr "Faible"
 
-#: src/Form/RegisterForm.php:81
+#: src/Form/RegisterForm.php:82
 msgid "Normal"
 msgstr "Normal"
 
-#: src/Form/RegisterForm.php:82
+#: src/Form/RegisterForm.php:83
 msgid "Medium"
 msgstr "Moyen"
 
-#: src/Form/RegisterForm.php:83
+#: src/Form/RegisterForm.php:84
 msgid "Strong"
 msgstr "Fort"
 
-#: src/Form/RegisterForm.php:84
+#: src/Form/RegisterForm.php:85
 msgid "Very Strong"
 msgstr "Robuste"
 
-#: src/Form/RegisterForm.php:141
+#: src/Form/RegisterForm.php:159
 #, php-format
 msgid "Must be less than %s characters"
 msgstr "Doit compter moins de %s caractères"
 
-#: src/Form/RegisterForm.php:145
+#: src/Form/RegisterForm.php:163
 #, php-format
 msgid "Must be more than %s characters"
 msgstr "Doit compter plus de %s caractères"
 
-#: src/Form/RegisterForm.php:146
+#: src/Form/RegisterForm.php:164
 msgid "Invalid password"
 msgstr "Mot de passe non valide."
 
-#: src/Form/RegisterForm.php:148
+#: src/Form/RegisterForm.php:166
 msgid ""
-"Password must contain at lease one uppercase letter, one lowercase letter "
+"Password must contain at least one uppercase letter, one lowercase letter "
 "and one digit character"
 msgstr ""
 "Le mot de passe doit contenir au moins 1 lettre majuscule, 1 lettre en "
 "minuscule et au moins 1 chiffre"
 
-#: src/Form/RegisterForm.php:153
+#: src/Form/RegisterForm.php:171
 msgid "Whoops, these don't match"
 msgstr "Oups, ils ne coïncident pas"
 
@@ -815,23 +815,27 @@ msgstr "Le nom utilisateur a moins de %min% caractères"
 msgid "User name is more than %max% characters long"
 msgstr "Le nom utilisateur a plus de %max% caractères"
 
-#: src/Validator/Password.php:43
+#: src/Validator/Password.php:44
+msgid "Password can't be an email address"
+msgstr "Le mot de passe ne peut être une adresse mail"
+
+#: src/Validator/Password.php:45
 msgid "Password is less than %min% characters long"
 msgstr "Le mot de passe a moins de %min% caractères"
 
-#: src/Validator/Password.php:44
+#: src/Validator/Password.php:46
 msgid "Password is more than %max% characters long"
 msgstr "Le mot de passe a plus de %max% caractères"
 
-#: src/Validator/Password.php:45
+#: src/Validator/Password.php:47
 msgid "Password must contain at least one uppercase letter"
 msgstr "Le mot de passe doit contenir au moins 1 lettre en majuscule"
 
-#: src/Validator/Password.php:46
+#: src/Validator/Password.php:48
 msgid "Password must contain at least one lowercase letter"
 msgstr "Le mot de passe doit contenir au moins 1 lettre en minuscule"
 
-#: src/Validator/Password.php:47
+#: src/Validator/Password.php:49
 msgid "Password must contain at least one digit character"
 msgstr "Le mot de passe doit contenir au moins 1 chiffre"
 
