@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2017-06-21 14:20+0200\n"
-"PO-Revision-Date: 2017-06-21 14:20+0200\n"
+"PO-Revision-Date: 2017-06-21 15:36+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -442,27 +442,27 @@ msgstr "Longueur maximum du nom compte utilisateur lors de l'inscription"
 
 #: config/config.php:386
 msgid "Display name format"
-msgstr "Format du Nom"
+msgstr "Format du Nom Affiché"
 
 #: config/config.php:387
 msgid "Format of display name for registration."
-msgstr "Format du Nom lors de l'inscription"
+msgstr "Format du Nom Affiché lors de l'inscription"
 
 #: config/config.php:407
 msgid "Minimum display name"
-msgstr "Nom minimum"
+msgstr "Nom affiché minimum"
 
 #: config/config.php:408
 msgid "Minimum length of display name for user registration"
-msgstr "Longueur minimum du nom utilisateur lors de l'inscription"
+msgstr "Longueur minimum du nom affiché lors de l'inscription"
 
 #: config/config.php:415
 msgid "Maximum display name"
-msgstr "Nom maximum"
+msgstr "Nom affiché maximum"
 
 #: config/config.php:416
 msgid "Maximum length of display name for user registration"
-msgstr "Longueur maximum du nom utilisateur lors de l'inscription"
+msgstr "Longueur maximum du nom affiché lors de l'inscription"
 
 #: config/config.php:423
 msgid "Minimum password"
@@ -513,8 +513,8 @@ msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
 msgstr ""
-"Liste des noms réservés / interdits, séparés par `|`, la syntaxe regexp est "
-"autorisée."
+"Liste des noms affichés réservés / interdits, séparés par `|`, la syntaxe "
+"regexp est autorisée."
 
 #: config/config.php:464
 msgid "Email blacklist"
@@ -985,7 +985,7 @@ msgstr "Valider"
 
 #: template/admin/inquiry.phtml:16
 msgid "Inquire of user via ID, username, display name or email."
-msgstr "Rechercher le compte par numéro, nom compte, nom utilisateur ou email."
+msgstr "Rechercher le compte par numéro, nom compte, nom affiché ou email."
 
 #: template/admin/inquiry.phtml:20 template/admin/maintenance.phtml:43
 #: template/admin/user.phtml:25

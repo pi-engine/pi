@@ -247,7 +247,7 @@ msgstr "Langage"
 
 #: lib/Pi/Form/Element/LoginField.php:36 lib/Pi/Form/Element/LoginField.php:78
 msgid "Username"
-msgstr "Nom Utilisateur"
+msgstr "Nom Compte"
 
 #: lib/Pi/Form/Element/LoginField.php:37 lib/Pi/Form/Element/LoginField.php:81
 msgid "Email"
@@ -412,11 +412,11 @@ msgstr ""
 
 #: usr/module/user/src/Form/RegisterForm.php:60
 msgid "Invalid username"
-msgstr "Nom utilisateur non valide"
+msgstr "Nom compte non valide"
 
 #: usr/module/user/src/Form/RegisterForm.php:62
 msgid "Oops. This username is already taken, malformed or forbidden"
-msgstr "Oups. Ce nom utilisateur est déjà pris, malformé ou interdit"
+msgstr "Oups. Ce nom de compte est déjà pris, malformé ou interdit"
 
 #: usr/module/user/src/Form/RegisterForm.php:71
 msgid "Show my password"
@@ -489,15 +489,11 @@ msgid "Invalid password"
 msgstr "Mot de passe non valide"
 
 #: usr/module/user/src/Form/RegisterForm.php:166
-#, fuzzy
-#| msgid ""
-#| "Password must contain at lease one uppercase letter, one lowercase letter "
-#| "and one digit character"
 msgid ""
 "Password must contain at least one uppercase letter, one lowercase letter "
 "and one digit character"
 msgstr ""
-"Le mot de passe doit contenir au moins 1 caractère majuscule, 1 caractère "
+"Le mot de passe doit contenir au moins 1 lettre majuscule, 1 lettre "
 "minuscule, et 1 chiffre"
 
 #: usr/module/user/src/Form/RegisterForm.php:171

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2017-06-21 14:19+0200\n"
-"PO-Revision-Date: 2017-06-21 14:19+0200\n"
+"PO-Revision-Date: 2017-06-21 15:43+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -49,7 +49,7 @@ msgstr "Profil utilisateur mis à jour"
 
 #: config/event.php:69
 msgid "Display name changed"
-msgstr "Nom modifié"
+msgstr "Le Nom Affiché a été modifié"
 
 #: config/event.php:75
 msgid "Email changed"
@@ -548,7 +548,7 @@ msgstr "Email"
 #: src/Form/AccountForm.php:48 src/Form/MemberForm.php:39
 #: src/Form/SearchForm.php:99
 msgid "Display name"
-msgstr "Nom"
+msgstr "Nom Affiché"
 
 #: src/Form/AccountForm.php:60 src/Form/RegisterForm.php:182
 msgid "Newsletter subscription"
@@ -634,11 +634,11 @@ msgstr ""
 
 #: src/Form/RegisterForm.php:60
 msgid "Invalid username"
-msgstr "username non valide"
+msgstr "Nom de Compte non valide"
 
 #: src/Form/RegisterForm.php:62
 msgid "Oops. This username is already taken, malformed or forbidden"
-msgstr "Oups. Ce username est déjà pris, malformé ou interdit"
+msgstr "Oups. Ce nom de compte est déjà pris, malformé ou interdit"
 
 #: src/Form/RegisterForm.php:71
 msgid "Show my password"
@@ -654,7 +654,7 @@ msgstr "N'utilisez pas votre email comme mot de passe"
 
 #: src/Form/RegisterForm.php:75
 msgid "Your password cannot contain your username"
-msgstr "Votre mot de passe ne peut contenir votre nom utilisateur"
+msgstr "Votre mot de passe ne peut contenir votre nom de compte"
 
 #: src/Form/RegisterForm.php:76
 msgid "Use different character classes"
