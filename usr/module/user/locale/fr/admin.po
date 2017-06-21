@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-06-07 20:01+0200\n"
-"PO-Revision-Date: 2017-06-07 20:01+0200\n"
+"POT-Creation-Date: 2017-06-21 08:33+0200\n"
+"PO-Revision-Date: 2017-06-21 08:33+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -481,10 +481,22 @@ msgid "Maximum length of password for user registration"
 msgstr "Longueur maximale du mot de passe lors de l'inscription"
 
 #: config/config.php:439
+msgid "Strenghten password"
+msgstr "Renforcer le mot de passe"
+
+#: config/config.php:440
+msgid ""
+"Add some complexity to password filling : min 1 uppercase character, min 1 "
+"lowercase character, min 1 number"
+msgstr ""
+"Ajouter de la complexité au mot de passe crée : min 1 caractère majuscule, "
+"min 1 caractère minuscule, min 1 chiffre"
+
+#: config/config.php:448
 msgid "Username blacklist"
 msgstr "Liste noire Nom compte utilisateur"
 
-#: config/config.php:440
+#: config/config.php:449
 msgid ""
 "Reserved and forbidden username list, separated with `|`, regexp syntax is "
 "allowed."
@@ -492,11 +504,11 @@ msgstr ""
 "Liste des noms compte utilisateurs réservés/interdits, séparés par `|`, la "
 "syntaxe regexp est autorisée."
 
-#: config/config.php:447
+#: config/config.php:456
 msgid "Display blacklist"
 msgstr "Liste noire Nom"
 
-#: config/config.php:448
+#: config/config.php:457
 msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
@@ -504,45 +516,45 @@ msgstr ""
 "Liste des noms réservés / interdits, séparés par `|`, la syntaxe regexp est "
 "autorisée."
 
-#: config/config.php:455
+#: config/config.php:464
 msgid "Email blacklist"
 msgstr "Liste noire Email"
 
-#: config/config.php:456
+#: config/config.php:465
 msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
 msgstr ""
 "Liste des emails interdits, séparés par `|`, la syntaxe regexp est autorisée"
 
-#: config/config.php:465
+#: config/config.php:474
 msgid "Max Avatar Width"
 msgstr "Largeur maximale avatar"
 
-#: config/config.php:466
+#: config/config.php:475
 msgid "Allowed image width, 0 for no limit"
 msgstr "Largeur autorisée de l'image, 0 pour aucune limite"
 
-#: config/config.php:473
+#: config/config.php:482
 msgid "Max Avatar Height"
 msgstr "Hauteur maximimale avatar"
 
-#: config/config.php:474
+#: config/config.php:483
 msgid "Allowed image height, 0 for no limit"
 msgstr "Hauteur autorisée de l'image, 0 pour aucune limite"
 
-#: config/config.php:481
+#: config/config.php:490
 msgid "Max File Size"
 msgstr "Taille maximal fichier"
 
-#: config/config.php:482
+#: config/config.php:491
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 "Taille autorisée de l'upload fichier avatar (en KB), 0 pour aucune limite"
 
-#: config/config.php:498
+#: config/config.php:507
 msgid "Temporary Path"
 msgstr "Chemin (path) temporaire"
 
-#: config/config.php:499
+#: config/config.php:508
 msgid "For temporary storage of avatar"
 msgstr "Pour stocker temporairement l'avatar"
 

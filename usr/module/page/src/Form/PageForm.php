@@ -106,7 +106,7 @@ class PageForm extends BaseForm
                     'label' => _a('Template name'),
                 ),
                 'attributes'    => array(
-                    'description'   => _a('Select a template from `usr/custom/module/page/template/front/` w/o extension.'),
+                    'description'   => _a('Select a template from `usr/custom/module/page/template/front/` w/o extension. You can also locate it in `usr/themes/yourtheme/custom/page/`'),
                 ),
             ));
         } else {

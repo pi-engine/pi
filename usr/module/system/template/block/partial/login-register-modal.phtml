@@ -2,6 +2,7 @@
 
 $this->jQuery();
 $this->js($this->assetModule('front/jquery-ui.draggable.min.js', 'user'));
+$this->js($this->assetModule('front/pwstrength-bootstrap.min.js', 'user'));
 
 $this->css($this->assetModule('front/front.css', 'user'));
 
@@ -43,7 +44,7 @@ if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
 }
 
 ?>
-<div class="modal fade" id="loginRegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade loginFormWrapper" id="loginRegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -64,12 +65,12 @@ if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
                         <div class="user-action-bar-title"><?php _e('Login'); ?></div>
                         <?php echo $this->form($loginForm, 'vertical'); ?>
 
-                        <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
+                        <a class="find-password-link" title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
 
                         <div class="clearfix user-action-bar">
                             <div class="user-action-bar-title"><?php _e('Not already registered ?'); ?></div>
                             <p>
-                                <a class="btn btn-default toggle-modal-action" title="<?php _e('Register'); ?>" href="#">
+                                <a class="btn btn-default toggle-modal-action toggle-modal-action-register" title="<?php _e('Register'); ?>" href="#">
                                     <?php _e('Register'); ?>
                                 </a>
                             </p>
@@ -89,7 +90,7 @@ if(Pi::engine()->application()->getResponse()->getStatusCode() == 404){
                         <div class="clearfix user-action-bar">
                             <div class="user-action-bar-title"><?php _e('Already registered ?'); ?></div>
                             <p>
-                                <a class="btn btn-default toggle-modal-action" title="<?php _e('Login'); ?>" href="#">
+                                <a class="btn btn-default toggle-modal-action toggle-modal-action-login" title="<?php _e('Login'); ?>" href="#">
                                     <?php _e('Login'); ?>
                                 </a>
                             </p>
