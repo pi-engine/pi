@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2017-06-21 10:30+0100\n"
+"POT-Creation-Date: 2017-06-21 15:33+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
@@ -17,12 +17,11 @@ msgstr ""
 "X-Poedit-SearchPath-1: www\n"
 "X-Poedit-SearchPath-2: usr/editor\n"
 "X-Poedit-SearchPath-3: usr/module/user/src/Form/RegisterForm.php\n"
-"X-Poedit-SearchPath-4: usr/module/user/config/form.register.php\n"
-"X-Poedit-SearchPath-5: usr/module/system/src/Form/LoginForm.php\n"
+"X-Poedit-SearchPath-4: usr/module/user/src/Form/LoginForm.php\n"
+"X-Poedit-SearchPath-5: usr/module/user/config/form.register.php\n"
 "X-Poedit-SearchPath-6: usr/module/system/template/block/partial/login-"
 "register-modal.phtml\n"
 "X-Poedit-SearchPath-7: usr/custom/module/user/config/form.register.php.dist\n"
-"X-Poedit-SearchPath-8: usr/custom/module/user/config/form.register.php\n"
 "X-Poedit-SearchPathExcluded-0: www/static/js/bs-lessdoc-parser.js\n"
 
 #: lib/Pi/Application/Installer/Theme.php:348
@@ -336,7 +335,6 @@ msgid "The requested action was not found."
 msgstr "L'action demandée n'a pas été trouvée."
 
 #: lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
-#: usr/module/system/src/Form/LoginForm.php:119
 #: usr/module/system/template/block/partial/login-register-modal.phtml:53
 #: usr/module/system/template/block/partial/login-register-modal.phtml:65
 #: usr/module/system/template/block/partial/login-register-modal.phtml:93
@@ -385,42 +383,24 @@ msgstr "Page"
 msgid "Tags: "
 msgstr "Tags :"
 
-#: usr/custom/module/user/config/form.register.php:19
 #: usr/module/user/config/form.register.php:19
-#: usr/custom/module/user/config/form.register.php.dist:19
 msgid "Terms & Conditions"
 msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
-
-#: usr/custom/module/user/config/form.register.php:20
-#: usr/custom/module/user/config/form.register.php.dist:20
-#, php-format
-msgid "Accept %s"
-msgstr "Accepter les %s"
-
-#: usr/custom/module/user/config/form.register.php:43
-#: usr/module/user/config/form.register.php:43
-#: usr/custom/module/user/config/form.register.php.dist:43
-msgid "Confirm credential"
-msgstr "Confirmer le mot de passe"
-
-#: usr/module/system/src/Form/LoginForm.php:61
-msgid "Password"
-msgstr "Mot de passe"
-
-#: usr/module/system/src/Form/LoginForm.php:82
-msgid "Remember login status"
-msgstr "Se souvenir de moi"
 
 #: usr/module/user/config/form.register.php:20
 #, php-format
 msgid "Accept the %s"
 msgstr "Accepter les %s"
 
-#: usr/module/user/src/Form/RegisterForm.php:52
+#: usr/module/user/config/form.register.php:43
+msgid "Confirm credential"
+msgstr "Confirmer le mot de passe"
+
+#: usr/module/user/src/Form/RegisterForm.php:53
 msgid "Invalid email"
 msgstr "L'adresse Email doit avoir une forme valide (ex: xxxx@yyy.com)"
 
-#: usr/module/user/src/Form/RegisterForm.php:54
+#: usr/module/user/src/Form/RegisterForm.php:55
 #, php-format
 msgid ""
 "Oops. This email address is already taken. Do you want to <a href=\"#\" "
@@ -430,119 +410,103 @@ msgstr ""
 "\"\"onclick=\"%s\">connecter</a> ou <a href=\"%s\">retrouver votre mot de "
 "passe</\"\"a> ?"
 
-#: usr/module/user/src/Form/RegisterForm.php:59
+#: usr/module/user/src/Form/RegisterForm.php:60
 msgid "Invalid username"
 msgstr "Nom utilisateur non valide"
 
-#: usr/module/user/src/Form/RegisterForm.php:61
+#: usr/module/user/src/Form/RegisterForm.php:62
 msgid "Oops. This username is already taken, malformed or forbidden"
 msgstr "Oups. Ce nom utilisateur est déjà pris, malformé ou interdit"
 
-#: usr/module/user/src/Form/RegisterForm.php:70
+#: usr/module/user/src/Form/RegisterForm.php:71
 msgid "Show my password"
 msgstr "Afficher le mot de passe"
 
-#: usr/module/user/src/Form/RegisterForm.php:72
+#: usr/module/user/src/Form/RegisterForm.php:73
 msgid "Your password is too short"
 msgstr "Votre mot de passe est trop court."
 
-#: usr/module/user/src/Form/RegisterForm.php:73
+#: usr/module/user/src/Form/RegisterForm.php:74
 msgid "Do not use your email as your password"
 msgstr "Ne pas utiliser votre email comme mot de passe"
 
-#: usr/module/user/src/Form/RegisterForm.php:74
+#: usr/module/user/src/Form/RegisterForm.php:75
 msgid "Your password cannot contain your username"
 msgstr "Votre mot de passe ne doit pas contenir votre nom de compte"
 
-#: usr/module/user/src/Form/RegisterForm.php:75
+#: usr/module/user/src/Form/RegisterForm.php:76
 msgid "Use different character classes"
 msgstr "Utilisez différentes chaînes de caractères & caractères spéciaux"
 
-#: usr/module/user/src/Form/RegisterForm.php:76
+#: usr/module/user/src/Form/RegisterForm.php:77
 msgid "Too many repetitions"
 msgstr "Trop de répétitions"
 
-#: usr/module/user/src/Form/RegisterForm.php:77
+#: usr/module/user/src/Form/RegisterForm.php:78
 msgid "Your password contains sequences"
 msgstr "Votre mot de passe contient des répétitions/séquences devinables"
 
-#: usr/module/user/src/Form/RegisterForm.php:78
+#: usr/module/user/src/Form/RegisterForm.php:79
 msgid "Errors:"
 msgstr "Erreurs : "
 
-#: usr/module/user/src/Form/RegisterForm.php:79
+#: usr/module/user/src/Form/RegisterForm.php:80
 msgid "Very week"
 msgstr "Trop faible"
 
-#: usr/module/user/src/Form/RegisterForm.php:80
+#: usr/module/user/src/Form/RegisterForm.php:81
 msgid "Week"
 msgstr "Faible"
 
-#: usr/module/user/src/Form/RegisterForm.php:81
+#: usr/module/user/src/Form/RegisterForm.php:82
 msgid "Normal"
 msgstr "Normal"
 
-#: usr/module/user/src/Form/RegisterForm.php:82
+#: usr/module/user/src/Form/RegisterForm.php:83
 msgid "Medium"
 msgstr "Moyen"
 
-#: usr/module/user/src/Form/RegisterForm.php:83
+#: usr/module/user/src/Form/RegisterForm.php:84
 msgid "Strong"
 msgstr "Fort"
 
-#: usr/module/user/src/Form/RegisterForm.php:84
+#: usr/module/user/src/Form/RegisterForm.php:85
 msgid "Very Strong"
 msgstr "Robuste"
 
-#: usr/module/user/src/Form/RegisterForm.php:141
+#: usr/module/user/src/Form/RegisterForm.php:159
 #, php-format
 msgid "Must be less than %s characters"
 msgstr "Doit compter moins de %s caractères"
 
-#: usr/module/user/src/Form/RegisterForm.php:145
+#: usr/module/user/src/Form/RegisterForm.php:163
 #, php-format
 msgid "Must be more than %s characters"
 msgstr "Doit compter plus de %s caractères"
 
-#: usr/module/user/src/Form/RegisterForm.php:146
+#: usr/module/user/src/Form/RegisterForm.php:164
 msgid "Invalid password"
 msgstr "Mot de passe non valide"
 
-#: usr/module/user/src/Form/RegisterForm.php:148
+#: usr/module/user/src/Form/RegisterForm.php:166
+#, fuzzy
+#| msgid ""
+#| "Password must contain at lease one uppercase letter, one lowercase letter "
+#| "and one digit character"
 msgid ""
-"Password must contain at lease one uppercase letter, one lowercase letter "
+"Password must contain at least one uppercase letter, one lowercase letter "
 "and one digit character"
 msgstr ""
 "Le mot de passe doit contenir au moins 1 caractère majuscule, 1 caractère "
 "minuscule, et 1 chiffre"
 
-#: usr/module/user/src/Form/RegisterForm.php:153
+#: usr/module/user/src/Form/RegisterForm.php:171
 msgid "Whoops, these don't match"
 msgstr "Oups, ils ne correspondent pas"
 
-#: usr/module/user/src/Form/RegisterForm.php:164
+#: usr/module/user/src/Form/RegisterForm.php:182
 msgid "Newsletter subscription"
 msgstr "Inscription newslettre"
-
-#: www/setup/src/Controller/Admin.php:251
-msgid "Manager"
-msgstr "Manager"
-
-#: www/setup/src/Controller/Admin.php:258
-msgid "Moderator"
-msgstr "Modérateur"
-
-#: www/setup/src/Controller/Admin.php:265
-msgid "Editor"
-msgstr "Editeur"
-
-#: www/setup/src/Controller/Admin.php:272
-msgid "Staff"
-msgstr "Equipe"
-
-#: www/setup/src/Controller/Admin.php:279
-msgid "Member"
-msgstr "Membre"
 
 #: usr/module/system/template/block/partial/login-register-modal.phtml:54
 #: usr/module/system/template/block/partial/login-register-modal.phtml:73
@@ -562,6 +526,30 @@ msgstr "Pas encore inscrit ?"
 #: usr/module/system/template/block/partial/login-register-modal.phtml:91
 msgid "Already registered ?"
 msgstr "Déjà inscrit ?"
+
+#~ msgid "Accept %s"
+#~ msgstr "Accepter les %s"
+
+#~ msgid "Password"
+#~ msgstr "Mot de passe"
+
+#~ msgid "Remember login status"
+#~ msgstr "Se souvenir de moi"
+
+#~ msgid "Manager"
+#~ msgstr "Manager"
+
+#~ msgid "Moderator"
+#~ msgstr "Modérateur"
+
+#~ msgid "Editor"
+#~ msgstr "Editeur"
+
+#~ msgid "Staff"
+#~ msgstr "Equipe"
+
+#~ msgid "Member"
+#~ msgstr "Membre"
 
 #~ msgid "Oops. This email address is already taken or is forbidden"
 #~ msgstr "Oups. Cette adresse email est déjà prise ou est interdite"
