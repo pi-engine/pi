@@ -12,7 +12,7 @@ namespace Module\User\Validator;
 
 use Pi;
 use Zend\Validator\AbstractValidator;
-
+use Zend\Validator\EmailAddress as EmailAddressValidator;
 /**
  * Validator for username
  *
@@ -21,6 +21,7 @@ use Zend\Validator\AbstractValidator;
 
 class Password extends AbstractValidator
 {
+    const EMAIL = 'isEmail';
     const TOO_SHORT = 'stringLengthTooShort';
     const TOO_LONG  = 'stringLengthTooLong';
     const UPPER  = 'upper';
@@ -40,6 +41,7 @@ class Password extends AbstractValidator
     public function __construct()
     {
         $this->messageTemplates = array(
+            self::EMAIL => __("Password can't be an email address"),
             self::TOO_SHORT => __('Password is less than %min% characters long'),
             self::TOO_LONG  => __('Password is more than %max% characters long'),
             self::UPPER  => __("Password must contain at least one uppercase letter"),
@@ -54,6 +56,12 @@ class Password extends AbstractValidator
     {
         $this->setValue($value);
         $this->setConfigOption();
+
+        $validator = new EmailAddressValidator();
+        if ($validator->isValid($value)) {
+            $this->error(static::EMAIL);
+            return false;
+        }
 
         if (!empty($this->options['max'])
             && $this->options['max'] < strlen($value)
