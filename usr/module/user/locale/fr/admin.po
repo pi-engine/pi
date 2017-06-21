@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-06-21 08:06+0200\n"
-"PO-Revision-Date: 2017-06-21 08:06+0200\n"
+"POT-Creation-Date: 2017-06-21 08:33+0200\n"
+"PO-Revision-Date: 2017-06-21 08:33+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -487,10 +487,10 @@ msgstr "Renforcer le mot de passe"
 #: config/config.php:440
 msgid ""
 "Add some complexity to password filling : min 1 uppercase character, min 1 "
-"number"
+"lowercase character, min 1 number"
 msgstr ""
 "Ajouter de la complexité au mot de passe crée : min 1 caractère majuscule, "
-"min 1 chiffre"
+"min 1 caractère minuscule, min 1 chiffre"
 
 #: config/config.php:448
 msgid "Username blacklist"

@@ -437,7 +437,7 @@ $config = array(
 
     'strenghten_password'     => array(
         'title'         => _t('Strenghten password'),
-        'description'   => _t('Add some complexity to password filling : min 1 uppercase character, min 1 number'),
+        'description'   => _t('Add some complexity to password filling : min 1 uppercase character, min 1 lowercase character, min 1 number'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'int',
