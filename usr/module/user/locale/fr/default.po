@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-06-07 22:07+0200\n"
-"PO-Revision-Date: 2017-06-07 22:07+0200\n"
+"POT-Creation-Date: 2017-06-21 08:07+0200\n"
+"PO-Revision-Date: 2017-06-21 08:07+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -550,7 +550,7 @@ msgstr "Email"
 msgid "Display name"
 msgstr "Nom"
 
-#: src/Form/AccountForm.php:60 src/Form/RegisterForm.php:94
+#: src/Form/AccountForm.php:60 src/Form/RegisterForm.php:164
 msgid "Newsletter subscription"
 msgstr "Inscription Newslettre"
 
@@ -618,35 +618,107 @@ msgstr "Confirmer"
 msgid "Enable"
 msgstr "Activer"
 
-#: src/Form/RegisterForm.php:47
+#: src/Form/RegisterForm.php:52
 msgid "Invalid email"
-msgstr "Mail non valide"
-
-#: src/Form/RegisterForm.php:49
-msgid "Oops. This email address is already taken or is forbidden"
-msgstr "Oups. Cette adresse e-mail est déjà prise ou est interdite"
+msgstr "L'adresse Email doit avoir une forme valide (ex: xxxx@yyy.com)"
 
 #: src/Form/RegisterForm.php:54
+#, php-format
+msgid ""
+"Oops. This email address is already taken. Do you want to <a href=\"#\" "
+"onclick=\"%s\">login</a> or <a href=\"%s\">recover your password</a> ?"
+msgstr ""
+"Oups ! Cette adresse email est déjà prise. Voulez-vous vous <a href=\"#\" "
+"onclick=\"%s\">connecter</a> ou <a href=\"%s\">retrouver votre mot de passe</"
+"a> ?"
+
+#: src/Form/RegisterForm.php:59
 msgid "Invalid username"
 msgstr "username non valide"
 
-#: src/Form/RegisterForm.php:56
+#: src/Form/RegisterForm.php:61
 msgid "Oops. This username is already taken, malformed or forbidden"
 msgstr "Oups. Ce username est déjà pris, malformé ou interdit"
 
-#: src/Form/RegisterForm.php:61
+#: src/Form/RegisterForm.php:70
 msgid "Show my password"
 msgstr "Voir le mot de passe"
 
+#: src/Form/RegisterForm.php:72
+msgid "Your password is too short"
+msgstr "Votre mot de passe est trop court"
+
+#: src/Form/RegisterForm.php:73
+msgid "Do not use your email as your password"
+msgstr "N'utilisez pas votre email comme mot de passe"
+
+#: src/Form/RegisterForm.php:74
+msgid "Your password cannot contain your username"
+msgstr "Votre mot de passe ne peut contenir votre nom utilisateur"
+
+#: src/Form/RegisterForm.php:75
+msgid "Use different character classes"
+msgstr "Utiliser des caractères spéciaux"
+
+#: src/Form/RegisterForm.php:76
+msgid "Too many repetitions"
+msgstr "Trop de répétitions"
+
+#: src/Form/RegisterForm.php:77
+msgid "Your password contains sequences"
+msgstr "Le mot de passe contient de séquences répétées"
+
 #: src/Form/RegisterForm.php:78
-msgid "Must be less than "
-msgstr "Doit être moins que "
+msgid "Errors:"
+msgstr "Erreurs : "
+
+#: src/Form/RegisterForm.php:79
+msgid "Very week"
+msgstr "Trop faible"
 
 #: src/Form/RegisterForm.php:80
-msgid "Must be more than "
-msgstr "Doit compter au moins"
+msgid "Week"
+msgstr "Faible"
+
+#: src/Form/RegisterForm.php:81
+msgid "Normal"
+msgstr "Normal"
+
+#: src/Form/RegisterForm.php:82
+msgid "Medium"
+msgstr "Moyen"
 
 #: src/Form/RegisterForm.php:83
+msgid "Strong"
+msgstr "Fort"
+
+#: src/Form/RegisterForm.php:84
+msgid "Very Strong"
+msgstr "Robuste"
+
+#: src/Form/RegisterForm.php:141
+#, php-format
+msgid "Must be less than %s characters"
+msgstr "Doit compter moins de %s caractères"
+
+#: src/Form/RegisterForm.php:145
+#, php-format
+msgid "Must be more than %s characters"
+msgstr "Doit compter plus de %s caractères"
+
+#: src/Form/RegisterForm.php:146
+msgid "Invalid password"
+msgstr "Mot de passe non valide."
+
+#: src/Form/RegisterForm.php:148
+msgid ""
+"Password must contain at lease one uppercase letter, one lowercase letter "
+"and one digit character"
+msgstr ""
+"Le mot de passe doit contenir au moins 1 lettre majuscule, 1 lettre en "
+"minuscule et au moins 1 chiffre"
+
+#: src/Form/RegisterForm.php:153
 msgid "Whoops, these don't match"
 msgstr "Oups, ils ne coïncident pas"
 
@@ -743,13 +815,25 @@ msgstr "Le nom utilisateur a moins de %min% caractères"
 msgid "User name is more than %max% characters long"
 msgstr "Le nom utilisateur a plus de %max% caractères"
 
-#: src/Validator/Password.php:40
+#: src/Validator/Password.php:43
 msgid "Password is less than %min% characters long"
 msgstr "Le mot de passe a moins de %min% caractères"
 
-#: src/Validator/Password.php:41
+#: src/Validator/Password.php:44
 msgid "Password is more than %max% characters long"
 msgstr "Le mot de passe a plus de %max% caractères"
+
+#: src/Validator/Password.php:45
+msgid "Password must contain at least one uppercase letter"
+msgstr "Le mot de passe doit contenir au moins 1 lettre en majuscule"
+
+#: src/Validator/Password.php:46
+msgid "Password must contain at least one lowercase letter"
+msgstr "Le mot de passe doit contenir au moins 1 lettre en minuscule"
+
+#: src/Validator/Password.php:47
+msgid "Password must contain at least one digit character"
+msgstr "Le mot de passe doit contenir au moins 1 chiffre"
 
 #: src/Validator/UserEmail.php:36
 msgid "User email is reserved"
@@ -1184,33 +1268,36 @@ msgstr ""
 "Votre compte a été crée avec succès. Cependant il doit être approuvé par les "
 "administrateurs du site avant de pouvoir être utilisé."
 
-#: template/front/register-index.phtml:85
+#: template/front/register-index.phtml:86
 msgid "An email with activation link has been sent to you."
 msgstr "Un email avec un lien de confirmation-activation vous a été envoyé."
 
-#: template/front/register-index.phtml:86
+#: template/front/register-index.phtml:87
 msgid "Please check it to finish the registration."
 msgstr "Merci de vérifier votre boite mail afin de terminer votre inscription."
 
-#: template/front/register-index.phtml:89
+#: template/front/register-index.phtml:92
 msgid "If you do not receive the activation email:"
 msgstr "Si vous ne recevez pas le mail de confirmation :"
 
-#: template/front/register-index.phtml:91
+#: template/front/register-index.phtml:94
 msgid "Wait a few minutes and check again."
 msgstr "Attendez quelques minutes et vérifiez de nouveau."
 
-#: template/front/register-index.phtml:92
+#: template/front/register-index.phtml:95
 msgid "Check your email spam box."
 msgstr "Vérifiez le répertoire spam de votre boite mail."
 
-#: template/front/register-index.phtml:94
+#: template/front/register-index.phtml:97
 msgid "Request to resend activation email"
 msgstr "Demandez le renvoi du mail d'activation"
 
-#: template/front/register-index.phtml:130
+#: template/front/register-index.phtml:134
 msgid "Already sent"
 msgstr "Déja envoyé"
+
+#~ msgid "Oops. This email address is already taken or is forbidden"
+#~ msgstr "Oups. Cette adresse e-mail est déjà prise ou est interdite"
 
 #~ msgid "Accept %s"
 #~ msgstr "Accepter %s"

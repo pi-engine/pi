@@ -342,3 +342,13 @@
 .ui-draggable-handle{
   cursor: move;
 }
+
+#credential + .progress {
+  margin:10px 0 5px;
+}
+
+.password-verdict{
+  margin-bottom: 15px;
+  text-align: center;
+  display: block;
+}
