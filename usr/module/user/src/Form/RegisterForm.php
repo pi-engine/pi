@@ -163,7 +163,7 @@ HTML;
                 $this->get('credential')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
                     ->setAttribute('data-error', __('Invalid password'))
                     ->setAttribute('data-remote', $url)
-                    ->setAttribute('data-remote-error', __('Password must contain at lease one uppercase letter, one lowercase letter and one digit character'))
+                    ->setAttribute('data-remote-error', __('Password must contain at least one uppercase letter, one lowercase letter and one digit character'))
                 ;
             }
 
