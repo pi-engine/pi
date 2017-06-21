@@ -96,9 +96,7 @@ class RegisterForm extends UserForm
 
 <script>
 
-    function translateThisThing(key){
-        console.log(key);
-        
+    function translateThisThing(key){        
         var translations = {
             "wordLength": "{$wordLength}",
             "wordNotEmail": "{$wordNotEmail}",
@@ -121,6 +119,25 @@ class RegisterForm extends UserForm
     $('[name="register"] #credential').not('.pwstrengthEnabled').addClass('pwstrengthEnabled').pwstrength({
         common: {
             minChar: {$minChars}
+        },
+        rules: {
+            scores : {
+                wordNotEmail: -100,
+                wordLength: -50,
+                wordSimilarToUsername: -100,
+                wordSequences: -50,
+                wordTwoCharacterClasses: 2,
+                wordRepetitions: -25,
+                wordLowercase: 1,
+                wordUppercase: 20,
+                wordOneNumber: 20,
+                wordThreeNumbers: 5,
+                wordOneSpecialChar: 3,
+                wordTwoSpecialChar: 5,
+                wordUpperLowerCombo: 2,
+                wordLetterNumberCombo: 2,
+                wordLetterNumberCharCombo: 2
+            }
         },
         i18n : {
             t: function (key) {

@@ -441,7 +441,7 @@ $config = array(
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'int',
-        'category'      => 'register',
+        'category'      => 'account',
     ),
 
     'uname_blacklist'   => array(
