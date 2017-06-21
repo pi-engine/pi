@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-KeywordsList: __;_t;_e;_a\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -333,7 +333,7 @@ msgstr "Mois"
 
 #: lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."
-msgstr "L'action demandée n'a pas été trouvée"
+msgstr "L'action demandée n'a pas été trouvée."
 
 #: lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
 #: usr/module/system/src/Form/LoginForm.php:119
@@ -444,55 +444,55 @@ msgstr "Afficher le mot de passe"
 
 #: usr/module/user/src/Form/RegisterForm.php:72
 msgid "Your password is too short"
-msgstr ""
+msgstr "Votre mot de passe est trop court."
 
 #: usr/module/user/src/Form/RegisterForm.php:73
 msgid "Do not use your email as your password"
-msgstr ""
+msgstr "Ne pas utiliser votre email comme mot de passe"
 
 #: usr/module/user/src/Form/RegisterForm.php:74
 msgid "Your password cannot contain your username"
-msgstr ""
+msgstr "Votre mot de passe ne doit pas contenir votre nom de compte"
 
 #: usr/module/user/src/Form/RegisterForm.php:75
 msgid "Use different character classes"
-msgstr ""
+msgstr "Utilisez différentes chaînes de caractères & caractères spéciaux"
 
 #: usr/module/user/src/Form/RegisterForm.php:76
 msgid "Too many repetitions"
-msgstr ""
+msgstr "Trop de répétitions"
 
 #: usr/module/user/src/Form/RegisterForm.php:77
 msgid "Your password contains sequences"
-msgstr ""
+msgstr "Votre mot de passe contient des répétitions/séquences devinables"
 
 #: usr/module/user/src/Form/RegisterForm.php:78
 msgid "Errors:"
-msgstr ""
+msgstr "Erreurs : "
 
 #: usr/module/user/src/Form/RegisterForm.php:79
 msgid "Very week"
-msgstr ""
+msgstr "Trop faible"
 
 #: usr/module/user/src/Form/RegisterForm.php:80
 msgid "Week"
-msgstr ""
+msgstr "Faible"
 
 #: usr/module/user/src/Form/RegisterForm.php:81
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: usr/module/user/src/Form/RegisterForm.php:82
 msgid "Medium"
-msgstr ""
+msgstr "Moyen"
 
 #: usr/module/user/src/Form/RegisterForm.php:83
 msgid "Strong"
-msgstr ""
+msgstr "Fort"
 
 #: usr/module/user/src/Form/RegisterForm.php:84
 msgid "Very Strong"
-msgstr ""
+msgstr "Robuste"
 
 #: usr/module/user/src/Form/RegisterForm.php:141
 #, php-format
@@ -506,13 +506,15 @@ msgstr "Doit compter plus de %s caractères"
 
 #: usr/module/user/src/Form/RegisterForm.php:146
 msgid "Invalid password"
-msgstr ""
+msgstr "Mot de passe non valide"
 
 #: usr/module/user/src/Form/RegisterForm.php:148
 msgid ""
 "Password must contain at lease one uppercase letter, one lowercase letter "
 "and one digit character"
 msgstr ""
+"Le mot de passe doit contenir au moins 1 caractère majuscule, 1 caractère "
+"minuscule, et 1 chiffre"
 
 #: usr/module/user/src/Form/RegisterForm.php:153
 msgid "Whoops, these don't match"
@@ -551,7 +553,7 @@ msgstr "S'enregistrer"
 
 #: usr/module/system/template/block/partial/login-register-modal.phtml:68
 msgid "Find password"
-msgstr "Trouver le mot de passe."
+msgstr "Trouver le mot de passe"
 
 #: usr/module/system/template/block/partial/login-register-modal.phtml:71
 msgid "Not already registered ?"
