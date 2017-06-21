@@ -34,6 +34,7 @@ class RegisterForm extends UserForm
         $piConfig = Pi::user()->config();
 
         $this->setAttribute('data-toggle', 'validator');
+        $this->setAttribute('data-delay', 1000);
         $this->setAttribute('data-html', true);
         $this->setAttribute('id', $elementId);
         $this->setAttribute('onsubmit', "$('#$elementId').validator('destroy');");
