@@ -237,38 +237,14 @@ class RegisterController extends ActionController
         );
 
         $activationMode = $this->config('register_activation');
-        if ('auto' == $activationMode) {
-            if (Pi::user()->config('register_notification')) {
-                $this->sendNotification('success', array(
-                    'email'     => $userRow['email'],
-                    'uid'       => $uid,
-                    'identity'  => $userRow['identity'],
-                    'name'      => $userRow['name'],
-                    
-                ));
-            }
-        // Activated by admin
-        } elseif ('admin' == $activationMode) {
-            if (Pi::user()->config('register_notification')) {
-                $this->sendNotification('admin', array(
-                    'email'     => $userRow['email'],
-                    'uid'       => $uid,
-                    'identity'  => $userRow['identity'],
-                    'name'      => $userRow['name'],
-                    
-                ));
-            }
-        // Activated by email
-        } elseif ('email' == $activationMode) {
-            $status = $this->sendNotification('activation', array(
-                'email'     => $userRow['email'],
-                'uid'       => $uid,
-                'identity'  => $userRow['identity'],
-                'name'      => $userRow['name'],
-                
-            ));
+       
+        $status = $this->sendNotification('success', array(
+            'email'     => $userRow['email'],
+            'uid'       => $uid,
+            'identity'  => $userRow['identity'],
+            'name'      => $userRow['name'],
             
-        }
+        ));
         
         $this->view()->assign(array(
             'result'   => $result,
