@@ -2,13 +2,13 @@
 
 [format]html[/format]
 
-[subject]%site_name% Inscription validée[/subject]
+[subject]%site_name% - Inscription validée : bienvenue ![/subject]
 
 [body]
 <p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
 
-<p style="margin-top: 5px">Votre compte a été créé avec succès sur %site_name% avec cette adresse email. Félicitations et bienvenue !</p>
-<p style="margin-top: 5px"><a href="%login_url%">Vous pouvez maintenant vous connecter sur le site pour contribuer, gérer vos favoris, discuter, promouvoir votre activité, etc.</a></p>
+<p style="margin-top: 5px">Votre compte a été créé avec succès sur %site_name% avec cette adresse email. Bienvenue dans notre communauté !</p>
+<p style="margin-top: 5px">Vous pouvez maintenant <a href="%login_url%">vous connecter sur le site</a> pour organiser votre séjour, contribuer, gérer vos favoris, discuter, ou encore promouvoir votre activité.</p>
 <p style="margin-top: 5px">A tout de suite sur le site !</p>
 <p style="margin-top: 10px">
     <a href="%site_url%" title="%site_name%">%site_name%</a>

@@ -2,13 +2,13 @@
 
 [format]html[/format]
 
-[subject]%site_name% Validation du compte[/subject]
+[subject]%site_name% - Validez votre compte[/subject]
 
 [body]
 <p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
 
 <p style="margin-top: 5px">Un compte avec votre adresse email a été créé sur le site %site_name%.</p>
-<p style="margin-top: 5px">Merci de cliquer sur le lien suivant pour valider votre compte.<br>
+<p style="margin-top: 5px">Merci de cliquer sur le lien suivant pour valider votre compte et ainsi l'activer.<br>
 <a href="%activation_url%">%activation_url%</a>
 </p>
 
