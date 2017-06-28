@@ -636,8 +636,8 @@ $config['item'] = array(
     ),
 
     'og_local'      => array(
-        'title'         => _t('Website local'),
-        'description'   => _t('Set website local, like en_GB'),
+        'title'         => _t('Website Open Graph locale'),
+        'description'   => _t('Set website OG locale, like en_GB'),
         'edit'          => 'text',
         'value'         => 'en_GB',
         'category'      => 'head_meta_extra',
