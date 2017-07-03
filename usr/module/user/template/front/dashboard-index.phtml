@@ -27,16 +27,15 @@ $this->sticky();
                             <?php echo $this->widget('guide-dashboard-items') ?>
                     <?php } ?> 
                 </div>
-                <div class="<?php echo $bookingBlockOutput ? 'col-md-4' : 'col-sm-12' ?>">
-                    <?php $colClass = $bookingBlockOutput ? 'col-md-6' : 'col-md-3' ?>
+                <div class="col-md-4">
 
-                    <h2 class="<?php echo !$bookingBlockOutput ? 'hide' : '' ?>"><?php _e('Shortcuts'); ?></h2>
+                    <h2><?php _e('Shortcuts'); ?></h2>
 
                     <div class="row text-center match-height-list" id="sticky-sidebar">
                         <?php if (Pi::service('module')->isActive('guide')) { ?>
                             <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
                             <?php if ($guideConfig['manage_active']) { ?>
-                                <div class="<?php echo $colClass ?>">
+                                <div class="col-md-6">
                                     <a class="thumbnail" title="<?php _e('My items'); ?>" href="<?php echo Pi::url($this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'))); ?>">
                                         <i class="fa fa-map fa-3x"></i>
                                         <div class="caption">
@@ -48,7 +47,7 @@ $this->sticky();
                             <?php } ?>
 
                             <?php if ($guideConfig['sponsor_active']) { ?>
-                                <div class="<?php echo $colClass ?>">
+                                <div class="col-md-6">
                                     <a class="thumbnail" title="<?php _e('Sponsorship'); ?>" href="<?php echo Pi::url($this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'sponsor'))); ?>">
                                         <i class="fa fa-gift fa-3x"></i>
                                         <div class="caption">
@@ -62,7 +61,7 @@ $this->sticky();
                         <?php if (Pi::service('module')->isActive('message')) { ?>
                             <?php $message = _number(Pi::api('api', 'message')->getUnread($uid, 'message')); ?>
                             <?php $notification = _number(Pi::api('api', 'message')->getUnread($uid, 'notification')); ?>
-                            <div class="<?php echo $colClass ?>">
+                            <div class="col-md-6">
                                 <a class="thumbnail" title="<?php _e('My messages'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'index'))); ?>">
                                     <i class="fa fa-envelope fa-3x"></i>
                                     <div class="caption">
@@ -70,7 +69,7 @@ $this->sticky();
                                     </div>
                                 </a>
                             </div>
-                            <div class="<?php echo $colClass ?>">
+                            <div class="col-md-6">
                                 <a class="thumbnail" title="<?php _e('My notifications'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'message', 'controller' => 'notify', 'action' => 'index'))); ?>">
                                     <i class="fa fa-bell fa-3x"></i>
                                     <div class="caption">
@@ -81,7 +80,7 @@ $this->sticky();
                         <?php } ?>
 
                         <?php if (Pi::service('module')->isActive('event')) { ?>
-                            <div class="<?php echo $colClass ?>">
+                            <div class="col-md-6">
                                 <a class="thumbnail" title="<?php _e('My events'); ?>" href="<?php echo Pi::url($this->url('event', array('module' => 'event', 'controller' => 'manage', 'action' => 'index'))); ?>">
                                     <i class="fa fa-calendar fa-3x"></i>
                                     <div class="caption">
@@ -93,7 +92,7 @@ $this->sticky();
 
                         <?php if (Pi::service('module')->isActive('order')) { ?>
                             <?php $orderConfig = Pi::service('registry')->config->read('order'); ?>
-                            <div class="<?php echo $colClass ?>">
+                            <div class="col-md-6">
                                 <a class="thumbnail" title="<?php _e('My orders'); ?>" href="<?php echo Pi::url($this->url('order', array('module' => 'order', 'controller' => 'index', 'action' => 'index'))); ?>">
                                     <i class="fa fa-shopping-basket fa-3x"></i>
                                     <div class="caption">
@@ -103,7 +102,7 @@ $this->sticky();
                             </div>
                             <?php if ($orderConfig['credit_active']) { ?>
                                 <?php $credit = Pi::api('credit', 'order')->getCredit($uid); ?>
-                                <div class="<?php echo $colClass ?>">
+                                <div class="col-md-6">
                                     <a class="thumbnail" title="<?php _e('My credit'); ?>" href="<?php echo Pi::url($this->url('order', array('module' => 'order', 'controller' => 'credit', 'action' => 'index'))); ?>">
                                         <i class="fa fa-archive fa-3x"></i>
                                         <div class="caption">
@@ -115,7 +114,7 @@ $this->sticky();
                         <?php } ?>
 
                         <?php if (Pi::service('module')->isActive('favourite')) { ?>
-                            <div class="<?php echo $colClass ?>">
+                            <div class="col-md-6">
                                 <a class="thumbnail" title="<?php _e('My favorites'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'favourite', 'controller' => 'index', 'action' => 'index'))); ?>">
                                     <i class="fa fa-star fa-3x"></i>
                                     <div class="caption">
@@ -126,7 +125,7 @@ $this->sticky();
                         <?php } ?>
 
                         <?php if (Pi::service('module')->isActive('video')) { ?>
-                            <div class="<?php echo $colClass ?>">
+                            <div class="col-md-6">
                                 <a class="thumbnail" title="<?php _e('My videos'); ?>" href="<?php echo Pi::url($this->url('video', array('module' => 'video', 'controller' => 'channel', 'action' => 'index'))); ?>">
                                     <i class="fa fa-video-camera fa-3x"></i>
                                     <div class="caption">
@@ -138,7 +137,7 @@ $this->sticky();
 
                         <?php if (Pi::service('module')->isActive('support')) { ?>
                             <?php $support = _number(Pi::api('ticket', 'support')->getCount($uid)); ?>
-                            <div class="<?php echo $colClass ?>">
+                            <div class="col-md-6">
                                 <a class="thumbnail" title="<?php _e('My support tickets'); ?>" href="<?php echo Pi::url($this->url('support', array('module' => 'support', 'controller' => 'index', 'action' => 'index'))); ?>">
                                     <i class="fa fa-life-ring fa-3x"></i>
                                     <div class="caption">
