@@ -661,12 +661,20 @@ class RegisterController extends ActionController
         $template   = Pi::service('mail')->template($template, $params);
         $subject    = $template['subject'];
         $body       = $template['body'];
-        $type       = $template['format'];
+        $typeMail       = $template['format'];
 
         // Send email
-        $message    = Pi::service('mail')->message($subject, $body, $type);
+        $message    = Pi::service('mail')->message($subject, $body, $typeMail);
         $message->addTo($data['email']);
         $result     = Pi::service('mail')->send($message);
+        
+        // Module message : Notification
+        if ($type == 'success' || $type == 'admin') {
+            Pi::api('api', 'message')->notify(
+                $data['uid'], $template['body'], $template['subject']
+            );
+        }
+        
 
         return $result;
     }
