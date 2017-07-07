@@ -983,7 +983,14 @@ class IndexController extends ActionController
             $type       = $template['format'];
 
             //Pi::user()->data()->set($id, 'noti-email', $template); continue;
-
+            
+            // Module message : Notification
+            if (Pi::service('module')->isActive('message')) {
+                Pi::api('api', 'message')->notify(
+                    $id, $template['body'], $template['subject']
+                );
+            }
+                
             // Send email
             $message    = Pi::service('mail')->message($subject, $body, $type);
             $message->addTo($data['email']);

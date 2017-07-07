@@ -237,38 +237,14 @@ class RegisterController extends ActionController
         );
 
         $activationMode = $this->config('register_activation');
-        if ('auto' == $activationMode) {
-            if (Pi::user()->config('register_notification')) {
-                $this->sendNotification('success', array(
-                    'email'     => $userRow['email'],
-                    'uid'       => $uid,
-                    'identity'  => $userRow['identity'],
-                    'name'      => $userRow['name'],
-                    
-                ));
-            }
-        // Activated by admin
-        } elseif ('admin' == $activationMode) {
-            if (Pi::user()->config('register_notification')) {
-                $this->sendNotification('admin', array(
-                    'email'     => $userRow['email'],
-                    'uid'       => $uid,
-                    'identity'  => $userRow['identity'],
-                    'name'      => $userRow['name'],
-                    
-                ));
-            }
-        // Activated by email
-        } elseif ('email' == $activationMode) {
-            $status = $this->sendNotification('activation', array(
-                'email'     => $userRow['email'],
-                'uid'       => $uid,
-                'identity'  => $userRow['identity'],
-                'name'      => $userRow['name'],
-                
-            ));
+       
+        $status = $this->sendNotification('success', array(
+            'email'     => $userRow['email'],
+            'uid'       => $uid,
+            'identity'  => $userRow['identity'],
+            'name'      => $userRow['name'],
             
-        }
+        ));
         
         $this->view()->assign(array(
             'result'   => $result,
@@ -685,12 +661,22 @@ class RegisterController extends ActionController
         $template   = Pi::service('mail')->template($template, $params);
         $subject    = $template['subject'];
         $body       = $template['body'];
-        $type       = $template['format'];
+        $typeMail       = $template['format'];
 
         // Send email
-        $message    = Pi::service('mail')->message($subject, $body, $type);
+        $message    = Pi::service('mail')->message($subject, $body, $typeMail);
         $message->addTo($data['email']);
         $result     = Pi::service('mail')->send($message);
+        
+        // Module message : Notification
+        if (Pi::service('module')->isActive('message')) {
+            if ($type == 'success' || $type == 'admin') {
+                Pi::api('api', 'message')->notify(
+                    $data['uid'], $template['body'], $template['subject']
+                );
+            }
+        }
+        
 
         return $result;
     }
