@@ -669,10 +669,12 @@ class RegisterController extends ActionController
         $result     = Pi::service('mail')->send($message);
         
         // Module message : Notification
-        if ($type == 'success' || $type == 'admin') {
-            Pi::api('api', 'message')->notify(
-                $data['uid'], $template['body'], $template['subject']
-            );
+        if (Pi::service('module')->isActive('message')) {
+            if ($type == 'success' || $type == 'admin') {
+                Pi::api('api', 'message')->notify(
+                    $data['uid'], $template['body'], $template['subject']
+                );
+            }
         }
         
 
