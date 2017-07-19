@@ -35,6 +35,10 @@ class PasswordController extends ActionController
     {
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
+        $view = Pi::service('view');
+        $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-bootstrap.min.js', 'user'));
+        $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-boostrap.init.js', 'user'));
+
         $uid = Pi::user()->getId();
 
         $result = array(
@@ -88,6 +92,55 @@ class PasswordController extends ActionController
         // Get side nav items
         //$groups = Pi::api('group', 'user')->getList();
         //$user   = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
+
+        $piConfig = Pi::user()->config();
+        $minChars = $piConfig['password_min'];
+        $maxChars = $piConfig['password_max'];
+        $strenghtenPassword = $piConfig['strenghten_password'];
+
+        $showPasswordLabel = __('Show my password');
+
+        $wordLength = __("Your password is too short");
+        $wordNotEmail = __("Do not use your email as your password");
+        $wordSimilarToUsername = __("Your password cannot contain your username");
+        $wordTwoCharacterClasses = __("Use different character classes");
+        $wordRepetitions = __("Too many repetitions");
+        $wordSequences = __("Your password contains sequences");
+        $errorList = __("Errors:");
+        $veryWeak = __("Very week");
+        $weak = __("Week");
+        $normal = __("Normal");
+        $medium = __("Medium");
+        $strong = __("Strong");
+        $veryStrong = __("Very Strong");
+
+        $message = __("Password must contain at lease one uppercase letter, one lowercase letter and one digit character");
+
+        $script = <<<HTML
+        
+        <label>{$message}</label>
+<script>
+
+    var minChar = {$minChars};
+    
+    var wordLength = "{$wordLength}";
+    var wordNotEmail = "{$wordNotEmail}";
+    var wordSimilarToUsername = "{$wordSimilarToUsername}";
+    var wordTwoCharacterClasses = "{$wordTwoCharacterClasses}";
+    var wordRepetitions = "{$wordRepetitions}";
+    var wordSequences = "{$wordSequences}";
+    var errorList = "{$errorList}";
+    var veryWeak = "{$veryWeak}";
+    var weak = "{$weak}";
+    var normal = "{$normal}";
+    var medium = "{$medium}";
+    var strong = "{$strong}";
+    var veryStrong = "{$veryStrong}";
+</script>
+HTML;
+
+        $form->get('credential')
+            ->setAttribute('description', $script);
 
         $this->view()->assign(array(
             'form'      => $form,

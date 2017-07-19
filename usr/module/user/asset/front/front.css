@@ -343,6 +343,7 @@
   cursor: move;
 }
 
+[name="credential"] + .progress,
 #credential + .progress {
   margin:10px 0 5px;
 }
