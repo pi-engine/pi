@@ -79,12 +79,18 @@ class Comment extends AbstractService
         } else {
             $type = '';
         }
+        
+        $review = false;
+        if (is_array($params) && isset($params['review'])) {
+            $review = $params['review'];
+        } 
 
-        if ('js' == $type) {
+        if (0 && 'js' == $type) {
             $callback = Pi::service('url')->assemble('comment', array(
                 'module'        => 'comment',
                 'controller'    => 'index',
                 'action'        => 'load',
+                'review'        => $review
             ));
             $content =<<<EOT
             <a id="pi-comment-lead-anchor" style="display: block;
@@ -106,6 +112,8 @@ class Comment extends AbstractService
 </script>
 EOT;
         } else {
+            $params['uri'] = $_SERVER['REQUEST_URI'];
+             
             $content = $this->loadContent($params);
             $content = '<div id="pi-comment-lead">' . $content . '</div>';
         }
@@ -128,14 +136,16 @@ EOT;
             $routeMatch = Pi::service('url')->match($uri);
             $params = array('uri' => $uri);
         } else {
-            $routeMatch = Pi::engine()->application()->getRouteMatch();
             $params = (array) $params;
-            if (isset($params['options'])) {
-                $options = $params['options'];
-                unset($params['options']);
-            }
+            $uri = $params['uri'];
+            $routeMatch = Pi::service('url')->match($uri);
+            $review = $params['review'];
         }
+        
         $params = array_replace($params, $routeMatch->getParams());
+        $options = array(
+            'review' => $review
+        );
         $data = Pi::api('api', 'comment')->load($params, $options);
         if (!$data) {
             return;
@@ -144,9 +154,48 @@ EOT;
             ? $params['uri']
             : Pi::service('url')->getRequestUri();
         $data['uid'] = Pi::user()->getId();
+        $data['review'] = $params['review'];        
+        
         $template = 'comment:front/comment-lead';
         $result = Pi::service('view')->render($template, $data);
 
+        return $result;
+    }
+
+    public function loadComments($params = null)
+    {
+        
+        $options = array();
+        if (is_string($params)) {
+            $uri = $params;
+            $routeMatch = Pi::service('url')->match($uri);
+            $params = array('uri' => $uri);
+        } else {
+            $params = (array) $params;
+            $uri = $params['uri'];
+            $routeMatch = Pi::service('url')->match($uri);
+            $review = $params['review'];
+        }
+        
+        $params = array_replace($params, $routeMatch->getParams());
+        $options = array(
+            'review' => $review,
+            'page' => $params['page']
+        );
+
+        $data = Pi::api('api', 'comment')->load($params, $options);
+        if (!$data) {
+            return;
+        }
+        
+        $data['uri'] = isset($params['uri'])
+            ? $params['uri']
+            : Pi::service('url')->getRequestUri();
+        $data['uid'] = Pi::user()->getId();
+        $data['review'] = $params['review'];        
+        
+        $template = 'comment:front/partial/paginate-comments';
+        $result = Pi::service('view')->render($template, $data);
         return $result;
     }
 
@@ -176,13 +225,13 @@ EOT;
      *
      * @return bool|PostForm
      */
-    public function getForm(array $data = array())
+    public function getForm(array $data = array(), array $options = array())
     {
         if (!$this->active()) {
             return false;
         }
 
-        return Pi::api('api', 'comment')->getForm($data);
+        return Pi::api('api', 'comment')->getForm($data, $options);
     }
 
     /**
