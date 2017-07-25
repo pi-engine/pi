@@ -671,6 +671,7 @@ class RegisterController extends ActionController
         // Module message : Notification
         if (Pi::service('module')->isActive('message')) {
             if ($type == 'success' || $type == 'admin') {
+                $template   = Pi::service('mail')->template("notify-register-success-html", $params);
                 Pi::api('api', 'message')->notify(
                     $data['uid'], $template['body'], $template['subject']
                 );

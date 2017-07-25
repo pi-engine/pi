@@ -986,6 +986,7 @@ class IndexController extends ActionController
             
             // Module message : Notification
             if (Pi::service('module')->isActive('message')) {
+                $template   = Pi::service('mail')->template("notify-register-success-html", $params);
                 Pi::api('api', 'message')->notify(
                     $id, $template['body'], $template['subject']
                 );
