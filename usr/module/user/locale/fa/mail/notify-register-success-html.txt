@@ -1,0 +1,18 @@
+[comment]Pi account register success notification[/comment]
+
+[format]html[/format]
+
+[subject]ثبت نام موفق در %site_name%[/subject]
+
+[body]
+<div style="direction: rtl;">
+<p style="margin-bottom: 5px"><strong>%username%</strong> عزیز:</p>
+
+<p style="margin-top: 5px">حساب کاربری شما در وب سایت %site_adminname% ایجاد گردیده است</p>
+<p style="margin-top: 5px"><a href="%login_url%">برای ورود به سایت کلیک نمایید</a></p>
+
+<p style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+</p>
+</div>
+[/body]
