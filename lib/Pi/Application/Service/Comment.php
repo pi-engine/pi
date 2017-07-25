@@ -139,7 +139,7 @@ EOT;
             $params = (array) $params;
             $uri = $params['uri'];
             $routeMatch = Pi::service('url')->match($uri);
-            $review = $params['review'];
+            $review = isset($params['review']) ? $params['review'] : false;
         }
         
         $params = array_replace($params, $routeMatch->getParams());
@@ -341,13 +341,13 @@ EOT;
      *
      * @return array|bool
      */
-    public function getList($condition, $limit, $offset = 0, $order = '')
+    public function getList($type, $condition, $limit, $offset = 0, $order = '')
     {
         if (!$this->active()) {
             return false;
         }
 
-        return Pi::api('api', 'comment')->getList($condition, $limit, $offset, $order);
+        return Pi::api('api', 'comment')->getList($type, $condition, $limit, $offset, $order);
     }
 
     /**
@@ -585,6 +585,54 @@ EOT;
         return $result;
     }
 
+    public function clearPagination($id = null, $isRoot = false)
+    {
+        $ids = (array) $id;
+        foreach ($ids as $id) {
+            if (!$isRoot) {
+                $post = $this->getPost($id);
+                if ($post) {
+                    $id = $post['root'];
+                } else {
+                    $id = 0;
+                }
+            }
+            if ($id) {
+                $limit = Pi::config('leading_limit', 'comment') ?: 5;
+                
+                $offset = 0; 
+                $key = $id . '-' . \Module\Comment\Model\Post::TYPE_REVIEW . '-' . $limit . $offset;
+                while($this->loadCache($key) != array())
+                {
+                    // Clear cache for leading comments
+                    $this->clearCache($key, true);
+                    
+                    // Insert timeline item
+                    Pi::service('comment')->timeline($key);
+                    
+                    $offset += $limit;
+                    $key = $id . '-' . $limit . $offset;
+                }
+                
+                $offset = 0; 
+                $key = $id . '-' . \Module\Comment\Model\Post::TYPE_COMMENT . '-' . $limit . $offset;
+                while($this->loadCache($key) != array())
+                {
+                    // Clear cache for leading comments
+                    $this->clearCache($key, true);
+                    
+                    // Insert timeline item
+                    Pi::service('comment')->timeline($key);
+                    
+                    $offset += $limit;
+                    $key = $id . '-' . $limit . $offset;
+                }
+            }
+        }
+    
+    }
+
+
     /**
      * Insert user timeline for a new comment
      *
@@ -603,7 +651,7 @@ EOT;
             'post'      => $id,
         )), true);
         $params = array(
-            'uid'       => $uid,
+            'uid'       => $uid,      
             'message'   => $message,
             'timeline'  => 'new_comment',
             'time'      => time(),
