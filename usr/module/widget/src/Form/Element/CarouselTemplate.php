@@ -24,7 +24,7 @@ class CarouselTemplate extends MediaTemplate
         $styles = array(
             $this->templateDir . '/bootstrap'           =>  _a('Bootstrap slide') . ' (bootstrap)',
             $this->templateDir . '/bootstrap-twocol'    =>  _a('Bootstrap two columns') . ' (bootstrap-twocol)',
-            $this->templateDir . '/jcarousel'           =>  _a('jQuery riding Carousel') . ' (jcarousel)',
+            $this->templateDir . '/owl-carousel'        =>  _a('Owl Carousel 2') . ' (owl-carousel)',
             $this->templateDir . '/parallax'            =>  _a('Parallax Content Slider') . ' (parallax)',
         );
         $styles += $this->getList();
