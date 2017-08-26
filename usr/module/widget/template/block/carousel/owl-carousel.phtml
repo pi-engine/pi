@@ -1,0 +1,72 @@
+<?php
+$options    = (array) $block['options'];
+$items      = $block['items'];
+$class      = isset($block['class']) ? $block['class'] : '';
+$target     = empty($options['target_new']) ? '_self' : '_blank';
+$number     = empty($options['max_rows']) ? 3 : $options['max_rows'];
+$carouselId = uniqid('carousel-');
+
+// Set style
+$imgStyle   = '';
+if (!empty($options['width'])) {
+    $imgStyle .= 'width: '  . $options['width'] . 'px;';
+}
+if (!empty($options['height'])) {
+    $imgStyle .= 'height: '  . $options['height'] . 'px;';
+}
+if (!empty($imgStyle)) {
+    $imgStyle = sprintf('style="%s" ', $imgStyle);
+}
+
+// Get local
+$locale = Pi::service('i18n')->getLocale();
+$rtl = (in_array($locale, array('fa', 'ar'))) ? 'true' : 'false';
+//$loop = (in_array($locale, array('fa', 'ar'))) ? 'false' : 'true';
+$loop = 'true';
+
+// Set arrow
+$iconOwlLeft = '<i class="fa fa-angle-left"></i>';
+$iconOwlRight = '<i class="fa fa-angle-right"></i>';
+
+// Set srcipt 2
+$script = <<<'EOT'
+    $(document).ready(function($) {
+		$('#%s').owlCarousel({
+    		loop: %s,
+    		lazyLoad:true,
+    		rtl:%s,
+    		margin:3,
+    		nav:true,
+    		autoplay:true,
+    		dots:false,
+    		autoplayTimeout:6000,
+    		autoplayHoverPause:true,
+    		navText: ['%s', '%s'],
+    		responsive:{
+        		0:{items:2},
+        		600:{items:3},
+        		1000:{items:%s}
+    		}
+		})
+    });
+EOT;
+$script = sprintf($script, $carouselId, $loop, $rtl, $iconOwlLeft, $iconOwlRight, $number);
+
+// Load files
+$this->jQuery(array(
+    'extension/owl.carousel.min.js',
+    'extension/owl.carousel.css',
+    'extension/owl.theme.default.css',
+));
+$this->footScript()->appendScript($script);
+?>
+<div class="widget-owl-carousel">
+    <div id="<?php echo $carouselId; ?>" class="owl-carousel owl-theme text-center clearfix <?php echo $class; ?>">
+        <?php foreach($items as $item) { ?>
+            <?php $href = !empty($item['link']) ? $item['link'] : 'javascript:void(0)'; ?>
+            <a href="<?php echo $href; ?>" target="<?php echo $target; ?>">
+                <img src="<?php echo $item['image']; ?>" <?php echo $imgStyle; ?> />
+            </a>
+        <?php } ?>
+    </div>
+</div>
