@@ -154,8 +154,8 @@ EOT;
             ? $params['uri']
             : Pi::service('url')->getRequestUri();
         $data['uid'] = Pi::user()->getId();
-        $data['review'] = $params['review'];        
-        
+        $data['review'] = isset($params['review']) ? $params['review'] : false;        
+
         $template = 'comment:front/comment-lead';
         $result = Pi::service('view')->render($template, $data);
 
