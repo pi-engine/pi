@@ -2,9 +2,11 @@
 $options    = (array) $block['options'];
 $items      = $block['items'];
 $class      = isset($block['class']) ? $block['class'] : '';
-$target     = empty($options['target_new']) ? '_self' : '_blank';
+$target     = $options['target_new'] ? '_self' : '_blank';
 $number     = empty($options['max_rows']) ? 3 : $options['max_rows'];
 $carouselId = uniqid('carousel-');
+$locale     = Pi::service('i18n')->getLocale();
+
 
 // Set style
 $imgStyle   = '';
@@ -19,16 +21,14 @@ if (!empty($imgStyle)) {
 }
 
 // Get local
-$locale = Pi::service('i18n')->getLocale();
 $rtl = (in_array($locale, array('fa', 'ar'))) ? 'true' : 'false';
-//$loop = (in_array($locale, array('fa', 'ar'))) ? 'false' : 'true';
 $loop = 'true';
 
 // Set arrow
-$iconOwlLeft = '<i class="fa fa-angle-left"></i>';
-$iconOwlRight = '<i class="fa fa-angle-right"></i>';
+$iconOwlLeft = in_array($locale, array('fa', 'ar'))  ? '<i class="fa fa-angle-right"></i>' : '<i class="fa fa-angle-left"></i>';
+$iconOwlRight = in_array($locale, array('fa', 'ar')) ? '<i class="fa fa-angle-left"></i>' : '<i class="fa fa-angle-right"></i>';
 
-// Set srcipt 2
+// Set script
 $script = <<<'EOT'
     $(document).ready(function($) {
 		$('#%s').owlCarousel({

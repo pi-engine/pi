@@ -85,4 +85,12 @@ return array(
         'filter'        => 'int',
         'value'         => 0,
     ),
+
+    'circle_image'        => array(
+        'title'         => _t('Circle image'),
+        'description'   => _t('Make images circle'),
+        'edit'          => 'checkbox',
+        'filter'        => 'int',
+        'value'         => 0,
+    ),
 );
