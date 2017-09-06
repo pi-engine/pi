@@ -58,8 +58,11 @@ class Permission extends AbstractResource
         if (!isset($this->options['check_close'])
             || false !== $this->options['check_close']
         ) {
-            if (Pi::config('site_close')) {
-                $this->denyAccess($e);
+            if (Pi::config('site_close')
+                && !Pi::service('permission')->isAdmin()
+            ) {
+                $message = __('The website is in maintenance - we are back in a couple of minutes !');
+                $this->denyAccess($e, $message);
                 return;
             }
         }
@@ -159,13 +162,14 @@ class Permission extends AbstractResource
      * Set denied error
      *
      * @param MvcEvent $e
+     * @param $message
      * @return void
      */
-    protected function denyAccess(MvcEvent $e)
+    protected function denyAccess(MvcEvent $e, $message = true)
     {
         $statusCode = Pi::service('user')->getUser()->isGuest()
             ? 401 : 403;
         $e->getResponse()->setStatusCode($statusCode);
-        $e->setError(true);
+        $e->setError($message);
     }
 }
