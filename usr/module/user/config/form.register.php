@@ -1,15 +1,15 @@
 <?php
 /**
-* Pi Engine (http://pialog.org)
-*
-* @link            http://code.pialog.org for the Pi Engine source repository
-* @copyright       Copyright (c) Pi Engine http://pialog.org
-* @license         http://pialog.org/license.txt BSD 3-Clause License
-*/
+ * Pi Engine (http://pialog.org)
+ *
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
+ */
 
 /**
-* User register form config
-*/
+ * User register form config
+ */
 
 $termEnable = Pi::user()->config('register_term');
 $termUrl = Pi::user()->config('register_term_url');
@@ -28,7 +28,7 @@ $captchaElement = array(
     'element' => Pi::service('form')->getReCaptcha($captchaMode)
 );
 
-return array(
+$form = array(
     // Use user module field
     'email',
     'name',
@@ -84,3 +84,9 @@ return array(
         ),
     ),
 );
+
+if ($captchaMode == 0) {
+    unset($form['captcha']);
+}
+
+return $form;
