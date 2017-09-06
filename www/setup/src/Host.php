@@ -94,7 +94,8 @@ class Host
         foreach (array_keys($writablePaths) as $key) {
             $this->permErrors[$key] = false;
         }
-        $paths = $this->wizard->getPersist($this->persist);
+        //$paths = $this->wizard->getPersist($this->persist);
+        $paths = '';
         // Load from persistent
         if ($paths) {
             foreach ($this->paths as $key => &$path) {
@@ -104,19 +105,19 @@ class Host
                         ? $paths[$key]['url'] : '',
                 );
             }
-        // Initialize
+            // Initialize
         } else {
             // Initialize www path and URI
             $request = $this->wizard->getRequest();
             $baseUrl = $request->getScheme() . '://'
-                     . $request->getHttpHost() . $request->getBaseUrl();
+                . $request->getHttpHost() . $request->getBaseUrl();
             $this->paths['www'] = array(
                 'path'  => dirname($this->wizard->getRoot()),
                 'url'   => dirname($baseUrl)
             );
 
             foreach ($this->wizard->getConfig('paths') as $key => $inits) {
-                // Initialize path
+                /* // Initialize path
                 foreach ((array) $inits['path'] as $init) {
                     if ($init{0} === '%') {
                         list($idx, $loc) = explode('/', $init, 2);
@@ -148,7 +149,39 @@ class Host
                     }
                     $this->paths[$key]['url'] = $init;
                     //if (0 <= $this->checkUrl($key)) break;
+                } */
+
+                // Initialize path
+                foreach ((array) $inits['path'] as $init) {
+                    if ($init{0} === '%') {
+                        list($idx, $loc) = explode('/', $init, 2);
+                        $idx = substr($idx, 1);
+                        if (isset($this->paths[$idx]['path'])) {
+                            $init = $this->paths[$idx]['path'] . '/' . $loc;
+                        }
+                    } else {
+                        $init = $this->paths['www']['path'] . '/' . $init;
+                    }
+                    $path = preg_replace('/\w+\/\.\.\//', '', $init);
+                    if (is_dir($path . '/')) break;
                 }
+
+                // Initialize URI
+                foreach ((array) $inits['url'] as $init) {
+                    if ($init{0} === '%') {
+                        list($idx, $loc) = explode('/', $init, 2);
+                        $idx = substr($idx, 1);
+                        if (isset($this->paths[$idx]['url'])) {
+                            $init = $this->paths[$idx]['url'] . '/' . $loc;
+                        }
+                    }
+                    //if (0 <= $this->checkUrl($key)) break;
+                }
+
+                $this->paths[$key] = array(
+                    'path' => $path,
+                    'url' => $init,
+                );
             }
 
             $this->wizard->setPersist($this->persist, $this->paths);
@@ -412,7 +445,7 @@ class Host
 
         if ($url{0} != '/') {
             $url = (isset($this->paths['www']['url'])
-                 ? $this->paths['www']['url'] : '') . '/' . $url;
+                    ? $this->paths['www']['url'] : '') . '/' . $url;
         } else {
             $proto  = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
                 ? 'https' : 'http';
@@ -458,7 +491,7 @@ class Host
                     // Content-Type might not be detected correctly by CURL
                     // Thus return null instead of false if not matched
                     $ret = (strpos($contentType, $mimeType) !== false)
-                         ? true : null;
+                        ? true : null;
                 } else {
                     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                     $ret = ($httpCode == 200) ? true : false;
@@ -481,11 +514,11 @@ class Host
             $result = @get_headers($url, 1);
             // Check if HTTP code is 200
             $ret = preg_match('#HTTP/[^\s]+[\s]200([\s]?)#i', $result[0],
-                              $matches);
+                $matches);
             // Check content type match if specified
             if ($ret && !empty($contentType)) {
                 $ret = strpos($result['Content-Type'], $contentType) !== false
-                     ? true : false;
+                    ? true : false;
             }
         }
 
@@ -510,7 +543,7 @@ class Host
                     if (empty($path[$item])) continue;
                     foreach ($path[$item] as $child) {
                         $this->setWritePermission($parent . '/' . $item,
-                                                  $child, $error);
+                            $child, $error);
                     }
                 } else {
                     $error[$parent . '/' . $path[$item]] =
@@ -559,10 +592,10 @@ class Host
                     continue;
                 }
                 $status = $status * $this->makeWritable(
-                    $fileinfo->getPathname(),
-                    $recurse,
-                    $create
-                );
+                        $fileinfo->getPathname(),
+                        $recurse,
+                        $create
+                    );
                 if (!$status) {
                     break;
                 }
