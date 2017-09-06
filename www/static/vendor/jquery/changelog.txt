@@ -1,6 +1,13 @@
 
 jQuery/jQueryUI changelog
 
+September 6th, 2017
+================
+1. Upgrade jQuery to 3.2.1
+2. Upgrade jQueryUI to 1.11.4
+3. Upgrade Owl carousel to 2.2.1
+4. Upgrade Modernizr to 3.5.0
+
 June 22th, 2016
 ================
 1. Upgrade jQuery to 1.12.4 (last version of 1.x branch, 3x is out !)
