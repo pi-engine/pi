@@ -325,9 +325,7 @@ form .icon-question-sign {
 }
 
 /* header */
-.pi-header {
-    border-top: 2px solid #ddd;
-}
+.pi-header {}
 
 .pi-header h1,
 .pi-header h2 {
@@ -340,6 +338,10 @@ form .icon-question-sign {
     margin-bottom: 0;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    border-radius: 0;
+}
+
+.pi-header .navbar-inverse {
     border-radius: 0;
 }
 
@@ -363,7 +365,6 @@ form .icon-question-sign {
 .pi-footer {
     -webkit-box-shadow: 0px -2px 5px rgba(0, 0, 0, .05);
     box-shadow: 0px -2px 5px rgba(0, 0, 0, .05);
-    border-bottom: 2px solid #ddd;
     background-color: #f8f8f8;
     padding: 15px;
     text-align: center;
