@@ -1,39 +1,43 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2017-04-18 20:20+0430\n"
-"PO-Revision-Date: 2017-04-18 20:22+0430\n"
+"POT-Creation-Date: 2017-09-06 15:19+0430\n"
+"PO-Revision-Date: 2017-09-06 15:20+0430\n"
 "Last-Translator: \n"
 "Language-Team: Pi Engine\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Poedit-KeywordsList: __;_t;_e\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: usr/editor\n"
 "X-Poedit-SearchPath-1: lib/Pi\n"
 
+#: lib/Pi/Application/Bootstrap/Resource/Permission.php:64
+msgid "The website is in maintenance - we are back in a couple of minutes !"
+msgstr "وب سایت برای به روز رسانی فنی بسته است - لطفا بعدا مراجعه فرمایید !"
+
 #: lib/Pi/Application/Installer/Theme.php:348
 msgid "Theme updated successfully."
-msgstr "به روز رسانی قالب موفقیت آمیز بود"
+msgstr "به روز رسانی قالب موفقیت آمیز بود."
 
 #: lib/Pi/Application/Installer/Theme.php:355
 msgid "Theme failed to update."
-msgstr "خطا در به روز رسانی قالب"
+msgstr "خطا در به روز رسانی قالب."
 
 #: lib/Pi/Application/Installer/Theme.php:357
 msgid "Theme upgraded successfully."
-msgstr "به روز رسانی قابل موفقیت آمیز بود"
+msgstr "به روز رسانی قابل موفقیت آمیز بود."
 
 #: lib/Pi/Application/Installer/Theme.php:362
 msgid "Theme asset publish failed."
-msgstr "خطا در انتشار asset قالب"
+msgstr "خطا در انتشار asset قالب."
 
 #: lib/Pi/Application/Service/Comment.php:552
 msgid "Posted a new comment."
-msgstr "ارسال نظر جدید"
+msgstr "ارسال نظر جدید."
 
 #: lib/Pi/Application/Service/Editor.php:83
 msgid "Pi Default Editor"
@@ -103,7 +107,7 @@ msgstr ""
 
 #: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
 msgid "A record with the supplied identity could not be found."
-msgstr "هیچ رکوردی برای هویت انتخاب شده یافت نشد"
+msgstr "هیچ رکوردی برای هویت انتخاب شده یافت نشد."
 
 #: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
 msgid "More than one record matches the supplied identity."
@@ -115,7 +119,7 @@ msgstr "اعتبار عرضه شده نامعتبر است."
 
 #: lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
 msgid "Authentication successful."
-msgstr "تایید سندیت موفقیت آمیز بود"
+msgstr "تایید سندیت موفقیت آمیز بود."
 
 #: lib/Pi/Feed/Model.php:200
 #, php-format
@@ -294,11 +298,11 @@ msgstr "برای تغییر تصویر کلیک کنید"
 msgid "Required"
 msgstr "ضروری"
 
-#: lib/Pi/Form/View/Helper/Form.php:483
+#: lib/Pi/Form/View/Helper/Form.php:485
 msgid "Close"
 msgstr "بستن"
 
-#: lib/Pi/Form/View/Helper/Form.php:484
+#: lib/Pi/Form/View/Helper/Form.php:486
 msgid "Form"
 msgstr "فرم"
 
@@ -316,7 +320,7 @@ msgstr "ماه"
 
 #: lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."
-msgstr "اکشن مورد نظر یافت نشد"
+msgstr "اکشن مورد نظر یافت نشد."
 
 #: lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
 msgid "Login"
@@ -333,7 +337,7 @@ msgstr "مهمان"
 
 #: lib/Pi/View/Helper/Conditions.php:39
 msgid "New terms and conditions are available. Please accept them."
-msgstr "شرایط و مقررات جدید به روز شد ، لطفا آن را مطالعه و تایید فرمایید"
+msgstr "شرایط و مقررات جدید به روز شد ، لطفا آن را مطالعه و تایید فرمایید."
 
 #: lib/Pi/View/Helper/Conditions.php:40
 msgid "I agree"
@@ -343,11 +347,11 @@ msgstr "موافق ام"
 msgid "Read Term and conditions"
 msgstr "مطالعه شرایط و مقررات"
 
-#: lib/Pi/View/Helper/GoogleMap.php:208
+#: lib/Pi/View/Helper/GoogleMap.php:228
 msgid "Choose a location"
 msgstr "انتخاب مکان"
 
-#: lib/Pi/View/Helper/GoogleMap.php:209
+#: lib/Pi/View/Helper/GoogleMap.php:229
 msgid "View all"
 msgstr "نمایش همه"
 
@@ -358,7 +362,7 @@ msgstr "صفحه"
 
 #: lib/Pi/View/Helper/Tag.php:92
 msgid "Tags: "
-msgstr "برچسب ها :"
+msgstr "برچسب ها : "
 
 #~ msgid "Manager"
 #~ msgstr "مدیریت"
