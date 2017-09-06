@@ -325,8 +325,6 @@ form .icon-question-sign {
 }
 
 /* header */
-.pi-header {}
-
 .pi-header h1,
 .pi-header h2 {
     padding: 1px;
@@ -383,7 +381,7 @@ form .icon-question-sign {
 }
 
 /* userbar */
-.welcome-user-bar{
-    display:inline-block;
-    padding:15px;
+.welcome-user-bar {
+    display: inline-block;
+    padding: 15px;
 }
