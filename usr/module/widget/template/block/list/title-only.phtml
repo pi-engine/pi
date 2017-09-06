@@ -1,39 +1,36 @@
 <?php
 $options    = (array) $block['options'];
 $items      = (array) $block['items'];
-$target     = empty($options['target_new']) ? '_self' : '_blank';
+$target     = $options['target_new'] ? '_self' : '_blank';
 switch ($options['max_rows']) {
     case '0':
-        $rows = 'col-md-12 col-xs-12';
-        break;
-
     case '1':
         $rows = 'col-md-12 col-xs-12';
         break;
 
     case '2':
-        $rows = 'col-md-6 col-xs-6';
+        $rows = 'col-md-6 col-xs-12';
         break;
 
     case '3':
-        $rows = 'col-md-4 col-xs-4';
+        $rows = 'col-md-4 col-xs-12';
         break;
 
     case '4':
-        $rows = 'col-md-3 col-xs-4';
+        $rows = 'col-md-3 col-xs-12';
         break;
 
     case '6':
-        $rows = 'col-md-2 col-xs-3';
+        $rows = 'col-md-2 col-xs-12';
         break;
 
     case '12':
-        $rows = 'col-md-1 col-xs-2';
+        $rows = 'col-md-1 col-xs-12';
         break;
 }
 ?>
 <div class="widget-list widget-list-title">
-    <ul class="clearfix">
+    <div class="row clearfix">
         <?php foreach($items as $item) { ?>
             <li class="<?php echo $rows; ?>">
                 <?php if (!empty($item['link'])) { ?>

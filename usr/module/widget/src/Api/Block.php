@@ -126,6 +126,12 @@ class Block extends AbstractApi
             'filter'    => 'int',
             'value'     => $config['target_new'],
         );
+        $circleImage = array(
+            'title'     => _a('Circle image'),
+            'edit'      => 'checkbox',
+            'filter'    => 'int',
+            'value'     => $config['circle_image'],
+        );
         $configs = array(
             'list' => array(
                 'max_rows'      => $maxRows,
@@ -136,6 +142,7 @@ class Block extends AbstractApi
                 'height'        => $imgHeight($config['image_height_media']),
                 'max_rows'      => $maxRows,
                 'target_new'    => $targetNew,
+                'circle_image'  => $circleImage,
             ),
             'spotlight' => array(
                 'width'         => $imgWidth($config['image_width_spotlight']),

@@ -2,11 +2,13 @@
 $options    = (array) $block['options'];
 $items      = $block['items'] ?: array();
 $count      = count($items);
-$target     = empty($options['target_new']) ? '_self' : '_blank';
+$imgStyle   = '';
+$locale     = Pi::service('i18n')->getLocale();
+$target     = $options['target_new'] ? '_self' : '_blank';
 $ellipsis   = empty($options['max_rows'])
     ? 'pi-ellipsis'
     : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
-$imgStyle   = '';
+
 if (!empty($options['width'])) {
     $imgStyle .= 'width: '  . $options['width'] . 'px;';
 }
@@ -138,11 +140,11 @@ EOT;
             </div>
             <?php if ($count > 1) { ?>
                 <!-- Carousel nav -->
-                <a class="left carousel-control" href="#<?php echo $carouselId; ?>" data-slide="prev">
-                    <span class="icon-prev fa fa-chevron-left"></span>
+                <a class="<?php echo in_array($locale, array('fa', 'ar')) ? 'right' : 'left'; ?> carousel-control" href="#<?php echo $carouselId; ?>" data-slide="prev">
+                    <i class="icon-prev fa fa-chevron-left"></i>
                 </a>
-                <a class="right carousel-control" href="#<?php echo $carouselId; ?>" data-slide="next">
-                    <span class="icon-next fa fa-chevron-right"></span>
+                <a class="<?php echo in_array($locale, array('fa', 'ar')) ? 'left' : 'right'; ?> carousel-control" href="#<?php echo $carouselId; ?>" data-slide="next">
+                    <i class="icon-next fa fa-chevron-right"></i>
                 </a>
             <?php } ?>
         </div>

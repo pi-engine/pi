@@ -1,12 +1,11 @@
 <?php
 $options    = (array) $block['options'];
 $items      = (array) $block['items'];
-$target     = empty($options['target_new']) ? '_self' : '_blank';
+$target     = $options['target_new'] ? '_self' : '_blank';
+$circle     = $options['circle_image'] ? 'img-circle' : '';
+
 switch ($options['max_rows']) {
     case '0':
-        $rows = 'col-md-12 col-xs-12';
-        break;
-
     case '1':
         $rows = 'col-md-12 col-xs-12';
         break;
@@ -40,10 +39,10 @@ switch ($options['max_rows']) {
                     <div class="widget-list-media-single-image">
                         <?php if (!empty($item['link'])) { ?>
                             <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>" target="<?php echo $target; ?>">
-                                <img class="img-responsive" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
+                                <img class="img-responsive <?php echo $circle ?>" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
                             </a>
                         <?php } else { ?>
-                            <img class="img-responsive" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
+                            <img class="img-responsive <?php echo $circle ?>" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
                         <?php } ?>
                     </div>
                     <?php if (!empty($item['summary'])) { ?>
@@ -58,7 +57,7 @@ switch ($options['max_rows']) {
                                 <?php } ?>
                             </h4>
                         <?php } ?>
-                        <div class="widget-list-media-single-summery clearfix text-left">
+                        <div class="widget-list-media-single-summery clearfix">
                             <?php echo $item['summary']; ?>
                         </div>
                     <?php } ?>
