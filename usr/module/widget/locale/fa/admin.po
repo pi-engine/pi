@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2017-04-18 20:25+0430\n"
-"PO-Revision-Date: 2017-04-18 20:25+0430\n"
+"POT-Creation-Date: 2017-09-06 15:23+0430\n"
+"PO-Revision-Date: 2017-09-06 15:23+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Poedit-KeywordsList: _a;_t;__\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -84,6 +84,14 @@ msgstr "بازکردن در صفحه جدید"
 #: config/config.php:83
 msgid "Open new window for widgets not specified"
 msgstr "بازکردن در صفحه جدید برای ویجت هایی که تنظیم نشده باشند"
+
+#: config/config.php:90 src/Api/Block.php:130
+msgid "Circle image"
+msgstr "تصویر گرد"
+
+#: config/config.php:91
+msgid "Make images circle"
+msgstr "تصویر را به صورت گرد نمایش دهید"
 
 #: config/module.php:14
 msgid "Widget"
@@ -247,15 +255,15 @@ msgstr "%d ردیف"
 msgid "Open link in new window"
 msgstr "بازکردن لینک در صفحه جدید"
 
-#: src/Api/Block.php:150
+#: src/Api/Block.php:157
 msgid "Time interval (ms)"
 msgstr "زمان توقف ( میلی ثانیه )"
 
-#: src/Api/Block.php:156
+#: src/Api/Block.php:163
 msgid "Mouse event"
 msgstr "رویداد موس"
 
-#: src/Api/Block.php:157
+#: src/Api/Block.php:164
 msgid "Event to pause cycle"
 msgstr "رویداد برای توقف چرخه"
 
@@ -365,8 +373,8 @@ msgid "Bootstrap two columns"
 msgstr "اسلاید Bootstrap دو ستونه"
 
 #: src/Form/Element/CarouselTemplate.php:27
-msgid "jQuery riding Carousel"
-msgstr "اسلاید jCarousel"
+msgid "Owl Carousel 2"
+msgstr "Owl Carousel نسخه ۲"
 
 #: src/Form/Element/CarouselTemplate.php:28
 msgid "Parallax Content Slider"
@@ -537,6 +545,9 @@ msgstr "بلاک های ماژول"
 #: template/admin/widget-video.phtml:36
 msgid "Video (mp4) or audio (mp3) link"
 msgstr "لینک فایل ویدیو (mp4) یا صدا (mp3)"
+
+#~ msgid "jQuery riding Carousel"
+#~ msgstr "اسلاید jCarousel"
 
 #~ msgid "Video or audio link"
 #~ msgstr "لینک فایل ویدیو (.mp4) یا صدا (.mp3)"
