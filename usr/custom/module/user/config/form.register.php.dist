@@ -28,7 +28,7 @@ $captchaElement = array(
     'element' => Pi::service('form')->getReCaptcha($captchaMode)
 );
 
-return array(
+$form = array(
     // Use user module field
     'email',
     'name',
@@ -102,3 +102,9 @@ return array(
         ),
     ),
 );
+
+if ($captchaMode == 0) {
+    unset($form['captcha']);
+}
+
+return $form;
