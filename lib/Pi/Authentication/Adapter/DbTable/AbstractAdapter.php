@@ -302,7 +302,6 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
         return $this;
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -325,4 +324,62 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
         return parent::getResultRow($returnColumns, $omitColumns);
     }
 
+    /**
+     * {@inheritDoc}
+     * see authenticate function
+     */
+    public function oAuthAuthenticate()
+    {
+        $this->oAuthAuthenticateSetup();
+
+        $resultIdentities = $this->getQueryResult();
+
+        $authResult = $this->authenticateValidateResultSet($resultIdentities);
+        if ($authResult instanceof AuthenticationResult) {
+            return $authResult;
+        }
+
+        // At this point, ambiguity is already done.
+        // Loop, check and break on success.
+        foreach ($resultIdentities as $identity) {
+            $authResult = $this->oAuthAuthenticateValidateResult($identity);
+            if ($authResult->isValid()) {
+                break;
+            }
+        }
+
+        return $authResult;
+    }
+
+    /**
+     * {@inheritDoc}
+     * see authenticateSetup function
+     */
+    protected function oAuthAuthenticateSetup()
+    {
+        $exception = null;
+
+        if ($this->tableName == '') {
+            $exception = __('A table must be supplied for the DbTable authentication adapter.');
+        } elseif ($this->identityColumn == '') {
+            $exception = __('An identity column must be supplied for the DbTable authentication adapter.');
+        } elseif ($this->identity == '') {
+            $exception = __('A value for the identity was not provided prior to authentication with DbTable.');
+        }
+
+        // ToDo : Check is email
+
+        if (null !== $exception) {
+            throw new \RuntimeException($exception);
+        }
+
+        $this->authenticateResultInfo = array(
+            'code'      => AuthenticationResult::FAILURE,
+            'identity'  => $this->identity,
+            'messages'  => array(),
+            'data'      => array(),
+        );
+
+        return true;
+    }
 }
