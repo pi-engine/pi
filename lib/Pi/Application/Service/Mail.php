@@ -448,7 +448,7 @@ class Mail extends AbstractService
             $result['body'] = $content;
         }
         
-        $result['subject'] = html_entity_decode($result['subject']);
+        $result['subject'] = html_entity_decode(htmlspecialchars_decode($result['subject'], ENT_QUOTES));
         
         return $result;
     }

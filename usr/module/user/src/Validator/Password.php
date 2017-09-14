@@ -12,7 +12,7 @@ namespace Module\User\Validator;
 
 use Pi;
 use Zend\Validator\AbstractValidator;
-
+use Zend\Validator\EmailAddress as EmailAddressValidator;
 /**
  * Validator for username
  *
@@ -21,8 +21,12 @@ use Zend\Validator\AbstractValidator;
 
 class Password extends AbstractValidator
 {
+    const EMAIL = 'isEmail';
     const TOO_SHORT = 'stringLengthTooShort';
     const TOO_LONG  = 'stringLengthTooLong';
+    const UPPER  = 'upper';
+    const LOWER  = 'lower';
+    const DIGIT  = 'digit';
 
     protected $messageTemplates;
 
@@ -37,8 +41,12 @@ class Password extends AbstractValidator
     public function __construct()
     {
         $this->messageTemplates = array(
+            self::EMAIL => __("Password can't be an email address"),
             self::TOO_SHORT => __('Password is less than %min% characters long'),
             self::TOO_LONG  => __('Password is more than %max% characters long'),
+            self::UPPER  => __("Password must contain at least one uppercase letter"),
+            self::LOWER  => __("Password must contain at least one lowercase letter"),
+            self::DIGIT  => __("Password must contain at least one digit character")
         );
 
         parent::__construct();
@@ -48,6 +56,12 @@ class Password extends AbstractValidator
     {
         $this->setValue($value);
         $this->setConfigOption();
+
+        $validator = new EmailAddressValidator();
+        if ($validator->isValid($value)) {
+            $this->error(static::EMAIL);
+            return false;
+        }
 
         if (!empty($this->options['max'])
             && $this->options['max'] < strlen($value)
@@ -62,6 +76,26 @@ class Password extends AbstractValidator
             $this->min = $this->options['min'];
             $this->error(static::TOO_SHORT);
             return false;
+        }
+
+        $piConfig = Pi::user()->config();
+        $strenghtenPassword = $piConfig['strenghten_password'];
+
+        if($strenghtenPassword){
+            if (!preg_match('/[A-Z]/', $value)) {
+                $this->error(self::UPPER);
+                return false;
+            }
+
+            if (!preg_match('/[a-z]/', $value)) {
+                $this->error(self::LOWER);
+                return false;
+            }
+
+            if (!preg_match('/\d/', $value)) {
+                $this->error(self::DIGIT);
+                return false;
+            }
         }
 
         return true;

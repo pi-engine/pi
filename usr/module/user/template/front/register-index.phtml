@@ -18,7 +18,7 @@ if (!empty(Pi::user()->config('register_description'))) {
                 <?php echo _escape($result['message']); ?>
             </div>
         <?php } ?>
-        <div class="row clearfix">
+        <div class="row clearfix loginFormWrapper">
             <?php if (!empty($description)) { ?>
                 <div class="col-md-4 col-sm-5 col-xs-12">
                     <?php echo $description; ?>
@@ -80,21 +80,25 @@ if (!empty(Pi::user()->config('register_description'))) {
             </div>
         </div>
     <?php } else { ?>
-        <div class="row">
-            <div class="col-md-8">
-                <p><?php _e('An email with activation link has been sent to you.'); ?></p>
-                <p><?php _e('Please check it to finish the registration.'); ?></p>
+        <div class="register-information row">
+            <div class="col-md-8 alert-success">
+                <div>
+                    <p><?php _e('An email with activation link has been sent to you.'); ?></p>
+                    <p><?php _e('Please check it to finish the registration.'); ?></p>
+                </div>
             </div>
             <div class="col-md-4">
-                <p><?php _e('If you do not receive the activation email:'); ?>?</p>
-                <ol>
-                    <li><?php _e('Wait a few minutes and check again.'); ?></li>
-                    <li><?php _e('Check your email spam box.'); ?></li>
-                    <li class="user-js-reactivate">
-                        <a class="user-js-reactivate-link" href="javascript:;"><?php _e('Request to resend activation email'); ?></a>
-                        <span style="margin-left: 20px;" class="user-js-reactivate-message"></span>
-                    </li>
-                </ol>
+                <div class="alert-warning">
+                    <p><?php _e('If you do not receive the activation email:'); ?>?</p>
+                    <ol>
+                        <li><?php _e('Wait a few minutes and check again.'); ?></li>
+                        <li><?php _e('Check your email spam box.'); ?></li>
+                        <li class="user-js-reactivate">
+                            <a class="user-js-reactivate-link" href="javascript:;"><?php _e('Request to resend activation email'); ?></a>
+                            <span style="margin-left: 20px;" class="user-js-reactivate-message"></span>
+                        </li>
+                    </ol>
+                </div>
             </div>
         </div>
         <script>

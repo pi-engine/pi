@@ -236,6 +236,16 @@ class RegisterController extends ActionController
             'message'   => __('Account Activated successfully.'),
         );
 
+        $activationMode = $this->config('register_activation');
+       
+        $status = $this->sendNotification('success', array(
+            'email'     => $userRow['email'],
+            'uid'       => $uid,
+            'identity'  => $userRow['identity'],
+            'name'      => $userRow['name'],
+            
+        ));
+        
         $this->view()->assign(array(
             'result'   => $result,
             'uid'      => $uid,
@@ -651,12 +661,23 @@ class RegisterController extends ActionController
         $template   = Pi::service('mail')->template($template, $params);
         $subject    = $template['subject'];
         $body       = $template['body'];
-        $type       = $template['format'];
+        $typeMail       = $template['format'];
 
         // Send email
-        $message    = Pi::service('mail')->message($subject, $body, $type);
+        $message    = Pi::service('mail')->message($subject, $body, $typeMail);
         $message->addTo($data['email']);
         $result     = Pi::service('mail')->send($message);
+        
+        // Module message : Notification
+        if (Pi::service('module')->isActive('message')) {
+            if ($type == 'success' || $type == 'admin') {
+                $template   = Pi::service('mail')->template("notify-register-success-html", $params);
+                Pi::api('api', 'message')->notify(
+                    $data['uid'], $template['body'], $template['subject']
+                );
+            }
+        }
+        
 
         return $result;
     }

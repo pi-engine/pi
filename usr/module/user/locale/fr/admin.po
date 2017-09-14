@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-06-07 20:01+0200\n"
-"PO-Revision-Date: 2017-06-07 20:01+0200\n"
+"POT-Creation-Date: 2017-06-21 14:20+0200\n"
+"PO-Revision-Date: 2017-06-21 15:36+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -442,27 +442,27 @@ msgstr "Longueur maximum du nom compte utilisateur lors de l'inscription"
 
 #: config/config.php:386
 msgid "Display name format"
-msgstr "Format du Nom"
+msgstr "Format du Nom Affiché"
 
 #: config/config.php:387
 msgid "Format of display name for registration."
-msgstr "Format du Nom lors de l'inscription"
+msgstr "Format du Nom Affiché lors de l'inscription"
 
 #: config/config.php:407
 msgid "Minimum display name"
-msgstr "Nom minimum"
+msgstr "Nom affiché minimum"
 
 #: config/config.php:408
 msgid "Minimum length of display name for user registration"
-msgstr "Longueur minimum du nom utilisateur lors de l'inscription"
+msgstr "Longueur minimum du nom affiché lors de l'inscription"
 
 #: config/config.php:415
 msgid "Maximum display name"
-msgstr "Nom maximum"
+msgstr "Nom affiché maximum"
 
 #: config/config.php:416
 msgid "Maximum length of display name for user registration"
-msgstr "Longueur maximum du nom utilisateur lors de l'inscription"
+msgstr "Longueur maximum du nom affiché lors de l'inscription"
 
 #: config/config.php:423
 msgid "Minimum password"
@@ -481,10 +481,22 @@ msgid "Maximum length of password for user registration"
 msgstr "Longueur maximale du mot de passe lors de l'inscription"
 
 #: config/config.php:439
+msgid "Strenghten password"
+msgstr "Renforcer le mot de passe"
+
+#: config/config.php:440
+msgid ""
+"Add some complexity to password filling : min 1 uppercase character, min 1 "
+"lowercase character, min 1 number"
+msgstr ""
+"Ajouter de la complexité au mot de passe crée : min 1 caractère majuscule, "
+"min 1 caractère minuscule, min 1 chiffre"
+
+#: config/config.php:448
 msgid "Username blacklist"
 msgstr "Liste noire Nom compte utilisateur"
 
-#: config/config.php:440
+#: config/config.php:449
 msgid ""
 "Reserved and forbidden username list, separated with `|`, regexp syntax is "
 "allowed."
@@ -492,57 +504,57 @@ msgstr ""
 "Liste des noms compte utilisateurs réservés/interdits, séparés par `|`, la "
 "syntaxe regexp est autorisée."
 
-#: config/config.php:447
+#: config/config.php:456
 msgid "Display blacklist"
 msgstr "Liste noire Nom"
 
-#: config/config.php:448
+#: config/config.php:457
 msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
 msgstr ""
-"Liste des noms réservés / interdits, séparés par `|`, la syntaxe regexp est "
-"autorisée."
+"Liste des noms affichés réservés / interdits, séparés par `|`, la syntaxe "
+"regexp est autorisée."
 
-#: config/config.php:455
+#: config/config.php:464
 msgid "Email blacklist"
 msgstr "Liste noire Email"
 
-#: config/config.php:456
+#: config/config.php:465
 msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
 msgstr ""
 "Liste des emails interdits, séparés par `|`, la syntaxe regexp est autorisée"
 
-#: config/config.php:465
+#: config/config.php:474
 msgid "Max Avatar Width"
 msgstr "Largeur maximale avatar"
 
-#: config/config.php:466
+#: config/config.php:475
 msgid "Allowed image width, 0 for no limit"
 msgstr "Largeur autorisée de l'image, 0 pour aucune limite"
 
-#: config/config.php:473
+#: config/config.php:482
 msgid "Max Avatar Height"
 msgstr "Hauteur maximimale avatar"
 
-#: config/config.php:474
+#: config/config.php:483
 msgid "Allowed image height, 0 for no limit"
 msgstr "Hauteur autorisée de l'image, 0 pour aucune limite"
 
-#: config/config.php:481
+#: config/config.php:490
 msgid "Max File Size"
 msgstr "Taille maximal fichier"
 
-#: config/config.php:482
+#: config/config.php:491
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 "Taille autorisée de l'upload fichier avatar (en KB), 0 pour aucune limite"
 
-#: config/config.php:498
+#: config/config.php:507
 msgid "Temporary Path"
 msgstr "Chemin (path) temporaire"
 
-#: config/config.php:499
+#: config/config.php:508
 msgid "For temporary storage of avatar"
 msgstr "Pour stocker temporairement l'avatar"
 
@@ -973,7 +985,7 @@ msgstr "Valider"
 
 #: template/admin/inquiry.phtml:16
 msgid "Inquire of user via ID, username, display name or email."
-msgstr "Rechercher le compte par numéro, nom compte, nom utilisateur ou email."
+msgstr "Rechercher le compte par numéro, nom compte, nom affiché ou email."
 
 #: template/admin/inquiry.phtml:20 template/admin/maintenance.phtml:43
 #: template/admin/user.phtml:25
