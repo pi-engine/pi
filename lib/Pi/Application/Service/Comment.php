@@ -155,6 +155,8 @@ EOT;
             : Pi::service('url')->getRequestUri();
         $data['uid'] = Pi::user()->getId();
         $data['review'] = isset($params['review']) ? $params['review'] : false;        
+        $data['owner'] = isset($params['owner']) ? $params['owner'] : false;
+        $data['admin'] =  Pi::service('permission')->isAdmin('comment', $data['uid']);
 
         $template = 'comment:front/comment-lead';
         $result = Pi::service('view')->render($template, $data);
@@ -607,9 +609,6 @@ EOT;
                     // Clear cache for leading comments
                     $this->clearCache($key, true);
                     
-                    // Insert timeline item
-                    Pi::service('comment')->timeline($key);
-                    
                     $offset += $limit;
                     $key = $id . '-' . $limit . $offset;
                 }
@@ -620,9 +619,6 @@ EOT;
                 {
                     // Clear cache for leading comments
                     $this->clearCache($key, true);
-                    
-                    // Insert timeline item
-                    Pi::service('comment')->timeline($key);
                     
                     $offset += $limit;
                     $key = $id . '-' . $limit . $offset;
