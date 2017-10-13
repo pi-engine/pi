@@ -144,7 +144,9 @@ EOT;
         
         $params = array_replace($params, $routeMatch->getParams());
         $options = array(
-            'review' => $review
+            'review' => $review,
+            'page' => isset($params['page']) ? $params['page'] : 1
+            
         );
         $data = Pi::api('api', 'comment')->load($params, $options);
         if (!$data) {
@@ -157,7 +159,7 @@ EOT;
         $data['review'] = isset($params['review']) ? $params['review'] : false;        
         $data['owner'] = isset($params['owner']) ? $params['owner'] : false;
         $data['admin'] =  Pi::service('permission')->isAdmin('comment', $data['uid']);
-
+        $data['page'] = isset($params['page']) ? $params['page'] : 1;
         $template = 'comment:front/comment-lead';
         $result = Pi::service('view')->render($template, $data);
 
@@ -195,6 +197,7 @@ EOT;
             : Pi::service('url')->getRequestUri();
         $data['uid'] = Pi::user()->getId();
         $data['review'] = $params['review'];        
+        $data['page'] = isset($params['page']) ? $params['page'] : 1;
         
         $template = 'comment:front/partial/paginate-comments';
         $result = Pi::service('view')->render($template, $data);
