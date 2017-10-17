@@ -58,6 +58,8 @@ class Linkify extends AbstractFilter
         if (!isset($attributes['title'])) {
             $attributes['title'] = __('Click to open');
         }
+        $attributes['rel'] = 'nofollow';
+        
         $helper = Pi::service('view')->getHelper('html_link');
 
         $callback = function ($href, $title) use ($helper, $attributes) {
