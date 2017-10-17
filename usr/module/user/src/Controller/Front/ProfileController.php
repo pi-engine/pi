@@ -69,6 +69,13 @@ class ProfileController extends ActionController
     public function viewAction()
     {
         $uid    = $this->params('uid', '');
+        $name    = $this->params('name', null);
+        if (empty($uid)  && $name != null) {
+            $user = Pi::api('user', 'user')->getUser($name, 'name');
+            if ($user != null) {
+                $uid = $user->id;
+            }            
+        }
         $groups = $this->getProfile($uid);
 
         // Get viewer level: everyone, member, follower, following, owner
