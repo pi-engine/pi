@@ -646,6 +646,8 @@ EOT;
         $uid = $uid ?: Pi::service('user')->getId();
 
         $message = __('Posted a new comment.');
+        
+        $post   = Pi::api('api', 'comment')->getPost($id);
         $link = Pi::url(Pi::api('api', 'comment')->getUrl('post', array(
             'post'      => $id,
         )), true);
@@ -656,9 +658,27 @@ EOT;
             'time'      => time(),
             'module'    => 'comment',
             'link'      => $link,
+            'data'      => json_encode(array('comment' => $id))
         );
         Pi::service('user')->timeline()->add($params);
 
         return $result;
+    }
+    
+    /**
+     * Delete user timeline for a comment
+     *
+     * @param int $id
+     *
+     */
+    public function timelineDelete($id)
+    {
+        $params = array(
+            'module'    => 'comment',
+            'data'      => $id,
+        );
+        Pi::service('user')->timeline()->delete($params);
+        
+        
     }
 }
