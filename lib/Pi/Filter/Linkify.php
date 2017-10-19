@@ -46,7 +46,7 @@ class Linkify extends AbstractFilter
      *
      * @return callable
      */
-    protected function linkCallback()
+    protected function linkCallback($url)
     {
         $attributes = array();
         if (!empty($this->options['attributes'])) {
@@ -58,7 +58,24 @@ class Linkify extends AbstractFilter
         if (!isset($attributes['title'])) {
             $attributes['title'] = __('Click to open');
         }
-        $attributes['rel'] = 'nofollow';
+        
+        $nofollow = true;
+        if (Pi::service('module')->isActive('comment')) {
+            $trustDomains = Pi::config('linkify_trust_domain', 'comment');
+            $trustDomains = explode(',', $trustDomains);
+            foreach ($trustDomains as $domain) {
+                $domain = trim($domain);
+                if (strstr($url, $domain)) {
+                    $nofollow = false;
+                    break;
+                }
+            }
+        }
+        
+        if ($nofollow) {
+            $attributes['rel'] = 'nofollow';
+        }
+        
         
         $helper = Pi::service('view')->getHelper('html_link');
 
@@ -108,7 +125,6 @@ class Linkify extends AbstractFilter
      */
     protected function filterMisd($value)
     {
-        $callback = $this->linkCallback();
         $pattern = '~(?xi)
               (?:
                 ((ht|f)tps?://)                    # scheme://
@@ -136,6 +152,7 @@ class Linkify extends AbstractFilter
             if (0 === preg_match($pattern, $match[0])) {
                 $match[0] = 'http://' . $match[0];
             }
+            $callback = $this->linkCallback($match[0]);
             return $callback($match[0], $caption);
         };
 
