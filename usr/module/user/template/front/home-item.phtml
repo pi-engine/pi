@@ -1,0 +1,33 @@
+<?php
+$this->css($this->assetModule('front/front.css'));
+$this->headMeta('noindex', 'robots');
+
+$userSection = $this->isUserSection(Pi::service('module')->current());
+?>
+
+<div class="row">
+    <?php if($userSection) : ?>
+        <div class="col-md-3">
+            <?php include $this->template('./profile-sidebar.phtml'); ?>
+        </div>
+    <?php endif; ?>
+    <div class="<?php echo $userSection ? 'col-md-9' : 'col-md-12' ?>">
+        <div class="page-header">
+            <h1><?php _e('My profile'); ?></h1>
+        </div>
+
+        <?php include $this->template('./profile-topbar.phtml'); ?>
+        <div class="user-min-body pi-comment-list" id="pi-comment-lead">
+            <p>&nbsp;</p>
+            <?php if ($itemList) {
+                $favouriteList = $itemList; 
+                include $this->templateModule('front/partial/owner-list.phtml',  'guide');
+           } else { ?>
+                <div class="well">
+                    <?php _e('No data available.'); ?>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</div>
+

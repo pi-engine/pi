@@ -19,9 +19,10 @@ $userSection = $this->isUserSection(Pi::service('module')->current());
 
         <?php include $this->template('./profile-topbar.phtml'); ?>
         <div class="user-min-body">
+            <p>&nbsp;</p>
             <?php if ($timeline) { ?>
                 <?php foreach ($timeline as $item) { ?>
-                    <div class="media user-underline-list">
+                    <div class="timeline user-underline-list">
                         <div class="pull-left">
                             <?php
                             echo !empty($item['icon']) ? '<i class="fa ' . $item['icon'] . ' fa-4x"></i>' : '<i class="fa fa-comment fa-4x"></i>';

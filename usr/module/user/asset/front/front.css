@@ -13,7 +13,7 @@
 .user-underline-list {
   border-bottom: 1px solid #ccc;
   padding-bottom: 20px;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .user-underline-list i {
@@ -353,3 +353,6 @@
   text-align: center;
   display: block;
 }
+
+
+.timeline > .pull-left{padding-right:10px}

@@ -140,7 +140,67 @@ class HomeController extends ActionController
         $this->view()->headdescription(sprintf(__('View %s activities') , $user['name']), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
-
+    
+    public function commentAction()
+    {
+      $page   = _get('page', 'int') ?: 1;
+      $id = $this->params('uid', Pi::user()->getId());
+      
+      $result = Pi::api('api', 'comment')->getComments($page, $id);
+      $this->view()->assign('name', 'comment');
+      $this->view()->assign('comment', array(
+            'title'     => $this->config('head_title'),
+            'count'     => $result['count'],
+            'posts'     => $result['posts'],
+            'paginator' => $result['paginator'],
+        ));
+        $this->view()->setTemplate('home-comment');
+        $this->view()->assign('uid', $id);
+        
+    }
+    
+    public function itemAction()
+    {
+        $id = $this->params('uid', Pi::user()->getId());
+        $owner = Pi::api('owner', 'guide')->getOwner($id, 'uid');
+        $where = array('owner' => $owner['id'], 'status' => 1);
+        $order = array('id DESC');
+        // Get list of item
+        $select = Pi::model('item', 'guide')->select()->where($where)->order($order);
+        $rowset = Pi::model('item', 'guide')->selectWith($select);
+        $items = array();
+        foreach ($rowset as $row) {
+            $item = Pi::api('item', 'guide')->canonizeItemLight($row);
+            if ($row->item_type == 'commercial') {
+                $itemList['commercial'][$row->id] = $item;
+            } elseif ($row->item_type == 'person') {
+                $itemList['person'][$row->id] = $item;
+            } else {
+                $itemList['free'][$row->id] = $item;
+            }
+        }
+        $this->view()->assign('uid', $id);
+        $this->view()->assign('name', 'item');
+        $this->view()->assign('itemList', $itemList);
+        $this->view()->setTemplate('home-item');
+    }
+    
+    public function favoriteAction()
+    {
+        $id = $this->params('uid', Pi::user()->getId());
+        $favourites = Pi::api('favourite', 'favourite')->listFavourite($id);
+        $count = 0;
+        foreach ($favourites as $favourite) {
+            $count += $favourite['total_item'];
+        }
+        
+        $this->view()->assign('count', $count);
+        $this->view()->assign('uid', $id);
+        $this->view()->assign('name', 'favorite');
+        $this->view()->assign('favourites', $favourites);
+        $this->view()->setTemplate('home-favorite');
+    }
+    
     /**
      * Set paginator
      *

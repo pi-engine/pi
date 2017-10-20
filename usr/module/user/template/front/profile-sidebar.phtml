@@ -126,7 +126,9 @@ $userConfig = Pi::service('registry')->config->read('user');
         <?php if (in_array('favourite', $userConfig['side_menu']) && Pi::service('module')->isActive('favourite')) { ?>
             <a title="<?php _e('My favorites'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'favourite', 'controller' => 'index', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'favourite') {echo ' active';} ?>"><?php _e('My favorites'); ?></a>
         <?php } ?>
-
+        <?php if (in_array('comment', $userConfig['side_menu']) && Pi::service('module')->isActive('comment')) { ?>
+            <a title="<?php _e('My reviews/comments'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'comment', 'controller' => 'my'))); ?>" class="list-group-item<?php if ($module == 'comment') {echo ' active';} ?>"><?php _e('My reviews/comments'); ?></a>
+        <?php } ?>
         <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
         <?php if (in_array('guide_favourite', $userConfig['side_menu']) && Pi::service('module')->isActive('favourite') && Pi::service('module')->isActive('guide') && $guideConfig['favourite_bar']) { ?>
             <a title="<?php _e('My favorites'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'guide', 'controller' => 'favourite', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'guide' && $controller == 'favourite') {echo ' active';} ?>"><?php _e('My favorites'); ?></a>

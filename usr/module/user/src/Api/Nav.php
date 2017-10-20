@@ -65,6 +65,34 @@ class Nav extends AbstractApi
             'icon'  => '',
         );
 
+        $params['action'] = 'comment';        
+        $url = Pi::service('url')->assemble($route, $params);
+        $result['items'][] = array(
+            'title' => __('Reviews & Comments'),
+            'name'  => 'comment',
+            'url'   => $url,
+            'icon'  => '',
+        );
+        
+        $params['action'] = 'item';
+        $url = Pi::service('url')->assemble($route, $params);
+        $result['items'][] = array(
+            'title' => __('Items'),
+            'name'  => 'item',
+            'url'   => $url,
+            'icon'  => '',
+        );
+        
+        $params['action'] = 'favorite';
+        $url = Pi::service('url')->assemble($route, $params);
+        $result['items'][] = array(
+            'title' => __('Favorites'),
+            'name'  => 'favorite',
+            'url'   => $url,
+            'icon'  => '',
+        );
+        
+
         // Set activity
         $activityList = Pi::api('activity', 'user')->getList();
         foreach ($activityList as $key => $value) {
