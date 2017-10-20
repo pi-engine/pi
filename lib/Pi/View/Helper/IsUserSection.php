@@ -83,6 +83,15 @@ class IsUserSection extends AbstractHelper
                 $userSection = true;
             }
         }
+        elseif ($module == 'comment') {
+            $d = (array) Pi::service('url')->getRouteMatch();
+            foreach ($d as $value) {
+                $a[] = $value;
+            }
+            if ($a[1]['my']) {
+                $userSection = true;
+            }
+        }
 
         return $userSection;
     }
