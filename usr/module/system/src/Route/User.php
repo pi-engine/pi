@@ -120,6 +120,13 @@ class User extends Standard
                     $matches['controller']  = 'home';
                     $matches['action']      = 'index';
                     if ($parts) {
+                        if ($parts[0] == 'comment' || $parts[0] == 'item' || $parts[0] == 'favorite') {
+                            $matches['action'] = $parts[0];
+                             if (is_numeric($parts[2])) {
+                                $matches['id'] = $parts[2];
+                            }
+                        }
+                        
                         // /home/<uid>
                         if (is_numeric($parts[0])) {
                             $matches['action'] = 'view';
