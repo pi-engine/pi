@@ -146,7 +146,7 @@ class Linkify extends AbstractFilter
                 [^\s`!\-()\[\]{};:\'".,<>?«»“”‘’]  # not a space or one of these punct chars
               )
         ~';
-        $func = function ($match) use ($callback) {
+        $func = function ($match) {
             $caption = $match[0];
             $pattern = "~^(ht|f)tps?://~";
             if (0 === preg_match($pattern, $match[0])) {
