@@ -269,6 +269,8 @@
   border: 1px solid #e5e5e5;
 }
 
+.border-radius > img {border-radius:100%}
+
 /* login */
 .user-action-bar {
   margin: 40px -15px;

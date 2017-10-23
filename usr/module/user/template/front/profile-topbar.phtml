@@ -143,7 +143,7 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
             <?php } ?>
         </div>
         <div class="inline user-info-left">
-            <div class="pull-left">
+            <div class="pull-left <?php if (!$owner) { ?>border-radius<?php } ?>">
                 <?php echo Pi::avatar()->get($uid, 'xlarge', _escape($user['name'])); ?>
             </div>
             <?php if ($owner) { ?>
