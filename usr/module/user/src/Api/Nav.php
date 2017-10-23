@@ -55,15 +55,18 @@ class Nav extends AbstractApi
             'action'     => 'index',
         );
         if ($uid) {
-            $params['uid']    = $uid;
+            $params['uid'] = $uid;
         }
-        $url = Pi::service('url')->assemble($route, $params);
-        $result['items'][] = array(
-            'title' => __('Feed'),
-            'name'  => 'homepage',
-            'url'   => $url,
-            'icon'  => '',
-        );
+        
+        if (Pi::user()->getId()) {
+            $url = Pi::service('url')->assemble($route, $params);
+            $result['items'][] = array(
+                'title' => __('Feed'),
+                'name'  => 'homepage',
+                'url'   => $url,
+                'icon'  => '',
+            );
+        }
 
         $params['action'] = 'comment';        
         $url = Pi::service('url')->assemble($route, $params);

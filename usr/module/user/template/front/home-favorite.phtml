@@ -12,9 +12,11 @@ $userSection = $this->isUserSection(Pi::service('module')->current());
         </div>
     <?php endif; ?>
     <div class="<?php echo $userSection ? 'col-md-9' : 'col-md-12' ?>">
-        <div class="page-header">
-            <h1><?php _e('My profile'); ?></h1>
-        </div>
+        <?php if (!$view) { ?> 
+            <div class="page-header">
+                <h1><?php _e('My profile'); ?></h1>
+            </div>
+        <?php } ?>
 
         <?php include $this->template('./profile-topbar.phtml'); ?>
         <div class="user-min-body pi-comment-list" id="pi-comment-lead">

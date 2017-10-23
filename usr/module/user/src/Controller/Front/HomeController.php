@@ -74,6 +74,7 @@ class HomeController extends ActionController
             'user'          => $user,
         ));
 
+        $this->view()->assign('view', false);
         $this->view()->headTitle(sprintf(__('%s activities') , $user['name']));
         $this->view()->headdescription(sprintf(__('View %s activities') , $user['name']), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
@@ -135,7 +136,7 @@ class HomeController extends ActionController
         ));
 
         $this->view()->setTemplate('home-index');
-
+        $this->view()->assign('view', true);
         $this->view()->headTitle(sprintf(__('%s activities') , $user['name']));
         $this->view()->headdescription(sprintf(__('View %s activities') , $user['name']), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
@@ -145,8 +146,9 @@ class HomeController extends ActionController
     {
       $page   = _get('page', 'int') ?: 1;
       $id = $this->params('uid', Pi::user()->getId());
+      $view = $this->params('uid') ? true : false;
+      $result = Pi::api('api', 'comment')->getComments($page, $id);        
       
-      $result = Pi::api('api', 'comment')->getComments($page, $id);
       $this->view()->assign('name', 'comment');
       $this->view()->assign('comment', array(
             'title'     => $this->config('head_title'),
@@ -155,13 +157,17 @@ class HomeController extends ActionController
             'paginator' => $result['paginator'],
         ));
         $this->view()->setTemplate('home-comment');
+        $this->view()->assign('view', $view);
         $this->view()->assign('uid', $id);
+        
         
     }
     
     public function itemAction()
     {
         $id = $this->params('uid', Pi::user()->getId());
+        $view = $this->params('uid') ? true : false;
+        
         $owner = Pi::api('owner', 'guide')->getOwner($id, 'uid');
         $where = array('owner' => $owner['id'], 'status' => 1);
         $order = array('id DESC');
@@ -182,12 +188,15 @@ class HomeController extends ActionController
         $this->view()->assign('uid', $id);
         $this->view()->assign('name', 'item');
         $this->view()->assign('itemList', $itemList);
+        $this->view()->assign('view', $view);
         $this->view()->setTemplate('home-item');
     }
     
     public function favoriteAction()
     {
         $id = $this->params('uid', Pi::user()->getId());
+        $view = $this->params('uid') ? true : false;
+        
         $favourites = Pi::api('favourite', 'favourite')->listFavourite($id);
         $count = 0;
         foreach ($favourites as $favourite) {
@@ -198,6 +207,7 @@ class HomeController extends ActionController
         $this->view()->assign('uid', $id);
         $this->view()->assign('name', 'favorite');
         $this->view()->assign('favourites', $favourites);
+        $this->view()->assign('view', $view);
         $this->view()->setTemplate('home-favorite');
     }
     

@@ -119,10 +119,21 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                     </a>
                 <?php } ?>
                 <?php if (Pi::user()->getId() != $uid && Pi::service('module')->isActive('message')) { ?>
-                    <a class="btn btn-default" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
+                    
+                    <?php if(!Pi::user()->getId()) { ?>
+                    <a class="btn btn-default" href=""
+                         data-redirect="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>"
+                                                href="<?php echo (Pi::user()->config('enable_modal')) ? '#' : $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>" <?php if(Pi::user()->config('enable_modal')) : ?>data-action="login" data-toggle="modal" data-target="#loginRegisterModal"<?php endif; ?>
+                        >
                         <i class="fa fa-envelope"></i>
                         <?php _e('Send message'); ?>
                     </a>
+                    <?php } else { ?>
+                         <a class="btn btn-default" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
+                            <i class="fa fa-envelope"></i>
+                            <?php _e('Send message'); ?>
+                        </a>
+                    <?php } ?> 
                 <?php } else { ?>
                     <a class="btn btn-default disabled">
                         <i class="fa fa-envelope"></i>
@@ -143,8 +154,14 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
         </div>
         <div class="inline user-info-center">
             <h1 class="user-name"><?php echo _escape($user['name']); ?></h1>
-            <?php if (!empty($user['gender'])) { ?>
+            <?php if (!empty($user['time_activated'])) { ?>
                 <div style="margin-top: 10px;">
+                    <?php _e('Member since:'); ?>
+                    <?php echo _date($user['time_activated']); ?>
+                </div>
+            <?php } ?>
+            <?php if (!empty($user['gender'])) { ?>
+                <div style="margin-top: 5px;">
                     <?php _e('Gender:'); ?>
                     <?php echo _escape($user['gender']); ?>
                 </div>
@@ -155,6 +172,16 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                     <?php echo _escape($user['birthdate']); ?>
                 </div>
             <?php } ?>
+            <?php if (!empty($user['location_city'])) { ?>
+                <div style="margin-top: 5px;">
+                    <?php _e('City:'); ?>
+                    <?php echo _escape($user['location_city']); ?>
+                    <?php if (!empty($user['location_country'])) { ?>
+                        (<?php echo _escape($user['location_country']); ?>)
+                    <?php } ?>
+                </div>
+            <?php } ?>
+            
         </div>
     </div>
 <?php if ($showNav) { ?>
