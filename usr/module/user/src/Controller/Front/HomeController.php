@@ -174,9 +174,15 @@ class HomeController extends ActionController
         // Get list of item
         $select = Pi::model('item', 'guide')->select()->where($where)->order($order);
         $rowset = Pi::model('item', 'guide')->selectWith($select);
+        $categoryList = Pi::api('category', 'guide')->categoryList();
+        
         $items = array();
         foreach ($rowset as $row) {
             $item = Pi::api('item', 'guide')->canonizeItemLight($row);
+            $categories = json_decode($item['category']);
+            foreach ($categories as $category) {
+                $item['categories'][] = $categoryList[$category];
+            }
             if ($row->item_type == 'commercial') {
                 $itemList['commercial'][$row->id] = $item;
             } elseif ($row->item_type == 'person') {
@@ -184,7 +190,9 @@ class HomeController extends ActionController
             } else {
                 $itemList['free'][$row->id] = $item;
             }
+            
         }
+        $this->view()->assign('categories', $categories);
         $this->view()->assign('uid', $id);
         $this->view()->assign('name', 'item');
         $this->view()->assign('itemList', $itemList);
