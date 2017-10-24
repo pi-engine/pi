@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-10-21 11:38+0200\n"
-"PO-Revision-Date: 2017-10-21 11:41+0200\n"
+"POT-Creation-Date: 2017-10-24 21:46+0200\n"
+"PO-Revision-Date: 2017-10-24 21:46+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -94,7 +94,7 @@ msgstr "Se connecter"
 msgid "Register"
 msgstr "S'inscrire"
 
-#: src/Api/Breadcrumbs.php:51 src/Api/Nav.php:62
+#: src/Api/Breadcrumbs.php:51 src/Api/Nav.php:64
 msgid "Feed"
 msgstr "Fil"
 
@@ -114,7 +114,7 @@ msgstr "Paramétrages du compte"
 
 #: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:185
 #: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:66
-#: template/front/profile-topbar.phtml:140
+#: template/front/profile-topbar.phtml:151
 msgid "Change avatar"
 msgstr "Modifier sa photo"
 
@@ -146,15 +146,15 @@ msgstr "Profil"
 msgid "Edit profile"
 msgstr "Editer le profi"
 
-#: src/Api/Nav.php:71
+#: src/Api/Nav.php:74
 msgid "Reviews & Comments"
 msgstr "Commentaires/Avis"
 
-#: src/Api/Nav.php:80
+#: src/Api/Nav.php:83
 msgid "Items"
 msgstr "Eléments"
 
-#: src/Api/Nav.php:89
+#: src/Api/Nav.php:92
 msgid "Favorites"
 msgstr "Favoris"
 
@@ -379,14 +379,14 @@ msgstr "L'image a été supprimée avec succès."
 msgid "No active condition file"
 msgstr "Il n'y a pas encore de fichier CGU/CGV"
 
-#: src/Controller/Front/HomeController.php:77
-#: src/Controller/Front/HomeController.php:139
+#: src/Controller/Front/HomeController.php:78
+#: src/Controller/Front/HomeController.php:140
 #, php-format
 msgid "%s activities"
 msgstr "Activités de %s"
 
-#: src/Controller/Front/HomeController.php:78
-#: src/Controller/Front/HomeController.php:140
+#: src/Controller/Front/HomeController.php:79
+#: src/Controller/Front/HomeController.php:141
 #, php-format
 msgid "View %s activities"
 msgstr "Voir les activités de %s"
@@ -960,9 +960,9 @@ msgstr "Se connecter maintenant."
 msgid "View all"
 msgstr "Voir tout"
 
-#: template/front/activity-index.phtml:33 template/front/home-comment.phtml:36
-#: template/front/home-favorite.phtml:48 template/front/home-index.phtml:55
-#: template/front/home-item.phtml:27 template/front/profile-view.phtml:30
+#: template/front/activity-index.phtml:33 template/front/home-comment.phtml:37
+#: template/front/home-favorite.phtml:50 template/front/home-index.phtml:57
+#: template/front/home-item.phtml:29 template/front/profile-view.phtml:30
 msgid "No data available."
 msgstr "Aucune donnée disponible."
 
@@ -1099,8 +1099,8 @@ msgstr "Mes Vidéos"
 msgid "My support tickets"
 msgstr "Mes tickets Assistance"
 
-#: template/front/home-comment.phtml:17 template/front/home-favorite.phtml:16
-#: template/front/home-index.phtml:17 template/front/home-item.phtml:16
+#: template/front/home-comment.phtml:18 template/front/home-favorite.phtml:17
+#: template/front/home-index.phtml:18 template/front/home-item.phtml:17
 #: template/front/profile-index.phtml:13
 msgid "My profile"
 msgstr "Mon profil"
@@ -1231,20 +1231,25 @@ msgstr "Liens rapides"
 msgid "Switch to own"
 msgstr "Basculer côté admin"
 
-#: template/front/profile-topbar.phtml:124
 #: template/front/profile-topbar.phtml:129
+#: template/front/profile-topbar.phtml:134
+#: template/front/profile-topbar.phtml:140
 msgid "Send message"
 msgstr "Envoyer un message"
 
-#: template/front/profile-topbar.phtml:148
+#: template/front/profile-topbar.phtml:159
+msgid "Member since"
+msgstr "Membre depuis"
+
+#: template/front/profile-topbar.phtml:165
 msgid "Gender:"
 msgstr "Genre : "
 
-#: template/front/profile-topbar.phtml:154
+#: template/front/profile-topbar.phtml:171
 msgid "Birthdate:"
 msgstr "Date de naissance :"
 
-#: template/front/profile-topbar.phtml:211
+#: template/front/profile-topbar.phtml:237
 msgid "More"
 msgstr "Plus"
 
