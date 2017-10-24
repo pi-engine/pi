@@ -62,13 +62,10 @@ class Linkify extends AbstractFilter
         $nofollow = true;
         if (Pi::service('module')->isActive('comment')) {
             $trustDomains = Pi::config('linkify_trust_domain', 'comment');
-            $trustDomains = explode(',', $trustDomains);
-            foreach ($trustDomains as $domain) {
-                $domain = trim($domain);
-                if (strstr($url, $domain)) {
-                    $nofollow = false;
-                    break;
-                }
+            $trustDomains = str_replace(',', '|', $trustDomains);
+            $trustDomains = str_replace(' ', '', $trustDomains);
+            if (preg_match('/(.*)' . $trustDomains . '(.*)/', $url)) {
+                $nofollow = false;
             }
         }
         
