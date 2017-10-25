@@ -70,7 +70,7 @@ class Linkify extends AbstractFilter
         }
         
         if ($nofollow) {
-            $attributes['rel'] = 'nofollow';
+            $attributes['rel'] = 'nofollow noopener noreferrer';
         }
         
         
