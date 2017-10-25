@@ -234,11 +234,21 @@ class LoginController extends ActionController
         Pi::service('session')->manager()->destroy();
         Pi::service('user')->destroy();
         Pi::service('event')->trigger('logout', $uid);
-
+        
         $redirect = $this->params('redirect');
-        $redirect = $redirect
-            ? urldecode($redirect) : array('route' => 'home');
-
+        if ($redirect) {
+            $redirect = urldecode($redirect);
+        } else {
+            $request = new \Zend\Http\Request();
+            $request->setMethod(\Zend\Http\Request::METHOD_GET);
+            $request->setUri($this->getRequest()->getServer('HTTP_REFERER'));
+            $hasPermission = Pi::service('permission')->pagePermission(Pi::engine()->application()->getRouter()->match($request));
+            if ($hasPermission) {
+                $redirect = $this->getRequest()->getServer('HTTP_REFERER');
+            } else {
+                $redirect = array('route' => 'home');
+            }
+        }
         $this->jump(
             $redirect,
             __('You logged out successfully.')
