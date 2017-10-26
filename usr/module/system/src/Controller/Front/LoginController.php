@@ -234,6 +234,7 @@ class LoginController extends ActionController
         Pi::service('session')->manager()->destroy();
         Pi::service('user')->destroy();
         Pi::service('event')->trigger('logout', $uid);
+        Pi::service('user')->killUser();
         
         $redirect = $this->params('redirect');
         if ($redirect) {

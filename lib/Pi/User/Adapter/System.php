@@ -252,6 +252,7 @@ class System extends AbstractAdapter
     public function killUser($uid)
     {
         $result = Pi::service('session')->killUser($uid);
+        $this->model = null;
 
         return $result;
     }
