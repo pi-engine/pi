@@ -242,7 +242,7 @@ class LoginController extends ActionController
             $request = new \Zend\Http\Request();
             $request->setMethod(\Zend\Http\Request::METHOD_GET);
             $request->setUri($this->getRequest()->getServer('HTTP_REFERER'));
-            $hasPermission = Pi::service('permission')->pagePermission(Pi::engine()->application()->getRouter()->match($request));
+            $hasPermission = Pi::service('permission')->pagePermission(Pi::engine()->application()->getRouter()->match($request)->getParams());
             if ($hasPermission) {
                 $redirect = $this->getRequest()->getServer('HTTP_REFERER');
             } else {
