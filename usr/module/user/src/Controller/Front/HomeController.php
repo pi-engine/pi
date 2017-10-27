@@ -51,7 +51,7 @@ class HomeController extends ActionController
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array('name', 'gender', 'birthdate'),
+            array('name','location_country', 'location_city', 'time_activated'),
             true,
             true
         );
@@ -111,7 +111,7 @@ class HomeController extends ActionController
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array('name', 'gender', 'birthdate'),
+            array('name','location_country', 'location_city', 'time_activated'),
             true,
             true
         );
@@ -144,19 +144,29 @@ class HomeController extends ActionController
     
     public function commentAction()
     {
-      $page   = _get('page', 'int') ?: 1;
-      $id = $this->params('uid', Pi::user()->getId());
-      $view = $this->params('uid') ? true : false;
-      $result = Pi::api('api', 'comment')->getComments($page, $id);        
+        $page   = _get('page', 'int') ?: 1;
+        $id = $this->params('uid', Pi::user()->getId());
+        $view = $this->params('uid') ? true : false;
+        $result = Pi::api('api', 'comment')->getComments($page, $id);        
       
-      $this->view()->assign('name', 'comment');
-      $this->view()->assign('comment', array(
+        // Get user base info
+        $user = Pi::api('user', 'user')->get(
+            $id,
+            array('name','location_country', 'location_city', 'time_activated'),
+            true,
+            true
+        );
+        
+        $this->view()->assign('name', 'comment');
+        $this->view()->assign('comment', array(
             'title'     => $this->config('head_title'),
             'count'     => $result['count'],
             'posts'     => $result['posts'],
             'paginator' => $result['paginator'],
         ));
+        
         $this->view()->setTemplate('home-comment');
+        $this->view()->assign('user', $user);
         $this->view()->assign('view', $view);
         $this->view()->assign('uid', $id);
         
@@ -167,6 +177,14 @@ class HomeController extends ActionController
     {
         $id = $this->params('uid', Pi::user()->getId());
         $view = $this->params('uid') ? true : false;
+        
+        // Get user base info
+        $user = Pi::api('user', 'user')->get(
+            $id,
+            array('name','location_country', 'location_city', 'time_activated'),
+            true,
+            true
+        );
         
         $owner = Pi::api('owner', 'guide')->getOwner($id, 'uid');
         $where = array('owner' => $owner['id'], 'status' => 1);
@@ -193,6 +211,7 @@ class HomeController extends ActionController
             
         }
         $this->view()->assign('categories', $categories);
+        $this->view()->assign('user', $user);
         $this->view()->assign('uid', $id);
         $this->view()->assign('name', 'item');
         $this->view()->assign('itemList', $itemList);
@@ -211,6 +230,15 @@ class HomeController extends ActionController
             $count += $favourite['total_item'];
         }
         
+        // Get user base info
+        $user = Pi::api('user', 'user')->get(
+            $id,
+            array('name','location_country', 'location_city', 'time_activated'),
+            true,
+            true
+        );
+
+        $this->view()->assign('user', $user);
         $this->view()->assign('count', $count);
         $this->view()->assign('uid', $id);
         $this->view()->assign('name', 'favorite');
