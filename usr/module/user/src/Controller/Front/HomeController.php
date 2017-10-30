@@ -187,30 +187,16 @@ class HomeController extends ActionController
         );
         
         $owner = Pi::api('owner', 'guide')->getOwner($id, 'uid');
-        $where = array('owner' => $owner['id'], 'status' => 1);
-        $order = array('id DESC');
-        // Get list of item
-        $select = Pi::model('item', 'guide')->select()->where($where)->order($order);
-        $rowset = Pi::model('item', 'guide')->selectWith($select);
-        $categoryList = Pi::api('category', 'guide')->categoryList();
-        
-        $items = array();
-        foreach ($rowset as $row) {
-            $item = Pi::api('item', 'guide')->canonizeItemLight($row);
-            $categories = json_decode($item['category']);
-            foreach ($categories as $category) {
-                $item['categories'][] = $categoryList[$category];
-            }
-            if ($row->item_type == 'commercial') {
-                $itemList['commercial'][$row->id] = $item;
-            } elseif ($row->item_type == 'person') {
-                $itemList['person'][$row->id] = $item;
+        $items = Pi::api('item', 'guide')->getListFromOwner($owner['id']);
+        foreach ($items as $item) {
+            if ($item['item_type'] == 'commercial') {
+                $itemList['commercial'][$item['id']] = $item;
+            } elseif ($item['item_type'] == 'person') {
+                $itemList['person'][$item['id']] = $item;
             } else {
-                $itemList['free'][$row->id] = $item;
+                $itemList['free'][$item['id']] = $item;
             }
-            
         }
-        $this->view()->assign('categories', $categories);
         $this->view()->assign('user', $user);
         $this->view()->assign('uid', $id);
         $this->view()->assign('name', 'item');

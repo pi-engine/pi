@@ -79,7 +79,7 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                 <?php if ($module == 'user') { ?>
                     <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
                         <i class="fa fa-eye"></i>
-                        <?php _e('Switch to public'); ?>
+                        <?php _e('View my profile'); ?>
                     </a>
                 <?php } ?>
                 <?php if ($showSetting) { ?>
@@ -114,8 +114,8 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
             <?php } else { ?>
                 <?php if (Pi::user()->getId() == $uid && $module == 'user') { ?>
                     <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'profile', 'action' => 'index')); ?>">
-                        <i class="fa fa-eye"></i>
-                        <?php _e('Switch to own'); ?>
+                        <i class="fa fa-edit"></i>
+                        <?php _e('Manage my profile'); ?>
                     </a>
                 <?php } ?>
                 <?php if (Pi::user()->getId() != $uid && Pi::service('module')->isActive('message')) { ?>
@@ -226,6 +226,9 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                         echo '<i class="fa ' . $item['icon'] . '"></i> ';
                     }
                     echo _escape($item['title']);
+                    if (isset($item['count'])) {
+                        echo ' (' . $item['count'] . ')';  
+                    } 
                     ?>
                 </a>
             </li>

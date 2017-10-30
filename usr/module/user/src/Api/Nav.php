@@ -65,6 +65,7 @@ class Nav extends AbstractApi
                 'name'  => 'homepage',
                 'url'   => $url,
                 'icon'  => '',
+                'count' => Pi::api('timeline', 'user')->getCount($uid ? $uid : Pi::user()->getId())
             );
         }
 
@@ -75,15 +76,18 @@ class Nav extends AbstractApi
             'name'  => 'comment',
             'url'   => $url,
             'icon'  => '',
+            'count' => Pi::api('api', 'comment')->getCount(array('uid' => $uid ? $uid : Pi::user()->getId(), 'active' => 1, 'reply' => 0))
         );
         
         $params['action'] = 'item';
         $url = Pi::service('url')->assemble($route, $params);
+        $owner = Pi::api('owner', 'guide')->getOwner($uid ? $uid : Pi::user()->getId(), 'uid');
         $result['items'][] = array(
             'title' => __('Items'),
             'name'  => 'item',
             'url'   => $url,
             'icon'  => '',
+            'count' =>  Pi::api('item', 'guide')->getCountFromOwner($owner['id'], false)
         );
         
         $params['action'] = 'favorite';
@@ -93,6 +97,7 @@ class Nav extends AbstractApi
             'name'  => 'favorite',
             'url'   => $url,
             'icon'  => '',
+            'count' =>  Pi::api('favourite', 'favourite')->getCount($uid ? $uid : Pi::user()->getId())
         );
         
 

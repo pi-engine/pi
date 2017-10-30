@@ -29,10 +29,11 @@
 
 .user-name {
   margin-bottom: 5px;
+  margin-top:0
 }
 
 .user-info-center {
-  vertical-align: bottom;
+  vertical-align: top;
 }
 
 .user-media-name {
