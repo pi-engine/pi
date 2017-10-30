@@ -197,7 +197,7 @@ class Markup
             $renderer = null;
         }
         if (!$parser) {
-            $parser = $this->getParser();
+            $parser = $this->loadParser('text');
         } elseif (!$parser instanceof AbstractParser) {
             $parser = $this->loadParser($parser);
         }
