@@ -172,11 +172,11 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                     <?php echo _escape($user['birthdate']); ?>
                 </div>
             <?php } ?>
-            <?php if (!empty($user['location_city'])) { ?>
+            <?php if (!empty($user['city'])) { ?>
                 <div style="margin-top: 5px;">
-                    <?php echo _escape($user['location_city']); ?>
-                    <?php if (!empty($user['location_country'])) { ?>
-                        (<?php echo _escape($user['location_country']); ?>)
+                    <?php echo _escape($user['city']); ?>
+                    <?php if (!empty($user['country'])) { ?>
+                        (<?php echo _escape($user['country']); ?>)
                     <?php } ?>
                 </div>
             <?php } ?>

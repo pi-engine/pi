@@ -42,7 +42,7 @@ class ProfileController extends ActionController
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array('name','location_country', 'location_city', 'time_activated'),
+            array('name','country', 'city', 'time_activated'),
             true,
             true
         );
@@ -93,7 +93,7 @@ class ProfileController extends ActionController
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array('name','location_country', 'location_city', 'time_activated'),
+            array('name','country', 'city', 'time_activated'),
             true,
             true
         );
