@@ -90,6 +90,19 @@ class Updator160 extends AbstractUpdator
                     return $status;
                 }
             }
+            
+            $sql = sprintf('DELETE FROM %s WHERE field="location_city";', $table);
+            $status = $this->queryTable($sql);
+
+            if (false === $status) {
+                return $status;
+            }
+            $sql = sprintf('DELETE FROM %s WHERE field="location_country";', $table);
+            $status = $this->queryTable($sql);
+
+            if (false === $status) {
+                return $status;
+            }
         }
         
         return $status;
