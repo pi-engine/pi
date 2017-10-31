@@ -476,6 +476,7 @@ class RegisterController extends ActionController
         // Set values
         $values['last_modified'] = time();
         $values['ip_register']   = Pi::user()->getIp();
+        $values['register_source'] = 'WEB';
 
         // Add user
         $uid = Pi::api('user', 'user')->addUser($values);
