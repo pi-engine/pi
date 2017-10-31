@@ -58,11 +58,13 @@ class UpdatorPost160 extends AbstractUpdator
                     break;
                 }
             }
-            $sql = sprintf("ALTER TABLE %s DROP COLUMN location_city", $table);
-            $status = $this->queryTable($sql);
-    
-            if (false === $status) {
-                return $status;
+            if ($col != null) {
+                $sql = sprintf("ALTER TABLE %s DROP COLUMN location_city", $table);
+                $status = $this->queryTable($sql);
+        
+                if (false === $status) {
+                    return $status;
+                }
             }
             
             $col = null;
@@ -72,11 +74,13 @@ class UpdatorPost160 extends AbstractUpdator
                     break;
                 }
             }
-            $sql = sprintf("ALTER TABLE %s DROP COLUMN location_country", $table);
-            $status = $this->queryTable($sql);
-    
-            if (false === $status) {
-                return $status;
+            if ($col != null) {
+                $sql = sprintf("ALTER TABLE %s DROP COLUMN location_country", $table);
+                $status = $this->queryTable($sql);
+        
+                if (false === $status) {
+                    return $status;
+                }
             }
         }
 

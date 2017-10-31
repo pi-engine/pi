@@ -16,9 +16,6 @@
 return array(
     // Fields
     'field'     => array(
-
-        // Account fields
-
         // Account: identity
         'identity'      => array(
             'type'      => 'account',
@@ -265,7 +262,92 @@ return array(
             'is_display'    => false,
             'is_search'     => false,
         ),
+        // Profile: register source, could be used for register invitation
+        'register_source' => array(
+            'name'          => 'register_source',
+            'title'         => _a('Register source'),
+            'is_edit'       => false,
+            'is_display'    => false,
+            'is_search'     => false,
+        ),
+        // Profile: identification_number
+        // See : https://en.wikipedia.org/wiki/National_identification_number
+        'id_number'  => array(
+            'name'  => 'id_number',
+            'title' => _a('Identification number'),
+        ),
 
+        // Profile: first_name
+        'first_name'  => array(
+            'name'  => 'first_name',
+            'title' => _a('First Name'),
+        ),
+
+        // Profile: last_name
+        'last_name'  => array(
+            'name'  => 'last_name',
+            'title' => _a('Last Name'),
+        ),
+        // Profile: Language
+        'language'  => array(
+            'name'  => 'language',
+            'title' => _a('Language'),
+            'edit'  => 'locale',
+        ),
+
+        // Profile: mobile phone number
+        'mobile'      => array(
+            'name'      => 'mobile',
+            'title'     => _a('Mobile phone'),
+        ),
+
+        // Profile: phone
+        'phone'  => array(
+            'name'  => 'phone',
+            'title' => _a('Telephone'),
+        ),
+
+        // Profile: address1
+        'address1'  => array(
+            'name'  => 'address1',
+            'title' => _a('Address 1'),
+        ),
+
+        // Profile: address2
+        'address2'  => array(
+            'name'  => 'address2',
+            'title' => _a('Address 2'),
+        ),
+
+        // Profile: country
+        'country'  => array(
+            'name'  => 'country',
+            'title' => _a('Country'),
+        ),
+
+        // Profile: state
+        'state'  => array(
+            'name'  => 'state',
+            'title' => _a('State'),
+        ),
+
+        // Profile: city
+        'city'  => array(
+            'name'  => 'city',
+            'title' => _a('City'),
+        ),
+
+        // Profile: zip_code
+        'zip_code'  => array(
+            'name'  => 'zip_code',
+            'title' => _a('Zip code'),
+        ),
+        // Profile: device_token
+        'device_token'  => array(
+            'name'  => 'device_token',
+            'title' => _a('Device token'),
+        ),
+        
         // Compound fields
         // Compound: Social networking tools
         'social'      => array(
@@ -284,7 +366,6 @@ return array(
                 ),
             ),
         ),
-
     ),
 
     // Timeline logs from modules
