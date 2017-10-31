@@ -27,12 +27,6 @@ $customConfig = array(
             'is_display'    => false,
             'is_search'     => false,
         ),
-        // Profile: identification_number
-        // See : https://en.wikipedia.org/wiki/National_identification_number
-        'id_number'  => array(
-            'name'  => 'id_number',
-            'title' => _a('Identification number'),
-        ),
 
         // Profile: first_name
         'first_name'  => array(
@@ -45,6 +39,7 @@ $customConfig = array(
             'name'  => 'last_name',
             'title' => _a('Last Name'),
         ),
+
         // Profile: Language
         'language'  => array(
             'name'  => 'language',
@@ -63,44 +58,6 @@ $customConfig = array(
             'name'  => 'phone',
             'title' => _a('Telephone'),
         ),
-
-        // Profile: address1
-        'address1'  => array(
-            'name'  => 'address1',
-            'title' => _a('Address 1'),
-        ),
-
-        // Profile: address2
-        'address2'  => array(
-            'name'  => 'address2',
-            'title' => _a('Address 2'),
-        ),
-
-        // Profile: country
-        'country'  => array(
-            'name'  => 'country',
-            'title' => _a('Country'),
-        ),
-
-        // Profile: state
-        'state'  => array(
-            'name'  => 'state',
-            'title' => _a('State'),
-        ),
-
-        // Profile: city
-        'city'  => array(
-            'name'  => 'city',
-            'title' => _a('City'),
-        ),
-
-        // Profile: zip_code
-        'zip_code'  => array(
-            'name'  => 'zip_code',
-            'title' => _a('Zip code'),
-        ),
-
-        
 
 
         // Compound fields
