@@ -65,7 +65,6 @@ class Nav extends AbstractApi
                 'name'  => 'homepage',
                 'url'   => $url,
                 'icon'  => '',
-                'count' => Pi::api('timeline', 'user')->getCount($uid ? $uid : Pi::user()->getId())
             );
         }
 
