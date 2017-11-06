@@ -91,6 +91,7 @@ class Updator160 extends AbstractUpdator
                 }
             }
             
+            $table = Pi::db()->prefix('display_field', 'user');
             $sql = sprintf('DELETE FROM %s WHERE field="location_city";', $table);
             $status = $this->queryTable($sql);
 
