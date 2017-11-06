@@ -157,7 +157,7 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
             <?php if (!empty($user['time_activated'])) { ?>
                 <div style="margin-top: 10px;">
                     <?php _e('Member since'); ?>
-                    <?php echo _date($user['time_activated']); ?>
+                    <?php echo $user['time_activated']; ?>
                 </div>
             <?php } ?>
             <?php if (!empty($user['gender'])) { ?>
