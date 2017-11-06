@@ -135,6 +135,9 @@
             </span>
           <td class="text-center">
             {{user.time_created}}
+            <div data-ng-if="user.register_source">
+                ({{user.register_source}})
+            </div>
   </table>
   <pagination data-ng-if="paginator.count > paginator.limit"
               total-items="paginator.count" page="paginator.page" max-size="10"

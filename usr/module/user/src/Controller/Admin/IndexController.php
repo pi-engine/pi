@@ -752,7 +752,8 @@ class IndexController extends ActionController
                     'time_activated',
                     'time_created',
                     'ip_register',
-                    'id'
+                    'id',
+                    'register_source'
                 );
                 $users = Pi::api('user', 'user')->get($uids, $columns);
                 array_walk($users, function (&$user, $uid) {
