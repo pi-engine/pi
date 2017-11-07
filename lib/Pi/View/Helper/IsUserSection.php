@@ -57,6 +57,10 @@ class IsUserSection extends AbstractHelper
             if ($a[1]['controller'] == 'password' && $a[1]['action'] != 'find') {
                 $userSection = true;
             }
+            
+            if ($a[1]['controller'] == 'activity' && !isset($a[1]['uid'])) {
+                $userSection = true;
+            }
 
             if (in_array($a[1]['controller'], array('dashboard', 'account', 'avatar', 'privacy'))) {
                 $userSection = true;
