@@ -30,10 +30,10 @@ class ActivityController extends ActionController
         $uid        = _get('uid');
         $ownerUid   = Pi::user()->getId();
         $limit      = Pi::config('list_limit', 'user');
-
+        $page   = _get('page', 'int') ?: 1;
         if (!$uid && !$ownerUid) {
             $this->jump(
-                array(
+                array( 
                     'controller' => 'profile',
                     'action'     => 'index'
                 ),
@@ -56,18 +56,26 @@ class ActivityController extends ActionController
                 'error'
             );
         }
-
         // Get activity list for nav display
-        $activityList = Pi::api('activity', 'user')->getList();
-
+        $activityList = Pi::api('activity', 'user')->getList($uid);
+        
         // Get current activity data
-        $data = Pi::api('activity', 'user')->get($uid, $name, $limit);
-
+        $data = Pi::api('activity', 'user')->get($uid, $name, $limit, $page);
+        
+        // Get user base info
+        $user = Pi::api('user', 'user')->get(
+            $uid,
+            array('name','country', 'city', 'time_activated'),
+            true,
+            true
+        );
+        
         $this->view()->assign(array(
             'list'      => $activityList,
             'name'      => $name,
             'data'      => $data,
             'uid'       => $uid,
+            'user'      => $user
         ));
     }
 

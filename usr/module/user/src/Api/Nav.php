@@ -68,40 +68,9 @@ class Nav extends AbstractApi
             );
         }
 
-        $params['action'] = 'comment';        
-        $url = Pi::service('url')->assemble($route, $params);
-        $result['items'][] = array(
-            'title' => __('Reviews & Comments'),
-            'name'  => 'comment',
-            'url'   => $url,
-            'icon'  => '',
-            'count' => Pi::api('api', 'comment')->getCount(array('uid' => $uid ? $uid : Pi::user()->getId(), 'active' => 1, 'reply' => 0))
-        );
-        
-        $params['action'] = 'item';
-        $url = Pi::service('url')->assemble($route, $params);
-        $owner = Pi::api('owner', 'guide')->getOwner($uid ? $uid : Pi::user()->getId(), 'uid');
-        $result['items'][] = array(
-            'title' => __('Items'),
-            'name'  => 'item',
-            'url'   => $url,
-            'icon'  => '',
-            'count' =>  Pi::api('item', 'guide')->getCountFromOwner($owner['id'], false)
-        );
-        
-        $params['action'] = 'favorite';
-        $url = Pi::service('url')->assemble($route, $params);
-        $result['items'][] = array(
-            'title' => __('Favorites'),
-            'name'  => 'favorite',
-            'url'   => $url,
-            'icon'  => '',
-            'count' =>  Pi::api('favourite', 'favourite')->getCount($uid ? $uid : Pi::user()->getId())
-        );
-        
-
         // Set activity
-        $activityList = Pi::api('activity', 'user')->getList();
+        $activityList = Pi::api('activity', 'user')->getList($uid);
+        
         foreach ($activityList as $key => $value) {
             $params = array(
                 'controller' => 'activity',
@@ -118,9 +87,11 @@ class Nav extends AbstractApi
                 'name'  => $key,
                 'icon'  => $value['icon'],
                 'url'   => $url,
+                'count'   => $value['count'],
             );
         }
 
         return $result;
     }
 }
+;
