@@ -249,6 +249,20 @@ class User extends Standard
                     unset($params['id']);
                 }
             }
+        } elseif ('activity' == $controller) {
+            if ('' == $action || 'index' == $action || 'view' == $action) {
+                // /profile
+                $url = 'activity/index';
+                // /profile/<id>
+                if (!empty($params['name'])) {
+                    $url .= $this->paramDelimiter . 'name/' . $params['name'];
+                    unset($params['name']);
+                }
+                if (!empty($params['id'])) {
+                    $url .= $this->paramDelimiter . 'id/' .  $params['id'];
+                    unset($params['id']);
+                }
+            }
         }
 
         if (null !== $url) {
