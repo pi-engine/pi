@@ -41,10 +41,14 @@ class ActivityController extends ActionController
                 'error'
             );
         }
-
+        
         // Check is owner
         if (!$uid) {
             $uid     = $ownerUid;
+            $view = false;
+        } else {
+            $view = true;
+        
         }
         if (!$name) {
             $this->jump(
@@ -75,7 +79,8 @@ class ActivityController extends ActionController
             'name'      => $name,
             'data'      => $data,
             'uid'       => $uid,
-            'user'      => $user
+            'user'      => $user,
+            'view'      => $view
         ));
     }
 

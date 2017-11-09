@@ -37,7 +37,8 @@ class Activity extends AbstractApi
             
             $callback = $activity['callback'];
             if (!preg_match('|^http[s]?://|i', $callback)) {
-                $reader = new $callback($meta['module']);
+                $module = isset($meta['module']) ? $meta['module'] : null;
+                $reader = new $callback($module);
                 if ($reader instanceof AbstractActivityCallback) {
                     $count = $reader->getCount($uid);
                 } 
