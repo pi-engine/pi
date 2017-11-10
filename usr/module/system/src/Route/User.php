@@ -120,6 +120,13 @@ class User extends Standard
                     $matches['controller']  = 'home';
                     $matches['action']      = 'index';
                     if ($parts) {
+                        if ($parts[0] == 'comment' || $parts[0] == 'item' || $parts[0] == 'favorite') {
+                            $matches['action'] = $parts[0];
+                             if (is_numeric($parts[2])) {
+                                $matches['id'] = $parts[2];
+                            }
+                        }
+                        
                         // /home/<uid>
                         if (is_numeric($parts[0])) {
                             $matches['action'] = 'view';
@@ -239,6 +246,20 @@ class User extends Standard
                 // /profile/<id>
                 if (!empty($params['id'])) {
                     $url .= $this->paramDelimiter . $params['id'];
+                    unset($params['id']);
+                }
+            }
+        } elseif ('activity' == $controller) {
+            if ('' == $action || 'index' == $action || 'view' == $action) {
+                // /profile
+                $url = 'activity/index';
+                // /profile/<id>
+                if (!empty($params['name'])) {
+                    $url .= $this->paramDelimiter . 'name/' . $params['name'];
+                    unset($params['name']);
+                }
+                if (!empty($params['id'])) {
+                    $url .= $this->paramDelimiter . 'id/' .  $params['id'];
                     unset($params['id']);
                 }
             }

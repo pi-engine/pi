@@ -29,14 +29,25 @@ class Activity extends AbstractApi
      *
      * @return array
      */
-    public function getList()
+    public function getList($uid)
     {
         $result = array();
         $list = Pi::registry('activity', 'user')->read();
         foreach ($list as $name => $activity) {
+            
+            $callback = $activity['callback'];
+            if (!preg_match('|^http[s]?://|i', $callback)) {
+                $module = isset($meta['module']) ? $meta['module'] : null;
+                $reader = new $callback($module);
+                if ($reader instanceof AbstractActivityCallback) {
+                    $count = $reader->getCount($uid);
+                } 
+            }
+        
             $result[$name] = array(
                 'title' => $activity['title'],
                 'icon'  => $activity['icon'],
+                'count'  => $count,
             );
         }
 
@@ -71,11 +82,11 @@ class Activity extends AbstractApi
                 'limit'     => $limit,
                 'offset'    => $offset,
             ));
-        } else {
+        } else if ($callback != null){
             $reader = new $callback($meta['module']);
             if ($reader instanceof AbstractActivityCallback) {
-                $data = $reader->get($uid, $limit, $offset);
-            }
+                $data = $reader->get($uid, $limit, $offset, $name);
+            } 
         }
         if (is_string($data)) {
             $content = $data;

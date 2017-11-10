@@ -119,4 +119,22 @@ class Timeline extends AbstractApi
 
         return true;
     }
+    
+     /**
+     * delete a timeline log
+     *
+     * Log array:
+     *  - module
+     *  - data
+     *
+     * @param array $log
+     * @return bool
+     */
+    public function delete(array $log)
+    {
+        $id = $log['data'];
+        $row = Pi::model('timeline_log', 'user')->delete(array('module' => $log['module'], 'data' => "{\"comment\":$id}"));
+        return true;
+    }
+    
 }

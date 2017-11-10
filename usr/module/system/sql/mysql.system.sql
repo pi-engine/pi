@@ -105,7 +105,7 @@ CREATE TABLE `{core.config}` (
   `category`        varchar(64)     NOT NULL    default '',             # Category name of configs
   `title`           varchar(255)    NOT NULL default '',
   `value`           text,
-  `description`     varchar(255)    NOT NULL default '',
+  `description`     text    	    NOT NULL default '',
   `edit`            text,           # callback options for edit
   `filter`          varchar(64)     NOT NULL default '',
   `order`           smallint(5)     unsigned NOT NULL default '0',

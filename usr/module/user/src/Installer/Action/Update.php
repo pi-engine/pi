@@ -28,6 +28,7 @@ class Update extends BasicUpdate
     {
         $events = $this->events;
         $events->attach('update.pre', array($this, 'updateSchema'));
+        $events->attach('update.post', array($this, 'updatePostSchema'));
         parent::attachDefaultListeners();
 
         return $this;
@@ -42,7 +43,16 @@ class Update extends BasicUpdate
     public function updateSchema(Event $e)
     {
         $moduleVersion = $e->getParam('version');
-        $updator = new Schema\Updator130($this);
+        $updator = new Schema\Updator160($this);
+        $result = $updator->upgrade($moduleVersion);
+
+        return $result;
+    }
+    
+    public function updatePostSchema(Event $e)
+    {
+        $moduleVersion = $e->getParam('version');
+        $updator = new Schema\UpdatorPost160($this);
         $result = $updator->upgrade($moduleVersion);
 
         return $result;

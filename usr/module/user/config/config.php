@@ -114,6 +114,7 @@ $config = array(
                     'subscription'    => _t('Subscription'),
                     'ads'             => _t('Ads'),
                     'notification'    => _t('Notification'),
+                    'comment'         => _t('Comment'),
                 ),
             ),
         ),

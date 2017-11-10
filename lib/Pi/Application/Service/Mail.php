@@ -304,7 +304,7 @@ class Mail extends AbstractService
     public function loadTemplate($template)
     {
         // Load directly for absolute path
-        if (file_exists($template)) {
+        if (!is_array($template) && file_exists($template)) {
             $path = $template;
         // Get realpath
         } else {

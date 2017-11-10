@@ -79,7 +79,7 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                 <?php if ($module == 'user') { ?>
                     <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
                         <i class="fa fa-eye"></i>
-                        <?php _e('Switch to public'); ?>
+                        <?php _e('View my profile'); ?>
                     </a>
                 <?php } ?>
                 <?php if ($showSetting) { ?>
@@ -114,15 +114,26 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
             <?php } else { ?>
                 <?php if (Pi::user()->getId() == $uid && $module == 'user') { ?>
                     <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'profile', 'action' => 'index')); ?>">
-                        <i class="fa fa-eye"></i>
-                        <?php _e('Switch to own'); ?>
+                        <i class="fa fa-edit"></i>
+                        <?php _e('Manage my profile'); ?>
                     </a>
                 <?php } ?>
                 <?php if (Pi::user()->getId() != $uid && Pi::service('module')->isActive('message')) { ?>
-                    <a class="btn btn-default" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
+                    
+                    <?php if(!Pi::user()->getId()) { ?>
+                    <a class="btn btn-default" href=""
+                         data-redirect="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>"
+                                                href="<?php echo (Pi::user()->config('enable_modal')) ? '#' : $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>" <?php if(Pi::user()->config('enable_modal')) : ?>data-action="login" data-toggle="modal" data-target="#loginRegisterModal"<?php endif; ?>
+                        >
                         <i class="fa fa-envelope"></i>
                         <?php _e('Send message'); ?>
                     </a>
+                    <?php } else { ?>
+                         <a class="btn btn-default" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
+                            <i class="fa fa-envelope"></i>
+                            <?php _e('Send message'); ?>
+                        </a>
+                    <?php } ?> 
                 <?php } else { ?>
                     <a class="btn btn-default disabled">
                         <i class="fa fa-envelope"></i>
@@ -132,7 +143,7 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
             <?php } ?>
         </div>
         <div class="inline user-info-left">
-            <div class="pull-left">
+            <div class="pull-left <?php if (!$owner) { ?>border-radius<?php } ?>">
                 <?php echo Pi::avatar()->get($uid, 'xlarge', _escape($user['name'])); ?>
             </div>
             <?php if ($owner) { ?>
@@ -143,8 +154,14 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
         </div>
         <div class="inline user-info-center">
             <h1 class="user-name"><?php echo _escape($user['name']); ?></h1>
-            <?php if (!empty($user['gender'])) { ?>
+            <?php if (!empty($user['time_activated'])) { ?>
                 <div style="margin-top: 10px;">
+                    <?php _e('Member since'); ?>
+                    <?php echo $user['time_activated']; ?>
+                </div>
+            <?php } ?>
+            <?php if (!empty($user['gender'])) { ?>
+                <div style="margin-top: 5px;">
                     <?php _e('Gender:'); ?>
                     <?php echo _escape($user['gender']); ?>
                 </div>
@@ -155,6 +172,15 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                     <?php echo _escape($user['birthdate']); ?>
                 </div>
             <?php } ?>
+            <?php if (!empty($user['city'])) { ?>
+                <div style="margin-top: 5px;">
+                    <?php echo _escape($user['city']); ?>
+                    <?php if (!empty($user['country'])) { ?>
+                        (<?php echo _escape($user['country']); ?>)
+                    <?php } ?>
+                </div>
+            <?php } ?>
+            
         </div>
     </div>
 <?php if ($showNav) { ?>
@@ -200,6 +226,9 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                         echo '<i class="fa ' . $item['icon'] . '"></i> ';
                     }
                     echo _escape($item['title']);
+                    if (isset($item['count'])) {
+                        echo ' (' . $item['count'] . ')';  
+                    } 
                     ?>
                 </a>
             </li>

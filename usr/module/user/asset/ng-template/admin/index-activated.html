@@ -139,7 +139,10 @@
                 <i class="fa fa-user-md fa-2x"></i>
               </span>
             <td class="text-center">
-              {{user.time_created}}
+                {{user.time_created}}
+                <div data-ng-if="user.register_source">
+                    ({{user.register_source}})
+                </div>
     </table>
   </div>
   <pagination data-ng-show="paginator.count > paginator.limit"

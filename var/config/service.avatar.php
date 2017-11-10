@@ -11,7 +11,7 @@ return array(
     // User uploaded avatars
     //'adapter'       => 'upload',
     // Auto detected
-    'adapter'       => array('upload', 'select', 'gravatar'),
+    'adapter'       => array('upload', 'select', 'gravatar', 'local'),
 
     // Options for named size
     'size_map'  => array(

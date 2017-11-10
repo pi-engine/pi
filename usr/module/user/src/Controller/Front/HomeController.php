@@ -51,7 +51,7 @@ class HomeController extends ActionController
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array('name', 'gender', 'birthdate'),
+            array('name','country', 'city', 'time_activated'),
             true,
             true
         );
@@ -74,6 +74,7 @@ class HomeController extends ActionController
             'user'          => $user,
         ));
 
+        $this->view()->assign('view', false);
         $this->view()->headTitle(sprintf(__('%s activities') , $user['name']));
         $this->view()->headdescription(sprintf(__('View %s activities') , $user['name']), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
@@ -110,7 +111,7 @@ class HomeController extends ActionController
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array('name', 'gender', 'birthdate'),
+            array('name','country', 'city', 'time_activated'),
             true,
             true
         );
@@ -135,12 +136,12 @@ class HomeController extends ActionController
         ));
 
         $this->view()->setTemplate('home-index');
-
+        $this->view()->assign('view', true);
         $this->view()->headTitle(sprintf(__('%s activities') , $user['name']));
         $this->view()->headdescription(sprintf(__('View %s activities') , $user['name']), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
-
+    
     /**
      * Set paginator
      *

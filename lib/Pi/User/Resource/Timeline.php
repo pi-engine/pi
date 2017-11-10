@@ -94,4 +94,15 @@ class Timeline extends AbstractResource
 
         return $result;
     }
+    
+    public function delete(array $log)
+    {
+        if (!$this->isAvailable()) {
+            return false;
+        }
+        $result = Pi::api('timeline', 'user')->delete($log);
+
+        return $result;
+    }
+    
 }

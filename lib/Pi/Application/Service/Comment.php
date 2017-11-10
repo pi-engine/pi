@@ -144,7 +144,9 @@ EOT;
         
         $params = array_replace($params, $routeMatch->getParams());
         $options = array(
-            'review' => $review
+            'review' => $review,
+            'page' => isset($params['page']) ? $params['page'] : 1
+            
         );
         $data = Pi::api('api', 'comment')->load($params, $options);
         if (!$data) {
@@ -155,7 +157,9 @@ EOT;
             : Pi::service('url')->getRequestUri();
         $data['uid'] = Pi::user()->getId();
         $data['review'] = isset($params['review']) ? $params['review'] : false;        
-
+        $data['owner'] = isset($params['owner']) ? $params['owner'] : false;
+        $data['admin'] =  Pi::service('permission')->isAdmin('comment', $data['uid']);
+        $data['page'] = isset($params['page']) ? $params['page'] : 1;
         $template = 'comment:front/comment-lead';
         $result = Pi::service('view')->render($template, $data);
 
@@ -193,6 +197,7 @@ EOT;
             : Pi::service('url')->getRequestUri();
         $data['uid'] = Pi::user()->getId();
         $data['review'] = $params['review'];        
+        $data['page'] = isset($params['page']) ? $params['page'] : 1;
         
         $template = 'comment:front/partial/paginate-comments';
         $result = Pi::service('view')->render($template, $data);
@@ -607,9 +612,6 @@ EOT;
                     // Clear cache for leading comments
                     $this->clearCache($key, true);
                     
-                    // Insert timeline item
-                    Pi::service('comment')->timeline($key);
-                    
                     $offset += $limit;
                     $key = $id . '-' . $limit . $offset;
                 }
@@ -620,9 +622,6 @@ EOT;
                 {
                     // Clear cache for leading comments
                     $this->clearCache($key, true);
-                    
-                    // Insert timeline item
-                    Pi::service('comment')->timeline($key);
                     
                     $offset += $limit;
                     $key = $id . '-' . $limit . $offset;
@@ -647,6 +646,8 @@ EOT;
         $uid = $uid ?: Pi::service('user')->getId();
 
         $message = __('Posted a new comment.');
+        
+        $post   = Pi::api('api', 'comment')->getPost($id);
         $link = Pi::url(Pi::api('api', 'comment')->getUrl('post', array(
             'post'      => $id,
         )), true);
@@ -657,9 +658,27 @@ EOT;
             'time'      => time(),
             'module'    => 'comment',
             'link'      => $link,
+            'data'      => json_encode(array('comment' => $id))
         );
         Pi::service('user')->timeline()->add($params);
 
         return $result;
+    }
+    
+    /**
+     * Delete user timeline for a comment
+     *
+     * @param int $id
+     *
+     */
+    public function timelineDelete($id)
+    {
+        $params = array(
+            'module'    => 'comment',
+            'data'      => $id,
+        );
+        Pi::service('user')->timeline()->delete($params);
+        
+        
     }
 }

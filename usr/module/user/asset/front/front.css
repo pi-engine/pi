@@ -13,7 +13,7 @@
 .user-underline-list {
   border-bottom: 1px solid #ccc;
   padding-bottom: 20px;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .user-underline-list i {
@@ -29,10 +29,11 @@
 
 .user-name {
   margin-bottom: 5px;
+  margin-top:0
 }
 
 .user-info-center {
-  vertical-align: bottom;
+  vertical-align: top;
 }
 
 .user-media-name {
@@ -269,6 +270,8 @@
   border: 1px solid #e5e5e5;
 }
 
+.border-radius > img {border-radius:100%}
+
 /* login */
 .user-action-bar {
   margin: 40px -15px;
@@ -353,3 +356,6 @@
   text-align: center;
   display: block;
 }
+
+
+.timeline > .pull-left{padding-right:10px}

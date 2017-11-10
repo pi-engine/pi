@@ -42,7 +42,7 @@ class ProfileController extends ActionController
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array('name', 'gender', 'birthdate'),
+            array('name','country', 'city', 'time_activated'),
             true,
             true
         );
@@ -69,6 +69,13 @@ class ProfileController extends ActionController
     public function viewAction()
     {
         $uid    = $this->params('uid', '');
+        $name    = $this->params('name', null);
+        if (empty($uid)  && $name != null) {
+            $user = Pi::api('user', 'user')->getUser($name, 'name');
+            if ($user != null) {
+                $uid = $user->id;
+            }            
+        }
         $groups = $this->getProfile($uid);
 
         // Get viewer level: everyone, member, follower, following, owner
@@ -86,7 +93,7 @@ class ProfileController extends ActionController
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array('name', 'gender', 'birthdate'),
+            array('name','country', 'city', 'time_activated'),
             true,
             true
         );

@@ -55,18 +55,22 @@ class Nav extends AbstractApi
             'action'     => 'index',
         );
         if ($uid) {
-            $params['uid']    = $uid;
+            $params['uid'] = $uid;
         }
-        $url = Pi::service('url')->assemble($route, $params);
-        $result['items'][] = array(
-            'title' => __('Feed'),
-            'name'  => 'homepage',
-            'url'   => $url,
-            'icon'  => '',
-        );
+        
+        if (Pi::user()->getId()) {
+            $url = Pi::service('url')->assemble($route, $params);
+            $result['items'][] = array(
+                'title' => __('Feed'),
+                'name'  => 'homepage',
+                'url'   => $url,
+                'icon'  => '',
+            );
+        }
 
         // Set activity
-        $activityList = Pi::api('activity', 'user')->getList();
+        $activityList = Pi::api('activity', 'user')->getList($uid);
+        
         foreach ($activityList as $key => $value) {
             $params = array(
                 'controller' => 'activity',
@@ -83,9 +87,11 @@ class Nav extends AbstractApi
                 'name'  => $key,
                 'icon'  => $value['icon'],
                 'url'   => $url,
+                'count'   => $value['count'],
             );
         }
 
         return $result;
     }
 }
+;

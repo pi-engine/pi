@@ -46,7 +46,7 @@ class Linkify extends AbstractFilter
      *
      * @return callable
      */
-    protected function linkCallback()
+    protected function linkCallback($url)
     {
         $attributes = array();
         if (!empty($this->options['attributes'])) {
@@ -58,6 +58,22 @@ class Linkify extends AbstractFilter
         if (!isset($attributes['title'])) {
             $attributes['title'] = __('Click to open');
         }
+        
+        $nofollow = true;
+        if (Pi::service('module')->isActive('comment')) {
+            $trustDomains = Pi::config('linkify_trust_domain', 'comment');
+            $trustDomains = str_replace(',', '|', $trustDomains);
+            $trustDomains = str_replace(' ', '', $trustDomains);
+            if (preg_match('/(.*)' . $trustDomains . '(.*)/', $url)) {
+                $nofollow = false;
+            }
+        }
+        
+        if ($nofollow) {
+            $attributes['rel'] = 'nofollow noopener noreferrer';
+        }
+        
+        
         $helper = Pi::service('view')->getHelper('html_link');
 
         $callback = function ($href, $title) use ($helper, $attributes) {
@@ -106,7 +122,6 @@ class Linkify extends AbstractFilter
      */
     protected function filterMisd($value)
     {
-        $callback = $this->linkCallback();
         $pattern = '~(?xi)
               (?:
                 ((ht|f)tps?://)                    # scheme://
@@ -128,12 +143,13 @@ class Linkify extends AbstractFilter
                 [^\s`!\-()\[\]{};:\'".,<>?«»“”‘’]  # not a space or one of these punct chars
               )
         ~';
-        $func = function ($match) use ($callback) {
+        $func = function ($match) {
             $caption = $match[0];
             $pattern = "~^(ht|f)tps?://~";
             if (0 === preg_match($pattern, $match[0])) {
                 $match[0] = 'http://' . $match[0];
             }
+            $callback = $this->linkCallback($match[0]);
             return $callback($match[0], $caption);
         };
 
