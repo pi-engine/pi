@@ -189,7 +189,7 @@ class Privacy extends AbstractApi
                 }
             }
         } elseif ($type == 'user') {
-            $result['id'] = $rawData['id'];
+            $result['id'] = isset($rawData['id']) ? $rawData['id'] : null;
             unset($rawData['id']);
             foreach ($rawData as $key => $value) {
                 // Allowed

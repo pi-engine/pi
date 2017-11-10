@@ -99,6 +99,7 @@ class ProfileController extends ActionController
         );
 
         // Set view
+        $user['name'] = isset($user['name']) ? $user['name'] : null;
         $this->view()->assign(array(
             'groups'        => $groups,
             'name'          => 'profile',
