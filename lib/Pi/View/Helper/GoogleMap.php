@@ -76,10 +76,10 @@ class GoogleMap extends AbstractHelper
     /**
      * Load GA scripts
      *
-     * @param   array   $locations
-     * @param   string  $apiKey
-     * @param   string  $type       point|route|list
-     * @param   array   $option     Set custom options
+     * @param   array $locations
+     * @param   string $apiKey
+     * @param   string $type point|route|list
+     * @param   array $option Set custom options
      *
      * @return  $this
      */
@@ -87,8 +87,9 @@ class GoogleMap extends AbstractHelper
         $locations,
         $apiKey = '',
         $type = 'point',
-        $option = array()
-    ) {
+        $option = []
+    )
+    {
 
         // Set uniq id
         $id = uniqid("google-map-");
@@ -120,9 +121,69 @@ class GoogleMap extends AbstractHelper
         // Set map info
         switch ($type) {
 
+            case 'routes':
+
+                // Set location array
+                $routeLocationScript = [];
+                foreach ($locations as $location) {
+                    $locationInfo = [
+                        'lat'   => $location['lat'],
+                        'lon'   => $location['lon'],
+                        'title' => $location['title'],
+                    ];
+                    if (isset($location['stopover']) && !empty($location['stopover'])) {
+                        $locationInfo['stopover'] = $location['stopover'];
+                    }
+                    if (isset($location['visible']) && !empty($location['visible'])) {
+                        $locationInfo['visible'] = $location['visible'];
+                    }
+                    if (isset($location['html']) && !empty($location['html'])) {
+                        $locationInfo['html'] = $location['html'];
+                    }
+                    $routeLocationScript[] = $locationInfo;
+                }
+                $routeLocationScript = json_encode($routeLocationScript);
+
+                // Set route script
+                $routeScript = <<<'EOT'
+$(function() {
+    var Location = %s;
+    
+    new Maplace({
+        locations: Location,
+        map_div: "#%s",
+        generate_controls: false,
+        show_markers: false,
+        type: "directions",
+        draggable: true,
+        directions_panel: "#route",
+        afterRoute: function(distance) {
+            $("#km").text(": "+(distance/1000)+"km");
+        }
+    }).Load();
+});
+EOT;
+                // Set item info on script
+                $script = sprintf(
+                    $routeScript,
+                    $routeLocationScript,
+                    $id
+                );
+                // Set url and key
+                $url = "https://maps.googleapis.com/maps/api/js";
+                if (!empty($apiKey)) {
+                    $url = sprintf('%s?key=%s', $url, $apiKey);
+                }
+
+                // Load maplace
+                $this->view->js($url);
+                $this->view->js(pi::url('static/js/maplace.min.js'));
+                $this->view->footScript()->appendScript($script);
+                break;
+
             case 'route':
                 // Set route script
-                $routeScript =<<<'EOT'
+                $routeScript = <<<'EOT'
 $(function() {
     var Location = [
         {lat: %s, lon: %s, title: "%s"},
@@ -165,7 +226,7 @@ $(function() {
 });
 EOT;
                 // Set item info on script
-                $script =  sprintf(
+                $script = sprintf(
                     $routeScript,
                     $locations['latitude'],
                     $locations['longitude'],
@@ -190,7 +251,7 @@ EOT;
 
             case 'list':
                 // Set script
-                $listScript =<<<'EOT'
+                $listScript = <<<'EOT'
 var MaPlace = {};
 $(function() {
     var noPoi = [
@@ -221,7 +282,7 @@ $(function() {
 });
 EOT;
                 // Set item info on script
-                $script =  sprintf(
+                $script = sprintf(
                     $listScript,
                     $locations['list'],
                     $id,
@@ -248,7 +309,7 @@ EOT;
             case 'point':
             default:
                 // Set point script
-                $pointScript =<<<'EOT'
+                $pointScript = <<<'EOT'
 function initialize() {
     var noPoi = [
         {
@@ -277,7 +338,7 @@ function initialize() {
 }
 EOT;
                 // Set item info on script
-                $script =  sprintf(
+                $script = sprintf(
                     $pointScript,
                     $locations['latitude'],
                     $locations['longitude'],
@@ -300,7 +361,7 @@ EOT;
         }
 
         // render html
-        $htmlTemplate =<<<'EOT'
+        $htmlTemplate = <<<'EOT'
 <div class="pi-map clearfix">
     <div class="thumbnail">
         <div id="%s" class="%s"></div>
