@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -18,7 +18,7 @@ return array(
         'description'   => _a('User profile and services.'),
         'version'       => '1.6.0',
         'license'       => 'New BSD',
-        'demo'          => 'http://demo.pialog.org',
+        'demo'          => 'http://demo.piengine.org',
         'icon'          => 'fa-user',
     ),
     // Author information
@@ -31,7 +31,7 @@ return array(
         // Email address, optional
         'Email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'Website'   => 'http://pialog.org',
+        'Website'   => 'http://piengine.org',
         // Credits and acknowledgement, optional
         'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),

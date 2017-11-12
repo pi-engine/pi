@@ -517,10 +517,10 @@ msgstr "技术支持"
 
 #: c:\Code\pi\\www\setup/src/Controller/Finish.php:115
 msgid ""
-"Visit <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine Development "
+"Visit <a href=\"http://piengine.org/\" rel=\"external\">Pi Engine Development "
 "Site</a> in case you need any help."
 msgstr ""
-"欢迎访问 <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine 开发站</"
+"欢迎访问 <a href=\"http://piengine.org/\" rel=\"external\">Pi Engine 开发站</"
 "a> 进行技术交流。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Finish.php:116

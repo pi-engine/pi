@@ -149,7 +149,7 @@ August 3rd, 2013
 28. Added API engine and routes
 29. Added system user model (by system module) and local user model (by user module)
 30. Refactored Default theme with strict Bootstrap compliance and Pi theme with strict HTML 5 (@sexnothing, @voltan, @loidco, etc.)
-31. Improved inline comments following docblock standards and generated Pi API at http://api.pialog.org
+31. Improved inline comments following docblock standards and generated Pi API at http://api.piengine.org
 32. Upgraded Zend Framework to 2.2.2 as Issue #151
 33. Skipped translation for view helpers
 34. Fixed Isse #166: error strategy should be performed prior to \Zend\Mvc\View\Http\InjectTemplateListener

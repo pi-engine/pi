@@ -520,7 +520,7 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Finish.php:115
 msgid ""
-"Visit <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine Development "
+"Visit <a href=\"http://piengine.org/\" rel=\"external\">Pi Engine Development "
 "Site</a> in case you need any help."
 msgstr ""
 

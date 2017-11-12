@@ -32,7 +32,7 @@ Features and practices
 
 Quick start
 -----------
-* Documents at [Pi Wiki](https://github.com/pi-engine/pi/wiki) and [APIs](http://api.pialog.org).
+* Documents at [Pi Wiki](https://github.com/pi-engine/pi/wiki) and [APIs](http://api.piengine.org).
 * Download the [latest stable code](https://github.com/pi-engine/pi/zipball/master) and [latest dev code](https://github.com/pi-engine/pi/zipball/develop).
 * Clone Pi repo `git clone git://github.com/pi-engine/pi.git`.
 * Resources: [Pi modules](https://github.com/pi-module), [Pi themes](https://github.com/pi-theme) and [extensions] (https://github.com/pi-engine/pi/blob/master/README-GIT.md).
@@ -48,7 +48,7 @@ You may contribute to Pi Engine by [working on Pi code](https://github.com/pi-en
 Copyright and License
 ---------------------
 
-The Engine is released under a [BSD 3-Clause License](https://pialog.org/license.txt).
+The Engine is released under a [BSD 3-Clause License](https://piengine.org/license.txt).
 
 
 Demo
