@@ -173,6 +173,7 @@ HTML;
             'message' => __('Find password failed.'),
         );
         $form = new FindPasswordForm('find-password');
+
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $form->setInputFilter(new FindPasswordFilter);
@@ -261,6 +262,10 @@ HTML;
      */
     public function processAction()
     {
+        $view = Pi::service('view');
+        $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-bootstrap.min.js', 'user'));
+        $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-boostrap.init.js', 'user'));
+
         $result = array(
             'status'  => 0,
             'message' => __('Invalid token for password reset.'),
@@ -303,6 +308,88 @@ HTML;
 
         $uid  = $userRow->id;
         $form = new ResetPasswordForm('find-password', 'find');
+
+        $uniqueId = rand();
+        $elementId = 'register-' . $uniqueId;
+
+        $form->setAttribute('data-toggle', 'validator');
+        $form->setAttribute('data-delay', 1000);
+        $form->setAttribute('data-html', true);
+        $form->setAttribute('id', $elementId);
+        $form->setAttribute('onsubmit', "$('#$elementId').validator('destroy');");
+
+        $piConfig = Pi::user()->config();
+        $minChars = $piConfig['password_min'];
+        $maxChars = $piConfig['password_max'];
+        $strenghtenPassword = $piConfig['strenghten_password'];
+
+        $showPasswordLabel = __('Show my password');
+
+        $wordLength = __("Your password is too short");
+        $wordNotEmail = __("Do not use your email as your password");
+        $wordSimilarToUsername = __("Your password cannot contain your username");
+        $wordTwoCharacterClasses = __("Use different character classes");
+        $wordRepetitions = __("Too many repetitions");
+        $wordSequences = __("Your password contains sequences");
+        $errorList = __("Errors:");
+        $veryWeak = __("Very week");
+        $weak = __("Week");
+        $normal = __("Normal");
+        $medium = __("Medium");
+        $strong = __("Strong");
+        $veryStrong = __("Very Strong");
+
+        $message = __("Password must contain at lease one uppercase letter, one lowercase letter and one digit character");
+
+        $script = <<<HTML
+        
+        <label>{$message}</label>
+<script>
+
+    var minChar = {$minChars};
+    
+    var wordLength = "{$wordLength}";
+    var wordNotEmail = "{$wordNotEmail}";
+    var wordSimilarToUsername = "{$wordSimilarToUsername}";
+    var wordTwoCharacterClasses = "{$wordTwoCharacterClasses}";
+    var wordRepetitions = "{$wordRepetitions}";
+    var wordSequences = "{$wordSequences}";
+    var errorList = "{$errorList}";
+    var veryWeak = "{$veryWeak}";
+    var weak = "{$weak}";
+    var normal = "{$normal}";
+    var medium = "{$medium}";
+    var strong = "{$strong}";
+    var veryStrong = "{$veryStrong}";
+</script>
+HTML;
+
+        $form->get('credential-new')
+            ->setAttribute('description', $script)
+            ->setAttribute('id', 'credential')
+            ->setAttribute('pattern', '^.{0,'.$piConfig['password_max'].'}$')
+            ->setAttribute('data-pattern-error', sprintf(__("Must be less than %s characters"), $maxChars))
+            ->setAttribute('data-minlength', $piConfig['password_min']);
+
+        if($strenghtenPassword){
+            $url = Pi::url(Pi::service('url')->assemble('user', array(
+                'module' => 'user',
+                'controller' => 'register',
+                'action' => 'validateInput',
+            )));
+
+            $form->get('credential-new')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
+                ->setAttribute('data-error', __('Invalid password'))
+                ->setAttribute('data-remote', $url)
+                ->setAttribute('data-remote-error', __('Password must contain at least one uppercase letter, one lowercase letter and one digit character'))
+            ;
+        }
+
+        $passwordConfirmError = __('Whoops, these don\'t match');
+        $form->get('credential-confirm')
+            ->setAttribute('data-match', '#'.$elementId. ' [name=credential]')
+            ->setAttribute('data-match-error', $passwordConfirmError);
+
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $form->setInputFilter(new ResetPasswordFilter('find'));

@@ -19,8 +19,8 @@ function translateThisThing(key){
 };
 
 $(document).ready(function(){
-    if($('#password-change [name="credential"], [name="register"] #credential').not('.pwstrengthEnabled').length > 0){
-        $('#password-change [name="credential"], [name="register"] #credential').not('.pwstrengthEnabled').addClass('pwstrengthEnabled').pwstrength({
+    if($('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').length > 0){
+        $('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').addClass('pwstrengthEnabled').pwstrength({
             common: {
                 minChar: minChar
             },
