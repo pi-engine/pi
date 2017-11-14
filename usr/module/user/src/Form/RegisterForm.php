@@ -83,6 +83,7 @@ class RegisterForm extends UserForm
             $medium = __("Medium");
             $strong = __("Strong");
             $veryStrong = __("Very Strong");
+            $message = __("Password must contain at lease one uppercase letter, one lowercase letter and one digit character");
 
             $showPasswordBtn = <<<HTML
 <label>
@@ -112,6 +113,8 @@ class RegisterForm extends UserForm
     var medium = "{$medium}";
     var strong = "{$strong}";
     var veryStrong = "{$veryStrong}";
+    
+    jQuery('[name="credential"]').tooltip({'trigger':'focus', 'title': "{$message}", 'placement' : 'top'});
 </script>
 HTML;
 

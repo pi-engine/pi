@@ -117,8 +117,6 @@ class PasswordController extends ActionController
         $message = __("Password must contain at lease one uppercase letter, one lowercase letter and one digit character");
 
         $script = <<<HTML
-        
-        <label>{$message}</label>
 <script>
 
     var minChar = {$minChars};
@@ -136,6 +134,8 @@ class PasswordController extends ActionController
     var medium = "{$medium}";
     var strong = "{$strong}";
     var veryStrong = "{$veryStrong}";
+    
+    jQuery('[name="credential"]').tooltip({'trigger':'focus', 'title': "{$message}", 'placement' : 'top'});
 </script>
 HTML;
 
@@ -342,8 +342,6 @@ HTML;
         $message = __("Password must contain at lease one uppercase letter, one lowercase letter and one digit character");
 
         $script = <<<HTML
-        
-        <label>{$message}</label>
 <script>
 
     var minChar = {$minChars};
@@ -361,6 +359,8 @@ HTML;
     var medium = "{$medium}";
     var strong = "{$strong}";
     var veryStrong = "{$veryStrong}";
+    
+    jQuery('[name="credential-new"]').tooltip({'trigger':'focus', 'title': "{$message}", 'placement' : 'top'});
 </script>
 HTML;
 
