@@ -32,7 +32,7 @@ $(document).ready(function(){
                     wordSequences: -50,
                     wordTwoCharacterClasses: 2,
                     wordRepetitions: -25,
-                    wordLowercase: 1,
+                    wordLowercase: -60,
                     wordUppercase: 20,
                     wordOneNumber: 20,
                     wordThreeNumbers: 5,
