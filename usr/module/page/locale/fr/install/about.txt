@@ -31,7 +31,7 @@ Pi Engine is developed in PHP and MySQL upon frameworks including <a href="https
 <h2>Quick start</h2>
 
 <ul>
-<li>Documents at <a href="https://github.com/pi-engine/pi/wiki">Pi Wiki</a> and <a href="http://api.pialog.org">APIs</a>.</li>
+<li>Documents at <a href="https://github.com/pi-engine/pi/wiki">Pi Wiki</a> and <a href="http://api.piengine.org">APIs</a>.</li>
 <li>Download the <a href="https://github.com/pi-engine/pi/zipball/master">latest stable code</a> and <a href="https://github.com/pi-engine/pi/zipball/develop">latest dev code</a>.</li>
 <li>Clone Pi repo <code>git clone git://github.com/pi-engine/pi.git</code>.</li>
 <li>Resources: <a href="https://github.com/pi-module">Pi modules</a>, <a href="https://github.com/pi-theme">Pi themes</a> and <a href="https://github.com/pi-engine/pi/blob/master/README-GIT.md">extensions</a>.</li>
@@ -44,7 +44,7 @@ Pi Engine is developed in PHP and MySQL upon frameworks including <a href="https
 
 <h2>Copyright and License</h2>
 
-<p>The Engine is released under a <a href="https://pialog.org/license.txt">BSD 3-Clause License</a>.</p>
+<p>The Engine is released under a <a href="https://piengine.org/license.txt">BSD 3-Clause License</a>.</p>
 
 <h2>Demo</h2>
 

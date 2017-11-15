@@ -57,7 +57,7 @@ CREATE TABLE `{core.user_account}` (
 
 ```
 # Pi Engine schema
-# http://pialog.org
+# http://piengine.org
 # Author: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
 # --------------------------------------------------------
 

@@ -120,7 +120,7 @@ Folder and file skeleton
 
 Resources
 ---------
-* [Pi Module Repository](http://pialog.org/module.html)
+* [Pi Module Repository](http://piengine.org/module.html)
 * [Module Development Documentation](https://github.com/pi-engine/pi/wiki/Pi-Documentation-Team)
 * [Coding Standards](https://github.com/pi-engine/pi/wiki/Dev.Coding-Standards)
 * [Database Schema](https://github.com/pi-engine/pi/wiki/Dev.Database-Schema)

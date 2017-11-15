@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Widget\Installer\Action;
@@ -48,25 +48,25 @@ class Install extends BasicInstall
             array(
                 'caption'   => _a('Sustainable ecosystem'),
                 'summary'   => _a('A sustainable ecosystem built upon open standard, open source code, open development and open management on Github.'),
-                'link'      => 'http://pialog.org',
+                'link'      => 'http://piengine.org',
                 'image'     => Pi::url('static/image/pi-ecosystem.png'),
             ),
             array(
                 'caption'   => _a('Engineered development'),
                 'summary'   => _a('Quality ensured engineering development with short learning curve, low skill requirements with clean MVC architecture, semantic templating, sophisticated API and strict standards.'),
-                'link'      => 'http://pialog.org',
+                'link'      => 'http://piengine.org',
                 'image'     => Pi::url('static/image/pi-engineering.png'),
             ),
             array(
                 'caption'   => _a('Visualization of application management'),
                 'summary'   => _a('Easy and responsive application and content management based on visualized management tools and interface with page and widget mechanism.'),
-                'link'      => 'http://pialog.org',
+                'link'      => 'http://piengine.org',
                 'image'     => Pi::url('static/image/pi-visualization.png'),
             ),
             array(
                 'caption'   => _a('Agile compliant development workflow'),
                 'summary'   => _a('Role oriented architecture and deployment skeleton supports managable agile development workflow.'),
-                'link'      => 'http://pialog.org',
+                'link'      => 'http://piengine.org',
                 'image'     => Pi::url('static/image/pi-agile.png'),
             ),
         );

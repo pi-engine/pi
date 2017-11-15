@@ -680,10 +680,10 @@ msgstr "پشتیبانی"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/www/setup/src/Controller/Finish.php:115
 msgid ""
-"Visit <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine Development "
+"Visit <a href=\"http://piengine.org/\" rel=\"external\">Pi Engine Development "
 "Site</a> in case you need any help."
 msgstr ""
-"اگر به هر نوع کمکی نیاز دارید از <a href=\"http://pialog.org/\" rel="
+"اگر به هر نوع کمکی نیاز دارید از <a href=\"http://piengine.org/\" rel="
 "\"external\">وب سایت توسعه پای انجین</a> بازدید کنید."
 
 #: /var/www/html/local/pi/pi-release-2.5.0/www/setup/src/Controller/Finish.php:116

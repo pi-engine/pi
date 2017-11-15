@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Installer\Action;
@@ -100,15 +100,15 @@ class Install extends BasicInstall
         $links  = array(
             array(
                 'title' => 'Pi Engine Development',
-                'url'   => 'http://www.pialog.org',
+                'url'   => 'http://www.piengine.org',
             ),
             array(
                 'title' => 'Pi Engine Code',
-                'url'   => 'http://code.pialog.org',
+                'url'   => 'http://code.piengine.org',
             ),
             array(
                 'title' => 'Pi Engine Doc',
-                'url'   => 'http://doc.pialog.org',
+                'url'   => 'http://doc.piengine.org',
             ),
             array(
                 'title' => 'Pi Engine Twitter',

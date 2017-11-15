@@ -70,4 +70,4 @@ Best Practices
 
 Resources
 ---------
-* [Pi Theme Repository](http://pialog.org/theme.html)
+* [Pi Theme Repository](http://piengine.org/theme.html)

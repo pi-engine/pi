@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -31,7 +31,7 @@ return array(
         // Direct download link, available for wget, optional
         //'download'      => 'http://dl.xoopsengine.org/core',
         // Demo site link, optional
-        'demo'          => 'http://pialog.org',
+        'demo'          => 'http://piengine.org',
 
         // Module is ready for clone? Default as false
         'clonable'      => false,
@@ -48,7 +48,7 @@ return array(
         // Email address, optional
         'Email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'Website'   => 'http://pialog.org',
+        'Website'   => 'http://piengine.org',
         // Credits and aknowledgement, optional
         'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),

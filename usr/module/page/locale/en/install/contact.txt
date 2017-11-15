@@ -11,6 +11,6 @@ Pi Engine Tickets: <a href="https://github.com/pi-engine/pi/issues" target="_bla
 Pi Engine Google+: <a href="https://plus.google.com/communities/113415243547871753745" target="_blank" title="Click to open">https://plus.google.com/communities/113415243547871753745</a><br>
 <br>
 Pi demo websites:<br>
-Pi Dialogue: <a href="http://pialog.org" target="_blank" title="Click to open">http://pialog.org</a>; <a href="http://pialogue.org" target="_blank" title="Click to open">http://pialogue.org</a><br>
+Pi Dialogue: <a href="http://piengine.org" target="_blank" title="Click to open">http://piengine.org</a>; <a href="http://pialogue.org" target="_blank" title="Click to open">http://pialogue.org</a><br>
 Pi Demo: <a href="http://pi-demo.org" target="_blank" title="Click to open">http://pi-demo.org</a><br>
 Xoops/Pi: <a href="http://demo.xoopsengine.org" target="_blank" title="Click to open">http://demo.xoopsengine.org</a><br>

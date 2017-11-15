@@ -39,7 +39,7 @@ return array(
 
     // Options for gravatar
     'gravatar'  => array(
-        //'default'   => 'http://pialog.org/static/avatar/normal.png',
+        //'default'   => 'http://piengine.org/static/avatar/normal.png',
         'extension' => 'png',
         'rate'      => 'g',
         'secure'    => true,
