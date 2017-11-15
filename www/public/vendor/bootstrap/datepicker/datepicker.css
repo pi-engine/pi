@@ -73,7 +73,7 @@
   border-top: 6px solid #ffffff;
 }
 .datepicker > div {
-  display: none;
+  /*display: none;*/
 }
 .datepicker table {
   margin: 0;
