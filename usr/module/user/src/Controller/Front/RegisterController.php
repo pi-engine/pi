@@ -154,15 +154,11 @@ class RegisterController extends ActionController
      */
     public function activateAction()
     {
-        if (Pi::user()->getId()) {
-            return $this->redirect(
-                '',
-                array(
-                    'module'        => 'user',
-                    'controller'    => 'dashboard',
-                    'action'        => 'index'
-                )
-            );
+        if ($uid = Pi::user()->getId()) {
+            Pi::service('session')->manager()->destroy();
+            Pi::service('user')->destroy();
+            Pi::service('event')->trigger('logout', $uid);
+            Pi::service('user')->killUser($uid);
         }
 
         $view = $this->view();

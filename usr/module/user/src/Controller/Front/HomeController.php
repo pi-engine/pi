@@ -115,6 +115,7 @@ class HomeController extends ActionController
             true,
             true
         );
+        $user['name'] = isset($user['name']) ? $user['name'] : null;
 
         // Set paginator
         $paginatorOption = array(

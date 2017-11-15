@@ -73,7 +73,7 @@ class ActivityController extends ActionController
             true,
             true
         );
-        
+        $user['name'] = isset($user['name']) ? $user['name'] : null;
         $this->view()->assign(array(
             'list'      => $activityList,
             'name'      => $name,
