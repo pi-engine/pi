@@ -47,6 +47,22 @@ class PasswordController extends ActionController
         );
 
         $form = new PasswordForm('password-change');
+
+        $uniqueId = rand();
+        $elementId = 'register-' . $uniqueId;
+
+        $form->setAttribute('data-toggle', 'validator');
+        $form->setAttribute('data-delay', 1000);
+        $form->setAttribute('data-html', true);
+        $form->setAttribute('id', $elementId);
+        $form->setAttribute('onsubmit', "$('#$elementId').validator('destroy');");
+
+
+        $passwordConfirmError = __('Whoops, these don\'t match');
+        $form->get('credential-confirm')
+            ->setAttribute('data-match', '#'.$elementId. ' [name=credential-new]')
+            ->setAttribute('data-match-error', $passwordConfirmError);
+
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $form->setInputFilter(new PasswordFilter);
@@ -114,9 +130,20 @@ class PasswordController extends ActionController
         $strong = __("Strong");
         $veryStrong = __("Very Strong");
 
-        $message = __("Password must contain at lease one uppercase letter, one lowercase letter and one digit character");
+        $message = __("Password must contain at least one uppercase letter, one lowercase letter and one digit character");
 
         $script = <<<HTML
+        
+<label>
+    <input
+        onchange="$('input[name=credential-new], input[name=credential-confirm]').attr('type', function(index, attr){ return attr == 'text' ? 'password' : 'text';})"
+        name="show_password"
+        type="checkbox"
+    />
+    
+    $showPasswordLabel
+</label>
+
 <script>
 
     var minChar = {$minChars};
@@ -139,8 +166,23 @@ class PasswordController extends ActionController
 </script>
 HTML;
 
-        $form->get('credential')
+        $form->get('credential')->setAttribute('id', 'credential-verify');
+        $form->get('credential-new')
             ->setAttribute('description', $script);
+
+        if($strenghtenPassword){
+            $url = Pi::url(Pi::service('url')->assemble('user', array(
+                'module' => 'user',
+                'controller' => 'register',
+                'action' => 'validateInput',
+            )));
+
+            $form->get('credential-new')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
+                ->setAttribute('data-error', __('Invalid password'))
+                ->setAttribute('data-remote', $url)
+                ->setAttribute('data-remote-error', __('Password must contain at least one uppercase letter, one lowercase letter and one digit character'))
+            ;
+        }
 
         $this->view()->assign(array(
             'form'      => $form,
@@ -339,11 +381,21 @@ HTML;
         $strong = __("Strong");
         $veryStrong = __("Very Strong");
 
-        $message = __("Password must contain at lease one uppercase letter, one lowercase letter and one digit character");
+        $message = __("Password must contain at least one uppercase letter, one lowercase letter and one digit character");
 
         $script = <<<HTML
+        
+<label>
+    <input
+        onchange="$('input[name=credential-new], input[name=credential-confirm]').attr('type', function(index, attr){ return attr == 'text' ? 'password' : 'text';})"
+        name="show_password"
+        type="checkbox"
+    />
+    
+    $showPasswordLabel
+</label>
+    
 <script>
-
     var minChar = {$minChars};
     
     var wordLength = "{$wordLength}";
@@ -366,7 +418,7 @@ HTML;
 
         $form->get('credential-new')
             ->setAttribute('description', $script)
-            ->setAttribute('id', 'credential')
+            ->setAttribute('id', 'credential-new')
             ->setAttribute('pattern', '^.{0,'.$piConfig['password_max'].'}$')
             ->setAttribute('data-pattern-error', sprintf(__("Must be less than %s characters"), $maxChars))
             ->setAttribute('data-minlength', $piConfig['password_min']);
@@ -387,7 +439,7 @@ HTML;
 
         $passwordConfirmError = __('Whoops, these don\'t match');
         $form->get('credential-confirm')
-            ->setAttribute('data-match', '#'.$elementId. ' [name=credential]')
+            ->setAttribute('data-match', '#'.$elementId. ' [name=credential-new]')
             ->setAttribute('data-match-error', $passwordConfirmError);
 
         if ($this->request->isPost()) {

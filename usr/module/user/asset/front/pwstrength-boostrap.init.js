@@ -19,8 +19,8 @@ function translateThisThing(key){
 };
 
 $(document).ready(function(){
-    if($('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').length > 0){
-        $('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').addClass('pwstrengthEnabled').pwstrength({
+    if($('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').not('#credential-verify').length > 0){
+        $('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').not('#credential-verify').addClass('pwstrengthEnabled').pwstrength({
             common: {
                 minChar: minChar
             },
@@ -35,7 +35,7 @@ $(document).ready(function(){
                     wordLowercase: -60,
                     wordUppercase: 20,
                     wordOneNumber: 20,
-                    wordThreeNumbers: 5,
+                    wordThreeNumbers: 30,
                     wordOneSpecialChar: 3,
                     wordTwoSpecialChar: 5,
                     wordUpperLowerCombo: 2,
