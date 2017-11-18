@@ -12,19 +12,19 @@
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
-    'meta'  => array(
-        'title'         => _a('User'),
-        'description'   => _a('User profile and services.'),
-        'version'       => '1.6.0',
-        'license'       => 'New BSD',
-        'demo'          => 'http://demo.piengine.org',
-        'icon'          => 'fa-user',
-    ),
+return [
+    'meta'     => [
+        'title'       => _a('User'),
+        'description' => _a('User profile and services.'),
+        'version'     => '1.6.1',
+        'license'     => 'New BSD',
+        'demo'        => 'http://demo.piengine.org',
+        'icon'        => 'fa-user',
+    ],
     // Author information
-    'author'    => array(
+    'author'   => [
         // Author full name, required
-        'Dev'      => 'Taiwen Jiang; Liu Chuang; Liaowei; Zongshu Lin',
+        'Dev'       => 'Taiwen Jiang; Liu Chuang; Liaowei; Zongshu Lin',
         'Architect' => '@taiwen',
         'UI/UE'     => '@zhangsimon, @loidco, @voltan, Zeng Long',
         'QA'        => '@lavenderli, @MarcoXoops, Zhang Hua',
@@ -33,24 +33,24 @@ return array(
         // Website link, optional
         'Website'   => 'http://piengine.org',
         // Credits and acknowledgement, optional
-        'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
-    ),
+        'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.',
+    ],
 
     // Resource
-    'resource' => array(
+    'resource' => [
         // Database meta
-        'database'  => array(
+        'database'   => [
             // SQL schema/data file
-            'sqlfile'   => 'sql/mysql.sql',
-        ),
+            'sqlfile' => 'sql/mysql.sql',
+        ],
         // Permission specs
-        'permission'    => 'permission.php',
-        'config'        => 'config.php',
-        'user'          => 'user.php',
-        'page'          => 'page.php',
-        'route'         => 'route.php',
-        'navigation'    => 'nav.php',
-        'event'         => 'event.php',
-        'block'         => 'block.php',
-    ),
-);
+        'permission' => 'permission.php',
+        'config'     => 'config.php',
+        'user'       => 'user.php',
+        'page'       => 'page.php',
+        'route'      => 'route.php',
+        'navigation' => 'nav.php',
+        'event'      => 'event.php',
+        'block'      => 'block.php',
+    ],
+];
