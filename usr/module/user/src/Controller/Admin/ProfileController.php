@@ -23,31 +23,31 @@ class ProfileController extends ActionController
     {
         $this->view()->setTemplate('profile');
     }
-    
+
     public function fieldAction()
     {
         $fields = Pi::registry('field', 'user')->read();
         foreach ($fields as $field) {
             if ($field['type'] == 'compound'/* || $field['type'] == 'custom'*/) {
-                $compounds[$field['name']] = array(
-                    'name'          => $field['name'],
-                    'title'         => $field['title'],
-                    'module'        => $field['module'],
-                    'is_edit'       => $field['is_edit'],
-                    'is_search'     => $field['is_search'],
-                    'is_display'    => $field['is_display'],
-                    'is_required'   => $field['is_required'],
-                );
+                $compounds[$field['name']] = [
+                    'name'        => $field['name'],
+                    'title'       => $field['title'],
+                    'module'      => $field['module'],
+                    'is_edit'     => $field['is_edit'],
+                    'is_search'   => $field['is_search'],
+                    'is_display'  => $field['is_display'],
+                    'is_required' => $field['is_required'],
+                ];
             } else {
-                $profile[$field['name']] = array(
-                    'name'          => $field['name'],
-                    'title'         => $field['title'],
-                    'module'        => $field['module'],
-                    'is_edit'       => $field['is_edit'],
-                    'is_search'     => $field['is_search'],
-                    'is_display'    => $field['is_display'],
-                    'is_required'   => $field['is_required'],
-                );
+                $profile[$field['name']] = [
+                    'name'        => $field['name'],
+                    'title'       => $field['title'],
+                    'module'      => $field['module'],
+                    'is_edit'     => $field['is_edit'],
+                    'is_search'   => $field['is_search'],
+                    'is_display'  => $field['is_display'],
+                    'is_required' => $field['is_required'],
+                ];
             }
         }
 
@@ -55,21 +55,21 @@ class ProfileController extends ActionController
         foreach ($compounds as $name => &$compound) {
             $compoundMeta = Pi::registry('compound_field', 'user')->read($name);
             foreach ($compoundMeta as $meta) {
-                $compound['fields'][] = array(
-                    'name'          => $meta['name'],
-                    'title'         => $meta['title'],
-                    'is_required'   => $meta['is_required'],
-                );
+                $compound['fields'][] = [
+                    'name'        => $meta['name'],
+                    'title'       => $meta['title'],
+                    'is_required' => $meta['is_required'],
+                ];
             }
         }
 
         $compounds = array_values($compounds);
         $profile   = array_values($profile);
 
-        return array(
+        return [
             'profile'   => $profile,
             'compounds' => $compounds,
-        );
+        ];
     }
 
     /**
@@ -79,9 +79,9 @@ class ProfileController extends ActionController
      */
     public function requiredAction()
     {
-        $required   = $this->params('required') ? 1 : 0;
-        $field      = $this->params('field') ?: '';
-        $compound   = $this->params('compound') ?: '';
+        $required = $this->params('required') ? 1 : 0;
+        $field    = $this->params('field') ?: '';
+        $compound = $this->params('compound') ?: '';
 
         if (!$field) {
             return 0;
@@ -91,16 +91,16 @@ class ProfileController extends ActionController
         if (!$compound) {
             $row = Pi::model('field', 'user')->find($field, 'name');
         } else {
-            $rowset = Pi::model('compound_field', 'user')->select(array(
-                'compound'  => $compound,
-                'name'      => $field,
-            ));
-            $row = $rowset->current();
+            $rowset = Pi::model('compound_field', 'user')->select([
+                'compound' => $compound,
+                'name'     => $field,
+            ]);
+            $row    = $rowset->current();
         }
         if ($row) {
             $row['is_required'] = $required;
             $row->save();
-            $result = (int) $row['is_required'];
+            $result = (int)$row['is_required'];
         }
 
         if ($compound) {
@@ -109,7 +109,7 @@ class ProfileController extends ActionController
             Pi::registry('field', 'user')->flush();
         }
 
-        return array('is_required' => $result);
+        return ['is_required' => $result];
     }
 
     /**
@@ -119,21 +119,21 @@ class ProfileController extends ActionController
     {
         $fields = Pi::registry('field', 'user')->read('', 'display');
 
-        $compounds = array();
-        $profile = array();
+        $compounds = [];
+        $profile   = [];
         foreach ($fields as $field) {
             if ($field['type'] == 'compound') {
-                $compounds[$field['name']] = array(
+                $compounds[$field['name']] = [
                     'name'   => $field['name'],
                     'title'  => $field['title'],
                     'module' => $field['module'],
-                );
+                ];
             } else {
-                $profile[$field['name']] = array(
+                $profile[$field['name']] = [
                     'name'   => $field['name'],
                     'module' => $field['module'],
                     'title'  => $field['title'],
-                );
+                ];
             }
         }
 
@@ -141,17 +141,17 @@ class ProfileController extends ActionController
         foreach ($compounds as $name => &$compound) {
             $compoundMeta = Pi::registry('compound_field', 'user')->read($name);
             foreach ($compoundMeta as $meta) {
-                $compound['fields'][] = array(
+                $compound['fields'][] = [
                     'name'  => $meta['name'],
                     'title' => $meta['title'],
-                );
+                ];
             }
         }
 
         $displays = $this->getGroupDisplay();
 
         // Canonize right display
-        foreach ($displays as  $group) {
+        foreach ($displays as $group) {
             // Compound fields
             if ($group['name']) {
                 if (isset($compounds[$group['name']])) {
@@ -168,11 +168,11 @@ class ProfileController extends ActionController
             }
         }
 
-        return array(
+        return [
             'profile'   => array_values($profile),
             'compounds' => array_values($compounds),
             'displays'  => $displays,
-        );
+        ];
     }
 
     /**
@@ -181,46 +181,46 @@ class ProfileController extends ActionController
      */
     public function saveDressUpAction()
     {
-        $result = array(
+        $result   = [
             'status' => 0,
-        );
+        ];
         $displays = _post('displays');
 
         $displayGroupModel = $this->getModel('display_group');
         $displayFieldModel = $this->getModel('display_field');
 
         // Flush
-        $displayGroupModel->delete(array());
-        $displayFieldModel->delete(array());
+        $displayGroupModel->delete([]);
+        $displayFieldModel->delete([]);
 
         $groupOrder = 1;
         foreach ($displays as $group) {
-            $groupData = array(
+            $groupData = [
                 'title'    => $group['title'],
                 'order'    => $groupOrder,
                 'compound' => $group['name'],
-            );
+            ];
 
             $row = $displayGroupModel->createRow($groupData);
-            
+
             try {
                 $row->save();
             } catch (\Exception $e) {
                 return $result;
             }
 
-            $groupId = (int) $row['id'];
+            $groupId    = (int)$row['id'];
             $fieldOrder = 1;
             // Save display field
-            foreach ($group['fields'] as $field)  {
+            foreach ($group['fields'] as $field) {
                 if (empty($field['name'])) {
                     continue;
                 }
-                $fieldData = array(
-                    'field'  => $field['name'],
-                    'group'  => $groupId,
-                    'order'  => $fieldOrder,
-                );
+                $fieldData = [
+                    'field' => $field['name'],
+                    'group' => $groupId,
+                    'order' => $fieldOrder,
+                ];
 
                 $rowField = $displayFieldModel->createRow($fieldData);
 
@@ -238,7 +238,7 @@ class ProfileController extends ActionController
         Pi::registry('display_group', 'user')->flush();
         Pi::registry('display_field', 'user')->flush();
 
-        $result['status'] = 1;
+        $result['status']  = 1;
         $result['message'] = _a('Profile dress-up data saved successfully.');
 
         return $result;
@@ -252,12 +252,12 @@ class ProfileController extends ActionController
      */
     public function updateFieldAction()
     {
-        $result = array(
-            'status' => 0
-        );
-        $name          = _post('name');
-        $compound      = _post('compound');
-        $title         = _post('title');
+        $result   = [
+            'status' => 0,
+        ];
+        $name     = _post('name');
+        $compound = _post('compound');
+        $title    = _post('title');
 
         $fieldModel    = $this->getModel('field');
         $compoundModel = $this->getModel('compound_field');
@@ -270,7 +270,7 @@ class ProfileController extends ActionController
         if (!$compound) {
             $row = $fieldModel->find($name, 'name');
             if ($row) {
-                $row->assign(array('title' => $title));
+                $row->assign(['title' => $title]);
                 try {
                     $row->save();
                     $result['status'] = 1;
@@ -281,16 +281,16 @@ class ProfileController extends ActionController
 
         } else {
             // Update compound field title
-            $select = $compoundModel->select()->where(array(
+            $select = $compoundModel->select()->where([
                 'compound' => $compound,
                 'name'     => $name,
-            ));
+            ]);
 
             $row = $compoundModel->selectWith($select)->current();
             if ($row) {
                 $compoundModel->update(
-                    array('title' => $title),
-                    array('id'    => $row['id'])
+                    ['title' => $title],
+                    ['id' => $row['id']]
                 );
                 $result['status'] = 1;
             }
@@ -311,34 +311,34 @@ class ProfileController extends ActionController
     public function privacyAction()
     {
         $fieldList = Pi::registry('field', 'user')->read('', 'display');
-        $privacy = Pi::registry('privacy', 'user')->read();
-        $fields = array();
+        $privacy   = Pi::registry('privacy', 'user')->read();
+        $fields    = [];
         foreach ($fieldList as $field => $data) {
-            $pv = array(
+            $pv = [
                 'field'     => $field,
                 'title'     => $data['title'],
                 'value'     => 0,
                 'is_forced' => 0,
-            );
+            ];
             if (isset($privacy[$field])) {
-                $pv['value'] = (int) $privacy[$field]['value'];
-                $pv['is_forced'] = (int) $privacy[$field]['is_forced'];
+                $pv['value']     = (int)$privacy[$field]['value'];
+                $pv['is_forced'] = (int)$privacy[$field]['is_forced'];
             }
             $fields[] = $pv;
         }
 
-        $levels = Pi::api('privacy', 'user')->getList(array(), true);
-        $limits = array();
+        $levels = Pi::api('privacy', 'user')->getList([], true);
+        $limits = [];
         foreach ($levels as $value => $label) {
-            $limits[] = array(
+            $limits[] = [
                 'text'  => $label,
                 'value' => $value,
-            );
+            ];
         }
-        $result = array(
-            'fields'    => $fields,
-            'limits'    => $limits,
-        );
+        $result = [
+            'fields' => $fields,
+            'limits' => $limits,
+        ];
 
         return $result;
     }
@@ -351,13 +351,13 @@ class ProfileController extends ActionController
     public function setPrivacyAction()
     {
         $field    = _post('field');
-        $value    = (int) _post('value');
+        $value    = (int)_post('value');
         $isForced = _post('is_forced') ? 1 : 0;
 
-        $result = array(
-            'status' => 0,
-            'message' => ''
-        );
+        $result = [
+            'status'  => 0,
+            'message' => '',
+        ];
         $module = $this->getModule();
 
         // Check post data
@@ -376,16 +376,16 @@ class ProfileController extends ActionController
         $model = $this->getModel('privacy');
         $row   = $model->find($field, 'field');
         if ($row) {
-            $row->assign(array(
+            $row->assign([
                 'value'     => $value,
                 'is_forced' => $isForced,
-            ));
+            ]);
         } else {
-            $row = $model->createRow(array(
+            $row = $model->createRow([
                 'field'     => $field,
                 'value'     => $value,
                 'is_forced' => $isForced,
-            ));
+            ]);
         }
         try {
             $row->save();
@@ -419,31 +419,31 @@ class ProfileController extends ActionController
     protected function getGroupDisplay()
     {
         $profileMeta = Pi::registry('field', 'user')->read();
-        $result      = array();
+        $result      = [];
         $groupModel  = $this->getModel('display_group');
-        $select      = $groupModel->select()->where(array());
+        $select      = $groupModel->select()->where([]);
         $select->order('order');
         $rowset = $groupModel->selectWith($select);
 
         foreach ($rowset as $row) {
-            $result[$row['id']] = array(
-                'id'       => $row['id'],
-                'title'    => $row['title'],
-                'name'     => $row['compound'],
-            );
+            $result[$row['id']] = [
+                'id'    => $row['id'],
+                'title' => $row['title'],
+                'name'  => $row['compound'],
+            ];
 
             $displayFieldModel = $this->getModel('display_field');
-            $select = $displayFieldModel->select()->where(array('group' => $row['id']));
+            $select            = $displayFieldModel->select()->where(['group' => $row['id']]);
             $select->order('order');
             $displayFieldRowset = $displayFieldModel->selectWith($select);
 
-            $fields = array();
+            $fields = [];
             foreach ($displayFieldRowset as $field) {
-                $fields[$field['field']] = array();
+                $fields[$field['field']] = [];
             }
 
             if ($row['compound']) {
-                $compoundMeta = Pi::registry('compound_field', 'user')->read(
+                $compoundMeta                 = Pi::registry('compound_field', 'user')->read(
                     $row['compound']
                 );
                 $result[$row['id']]['module'] = $profileMeta[$row['compound']]['module'];

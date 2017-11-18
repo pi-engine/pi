@@ -1,105 +1,105 @@
 <legend>{{'SEARCH_RESULT' | translate}}</legend>
 <div data-ng-show="users.length">
-  <div class="clearfix form-inline">
-    <strong class="pull-right">{{paginator.count}} members</strong>
-    <input type="checkbox" style="margin-right: 6px;"
-           data-ng-model="allChecked" ng-change="markAll()">
-    <div class="btn-group">
-      <button class="btn btn-default" data-ng-click="activeBatchAction()">
-        {{'ACTIVATE' | translate}}
-      </button>
-      <button class="btn btn-default" data-ng-click="enableBatchAction()">
-        {{'ENABLE' | translate}}
-      </button>
-      <button class="btn btn-default" data-ng-click="disableBatchAction()">
-        {{'DISABLE' | translate}}
-      </button>
-      <button class="btn btn-default" data-ng-click="deleteBatchAction()">
-        {{'DELETE' | translate}}
-      </button>
+    <div class="clearfix form-inline">
+        <strong class="pull-right">{{paginator.count}} members</strong>
+        <input type="checkbox" style="margin-right: 6px;"
+               data-ng-model="allChecked" ng-change="markAll()">
+        <div class="btn-group">
+            <button class="btn btn-default" data-ng-click="activeBatchAction()">
+                {{'ACTIVATE' | translate}}
+            </button>
+            <button class="btn btn-default" data-ng-click="enableBatchAction()">
+                {{'ENABLE' | translate}}
+            </button>
+            <button class="btn btn-default" data-ng-click="disableBatchAction()">
+                {{'DISABLE' | translate}}
+            </button>
+            <button class="btn btn-default" data-ng-click="deleteBatchAction()">
+                {{'DELETE' | translate}}
+            </button>
+        </div>
+        <div class="form-group">
+            <select class="form-control" ng-change="assignRoleBacthAction()" data-ng-model="assignRole"
+                    ng-options="item.title group by item.type for item in assignRoles">
+                <option value="">{{'ASSIGN_ROLE' | translate}}
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-control" ng-change="unassignRoleBacthAction()" data-ng-model="unassignRole"
+                    ng-options="item.title group by item.type for item in assignRoles">
+                <option value="">{{'UNASSIGN_ROLE' | translate}}
+            </select>
+        </div>
     </div>
-    <div class="form-group">
-      <select class="form-control" ng-change="assignRoleBacthAction()" data-ng-model="assignRole"
-              ng-options="item.title group by item.type for item in assignRoles">
-        <option value="">{{'ASSIGN_ROLE' | translate}}
-      </select>
-    </div>
-    <div class="form-group">
-      <select class="form-control" ng-change="unassignRoleBacthAction()" data-ng-model="unassignRole"
-              ng-options="item.title group by item.type for item in assignRoles">
-        <option value="">{{'UNASSIGN_ROLE' | translate}}
-      </select>
-    </div>
-  </div>
-  <table class="table table-striped">
-      <thead>
+    <table class="table table-striped">
+        <thead>
         <tr>
-          <th style="width: 14px;">
-          <th style="width: 14px;">
-          <th width="5%">{{'ID' | translate}}
-          <th>{{'USERNAME' | translate}}
-          <th>{{'DISPLAYNAME' | translate}}
-          <th width="15%">{{'EMAIL' | translate}}
-          <th width="8%" class="text-center">{{'ENABLED' | translate}}
-          <th width="8%" class="text-center">{{'ACTIVATED' | translate}}
-          <th width="8%">{{'ROLE' | translate}}
-          <th width="10%" class="text-center">{{'REGISTER_IP' | translate}}
-          <th width="10%" class="text-center">{{'REGISTER_TIME' | translate}}
-      <tbody>
+            <th style="width: 14px;">
+            <th style="width: 14px;">
+            <th width="5%">{{'ID' | translate}}
+            <th>{{'USERNAME' | translate}}
+            <th>{{'DISPLAYNAME' | translate}}
+            <th width="15%">{{'EMAIL' | translate}}
+            <th width="8%" class="text-center">{{'ENABLED' | translate}}
+            <th width="8%" class="text-center">{{'ACTIVATED' | translate}}
+            <th width="8%">{{'ROLE' | translate}}
+            <th width="10%" class="text-center">{{'REGISTER_IP' | translate}}
+            <th width="10%" class="text-center">{{'REGISTER_TIME' | translate}}
+        <tbody>
         <tr ng-repeat="user in users">
-          <td>
-            <input type="checkbox" data-ng-model="user.checked" style="margin-top: -2px;">
-          <td>
-            <i class="icon-circle text-success" data-ng-if="user.active"
-               tooltip="{{'ACTIVE' | translate}}">
-            </i>
-            <i class="icon-circle muted" data-ng-if="!user.active"
-               tooltip="{{'INACTIVE' | translate}}">
-            </i>
-          <td>
-            {{user.id}}
-          <td>
-            {{user.identity}}
-            <div class="pi-row-action">
-              <a href="{{user.editUrl}}">{{'EDIT' | translate}}</a>
-              <a href="javascript:void(0)" data-ng-click="deleteAction($index)">{{'DELETE' | translate}}</a>
-              <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
-            </div>
-          <td>{{user.name}}
-          <td>{{user.email}}
-          <td class="text-center">
-            <div class="pi-status" data-ng-class="{'active': !user.time_disabled}"
-                 data-ng-click="enableAction(user)">
-              <div class="pi-status-director"></div>
-            </div>
-          <td class="text-center">
-            <div class="pi-status" data-ng-class="{'active': user.time_activated, 'disabled': user.time_activated}"
-                 data-ng-click="activeAction(user)">
-              <div class="pi-status-director"></div>
-            </div>
-          <td>
+            <td>
+                <input type="checkbox" data-ng-model="user.checked" style="margin-top: -2px;">
+            <td>
+                <i class="icon-circle text-success" data-ng-if="user.active"
+                   tooltip="{{'ACTIVE' | translate}}">
+                </i>
+                <i class="icon-circle muted" data-ng-if="!user.active"
+                   tooltip="{{'INACTIVE' | translate}}">
+                </i>
+            <td>
+                {{user.id}}
+            <td>
+                {{user.identity}}
+                <div class="pi-row-action">
+                    <a href="{{user.editUrl}}">{{'EDIT' | translate}}</a>
+                    <a href="javascript:void(0)" data-ng-click="deleteAction($index)">{{'DELETE' | translate}}</a>
+                    <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
+                </div>
+            <td>{{user.name}}
+            <td>{{user.email}}
+            <td class="text-center">
+                <div class="pi-status" data-ng-class="{'active': !user.time_disabled}"
+                     data-ng-click="enableAction(user)">
+                    <div class="pi-status-director"></div>
+                </div>
+            <td class="text-center">
+                <div class="pi-status" data-ng-class="{'active': user.time_activated, 'disabled': user.time_activated}"
+                     data-ng-click="activeAction(user)">
+                    <div class="pi-status-director"></div>
+                </div>
+            <td>
             <span data-ng-if="user.front_roles" tooltip="{{'FRONT_ROLE'| translate}} : {{user.front_roles}}"
                   style="padding-right: 5px;">
               <i class="fa fa-user fa-2x"></i>
             </span>
-            <span data-ng-if="user.admin_roles" tooltip="{{'ADMIN_ROLE'| translate}} : {{user.admin_roles}}"
-                  style="padding-left: 5px;">
+                <span data-ng-if="user.admin_roles" tooltip="{{'ADMIN_ROLE'| translate}} : {{user.admin_roles}}"
+                      style="padding-left: 5px;">
               <i class="fa fa-user-md fa-2x"></i>
             </span>
-          <td class="text-center">
-            {{user.ip_register}}
-          <td class="text-center">
-            {{user.time_created}}
-            <div data-ng-if="user.register_source">
-                ({{user.register_source}})
-            </div>
-  </table>
-  <pagination data-ng-if="paginator.count > paginator.limit"
-              total-items="paginator.count" page="paginator.page" max-size="10"
-              previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
-              boundary-links="true" items-per-page="paginator.limit">
-  </pagination>
+            <td class="text-center">
+                {{user.ip_register}}
+            <td class="text-center">
+                {{user.time_created}}
+                <div data-ng-if="user.register_source">
+                    ({{user.register_source}})
+                </div>
+    </table>
+    <pagination data-ng-if="paginator.count > paginator.limit"
+                total-items="paginator.count" page="paginator.page" max-size="10"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                boundary-links="true" items-per-page="paginator.limit">
+    </pagination>
 </div>
 <div class="alert alert-info" data-ng-if="!users.length">
-  {{'NONE_USER' | translate}}
+    {{'NONE_USER' | translate}}
 </div>

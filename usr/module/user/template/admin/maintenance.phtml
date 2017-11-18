@@ -1,60 +1,60 @@
 <?php
-$this->angular(array(
+$this->angular([
     'angular-route.js',
     'ui-bootstrap-custom-tpls-0.7.0.js',
     'pi.js',
     'pi-tabs.js',
-));
+]);
 ?>
 <script>
-angular
-  .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi', 'piTabs'])
-  .constant('config', {
-    urlRoot: '<?php echo $this->url('', array('controller' => 'maintenance')); ?>',
-    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
-    editUrlRoot: '<?php echo $this->url('', array('controller' => 'edit')); ?>',
-    t: {
-      TODAY: '<?php echo _a('Today'); ?>',
-      LAST_WEEK: '<?php echo _a('Last week'); ?>',
-      LAST_MONTH: '<?php echo _a('Last month'); ?>',
-      HISTORY: '<?php echo _a('History'); ?>',
-      REGISTER_NUM: '<?php echo _a('Register num'); ?>',
-      ACTIVATED_NUM: '<?php echo _a('Activated num'); ?>',
-      PENDING_NUM: '<?php echo _a('Pending num'); ?>',
-      TOP_10_IP: '<?php echo _a('Top 10 registered IP'); ?>',
-      NONE_REGISTER: '<?php echo _a('None'); ?>',
-      SORT_BY: '<?php echo _a('Sort by key:'); ?>',
-      UID: '<?php echo _a('uid'); ?>',
-      EDIT: '<?php echo _a('Edit'); ?>',
-      VIEW_LOG: '<?php echo _a('View log'); ?>',
-      USERNAME: '<?php echo _a('Username'); ?>',
-      REGISTER_TIME: '<?php echo _a('Register time'); ?>',
-      REGISTER_IP: '<?php echo _a('Register IP'); ?>',
-      ACTIVATE_TIME: '<?php echo _a('Activated time'); ?>',
-      LAST_LOGIN_TIME: '<?php echo _a('Last login time'); ?>',
-      LAST_LOGIN_IP: '<?php echo _a('Last login ip'); ?>',
-      COUNT_LOGIN: '<?php echo _a('Login count'); ?>',
-      SORT_BY: '<?php echo _a('Sort by:'); ?>',
-      DELETE_ONE: '<?php echo _a('Are you sure to delete this user?'); ?>',
-      DELETE_BATCH: '<?php echo _a('Are you sure to delete these users?'); ?>',
-      DELETE_ALL: '<?php echo _a('Are you sure to delete all of these users?'); ?>',
-      DELETE_TIME: '<?php echo _a('Deleted time'); ?>',
-      IP_ADDRESS: '<?php echo _a('IP'); ?>',
-      ACTIVATED: '<?php echo _a('Activated'); ?>',
-      REGIESTER_TIME: '<?php echo _a('Register time'); ?>',
-      DISPLAYNAME: '<?php echo _a('Displayname'); ?>',
-      CLEAR: '<?php echo _a('Clear the users'); ?>',
-      EMAIL: '<?php echo _a('Email'); ?>',
-      CLEAR_ALL: '<?php echo _a('Clear all deleted users'); ?>',
-      NONE_USER: '<?php echo _a('No user matched your request.'); ?>',
-      ACTIVE: '<?php echo _a('Active'); ?>',
-      LAST_LOGIN_IP: '<?php echo _a('Last login ip'); ?>',
-      TIME_CREATED: '<?php echo _a('Created time'); ?>',
-      TIME_DISABLED: '<?php echo _a('Disabled time'); ?>',
-      LAST_LOGIN: '<?php echo _a('Last login'); ?>',
-      TIME_ACTIVATED: '<?php echo _a('Activated time'); ?>',
-      NULL: '<?php echo _a('Null'); ?>'
-    }
-});
+    angular
+        .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi', 'piTabs'])
+        .constant('config', {
+            urlRoot: '<?php echo $this->url('', ['controller' => 'maintenance']); ?>',
+            assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+            editUrlRoot: '<?php echo $this->url('', ['controller' => 'edit']); ?>',
+            t: {
+                TODAY: '<?php echo _a('Today'); ?>',
+                LAST_WEEK: '<?php echo _a('Last week'); ?>',
+                LAST_MONTH: '<?php echo _a('Last month'); ?>',
+                HISTORY: '<?php echo _a('History'); ?>',
+                REGISTER_NUM: '<?php echo _a('Register num'); ?>',
+                ACTIVATED_NUM: '<?php echo _a('Activated num'); ?>',
+                PENDING_NUM: '<?php echo _a('Pending num'); ?>',
+                TOP_10_IP: '<?php echo _a('Top 10 registered IP'); ?>',
+                NONE_REGISTER: '<?php echo _a('None'); ?>',
+                SORT_BY: '<?php echo _a('Sort by key:'); ?>',
+                UID: '<?php echo _a('uid'); ?>',
+                EDIT: '<?php echo _a('Edit'); ?>',
+                VIEW_LOG: '<?php echo _a('View log'); ?>',
+                USERNAME: '<?php echo _a('Username'); ?>',
+                REGISTER_TIME: '<?php echo _a('Register time'); ?>',
+                REGISTER_IP: '<?php echo _a('Register IP'); ?>',
+                ACTIVATE_TIME: '<?php echo _a('Activated time'); ?>',
+                LAST_LOGIN_TIME: '<?php echo _a('Last login time'); ?>',
+                LAST_LOGIN_IP: '<?php echo _a('Last login ip'); ?>',
+                COUNT_LOGIN: '<?php echo _a('Login count'); ?>',
+                SORT_BY: '<?php echo _a('Sort by:'); ?>',
+                DELETE_ONE: '<?php echo _a('Are you sure to delete this user?'); ?>',
+                DELETE_BATCH: '<?php echo _a('Are you sure to delete these users?'); ?>',
+                DELETE_ALL: '<?php echo _a('Are you sure to delete all of these users?'); ?>',
+                DELETE_TIME: '<?php echo _a('Deleted time'); ?>',
+                IP_ADDRESS: '<?php echo _a('IP'); ?>',
+                ACTIVATED: '<?php echo _a('Activated'); ?>',
+                REGIESTER_TIME: '<?php echo _a('Register time'); ?>',
+                DISPLAYNAME: '<?php echo _a('Displayname'); ?>',
+                CLEAR: '<?php echo _a('Clear the users'); ?>',
+                EMAIL: '<?php echo _a('Email'); ?>',
+                CLEAR_ALL: '<?php echo _a('Clear all deleted users'); ?>',
+                NONE_USER: '<?php echo _a('No user matched your request.'); ?>',
+                ACTIVE: '<?php echo _a('Active'); ?>',
+                LAST_LOGIN_IP: '<?php echo _a('Last login ip'); ?>',
+                TIME_CREATED: '<?php echo _a('Created time'); ?>',
+                TIME_DISABLED: '<?php echo _a('Disabled time'); ?>',
+                LAST_LOGIN: '<?php echo _a('Last login'); ?>',
+                TIME_ACTIVATED: '<?php echo _a('Activated time'); ?>',
+                NULL: '<?php echo _a('Null'); ?>'
+            }
+        });
 </script>
 <script src="<?php echo $this->assetModule('admin/maintenance.js'); ?>"></script>

@@ -1,11 +1,11 @@
 <?php
-    /**
-     * Pi Engine (http://piengine.org)
-     *
-     * @link            http://code.piengine.org for the Pi Engine source repository
-     * @copyright       Copyright (c) Pi Engine http://piengine.org
-     * @license         http://piengine.org/license.txt BSD 3-Clause License
-     */
+/**
+ * Pi Engine (http://piengine.org)
+ *
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
+ */
 
 namespace Module\User\Api;
 
@@ -20,13 +20,13 @@ use Pi\Application\Api\AbstractApi;
 class Privacy extends AbstractApi
 {
     /** @var array Privacy level map */
-    protected $map = array(
+    protected $map = [
         'everyone'  => 0,
         'member'    => 1,
         'follower'  => 2,
         'following' => 4,
         'owner'     => 255,
-    );
+    ];
 
     /**
      * Transform a privacy value from value to name, or from name to value
@@ -84,20 +84,20 @@ class Privacy extends AbstractApi
      *
      * @return array
      */
-    public function getList(array $levels = array(), $indexByValue = false)
+    public function getList(array $levels = [], $indexByValue = false)
     {
         //@FIXME: temporary solution
-        $levels = $levels ?: array('everyone', 'member', 'owner');
+        $levels = $levels ?: ['everyone', 'member', 'owner'];
 
-        $list = array(
+        $list = [
             'everyone'  => __('Everyone'),
             'member'    => __('Logged-in user'),
             'follower'  => __('Follower'),
             'following' => __('Followed'),
             'owner'     => __('Owner'),
-        );
+        ];
 
-        $result = array();
+        $result = [];
         if (!$levels) {
             $result = $list;
         } else {
@@ -108,9 +108,9 @@ class Privacy extends AbstractApi
             }
         }
         if ($indexByValue) {
-            $map = $this->getMap();
-            $tmp = $result;
-            $result = array();
+            $map    = $this->getMap();
+            $tmp    = $result;
+            $result = [];
             array_walk($tmp, function ($value, $key) use ($map, &$result) {
                 $result[$map[$key]] = $value;
             });
@@ -160,8 +160,8 @@ class Privacy extends AbstractApi
      */
     public function filterProfile($uid, $level, $rawData, $type)
     {
-        $result  = array();
-        $privacy = (int) $this->transform($level, true);
+        $result  = [];
+        $privacy = (int)$this->transform($level, true);
 
         // Get user setting
         $userSetting = $this->getUserPrivacy($uid);
@@ -213,17 +213,17 @@ class Privacy extends AbstractApi
      */
     public function getUserPrivacy($uid)
     {
-        $result = array();
+        $result = [];
         if (!$uid) {
             return $result;
         }
 
         // User privacy setting
         $rowset = Pi::model('privacy_user', $this->module)
-            ->select(array('uid' => $uid));
+            ->select(['uid' => $uid]);
         foreach ($rowset as $row) {
             $result[$row['field']] = $row['value'];
-            $userPrivacyFields[] = $row['field'];
+            $userPrivacyFields[]   = $row['field'];
         }
 
         // System default privacy setting

@@ -1,6 +1,6 @@
 <?php $this->headMeta('noindex', 'robots'); ?>
     <div class="page-header">
-        <h1><?php _e('Resend activation email.');?></h1>
+        <h1><?php _e('Resend activation email.'); ?></h1>
     </div>
 <?php
 if (!empty($result)) {
@@ -11,4 +11,6 @@ if (!empty($result)) {
     );
 }
 ?>
-<?php if (!empty($form)) { echo $this->form($form); } ?>
+<?php if (!empty($form)) {
+    echo $this->form($form);
+} ?>

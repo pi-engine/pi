@@ -29,7 +29,7 @@ class HomeController extends ActionController
     {
         $page   = $this->params('page', 1);
         $limit  = Pi::config('list_limit', 'user');
-        $offset = (int) ($page -1) * $limit;
+        $offset = (int)($page - 1) * $limit;
 
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
@@ -51,32 +51,32 @@ class HomeController extends ActionController
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array('name','country', 'city', 'time_activated'),
+            ['name', 'country', 'city', 'time_activated'],
             true,
             true
         );
 
         // Set paginator
-        $paginatorOption = array(
+        $paginatorOption = [
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
             'controller' => 'home',
             'action'     => 'index',
-        );
-        $paginator = $this->setPaginator($paginatorOption);
+        ];
+        $paginator       = $this->setPaginator($paginatorOption);
 
-        $this->view()->assign(array(
-            'uid'           => $uid,
-            'timeline'      => $timeline,
-            'paginator'     => $paginator,
-            'name'          => 'homepage',
-            'user'          => $user,
-        ));
+        $this->view()->assign([
+            'uid'       => $uid,
+            'timeline'  => $timeline,
+            'paginator' => $paginator,
+            'name'      => 'homepage',
+            'user'      => $user,
+        ]);
 
         $this->view()->assign('view', false);
-        $this->view()->headTitle(sprintf(__('%s activities') , $user['name']));
-        $this->view()->headdescription(sprintf(__('View %s activities') , $user['name']), 'set');
+        $this->view()->headTitle(sprintf(__('%s activities'), $user['name']));
+        $this->view()->headdescription(sprintf(__('View %s activities'), $user['name']), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
@@ -87,7 +87,7 @@ class HomeController extends ActionController
     {
         $page   = $this->params('page', 1);
         $limit  = Pi::config('list_limit', 'user');
-        $offset = (int) ($page -1) * $limit;
+        $offset = (int)($page - 1) * $limit;
         $uid    = _get('uid');
 
         Pi::service('authentication')->requireLogin();
@@ -109,40 +109,40 @@ class HomeController extends ActionController
         }
 
         // Get user base info
-        $user = Pi::api('user', 'user')->get(
+        $user         = Pi::api('user', 'user')->get(
             $uid,
-            array('name','country', 'city', 'time_activated'),
+            ['name', 'country', 'city', 'time_activated'],
             true,
             true
         );
         $user['name'] = isset($user['name']) ? $user['name'] : null;
 
         // Set paginator
-        $paginatorOption = array(
+        $paginatorOption = [
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
             'controller' => 'home',
             'action'     => 'view',
             'uid'        => $uid,
-        );
-        $paginator = $this->setPaginator($paginatorOption);
+        ];
+        $paginator       = $this->setPaginator($paginatorOption);
 
-        $this->view()->assign(array(
-            'uid'           => $uid,
-            'name'          => 'homepage',
-            'timeline'      => $timeline,
-            'paginator'     => $paginator,
-            'user'          => $user,
-        ));
+        $this->view()->assign([
+            'uid'       => $uid,
+            'name'      => 'homepage',
+            'timeline'  => $timeline,
+            'paginator' => $paginator,
+            'user'      => $user,
+        ]);
 
         $this->view()->setTemplate('home-index');
         $this->view()->assign('view', true);
-        $this->view()->headTitle(sprintf(__('%s activities') , $user['name']));
-        $this->view()->headdescription(sprintf(__('View %s activities') , $user['name']), 'set');
+        $this->view()->headTitle(sprintf(__('%s activities'), $user['name']));
+        $this->view()->headdescription(sprintf(__('View %s activities'), $user['name']), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
-    
+
     /**
      * Set paginator
      *
@@ -151,23 +151,23 @@ class HomeController extends ActionController
      */
     protected function setPaginator($option)
     {
-        $params = array(
-            'module'        => $this->getModule(),
-            'controller'    => $option['controller'],
-            'action'        => $option['action'],
-        );
+        $params = [
+            'module'     => $this->getModule(),
+            'controller' => $option['controller'],
+            'action'     => $option['action'],
+        ];
 
         if (isset($option['uid'])) {
             $params['uid'] = $option['uid'];
         }
 
-        $paginator = Paginator::factory(intval($option['count']), array(
-            'limit' => $option['limit'],
-            'page'  => $option['page'],
-            'url_options'   => array(
-                'params'    => $params
-            ),
-        ));
+        $paginator = Paginator::factory(intval($option['count']), [
+            'limit'       => $option['limit'],
+            'page'        => $option['page'],
+            'url_options' => [
+                'params' => $params,
+            ],
+        ]);
 
         return $paginator;
 

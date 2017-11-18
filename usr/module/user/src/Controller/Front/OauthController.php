@@ -33,7 +33,7 @@ class OauthController extends ActionController
         }
 
         // Get info from url
-        $module = $this->params('module');
+        $module   = $this->params('module');
         $provider = $this->params('provider');
 
         // Get config

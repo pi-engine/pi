@@ -26,18 +26,18 @@ class Timeline extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $list = array();
+        $list = [];
 
-        $model = Pi::model('timeline', $this->module);
-        $rowset = $model->select(array('active' => 1));
+        $model  = Pi::model('timeline', $this->module);
+        $rowset = $model->select(['active' => 1]);
         foreach ($rowset as $row) {
-            $list[$row['name']] =  array(
-                'title'         => $row['title'],
-                'module'        => $row['module'],
-                'icon'          => $row['icon'],
-            );
+            $list[$row['name']] = [
+                'title'  => $row['title'],
+                'module' => $row['module'],
+                'icon'   => $row['icon'],
+            ];
         }
 
         return $list;
@@ -50,10 +50,10 @@ class Timeline extends AbstractRegistry
      */
     public function read($name = '')
     {
-        $options = array();
-        $data = $this->loadData($options);
+        $options = [];
+        $data    = $this->loadData($options);
         if ($name) {
-            $result = isset($data[$name]) ? $data[$name] : array();
+            $result = isset($data[$name]) ? $data[$name] : [];
         } else {
             $result = $data;
         }

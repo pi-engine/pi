@@ -28,11 +28,11 @@ class Install extends BasicAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.pre', array($this, 'checkConflicts'), 10);
-        $events->attach('install.post', array($this, 'checkModules'), 20);
-        $events->attach('install.post', array($this, 'checkUsers'), 10);
-        $events->attach('install.post', array($this, 'setupProfile'), 5);
-        $events->attach('install.post', array($this, 'updateConfig'), 1);
+        $events->attach('install.pre', [$this, 'checkConflicts'], 10);
+        $events->attach('install.post', [$this, 'checkModules'], 20);
+        $events->attach('install.post', [$this, 'checkUsers'], 10);
+        $events->attach('install.post', [$this, 'setupProfile'], 5);
+        $events->attach('install.post', [$this, 'updateConfig'], 1);
         parent::attachDefaultListeners();
 
         return $this;
@@ -48,10 +48,10 @@ class Install extends BasicAction
     {
         $modules = Pi::registry('module')->read();
         if (isset($modules['uclient'])) {
-            $this->setResult('user', array(
-                'status'    => false,
-                'message'   => 'The module can not co-exist with uclient module',
-            ));
+            $this->setResult('user', [
+                'status'  => false,
+                'message' => 'The module can not co-exist with uclient module',
+            ]);
 
             return false;
         }
@@ -102,15 +102,15 @@ class Install extends BasicAction
         $modelProfile = Pi::model('profile', 'user');
 
         $sql = 'INSERT INTO ' . $modelProfile->getTable() . ' (uid)'
-             . ' SELECT id FROM ' . $modelAccount->getTable();
+            . ' SELECT id FROM ' . $modelAccount->getTable();
         try {
             $result = Pi::db()->query($sql);
         } catch (\Exception $exception) {
-            $this->setResult('user', array(
-                'status'    => false,
-                'message'   => 'User profile generation failed: '
-                . $exception->getMessage(),
-            ));
+            $this->setResult('user', [
+                'status'  => false,
+                'message' => 'User profile generation failed: '
+                    . $exception->getMessage(),
+            ]);
 
             $result = false;
         }
@@ -127,28 +127,28 @@ class Install extends BasicAction
      */
     public function setupProfile(Event $e)
     {
-        $result = null;
+        $result     = null;
         $modelGroup = Pi::model('display_group', 'user');
         $modelField = Pi::model('display_field', 'user');
 
         // Get fields and groups
-        $order = 1;
-        $groups = array(
-            '__BASIC__' => array(
-                'title'     => _a('Basic profile'),
-                'order'     => $order++,
-                'compound'  => null,
-            ),
-        );
-        $fieldList  = array();
-        $fields     = Pi::registry('field', 'user')->read('', 'display');
+        $order     = 1;
+        $groups    = [
+            '__BASIC__' => [
+                'title'    => _a('Basic profile'),
+                'order'    => $order++,
+                'compound' => null,
+            ],
+        ];
+        $fieldList = [];
+        $fields    = Pi::registry('field', 'user')->read('', 'display');
         foreach ($fields as $field) {
             if ($field['type'] == 'compound') {
-                $groups[$field['name']] = array(
-                    'title'     => $field['title'],
-                    'compound'  => $field['name'],
-                    'order'     => $order++,
-                );
+                $groups[$field['name']] = [
+                    'title'    => $field['title'],
+                    'compound' => $field['name'],
+                    'order'    => $order++,
+                ];
 
                 // Get compound fields
                 $compoundMeta = Pi::registry('compound_field', 'user')->read($field['name']);
@@ -167,15 +167,15 @@ class Install extends BasicAction
             if (empty($fieldList[$groupName])) {
                 continue;
             }
-            $groupId = $row['id'];
+            $groupId    = $row['id'];
             $fieldOrder = 1;
             foreach (array_keys($fieldList[$groupName]) as $fName) {
-                $fData = array(
+                $fData = [
                     'field' => $fName,
                     'group' => $groupId,
                     'order' => $fieldOrder++,
-                );
-                $row = $modelField->createRow($fData);
+                ];
+                $row   = $modelField->createRow($fData);
                 $row->save();
             }
         }
@@ -195,7 +195,7 @@ class Install extends BasicAction
      */
     public function updateConfig(Event $e)
     {
-        $config = Pi::config()->load('service.user.php', false);
+        $config            = Pi::config()->load('service.user.php', false);
         $config['adapter'] = 'local';
         Pi::config()->write('service.user.php', $config, true);
         Pi::service('user')->reload($config);

@@ -26,9 +26,9 @@ class ProfileCompleteForm extends UserForm
     {
         parent::init();
 
-        $this->add(array(
-            'name'       => 'redirect',
-            'type'       => 'hidden',
-        ));
+        $this->add([
+            'name' => 'redirect',
+            'type' => 'hidden',
+        ]);
     }
 }

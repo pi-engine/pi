@@ -10,6 +10,7 @@
 /**
  * @author Frédéric TISSOT <contact@espritdev.fr>
  */
+
 namespace Module\User\Form;
 
 use Pi;
@@ -28,63 +29,63 @@ class ConditionForm extends BaseForm
     public function init()
     {
         // id
-        $this->add(array(
-            'name' => 'id',
-            'attributes' => array(
+        $this->add([
+            'name'       => 'id',
+            'attributes' => [
                 'type' => 'hidden',
-            ),
-        ));
+            ],
+        ]);
         // title
-        $this->add(array(
-            'name' => 'version',
-            'options' => array(
+        $this->add([
+            'name'       => 'version',
+            'options'    => [
                 'label' => __('Version'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => 'xx.xx format only',
-                'required' => true,
-            )
-        ));
+                'required'    => true,
+            ],
+        ]);
 
-        $this->add(array(
-            'name' => 'filename',
-            'options' => array(
+        $this->add([
+            'name'       => 'filename',
+            'options'    => [
                 'label' => __('File'),
-            ),
-            'attributes' => array(
-                'type' => 'file',
+            ],
+            'attributes' => [
+                'type'        => 'file',
                 'description' => 'PDF only',
-                'required' => true,
-            )
-        ));
+                'required'    => true,
+            ],
+        ]);
 
-        $this->add(array(
-            'name' => 'active_at',
-            'type' => 'datepicker',
-            'options' => array(
-                'label' => __('Active at'),
-                'datepicker' => array(
-                    'format' => 'yyyy-mm-dd',
-                    'autoclose' => true,
-                    'todayBtn' => true,
+        $this->add([
+            'name'       => 'active_at',
+            'type'       => 'datepicker',
+            'options'    => [
+                'label'      => __('Active at'),
+                'datepicker' => [
+                    'format'         => 'yyyy-mm-dd',
+                    'autoclose'      => true,
+                    'todayBtn'       => true,
                     'todayHighlight' => true,
-                    'weekStart' => 1,
-                ),
-            ),
-            'attributes' => array(
+                    'weekStart'      => 1,
+                ],
+            ],
+            'attributes' => [
                 'description' => '',
-                'required' => true,
-            )
-        ));
+                'required'    => true,
+            ],
+        ]);
 
         // Save
-        $this->add(array(
-            'name' => 'submit',
-            'type' => 'submit',
-            'attributes' => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            )
-        ));
+            ],
+        ]);
     }
 }

@@ -1,4 +1,4 @@
-function translateThisThing(key){
+function translateThisThing(key) {
     var translations = {
         "wordLength": wordLength,
         "wordNotEmail": wordNotEmail,
@@ -18,14 +18,14 @@ function translateThisThing(key){
     return translations[key];
 };
 
-$(document).ready(function(){
-    if($('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').length > 0){
+$(document).ready(function () {
+    if ($('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').length > 0) {
         $('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').addClass('pwstrengthEnabled').pwstrength({
             common: {
                 minChar: minChar
             },
             rules: {
-                scores : {
+                scores: {
                     wordNotEmail: -100,
                     wordLength: -50,
                     wordSimilarToUsername: -100,
@@ -43,7 +43,7 @@ $(document).ready(function(){
                     wordLetterNumberCharCombo: 2
                 }
             },
-            i18n : {
+            i18n: {
                 t: function (key) {
                     var result = translateThisThing(key); // Do your magic here
 

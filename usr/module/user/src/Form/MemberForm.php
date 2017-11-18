@@ -11,6 +11,7 @@ namespace Module\User\Form;
 
 //use Pi;
 use Pi\Form\Form as BaseForm;
+
 //use Pi\Application\Db\User\RowGateway\Account;
 
 /**
@@ -23,104 +24,104 @@ class MemberForm extends BaseForm
     public function init()
     {
         // Add user name
-        $this->add(array(
-            'type'          => 'text',
-            'name'          => 'identity',
-            'options'       => array(
+        $this->add([
+            'type'    => 'text',
+            'name'    => 'identity',
+            'options' => [
                 'label' => __('Username'),
-            )
-        ));
+            ],
+        ]);
 
         // Add display name
-        $this->add(array(
-            'type'          => 'text',
-            'name'          => 'name',
-            'options'       => array(
+        $this->add([
+            'type'    => 'text',
+            'name'    => 'name',
+            'options' => [
                 'label' => __('Display name'),
-            )
-        ));
+            ],
+        ]);
 
         // Add email
-        $this->add(array(
-            'type'          => 'email',
-            'name'          => 'email',
-            'options'       => array(
+        $this->add([
+            'type'    => 'email',
+            'name'    => 'email',
+            'options' => [
                 'label' => __('Email'),
-            ),
-        ));
+            ],
+        ]);
 
         // Add password
-        $this->add(array(
-            'type'          => 'password',
-            'name'          => 'credential',
-            'options'       => array(
+        $this->add([
+            'type'    => 'password',
+            'name'    => 'credential',
+            'options' => [
                 'label' => __('New password'),
-            ),
-        ));
+            ],
+        ]);
 
         // Confirm password
-        $this->add(array(
-            'type'          => 'password',
-            'name'          => 'credential-confirm',
-            'options'       => array(
+        $this->add([
+            'type'    => 'password',
+            'name'    => 'credential-confirm',
+            'options' => [
                 'label' => __('Confirm password'),
-            ),
-        ));
+            ],
+        ]);
 
         // Add front role
-        $this->add(array(
-            'name'          => 'front-role',
-            'type'          => 'role',
-            'options'       => array(
-                'label'     => __('Front role'),
-            ),
-        ));
+        $this->add([
+            'name'    => 'front-role',
+            'type'    => 'role',
+            'options' => [
+                'label' => __('Front role'),
+            ],
+        ]);
 
         // Add admin role
-        $this->add(array(
-            'name'          => 'admin-role',
-            'type'          => 'role',
-            'options'       => array(
-                'label'     => __('Admin role'),
-                'section'   => 'admin',
-            ),
-        ));
+        $this->add([
+            'name'    => 'admin-role',
+            'type'    => 'role',
+            'options' => [
+                'label'   => __('Admin role'),
+                'section' => 'admin',
+            ],
+        ]);
 
         // Add activate checkbox
-        $this->add(array(
-            'name'          => 'activate',
-            'type'          => 'checkbox',
-            'options'       => array(
+        $this->add([
+            'name'       => 'activate',
+            'type'       => 'checkbox',
+            'options'    => [
                 'label' => __('Activate'),
-            ),
-            'attributes'    => array(
+            ],
+            'attributes' => [
                 'value' => 1,
-            ),
-        ));
+            ],
+        ]);
 
         // Add enable checkbox
-        $this->add(array(
-            'name'          => 'enable',
-            'type'          => 'checkbox',
-            'options'       => array(
+        $this->add([
+            'name'       => 'enable',
+            'type'       => 'checkbox',
+            'options'    => [
                 'label' => __('Enable'),
-            ),
-            'attributes'    => array(
+            ],
+            'attributes' => [
                 'value' => 1,
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'  => 'security',
-            'type'  => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            ),
-        ));
+            ],
+        ]);
     }
 }

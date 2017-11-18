@@ -23,8 +23,8 @@ class Field extends BasicModel
      *
      * @var array
      */
-    protected $encodeColumns = array(
-        'edit'      => true,
-        'filter'    => true,
-    );
+    protected $encodeColumns = [
+        'edit'   => true,
+        'filter' => true,
+    ];
 }

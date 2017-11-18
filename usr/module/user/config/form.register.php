@@ -12,23 +12,23 @@
  */
 
 $termEnable = Pi::user()->config('register_term');
-$termUrl = Pi::user()->config('register_term_url');
+$termUrl    = Pi::user()->config('register_term_url');
 
 if ($termEnable && !empty($termUrl)) {
     $termEnable = true;
-    $term = sprintf('<a href="%s" target="_blank">%s</a>', $termUrl, __('Terms & Conditions'));
-    $term = sprintf(__('Accept the %s'), $term);
+    $term       = sprintf('<a href="%s" target="_blank">%s</a>', $termUrl, __('Terms & Conditions'));
+    $term       = sprintf(__('Accept the %s'), $term);
 } else {
     $termEnable = false;
-    $term = '';
+    $term       = '';
 }
 
-$captchaMode = Pi::user()->config('register_captcha');
-$captchaElement = array(
-    'element' => Pi::service('form')->getReCaptcha($captchaMode)
-);
+$captchaMode    = Pi::user()->config('register_captcha');
+$captchaElement = [
+    'element' => Pi::service('form')->getReCaptcha($captchaMode),
+];
 
-$form = array(
+$form = [
     // Use user module field
     'email',
     'name',
@@ -36,54 +36,54 @@ $form = array(
     'credential',
 
     // Custom field
-    'credential-confirm' => array(
-        'element' => array(
+    'credential-confirm' => [
+        'element' => [
             //'name'          => 'credential-confirm',
-            'options'       => array(
+            'options'    => [
                 'label' => __('Confirm credential'),
-            ),
-            'attributes'    => array(
-                'type'  => 'password',
+            ],
+            'attributes' => [
+                'type'     => 'password',
                 'required' => true,
-            ),
-        ),
+            ],
+        ],
 
-        'filter' => array(
+        'filter' => [
             //'name'          => 'credential-confirm',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'Identical',
-                    'options'   => array(
-                        'token'     => 'credential',
-                        'strict'    => true,
-                    ),
-                ),
-            ),
-        ),
-    ),
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'Identical',
+                    'options' => [
+                        'token'  => 'credential',
+                        'strict' => true,
+                    ],
+                ],
+            ],
+        ],
+    ],
 
     'captcha' => $captchaElement,
 
-    'term'  => !$termEnable ? false : array(
-        'element' => array(
-            'name'          => 'term',
-            'type'          => 'checkbox',
-            'options'       => array(
-                'label'     => '',
-            ),
-            'attributes' => array(
+    'term' => !$termEnable ? false : [
+        'element' => [
+            'name'       => 'term',
+            'type'       => 'checkbox',
+            'options'    => [
+                'label' => '',
+            ],
+            'attributes' => [
                 'description' => $term,
-                'required' => true,
-            )
-        ),
-    ),
-);
+                'required'    => true,
+            ],
+        ],
+    ],
+];
 
 if ($captchaMode == 0) {
     unset($form['captcha']);

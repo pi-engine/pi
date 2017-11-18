@@ -21,9 +21,9 @@ abstract class AbstractActivityCallback extends AbstractApi
     /**
      * Get message list of an activity
      *
-     * @param int   $uid
-     * @param int   $limit
-     * @param int   $offset
+     * @param int $uid
+     * @param int $limit
+     * @param int $offset
      *
      * @return array
      */

@@ -24,79 +24,79 @@ class SearchFilter extends InputFilter
      */
     public function __construct()
     {
-        $this->add(array(
-            'name'          => 'active',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'active',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'enable',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'enable',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'activated',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'activated',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'front-role',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'front-role',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'admin-role',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'admin-role',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'identity',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'     => 'identity',
+            'required' => false,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'name',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'     => 'name',
+            'required' => false,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'email',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'     => 'email',
+            'required' => false,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'time-created-from',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'time-created-from',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'time-created-end',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'time-created-end',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'ip-register',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'     => 'ip-register',
+            'required' => false,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
     }
 }

@@ -1,39 +1,39 @@
 <div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        {{'QUICKLINK' | translate}}
-      </div>
-      <div class="panel-body">
-        <div class="alert alert-info">
-          {{'ACTIVITIES_DESC' | translate}}
-        </div>
-        <div id="js-plugin-sortable" ui-sortable data-ng-model="displayList">
-          <div class="pi-widget" ng-repeat="item in displayList">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{'QUICKLINK' | translate}}
+            </div>
+            <div class="panel-body">
+                <div class="alert alert-info">
+                    {{'ACTIVITIES_DESC' | translate}}
+                </div>
+                <div id="js-plugin-sortable" ui-sortable data-ng-model="displayList">
+                    <div class="pi-widget" ng-repeat="item in displayList">
             <span class="pull-right">
               <span class="muted">{{item.module}}</span>
               <button class="close" data-ng-click="removeDisplay($index)">
                 &times;
               </button>
             </span>
-            {{item.title}}
-            <span class="text-muted">{{item.link}}</span>
-          </div>
+                        {{item.title}}
+                        <span class="text-muted">{{item.link}}</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <legend>{{'QUICKLINK_REPOSITORY' | translate}}</legend>
-    <div class="user-quick-select" ng-repeat="item in selectList">
-      <div class="pi-widget">
+    <div class="col-md-6">
+        <legend>{{'QUICKLINK_REPOSITORY' | translate}}</legend>
+        <div class="user-quick-select" ng-repeat="item in selectList">
+            <div class="pi-widget">
         <span class="pull-right">
           <span class="text-muted">{{item.module}}</span>
           <i class="fa fa-plus pi-icon-cursor" data-ng-click="addDisplay($index)"></i>
         </span>
-        {{item.title}}
-        <span class="muted gutter">{{item.link}}</span>
-      </div>
+                {{item.title}}
+                <span class="muted gutter">{{item.link}}</span>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

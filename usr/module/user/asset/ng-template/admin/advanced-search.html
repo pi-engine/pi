@@ -1,98 +1,99 @@
 <legend>{{'SEARCH_TITLE' | translate}}</legend>
 <form class="form-horizontal" name="searchForm" novalidate ng-submit="submit()">
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'ACTIVE_STATUS' | translate}}</label>
-    <div class="col-md-4">
-      <select class="form-control" data-ng-model="filter.active">
-        <option value="">{{'ACTIVE_STATUS' | translate}}
-        <option value="active">{{'ACTIVE' | translate}}
-        <option value="inactive">{{'INACTIVE' | translate}}
-      </select>
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'ACTIVE_STATUS' | translate}}</label>
+        <div class="col-md-4">
+            <select class="form-control" data-ng-model="filter.active">
+                <option value="">{{'ACTIVE_STATUS' | translate}}
+                <option value="active">{{'ACTIVE' | translate}}
+                <option value="inactive">{{'INACTIVE' | translate}}
+            </select>
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'ENABLE_STATUS' | translate}}</label>
-    <div class="col-md-4">
-      <select class="form-control" data-ng-model="filter.enable">
-        <option value="">{{'ENABLE_STATUS' | translate}}
-        <option value="enable">{{'ENABLE' | translate}}
-        <option value="disable">{{'DISABLED' | translate}}
-      </select>
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'ENABLE_STATUS' | translate}}</label>
+        <div class="col-md-4">
+            <select class="form-control" data-ng-model="filter.enable">
+                <option value="">{{'ENABLE_STATUS' | translate}}
+                <option value="enable">{{'ENABLE' | translate}}
+                <option value="disable">{{'DISABLED' | translate}}
+            </select>
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'ACTIVATION_STATUS' | translate}}</label>
-    <div class="col-md-4">
-      <select class="form-control" data-ng-model="filter.activated">
-        <option value="">{{'ACTIVATION_STATUS' | translate}}
-        <option value="pending">{{'PENDING' | translate}}
-        <option value="activated">{{'ACTIVATED' | translate}}
-      </select>
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'ACTIVATION_STATUS' | translate}}</label>
+        <div class="col-md-4">
+            <select class="form-control" data-ng-model="filter.activated">
+                <option value="">{{'ACTIVATION_STATUS' | translate}}
+                <option value="pending">{{'PENDING' | translate}}
+                <option value="activated">{{'ACTIVATED' | translate}}
+            </select>
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'USER_ID' | translate}}</label>
-    <div class="col-md-4">
-      <input class="form-control" type="text" data-ng-model="filter.uid">
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'USER_ID' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="text" data-ng-model="filter.uid">
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'USERNAME' | translate}}</label>
-    <div class="col-md-4">
-      <input class="form-control" type="text" data-ng-model="filter.identity">
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'USERNAME' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="text" data-ng-model="filter.identity">
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'DISPLAYNAME' | translate}}</label>
-    <div class="col-md-4">
-      <input class="form-control" type="text" data-ng-model="filter.name">
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'DISPLAYNAME' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="text" data-ng-model="filter.name">
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'EMAIL' | translate}}</label>
-    <div class="col-md-4">
-      <input class="form-control" type="text" data-ng-model="filter.email">
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'EMAIL' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="text" data-ng-model="filter.email">
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'REGISTER_TIME_FROM' | translate}}</label>
-    <div class="col-md-4">
-      <input class="form-control" type="text" data-ng-model="filter.time_created_from" datepicker-popup="yyyy-MM-dd"
-             show-weeks="0" max="filter.time_created_to">
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'REGISTER_TIME_FROM' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="text" data-ng-model="filter.time_created_from"
+                   datepicker-popup="yyyy-MM-dd"
+                   show-weeks="0" max="filter.time_created_to">
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'REGISTER_TIME_TO' | translate}}</label>
-    <div class="col-md-4">
-      <input class="form-control" type="text" data-ng-model="filter.time_created_to" datepicker-popup="yyyy-MM-dd"
-             show-weeks="0" min="filter.time_created_from" max="today">
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'REGISTER_TIME_TO' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="text" data-ng-model="filter.time_created_to" datepicker-popup="yyyy-MM-dd"
+                   show-weeks="0" min="filter.time_created_from" max="today">
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'REGISTER_IP' | translate}}</label>
-    <div class="col-md-4">
-      <input class="form-control" type="text" data-ng-model="filter.ip_register">
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'REGISTER_IP' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="text" data-ng-model="filter.ip_register">
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'FRONT_ROLE' | translate}}</label>
-    <div class="col-md-4">
-      <label class="checkbox inline" ng-repeat="item in roles | filter: {type: 'front'}">
-        <input type="checkbox" data-ng-model="item.checked">{{item.title}}
-      </label>
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'FRONT_ROLE' | translate}}</label>
+        <div class="col-md-4">
+            <label class="checkbox inline" ng-repeat="item in roles | filter: {type: 'front'}">
+                <input type="checkbox" data-ng-model="item.checked">{{item.title}}
+            </label>
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'ADMIN_ROLE' | translate}}</label>
-    <div class="col-md-4">
-      <label class="checkbox inline" ng-repeat="item in roles | filter: {type: 'admin'}">
-        <input type="checkbox" data-ng-model="item.checked">{{item.title}}
-      </label>
+    <div class="form-group">
+        <label class="col-md-2 control-label">{{'ADMIN_ROLE' | translate}}</label>
+        <div class="col-md-4">
+            <label class="checkbox inline" ng-repeat="item in roles | filter: {type: 'admin'}">
+                <input type="checkbox" data-ng-model="item.checked">{{item.title}}
+            </label>
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-      <input type="submit" value="{{'SUBMIT' | translate}}" class="btn btn-primary">
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="{{'SUBMIT' | translate}}" class="btn btn-primary">
+        </div>
     </div>
-  </div>
 </form>

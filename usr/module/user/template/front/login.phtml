@@ -27,7 +27,8 @@ if (!empty($description) || !empty($url)) {
             <?php echo $this->form($form); ?>
             <div class="clearfix">
                 <div class="col-md-6 col-md-offset-3">
-                    <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>">
+                    <a title="<?php _e('Find password'); ?>"
+                       href="<?php echo Pi::service('user')->getUrl('password'); ?>">
                         <?php _e('Find password'); ?>
                     </a>
                 </div>
@@ -36,7 +37,8 @@ if (!empty($description) || !empty($url)) {
                 <div class="col-md-6 col-md-offset-3">
                     <h2><?php _e('Not registered yet ?'); ?></h2>
                     <p>
-                        <a class="btn btn-default" title="<?php _e('Register'); ?>" href="<?php echo Pi::service('user')->getUrl('register'); ?>">
+                        <a class="btn btn-default" title="<?php _e('Register'); ?>"
+                           href="<?php echo Pi::service('user')->getUrl('register'); ?>">
                             <?php _e('Register'); ?>
                         </a>
                     </p>
@@ -53,28 +55,32 @@ if (!empty($description) || !empty($url)) {
                 <div class="clearfix ">
                     <?php if (!empty($url['google'])) { ?>
                         <div class="oauth-login">
-                            <a class="btn btn-socail btn-google btn-block" href="<?php echo $this->escape($url['google']); ?>">
+                            <a class="btn btn-socail btn-google btn-block"
+                               href="<?php echo $this->escape($url['google']); ?>">
                                 <i class="fa fa-google"></i> <?php _e('Login with google'); ?>
                             </a>
                         </div>
                     <?php } ?>
                     <?php if (!empty($url['twitter'])) { ?>
                         <div class="oauth-login">
-                            <a class="btn btn-socail btn-twitter btn-block" href="<?php echo $this->escape($url['twitter']); ?>">
+                            <a class="btn btn-socail btn-twitter btn-block"
+                               href="<?php echo $this->escape($url['twitter']); ?>">
                                 <i class="fa fa-twitter"></i> <?php _e('Login with twitter'); ?>
                             </a>
                         </div>
                     <?php } ?>
                     <?php if (!empty($url['facebook'])) { ?>
                         <div class="oauth-login">
-                            <a class="btn btn-socail btn-facebook btn-block" href="<?php echo $this->escape($url['facebook']); ?>">
+                            <a class="btn btn-socail btn-facebook btn-block"
+                               href="<?php echo $this->escape($url['facebook']); ?>">
                                 <i class="fa fa-facebook"></i> <?php _e('Login with facebook'); ?>
                             </a>
                         </div>
                     <?php } ?>
                     <?php if (!empty($url['github'])) { ?>
                         <div class="oauth-login">
-                            <a class="btn btn-socail btn-github btn-block" href="<?php echo $this->escape($url['github']); ?>">
+                            <a class="btn btn-socail btn-github btn-block"
+                               href="<?php echo $this->escape($url['github']); ?>">
                                 <i class="fa fa-github"></i> <?php _e('Login with github'); ?>
                             </a>
                         </div>

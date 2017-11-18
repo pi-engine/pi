@@ -23,16 +23,16 @@ class Social extends CustomCompoundHandler
     /**
      * {@inheritDoc}
      */
-    protected function displayFields($fields, array $meta = array())
+    protected function displayFields($fields, array $meta = [])
     {
-        $record = array();
+        $record = [];
         foreach ($fields as $item) {
-            $record[$item['id']] = array(
+            $record[$item['id']] = [
                 'title' => $item['title'],
                 'value' => $item['identifier'],
-            );
+            ];
         }
-        $result = array($record);
+        $result = [$record];
 
         return $result;
     }

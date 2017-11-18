@@ -12,14 +12,14 @@
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
+return [
     // System user route
-    'user'  => array(
-        'name'      => 'user',
-        'type'      => 'Module\User\Route\User',
-        'priority'  => 5,
-        'options'   => array(
-            'route'    => '/user',
-        ),
-    ),
-);
+    'user' => [
+        'name'     => 'user',
+        'type'     => 'Module\User\Route\User',
+        'priority' => 5,
+        'options'  => [
+            'route' => '/user',
+        ],
+    ],
+];

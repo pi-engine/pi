@@ -1,99 +1,106 @@
 <style>
-.user-profile-groups .panel-body {
-  display: none;
-}
-.user-profile-groups .panel-heading {
-  border-bottom: none;
-}
-.user-profile-group-editing .panel-body {
-  display: block;
-}
-.user-profile-group-editing .panel-heading {
-  border-bottom: 1px solid #ddd;
-}
-.user-profile-groups .panel {
-  cursor: move;
-}
-.pi-hover-input {
-  width: 80%;
-}
+    .user-profile-groups .panel-body {
+        display: none;
+    }
+
+    .user-profile-groups .panel-heading {
+        border-bottom: none;
+    }
+
+    .user-profile-group-editing .panel-body {
+        display: block;
+    }
+
+    .user-profile-group-editing .panel-heading {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .user-profile-groups .panel {
+        cursor: move;
+    }
+
+    .pi-hover-input {
+        width: 80%;
+    }
 </style>
 <div class="row user-profile-page">
-  <div class="col-md-7">
-    <div class="panel panel-success">
-      <div class="clearfix panel-heading">
-        <div class="pull-right">
-          <button class="btn btn-link" data-ng-click="cancelAction()">{{'CANCEL' | translate}}</button>
-          <button class="btn btn-success" data-ng-click="saveAction()">{{'SAVE' | translate}}</button>
-        </div>
-        <h5 style="margin: 10px 0 0 0;">{{'FIELD_DISPLAY' | translate}}</h5>
-      </div>
-      <div class="panel-body">
-        <form class="input-group" ng-submit="AddCustomDisplay()" novalidate
-              name="displayForm" style="margin-bottom: 20px;">
-          <input class="form-control" type="text" placeholder="{{'TITLE' | translate}}"
-                 data-ng-model="entity" required>
-          <span class="input-group-btn">
+    <div class="col-md-7">
+        <div class="panel panel-success">
+            <div class="clearfix panel-heading">
+                <div class="pull-right">
+                    <button class="btn btn-link" data-ng-click="cancelAction()">{{'CANCEL' | translate}}</button>
+                    <button class="btn btn-success" data-ng-click="saveAction()">{{'SAVE' | translate}}</button>
+                </div>
+                <h5 style="margin: 10px 0 0 0;">{{'FIELD_DISPLAY' | translate}}</h5>
+            </div>
+            <div class="panel-body">
+                <form class="input-group" ng-submit="AddCustomDisplay()" novalidate
+                      name="displayForm" style="margin-bottom: 20px;">
+                    <input class="form-control" type="text" placeholder="{{'TITLE' | translate}}"
+                           data-ng-model="entity" required>
+                    <span class="input-group-btn">
             <button class="btn btn-default" ng-disabled="displayForm.$invalid">
               {{'ADD_GROUP' | translate}}
             </button>
           </span>
-        </form>
-        <div pi-alert message="saveAlert.message" type="saveAlert.type"></div>
-        <div class="user-profile-groups" ui-sortable="displaysOpts" data-ng-model="displays">
-          <div ng-repeat="display in displays" class="panel panel-default"
-               data-ng-class="{'user-profile-group-editing': display.$isEditing}">
-            <div class="clearfix panel-heading">
-              <div class="pull-right user-profile-group-action">
-                <i class="fa fa-lg pi-icon-cursor" style="padding-right: 4px;"
-                   data-ng-class="{'fa-angle-up': display.$isEditing, 'fa-angle-down': !display.$isEditing}"
-                   data-ng-click="toggleGroup(display)"></i>
-                <button class="close" data-ng-click="removeDisplay($index)">
-                  &times;
-                </button>
-              </div>
-              <div pi-hover-input text="display.title">
-              </div>
+                </form>
+                <div pi-alert message="saveAlert.message" type="saveAlert.type"></div>
+                <div class="user-profile-groups" ui-sortable="displaysOpts" data-ng-model="displays">
+                    <div ng-repeat="display in displays" class="panel panel-default"
+                         data-ng-class="{'user-profile-group-editing': display.$isEditing}">
+                        <div class="clearfix panel-heading">
+                            <div class="pull-right user-profile-group-action">
+                                <i class="fa fa-lg pi-icon-cursor" style="padding-right: 4px;"
+                                   data-ng-class="{'fa-angle-up': display.$isEditing, 'fa-angle-down': !display.$isEditing}"
+                                   data-ng-click="toggleGroup(display)"></i>
+                                <button class="close" data-ng-click="removeDisplay($index)">
+                                    &times;
+                                </button>
+                            </div>
+                            <div pi-hover-input text="display.title">
+                            </div>
+                        </div>
+                        <div class="panel-body" ui-sortable data-ng-model="display.fields">
+                            <div ng-repeat="displayField in display.fields" class="pi-widget">
+                                <button class="close" data-ng-if="!display.name"
+                                        data-ng-click="removeGroupField(display.fields, $index)">&times;
+                                </button>
+                                {{displayField.title}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body" ui-sortable data-ng-model="display.fields">
-              <div ng-repeat="displayField in display.fields" class="pi-widget">
-                <button class="close" data-ng-if="!display.name"
-                        data-ng-click="removeGroupField(display.fields, $index)">&times;</button>
-                {{displayField.title}}
-              </div>
+        </div>
+    </div>
+    <div class="col-md-5 user-profile-source">
+        <legend>{{'BASIC_FIELD' | translate}}</legend>
+        <div ng-repeat="field in profile" class="pi-widget">
+            <div class="pull-right">
+                <div class="dropdown pi-user-select-disabled">
+                    <i dropdown-toggle class="fa fa-plus fa-lg pi-icon-cursor"></i>
+                    <ul class="pull-right dropdown-menu">
+                        <li ng-repeat="item in customGroup">
+                            <a href="javascript:void(0)"
+                               data-ng-click="AddGroupField(item, $parent.$index)">{{item}}</a>
+                    </ul>
+                </div>
             </div>
-          </div>
+            {{field.title}}
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-5 user-profile-source">
-    <legend>{{'BASIC_FIELD' | translate}}</legend>
-    <div ng-repeat="field in profile" class="pi-widget">
-      <div class="pull-right">
-        <div class="dropdown pi-user-select-disabled">
-          <i dropdown-toggle class="fa fa-plus fa-lg pi-icon-cursor"></i>
-          <ul class="pull-right dropdown-menu">
-            <li ng-repeat="item in customGroup">
-              <a href="javascript:void(0)" data-ng-click="AddGroupField(item, $parent.$index)">{{item}}</a>
-          </ul>
-        </div>
-      </div>
-      {{field.title}}
-    </div>
-    <legend>{{'COMPOUND' | translate}}</legend>
-    <div ng-repeat="compound in compounds" class="panel panel-default">
-      <div class="panel-heading">
+        <legend>{{'COMPOUND' | translate}}</legend>
+        <div ng-repeat="compound in compounds" class="panel panel-default">
+            <div class="panel-heading">
         <span class="pull-right" data-ng-click="addDisplayGroup($index)">
           <i class="fa fa-plus fa-lg pi-icon-cursor"></i>
         </span>
-        {{compound.title}}
-      </div>
-      <div class="panel-body">
-        <div class="pi-widget" ng-repeat="item in compound.fields">
-          {{item.title}}
+                {{compound.title}}
+            </div>
+            <div class="panel-body">
+                <div class="pi-widget" ng-repeat="item in compound.fields">
+                    {{item.title}}
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

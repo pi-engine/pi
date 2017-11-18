@@ -13,93 +13,93 @@
  * @see Pi\Application\Installer\Resource\User
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
+return [
     // Fields
-    'field'     => array(
+    'field'     => [
         // Account: identity
-        'identity'      => array(
-            'type'      => 'account',
-            'name'      => 'identity',
-            'title'     => _a('Username'),
+        'identity'        => [
+            'type'        => 'account',
+            'name'        => 'identity',
+            'title'       => _a('Username'),
             // Edit element specs
-            'edit'      => array(
-                'validators'    => array(
-                    array(
-                        'name'      => 'Module\User\Validator\Username',
-                    ),
-                ),
-            ),
+            'edit'        => [
+                'validators' => [
+                    [
+                        'name' => 'Module\User\Validator\Username',
+                    ],
+                ],
+            ],
             // Is editable by admin, default as true
             'is_edit'     => false,
             'is_required' => true,
-        ),
+        ],
         // Account: password
-        'credential'    => array(
-            'type'      => 'account',
-            'name'      => 'credential',
-            'title'     => _a('Password'),
-            'edit'      => array(
-                'element'       => 'password',
-                'validators'    => array(
-                    array(
-                        'name'      => 'Module\User\Validator\Password',
-                    ),
-                ),
-            ),
-            'is_display'    => false,
-            'is_search'     => false,
-            'is_required'   => true,
-        ),
+        'credential'      => [
+            'type'        => 'account',
+            'name'        => 'credential',
+            'title'       => _a('Password'),
+            'edit'        => [
+                'element'    => 'password',
+                'validators' => [
+                    [
+                        'name' => 'Module\User\Validator\Password',
+                    ],
+                ],
+            ],
+            'is_display'  => false,
+            'is_search'   => false,
+            'is_required' => true,
+        ],
         // Account: email
-        'email'     => array(
-            'type'      => 'account',
-            'name'      => 'email',
-            'title'     => _a('Email'),
-            'edit'      => array(
-                'element'       => 'email',
-                'validators'    => array(
-                    array(
-                        'name'      => 'EmailAddress',
-                        'options'   => array(
-                            'useMxCheck'        => false,
-                            'useDeepMxCheck'    => false,
-                            'useDomainCheck'    => false,
-                        ),
-                    ),
-                    array(
-                        'name'      => 'Module\User\Validator\UserEmail',
-                    ),
-                ),
-            ),
+        'email'           => [
+            'type'        => 'account',
+            'name'        => 'email',
+            'title'       => _a('Email'),
+            'edit'        => [
+                'element'    => 'email',
+                'validators' => [
+                    [
+                        'name'    => 'EmailAddress',
+                        'options' => [
+                            'useMxCheck'     => false,
+                            'useDeepMxCheck' => false,
+                            'useDomainCheck' => false,
+                        ],
+                    ],
+                    [
+                        'name' => 'Module\User\Validator\UserEmail',
+                    ],
+                ],
+            ],
             'is_edit'     => false,
             'is_required' => true,
-        ),
+        ],
         // Account: display name
-        'name'      => array(
-            'type'      => 'account',
-            'name'      => 'name',
-            'title'     => _a('Display name'),
+        'name'            => [
+            'type'        => 'account',
+            'name'        => 'name',
+            'title'       => _a('Display name'),
             // Edit element specs
-            'edit'      => array(
-                'validators'    => array(
-                    array(
-                        'name'      => 'Module\User\Validator\Name',
-                    ),
-                ),
-            ),
+            'edit'        => [
+                'validators' => [
+                    [
+                        'name' => 'Module\User\Validator\Name',
+                    ],
+                ],
+            ],
             'is_edit'     => false,
             'is_required' => true,
-        ),
+        ],
         // Account: gender
-        'gender'    => array(
-            'type'      => 'account',
-            'name'      => 'gender',
-            'title'     => _a('Gender'),
-            'edit'      => array(
-                'element'   =>  'Module\User\Form\Element\Gender',
-            ),
-            'filter'    => 'Gender',
-        ),
+        'gender'          => [
+            'type'   => 'account',
+            'name'   => 'gender',
+            'title'  => _a('Gender'),
+            'edit'   => [
+                'element' => 'Module\User\Form\Element\Gender',
+            ],
+            'filter' => 'Gender',
+        ],
         // Account: birth date
         /* 'birthdate'  => array(
             'type'  => 'account',
@@ -128,267 +128,267 @@ return array(
             ),
             'filter'   => 'Module\User\Filter\Birthdate',
         ), */
-        'birthdate'  => array(
-            'type'  => 'account',
-            'name'  => 'birthdate',
-            'title' => _a('Birthdate'),
-            'edit'  => array(
-                'element'       => 'datepicker',
-                'options'       => array(
-                    'datepicker'    => array(
-                        'format'        => 'yyyy-mm-dd',
-                        'start_date'    => '1900-01-01',
-                        'end_date'      => '2030-12-31',
-                        'startView'     => 'decade',
-                    ),
-                ),
-            ),
-            'filter'   => 'Module\User\Filter\Birthdate',
-        ),
+        'birthdate'       => [
+            'type'   => 'account',
+            'name'   => 'birthdate',
+            'title'  => _a('Birthdate'),
+            'edit'   => [
+                'element' => 'datepicker',
+                'options' => [
+                    'datepicker' => [
+                        'format'     => 'yyyy-mm-dd',
+                        'start_date' => '1900-01-01',
+                        'end_date'   => '2030-12-31',
+                        'startView'  => 'decade',
+                    ],
+                ],
+            ],
+            'filter' => 'Module\User\Filter\Birthdate',
+        ],
         // Account: avatar
-        'avatar'    => array(
-            'type'      => 'account',
-            'name'      => 'avatar',
-            'title'     => _a('Avatar'),
+        'avatar'          => [
+            'type'  => 'account',
+            'name'  => 'avatar',
+            'title' => _a('Avatar'),
 
-            'is_edit'       => false,
-            'is_display'    => false,
-            'is_search'     => false,
-        ),
+            'is_edit'    => false,
+            'is_display' => false,
+            'is_search'  => false,
+        ],
 
         // Account: Collective status
-        'active'    => array(
-            'type'      => 'account',
-            'name'      => 'active',
-            'title'     => _a('Active'),
-            'filter'    => 'YesNo',
+        'active'          => [
+            'type'   => 'account',
+            'name'   => 'active',
+            'title'  => _a('Active'),
+            'filter' => 'YesNo',
 
-            'is_edit'       => false,
-            'is_display'    => false,
-        ),
+            'is_edit'    => false,
+            'is_display' => false,
+        ],
         // Account: Register time
-        'time_created'  => array(
-            'type'      => 'account',
-            'name'      => 'time_created',
-            'title'     => _a('Register time'),
-            'filter'    => array('Int', 'DateTimeFormatter'),
+        'time_created'    => [
+            'type'   => 'account',
+            'name'   => 'time_created',
+            'title'  => _a('Register time'),
+            'filter' => ['Int', 'DateTimeFormatter'],
 
-            'is_edit'       => false,
-            'is_display'    => false,
-        ),
+            'is_edit'    => false,
+            'is_display' => false,
+        ],
         // Account: Activation time
-        'time_activated'    => array(
-            'type'      => 'account',
-            'name'      => 'time_activated',
-            'title'     => _a('Activation time'),
-            'filter'    => 'DateTimeFormatter',
+        'time_activated'  => [
+            'type'   => 'account',
+            'name'   => 'time_activated',
+            'title'  => _a('Activation time'),
+            'filter' => 'DateTimeFormatter',
 
-            'is_edit'       => false,
-            'is_display'    => false,
-        ),
+            'is_edit'    => false,
+            'is_display' => false,
+        ],
         // Account: Disabled time
-        'time_disabled' => array(
-            'type'      => 'account',
-            'name'      => 'time_disabled',
-            'title'     => _a('Disabled time'),
-            'filter'    => 'DateTimeFormatter',
+        'time_disabled'   => [
+            'type'   => 'account',
+            'name'   => 'time_disabled',
+            'title'  => _a('Disabled time'),
+            'filter' => 'DateTimeFormatter',
 
-            'is_edit'       => false,
-            'is_display'    => false,
-            'is_search'     => false,
-        ),
+            'is_edit'    => false,
+            'is_display' => false,
+            'is_search'  => false,
+        ],
         // Account: Deleted time
-        'time_deleted'  => array(
-            'type'      => 'account',
-            'name'      => 'time_deleted',
-            'title'     => _a('Deleted time'),
-            'filter'    => 'DateTimeFormatter',
+        'time_deleted'    => [
+            'type'   => 'account',
+            'name'   => 'time_deleted',
+            'title'  => _a('Deleted time'),
+            'filter' => 'DateTimeFormatter',
 
-            'is_edit'       => false,
-            'is_display'    => false,
-            'is_search'     => false,
-        ),
+            'is_edit'    => false,
+            'is_display' => false,
+            'is_search'  => false,
+        ],
 
         // Profile fields
 
         // Profile: Level
-        'level'    => array(
-            'name'      => 'level',
-            'title'     => _a('Level'),
+        'level'           => [
+            'name'  => 'level',
+            'title' => _a('Level'),
 
-            'is_display'    => false,
-            'is_edit'       => false,
-            'is_search'     => true,
-        ),
+            'is_display' => false,
+            'is_edit'    => false,
+            'is_search'  => true,
+        ],
         // Profile: Last modified
-        'last_modified'  => array(
-            'name'  => 'last_modified',
-            'title' => _a('Last modified'),
-            'is_display'    => false,
-            'is_edit'       => false,
-            'is_search'     => true,
-        ),
+        'last_modified'   => [
+            'name'       => 'last_modified',
+            'title'      => _a('Last modified'),
+            'is_display' => false,
+            'is_edit'    => false,
+            'is_search'  => true,
+        ],
         // Profile: homepage
-        'homepage'  => array(
+        'homepage'        => [
             'name'  => 'homepage',
             'title' => _a('Personal website'),
-            'edit'  => array(
-                'element'       => 'url',
-            ),
-        ),
+            'edit'  => [
+                'element' => 'url',
+            ],
+        ],
         // Profile: bio
-        'bio'  => array(
+        'bio'             => [
             'name'  => 'bio',
             'title' => _a('Short bio'),
-            'edit'  => array(
-                'element'       => 'textarea',
-            ),
-        ),
+            'edit'  => [
+                'element' => 'textarea',
+            ],
+        ],
         // Profile: signature
-        'signature'  => array(
+        'signature'       => [
             'name'  => 'signature',
             'title' => _a('Signature'),
-            'edit'  => array(
-                'element'   => 'textarea',
-            ),
-        ),
+            'edit'  => [
+                'element' => 'textarea',
+            ],
+        ],
 
         // Profile: Register IP
-        'ip_register'  => array(
-            'name'      => 'ip_register',
-            'title'     => _a('Register IP'),
+        'ip_register'     => [
+            'name'  => 'ip_register',
+            'title' => _a('Register IP'),
 
-            'is_edit'       => false,
-            'is_display'    => false,
-            'is_search'     => false,
-        ),
+            'is_edit'    => false,
+            'is_display' => false,
+            'is_search'  => false,
+        ],
         // Profile: register source, could be used for register invitation
-        'register_source' => array(
-            'name'          => 'register_source',
-            'title'         => _a('Register source'),
-            'is_edit'       => false,
-            'is_display'    => false,
-            'is_search'     => false,
-        ),
+        'register_source' => [
+            'name'       => 'register_source',
+            'title'      => _a('Register source'),
+            'is_edit'    => false,
+            'is_display' => false,
+            'is_search'  => false,
+        ],
         // Profile: identification_number
         // See : https://en.wikipedia.org/wiki/National_identification_number
-        'id_number'  => array(
+        'id_number'       => [
             'name'  => 'id_number',
             'title' => _a('Identification number'),
-        ),
+        ],
 
         // Profile: first_name
-        'first_name'  => array(
+        'first_name'      => [
             'name'  => 'first_name',
             'title' => _a('First Name'),
-        ),
+        ],
 
         // Profile: last_name
-        'last_name'  => array(
+        'last_name'       => [
             'name'  => 'last_name',
             'title' => _a('Last Name'),
-        ),
+        ],
         // Profile: Language
-        'language'  => array(
+        'language'        => [
             'name'  => 'language',
             'title' => _a('Language'),
             'edit'  => 'locale',
-        ),
+        ],
 
         // Profile: mobile phone number
-        'mobile'      => array(
-            'name'      => 'mobile',
-            'title'     => _a('Mobile phone'),
-        ),
+        'mobile'          => [
+            'name'  => 'mobile',
+            'title' => _a('Mobile phone'),
+        ],
 
         // Profile: phone
-        'phone'  => array(
+        'phone'           => [
             'name'  => 'phone',
             'title' => _a('Telephone'),
-        ),
+        ],
 
         // Profile: address1
-        'address1'  => array(
+        'address1'        => [
             'name'  => 'address1',
             'title' => _a('Address 1'),
-        ),
+        ],
 
         // Profile: address2
-        'address2'  => array(
+        'address2'        => [
             'name'  => 'address2',
             'title' => _a('Address 2'),
-        ),
+        ],
 
         // Profile: country
-        'country'  => array(
+        'country'         => [
             'name'  => 'country',
             'title' => _a('Country'),
-        ),
+        ],
 
         // Profile: state
-        'state'  => array(
+        'state'           => [
             'name'  => 'state',
             'title' => _a('State'),
-        ),
+        ],
 
         // Profile: city
-        'city'  => array(
+        'city'            => [
             'name'  => 'city',
             'title' => _a('City'),
-        ),
+        ],
 
         // Profile: zip_code
-        'zip_code'  => array(
+        'zip_code'        => [
             'name'  => 'zip_code',
             'title' => _a('Zip code'),
-        ),
+        ],
         // Profile: device_token
-        'device_token'  => array(
+        'device_token'    => [
             'name'  => 'device_token',
             'title' => _a('Device token'),
-        ),
-        
+        ],
+
         // Compound fields
         // Compound: Social networking tools
-        'social'      => array(
-            'name'  => 'social',
-            'title' => _a('Social tools'),
+        'social'          => [
+            'name'    => 'social',
+            'title'   => _a('Social tools'),
 
             // Custom handler
-            'handler'   => 'Module\User\Field\Social',
+            'handler' => 'Module\User\Field\Social',
 
-            'field' => array(
-                'title'         => array(
+            'field' => [
+                'title'      => [
                     'title' => _a('Tool name'),
-                ),
-                'identifier'    => array(
+                ],
+                'identifier' => [
                     'title' => _a('ID or URL'),
-                ),
-            ),
-        ),
-    ),
+                ],
+            ],
+        ],
+    ],
 
     // Timeline logs from modules
-    'timeline'  => array(
-        'operation' => array(
+    'timeline'  => [
+        'operation' => [
             'title' => _a('User action'),
             'icon'  => 'fa-user',
-        ),
-    ),
+        ],
+    ],
 
     // Activity logs
-    'activity'  => array(
-    ),
+    'activity'  => [
+    ],
 
     // Quicklinks
-    'quicklink' => array(
-        'logout'    => array(
+    'quicklink' => [
+        'logout' => [
             'title' => _a('Logout'),
             'link'  => Pi::service('authentication')->getUrl(
-                    'logout',
-                    array('section' => 'front')
-                ),
+                'logout',
+                ['section' => 'front']
+            ),
             'icon'  => 'fa-power-off',
-        ),
-    ),
-);
+        ],
+    ],
+];

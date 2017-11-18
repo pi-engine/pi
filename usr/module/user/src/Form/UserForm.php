@@ -26,7 +26,7 @@ class UserForm extends BaseForm
      *
      * @var array
      */
-    protected $fields = array();
+    protected $fields = [];
 
     /** @var string Config file identifier */
     protected $configIdentifier = '';
@@ -39,7 +39,7 @@ class UserForm extends BaseForm
      *
      * @param array|string $fields
      */
-    public function __construct($name, $fields = array())
+    public function __construct($name, $fields = [])
     {
         if (!$fields || !is_array($fields)) {
             if ($fields && is_string($fields)) {
@@ -65,10 +65,10 @@ class UserForm extends BaseForm
             $this->add($field);
         }
 
-        $this->add(array(
-            'name'       => 'submit',
-            'type'       => 'submit',
-        ));
+        $this->add([
+            'name' => 'submit',
+            'type' => 'submit',
+        ]);
     }
 
     /**
@@ -78,7 +78,7 @@ class UserForm extends BaseForm
      *
      * @return $this
      */
-    public function loadInputFilter(array $filters = array())
+    public function loadInputFilter(array $filters = [])
     {
         if (!$filters) {
             $filters = Pi::api('form', 'user')->loadFilters($this->configIdentifier);
@@ -115,14 +115,14 @@ class UserForm extends BaseForm
      */
     public function setData($data)
     {
-        $data = (array) $data;
+        $data      = (array)$data;
         $compounds = Pi::registry('field', 'user')->read('compound');
 
-        $result = array();
+        $result = [];
         foreach ($data as $key => $value) {
             if (is_array($value) && isset($compounds[$key])) {
                 foreach ($value as $fName => $fValue) {
-                    $fieldName = Pi::api('form', 'user')->assembleCompoundFieldName($key, $fName);
+                    $fieldName          = Pi::api('form', 'user')->assembleCompoundFieldName($key, $fName);
                     $result[$fieldName] = $fValue;
                 }
             } else {
@@ -141,8 +141,8 @@ class UserForm extends BaseForm
      */
     public function getData($flags = FormInterface::VALUES_NORMALIZED)
     {
-        $data = parent::getData($flags);
-        $result = array();
+        $data   = parent::getData($flags);
+        $result = [];
         foreach ($data as $key => $value) {
             $tmp = Pi::api('form', 'user')->parseCompoundFieldName($key);
             if ($tmp) {

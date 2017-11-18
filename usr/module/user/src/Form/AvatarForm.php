@@ -14,9 +14,9 @@ use Pi\Form\Form as BaseForm;
 
 /**
  * Class for initializing form of avatar
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
- */ 
+ */
 class AvatarForm extends BaseForm
 {
     /**
@@ -24,12 +24,12 @@ class AvatarForm extends BaseForm
      */
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name'       => 'fake_id',
-            'attributes' => array(
-                'type'      => 'hidden',
-                'value'     => uniqid(),
-            ),
-        ));
+            'attributes' => [
+                'type'  => 'hidden',
+                'value' => uniqid(),
+            ],
+        ]);
     }
 }
