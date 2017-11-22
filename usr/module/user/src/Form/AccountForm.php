@@ -21,82 +21,83 @@ class AccountForm extends BaseForm
 {
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name'       => 'identity',
-            'options'    => array(
+            'options'    => [
                 'label' => __('Username'),
-            ),
-            'type' => 'text',
-            'attributes' => array(
-                'disabled' => 'disabled'
-            ),
-        ));
+            ],
+            'type'       => 'text',
+            'attributes' => [
+                'disabled' => 'disabled',
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'email',
-            'options'    => array(
+            'options'    => [
                 'label' => __('Email'),
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'text',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'name',
-            'options'    => array(
+            'options'    => [
                 'label' => __('Display name'),
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'text',
-            ),
-        ));
+            ],
+        ]);
 
-        if(Pi::service('module')->isActive('subscription')){
-            $this->add(array(
-                'name'       => 'newsletter',
-                'type'      => 'checkbox',
-                'options'    => array(
+        if (Pi::service('module')->isActive('subscription')) {
+            $this->add([
+                'name'    => 'newsletter',
+                'type'    => 'checkbox',
+                'options' => [
                     'label' => __('Newsletter subscription'),
-                ),
-            ));
+                ],
+            ]);
 
             $people = $this->_getCurrentPeople();
 
-            $this->get('newsletter')->setValue((bool) $people);
+            $this->get('newsletter')->setValue((bool)$people);
         }
 
-        $this->add(array(
+        $this->add([
             'name'       => 'uid',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'hidden',
-            ),
-        ));
-        
-        $this->add(array(
-            'name'       => 'id',
-            'attributes' => array(
-                'type' => 'hidden',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
+            'name'       => 'id',
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
+
+        $this->add([
             'name'       => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'value' => __('Submit'),
-            ),
+            ],
             'type'       => 'submit',
-        ));
+        ]);
     }
 
-    protected function _getCurrentPeople(){
+    protected function _getCurrentPeople()
+    {
         $peopleModel = $this->getPeopleModel();
-        $select = $peopleModel->select();
+        $select      = $peopleModel->select();
         $select->where(
-            array(
-                'uid' => Pi::user()->getId(),
+            [
+                'uid'      => Pi::user()->getId(),
                 'campaign' => 0,
-            )
+            ]
         );
 
         $people = $peopleModel->selectWith($select)->current();
@@ -104,7 +105,8 @@ class AccountForm extends BaseForm
         return $people;
     }
 
-    protected function getPeopleModel(){
+    protected function getPeopleModel()
+    {
         return Pi::model('people', 'subscription');
     }
 
@@ -112,40 +114,40 @@ class AccountForm extends BaseForm
     {
         $isValid = parent::isValid();
 
-        if($isValid && Pi::service('module')->isActive('subscription')){
+        if ($isValid && Pi::service('module')->isActive('subscription')) {
             $newsletterValue = $this->get('newsletter')->getValue();
-            $people = $this->_getCurrentPeople();
+            $people          = $this->_getCurrentPeople();
 
-            if($newsletterValue == 1 && !$people){
+            if ($newsletterValue == 1 && !$people) {
                 $peopleModel = $this->getPeopleModel();
-                $people = $peopleModel->createRow();
+                $people      = $peopleModel->createRow();
 
-                $values = array();
-                $values['campaign'] = 0;
-                $values['uid'] = Pi::user()->getId();
-                $values['status'] = 1;
-                $values['time_join'] = time();
+                $values               = [];
+                $values['campaign']   = 0;
+                $values['uid']        = Pi::user()->getId();
+                $values['status']     = 1;
+                $values['time_join']  = time();
                 $values['newsletter'] = 1;
-                $values['email'] = null;
-                $values['mobile'] = null;
+                $values['email']      = null;
+                $values['mobile']     = null;
 
                 $people->assign($values);
                 $people->save();
 
-                $log = array(
-                    'uid' => Pi::user()->getId(),
+                $log = [
+                    'uid'    => Pi::user()->getId(),
                     'action' => 'subscribe_newsletter_account',
-                );
+                ];
 
                 Pi::api('log', 'user')->add(null, null, $log);
 
-            } elseif($newsletterValue == 0 && $people){
+            } elseif ($newsletterValue == 0 && $people) {
                 $people->delete();
 
-                $log = array(
-                    'uid' => Pi::user()->getId(),
+                $log = [
+                    'uid'    => Pi::user()->getId(),
                     'action' => 'unsubscribe_newsletter_account',
-                );
+                ];
 
                 Pi::api('log', 'user')->add(null, null, $log);
             }

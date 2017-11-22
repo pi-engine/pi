@@ -15,4 +15,5 @@ use Module\User\Field\AbstractCustomHandler as PiAbstractCustomHandler;
  * @deprecated
  */
 abstract class AbstractCustomHandler extends PiAbstractCustomHandler
-{}
+{
+}

@@ -43,10 +43,10 @@ class RegisterCompleteForm extends UserForm
             }
             $name = $element->getName();
             if (!$this->has($name)) {
-                $this->add(array(
-                    'name'  => $name,
-                    'type'  => 'hidden',
-                ));
+                $this->add([
+                    'name' => $name,
+                    'type' => 'hidden',
+                ]);
             }
         }
 
@@ -58,10 +58,10 @@ class RegisterCompleteForm extends UserForm
      *
      * Load RegisterForm InputFilter
      */
-    public function loadInputFilter(array $filters = array())
+    public function loadInputFilter(array $filters = [])
     {
         parent::loadInputFilter($filters);
-        $inputFilter = $this->getInputFilter();
+        $inputFilter    = $this->getInputFilter();
         $registerFilter = $this->registerForm->getInputFilter();
         foreach ($this->registerForm->getElements() as $element) {
             if ($element instanceof Captcha

@@ -8,7 +8,9 @@ $this->headMeta('noindex', 'robots');
     </div>
     <div class="col-md-9">
         <div class="page-header">
-            <h1><?php _e('Account settings'); ?> <small><?php _e('Basic settings'); ?></small></h1>
+            <h1><?php _e('Account settings'); ?>
+                <small><?php _e('Basic settings'); ?></small>
+            </h1>
         </div>
         <?php echo $this->form($form); ?>
     </div>
@@ -40,15 +42,15 @@ $this->headMeta('noindex', 'robots');
     </div>
 </form>
 <script>
-    (function($) {
+    (function ($) {
         var userAccountIndex = {
             options: {},
 
-            $: function(selector) {
+            $: function (selector) {
                 return this.$el.find(selector);
             },
 
-            init: function(opts) {
+            init: function (opts) {
                 $.extend(this.options, opts);
                 this.cacheElements();
                 this.bindEvents();
@@ -57,23 +59,23 @@ $this->headMeta('noindex', 'robots');
                 this.isValid();
                 this.emailInitVal = $.trim(this.$email.val());
                 this.nameInitVal = $.trim(this.$name.val());
-                this.uidVal      = $.trim(this.$el.find('[name=uid]').val());
-                this.idVal       = $.trim(this.$el.find('[name=id]').val());
+                this.uidVal = $.trim(this.$el.find('[name=uid]').val());
+                this.idVal = $.trim(this.$el.find('[name=id]').val());
                 this.checkEmailRequest = null;
                 this.checkNameRequest = null;
 
-                if(typeof this.$newsletter != 'undefined'){
-                    this.newsletterInitVal = this.$newsletter.is( ":checked" );
+                if (typeof this.$newsletter != 'undefined') {
+                    this.newsletterInitVal = this.$newsletter.is(":checked");
 
                     var obj = this;
-                    this.$newsletter.change(function(){
-                        obj.isNewsletterValid = obj.newsletterInitVal != $(this).is( ":checked" );
+                    this.$newsletter.change(function () {
+                        obj.isNewsletterValid = obj.newsletterInitVal != $(this).is(":checked");
                         obj.isValid();
                     });
                 }
             },
 
-            cacheElements: function() {
+            cacheElements: function () {
                 this.$el = $('#account');
                 this.$submit = this.$('[name=submit]');
                 this.$email = this.$('[name=email]');
@@ -84,7 +86,7 @@ $this->headMeta('noindex', 'robots');
                 this.$confirmBtn = $('.user-js-confirm-btn');
             },
 
-            bindEvents: function() {
+            bindEvents: function () {
                 this.$el.on('submit', $.proxy(this.submitAction, this));
                 this.$confirm.on('submit', $.proxy(this.confirmSubmitAction, this));
                 this.$confirm.on('show', $.proxy(this.modalShowAction, this));
@@ -94,23 +96,29 @@ $this->headMeta('noindex', 'robots');
                 this.$name.on('keyup blur', $.proxy(this.nameVerifyAction, this)).focus(this.focusAction);
             },
 
-            submitAction: function(e) {
+            submitAction: function (e) {
                 e.preventDefault();
                 this.$confirm.modal('show');
             },
 
-            confirmSubmitAction: function(e) {
+            confirmSubmitAction: function (e) {
                 e.preventDefault();
                 this.$confirmBtn.addClass('disabled').attr('disabled', 'disabled');
                 var passwordVal = $.trim(this.$confirmPassword.val());
 
-                $.getJSON(this.options.confirmUrl, { 'credential': passwordVal }, $.proxy(function(result) {
+                $.getJSON(this.options.confirmUrl, {'credential': passwordVal}, $.proxy(function (result) {
                     if (result.status) {
                         var emailVal = $.trim(this.$email.val());
                         var nameVal = $.trim(this.$name.val());
-                        var newsletterVal = $.trim(this.$newsletter.is( ":checked" ) ? 1 : 0);
+                        var newsletterVal = $.trim(this.$newsletter.is(":checked") ? 1 : 0);
 
-                        $.post(this.options.accountIndexUrl, { 'email': emailVal, 'name': nameVal, 'newsletter': newsletterVal, 'uid': this.uidVal, 'id': this.idVal}, $.proxy(function(result) {
+                        $.post(this.options.accountIndexUrl, {
+                            'email': emailVal,
+                            'name': nameVal,
+                            'newsletter': newsletterVal,
+                            'uid': this.uidVal,
+                            'id': this.idVal
+                        }, $.proxy(function (result) {
                             this.$email.next().remove();
                             this.$name.next().remove();
 
@@ -145,15 +153,15 @@ $this->headMeta('noindex', 'robots');
                 }, this));
             },
 
-            nameReset: function() {
+            nameReset: function () {
                 this.$name.val(this.nameInitVal);
             },
 
-            emailReset: function() {
+            emailReset: function () {
                 this.$email.val(this.emailInitVal);
             },
 
-            modalHideAction: function() {
+            modalHideAction: function () {
                 this.isEmailValid = false;
                 this.isNameValid = false;
                 this.emailReset();
@@ -161,23 +169,23 @@ $this->headMeta('noindex', 'robots');
                 //this.$submit.addClass('disabled').attr('disabled', 'disabled');
             },
 
-            modalShowAction: function() {
+            modalShowAction: function () {
                 this.confirmReset();
             },
 
-            confirmReset: function() {
+            confirmReset: function () {
                 this.$confirmPassword.val('');
                 this.$confirmPassword.closest('.control-group').removeClass('error').find('.help-inline').remove();
                 this.$confirmBtn.removeClass('disabled').removeAttr('disabled');
             },
 
-            focusAction: function() {
+            focusAction: function () {
                 $(this).closest('.control-group').removeClass('error').find('.help-inline, .help-block').remove();
             },
 
-            emailVerifyAction: function() {
+            emailVerifyAction: function () {
                 var emailVal = $.trim(this.$email.val());
-                switch ( true ) {
+                switch (true) {
 
                     case emailVal == '':
                         this.$email.next().remove();
@@ -196,9 +204,12 @@ $this->headMeta('noindex', 'robots');
                         if (this.checkEmailRequest) {
                             clearTimeout(this.checkEmailRequest);
                         }
-                        this.checkEmailRequest = setTimeout($.proxy(function() {
+                        this.checkEmailRequest = setTimeout($.proxy(function () {
 
-                            $.getJSON(this.options.validateUrl, { 'key': 'email', 'value': emailVal }, $.proxy(function(result) {
+                            $.getJSON(this.options.validateUrl, {
+                                'key': 'email',
+                                'value': emailVal
+                            }, $.proxy(function (result) {
                                 if (!result.status) {
                                     this.$email.next().remove();
                                     this.$email.after("<span class='help-inline'>" + result.message + "</span>");
@@ -215,9 +226,9 @@ $this->headMeta('noindex', 'robots');
                 }
             },
 
-            nameVerifyAction: function() {
+            nameVerifyAction: function () {
                 var nameVal = $.trim(this.$name.val());
-                switch ( true ) {
+                switch (true) {
 
                     case nameVal == '':
                         this.$name.next().remove();
@@ -236,9 +247,12 @@ $this->headMeta('noindex', 'robots');
                         if (this.checkNameRequest) {
                             clearTimeout(this.checkNameRequest);
                         }
-                        this.checkNameRequest = setTimeout($.proxy(function() {
+                        this.checkNameRequest = setTimeout($.proxy(function () {
 
-                            $.getJSON(this.options.validateUrl, { 'key': 'name', 'value': nameVal }, $.proxy(function(result) {
+                            $.getJSON(this.options.validateUrl, {
+                                'key': 'name',
+                                'value': nameVal
+                            }, $.proxy(function (result) {
                                 if (!result.status) {
                                     this.$name.next().remove();
                                     this.$name.after("<span class='help-inline'>" + result.message + "</span>");
@@ -255,7 +269,7 @@ $this->headMeta('noindex', 'robots');
                 }
             },
 
-            isValid: function() {
+            isValid: function () {
                 if (this.isEmailValid || this.isNameValid || this.isNewsletterValid) {
                     this.$submit.removeClass('disabled').removeAttr('disabled');
                 } else {
@@ -268,10 +282,10 @@ $this->headMeta('noindex', 'robots');
     })(jQuery);
 
     userAccountIndex.init({
-        accountIndexUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>',
-        validateUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'validate')); ?>',
-        //checkExistUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'check.exist')); ?>',
-        confirmUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'verify.credential')); ?>',
+        accountIndexUrl: '<?php echo $this->url('', ['controller' => 'account', 'action' => 'index']); ?>',
+        validateUrl: '<?php echo $this->url('', ['controller' => 'account', 'action' => 'validate']); ?>',
+        //checkExistUrl: '<?php echo $this->url('', ['controller' => 'account', 'action' => 'check.exist']); ?>',
+        confirmUrl: '<?php echo $this->url('', ['controller' => 'account', 'action' => 'verify.credential']); ?>',
         THAT_IS_YOU: "<?php _e('No change!'); ?>"
     });
 </script>

@@ -2,10 +2,10 @@
 $this->css($this->assetModule('front/front.css'));
 if (!empty(Pi::user()->config('register_description'))) {
     $description = Pi::user()->config('register_description');
-    $class = 'col-md-8 col-sm-7 col-xs-12';
+    $class       = 'col-md-8 col-sm-7 col-xs-12';
 } else {
     $description = '';
-    $class = 'col-md-12';
+    $class       = 'col-md-12';
 }
 ?>
 <div class="clearfix user-template">
@@ -14,10 +14,10 @@ if (!empty(Pi::user()->config('register_description'))) {
     </div>
     <?php if (!empty($form)) { ?>
         <?php if (empty($result['status']) && !empty($result['message'])) { ?>
-            <div class="alert alert-danger">
-                <?php echo _escape($result['message']); ?>
-            </div>
-        <?php } ?>
+        <div class="alert alert-danger">
+            <?php echo _escape($result['message']); ?>
+        </div>
+    <?php } ?>
         <div class="row clearfix loginFormWrapper">
             <?php if (!empty($description)) { ?>
                 <div class="col-md-4 col-sm-5 col-xs-12">
@@ -25,42 +25,42 @@ if (!empty(Pi::user()->config('register_description'))) {
                 </div>
             <?php } ?>
             <div class="<?php echo $class; ?>">
-                <?php echo $this->form($form);?>
+                <?php echo $this->form($form); ?>
             </div>
         </div>
     <?php } elseif ('auto' == $activation) { ?>
-        <?php if (!empty($result['status'])) { ?>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Congratulations!'); ?></h3>
-                </div>
-                <div class="panel-body">
+    <?php if (!empty($result['status'])) { ?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Congratulations!'); ?></h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <?php echo sprintf(
+                        __('Your account has been registered successfully. Please <a href="%s">login</a> with your account.'),
+                        Pi::service('authentication')->getUrl('login', $redirect)
+                    ); ?>
+                </p>
+                <?php if ($redirect) { ?>
                     <p>
                         <?php echo sprintf(
-                            __('Your account has been registered successfully. Please <a href="%s">login</a> with your account.'),
-                            Pi::service('authentication')->getUrl('login', $redirect)
-                        ); ?>
+                            __('Or go back to <a href="%s">the requested page</a> directly.'),
+                            $redirect
+                        ) ?>
                     </p>
-                    <?php if ($redirect) { ?>
-                        <p>
-                            <?php echo sprintf(
-                                __('Or go back to <a href="%s">the requested page</a> directly.'),
-                                $redirect
-                            ) ?>
-                        </p>
-                    <?php } ?>
-                </div>
+                <?php } ?>
             </div>
-        <?php } else { ?>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3>
-                </div>
-                <div class="panel-body">
-                    <?php echo _escape($result['message']); ?>
-                </div>
+        </div>
+    <?php } else { ?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3>
             </div>
-        <?php } ?>
+            <div class="panel-body">
+                <?php echo _escape($result['message']); ?>
+            </div>
+        </div>
+    <?php } ?>
     <?php } elseif ('email' != $activation) { ?>
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -94,7 +94,8 @@ if (!empty(Pi::user()->config('register_description'))) {
                         <li><?php _e('Wait a few minutes and check again.'); ?></li>
                         <li><?php _e('Check your email spam box.'); ?></li>
                         <li class="user-js-reactivate">
-                            <a class="user-js-reactivate-link" href="javascript:;"><?php _e('Request to resend activation email'); ?></a>
+                            <a class="user-js-reactivate-link"
+                               href="javascript:;"><?php _e('Request to resend activation email'); ?></a>
                             <span style="margin-left: 20px;" class="user-js-reactivate-message"></span>
                         </li>
                     </ol>
@@ -150,7 +151,7 @@ if (!empty(Pi::user()->config('register_description'))) {
             })(jQuery);
 
             userRegisterReactivate({
-                reactivateUrl: '<?php echo $this->url('', array('controller' => 'register', 'action' => 'reactivate', 'uid' => $result['uid']));?>'
+                reactivateUrl: '<?php echo $this->url('', ['controller' => 'register', 'action' => 'reactivate', 'uid' => $result['uid']]);?>'
             });
         </script>
     <?php } ?>

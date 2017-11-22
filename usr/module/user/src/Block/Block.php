@@ -10,16 +10,17 @@
 /**
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\User\Block;
 
 use Pi;
 
 class Block
 {
-    public static function completeness($options = array(), $module = null)
+    public static function completeness($options = [], $module = null)
     {
         // Set options
-        $block = array();
+        $block = [];
         $block = array_merge($block, $options);
         // Check uer
         if (Pi::service('authentication')->hasIdentity()) {
@@ -27,14 +28,14 @@ class Block
             $uid = Pi::user()->getId();
             // Set fields list
             $block['fields'] = Pi::registry('display_field', 'user')->read();
-            $block['fields'] = array_merge($block['fields'], array('avatar'));
+            $block['fields'] = array_merge($block['fields'], ['avatar']);
             // Get met
             $block['meta'] = Pi::api('user', 'user')->getMeta('', 'display');
             // Get user profile
             $block['user'] = Pi::user()->get($uid, $block['fields']);
             // Set count
-            $block['count'] = count($block['fields']);
-            $block['countComplete'] = 0;
+            $block['count']            = count($block['fields']);
+            $block['countComplete']    = 0;
             $block['countNotComplete'] = 0;
             foreach ($block['user'] as $key => $userField) {
                 if (in_array($key, $block['fields'])) {
@@ -46,26 +47,26 @@ class Block
                 }
             }
             $block['percent'] = ($block['countComplete'] * 100) / $block['count'];
-            $block['percent'] =  intval($block['percent']);
+            $block['percent'] = intval($block['percent']);
             // Check max percent
             if ($block['percent'] > $block['max_percent']) {
                 return false;
             }
             // Check main fields
-            $block['mainFields'] = array(
-                'avatar' => array(
-                    'name' => 'avatar',
-                    'title' => _b('Avatar'),
+            $block['mainFields'] = [
+                'avatar' => [
+                    'name'   => 'avatar',
+                    'title'  => _b('Avatar'),
                     'status' => empty($block['user']['avatar']) ? 0 : 1,
-                ),
-            );
+                ],
+            ];
             foreach ($block['meta'] as $meta) {
                 if ($meta['is_required'] && in_array($meta['name'], $block['fields'])) {
-                    $block['mainFields'][$meta['name']] = array(
-                        'name' => $meta['name'],
-                        'title' => $meta['title'],
+                    $block['mainFields'][$meta['name']] = [
+                        'name'   => $meta['name'],
+                        'title'  => $meta['title'],
                         'status' => empty($block['user'][$meta['name']]) ? 0 : 1,
-                    );
+                    ];
                 }
             }
             // Set main fields status count
@@ -80,13 +81,13 @@ class Block
                 return false;
             }
             // Set url
-            $block['accountUrl'] = Pi::url(Pi::service('user')->getUrl('user' , array('controller' => 'account')));
-            $block['avatarUrl'] = Pi::url(Pi::service('user')->getUrl('user' , array('controller' => 'avatar')));
+            $block['accountUrl'] = Pi::url(Pi::service('user')->getUrl('user', ['controller' => 'account']));
+            $block['avatarUrl']  = Pi::url(Pi::service('user')->getUrl('user', ['controller' => 'avatar']));
             $block['profileUrl'] = Pi::url(Pi::service('user')->getUrl('profile'));
-            $block['avatar'] = Pi::service('user')->avatar($uid, 'large' , array(
-                'alt' => $block['user']['name'],
-                'class' => 'img-circle'
-            ));
+            $block['avatar']     = Pi::service('user')->avatar($uid, 'large', [
+                'alt'   => $block['user']['name'],
+                'class' => 'img-circle',
+            ]);
         } else {
             return false;
         }

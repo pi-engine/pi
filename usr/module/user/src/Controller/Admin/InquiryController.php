@@ -1,11 +1,11 @@
 <?php
 /**
-* Pi Engine (http://piengine.org)
-*
-* @link            http://code.piengine.org for the Pi Engine source repository
-* @copyright       Copyright (c) Pi Engine http://piengine.org
-* @license         http://piengine.org/license.txt BSD 3-Clause License
-*/
+ * Pi Engine (http://piengine.org)
+ *
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
+ */
 
 namespace Module\User\Controller\Admin;
 
@@ -16,10 +16,10 @@ use Zend\Db\Sql\Predicate;
 
 
 /**
-* User manage cases controller
-*
-* @author Liu Chuang <liuchuang@eefocus.com>
-*/
+ * User manage cases controller
+ *
+ * @author Liu Chuang <liuchuang@eefocus.com>
+ */
 class InquiryController extends ActionController
 {
     /**
@@ -31,7 +31,7 @@ class InquiryController extends ActionController
         $this->view()->setTemplate('inquiry');
     }
 
-    
+
     /**
      * Search user info buy display name
      *
@@ -39,28 +39,28 @@ class InquiryController extends ActionController
      */
     public function profileAction()
     {
-        $field = _get('field') ? : 'name';
-        $data = _get('data'); 
-        $user = Pi::service('user')->getUser($data, $field);
+        $field = _get('field') ?: 'name';
+        $data  = _get('data');
+        $user  = Pi::service('user')->getUser($data, $field);
 
         if (!$user) {
             $this->response->setStatusCode(404);
-            return array(
-                'message' => 'User not found'
-            );
+            return [
+                'message' => 'User not found',
+            ];
         }
 
-        $uid = $user->get('id');
+        $uid     = $user->get('id');
         $profile = $this->getProfileGroup($uid);
-        $user = Pi::api('user', 'user')->get(
+        $user    = Pi::api('user', 'user')->get(
             $uid,
-            array(
+            [
                 'identity',
                 'name',
                 'email',
                 'time_activated',
                 'time_disabled',
-            )
+            ]
         );
 
         $user['time_activated'] = $user['time_activated']
@@ -68,20 +68,20 @@ class InquiryController extends ActionController
         $user['time_disabled']  = $user['time_disabled']
             ? _date($user['time_disabled']) : 0;
 
-        $user['link'] = $this->url(
+        $user['link']   = $this->url(
             'user',
-            array(
+            [
                 'controller' => 'home',
                 'action'     => 'view',
-                'uid'        => $uid
-            )
+                'uid'        => $uid,
+            ]
         );
         $user['avatar'] = Pi::user()->avatar()->get($uid, 'large', false);
-        
-        return array(
-            'user'    => $user,
-            'groups'  => array_values($profile)
-        );
+
+        return [
+            'user'   => $user,
+            'groups' => array_values($profile),
+        ];
     }
 
     /**
@@ -94,16 +94,16 @@ class InquiryController extends ActionController
      */
     protected function getProfileGroup($uid)
     {
-        $result = array();
+        $result = [];
 
         // Get account or profile meta
         $fieldMeta = Pi::api('user', 'user')->getMeta('', 'display');
         $groups    = $this->getDisplayGroup();
 
         foreach ($groups as $groupId => $group) {
-            $result[$groupId] = $group;
-            $result[$groupId]['fields'] = array();
-            $fields = $this->getFieldDisplay($groupId);
+            $result[$groupId]           = $group;
+            $result[$groupId]['fields'] = [];
+            $fields                     = $this->getFieldDisplay($groupId);
 
             if ($group['compound']) {
                 // Compound meta
@@ -112,18 +112,18 @@ class InquiryController extends ActionController
                 );
 
                 // Compound value
-                $compound     = Pi::api('user', 'user')->get(
+                $compound = Pi::api('user', 'user')->get(
                     $uid, $group['compound']
                 );
                 // Generate Result
                 foreach ($compound as $set => $item) {
                     // Compound value
-                    $compoundValue = array();
+                    $compoundValue = [];
                     foreach ($fields as $field) {
-                        $compoundValue[] = array(
+                        $compoundValue[] = [
                             'title' => $compoundMeta[$field]['title'],
                             'value' => $item[$field],
-                        );
+                        ];
 
                     }
                     $result[$groupId]['fields'][$set] = $compoundValue;
@@ -131,10 +131,10 @@ class InquiryController extends ActionController
             } else {
                 // Profile
                 foreach ($fields as $field) {
-                    $result[$groupId]['fields'][0][$field] = array(
+                    $result[$groupId]['fields'][0][$field] = [
                         'title' => $fieldMeta[$field]['title'],
                         'value' => Pi::api('user', 'user')->get($uid, $field),
-                    );
+                    ];
                 }
             }
         }
@@ -150,7 +150,7 @@ class InquiryController extends ActionController
      */
     protected function getDisplayGroup()
     {
-        $result = array();
+        $result = [];
 
         $model  = $this->getModel('display_group');
         $select = $model->select();
@@ -173,11 +173,11 @@ class InquiryController extends ActionController
      */
     protected function getFieldDisplay($groupId)
     {
-        $result = array();
+        $result = [];
 
         $model  = $this->getModel('display_field');
-        $select = $model->select()->where(array('group' => $groupId));
-        $select->columns(array('field', 'order'));
+        $select = $model->select()->where(['group' => $groupId]);
+        $select->columns(['field', 'order']);
         $select->order('order ASC');
         $fields = $model->selectWith($select);
 

@@ -25,16 +25,16 @@ class UserEmail extends SystemUserEmail
      */
     public function __construct($options = null)
     {
-        $options = $options ?: array();
-        $options = array_merge(array(
+        $options = $options ?: [];
+        $options = array_merge([
             'blacklist'         => Pi::user()->config('email_blacklist'),
             'check_duplication' => true,
-        ), $options);
+        ], $options);
 
         parent::__construct($options);
-        $this->abstractOptions['messageTemplates'] = array(
-            static::RESERVED    => __('User email is reserved'),
-            static::USED        => __('User email is already used'),
-        ) + $this->abstractOptions['messageTemplates'];
+        $this->abstractOptions['messageTemplates'] = [
+                static::RESERVED => __('User email is reserved'),
+                static::USED     => __('User email is already used'),
+            ] + $this->abstractOptions['messageTemplates'];
     }
 }

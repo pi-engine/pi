@@ -7,72 +7,72 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
+return [
     // Admin section
-    'admin' => array(
-        array(
-            'controller'    => 'index',
-            'permission'    => 'user',
-        ),
-        array(
-            'controller'    => 'role',
-            'permission'    => 'role',
-        ),
-        array(
-            'controller'    => 'profile',
-            'permission'    => 'profile',
-        ),
-        array(
-            'controller'    => 'import',
-            'permission'    => 'import',
-        ),
-        array(
-            'controller'    => 'avatar',
-            'permission'    => 'avatar',
-        ),
-        array(
-            'controller'    => 'form',
-            'permission'    => 'form',
-        ),
-        array(
-            'controller'    => 'plugin',
-            'permission'    => 'plugin',
-        ),
-        array(
-            'controller'    => 'maintenance',
-            'permission'    => 'maintenance',
-        ),
-        array(
-            'controller'    => 'inquiry',
-            'permission'    => 'inquiry',
-        ),
-        array(
-            'controller'    => 'condition',
-            'permission'    => 'condition',
-        ),
-    ),
+    'admin' => [
+        [
+            'controller' => 'index',
+            'permission' => 'user',
+        ],
+        [
+            'controller' => 'role',
+            'permission' => 'role',
+        ],
+        [
+            'controller' => 'profile',
+            'permission' => 'profile',
+        ],
+        [
+            'controller' => 'import',
+            'permission' => 'import',
+        ],
+        [
+            'controller' => 'avatar',
+            'permission' => 'avatar',
+        ],
+        [
+            'controller' => 'form',
+            'permission' => 'form',
+        ],
+        [
+            'controller' => 'plugin',
+            'permission' => 'plugin',
+        ],
+        [
+            'controller' => 'maintenance',
+            'permission' => 'maintenance',
+        ],
+        [
+            'controller' => 'inquiry',
+            'permission' => 'inquiry',
+        ],
+        [
+            'controller' => 'condition',
+            'permission' => 'condition',
+        ],
+    ],
     // Front section
-    'front' => array(
-        array(
-            'title'         => _a('Profile view'),
-            'controller'    => 'profile',
-            'action'    => 'index',
-            'permission'    => 'profile-page',
-            'block'         => 1,
-        ),
-        array(
-            'title'         => _a('Activities view'),
-            'controller'    => 'home',
-            'action'        => 'index',
-            'permission'    => 'profile-page',
-            'block'         => 1,
-        ),
-        array(
-            'title'         => _a('Dashboard view'),
-            'controller'    => 'dashboard',
-            'action'        => 'index',
-            'permission'    => 'profile-page',
-            'block'         => 1,
-        ),
-    ),
-);
+    'front' => [
+        [
+            'title'      => _a('Profile view'),
+            'controller' => 'profile',
+            'action'     => 'index',
+            'permission' => 'profile-page',
+            'block'      => 1,
+        ],
+        [
+            'title'      => _a('Activities view'),
+            'controller' => 'home',
+            'action'     => 'index',
+            'permission' => 'profile-page',
+            'block'      => 1,
+        ],
+        [
+            'title'      => _a('Dashboard view'),
+            'controller' => 'dashboard',
+            'action'     => 'index',
+            'permission' => 'profile-page',
+            'block'      => 1,
+        ],
+    ],
+];

@@ -19,7 +19,7 @@
 $this->css($this->assetModule('front/front.css', 'user'));
 
 // Load language
-Pi::service('i18n')->load(array('module/user', 'default'));
+Pi::service('i18n')->load(['module/user', 'default']);
 
 // load template
 include $this->templateModule('front/profile-topbar.phtml', 'user');

@@ -15,4 +15,5 @@ use Module\User\Field\CustomFieldHandler as PiCustomFieldHandler;
  * @deprecated
  */
 abstract class CustomFieldHandler extends PiCustomFieldHandler
-{}
+{
+}

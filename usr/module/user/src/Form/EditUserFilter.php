@@ -30,20 +30,20 @@ class EditUserFilter extends InputFilter
         */
         foreach ($filters as $filter) {
             if ($filter['name'] == 'credential') {
-                $this->add(array(
-                    'name'          => 'credential',
-                    'required'      => false,
-                    'filters'       => array(
-                        array(
-                            'name'  => 'StringTrim',
-                        ),
-                    ),
-                    'validators'    => array(
-                        array(
-                            'name'      => 'Module\User\Validator\Password',
-                        ),
-                    ),
-                ));
+                $this->add([
+                    'name'       => 'credential',
+                    'required'   => false,
+                    'filters'    => [
+                        [
+                            'name' => 'StringTrim',
+                        ],
+                    ],
+                    'validators' => [
+                        [
+                            'name' => 'Module\User\Validator\Password',
+                        ],
+                    ],
+                ]);
             } else {
                 $this->add($filter);
             }

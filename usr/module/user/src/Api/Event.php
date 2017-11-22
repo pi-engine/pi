@@ -184,9 +184,9 @@ class Event extends AbstractApi
     /**
      * Update user persistent data
      *
-     * @param int           $uid
-     * @param string|null   $field
-     * @param mixed         $value
+     * @param int $uid
+     * @param string|null $field
+     * @param mixed $value
      *
      * @return void
      */

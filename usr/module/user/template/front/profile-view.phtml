@@ -4,9 +4,9 @@ $this->headMeta('noindex', 'robots');
 ?>
 <?php include $this->template('./profile-topbar.phtml'); ?>
 <div class="user-min-body">
-    <?php foreach ($groups as $group) {?>
+    <?php foreach ($groups as $group) { ?>
         <div class="clearfix user-legend">
-            <h4><?php echo _escape($group['title']);?></h4>
+            <h4><?php echo _escape($group['title']); ?></h4>
             <div class="user-legend-linea"></div>
         </div>
         <?php if ($group['fields']) { ?>

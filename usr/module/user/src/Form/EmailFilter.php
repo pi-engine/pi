@@ -11,6 +11,7 @@ namespace Module\User\Form;
 
 //use Pi;
 use Zend\InputFilter\InputFilter;
+
 //use Module\User\Validator\CredentialVerify;
 
 /**
@@ -22,42 +23,42 @@ class EmailFilter extends InputFilter
 {
     public function __construct()
     {
-        $this->add(array(
-            'name'          => 'email-new',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'EmailAddress',
-                    'options'   => array(
-                        'useMxCheck'        => false,
-                        'useDeepMxCheck'    => false,
-                        'useDomainCheck'    => false,
-                    ),
-                ),
-                array(
-                    'name'      => 'Module\User\Validator\UserEmail',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'       => 'email-new',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'EmailAddress',
+                    'options' => [
+                        'useMxCheck'     => false,
+                        'useDeepMxCheck' => false,
+                        'useDomainCheck' => false,
+                    ],
+                ],
+                [
+                    'name' => 'Module\User\Validator\UserEmail',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'credential',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'Module\User\Validator\Password',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'       => 'credential',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name' => 'Module\User\Validator\Password',
+                ],
+            ],
+        ]);
     }
 }

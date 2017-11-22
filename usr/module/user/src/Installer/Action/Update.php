@@ -7,7 +7,7 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\User\Installer\Action;
+namespace Module\User\Installer\Action;
 
 use Pi;
 use Pi\Application\Installer\Action\Update as BasicUpdate;
@@ -27,8 +27,8 @@ class Update extends BasicUpdate
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('update.pre', array($this, 'updateSchema'));
-        $events->attach('update.post', array($this, 'updatePostSchema'));
+        $events->attach('update.pre', [$this, 'updateSchema']);
+        $events->attach('update.post', [$this, 'updatePostSchema']);
         parent::attachDefaultListeners();
 
         return $this;
@@ -43,17 +43,17 @@ class Update extends BasicUpdate
     public function updateSchema(Event $e)
     {
         $moduleVersion = $e->getParam('version');
-        $updator = new Schema\Updator160($this);
-        $result = $updator->upgrade($moduleVersion);
+        $updator       = new Schema\Updator160($this);
+        $result        = $updator->upgrade($moduleVersion);
 
         return $result;
     }
-    
+
     public function updatePostSchema(Event $e)
     {
         $moduleVersion = $e->getParam('version');
-        $updator = new Schema\UpdatorPost160($this);
-        $result = $updator->upgrade($moduleVersion);
+        $updator       = new Schema\UpdatorPost160($this);
+        $result        = $updator->upgrade($moduleVersion);
 
         return $result;
     }

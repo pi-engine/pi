@@ -1,7 +1,7 @@
 <legend>{{title}}</legend>
 <div class="row">
-  <div class="col-md-5">
-    <form class="input-group" ng-submit="submit()" name="addForm" style="margin-bottom: 20px;">
+    <div class="col-md-5">
+        <form class="input-group" ng-submit="submit()" name="addForm" style="margin-bottom: 20px;">
       <span class="input-group-btn">
         <select class="form-control" data-ng-model="entity.field" style="width: auto;">
           <option value="uid">{{'UID' | translate}}
@@ -10,46 +10,46 @@
           <option value="email">{{'EMAIL' | translate}}
         </select>
       </span>
-      <input class="form-control" type="text" data-ng-model="entity.data" required>
-      <span class="input-group-btn">
+            <input class="form-control" type="text" data-ng-model="entity.data" required>
+            <span class="input-group-btn">
         <button class="btn btn-primary" ng-disabled="addForm.$invalid">
           {{'ADD_USER' | translate}}
         </button>
       </span>
-    </form>
-  </div>
+        </form>
+    </div>
 </div>
 <div class="row" data-ng-show="users.length">
-  <div class="col-md-8">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>{{'UID' | translate}}
-          <th>{{'DISPLAYNAME' | translate}}
-          <th>
-      <tbody>
-        <tr ng-repeat="user in users">
-            <td>
-              {{user.id}}
-            <td>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{'UID' | translate}}
+                <th>{{'DISPLAYNAME' | translate}}
+                <th>
+            <tbody>
+            <tr ng-repeat="user in users">
+                <td>
+                    {{user.id}}
+                <td>
               <span data-ng-show="user.url">
                 <a href="{{user.url}}" target="_blank">{{user.name}}</a>
               </span>
-              <span data-ng-show="!user.url">
+                    <span data-ng-show="!user.url">
                 {{user.name}}
               </span>
-            <td>
-              <button type="button" class="close" style="float: none;"
-                      data-ng-click="removeAction($index)">
-                &times;
-              </button>
-    </table>
-    <pagination total-items="paginator.count" page="paginator.page" max-size="10"
-                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
-                boundary-links="true" items-per-page="paginator.limit">
-    </pagination>
-  </div>
+                <td>
+                    <button type="button" class="close" style="float: none;"
+                            data-ng-click="removeAction($index)">
+                        &times;
+                    </button>
+        </table>
+        <pagination total-items="paginator.count" page="paginator.page" max-size="10"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                    boundary-links="true" items-per-page="paginator.limit">
+        </pagination>
+    </div>
 </div>
 <div data-ng-show="!users.length" class="alert alert-info">
-  {{'NONE_USER' | translate}}
+    {{'NONE_USER' | translate}}
 </div>

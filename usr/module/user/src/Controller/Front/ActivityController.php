@@ -26,62 +26,62 @@ class ActivityController extends ActionController
      */
     public function indexAction()
     {
-        $name       = _get('name');
-        $uid        = _get('uid');
-        $ownerUid   = Pi::user()->getId();
-        $limit      = Pi::config('list_limit', 'user');
-        $page   = _get('page', 'int') ?: 1;
+        $name     = _get('name');
+        $uid      = _get('uid');
+        $ownerUid = Pi::user()->getId();
+        $limit    = Pi::config('list_limit', 'user');
+        $page     = _get('page', 'int') ?: 1;
         if (!$uid && !$ownerUid) {
             $this->jump(
-                array( 
+                [
                     'controller' => 'profile',
-                    'action'     => 'index'
-                ),
+                    'action'     => 'index',
+                ],
                 __('User was not found.'),
                 'error'
             );
         }
-        
+
         // Check is owner
         if (!$uid) {
-            $uid     = $ownerUid;
+            $uid  = $ownerUid;
             $view = false;
         } else {
             $view = true;
-        
+
         }
         if (!$name) {
             $this->jump(
-                array(
+                [
                     'controller' => 'profile',
-                    'action'     => 'index'
-                ),
+                    'action'     => 'index',
+                ],
                 __('An error occurred.'),
                 'error'
             );
         }
         // Get activity list for nav display
         $activityList = Pi::api('activity', 'user')->getList($uid);
-        
+
         // Get current activity data
         $data = Pi::api('activity', 'user')->get($uid, $name, $limit, $page);
-        
+
         // Get user base info
-        $user = Pi::api('user', 'user')->get(
+        $user         = Pi::api('user', 'user')->get(
             $uid,
-            array('name','country', 'city', 'time_activated'),
+            ['name', 'country', 'city', 'time_activated'],
             true,
             true
         );
         $user['name'] = isset($user['name']) ? $user['name'] : null;
-        $this->view()->assign(array(
-            'list'      => $activityList,
-            'name'      => $name,
-            'data'      => $data,
-            'uid'       => $uid,
-            'user'      => $user,
-            'view'      => $view
-        ));
+        $this->view()->assign([
+            'list' => $activityList,
+            'name' => $name,
+            'data' => $data,
+            'uid'  => $uid,
+            'user' => $user,
+            'view' => $view,
+        ]);
     }
 
     /**

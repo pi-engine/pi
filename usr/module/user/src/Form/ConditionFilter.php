@@ -10,6 +10,7 @@
 /**
  * @author Frédéric TISSOT <contact@espritdev.fr>
  */
+
 namespace Module\User\Form;
 
 use Pi;
@@ -17,41 +18,41 @@ use Zend\InputFilter\InputFilter;
 
 class ConditionFilter extends InputFilter
 {
-    public function __construct($option = array())
+    public function __construct($option = [])
     {
         // id
-        $this->add(array(
-            'name' => 'id',
+        $this->add([
+            'name'     => 'id',
             'required' => false,
-        ));
+        ]);
         // Version
-        $this->add(array(
-            'name' => 'version',
-            'required' => true,
-            'filters' => array(
-                array(
+        $this->add([
+            'name'       => 'version',
+            'required'   => true,
+            'filters'    => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'Regex',
-                    'options'   => array(
-                        'pattern'   => '/[0-9*].[0-9*]/',
-                    ),
-                ),
-            ),
-        ));
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'Regex',
+                    'options' => [
+                        'pattern' => '/[0-9*].[0-9*]/',
+                    ],
+                ],
+            ],
+        ]);
         // Filename
-        $this->add(array(
-            'name' => 'filename',
+        $this->add([
+            'name'     => 'filename',
             'required' => false,
-        ));
+        ]);
 
         // Active at
-        $this->add(array(
-            'name' => 'active_at',
+        $this->add([
+            'name'     => 'active_at',
             'required' => true,
-        ));
+        ]);
     }
 }

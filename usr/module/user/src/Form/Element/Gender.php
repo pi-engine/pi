@@ -22,9 +22,9 @@ class Gender extends Radio
     /**
      * {@inheritDoc}
      */
-    protected $labelAttributes = array(
+    protected $labelAttributes = [
         'class' => 'radio-inline',
-    );
+    ];
 
     /**
      * {@inheritDoc}
@@ -32,10 +32,10 @@ class Gender extends Radio
     public function getValueOptions()
     {
         if (!$this->valueOptions) {
-            $this->valueOptions = array(
-                'male'      => __('Male'),
-                'female'    => __('Female'),
-            );
+            $this->valueOptions = [
+                'male'   => __('Male'),
+                'female' => __('Female'),
+            ];
         }
 
         return $this->valueOptions;

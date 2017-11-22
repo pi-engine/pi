@@ -24,109 +24,109 @@ class MemberFilter extends InputFilter
      */
     public function __construct()
     {
-        $this->add(array(
-            'name'          => 'identity',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
+        $this->add([
+            'name'       => 'identity',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
 
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'name',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
+        $this->add([
+            'name'       => 'name',
+            'required'   => false,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
                     'name' => 'Module\User\Validator\Username',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'credential',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
+        $this->add([
+            'name'       => 'credential',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
                     'name' => 'Module\User\Validator\Password',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'credential-confirm',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'Identical',
-                    'options'   => array(
-                        'token'     => 'credential',
-                        'strict'    => true,
-                    ),
-                ),
-            ),
-        ));
+        $this->add([
+            'name'       => 'credential-confirm',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'Identical',
+                    'options' => [
+                        'token'  => 'credential',
+                        'strict' => true,
+                    ],
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'email',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'EmailAddress',
-                    'options'   => array(
-                        'useMxCheck'        => false,
-                        'useDeepMxCheck'    => false,
-                        'useDomainCheck'    => false,
-                    ),
-                ),
-                array(
+        $this->add([
+            'name'       => 'email',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'EmailAddress',
+                    'options' => [
+                        'useMxCheck'     => false,
+                        'useDeepMxCheck' => false,
+                        'useDomainCheck' => false,
+                    ],
+                ],
+                [
                     'name' => 'Module\User\Validator\UserEmail',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'front-role',
-            'required'      => true,
-        ));
+        $this->add([
+            'name'     => 'front-role',
+            'required' => true,
+        ]);
 
-        $this->add(array(
-            'name'          => 'admin-role',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'admin-role',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'activate',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'activate',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'enable',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'enable',
+            'required' => false,
+        ]);
     }
 }

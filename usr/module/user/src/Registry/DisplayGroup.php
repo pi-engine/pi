@@ -26,15 +26,15 @@ class DisplayGroup extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $list = array();
+        $list = [];
 
         $model  = Pi::model('display_group', $this->module);
         $select = $model->select()->order('order ASC');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $list[$row['id']] =  $row->toArray();
+            $list[$row['id']] = $row->toArray();
         }
 
         return $list;
@@ -46,10 +46,10 @@ class DisplayGroup extends AbstractRegistry
      */
     public function read($group = 0)
     {
-        $options = array();
-        $result = $this->loadData($options);
+        $options = [];
+        $result  = $this->loadData($options);
         if ($group) {
-            $result = isset($result[$group]) ? $result[$group] : array();
+            $result = isset($result[$group]) ? $result[$group] : [];
         }
 
         return $result;

@@ -4,7 +4,7 @@
 </div>
 <div class="login-message">
     <?php
-    $logout_url = Pi::service('authentication')->getUrl('logout');
+    $logout_url    = Pi::service('authentication')->getUrl('logout');
     $logout_string = sprintf('<a href="%s" title="%s">%s</a>', $logout_url, __('logout'), __('logout'));
     echo sprintf(__('You have been logged on with account <strong>%s</strong>, please %s to re-login.'), $identity, $logout_string);
     ?>

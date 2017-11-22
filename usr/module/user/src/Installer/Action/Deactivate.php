@@ -26,7 +26,7 @@ class Deactivate extends BasicAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('deactivate.post', array($this, 'updateConfig'), 1);
+        $events->attach('deactivate.post', [$this, 'updateConfig'], 1);
         parent::attachDefaultListeners();
 
         return $this;
@@ -41,7 +41,7 @@ class Deactivate extends BasicAction
      */
     public function updateConfig(Event $e)
     {
-        $config = Pi::config()->load('service.user.php', false);
+        $config            = Pi::config()->load('service.user.php', false);
         $config['adapter'] = 'system';
         Pi::config()->write('service.user.php', $config, true);
         Pi::service('user')->reload($config);

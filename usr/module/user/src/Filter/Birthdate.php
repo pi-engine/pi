@@ -29,15 +29,15 @@ class Birthdate extends AbstractFilter
      */
     public function filter($value)
     {
-        $value = $value ?: 0;
-        $replace = array();
+        $value   = $value ?: 0;
+        $replace = [];
         if (!is_numeric($value)) {
             list($year, $month, $day) = explode('-', $value);
             if ($year) {
                 if ($year < 1970) {
-                    $replace = array($day, $year);
-                    $year = 1970;
-                    $day = 28;
+                    $replace = [$day, $year];
+                    $year    = 1970;
+                    $day     = 28;
                 }
                 $value = mktime(0, 0, 0, $month, $day, $year);
             } else {
@@ -46,9 +46,9 @@ class Birthdate extends AbstractFilter
         }
         if ($value) {
             $format = Pi::config('birthdate_format', 'user');
-            $value = date($format, $value);
+            $value  = date($format, $value);
             if ($replace) {
-                $value = str_replace(array('28', '1970'), $replace, $value);
+                $value = str_replace(['28', '1970'], $replace, $value);
             }
         } else {
             $value = '';

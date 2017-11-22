@@ -1,40 +1,40 @@
 <form class="form-inline">
-  <div class="pull-right">
-    <button class="btn btn-link" data-ng-click="clearAllAction()">{{'CLEAR_ALL' | translate}}</button>
-    <strong>{{paginator.count}}</strong>
-  </div>
-  <input type="checkbox" data-ng-model="allChecked">
-  <button class="btn btn-default" data-ng-click="clearBatchAction()">{{'CLEAR' | translate}}</button>
+    <div class="pull-right">
+        <button class="btn btn-link" data-ng-click="clearAllAction()">{{'CLEAR_ALL' | translate}}</button>
+        <strong>{{paginator.count}}</strong>
+    </div>
+    <input type="checkbox" data-ng-model="allChecked">
+    <button class="btn btn-default" data-ng-click="clearBatchAction()">{{'CLEAR' | translate}}</button>
 </form>
 <table class="table" data-ng-if="users.length">
-  <thead>
+    <thead>
     <tr>
-      <th style="width: 20px;">
-      <th>{{'ID' | translate}}
-      <th>{{'USERNAME' | translate}}
-      <th>{{'DISPLAYNAME' | translate}}
-      <th>{{'EMAIL' | translate}}
-      <th>{{'ACTIVATED' | translate}}
-      <th>{{'REGIESTER_TIME' | translate}}
-      <th>{{'DELETE_TIME' | translate}}
-  <tbody>
+        <th style="width: 20px;">
+        <th>{{'ID' | translate}}
+        <th>{{'USERNAME' | translate}}
+        <th>{{'DISPLAYNAME' | translate}}
+        <th>{{'EMAIL' | translate}}
+        <th>{{'ACTIVATED' | translate}}
+        <th>{{'REGIESTER_TIME' | translate}}
+        <th>{{'DELETE_TIME' | translate}}
+    <tbody>
     <tr ng-repeat="user in users">
-      <td>
-        <input type="checkbox" data-ng-model="user.checked">
-      <td>{{user.id}}
-      <td>
-        {{user.identity}}
-        <div class="pi-row-action">
-          <a href="javascript:void(0)" data-ng-click="clearAction($index)">{{'CLEAR' | translate}}</a>
-        </div>
-      <td>{{user.name}}
-      <td>{{user.email}}
-      <td>{{user.time_activated}}
-      <td>{{user.time_created}}
-      <td>{{user.time_deleted}}
+        <td>
+            <input type="checkbox" data-ng-model="user.checked">
+        <td>{{user.id}}
+        <td>
+            {{user.identity}}
+            <div class="pi-row-action">
+                <a href="javascript:void(0)" data-ng-click="clearAction($index)">{{'CLEAR' | translate}}</a>
+            </div>
+        <td>{{user.name}}
+        <td>{{user.email}}
+        <td>{{user.time_activated}}
+        <td>{{user.time_created}}
+        <td>{{user.time_deleted}}
 </table>
 <div class="alert alert-info" data-ng-if="!users.length">
-  {{'NONE_USER' | translate}}
+    {{'NONE_USER' | translate}}
 </div>
 <pagination data-ng-if="paginator.count > paginator.limit"
             total-items="paginator.count" page="paginator.page" max-size="10"

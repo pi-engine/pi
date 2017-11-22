@@ -1,46 +1,46 @@
 <?php
 $this->jQuery('ui/jquery-ui.min.js');
-$this->angular(array(
+$this->angular([
     'angular-route.js',
     'ui-bootstrap-custom-tpls-0.7.0.js',
     'pi.js',
     'pi-dropdown.js',
-    'pi-sortable.js'
-));
+    'pi-sortable.js',
+]);
 ?>
 <script>
-angular
-    .module('<?php echo $module; ?>', ['ngRoute', 'pi', 'ui.bootstrap', 'ui.sortable'])
-    .constant('config', {
-        urlRoot: '<?php echo $this->url('', array('controller' => $controller)); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
-        t: {
-           BASIC_FIELD: '<?php echo _a('Basic field'); ?>',
-           BASIC_FIELD_DESC: '<?php echo _a('Field title can be edited for display.'); ?>',
-           FIELD: '<?php echo _a('Field'); ?>',
-           SETTING_DEFAULT: '<?php echo _a('Default setting'); ?>',
-           SETTING_FORCED: '<?php echo _a('Forced setting'); ?>',
-           FIELD_TITLE: '<?php echo _a('Field title'); ?>',
-           DISPLAY: '<?php echo _a('Display'); ?>',
-           SEARCH: '<?php echo _a('Search'); ?>',
-           EDITABLE: '<?php echo _a('Editable'); ?>',
-           REQUIRED: '<?php echo _a('Required'); ?>',
-           FORM_MODULE: '<?php echo _a('From module'); ?>',
-           COMPOUND: '<?php echo _a('Compound'); ?>',
-           COMPOUND_DESC: '<?php echo _a('Compound to organize a group of fields.'); ?>',
-           PRIVACY_DESC: '<?php echo _a('Privacy policy: set default value for profile field privacy setting. If `Forced` is set, user can not change privacy for corresponding field.'); ?>',
-           ADD_GROUP: '<?php echo _a('Add group'); ?>',
-           FIELD_DISPLAY: '<?php echo _a('Field display on profile page'); ?>',
-           BASIC_FIELD: '<?php echo _a('Basic field'); ?>',
-           TITLE: '<?php echo _a('Title'); ?>',
-           SAVE_TIP: '<?php echo _a('Data will not be saved until `Save` button is hit.'); ?>',
-           ADD_FIELD_TIP: '<?php echo _a('Click to choose a group for the field to add.'); ?>',
-           ADD_GROUP_TIP: '<?php echo _a('Click to add a group.'); ?>',
-           CANCEL: '<?php echo _a('Cancel'); ?>',
-           SAVE: '<?php echo _a('Save'); ?>',
-           LEAVE_CONFIRM: '<?php echo _a('Changes are not saved yet. Would you still like to leave this page?'); ?>',
-           CHECK_GROUP: '<?php echo _a('Create a group before adding.'); ?>'
-        }
-    });
+    angular
+        .module('<?php echo $module; ?>', ['ngRoute', 'pi', 'ui.bootstrap', 'ui.sortable'])
+        .constant('config', {
+            urlRoot: '<?php echo $this->url('', ['controller' => $controller]); ?>',
+            assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+            t: {
+                BASIC_FIELD: '<?php echo _a('Basic field'); ?>',
+                BASIC_FIELD_DESC: '<?php echo _a('Field title can be edited for display.'); ?>',
+                FIELD: '<?php echo _a('Field'); ?>',
+                SETTING_DEFAULT: '<?php echo _a('Default setting'); ?>',
+                SETTING_FORCED: '<?php echo _a('Forced setting'); ?>',
+                FIELD_TITLE: '<?php echo _a('Field title'); ?>',
+                DISPLAY: '<?php echo _a('Display'); ?>',
+                SEARCH: '<?php echo _a('Search'); ?>',
+                EDITABLE: '<?php echo _a('Editable'); ?>',
+                REQUIRED: '<?php echo _a('Required'); ?>',
+                FORM_MODULE: '<?php echo _a('From module'); ?>',
+                COMPOUND: '<?php echo _a('Compound'); ?>',
+                COMPOUND_DESC: '<?php echo _a('Compound to organize a group of fields.'); ?>',
+                PRIVACY_DESC: '<?php echo _a('Privacy policy: set default value for profile field privacy setting. If `Forced` is set, user can not change privacy for corresponding field.'); ?>',
+                ADD_GROUP: '<?php echo _a('Add group'); ?>',
+                FIELD_DISPLAY: '<?php echo _a('Field display on profile page'); ?>',
+                BASIC_FIELD: '<?php echo _a('Basic field'); ?>',
+                TITLE: '<?php echo _a('Title'); ?>',
+                SAVE_TIP: '<?php echo _a('Data will not be saved until `Save` button is hit.'); ?>',
+                ADD_FIELD_TIP: '<?php echo _a('Click to choose a group for the field to add.'); ?>',
+                ADD_GROUP_TIP: '<?php echo _a('Click to add a group.'); ?>',
+                CANCEL: '<?php echo _a('Cancel'); ?>',
+                SAVE: '<?php echo _a('Save'); ?>',
+                LEAVE_CONFIRM: '<?php echo _a('Changes are not saved yet. Would you still like to leave this page?'); ?>',
+                CHECK_GROUP: '<?php echo _a('Create a group before adding.'); ?>'
+            }
+        });
 </script>
 <script src="<?php echo $this->assetModule('admin/profile.js'); ?>"></script>
