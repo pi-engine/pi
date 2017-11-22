@@ -8,7 +8,7 @@
         "MultiTenant",
         "SaaS"
     ],
-    "homepage": "http://piengine.org",
+    "homepage": "http://pialog.org",
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=5.4.0",
         "ext-ctype": "*",
         "ext-fileinfo": "*",
         "ext-gd": "*",
@@ -29,7 +29,8 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-spl": "*",
-        "lib-curl": "*"
+        "lib-curl": "*",
+        "spipu/html2pdf": "^5.0"
     },
     "require-dev": {
     },
@@ -40,8 +41,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.6-dev",
-            "dev-develop": "2.7-dev"
+            "dev-master": "2.4-dev",
+            "dev-develop": "2.5-dev"
         }
     },
     "minimum-stability": "dev"
