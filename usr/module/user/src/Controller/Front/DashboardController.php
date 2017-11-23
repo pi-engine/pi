@@ -32,16 +32,16 @@ class DashboardController extends ActionController
         $uid = Pi::user()->getId();
 
         // Get identity, email, name
-        $user = Pi::api('user', 'user')->get(
+        $user        = Pi::api('user', 'user')->get(
             $uid,
-            array('identity', 'email', 'name')
+            ['identity', 'email', 'name']
         );
-        $user['uid']    = $uid;
-        $user['id']     = $uid;
+        $user['uid'] = $uid;
+        $user['id']  = $uid;
 
-        $this->view()->assign(array(
-            'user'      => $user,
-        ));
+        $this->view()->assign([
+            'user' => $user,
+        ]);
 
         $this->view()->headTitle(__('Account settings'));
         $this->view()->headdescription(__('Basic settings'), 'set');

@@ -1,35 +1,35 @@
 <?php
 $this->headMeta('noindex', 'robots');
-$this->css(array(
-    $this->assetModule('front/front.css')
-));
-$this->jQuery(array(
+$this->css([
+    $this->assetModule('front/front.css'),
+]);
+$this->jQuery([
     'extension/ajax-upload.js',
     'extension/jquery.Jcrop.min.js',
-    'extension/jquery.Jcrop.min.css'
-));
-$viewNavTabs = array(
-    array(
+    'extension/jquery.Jcrop.min.css',
+]);
+$viewNavTabs = [
+    [
         'source' => 'upload',
         'text'   => __('Upload'),
-        'href'   => '#fromUpload'
-    ),
-    array(
+        'href'   => '#fromUpload',
+    ],
+    [
         'source' => 'gravatar',
         'text'   => __('Gravatar'),
-        'href'   => '#fromGravatar'
-    ),
-    array(
+        'href'   => '#fromGravatar',
+    ],
+    [
         'source' => 'select',
         'text'   => __('Select'),
-        'href'   => '#formRepository'
-    ),
-    array(
+        'href'   => '#formRepository',
+    ],
+    [
         'source' => 'local',
         'text'   => __('Default'),
-        'href'   => '#formLocal'
-    )
-);
+        'href'   => '#formLocal',
+    ],
+];
 $viewPreview = '<li class="inline">
                     <div class="avatar-preview-box" style="width: %spx; height: %spx;">
                         <img src="%s" class="avatar-preview-img">
@@ -41,11 +41,13 @@ $viewPreview = '<li class="inline">
     </div>
     <div class="col-md-9" id="js-user-avatar">
         <div class="page-header">
-            <h1><?php _e('Change avatar'); ?> <small><?php _e('Customize your avatar anyway you like'); ?></small></h1>
+            <h1><?php _e('Change avatar'); ?>
+                <small><?php _e('Customize your avatar anyway you like'); ?></small>
+            </h1>
         </div>
         <div class="user-avatar-box well">
             <div class="clearfix">
-                <div class="col-md-2 col-sm-3 col-xs-3"><?php echo Pi::service('user')->avatar()->get($uid, '', array('class' => 'img-polaroid')); ?></div>
+                <div class="col-md-2 col-sm-3 col-xs-3"><?php echo Pi::service('user')->avatar()->get($uid, '', ['class' => 'img-polaroid']); ?></div>
                 <div class="col-md-10 col-sm-9 col-xs-9 text-warning">
                     <h4><?php _e('Current avatar'); ?></h4>
                     <p><?php _e('Once source type is switched and saved, the old avatar image will be deleted.'); ?></p>
@@ -75,7 +77,7 @@ $viewPreview = '<li class="inline">
                             <button class="btn btn-success avatar-upload-btn"><?php _e('Upload avatar'); ?></button>
                             <div class="text-muted">
                                 <?php foreach ($limits as $limit) { ?>
-                                    <div><?php echo $limit['label']; ?> <?php echo $limit['text']; ?></div>
+                                    <div><?php echo $limit['label']; ?><?php echo $limit['text']; ?></div>
                                 <?php } ?>
                             </div>
                         </div>
@@ -112,7 +114,9 @@ $viewPreview = '<li class="inline">
                                 </div>
                             </div>
                             <div class="col-md-4 text-right">
-                                <a class="btn btn-success" title="<?php _e('Configure at Gravatar'); ?>" href="https://gravatar.com" target="_blank"><i class="fa fa-picture-o"></i> <?php _e('Configure at Gravatar'); ?></a>
+                                <a class="btn btn-success" title="<?php _e('Configure at Gravatar'); ?>"
+                                   href="https://gravatar.com" target="_blank"><i
+                                            class="fa fa-picture-o"></i> <?php _e('Configure at Gravatar'); ?></a>
                             </div>
                         </div>
                     </div>
@@ -136,7 +140,9 @@ $viewPreview = '<li class="inline">
             <?php if (in_array('select', $adapters)) { ?>
                 <div class="tab-pane" id="formRepository">
                     <ul class="list-unstyled avatar-repository-inline">
-                        <?php foreach($selects as $key => $item) { ?>
+                        <?php foreach ($selects
+
+                        as $key => $item) { ?>
                         <li class="inline">
                             <img src="<?php echo $item; ?>">
                             <input type="radio" name="repository-avatar" value="<?php echo $key; ?>">
@@ -186,8 +192,8 @@ $viewPreview = '<li class="inline">
 </div>
 <script>
     $('#js-user-avatar').data('config', {
-        source: '<?php echo $source? : 'local' ?>',
-        urlRoot: '<?php echo Pi::url($this->url('', array('controller' => 'avatar'))); ?>/',
+        source: '<?php echo $source ?: 'local' ?>',
+        urlRoot: '<?php echo Pi::url($this->url('', ['controller' => 'avatar'])); ?>/',
         fake_id: '<?php echo $form->get('fake_id')->getValue(); ?>',
         format: '<?php echo $config['upload_extension']; ?>'.split(','),
         uploadText: '<?php _e('Upload avatar'); ?>',

@@ -34,21 +34,21 @@ class Username extends SystemUsername
     /**
      * {@inheritDoc}
      */
-    protected $messageVariables = array(
+    protected $messageVariables = [
         'formatHint' => 'formatHint',
         'max'        => 'max',
         'min'        => 'min',
-    );
+    ];
 
     /**
      * {@inheritDoc}
      */
     public function __construct()
     {
-        $this->messageTemplates = $this->messageTemplates + array(
-            static::TOO_SHORT   => __('Username is less than %min% characters long'),
-            static::TOO_LONG    => __('Username is more than %max% characters long')
-        );
+        $this->messageTemplates = $this->messageTemplates + [
+                static::TOO_SHORT => __('Username is less than %min% characters long'),
+                static::TOO_LONG  => __('Username is more than %max% characters long'),
+            ];
         parent::__construct();
         $this->setConfigOption();
     }
@@ -87,13 +87,13 @@ class Username extends SystemUsername
      */
     public function setConfigOption()
     {
-        $this->options = array(
+        $this->options = [
             'min'               => Pi::user()->config('uname_min'),
             'max'               => Pi::user()->config('uname_max'),
             'blacklist'         => Pi::user()->config('uname_blacklist'),
             'format'            => Pi::user()->config('uname_format'),
             'check_duplication' => true,
-        );
+        ];
 
         return $this;
     }

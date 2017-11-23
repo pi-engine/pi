@@ -12,27 +12,27 @@
  *
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
-return array(
-    'completeness' => array(
-        'title' => _a('Profile completeness'),
+return [
+    'completeness' => [
+        'title'       => _a('Profile completeness'),
         'description' => '',
-        'render' => array('block', 'completeness'),
-        'template' => 'completeness',
-        'config' => array(
-            'max_percent' => array(
-                'title' => _a('Max percent to active block visibility'),
+        'render'      => ['block', 'completeness'],
+        'template'    => 'completeness',
+        'config'      => [
+            'max_percent'      => [
+                'title'       => _a('Max percent to active block visibility'),
                 'description' => '',
-                'edit' => 'text',
-                'filter' => 'number_int',
-                'value' => 99,
-            ),
-            'hide_main_fields' => array(
-                'title' => _a('Hide after complete main fields'),
+                'edit'        => 'text',
+                'filter'      => 'number_int',
+                'value'       => 99,
+            ],
+            'hide_main_fields' => [
+                'title'       => _a('Hide after complete main fields'),
                 'description' => '',
-                'edit' => 'checkbox',
-                'filter' => 'number_int',
-                'value' => 0,
-            ),
-        ),
-    ),
-);
+                'edit'        => 'checkbox',
+                'filter'      => 'number_int',
+                'value'       => 0,
+            ],
+        ],
+    ],
+];

@@ -30,9 +30,9 @@ abstract class CustomFieldHandler extends AbstractCustomHandler
      */
     public function getMeta()
     {
-        $meta = Pi::registry('field', 'user')->read('profile');
+        $meta   = Pi::registry('field', 'user')->read('profile');
         $result = isset($meta[$this->getName()])
-            ? $meta[$this->getName()] : array();
+            ? $meta[$this->getName()] : [];
 
         return $result;
     }
@@ -42,10 +42,10 @@ abstract class CustomFieldHandler extends AbstractCustomHandler
      */
     protected function canonize($uid, $data)
     {
-        $result = array(
+        $result = [
             'uid'   => $uid,
             'value' => $data,
-        );
+        ];
 
         return $result;
     }
@@ -59,13 +59,13 @@ abstract class CustomFieldHandler extends AbstractCustomHandler
         if ($this->isMultiple) {
             $select = $this->getModel()->select();
             $select->order('order ASC');
-            $select->where(array('uid' => $uid));
+            $select->where(['uid' => $uid]);
             $rowset = $this->getModel()->selectWith($select);
             foreach ($rowset as $row) {
                 $result[] = $row['value'];
             }
         } else {
-            $row = $this->getModel()->find($uid, 'uid');
+            $row    = $this->getModel()->find($uid, 'uid');
             $result = $row ? $row['value'] : null;
         }
 
@@ -77,20 +77,20 @@ abstract class CustomFieldHandler extends AbstractCustomHandler
      */
     public function mget($uids, $filter = false)
     {
-        $result = array();
+        $result = [];
         $select = $this->getModel()->select();
-        $select->where(array('uid' => $uids));
+        $select->where(['uid' => $uids]);
 
         if ($this->isMultiple) {
             $select->order('order ASC');
             $rowset = $this->getModel()->selectWith($select);
             foreach ($rowset as $row) {
-                $result[(int) $row['uid']][] = $row['value'];
+                $result[(int)$row['uid']][] = $row['value'];
             }
         } else {
             $rowset = $this->getModel()->selectWith($select);
             foreach ($rowset as $row) {
-                $result[(int) $row['uid']] = $row['value'];
+                $result[(int)$row['uid']] = $row['value'];
             }
         }
 
@@ -103,8 +103,8 @@ abstract class CustomFieldHandler extends AbstractCustomHandler
     public function display($uid, $data = null)
     {
         if (is_scalar($uid)) {
-            $uids = (array) $uid;
-            $data = array($uid => $data);
+            $uids = (array)$uid;
+            $data = [$uid => $data];
         } else {
             $uids = $uid;
         }
@@ -119,7 +119,7 @@ abstract class CustomFieldHandler extends AbstractCustomHandler
         });
 
         if (is_scalar($uid)) {
-            $data = isset($data[$uid]) ? $data[$uid] : array();
+            $data = isset($data[$uid]) ? $data[$uid] : [];
         }
 
         return $data;

@@ -28,7 +28,7 @@ class RegisterForm extends UserForm
     {
         parent::init();
 
-        $uniqueId = rand();
+        $uniqueId  = rand();
         $elementId = 'register-' . $uniqueId;
 
         $piConfig = Pi::user()->config();
@@ -39,13 +39,13 @@ class RegisterForm extends UserForm
         $this->setAttribute('id', $elementId);
         $this->setAttribute('onsubmit', "$('#$elementId').validator('destroy');");
 
-        $url = Pi::url(Pi::service('url')->assemble('user', array(
-            'module' => 'user',
+        $url = Pi::url(Pi::service('url')->assemble('user', [
+            'module'     => 'user',
             'controller' => 'register',
-            'action' => 'validateInput',
-        )));
+            'action'     => 'validateInput',
+        ]));
 
-        if($this->has('email')){
+        if ($this->has('email')) {
 
             $passwordLink = Pi::service('user')->getUrl('password');
 
@@ -55,24 +55,24 @@ class RegisterForm extends UserForm
                 ->setAttribute('data-remote-error', sprintf(__('Oops. This email address is already taken. Do you want to <a href="#" onclick="%s">login</a> or <a href="%s">recover your password</a> ?'), "$('.toggle-modal-action-login').click();return false;", $passwordLink));
         }
 
-        if($this->has('identity')){
+        if ($this->has('identity')) {
             $this->get('identity')
                 ->setAttribute('data-error', __('Invalid username'))
                 ->setAttribute('data-remote', $url)
                 ->setAttribute('data-remote-error', __('Oops. This username is already taken, malformed or forbidden'));
         }
 
-        if($this->get('credential')){
+        if ($this->get('credential')) {
 
-            $minChars = $piConfig['password_min'];
-            $maxChars = $piConfig['password_max'];
+            $minChars           = $piConfig['password_min'];
+            $maxChars           = $piConfig['password_max'];
             $strenghtenPassword = $piConfig['strenghten_password'];
 
             $showPasswordLabel = __('Show my password');
 
-            $wordLength = __("Your password is too short");
-            $wordNotEmail = __("Do not use your email as your password");
-            $wordSimilarToUsername = __("Your password cannot contain your username");
+            $wordLength              = __("Your password is too short");
+            $wordNotEmail            = __("Do not use your email as your password");
+            $wordSimilarToUsername   = __("Your password cannot contain your username");
             $wordTwoCharacterClasses = __("Use different character classes");
             $wordRepetitions = __("Too many repetitions");
             $wordSequences = __("Your password contains sequences");
@@ -121,38 +121,37 @@ HTML;
             $this->get('credential')
                 ->setAttribute('description', $showPasswordBtn)
                 ->setAttribute('id', 'credential')
-                ->setAttribute('pattern', '^.{0,'.$piConfig['password_max'].'}$')
+                ->setAttribute('pattern', '^.{0,' . $piConfig['password_max'] . '}$')
                 ->setAttribute('data-pattern-error', sprintf(__("Must be less than %s characters"), $maxChars))
                 ->setAttribute('data-minlength', $piConfig['password_min']);
 
-            if($strenghtenPassword){
+            if ($strenghtenPassword) {
                 $this->get('credential')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
                     ->setAttribute('data-error', __('Invalid password'))
                     ->setAttribute('data-remote', $url)
-                    ->setAttribute('data-remote-error', __('Password must contain at least one uppercase letter, one lowercase letter and one digit character'))
-                ;
+                    ->setAttribute('data-remote-error', __('Password must contain at least one uppercase letter, one lowercase letter and one digit character'));
             }
 
 
             $passwordConfirmError = __('Whoops, these don\'t match');
             $this->get('credential-confirm')
-                ->setAttribute('data-match', '#'.$elementId. ' [name=credential]')
+                ->setAttribute('data-match', '#' . $elementId . ' [name=credential]')
                 ->setAttribute('data-match-error', $passwordConfirmError);
         }
 
-        if(Pi::service('module')->isActive('subscription') && isset($piConfig['register_newsletter_optin']) && $piConfig['register_newsletter_optin'] == 1){
-            $this->add(array(
+        if (Pi::service('module')->isActive('subscription') && isset($piConfig['register_newsletter_optin']) && $piConfig['register_newsletter_optin'] == 1) {
+            $this->add([
                 'name'       => 'newsletter',
-                'type'      => 'checkbox',
-                'attributes' => array(
-                    'description' => __('Newsletter subscription')
-                )
-            ));
+                'type'       => 'checkbox',
+                'attributes' => [
+                    'description' => __('Newsletter subscription'),
+                ],
+            ]);
         }
 
-        $this->add(array(
-            'name'       => 'redirect',
-            'type'       => 'hidden',
-        ));
+        $this->add([
+            'name' => 'redirect',
+            'type' => 'hidden',
+        ]);
     }
 }

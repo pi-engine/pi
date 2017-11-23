@@ -29,18 +29,18 @@ abstract class CustomCompoundHandler extends AbstractCustomHandler
      */
     public function get($uid, $filter = false)
     {
-        $result = array();
+        $result = [];
         if ($this->isMultiple) {
             $select = $this->getModel()->select();
             $select->order('order ASC');
-            $select->where(array('uid' => $uid));
+            $select->where(['uid' => $uid]);
             $rowset = $this->getModel()->selectWith($select);
             foreach ($rowset as $row) {
                 $result[] = $row->toArray();
             }
         } else {
-            $row = $this->getModel()->find($uid, 'uid');
-            $result[] = $row ? $row->toArray() : array();
+            $row      = $this->getModel()->find($uid, 'uid');
+            $result[] = $row ? $row->toArray() : [];
         }
 
         return $result;
@@ -51,15 +51,15 @@ abstract class CustomCompoundHandler extends AbstractCustomHandler
      */
     public function mget($uids, $filter = false)
     {
-        $result = array();
+        $result = [];
         $select = $this->getModel()->select();
-        $select->where(array('uid' => $uids));
+        $select->where(['uid' => $uids]);
         if ($this->isMultiple) {
             $select->order('order ASC');
         }
         $rowset = $this->getModel()->selectWith($select);
         foreach ($rowset as $row) {
-            $result[(int) $row['uid']][] = $row->toArray();
+            $result[(int)$row['uid']][] = $row->toArray();
         }
 
         return $result;
@@ -70,7 +70,7 @@ abstract class CustomCompoundHandler extends AbstractCustomHandler
      */
     public function display($uid, $data = null)
     {
-        $result = array();
+        $result = [];
 
         $meta = Pi::registry('compound_field', 'user')->read($this->name);
         if (!$meta) {
@@ -78,9 +78,9 @@ abstract class CustomCompoundHandler extends AbstractCustomHandler
         }
 
         if (is_scalar($uid)) {
-            $uids = (array) $uid;
+            $uids = (array)$uid;
             if (null !== $data) {
-                $data = array($uid => $data);
+                $data = [$uid => $data];
             }
         } else {
             $uids = $uid;
@@ -94,7 +94,7 @@ abstract class CustomCompoundHandler extends AbstractCustomHandler
         });
 
         if (is_scalar($uid)) {
-            $data = isset($data[$uid]) ? $data[$uid] : array();
+            $data = isset($data[$uid]) ? $data[$uid] : [];
         }
 
         return $data;
@@ -108,9 +108,9 @@ abstract class CustomCompoundHandler extends AbstractCustomHandler
      *
      * @return array
      */
-    protected function displayFields($fields, array $meta = array())
+    protected function displayFields($fields, array $meta = [])
     {
-        $result = array();
+        $result = [];
         if (!$meta) {
             $meta = Pi::registry('compound_field', 'user')->read($this->name);
             if (!$meta) {
@@ -118,15 +118,15 @@ abstract class CustomCompoundHandler extends AbstractCustomHandler
             }
         }
         foreach ($fields as $item) {
-            $record = array();
+            $record = [];
             foreach ($meta as $name => $field) {
                 if (!isset($item[$name])) {
                     continue;
                 }
-                $record[$name] = array(
+                $record[$name] = [
                     'title' => $field['title'],
                     'value' => $item[$name],
-                );
+                ];
             }
             $result[] = $record;
         }

@@ -1,7 +1,7 @@
 <div class="clearfix">
     <p>
         <a class="btn btn-primary" title="<?php _e('Add file'); ?>"
-           href="<?php echo $this->url('', array('controller' => 'condition', 'action' => 'update')); ?>"><i
+           href="<?php echo $this->url('', ['controller' => 'condition', 'action' => 'update']); ?>"><i
                     class="fa fa-folder-open"></i> <?php _e('Add file'); ?></a>
     </p>
     <h3><?php _e('File list'); ?></h3>
@@ -25,12 +25,12 @@
                 <td><?php echo $this->escape($file['active_at']); ?></td>
                 <td>
                     <a class="btn btn-primary btn-xs" title="<?php _e('Edit'); ?>"
-                       href="<?php echo $this->url('', array('action' => 'update', 'id' => $file['id'])); ?>">
+                       href="<?php echo $this->url('', ['action' => 'update', 'id' => $file['id']]); ?>">
                         <i class="fa fa-edit"></i> <?php _e('Edit'); ?>
                     </a>
 
                     <a class="btn btn-danger btn-xs" title="<?php _e('Remove'); ?>"
-                       href="<?php echo $this->url('', array('action' => 'remove', 'id' => $file['id'])); ?>">
+                       href="<?php echo $this->url('', ['action' => 'remove', 'id' => $file['id']]); ?>">
                         <i class="fa fa-edit"></i> <?php _e('Remove'); ?>
                     </a>
                 </td>
@@ -40,6 +40,7 @@
 </div>
 
 <div>
-    <?php $downloadUrl = Pi::url($this->url('user', array('controller' => 'condition', 'action' => 'download'))) ?>
-    <?php _e('Shortcut : latest version of term and condition is available from'); ?> <a href="<?php echo $downloadUrl ?>" target="_blank"><?php echo $downloadUrl ?></a>
+    <?php $downloadUrl = Pi::url($this->url('user', ['controller' => 'condition', 'action' => 'download'])) ?>
+    <?php _e('Shortcut : latest version of term and condition is available from'); ?> <a
+            href="<?php echo $downloadUrl ?>" target="_blank"><?php echo $downloadUrl ?></a>
 </div>

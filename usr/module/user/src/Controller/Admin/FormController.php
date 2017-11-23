@@ -25,7 +25,7 @@ class FormController extends ActionController
 {
     public function indexAction()
     {
-        return $this->redirect('', array('action' => 'register'));
+        return $this->redirect('', ['action' => 'register']);
     }
 
     /**
@@ -47,10 +47,10 @@ class FormController extends ActionController
         }
 
 
-        $this->view()->assign(array(
+        $this->view()->assign([
             'form' => $form,
             'data' => $data,
-        ));
+        ]);
     }
 
     /**
@@ -71,10 +71,10 @@ class FormController extends ActionController
         }
 
 
-        $this->view()->assign(array(
+        $this->view()->assign([
             'form' => $form,
             'data' => $data,
-        ));
+        ]);
 
         $this->view()->setTemplate('form-profile-complete');
     }
@@ -87,10 +87,10 @@ class FormController extends ActionController
      */
     protected function canonizeForm($file)
     {
-        $elements = array();
-        $filters  = array();
+        $elements = [];
+        $filters  = [];
 
-        $file = strtolower($file);
+        $file       = strtolower($file);
         $configFile = sprintf(
             '%s/extra/%s/config/%s.php',
             Pi::path('usr'),
@@ -128,7 +128,7 @@ class FormController extends ActionController
             }
         }
 
-        return array($elements, $filters);
+        return [$elements, $filters];
 
     }
 }

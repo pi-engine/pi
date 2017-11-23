@@ -6,6 +6,7 @@
  * @copyright       Copyright (c) Pi Engine http://piengine.org
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
+
 namespace Module\User\Controller\Admin;
 
 use Pi;
@@ -30,10 +31,10 @@ class BuildController extends ActionController
         //$this->addActivity();
         //$this->setFields();
 
-        return $this->jump(array(
-            'controller'    => 'index',
-            'action'        => 'index'
-        ));
+        return $this->jump([
+            'controller' => 'index',
+            'action'     => 'index',
+        ]);
     }
 
     protected function rand($name)
@@ -49,42 +50,41 @@ class BuildController extends ActionController
             $result = rand(138, 158) . rand(1000, 5000) . rand(1000, 5000);
         } elseif ('postcode' == $name) {
             $result = rand(100081, 200081);
-        }
-        else {
+        } else {
             switch ($name) {
                 case 'gender':
-                    $map    = array('male', 'female', 'unknown');
+                    $map = ['male', 'female', 'unknown'];
                     break;
 
                 case 'language':
-                    $map    = array('en', 'fa', 'fr', 'zh-cn');
+                    $map = ['en', 'fa', 'fr', 'zh-cn'];
                     break;
 
                 case 'country':
-                    $map    = array('China', 'England', 'France', 'Iran');
+                    $map = ['China', 'England', 'France', 'Iran'];
                     break;
 
                 case 'degree':
-                    $map    = array('Ph.D', 'Master', 'Bachelor', 'College',
+                    $map = ['Ph.D', 'Master', 'Bachelor', 'College',
                         'High school', 'Middle school',
-                        'Preliminary school');
+                        'Preliminary school'];
                     break;
 
                 case 'role':
-                    $map    = array(
-                        array('admin'),
-                        array('webmaster'),
-                        array('webmaster', 'admin'),
-                        array('webmaster', 'staff', 'admin'),
-                    );
+                    $map = [
+                        ['admin'],
+                        ['webmaster'],
+                        ['webmaster', 'admin'],
+                        ['webmaster', 'staff', 'admin'],
+                    ];
                     break;
 
                 case 'privacy':
-                    $map    = array(0, 1, 2, 4, 255);
+                    $map = [0, 1, 2, 4, 255];
                     break;
 
                 default:
-                    $map = array();
+                    $map = [];
                     break;
             }
 
@@ -99,14 +99,14 @@ class BuildController extends ActionController
      */
     protected function updateUser()
     {
-        $prefix         = 'pi';
+        $prefix = 'pi';
 
         for ($i = 1; $i <= 6; $i++) {
-            $data = array(
-                'fullname'      => ucfirst($prefix) . ' User ' . $i,
-                'location'      => 'From ' . $i,
-                'signature'     => 'Signature of user ' . $i,
-                'bio'           => 'User bio: ' . $i,
+            $data    = [
+                'fullname'  => ucfirst($prefix) . ' User ' . $i,
+                'location'  => 'From ' . $i,
+                'signature' => 'Signature of user ' . $i,
+                'bio'       => 'User bio: ' . $i,
 
                 'language'      => $this->rand('language'),
                 'demo_sample'   => 'Demo Sample: ' . $i,
@@ -114,25 +114,25 @@ class BuildController extends ActionController
                 'telephone'     => $this->rand('telephone'),
                 'address'       => 'Address ' . $i,
                 'postcode'      => $this->rand('postcode'),
-                'last_modified' => time() - $i * rand(1,100),
+                'last_modified' => time() - $i * rand(1, 100),
 
-                'tool'          => array(
-                    array(
-                        'title'         => 'Google+',
-                        'identifier'    => rand(),
-                    ),
-                    array(
-                        'title'         => 'Twitter',
-                        'identifier'    => 'twitter_' . $i,
-                    ),
-                    array(
-                        'title'         => 'QQ',
-                        'identifier'    => '88' . $i,
-                    ),
-                ),
+                'tool' => [
+                    [
+                        'title'      => 'Google+',
+                        'identifier' => rand(),
+                    ],
+                    [
+                        'title'      => 'Twitter',
+                        'identifier' => 'twitter_' . $i,
+                    ],
+                    [
+                        'title'      => 'QQ',
+                        'identifier' => '88' . $i,
+                    ],
+                ],
 
-                'education' => array(
-                    array(
+                'education' => [
+                    [
                         'school'      => 'School 1 ' . $i,
                         'major'       => 'Major 1 ' . $i,
                         'department'  => 'Department 1' . $i,
@@ -141,8 +141,8 @@ class BuildController extends ActionController
                         'class'       => 'Class 1 ' . $i,
                         'start'       => $this->rand('year'),
                         'end'         => $this->rand('year'),
-                    ),
-                    array(
+                    ],
+                    [
                         'school'      => 'School 2 ' . $i,
                         'major'       => 'Major 2 ' . $i,
                         'department'  => 'Department 2 ' . $i,
@@ -151,8 +151,8 @@ class BuildController extends ActionController
                         'class'       => 'Class 2 ' . $i,
                         'start'       => $this->rand('year'),
                         'end'         => $this->rand('year'),
-                    ),
-                    array(
+                    ],
+                    [
                         'school'      => 'School 3 ' . $i,
                         'major'       => 'Major 3 ' . $i,
                         'department'  => 'Department 3 ' . $i,
@@ -161,48 +161,48 @@ class BuildController extends ActionController
                         'class'       => 'Class 3 ' . $i,
                         'start'       => $this->rand('year'),
                         'end'         => $this->rand('year'),
-                    ),
+                    ],
 
-                ),
+                ],
 
-                'work'  => array(
-                    array(
-                        'company'       => 'Company 1 ' . $i,
-                        'department'    => 'Dept 1  ' . $i,
-                        'industry'      => 'industry 1 ' . $i,
-                        'sector'        => 'sector 1' . $i,
-                        'title'         => 'Title 1 ' . $i,
-                        'description'   => 'Desc 1 ' . $i,
-                        'start'         => $this->rand('year'),
-                        'end'           => $this->rand('year'),
-                    ),
-                    array(
-                        'company'       => 'Company 2 ' . $i,
-                        'department'    => 'Dept 2 ' . $i,
-                        'industry'      => 'industry 2 ' . $i,
-                        'sector'        => 'sector 2 ' . $i,
-                        'title'         => 'Title 2 ' . $i,
-                        'description'   => 'Desc 2 ' . $i,
-                        'start'         => $this->rand('year'),
-                        'end'           => $this->rand('year'),
-                    ),
-                    array(
-                        'company'       => 'Company 3 ' . $i,
-                        'department'    => 'Dept 3 ' . $i,
-                        'industry'      => 'industry 3 ' . $i,
-                        'sector'        => 'sector 3 ' . $i,
-                        'title'         => 'Title 3 ' . $i,
-                        'description'   => 'Desc 3 ' . $i,
-                        'start'         => $this->rand('year'),
-                        'end'           => $this->rand('year'),
-                    ),
-                ),
-            );
-            $account = array(
-                'gender'        => $this->rand('gender'),
-                'birthdate'     => $this->rand('year') . '-'
+                'work' => [
+                    [
+                        'company'     => 'Company 1 ' . $i,
+                        'department'  => 'Dept 1  ' . $i,
+                        'industry'    => 'industry 1 ' . $i,
+                        'sector'      => 'sector 1' . $i,
+                        'title'       => 'Title 1 ' . $i,
+                        'description' => 'Desc 1 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
+                    ],
+                    [
+                        'company'     => 'Company 2 ' . $i,
+                        'department'  => 'Dept 2 ' . $i,
+                        'industry'    => 'industry 2 ' . $i,
+                        'sector'      => 'sector 2 ' . $i,
+                        'title'       => 'Title 2 ' . $i,
+                        'description' => 'Desc 2 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
+                    ],
+                    [
+                        'company'     => 'Company 3 ' . $i,
+                        'department'  => 'Dept 3 ' . $i,
+                        'industry'    => 'industry 3 ' . $i,
+                        'sector'      => 'sector 3 ' . $i,
+                        'title'       => 'Title 3 ' . $i,
+                        'description' => 'Desc 3 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
+                    ],
+                ],
+            ];
+            $account = [
+                'gender'    => $this->rand('gender'),
+                'birthdate' => $this->rand('year') . '-'
                     . ($i % 12 + 1) . '-' . ($i % 30 + 1),
-            );
+            ];
 
             $uid = $i;
             Pi::api('user', 'user')->addProfile($uid, $data);
@@ -247,28 +247,28 @@ class BuildController extends ActionController
         $count  = 50;
 
         for ($i = 1; $i <= $count; $i++) {
-            $user = array(
-                'identity'      => $prefix . '_' . $i,
-                'credential'    => $prefix . '_' . $i,
-                'name'          => ucfirst($prefix) . $i,
-                'email'         => $prefix . '_' . $i . '@piengine.org',
+            $user = [
+                'identity'   => $prefix . '_' . $i,
+                'credential' => $prefix . '_' . $i,
+                'name'       => ucfirst($prefix) . $i,
+                'email'      => $prefix . '_' . $i . '@piengine.org',
 
-                'fullname'      => ucfirst($prefix) . ' User ' . $i,
-                'gender'        => $this->rand('gender'),
-                'birthdate'     => $this->rand('year') . '-'
+                'fullname'  => ucfirst($prefix) . ' User ' . $i,
+                'gender'    => $this->rand('gender'),
+                'birthdate' => $this->rand('year') . '-'
                     . ($i % 12 + 1) . '-' . ($i % 30 + 1),
-                'location'      => 'From ' . $i,
-                'signature'     => 'Signature of user ' . $i,
-                'bio'           => 'User bio: ' . $i,
+                'location'  => 'From ' . $i,
+                'signature' => 'Signature of user ' . $i,
+                'bio'       => 'User bio: ' . $i,
 
-                'language'      => $this->rand('language'),
-                'demo_sample'   => 'Demo Sample: ' . $i,
-                'ip_register'   => $this->rand('ip'),
+                'language'    => $this->rand('language'),
+                'demo_sample' => 'Demo Sample: ' . $i,
+                'ip_register' => $this->rand('ip'),
 
                 'telephone'     => $this->rand('telephone'),
                 'address'       => 'Address ' . $i,
                 'postcode'      => $this->rand('postcode'),
-                'last_modified' => time() - $i * rand(1,100),
+                'last_modified' => time() - $i * rand(1, 100),
 
                 /*
                 'address'       => array(
@@ -291,23 +291,23 @@ class BuildController extends ActionController
                 ),
                 */
 
-                'tool'          => array(
-                    array(
-                        'title'         => 'Google+',
-                        'identifier'    => rand(),
-                    ),
-                    array(
-                        'title'         => 'Twitter',
-                        'identifier'    => 'twitter_' . $i,
-                    ),
-                    array(
-                        'title'         => 'QQ',
-                        'identifier'    => '88' . $i,
-                    ),
-                ),
+                'tool' => [
+                    [
+                        'title'      => 'Google+',
+                        'identifier' => rand(),
+                    ],
+                    [
+                        'title'      => 'Twitter',
+                        'identifier' => 'twitter_' . $i,
+                    ],
+                    [
+                        'title'      => 'QQ',
+                        'identifier' => '88' . $i,
+                    ],
+                ],
 
-                'education' => array(
-                    array(
+                'education' => [
+                    [
                         'school'      => 'School 1 ' . $i,
                         'major'       => 'Major 1 ' . $i,
                         'department'  => 'Department 1' . $i,
@@ -316,8 +316,8 @@ class BuildController extends ActionController
                         'class'       => 'Class 1 ' . $i,
                         'start'       => $this->rand('year'),
                         'end'         => $this->rand('year'),
-                    ),
-                    array(
+                    ],
+                    [
                         'school'      => 'School 2 ' . $i,
                         'major'       => 'Major 2 ' . $i,
                         'department'  => 'Department 2 ' . $i,
@@ -326,8 +326,8 @@ class BuildController extends ActionController
                         'class'       => 'Class 2 ' . $i,
                         'start'       => $this->rand('year'),
                         'end'         => $this->rand('year'),
-                    ),
-                    array(
+                    ],
+                    [
                         'school'      => 'School 3 ' . $i,
                         'major'       => 'Major 3 ' . $i,
                         'department'  => 'Department 3 ' . $i,
@@ -336,43 +336,43 @@ class BuildController extends ActionController
                         'class'       => 'Class 3 ' . $i,
                         'start'       => $this->rand('year'),
                         'end'         => $this->rand('year'),
-                    ),
+                    ],
 
-                ),
+                ],
 
-                'work'  => array(
-                    array(
-                        'company'       => 'Company 1 ' . $i,
-                        'department'    => 'Dept 1  ' . $i,
-                        'industry'      => 'industry 1 ' . $i,
-                        'sector'        => 'sector 1' . $i,
-                        'title'         => 'Title 1 ' . $i,
-                        'description'   => 'Desc 1 ' . $i,
-                        'start'         => $this->rand('year'),
-                        'end'           => $this->rand('year'),
-                    ),
-                    array(
-                        'company'       => 'Company 2 ' . $i,
-                        'department'    => 'Dept 2 ' . $i,
-                        'industry'      => 'industry 2 ' . $i,
-                        'sector'        => 'sector 2 ' . $i,
-                        'title'         => 'Title 2 ' . $i,
-                        'description'   => 'Desc 2 ' . $i,
-                        'start'         => $this->rand('year'),
-                        'end'           => $this->rand('year'),
-                    ),
-                    array(
-                        'company'       => 'Company 3 ' . $i,
-                        'department'    => 'Dept 3 ' . $i,
-                        'industry'      => 'industry 3 ' . $i,
-                        'sector'        => 'sector 3 ' . $i,
-                        'title'         => 'Title 3 ' . $i,
-                        'description'   => 'Desc 3 ' . $i,
-                        'start'         => $this->rand('year'),
-                        'end'           => $this->rand('year'),
-                    ),
-                ),
-            );
+                'work' => [
+                    [
+                        'company'     => 'Company 1 ' . $i,
+                        'department'  => 'Dept 1  ' . $i,
+                        'industry'    => 'industry 1 ' . $i,
+                        'sector'      => 'sector 1' . $i,
+                        'title'       => 'Title 1 ' . $i,
+                        'description' => 'Desc 1 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
+                    ],
+                    [
+                        'company'     => 'Company 2 ' . $i,
+                        'department'  => 'Dept 2 ' . $i,
+                        'industry'    => 'industry 2 ' . $i,
+                        'sector'      => 'sector 2 ' . $i,
+                        'title'       => 'Title 2 ' . $i,
+                        'description' => 'Desc 2 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
+                    ],
+                    [
+                        'company'     => 'Company 3 ' . $i,
+                        'department'  => 'Dept 3 ' . $i,
+                        'industry'    => 'industry 3 ' . $i,
+                        'sector'      => 'sector 3 ' . $i,
+                        'title'       => 'Title 3 ' . $i,
+                        'description' => 'Desc 3 ' . $i,
+                        'start'       => $this->rand('year'),
+                        'end'         => $this->rand('year'),
+                    ],
+                ],
+            ];
 
             $uid = Pi::api('user', 'user')->addUser($user);
             if (!is_int($uid)) {
@@ -435,24 +435,24 @@ class BuildController extends ActionController
             return;
         }
 
-        $timelineMap = array('update_info', 'write_article',
-            'write_blog', 'join_forum'
-        );
-        $messageMap = array(
+        $timelineMap = ['update_info', 'write_article',
+            'write_blog', 'join_forum',
+        ];
+        $messageMap  = [
             'Update user information',
             'Write a new article',
             'Write a new blog',
             'Join a new forum',
-        );
+        ];
 
         for ($i = 1; $i < $limit; $i++) {
-            $log = array(
+            $log = [
                 'uid'      => $uid,
                 'timeline' => $timelineMap[$i % 4],
                 'message'  => $messageMap[$i % 4],
                 'time'     => time() - rand(3600, 3600 * 24 * 30),
                 'link'     => 'www.' . $timelineMap[$i % 4] . 'com',
-            );
+            ];
             Pi::api('timeline', 'user')->add($log);
         }
     }
@@ -462,36 +462,36 @@ class BuildController extends ActionController
      */
     protected function addTimeline()
     {
-        $timelines = array(
-            array(
+        $timelines = [
+            [
                 'name'   => 'update_info',
-                'title'  => 'Update user info' ,
+                'title'  => 'Update user info',
                 'module' => 'User',
                 'icon'   => 'icon-user',
                 'active' => 1,
-            ),
-            array(
+            ],
+            [
                 'name'   => 'write_article',
-                'title'  => 'Write article' ,
+                'title'  => 'Write article',
                 'module' => 'article',
                 'icon'   => 'icon-article',
                 'active' => 1,
-            ),
-            array(
+            ],
+            [
                 'name'   => 'write_blog',
-                'title'  => 'Write bolg' ,
+                'title'  => 'Write bolg',
                 'module' => 'blog',
                 'icon'   => 'icon-blog',
                 'active' => 1,
-            ),
-            array(
+            ],
+            [
                 'name'   => 'join_forum',
-                'title'  => 'Join forum' ,
+                'title'  => 'Join forum',
                 'module' => 'forum',
                 'icon'   => 'icon-forum',
                 'active' => 1,
-            ),
-        );
+            ],
+        ];
 
         $model = $this->getModel('timeline');
         foreach ($timelines as $timeline) {
@@ -807,48 +807,48 @@ class BuildController extends ActionController
     protected function flush()
     {
         // Flush account
-        Pi::model('account', 'user')->delete(array('id > ?' => 6));
+        Pi::model('account', 'user')->delete(['id > ?' => 6]);
 
         // Flush user profile
-        Pi::model('profile', 'user')->delete(array());
+        Pi::model('profile', 'user')->delete([]);
 
         // Flush user compound
-        Pi::model('compound', 'user')->delete(array());
+        Pi::model('compound', 'user')->delete([]);
 
         // Flush user data
-        Pi::model('user_data')->delete(array('module'  => 'user'));
+        Pi::model('user_data')->delete(['module' => 'user']);
 
         // Flush user role
-        Pi::model('user_role')->delete(array('uid > ?' => 6));
+        Pi::model('user_role')->delete(['uid > ?' => 6]);
 
         // Flush user activity
         //Pi::model('activity', 'user')->delete(array());
 
         // Flush user compound
-        Pi::model('compound', 'user')->delete(array());
+        Pi::model('compound', 'user')->delete([]);
 
         // Flush user display field
-        Pi::model('display_field', 'user')->delete(array());
+        Pi::model('display_field', 'user')->delete([]);
 
         // Flush user display group
-        Pi::model('display_group', 'user')->delete(array());
+        Pi::model('display_group', 'user')->delete([]);
 
         // Flush user log
-        Pi::model('log', 'user')->delete(array());
+        Pi::model('log', 'user')->delete([]);
 
         // Flush user privacy
-        Pi::model('privacy', 'user')->delete(array());
+        Pi::model('privacy', 'user')->delete([]);
 
         // Flush privacy user
-        Pi::model('privacy_user', 'user')->delete(array());
+        Pi::model('privacy_user', 'user')->delete([]);
 
         // Flush quicklink
         //Pi::model('quicklink', 'user')->delete(array());
 
         // Flush timeline
-        Pi::model('timeline', 'user')->delete(array());
+        Pi::model('timeline', 'user')->delete([]);
 
         // Flush timelog
-        Pi::model('timeline_log', 'user')->delete(array());
+        Pi::model('timeline_log', 'user')->delete([]);
     }
 }

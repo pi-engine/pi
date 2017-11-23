@@ -41,10 +41,10 @@ class PasswordController extends ActionController
 
         $uid = Pi::user()->getId();
 
-        $result = array(
-            'status'    => 0,
-            'message'   => __('Reset password failed.'),
-        );
+        $result = [
+            'status'  => 0,
+            'message' => __('Reset password failed.'),
+        ];
 
         $form = new PasswordForm('password-change');
 
@@ -92,13 +92,13 @@ class PasswordController extends ActionController
                 // Update password
                 Pi::api('user', 'user')->updateAccount(
                     $uid,
-                    array(
-                        'credential' => $values['credential-new']
-                    )
+                    [
+                        'credential' => $values['credential-new'],
+                    ]
                 );
                 Pi::service('event')->trigger('password_change', $uid);
 
-                $result['status'] = 1;
+                $result['status']  = 1;
                 $result['message'] = __('Reset password successfully.');
             }
 
@@ -109,26 +109,26 @@ class PasswordController extends ActionController
         //$groups = Pi::api('group', 'user')->getList();
         //$user   = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
 
-        $piConfig = Pi::user()->config();
-        $minChars = $piConfig['password_min'];
-        $maxChars = $piConfig['password_max'];
+        $piConfig           = Pi::user()->config();
+        $minChars           = $piConfig['password_min'];
+        $maxChars           = $piConfig['password_max'];
         $strenghtenPassword = $piConfig['strenghten_password'];
 
         $showPasswordLabel = __('Show my password');
 
-        $wordLength = __("Your password is too short");
-        $wordNotEmail = __("Do not use your email as your password");
-        $wordSimilarToUsername = __("Your password cannot contain your username");
+        $wordLength              = __("Your password is too short");
+        $wordNotEmail            = __("Do not use your email as your password");
+        $wordSimilarToUsername   = __("Your password cannot contain your username");
         $wordTwoCharacterClasses = __("Use different character classes");
-        $wordRepetitions = __("Too many repetitions");
-        $wordSequences = __("Your password contains sequences");
-        $errorList = __("Errors:");
-        $veryWeak = __("Very week");
-        $weak = __("Week");
-        $normal = __("Normal");
-        $medium = __("Medium");
-        $strong = __("Strong");
-        $veryStrong = __("Very Strong");
+        $wordRepetitions         = __("Too many repetitions");
+        $wordSequences           = __("Your password contains sequences");
+        $errorList               = __("Errors:");
+        $veryWeak                = __("Very week");
+        $weak                    = __("Week");
+        $normal                  = __("Normal");
+        $medium                  = __("Medium");
+        $strong                  = __("Strong");
+        $veryStrong              = __("Very Strong");
 
         $message = __("Password must contain at least one uppercase letter, one lowercase letter and one digit character");
 
@@ -210,11 +210,11 @@ HTML;
             return false;
         }
 
-        $result = array(
+        $result = [
             'status'  => 0,
             'message' => __('Find password failed.'),
-        );
-        $form = new FindPasswordForm('find-password');
+        ];
+        $form   = new FindPasswordForm('find-password');
 
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
@@ -227,17 +227,17 @@ HTML;
                 //$userRow = $this->getModel('account')->find($value['email'], 'email');
                 $userRow = Pi::service('user')->getUser($value['email'], 'email');
                 if (!$userRow) {
-                    $this->view()->assign(array(
+                    $this->view()->assign([
                         'form'   => $form,
                         'result' => $result,
-                    ));
+                    ]);
 
                     return;
                 }
 
                 // Set user data
-                $uid    = (int) $userRow->id;
-                $token  = $this->createToken($uid, $value['email']);
+                $uid   = (int)$userRow->id;
+                $token = $this->createToken($uid, $value['email']);
                 Pi::user()->data()->set(
                     $uid,
                     'find-password',
@@ -247,19 +247,19 @@ HTML;
                 );
 
                 // Send verify email
-                $to = $userRow->email;
-                $url = $this->url('', array(
+                $to   = $userRow->email;
+                $url  = $this->url('', [
                         'action' => 'process',
-                        'token'  => $token
-                    )
+                        'token'  => $token,
+                    ]
                 );
                 $link = Pi::url($url, true);
 
-                $params = array(
+                $params = [
                     'username'          => $userRow->identity,
                     'find_password_url' => $link,
                     'expiration'        => $this->config('email_expiration'),
-                );
+                ];
 
                 // Load from HTML template
                 $data = Pi::service('mail')->template(
@@ -275,15 +275,15 @@ HTML;
                 );
 
                 // Set subject and body
-                $subject    = $data['subject'];
-                $body       = $data['body'];
-                $type       = $data['format'];
+                $subject = $data['subject'];
+                $body    = $data['body'];
+                $type    = $data['format'];
 
                 $message = Pi::service('mail')->message($subject, $body, $type);
                 $message->addTo($to);
                 Pi::service('mail')->send($message);
 
-                $result['status'] = 1;
+                $result['status']  = 1;
                 $result['message'] = __('Confirmation email sent successfully. Please check email and reset password.');
             }
 
@@ -308,13 +308,13 @@ HTML;
         $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-bootstrap.min.js', 'user'));
         $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-boostrap.init.js', 'user'));
 
-        $result = array(
+        $result = [
             'status'  => 0,
             'message' => __('Invalid token for password reset.'),
-        );
-        $token = _get('token');
+        ];
+        $token  = _get('token');
 
-        $view = $this->view();
+        $view     = $this->view();
         $fallback = function () use ($view, $result) {
             $view->assign('result', $result);
         };
@@ -323,10 +323,10 @@ HTML;
             return $fallback();
         }
 
-        $userData = Pi::user()->data()->find(array(
+        $userData = Pi::user()->data()->find([
             'name'  => 'find-password',
-            'value' => $token
-        ));
+            'value' => $token,
+        ]);
         if (!$userData) {
             return $fallback();
         }
@@ -342,7 +342,7 @@ HTML;
         }
         */
 
-        $uid = (int) $userData['uid'];
+        $uid     = (int)$userData['uid'];
         $userRow = $this->getModel('account')->find($uid, 'id');
         if (!$userRow) {
             return $fallback();
@@ -351,7 +351,7 @@ HTML;
         $uid  = $userRow->id;
         $form = new ResetPasswordForm('find-password', 'find');
 
-        $uniqueId = rand();
+        $uniqueId  = rand();
         $elementId = 'register-' . $uniqueId;
 
         $form->setAttribute('data-toggle', 'validator');
@@ -360,26 +360,26 @@ HTML;
         $form->setAttribute('id', $elementId);
         $form->setAttribute('onsubmit', "$('#$elementId').validator('destroy');");
 
-        $piConfig = Pi::user()->config();
-        $minChars = $piConfig['password_min'];
-        $maxChars = $piConfig['password_max'];
+        $piConfig           = Pi::user()->config();
+        $minChars           = $piConfig['password_min'];
+        $maxChars           = $piConfig['password_max'];
         $strenghtenPassword = $piConfig['strenghten_password'];
 
         $showPasswordLabel = __('Show my password');
 
-        $wordLength = __("Your password is too short");
-        $wordNotEmail = __("Do not use your email as your password");
-        $wordSimilarToUsername = __("Your password cannot contain your username");
+        $wordLength              = __("Your password is too short");
+        $wordNotEmail            = __("Do not use your email as your password");
+        $wordSimilarToUsername   = __("Your password cannot contain your username");
         $wordTwoCharacterClasses = __("Use different character classes");
-        $wordRepetitions = __("Too many repetitions");
-        $wordSequences = __("Your password contains sequences");
-        $errorList = __("Errors:");
-        $veryWeak = __("Very week");
-        $weak = __("Week");
-        $normal = __("Normal");
-        $medium = __("Medium");
-        $strong = __("Strong");
-        $veryStrong = __("Very Strong");
+        $wordRepetitions         = __("Too many repetitions");
+        $wordSequences           = __("Your password contains sequences");
+        $errorList               = __("Errors:");
+        $veryWeak                = __("Very week");
+        $weak                    = __("Week");
+        $normal                  = __("Normal");
+        $medium                  = __("Medium");
+        $strong                  = __("Strong");
+        $veryStrong              = __("Very Strong");
 
         $message = __("Password must contain at least one uppercase letter, one lowercase letter and one digit character");
 
@@ -433,8 +433,7 @@ HTML;
             $form->get('credential-new')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
                 ->setAttribute('data-error', __('Invalid password'))
                 ->setAttribute('data-remote', $url)
-                ->setAttribute('data-remote-error', __('Password must contain at least one uppercase letter, one lowercase letter and one digit character'))
-            ;
+                ->setAttribute('data-remote-error', __('Password must contain at least one uppercase letter, one lowercase letter and one digit character'));
         }
 
         $passwordConfirmError = __('Whoops, these don\'t match');
@@ -453,7 +452,7 @@ HTML;
                 // Update user account data
                 Pi::api('user', 'user')->updateAccount(
                     $uid,
-                    array('credential' => $values['credential-new'])
+                    ['credential' => $values['credential-new']]
                 );
 
                 Pi::service('event')->trigger('password_change', $uid);
@@ -462,17 +461,17 @@ HTML;
                 $result['message'] = __('Password reset successfully.');
                 $result['status']  = 1;
             } else {
-                $form->setData(array('token' => $token));
-                $this->view()->assign(array(
-                    'form' => $form
-                ));
+                $form->setData(['token' => $token]);
+                $this->view()->assign([
+                    'form' => $form,
+                ]);
             }
             $this->view()->assign('result', $result);
         } else {
-            $form->setData(array('token' => $token));
-            $this->view()->assign(array(
-                'form' => $form
-            ));
+            $form->setData(['token' => $token]);
+            $this->view()->assign([
+                'form' => $form,
+            ]);
         }
     }
 

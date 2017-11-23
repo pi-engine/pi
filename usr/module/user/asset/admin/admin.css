@@ -1,47 +1,58 @@
 .pagination a {
     cursor: pointer;
 }
+
 .table tr:hover .row-actions {
     visibility: visible;
 }
+
 .row-actions {
     visibility: hidden;
 }
+
 .gutter {
     margin: 0 10px;
 }
+
 .user-list-form {
     border-bottom: 1px solid #ddd;
     padding-bottom: 15px;
     margin-bottom: 15px;
 }
+
 .user-list-action {
     margin-bottom: 10px;
     padding: 0 30px 0 8px;
 }
+
 .user-table input[type='text'] {
     margin: 0 0px 0 6px;
 }
+
 .pi-icon-cursor {
     cursor: pointer;
     color: #999;
 }
+
 .pi-icon-cursor:hover {
     color: #666;
 }
+
 /* Common */
 .pull-right .close {
     float: none;
 }
+
 .ui-sortable-helper {
     background: #fff;
 }
+
 .user-widget {
     background-color: #F1F1F1;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9,endColorstr=#ECECEC);
-    background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
-    background-image: -webkit-linear-gradient(top , #F9F9F9, #ECECEC);
-    background-image: -o-linear-gradient(top , #F9F9F9, #ECECEC);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9, endColorstr=#ECECEC);
+    background-image: -moz-linear-gradient(center top, #F9F9F9, #ECECEC);
+    background-image: -webkit-linear-gradient(top, #F9F9F9, #ECECEC);
+    background-image: -o-linear-gradient(top, #F9F9F9, #ECECEC);
     padding: 4px 8px;
     box-shadow: 0 1px 0 #FFFFFF inset;
     border: 1px solid #DFDFDF;
@@ -53,10 +64,12 @@
 .user-widget-group .pi-widget-header {
     cursor: move;
 }
+
 .user-widget-body {
     padding: 10px 10px 0;
     min-height: 30px;
 }
+
 .ui-sortable-placeholder {
     border: 1px dashed #ccc;
     height: 28px;
@@ -64,17 +77,21 @@
     background: #fff;
     margin-bottom: 10px;
 }
+
 .connect-compound .user-widget,
 .user-quick-select .user-widget {
     cursor: default;
 }
+
 .user-widget-group-hide .user-widget-body,
 .user-profile-fields .close {
     display: none;
 }
+
 .user-widget-group-hide .pi-widget-header {
     border-bottom: none;
 }
+
 input.user-group-input {
     margin: 0;
     padding: 2px 3px;

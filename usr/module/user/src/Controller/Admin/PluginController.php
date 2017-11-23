@@ -35,32 +35,32 @@ class PluginController extends ActionController
      */
     public function timelineAction()
     {
-        $page   = (int) $this->params('p', 1);
+        $page   = (int)$this->params('p', 1);
         $limit  = Pi::config('list_limit', 'user');
-        $offset = (int) ($page -1) * $limit;
+        $offset = (int)($page - 1) * $limit;
 
         // Get list
         $model  = $this->getModel('timeline');
-        $select = $model->select()->where(array());
+        $select = $model->select()->where([]);
         $select->limit($limit);
         $select->offset($offset);
 
         $rowset = $model->selectWith($select);
 
-        $timeline = array();
+        $timeline = [];
         foreach ($rowset as $row) {
-            $timeline[] = array(
+            $timeline[] = [
                 'id'     => $row['id'],
                 'title'  => $row['title'],
                 'module' => $row['module'],
-                'active' => (int) $row['active'],
-            );
+                'active' => (int)$row['active'],
+            ];
         }
 
         // Get count
         $count  = 0;
-        $select = $model->select()->where(array());
-        $select->columns(array('count' => new Expression('count(*)')));
+        $select = $model->select()->where([]);
+        $select->columns(['count' => new Expression('count(*)')]);
         $rowset = $model->selectWith($select);
 
         if ($rowset) {
@@ -68,16 +68,16 @@ class PluginController extends ActionController
         }
 
         // Set paginator
-        $paginator = array(
-            'count'      => (int) $count,
-            'limit'      => $limit,
-            'page'       => $page,
-        );
+        $paginator = [
+            'count' => (int)$count,
+            'limit' => $limit,
+            'page'  => $page,
+        ];
 
-        return array(
+        return [
             'timeline'  => $timeline,
             'paginator' => $paginator,
-        );
+        ];
 
     }
 
@@ -87,36 +87,36 @@ class PluginController extends ActionController
     public function activityAction()
     {
         // Get display page activity
-        $displayList = array();
-        $model  = $this->getModel('activity');
-        $where  = array('active' => 1, 'display > 0');
-        $select = $model->select()->where($where)->order('display');
-        $rowset = $model->selectWith($select);
+        $displayList = [];
+        $model       = $this->getModel('activity');
+        $where       = ['active' => 1, 'display > 0'];
+        $select      = $model->select()->where($where)->order('display');
+        $rowset      = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $displayList[] = array(
+            $displayList[] = [
                 'id'     => $row['id'],
                 'title'  => $row['title'],
                 'module' => $row['module'],
-            );
+            ];
         }
 
         // Get select list
-        $selectList = array();
-        $where  = array('active' => 1, 'display' => 0);
-        $select = $model->select()->where($where)->order('display');
-        $rowset = $model->selectWith($select);
+        $selectList = [];
+        $where      = ['active' => 1, 'display' => 0];
+        $select     = $model->select()->where($where)->order('display');
+        $rowset     = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $selectList[] = array(
+            $selectList[] = [
                 'id'     => $row['id'],
                 'title'  => $row['title'],
                 'module' => $row['module'],
-            );
+            ];
         }
 
-        return array(
+        return [
             'display_list' => $displayList,
             'select_list'  => $selectList,
-        );
+        ];
 
     }
 
@@ -126,38 +126,38 @@ class PluginController extends ActionController
     public function quicklinkAction()
     {
         // Get display page quick
-        $displayList = array();
-        $model  = $this->getModel('quicklink');
-        $where  = array('active' => 1, 'display > 0');
-        $select = $model->select()->where($where)->order('display');
-        $rowset = $model->selectWith($select);
+        $displayList = [];
+        $model       = $this->getModel('quicklink');
+        $where       = ['active' => 1, 'display > 0'];
+        $select      = $model->select()->where($where)->order('display');
+        $rowset      = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $displayList[] = array(
+            $displayList[] = [
                 'id'     => $row['id'],
                 'title'  => $row['title'],
                 'module' => $row['module'],
-                'link'   => $row['link']
-            );
+                'link'   => $row['link'],
+            ];
         }
 
         // Get select list
-        $selectList = array();
-        $where  = array('active' => 1, 'display' => 0);
-        $select = $model->select()->where($where)->order('display');
-        $rowset = $model->selectWith($select);
+        $selectList = [];
+        $where      = ['active' => 1, 'display' => 0];
+        $select     = $model->select()->where($where)->order('display');
+        $rowset     = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $selectList[] = array(
+            $selectList[] = [
                 'id'     => $row['id'],
                 'title'  => $row['title'],
                 'module' => $row['module'],
-                'link'   => $row['link']
-            );
+                'link'   => $row['link'],
+            ];
         }
 
-        return array(
+        return [
             'display_list' => $displayList,
             'select_list'  => $selectList,
-        );
+        ];
     }
 
     /**
@@ -168,9 +168,9 @@ class PluginController extends ActionController
     {
         $id = _post('id');
 
-        $result = array(
+        $result = [
             'status' => 0,
-        );
+        ];
 
         if (!$id) {
             return $result;
@@ -180,10 +180,10 @@ class PluginController extends ActionController
         $row   = $model->find($id, 'id');
         if ($row) {
             if (!$row->active) {
-                $row->assign(array('active' => 1));
+                $row->assign(['active' => 1]);
 
             } else {
-                $row->assign(array('active' => 0));
+                $row->assign(['active' => 0]);
             }
             try {
                 $row->save();
@@ -207,9 +207,9 @@ class PluginController extends ActionController
     {
         $ids = _post('ids');
 
-        $result = array(
+        $result = [
             'status' => 0,
-        );
+        ];
 
         $ids = explode(',', $ids);
         if (empty($ids)) {
@@ -218,7 +218,7 @@ class PluginController extends ActionController
 
         // Get old dress up items
         $model  = $this->getModel('activity');
-        $where  = array('active' => 1, 'display > 0');
+        $where  = ['active' => 1, 'display > 0'];
         $select = $model->select()->where($where)->order('display');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
@@ -227,14 +227,14 @@ class PluginController extends ActionController
 
         foreach ($oldItem as $id) {
             if (!in_array($id, $ids)) {
-                $model->update(array('display' => 0), array('id' => $id));
+                $model->update(['display' => 0], ['id' => $id]);
             }
         }
 
         // Set new items
         $display = 1;
         foreach ($ids as $id) {
-            $model->update(array('display' => $display), array('id' => $id));
+            $model->update(['display' => $display], ['id' => $id]);
             $display++;
         }
 
@@ -252,9 +252,9 @@ class PluginController extends ActionController
     public function dressUpQuicklinkAction()
     {
         $ids    = _post('ids');
-        $result = array(
+        $result = [
             'status' => 0,
-        );
+        ];
 
         $ids = array_unique(explode(',', $ids));
 
@@ -264,7 +264,7 @@ class PluginController extends ActionController
 
         // Get old dress up items
         $model  = $this->getModel('quicklink');
-        $where  = array('active' => 1, 'display > 0');
+        $where  = ['active' => 1, 'display > 0'];
         $select = $model->select()->where($where)->order('display');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
@@ -273,14 +273,14 @@ class PluginController extends ActionController
 
         foreach ($oldItem as $id) {
             if (!in_array($id, $ids)) {
-                $model->update(array('display' => 0), array('id' => $id));
+                $model->update(['display' => 0], ['id' => $id]);
             }
         }
 
         // Set new items
         $display = 1;
         foreach ($ids as $id) {
-            $model->update(array('display' => $display), array('id' => $id));
+            $model->update(['display' => $display], ['id' => $id]);
             $display++;
         }
         $result['status'] = 1;

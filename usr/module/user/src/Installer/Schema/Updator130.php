@@ -7,7 +7,7 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\User\Installer\Schema;
+namespace Module\User\Installer\Schema;
 
 use Pi;
 use Pi\Application\Installer\Schema\AbstractUpdator;
@@ -51,22 +51,22 @@ class Updator130 extends AbstractUpdator
 
         if (version_compare($version, '1.3.3', '<')) {
             Pi::model('user_data')->update(
-                array('name' => 'register_activation'),
-                array('module' => 'user', 'name' => 'register-activation')
+                ['name' => 'register_activation'],
+                ['module' => 'user', 'name' => 'register-activation']
             );
         }
 
         if (version_compare($version, '1.3.2', '<')) {
-            $table = Pi::db()->prefix('compound_field', 'user');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('compound_field', 'user');
+            $sql    = <<<'EOT'
 ALTER TABLE %s
 ADD `is_required` tinyint(1) unsigned NOT NULL default '0';
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
-            foreach (array('field', 'compound_field') as $table) {
-                $rowset = Pi::model($table, 'user')->select(array());
+            foreach (['field', 'compound_field'] as $table) {
+                $rowset = Pi::model($table, 'user')->select([]);
                 foreach ($rowset as $row) {
                     if (isset($row['edit']['required'])) {
                         $row['is_required'] = $row['edit']['required'] ? 1 : 0;
@@ -80,29 +80,29 @@ EOT;
         if (version_compare($version, '1.2.0', '<')) {
 
             Pi::model('field', 'user')->update(
-                array('module' => 'user'),
-                array('module' => '')
+                ['module' => 'user'],
+                ['module' => '']
             );
 
             Pi::model('compound_field', 'user')->update(
-                array('module' => 'user'),
-                array('module' => '')
+                ['module' => 'user'],
+                ['module' => '']
             );
 
-            $table = Pi::db()->prefix('privacy', 'user');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('privacy', 'user');
+            $sql    = <<<'EOT'
 ALTER TABLE %s
 MODIFY `is_forced` tinyint(1) unsigned NOT NULL default '0';
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
-            $table = Pi::db()->prefix('privacy_user', 'user');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('privacy_user', 'user');
+            $sql    = <<<'EOT'
 ALTER TABLE %s
 DROP `is_forced`;
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
             if (false === $status) {
@@ -112,8 +112,8 @@ EOT;
 
         if (version_compare($version, '1.4.6', '<')) {
 
-            $table = Pi::db()->prefix('condition', 'user');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('condition', 'user');
+            $sql    = <<<'EOT'
 CREATE TABLE %s (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` varchar(255) NOT NULL,
@@ -123,7 +123,7 @@ CREATE TABLE %s (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
             if (false === $status) {
@@ -133,11 +133,11 @@ EOT;
 
         if (version_compare($version, '1.4.7', '<')) {
 
-            $table = Pi::db()->prefix('timeline_log', 'user');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('timeline_log', 'user');
+            $sql    = <<<'EOT'
 ALTER TABLE %s ADD `data` VARCHAR(255) NOT NULL AFTER `message`;
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
             if (false === $status) {

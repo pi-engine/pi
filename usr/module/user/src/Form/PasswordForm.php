@@ -36,56 +36,56 @@ class PasswordForm extends BaseForm
 
     public function init()
     {
-        $this->add(array(
-            'name'          => 'credential',
-            'options'       => array(
+        $this->add([
+            'name'       => 'credential',
+            'options'    => [
                 'label' => __('Current password'),
-            ),
-            'attributes'    => array(
-                'type'  => 'password',
-            )
-        ));
+            ],
+            'attributes' => [
+                'type' => 'password',
+            ],
+        ]);
 
 
-        $this->add(array(
-            'name'          => 'credential-new',
-            'options'       => array(
+        $this->add([
+            'name'       => 'credential-new',
+            'options'    => [
                 'label' => __('New password'),
-            ),
-            'attributes'    => array(
-                'type'  => 'password',
-            )
-        ));
+            ],
+            'attributes' => [
+                'type' => 'password',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'credential-confirm',
-            'options'       => array(
+        $this->add([
+            'name'       => 'credential-confirm',
+            'options'    => [
                 'label' => __('Confirm password'),
-            ),
-            'attributes'    => array(
-                'type'  => 'password',
-            )
-        ));
+            ],
+            'attributes' => [
+                'type' => 'password',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'  => 'security',
-            'type'  => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
-        $this->add(array(
-            'name'  => 'identity',
-            'type'  => 'hidden',
-            'attributes'    => array(
-                'value'  => Pi::user()->getIdentity(),
-            )
-        ));
+        $this->add([
+            'name'       => 'identity',
+            'type'       => 'hidden',
+            'attributes' => [
+                'value' => Pi::user()->getIdentity(),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            )
-        ));
+            ],
+        ]);
     }
 }

@@ -26,21 +26,21 @@ class Quicklink extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $list = array();
+        $list = [];
 
-        $model = Pi::model('quicklink', $this->module);
-        $where = array('active' => 1, 'display > 0');
+        $model  = Pi::model('quicklink', $this->module);
+        $where  = ['active' => 1, 'display > 0'];
         $select = $model->select()->where($where)->order('display');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $list[$row['name']] =  array(
-                'title'         => $row['title'],
-                'module'        => $row['module'],
-                'icon'          => $row['icon'],
-                'link'          => $row['link'],
-            );
+            $list[$row['name']] = [
+                'title'  => $row['title'],
+                'module' => $row['module'],
+                'icon'   => $row['icon'],
+                'link'   => $row['link'],
+            ];
         }
 
         return $list;
@@ -51,8 +51,8 @@ class Quicklink extends AbstractRegistry
      */
     public function read()
     {
-        $options = array();
-        $result = $this->loadData($options);
+        $options = [];
+        $result  = $this->loadData($options);
 
         return $result;
     }

@@ -1,32 +1,32 @@
 <?php
-$this->angular(array(
+$this->angular([
     'angular-route.js',
     'pi.js',
-));
+]);
 ?>
 <script>
-angular
-    .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
-    .constant('config', {
-        urlRoot: '<?php echo $this->url('', array('controller' => $controller)); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
-        t: {
-            DISPLAYNAME: '<?php echo _a('Display name'); ?>',
-            SEARCH: '<?php echo _a('Submit'); ?>',
-            SEARCH_TEXT: '<?php echo _a('Inquire of user via ID, username, display name or email.'); ?>',
-            USERNAME: '<?php echo _a('Username'); ?>',
-            EMAIL: '<?php echo _a('Email'); ?>',
-            ACTIVATION: '<?php echo _a('Activation'); ?>',
-            ACTIVATED: '<?php echo _a('Activated'); ?>',
-            NOTACTIVATED: '<?php echo _a('Not activated'); ?>',
-            ENABLED: '<?php echo _a('Enabled'); ?>',
-            DISABLED: '<?php echo _a('Disabled'); ?>',
-            YES: '<?php echo _a('Yes'); ?>',
-            ACCOUNT: '<?php echo _a('Account'); ?>',
-            PROFILE: '<?php echo _a('Profile'); ?>',
-            ENABLED: '<?php echo _a('Enabled'); ?>',
-            EMPTY: '<?php echo _a('Unavailable'); ?>'
-        }
-    });
+    angular
+        .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
+        .constant('config', {
+            urlRoot: '<?php echo $this->url('', ['controller' => $controller]); ?>',
+            assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+            t: {
+                DISPLAYNAME: '<?php echo _a('Display name'); ?>',
+                SEARCH: '<?php echo _a('Submit'); ?>',
+                SEARCH_TEXT: '<?php echo _a('Inquire of user via ID, username, display name or email.'); ?>',
+                USERNAME: '<?php echo _a('Username'); ?>',
+                EMAIL: '<?php echo _a('Email'); ?>',
+                ACTIVATION: '<?php echo _a('Activation'); ?>',
+                ACTIVATED: '<?php echo _a('Activated'); ?>',
+                NOTACTIVATED: '<?php echo _a('Not activated'); ?>',
+                ENABLED: '<?php echo _a('Enabled'); ?>',
+                DISABLED: '<?php echo _a('Disabled'); ?>',
+                YES: '<?php echo _a('Yes'); ?>',
+                ACCOUNT: '<?php echo _a('Account'); ?>',
+                PROFILE: '<?php echo _a('Profile'); ?>',
+                ENABLED: '<?php echo _a('Enabled'); ?>',
+                EMPTY: '<?php echo _a('Unavailable'); ?>'
+            }
+        });
 </script>
 <script src="<?php echo $this->assetModule('admin/inquiry.js'); ?>"></script>

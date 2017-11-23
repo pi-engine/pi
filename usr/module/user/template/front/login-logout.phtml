@@ -8,10 +8,10 @@ $this->headMeta('noindex', 'robots');
     </div>
     <div class="login-message">
         <?php
-        $home_url = $this->url('home');
-        $home_string = sprintf('<a href="%s" title="%s">%s</a>', $home_url, __('homepage'), __('homepage'));
-        $redirect = '';
-        $login_url = Pi::service('authentication')->getUrl('login', $redirect);
+        $home_url     = $this->url('home');
+        $home_string  = sprintf('<a href="%s" title="%s">%s</a>', $home_url, __('homepage'), __('homepage'));
+        $redirect     = '';
+        $login_url    = Pi::service('authentication')->getUrl('login', $redirect);
         $login_string = sprintf('<a href="%s" title="%s">%s</a>', $login_url, __('re-login'), __('re-login'));
         echo sprintf(__('You have logged out successfully, please go to %s or to %s.'), $home_string, $login_string);
         ?>
@@ -20,10 +20,12 @@ $this->headMeta('noindex', 'robots');
         <div class="col-md-offset-2 col-md-10">
             <ul class="list-inline">
                 <li>
-                    <a title="<?php _e('Login'); ?>" href="<?php echo Pi::service('authentication')->getUrl('login', ''); ?>"><?php _e('Login'); ?></a>
+                    <a title="<?php _e('Login'); ?>"
+                       href="<?php echo Pi::service('authentication')->getUrl('login', ''); ?>"><?php _e('Login'); ?></a>
                 </li>
                 <li>
-                    <a title="<?php _e('Register'); ?>" href="<?php echo Pi::service('user')->getUrl('register'); ?>"><?php _e('Register'); ?></a>
+                    <a title="<?php _e('Register'); ?>"
+                       href="<?php echo Pi::service('user')->getUrl('register'); ?>"><?php _e('Register'); ?></a>
                 </li>
             </ul>
         </div>

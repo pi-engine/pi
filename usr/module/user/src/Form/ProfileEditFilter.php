@@ -19,7 +19,7 @@ use Zend\InputFilter\InputFilter;
  */
 class ProfileEditFilter extends InputFilter
 {
-    public function __construct($filters = array())
+    public function __construct($filters = [])
     {
         foreach ($filters as $filter) {
             if ($filter) {

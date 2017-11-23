@@ -1,27 +1,27 @@
 <div class="page-header">
-  <h3>{{'TITLE' | translate}}</h3>
+    <h3>{{'TITLE' | translate}}</h3>
 </div>
 <table class="table table-striped">
-  <thead>
+    <thead>
     <tr>
-      <th>{{'ITEM_NAME' | translate}}
-      <th>{{'FROM' | translate}}
-      <th>{{'DISPLAY' | translate}}
-  <tbody>
+        <th>{{'ITEM_NAME' | translate}}
+        <th>{{'FROM' | translate}}
+        <th>{{'DISPLAY' | translate}}
+    <tbody>
     <tr ng-repeat="item in timeline">
-      <td>{{item.title}}
-      <td>{{item.module}}
-      <td>
-        <div class="btn-group">
-          <button class="btn btn-default" data-ng-class="{'btn-danger active': !item.active}"
-                  data-ng-click="disableAction(item)">
-            {{'NO' | translate}}
-          </button>
-          <button class="btn btn-default" data-ng-class="{'btn-success active': item.active}"
-                  data-ng-click="activeAction(item)">
-            {{'YES' | translate}}
-          </button>
-        </div>
+        <td>{{item.title}}
+        <td>{{item.module}}
+        <td>
+            <div class="btn-group">
+                <button class="btn btn-default" data-ng-class="{'btn-danger active': !item.active}"
+                        data-ng-click="disableAction(item)">
+                    {{'NO' | translate}}
+                </button>
+                <button class="btn btn-default" data-ng-class="{'btn-success active': item.active}"
+                        data-ng-click="activeAction(item)">
+                    {{'YES' | translate}}
+                </button>
+            </div>
 </table>
 <pagination data-ng-if="paginator.count > paginator.limit"
             total-items="paginator.count" page="paginator.page" max-size="10"

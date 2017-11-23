@@ -15,4 +15,5 @@ use Module\System\Form\LoginForm as BaseForm;
  * User login form
  */
 class LoginForm extends BaseForm
-{}
+{
+}

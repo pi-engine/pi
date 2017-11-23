@@ -8,9 +8,11 @@ $this->headMeta('noindex', 'robots');
     </div>
     <div class="col-md-9">
         <div class="page-header">
-            <h1><?php _e('Privacy'); ?> <small><?php _e('Set profile field privacy.'); ?></small></h1>
+            <h1><?php _e('Privacy'); ?>
+                <small><?php _e('Set profile field privacy.'); ?></small>
+            </h1>
         </div>
-        <?php if (empty($privacy)) {?>
+        <?php if (empty($privacy)) { ?>
             <div class="alert alert-info">
                 <?php _e('No available privacy setting'); ?>
             </div>
@@ -20,7 +22,8 @@ $this->headMeta('noindex', 'robots');
                     <div class="form-group">
                         <label class="col-md-2 control-label"><?php echo $item['title']; ?></label>
                         <div class="col-md-4">
-                            <select name="<?php echo $item['field']; ?>" <?php if ($item['is_forced']) echo 'disabled'; ?> class="form-control">
+                            <select name="<?php echo $item['field']; ?>" <?php if ($item['is_forced']) echo 'disabled'; ?>
+                                    class="form-control">
                                 <?php
                                 foreach ($levels as $key => $label) {
                                     echo sprintf('<option value="%s"%s>%s',

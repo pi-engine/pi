@@ -24,92 +24,92 @@ class Breadcrumbs extends AbstractBreadcrumbs
 
         // Set module link
         $moduleData = Pi::registry('module')->read($this->getModule());
-        $result = array(
-            array(
+        $result     = [
+            [
                 'label' => $moduleData['title'],
-                'href'  => Pi::url(Pi::service('url')->assemble('user', array(
+                'href'  => Pi::url(Pi::service('url')->assemble('user', [
                     'module' => $this->getModule(),
-                ))),
-            ),
-        );
+                ])),
+            ],
+        ];
 
         switch ($params['controller']) {
             case 'login':
-                $result[] = array(
+                $result[] = [
                     'label' => __('Login'),
-                );
+                ];
                 break;
 
             case 'register':
-                $result[] = array(
+                $result[] = [
                     'label' => __('Register'),
-                );
+                ];
                 break;
 
             case 'home':
-                $result[] = array(
+                $result[] = [
                     'label' => __('Feed'),
-                );
+                ];
                 break;
 
             case 'account':
-                $result[] = array(
+                $result[] = [
                     'label' => __('Dashboard'),
-                    'href'  => Pi::url(Pi::service('url')->assemble('user', array(
-                        'module' => $this->getModule(),
+                    'href'  => Pi::url(Pi::service('url')->assemble('user', [
+                        'module'     => $this->getModule(),
                         'controller' => 'dashboard',
-                    ))),
-                );
-                $result[] = array(
+                    ])),
+                ];
+                $result[] = [
                     'label' => __('Account settings'),
-                );
+                ];
                 break;
 
             case 'avatar':
-                $result[] = array(
+                $result[] = [
                     'label' => __('Dashboard'),
-                    'href'  => Pi::url(Pi::service('url')->assemble('user', array(
-                        'module' => $this->getModule(),
+                    'href'  => Pi::url(Pi::service('url')->assemble('user', [
+                        'module'     => $this->getModule(),
                         'controller' => 'dashboard',
-                    ))),
-                );
-                $result[] = array(
+                    ])),
+                ];
+                $result[] = [
                     'label' => __('Change avatar'),
-                );
+                ];
                 break;
 
             case 'privacy':
-                $result[] = array(
+                $result[] = [
                     'label' => __('Dashboard'),
-                    'href'  => Pi::url(Pi::service('url')->assemble('user', array(
-                        'module' => $this->getModule(),
+                    'href'  => Pi::url(Pi::service('url')->assemble('user', [
+                        'module'     => $this->getModule(),
                         'controller' => 'dashboard',
-                    ))),
-                );
-                $result[] = array(
+                    ])),
+                ];
+                $result[] = [
                     'label' => __('Privacy'),
-                );
+                ];
                 break;
 
             case 'password':
-                $result[] = array(
+                $result[] = [
                     'label' => __('Dashboard'),
-                    'href'  => Pi::url(Pi::service('url')->assemble('user', array(
-                        'module' => $this->getModule(),
+                    'href'  => Pi::url(Pi::service('url')->assemble('user', [
+                        'module'     => $this->getModule(),
                         'controller' => 'dashboard',
-                    ))),
-                );
+                    ])),
+                ];
                 switch ($params['action']) {
                     case 'index':
-                        $result[] = array(
+                        $result[] = [
                             'label' => __('Change password'),
-                        );
+                        ];
                         break;
 
                     case 'find':
-                        $result[] = array(
+                        $result[] = [
                             'label' => __('Find password'),
-                        );
+                        ];
                         break;
                 }
                 break;
@@ -117,43 +117,43 @@ class Breadcrumbs extends AbstractBreadcrumbs
             case 'profile':
                 switch ($params['action']) {
                     case 'index':
-                        $result[] = array(
+                        $result[] = [
                             'label' => __('Profile'),
-                        );
+                        ];
                         break;
 
                     case 'edit.profile':
-                        $result[] = array(
+                        $result[] = [
                             'label' => __('Dashboard'),
-                            'href'  => Pi::url(Pi::service('url')->assemble('user', array(
-                                'module' => $this->getModule(),
+                            'href'  => Pi::url(Pi::service('url')->assemble('user', [
+                                'module'     => $this->getModule(),
                                 'controller' => 'dashboard',
-                            ))),
-                        );
-                        $result[] = array(
+                            ])),
+                        ];
+                        $result[] = [
                             'label' => __('Edit profile'),
-                        );
+                        ];
                         break;
 
                     case 'edit.compound':
-                        $result[] = array(
+                        $result[] = [
                             'label' => __('Dashboard'),
-                            'href'  => Pi::url(Pi::service('url')->assemble('user', array(
-                                'module' => $this->getModule(),
+                            'href'  => Pi::url(Pi::service('url')->assemble('user', [
+                                'module'     => $this->getModule(),
                                 'controller' => 'dashboard',
-                            ))),
-                        );
-                        $result[] = array(
+                            ])),
+                        ];
+                        $result[] = [
                             'label' => __('Edit profile'),
-                        );
+                        ];
                         break;
                 }
                 break;
 
             case 'dashboard':
-                $result[] = array(
+                $result[] = [
                     'label' => __('Dashboard'),
-                );
+                ];
                 break;
         }
 

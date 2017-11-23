@@ -1,11 +1,11 @@
 <?php
 /**
-* Pi Engine (http://piengine.org)
-*
-* @link            http://code.piengine.org for the Pi Engine source repository
-* @copyright       Copyright (c) Pi Engine http://piengine.org
-* @license         http://piengine.org/license.txt BSD 3-Clause License
-*/
+ * Pi Engine (http://piengine.org)
+ *
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
+ */
 
 namespace Module\User\Controller\Admin;
 
@@ -16,10 +16,10 @@ use Module\User\Form\ConditionForm;
 use Pi\File\Transfer\Upload;
 
 /**
-* Conditions controller
-*
-* @author Frédéric TISSOT <contact@espritdev.fr>
-*/
+ * Conditions controller
+ *
+ * @author Frédéric TISSOT <contact@espritdev.fr>
+ */
 class ConditionController extends ActionController
 {
     /**
@@ -37,12 +37,12 @@ class ConditionController extends ActionController
 
     public function updateAction()
     {
-        $message = null;
+        $message   = null;
         $condition = null;
 
         if (!Pi::service('module')->isActive('user')) {
             $message = __('Please install user module !');
-            $url = array('action' => 'index');
+            $url     = ['action' => 'index'];
             $this->jump($url, $message, 'error');
         }
         // Get id
@@ -78,7 +78,7 @@ class ConditionController extends ActionController
 
                     $finalPath = $destinationPath . '/' . $file['filename']['name'];
 
-                    if(!is_file($finalPath) || ($id && $condition['filename'] == $file['filename']['name'])){
+                    if (!is_file($finalPath) || ($id && $condition['filename'] == $file['filename']['name'])) {
                         $uploader = new Upload;
                         $uploader->setDestination($destinationPath);
                         $uploader->setRename(Pi::api('condition', 'user')->rename($file['filename']['name']));
@@ -92,8 +92,8 @@ class ConditionController extends ActionController
                             $values['filename'] = $uploader->getUploaded('filename');
                         } else {
                             $messages = $uploader->getMessages();
-                            $message = $messages ? implode('; ', $messages) : __('Problem in upload file. please try again');
-                            $isValid = false;
+                            $message  = $messages ? implode('; ', $messages) : __('Problem in upload file. please try again');
+                            $isValid  = false;
                         }
                     } else {
                         $message = __('Filename already exists. please try again');
@@ -101,7 +101,7 @@ class ConditionController extends ActionController
                     }
                 }
 
-                if($isValid){
+                if ($isValid) {
 
                     var_dump(isset($values['filename']));
 
@@ -125,7 +125,7 @@ class ConditionController extends ActionController
                     $row->save();
 
                     $message = __('Condition data saved successfully.');
-                    $url = array('action' => 'index');
+                    $url     = ['action' => 'index'];
                     $this->jump($url, $message);
                 }
             }
@@ -141,16 +141,17 @@ class ConditionController extends ActionController
         $this->view()->assign('message', $message);
     }
 
-    public function removeAction(){
+    public function removeAction()
+    {
         // Get id
         $id = $this->params('id');
 
         $return = Pi::api('condition', 'user')->removeCondition($id);
 
-        if($return){
-            $this->jump(array('action' => 'index'), __('Condition file has been deleted successfully'));
+        if ($return) {
+            $this->jump(['action' => 'index'], __('Condition file has been deleted successfully'));
         } else {
-            $this->jump(array('action' => 'index'), __('Error occured during condition file removing'));
+            $this->jump(['action' => 'index'], __('Error occured during condition file removing'));
         }
     }
 }

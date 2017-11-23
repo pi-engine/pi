@@ -58,7 +58,7 @@ class MaintenanceController extends ActionController
         // Get user basic information and user data
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array(
+            [
                 'identity',
                 'name',
                 'id',
@@ -67,7 +67,7 @@ class MaintenanceController extends ActionController
                 'time_activated',
                 'time_created',
                 'ip_register',
-            )
+            ]
         );
 
         // Time to string
@@ -79,10 +79,10 @@ class MaintenanceController extends ActionController
             ? _date($user['time_created']) : 0;
 
         // Get user data
-        $last_login = Pi::user()->data()->get($uid, 'last_login');
-        $user['last_login']      = $last_login ? _date($last_login) : 0;
-        $user['last_login_ip']   = Pi::user()->data()->get($uid, 'last_login_ip');
-        $user['count_login']     = Pi::user()->data()->get($uid, 'count_login');
+        $last_login            = Pi::user()->data()->get($uid, 'last_login');
+        $user['last_login']    = $last_login ? _date($last_login) : 0;
+        $user['last_login_ip'] = Pi::user()->data()->get($uid, 'last_login_ip');
+        $user['count_login']   = Pi::user()->data()->get($uid, 'count_login');
 
         return $user;
     }
@@ -103,7 +103,7 @@ class MaintenanceController extends ActionController
         // Get user basic information and user data
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array(
+            [
                 'identity',
                 'name',
                 'id',
@@ -112,7 +112,7 @@ class MaintenanceController extends ActionController
                 'time_activated',
                 'time_created',
                 'ip_register',
-            )
+            ]
         );
 
         // Time to string
@@ -124,10 +124,10 @@ class MaintenanceController extends ActionController
             ? _date($user['time_created']) : 0;
 
         // Get user data
-        $last_login = Pi::user()->data()->get($uid, 'last_login');
-        $user['last_login']      = $last_login ? _date($last_login) : 0;
-        $user['last_login_ip']   = Pi::user()->data()->get($uid, 'last_login_ip');
-        $user['count_login']     = Pi::user()->data()->get($uid, 'count_login');
+        $last_login            = Pi::user()->data()->get($uid, 'last_login');
+        $user['last_login']    = $last_login ? _date($last_login) : 0;
+        $user['last_login_ip'] = Pi::user()->data()->get($uid, 'last_login_ip');
+        $user['count_login']   = Pi::user()->data()->get($uid, 'count_login');
 
         return $user;
     }
@@ -145,25 +145,25 @@ class MaintenanceController extends ActionController
          */
         $sort = _get('sort') ?: 'time_created';
 
-        $page   = (int) $this->params('p', 1);
+        $page   = (int)$this->params('p', 1);
         $limit  = Pi::config('list_limit', 'user');
-        $offset = (int) ($page -1) * $limit;
+        $offset = (int)($page - 1) * $limit;
 
-        $uids   = $this->getUids($sort, $limit, $offset);
-        $count  = $this->getCount($sort);
+        $uids  = $this->getUids($sort, $limit, $offset);
+        $count = $this->getCount($sort);
 
-        $logs   = $this->getUserLogs($uids);
+        $logs = $this->getUserLogs($uids);
 
-        $paginator = array(
-            'count'      => $count,
-            'limit'      => $limit,
-            'page'       => $page,
-        );
+        $paginator = [
+            'count' => $count,
+            'limit' => $limit,
+            'page'  => $page,
+        ];
 
-        $data = array(
-            'users'      => $logs,
+        $data = [
+            'users'     => $logs,
             'paginator' => $paginator,
-        );
+        ];
 
         return $data;
 
@@ -174,47 +174,47 @@ class MaintenanceController extends ActionController
      */
     public function deletedListAction()
     {
-        $page   = (int) $this->params('p', 1);
+        $page   = (int)$this->params('p', 1);
         $limit  = Pi::config('list_limit', 'user');
-        $offset = (int) ($page -1) * $limit;
+        $offset = (int)($page - 1) * $limit;
 
-        $model  = Pi::model('user_account');
+        $model = Pi::model('user_account');
 
         // Get user
-        $select = $model->select()->where(array('time_deleted > ?' => 0));
+        $select = $model->select()->where(['time_deleted > ?' => 0]);
         $select->columns(
-            array(
+            [
                 'identity',
                 'name',
                 'email',
                 'time_activated',
                 'time_created',
                 'time_deleted',
-                'id'
-            )
+                'id',
+            ]
         );
 
         $select->limit($limit);
         $select->offset($offset);
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $users[] = array(
+            $users[] = [
                 'id'             => $row->id,
                 'identity'       => $row->identity,
                 'name'           => $row->name,
                 'email'          => $row->email,
                 'time_activated' => $row->time_activated
-                        ? _date($row->time_activated) : 0,
+                    ? _date($row->time_activated) : 0,
                 'time_created'   => $row->time_created
-                        ? _date($row->time_created) : 0,
+                    ? _date($row->time_created) : 0,
                 'time_deleted'   => $row->time_deleted
-                        ? _date($row->time_deleted) : 0,
-            );
+                    ? _date($row->time_deleted) : 0,
+            ];
         }
 
         // Get count
-        $select = $model->select()->where(array('time_deleted > ?' => 0));
-        $select->columns(array('count' => new Expression('count(*)')));
+        $select = $model->select()->where(['time_deleted > ?' => 0]);
+        $select->columns(['count' => new Expression('count(*)')]);
         $select->order('time_deleted DESC');
         $rowset = $model->selectWith($select);
         if ($rowset) {
@@ -224,16 +224,16 @@ class MaintenanceController extends ActionController
             $count = 0;
         }
 
-        $paginator = array(
-            'count'      => $count,
-            'limit'      => $limit,
-            'page'       => $page,
-        );
+        $paginator = [
+            'count' => $count,
+            'limit' => $limit,
+            'page'  => $page,
+        ];
 
-        $data = array(
+        $data = [
             'users'     => $users,
             'paginator' => $paginator,
-        );
+        ];
 
         return $data;
 
@@ -248,18 +248,18 @@ class MaintenanceController extends ActionController
     {
         $type   = _post('type') ?: '';
         $uids   = _post('uids');
-        $result = array(
-            'status' => 0,
-            'message' => _a('Clear failed.')
-        );
+        $result = [
+            'status'  => 0,
+            'message' => _a('Clear failed.'),
+        ];
 
         $model = Pi::model('user_account');
 
         if ($type == 'all') {
             // Clear all
             try {
-                $model->delete(array('time_deleted > ?' => 0));
-                $result['status'] = 1;
+                $model->delete(['time_deleted > ?' => 0]);
+                $result['status']  = 1;
                 $result['message'] = _a('Clear all deleted user successfully.');
 
             } catch (\Exception $e) {
@@ -272,11 +272,11 @@ class MaintenanceController extends ActionController
             $uids = array_filter(array_unique(explode(',', $uids)));
             foreach ($uids as $uid) {
                 try {
-                    $model->delete(array(
-                        'id' => $uid,
+                    $model->delete([
+                        'id'               => $uid,
                         'time_deleted > ?' => 0,
-                    ));
-                    $result['status'] = 1;
+                    ]);
+                    $result['status']  = 1;
                     $result['message'] = _a('Clear all deleted user successfully.');
                 } catch (\Exception $e) {
                     return $result;
@@ -302,12 +302,12 @@ class MaintenanceController extends ActionController
         $modelAccount = Pi::model('user_account');
         $modelData    = Pi::model('user_data');
 
-        $result = array();
+        $result = [];
         // Not need join
-        if (in_array($sort, array('time_created', 'time_activated'))) {
+        if (in_array($sort, ['time_created', 'time_activated'])) {
             $select = $modelAccount->select()
-                ->where(array('time_deleted' => 0));
-            $select->columns(array('id'));
+                ->where(['time_deleted' => 0]);
+            $select->columns(['id']);
             $order = $sort . ' DESC';
             $select->order($order);
 
@@ -328,24 +328,24 @@ class MaintenanceController extends ActionController
 
         }
 
-        $accountWhere = array('time_deleted' => 0);
-        $where = Pi::db()->where();
+        $accountWhere = ['time_deleted' => 0];
+        $where        = Pi::db()->where();
         $where->add($accountWhere);
 
         $select = Pi::db()->select();
         $select->from(
-            array('account' => $modelAccount->getTable()),
-            array('id')
+            ['account' => $modelAccount->getTable()],
+            ['id']
         );
         $select->join(
-            array('data' => $modelData->getTable()),
+            ['data' => $modelData->getTable()],
             'data.uid=account.id',
-            array()
+            []
         );
 
-        $whereData = Pi::db()->where()->create(array(
-            'data.name' => $sort
-        ));
+        $whereData = Pi::db()->where()->create([
+            'data.name' => $sort,
+        ]);
 
         $where->add($whereData);
 
@@ -366,7 +366,7 @@ class MaintenanceController extends ActionController
         $rowset = Pi::db()->query($select);
 
         foreach ($rowset as $row) {
-            $result[] = (int) $row['id'];
+            $result[] = (int)$row['id'];
         }
 
         return $result;
@@ -379,10 +379,10 @@ class MaintenanceController extends ActionController
         $modelData    = Pi::model('user_data');
 
         // Not need join
-        if (in_array($sort, array('time_created', 'time_activated'))) {
+        if (in_array($sort, ['time_created', 'time_activated'])) {
             $select = $modelAccount->select()
-                ->where(array('time_deleted' => 0));
-            $select->columns(array('count' => new Expression('count(*)')));
+                ->where(['time_deleted' => 0]);
+            $select->columns(['count' => new Expression('count(*)')]);
             $order = $sort . ' DESC';
             $select->order($order);
             $rowset = $modelAccount->selectWith($select);
@@ -395,29 +395,29 @@ class MaintenanceController extends ActionController
 
         }
 
-        $accountWhere = array('time_deleted' => 0);
+        $accountWhere = ['time_deleted' => 0];
 
         $where = Pi::db()->where();
         $where->add($accountWhere);
 
         $select = Pi::db()->select();
         $select->from(
-            array('account' => $modelAccount->getTable())
+            ['account' => $modelAccount->getTable()]
         );
 
-        $select->columns(array(
+        $select->columns([
             'count' => Pi::db()->expression('COUNT(account.id)'),
-        ));
+        ]);
 
         $select->join(
-            array('data' => $modelData->getTable()),
+            ['data' => $modelData->getTable()],
             'data.uid=account.id',
-            array()
+            []
         );
 
-        $whereData = Pi::db()->where()->create(array(
-            'data.name' => $sort
-        ));
+        $whereData = Pi::db()->where()->create([
+            'data.name' => $sort,
+        ]);
         $where->add($whereData);
 
         // Sort
@@ -436,7 +436,7 @@ class MaintenanceController extends ActionController
 
         if ($rowset) {
             $rowset = $rowset->current();
-            return (int) $rowset['count'];
+            return (int)$rowset['count'];
         } else {
             return 0;
         }
@@ -451,7 +451,7 @@ class MaintenanceController extends ActionController
      */
     protected function getUserLogs($uids)
     {
-        $logs = array();
+        $logs = [];
 
         if (!$uids) {
             return $logs;
@@ -461,7 +461,7 @@ class MaintenanceController extends ActionController
         // Get user log datat
         $select = Pi::model('user_data')
             ->select()
-            ->where(array('uid' => $uids));
+            ->where(['uid' => $uids]);
         $rowset = Pi::model('user_data')->selectWith($select);
 
         foreach ($rowset as $row) {
@@ -471,12 +471,12 @@ class MaintenanceController extends ActionController
         foreach ($uids as $uid) {
             $profile = Pi::api('user', 'user')->get(
                 $uid,
-                array(
+                [
                     'identity',
                     'time_created',
                     'ip_register',
                     'time_activated',
-                )
+                ]
             );
 
             $profile['time_activated'] = $profile['time_activated']
@@ -516,31 +516,31 @@ class MaintenanceController extends ActionController
     {
         // Set time
         $today = mktime(
-            0,0,0,
+            0, 0, 0,
             date("m"),
             date("d"),
             date("Y")
         );
 
         $lastWeek = mktime(
-            0,0,0,
+            0, 0, 0,
             date("m"),
             date("d") - 7,
             date("Y")
         );
 
         $lastMonth = mktime(
-            0,0,0,
+            0, 0, 0,
             date("m") - 1,
             date("d"),
             date("Y")
         );
-        $history = 0;
+        $history   = 0;
 
         $getCount = function ($condition) {
-            $model = Pi::model('user_account');
+            $model  = Pi::model('user_account');
             $select = $model->select()->where($condition);
-            $select->columns(array('count' => new Expression('count(*)')));
+            $select->columns(['count' => new Expression('count(*)')]);
             $rowset = $model->selectWith($select);
             if ($rowset) {
                 $rowset = $rowset->current();
@@ -554,85 +554,85 @@ class MaintenanceController extends ActionController
 
 
         // Get register count
-        $userStats['register']['today'] = $getCount(
-            array('time_created > ?' => $today)
+        $userStats['register']['today']      = $getCount(
+            ['time_created > ?' => $today]
         );
-        $userStats['register']['last_week'] = $getCount(
-            array('time_created > ?' => $lastWeek)
+        $userStats['register']['last_week']  = $getCount(
+            ['time_created > ?' => $lastWeek]
         );
         $userStats['register']['last_month'] = $getCount(
-            array('time_created > ?' => $lastMonth)
+            ['time_created > ?' => $lastMonth]
         );
-        $userStats['register']['history'] = $getCount(
-            array('time_created > ?' => $history)
+        $userStats['register']['history']    = $getCount(
+            ['time_created > ?' => $history]
         );
 
         // Get activated count
-        $userStats['activated']['today'] = $getCount(
-            array('time_activated > ?' => $today)
+        $userStats['activated']['today']      = $getCount(
+            ['time_activated > ?' => $today]
         );
-        $userStats['activated']['last_week'] = $getCount(
-            array('time_activated > ?' => $lastWeek)
+        $userStats['activated']['last_week']  = $getCount(
+            ['time_activated > ?' => $lastWeek]
         );
         $userStats['activated']['last_month'] = $getCount(
-            array('time_activated > ?' => $lastMonth)
+            ['time_activated > ?' => $lastMonth]
         );
-        $userStats['activated']['history'] = $getCount(
-            array('time_activated > ?' => $history)
+        $userStats['activated']['history']    = $getCount(
+            ['time_activated > ?' => $history]
         );
 
         // Get pending count
-        $userStats['pending']['today'] = $getCount(array(
+        $userStats['pending']['today']      = $getCount([
             'time_activated'   => 0,
             'time_created > ?' => $today,
-        ));
-        $userStats['pending']['last_week'] = $getCount(array(
+        ]);
+        $userStats['pending']['last_week']  = $getCount([
             'time_activated'   => 0,
             'time_created > ?' => $lastWeek,
-        ));
-        $userStats['pending']['last_month'] = $getCount(array(
+        ]);
+        $userStats['pending']['last_month'] = $getCount([
             'time_activated'   => 0,
             'time_created > ?' => $lastMonth,
-        ));
-        $userStats['pending']['history'] = $getCount(array(
+        ]);
+        $userStats['pending']['history']    = $getCount([
             'time_activated'   => 0,
             'time_created > ?' => $history,
-        ));
+        ]);
 
-        $ipStats = function($time) {
+        $ipStats = function ($time) {
             // Get top10 ip
             $modelAccount = Pi::model('user_account');
             $modelProfile = Pi::model('profile', 'user');
 
-            $where = array(
+            $where        = [
                 'account.time_deleted'     => 0,
                 'account.time_created > ?' => $time,
-            );
+            ];
             $whereAccount = Pi::db()->where()->create($where);
-            $where = Pi::db()->where();
+            $where        = Pi::db()->where();
             $where->add($whereAccount);
 
             $select = Pi::db()->select();
             $select->from(
-                array('account' => $modelAccount->getTable())
+                ['account' => $modelAccount->getTable()]
             );
 
             $select->join(
-                array('profile' => $modelProfile->getTable()),
+                ['profile' => $modelProfile->getTable()],
                 'profile.uid=account.id',
-                array('ip_register')
+                ['ip_register']
             );
 
-            $select->columns(array(
+            $select->columns([
                 'count' => new Expression('count(profile.ip_register)'),
-            ));
+            ]);
             $select->group('profile.ip_register');
             $select->order('count DESC');
             $select->limit(10);
 
             $select->where($where);
             $rowset = Pi::db()->query($select);
-            $result = array();
+            $result = [];
             foreach ($rowset as $row) {
                 $result[] = $row;
             }
@@ -642,7 +642,7 @@ class MaintenanceController extends ActionController
         };
 
         // Get ip statistics
-        $ipStatistics = array();
+        $ipStatistics               = [];
         $ipStatistics['today']      = $ipStats($today);
         $ipStatistics['last_week']  = $ipStats($lastWeek);
         $ipStatistics['last_month'] = $ipStats($lastMonth);

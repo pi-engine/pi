@@ -15,4 +15,5 @@ use Module\User\Field\CustomCompoundHandler as PiCustomCompoundHandler;
  * @deprecated
  */
 abstract class CustomCompoundHandler extends PiCustomCompoundHandler
-{}
+{
+}

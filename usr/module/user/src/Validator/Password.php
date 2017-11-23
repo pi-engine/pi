@@ -13,41 +13,41 @@ namespace Module\User\Validator;
 use Pi;
 use Zend\Validator\AbstractValidator;
 use Zend\Validator\EmailAddress as EmailAddressValidator;
+
 /**
  * Validator for username
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
-
 class Password extends AbstractValidator
 {
-    const EMAIL = 'isEmail';
+    const EMAIL     = 'isEmail';
     const TOO_SHORT = 'stringLengthTooShort';
     const TOO_LONG  = 'stringLengthTooLong';
-    const UPPER  = 'upper';
-    const LOWER  = 'lower';
-    const DIGIT  = 'digit';
+    const UPPER     = 'upper';
+    const LOWER     = 'lower';
+    const DIGIT     = 'digit';
 
     protected $messageTemplates;
 
-    protected $messageVariables = array(
-        'max'        => 'max',
-        'min'        => 'min',
-    );
+    protected $messageVariables = [
+        'max' => 'max',
+        'min' => 'min',
+    ];
 
     protected $max;
     protected $min;
 
     public function __construct()
     {
-        $this->messageTemplates = array(
-            self::EMAIL => __("Password can't be an email address"),
+        $this->messageTemplates = [
+            self::EMAIL     => __("Password can't be an email address"),
             self::TOO_SHORT => __('Password is less than %min% characters long'),
             self::TOO_LONG  => __('Password is more than %max% characters long'),
-            self::UPPER  => __("Password must contain at least one uppercase letter"),
-            self::LOWER  => __("Password must contain at least one lowercase letter"),
-            self::DIGIT  => __("Password must contain at least one digit character")
-        );
+            self::UPPER     => __("Password must contain at least one uppercase letter"),
+            self::LOWER     => __("Password must contain at least one lowercase letter"),
+            self::DIGIT     => __("Password must contain at least one digit character"),
+        ];
 
         parent::__construct();
     }
@@ -78,10 +78,10 @@ class Password extends AbstractValidator
             return false;
         }
 
-        $piConfig = Pi::user()->config();
+        $piConfig           = Pi::user()->config();
         $strenghtenPassword = $piConfig['strenghten_password'];
 
-        if($strenghtenPassword){
+        if ($strenghtenPassword) {
             if (!preg_match('/[A-Z]/', $value)) {
                 $this->error(self::UPPER);
                 return false;
@@ -108,10 +108,10 @@ class Password extends AbstractValidator
      */
     public function setConfigOption()
     {
-        $this->options = array(
-            'min'       => Pi::user()->config('password_min'),
-            'max'       => Pi::user()->config('password_max'),
-        );
+        $this->options = [
+            'min' => Pi::user()->config('password_min'),
+            'max' => Pi::user()->config('password_max'),
+        ];
 
         return $this;
     }
