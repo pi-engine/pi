@@ -100,7 +100,7 @@ class ReCaptcha extends FormInput
         $js =<<<EOJ
 <script type="text/javascript">
 
-$(window).load(function(){
+$(window).on('load', function(){
     var hiddenElement = $('#$responseId-$uniqueId');
     var form = hiddenElement.parents('form');
     

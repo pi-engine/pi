@@ -25,6 +25,8 @@ msgstr ""
 "X-Poedit-SearchPath-8: usr/custom/module/user/config/form.register.php\n"
 "X-Poedit-SearchPath-9: usr/module/user/config/form.register.php\n"
 "X-Poedit-SearchPath-10: usr/module/system/src/Form/LoginForm.php\n"
+"X-Poedit-SearchPath-11: usr/module/user/src/Controller/Front/PasswordController.php\n"
+"X-Poedit-SearchPath-12: usr/module/user/src/Form/RegisterForm.php\n"
 "X-Poedit-SearchPathExcluded-0: www/static/js/bs-lessdoc-parser.js\n"
 
 #: lib/Pi/Application/Installer/Theme.php:348

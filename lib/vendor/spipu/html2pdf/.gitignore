@@ -1,0 +1,17 @@
+# Eclipse
+/.settings/
+/.buildpath
+/.project
+/nbproject
+
+# PHPStorm
+/.idea
+
+# Examples
+/test/*
+!/test/generate.sh
+
+# Composer
+/bin/
+/vendor/
+/composer.lock

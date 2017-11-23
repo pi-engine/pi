@@ -38,3 +38,4 @@ $(window).load(function(){
 ```
 
 Added : unique identifier for each form on the current page (with uniqueId variable)
+Fixed : compatibility from jQuery 1.x to 3.x (change "load" method to "on" method)

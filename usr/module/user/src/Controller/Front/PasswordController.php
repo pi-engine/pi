@@ -47,6 +47,22 @@ class PasswordController extends ActionController
         ];
 
         $form = new PasswordForm('password-change');
+
+        $uniqueId = rand();
+        $elementId = 'register-' . $uniqueId;
+
+        $form->setAttribute('data-toggle', 'validator');
+        $form->setAttribute('data-delay', 1000);
+        $form->setAttribute('data-html', true);
+        $form->setAttribute('id', $elementId);
+        $form->setAttribute('onsubmit', "$('#$elementId').validator('destroy');");
+
+
+        $passwordConfirmError = __('Whoops, these don\'t match');
+        $form->get('credential-confirm')
+            ->setAttribute('data-match', '#'.$elementId. ' [name=credential-new]')
+            ->setAttribute('data-match-error', $passwordConfirmError);
+
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $form->setInputFilter(new PasswordFilter);
@@ -114,9 +130,20 @@ class PasswordController extends ActionController
         $strong                  = __("Strong");
         $veryStrong              = __("Very Strong");
 
-        $message = __("Password must contain at lease one uppercase letter, one lowercase letter and one digit character");
+        $message = __("Password must contain at least one uppercase letter, one lowercase letter and one digit character");
 
         $script = <<<HTML
+        
+<label>
+    <input
+        onchange="$('input[name=credential-new], input[name=credential-confirm]').attr('type', function(index, attr){ return attr == 'text' ? 'password' : 'text';})"
+        name="show_password"
+        type="checkbox"
+    />
+    
+    $showPasswordLabel
+</label>
+
 <script>
 
     var minChar = {$minChars};
@@ -139,15 +166,30 @@ class PasswordController extends ActionController
 </script>
 HTML;
 
-        $form->get('credential')
+        $form->get('credential')->setAttribute('id', 'credential-verify');
+        $form->get('credential-new')
             ->setAttribute('description', $script);
 
-        $this->view()->assign([
-            'form' => $form,
+        if($strenghtenPassword){
+            $url = Pi::url(Pi::service('url')->assemble('user', array(
+                'module' => 'user',
+                'controller' => 'password',
+                'action' => 'validateInput',
+            )));
+
+            $form->get('credential-new')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
+                ->setAttribute('data-error', __('Invalid password'))
+                ->setAttribute('data-remote', $url)
+                ->setAttribute('data-remote-error', __('Password must contain at least one uppercase letter, one lowercase letter and one digit character'))
+            ;
+        }
+
+        $this->view()->assign(array(
+            'form'      => $form,
             //'groups'    => $groups,
             //'cur_group' => 'password',
             //'user'      => $user,
-        ]);
+        ));
 
         $this->view()->headTitle(__('Change password'));
         $this->view()->headdescription(__('To ensure your account security, complex password is required.'), 'set');
@@ -339,11 +381,21 @@ HTML;
         $strong                  = __("Strong");
         $veryStrong              = __("Very Strong");
 
-        $message = __("Password must contain at lease one uppercase letter, one lowercase letter and one digit character");
+        $message = __("Password must contain at least one uppercase letter, one lowercase letter and one digit character");
 
         $script = <<<HTML
+        
+<label>
+    <input
+        onchange="$('input[name=credential-new], input[name=credential-confirm]').attr('type', function(index, attr){ return attr == 'text' ? 'password' : 'text';})"
+        name="show_password"
+        type="checkbox"
+    />
+    
+    $showPasswordLabel
+</label>
+    
 <script>
-
     var minChar = {$minChars};
     
     var wordLength = "{$wordLength}";
@@ -366,17 +418,17 @@ HTML;
 
         $form->get('credential-new')
             ->setAttribute('description', $script)
-            ->setAttribute('id', 'credential')
-            ->setAttribute('pattern', '^.{0,' . $piConfig['password_max'] . '}$')
+            ->setAttribute('id', 'credential-new')
+            ->setAttribute('pattern', '^.{0,'.$piConfig['password_max'].'}$')
             ->setAttribute('data-pattern-error', sprintf(__("Must be less than %s characters"), $maxChars))
             ->setAttribute('data-minlength', $piConfig['password_min']);
 
-        if ($strenghtenPassword) {
-            $url = Pi::url(Pi::service('url')->assemble('user', [
-                'module'     => 'user',
-                'controller' => 'register',
-                'action'     => 'validateInput',
-            ]));
+        if($strenghtenPassword){
+            $url = Pi::url(Pi::service('url')->assemble('user', array(
+                'module' => 'user',
+                'controller' => 'password',
+                'action' => 'validateInput',
+            )));
 
             $form->get('credential-new')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
                 ->setAttribute('data-error', __('Invalid password'))
@@ -386,7 +438,7 @@ HTML;
 
         $passwordConfirmError = __('Whoops, these don\'t match');
         $form->get('credential-confirm')
-            ->setAttribute('data-match', '#' . $elementId . ' [name=credential]')
+            ->setAttribute('data-match', '#'.$elementId. ' [name=credential-new]')
             ->setAttribute('data-match-error', $passwordConfirmError);
 
         if ($this->request->isPost()) {
@@ -436,5 +488,54 @@ HTML;
         $token = md5($uid . $email . Pi::config('salt') . mt_rand());
 
         return $token;
+    }
+
+    public function validateInputAction(){
+        Pi::service('log')->mute();
+
+        $data = (array) $this->params()->fromQuery();
+
+        $response = array(
+            'error' => false,
+            'message' => false
+        );
+
+        // Get register form
+        /* @var $form \Module\User\Form\PasswordForm */
+        $form = new PasswordForm('password-change');
+        $form->setInputFilter(new PasswordFilter);
+        $form->setData($data);
+
+        if($form->has('captcha')){
+            $form->remove('captcha');
+        }
+
+        $messages = array();
+
+        if(!$form->isValid()){
+            $messages = $form->getMessages();
+        };
+
+
+        $dataMessages = array_intersect_key($messages, $data);
+
+        if($dataMessages){
+            $firstElementMessages = array_shift($dataMessages);
+
+            foreach($firstElementMessages as $message){
+
+                $response['message'] = $message;
+            }
+
+            $response['error'] = true;
+
+            $this->getResponse()->setStatusCode(404);
+        }
+
+
+        $this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/json');;
+        $this->getResponse()->setContent(json_encode($response));
+
+        return $this->getResponse();
     }
 }
