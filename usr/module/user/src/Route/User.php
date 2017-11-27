@@ -26,13 +26,13 @@ class User extends UserRoute
      * Default values.
      * @var array
      */
-    protected $defaults = array(
-        'module'        => 'user',
-        'controller'    => 'index',
-        'action'        => 'index'
-    );
+    protected $defaults = [
+        'module'     => 'user',
+        'controller' => 'index',
+        'action'     => 'index',
+    ];
 
-    public function assemble(array $params = array(), array $options = array())
+    public function assemble(array $params = [], array $options = [])
     {
         $url = parent::assemble($params, $options);
 

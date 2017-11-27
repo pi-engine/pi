@@ -29,21 +29,21 @@ class Log extends AbstractApi
      *
      * Log array: time, data
      *
-     * @param int       $uid
-     * @param string    $action
-     * @param int       $limit
-     * @param int       $offset
+     * @param int $uid
+     * @param string $action
+     * @param int $limit
+     * @param int $offset
      *
      * @return array
      */
     public function get($uid, $action, $limit, $offset = 0)
     {
-        $result = array();
+        $result = [];
 
-        $model = Pi::model('log', 'user');
+        $model  = Pi::model('log', 'user');
         $select = $model->select();
-        $select->where(array('uid' => $uid, 'action' => $action))
-            ->columns(array('time', 'data'))
+        $select->where(['uid' => $uid, 'action' => $action])
+            ->columns(['time', 'data'])
             ->limit($limit)
             ->offset($offset)
             ->order('id DESC');
@@ -64,21 +64,21 @@ class Log extends AbstractApi
      */
     public function getLogCollectionByUserId($uid, $action, $module = null, $data = null)
     {
-        $model = Pi::model('log', 'user');
+        $model  = Pi::model('log', 'user');
         $select = $model->select();
-        $select->where(array('uid' => $uid))
+        $select->where(['uid' => $uid])
             ->order('time DESC');
 
         $select->where->addPredicate(
             new \Zend\Db\Sql\Predicate\Like('action', $action . '%')
         );
 
-        if($module){
-            $select->where(array('module' => $module));
+        if ($module) {
+            $select->where(['module' => $module]);
         }
 
-        if($data){
-            $select->where(array('data' => $data));
+        if ($data) {
+            $select->where(['data' => $data]);
         }
 
         $rowset = $model->selectWith($select);
@@ -89,10 +89,10 @@ class Log extends AbstractApi
     /**
      * Write a log
      *
-     * @param int       $uid
-     * @param string    $action
-     * @param array     $log
-     * @param int       $time
+     * @param int $uid
+     * @param string $action
+     * @param array $log
+     * @param int $time
      *
      * @return bool
      */

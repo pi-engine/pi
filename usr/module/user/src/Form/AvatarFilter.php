@@ -20,13 +20,13 @@ use Zend\InputFilter\InputFilter;
 class AvatarFilter extends InputFilter
 {
     /**
-     * Initializing validator and filter 
+     * Initializing validator and filter
      */
     public function __construct()
     {
-        $this->add(array(
+        $this->add([
             'name'     => 'fake_id',
             'required' => true,
-        ));
+        ]);
     }
 }

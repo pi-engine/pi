@@ -1,4 +1,4 @@
-function translateThisThing(key){
+function translateThisThing(key) {
     var translations = {
         "wordLength": wordLength,
         "wordNotEmail": wordNotEmail,
@@ -25,7 +25,7 @@ $(document).ready(function(){
                 minChar: minChar
             },
             rules: {
-                scores : {
+                scores: {
                     wordNotEmail: -100,
                     wordLength: -50,
                     wordSimilarToUsername: -100,
@@ -43,7 +43,7 @@ $(document).ready(function(){
                     wordLetterNumberCharCombo: 2
                 }
             },
-            i18n : {
+            i18n: {
                 t: function (key) {
                     var result = translateThisThing(key); // Do your magic here
 

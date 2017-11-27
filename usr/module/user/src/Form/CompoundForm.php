@@ -35,29 +35,29 @@ class CompoundForm extends BaseForm
             $this->add($field);
         }
 
-        $this->add(array(
+        $this->add([
             'name'       => 'set',
             'type'       => 'hidden',
-            'attributes' => array(
+            'attributes' => [
                 'value' => 0,
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'group',
             'type'       => 'hidden',
-            'attributes' => array(
+            'attributes' => [
                 'value' => '',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'submit',
             'type'       => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'value' => __('Submit'),
-            ),
-        ));
+            ],
+        ]);
 
     }
 }

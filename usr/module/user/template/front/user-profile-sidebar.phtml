@@ -13,7 +13,7 @@
 $this->css($this->assetModule('front/front.css', 'user'));
 
 // Load language
-Pi::service('i18n')->load(array('module/user', 'default'));
+Pi::service('i18n')->load(['module/user', 'default']);
 
 // Get module
 $module = Pi::service('module')->current();

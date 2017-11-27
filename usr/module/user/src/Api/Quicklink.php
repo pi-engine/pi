@@ -33,20 +33,20 @@ class  Quicklink extends AbstractApi
      */
     public function getList($limit = null, $offset = null)
     {
-        $result = array();
-        $model = Pi::model('quicklink', $this->module);
-        $where = array(
+        $result  = [];
+        $model   = Pi::model('quicklink', $this->module);
+        $where   = [
             'active'       => 1,
             'display <> ?' => 0,
-        );
-        $columns = array(
+        ];
+        $columns = [
             'id',
             'name',
             'title',
             'module',
             'link',
             'icon',
-        );
+        ];
 
         $select = $model->select()->where($where);
         $select->order('display');

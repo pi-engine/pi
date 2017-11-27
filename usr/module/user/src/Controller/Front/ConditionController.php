@@ -28,7 +28,7 @@ class ConditionController extends ActionController
     {
         $this->redirect()->toRoute(
             '',
-            array('action' => 'download')
+            ['action' => 'download']
         );
 
         return;
@@ -44,9 +44,9 @@ class ConditionController extends ActionController
         // Get condition list
         $condition = Pi::api('condition', 'user')->getLastEligibleCondition();
 
-        if($condition){
+        if ($condition) {
             $destinationPath = Pi::url('upload/condition');
-            $finalUrl = $destinationPath . '/' . $condition->filename;
+            $finalUrl        = $destinationPath . '/' . $condition->filename;
             Pi::service('url')->redirect($finalUrl);
         } else {
             die(__("No active condition file"));
@@ -63,14 +63,14 @@ class ConditionController extends ActionController
 
         // Get condition list
         $condition = Pi::api('condition', 'user')->getLastEligibleCondition();
-        $uid = Pi::user()->getId();
+        $uid       = Pi::user()->getId();
 
-        if($condition && $uid){
-            $log = array(
-                'uid' => $uid,
-                'data' => $condition->version,
+        if ($condition && $uid) {
+            $log = [
+                'uid'    => $uid,
+                'data'   => $condition->version,
                 'action' => 'accept_conditions_from_bar',
-            );
+            ];
 
             Pi::api('log', 'user')->add(null, null, $log);
         }

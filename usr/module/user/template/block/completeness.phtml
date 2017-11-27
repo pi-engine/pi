@@ -12,17 +12,21 @@ if ($block['percent'] < 41) {
 <div class="user-block-completeness">
     <div class="row clearfix">
         <div class="col-md-2 text-center">
-            <a title="<?php echo $this->escape($block['user']['name']); ?>" href="<?php echo $this->escape($block['profileUrl']);?>">
+            <a title="<?php echo $this->escape($block['user']['name']); ?>"
+               href="<?php echo $this->escape($block['profileUrl']); ?>">
                 <?php echo $block['avatar']; ?>
             </a>
         </div>
         <div class="col-md-10">
             <p>
                 <?php echo _b('Please complete your profile information, to can use all website features'); ?>
-                <a title="<?php echo _b('update all'); ?>" href="<?php echo $this->escape($block['accountUrl']); ?>">( <?php echo _b('update all'); ?> )</a>
+                <a title="<?php echo _b('update all'); ?>"
+                   href="<?php echo $this->escape($block['accountUrl']); ?>">( <?php echo _b('update all'); ?> )</a>
             </p>
             <div class="progress">
-                <div class="progress-bar progress-bar-striped <?php echo $class; ?> active" role="progressbar" aria-valuenow="<?php echo $this->escape($block['percent']); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $this->escape($block['percent']); ?>%">
+                <div class="progress-bar progress-bar-striped <?php echo $class; ?> active" role="progressbar"
+                     aria-valuenow="<?php echo $this->escape($block['percent']); ?>" aria-valuemin="0"
+                     aria-valuemax="100" style="width: <?php echo $this->escape($block['percent']); ?>%">
                     <?php echo sprintf(_b('%s%s Complete'), _number($block['percent']), '%'); ?>
                 </div>
             </div>
@@ -37,7 +41,9 @@ if ($block['percent'] < 41) {
                             <div class="text-danger">
                                 <i class="fa fa-times"></i> <?php echo $this->escape($mainFields['title']); ?>
                                 <?php if ($mainFields['name'] == 'avatar') { ?>
-                                    <a title="<?php echo _b('update'); ?>" href="<?php echo $this->escape($block['avatarUrl']); ?>">( <?php echo _b('update'); ?> )</a>
+                                    <a title="<?php echo _b('update'); ?>"
+                                       href="<?php echo $this->escape($block['avatarUrl']); ?>">( <?php echo _b('update'); ?>
+                                        )</a>
                                 <?php } ?>
                             </div>
                         <?php } ?>

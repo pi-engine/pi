@@ -15,16 +15,16 @@ $this->headMeta('noindex', 'robots');
 
         <?php include $this->template('./profile-topbar.phtml'); ?>
         <div class="user-min-body user-profile-list">
-            <?php foreach ($groups as $group) {?>
+            <?php foreach ($groups as $group) { ?>
                 <div class="user-profile-item">
                     <div class="clearfix user-legend">
-                        <h4><?php echo _escape($group['title']);?></h4>
+                        <h4><?php echo _escape($group['title']); ?></h4>
                         <?php
                         if ($group['compound']) {
-                            $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['id']));
-                            $addUrl = $editUrl . '#user-info-add';
+                            $editUrl = $this->url('', ['controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['id']]);
+                            $addUrl  = $editUrl . '#user-info-add';
                         } else {
-                            $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['id']));
+                            $editUrl = $this->url('', ['controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['id']]);
                         }
                         ?>
                         <a class="btn btn-default user-legend-edit" href="<?php echo $editUrl; ?>">

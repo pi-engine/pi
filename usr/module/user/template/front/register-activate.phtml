@@ -20,6 +20,6 @@
 <?php } else { ?>
     <p><?php _e('Sorry, account activation is failed.'); ?></p>
     <p>
-        <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.activation')); ?>"><?php _e('Resend activation email.');?></a>
+        <a href="<?php echo $this->url('', ['controller' => 'register', 'action' => 'resend.activation']); ?>"><?php _e('Resend activation email.'); ?></a>
     </p>
 <?php } ?>

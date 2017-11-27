@@ -26,17 +26,17 @@ class CompoundField extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $fields = array();
+        $fields = [];
 
-        $columns = array('name', 'title', 'compound', 'edit', 'filter', 'is_required');
-        $where = array('compound' => $options['compound']);
-        $model = Pi::model('compound_field', $this->module);
-        $select = $model->select()->where($where)
+        $columns = ['name', 'title', 'compound', 'edit', 'filter', 'is_required'];
+        $where   = ['compound' => $options['compound']];
+        $model   = Pi::model('compound_field', $this->module);
+        $select  = $model->select()->where($where)
             ->columns($columns)
             ->order('id');
-        $rowset = $model->selectWith($select);
+        $rowset  = $model->selectWith($select);
         foreach ($rowset as $row) {
             $fields[$row->name] = $row->toArray();
         }
@@ -51,8 +51,8 @@ class CompoundField extends AbstractRegistry
      */
     public function read($compound = '')
     {
-        $options = array('compound' => $compound);
-        $data = $this->loadData($options);
+        $options = ['compound' => $compound];
+        $data    = $this->loadData($options);
 
         return $data;
     }

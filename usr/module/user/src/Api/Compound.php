@@ -33,8 +33,8 @@ class Compound extends AbstractApi
      */
     public function getMeta($name)
     {
-        $list = Pi::registry('field', 'user')->read('compound', 'display');
-        $result = isset($list[$name]) ? $list[$name] : array();
+        $list   = Pi::registry('field', 'user')->read('compound', 'display');
+        $result = isset($list[$name]) ? $list[$name] : [];
 
         return $result;
     }
@@ -42,18 +42,18 @@ class Compound extends AbstractApi
     /**
      * Get user custom compound/field
      *
-     * @param int|int[]   $uid
+     * @param int|int[] $uid
      * @param string $name Compound name
-     * @param bool  $filter     To filter for display
+     * @param bool $filter To filter for display
      *
      * @return array
      */
     public function get($uid, $name, $filter = false)
     {
-        $uids = (array) $uid;
+        $uids   = (array)$uid;
         $result = $this->mget($uids, $name, $filter);
         if (is_scalar($uid)) {
-            $result = isset($result[$uid]) ? $result[$uid] : array();
+            $result = isset($result[$uid]) ? $result[$uid] : [];
         }
 
         return $result;
@@ -64,28 +64,28 @@ class Compound extends AbstractApi
      *
      * @param int[] $uids
      * @param string $name Compound name
-     * @param bool  $filter     To filter for display
+     * @param bool $filter To filter for display
      *
      * @return array
      */
     public function mget($uids, $name, $filter = false)
     {
-        $result = array();
-        $meta = $this->getMeta($name);
+        $result = [];
+        $meta   = $this->getMeta($name);
         if (!$meta) {
             return $result;
         }
 
         if ($meta['handler']) {
-            $handler    = new $meta['handler']($name);
-            $result     = $handler->mget($uids, $filter);
+            $handler = new $meta['handler']($name);
+            $result  = $handler->mget($uids, $filter);
         } else {
-            $model = Pi::model('compound', 'user');
+            $model  = Pi::model('compound', 'user');
             $select = $model->select();
-            $select->order('set ASC')->where(array(
-                'uid'       => $uids,
-                'compound'  => $name,
-            ));
+            $select->order('set ASC')->where([
+                'uid'      => $uids,
+                'compound' => $name,
+            ]);
             $rowset = $model->selectWith($select);
             foreach ($rowset as $row) {
                 if ($filter) {
@@ -93,9 +93,9 @@ class Compound extends AbstractApi
                 } else {
                     $value = $row['value'];
                 }
-                $id         = (int) $row['uid'];
-                $set        = (int) $row['set'];
-                $var        = $row['field'];
+                $id                      = (int)$row['uid'];
+                $set                     = (int)$row['set'];
+                $var                     = $row['field'];
                 $result[$id][$set][$var] = $value;
             }
         }
@@ -114,7 +114,7 @@ class Compound extends AbstractApi
      */
     public function display($uid, $name, $data = null)
     {
-        $result = array();
+        $result = [];
 
         if (null === $data) {
             $data = $this->get($uid, $name);
@@ -124,33 +124,33 @@ class Compound extends AbstractApi
             return $result;
         }
         if ($meta['handler']) {
-            $handler    = new $meta['handler']($name);
-            $result     = $handler->display($uid, $data);
+            $handler = new $meta['handler']($name);
+            $result  = $handler->display($uid, $data);
         } else {
             if (is_scalar($uid)) {
-                $data = array($uid => $data);
+                $data = [$uid => $data];
             }
             $meta = Pi::registry('compound_field', 'user')->read($name);
             array_walk($data, function (&$list) use ($meta) {
                 $temp = $list;
-                $list = array();
+                $list = [];
                 foreach ($temp as $item) {
-                    $record = array();
+                    $record = [];
                     foreach ($meta as $name => $field) {
                         if (!isset($item[$name])) {
                             continue;
                         }
-                        $record[$name] = array(
+                        $record[$name] = [
                             'title' => $field['title'],
                             'value' => $item[$name],
-                        );
+                        ];
                     }
                     $list[] = $record;
                 }
             });
 
             if (is_scalar($uid)) {
-                $result = isset($data[$uid]) ? $data[$uid] : array();
+                $result = isset($data[$uid]) ? $data[$uid] : [];
             } else {
                 $result = $data;
             }

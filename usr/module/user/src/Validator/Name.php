@@ -22,13 +22,13 @@ class Name extends Username
 {
     public function __construct()
     {
-        $this->messageTemplates = array(
-            static::INVALID     => __('Invalid name: %formatHint%'),
-            static::RESERVED    => __('User name is reserved'),
-            static::TAKEN       => __('User name is already taken'),
-            static::TOO_SHORT   => __('User name is less than %min% characters long'),
-            static::TOO_LONG    => __('User name is more than %max% characters long')
-        );
+        $this->messageTemplates = [
+            static::INVALID   => __('Invalid name: %formatHint%'),
+            static::RESERVED  => __('User name is reserved'),
+            static::TAKEN     => __('User name is already taken'),
+            static::TOO_SHORT => __('User name is less than %min% characters long'),
+            static::TOO_LONG  => __('User name is more than %max% characters long'),
+        ];
         parent::__construct();
         $this->setConfigOption();
     }
@@ -42,7 +42,7 @@ class Name extends Username
      */
     protected function isDuplicated($value, $context)
     {
-        $where = array('name' => $value);
+        $where = ['name' => $value];
         if (!empty($context['id'])) {
             $where['id <> ?'] = $context['id'];
         }
@@ -61,13 +61,13 @@ class Name extends Username
      */
     public function setConfigOption()
     {
-        $this->options = array(
+        $this->options = [
             'min'               => Pi::user()->config('name_min'),
             'max'               => Pi::user()->config('name_max'),
             'format'            => Pi::user()->config('name_format'),
             'blacklist'         => Pi::user()->config('name_blacklist'),
             'check_duplication' => true,
-        );
+        ];
 
         return $this;
     }

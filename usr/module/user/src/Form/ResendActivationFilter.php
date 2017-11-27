@@ -24,24 +24,24 @@ class ResendActivationFilter extends InputFilter
      */
     public function __construct()
     {
-        $this->add(array(
-            'name'          => 'email',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'EmailAddress',
-                    'options'   => array(
-                        'useMxCheck'        => false,
-                        'useDeepMxCheck'    => false,
-                        'useDomainCheck'    => false,
-                    ),
-                ),
-            ),
-        ));
+        $this->add([
+            'name'       => 'email',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'EmailAddress',
+                    'options' => [
+                        'useMxCheck'     => false,
+                        'useDeepMxCheck' => false,
+                        'useDomainCheck' => false,
+                    ],
+                ],
+            ],
+        ]);
     }
 }

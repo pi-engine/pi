@@ -15,4 +15,5 @@ use Module\System\Form\LoginFilter as InputFilter;
  * Filter for user login
  */
 class LoginFilter extends InputFilter
-{}
+{
+}

@@ -26,13 +26,13 @@ class CredentialVerify extends AbstractValidator
      * Message templates
      * @var array
      */
-    protected $messageTemplates = array();
+    protected $messageTemplates = [];
 
     public function __construct()
     {
-        $this->messageTemplates = array(
+        $this->messageTemplates = [
             self::INVALID => __('Invalid password.'),
-        );
+        ];
 
         parent::__construct();
     }
@@ -48,7 +48,7 @@ class CredentialVerify extends AbstractValidator
     {
         $this->setValue($value);
 
-        $identity = $context['identity'];
+        $identity   = $context['identity'];
         $credential = $value;
 
         $userRow = Pi::model('user')->find($identity, 'identity');

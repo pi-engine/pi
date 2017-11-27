@@ -38,12 +38,12 @@ class EditUserForm extends BaseForm
             $this->add($field);
         }
 
-        $this->add(array(
-            'name' => 'submit',
-            'type' => 'submit',
-            'attributes' => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            ),
-        ));
+            ],
+        ]);
     }
 }

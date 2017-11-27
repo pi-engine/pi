@@ -12,151 +12,151 @@
  *
  * @author Liu Chuang <liuchuangww@gmail.com>
  */
-return array(
+return [
     // Event list
-    'event'    => array(
+    'event'    => [
         // Login
-        'user_login' => array(
+        'user_login'      => [
             // title
             'title' => __('User logged in'),
-        ),
+        ],
 
         // Logout
-        'user_logout' => array(
+        'user_logout'     => [
             // title
             'title' => __('User logged out'),
-        ),
+        ],
 
         // Register user event
-        'user_register' => array(
+        'user_register'   => [
             // title
             'title' => __('User registered'),
-        ),
+        ],
 
         // Activate user event
-        'user_activate' => array(
+        'user_activate'   => [
             // title
             'title' => __('User activated'),
-        ),
+        ],
 
         // Enable user
-        'user_enable' => array(
+        'user_enable'     => [
             // title
             'title' => __('User enabled'),
-        ),
+        ],
 
         // Disable user
-        'user_disable' => array(
+        'user_disable'    => [
             // title
             'title' => __('User disabled'),
-        ),
+        ],
 
         // Delete user
-        'user_delete' => array(
+        'user_delete'     => [
             // title
             'title' => __('User deleted'),
-        ),
+        ],
 
         // Update display name event
-        'user_update' => array(
+        'user_update'     => [
             // title
             'title' => __('User profile updated'),
-        ),
+        ],
 
         // Update display name event
-        'name_change' => array(
+        'name_change'     => [
             // title
             'title' => __('Display name changed'),
-        ),
+        ],
 
         // Update email event
-        'email_change' => array(
+        'email_change'    => [
             // title
             'title' => __('Email changed'),
-        ),
+        ],
 
         // Update avatar event
-        'avatar_change' => array(
+        'avatar_change'   => [
             // title
             'title' => __('Avatar changed'),
-        ),
+        ],
 
         // Update password event
-        'password_change' => array(
+        'password_change' => [
             // title
             'title' => __('Password changed'),
-        ),
+        ],
 
         // Assign role
-        'role_assign' => array(
+        'role_assign'     => [
             // title
             'title' => __('Role assigned'),
-        ),
+        ],
 
         // Remove role
-        'role_remove' => array(
+        'role_remove'     => [
             // title
             'title' => __('Role removed'),
-        ),
-    ),
+        ],
+    ],
 
     // Listener list
-    'listener' => array(
-        array(
-            'event'     => array('user', 'user_register'),
-            'callback'  => array('event', 'userRegister'),
-        ),
-        array(
-            'event'     => array('user', 'user_activate'),
-            'callback'  => array('event', 'userActivate'),
-        ),
-        array(
-            'event'     => array('user', 'user_enable'),
-            'callback'  => array('event', 'userEnable'),
-        ),
-        array(
-            'event'     => array('user', 'user_disable'),
-            'callback'  => array('event', 'userDisable'),
-        ),
-        array(
-            'event'     => array('user', 'user_delete'),
-            'callback'  => array('event', 'userDelete'),
-        ),
-        array(
-            'event'     => array('user', 'user_update'),
-            'callback'  => array('event', 'userUpdate'),
-        ),
-        array(
-            'event'     => array('user', 'name_change'),
-            'callback'  => array('event', 'nameChange'),
-        ),
-        array(
-            'event'     => array('user', 'email_change'),
-            'callback'  => array('event', 'emailChange'),
-        ),
-        array(
-            'event'     => array('user', 'avatar_change'),
-            'callback'  => array('event', 'avatarChange'),
-        ),
-        array(
-            'event'     => array('user', 'password_change'),
-            'callback'  => array('event', 'passwordChange'),
-        ),
-        array(
-            'event'     => array('user', 'role_assign'),
-            'callback'  => array('event', 'roleAssign'),
-        ),
-        array(
-            'event'     => array('user', 'role_remove'),
-            'callback'  => array('event', 'roleRemove'),
-        ),
-        array(
-            'event'     => array('user', 'user_login'),
-            'callback'  => array('event', 'userLogin'),
-        ),
-        array(
-            'event'     => array('user', 'user_logout'),
-            'callback'  => array('event', 'userLogout'),
-        ),
-    ),
-);
+    'listener' => [
+        [
+            'event'    => ['user', 'user_register'],
+            'callback' => ['event', 'userRegister'],
+        ],
+        [
+            'event'    => ['user', 'user_activate'],
+            'callback' => ['event', 'userActivate'],
+        ],
+        [
+            'event'    => ['user', 'user_enable'],
+            'callback' => ['event', 'userEnable'],
+        ],
+        [
+            'event'    => ['user', 'user_disable'],
+            'callback' => ['event', 'userDisable'],
+        ],
+        [
+            'event'    => ['user', 'user_delete'],
+            'callback' => ['event', 'userDelete'],
+        ],
+        [
+            'event'    => ['user', 'user_update'],
+            'callback' => ['event', 'userUpdate'],
+        ],
+        [
+            'event'    => ['user', 'name_change'],
+            'callback' => ['event', 'nameChange'],
+        ],
+        [
+            'event'    => ['user', 'email_change'],
+            'callback' => ['event', 'emailChange'],
+        ],
+        [
+            'event'    => ['user', 'avatar_change'],
+            'callback' => ['event', 'avatarChange'],
+        ],
+        [
+            'event'    => ['user', 'password_change'],
+            'callback' => ['event', 'passwordChange'],
+        ],
+        [
+            'event'    => ['user', 'role_assign'],
+            'callback' => ['event', 'roleAssign'],
+        ],
+        [
+            'event'    => ['user', 'role_remove'],
+            'callback' => ['event', 'roleRemove'],
+        ],
+        [
+            'event'    => ['user', 'user_login'],
+            'callback' => ['event', 'userLogin'],
+        ],
+        [
+            'event'    => ['user', 'user_logout'],
+            'callback' => ['event', 'userLogout'],
+        ],
+    ],
+];

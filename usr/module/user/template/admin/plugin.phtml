@@ -1,31 +1,31 @@
 <?php
 $this->jQuery('ui/jquery-ui.min.js');
-$this->angular(array(
+$this->angular([
     'angular-route.js',
     'ui-bootstrap-custom-tpls-0.7.0.js',
     'pi.js',
-    'pi-sortable.js'
-));
+    'pi-sortable.js',
+]);
 ?>
 <script>
-angular
-    .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi', 'ui.sortable'])
-    .constant('config', {
-        urlRoot: '<?php echo $this->url('', array('controller' => 'plugin')); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
-        t: {
-            ITEM_NAME: '<?php echo _a('Item name'); ?>',
-            FROM: '<?php echo _a('From module'); ?>',
-            DISPLAY: '<?php echo _a('Display'); ?>',
-            TITLE: '<?php echo _a('Items displayed on the homepage timeline'); ?>',
-            YES: '<?php echo _a('Yes'); ?>',
-            NO: '<?php echo _a('No'); ?>',
-            ACTIVITIES: '<?php echo _a('Activities'); ?>',
-            ACTIVITIES_REPOSITORY: '<?php echo _a('Activities items repository'); ?>',
-            ACTIVITIES_DESC: '<?php echo _a("Items to display on the user\'s homepage, Drag items vertically to determine the order displays"); ?>',
-            QUICKLINK: '<?php echo _a('Quicklinks'); ?>',
-            QUICKLINK_REPOSITORY: '<?php echo _a('Quicklinks items repository'); ?>'
-        }
-    });
+    angular
+        .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi', 'ui.sortable'])
+        .constant('config', {
+            urlRoot: '<?php echo $this->url('', ['controller' => 'plugin']); ?>',
+            assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+            t: {
+                ITEM_NAME: '<?php echo _a('Item name'); ?>',
+                FROM: '<?php echo _a('From module'); ?>',
+                DISPLAY: '<?php echo _a('Display'); ?>',
+                TITLE: '<?php echo _a('Items displayed on the homepage timeline'); ?>',
+                YES: '<?php echo _a('Yes'); ?>',
+                NO: '<?php echo _a('No'); ?>',
+                ACTIVITIES: '<?php echo _a('Activities'); ?>',
+                ACTIVITIES_REPOSITORY: '<?php echo _a('Activities items repository'); ?>',
+                ACTIVITIES_DESC: '<?php echo _a("Items to display on the user\'s homepage, Drag items vertically to determine the order displays"); ?>',
+                QUICKLINK: '<?php echo _a('Quicklinks'); ?>',
+                QUICKLINK_REPOSITORY: '<?php echo _a('Quicklinks items repository'); ?>'
+            }
+        });
 </script>
 <script src="<?php echo $this->assetModule('admin/plugin.js'); ?>"></script>
