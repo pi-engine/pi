@@ -268,6 +268,17 @@ class Block
             }
         }
 
+        if (Pi::service('module')->isActive('guide')) {
+            $user['guide_dashboard'] = Pi::url(Pi::service('url')->assemble(
+                'guide',
+                array(
+                    'module'        => 'guide',
+                    'controller'    => 'manage',
+                    'action'        => 'dashboard',
+                )
+            ));
+        }
+        
         $result['user'] = $user;
 
         if (Pi::service('module')->isActive('user')) {
