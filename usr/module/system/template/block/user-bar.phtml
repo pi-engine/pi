@@ -30,7 +30,7 @@ $modalEnabled = Pi::user()->config('enable_modal');
                         <button type="button" class="btn pi-userbar-avatar" onclick="window.location='<?php echo $block['user']['dashboard']; ?>'">
                             <?php echo $block['user']['avatar']; ?>
                             <span class="hidden-sm">
-                            <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
+                            <?php echo __('Welcome') . ' ' .  _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
                                 <?php if(isset($block['count']) && $block['count']) { ?>
                                     <span class="badge"><?php echo _number($block['count']); ?></span>
                                 <?php } ?>
@@ -46,7 +46,7 @@ $modalEnabled = Pi::user()->config('enable_modal');
                                     <li class="item-favorites">
                                         <a title="<?php echo _b('Favourite'); ?>" href="<?php echo $block['user']['dashboard_url']; ?>">
                                             <i class="fa fa-flag-checkered"></i>
-                                            <?php echo _b('Guide dashboard'); ?>
+                                            <?php echo _b('Dashboard'); ?>
                                         </a>
                                     </li>
                                 <?php } ?>
