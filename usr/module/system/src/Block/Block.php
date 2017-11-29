@@ -125,7 +125,6 @@ class Block
 
             // User module installed
             $firstName = '';
-            $dashboard = Pi::service('user')->getUrl('profile', $params);
             if (Pi::service('module')->isActive('user')) {
                 $firstName = Pi::service('user')->getUser()->first_name;
             }
@@ -137,7 +136,6 @@ class Block
                 'avatar'     => $avatar,
                 'profile'    => Pi::url(Pi::service('user')->getUrl('profile', $params)),
                 'logout'     => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),
-                'dashboard'  => Pi::url($dashboard),
             );
             
             if (Pi::service('module')->isActive('user')) {
@@ -268,17 +266,6 @@ class Block
             }
         }
 
-        if (Pi::service('module')->isActive('guide')) {
-            $user['guide_dashboard'] = Pi::url(Pi::service('url')->assemble(
-                'guide',
-                array(
-                    'module'        => 'guide',
-                    'controller'    => 'manage',
-                    'action'        => 'dashboard',
-                )
-            ));
-        }
-        
         $result['user'] = $user;
 
         if (Pi::service('module')->isActive('user')) {
