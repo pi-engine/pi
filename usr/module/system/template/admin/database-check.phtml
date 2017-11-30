@@ -1,0 +1,33 @@
+<?php
+    $this->css($this->assetModule('admin/admin.css'));
+?>
+
+<div class="clearfix">
+    <?php if (isset($message)) { ?>
+        <div class="alert alert-danger">
+            <button class="close" data-dismiss="alert" type="button">×</button>
+            <?php echo $message; ?>
+        </div>
+    <?php } ?>
+    <div class="alert alert-success" role="alert">
+        <?php _e('You can use this page tools for check some database integrity'); ?>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="<?php echo $this->url('', array('action' => 'index')); ?>" class="btn btn-primary btn-sm">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        <?php echo _a('Back'); ?>
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <strong>
+                        <?php echo _a('Results'); ?> :
+                    </strong>
+                    <pre><?php print_r($columnsError) ?></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
