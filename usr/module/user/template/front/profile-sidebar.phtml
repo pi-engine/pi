@@ -19,82 +19,17 @@ $userConfig = Pi::service('registry')->config->read('user');
 ?>
 <div class="clearfix" id="sticky-sidebar-manage">
 
-    <div class="thumbnail">
-        <div class="user-thumbnail">
-            <div class="media">
-                <div class="pull-left">
-                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'dashboard'])); ?>"><?php echo Pi::avatar()->get($uid, 'medium'); ?></a>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">
-                        <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'dashboard'])); ?>">
-                            <?php echo _escape($firstName ?: $userName); ?>
-                        </a>
-                    </h4>
-                    <span class="text-muted">
-                        <a class="my-profile-link"
-                           href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>">
-                            <?php _e('View my profile'); ?>
-                        </a>
-                    </span>
-                </div>
-            </div>
+    <div class="list-group">
+        <div class="">
+            <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'dashboard'])); ?>"
+               class="list-group-item<?php if ($controller == 'dashboard') {
+                   echo ' active';
+               } ?>">
+                <span class="fa fa-dashboard vertical-align-text-top"></span>&nbsp; <?php _e('Dashboard') ?>
+            </a>
         </div>
     </div>
 
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                    <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
-                       data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <?php _e('My account') ?> <span class='caret'></span>
-                    </a>
-                </h4>
-            </div>
-
-            <div id="collapseOne"
-                 class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
-                 role="tabpanel" aria-labelledby="headingOne">
-                <div class="list-group">
-                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'account'])); ?>"
-                       class="list-group-item<?php if ($controller == 'account') {
-                           echo ' active';
-                       } ?>">
-                        <?php _e('Account settings') ?>
-                    </a>
-                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'password'])); ?>"
-                       class="list-group-item<?php if ($controller == 'password') {
-                           echo ' active';
-                       } ?>">
-                        <?php _e('Change password'); ?>
-                    </a>
-                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'avatar'])); ?>"
-                       class="list-group-item<?php if ($controller == 'avatar') {
-                           echo ' active';
-                       } ?>">
-                        <?php _e('Change avatar'); ?>
-                    </a>
-                    <?php
-                    foreach ($groups as $key => $group) {
-                        ?>
-                        <a href="<?php echo $group['url']; ?>"
-                           class="list-group-item<?php if (isset($group_id)) {
-                               echo $group_id == $key ? ' active' : '';
-                           } ?>">
-                            <?php echo _escape($group['title']); ?>
-                        </a>
-                    <?php } ?>
-                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'privacy'])); ?>"
-                       class="list-group-item<?php if ($controller == 'privacy') {
-                           echo ' active';
-                       } ?>">
-                        <?php _e('Privacy'); ?>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="list-group">
         <?php if (in_array('guide', $userConfig['side_menu']) && Pi::service('module')->isActive('guide')) { ?>
@@ -208,6 +143,69 @@ $userConfig = Pi::service('registry')->config->read('user');
                } ?>"><?php _e('My videos'); ?></a>
         <?php } ?>
     </div>
+    
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
+                       data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <?php _e('My account / Profile') ?> <span class='caret'></span>
+                    </a>
+                </h4>
+            </div>
+
+            <div id="collapseOne"
+                 class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
+                 role="tabpanel" aria-labelledby="headingOne">
+                 <div class="list-group">
+                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>" title="<?php echo _b('Manage account'); ?>" 
+                        class="list-group-item<?php if ($controller == 'profile') {
+                           echo ' active';
+                       } ?>">
+                        <?php echo _e('Manage account'); ?>
+                    </a>
+                                
+                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'account'])); ?>"
+                       class="list-group-item<?php if ($controller == 'account') {
+                           echo ' active';
+                       } ?>">
+                        <?php _e('Account settings') ?>
+                    </a>
+                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'password'])); ?>"
+                       class="list-group-item<?php if ($controller == 'password') {
+                           echo ' active';
+                       } ?>">
+                        <?php _e('Change password'); ?>
+                    </a>
+                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'avatar'])); ?>"
+                       class="list-group-item<?php if ($controller == 'avatar') {
+                           echo ' active';
+                       } ?>">
+                        <?php _e('Change avatar'); ?>
+                    </a>
+                    <?php
+                    foreach ($groups as $key => $group) {
+                        ?>
+                        <a href="<?php echo $group['url']; ?>"
+                           class="list-group-item<?php if (isset($group_id)) {
+                               echo $group_id == $key ? ' active' : '';
+                           } ?>">
+                            <?php echo _escape($group['title']); ?>
+                        </a>
+                    <?php } ?>
+                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'privacy'])); ?>"
+                       class="list-group-item<?php if ($controller == 'privacy') {
+                           echo ' active';
+                       } ?>">
+                        <?php _e('Privacy'); ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
 </div>
 
 <script>
