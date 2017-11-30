@@ -2,6 +2,12 @@
     $this->css($this->assetModule('admin/admin.css'));
 ?>
 
+<a href="<?php echo $this->url('', array('action' => 'index')); ?>" class="btn btn-primary btn-sm">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    <?php echo _a('Back'); ?>
+</a>
+<br />
+<br />
 <div class="clearfix">
     <?php if (isset($message)) { ?>
         <div class="alert alert-danger">
@@ -16,15 +22,20 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="<?php echo $this->url('', array('action' => 'index')); ?>" class="btn btn-primary btn-sm">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        <?php echo _a('Back'); ?>
-                    </a>
+
+                    <?php echo _a('Results for tables'); ?> :
                 </div>
                 <div class="panel-body">
-                    <strong>
-                        <?php echo _a('Results'); ?> :
-                    </strong>
+                    <pre><?php print_r($tablesError) ?></pre>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <?php echo _a('Results for columns'); ?> :
+                </div>
+                <div class="panel-body">
                     <pre><?php print_r($columnsError) ?></pre>
                 </div>
             </div>

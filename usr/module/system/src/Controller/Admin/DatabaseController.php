@@ -27,13 +27,28 @@ class DatabaseController extends ActionController
 
     public function checkAction()
     {
+        $schema = Pi::db()->getAdapter()->getCurrentSchema();
         $sql = "SHOW TABLES";
         $results = Pi::db()->getAdapter()->query($sql, 'execute');
 
+        $tablesError = array();
         $columnsError = array();
 
         foreach ($results->toArray() as $result){
             $tableName = array_shift($result);
+
+            $sql = <<<SQL
+SHOW TABLE STATUS WHERE NAME LIKE '{$tableName}';
+SQL;
+            $res = Pi::db()->getAdapter()->query($sql, 'execute');
+
+
+            foreach($res->toArray() as $params){
+
+                if($params['Collation'] && $params['Collation'] != 'utf8_general_ci'){
+                    $tablesError[$tableName] = $params['Collation'];
+                }
+            }
 
             $sql = <<<SQL
 SHOW FULL COLUMNS FROM `{$tableName}`;
@@ -49,5 +64,6 @@ SQL;
         }
 
         $this->view()->assign('columnsError', $columnsError);
+        $this->view()->assign('tablesError', $tablesError);
     }
 }
