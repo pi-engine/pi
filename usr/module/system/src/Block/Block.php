@@ -125,17 +125,8 @@ class Block
 
             // User module installed
             $firstName = '';
-            $dashboard = Pi::service('user')->getUrl('profile', $params);
             if (Pi::service('module')->isActive('user')) {
                 $firstName = Pi::service('user')->getUser()->first_name;
-                $dashboard = Pi::service('url')->assemble(
-                    'user',
-                    array(
-                        'module'        => 'user',
-                        'controller'    => 'dashboard',
-                        'action'        => 'index',
-                    )
-                );
             }
 
             $user = array(
@@ -145,8 +136,20 @@ class Block
                 'avatar'     => $avatar,
                 'profile'    => Pi::url(Pi::service('user')->getUrl('profile', $params)),
                 'logout'     => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),
-                'dashboard'  => Pi::url($dashboard),
             );
+            
+            if (Pi::service('module')->isActive('user')) {
+                $user['dashboard_url'] = Pi::service('url')->assemble(
+                    'user',
+                    array(
+                        'module'        => 'user',
+                        'controller'    => 'dashboard',
+                        'action'        => 'index',
+                    )
+                );
+            
+            }
+            
         }
 
         if ($options['show_message'] != 'none' && Pi::service('module')->isActive('message') && $hasIdentity) {
@@ -261,17 +264,6 @@ class Block
                     )
                 ));
             }
-        }
-
-        if (Pi::service('module')->isActive('guide')) {
-            $user['dashboard_url'] = Pi::url(Pi::service('url')->assemble(
-                'guide',
-                array(
-                    'module'        => 'guide',
-                    'controller'    => 'manage',
-                    'action'        => 'dashboard',
-                )
-            ));
         }
 
         $result['user'] = $user;

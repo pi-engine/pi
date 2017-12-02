@@ -15,7 +15,7 @@ $modalEnabled = Pi::user()->config('enable_modal');
             <?php if (!$block['user']['uid']) { ?>
                 <li class="item-login">
                     <a href="<?php echo $modalEnabled ? '#' : $block['user']['login'] ?>" data-target="#loginRegisterModal" data-action="login" <?php if($modalEnabled) : ?>data-toggle="modal"<?php endif; ?> title="<?php echo _b('Login'); ?>">
-                        <i class="fa fa-sign-in"></i>
+                        <i class="fa fa-sign-in hidden-lg"></i>
                         <span class="hidden-sm hidden-md"><?php echo _b('Login'); ?></span>
                     </a>
                 </li>
@@ -27,10 +27,10 @@ $modalEnabled = Pi::user()->config('enable_modal');
             <?php } elseif ($block['type'] == 'dropdown') { ?>
                 <li class="dropdown pi-userbar-header">
                     <div class="btn-group">
-                        <button type="button" class="btn pi-userbar-avatar" onclick="window.location='<?php echo $block['user']['dashboard']; ?>'">
+                        <button type="button" class="btn pi-userbar-avatar" onclick="window.location='<?php echo $block['user']['dashboard_url']; ?>'">
                             <?php echo $block['user']['avatar']; ?>
                             <span class="hidden-sm">
-                            <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
+                            <?php echo __('Welcome') . ' ' .  _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
                                 <?php if(isset($block['count']) && $block['count']) { ?>
                                     <span class="badge"><?php echo _number($block['count']); ?></span>
                                 <?php } ?>
@@ -45,17 +45,12 @@ $modalEnabled = Pi::user()->config('enable_modal');
                                 <?php if (isset($block['user']['dashboard_url'])) { ?>
                                     <li class="item-favorites">
                                         <a title="<?php echo _b('Favourite'); ?>" href="<?php echo $block['user']['dashboard_url']; ?>">
-                                            <i class="fa fa-flag-checkered"></i>
-                                            <?php echo _b('Guide dashboard'); ?>
+                                            <i class="fa fa-dashboard"></i>
+                                            <?php echo _b('Dashboard'); ?>
                                         </a>
                                     </li>
                                 <?php } ?>
-                                <li>
-                                    <a title="<?php echo _b('Manage account'); ?>" href="<?php echo $block['user']['dashboard']; ?>">
-                                        <i class="fa fa-cogs"></i>
-                                        <?php echo _b('Manage account'); ?>
-                                    </a>
-                                </li>
+                                
                                 <?php if (isset($block['user']['message'])) { ?>
                                     <li>
                                         <a href="<?php echo $block['user']['message']; ?>" title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
@@ -244,7 +239,7 @@ $modalEnabled = Pi::user()->config('enable_modal');
                 </li>
             <?php } else { ?>
                 <li class="pi-userbar-avatar">
-                    <a href="<?php echo $block['user']['dashboard']; ?>">
+                    <a href="<?php echo $block['user']['profile']; ?>">
                         <?php echo $block['user']['avatar']; ?>
                         <?php if(!preg_match('#\/admin\/#', $this->url('', array(), null, true))) { ?>
                             <?php echo _b('Welcome'); ?>
