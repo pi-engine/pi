@@ -132,11 +132,9 @@ class Notification extends AbstractService
      * Notification is required for send message or notification as array
      *
      * $data = array(
-     *     'message'           => 'my message', // Use it
-     *     'id'                => 123,
-     *     'title'             => 'my title',
-     *     'body'              => 'my body',
-     *     'registration_ids'  => [], // Array list of device token
+     *     'message'           => 'my message',   // required
+     *     'id'                => 123,            // Not required
+     *     'registration_ids'  => [],             // Array list of device token. use it or token
      *     'token'             => '/topics/news', // if registration_ids you can send to topic
      * );
      *
