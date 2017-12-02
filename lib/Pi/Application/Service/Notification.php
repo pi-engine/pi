@@ -156,9 +156,11 @@ class Notification extends AbstractService
     {
         // Set result
         $result = [
-            'status'  => 0,
-            'message' => '',
-            'data'    => '',
+            'status'   => 0,
+            'message'  => '',
+            'data'     => $option,
+            'option'   => $data,
+            'response' => [],
         ];
 
         // APi url
@@ -210,13 +212,11 @@ class Notification extends AbstractService
         $client->setHeaders($headers);
         $response = $client->send();
         if ($response->isSuccess()) {
-            $result['status']  = 1;
-            $result['message'] = __('Notification send successfully');
-            $result['data']    = [
-                'response'         => json_decode($response->getBody(), true),
-                'priority'         => $option['priority'],
-                'registration_ids' => $data['registration_ids'],
-            ];
+            $result['status']   = 1;
+            $result['message']  = __('Notification send successfully');
+            $result['data']     = $data;
+            $result['option']   = $option;
+            $result['response'] = json_decode($response->getBody(), true);
         } else {
             $result['message'] = __('Error to send notification');
         }
