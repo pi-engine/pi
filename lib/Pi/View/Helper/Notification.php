@@ -19,6 +19,14 @@ use Zend\View\Helper\AbstractHtmlElement;
  * Usage inside a phtml template
  *
  * $this->notification();
+ * $this->notification($option);
+ *
+ * $option = [
+ *     'section' => 'front',
+ *     'url'     => 'PUT_URL_HERE', // if put url section not needed
+ *     'time'    => 15000,
+ * ];
+ *
  *
  * @see https://pushjs.org/
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
@@ -34,24 +42,25 @@ class Notification extends AbstractHtmlElement
      */
     public function __invoke($option = [])
     {
-        // Check notification module install
-        if (!Pi::service('module')->isActive('notification')) {
-            return false;
-        }
-
         // Set section
         $section = isset($option['section']) ? $option['section'] : 'front';
 
+        // Set url
+        if (isset($option['url']) && !empty($option['url'])) {
+            $url = $option['url'];
+        } elseif (Pi::service('module')->isActive('notification')) {
+            $url = Pi::url(Pi::service('url')->assemble('default', [
+                'module'     => 'notification',
+                'controller' => 'check',
+                'action'     => 'index',
+                'section'    => $section,
+            ]));
+        } else {
+            return false;
+        }
+
         // Set time
         $time = isset($option['time']) ? $option['time'] : 15000;
-
-        // Make notification url
-        $url = Pi::url(Pi::service('url')->assemble('default', [
-            'module'     => 'notification',
-            'controller' => 'check',
-            'action'     => 'index',
-            'section'    => $section,
-        ]));
 
         // Set js file
         $js = 'vendor/pushjs/push.min.js';
