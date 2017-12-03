@@ -78,8 +78,12 @@ function oneSecondFunction() {
             Push.create(result.title, {
                 body: result.body,
                 icon: result.logo,
+                link: result.link,
                 timeout: 3000,
                 onClick: function () {
+                    if (result.link) {
+                        window.location.href = result.link;
+                    }
                     window.focus();
                     this.close();
                 }
