@@ -97,7 +97,5 @@ EOT;
         // Load js
         $this->view->footScript()->appendFile($js);
         $this->view->footScript()->appendScript($scripts);
-
-        return $this;
     }
 }
