@@ -18,7 +18,7 @@ use Pi;
  
 class Html2pdf extends AbstractService
 {
-    public function pdf($template, $data)
+    public function pdf($template, $data, $name = 'document.pdf')
     {
         require_once Pi::path('vendor') . '/autoload.php';
         
@@ -28,7 +28,10 @@ class Html2pdf extends AbstractService
         // Generate PDF
         $html2pdf = new \Spipu\Html2Pdf\Html2Pdf();
         $html2pdf->writeHTML($html);
-        $html2pdf->output();
+        $html2pdf->pdf->SetJPEGQuality(1);
+        $html2pdf->pdf->setImageScale(1.53); 
+        
+        $html2pdf->output($name);
         exit;
     }
 }
