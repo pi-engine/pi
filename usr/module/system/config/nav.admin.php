@@ -317,4 +317,14 @@ return array(
             'resource'  => 'maintenance',
         ),
     ),
+    'database'     => array(
+        'label'         => _t('Database tools'),
+        'route'         => 'admin',
+        'module'        => 'system',
+        'controller'    => 'database',
+        'action'        => 'index',
+        'permission'    => array(
+            'resource'  => 'maintenance',
+        ),
+    ),
 );
