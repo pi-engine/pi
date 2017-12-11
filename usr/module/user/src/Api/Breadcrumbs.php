@@ -107,8 +107,10 @@ class Breadcrumbs extends AbstractBreadcrumbs
                         break;
 
                     case 'find':
-                        $result[] = [
-                            'label' => __('Find password'),
+                        $result = [
+                            [
+                                'label' => __('Find password'),
+                            ]
                         ];
                         break;
                 }
