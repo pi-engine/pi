@@ -2,7 +2,7 @@
 
 [format]html[/format]
 
-[subject]%site_name% - Création de compte[/subject]
+[subject]Création de compte[/subject]
 
 [body]
 <p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>

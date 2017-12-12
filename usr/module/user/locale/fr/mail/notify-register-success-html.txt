@@ -2,16 +2,14 @@
 
 [format]html[/format]
 
-[subject]%site_name% - Inscription validée : bienvenue ![/subject]
+[subject]Inscription validée : bienvenue ![/subject]
 
 [body]
 <p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
 
-<p style="margin-top: 5px">Votre compte a été créé avec succès sur %site_name% avec cette adresse email. Bienvenue dans notre communauté !</p>
-<p style="margin-top: 5px">Vous pouvez maintenant vous connecter sur notre site internet ou nos applications mobiles (disponibles sur les stores Android ou Apple) pour organiser votre séjour, gérer vos favoris, contribuer, discuter, ou encore promouvoir votre activité.</p>
+<p style="margin-top: 5px">Votre compte a été créé avec succès. Bienvenue dans notre communauté !</p>
+<p style="margin-top: 5px">Vous pouvez maintenant vous connecter avec le même compte sur notre site internet ET nos applications mobiles (disponibles sur les stores Android ou Apple)</p>
+<p style="margin-top: 5px">Et ainsi organiser votre séjour, gérer vos favoris, contribuer, discuter, promouvoir votre activité, etc.</p>
 <p style="margin-top: 5px">N'oubliez pas de compléter votre profil en ajoutant votre photo et vos centres d'intéret afin rendre le site plus vivant.</p>
 <p style="margin-top: 5px">A tout de suite sur le site ou nos applications mobiles !</p>
-<p style="margin-top: 10px">
-    <a href="%site_url%" title="%site_name%">%site_name%</a>
-</p>
 [/body]
