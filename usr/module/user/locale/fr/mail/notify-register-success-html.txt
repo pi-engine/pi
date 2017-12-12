@@ -11,5 +11,5 @@
 <p style="margin-top: 5px">Vous pouvez maintenant vous connecter avec le même compte sur notre site internet ET nos applications mobiles (disponibles sur les stores Android ou Apple)</p>
 <p style="margin-top: 5px">Et ainsi organiser votre séjour, gérer vos favoris, contribuer, discuter, promouvoir votre activité, etc.</p>
 <p style="margin-top: 5px">N'oubliez pas de compléter votre profil en ajoutant votre photo et vos centres d'intéret afin rendre le site plus vivant.</p>
-<p style="margin-top: 5px">A tout de suite sur le site ou nos applications mobiles !</p>
+<p style="margin-top: 5px">A tout de suite sur le site... ou nos applications mobiles !</p>
 [/body]
