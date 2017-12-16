@@ -146,7 +146,7 @@ $(function() {
         map_div: "#%s",
         generate_controls: false,
         controls_type: 'list',
-        show_markers: true,
+        show_markers: false,
         type: "polygon",
         draggable: true,
     }).Load();
