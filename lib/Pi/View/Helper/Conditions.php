@@ -53,7 +53,7 @@ class Conditions extends AbstractHtmlElement
 
                     $content = <<<HTML
     <div id="cookie-bar" class="terms-conditions-bar fixed bottom" style="z-index:110000;"><p>{$barLabel} <a href="{$downloadUrl}" class="cb-policy" target="_blank">{$linkLabel}</a> <a href="{$acceptUrl}" class="cb-enable">{$agrementLabel}</a></p></div>
-    <script type="application/javascript">
+    <script>
         $(document).ready(function(){
             $('.terms-conditions-bar .cb-enable').click(function(e){
                 e.preventDefault();

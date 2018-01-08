@@ -53,7 +53,7 @@ EOT;
 EOT;
 
   $descPattern = <<<EOT
-<span style="display:block;" class="text-muted">%desc_content%</span>
+<div class="text-muted">%desc_content%</div>
 EOT;
 
         $elementPattern =<<<EOT
