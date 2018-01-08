@@ -32,7 +32,7 @@ $viewNavTabs = [
 ];
 $viewPreview = '<li class="inline">
                     <div class="avatar-preview-box" style="width: %spx; height: %spx;">
-                        <img src="%s" class="avatar-preview-img">
+                        <img src="%s" class="avatar-preview-img" alt="">
                     </div>';
 ?>
 <div class="row">
@@ -81,7 +81,7 @@ $viewPreview = '<li class="inline">
                                 <?php } ?>
                             </div>
                         </div>
-                        <img class="hide avatar-upload-image">
+                        <img class="hide avatar-upload-image" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
                     </div>
                     <div class="avatar-preview-header">
                         <strong><?php _e('Avatar previews'); ?></strong>
@@ -144,7 +144,7 @@ $viewPreview = '<li class="inline">
 
                         as $key => $item) { ?>
                         <li class="inline">
-                            <img src="<?php echo $item; ?>">
+                            <img src="<?php echo $item; ?>" alt="">
                             <input type="radio" name="repository-avatar" value="<?php echo $key; ?>">
                             <?php } ?>
                     </ul>
@@ -168,7 +168,7 @@ $viewPreview = '<li class="inline">
             <div class="tab-pane" id="formLocal">
                 <div class="media">
                     <div class="pull-left">
-                        <img src="<?php echo $local['normal']; ?>">
+                        <img src="<?php echo $local['normal']; ?>" alt="">
                     </div>
                     <div class="media-body">
                         <?php _e('Apply system avatar as your avatar'); ?>
@@ -179,7 +179,7 @@ $viewPreview = '<li class="inline">
                 </div>
                 <ul class="list-unstyled avatar-preview-inline">
                     <?php foreach ($local as $key => $value) { ?>
-                        <li class="inline"><img src="<?php echo $value; ?>"></li>
+                        <li class="inline"><img src="<?php echo $value; ?>" alt=""></li>
                     <?php } ?>
                 </ul>
             </div>
