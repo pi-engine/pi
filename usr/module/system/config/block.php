@@ -102,6 +102,13 @@ return array(
                 'filter' => 'number_int',
                 'value' => 1,
             ),
+            'show_offer' => array(
+                'title' => _a('Display offer'),
+                'description' => '',
+                'edit' => 'checkbox',
+                'filter' => 'number_int',
+                'value' => 1,
+            ),
         ),
     ),
 

@@ -96,6 +96,14 @@ $modalEnabled = Pi::user()->config('enable_modal');
                                         </a>
                                     </li>
                                 <?php } ?>
+                                <?php if (isset($block['user']['offer_url'])) { ?>
+                                    <li>
+                                        <a title="<?php _e('My offer'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'offer', 'action' => 'index'])); ?>">
+                                             <i class="fa fa-cubes"></i>
+                                            <?php _e('My offer'); ?>
+                                        </a>
+                                   </li>
+                               <?php } ?>
                                 <?php if (isset($block['user']['order'])) { ?>
                                     <li>
                                         <a href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
