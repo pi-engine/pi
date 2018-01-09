@@ -401,7 +401,13 @@ class HeadScript extends Placeholder\Container\AbstractStandalone
             && filter_var($item->attributes['noescape'], FILTER_VALIDATE_BOOLEAN));
 
         $type = ($this->autoEscape) ? $this->escape($item->type) : $item->type;
-        $html = '<script type="' . $type . '"' . $attrString . '>';
+
+        if(preg_match('#javascript#', $type)){
+            $html = '<script ' . $attrString . '>';
+        } else {
+            $html = '<script type="' . $type . '"' . $attrString . '>';
+        }
+
         if (!empty($item->source)) {
             $html .= PHP_EOL;
 

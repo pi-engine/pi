@@ -37,7 +37,7 @@ class Twitter extends AbstractHtmlElement
         $content = <<<'EOT'
 <a href="https://twitter.com/share" class="twitter-share-button"
     data-lang="en">Tweet</a>
-<script type="text/javascript">
+<script>
    !function(d,s,id){
       var js,fjs=d.getElementsByTagName(s)[0];
       if(!d.getElementById(id)){

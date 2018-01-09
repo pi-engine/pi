@@ -106,7 +106,7 @@ class ReCaptcha extends FormInput
     {
         $elseif = 'else if'; // php-cs-fixer bug
         $js =<<<EOJ
-<script type="text/javascript">
+<script>
 function windowOnLoad(fn)
 {
     var old = window.onload;

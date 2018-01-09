@@ -79,7 +79,7 @@ class JsPush extends AbstractAdapter
             'text'          => $text
         );
 
-        $data = '<script type="text/javascript">'
+        $data = '<script>'
               . 'parent.' . $this->updateMethodName . '(' . Json::encode($arguments) . ');'
               . '</script>';
 
@@ -98,7 +98,7 @@ class JsPush extends AbstractAdapter
             return;
         }
 
-        $data = '<script type="text/javascript">'
+        $data = '<script>'
               . 'parent.' . $this->finishMethodName . '();'
               . '</script>';
 

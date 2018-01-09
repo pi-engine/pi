@@ -462,7 +462,7 @@ EOT;
         // Use heredoc for JavaScript contents
         $scripts_js =
 <<<"EOT"
-<script type="text/javascript">
+<script>
     var cookiePath = "{$cookiePath}";
     var cookieName = "pi-logger";
     function piLoggerCreateCookie(name,value) {
