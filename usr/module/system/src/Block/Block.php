@@ -217,8 +217,8 @@ class Block
             $user['offer_url'] = Pi::url(Pi::service('url')->assemble(
                 'guide',
                 array(
-                    'module'        => 'offer',
-                    'controller'    => 'index',
+                    'module'        => 'guide',
+                    'controller'    => 'offer',
                     'action'        => 'index',
                 )
             ));
