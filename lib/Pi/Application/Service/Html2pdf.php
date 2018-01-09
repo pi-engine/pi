@@ -22,9 +22,13 @@ class Html2pdf extends AbstractService
     {
         require_once Pi::path('vendor') . '/autoload.php';
         
+        $moduletemplate = new \Pi\View\Resolver\ModuleTemplate();
+        $template = $moduletemplate->resolve($template, Pi::engine()->application()
+                ->getServiceManager()->get('view_manager')->getRenderer(), strstr($template, 'front'));
+        
         // Get HTML
         $html = Pi::service('view')->render($template, $data);
-        //echo $html;exit;
+
         // Generate PDF
         $html2pdf = new \Spipu\Html2Pdf\Html2Pdf();
         $html2pdf->writeHTML($html);
