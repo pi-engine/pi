@@ -225,6 +225,7 @@ class ProfileController extends ActionController
         // Get compound element for edit
         $compoundElements = Pi::api('form', 'user')->getCompoundElement($compound);
         $form             = new CompoundForm('new-compound', $compoundElements);
+        $form->setAttribute('action', '#');
         $form->setData(['group' => $groupId]);
 
         $profileGroup = $this->getCompound($uid, $groupId);
