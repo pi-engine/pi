@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2017-10-21 11:43+0200\n"
-"PO-Revision-Date: 2017-10-21 11:44+0200\n"
+"POT-Creation-Date: 2018-01-10 12:08+0100\n"
+"PO-Revision-Date: 2018-01-10 12:08+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.5\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -115,35 +115,39 @@ msgstr "Afficher Support"
 msgid "Display favourite"
 msgstr "Afficher Favoris"
 
-#: config/block.php:110 config/nav.front.php:30
+#: config/block.php:106
+msgid "Display offer"
+msgstr "Afficher Mon Offre"
+
+#: config/block.php:117 config/nav.front.php:30
 msgid "Login"
 msgstr "Connexion"
 
-#: config/block.php:111
+#: config/block.php:118
 msgid "User login block"
 msgstr "Bloc de connexion utilisateur"
 
-#: config/block.php:118 config/page.php:116
+#: config/block.php:125 config/page.php:116
 msgid "User"
 msgstr "Utilisateur"
 
-#: config/block.php:119 config/config.php:41
+#: config/block.php:126 config/config.php:41
 msgid "User account"
 msgstr "Compte utilisateur"
 
-#: config/block.php:126
+#: config/block.php:133
 msgid "Site Info"
 msgstr "Information site"
 
-#: config/block.php:127
+#: config/block.php:134
 msgid "Website information"
 msgstr "Information sur le site web"
 
-#: config/block.php:134
+#: config/block.php:141
 msgid "Pi feature"
 msgstr "Fonctionnalités Pi"
 
-#: config/block.php:135
+#: config/block.php:142
 msgid "Introduction to Pi Engine"
 msgstr "Quelques remarques à propos de Pi Engine"
 
@@ -940,6 +944,10 @@ msgstr "Audit"
 #: config/nav.admin.php:311
 msgid "Homepage layout"
 msgstr "Design HomePage"
+
+#: config/nav.admin.php:321
+msgid "Database tools"
+msgstr "Utilitaire base de données"
 
 #: config/nav.component.php:17
 msgid "Configurations"
@@ -2017,6 +2025,31 @@ msgstr ""
 "du développement libre et des structures ouvertes. Pi est né pleinement "
 "comme un projet opensource et tente de construire un écosystème durable qui "
 "fournit des solutions à tous les contributeurs et utilisateurs."
+
+#: template/admin/database-check.phtml:7
+msgid "Back"
+msgstr "Retour"
+
+#: template/admin/database-check.phtml:26
+msgid "Results for tables"
+msgstr "Résultat tables"
+
+#: template/admin/database-check.phtml:36
+msgid "Results for columns"
+msgstr "Résultats Colonnes"
+
+#: template/admin/database-index.phtml:19
+msgid "Check for encoding"
+msgstr "Contrôle encoding"
+
+#: template/admin/database-index.phtml:23
+msgid "This tool help you to check non-utf8 data fields for all tables"
+msgstr ""
+"Cet outil pour aide pour détecter les champs non-utf8 dans toutes les tables"
+
+#: template/admin/database-index.phtml:28
+msgid "Check UTF8"
+msgstr "Vérifier UTF8"
 
 #: template/admin/event.phtml:19
 msgid "Events"
