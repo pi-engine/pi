@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-10-21 11:43+0200\n"
-"PO-Revision-Date: 2017-10-21 11:43+0200\n"
+"POT-Creation-Date: 2018-01-10 12:05+0100\n"
+"PO-Revision-Date: 2018-01-10 12:06+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.5\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -143,7 +143,7 @@ msgstr "Identifiants fournis non valides, merci d'essayer de nouveau."
 msgid "You have logged in successfully."
 msgstr "Vous vous êtes connectés avec succès."
 
-#: src/Controller/Front/LoginController.php:244
+#: src/Controller/Front/LoginController.php:255
 msgid "You logged out successfully."
 msgstr "Vous vous êtes déconnectés avec succès."
 
@@ -578,6 +578,13 @@ msgstr "Seuls les caractèrs multi-byte et les espaces sont autorisés"
 msgid "Cancel"
 msgstr "Annuler"
 
+#: template/admin/database-check.phtml:19
+#: template/admin/database-index.phtml:13
+msgid "You can use this page tools for check some database integrity"
+msgstr ""
+"Vous pouvez utiliser cette page Utilitaire pour contrôler l'intégrité de la "
+"base de données"
+
 #: template/admin/theme-customize.phtml:19
 msgid "In process of compiling"
 msgstr "Compilation en cours"
@@ -601,6 +608,14 @@ msgstr "Pas encore inscrit ?"
 #: template/block/partial/login-register-modal.phtml:91
 msgid "Already registered ?"
 msgstr "Déjà inscrit ?"
+
+#: template/block/user-bar.phtml:33
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: template/block/user-bar.phtml:101 template/block/user-bar.phtml:103
+msgid "My offer"
+msgstr "Mon offre"
 
 #: template/front/login-disabled.phtml:5
 msgid "Sorry, login is temporarily disabled. Please come back later."
