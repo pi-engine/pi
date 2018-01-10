@@ -94,6 +94,14 @@ $config = [
         'value'       => _t('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
     ],
 
+    'shortcuts_enable' => [
+        'title'       => _t('Enable shortcuts on dashboard'),
+//        'description' => _t('Login / register with modal, with GET redirect (hidden input instead). Modal template are located into system module, because used by user-bar template'),
+        'edit'        => 'checkbox',
+        'value'       => 0,
+        'filter'      => 'int',
+    ],
+
     'side_menu'     => [
         'title'       => _t('Active modules for show on side bar'),
         'description' => '',
