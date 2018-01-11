@@ -49,6 +49,15 @@ class Resize extends AbstractHelper
      */
     public function __invoke($imgPath, $cropping = null)
     {
+        $mediaModuleActive = Pi::service('module')->isActive('media') ? true : false;
+        if($mediaModuleActive){
+            $mediaQuality = (int) Pi::service('module')->config('image_quality', 'media');
+
+            if($mediaQuality){
+                $this->quality = $mediaQuality;
+            }
+        }
+
         $this->imgPath = $imgPath;
         $this->imgParts = pathinfo($imgPath);
         $this->commands = '';
@@ -66,6 +75,15 @@ class Resize extends AbstractHelper
     {
         if(is_string($module) && Pi::service('module')->isActive($module)){
             $moduleConfig = Pi::service('registry')->config->read($module);
+
+            if(isset($moduleConfig['image_quality'])){
+                $quality = (int) $moduleConfig['image_quality'];
+
+                if($quality){
+                    $this->quality = $quality;
+                }
+            }
+
             $defaultSizes = $this->getDefaultSizes();
 
             if(!empty($moduleConfig['image_largew']) && !empty($moduleConfig['image_largeh'])){
