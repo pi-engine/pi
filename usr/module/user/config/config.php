@@ -646,6 +646,14 @@ $config = [
         'filter' => 'number_int',
         'value' => 1
     ],
+    'cron_clean_session_days_after' => [
+        'category' => 'cron',
+        'title' => _a('Session timeout / in days'),
+        'description' => 'Days count after expired session must be cleaned by cron job',
+        'edit' => 'text',
+        'filter' => 'number_int',
+        'value' => 60
+    ],
 ];
 
 return [

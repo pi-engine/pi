@@ -48,7 +48,13 @@ class Cron extends AbstractApi
      * Clean old sessions from database
      */
     public function cleanOldSession(){
+        // Get config
+        $config = Pi::service('registry')->config->read($this->getModule());
+
+        $timeout = (int) $config['cron_clean_session_days_after']; // in days
+        $timeout = $timeout * 24 * 60 * 60; // seconds
+
         $sessionModel = Pi::model('session');
-        $sessionModel->delete('modified + lifetime < UNIX_TIMESTAMP()');
+        $delete = $sessionModel->delete('(modified + lifetime + ' . $timeout . ') < UNIX_TIMESTAMP()');
     }
 }
