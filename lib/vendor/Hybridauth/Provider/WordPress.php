@@ -40,18 +40,6 @@ class WordPress extends OAuth2
     /**
     * {@inheritdoc}
     */
-    protected function initialize()
-    {
-        parent::initialize();
-
-        $this->apiRequestHeaders = [
-            'Authorization' => 'Bearer ' . $this->getStoredData('access_token')
-        ];
-    }
-
-    /**
-    * {@inheritdoc}
-    */
     public function getUserProfile()
     {
         $response = $this->apiRequest('me/');
@@ -73,9 +61,7 @@ class WordPress extends OAuth2
 
         $userProfile->displayName = $userProfile->displayName ?: $data->get('username');
 
-        $userProfile->emailVerified = (1 == $data->get('email_verified'))
-                                        ? $data->get('email')
-                                        : '';
+        $userProfile->emailVerified = $data->get('email_verified') ? $data->get('email') : '';
 
         return $userProfile;
     }
