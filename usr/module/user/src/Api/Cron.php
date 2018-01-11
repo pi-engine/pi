@@ -1,0 +1,54 @@
+<?php
+/**
+ * Pi Engine (http://pialog.org)
+ *
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ */
+
+/**
+ * @author Frédéric TISSOT
+ */
+
+namespace Module\User\Api;
+
+use Pi;
+use Pi\Application\Api\AbstractApi;
+
+/*
+ * Pi::api('cron', 'user')->start();
+ */
+
+class Cron extends AbstractApi
+{
+    public function start()
+    {
+        // Get config
+        $config = Pi::service('registry')->config->read($this->getModule());
+
+        // Check cron active for this module
+        if ($config['module_cron']) {
+
+            // Set log
+            Pi::service('audit')->log('cron', 'user - Start cron on server');
+
+            $this->cleanOldSession();
+
+            // Set log
+            Pi::service('audit')->log('cron', 'user - End cron on server');
+
+        } else {
+            // Set log
+            Pi::service('audit')->log('cron', 'user - cron system not active for this module');
+        }
+    }
+
+    /**
+     * Clean old sessions from database
+     */
+    public function cleanOldSession(){
+        $sessionModel = Pi::model('session');
+        $sessionModel->delete('modified + lifetime < UNIX_TIMESTAMP()');
+    }
+}

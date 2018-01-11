@@ -40,6 +40,10 @@ $category = [
         'name'  => 'oauth',
         'title' => _t('OAuth'),
     ],
+    [
+        'title' => _a('Cron'),
+        'name' => 'cron'
+    ],
 ];
 
 $config = [
@@ -631,6 +635,16 @@ $config = [
         'edit'     => 'text',
         'filter'   => 'string',
         'value'    => '',
+    ],
+
+    // Cron
+    'module_cron' => [
+        'category' => 'cron',
+        'title' => _a('Active this module cron system'),
+        'description' => '',
+        'edit' => 'checkbox',
+        'filter' => 'number_int',
+        'value' => 1
     ],
 ];
 
