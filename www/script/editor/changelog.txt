@@ -31,7 +31,7 @@ Alternatively you can copy/paste the new plugin from full package, but you have 
 
 January, 13th, 2018
 ===================
-1. Upgrade to CKEditor 4.8.0 (using the full package from download page
+1. Upgrade to CKEditor 4.8.0 (using the full package from download page)
 - with no extra plugins
 - with our 2 custom config.js files (specific config.js for admin + front)
 - with the index.html file for sec reason (each main subdirectory)
