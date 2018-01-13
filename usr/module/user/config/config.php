@@ -644,7 +644,7 @@ $config = [
         'description' => '',
         'edit' => 'checkbox',
         'filter' => 'number_int',
-        'value' => 1
+        'value' => 1,
     ],
     'cron_clean_session_days_after' => [
         'category' => 'cron',
@@ -652,7 +652,7 @@ $config = [
         'description' => 'Days count after expired session must be cleaned by cron job',
         'edit' => 'text',
         'filter' => 'number_int',
-        'value' => 60
+        'value' => 15,
     ],
 ];
 
