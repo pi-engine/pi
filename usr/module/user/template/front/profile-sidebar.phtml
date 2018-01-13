@@ -40,6 +40,7 @@ $userConfig = Pi::service('registry')->config->read('user');
                    class="list-group-item<?php if (isset($sideActive) && $sideActive == 'dashboard') {
                        echo ' active';
                    } ?>"><?php _e('My items'); ?></a>
+                
                 <?php if ($guideConfig['sponsor_active']) { ?>
                     <a title="<?php _e('Sponsorship'); ?>"
                        href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'sponsor'])); ?>"

@@ -2,7 +2,7 @@
 
 [format]html[/format]
 
-[subject]%site_name% - Confirmation du changement de votre Email[/subject]
+[subject]Confirmation du changement de votre Email[/subject]
 
 [body]
 <p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>

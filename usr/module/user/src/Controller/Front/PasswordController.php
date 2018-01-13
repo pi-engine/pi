@@ -47,6 +47,7 @@ class PasswordController extends ActionController
         ];
 
         $form = new PasswordForm('password-change');
+        $form->setAttribute('action', '#');
 
         $uniqueId = rand();
         $elementId = 'register-' . $uniqueId;

@@ -212,6 +212,17 @@ class Block
                 )
             ));
         }
+        
+        if ($options['show_offer'] && Pi::service('module')->isActive('guide') && $hasIdentity) {
+            $user['offer_url'] = Pi::url(Pi::service('url')->assemble(
+                'guide',
+                array(
+                    'module'        => 'guide',
+                    'controller'    => 'offer',
+                    'action'        => 'index',
+                )
+            ));
+        }
 
         if ($options['show_credit'] && Pi::service('module')->isActive('order') && $hasIdentity) {
             $orderConfig = Pi::service('registry')->config->read('order');

@@ -134,9 +134,10 @@ class ModuleTemplate implements ResolverInterface
      * @param  string $name Relative or full path to template,
      *      it is highly recommended to remove suffix from relative template
      * @param  null|Renderer $renderer
+     * @param  bool $forcefront force to find template in the front theme 
      * @return string|false
       */
-    public function resolve($name, Renderer $renderer = null)
+    public function resolve($name, Renderer $renderer = null, $forcefront = false)
     {
         // Set template context
         $renderer->context('module');
@@ -149,7 +150,7 @@ class ModuleTemplate implements ResolverInterface
         $path = sprintf(
             '%s/%s/module/%s/%s/%s.%s',
             Pi::path('theme'),
-            Pi::service('theme')->current(),
+            $forcefront ? Pi::config('theme') : Pi::service('theme')->current(),
             $module,
             $this->templateDirectory,
             $template,

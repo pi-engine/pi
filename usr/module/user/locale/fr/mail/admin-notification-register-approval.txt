@@ -2,7 +2,7 @@
 
 [format]html[/format]
 
-[subject]%site_name% - un nouveau Membre s'est inscrit[/subject]
+[subject]Un nouveau Membre s'est inscrit[/subject]
 
 [body]
 <p style="margin-bottom: 5px">Chère/Cher Admin <strong>%site_name%</strong></p>

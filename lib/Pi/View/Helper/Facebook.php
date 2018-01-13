@@ -45,7 +45,7 @@ class Facebook extends AbstractHtmlElement
 
         $content = <<<'EOT'
 <div id="fb-root"></div>
-<script type="text/javascript">
+<script>
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;

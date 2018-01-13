@@ -45,6 +45,7 @@ class AccountController extends ActionController
 
         // Generate form
         $form        = new AccountForm('account');
+        $form->setAttribute('action', '#');
         $data['uid'] = $uid;
         $data['id']  = $uid;
 

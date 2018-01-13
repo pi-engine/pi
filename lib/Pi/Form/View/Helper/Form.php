@@ -162,9 +162,17 @@ EOT;
     %mark_required%%label_content%
 </label>
 EOT;
+
+            if($type == 'checkbox'){
             $descPattern = <<<EOT
 <span style="display:block;" class="text-muted">%desc_content%</span>
 EOT;
+            } else{
+            $descPattern = <<<EOT
+<div style="display:block;" class="text-muted">%desc_content%</div>
+EOT;
+            }
+
             $required = __('Required');
             $markRequired = <<<EOT
 <i class="text-danger" style="margin-right: 5px;" title="{$required}">*</i>
@@ -323,12 +331,14 @@ EOT;
         $renderRow = function ($element) use ($renderElement) {
             $return = '';
             if (method_exists($element, 'getElements')) {
-                $return .= '<legend>' .  $this->view->formLabel($element) . '</legend>';
+                $return .= '<fieldset><legend>' .  $this->view->formLabel($element) . '</legend>' . PHP_EOL;
 
                 $eles = $element->elementList();
                 foreach ($eles['active'] as $ele) {
                     $return .= $renderElement($ele) . PHP_EOL;
                 }
+
+                $return .= '</fieldset>' . PHP_EOL;
             } else {
                 $return .= $renderElement($element);
             }
@@ -388,11 +398,16 @@ EOT;
         } else {
             foreach ($groups as $group) {
                 if (!empty($group['label'])) {
-                    $htmlForm .= '<legend>' . _escape($group['label']) . '</legend>' . PHP_EOL;
+                    $htmlForm .= '<fieldset><legend>' . _escape($group['label']) . '</legend>' . PHP_EOL;
                 }
+
                 foreach ($group['elements'] as $name) {
                     $element = $form->get($name);
                     $htmlForm .= $renderRow($element) . PHP_EOL;
+                }
+
+                if (!empty($group['label'])) {
+                    $htmlForm .= '</fieldset>' . PHP_EOL;
                 }
             }
         }

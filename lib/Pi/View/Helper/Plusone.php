@@ -63,7 +63,7 @@ class Plusone extends AbstractHtmlElement
                  . ($attributeString ? ' ' . $attributeString : '')
                  . '></div>' . PHP_EOL;
         $content .= <<<'EOT'
-<script type="text/javascript">
+<script>
   (function() {
     var po = document.createElement("script");
     po.type = "text/javascript"; po.async = true;
