@@ -57,17 +57,16 @@ class Yahoo extends OAuth2
         $this->tokenExchangeHeaders = [
             'Authorization' => 'Basic ' . base64_encode($this->clientId .  ':' . $this->clientSecret)
         ];
-
-        $this->apiRequestHeaders = [
-            'Authorization' => 'Bearer ' . $this->getStoredData('access_token')
-        ];
     }
 
     /**
      * Returns current user id
      *
      * @return int
-     * @throws Exception
+     * @throws \Hybridauth\Exception\HttpClientFailureException
+     * @throws \Hybridauth\Exception\HttpRequestFailedException
+     * @throws \Hybridauth\Exception\InvalidAccessTokenException
+     * @throws \Hybridauth\Exception\UnexpectedApiResponseException
      */
     protected function getCurrentUserId()
     {
@@ -91,7 +90,7 @@ class Yahoo extends OAuth2
     */
     public function getUserProfile()
     {
-        // Retrive current user guid if needed
+        // Retrieve current user guid if needed
         $this->getCurrentUserId();
 
         $response = $this->apiRequest('user/'  . $this->userId . '/profile', 'GET', [ 'format' => 'json']);
