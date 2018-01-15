@@ -46,13 +46,13 @@ $(document).ready(function(){
         affixWrapper.find('.nav').removeClass('forceVisible');
     }
 
-    $("#sticky-sidebar").hcSticky({
+    var Sticky = new hcSticky('#sticky-sidebar', {
         responsive : true,
         top: $('#pi-header nav').height() + affixWrapperHeight + 20,
-        stickTo: $('#sticky-container'),
+        stickTo: '#sticky-container',
         offResolutions: -992
     });
-    
+
     $('#sticky-sidebar div.modal').insertAfter('.wrapper-sticky');
     
   });
