@@ -221,11 +221,23 @@ $userConfig = Pi::service('registry')->config->read('user');
             var affixWrapperHeight = affixWrapper.height();
             affixWrapper.find('.nav').removeClass('forceVisible');
         }
-        $("#sticky-sidebar-manage").hcSticky({
-            responsive: true,
+//        $("#sticky-sidebar-manage").hcSticky({
+//            responsive: true,
+//            top: $('#pi-header nav').height() + affixWrapperHeight + 20,
+//            stickTo: $('#sticky-container'),
+//            offResolutions: -992,
+//            bottomEnd: -100
+//        });
+
+        var Sticky = new hcSticky('#sticky-sidebar-manage', {
+            responsive : true,
             top: $('#pi-header nav').height() + affixWrapperHeight + 20,
-            stickTo: $('#sticky-container'),
-            offResolutions: -992,
+            stickTo: '#sticky-container',
+            queries: {
+                992: {
+                    disable: true
+                }
+            },
             bottomEnd: -100
         });
 

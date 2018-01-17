@@ -50,7 +50,11 @@ $(document).ready(function(){
         responsive : true,
         top: $('#pi-header nav').height() + affixWrapperHeight + 20,
         stickTo: '#sticky-container',
-        offResolutions: -992
+        queries: {
+            992: {
+              disable: true
+            }
+        }
     });
 
     $('#sticky-sidebar div.modal').insertAfter('.wrapper-sticky');
