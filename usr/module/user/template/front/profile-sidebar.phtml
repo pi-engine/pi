@@ -64,6 +64,14 @@ $userConfig = Pi::service('registry')->config->read('user');
                } ?>"><?php _e('My media'); ?></a>
         <?php } ?>
 
+        <?php if (in_array('stats', $userConfig['side_menu']) && Pi::service('module')->isActive('guide')) { ?>
+            <a title="<?php _e('My stats'); ?>"
+               href="<?php echo Pi::url($this->url('default', ['module' => 'guide', 'controller' => 'stats', 'action' => 'index'])); ?>"
+               class="list-group-item<?php if (isset($sideActive) && $sideActive == 'stats') {
+                   echo ' active';
+               } ?>"><?php _e('My stats'); ?></a>
+        <?php } ?>
+
         <?php if (in_array('message', $userConfig['side_menu']) && Pi::service('module')->isActive('message')) { ?>
             <?php $message = _number(Pi::api('api', 'message')->getUnread($uid, 'message')); ?>
             <a title="<?php _e('My messages'); ?>"

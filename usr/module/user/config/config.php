@@ -115,6 +115,7 @@ $config = [
                 'options' => [
                     'guide'           => _t('Guide'),
                     'media'           => _t('Media'),
+                    'stats'           => _t('Stats'),
                     'shop'            => _t('Shop'),
                     'order'           => _t('Order'),
                     'message'         => _t('Message'),
