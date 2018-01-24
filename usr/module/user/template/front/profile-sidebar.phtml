@@ -16,6 +16,7 @@ array_walk($groups, function (&$group, $gid) {
     ]);
 });
 $userConfig = Pi::service('registry')->config->read('user');
+$this->sticky();
 ?>
 <div class="clearfix" id="sticky-sidebar-manage">
 
@@ -219,9 +220,6 @@ $userConfig = Pi::service('registry')->config->read('user');
 
 <script>
     $(document).ready(function () {
-        if ($("#sticky-sidebar-manage").hcSticky == undefined) {
-            return;
-        }
         var affixWrapperHeight = 0;
         var affixWrapper = $('#affixWrapper');
         if (affixWrapper.length > 0) {
@@ -233,7 +231,7 @@ $userConfig = Pi::service('registry')->config->read('user');
         var Sticky = new hcSticky('#sticky-sidebar-manage', {
             responsive : true,
             top: $('#pi-header nav').height() + affixWrapperHeight + 20,
-            stickTo: '#sticky-container',
+            stickTo: '.pi-module-content',
             queries: {
                 992: {
                     disable: true
@@ -243,7 +241,6 @@ $userConfig = Pi::service('registry')->config->read('user');
         });
 
         $('#sticky-sidebar div.modal').insertAfter('.wrapper-sticky');
-
     });
 
 </script>
