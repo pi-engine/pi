@@ -10,7 +10,6 @@
 namespace Module\Widget\Controller\Admin;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
 
 /**
  * Script blocks
@@ -27,23 +26,23 @@ class ScriptController extends WidgetController
      */
     public function addAction()
     {
-        $widgets = $this->widgetList();
-        $installed = array();
+        $widgets   = $this->widgetList();
+        $installed = [];
         foreach ($widgets as $block) {
             $installed[$block['name']] = 1;
         }
 
-        $available = array();
-        $paths = array(
+        $available = [];
+        $paths     = [
             Pi::service('module')->path($this->getModule()) . '/meta',
             Pi::path('custom') . '/module/' . $this->getModule() . '/meta',
-        );
+        ];
         foreach ($paths as $metaPath) {
             $filter = function ($fileinfo) use (&$available, $installed) {
                 if (!$fileinfo->isFile()) {
                     return false;
                 }
-                $name = $fileinfo->getFilename();
+                $name      = $fileinfo->getFilename();
                 $extension = pathinfo($name, PATHINFO_EXTENSION);
                 if ('php' != $extension) {
                     return false;
@@ -54,19 +53,19 @@ class ScriptController extends WidgetController
                 ) {
                     return false;
                 }
-                $config = include $fileinfo->getPathname();
-                $config['name'] = $name;
-                $config['installUrl'] = $this->url('', array(
-                    'action'    => 'install',
-                    'name'      => $name,
-                ));
-                $available[] = $config;
+                $config               = include $fileinfo->getPathname();
+                $config['name']       = $name;
+                $config['installUrl'] = $this->url('', [
+                    'action' => 'install',
+                    'name'   => $name,
+                ]);
+                $available[]          = $config;
             };
             Pi::service('file')->getList($metaPath, $filter);
         }
-        $data = array(
+        $data = [
             'available' => $available,
-        );
+        ];
 
         $this->view()->assign('data', $data);
         $this->view()->setTemplate('ng-script');
@@ -78,13 +77,13 @@ class ScriptController extends WidgetController
     public function installAction()
     {
         $module = $this->getModule();
-        $name = $this->params('name');
-        $name = _filter(
+        $name   = $this->params('name');
+        $name   = _filter(
             $name,
             'regexp',
-            array('regexp' => '/^[a-z0-9_\-]+$/')
+            ['regexp' => '/^[a-z0-9_\-]+$/']
         );
-        $meta = sprintf(
+        $meta   = sprintf(
             '%s/meta/%s.php',
             Pi::service('module')->path($module),
             $name
@@ -97,19 +96,19 @@ class ScriptController extends WidgetController
                 $name
             );
         }
-        $block = include $meta;
+        $block         = include $meta;
         $block['type'] = $this->type;
         $block['name'] = $name;
         if (empty($block['render'])) {
             $block['render'] = sprintf('Module\Widget\Render::%s', $name);
         } else {
             if (is_array($block['render'])) {
-                $class = $block['render'][0];
+                $class  = $block['render'][0];
                 $method = $block['render'][1];
             } elseif (strpos('::', $block['render'])) {
                 list($class, $method) = explode('::', $block['render'], 2);
             } else {
-                $class = $block['render'];
+                $class  = $block['render'];
                 $method = 'render';
             }
             $renderClass = 'Custom\Widget\Render\\' . ucfirst($class);
@@ -129,7 +128,7 @@ class ScriptController extends WidgetController
             $message = sprintf(_a('The widget "%s" is not installed.'), $name);
         }
 
-        $this->jump(array('action' => 'add'), $message);
+        $this->jump(['action' => 'add'], $message);
 
         /*
         return array(

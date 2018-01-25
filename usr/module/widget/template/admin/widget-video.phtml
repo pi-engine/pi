@@ -1,11 +1,11 @@
 <?php
 $this->css($this->assetModule('admin/admin.css'));
-$this->jQuery(array(
+$this->jQuery([
     'ui/jquery-ui.min.js',
     'extension/fileupload-min.js',
     'extension/jquery.magnific-popup.min.js',
-    'extension/magnific-popup.css'
-));
+    'extension/magnific-popup.css',
+]);
 $this->Backbone();
 
 echo $this->form($form);
@@ -15,7 +15,8 @@ echo $this->form($form);
     <div class="col-md-10">
         <div class="row">
             <div class="col-sm-6 col-md-3 widget-item-add">
-                <div class="thumbnail widget-item-add-mark" title="<?php echo _a('Click to upload image then add item contents.'); ?>">
+                <div class="thumbnail widget-item-add-mark"
+                     title="<?php echo _a('Click to upload image then add item contents.'); ?>">
                     <i class="fa fa-plus fa-3x text-muted widget-file-button">
                         <input type="file" name="image" multiple style="width: 100%;" class="hide">
                     </i>
@@ -51,10 +52,10 @@ echo $this->form($form);
 <script>
     widgetAction({
         prefix: "block-",
-        uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>',
-        items: <?php echo $content ?: json_encode(array()); ?>
+        uploadUrl: '<?php echo $this->url('', ['action' => 'upload']); ?>',
+        items: <?php echo $content ?: json_encode([]); ?>
     });
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.image-popup').magnificPopup({
             type: 'image',
             closeOnContentClick: true,

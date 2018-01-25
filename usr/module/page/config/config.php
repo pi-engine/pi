@@ -7,25 +7,25 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
-    'item'  => array(
-        'social_sharing'    => array(
-            'title'         => _t('Social sharing items'),
-            'description'   => '',
-            'edit'          => array(
-                'type'      => 'multi_checkbox',
-                'options'   => array(
-                    'options'   => Pi::service('social_sharing')->getList(),
-                ),
-            ),
-            'filter'        => 'array',
-        ),
-        'show_breadcrumbs' => array(
-            'title'        => _a('Show breadcrumbs'),
-            'description'  => '',
-            'edit'         => 'checkbox',
-            'filter'       => 'number_int',
-            'value'        => 1
-        ),
-    ),
-);
+return [
+    'item' => [
+        'social_sharing'   => [
+            'title'       => _t('Social sharing items'),
+            'description' => '',
+            'edit'        => [
+                'type'    => 'multi_checkbox',
+                'options' => [
+                    'options' => Pi::service('social_sharing')->getList(),
+                ],
+            ],
+            'filter'      => 'array',
+        ],
+        'show_breadcrumbs' => [
+            'title'       => _a('Show breadcrumbs'),
+            'description' => '',
+            'edit'        => 'checkbox',
+            'filter'      => 'number_int',
+            'value'       => 1,
+        ],
+    ],
+];

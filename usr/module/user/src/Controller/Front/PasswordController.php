@@ -9,14 +9,14 @@
 
 namespace Module\User\Controller\Front;
 
+use Module\User\Form\FindPasswordFilter;
+use Module\User\Form\FindPasswordForm;
+use Module\User\Form\PasswordFilter;
+use Module\User\Form\PasswordForm;
+use Module\User\Form\ResetPasswordFilter;
+use Module\User\Form\ResetPasswordForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\User\Form\PasswordForm;
-use Module\User\Form\PasswordFilter;
-use Module\User\Form\ResetPasswordForm;
-use Module\User\Form\ResetPasswordFilter;
-use Module\User\Form\FindPasswordForm;
-use Module\User\Form\FindPasswordFilter;
 
 /**
  * Password controller
@@ -49,7 +49,7 @@ class PasswordController extends ActionController
         $form = new PasswordForm('password-change');
         $form->setAttribute('action', '#');
 
-        $uniqueId = rand();
+        $uniqueId  = rand();
         $elementId = 'register-' . $uniqueId;
 
         $form->setAttribute('data-toggle', 'validator');
@@ -61,7 +61,7 @@ class PasswordController extends ActionController
 
         $passwordConfirmError = __('Whoops, these don\'t match');
         $form->get('credential-confirm')
-            ->setAttribute('data-match', '#'.$elementId. ' [name=credential-new]')
+            ->setAttribute('data-match', '#' . $elementId . ' [name=credential-new]')
             ->setAttribute('data-match-error', $passwordConfirmError);
 
         if ($this->request->isPost()) {
@@ -133,7 +133,8 @@ class PasswordController extends ActionController
 
         $message = __("Password must contain at least one uppercase letter, one lowercase letter and one digit character");
 
-        $script = <<<HTML
+        $script
+            = <<<HTML
         
 <label>
     <input
@@ -171,26 +172,25 @@ HTML;
         $form->get('credential-new')
             ->setAttribute('description', $script);
 
-        if($strenghtenPassword){
-            $url = Pi::url(Pi::service('url')->assemble('user', array(
-                'module' => 'user',
+        if ($strenghtenPassword) {
+            $url = Pi::url(Pi::service('url')->assemble('user', [
+                'module'     => 'user',
                 'controller' => 'password',
-                'action' => 'validateInput',
-            )));
+                'action'     => 'validateInput',
+            ]));
 
             $form->get('credential-new')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
                 ->setAttribute('data-error', __('Invalid password'))
                 ->setAttribute('data-remote', $url)
-                ->setAttribute('data-remote-error', __('Password must contain at least one uppercase letter, one lowercase letter and one digit character'))
-            ;
+                ->setAttribute('data-remote-error', __('Password must contain at least one uppercase letter, one lowercase letter and one digit character'));
         }
 
-        $this->view()->assign(array(
-            'form'      => $form,
+        $this->view()->assign([
+            'form' => $form,
             //'groups'    => $groups,
             //'cur_group' => 'password',
             //'user'      => $user,
-        ));
+        ]);
 
         $this->view()->headTitle(__('Change password'));
         $this->view()->headdescription(__('To ensure your account security, complex password is required.'), 'set');
@@ -384,7 +384,8 @@ HTML;
 
         $message = __("Password must contain at least one uppercase letter, one lowercase letter and one digit character");
 
-        $script = <<<HTML
+        $script
+            = <<<HTML
         
 <label>
     <input
@@ -420,16 +421,16 @@ HTML;
         $form->get('credential-new')
             ->setAttribute('description', $script)
             ->setAttribute('id', 'credential-new')
-            ->setAttribute('pattern', '^.{0,'.$piConfig['password_max'].'}$')
+            ->setAttribute('pattern', '^.{0,' . $piConfig['password_max'] . '}$')
             ->setAttribute('data-pattern-error', sprintf(__("Must be less than %s characters"), $maxChars))
             ->setAttribute('data-minlength', $piConfig['password_min']);
 
-        if($strenghtenPassword){
-            $url = Pi::url(Pi::service('url')->assemble('user', array(
-                'module' => 'user',
+        if ($strenghtenPassword) {
+            $url = Pi::url(Pi::service('url')->assemble('user', [
+                'module'     => 'user',
                 'controller' => 'password',
-                'action' => 'validateInput',
-            )));
+                'action'     => 'validateInput',
+            ]));
 
             $form->get('credential-new')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
                 ->setAttribute('data-error', __('Invalid password'))
@@ -439,7 +440,7 @@ HTML;
 
         $passwordConfirmError = __('Whoops, these don\'t match');
         $form->get('credential-confirm')
-            ->setAttribute('data-match', '#'.$elementId. ' [name=credential-new]')
+            ->setAttribute('data-match', '#' . $elementId . ' [name=credential-new]')
             ->setAttribute('data-match-error', $passwordConfirmError);
 
         if ($this->request->isPost()) {
@@ -491,15 +492,16 @@ HTML;
         return $token;
     }
 
-    public function validateInputAction(){
+    public function validateInputAction()
+    {
         Pi::service('log')->mute();
 
-        $data = (array) $this->params()->fromQuery();
+        $data = (array)$this->params()->fromQuery();
 
-        $response = array(
-            'error' => false,
-            'message' => false
-        );
+        $response = [
+            'error'   => false,
+            'message' => false,
+        ];
 
         // Get register form
         /* @var $form \Module\User\Form\PasswordForm */
@@ -507,23 +509,23 @@ HTML;
         $form->setInputFilter(new PasswordFilter);
         $form->setData($data);
 
-        if($form->has('captcha')){
+        if ($form->has('captcha')) {
             $form->remove('captcha');
         }
 
-        $messages = array();
+        $messages = [];
 
-        if(!$form->isValid()){
+        if (!$form->isValid()) {
             $messages = $form->getMessages();
         };
 
 
         $dataMessages = array_intersect_key($messages, $data);
 
-        if($dataMessages){
+        if ($dataMessages) {
             $firstElementMessages = array_shift($dataMessages);
 
-            foreach($firstElementMessages as $message){
+            foreach ($firstElementMessages as $message) {
 
                 $response['message'] = $message;
             }

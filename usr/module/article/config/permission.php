@@ -9,72 +9,72 @@
 
 /**
  * Permission config
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
-return array(
-    'admin'          => array(
-        'article'    => array(
-            'title'       => _t('Article management'),
-        ),
+return [
+    'admin' => [
+        'article'         => [
+            'title' => _t('Article management'),
+        ],
         // Article author resource
-        'author'     => array(
-            'title'       => _t('Author management'),
-        ),
+        'author'          => [
+            'title' => _t('Author management'),
+        ],
         // Article category resource
-        'category'   => array(
-            'title'       => _t('Category management'),
-        ),
+        'category'        => [
+            'title' => _t('Category management'),
+        ],
         // Topic resource
-        'topic'      => array(
-            'title'       => _t('Topic management'),
-        ),
+        'topic'           => [
+            'title' => _t('Topic management'),
+        ],
         // Media resource
-        'media'      => array(
-            'title'       => _t('Media management'),
-        ),
+        'media'           => [
+            'title' => _t('Media management'),
+        ],
         // Article statistics resource
-        'stats' => array(
-            'title'       => _t('Statistics page view'),
-        ),
+        'stats'           => [
+            'title' => _t('Statistics page view'),
+        ],
         // Module permission controller
-        'permission' => array(
-            'title'       => _t('Permission management'),
-        ),
+        'permission'      => [
+            'title' => _t('Permission management'),
+        ],
         // Article configuration
-        'setup'      => array(
-            'title'       => _t('Setup management'),
-        ),
-        
+        'setup'           => [
+            'title' => _t('Setup management'),
+        ],
+
         // Module resources
-        'active'            => array(
-            'title'       => _t('Published Active/Deactivate'),
-        ),
-        'publish-edit'      => array(
-            'title'       => _t('Publish Edit'),
-        ),
-        'publish-delete'    => array(
-            'title'       => _t('Published Delete'),
-        ),
-        'compose'           => array(
-            'title'       => _t('Draft Compose'),
-        ),
-        'rejected-edit'     => array(
-            'title'       => _t('Rejected Edit'),
-        ),
-        'rejected-delete'   => array(
-            'title'       => _t('Rejected Delete'),
-        ),
-        'pending-edit'      => array(
-            'title'       => _t('Pending Edit'),
-        ),
-        'pending-delete'    => array(
-            'title'       => _t('Pending Delete'),
-        ),
-        'approve'           => array(
-            'title'       => _t('Pending Approve'),
-        ),
-        
-        'custom'         => 'Module\Article\Api\Permission',
-    ),
-);
+        'active'          => [
+            'title' => _t('Published Active/Deactivate'),
+        ],
+        'publish-edit'    => [
+            'title' => _t('Publish Edit'),
+        ],
+        'publish-delete'  => [
+            'title' => _t('Published Delete'),
+        ],
+        'compose'         => [
+            'title' => _t('Draft Compose'),
+        ],
+        'rejected-edit'   => [
+            'title' => _t('Rejected Edit'),
+        ],
+        'rejected-delete' => [
+            'title' => _t('Rejected Delete'),
+        ],
+        'pending-edit'    => [
+            'title' => _t('Pending Edit'),
+        ],
+        'pending-delete'  => [
+            'title' => _t('Pending Delete'),
+        ],
+        'approve'         => [
+            'title' => _t('Pending Approve'),
+        ],
+
+        'custom' => 'Module\Article\Api\Permission',
+    ],
+];

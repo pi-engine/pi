@@ -30,11 +30,12 @@ class Category extends Standard
      *
      * @var array
      */
-    protected $defaults = array(
-        'module'        => 'demo',
-        'controller'    => 'route',
-        'action'        => 'category'
-    );
+    protected $defaults
+        = [
+            'module'     => 'demo',
+            'controller' => 'route',
+            'action'     => 'category',
+        ];
 
 
     /**
@@ -55,17 +56,17 @@ class Category extends Standard
             return null;
         }
 
-        $params = $path ? explode($this->paramDelimiter, $path) : array();
+        $params = $path ? explode($this->paramDelimiter, $path) : [];
         if (count($params) != 2) {
             return null;
         }
         $category = $params[0];
-        $path = $params[1];
+        $path     = $params[1];
         if (empty($path)) {
             return null;
         }
 
-        list($id, $slug) = array(null, null);
+        list($id, $slug) = [null, null];
         if (false === ($pos = strpos($path, '-'))) {
             if (is_numeric($path)) {
                 $id = $path;
@@ -75,20 +76,20 @@ class Category extends Standard
         } else {
             list($id, $slug) = explode('-', $path, 2);
             if (!is_numeric($id)) {
-                $id = null;
+                $id   = null;
                 $slug = $path;
             }
         }
 
-        $matches = array(
-            'action'        => 'category',
-            'category'      => $this->decode($category),
-            'id'            => $id,
-            'slug'          => $this->decode($slug),
-        );
+        $matches = [
+            'action'   => 'category',
+            'category' => $this->decode($category),
+            'id'       => $id,
+            'slug'     => $this->decode($slug),
+        ];
 
         return new RouteMatch(array_merge($this->defaults, $matches),
-                              $pathLength);
+            $pathLength);
     }
 
     /**
@@ -99,7 +100,7 @@ class Category extends Standard
      * @param  array $options
      * @return mixed
      */
-    public function assemble(array $params = array(), array $options = array())
+    public function assemble(array $params = [], array $options = [])
     {
         $mergedParams = array_merge($this->defaults, $params);
         if (!$mergedParams) {
@@ -113,7 +114,7 @@ class Category extends Standard
             $url .= ($url ? '-' : '') . $this->encode($mergedParams['slug']);
         }
         $url = $this->encode($mergedParams['category'])
-             . $this->paramDelimiter . $url;
+            . $this->paramDelimiter . $url;
 
         return $this->paramDelimiter
             . trim($this->prefix, $this->paramDelimiter)

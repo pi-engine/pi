@@ -17,11 +17,11 @@ class BuildController extends ActionController
 {
     public function flushAction()
     {
-        $this->getModel('tag')->delete(array());
-        $this->getModel('link')->delete(array());
-        $this->getModel('stats')->delete(array());
+        $this->getModel('tag')->delete([]);
+        $this->getModel('link')->delete([]);
+        $this->getModel('stats')->delete([]);
 
-        $this->jump(array('controller' => 'index', 'action' => 'index'));
+        $this->jump(['controller' => 'index', 'action' => 'index']);
     }
 
     public function importAction()
@@ -30,7 +30,7 @@ class BuildController extends ActionController
 
         $generateTags = function () {
             $count = rand(1, 10);
-            $tags = array();
+            $tags  = [];
             for ($i = 0; $i < $count; $i++) {
                 $tags[] = 'tag-' . rand(1, 50);
             }
@@ -43,12 +43,12 @@ class BuildController extends ActionController
         };
 
         $module = 'demo';
-        $type = '';
+        $type   = '';
         for ($i = 1; $i <= 1000; $i++) {
             $item = $i;
             Pi::service('tag')->add($module, $item, $type, $generateTags());
         }
 
-        $this->jump(array('controller' => 'index', 'action' => 'index'));
+        $this->jump(['controller' => 'index', 'action' => 'index']);
     }
 }

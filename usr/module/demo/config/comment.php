@@ -13,18 +13,18 @@
  * @see Pi\Application\Installer\Resource\Comment
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
-    'article' => array(
-        'title'     => _a('Demo comments'),
-        'icon'      => 'icon-post',
+return [
+    'article' => [
+        'title'   => _a('Demo comments'),
+        'icon'    => 'icon-post',
         //'callback'  => 'Module\Demo\Comment\Article',
-        'locator'       => array(
-            'controller'    => 'article',
-            'action'        => 'index',
-            'identifier'    => 'id',
-            'params'        => array(
+        'locator' => [
+            'controller' => 'article',
+            'action'     => 'index',
+            'identifier' => 'id',
+            'params'     => [
                 // <param>      => <value>
-            ),
-        ),
-    ),
-);
+            ],
+        ],
+    ],
+];

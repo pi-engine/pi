@@ -9,49 +9,47 @@
 
 namespace Module\Article;
 
-use Pi;
 use Module\Article\Model\Article;
-use Pi\Mvc\Controller\ActionController;
 use Module\Article\Model\Draft as DraftModel;
-use Module\Article\Compiled;
-use Module\Article\Media;
+use Pi;
 
 /**
  * Common draft API
- * 
- * @author Zongshu Lin <lin40553024@163.com> 
+ *
+ * @author Zongshu Lin <lin40553024@163.com>
  */
 class Draft
 {
     protected static $module = 'article';
-    
+
     /**
      * Get draft page
-     * 
-     * @param array  $where
-     * @param int    $page
-     * @param int    $limit
-     * @param array  $columns
+     *
+     * @param array $where
+     * @param int $page
+     * @param int $limit
+     * @param array $columns
      * @param string $order
      * @param string $module
      * @return array
      */
     public static function getDraftPage(
-        $where, 
-        $page, 
-        $limit, 
-        $columns = null, 
-        $order = null, 
+        $where,
+        $page,
+        $limit,
+        $columns = null,
+        $order = null,
         $module = null
-    ) {
-        $offset     = ($limit && $page) ? $limit * ($page - 1) : null;
+    )
+    {
+        $offset = ($limit && $page) ? $limit * ($page - 1) : null;
 
-        $module     = $module ?: Pi::service('module')->current();
-        $draftIds   = $userIds = $authorIds = $categoryIds = array();
+        $module   = $module ?: Pi::service('module')->current();
+        $draftIds = $userIds = $authorIds = $categoryIds = [];
         //$categories = $authors = $users = $tags = $urls = array();
 
-        $modelDraft     = Pi::model('draft', $module);
-        $modelAuthor    = Pi::model('author', $module);
+        $modelDraft  = Pi::model('draft', $module);
+        $modelAuthor = Pi::model('author', $module);
 
         $resultset = $modelDraft->getSearchRows(
             $where,
@@ -81,20 +79,20 @@ class Draft
             if (!empty($authorIds)) {
                 $resultsetAuthor = $modelAuthor->find($authorIds);
                 foreach ($resultsetAuthor as $row) {
-                    $authors[$row->id] = array(
+                    $authors[$row->id] = [
                         'name' => $row->name,
-                    );
+                    ];
                 }
                 unset($resultsetAuthor);
             }
 
             if (!empty($userIds)) {
                 $resultsetUser = Pi::user()
-                    ->get($userIds, array('id', 'name'));
+                    ->get($userIds, ['id', 'name']);
                 foreach ($resultsetUser as $row) {
-                    $users[$row['id']] = array(
+                    $users[$row['id']] = [
                         'name' => $row['name'],
-                    );
+                    ];
                 }
                 unset($resultsetUser);
             }
@@ -129,24 +127,24 @@ class Draft
 
     /**
      * Delete draft, along with featured image and attachment.
-     * 
-     * @param array   $ids     Draft ID
-     * @param string  $module  Current module name
+     *
+     * @param array $ids Draft ID
+     * @param string $module Current module name
      * @return int             Affected rows
      */
     public static function deleteDraft($ids, $module = null)
     {
-        $module         = $module ?: Pi::service('module')->current();
+        $module = $module ?: Pi::service('module')->current();
 
-        $modelDraft     = Pi::model('draft', $module);
-        $modelArticle   = Pi::model('article', $module);
+        $modelDraft   = Pi::model('draft', $module);
+        $modelArticle = Pi::model('article', $module);
 
         // Delete feature image
-        $resultsetFeatureImage = $modelDraft->select(array('id' => $ids));
+        $resultsetFeatureImage = $modelDraft->select(['id' => $ids]);
         foreach ($resultsetFeatureImage as $featureImage) {
             if ($featureImage->article) {
                 $rowArticle = $modelArticle->find($featureImage->article);
-                if ($featureImage->image 
+                if ($featureImage->image
                     && strcmp($featureImage->image, $rowArticle->image) != 0
                 ) {
                     @unlink(Pi::path($featureImage->image));
@@ -160,37 +158,37 @@ class Draft
 
         // Delete assets
         $modelDraftAsset = Pi::model('asset_draft', $module);
-        $modelDraftAsset->delete(array('draft' => $ids));
+        $modelDraftAsset->delete(['draft' => $ids]);
 
         // Delete draft
-        $affectedRows = $modelDraft->delete(array('id' => $ids));
+        $affectedRows = $modelDraft->delete(['id' => $ids]);
 
         return $affectedRows;
     }
 
     /**
      * Break article content by delimiter
-     * 
-     * @param string  $content
+     *
+     * @param string $content
      * @return array
      */
     public static function breakPage($content)
     {
-        $result = $matches = $row = array();
+        $result = $matches = $row = [];
         $page   = 0;
 
         $matches = preg_split(
-            Article::PAGE_BREAK_PATTERN, 
-            $content, 
-            null, 
+            Article::PAGE_BREAK_PATTERN,
+            $content,
+            null,
             PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
         );
         foreach ($matches as $text) {
             if (preg_match(Article::PAGE_BREAK_PATTERN, $text)) {
                 if (isset($row['title']) || isset($row['content'])) {
                     $row['page'] = ++$page;
-                    $result[] = $row;
-                    $row = array();
+                    $result[]    = $row;
+                    $row         = [];
                 }
 
                 $row['title'] = trim(strip_tags($text));
@@ -209,17 +207,17 @@ class Draft
 
     /**
      * Generate article summary
-     * 
-     * @param string  $content
-     * @param int     $length
+     *
+     * @param string $content
+     * @param int $length
      * @return string
      */
     public static function generateArticleSummary($content, $length)
     {
         // Remove title
         $result = preg_replace(
-            array(Article::PAGE_BREAK_PATTERN, '/&nbsp;/'), 
-            '', 
+            [Article::PAGE_BREAK_PATTERN, '/&nbsp;/'],
+            '',
             $content
         );
         // Strip tags
@@ -244,59 +242,59 @@ class Draft
                 $data[$key] = static::deepHtmlspecialchars($val);
             }
         } else {
-            $data = is_string($data) 
+            $data = is_string($data)
                 ? htmlspecialchars($data, ENT_QUOTES, 'utf-8') : $data;
         }
 
         return $data;
     }
-    
+
     /**
      * Get draft article details.
-     * 
-     * @param int  $id  Draft article ID
-     * @return array 
+     *
+     * @param int $id Draft article ID
+     * @return array
      */
     public static function getDraft($id)
     {
-        $result = array();
+        $result = [];
         $module = Pi::service('module')->current();
         $config = Pi::config('', $module);
 
-        $row    = Pi::model('draft', $module)->findRow($id, 'id', false);
+        $row = Pi::model('draft', $module)->findRow($id, 'id', false);
         if (empty($row->id)) {
-            return array();
+            return [];
         }
 
         $subject = $subtitle = $content = '';
         if ($row->markup) {
-            $subject    = Pi::service('markup')->compile($row->subject, $row->markup);
-            $subtitle   = Pi::service('markup')->compile($row->subtitle, $row->markup);
+            $subject  = Pi::service('markup')->compile($row->subject, $row->markup);
+            $subtitle = Pi::service('markup')->compile($row->subtitle, $row->markup);
         } else {
-            $subject    = Pi::service('markup')->render($row->subject, 'html');
-            $subtitle   = Pi::service('markup')->render($row->subtitle, 'html');
+            $subject  = Pi::service('markup')->render($row->subject, 'html');
+            $subtitle = Pi::service('markup')->render($row->subtitle, 'html');
         }
         $content = Compiled::compiled($row->markup, $row->content, 'html');
 
-        $result = array(
-            'title'         => $subject,
-            'content'       => self::breakPage($content),
-            'slug'          => $row->slug,
-            'seo'           => array(
-                'title'         => $row->seo_title,
-                'keywords'      => $row->seo_keywords,
-                'description'   => $row->seo_description,
-            ),
-            'subtitle'      => $subtitle,
-            'source'        => $row->source,
-            'pages'         => $row->pages,
-            'time_publish'  => $row->time_publish,
-            'author'        => array(),
-            'attachment'    => array(),
-            'tag'           => $row->tag,
-            'related'       => array(),
-            'category'      => $row->category,
-        );
+        $result = [
+            'title'        => $subject,
+            'content'      => self::breakPage($content),
+            'slug'         => $row->slug,
+            'seo'          => [
+                'title'       => $row->seo_title,
+                'keywords'    => $row->seo_keywords,
+                'description' => $row->seo_description,
+            ],
+            'subtitle'     => $subtitle,
+            'source'       => $row->source,
+            'pages'        => $row->pages,
+            'time_publish' => $row->time_publish,
+            'author'       => [],
+            'attachment'   => [],
+            'tag'          => $row->tag,
+            'related'      => [],
+            'category'     => $row->category,
+        ];
 
         // Get author
         if ($row->author) {
@@ -305,55 +303,55 @@ class Draft
             if ($author) {
                 $result['author'] = $author->toArray();
                 if (empty($result['author']['photo'])) {
-                    $result['author']['photo'] = 
-                        Pi::service('asset')->getModuleAsset(
-                            $config['default_author_photo'], 
-                            $module
-                        );
+                    $result['author']['photo']
+                        = Pi::service('asset')->getModuleAsset(
+                        $config['default_author_photo'],
+                        $module
+                    );
                 }
             }
         }
 
         // Get attachments
-        $resultsetDraftAsset = Pi::model('asset_draft', $module)->select(array(
+        $resultsetDraftAsset = Pi::model('asset_draft', $module)->select([
             'draft' => $id,
             'type'  => 'attachment',
-        ));
-        $mediaIds = array(0);
+        ]);
+        $mediaIds            = [0];
         foreach ($resultsetDraftAsset as $asset) {
             $mediaIds[$asset->media] = $asset->media;
         }
 
         $modelMedia = Pi::model('media', $module);
-        $rowMedia   = $modelMedia->select(array('id' => $mediaIds));
+        $rowMedia   = $modelMedia->select(['id' => $mediaIds]);
         foreach ($rowMedia as $media) {
-            $result['attachment'][] = array(
+            $result['attachment'][] = [
                 'original_name' => $media->title,
                 'extension'     => $media->type,
                 'size'          => $media->size,
-                'url'           => Pi::service('url')->assemble('admin', array(
+                'url'           => Pi::service('url')->assemble('admin', [
                     'module'     => $module,
                     'controller' => 'media',
                     'action'     => 'download',
                     'name'       => $media->id,
-                )),
-            );
+                ]),
+            ];
         }
 
         // Get related articles
-        $relatedIds = $related = array();
+        $relatedIds = $related = [];
         $relatedIds = $row->related;
         if ($relatedIds) {
             $related = array_flip($relatedIds);
-            $where   = array('id' => $relatedIds);
-            $columns = array('id', 'subject');
+            $where   = ['id' => $relatedIds];
+            $columns = ['id', 'subject'];
 
             $resultsetRelated = Entity::getArticlePage(
-                $where, 
-                1, 
-                null, 
-                $columns, 
-                null, 
+                $where,
+                1,
+                null,
+                $columns,
+                null,
                 $module
             );
 
@@ -363,7 +361,7 @@ class Draft
                 }
             }
 
-            $result['related'] = array_filter($related, function($var) {
+            $result['related'] = array_filter($related, function ($var) {
                 return is_array($var);
             });
         }
@@ -372,7 +370,7 @@ class Draft
             if ($config['seo_keywords'] == Article::FIELD_SEO_KEYWORDS_TAG) {
                 $result['seo']['keywords'] = implode(' ', $result['tag']);
             } else if ($config['seo_keywords'] == Article::FIELD_SEO_KEYWORDS_CATEGORY) {
-                $rowCategory = Pi::model('category', $module)->find($row->category);
+                $rowCategory               = Pi::model('category', $module)->find($row->category);
                 $result['seo']['keywords'] = $rowCategory->title;
             }
         }
@@ -385,12 +383,12 @@ class Draft
 
         return $result;
     }
-    
+
     /**
      * Change status number to slug string
-     * 
-     * @param int  $status
-     * @return string 
+     *
+     * @param int $status
+     * @return string
      */
     public static function getStatusSlug($status)
     {
@@ -412,7 +410,7 @@ class Draft
                 $slug = 'draft';
                 break;
         }
-        
+
         return $slug;
     }
 }

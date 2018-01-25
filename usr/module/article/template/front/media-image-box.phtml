@@ -34,33 +34,37 @@
                             <div class="clearfix form-inline" style="margin-bottom: 20px">
                                 <div class="pull-right form-search">
                                     <div class="form-group">
-                                        <input type="text" value="" placeholder="<?php _e('Title'); ?>" class="form-control" name="media-title">
+                                        <input type="text" value="" placeholder="<?php _e('Title'); ?>"
+                                               class="form-control" name="media-title">
                                     </div>
-                                    <button id="media-search" class="btn" data-from="search"><?php _e('Search'); ?></button>
+                                    <button id="media-search" class="btn"
+                                            data-from="search"><?php _e('Search'); ?></button>
                                 </div>
                             </div>
                             <div id="media-select-result" style="margin-bottom: 20px"></div>
                             <div id="media-lists">
                                 <table class="table table-striped">
                                     <tbody>
-                                        <tr>
-                                            <th><?php echo _e('Image'); ?></th>
-                                            <th><?php echo _e('Title'); ?></th>
-                                            <th><?php echo _e('Size'); ?></th>
-                                            <th><?php echo _e('Select'); ?></th>
-                                        </tr>
+                                    <tr>
+                                        <th><?php echo _e('Image'); ?></th>
+                                        <th><?php echo _e('Title'); ?></th>
+                                        <th><?php echo _e('Size'); ?></th>
+                                        <th><?php echo _e('Select'); ?></th>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="media-page hide" style="text-align: center">
                                 <ul class="pager">
                                     <li>
-                                        <a class="btn btn-small disabled prev-page" data-from="prev" data-url="" href="javascript:void(0)">
+                                        <a class="btn btn-small disabled prev-page" data-from="prev" data-url=""
+                                           href="javascript:void(0)">
                                             &lt;&lt;&nbsp;<?php _e('Prev'); ?>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="btn btn-small next-page" data-from="next" data-url="" href="javascript:void(0)">
+                                        <a class="btn btn-small next-page" data-from="next" data-url=""
+                                           href="javascript:void(0)">
                                             <?php _e('Next'); ?>&nbsp;&gt;&gt;
                                         </a>
                                     </li>
@@ -69,13 +73,15 @@
                         </div>
                     </div>
                 </div>
-                <input name="image-id" type="hidden" />
-                <input name="image-source" type="hidden" />
+                <input name="image-id" type="hidden"/>
+                <input name="image-source" type="hidden"/>
             </div>
             <!-- Footer -->
             <div class="modal-footer">
-                <button id="media-cancel" class="btn disabled" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancel'); ?></button>
-                <button id="media-process" class="btn btn-primary disabled" data-dismiss="modal" ><?php echo __('Yes'); ?></button>
+                <button id="media-cancel" class="btn disabled" data-dismiss="modal"
+                        aria-hidden="true"><?php echo __('Cancel'); ?></button>
+                <button id="media-process" class="btn btn-primary disabled"
+                        data-dismiss="modal"><?php echo __('Yes'); ?></button>
             </div>
         </div>
     </div>
@@ -84,7 +90,7 @@
 <!-- Template used to list searched items -->
 <script id="media-searched-item" type="text/template">
     <tr>
-        <td><img style="width: 40px; height: 40px" src="<%= url %>" /></td>
+        <td><img style="width: 40px; height: 40px" src="<%= url %>"/></td>
         <td><%= title %></td>
         <td><%= size %></td>
         <td class="media-insert">
@@ -100,14 +106,16 @@
     <div class="alert alert-success">
         <button class="media-remove close" style="line-height: 40px" data-dismiss="alert" type="button">×</button>
         <span style="font-weight: bold; width: 100%"><?php _e('Image choosed: '); ?></span>
-        <img style="width: 40px; height: 40px; margin-left: 10px" src="<%= url %>" />
+        <img style="width: 40px; height: 40px; margin-left: 10px" src="<%= url %>"/>
         <span class="text-muted" style="margin-left: 10px"><%= title %></span>
     </div>
 </script>
 
 <!-- Template used to show uploaded image -->
 <script id="media-uploaded-image" type="text/template">
-    <div class="black-bg"><button type="button" class="close js-media-close">&times;</button></div>
+    <div class="black-bg">
+        <button type="button" class="close js-media-close">&times;</button>
+    </div>
     <img style="<% if (h / w > 0.75) { %>height: 238px; <% } else { %> width: 318px <% } %>" src="<%= preview_url %>">
 </script>
 
@@ -118,6 +126,7 @@
         <input type="file" name="upload">
     </div>
     <div class="text-muted" style="line-height: 0; margin: -140px 0 0 50px; font-size: 12px">
-        <?php echo __('Format supported: ') . $this->escape($imageExtension); ?> (<?php echo $this->escape($config['max_image_size']); ?>)
+        <?php echo __('Format supported: ') . $this->escape($imageExtension); ?>
+        (<?php echo $this->escape($config['max_image_size']); ?>)
     </div>
 </script>

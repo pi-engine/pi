@@ -15,18 +15,18 @@ class Navigation
 {
     public static function modules($module)
     {
-        $nav = array(
-            'pages'     => array(),
-        );
+        $nav = [
+            'pages' => [],
+        ];
 
         $modules = Pi::registry('modulelist')->read('active');
         unset($modules['system']);
         foreach ($modules as $key => $data) {
-            $nav['pages'][$key] = array(
-                'label'     => $data['title'],
-                'module'    => $key,
-                'route'     => 'admin',
-            );
+            $nav['pages'][$key] = [
+                'label'  => $data['title'],
+                'module' => $key,
+                'route'  => 'admin',
+            ];
         }
 
         return $nav;

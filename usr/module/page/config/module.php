@@ -7,54 +7,54 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
+return [
     // Module meta
-    'meta'  => array(
+    'meta'     => [
         // Module title, required
-        'title'         => _a('Page'),
+        'title'       => _a('Page'),
         // Description, for admin, optional
-        'description'   => _a('Single page for direct content display.'),
+        'description' => _a('Single page for direct content display.'),
         // Version number, required
-        'version'       => '1.2.8',
+        'version'     => '1.2.8',
         // Distribution license, required
-        'license'       => 'New BSD',
+        'license'     => 'New BSD',
         // Logo image, for admin, optional
-        'logo'          => 'image/logo.png',
+        'logo'        => 'image/logo.png',
         // Demo site link, optional
-        'demo'          => 'http://demo.piengine.org/demo',
+        'demo'        => 'http://demo.piengine.org/demo',
 
-        'icon'          => 'fa-file-text-o',
+        'icon' => 'fa-file-text-o',
 
-        'clonable'      => true,
-    ),
+        'clonable' => true,
+    ],
     // Author information
-    'author'    => array(
+    'author'   => [
         // Author full name, required
-        'Dev'       => 'Taiwen Jiang; Voltan; Liao Wei',
+        'Dev'     => 'Taiwen Jiang; Voltan; Liao Wei',
         // Email address, optional
-        'Email'     => 'taiwenjiang@tsinghua.org.cn',
+        'Email'   => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'Website'   => 'http://piengine.org',
+        'Website' => 'http://piengine.org',
         // Credits and acknowledgement, optional
-        'Credits'   => 'Pi Engine Team'
-    ),
+        'Credits' => 'Pi Engine Team',
+    ],
 
     // Resource
-    'resource' => array(
+    'resource' => [
         // Database meta
-        'database'  => array(
+        'database'   => [
             // SQL schema/data file
-            'sqlfile'   => 'sql/mysql.sql',
-        ),
+            'sqlfile' => 'sql/mysql.sql',
+        ],
         // Module Config
-        'config'        => 'config.php',
+        'config'     => 'config.php',
         // Navigation definition
-        'navigation'    => 'nav.php',
+        'navigation' => 'nav.php',
         // Routes, first in last out; bigger priority earlier out
-        'route'         => 'route.php',
+        'route'      => 'route.php',
         // View pages
-        'page'          => 'page.php',
+        'page'       => 'page.php',
         // Comment
-        'comment'   => 'comment.php',
-    ),
-);
+        'comment'    => 'comment.php',
+    ],
+];

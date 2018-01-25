@@ -9,12 +9,11 @@
 
 namespace Module\Article\Controller\Admin;
 
-use Pi;
 use Module\Article\Controller\Front\DraftController as FrontDraft;
 
 /**
  * Draft controller extend from front DraftController
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class DraftController extends FrontDraft

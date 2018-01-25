@@ -26,28 +26,28 @@ class Block extends AbstractApi
     /**
      * Add a widget and derived block
      *
-     * @param array  $block
+     * @param array $block
      * @param string $type
      *
      * @return int
      */
     public function add(array $block, $type = '')
     {
-        $id = 0;
+        $id     = 0;
         $result = $this->addBlock($block, $type);
         if ($result && !empty($result['root'])) {
-            $widget = array(
+            $widget = [
                 'block' => $result['root'],
                 'name'  => $block['name'],
                 'meta'  => isset($block['meta'])
-                        ? $block['meta']
-                        : $block['content'],
+                    ? $block['meta']
+                    : $block['content'],
                 'type'  => $type ?: $block['type'],
                 'time'  => time(),
-            );
-            $row = Pi::model('widget', 'widget')->createRow($widget);
+            ];
+            $row    = Pi::model('widget', 'widget')->createRow($widget);
             $row->save();
-            $id = (int) $row->id;
+            $id = (int)$row->id;
         }
 
         return $id;
@@ -56,14 +56,14 @@ class Block extends AbstractApi
     /**
      * Add a block
      *
-     * @param array  $block
+     * @param array $block
      * @param string $type
      *
      * @return array
      */
     public function addBlock(array $block, $type = '')
     {
-        $type = $type ?: $block['type'];
+        $type   = $type ?: $block['type'];
         $config = $this->getConfig($type);
         if ($config) {
             $block['config'] = $config;
@@ -85,104 +85,104 @@ class Block extends AbstractApi
      */
     public function getConfig($type = null)
     {
-        $config = Pi::config('', 'widget');
-        $imgWidth = function ($value) {
-            return array(
-                'title'         => _a('Image width'),
-                'edit'          => 'text',
-                'filter'        => 'int',
-                'value'         => $value,
-            );
+        $config      = Pi::config('', 'widget');
+        $imgWidth    = function ($value) {
+            return [
+                'title'  => _a('Image width'),
+                'edit'   => 'text',
+                'filter' => 'int',
+                'value'  => $value,
+            ];
         };
-        $imgHeight = function ($value) {
-            return array(
-                'title'         => _a('Image height'),
-                'edit'          => 'text',
-                'filter'        => 'int',
-                'value'         => $value,
-            );
+        $imgHeight   = function ($value) {
+            return [
+                'title'  => _a('Image height'),
+                'edit'   => 'text',
+                'filter' => 'int',
+                'value'  => $value,
+            ];
         };
-        $maxRows = array(
-            'title'         => _a('Max rows to display'),
-            'edit'          => array(
-                'type'      => 'select',
-                'options'   => array(
-                    'options'   => array(
-                        0   => _a('No limit'),
-                        1   => _a('1 row'),
-                        2   => sprintf(_a('%d rows'), 2),
-                        3   => sprintf(_a('%d rows'), 3),
-                        4   => sprintf(_a('%d rows'), 4),
-                        6   => sprintf(_a('%d rows'), 6),
-                        12   => sprintf(_a('%d rows'), 12),
-                    ),
-                ),
-            ),
-            'filter'        => 'int',
-        );
-        $targetNew = array(
-            'title'     => _a('Open link in new window'),
-            'edit'      => 'checkbox',
-            'filter'    => 'int',
-            'value'     => $config['target_new'],
-        );
-        $circleImage = array(
-            'title'     => _a('Circle image'),
-            'edit'      => 'checkbox',
-            'filter'    => 'int',
-            'value'     => $config['circle_image'],
-        );
-        $configs = array(
-            'list' => array(
-                'max_rows'      => $maxRows,
-                'target_new'    => $targetNew,
-            ),
-            'media' => array(
-                'width'         => $imgWidth($config['image_width_media']),
-                'height'        => $imgHeight($config['image_height_media']),
-                'max_rows'      => $maxRows,
-                'target_new'    => $targetNew,
-                'circle_image'  => $circleImage,
-            ),
-            'spotlight' => array(
-                'width'         => $imgWidth($config['image_width_spotlight']),
-                'height'        => $imgHeight($config['image_height_spotlight']),
-                'max_rows'      => $maxRows,
-                'target_new'    => $targetNew,
-            ),
-            'carousel' => array(
-                'width'     => $imgWidth($config['image_width_carousel']),
-                'height'    => $imgHeight($config['image_height_carousel']),
-                'interval'  => array(
-                    'title'         => _a('Time interval (ms)'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                    'value'         => 4000,
-                ),
-                'pause'     => array(
-                    'title'         => _a('Mouse event'),
-                    'description'   => _a('Event to pause cycle'),
-                    'edit'          => array(
-                        'type'  =>  'select',
-                        'options'   => array(
-                            'options'   => array(
+        $maxRows     = [
+            'title'  => _a('Max rows to display'),
+            'edit'   => [
+                'type'    => 'select',
+                'options' => [
+                    'options' => [
+                        0  => _a('No limit'),
+                        1  => _a('1 row'),
+                        2  => sprintf(_a('%d rows'), 2),
+                        3  => sprintf(_a('%d rows'), 3),
+                        4  => sprintf(_a('%d rows'), 4),
+                        6  => sprintf(_a('%d rows'), 6),
+                        12 => sprintf(_a('%d rows'), 12),
+                    ],
+                ],
+            ],
+            'filter' => 'int',
+        ];
+        $targetNew   = [
+            'title'  => _a('Open link in new window'),
+            'edit'   => 'checkbox',
+            'filter' => 'int',
+            'value'  => $config['target_new'],
+        ];
+        $circleImage = [
+            'title'  => _a('Circle image'),
+            'edit'   => 'checkbox',
+            'filter' => 'int',
+            'value'  => $config['circle_image'],
+        ];
+        $configs     = [
+            'list'      => [
+                'max_rows'   => $maxRows,
+                'target_new' => $targetNew,
+            ],
+            'media'     => [
+                'width'        => $imgWidth($config['image_width_media']),
+                'height'       => $imgHeight($config['image_height_media']),
+                'max_rows'     => $maxRows,
+                'target_new'   => $targetNew,
+                'circle_image' => $circleImage,
+            ],
+            'spotlight' => [
+                'width'      => $imgWidth($config['image_width_spotlight']),
+                'height'     => $imgHeight($config['image_height_spotlight']),
+                'max_rows'   => $maxRows,
+                'target_new' => $targetNew,
+            ],
+            'carousel'  => [
+                'width'      => $imgWidth($config['image_width_carousel']),
+                'height'     => $imgHeight($config['image_height_carousel']),
+                'interval'   => [
+                    'title'  => _a('Time interval (ms)'),
+                    'edit'   => 'text',
+                    'filter' => 'int',
+                    'value'  => 4000,
+                ],
+                'pause'      => [
+                    'title'       => _a('Mouse event'),
+                    'description' => _a('Event to pause cycle'),
+                    'edit'        => [
+                        'type'    => 'select',
+                        'options' => [
+                            'options' => [
                                 'hover' => 'hover',
-                            ),
-                        ),
-                    ),
-                    'value'         => 'hover',
-                ),
-                'max_rows'      => $maxRows,
-                'target_new'    => $targetNew,
-            ),
-        );
+                            ],
+                        ],
+                    ],
+                    'value'       => 'hover',
+                ],
+                'max_rows'   => $maxRows,
+                'target_new' => $targetNew,
+            ],
+        ];
 
         if (null === $type) {
             $config = $configs;
         } elseif (isset($configs[$type])) {
             $config = $configs[$type];
         } else {
-            $config = array();
+            $config = [];
         }
 
         return $config;
@@ -197,34 +197,34 @@ class Block extends AbstractApi
      */
     public function templateSpec($type = null)
     {
-        $configs = array(
-            'list'  => array(
-                'type'  =>  'Module\Widget\Form\Element\ListTemplate',
-            ),
-            'media' => array(
-                'type'  =>  'Module\Widget\Form\Element\MediaTemplate',
-            ),
-            'spotlight' => array(
-                'type'  =>  'Module\Widget\Form\Element\SpotlightTemplate',
-            ),
-            'carousel'  => array(
-                'type'  =>  'Module\Widget\Form\Element\CarouselTemplate',
-            ),
-            'video'     => array(
-                'type'  =>  'Module\Widget\Form\Element\VideoTemplate',
-            ),
+        $configs = [
+            'list'      => [
+                'type' => 'Module\Widget\Form\Element\ListTemplate',
+            ],
+            'media'     => [
+                'type' => 'Module\Widget\Form\Element\MediaTemplate',
+            ],
+            'spotlight' => [
+                'type' => 'Module\Widget\Form\Element\SpotlightTemplate',
+            ],
+            'carousel'  => [
+                'type' => 'Module\Widget\Form\Element\CarouselTemplate',
+            ],
+            'video'     => [
+                'type' => 'Module\Widget\Form\Element\VideoTemplate',
+            ],
             'html'      => false,
             'text'      => false,
             'markdown'  => false,
             'tab'       => false,
-        );
+        ];
 
         if (null === $type) {
             $config = $configs;
         } elseif (isset($configs[$type])) {
             $config = $configs[$type];
         } else {
-            $config = array();
+            $config = [];
         }
 
         return $config;
@@ -233,23 +233,24 @@ class Block extends AbstractApi
     /**
      * Render a widget
      *
-     * @param RenderHelper  $helper
-     * @param array         $block
-     * @param array         $options
+     * @param RenderHelper $helper
+     * @param array $block
+     * @param array $options
      *
      * @return array|string
      */
     public function render(
         RenderHelper $helper,
         array $block,
-        array $options = array()
-    ) {
-        $transliterateGlobals = function($content) {
-            $globalsMap = array(
-                'sitename'  => Pi::config('sitename'),
-                'slogan'    => Pi::config('slogan'),
-                'siteurl'   => Pi::url('www'),
-            );
+        array $options = []
+    )
+    {
+        $transliterateGlobals = function ($content) {
+            $globalsMap = [
+                'sitename' => Pi::config('sitename'),
+                'slogan'   => Pi::config('slogan'),
+                'siteurl'  => Pi::url('www'),
+            ];
             foreach ($globalsMap as $var => $val) {
                 $content = str_replace('%' . $var . '%', $val, $content);
             }
@@ -269,29 +270,29 @@ class Block extends AbstractApi
             case 'list':
                 // media object
             case 'media':
-               // video player
+                // video player
             case 'video':
                 // carousel
             case 'carousel':
                 $items = empty($block['content'])
                     ? false : json_decode($block['content'], true);
                 if ($items && is_array($items)) {
-                    $result = array(
-                        'items'     => $items,
-                        'options'   => $options,
-                    );
+                    $result = [
+                        'items'   => $items,
+                        'options' => $options,
+                    ];
                 } else {
-                    $result = array();
+                    $result = [];
                 }
                 break;
 
             // compound tab
             case 'tab':
-                $result = array();
-                $list = json_decode($block['content'], true);
+                $result = [];
+                $list   = json_decode($block['content'], true);
                 foreach ($list as $tab) {
                     $entity = isset($tab['name']) ? $tab['name'] : intval($tab['id']);
-                    $row = Pi::model('block')->find($entity);
+                    $row    = Pi::model('block')->find($entity);
                     if (!$row || !$row->active) {
                         continue;
                     }
@@ -299,11 +300,11 @@ class Block extends AbstractApi
                     if (empty($data['content'])) {
                         continue;
                     }
-                    $result[] = array(
-                        'caption'   => !empty($tab['caption']) ? $tab['caption'] : $data['title'],
-                        'link'      => !empty($tab['link']) ? $tab['link'] : '',
-                        'content'   => $data['content'],
-                    );
+                    $result[] = [
+                        'caption' => !empty($tab['caption']) ? $tab['caption'] : $data['title'],
+                        'link'    => !empty($tab['link']) ? $tab['link'] : '',
+                        'content' => $data['content'],
+                    ];
                 }
                 break;
 

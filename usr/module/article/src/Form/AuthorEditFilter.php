@@ -9,7 +9,6 @@
 
 namespace Module\Article\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**
@@ -20,38 +19,38 @@ use Zend\InputFilter\InputFilter;
 class AuthorEditFilter extends InputFilter
 {
     /**
-     * Initializing validator and filter 
+     * Initializing validator and filter
      */
     public function __construct()
     {
-        $this->add(array(
+        $this->add([
             'name'     => 'name',
             'required' => true,
-            'filters'  => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'     => 'photo',
             'required' => false,
-        ));
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'     => 'description',
             'required' => false,
-        ));
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'     => 'id',
             'required' => false,
-        ));
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'     => 'fake_id',
             'required' => false,
-        ));
+        ]);
     }
 }

@@ -9,12 +9,12 @@
 
 namespace Module\User\Controller\Front;
 
+use Module\User\Form\CompoundFilter;
+use Module\User\Form\CompoundForm;
+use Module\User\Form\ProfileEditFilter;
+use Module\User\Form\ProfileEditForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\User\Form\ProfileEditForm;
-use Module\User\Form\ProfileEditFilter;
-use Module\User\Form\CompoundForm;
-use Module\User\Form\CompoundFilter;
 
 //use Pi\Paginator\Paginator;
 

@@ -1,14 +1,13 @@
 # Quote all table names with '{' and '}', and prefix all system tables with 'core.'
-
 CREATE TABLE `{widget}` (
-  `id`              int(10) unsigned NOT NULL auto_increment,
-  `block`           int(10) unsigned NOT NULL default '0',
-  `time`            int(10) unsigned NOT NULL default '0',
-  `name`            varchar(64) NOT NULL default '',
-  `type`            varchar(64) NOT NULL default '',
-  `meta`            text,
+  `id`    INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `block` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `time`  INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `name`  VARCHAR(64)      NOT NULL DEFAULT '',
+  `type`  VARCHAR(64)      NOT NULL DEFAULT '',
+  `meta`  TEXT,
 
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `block` (`block`)
 );

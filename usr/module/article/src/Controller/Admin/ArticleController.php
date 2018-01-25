@@ -9,18 +9,18 @@
 
 namespace Module\Article\Controller\Admin;
 
-use Pi;
 use Module\Article\Controller\Front\ArticleController as FrontArticle;
 use Module\Article\Rule;
+use Pi;
 
 /**
  * Article controller
- * 
+ *
  * Feature list:
- * 
+ *
  * 1. Published article list page for management
  * 2. Active/deactivate/detete/edit article
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class ArticleController extends FrontArticle
@@ -30,7 +30,7 @@ class ArticleController extends FrontArticle
      * @var string
      */
     protected $section = 'admin';
-    
+
     /**
      * Default page, redirect to published article list page
      */
@@ -38,16 +38,16 @@ class ArticleController extends FrontArticle
     {
         return $this->redirect()->toRoute(
             'admin',
-            array(
+            [
                 'action' => 'published',
                 'from'   => 'all',
-            )
+            ]
         );
     }
-    
+
     /**
      * Active or deactivate articles
-     * 
+     *
      * @return ViewModel
      */
     public function activateAction()
@@ -58,30 +58,30 @@ class ArticleController extends FrontArticle
         $from   = $this->params('from', '');
 
         if ($ids) {
-            $module         = $this->getModule();
-            $modelArticle   = $this->getModel('article');
-            
+            $module       = $this->getModule();
+            $modelArticle = $this->getModel('article');
+
             // Activing articles that user has permission to do
             $rules = Rule::getPermission();
             if (1 == count($ids)) {
-                $row      = $modelArticle->find($ids[0]);
-                if (!(isset($rules[$row->category]['active']) 
+                $row = $modelArticle->find($ids[0]);
+                if (!(isset($rules[$row->category]['active'])
                     and $rules[$row->category]['active'])
                 ) {
                     return $this->jumpToDenied();
                 }
             } else {
-                $rows     = $modelArticle->select(array('id' => $ids));
-                $ids      = array();
+                $rows = $modelArticle->select(['id' => $ids]);
+                $ids  = [];
                 foreach ($rows as $row) {
-                    if (isset($rules[$row->category]['active']) 
+                    if (isset($rules[$row->category]['active'])
                         and $rules[$row->category]['active']
                     ) {
                         $ids[] = $row->id;
                     }
                 }
             }
-            
+
             $modelArticle->setActiveStatus($ids, $status ? 1 : 0);
 
             // Clear cache
@@ -94,8 +94,8 @@ class ArticleController extends FrontArticle
         } else {
             // Go to list page
             return $this->redirect()->toRoute(
-                '', 
-                array('action' => 'published', 'from' => 'all')
+                '',
+                ['action' => 'published', 'from' => 'all']
             );
         }
     }

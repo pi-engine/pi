@@ -14,19 +14,19 @@ use Zend\Validator\AbstractValidator;
 
 class WidgetNameDuplicate extends AbstractValidator
 {
-    const TAKEN        = 'widgetExists';
+    const TAKEN = 'widgetExists';
 
     /**
      * @var array
      */
-    protected $messageTemplates = array();
+    protected $messageTemplates = [];
 
 
     public function __construct()
     {
-        $this->messageTemplates = array(
+        $this->messageTemplates = [
             self::TAKEN => _a('Widget name already exists'),
-        );
+        ];
 
         parent::__construct();
     }
@@ -43,7 +43,7 @@ class WidgetNameDuplicate extends AbstractValidator
         $this->setValue($value);
 
         if (null !== $value) {
-            $where = array('name' => $value);
+            $where = ['name' => $value];
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }

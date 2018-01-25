@@ -32,22 +32,22 @@ class Api extends AbstractApi
         // Save
         $row = Pi::model('page', $this->getModule())->createRow($page);
         $row->save();
-        $id = (int) $row->id;
+        $id = (int)$row->id;
         if (!$id) {
             return $id;
         }
         // Set system page
         if (!empty($row->name)) {
-            $page = array(
-                'section'       => 'front',
-                'module'        => $this->getModule(),
-                'controller'    => 'index',
-                'action'        => $row->name,
-                'title'         => $row->title,
-                'block'         => 1,
-                'custom'        => 0,
-            );
-            $row = Pi::model('page')->createRow($page);
+            $page = [
+                'section'    => 'front',
+                'module'     => $this->getModule(),
+                'controller' => 'index',
+                'action'     => $row->name,
+                'title'      => $row->title,
+                'block'      => 1,
+                'custom'     => 0,
+            ];
+            $row  = Pi::model('page')->createRow($page);
             $row->save();
         }
         // Flush page registry
@@ -76,12 +76,12 @@ class Api extends AbstractApi
         if (!$row->name) {
             return true;
         }
-        $where = array(
-            'section'       => 'front',
-            'module'        => $this->getModule(),
-            'controller'    => 'index',
-            'action'        => $row->name,
-        );
+        $where = [
+            'section'    => 'front',
+            'module'     => $this->getModule(),
+            'controller' => 'index',
+            'action'     => $row->name,
+        ];
         Pi::model('page')->delete($where);
 
         Pi::registry('page')->clear($this->getModule());
@@ -98,10 +98,10 @@ class Api extends AbstractApi
      */
     public function url($id)
     {
-        $params = array(
-            'module'    => $this->module,
-            'id'        => $id,
-        );
+        $params   = [
+            'module' => $this->module,
+            'id'     => $id,
+        ];
         $pageList = Pi::registry('page', $this->module)->read();
         if (isset($pageList[$id])) {
             $params = array_merge($pageList[$id], $params);

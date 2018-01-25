@@ -7,47 +7,47 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
-    'title'         => _a('Pi Engine Updates'),
-    'description'   => _a('Block to display Pi Engine new updates on GitHub'),
-    'template'      => 'pi-github',
+return [
+    'title'       => _a('Pi Engine Updates'),
+    'description' => _a('Block to display Pi Engine new updates on GitHub'),
+    'template'    => 'pi-github',
     //'render'        => 'PiGithub',
-    'config'        => array(
+    'config'      => [
         // text option
-        'subline' => array(
-            'title'         => 'Subline',
-            'description'   => 'Caption for the block',
-            'edit'          => 'text',
-            'filter'        => 'string',
-            'value'         => _a('Pi Engine Updates'),
-        ),
+        'subline'     => [
+            'title'       => 'Subline',
+            'description' => 'Caption for the block',
+            'edit'        => 'text',
+            'filter'      => 'string',
+            'value'       => _a('Pi Engine Updates'),
+        ],
         // GitHub organization name
-        'github_org'    => array(
-            'title'         => 'GitHub org name',
-            'description'   => 'Organization name, required.',
-            'edit'          => 'text',
-            'filter'        => 'string',
-            'value'         => 'pi-engine',
-        ),
+        'github_org'  => [
+            'title'       => 'GitHub org name',
+            'description' => 'Organization name, required.',
+            'edit'        => 'text',
+            'filter'      => 'string',
+            'value'       => 'pi-engine',
+        ],
         // GitHub repo name
-        'github_repo'    => array(
-            'title'         => 'GitHub repo name',
-            'description'   => 'Repo name, optional',
-            'edit'          => 'text',
-            'filter'        => 'string',
-            'value'         => 'pi',
-        ),
+        'github_repo' => [
+            'title'       => 'GitHub repo name',
+            'description' => 'Repo name, optional',
+            'edit'        => 'text',
+            'filter'      => 'string',
+            'value'       => 'pi',
+        ],
         // Count of items to fetch
-        'limit'    => array(
-            'title'         => 'Count to fetch',
-            'description'   => 'Count of items to fetch, <= 30',
-            'edit'          => 'text',
-            'filter'        => 'int',
-            'value'         => 10,
-        ),
-    ),
-    'access'        => array(
-        'guest'     => 0,
-        'member'    => 1,
-    ),
-);
+        'limit'       => [
+            'title'       => 'Count to fetch',
+            'description' => 'Count of items to fetch, <= 30',
+            'edit'        => 'text',
+            'filter'      => 'int',
+            'value'       => 10,
+        ],
+    ],
+    'access'      => [
+        'guest'  => 0,
+        'member' => 1,
+    ],
+];

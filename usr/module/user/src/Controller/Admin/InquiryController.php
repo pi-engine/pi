@@ -9,10 +9,8 @@
 
 namespace Module\User\Controller\Admin;
 
-use Module\User\Form\SearchForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Zend\Db\Sql\Predicate;
 
 
 /**

@@ -1,16 +1,16 @@
 <?php
-    $this->css(
-        array(
-            $this->assetModule('script/admin.css'),
-            $this->assetModule('script/jquery.Jcrop.min.css'),
-        )
-    );
-    $this->jQuery('extension/fileupload-min.js');
-    $this->Backbone();
-    $this->js(array(
-        $this->assetModule('script/ajax-upload-min.js'),
-        $this->assetModule('script/jquery.Jcrop.min.js')
-    ));
+$this->css(
+    [
+        $this->assetModule('script/admin.css'),
+        $this->assetModule('script/jquery.Jcrop.min.css'),
+    ]
+);
+$this->jQuery('extension/fileupload-min.js');
+$this->Backbone();
+$this->js([
+    $this->assetModule('script/ajax-upload-min.js'),
+    $this->assetModule('script/jquery.Jcrop.min.js'),
+]);
 ?>
 
 <?php include $this->template('./message-box.phtml'); ?>
@@ -25,9 +25,9 @@
                 <?php if ($src) { ?>
                     <div class="black-bg">
                         <button type="button" class="close js-close">&times;</button>
-                    </div>    
+                    </div>
                     <img src="<?php echo Pi::url($src); ?>">
-                <?php } else { ?>    
+                <?php } else { ?>
                     <span class="fa fa-user"></span>
                 <?php } ?>
             </div>
@@ -37,19 +37,22 @@
         </div>
     </script>
 
-    <div id="upload-box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header" aria-hidden="true">
+    <div id="upload-box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header"
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Header -->
                 <div class="modal-header">
-                    <button id="photo-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <button id="photo-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                    </button>
                     <h3 class="modal-title" id="modal-header"><?php echo _a('Modify Photo'); ?></h3>
                 </div>
                 <!-- Body -->
                 <div class="modal-body" style="height: 330px">
                     <div class="article-uploaded-box">
                         <div class="article-upload-hit">
-                            <input class="btn article-add-photo" type="button" value="<?php echo _a('Upload'); ?>" style="width: 110px;">
+                            <input class="btn article-add-photo" type="button" value="<?php echo _a('Upload'); ?>"
+                                   style="width: 110px;">
                             <div class="muted" style="margin-top: 10px; font-size: 12px;">
                                 <?php echo sprintf(_a('Format supported: %s'), $configs['image_extension']); ?>
                                 (<?php echo $this->escape($configs['max_media_size']); ?>)
@@ -59,8 +62,10 @@
                     </div>
                     <div class="article-preview">
                         <div class="preview-desc"><?php echo _a('Please make sure your photo is clearly.'); ?></div>
-                        <div class="article-preview-photo" style="width: <?php echo $this->escape($configs['author_size']); ?>px; height: <?php echo $this->escape($configs['author_size']); ?>px">
-                            <img src="<?php echo $src ? Pi::url($src) : ''; ?>" class="<?php echo $src ? '' : 'hide'; ?>" style="max-width: none">
+                        <div class="article-preview-photo"
+                             style="width: <?php echo $this->escape($configs['author_size']); ?>px; height: <?php echo $this->escape($configs['author_size']); ?>px">
+                            <img src="<?php echo $src ? Pi::url($src) : ''; ?>"
+                                 class="<?php echo $src ? '' : 'hide'; ?>" style="max-width: none">
                             <span class="fa fa-user<?php echo $src ? ' hide' : ''; ?>"></span>
                         </div>
                         <div class="preview-desc-size muted"><?php echo _a('Size: ') . $this->escape($configs['author_size']) . '×' . $this->escape($configs['author_size']) . 'px'; ?></div>
@@ -70,7 +75,8 @@
                 <!-- Footer -->
                 <div class="modal-footer">
                     <button id="photo-cancel" class="btn" disabled><?php echo _a('Cancel'); ?></button>
-                    <button id="photo-process" class="btn btn-primary" data-dismiss="modal" disabled><?php echo _a('Yes'); ?></button>
+                    <button id="photo-process" class="btn btn-primary" data-dismiss="modal"
+                            disabled><?php echo _a('Yes'); ?></button>
                 </div>
             </div>
         </div>
@@ -80,58 +86,58 @@
 <script>
     var jcrop_api;
     var page = {
-        id      : function() {
+        id: function () {
             return "<?php echo $form->get('id')->getValue()
                 ? 'id/' . $form->get('id')->getValue()
                 : 'fake_id/' . $form->get('fake_id')->getValue(); ?>";
         },
-        resizeFakeId : '<?php echo uniqid(); ?>',
-        el      : $('#pi-js-upload'),
-        $       : function(selector) {
-            return  this.el.find(selector);      
+        resizeFakeId: '<?php echo uniqid(); ?>',
+        el: $('#pi-js-upload'),
+        $: function (selector) {
+            return this.el.find(selector);
         },
-        size    : '<?php echo $this->escape($configs['author_size']); ?>',
-        savedPhoto : '',
-        format  : function() {
+        size: '<?php echo $this->escape($configs['author_size']); ?>',
+        savedPhoto: '',
+        format: function () {
             var format = '<?php echo $configs['image_extension']; ?>';
-            var data   = new Array();
+            var data = new Array();
             data = format.split(',');
             return data;
         },
-        template : _.template('<div class="black-bg">'
-                        + '<button type="button" class="author close js-close">&times;</button></div>'
-                        + '<img src="<%=preview_url %>">'
+        template: _.template('<div class="black-bg">'
+            + '<button type="button" class="author close js-close">&times;</button></div>'
+            + '<img src="<%=preview_url %>">'
         ),
-        events  : function() {
+        events: function () {
             $('#photo-process').click(this.savePhoto.bind(this));
             $('#photo-cancel').click(this.cancelUpload.bind(this));
-            
+
         },
-        init: function() {
+        init: function () {
             page.$("[name=placeholder]")
                 .parents(".form-group:first")
                 .find(".js-form-element")
                 .html($("#template-upload").html());
-            
+
             $('.js-close').click(this.removePhoto.bind(this));
             this.ajaxUpload();
         },
-        ajaxUpload: function() {
+        ajaxUpload: function () {
             this.uploadImg = page.$('.article-upload-image');
-            this.preImg    = page.$('.article-preview-photo img');
-            this.iconImg   = page.$('.article-preview-photo span');
+            this.preImg = page.$('.article-preview-photo img');
+            this.iconImg = page.$('.article-preview-photo span');
             new ajaxUpload($('.article-add-photo'), {
-                action  : '<?php echo $this->url('', array(
+                action: '<?php echo $this->url('', [
                     'controller' => 'author',
                     'action'     => 'upload',
-                )); ?>fake_id/' + page.resizeFakeId,
-                format  : page.format(),
-                name    : 'upload',
-                json    : true,
-                start   : function() {
+                ]); ?>fake_id/' + page.resizeFakeId,
+                format: page.format(),
+                name: 'upload',
+                json: true,
+                start: function () {
                     page.$('.article-add-photo').val('<?php echo _a('In process ...'); ?>');
                 },
-                done: function(res) {
+                done: function (res) {
                     if (res.status) {
                         page.$('.article-upload-hit').addClass('hide');
                         $('[target=ajaxUploadIframe]').remove();
@@ -143,13 +149,13 @@
                         page.$('.article-add-photo').val('<?php echo _a('Upload'); ?>');
                     }
                 },
-                fail: function() {
+                fail: function () {
                     alert('<?php echo _a('Error occured, please try again!'); ?>');
                     page.$('.article-add-photo').val('<?php echo _a('Upload'); ?>');
                 }
             });
         },
-        initJcrop: function(res) {
+        initJcrop: function (res) {
             var time = new Date().getTime();
             var url = res['preview_url'] + '?' + time,
                 boundx = 0,
@@ -181,36 +187,36 @@
             this.uploadImg.Jcrop({
                 aspectRatio: 1,
                 bgOpacity: .5,
-                onChange: function(c) {
+                onChange: function (c) {
                     var rx = page.size / c.w;
                     var ry = page.size / c.h;
 
                     var r = Math.round;
-                    
+
                     preImg.css({
-                        'width'      : r(rx * boundx),
-                        'height'     : r(ry * boundy),
-                        'marginLeft' : r(-rx * c.x),
-                        'marginTop'  : r(-ry * c.y)
+                        'width': r(rx * boundx),
+                        'height': r(ry * boundy),
+                        'marginLeft': r(-rx * c.x),
+                        'marginTop': r(-ry * c.y)
                     });
                 }
-            }, function() {
+            }, function () {
                 jcrop_api = this;
                 var h = this.ui.holder;
                 h.css({
-                    left: (300 - h.outerWidth()) /2,
-                    top: (300 - h.outerHeight()) /2     
+                    left: (300 - h.outerWidth()) / 2,
+                    top: (300 - h.outerHeight()) / 2
                 });
-                this.setSelect([40,40,200,200]);
+                this.setSelect([40, 40, 200, 200]);
             });
         },
-        cancelUpload   : function() {
-            var url = '<?php echo $this->url('', array(
-                'action'       => 'remove-upload',
-            )); ?>fake_id/' + page.resizeFakeId;
-            var preImg  = this.preImg;
+        cancelUpload: function () {
+            var url = '<?php echo $this->url('', [
+                    'action' => 'remove-upload',
+                ]); ?>fake_id/' + page.resizeFakeId;
+            var preImg = this.preImg;
             var iconImg = this.iconImg;
-            $.get(url, function(result) {
+            $.get(url, function (result) {
                 result = $.parseJSON(result);
                 if (result.status) {
                     var imageUrl = '<?php echo $src ? Pi::url($src) : ''; ?>';
@@ -237,7 +243,7 @@
                 page.$('#photo-process').attr('disabled', 'disabled');
             });
         },
-        savePhoto: function(e) {
+        savePhoto: function (e) {
             var self = this;
             e.preventDefault();
             var d = jcrop_api.tellScaled();
@@ -247,13 +253,13 @@
                     d[i] = Math.round(d[i] * ret);
                 }
             }
-            d['photo']   = this.result.preview_url;
-            d['id']      = '<?php echo $form->get('id')->getValue(); ?>';
+            d['photo'] = this.result.preview_url;
+            d['id'] = '<?php echo $form->get('id')->getValue(); ?>';
             d['fake_id'] = '<?php echo $form->get('fake_id')->getValue(); ?>';
             d['upload_id'] = page.resizeFakeId;
-            
+
             if (this.result.preview_url) {
-                $.post('<?php echo $this->url('', array('action' => 'save-image')); ?>', d).done(function(res) {
+                $.post('<?php echo $this->url('', ['action' => 'save-image']); ?>', d).done(function (res) {
                     res = $.parseJSON(res);
                     if (res.status) {
                         page.$('.article-upload-hit').removeClass('hide');
@@ -273,17 +279,17 @@
                 });
             }
         },
-        removePhoto    : function() {
-            var self    = this;
-            var preImg  = this.preImg;
+        removePhoto: function () {
+            var self = this;
+            var preImg = this.preImg;
             var iconImg = this.iconImg;
             $.getJSON('<?php echo $this->url(
-                '',
-                array(
-                    'controller' => 'author',
-                    'action'     => 'remove-image'
-                )
-            ); ?>' + page.id()).done(function() {
+                    '',
+                    [
+                        'controller' => 'author',
+                        'action'     => 'remove-image',
+                    ]
+                ); ?>' + page.id()).done(function () {
                 page.$('[name=image]').val('');
                 page.savedPhoto = '';
                 self.$("#author-image").html('<span class="fa fa-user"></span>');
@@ -294,7 +300,7 @@
                 page.init();
             });
         },
-        render          : function(obj) {
+        render: function (obj) {
             obj.preview_url = obj.preview_url + '?' + new Date().getTime();
             page.$("#author-image").html(page.template(obj));
         }

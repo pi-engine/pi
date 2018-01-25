@@ -25,8 +25,11 @@
                 </td>
                 <td>
                     <div class="btn-group">
-                        <a class="btn btn-sm btn-primary" href="<?php echo $this->url('', array('action' => 'view', 'name' => $template['name'])); ?>" target="_blank"><?php echo _a('View'); ?></a>
-                        <a class="btn btn-sm btn-primary" href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'add', 'type' => 'phtml', 'template' => $template['name'])); ?>"><?php echo _a('Add to page'); ?></a>
+                        <a class="btn btn-sm btn-primary"
+                           href="<?php echo $this->url('', ['action' => 'view', 'name' => $template['name']]); ?>"
+                           target="_blank"><?php echo _a('View'); ?></a>
+                        <a class="btn btn-sm btn-primary"
+                           href="<?php echo $this->url('', ['controller' => 'index', 'action' => 'add', 'type' => 'phtml', 'template' => $template['name']]); ?>"><?php echo _a('Add to page'); ?></a>
                     </div>
                 </td>
             </tr>

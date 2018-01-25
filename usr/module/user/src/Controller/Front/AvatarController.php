@@ -9,11 +9,10 @@
 
 namespace Module\User\Controller\Front;
 
-use Pi;
-use Pi\Mvc\Controller\ActionController;
-use Pi\File\Transfer\Upload as UploadHandler;
 use Module\User\Form\AvatarForm;
-use Module\User\Form\AvatarFilter;
+use Pi;
+use Pi\File\Transfer\Upload as UploadHandler;
+use Pi\Mvc\Controller\ActionController;
 
 /**
  * Avatar controller
@@ -81,9 +80,9 @@ class AvatarController extends ActionController
             $options                    = $uploadAdapter->getOptions();
             $config['upload_extension'] = implode(',', $options['extension']);
             $limits                     = [[
-                'label' => __('Allowed extensions:'),
-                'text'  => implode(' ', $options['extension']),
-            ]];
+                                               'label' => __('Allowed extensions:'),
+                                               'text'  => implode(' ', $options['extension']),
+                                           ]];
             if (!empty($config['max_size'])) {
                 $limits[] = [
                     'label' => __('Max file size:'),

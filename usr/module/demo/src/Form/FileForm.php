@@ -9,35 +9,34 @@
 
 namespace Module\Demo\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 class FileForm extends BaseForm
 {
     public function init()
     {
-        $this->add(array(
-            'name'          => 'upload_file',
-            'type'          => 'file',
-            'options'   => array(
+        $this->add([
+            'name'    => 'upload_file',
+            'type'    => 'file',
+            'options' => [
                 'label' => __('File'),
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'      => 'rename',
-            'type'      => 'radio',
-            'options'   => array(
-                'label' => __('File naming'),
-                'value_options'   => array(
+        $this->add([
+            'name'       => 'rename',
+            'type'       => 'radio',
+            'options'    => [
+                'label'         => __('File naming'),
+                'value_options' => [
                     'overwrite' => __('Keep name and overwrite when duplicated'),
                     'random'    => __('Rename to random'),
-                ),
-            ),
-            'attributes'    => array(
+                ],
+            ],
+            'attributes' => [
                 'value' => 'random',
-            )
-        ));
+            ],
+        ]);
 
         /*
         $this->add(array(
@@ -51,12 +50,12 @@ class FileForm extends BaseForm
         ));
         */
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Upload'),
-            )
-        ));
+            ],
+        ]);
     }
 }

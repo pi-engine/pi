@@ -9,14 +9,13 @@
 
 namespace Module\Article\Route;
 
+use Pi\Mvc\Router\Http\Standard;
 use Zend\Mvc\Router\Http\RouteMatch;
 use Zend\Stdlib\RequestInterface as Request;
-use Pi\Mvc\Router\Http\Standard;
-use Pi;
 
 /**
  * Custom default route class, using for SEO
- * 
+ *
  * Example:
  * <CODE>
  * $routeName = Pi::api('api', $module)->getRouteName();
@@ -39,7 +38,7 @@ use Pi;
  * // Topic title list page
  * $this->url($routeName, array('topic' => 'all'));
  * </CODE>
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class Article extends Standard
@@ -47,22 +46,23 @@ class Article extends Standard
     const URL_DELIMITER       = '?';
     const KEY_VALUE_DELIMITER = '=';
     const COMBINE_DELIMITER   = '&';
-    
+
     protected $paramDelimiter = '-';
-    protected $prefix = '/article';
-    
-    protected $defaults = array(
-        'module'     => 'article',
-        'controller' => 'index',
-        'action'     => 'index',
-    );
+    protected $prefix         = '/article';
+
+    protected $defaults
+        = [
+            'module'     => 'article',
+            'controller' => 'index',
+            'action'     => 'index',
+        ];
 
     /**
      * Match url and resolving parameters
-     * 
-     * @param Request  $request
-     * @param int      $pathOffset
-     * @return null|\Zend\Mvc\Router\Http\RouteMatch 
+     *
+     * @param Request $request
+     * @param int $pathOffset
+     * @return null|\Zend\Mvc\Router\Http\RouteMatch
      */
     public function match(Request $request, $pathOffset = null)
     {
@@ -72,7 +72,7 @@ class Article extends Standard
         }
         list($path, $pathLength) = $result;
 
-        $matches   = array();
+        $matches   = [];
         $url       = $path;
         $uri       = $request->getRequestUri();
         $parameter = '';
@@ -89,7 +89,7 @@ class Article extends Standard
                 $urlParams[0]
             )) {
                 list($ignored, $category) = explode(
-                    $this->keyValueDelimiter, 
+                    $this->keyValueDelimiter,
                     $urlParams[0],
                     2
                 );
@@ -103,7 +103,7 @@ class Article extends Standard
                 }
                 if (preg_match('/^sort-/', $urlParams[1])) {
                     list($ignored, $sort) = explode(
-                        $this->keyValueDelimiter, 
+                        $this->keyValueDelimiter,
                         $urlParams[1],
                         2
                     );
@@ -113,7 +113,7 @@ class Article extends Standard
                 $urlParams[0]
             )) {
                 list($ignored, $tag) = explode(
-                    $this->keyValueDelimiter, 
+                    $this->keyValueDelimiter,
                     $urlParams[0],
                     2
                 );
@@ -125,24 +125,24 @@ class Article extends Standard
                 $urlParams[0]
             )) {
                 list($ignored, $uniqueVal) = explode(
-                    $this->keyValueDelimiter, 
+                    $this->keyValueDelimiter,
                     $urlParams[0],
                     2
                 );
-                $id   = is_numeric($uniqueVal) ? $uniqueVal : 0;
-                $slug = !is_numeric($uniqueVal) ? $this->decode($uniqueVal) : '';
+                $id         = is_numeric($uniqueVal) ? $uniqueVal : 0;
+                $slug       = !is_numeric($uniqueVal) ? $this->decode($uniqueVal) : '';
                 $controller = 'article';
                 $action     = 'detail';
             } elseif ('topic' == $urlParams[0]) {
                 $controller = 'topic';
-                $action = 'all-topic';
+                $action     = 'all-topic';
             } elseif (preg_match(
                 '/^topic' . $this->keyValueDelimiter . '/',
                 $urlParams[0]
             )) {
                 $controller = 'topic';
                 list($ignored, $topic) = explode(
-                    $this->keyValueDelimiter, 
+                    $this->keyValueDelimiter,
                     $urlParams[0],
                     2
                 );
@@ -158,13 +158,13 @@ class Article extends Standard
                 return null;
             }
         }
-        $matches  = compact(
+        $matches = compact(
             'controller', 'action', 'category', 'tag', 'id', 'slug', 'topic',
             'sort'
         );
         $matches = array_filter($matches);
-        
-        $params   = array_filter(explode(self::COMBINE_DELIMITER, $parameter));
+
+        $params = array_filter(explode(self::COMBINE_DELIMITER, $parameter));
         foreach ($params as $param) {
             list($key, $value) = explode(self::KEY_VALUE_DELIMITER, $param);
             if (!isset($matches[$key])) {
@@ -175,21 +175,21 @@ class Article extends Standard
             $matches['controller'] = 'draft';
             $matches['action']     = 'preview';
         }
-        
+
         return new RouteMatch(
-            array_merge($this->defaults, $matches), 
+            array_merge($this->defaults, $matches),
             $pathLength
         );
     }
 
     /**
      * Assemble url by passed parameters.
-     * 
+     *
      * @param array $params
      * @param array $options
-     * @return string 
+     * @return string
      */
-    public function assemble(array $params = array(), array $options = array())
+    public function assemble(array $params = [], array $options = [])
     {
         $url = '';
 
@@ -197,7 +197,7 @@ class Article extends Standard
         if (empty($mergedParams)) {
             return $this->prefix;
         }
-        
+
         $controller = $mergedParams['controller'];
         $action     = $mergedParams['action'];
         if ('article' == $controller and 'index' == $action) {
@@ -206,14 +206,14 @@ class Article extends Standard
         unset($mergedParams['controller']);
         unset($mergedParams['action']);
         unset($mergedParams['module']);
-        
+
         if (isset($mergedParams['slug'])
             && !empty($mergedParams['slug'])
             && !is_numeric($mergedParams['slug'])
         ) {
             $url .= 'id'
-                 . $this->keyValueDelimiter 
-                 . $this->encode($mergedParams['slug']);
+                . $this->keyValueDelimiter
+                . $this->encode($mergedParams['slug']);
             if (!isset($mergedParams['preview'])) {
                 unset($mergedParams['id']);
             }
@@ -224,8 +224,8 @@ class Article extends Standard
             && is_numeric($mergedParams['id'])
         ) {
             $url .= 'id'
-                 . $this->keyValueDelimiter 
-                 . $mergedParams['id'];
+                . $this->keyValueDelimiter
+                . $mergedParams['id'];
             if (!isset($mergedParams['preview'])) {
                 unset($mergedParams['id']);
             }
@@ -236,54 +236,54 @@ class Article extends Standard
                 $url .= 'topic';
             } elseif (isset($mergedParams['list'])) {
                 $url .= 'topic' . $this->keyValueDelimiter
-                     . $mergedParams['topic']
-                     . $this->structureDelimiter
-                     . 'list' . $this->keyValueDelimiter
-                     . $mergedParams['list'];
+                    . $mergedParams['topic']
+                    . $this->structureDelimiter
+                    . 'list' . $this->keyValueDelimiter
+                    . $mergedParams['list'];
                 unset($mergedParams['list']);
             } else {
                 $url .= 'topic' . $this->keyValueDelimiter
-                     . $mergedParams['topic'];
+                    . $mergedParams['topic'];
             }
             unset($mergedParams['topic']);
         } elseif (isset($mergedParams['list'])) {
             $url .= 'list'
-                 . $this->keyValueDelimiter 
-                 . $this->encode($mergedParams['list']);
+                . $this->keyValueDelimiter
+                . $this->encode($mergedParams['list']);
             unset($mergedParams['list']);
         } elseif (isset($mergedParams['category'])
             || 'list' == $controller
         ) {
             $mergedParams['category'] = $mergedParams['category'] ?: 'all';
-            $url .= 'list' 
-                 . $this->keyValueDelimiter 
-                 . $this->encode($mergedParams['category']);
+            $url                      .= 'list'
+                . $this->keyValueDelimiter
+                . $this->encode($mergedParams['category']);
             unset($mergedParams['category']);
             if (isset($mergedParams['sort'])) {
                 $url .= $this->structureDelimiter
-                     . 'sort'
-                     . $this->keyValueDelimiter
-                     . $mergedParams['sort'];
+                    . 'sort'
+                    . $this->keyValueDelimiter
+                    . $mergedParams['sort'];
                 unset($mergedParams['sort']);
             }
         } elseif (isset($mergedParams['tag'])) {
-            $url .= 'tag' 
-                 . $this->keyValueDelimiter 
-                 . $this->encode($mergedParams['tag']);
+            $url .= 'tag'
+                . $this->keyValueDelimiter
+                . $this->encode($mergedParams['tag']);
             unset($mergedParams['tag']);
         }
-        
-        $parameter = '';
+
+        $parameter    = '';
         $mergedParams = array_filter($mergedParams);
         if (!empty($mergedParams)) {
             foreach ($mergedParams as $key => $value) {
-                $parameter .= $key 
-                           . self::KEY_VALUE_DELIMITER 
-                           . $this->encode($value)
-                           . self::COMBINE_DELIMITER;
+                $parameter .= $key
+                    . self::KEY_VALUE_DELIMITER
+                    . $this->encode($value)
+                    . self::COMBINE_DELIMITER;
             }
             $parameter = rtrim($parameter, self::COMBINE_DELIMITER);
-            $url .= self::URL_DELIMITER . $parameter;
+            $url       .= self::URL_DELIMITER . $parameter;
         }
 
         $finalUrl = rtrim($this->prefix

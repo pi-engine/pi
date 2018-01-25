@@ -31,11 +31,12 @@ class Slug extends Standard
      *
      * @var array
      */
-    protected $defaults = array(
-        'module'        => 'demo',
-        'controller'    => 'route',
-        'action'        => 'slug'
-    );
+    protected $defaults
+        = [
+            'module'     => 'demo',
+            'controller' => 'route',
+            'action'     => 'slug',
+        ];
 
     public function match(Request $request, $pathOffset = null)
     {
@@ -48,7 +49,7 @@ class Slug extends Standard
             return null;
         }
 
-        list($id, $slug) = array(null, null);
+        list($id, $slug) = [null, null];
         if (false === ($pos = strpos($path, '-'))) {
             if (is_numeric($path)) {
                 $id = $path;
@@ -58,19 +59,19 @@ class Slug extends Standard
         } else {
             list($id, $slug) = explode('-', $path, 2);
             if (!is_numeric($id)) {
-                $id = null;
+                $id   = null;
                 $slug = $path;
             }
         }
 
-        $matches = array(
-            'action'        => (null === $slug) ? 'id' : 'slug',
-            'id'            => $id,
-            'slug'          => $this->decode($slug),
-        );
+        $matches = [
+            'action' => (null === $slug) ? 'id' : 'slug',
+            'id'     => $id,
+            'slug'   => $this->decode($slug),
+        ];
 
         return new RouteMatch(array_merge($this->defaults, $matches),
-                              $pathLength);
+            $pathLength);
     }
 
     /**
@@ -81,7 +82,7 @@ class Slug extends Standard
      * @param  array $options
      * @return mixed
      */
-    public function assemble(array $params = array(), array $options = array())
+    public function assemble(array $params = [], array $options = [])
     {
         $mergedParams = array_merge($this->defaults, $params);
         if (!$mergedParams) {

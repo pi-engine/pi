@@ -7,27 +7,27 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
-    'front'    => array(
+return [
+    'front' => [
         // test
-        'test'  => array(
-            'title'         => _a('Test resource'),
-            'access'    => array(
+        'test'   => [
+            'title'  => _a('Test resource'),
+            'access' => [
                 'guest',
                 'member',
-            ),
-        ),
-        'write'  => array(
-            'title'     => _a('Write privilege'),
-            'access'    => 'member',
-        ),
-        'manage'  => array(
-            'title'     => _a('Management privilege'),
-            'access'    => 'moderator',
-        ),
-        'custom'    => 'Module\Demo\Api\PermFront',
-    ),
-    'admin'     => array(
-        'custom'    => 'Module\Demo\Api\PermAdmin',
-    ),
-);
+            ],
+        ],
+        'write'  => [
+            'title'  => _a('Write privilege'),
+            'access' => 'member',
+        ],
+        'manage' => [
+            'title'  => _a('Management privilege'),
+            'access' => 'moderator',
+        ],
+        'custom' => 'Module\Demo\Api\PermFront',
+    ],
+    'admin' => [
+        'custom' => 'Module\Demo\Api\PermAdmin',
+    ],
+];

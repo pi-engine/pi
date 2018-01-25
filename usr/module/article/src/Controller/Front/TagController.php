@@ -9,29 +9,29 @@
 
 namespace Module\Article\Controller\Front;
 
+use Module\Article\Entity;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Module\Article\Entity;
 
 /**
  * Tag controller
- * 
- * @author Zongshu Lin <lin40553024@163.com> 
+ *
+ * @author Zongshu Lin <lin40553024@163.com>
  */
 class TagController extends ActionController
 {
     /**
      * Process article list related with tag
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function listAction()
     {
-        $tag    = $this->params('tag', '');
-        $page   = $this->params('p', 1);
-        $page   = $page > 0 ? $page : 1;
-        $where  = $articleIds = $articles = array();
+        $tag   = $this->params('tag', '');
+        $page  = $this->params('p', 1);
+        $page  = $page > 0 ? $page : 1;
+        $where = $articleIds = $articles = [];
 
         if (empty($tag)) {
             return $this->jumpTo404(__('Cannot find this page'));
@@ -43,32 +43,32 @@ class TagController extends ActionController
         $offset = ($page - 1) * $limit;
 
         // Total count
-        $totalCount = (int) Pi::service('tag')->getCount($tag, $module);
+        $totalCount = (int)Pi::service('tag')->getCount($tag, $module);
 
         // Get article ids
         $articleTags = Pi::service('tag')->getList(
-            $tag, 
-            $module, 
-            '', 
-            $limit, 
+            $tag,
+            $module,
+            '',
+            $limit,
             $offset
         );
-        
+
         foreach ($articleTags as $row) {
             $articleIds[] = $row['item'];
         }
-        
-        if ($articleIds) {
-            $where['id']    = $articleIds;
-            $articles       = array_flip($articleIds);
-            $columns        = array('id', 'subject', 'time_publish', 'category');
 
-            $resultsetArticle   = Entity::getAvailableArticlePage(
-                $where, 
-                1, 
-                $limit, 
-                $columns, 
-                '', 
+        if ($articleIds) {
+            $where['id'] = $articleIds;
+            $articles    = array_flip($articleIds);
+            $columns     = ['id', 'subject', 'time_publish', 'category'];
+
+            $resultsetArticle = Entity::getAvailableArticlePage(
+                $where,
+                1,
+                $limit,
+                $columns,
+                '',
                 $module
             );
 
@@ -76,25 +76,25 @@ class TagController extends ActionController
                 $articles[$key] = $val;
             }
 
-            $articles = array_filter($articles, function($var) {
+            $articles = array_filter($articles, function ($var) {
                 return is_array($var);
             });
         }
 
         // Pagination
-        $paginator = Paginator::factory($totalCount, array(
+        $paginator = Paginator::factory($totalCount, [
             'limit'       => $limit,
             'page'        => $page,
-            'url_options' => array(
-                'page_param'    => 'p',
-                'params'        => array(
-                    'module'        => $module,
-                    'tag'           => $tag,
-                ),
-            ),
-        ));
+            'url_options' => [
+                'page_param' => 'p',
+                'params'     => [
+                    'module' => $module,
+                    'tag'    => $tag,
+                ],
+            ],
+        ]);
 
-        $this->view()->assign(array(
+        $this->view()->assign([
             'title'     => __('Articles on Tag '),
             'articles'  => $articles,
             'paginator' => $paginator,
@@ -102,11 +102,11 @@ class TagController extends ActionController
             'tag'       => $tag,
             'config'    => $config,
             'count'     => $totalCount,
-        ));
+        ]);
 
-        $this->view()->viewModel()->getRoot()->setVariables(array(
+        $this->view()->viewModel()->getRoot()->setVariables([
             'breadCrumbs' => true,
             'Tag'         => $tag,
-        ));
+        ]);
     }
 }

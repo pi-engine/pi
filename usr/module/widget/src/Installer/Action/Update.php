@@ -7,11 +7,10 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\Widget\Installer\Action;
+namespace Module\Widget\Installer\Action;
 
 use Pi;
 use Pi\Application\Installer\Action\Update as BasicUpdate;
-use Module\User\Installer\Schema;
 use Zend\EventManager\Event;
 
 /**
@@ -27,7 +26,7 @@ class Update extends BasicUpdate
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('update.post', array($this, 'updateBlock'));
+        $events->attach('update.post', [$this, 'updateBlock']);
         parent::attachDefaultListeners();
 
         return $this;
@@ -46,39 +45,39 @@ class Update extends BasicUpdate
             return true;
         }
 
-        $rowset = Pi::model('block_root')->select(array(
+        $rowset = Pi::model('block_root')->select([
             'module'    => 'widget',
             'type <> ?' => 'script',
-        ));
+        ]);
         foreach ($rowset as $row) {
-            $type = $row->type ?: '';
+            $type        = $row->type ?: '';
             $row->config = Pi::api('block', 'widget')->getConfig($type);
             $row->save();
         }
 
-        $update = array(
-            'content'   => Pi::db()->expression(sprintf(
-                    'REPLACE(content, %s, %s)',
-                    '\'","desc":"\'',
-                    '\'","summary":"\''
-                )),
-        );
-        $where = array(
-            'module'    => 'widget',
-            'type'      => array('list', 'media', 'carousel'),
-        );
+        $update = [
+            'content' => Pi::db()->expression(sprintf(
+                'REPLACE(content, %s, %s)',
+                '\'","desc":"\'',
+                '\'","summary":"\''
+            )),
+        ];
+        $where  = [
+            'module' => 'widget',
+            'type'   => ['list', 'media', 'carousel'],
+        ];
         Pi::model('block')->update($update, $where);
 
-        $update = array(
-            'meta'   => Pi::db()->expression(sprintf(
-                    'REPLACE(meta, %s, %s)',
-                    '\'","desc":"\'',
-                    '\'","summary":"\''
-                )),
-        );
-        $where = array(
-            'type'      => array('list', 'media', 'carousel'),
-        );
+        $update = [
+            'meta' => Pi::db()->expression(sprintf(
+                'REPLACE(meta, %s, %s)',
+                '\'","desc":"\'',
+                '\'","summary":"\''
+            )),
+        ];
+        $where  = [
+            'type' => ['list', 'media', 'carousel'],
+        ];
         Pi::model('widget', 'widget')->update($update, $where);
 
         return true;

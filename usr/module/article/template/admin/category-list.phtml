@@ -1,60 +1,61 @@
 <?php
-    $this->css($this->assetModule('script/admin.css'));
-    $this->jQuery();
+$this->css($this->assetModule('script/admin.css'));
+$this->jQuery();
 ?>
 <div id="pi-js-list">
     <table class="table table-striped">
         <tbody>
-            <tr>
-                <th style="width: 50px"><?php echo _a('Image'); ?></th>
-                <th style="width: 250px"><?php echo _a('Title'); ?></th>
-                <th><?php echo _a('Description'); ?></th>
-            </tr>
-            <?php foreach ($categories as $category) {
-                if ('root' == $category['slug']) {
-                    continue;
-                }
-                // Generate url
-                $addUrl    = $this->url('', array(
-                    'action' => 'add',
-                    'parent' => $category['id']
-                ));
-                $editUrl   = $this->url('', array(
-                    'action' => 'edit',
-                    'id'     => $category['id']
-                ));
-                $deleteUrl = $this->url('', array(
-                    'action' => 'delete',
-                    'id'     => $category['id']
-                ));
-                $mergeUrl  = $this->url('', array(
-                    'action' => 'merge',
-                    'from'   => $category['id']
-                ));
-                $moveUrl   = $this->url('', array(
-                    'action' => 'move',
-                    'from'   => $category['id']
-                ));
-                $sortUrl  = $this->url('', array(
-                    'action' => 'sort',
-                    'from'   => $category['id'],
-                ));
+        <tr>
+            <th style="width: 50px"><?php echo _a('Image'); ?></th>
+            <th style="width: 250px"><?php echo _a('Title'); ?></th>
+            <th><?php echo _a('Description'); ?></th>
+        </tr>
+        <?php foreach ($categories as $category) {
+            if ('root' == $category['slug']) {
+                continue;
+            }
+            // Generate url
+            $addUrl    = $this->url('', [
+                'action' => 'add',
+                'parent' => $category['id'],
+            ]);
+            $editUrl   = $this->url('', [
+                'action' => 'edit',
+                'id'     => $category['id'],
+            ]);
+            $deleteUrl = $this->url('', [
+                'action' => 'delete',
+                'id'     => $category['id'],
+            ]);
+            $mergeUrl  = $this->url('', [
+                'action' => 'merge',
+                'from'   => $category['id'],
+            ]);
+            $moveUrl   = $this->url('', [
+                'action' => 'move',
+                'from'   => $category['id'],
+            ]);
+            $sortUrl   = $this->url('', [
+                'action' => 'sort',
+                'from'   => $category['id'],
+            ]);
             ?>
             <tr>
-                <td><?php 
+                <td><?php
                     if ($category['image']) {
                         $image = Pi::url($category['image']);
-                ?>
-                    <div class="list-image">
-                        <img src="<?php echo $this->escape($image); ?>" alt="<?php echo $this->escape($category['title']); ?>">
-                    </div>
-                <?php
+                        ?>
+                        <div class="list-image">
+                            <img src="<?php echo $this->escape($image); ?>"
+                                 alt="<?php echo $this->escape($category['title']); ?>">
+                        </div>
+                        <?php
                     } else {
-                ?>
+                        ?>
                         <div class="list-image"><span class="fa fa-list"><i></i></span></div>
-                <?php
+                        <?php
                     }
-                ?>
+                    ?>
                 </td>
                 <td><?php echo $this->escape(str_repeat('-', $category['depth']) . ' ' . $category['title']); ?>
                     <div class="row-actions">
@@ -69,7 +70,7 @@
                 </td>
                 <td><?php echo $this->escape($category['description']); ?></td>
             </tr>
-            <?php } ?>
+        <?php } ?>
         </tbody>
     </table>
 </div>

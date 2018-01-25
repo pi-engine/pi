@@ -110,7 +110,7 @@ class Breadcrumbs extends AbstractBreadcrumbs
                         $result = [
                             [
                                 'label' => __('Find password'),
-                            ]
+                            ],
                         ];
                         break;
                 }

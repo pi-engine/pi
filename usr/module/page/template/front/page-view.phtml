@@ -13,7 +13,9 @@ $this->headMeta($shearContent, 'twitter:description');
     <div class="col-md-2">
         <ul class="nav nav-pills">
             <?php foreach ($nav as $id => $item) { ?>
-                <li<?php if (!empty($item['active'])) { echo ' class="active"'; } ?>>
+                <li<?php if (!empty($item['active'])) {
+                    echo ' class="active"';
+                } ?>>
                     <a href="<?php echo $item['url']; ?>"><?php echo _escape($item['title']); ?></a>
                 </li>
             <?php } ?>
@@ -27,13 +29,13 @@ $this->headMeta($shearContent, 'twitter:description');
                 <?php
 
                 $file = sprintf(
-                    '%s/'. Pi::config('theme') . '/custom/page/%s.phtml',
+                    '%s/' . Pi::config('theme') . '/custom/page/%s.phtml',
                     Pi::path('theme'),
                     $content
                 );
 
                 ?>
-                <?php if($file) : ?>
+                <?php if ($file) : ?>
                     <?php include $this->template($file); ?>
                 <?php else : ?>
                     <?php include $this->template('./' . $content); ?>
@@ -46,7 +48,7 @@ $this->headMeta($shearContent, 'twitter:description');
                     </div>
                 </div>
             <?php } ?>
-        <?php } else {  ?>
+        <?php } else { ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1 class="panel-title"><?php echo $this->escape($title); ?></h1>

@@ -1,4 +1,5 @@
 <?php
+
 namespace Module\Page\Validator;
 
 use Pi;
@@ -6,13 +7,13 @@ use Zend\Validator\AbstractValidator;
 
 class PageNameDuplicate extends AbstractValidator
 {
-    const TAKEN        = 'pageExists';
+    const TAKEN = 'pageExists';
 
     public function __construct()
     {
-        $this->messageTemplates = array(
+        $this->messageTemplates = [
             self::TAKEN => _a('Page name already exists.'),
-        );
+        ];
 
         parent::__construct();
     }
@@ -29,7 +30,7 @@ class PageNameDuplicate extends AbstractValidator
         $this->setValue($value);
 
         if (null !== $value) {
-            $where = array('name' => strval($value));
+            $where = ['name' => strval($value)];
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }

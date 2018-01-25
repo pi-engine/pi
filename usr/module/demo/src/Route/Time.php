@@ -23,7 +23,7 @@ use Zend\Stdlib\RequestInterface as Request;
  */
 class Time extends Standard
 {
-    protected $prefix = '/demo-route';
+    protected $prefix        = '/demo-route';
     protected $dateDelimiter = '/';
     //protected $dateFormat = 'Y/m/d'; // 'Y/m'
     //protected $datePattern = '[1-2][0-9]{3}/[0-12][0-9]/[0-3][0-9]';
@@ -33,11 +33,12 @@ class Time extends Standard
      *
      * @var array
      */
-    protected $defaults = array(
-        'module'        => 'demo',
-        'controller'    => 'route',
-        'action'        => 'time'
-    );
+    protected $defaults
+        = [
+            'module'     => 'demo',
+            'controller' => 'route',
+            'action'     => 'time',
+        ];
 
     /**
      * match(): defined by Route interface.
@@ -73,7 +74,7 @@ class Time extends Standard
         // 2012/08/24
         if ($this->dateDelimiter) {
             list($y, $m, $d) = explode($this->dateDelimiter, $dateString);
-        // 20120824
+            // 20120824
         } else {
             $y = substr($dateString, 0, 4);
             $m = substr($dateString, 4, 2);
@@ -85,10 +86,10 @@ class Time extends Standard
         ) {
             return null;
         }
-        $time = array($y, $m, $d);
+        $time = [$y, $m, $d];
 
         $path = $slugString;
-        list($id, $slug) = array(null, null);
+        list($id, $slug) = [null, null];
         if (false === ($pos = strpos($path, '-'))) {
             if (is_numeric($path)) {
                 $id = $path;
@@ -98,20 +99,20 @@ class Time extends Standard
         } else {
             list($id, $slug) = explode('-', $path, 2);
             if (!is_numeric($id)) {
-                $id = null;
+                $id   = null;
                 $slug = $path;
             }
         }
 
-        $matches = array(
-            'action'        => 'time',
-            'time'          => $time,
-            'id'            => $id,
-            'slug'          => $this->decode($slug),
-        );
+        $matches = [
+            'action' => 'time',
+            'time'   => $time,
+            'id'     => $id,
+            'slug'   => $this->decode($slug),
+        ];
 
         return new RouteMatch(array_merge($this->defaults, $matches),
-                              $pathLength);
+            $pathLength);
     }
 
     /**
@@ -122,7 +123,7 @@ class Time extends Standard
      * @param  array $options
      * @return mixed
      */
-    public function assemble(array $params = array(), array $options = array())
+    public function assemble(array $params = [], array $options = [])
     {
         $mergedParams = array_merge($this->defaults, $params);
         if (!$mergedParams) {
@@ -139,7 +140,7 @@ class Time extends Standard
             'Y' . $this->dateDelimiter . 'm' . $this->dateDelimiter . 'd',
             $mergedParams['time']
         );
-        $url = $timeString . $this->paramDelimiter . $url;
+        $url        = $timeString . $this->paramDelimiter . $url;
 
         return $this->paramDelimiter
             . trim($this->prefix, $this->paramDelimiter)

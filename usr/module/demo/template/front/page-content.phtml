@@ -1,7 +1,7 @@
 <h2 class="page-header"><?php echo _escape($page['title']); ?></h2>
 
 <div><?php echo _date($page['time_created']); ?></div>
-<?php echo $this->tag(array('module' => $page['module'], 'item' => $page['id']), array()); ?>
+<?php echo $this->tag(['module' => $page['module'], 'item' => $page['id']], []); ?>
 <?php /*echo $this->tag();*/ ?>
 <p><?php echo $page['content']; ?></p>
 

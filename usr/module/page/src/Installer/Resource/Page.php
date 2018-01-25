@@ -1,4 +1,5 @@
 <?php
+
 namespace Module\Page\Installer\Resource;
 
 use Pi;

@@ -11,8 +11,9 @@ namespace Module\Widget\Form;
 
 /**
  * Form class for block has list content
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class BlockListForm extends BlockMediaForm
-{}
+{
+}

@@ -27,13 +27,14 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
-    protected $meta = array(
-        'id'            => 'id',
-        'title'         => 'title',
-        'content'       => 'content',
-        'time_created'  => 'time',
-        'user'          => 'uid',
-    );
+    protected $meta
+        = [
+            'id'           => 'id',
+            'title'        => 'title',
+            'content'      => 'content',
+            'time_created' => 'time',
+            'user'         => 'uid',
+        ];
 
     /**
      * {@inheritDoc}

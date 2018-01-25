@@ -10,11 +10,6 @@
 namespace Module\User\Field;
 
 use Pi;
-use Pi\Application\Installer\SqlSchema;
-use Pi\Db\Table\AbstractTableGateway;
-use Pi\Form\Form;
-use Zend\Form\Element;
-use Zend\InputFilter\InputFilter;
 
 /**
  * Abstract class for custom compound handling

@@ -9,7 +9,6 @@
 
 namespace Module\Article\Controller\Admin;
 
-use Pi;
 use Pi\Mvc\Controller\ActionController;
 
 /**
@@ -21,15 +20,15 @@ class IndexController extends ActionController
 {
     /**
      * Default page, redirect to all article list page
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function indexAction()
     {
-        return $this->redirect()->toRoute('', array(
+        return $this->redirect()->toRoute('', [
             'controller' => 'article',
             'action'     => 'published',
             'from'       => 'all',
-        ));
+        ]);
     }
 }

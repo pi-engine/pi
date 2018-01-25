@@ -14,14 +14,14 @@ use Pi\Application\Model\Model;
 
 /**
  * Extended model class
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class Extended extends Model
 {
     /**
      * Get valid columns direct from table
-     * 
+     *
      * @return boolean|array
      */
     public function getValidColumns()
@@ -30,30 +30,30 @@ class Extended extends Model
         $database = Pi::config()->load('service.database.php');
         $schema   = $database['schema'];
         $sql      = 'select COLUMN_NAME as name from information_schema.columns'
-                  . ' where table_name=\'' . $table . '\' and table_schema=\'' 
-                  . $schema . '\'';
+            . ' where table_name=\'' . $table . '\' and table_schema=\''
+            . $schema . '\'';
         try {
             $rowset = Pi::db()->getAdapter()->query($sql, 'prepare')->execute();
         } catch (\Exception $exception) {
             return false;
         }
-        
-        $fields = array();
+
+        $fields = [];
         foreach ($rowset as $row) {
-            if (in_array($row['name'], array('id', 'article'))) {
+            if (in_array($row['name'], ['id', 'article'])) {
                 continue;
             }
             $fields[] = $row['name'];
         }
-        
+
         return $fields;
     }
 
     /**
      * Change article slug to article ID
-     * 
-     * @param string  $slug
-     * @return int 
+     *
+     * @param string $slug
+     * @return int
      */
     public function slugToId($slug)
     {

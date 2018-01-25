@@ -9,12 +9,12 @@
 
 namespace Module\User\Controller\Admin;
 
+use Module\User\Form\ProfileCompleteFilter;
+use Module\User\Form\ProfileCompleteForm;
+use Module\User\Form\RegisterFilter;
+use Module\User\Form\RegisterForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\User\Form\RegisterForm;
-use Module\User\Form\RegisterFilter;
-use Module\User\Form\ProfileCompleteForm;
-use Module\User\Form\ProfileCompleteFilter;
 
 /**
  * Form preview controller

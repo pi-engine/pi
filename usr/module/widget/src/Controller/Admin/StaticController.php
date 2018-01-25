@@ -33,11 +33,11 @@ class StaticController extends WidgetController
      */
     protected function contentTypes()
     {
-        $contentTypes = array(
-            'html'      => _a('HTML'),
-            'text'      => _a('Text'),
-            'markdown'  => _a('Markdown'),
-        );
+        $contentTypes = [
+            'html'     => _a('HTML'),
+            'text'     => _a('Text'),
+            'markdown' => _a('Markdown'),
+        ];
 
         return $contentTypes;
     }
@@ -47,11 +47,11 @@ class StaticController extends WidgetController
      */
     protected function widgetList($widgets = null)
     {
-        $model = $this->getModel('widget');
-        $rowset = $model->select(array(
-            'type' => array_keys($this->contentTypes())
-        ));
-        $widgets = array();
+        $model   = $this->getModel('widget');
+        $rowset  = $model->select([
+            'type' => array_keys($this->contentTypes()),
+        ]);
+        $widgets = [];
         foreach ($rowset as $row) {
             $widgets[$row->block] = $row->toArray();
         }
@@ -81,7 +81,7 @@ class StaticController extends WidgetController
         } else {
             $id = $this->params('id');
         }
-        $widget = $this->getModel('widget')->find($id);
+        $widget     = $this->getModel('widget')->find($id);
         $this->type = $widget->type;
         parent::editAction();
     }

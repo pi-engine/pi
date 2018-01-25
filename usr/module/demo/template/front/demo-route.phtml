@@ -1,10 +1,11 @@
 <style>
-.dl-horizontal dt {
-  width: 100px;
-}
-.dl-horizontal dd {
-  margin-left: 120px;
-}
+    .dl-horizontal dt {
+        width: 100px;
+    }
+
+    .dl-horizontal dd {
+        margin-left: 120px;
+    }
 </style>
 
 <h2 class="page-header"><?php _e('Route list'); ?></h2>
@@ -13,7 +14,8 @@
 <h3><?php _e('Routes'); ?></h3>
 <ul>
     <?php foreach ($routes as $name => $data) { ?>
-    <li><a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['label']); ?>"><?php echo _escape($data['label']); ?></a> </li>
+        <li><a href="<?php echo $data['url']; ?>"
+               title="<?php echo _escape($data['label']); ?>"><?php echo _escape($data['label']); ?></a></li>
     <?php } ?>
 </ul>
 
@@ -25,6 +27,7 @@
 <h3 class="legend"><?php _e('Params'); ?></h3>
 <dl class="dl-horizontal">
     <?php foreach ($params as $key => $value) { ?>
-    <dt><?php echo _escape($key); ?></dt> <dd><?php echo _escape($value); ?></dd>
+        <dt><?php echo _escape($key); ?></dt>
+        <dd><?php echo _escape($value); ?></dd>
     <?php } ?>
 </dl>

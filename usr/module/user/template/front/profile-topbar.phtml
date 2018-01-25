@@ -126,10 +126,10 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
 
                 <?php if (!Pi::user()->getId()) { ?>
                     <button class="btn btn-default"
-                       data-redirect="<?php echo $this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid]); ?>"
-                       href="<?php echo (Pi::user()->config('enable_modal')) ? '#' : $this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid]); ?>"
-                       <?php if (Pi::user()->config('enable_modal')) : ?>data-action="login" data-toggle="modal"
-                       data-target="#loginRegisterModal"<?php endif; ?>
+                            data-redirect="<?php echo $this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid]); ?>"
+                            href="<?php echo (Pi::user()->config('enable_modal')) ? '#' : $this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid]); ?>"
+                            <?php if (Pi::user()->config('enable_modal')) : ?>data-action="login" data-toggle="modal"
+                            data-target="#loginRegisterModal"<?php endif; ?>
                     >
                         <i class="fa fa-envelope"></i>
                         <?php _e('Send message'); ?>

@@ -7,293 +7,293 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
-    'item'  => array(
-        'front'     => false,
-        'admin'     => array(
-            'script'     => array(
-                'label'         => _t('Script widgets'),
-                'route'         => 'admin',
-                'controller'    => 'script',
-                'action'        => 'index',
-                'permission'    => array(
-                    'resource'  => 'script',
-                ),
+return [
+    'item' => [
+        'front' => false,
+        'admin' => [
+            'script' => [
+                'label'      => _t('Script widgets'),
+                'route'      => 'admin',
+                'controller' => 'script',
+                'action'     => 'index',
+                'permission' => [
+                    'resource' => 'script',
+                ],
 
-                'pages'         => array(
-                    'list'   => array(
-                        'label'         => _t('Widget list'),
-                        'route'         => 'admin',
-                        'controller'    => 'script',
-                        'action'        => 'index',
-                    ),
-                    'add'   => array(
-                        'label'         => _t('Activate'),
-                        'route'         => 'admin',
-                        'controller'    => 'script',
-                        'action'        => 'add',
-                    ),
-                ),
-            ),
+                'pages' => [
+                    'list' => [
+                        'label'      => _t('Widget list'),
+                        'route'      => 'admin',
+                        'controller' => 'script',
+                        'action'     => 'index',
+                    ],
+                    'add'  => [
+                        'label'      => _t('Activate'),
+                        'route'      => 'admin',
+                        'controller' => 'script',
+                        'action'     => 'add',
+                    ],
+                ],
+            ],
 
-            'static'     => array(
-                'label'         => _t('Static widgets'),
-                'route'         => 'admin',
-                'controller'    => 'static',
-                'permission'    => array(
-                    'resource'  => 'static',
-                ),
+            'static' => [
+                'label'      => _t('Static widgets'),
+                'route'      => 'admin',
+                'controller' => 'static',
+                'permission' => [
+                    'resource' => 'static',
+                ],
 
-                'pages'         => array(
-                    'list'   => array(
-                        'label'         => _t('Widget list'),
-                        'route'         => 'admin',
-                        'controller'    => 'static',
-                        'action'        => 'index',
+                'pages' => [
+                    'list'     => [
+                        'label'      => _t('Widget list'),
+                        'route'      => 'admin',
+                        'controller' => 'static',
+                        'action'     => 'index',
 
-                        'pages'         => array(
-                            'edit'   => array(
-                                'label'         => _t('Edit'),
-                                'route'         => 'admin',
-                                'controller'    => 'static',
-                                'action'        => 'edit',
-                                'visible'       => 0,
-                            ),
-                        )
-                    ),
-                    'html'   => array(
-                        'label'         => _t('Add HTML'),
-                        'route'         => 'admin',
-                        'controller'    => 'static',
-                        'action'        => 'add',
-                        'params'        => array(
-                            'type'  => 'html'
-                        )
-                    ),
-                    'text'   => array(
-                        'label'         => _t('Add text'),
-                        'route'         => 'admin',
-                        'controller'    => 'static',
-                        'action'        => 'add',
-                        'params'        => array(
-                            'type'  => 'text'
-                        )
-                    ),
-                    'markdown'   => array(
-                        'label'         => _t('Add markdown'),
-                        'route'         => 'admin',
-                        'controller'    => 'static',
-                        'action'        => 'add',
-                        'params'        => array(
-                            'type'  => 'markdown'
-                        )
-                    ),
-                ),
-            ),
+                        'pages' => [
+                            'edit' => [
+                                'label'      => _t('Edit'),
+                                'route'      => 'admin',
+                                'controller' => 'static',
+                                'action'     => 'edit',
+                                'visible'    => 0,
+                            ],
+                        ],
+                    ],
+                    'html'     => [
+                        'label'      => _t('Add HTML'),
+                        'route'      => 'admin',
+                        'controller' => 'static',
+                        'action'     => 'add',
+                        'params'     => [
+                            'type' => 'html',
+                        ],
+                    ],
+                    'text'     => [
+                        'label'      => _t('Add text'),
+                        'route'      => 'admin',
+                        'controller' => 'static',
+                        'action'     => 'add',
+                        'params'     => [
+                            'type' => 'text',
+                        ],
+                    ],
+                    'markdown' => [
+                        'label'      => _t('Add markdown'),
+                        'route'      => 'admin',
+                        'controller' => 'static',
+                        'action'     => 'add',
+                        'params'     => [
+                            'type' => 'markdown',
+                        ],
+                    ],
+                ],
+            ],
 
-            'list'         => array(
-                'label'         => _t('List group'),
-                'route'         => 'admin',
-                'controller'    => 'list',
-                'permission'    => array(
-                    'resource'  => 'list',
-                ),
+            'list' => [
+                'label'      => _t('List group'),
+                'route'      => 'admin',
+                'controller' => 'list',
+                'permission' => [
+                    'resource' => 'list',
+                ],
 
-                'pages'         => array(
-                    'list'   => array(
-                        'label'         => _t('Widget list'),
-                        'route'         => 'admin',
-                        'controller'    => 'list',
-                        'action'        => 'index',
+                'pages' => [
+                    'list' => [
+                        'label'      => _t('Widget list'),
+                        'route'      => 'admin',
+                        'controller' => 'list',
+                        'action'     => 'index',
 
-                        'pages'         => array(
-                            'edit'   => array(
-                                'label'         => _t('Edit'),
-                                'route'         => 'admin',
-                                'controller'    => 'list',
-                                'action'        => 'edit',
-                                'visible'       => 0,
-                            ),
-                        )
-                    ),
-                    'add'   => array(
-                        'label'         => _t('Add new'),
-                        'route'         => 'admin',
-                        'controller'    => 'list',
-                        'action'        => 'add',
-                    ),
-                ),
-            ),
+                        'pages' => [
+                            'edit' => [
+                                'label'      => _t('Edit'),
+                                'route'      => 'admin',
+                                'controller' => 'list',
+                                'action'     => 'edit',
+                                'visible'    => 0,
+                            ],
+                        ],
+                    ],
+                    'add'  => [
+                        'label'      => _t('Add new'),
+                        'route'      => 'admin',
+                        'controller' => 'list',
+                        'action'     => 'add',
+                    ],
+                ],
+            ],
 
-            'media'         => array(
-                'label'         => _t('Media list'),
-                'route'         => 'admin',
-                'controller'    => 'media',
-                'permission'    => array(
-                    'resource'  => 'media',
-                ),
+            'media' => [
+                'label'      => _t('Media list'),
+                'route'      => 'admin',
+                'controller' => 'media',
+                'permission' => [
+                    'resource' => 'media',
+                ],
 
-                'pages'         => array(
-                    'list'   => array(
-                        'label'         => _t('Widget list'),
-                        'route'         => 'admin',
-                        'controller'    => 'media',
-                        'action'        => 'index',
+                'pages' => [
+                    'list' => [
+                        'label'      => _t('Widget list'),
+                        'route'      => 'admin',
+                        'controller' => 'media',
+                        'action'     => 'index',
 
-                        'pages'         => array(
-                            'edit'   => array(
-                                'label'         => _t('Edit'),
-                                'route'         => 'admin',
-                                'controller'    => 'media',
-                                'action'        => 'edit',
-                                'visible'       => 0,
-                            ),
-                        )
-                    ),
-                    'add'   => array(
-                        'label'         => _t('Add new'),
-                        'route'         => 'admin',
-                        'controller'    => 'media',
-                        'action'        => 'add',
-                    ),
-                ),
-            ),
+                        'pages' => [
+                            'edit' => [
+                                'label'      => _t('Edit'),
+                                'route'      => 'admin',
+                                'controller' => 'media',
+                                'action'     => 'edit',
+                                'visible'    => 0,
+                            ],
+                        ],
+                    ],
+                    'add'  => [
+                        'label'      => _t('Add new'),
+                        'route'      => 'admin',
+                        'controller' => 'media',
+                        'action'     => 'add',
+                    ],
+                ],
+            ],
 
-            'carousel'     => array(
-                'label'         => _t('Carousel'),
-                'route'         => 'admin',
-                'controller'    => 'carousel',
-                'permission'    => array(
-                    'resource'  => 'carousel',
-                ),
+            'carousel' => [
+                'label'      => _t('Carousel'),
+                'route'      => 'admin',
+                'controller' => 'carousel',
+                'permission' => [
+                    'resource' => 'carousel',
+                ],
 
-                'pages'         => array(
-                    'list'   => array(
-                        'label'         => _t('Widget list'),
-                        'route'         => 'admin',
-                        'controller'    => 'carousel',
-                        'action'        => 'index',
+                'pages' => [
+                    'list' => [
+                        'label'      => _t('Widget list'),
+                        'route'      => 'admin',
+                        'controller' => 'carousel',
+                        'action'     => 'index',
 
-                        'pages'         => array(
-                            'edit'   => array(
-                                'label'         => _t('Edit'),
-                                'route'         => 'admin',
-                                'controller'    => 'carousel',
-                                'action'        => 'edit',
-                                'visible'       => 0,
-                            ),
-                        )
-                    ),
-                    'add'   => array(
-                        'label'         => _t('Add new'),
-                        'route'         => 'admin',
-                        'controller'    => 'carousel',
-                        'action'        => 'add',
-                    ),
-                ),
-            ),
+                        'pages' => [
+                            'edit' => [
+                                'label'      => _t('Edit'),
+                                'route'      => 'admin',
+                                'controller' => 'carousel',
+                                'action'     => 'edit',
+                                'visible'    => 0,
+                            ],
+                        ],
+                    ],
+                    'add'  => [
+                        'label'      => _t('Add new'),
+                        'route'      => 'admin',
+                        'controller' => 'carousel',
+                        'action'     => 'add',
+                    ],
+                ],
+            ],
 
-            'spotlight'     => array(
-                'label'         => _t('Spotlight'),
-                'route'         => 'admin',
-                'controller'    => 'spotlight',
-                'permission'    => array(
-                    'resource'  => 'spotlight',
-                ),
+            'spotlight' => [
+                'label'      => _t('Spotlight'),
+                'route'      => 'admin',
+                'controller' => 'spotlight',
+                'permission' => [
+                    'resource' => 'spotlight',
+                ],
 
-                'pages'         => array(
-                    'list'   => array(
-                        'label'         => _t('Widget list'),
-                        'route'         => 'admin',
-                        'controller'    => 'spotlight',
-                        'action'        => 'index',
+                'pages' => [
+                    'list' => [
+                        'label'      => _t('Widget list'),
+                        'route'      => 'admin',
+                        'controller' => 'spotlight',
+                        'action'     => 'index',
 
-                        'pages'         => array(
-                            'edit'   => array(
-                                'label'         => _t('Edit'),
-                                'route'         => 'admin',
-                                'controller'    => 'spotlight',
-                                'action'        => 'edit',
-                                'visible'       => 0,
-                            ),
-                        )
-                    ),
-                    'add'   => array(
-                        'label'         => _t('Add new'),
-                        'route'         => 'admin',
-                        'controller'    => 'spotlight',
-                        'action'        => 'add',
-                    ),
-                ),
-            ),
+                        'pages' => [
+                            'edit' => [
+                                'label'      => _t('Edit'),
+                                'route'      => 'admin',
+                                'controller' => 'spotlight',
+                                'action'     => 'edit',
+                                'visible'    => 0,
+                            ],
+                        ],
+                    ],
+                    'add'  => [
+                        'label'      => _t('Add new'),
+                        'route'      => 'admin',
+                        'controller' => 'spotlight',
+                        'action'     => 'add',
+                    ],
+                ],
+            ],
 
-            'tab'     => array(
-                'label'         => _t('Compound tabs'),
-                'route'         => 'admin',
-                'controller'    => 'tab',
-                'permission'    => array(
-                    'resource'  => 'tab',
-                ),
+            'tab' => [
+                'label'      => _t('Compound tabs'),
+                'route'      => 'admin',
+                'controller' => 'tab',
+                'permission' => [
+                    'resource' => 'tab',
+                ],
 
-                'pages'         => array(
-                    'list'   => array(
-                        'label'         => _t('Widget list'),
-                        'route'         => 'admin',
-                        'controller'    => 'tab',
-                        'action'        => 'index',
+                'pages' => [
+                    'list' => [
+                        'label'      => _t('Widget list'),
+                        'route'      => 'admin',
+                        'controller' => 'tab',
+                        'action'     => 'index',
 
-                        'pages'         => array(
-                            'edit'   => array(
-                                'label'         => _t('Edit'),
-                                'route'         => 'admin',
-                                'controller'    => 'tab',
-                                'action'        => 'edit',
-                                'visible'       => 0,
-                            ),
-                        )
-                    ),
-                    'add'   => array(
-                        'label'         => _t('Add new'),
-                        'route'         => 'admin',
-                        'controller'    => 'tab',
-                        'action'        => 'add',
-                    ),
-                ),
-            ),
+                        'pages' => [
+                            'edit' => [
+                                'label'      => _t('Edit'),
+                                'route'      => 'admin',
+                                'controller' => 'tab',
+                                'action'     => 'edit',
+                                'visible'    => 0,
+                            ],
+                        ],
+                    ],
+                    'add'  => [
+                        'label'      => _t('Add new'),
+                        'route'      => 'admin',
+                        'controller' => 'tab',
+                        'action'     => 'add',
+                    ],
+                ],
+            ],
 
-            'video'   => array(
-                'label'         => _t('Video and audio'),
-                'route'         => 'admin',
-                'controller'    => 'video',
-                'permission'    => array(
-                    'resource'  => 'video',
-                ),
+            'video' => [
+                'label'      => _t('Video and audio'),
+                'route'      => 'admin',
+                'controller' => 'video',
+                'permission' => [
+                    'resource' => 'video',
+                ],
 
-                'pages'         => array(
-                    'list'   => array(
-                        'label'         => _t('Widget list'),
-                        'route'         => 'admin',
-                        'controller'    => 'video',
-                        'action'        => 'index',
+                'pages' => [
+                    'list' => [
+                        'label'      => _t('Widget list'),
+                        'route'      => 'admin',
+                        'controller' => 'video',
+                        'action'     => 'index',
 
-                        'pages'         => array(
-                            'edit'   => array(
-                                'label'         => _t('Edit'),
-                                'route'         => 'admin',
-                                'controller'    => 'video',
-                                'action'        => 'edit',
-                                'visible'       => 0,
-                            ),
-                        )
-                    ),
-                    'add'   => array(
-                        'label'         => _t('Add new'),
-                        'route'         => 'admin',
-                        'controller'    => 'video',
-                        'action'        => 'add',
-                    ),
-                ),
-            ),
-        ),
-    ),
-);
+                        'pages' => [
+                            'edit' => [
+                                'label'      => _t('Edit'),
+                                'route'      => 'admin',
+                                'controller' => 'video',
+                                'action'     => 'edit',
+                                'visible'    => 0,
+                            ],
+                        ],
+                    ],
+                    'add'  => [
+                        'label'      => _t('Add new'),
+                        'route'      => 'admin',
+                        'controller' => 'video',
+                        'action'     => 'add',
+                    ],
+                ],
+            ],
+        ],
+    ],
+];

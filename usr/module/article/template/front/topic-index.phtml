@@ -1,8 +1,8 @@
 <?php
-    $this->headTitle($title, 'SET');
-    $this->css(array(
-        $this->assetModule('script/block.css'),
-    ));
+$this->headTitle($title, 'SET');
+$this->css([
+    $this->assetModule('script/block.css'),
+]);
 ?>
 
 <style>
@@ -10,6 +10,7 @@
         padding: 0;
         margin: 0 0 20px 0;
     }
+
     .article-topic-title {
         font-size: 17.5px;
         font-weight: bold;
@@ -47,8 +48,8 @@
         <?php foreach ($articles as $row) { ?>
             <div class="">
                 <a class="topic-list-title" target="_blank" href="<?php echo $this->escape($row['url']); ?>"
-                    title="<?php echo $this->escape($row['subject']); ?>" style="font-weight: bold">
-                        <?php echo $this->escape($row['subject']); ?>
+                   title="<?php echo $this->escape($row['subject']); ?>" style="font-weight: bold">
+                    <?php echo $this->escape($row['subject']); ?>
                 </a>
                 <div class="text-muted" style="font-size: 12px">
                     <span><?php echo sprintf(__('Created at ') . _date($row['time_published'])); ?></span>
@@ -61,10 +62,11 @@
                 </div>
             </div>
             <hr>
-        <?php 
-            }
+            <?php
+        }
         ?>
     </div>
 </div>
 
-<a class="btn btn-default col-md-12" style="margin-left: 0" href="<?php echo $this->escape($url); ?>"><?php _e('View All'); ?></a>
+<a class="btn btn-default col-md-12" style="margin-left: 0"
+   href="<?php echo $this->escape($url); ?>"><?php _e('View All'); ?></a>

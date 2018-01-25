@@ -66,8 +66,8 @@ class BuildController extends ActionController
 
                 case 'degree':
                     $map = ['Ph.D', 'Master', 'Bachelor', 'College',
-                        'High school', 'Middle school',
-                        'Preliminary school'];
+                            'High school', 'Middle school',
+                            'Preliminary school'];
                     break;
 
                 case 'role':
@@ -436,7 +436,7 @@ class BuildController extends ActionController
         }
 
         $timelineMap = ['update_info', 'write_article',
-            'write_blog', 'join_forum',
+                        'write_blog', 'join_forum',
         ];
         $messageMap  = [
             'Update user information',

@@ -9,13 +9,13 @@
 
 namespace Module\Article\Api;
 
-use Pi\Application\Api\AbstractApi;
 use Pi;
+use Pi\Application\Api\AbstractApi;
 
 /**
  * Custom resource loader for permissions
- * 
- * @author Zongshu Lin <lin40553024@163.com> 
+ *
+ * @author Zongshu Lin <lin40553024@163.com>
  */
 class Permission extends AbstractApi
 {
@@ -23,18 +23,18 @@ class Permission extends AbstractApi
 
     /**
      * Get categories as resources
-     * 
-     * @return array 
+     *
+     * @return array
      */
     public function getResources()
     {
-        $resources = array();
-        $module = $this->module;
-        $model  = Pi::model('category', $module);
-        $rowset = $model->select(array());
+        $resources = [];
+        $module    = $this->module;
+        $model     = Pi::model('category', $module);
+        $rowset    = $model->select([]);
         foreach ($rowset as $row) {
-            $name = 'category-' . $row->name;
-            $title = ucwords('category ' . $row->title);
+            $name             = 'category-' . $row->name;
+            $title            = ucwords('category ' . $row->title);
             $resources[$name] = $title;
         }
 

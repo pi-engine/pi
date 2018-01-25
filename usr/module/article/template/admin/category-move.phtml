@@ -1,12 +1,12 @@
 <?php include $this->template('./message-box.phtml'); ?>
 
 <?php
-    $form->setAttributes(array(
-        'action'  => $this->url('', array('action' => 'move')),
-        'method'  => 'post',
-        'class'   => 'form-horizontal',
-    ));
-    echo $this->form()->openTag($form);
+$form->setAttributes([
+    'action' => $this->url('', ['action' => 'move']),
+    'method' => 'post',
+    'class'  => 'form-horizontal',
+]);
+echo $this->form()->openTag($form);
 ?>
 
 <div class="">
@@ -20,8 +20,8 @@
                 <h3><?php echo _a('Source Category'); ?></h3>
                 <br>
                 <?php
-                    $element = $form->get('from');
-                    echo $this->formElement($element);
+                $element = $form->get('from');
+                echo $this->formElement($element);
                 ?>
                 <p class="help-block">
                 </p>
@@ -37,8 +37,8 @@
                 <h3><?php echo _a('Target Category'); ?></h3>
                 <br>
                 <?php
-                    $element = $form->get('to');
-                    echo $this->formElement($element);
+                $element = $form->get('to');
+                echo $this->formElement($element);
                 ?>
                 <p class="help-block">
                 </p>
@@ -47,11 +47,11 @@
     </div>
 
     <div class="col-md-12">
-        <?php 
-            $elements = $form->elementList();
-            foreach ($elements['hidden'] as $element) {
-                echo $this->formElement($element);
-            }
+        <?php
+        $elements = $form->elementList();
+        foreach ($elements['hidden'] as $element) {
+            echo $this->formElement($element);
+        }
         ?>
     </div>
 </div>

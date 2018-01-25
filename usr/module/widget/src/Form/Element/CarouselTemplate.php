@@ -21,12 +21,12 @@ class CarouselTemplate extends MediaTemplate
      */
     protected function getStyles()
     {
-        $styles = array(
-            $this->templateDir . '/bootstrap'           =>  _a('Bootstrap slide') . ' (bootstrap)',
-            $this->templateDir . '/bootstrap-twocol'    =>  _a('Bootstrap two columns') . ' (bootstrap-twocol)',
-            $this->templateDir . '/owl-carousel'        =>  _a('Owl Carousel 2') . ' (owl-carousel)',
-            $this->templateDir . '/parallax'            =>  _a('Parallax Content Slider') . ' (parallax)',
-        );
+        $styles = [
+            $this->templateDir . '/bootstrap'        => _a('Bootstrap slide') . ' (bootstrap)',
+            $this->templateDir . '/bootstrap-twocol' => _a('Bootstrap two columns') . ' (bootstrap-twocol)',
+            $this->templateDir . '/owl-carousel'     => _a('Owl Carousel 2') . ' (owl-carousel)',
+            $this->templateDir . '/parallax'         => _a('Parallax Content Slider') . ' (parallax)',
+        ];
         $styles += $this->getList();
 
         return $styles;

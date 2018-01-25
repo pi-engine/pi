@@ -80,8 +80,8 @@ class TestController extends ActionController
         $languageMap = ['en', 'fa', 'fr', 'zh-cn'];
         $countryMap  = ['China', 'England', 'France', 'Iran'];
         $degreeMap   = ['Ph.D', 'Master', 'Bachelor', 'College',
-            'High school', 'Middle school',
-            'Preliminary school'];
+                        'High school', 'Middle school',
+                        'Preliminary school'];
 
         $start = 11;
         $end   = $count + $start;

@@ -1,18 +1,19 @@
 <?php
-    $this->css($this->assetModule('script/front.css'));
-    $this->jQuery();
-    $this->Backbone();
+$this->css($this->assetModule('script/front.css'));
+$this->jQuery();
+$this->Backbone();
 ?>
 <div class="row">
     <div class="col-md-12">
-    <div id="jsList">
-        <div class="form-inline">
-            <div class="form-group">
-                <span class="btn btn-primary btn-approve form-control" data-action="batch.approve"><?php echo _a('Approve'); ?></span>
+        <div id="jsList">
+            <div class="form-inline">
+                <div class="form-group">
+                    <span class="btn btn-primary btn-approve form-control"
+                          data-action="batch.approve"><?php echo _a('Approve'); ?></span>
+                </div>
             </div>
-        </div>
-        <table class="table table-striped">
-            <tbody>
+            <table class="table table-striped">
+                <tbody>
                 <tr>
                     <th style="width: 2.2em;">
                         <input type="checkbox" class="check-all">
@@ -26,105 +27,105 @@
                     <th style="width: 100px;"><?php echo _a('Last update'); ?></th>
                 </tr>
                 <?php foreach ($data as $draft) { ?>
-                <tr data-id="<?php echo $this->escape($draft['id']); ?>">
-                    <td>
-                        <input type="checkbox" class="check-one" value="<?php echo $this->escape($draft['id']); ?>">
-                    </td>
-                    <td>
-                        <?php echo $this->escape($draft['subject']); ?>
-                        <div class="row-actions">
-                            <a href="<?php echo $this->url('', array('action' => 'edit', 'controller' => 'draft', 'id' => $draft['id'])); ?>?from=all">
-                                <?php echo _a('Edit'); ?>
-                            </a>
-                            <span class="divider">|</span>
-                            <a href="javascript:void(0)" data-action="batch.approve" class="one-action" >
-                                <?php echo _a('Approve'); ?>
-                            </a>
-                        </div>
-                    </td>
-                    <td>
-                        <?php echo $this->escape($draft['category_title']); ?>
-                    </td>
-                    <?php
-                    /*
-                    <td><?php
-                        echo !empty($draft['tag']) ? $this->escape(implode(',', $draft['tag'])) 
-                            : '<span class="muted">' . _a('No tags') . '</span>'
-                    ?>
-                    </td>
-                    */
-                    ?>
-                    <td><?php echo $this->escape($draft['user_name']); ?></td>
-                    <td><?php echo _date($draft['time_save']); ?></td>
-                </tr>
+                    <tr data-id="<?php echo $this->escape($draft['id']); ?>">
+                        <td>
+                            <input type="checkbox" class="check-one" value="<?php echo $this->escape($draft['id']); ?>">
+                        </td>
+                        <td>
+                            <?php echo $this->escape($draft['subject']); ?>
+                            <div class="row-actions">
+                                <a href="<?php echo $this->url('', ['action' => 'edit', 'controller' => 'draft', 'id' => $draft['id']]); ?>?from=all">
+                                    <?php echo _a('Edit'); ?>
+                                </a>
+                                <span class="divider">|</span>
+                                <a href="javascript:void(0)" data-action="batch.approve" class="one-action">
+                                    <?php echo _a('Approve'); ?>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <?php echo $this->escape($draft['category_title']); ?>
+                        </td>
+                        <?php
+                        /*
+                        <td><?php
+                            echo !empty($draft['tag']) ? $this->escape(implode(',', $draft['tag'])) 
+                                : '<span class="muted">' . _a('No tags') . '</span>'
+                        ?>
+                        </td>
+                        */
+                        ?>
+                        <td><?php echo $this->escape($draft['user_name']); ?></td>
+                        <td><?php echo _date($draft['time_save']); ?></td>
+                    </tr>
                 <?php } ?>
-            </tbody>
-        </table>
-        <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', array('class' => 'pagination-right')); ?>
+                </tbody>
+            </table>
+            <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', ['class' => 'pagination-right']); ?>
         </div>
     </div>
 </div>
 <script>
-(function($) {
-    var page = { 
-        el  : $("#jsList"),
-        url : "<?php echo $this->url('', array('controller' => 'draft', 'action' => 'list')); ?>".replace(/list\/$/,""),
-        $   : function(selector){
-            return this.el.find(selector);
-        },
-        init : function() {
-            _.bindAll(this);
-            this.$(".check-all").click(this.checkAll);
-            this.$(".btn-approve").click(this.approve);
-            this.$(".one-action").click(this.oneAction);
-            this.$(".check-one").click(this.clickOne);
-        },
-        checkAll : function() {
-            var flag = this.$(".check-all").prop("checked");
-            this.$(".check-one").prop("checked",flag).each(function() {
-                var tr = $(this).parents("tr:first");
-                if (flag) {
+    (function ($) {
+        var page = {
+            el: $("#jsList"),
+            url: "<?php echo $this->url('', ['controller' => 'draft', 'action' => 'list']); ?>".replace(/list\/$/, ""),
+            $: function (selector) {
+                return this.el.find(selector);
+            },
+            init: function () {
+                _.bindAll(this);
+                this.$(".check-all").click(this.checkAll);
+                this.$(".btn-approve").click(this.approve);
+                this.$(".one-action").click(this.oneAction);
+                this.$(".check-one").click(this.clickOne);
+            },
+            checkAll: function () {
+                var flag = this.$(".check-all").prop("checked");
+                this.$(".check-one").prop("checked", flag).each(function () {
+                    var tr = $(this).parents("tr:first");
+                    if (flag) {
+                        tr.addClass("info");
+                    } else {
+                        tr.removeClass("info");
+                    }
+                });
+            },
+            approve: function (e) {
+                var id = [],
+                    action = $(e.target).attr("data-action");
+                this.$(".check-one:checked").each(function () {
+                    id.push($(this).val());
+                });
+                if (id.length) {
+                    location.href = this.url + action + "?id=" + id.join(",") + "&from=" + this.encodeUrl();
+                }
+            },
+            clickOne: function (e) {
+                var el = $(e.target),
+                    tr = el.parents("tr:first");
+                if (el.prop("checked")) {
                     tr.addClass("info");
                 } else {
                     tr.removeClass("info");
                 }
-            });
-        },
-        approve : function(e) {
-            var id = [],
-                action = $(e.target).attr("data-action");
-            this.$(".check-one:checked").each(function() {
-                id.push($(this).val()); 
-            });
-            if (id.length) {
-                location.href = this.url + action + "?id=" + id.join(",") + "&from=" + this.encodeUrl();
+            },
+            oneAction: function (e) {
+                var el = $(e.target),
+                    id = el.parents("tr:first").attr("data-id"),
+                    action = el.attr("data-action"),
+                    status = el.attr("data-status");
+                if (status) {
+                    location.href = this.url + action + "?id=" + id + "&status=" + status + "&from="
+                        + this.encodeUrl();
+                } else {
+                    location.href = this.url + action + "?id=" + id + "&from=" + this.encodeUrl();
+                }
+            },
+            encodeUrl: function () {
+                return encodeURIComponent(location.href);
             }
-        },
-        clickOne : function(e) {
-            var el = $(e.target),
-                tr = el.parents("tr:first");
-            if (el.prop("checked")) {
-                tr.addClass("info");
-            } else {
-                tr.removeClass("info");
-            }
-        },
-        oneAction : function(e) {
-            var el = $(e.target),
-                id = el.parents("tr:first").attr("data-id"),
-                action = el.attr("data-action"),
-                status = el.attr("data-status");
-            if (status) {
-                location.href = this.url + action + "?id=" + id + "&status=" + status + "&from="
-                              + this.encodeUrl();
-            } else {
-                location.href = this.url + action + "?id=" + id + "&from=" + this.encodeUrl();
-            }
-        },
-        encodeUrl : function() {
-            return encodeURIComponent(location.href);
-        }
-    };
-    page.init();
-})(jQuery);
+        };
+        page.init();
+    })(jQuery);
 </script>

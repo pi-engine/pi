@@ -1,19 +1,19 @@
 <?php
-$options    = (array) $block['options'];
-$items      = $block['items'] ?: array();
-$count      = count($items);
-$imgStyle   = '';
-$locale     = Pi::service('i18n')->getLocale();
-$target     = $options['target_new'] ? '_self' : '_blank';
-$ellipsis   = empty($options['max_rows'])
+$options  = (array)$block['options'];
+$items    = $block['items'] ?: [];
+$count    = count($items);
+$imgStyle = '';
+$locale   = Pi::service('i18n')->getLocale();
+$target   = $options['target_new'] ? '_self' : '_blank';
+$ellipsis = empty($options['max_rows'])
     ? 'pi-ellipsis'
     : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
 
 if (!empty($options['width'])) {
-    $imgStyle .= 'width: '  . $options['width'] . 'px;';
+    $imgStyle .= 'width: ' . $options['width'] . 'px;';
 }
 if (!empty($options['height'])) {
-    $imgStyle .= 'height: '  . $options['height'] . 'px;';
+    $imgStyle .= 'height: ' . $options['height'] . 'px;';
 }
 if (!empty($imgStyle)) {
     $imgStyle = sprintf('style="%s" ', $imgStyle);
@@ -28,7 +28,8 @@ unset($options['width'], $options['height'], $options['two_col']);
 if ($towcols) {
 
     $render = function ($item) use ($imgStyle, $ellipsis, $target) {
-        $itemPattern =<<<EOT
+        $itemPattern
+                 = <<<EOT
             <div class="row">
                 <div class="col-sm-7">
                     <a href="%s" target="%s" title="%s"><img class="img-responsive" src="%s" alt="%s" %s/></a>
@@ -39,9 +40,9 @@ if ($towcols) {
                 </div>
             </div>
 EOT;
-        $link       = $item['link'] ?: '#';
-        $caption    = _escape($item['caption']);
-        $content    = sprintf(
+        $link    = $item['link'] ?: '#';
+        $caption = _escape($item['caption']);
+        $content = sprintf(
             $itemPattern,
             $link,
             $target,
@@ -61,7 +62,8 @@ EOT;
     };
 
     // Add head style
-    $style = <<<'EOT'
+    $style
+        = <<<'EOT'
         .widget-carousel-bootstrap .carousel-indicators {
             text-align: right;
             margin: 0;
@@ -87,7 +89,8 @@ EOT;
 } else {
 
     $render = function ($item) use ($imgStyle, $ellipsis, $target) {
-        $itemPattern =<<<EOT
+        $itemPattern
+                 = <<<EOT
             <a href="%s" target="%s" title="%s">
                 <img src="%s" alt="%s" class="img-responsive" %s/>
             </a>
@@ -96,9 +99,9 @@ EOT;
                 <p class="%s">%s</p>
             </div>
 EOT;
-        $link       = $item['link'] ?: '#';
-        $caption    = _escape($item['caption']);
-        $content    = sprintf(
+        $link    = $item['link'] ?: '#';
+        $caption = _escape($item['caption']);
+        $content = sprintf(
             $itemPattern,
             $link,
             $target,
@@ -114,7 +117,7 @@ EOT;
         return $content;
     };
 
-}?>
+} ?>
     <div class="widget-carousel-bootstrap">
         <div id="<?php echo $carouselId; ?>" class="carousel slide">
             <?php if ($count > 1) { ?>
@@ -140,10 +143,12 @@ EOT;
             </div>
             <?php if ($count > 1) { ?>
                 <!-- Carousel nav -->
-                <a class="<?php echo in_array($locale, array('fa', 'ar')) ? 'right' : 'left'; ?> carousel-control" href="#<?php echo $carouselId; ?>" data-slide="prev">
+                <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'right' : 'left'; ?> carousel-control"
+                   href="#<?php echo $carouselId; ?>" data-slide="prev">
                     <i class="icon-prev fa fa-chevron-left"></i>
                 </a>
-                <a class="<?php echo in_array($locale, array('fa', 'ar')) ? 'left' : 'right'; ?> carousel-control" href="#<?php echo $carouselId; ?>" data-slide="next">
+                <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'left' : 'right'; ?> carousel-control"
+                   href="#<?php echo $carouselId; ?>" data-slide="next">
                     <i class="icon-next fa fa-chevron-right"></i>
                 </a>
             <?php } ?>

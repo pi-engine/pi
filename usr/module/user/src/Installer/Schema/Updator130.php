@@ -58,7 +58,8 @@ class Updator130 extends AbstractUpdator
 
         if (version_compare($version, '1.3.2', '<')) {
             $table  = Pi::db()->prefix('compound_field', 'user');
-            $sql    = <<<'EOT'
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s
 ADD `is_required` tinyint(1) unsigned NOT NULL default '0';
 EOT;
@@ -90,7 +91,8 @@ EOT;
             );
 
             $table  = Pi::db()->prefix('privacy', 'user');
-            $sql    = <<<'EOT'
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s
 MODIFY `is_forced` tinyint(1) unsigned NOT NULL default '0';
 EOT;
@@ -98,7 +100,8 @@ EOT;
             $status = $this->queryTable($sql);
 
             $table  = Pi::db()->prefix('privacy_user', 'user');
-            $sql    = <<<'EOT'
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s
 DROP `is_forced`;
 EOT;
@@ -113,7 +116,8 @@ EOT;
         if (version_compare($version, '1.4.6', '<')) {
 
             $table  = Pi::db()->prefix('condition', 'user');
-            $sql    = <<<'EOT'
+            $sql
+                    = <<<'EOT'
 CREATE TABLE %s (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` varchar(255) NOT NULL,
@@ -134,7 +138,8 @@ EOT;
         if (version_compare($version, '1.4.7', '<')) {
 
             $table  = Pi::db()->prefix('timeline_log', 'user');
-            $sql    = <<<'EOT'
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s ADD `data` VARCHAR(255) NOT NULL AFTER `message`;
 EOT;
             $sql    = sprintf($sql, $table);

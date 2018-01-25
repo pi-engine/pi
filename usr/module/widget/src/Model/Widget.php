@@ -21,7 +21,8 @@ class Widget extends BasicModel
     /**
      * {@inheritDoc}
      */
-    protected $encodeColumns = array(
-        //'meta'  => true,
-    );
+    protected $encodeColumns
+        = [
+            //'meta'  => true,
+        ];
 }

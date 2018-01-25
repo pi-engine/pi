@@ -18,13 +18,13 @@ class UserActivity extends AbstractActivityCallback
      */
     public function get($uid, $limit, $offset = 0)
     {
-        $data = array();
+        $data = [];
         for ($i = 0; $i < $limit; $i++) {
-            $message = sprintf('Uid %d activity item #%d.', $uid, $i);
-            $data['items'][] = array(
+            $message         = sprintf('Uid %d activity item #%d.', $uid, $i);
+            $data['items'][] = [
                 'message' => $message,
                 'time'    => time() - $i * 3600,
-            );
+            ];
         }
 
         return $data;

@@ -9,123 +9,122 @@
 
 namespace Module\Article\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
  * Category edit form class
- * 
- * @author Zongshu Lin <lin40553024@163.com> 
+ *
+ * @author Zongshu Lin <lin40553024@163.com>
  */
 class CategoryEditForm extends BaseForm
 {
     /**
-     * Initializing form 
+     * Initializing form
      */
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name'       => 'parent',
-            'options'    => array(
-                'label'       => __('Parent'),
-            ),
-            'attributes' => array(
+            'options'    => [
+                'label' => __('Parent'),
+            ],
+            'attributes' => [
                 'description' => __('Category Hierarchy'),
-            ),
+            ],
             'type'       => 'Module\Article\Form\Element\CategoryWithRoot',
-            
-        ));
 
-        $this->add(array(
+        ]);
+
+        $this->add([
             'name'       => 'name',
-            'options'    => array(
-                'label'       => __('Name'),
-            ),
-            'attributes' => array(
+            'options'    => [
+                'label' => __('Name'),
+            ],
+            'attributes' => [
                 'type'        => 'text',
                 'description' => __('The unique identifier of category.'),
-            ),
-            
-        ));
+            ],
 
-        $this->add(array(
+        ]);
+
+        $this->add([
             'name'       => 'slug',
-            'options'    => array(
-                'label'       => __('Slug'),
-            ),
-            'attributes' => array(
+            'options'    => [
+                'label' => __('Slug'),
+            ],
+            'attributes' => [
                 'type'        => 'text',
                 'description' => __('The "Slug" is category name in URL.'),
-            ),
-            
-        ));
+            ],
 
-        $this->add(array(
+        ]);
+
+        $this->add([
             'name'       => 'title',
-            'options'    => array(
-                'label'       => __('Title'),
-            ),
-            'attributes' => array(
+            'options'    => [
+                'label' => __('Title'),
+            ],
+            'attributes' => [
                 'type'        => 'text',
                 'description' => __('Will be displayed on your website.'),
-            ),
-           
-        ));
+            ],
 
-        $this->add(array(
+        ]);
+
+        $this->add([
             'name'       => 'description',
-            'options'    => array(
-                'label'       => __('Description'),
-            ),
-            'attributes' => array(
+            'options'    => [
+                'label' => __('Description'),
+            ],
+            'attributes' => [
                 'type'        => 'textarea',
                 'description' => __('Display in the website depends on theme.'),
-            ),
-            
-        ));
-        
-        $this->add(array(
+            ],
+
+        ]);
+
+        $this->add([
             'name'       => 'placeholder',
-            'options'    => array(
-                'label'       => __('Image'),
-            ),
-            'attributes' => array(
-                'type'        => '',
-            ),
-        ));
+            'options'    => [
+                'label' => __('Image'),
+            ],
+            'attributes' => [
+                'type' => '',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'       => 'security',
-            'type'       => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'id',
-            'attributes' => array(
-                'type'        => 'hidden',
-            ),
-        ));
-        
-        $this->add(array(
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
+
+        $this->add([
             'name'       => 'fake_id',
-            'attributes' => array(
-                'type'        => 'hidden',
-            ),
-        ));
-        
-        $this->add(array(
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
+
+        $this->add([
             'name'       => 'image',
-            'attributes' => array(
-                'type'        => 'hidden',
-            ),
-        ));
-        
-        $this->add(array(
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
+
+        $this->add([
             'name'       => 'submit',
-            'attributes' => array(                
-                'value'       => __('Submit'),
-            ),
+            'attributes' => [
+                'value' => __('Submit'),
+            ],
             'type'       => 'submit',
-        ));
+        ]);
     }
 }

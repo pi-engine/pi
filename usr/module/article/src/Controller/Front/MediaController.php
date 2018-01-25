@@ -9,23 +9,22 @@
 
 namespace Module\Article\Controller\Front;
 
-use Pi;
-use Pi\Mvc\Controller\ActionController;
 use Module\Article\Media;
+use Pi;
 use Pi\File\Transfer\Upload as UploadHandler;
-use ZipArchive;
+use Pi\Mvc\Controller\ActionController;
 
 /**
  * Media controller
- * 
+ *
  * Feature list
- * 
+ *
  * 1. AJAX action for checking upload file
  * 2. AJAX action for saving media
  * 3. AJAX action for removing media
  * 4. AJAX action for search media
  * 5. Download media
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class MediaController extends ActionController
@@ -35,63 +34,63 @@ class MediaController extends ActionController
 
     /**
      * Calculate the image size by allowed image size.
-     * 
-     * @param string|array  $image
-     * @param array         $allowSize
+     *
+     * @param string|array $image
+     * @param array $allowSize
      * @return array
-     * @throws \Exception 
+     * @throws \Exception
      */
     public static function scaleImageSize($image, $allowSize)
     {
         if (is_string($image)) {
-            $imageSizeRaw = getimagesize($image);
+            $imageSizeRaw   = getimagesize($image);
             $imageSize['w'] = $imageSizeRaw[0];
             $imageSize['h'] = $imageSizeRaw[1];
         } else {
             $imageSize = $image;
         }
-        
+
         if (!isset($imageSize['w']) or !isset($imageSize['h'])) {
             throw \Exception(_a('Raw image width and height data is needed!'));
         }
-        
+
         if (!isset($allowSize['image_width'])
             or !isset($allowSize['image_height'])
         ) {
             throw \Exception(_a('The limitation data is needed!'));
         }
-        
+
         $scaleImage = $imageSize;
         if ($imageSize['w'] >= $imageSize['h']) {
             if ($imageSize['w'] > $allowSize['image_width']) {
-                $scaleImage['w'] = (int) $allowSize['image_width'];
-                $scaleImage['h'] = (int) (($allowSize['image_width']
-                                 * $imageSize['h'])
-                                 / $imageSize['w']);
+                $scaleImage['w'] = (int)$allowSize['image_width'];
+                $scaleImage['h'] = (int)(($allowSize['image_width']
+                        * $imageSize['h'])
+                    / $imageSize['w']);
             }
         } else {
             if ($imageSize['h'] > $allowSize['image_height']) {
-                $scaleImage['h'] = (int) $allowSize['image_height'];
-                $scaleImage['w'] = (int) (($allowSize['image_height'] 
-                                 * $imageSize['w'])
-                                 / $imageSize['h']);
+                $scaleImage['h'] = (int)$allowSize['image_height'];
+                $scaleImage['w'] = (int)(($allowSize['image_height']
+                        * $imageSize['w'])
+                    / $imageSize['h']);
             }
         }
-        
+
         return $scaleImage;
     }
-    
+
     /**
-     * Processing media uploaded. 
+     * Processing media uploaded.
      */
     public function uploadAction()
     {
         Pi::service('log')->mute();
-        
-        $module   = $this->getModule();
-        $config   = Pi::config('', $module);
 
-        $return   = array('status' => false);
+        $module = $this->getModule();
+        $config = Pi::config('', $module);
+
+        $return   = ['status' => false];
         $id       = $this->params('id', 0);
         $fakeId   = $this->params('fake_id', 0) ?: uniqid();
         $type     = $this->params('type', 'attachment');
@@ -101,12 +100,12 @@ class MediaController extends ActionController
         if (empty($id) && empty($fakeId)) {
             $return['message'] = _a('Invalid ID!');
             return json_encode($return);
-            exit ;
+            exit;
         }
-        
-        $width   = $this->params('width', 0);
-        $height  = $this->params('height', 0);
-        
+
+        $width  = $this->params('width', 0);
+        $height = $this->params('height', 0);
+
         $rawInfo = $this->request->getFiles($formName);
         $ext     = strtolower(
             pathinfo($rawInfo['name'], PATHINFO_EXTENSION)
@@ -117,14 +116,14 @@ class MediaController extends ActionController
             ? $config['image_extension'] : $config['media_extension'];
         $mediaSize        = ($type == 'image')
             ? $config['max_image_size'] : $config['max_media_size'];
-        $destination = Media::getTargetDir('media', $module, true, true);
-        $uploader    = new UploadHandler(array(
+        $destination      = Media::getTargetDir('media', $module, true, true);
+        $uploader         = new UploadHandler([
             'destination' => Pi::path($destination),
             'rename'      => $rename,
-        ));
+        ]);
         $uploader->setExtension($allowedExtension)
-                 ->setSize($mediaSize);
-        
+            ->setSize($mediaSize);
+
         // Get raw file name
         $rawName = null;
         if (empty($rawInfo)) {
@@ -132,38 +131,38 @@ class MediaController extends ActionController
             preg_match('/filename="(.+)"/', $content, $matches);
             $rawName = $matches[1];
         }
-        
+
         // Checking whether uploaded file is valid
         if (!$uploader->isValid($rawName)) {
             $return['message'] = implode(', ', $uploader->getMessages());
             echo json_encode($return);
-            exit ;
+            exit;
         }
 
         $uploader->receive();
         $fileName = $destination . '/' . $rename;
         $rawName  = $rawName ?: substr($rawInfo['name'], 0, strrpos($rawInfo['name'], '.'));
-        
+
         // Resolve allowed image extension
         $imageExt = explode(',', $config['image_extension']);
         foreach ($imageExt as &$value) {
             $value = strtolower(trim($value));
         }
-        
+
         // Scale image if file is image file
         $uploadInfo['tmp_name'] = $fileName;
         $uploadInfo['raw_name'] = $rawName;
-        $imageSize              = array();
+        $imageSize              = [];
         if (in_array($ext, $imageExt)) {
-            $scaleImageSize = $this->scaleImageSize(
+            $scaleImageSize  = $this->scaleImageSize(
                 Pi::path($fileName),
                 $config
             );
             $uploadInfo['w'] = $width ?: $scaleImageSize['w'];
             $uploadInfo['h'] = $height ?: $scaleImageSize['h'];
             Media::saveImage($uploadInfo);
-            
-            $imageSizeRaw = getimagesize(Pi::path($fileName));
+
+            $imageSizeRaw   = getimagesize(Pi::path($fileName));
             $imageSize['w'] = $imageSizeRaw[0];
             $imageSize['h'] = $imageSizeRaw[1];
         }
@@ -174,7 +173,7 @@ class MediaController extends ActionController
             if ($row->url && $row->url != $fileName) {
                 unlink(Pi::path($row->url));
             }
-            
+
             $row->url  = $fileName;
             $row->type = $ext;
             $row->size = filesize(Pi::path($fileName));
@@ -182,13 +181,13 @@ class MediaController extends ActionController
             $row->save();
         } else {
             // Or save info to session
-            $session = Media::getUploadSession($module, 'media');
+            $session          = Media::getUploadSession($module, 'media');
             $session->$fakeId = $uploadInfo;
         }
-        
+
         // Prepare return data
-        $return['data'] = array_merge(
-            array(
+        $return['data']   = array_merge(
+            [
                 'originalName' => $rawInfo['name'],
                 'size'         => $rawInfo['size'],
                 'preview_url'  => Pi::url($fileName),
@@ -196,18 +195,18 @@ class MediaController extends ActionController
                 'type'         => $ext,
                 'id'           => $id ?: $fakeId,
                 'filename'     => $fileName,
-            ),
+            ],
             $imageSize
         );
         $return['status'] = true;
         echo json_encode($return);
         exit;
     }
-    
+
     /**
      * Remove uploaded but not saved media.
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function removeAction()
     {
@@ -216,7 +215,7 @@ class MediaController extends ActionController
         $fakeId       = $this->params('fake_id', 0);
         $affectedRows = 0;
         $module       = $this->getModule();
-        
+
         if ($id) {
             $row = $this->getModel('media')->find($id);
 
@@ -225,15 +224,15 @@ class MediaController extends ActionController
                 unlink(Pi::path($row->url));
 
                 // Update db
-                $row->url  = '';
-                $row->type = '';
-                $row->size = 0;
-                $row->meta = '';
+                $row->url     = '';
+                $row->type    = '';
+                $row->size    = 0;
+                $row->meta    = '';
                 $affectedRows = $row->save();
             }
         } else if ($fakeId) {
             $session = Media::getUploadSession($module, 'media');
-            
+
             if (isset($session->$fakeId)) {
                 $uploadInfo = isset($session->$id) ? $session->$id : $session->$fakeId;
 
@@ -245,87 +244,87 @@ class MediaController extends ActionController
             $affectedRows = 1;
         }
 
-        echo json_encode(array(
+        echo json_encode([
             'status'  => $affectedRows ? self::AJAX_RESULT_TRUE : self::AJAX_RESULT_FALSE,
             'message' => 'ok',
-        ));
+        ]);
         exit;
     }
-    
+
     /**
      * Downloading a media.
-     * 
+     *
      * @return ViewModel
-     * @throws \Exception 
+     * @throws \Exception
      */
     public function downloadAction()
     {
-        $id     = $this->params('id', 0);
-        $ids    = array_filter(explode(',', $id));
+        $id  = $this->params('id', 0);
+        $ids = array_filter(explode(',', $id));
 
         if (empty($ids)) {
             throw new \Exception(_a('Invalid media ID!'));
         }
-        
+
         // Export files
-        $rowset     = $this->getModel('media')->select(array('id' => $ids));
-        $affectRows = array();
-        $files      = array();
+        $rowset     = $this->getModel('media')->select(['id' => $ids]);
+        $affectRows = [];
+        $files      = [];
         foreach ($rowset as $row) {
             if (!empty($row->url) and file_exists(Pi::path($row->url))) {
                 $files[]      = Pi::path($row->url);
                 $affectRows[] = $row->id;
 
-                $files[] = array(
-                    'source'            => Pi::path($row->url),
-                    'filename'          => basename($row->url),
+                $files[] = [
+                    'source'   => Pi::path($row->url),
+                    'filename' => basename($row->url),
                     //'content_type'      => $row['mimetype'],
                     //'content_length'    => $row['size'],
-                );
+                ];
             }
         }
-        
+
         if (empty($affectRows)) {
             return $this->jumpTo404(_a('Can not find file!'));
         }
-        
+
         // Statistics
         $model  = $this->getModel('media_stats');
-        $rowset = $model->select(array('media' => $affectRows));
-        $exists = array();
+        $rowset = $model->select(['media' => $affectRows]);
+        $exists = [];
         foreach ($rowset as $row) {
             $exists[] = $row->media;
         }
-        
+
         if (!empty($exists)) {
             foreach ($exists as $item) {
-                $row = $model->find($item, 'media');
+                $row           = $model->find($item, 'media');
                 $row->download = $row->download + 1;
                 $row->save();
             }
         }
-        
+
         $newRows = array_diff($affectRows, $exists);
         foreach ($newRows as $item) {
-            $data = array(
+            $data = [
                 'media'    => $item,
                 'download' => 1,
-            );
-            $row = $model->createRow($data);
+            ];
+            $row  = $model->createRow($data);
             $row->save();
         }
         if (1 == count($files)) {
-            $files      = current($files);
-            $source     = $files['source'];
-            $options    = $files;
+            $files   = current($files);
+            $source  = $files['source'];
+            $options = $files;
         } else {
-            $source     = $files;
-            $options    = array();
+            $source  = $files;
+            $options = [];
         }
 
         // This code cannot output file
         $downloader = new Download();
-        $result = $downloader->send($source, $options);
+        $result     = $downloader->send($source, $options);
         if (false === $result) {
             if (substr(PHP_SAPI, 0, 3) == 'cgi') {
                 header('Status: 404 Not Found');
@@ -367,17 +366,17 @@ class MediaController extends ActionController
         $this->httpOutputFile($options, $this);
         */
     }
-    
+
     /**
-     * Searching image details by AJAX according to posted parameters. 
+     * Searching image details by AJAX according to posted parameters.
      */
     public function searchAction()
     {
         Pi::service('log')->mute();
-        
+
         $type = $this->params('type', '');
-        
-        $where = array();
+
+        $where = [];
         // Resolving type
         if ($type == 'image') {
             $extensionDesc = $this->config('image_extension');
@@ -392,84 +391,85 @@ class MediaController extends ActionController
         if (!empty($types)) {
             $where['type'] = $types;
         }
-        
+
         // Resolving ID
         $id  = $this->params('id', 0);
         $ids = array_filter(explode(',', $id));
         if (!empty($ids)) {
             $where['id'] = $ids;
         }
-        
+
         // Getting title condition
         $title = $this->params('title', '');
         if (!empty($title)) {
             $where['title like ?'] = '%' . $title . '%';
         }
-        
-        $page   = (int) $this->params('page', 1);
-        $limit  = (int) $this->params('limit', 5);
-        
+
+        $page  = (int)$this->params('page', 1);
+        $limit = (int)$this->params('limit', 5);
+
         $rowset = Media::getList($where, $page, $limit);
-        
+
         // Get count
-        $count  = $this->getModel('media')->count($where);
-        
+        $count = $this->getModel('media')->count($where);
+
         // Get previous and next button URL
         $prevUrl = '';
         $nextUrl = '';
-        $params  = array(
-            'action'    => 'search',
-            'type'      => $type ?: 0,
-            'id'        => $id ?: 0,
-            'title'     => $title ?: 0,
-            'limit'     => $limit ?: 0,
-        );
-        $params = array_filter($params);
+        $params  = [
+            'action' => 'search',
+            'type'   => $type ?: 0,
+            'id'     => $id ?: 0,
+            'title'  => $title ?: 0,
+            'limit'  => $limit ?: 0,
+        ];
+        $params  = array_filter($params);
         if ($count > $page * $limit) {
             $params['page'] = $page + 1;
-            $nextUrl = $this->url('', $params);
+            $nextUrl        = $this->url('', $params);
         }
         if ($page > 1) {
             $params['page'] = $page - 1;
-            $prevUrl = $this->url('', $params);
+            $prevUrl        = $this->url('', $params);
         }
-        
-        echo json_encode(array(
-            'data'      => $rowset,
-            'prev_url'  => $prevUrl,
-            'next_url'  => $nextUrl,
-        ));
+
+        echo json_encode([
+            'data'     => $rowset,
+            'prev_url' => $prevUrl,
+            'next_url' => $nextUrl,
+        ]);
         exit();
     }
-    
+
     /**
-     * Saving image into media table by AJAX. 
+     * Saving image into media table by AJAX.
      */
     public function saveAction()
     {
         Pi::service('log')->mute();
-        
+
         $id     = $this->params('id', 0);
         $fakeId = $this->params('fake_id', 0);
         $source = $this->params('source', 'outside');
         $uid    = $this->params('uid', 0);
-        $result = array();
+        $result = [];
         if (empty($fakeId) and empty($id)) {
-            $result = array(
-                'status'     => self::AJAX_RESULT_FALSE,
-                'data'       => array(
-                    'message'   => _a('Invalid ID!'),
-                ),
-            );
+            $result = [
+                'status' => self::AJAX_RESULT_FALSE,
+                'data'   => [
+                    'message' => _a('Invalid ID!'),
+                ],
+            ];
         } else {
-            $data = array();
+            $data = [];
             if ($id) {
                 $data['id'] = $id;
             } else {
-                $title      = null;
-                $session    = Media::getUploadSession($module, 'media');
+                $title   = null;
+                $session = Media::getUploadSession($module, 'media');
                 if (isset($session->$id)
-                    || ($fakeId && isset($session->$fakeId))) {
+                    || ($fakeId && isset($session->$fakeId))
+                ) {
                     $uploadInfo = isset($session->$id)
                         ? $session->$id : $session->$fakeId;
                     if (isset($uploadInfo['raw_name'])) {
@@ -477,43 +477,43 @@ class MediaController extends ActionController
                     }
                 }
                 $title = $title ?: 'File ' . $fakeId . ' from ' . $source;
-                $data = array(
+                $data  = [
                     'id'    => 0,
                     'name'  => $fakeId,
                     'title' => $title,
-                );
+                ];
             }
             $data['uid'] = $uid;
-            $mediaId = $this->saveMedia($data);
+            $mediaId     = $this->saveMedia($data);
             if (empty($mediaId)) {
-                $result = array(
-                    'status'     => self::AJAX_RESULT_FALSE,
-                    'data'       => array(
-                        'message'   => _a('Can not save data!'),
-                    ),
-                );
+                $result = [
+                    'status' => self::AJAX_RESULT_FALSE,
+                    'data'   => [
+                        'message' => _a('Can not save data!'),
+                    ],
+                ];
             } else {
-                $result = array(
-                    'status'     => self::AJAX_RESULT_TRUE,
-                    'data'       => array(
-                        'id'        => $mediaId,
-                        'newid'     => uniqid(),
-                        'message'   => _a('Media data saved successful!'),
-                    ),
-                );
+                $result = [
+                    'status' => self::AJAX_RESULT_TRUE,
+                    'data'   => [
+                        'id'      => $mediaId,
+                        'newid'   => uniqid(),
+                        'message' => _a('Media data saved successful!'),
+                    ],
+                ];
             }
         }
-        
+
         echo json_encode($result);
         exit;
     }
-    
+
     /**
      * Saving media information
-     * 
-     * @param  array    $data  Media information
+     *
+     * @param  array $data Media information
      * @return boolean
-     * @throws \Exception 
+     * @throws \Exception
      */
     protected function saveMedia($data)
     {
@@ -529,11 +529,12 @@ class MediaController extends ActionController
         $fakeId = $this->params('fake_id', 0);
 
         unset($data['media']);
-        
+
         // Getting media info
-        $session    = Media::getUploadSession($module, 'media');
+        $session = Media::getUploadSession($module, 'media');
         if (isset($session->$id)
-            || ($fakeId && isset($session->$fakeId))) {
+            || ($fakeId && isset($session->$fakeId))
+        ) {
             $uploadInfo = isset($session->$id)
                 ? $session->$id : $session->$fakeId;
 
@@ -543,10 +544,10 @@ class MediaController extends ActionController
                     $data['type'] = strtolower($pathInfo['extension']);
                 }
                 $data['size'] = filesize(Pi::path($uploadInfo['tmp_name']));
-                
+
                 // Meta
-                $metaColumns = array('w', 'h');
-                $meta        = array();
+                $metaColumns = ['w', 'h'];
+                $meta        = [];
                 foreach ($uploadInfo as $key => $info) {
                     if (in_array($key, $metaColumns)) {
                         $meta[$key] = $info;
@@ -558,19 +559,19 @@ class MediaController extends ActionController
             unset($session->$id);
             unset($session->$fakeId);
         }
-        
+
         // Getting user ID
         if (!isset($data['uid']) || !$data['uid']) {
             $data['uid'] = Pi::user()->getId();
         }
-        
+
         if (empty($id)) {
             $data['time_upload'] = time();
-            $row = $model->createRow($data);
+            $row                 = $model->createRow($data);
             $row->save();
         } else {
             $data['time_update'] = time();
-            $row = $model->find($id);
+            $row                 = $model->find($id);
 
             if (empty($row)) {
                 return false;
@@ -598,11 +599,11 @@ class MediaController extends ActionController
 
         return $row->id;
     }
-    
+
     /**
      * Output file
-     * 
-     * @param array $options 
+     *
+     * @param array $options
      */
     /*
     protected function httpOutputFile(array $options)
