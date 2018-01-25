@@ -307,22 +307,23 @@ return array(
         ),
     ),
 
-    'layout'     => array(
-        'label'         => _t('Homepage layout'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'page',
-        'action'        => 'homepage',
-        'permission'    => array(
-            'resource'  => 'maintenance',
-        ),
-    ),
     'database'     => array(
         'label'         => _t('Database tools'),
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'database',
         'action'        => 'index',
+        'permission'    => array(
+            'resource'  => 'maintenance',
+        ),
+    ),
+
+    'layout'     => array(
+        'label'         => _t('Homepage layout'),
+        'route'         => 'admin',
+        'module'        => 'system',
+        'controller'    => 'page',
+        'action'        => 'homepage',
         'permission'    => array(
             'resource'  => 'maintenance',
         ),
