@@ -38,38 +38,38 @@ class FormEditorCkeditor extends AbstractEditor
      *
      * @var array
      */
-    protected $renderedGlobalEvents = array();
+    protected $renderedGlobalEvents = [];
 
     /**
      * {@inheritDoc}
      */
     public function render(ElementInterface $element)
     {
-        $configs = array();
-        $events = array();
-        $globalEvents = array();
+        $configs      = [];
+        $events       = [];
+        $globalEvents = [];
 
         $options = $element->getOptions();
         if (!empty($this->options['config'])) {
-            $configs = (array) $this->options['config'];
+            $configs = (array)$this->options['config'];
         }
         if (!empty($options['config'])) {
             $configs = array_merge($configs, $options['config']);
         }
         if (!empty($this->options['events'])) {
-            $events = (array) $this->options['events'];
+            $events = (array)$this->options['events'];
         }
         if (!empty($options['events'])) {
             $events = array_merge($events, $options['events']);
         }
         if (!empty($this->options['global_events'])) {
-            $globalEvents = (array) $this->options['global_events'];
+            $globalEvents = (array)$this->options['global_events'];
         }
         if (!empty($options['global_events'])) {
             $globalEvents = array_merge($globalEvents, $options['global_events']);
         }
         if (!empty($this->options['attributes'])) {
-            $element->setAttributes((array) $this->options['attributes']);
+            $element->setAttributes((array)$this->options['attributes']);
         }
         $this->init();
         $id = $element->getAttribute('id');
@@ -100,7 +100,7 @@ class FormEditorCkeditor extends AbstractEditor
     protected function init()
     {
         if (!$this->initialized) {
-            $section = Pi::engine()->section();
+            $section  = Pi::engine()->section();
             $basePath = Pi::url('script') . '/editor/ckeditor';
             // Set load config file
             switch ($section) {
@@ -128,7 +128,7 @@ class FormEditorCkeditor extends AbstractEditor
      * @param array $events Event listeners for editor instance
      * @return array
      */
-    protected function configSettings($config = array(), $events = array())
+    protected function configSettings($config = [], $events = [])
     {
         // Set language
         if (!isset($config['language'])) {
@@ -159,18 +159,18 @@ class FormEditorCkeditor extends AbstractEditor
      *
      * @return string
      */
-    protected function renderGlobalEvents(array $globalEvents = array())
+    protected function renderGlobalEvents(array $globalEvents = [])
     {
         $out = '';
 
         foreach ($globalEvents as $eventName => $handlers) {
             foreach ($handlers as $handler => $code) {
                 if (!isset($this->renderedGlobalEvents[$eventName])) {
-                    $this->renderedGlobalEvents[$eventName] = array();
+                    $this->renderedGlobalEvents[$eventName] = [];
                 }
                 // Return only new events
                 if (!in_array($code, $this->renderedGlobalEvents[$eventName])) {
-                    $out .= ($code ? PHP_EOL : '') . 'CKEDITOR.on("' . $eventName . '", {$code});';
+                    $out                                      .= ($code ? PHP_EOL : '') . 'CKEDITOR.on("' . $eventName . '", {$code});';
                     $this->renderedGlobalEvents[$eventName][] = $code;
                 }
             }
