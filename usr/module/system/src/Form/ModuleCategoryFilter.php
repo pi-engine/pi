@@ -9,7 +9,6 @@
 
 namespace Module\System\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**
@@ -24,38 +23,38 @@ class ModuleCategoryFilter extends InputFilter
      */
     public function __construct()
     {
-        $this->add(array(
-            'name'          => 'title',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'    => 'title',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'icon',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'icon',
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'order',
-            'filters'       => array(
-                array(
-                    'name'  => 'Int',
-                ),
-            ),
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'order',
+            'filters'  => [
+                [
+                    'name' => 'Int',
+                ],
+            ],
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'id',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'id',
+            'required' => false,
+        ]);
     }
 }

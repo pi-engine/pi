@@ -1,48 +1,48 @@
 <div data-ng-if="blocks.length">
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-sm-3">
-      <input type="text" placeholder="{{'Search' | translate}}" class="form-control" data-ng-model="searchTitle">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-3">
+            <input type="text" placeholder="{{'Search' | translate}}" class="form-control" data-ng-model="searchTitle">
+        </div>
     </div>
-  </div>
-  <div class="table-responsive">
-  	<table class="table table-striped">
-    	<thead>
-        <tr>
-        	<th>{{'Title' | translate}}
-        	<th>{{'Description' | translate}}
-        	<th>{{'Related' | translate}}
-        	<th>{{'Action' | translate}}
-    	<tbody>
-    		<tr ng-repeat="block in blocks | filter:{title:searchTitle}">
-    			<td>{{block.title}}</td>
-    			<td>{{block.description}}</td>
-    			<td>
-            <div class="dropdown">
-              <button type="button" class="btn btn-default dropdown-toggle"
-                      data-ng-click="pageAction(block)">
-                {{'Pages' | translate}}
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li class="dropdown-header" ng-repeat="page in block.pages">
-                  {{page.title}}
-                  <ul class="nav">
-                    <li ng-repeat="item in page.pages">
-                      <a ng-href="{{item.url}}">
-                        {{item.title}}
-                      </a>
-                  </ul>
-                </li>
-              </ul>
-            </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{'Title' | translate}}
+                <th>{{'Description' | translate}}
+                <th>{{'Related' | translate}}
+                <th>{{'Action' | translate}}
+            <tbody>
+            <tr ng-repeat="block in blocks | filter:{title:searchTitle}">
+                <td>{{block.title}}</td>
+                <td>{{block.description}}</td>
+                <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle"
+                                data-ng-click="pageAction(block)">
+                            {{'Pages' | translate}}
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header" ng-repeat="page in block.pages">
+                                {{page.title}}
+                                <ul class="nav">
+                                    <li ng-repeat="item in page.pages">
+                                        <a ng-href="{{item.url}}">
+                                            {{item.title}}
+                                        </a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </td>
-    			<td>
+                <td>
                     <a class="btn btn-link" ng-href="{{block.previewUrl}}" target="_blank">
                         {{'Preview' | translate}}
                     </a>
-    				<a class="btn btn-link" ng-href="{{block.editUrl}}">
+                    <a class="btn btn-link" ng-href="{{block.editUrl}}">
                         {{'Edit' | translate}}
-    				</a>
+                    </a>
                     <a class="btn btn-link" data-ng-if="block.clonable" ng-href="{{block.cloneUrl}}">
                         {{'Clone' | translate}}
                     </a>
@@ -50,9 +50,9 @@
                         {{'Delete' | translate}}
                     </a>
                 </td>
-  	</table>
-  </div>
+        </table>
+    </div>
 </div>
 <div data-ng-if="!blocks.length" class="alert alert-info">
-  {{'None' | translate}}
+    {{'None' | translate}}
 </div>

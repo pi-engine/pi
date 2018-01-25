@@ -9,7 +9,6 @@
 
 namespace Module\System\Controller\Admin;
 
-use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Zend\Rest\Client\RestClient;
 
@@ -52,7 +51,7 @@ class RepoController extends ActionController
         }
         if (is_scalar($name)) {
             // 1 - update available; 0 - no update; -1 - error occurred
-            $status = rand(-1, 1);
+            $status  = rand(-1, 1);
             $version = '1.2.3';
             switch ($status) {
                 case 1:
@@ -69,14 +68,14 @@ class RepoController extends ActionController
                     $message = _a('Error occurred, check later.');
                     break;
             }
-            $result = array(
-                'status'    => $status,
-                'message'   => $message,
-            );
+            $result = [
+                'status'  => $status,
+                'message' => $message,
+            ];
         } else {
             foreach ($name as $key) {
                 // 1 - update available; 0 - no update; -1 - error occurred
-                $status = rand(-1, 1);
+                $status  = rand(-1, 1);
                 $version = '1.2.3';
                 switch ($status) {
                     case 1:
@@ -93,10 +92,10 @@ class RepoController extends ActionController
                         $message = _a('Error occurred, check later.');
                         break;
                 }
-                $result[$key] = array(
-                    'status'    => $status,
-                    'message'   => $message,
-                );
+                $result[$key] = [
+                    'status'  => $status,
+                    'message' => $message,
+                ];
             }
         }
 

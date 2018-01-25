@@ -13,7 +13,11 @@
         </thead>
         <tbody>
         <?php foreach ($modules as $module) { ?>
-            <tr class="<?php if (!$module['active']) { echo 'muted system-module-disable'; } else { echo 'system-module-item'; } ?>">
+            <tr class="<?php if (!$module['active']) {
+                echo 'muted system-module-disable';
+            } else {
+                echo 'system-module-item';
+            } ?>">
                 <td>
                     <?php
                     echo sprintf('<i class="fa %s fa-3x"></i>', $module['icon'] ?: 'fa-th');
@@ -44,7 +48,7 @@
                         <?php foreach ($module['author'] as $key => $value) {
                             echo '<dt>' . _escape($key) . ':</dt>';
                             echo '<dd>' . _escape($value) . '</dd>';
-                        }?>
+                        } ?>
                     </dl>
                 </td>
                 <td>
@@ -55,24 +59,25 @@
                 </td>
                 <td>
                     <div class="btn-group">
-                        <?php echo sprintf('<a class="btn btn-sm btn-primary" href="%s"><i class="fa fa-wrench"></i> %s</a>', $this->url('', array('action' => 'update', 'id' => $module['id'], 'active' => 1, 'from' => 'installed')), _a('Update')); ?>
+                        <?php echo sprintf('<a class="btn btn-sm btn-primary" href="%s"><i class="fa fa-wrench"></i> %s</a>', $this->url('', ['action' => 'update', 'id' => $module['id'], 'active' => 1, 'from' => 'installed']), _a('Update')); ?>
                     </div>
                     <div class="btn-group">
-                        <?php if('system' == $module['name']) { ?>
-                            <?php echo sprintf('<a class="btn btn-sm btn-success" href="%s" onclick="return confirm(\'%s\')"><i class="fa fa-refresh"></i> %s</a>', $this->url('', array('action' => 'refresh', 'active' => 1, 'from' => 'installed')), _a('Are you sure to update all module? make sure have backup from your website before use this option'), _a('Update all')); ?>
+                        <?php if ('system' == $module['name']) { ?>
+                            <?php echo sprintf('<a class="btn btn-sm btn-success" href="%s" onclick="return confirm(\'%s\')"><i class="fa fa-refresh"></i> %s</a>', $this->url('', ['action' => 'refresh', 'active' => 1, 'from' => 'installed']), _a('Are you sure to update all module? make sure have backup from your website before use this option'), _a('Update all')); ?>
                         <?php } else { ?>
                             <?php $class = ($module['active']) ? 'btn-danger' : 'btn-success'; ?>
-                            <button type="button" class="btn btn-sm <?php echo $class; ?> dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-sm <?php echo $class; ?> dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?php echo _a('Action'); ?> <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <?php if ($module['active']) {
-                                    echo sprintf('<li><a href="%s"><i class="fa fa-hourglass-o"></i> %s</a></li>', $this->url('', array('action' => 'enable', 'id' => $module['id'], 'active' => 0, 'from' => 'installed')), _a('Disable'));
+                                    echo sprintf('<li><a href="%s"><i class="fa fa-hourglass-o"></i> %s</a></li>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 0, 'from' => 'installed']), _a('Disable'));
                                 } else {
-                                    echo sprintf('<li><a href="%s"><i class="fa fa-hourglass"></i> %s</a></li>', $this->url('', array('action' => 'enable', 'id' => $module['id'], 'active' => 1, 'from' => 'installed')), _a('Enable'));
+                                    echo sprintf('<li><a href="%s"><i class="fa fa-hourglass"></i> %s</a></li>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 1, 'from' => 'installed']), _a('Enable'));
                                 }
                                 echo '<li role="separator" class="divider"></li>';
-                                echo sprintf('<li><a class="bg-danger" href="%s" onclick="return confirm(\'%s\')"><i class="fa fa-exclamation-triangle text-danger"></i> %s</a></li>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'], 'from' => 'installed')), _a('Are you sure to uninstall this module?'), _a('Uninstall'));
+                                echo sprintf('<li><a class="bg-danger" href="%s" onclick="return confirm(\'%s\')"><i class="fa fa-exclamation-triangle text-danger"></i> %s</a></li>', $this->url('', ['action' => 'uninstall', 'id' => $module['id'], 'from' => 'installed']), _a('Are you sure to uninstall this module?'), _a('Uninstall'));
                                 ?>
                             </ul>
                         <?php } ?>
@@ -84,39 +89,39 @@
     </table>
 </div>
 <script>
-    (function($){
+    (function ($) {
         var page = {
             el: $('#js-module'),
-            $: function(selector) {
+            $: function (selector) {
                 return this.el.find(selector);
             },
-            init: function() {
+            init: function () {
                 this.$('.detail-action').click($.proxy(this.toggleDetail, this));
                 this.$('.rename-action').click($.proxy(this.rename));
-                this.$('input[type=text]').blur(this.renameAction).keyup(function(e) {
+                this.$('input[type=text]').blur(this.renameAction).keyup(function (e) {
                     if (e.keyCode == 13) {
                         self.renameAction(e);
                     }
                 });
             },
-            toggleDetail: function(e) {
+            toggleDetail: function (e) {
                 $(e.target).siblings('.well').toggle();
             },
-            rename: function(e) {
+            rename: function (e) {
                 var $this = $(e.target);
                 var p = $this.parent();
                 p.addClass('module-item-title-edit');
                 p.find('input').focus().val($.trim(p.find('strong').html()));
             },
-            renameAction: function(e) {
+            renameAction: function (e) {
                 var $this = $(e.target);
                 var val = $.trim($this.val());
                 var p = $this.parents('.module-item-title');
                 if (val) {
-                    $.post("<?php echo $this->url('', array('action' => 'rename')); ?>", {
+                    $.post("<?php echo $this->url('', ['action' => 'rename']); ?>", {
                         id: $this.attr('data-id'),
                         title: val
-                    }).done(function(res) {
+                    }).done(function (res) {
                         res = $.parseJSON(res);
                         if (res.status) {
                             p.removeClass('module-item-title-edit');

@@ -6,29 +6,29 @@ $this->Backbone();
     <div class="js-alert"></div>
 </div>
 <script id="temp-theme" type="text/template">
-<div class="thumbnail">
-    <img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php echo _a('Click To preview'); ?>" />
-    <div class="caption">
-        <h5>
-            <span class="pull-right label"><%= type %></span>
-            <%- title %>
-        </h5>
-        <div class="clearfix">
-            <span class="pull-right btn btn-primary theme-install"><?php echo _a('Install'); ?></span>
-            <span class="btn btn-link theme-detail"><?php echo _a('Detail'); ?></span>
-            <span class="text-muted">|</span>
-            <span class="btn btn-link theme-Check"><?php echo _a('Check'); ?></span>
+    <div class="thumbnail">
+        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>"/>
+        <div class="caption">
+            <h5>
+                <span class="pull-right label"><%= type %></span>
+                <%- title %>
+            </h5>
+            <div class="clearfix">
+                <span class="pull-right btn btn-primary theme-install"><?php echo _a('Install'); ?></span>
+                <span class="btn btn-link theme-detail"><?php echo _a('Detail'); ?></span>
+                <span class="text-muted">|</span>
+                <span class="btn btn-link theme-Check"><?php echo _a('Check'); ?></span>
+            </div>
+            <dl class="hide">
+                <dt><?php echo _a('Version'); ?></dt>
+                <dd><%= version %></dd>
+                <dt><?php echo _a('Type'); ?></dt>
+                <dd><%= type %></dd>
+                <dt><?php echo _a('Description'); ?></dt>
+                <dd><%= description %></dd>
+            </dl>
         </div>
-        <dl class="hide">
-            <dt><?php echo _a('Version'); ?></dt>
-            <dd><%= version %></dd>
-            <dt><?php echo _a('Type'); ?></dt>
-            <dd><%= type %></dd>
-            <dt><?php echo _a('Description'); ?></dt>
-            <dd><%= description %></dd>
-        </dl>  
-   </div>
-</div>
+    </div>
 </script>
 <script type="text/template" id="alert-template">
     <div class="alert alert-danger">
@@ -37,57 +37,57 @@ $this->Backbone();
     </div>
 </script>
 <script>
-(function($){
-    var themeCollection = new Backbone.Collection(<?php echo json_encode(array_values($themes)) ?>);
-    var ThemeItemView = Backbone.View.extend({
-        className: 'col-md-4',
-        template: _.template($('#temp-theme').html()),
-        events: {
-            'click .theme-check': 'check',
-            'click .theme-install': 'install',
-            'click .theme-detail': 'toggleDetail'
-        },
-        initialize: function() {
-            this.model.on('destroy', this.remove, this);
-            this.model.id = 'name';
-        },
-        render: function() {
-            this.$el.html(this.template(this.model.toJSON()));
-            return this.el;
-        },
-        check: function() {
+    (function ($) {
+        var themeCollection = new Backbone.Collection(<?php echo json_encode(array_values($themes)) ?>);
+        var ThemeItemView = Backbone.View.extend({
+            className: 'col-md-4',
+            template: _.template($('#temp-theme').html()),
+            events: {
+                'click .theme-check': 'check',
+                'click .theme-install': 'install',
+                'click .theme-detail': 'toggleDetail'
+            },
+            initialize: function () {
+                this.model.on('destroy', this.remove, this);
+                this.model.id = 'name';
+            },
+            render: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+                return this.el;
+            },
+            check: function () {
 
-        },
-        install:function() {
-            var self = this;
-            var url = '<?php echo $this->url('', array('action' => 'install', 'name' => '__NAME__')); ?>';
-            $.getJSON(url.replace('__NAME__', this.model.get('name'))).done(function(res) {
-                if (res.status) {
-                    self.remove();
-                } else {
-                    themeList.$('.js-alert').html(_.template($('#alert-template').html(), { msg: res.message }));
-                }
-            });
-        },
-        toggleDetail: function() {
-            this.$('dl').toggleClass('hide');
-        }
-    });
-    var ThemeListView = Backbone.View.extend({
-        el: $('#js-theme'),
-        initialize: function() {
-            this.render();
-        },
-        render: function(msg) {
-            var el = this.$el,
-                m = themeCollection.models;
-            for (var i = 0, l = m.length; i < l; i++) {
-                el.append(new ThemeItemView({
-                    model: m[i]
-                }).render());
+            },
+            install: function () {
+                var self = this;
+                var url = '<?php echo $this->url('', ['action' => 'install', 'name' => '__NAME__']); ?>';
+                $.getJSON(url.replace('__NAME__', this.model.get('name'))).done(function (res) {
+                    if (res.status) {
+                        self.remove();
+                    } else {
+                        themeList.$('.js-alert').html(_.template($('#alert-template').html(), {msg: res.message}));
+                    }
+                });
+            },
+            toggleDetail: function () {
+                this.$('dl').toggleClass('hide');
             }
-        }
-    });
-    var themeList = new ThemeListView;
-})(jQuery)
+        });
+        var ThemeListView = Backbone.View.extend({
+            el: $('#js-theme'),
+            initialize: function () {
+                this.render();
+            },
+            render: function (msg) {
+                var el = this.$el,
+                    m = themeCollection.models;
+                for (var i = 0, l = m.length; i < l; i++) {
+                    el.append(new ThemeItemView({
+                        model: m[i]
+                    }).render());
+                }
+            }
+        });
+        var themeList = new ThemeListView;
+    })(jQuery)
 </script>

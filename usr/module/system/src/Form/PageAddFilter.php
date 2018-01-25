@@ -9,9 +9,8 @@
 
 namespace Module\System\Form;
 
-use Pi;
-use Zend\InputFilter\InputFilter;
 use Module\System\Validator;
+use Zend\InputFilter\InputFilter;
 
 /**
  * Page adding form filter
@@ -25,50 +24,50 @@ class PageAddFilter extends InputFilter
      */
     public function __construct()
     {
-        $this->add(array(
-            'name'          => 'title',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'    => 'title',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'controller',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
+        $this->add([
+            'name'       => 'controller',
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
                 new Validator\ControllerAvailable(),
                 new Validator\PageDuplicate(),
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'action',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
+        $this->add([
+            'name'       => 'action',
+            'required'   => false,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
                 new Validator\ActionAvailable(),
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'      => 'section',
-            'required'  => true,
-        ));
+        $this->add([
+            'name'     => 'section',
+            'required' => true,
+        ]);
 
-        $this->add(array(
-            'name'      => 'module',
-            'required'  => true,
-        ));
+        $this->add([
+            'name'     => 'module',
+            'required' => true,
+        ]);
 
         /*
         $this->add(array(

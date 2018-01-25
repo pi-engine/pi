@@ -9,7 +9,6 @@
 
 namespace Module\System\Controller\Module;
 
-use Pi;
 use Pi\Mvc\Controller\ActionController;
 
 /**
@@ -27,7 +26,7 @@ class IndexController extends ActionController
     public function indexAction()
     {
         $module = $this->params('module');
-        $title = __('Admin area');
+        $title  = __('Admin area');
         $this->view()->assign('title', $title);
         $this->view()->assign('module', $module);
         $this->view()->setTemplate('index', 'system');

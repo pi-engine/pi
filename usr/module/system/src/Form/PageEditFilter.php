@@ -9,7 +9,6 @@
 
 namespace Module\System\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**
@@ -24,24 +23,24 @@ class PageEditFilter extends InputFilter
      */
     public function __construct()
     {
-        $this->add(array(
-            'name'      => 'id',
-            'required'  => true,
-        ));
+        $this->add([
+            'name'     => 'id',
+            'required' => true,
+        ]);
 
-        $this->add(array(
-            'name'      => 'cache_type',
-            'required'  => false,
-        ));
+        $this->add([
+            'name'     => 'cache_type',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'      => 'cache_ttl',
-            'required'  => false,
-        ));
+        $this->add([
+            'name'     => 'cache_ttl',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'      => 'cache_level',
-            'required'  => false,
-        ));
+        $this->add([
+            'name'     => 'cache_level',
+            'required' => false,
+        ]);
     }
 }

@@ -27,12 +27,12 @@ class Controller extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $module = $this->getOption('module');
+            $module         = $this->getOption('module');
             $controllerPath = sprintf(
                 '%s/src/Controller/Front',
                 Pi::service('module')->path($module)
             );
-            $controllerList = array();
+            $controllerList = [];
             if (is_dir($controllerPath)) {
                 $filter = function ($fileinfo) use (&$controllerList) {
                     if (!$fileinfo->isFile()) {
@@ -42,10 +42,11 @@ class Controller extends Select
                     if (!preg_match(
                         '/^[A-Z][a-z0-9_]+Controller\.php$/',
                         $fileName
-                    )) {
+                    )
+                    ) {
                         return false;
                     }
-                    $controllerName = strtolower(substr($fileName, 0, -14));
+                    $controllerName                  = strtolower(substr($fileName, 0, -14));
                     $controllerList[$controllerName] = $controllerName;
                 };
                 Pi::service('file')->getList($controllerPath, $filter);

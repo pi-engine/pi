@@ -7,11 +7,10 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\System\Installer\Schema;
+namespace Module\System\Installer\Schema;
 
 use Pi;
 use Pi\Application\Installer\Schema\AbstractUpdator;
-use Pi\Application\Installer\Resource\Config as ConfigResource;
 
 /**
  * System schema update handler
@@ -31,7 +30,7 @@ class Updator354 extends AbstractUpdator
     {
         if (version_compare($version, '3.5.1', '<')) {
             $updator = new Updator351($this->handler);
-            $result = $updator->upgrade($version);
+            $result  = $updator->upgrade($version);
             if (false === $result) {
                 return $result;
             }
@@ -54,12 +53,13 @@ class Updator354 extends AbstractUpdator
 
         if (version_compare($version, '3.5.4', '<')) {
 
-            $table = Pi::db()->prefix('navigation_node');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('navigation_node');
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s 
 CHANGE `data` `data` MEDIUMTEXT;
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
             if (false === $status) {

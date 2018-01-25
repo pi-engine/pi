@@ -9,12 +9,12 @@
 
 namespace Module\System\Controller\Front;
 
+use Module\System\Form\FindPasswordFilter;
+use Module\System\Form\FindPasswordForm;
+use Module\System\Form\ResetPasswordFilter;
+use Module\System\Form\ResetPasswordForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\System\Form\ResetPasswordForm;
-use Module\System\Form\ResetPasswordFilter;
-use Module\System\Form\FindPasswordForm;
-use Module\System\Form\FindPasswordFilter;
 
 /**
  * Password controller
@@ -31,7 +31,7 @@ class PasswordController extends ActionController
      */
     public function indexAction()
     {
-        return $this->redirect()->toRoute('', array('action' => 'find'));
+        return $this->redirect()->toRoute('', ['action' => 'find']);
     }
 
     /**
@@ -45,11 +45,11 @@ class PasswordController extends ActionController
         if (!$this->checkAccess()) {
             return;
         }
-        $result = array(
+        $result = [
             'status'  => 0,
             'message' => __('Find password failed.'),
-        );
-        $form = new FindPasswordForm('find-password');
+        ];
+        $form   = new FindPasswordForm('find-password');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $form->setInputFilter(new FindPasswordFilter);
@@ -60,17 +60,17 @@ class PasswordController extends ActionController
                 // Check if email exists
                 $userRow = Pi::service('user')->getUser($value['email'], 'email');
                 if (!$userRow) {
-                    $this->view()->assign(array(
+                    $this->view()->assign([
                         'form'   => $form,
                         'result' => $result,
-                    ));
+                    ]);
 
                     return;
                 }
 
                 // Set user data
-                $uid    = (int) $userRow->id;
-                $token  = $this->createToken($uid, $value['email']);
+                $uid   = (int)$userRow->id;
+                $token = $this->createToken($uid, $value['email']);
                 Pi::user()->data()->set(
                     $uid,
                     'find-password',
@@ -78,19 +78,19 @@ class PasswordController extends ActionController
                 );
 
                 // Send verify email
-                $to = $userRow->email;
-                $url = $this->url('', array(
+                $to   = $userRow->email;
+                $url  = $this->url('', [
                         'action' => 'process',
-                        'token'  => $token
-                    )
+                        'token'  => $token,
+                    ]
                 );
                 $link = Pi::url($url, true);
 
-                $params = array(
-                    'username'              => $userRow->identity,
-                    'find_password_link'    => $link,
-                    'expiration'            => $this->config('email_expiration') ?: 24,
-                );
+                $params = [
+                    'username'           => $userRow->identity,
+                    'find_password_link' => $link,
+                    'expiration'         => $this->config('email_expiration') ?: 24,
+                ];
 
                 // Load from HTML template
                 $data = Pi::service('mail')->template(
@@ -106,15 +106,15 @@ class PasswordController extends ActionController
                 );
 
                 // Set subject and body
-                $subject    = $data['subject'];
-                $body       = $data['body'];
-                $type       = $data['format'];
+                $subject = $data['subject'];
+                $body    = $data['body'];
+                $type    = $data['format'];
 
                 $message = Pi::service('mail')->message($subject, $body, $type);
                 $message->addTo($to);
                 Pi::service('mail')->send($message);
 
-                $result['status'] = 1;
+                $result['status']  = 1;
                 $result['message'] = __('Confirmation email sent successfully. Please check email and reset password.');
             }
 
@@ -141,13 +141,13 @@ class PasswordController extends ActionController
         if (!$this->checkAccess()) {
             return;
         }
-        $result = array(
+        $result = [
             'status'  => 0,
             'message' => __('Invalid token for password reset.'),
-        );
-        $token = _get('token');
+        ];
+        $token  = _get('token');
 
-        $view = $this->view();
+        $view     = $this->view();
         $fallback = function () use ($view, $result) {
             $view->assign('result', $result);
         };
@@ -156,9 +156,9 @@ class PasswordController extends ActionController
             return $fallback();
         }
 
-        $userData = Pi::user()->data()->find(array(
-            'value' => $token
-        ));
+        $userData = Pi::user()->data()->find([
+            'value' => $token,
+        ]);
         if (!$userData) {
             return $fallback();
         }
@@ -166,13 +166,13 @@ class PasswordController extends ActionController
         // Check link expire time
         $expire = $this->config('email_expiration') ?: 24;
         if ($expire) {
-            $expire  = $userData['time'] + $expire * 3600;
+            $expire = $userData['time'] + $expire * 3600;
             if (time() > $expire) {
                 return $fallback();
             }
         }
 
-        $uid = (int) $userData['uid'];
+        $uid     = (int)$userData['uid'];
         $userRow = Pi::model('user_account')->find($uid, 'id');
         if (!$userRow) {
             return $fallback();
@@ -191,7 +191,7 @@ class PasswordController extends ActionController
                 // Update user account data
                 Pi::api('user', 'system')->updateAccount(
                     $uid,
-                    array('credential' => $values['credential-new'])
+                    ['credential' => $values['credential-new']]
                 );
 
                 Pi::service('event')->trigger('password_change', $uid);
@@ -200,17 +200,17 @@ class PasswordController extends ActionController
                 $result['message'] = __('Password reset successfully.');
                 $result['status']  = 1;
             } else {
-                $form->setData(array('token' => $token));
-                $this->view()->assign(array(
-                    'form' => $form
-                ));
+                $form->setData(['token' => $token]);
+                $this->view()->assign([
+                    'form' => $form,
+                ]);
             }
             $this->view()->assign('result', $result);
         } else {
-            $form->setData(array('token' => $token));
-            $this->view()->assign(array(
-                'form' => $form
-            ));
+            $form->setData(['token' => $token]);
+            $this->view()->assign([
+                'form' => $form,
+            ]);
         }
     }
 

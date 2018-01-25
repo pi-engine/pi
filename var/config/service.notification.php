@@ -1,5 +1,7 @@
 <?php
-// Notification
+/**
+ * Notification service configuration
+ */
 
 return array(
     /**
@@ -13,4 +15,7 @@ return array(
 
     // Token ro topic name like : '/topics/TOPIC_NAME'
     'fcm_token' => '',
+
+    // Single device tokens as array
+    'fcm_registration_ids' => [],
 );

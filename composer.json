@@ -8,7 +8,7 @@
         "MultiTenant",
         "SaaS"
     ],
-    "homepage": "http://pialog.org",
+    "homepage": "http://piengine.org",
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.6.0",
         "ext-ctype": "*",
         "ext-fileinfo": "*",
         "ext-gd": "*",

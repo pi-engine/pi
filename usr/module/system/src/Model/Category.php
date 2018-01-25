@@ -21,14 +21,16 @@ class Category extends Model
     /**
      * {@inheritDoc}
      */
-    protected $encodeColumns = array(
-        'modules'  => true,
-    );
+    protected $encodeColumns
+        = [
+            'modules' => true,
+        ];
 
     /**
      * {@inheritDoc}
      */
-    protected $columns = array(
-        'id', 'title', 'icon', 'order', 'modules'
-    );
+    protected $columns
+        = [
+            'id', 'title', 'icon', 'order', 'modules',
+        ];
 }

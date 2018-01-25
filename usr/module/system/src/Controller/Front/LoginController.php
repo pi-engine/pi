@@ -9,11 +9,11 @@
 
 namespace Module\System\Controller\Front;
 
+use Module\System\Form\LoginFilter;
+use Module\System\Form\LoginForm;
 use Pi;
 use Pi\Authentication\Result;
 use Pi\Mvc\Controller\ActionController;
-use Module\System\Form\LoginForm;
-use Module\System\Form\LoginFilter;
 
 /**
  * User login/logout controller
@@ -22,7 +22,7 @@ use Module\System\Form\LoginFilter;
  */
 class LoginController extends ActionController
 {
-    protected $configs = array();
+    protected $configs = [];
 
     /**
      * Login form
@@ -36,14 +36,14 @@ class LoginController extends ActionController
         }
 
         // Display login form
-        $form = $this->getForm($this->getConfig());
+        $form     = $this->getForm($this->getConfig());
         $redirect = $this->params('redirect');
         if (null === $redirect) {
             $redirect = $this->request->getServer('HTTP_REFERER');
         }
         if (null !== $redirect) {
             $redirect = $redirect ? urlencode($redirect) : '';
-            $form->setData(array('redirect' => $redirect));
+            $form->setData(['redirect' => $redirect]);
         }
         $this->renderForm($form);
     }
@@ -64,7 +64,7 @@ class LoginController extends ActionController
                 ? $_SESSION['PI_LOGIN']['attempts'] : 0;
             if (!empty($attempts)) {
                 if ($attempts >= $configs['login_attempts']) {
-                    $wait = Pi::service('session')->manager()
+                    $wait    = Pi::service('session')->manager()
                             ->getSaveHandler()->getLifeTime() / 60;
                     $message = sprintf(
                         __(
@@ -76,7 +76,7 @@ class LoginController extends ActionController
                     $this->view()->setTemplate('login-suspended', '', 'front');
                 } else {
                     $remaining = $configs['login_attempts'] - $attempts;
-                    $message = sprintf(
+                    $message   = sprintf(
                         __('You have %d times to try.'),
                         $remaining
                     );
@@ -84,11 +84,11 @@ class LoginController extends ActionController
             }
         }
 
-        $this->view()->assign(array(
-            'title'      => __('User login'),
-            'message'    => $message,
-            'form'       => $form
-        ));
+        $this->view()->assign([
+            'title'   => __('User login'),
+            'message' => $message,
+            'form'    => $form,
+        ]);
 
         $this->view()->headTitle(__('Login'));
         $this->view()->headdescription(__('Use this page to connect to our website and participate, share contents, use our features, and interacts with other members'), 'set');
@@ -111,16 +111,16 @@ class LoginController extends ActionController
 
         if (!$this->request->isPost()) {
             $this->jump(
-                array('action' => 'index'),
+                ['action' => 'index'],
                 __('Invalid request.'),
                 'error'
             );
             return;
         }
 
-        $configs    = $this->getConfig();
-        $post       = $this->request->getPost();
-        $form       = $this->getForm($configs);
+        $configs = $this->getConfig();
+        $post    = $this->request->getPost();
+        $form    = $this->getForm($configs);
         $form->setData($post);
         $form->setInputFilter($this->getInputFilter($configs));
 
@@ -130,11 +130,11 @@ class LoginController extends ActionController
             return;
         }
 
-        $values         = $form->getData();
-        $identityData   = (array) $values['identity'];
-        $identity       = array_shift($identityData);
+        $values       = $form->getData();
+        $identityData = (array)$values['identity'];
+        $identity     = array_shift($identityData);
 
-        $field          = '';
+        $field = '';
         if (!$configs['login_field']) {
             $field = '';
         } elseif (1 == count($configs['login_field'])) {
@@ -145,17 +145,17 @@ class LoginController extends ActionController
                 $field = '';
             }
         }
-        $field = $field ?: 'identity';
+        $field      = $field ?: 'identity';
         $credential = $values['credential'];
 
         if (!empty($configs['login_attempts'])) {
             $sessionLogin = isset($_SESSION['PI_LOGIN'])
-                ? $_SESSION['PI_LOGIN'] : array();
+                ? $_SESSION['PI_LOGIN'] : [];
             if (!empty($sessionLogin['attempts'])
                 && $sessionLogin['attempts'] >= $configs['login_attempts']
             ) {
                 $this->jump(
-                    array('route' => 'home'),
+                    ['route' => 'home'],
                     __('You have tried too many times. Please try later.'),
                     'error'
                 );
@@ -174,11 +174,11 @@ class LoginController extends ActionController
         if (!$result->isValid()) {
             if (!empty($configs['login_attempts'])) {
                 if (!isset($_SESSION['PI_LOGIN'])) {
-                    $_SESSION['PI_LOGIN'] = array();
+                    $_SESSION['PI_LOGIN'] = [];
                 }
-                $_SESSION['PI_LOGIN']['attempts'] =
-                    isset($_SESSION['PI_LOGIN']['attempts'])
-                        ? ($_SESSION['PI_LOGIN']['attempts'] + 1) : 1;
+                $_SESSION['PI_LOGIN']['attempts']
+                    = isset($_SESSION['PI_LOGIN']['attempts'])
+                    ? ($_SESSION['PI_LOGIN']['attempts'] + 1) : 1;
             }
             $message = __('Invalid credentials provided, please try again.');
             $this->renderForm($form, $message);
@@ -186,7 +186,7 @@ class LoginController extends ActionController
             return;
         }
 
-        $uid = (int) $result->getData('id');
+        $uid = (int)$result->getData('id');
         try {
             Pi::service('user')->bind($uid);
         } catch (\Exception $e) {
@@ -210,16 +210,16 @@ class LoginController extends ActionController
         }
 
         if (empty($values['redirect'])) {
-            $redirect = array('route' => 'home');
+            $redirect = ['route' => 'home'];
         } else {
             $redirect = urldecode($values['redirect']);
         }
 
         // Trigger login event
-        $args = array(
+        $args = [
             'uid'           => $uid,
             'remember_time' => $rememberMe,
-        );
+        ];
         Pi::service('event')->trigger('user_login', $args);
 
         $this->jump($redirect, __('You have logged in successfully.'));
@@ -235,7 +235,7 @@ class LoginController extends ActionController
         Pi::service('user')->destroy();
         Pi::service('event')->trigger('logout', $uid);
         Pi::service('user')->killUser($uid);
-        
+
         $redirect = $this->params('redirect');
         if ($redirect) {
             $redirect = urldecode($redirect);
@@ -247,7 +247,7 @@ class LoginController extends ActionController
             if ($hasPermission) {
                 $redirect = $this->getRequest()->getServer('HTTP_REFERER');
             } else {
-                $redirect = array('route' => 'home');
+                $redirect = ['route' => 'home'];
             }
         }
         $this->jump(
@@ -268,7 +268,7 @@ class LoginController extends ActionController
         $form = new LoginForm('login', $config);
         $form->setAttribute(
             'action',
-            $this->url('', array('controller' => 'login', 'action' => 'process'))
+            $this->url('', ['controller' => 'login', 'action' => 'process'])
         );
 
         return $form;

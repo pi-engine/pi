@@ -12,13 +12,13 @@
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
+return [
     // Admin section
-    'admin' => array(
+    'admin' => [
         // System administrator with ultra permissions
-        'admin'     => _a('Administrator'),
+        'admin' => _a('Administrator'),
         // Admin area user
-        'staff'     => _a('Staff'),
+        'staff' => _a('Staff'),
         /*
         // Module/section moderator or administrator
         'moderator' => _a('Moderator'),
@@ -27,15 +27,15 @@ return array(
         // Module manager for content and moderation
         'manager'   => _a('Manager'),
         */
-    ),
+    ],
 
     // Front section
-    'front' => array(
+    'front' => [
         // System webmaster with ultra permissions
         'webmaster' => _a('Webmaster'),
         // User
         'member'    => _a('Member'),
         // Visitor
         'guest'     => _a('Guest'),
-    ),
-);
+    ],
+];

@@ -4,18 +4,18 @@
 </div>
 
 <div ng-repeat="section in sections" style="margin-bottom: 20px;">
-  <h2>{{section.heading}}</h2>
-  <div ng-bind-html="section.docstring.html"></div>
-  <div ng-repeat="subsection in section.subsections">
-    <h3>{{subsection.heading}}</h3>
-    <div class="row">
-      <div class="col-sm-4" ng-repeat="variable in subsection.variables">
-        <label>{{variable.name}}</label>
-        <input type="text" data-ng-model="variable.defaultValue" class="form-control">
-        <div class="help-block" ng-bind-html="variable.docstring.html"></div>
-      </div>
+    <h2>{{section.heading}}</h2>
+    <div ng-bind-html="section.docstring.html"></div>
+    <div ng-repeat="subsection in section.subsections">
+        <h3>{{subsection.heading}}</h3>
+        <div class="row">
+            <div class="col-sm-4" ng-repeat="variable in subsection.variables">
+                <label>{{variable.name}}</label>
+                <input type="text" data-ng-model="variable.defaultValue" class="form-control">
+                <div class="help-block" ng-bind-html="variable.docstring.html"></div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="btn-group">

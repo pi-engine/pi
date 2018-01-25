@@ -120,9 +120,58 @@ class GoogleMap extends AbstractHelper
 
         // Set map info
         switch ($type) {
+            case 'polygon':
+                // Set location array
+                $polygonLocationScript = [];
+                foreach ($locations as $location) {
+                    $locationInfo            = [
+                        'lat'  => $location[0],
+                        'lon'  => $location[1],
+                    ];
+
+                    if (isset($option['icon']) && !empty($option['icon'])) {
+                        $locationInfo['icon'] = $option['icon'];
+                    }
+
+                    $polygonLocationScript[] = $locationInfo;
+                }
+                $polygonLocationScript = json_encode($polygonLocationScript);
+                // Set polygon script
+                $polygonScript = <<<'EOT'
+$(function() {
+    var Location = %s;
+  
+    new Maplace({
+        locations: Location,
+        map_div: "#%s",
+        generate_controls: false,
+        controls_type: 'list',
+        show_markers: false,
+        type: "polygon",
+        draggable: true,
+    }).Load();
+});
+EOT;
+                // Set item info on script
+                $script = sprintf(
+                    $polygonScript,
+                    $polygonLocationScript,
+                    $id
+                );
+
+                // Set url and key
+                $url = "https://maps.googleapis.com/maps/api/js";
+                if (!empty($apiKey)) {
+                    $url = sprintf('%s?key=%s', $url, $apiKey);
+                }
+
+                // Load maplace
+                $this->view->js($url);
+                $this->view->js(pi::url('static/js/maplace.min.js'));
+                $this->view->footScript()->appendScript($script);
+                break;
 
             case 'routes':
-
                 // Set location array
                 $routeLocationScript = [];
                 foreach ($locations as $location) {

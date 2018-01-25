@@ -1,26 +1,26 @@
 <?php
-$this->angular(array(
+$this->angular([
     'angular-route.js',
-    'pi.js'
-));
+    'pi.js',
+]);
 ?>
 <script>
-angular
-    .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
-    .constant('config', {
-        urlRoot: '<?php echo $this->url('', array('controller' => 'perm')); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
-        name: '<?php echo $name ?>',
-        t: {
-            Front: '<?php echo _a('Front'); ?>',
-            Admin: '<?php echo _a('Admin'); ?>',
-            GLOBAL: '<?php echo _a('Module Global permission'); ?>',
-            MODULE: '<?php echo _a('Module resource'); ?>',
-            BLOCK: '<?php echo _a('Block'); ?>',
-            ERROR: '<?php echo _a('Error, please try again later.'); ?>',
-            FRONT: '<?php echo _a('Front'); ?>',
-            ADMIN: '<?php echo _a('Admin'); ?>'
-        }
-   });
+    angular
+        .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
+        .constant('config', {
+            urlRoot: '<?php echo $this->url('', ['controller' => 'perm']); ?>',
+            assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+            name: '<?php echo $name ?>',
+            t: {
+                Front: '<?php echo _a('Front'); ?>',
+                Admin: '<?php echo _a('Admin'); ?>',
+                GLOBAL: '<?php echo _a('Module Global permission'); ?>',
+                MODULE: '<?php echo _a('Module resource'); ?>',
+                BLOCK: '<?php echo _a('Block'); ?>',
+                ERROR: '<?php echo _a('Error, please try again later.'); ?>',
+                FRONT: '<?php echo _a('Front'); ?>',
+                ADMIN: '<?php echo _a('Admin'); ?>'
+            }
+        });
 </script>
 <script src="<?php echo $this->assetModule('admin/perm.js'); ?>"></script>

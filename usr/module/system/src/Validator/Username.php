@@ -20,21 +20,22 @@ use Zend\Validator\AbstractValidator;
 class Username extends AbstractValidator
 {
     /** @var string */
-    const INVALID   = 'usernameInvalid';
+    const INVALID = 'usernameInvalid';
 
     /** @var string */
-    const RESERVED  = 'usernameReserved';
+    const RESERVED = 'usernameReserved';
 
     /** @var string */
-    const TAKEN     = 'usernameTaken';
+    const TAKEN = 'usernameTaken';
 
     /**
      * Message variables
      * @var array
      */
-    protected $messageVariables = array(
-        'formatHint' => 'formatHint',
-    );
+    protected $messageVariables
+        = [
+            'formatHint' => 'formatHint',
+        ];
 
     /**
      * Format hint
@@ -43,53 +44,55 @@ class Username extends AbstractValidator
     protected $formatHint;
 
     /** @var array */
-    protected $messageTemplates = array();
+    protected $messageTemplates = [];
 
     /** @var array */
-    protected $formatMessage = array();
+    protected $formatMessage = [];
 
     /**
      * Format pattern
      * @var array
      */
-    protected $formatPattern = array(
-        'strict'        => '/[^a-zA-Z0-9\_\-]/',
-        'strict-space'  => '/[^a-zA-Z0-9\_\-\s]/',
-        'medium'        => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
-        'medium-space'  => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"\s]/',
-        'loose'         => '/[\000-\040]/',
-        'loose-space'   => '/[\000-\040][\s]/',
-    );
+    protected $formatPattern
+        = [
+            'strict'       => '/[^a-zA-Z0-9\_\-]/',
+            'strict-space' => '/[^a-zA-Z0-9\_\-\s]/',
+            'medium'       => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
+            'medium-space' => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"\s]/',
+            'loose'        => '/[\000-\040]/',
+            'loose-space'  => '/[\000-\040][\s]/',
+        ];
 
     /**
      * Options
      * @var array
      */
-    protected $options = array(
-        'format'            => 'strict',
-        'blacklist'         => array(),
-        'check_duplication' => true,
-    );
+    protected $options
+        = [
+            'format'            => 'strict',
+            'blacklist'         => [],
+            'check_duplication' => true,
+        ];
 
     /**
      * {@inheritDoc}
      */
     public function __construct($options = null)
     {
-        $this->messageTemplates = $this->messageTemplates + array(
-            self::INVALID   => __('Invalid username: %formatHint%'),
-            self::RESERVED  => __('Username is reserved'),
-            self::TAKEN     => __('Username is already taken'),
-        );
+        $this->messageTemplates = $this->messageTemplates + [
+                self::INVALID  => __('Invalid username: %formatHint%'),
+                self::RESERVED => __('Username is reserved'),
+                self::TAKEN    => __('Username is already taken'),
+            ];
 
-        $this->formatMessage = array(
-            'strict'        => __('Only alphabetic and digits are allowed'),
-            'strict-space'  => __('Only alphabetic, digits and spaces are allowed'),
-            'medium'        => __('Only ASCII characters are allowed'),
-            'medium-space'  => __('Only ASCII characters and spaces are allowed'),
-            'loose'         => __('Only multi-byte characters are allowed'),
-            'loose-space'   => __('Only multi-byte characters and spaces are allowed'),
-        );
+        $this->formatMessage = [
+            'strict'       => __('Only alphabetic and digits are allowed'),
+            'strict-space' => __('Only alphabetic, digits and spaces are allowed'),
+            'medium'       => __('Only ASCII characters are allowed'),
+            'medium-space' => __('Only ASCII characters and spaces are allowed'),
+            'loose'        => __('Only multi-byte characters are allowed'),
+            'loose-space'  => __('Only multi-byte characters and spaces are allowed'),
+        ];
 
         parent::__construct($options);
     }
@@ -142,7 +145,7 @@ class Username extends AbstractValidator
      */
     protected function isDuplicated($value, $context)
     {
-        $where = array('identity' => $value);
+        $where = ['identity' => $value];
         if (!empty($context['id'])) {
             $where['id <> ?'] = $context['id'];
         }

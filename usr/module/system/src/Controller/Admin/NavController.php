@@ -9,13 +9,13 @@
 
 namespace Module\System\Controller\Admin;
 
-use Pi;
-use Pi\Mvc\Controller\ActionController;
-use Pi\Filter;
 use Module\System\Form\NavFilter;
 use Module\System\Form\NavForm;
 use Module\System\Form\NavPageFilter;
 use Module\System\Form\NavPageForm;
+use Pi;
+use Pi\Filter;
+use Pi\Mvc\Controller\ActionController;
 
 /**
  * Navigation controller
@@ -41,37 +41,39 @@ class NavController extends ActionController
      * Columns of navigation model
      * @var string[]
      */
-    protected $navColumns = array(
-        'id', 'name', 'title', 'section', 'active'
-    );
+    protected $navColumns
+        = [
+            'id', 'name', 'title', 'section', 'active',
+        ];
 
     /**
      * Columns of page model
      * @var string[]
      */
-    protected $pageColumns = array(
-        'id',
-        'navigation', 'name', 'label', 'module', 'controller', 'action',
-        'route', 'uri', 'target', 'resource', 'visible'
-    );
+    protected $pageColumns
+        = [
+            'id',
+            'navigation', 'name', 'label', 'module', 'controller', 'action',
+            'route', 'uri', 'target', 'resource', 'visible',
+        ];
 
     /**
      * Set up front/admin global navigation
      */
     public function indexAction()
     {
-        $modules = Pi::registry('module')->read();
-        $modules[''] = array('title' => _a('Custom'));
+        $modules     = Pi::registry('module')->read();
+        $modules[''] = ['title' => _a('Custom')];
 
-        $navList = array();
-        $navGlobal = Pi::model('config')->select(array(
-            'module'    => 'system',
-            'name'      => 'nav_front',
-        ))->current()->value;
-        $rowset = Pi::model('navigation')->select(array(
-            'section'   => 'front',
-            'active'    => 1
-        ));
+        $navList   = [];
+        $navGlobal = Pi::model('config')->select([
+            'module' => 'system',
+            'name'   => 'nav_front',
+        ])->current()->value;
+        $rowset    = Pi::model('navigation')->select([
+            'section' => 'front',
+            'active'  => 1,
+        ]);
         foreach ($rowset as $row) {
             $navList[] = $row->toArray();
         }
@@ -87,37 +89,37 @@ class NavController extends ActionController
      */
     public function listAction()
     {
-        $modules = Pi::registry('module')->read();
-        $modules[''] = array('title' => _a('Custom'));
+        $modules     = Pi::registry('module')->read();
+        $modules[''] = ['title' => _a('Custom')];
 
-        $navGlobal = array(
+        $navGlobal = [
             'front' => Pi::config('nav_front'),
             'admin' => Pi::config('nav_admin'),
-        );
-        $navModule = array(
-            'front' => array(),
-            'admin' => array(),
-        );
-        $navCustom = array(
-            'front' => array(),
-            'admin' => array(),
-        );
+        ];
+        $navModule = [
+            'front' => [],
+            'admin' => [],
+        ];
+        $navCustom = [
+            'front' => [],
+            'admin' => [],
+        ];
 
         $rowset = Pi::model('navigation')->select(
-            array('module <> ?' => 'system', 'active' => 1)
+            ['module <> ?' => 'system', 'active' => 1]
         );
 
         foreach ($rowset as $row) {
             if ($row->module) {
-                $navModule[$row->section][$row->module][] = array(
+                $navModule[$row->section][$row->module][] = [
                     'name'  => $row->name,
                     'title' => $row->title,
-                );
+                ];
             } else {
-                $navCustom[$row->section][] = array(
+                $navCustom[$row->section][] = [
                     'name'  => $row->name,
                     'title' => $row->title,
-                );
+                ];
             }
         }
 
@@ -139,26 +141,26 @@ class NavController extends ActionController
         $navFront = $this->params()->fromPost('nav_front');
         $navAdmin = $this->params()->fromPost('nav_admin');
 
-        $row = Pi::model('config')->select(array(
-            'module'    => 'system',
-            'name'      => 'nav_front',
-        ))->current();
+        $row        = Pi::model('config')->select([
+            'module' => 'system',
+            'name'   => 'nav_front',
+        ])->current();
         $row->value = $navFront;
         $row->save();
 
-        $row = Pi::model('config')->select(array(
-            'module'    => 'system',
-            'name'      => 'nav_admin',
-        ))->current();
+        $row        = Pi::model('config')->select([
+            'module' => 'system',
+            'name'   => 'nav_admin',
+        ])->current();
         $row->value = $navAdmin;
         $row->save();
 
         Pi::registry('config')->clear('system');
 
-        $result = array(
-            'status'    => 1,
-            'message'   => _a('Navigation set up successfully.'),
-        );
+        $result = [
+            'status'  => 1,
+            'message' => _a('Navigation set up successfully.'),
+        ];
 
         return $result;
     }
@@ -183,26 +185,26 @@ class NavController extends ActionController
                 $values['active'] = 1;
                 unset($values['id']);
 
-                $filter = new Filter\Slug;
+                $filter         = new Filter\Slug;
                 $values['name'] = $filter($values['name']);
 
                 $row = Pi::model('navigation')->createRow($values);
                 $row->save();
                 if ($row->id) {
                     $this->jump(
-                        array('action' => 'index'),
+                        ['action' => 'index'],
                         _a('Navigation added successfully.')
                     );
                 }
-            } 
+            }
         } else {
             $form = new NavForm('nav');
             $form->setData(
-                array('section' => $this->params('section', 'front'))
+                ['section' => $this->params('section', 'front')]
             );
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'add'))
+                $this->url('', ['action' => 'add'])
             );
         }
         $this->view()->assign('form', $form);
@@ -219,9 +221,9 @@ class NavController extends ActionController
     {
         if ($this->request->isPost()) {
             $status = 1;
-            $nav = array();
-            $data = $this->request->getPost();
-            $form = new NavForm('nav');
+            $nav    = [];
+            $data   = $this->request->getPost();
+            $form   = new NavForm('nav');
             $form->setInputFilter(new NavFilter);
             $form->setData($data);
             if ($form->isValid()) {
@@ -236,7 +238,7 @@ class NavController extends ActionController
                 unset($values['id']);
                 unset($values['module']);
 
-                $filter = new Filter\Slug;
+                $filter         = new Filter\Slug;
                 $values['name'] = $filter($values['name']);
 
                 $row = Pi::model('navigation')->createRow($values);
@@ -247,43 +249,43 @@ class NavController extends ActionController
 
                     $nav = $row->toArray();
                 } else {
-                    $status = 0;
+                    $status  = 0;
                     $message = _a('Navigation data not saved.');
                 }
             } else {
-                $status = -1;
+                $status   = -1;
                 $messages = $form->getMessages();
-                $message = array();
+                $message  = [];
                 foreach ($messages as $key => $msg) {
                     $message[$key] = array_values($msg);
                 }
             }
 
-            return array(
-                'status'        => $status,
-                'message'       => $message,
-                'navigation'    => $nav,
-            );
+            return [
+                'status'     => $status,
+                'message'    => $message,
+                'navigation' => $nav,
+            ];
         } else {
-            $parent = $this->params('name');
+            $parent    = $this->params('name');
             $parentRow = Pi::model('navigation')->find($parent, 'name');
 
             $form = new NavForm('nav');
-            $form->setData(array(
-                'section'   => $parentRow->section,
-                'title'     => $parentRow->title,
-            ));
+            $form->setData([
+                'section' => $parentRow->section,
+                'title'   => $parentRow->title,
+            ]);
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'clone'))
+                $this->url('', ['action' => 'clone'])
             );
-            $form->add(array(
-                'name'          => 'parent',
-                'attributes'    => array(
+            $form->add([
+                'name'       => 'parent',
+                'attributes' => [
                     'type'  => 'hidden',
                     'value' => $parentRow->name,
-                )
-            ));
+                ],
+            ]);
         }
         $this->view()->assign('form', $form);
         $this->view()->assign('title', _a('Clone navigation'));
@@ -297,17 +299,17 @@ class NavController extends ActionController
      */
     public function deleteAction()
     {
-        $nav = $this->params('name');
-        $navigation = array(
+        $nav        = $this->params('name');
+        $navigation = [
             'front' => Pi::config('nav_front'),
             'admin' => Pi::config('nav_admin'),
-        );
+        ];
         if ($nav == $navigation['front'] || $nav == $navigation['admin']) {
-            $result = array(
-                'status'    => 0,
-                'message'   =>
+            $result = [
+                'status'  => 0,
+                'message' =>
                     _a('The navigation is in use and not allowed to delete.'),
-            );
+            ];
             return $result;
         }
         $row = Pi::model('navigation_node')->find($nav, 'navigation');
@@ -316,10 +318,10 @@ class NavController extends ActionController
         }
         $row = Pi::model('navigation')->find($nav, 'name');
         $row->delete();
-        $result = array(
-            'status'    => 1,
-            'message'   => _a('The navigation is deleted successfully.'),
-        );
+        $result = [
+            'status'  => 1,
+            'message' => _a('The navigation is deleted successfully.'),
+        ];
 
         return $result;
     }
@@ -333,12 +335,12 @@ class NavController extends ActionController
      */
     protected function cloneNode($parent, $nav)
     {
-        $data = Pi::registry('navigation')->read($parent) ?: array();
-        $node = array(
-            'navigation'    => $nav,
-            'data'          => $data,
-        );
-        $row = Pi::model('navigation_node')->createRow($node);
+        $data = Pi::registry('navigation')->read($parent) ?: [];
+        $node = [
+            'navigation' => $nav,
+            'data'       => $data,
+        ];
+        $row  = Pi::model('navigation_node')->createRow($node);
         $row->save();
 
         return true;
@@ -349,19 +351,19 @@ class NavController extends ActionController
      */
     public function dataAction()
     {
-        $nav = $this->params('name');
+        $nav      = $this->params('name');
         $readonly = $this->params('readonly');
 
         //$row = Pi::model('navigation_node')->find($nav, 'navigation');
         //$pages = $row->data;
 
-        $pages = Pi::registry('navigation')->read($nav) ?: array();
-        $plainList = array();
-        $no     = 1;
-        $depth  = 0;
-        $pid    = 0;
+        $pages     = Pi::registry('navigation')->read($nav) ?: [];
+        $plainList = [];
+        $no        = 1;
+        $depth     = 0;
+        $pid       = 0;
         foreach ($pages as $key => &$node) {
-            $id = (string) $no;
+            $id = (string)$no;
             $no++;
             $this->transformNode($node, $plainList, $id, $pid, $depth);
         }
@@ -375,13 +377,13 @@ class NavController extends ActionController
         */
 
         $form = new NavPageForm('nav-page');
-        $form->setData(array(
-            'navigation'    => $nav,
-            'visible'       => '1',
-        ));
+        $form->setData([
+            'navigation' => $nav,
+            'visible'    => '1',
+        ]);
         $form->setAttribute(
             'action',
-            $this->url('', array('action' => 'update'))
+            $this->url('', ['action' => 'update'])
         );
 
         if ($readonly) {
@@ -390,7 +392,7 @@ class NavController extends ActionController
             $title = _a('Navigation data edit: %s');
         }
         $navigation = Pi::model('navigation')->find($nav, 'name');
-        $nav = $navigation->toArray();
+        $nav        = $navigation->toArray();
 
         $title = sprintf($title, $navigation->title);
         $this->view()->assign('readonly', $readonly);
@@ -414,9 +416,9 @@ class NavController extends ActionController
      */
     protected function transformNode(&$node, &$plainList, $id, $pid, $depth)
     {
-        $node['id']     = $id;
-        $node['pid']    = $pid;
-        $node['depth']  = $depth;
+        $node['id']    = $id;
+        $node['pid']   = $pid;
+        $node['depth'] = $depth;
         if (!isset($node['visible'])) {
             $node['visible'] = 1;
         }
@@ -442,25 +444,25 @@ class NavController extends ActionController
      */
     public function pageAction()
     {
-        $status     = 1;
-        $message    = '';
-        $data = $this->request->getPost();
-        $form = new NavPageForm('nav-page');
+        $status  = 1;
+        $message = '';
+        $data    = $this->request->getPost();
+        $form    = new NavPageForm('nav-page');
         $form->setInputFilter(new NavPageFilter);
         $form->setData($data);
         if (!$form->isValid()) {
-            $status = -1;
+            $status   = -1;
             $messages = $form->getMessages();
-            $message = array();
+            $message  = [];
             foreach ($messages as $key => $msg) {
                 $message[$key] = array_values($msg);
             }
         }
 
-        return array(
-            'status'        => $status,
-            'message'       => $message,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+        ];
     }
 
     /**
@@ -472,25 +474,25 @@ class NavController extends ActionController
      */
     public function updateAction()
     {
-        $status = 1;
+        $status  = 1;
         $message = _a('Navigation data saved successfully.');
 
-        $model  = Pi::model('navigation');
-        $nav    = $this->request->getPost('name');
-        $row    = $model->find($nav, 'name');
+        $model = Pi::model('navigation');
+        $nav   = $this->request->getPost('name');
+        $row   = $model->find($nav, 'name');
         if (!$row) {
-            $status = 0;
+            $status  = 0;
             $message = _a('Navigation not found.');
         } elseif ($row->module) {
             $status = 0;
-            $message =
-                _a('Only custom navigations are allowed to manipulate.');
+            $message
+                    = _a('Only custom navigations are allowed to manipulate.');
         }
         if (!$status) {
-            return array(
-                'status'    => $status,
-                'message'   => $message,
-            );
+            return [
+                'status'  => $status,
+                'message' => $message,
+            ];
         }
 
         $pages = $this->request->getPost('pages');
@@ -499,7 +501,7 @@ class NavController extends ActionController
         $row = Pi::model('navigation_node')->find($nav, 'navigation');
         if (!$row) {
             $row = Pi::model('navigation_node')->createRow(
-                array('navigation' => $nav, 'data' => $pages)
+                ['navigation' => $nav, 'data' => $pages]
             );
         }
         $row->data = $pages;
@@ -507,10 +509,10 @@ class NavController extends ActionController
 
         Pi::registry('navigation')->flush();
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+        ];
     }
 
     /**
@@ -521,7 +523,7 @@ class NavController extends ActionController
      */
     protected function canonizePages($pages)
     {
-        $temp = array();
+        $temp = [];
         foreach ($pages as $page) {
             $id = $page['id'];
             unset($page['id'], $page['depth']);
@@ -535,7 +537,7 @@ class NavController extends ActionController
         $keys = array_fill_keys(array_keys($temp), 1);
         // Look up node list to append child node to its parent,
         // until no child node is left in container
-        $registered = array();
+        $registered = [];
         do {
             foreach (array_keys($keys) as $key) {
                 $item =& $temp[$key];
@@ -546,12 +548,12 @@ class NavController extends ActionController
                     // Register to parent
                     if (isset($temp[$parentKey])) {
                         if (!isset($temp[$parentKey]['pages'])) {
-                            $temp[$parentKey]['pages'] = array();
+                            $temp[$parentKey]['pages']   = [];
                             $temp[$parentKey]['pages'][] =& $item;
-                            $registered[$key] = 1;
+                            $registered[$key]            = 1;
                         } elseif (!isset($registered[$key])) {
                             $temp[$parentKey]['pages'][] =& $item;
-                            $registered[$key] = 1;
+                            $registered[$key]            = 1;
                         }
                         // To reactivate parent
                         $keys[$parentKey] = 1;
@@ -563,7 +565,7 @@ class NavController extends ActionController
         } while ($keys);
 
         // Fetch formulated nodes
-        $list = array();
+        $list = [];
         foreach ($temp as $key => $node) {
             if (!empty($node['pid'])) {
                 continue;

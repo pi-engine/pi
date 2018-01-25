@@ -20,16 +20,16 @@ use Zend\Validator\AbstractValidator;
 class ModuleTitle extends AbstractValidator
 {
     /** @var string */
-    const TAKEN     = 'moduleTitleTaken';
+    const TAKEN = 'moduleTitleTaken';
 
     /**
      * {@inheritDoc}
      */
     public function __construct($options = null)
     {
-        $this->messageTemplates = array(
-            static::TAKEN     => __('Module title is already taken'),
-        );
+        $this->messageTemplates = [
+            static::TAKEN => __('Module title is already taken'),
+        ];
         parent::__construct($options);
     }
 
@@ -44,7 +44,7 @@ class ModuleTitle extends AbstractValidator
     {
         $this->setValue($value);
 
-        $where = array('title' => $value);
+        $where = ['title' => $value];
         if (!empty($context['id'])) {
             $where['id <> ?'] = $where['id'];
         }
