@@ -501,8 +501,8 @@ final class Image extends AbstractImage
             $w = $size->getWidth();
             $h = $size->getHeight();
 
-            for ($x = 0; $x <= $w; $x++) {
-                for ($y = 0; $y <= $h; $y++) {
+            for ($x = 0; $x < $w; $x++) {
+                for ($y = 0; $y < $h; $y++) {
                     $pixel = $this->getColor($fill->getColor(new Point($x, $y)));
 
                     $draw->setfillcolor($pixel);
@@ -555,7 +555,7 @@ final class Image extends AbstractImage
                 ->cropImage(1, 1, $point->getX(), $point->getY())
                 ->getImageHistogram();
         } catch (\GmagickException $e) {
-            throw new RuntimeException('Unable to get the pixel');
+            throw new RuntimeException('Unable to get the pixel', $e->getCode(), $e);
         }
 
         $pixel = array_shift($histogram);
@@ -695,6 +695,10 @@ final class Image extends AbstractImage
         try {
             $this->gmagick->profileimage('ICM', $profile->data());
         } catch (\GmagickException $e) {
+            if (false !== strpos($e->getMessage(), 'LCMS encoding not enabled')) {
+                throw new RuntimeException(sprintf('Unable to add profile %s to image, be sue to compile graphicsmagick with `--with-lcms2` option', $profile->name()), $e->getCode(), $e);
+            }
+
             throw new RuntimeException(sprintf('Unable to add profile %s to image', $profile->name()), $e->getCode(), $e);
         }
 

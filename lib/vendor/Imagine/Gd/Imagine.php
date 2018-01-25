@@ -122,7 +122,7 @@ final class Imagine extends AbstractImagine
             throw new InvalidArgumentException('Cannot read resource content');
         }
 
-        return $this->doLoad($content, $this->getMetadataReader()->readStream($resource));
+        return $this->doLoad($content, $this->getMetadataReader()->readData($content, $resource));
     }
 
     /**
@@ -178,7 +178,7 @@ final class Imagine extends AbstractImagine
     private function requireGdVersion($version)
     {
         if (version_compare(GD_VERSION, $version, '<')) {
-            throw new RuntimeException(sprintf('GD2 version %s or higher is required', $version));
+            throw new RuntimeException(sprintf('GD2 version %s or higher is required, %s provided', $version, GD_VERSION));
         }
     }
 

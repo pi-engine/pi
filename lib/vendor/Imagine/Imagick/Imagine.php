@@ -36,8 +36,10 @@ final class Imagine extends AbstractImagine
             throw new RuntimeException('Imagick not installed');
         }
 
-        if (version_compare('6.2.9', $this->getVersion(new \Imagick())) > 0) {
-            throw new RuntimeException('ImageMagick version 6.2.9 or higher is required');
+        $version = $this->getVersion(new \Imagick());
+
+        if (version_compare('6.2.9', $version) > 0) {
+            throw new RuntimeException(sprintf('ImageMagick version 6.2.9 or higher is required, %s provided', $version));
         }
     }
 
@@ -79,7 +81,12 @@ final class Imagine extends AbstractImagine
             $imagick->setImageBackgroundColor($pixel);
 
             if (version_compare('6.3.1', $this->getVersion($imagick)) < 0) {
-                $imagick->setImageOpacity($pixel->getColorValue(\Imagick::COLOR_ALPHA));
+                // setImageOpacity was replaced with setImageAlpha in php-imagick v3.4.3
+                if (method_exists($imagick, 'setImageAlpha')) {
+                    $imagick->setImageAlpha($pixel->getColorValue(\Imagick::COLOR_ALPHA));
+                } else {
+                    $imagick->setImageOpacity($pixel->getColorValue(\Imagick::COLOR_ALPHA));
+                }
             }
 
             $pixel->clear();
@@ -117,14 +124,16 @@ final class Imagine extends AbstractImagine
             throw new InvalidArgumentException('Variable does not contain a stream resource');
         }
 
+        $content = stream_get_contents($resource);
+
         try {
             $imagick = new \Imagick();
-            $imagick->readImageFile($resource);
+            $imagick->readImageBlob($content);
         } catch (\ImagickException $e) {
             throw new RuntimeException('Could not read image from resource', $e->getCode(), $e);
         }
 
-        return new Image($imagick, $this->createPalette($imagick), $this->getMetadataReader()->readStream($resource));
+        return new Image($imagick, $this->createPalette($imagick), $this->getMetadataReader()->readData($content, $resource));
     }
 
     /**
