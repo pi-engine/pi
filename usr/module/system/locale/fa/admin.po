@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2017-09-06 15:24+0430\n"
-"PO-Revision-Date: 2017-09-06 15:24+0430\n"
+"POT-Creation-Date: 2018-01-25 09:05+0330\n"
+"PO-Revision-Date: 2018-01-25 09:28+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -114,39 +114,43 @@ msgstr "نمایش پشتیبانی"
 msgid "Display favourite"
 msgstr "نمایش علاقه مندی ها"
 
-#: config/block.php:110 config/nav.front.php:30
+#: config/block.php:106
+msgid "Display offer"
+msgstr "نمایش پیشنهاد ها"
+
+#: config/block.php:117 config/nav.front.php:30
 msgid "Login"
 msgstr "ورود"
 
-#: config/block.php:111
+#: config/block.php:118
 msgid "User login block"
 msgstr "بلاک لاگین کاربر"
 
-#: config/block.php:118 config/page.php:116
+#: config/block.php:125 config/page.php:116
 msgid "User"
 msgstr "کاربر"
 
-#: config/block.php:119 config/config.php:41
+#: config/block.php:126 config/config.php:41
 msgid "User account"
 msgstr "حساب کاربری"
 
-#: config/block.php:126
+#: config/block.php:133
 msgid "Site Info"
 msgstr "مشخصات سایت"
 
-#: config/block.php:127
+#: config/block.php:134
 msgid "Website information"
 msgstr "مشخصات وب‌سایت"
 
-#: config/block.php:134
+#: config/block.php:141
 msgid "Pi feature"
 msgstr "ویژگی پای انجین"
 
-#: config/block.php:135
+#: config/block.php:142
 msgid "Introduction to Pi Engine"
 msgstr "معرفی پای انجین"
 
-#: config/config.php:21 src/Controller/Admin/ConfigController.php:95
+#: config/config.php:21 src/Controller/Admin/ConfigController.php:94
 msgid "General"
 msgstr "عمومی"
 
@@ -179,7 +183,7 @@ msgid "ReCaptcha"
 msgstr "ریکپچا"
 
 #: config/config.php:57 config/nav.admin.php:300
-#: template/admin/audit-index.phtml:9
+#: template/admin/audit-index.phtml:10
 msgid "Mailing"
 msgstr "ارسال میل"
 
@@ -376,12 +380,12 @@ msgid "Identity field(s) for authentication."
 msgstr "فیلدها لازم برای شناسایی"
 
 #: config/config.php:255 config/config.php:337
-#: template/admin/member-index.phtml:23
+#: template/admin/member-index.phtml:27
 msgid "Username"
 msgstr "شناسه کاربری"
 
 #: config/config.php:256 config/config.php:338
-#: template/admin/member-index.phtml:25
+#: template/admin/member-index.phtml:29
 msgid "Email"
 msgstr "ایمیل"
 
@@ -736,12 +740,12 @@ msgid "Generator of the document being read."
 msgstr "تولید کننده‌ی مقاله‌ای که در حال خوانده شدن است."
 
 #: config/config.php:639
-msgid "Website local"
-msgstr "کد بومی سازی وب سایت"
+msgid "Website Open Graph locale"
+msgstr "اوپن گراف محلی وب سایت"
 
 #: config/config.php:640
-msgid "Set website local, like en_GB"
-msgstr "تنظیم کد بومی سازی وب سایت ، مشابه en_GB"
+msgid "Set website OG locale, like en_GB"
+msgstr "تنظیمات OG را انجام دهید ، به طور مثال en_GB"
 
 #: config/config.php:647
 msgid "Twitter account"
@@ -847,7 +851,7 @@ msgstr "سیستم"
 msgid "For administration of core functions of the site."
 msgstr "برای مدیریت عملکردهای هسته‌ی این سایت"
 
-#: config/nav.admin.php:17 config/page.php:91 template/admin/asset-index.phtml:23
+#: config/nav.admin.php:17 config/page.php:91 template/admin/asset-index.phtml:24
 msgid "Modules"
 msgstr "ماژول‌ها"
 
@@ -867,7 +871,7 @@ msgstr "شاخه"
 msgid "Repository"
 msgstr "مخزن"
 
-#: config/nav.admin.php:85 config/page.php:97 template/admin/asset-index.phtml:36
+#: config/nav.admin.php:85 config/page.php:97 template/admin/asset-index.phtml:38
 msgid "Themes"
 msgstr "قالب‌ها"
 
@@ -879,8 +883,8 @@ msgstr "فعال"
 msgid "Navigation"
 msgstr "ناوبری"
 
-#: config/nav.admin.php:143 src/Controller/Admin/NavController.php:80
-#: src/Controller/Admin/NavController.php:128
+#: config/nav.admin.php:143 src/Controller/Admin/NavController.php:82
+#: src/Controller/Admin/NavController.php:130
 msgid "Navigation list"
 msgstr "فهرست منو ها"
 
@@ -920,11 +924,15 @@ msgstr "انتشار Asset"
 msgid "Toolkit"
 msgstr "نوار ابزار"
 
-#: config/nav.admin.php:292 template/admin/audit-index.phtml:8
+#: config/nav.admin.php:292 template/admin/audit-index.phtml:9
 msgid "Audit"
 msgstr "Audit"
 
 #: config/nav.admin.php:311
+msgid "Database tools"
+msgstr "ابزار های پایگاه داده ها"
+
+#: config/nav.admin.php:322
 msgid "Homepage layout"
 msgstr "چیدمان صفحه اول"
 
@@ -945,7 +953,7 @@ msgstr "صفحه‌ها"
 msgid "Cache"
 msgstr "کَش"
 
-#: config/nav.component.php:61 template/admin/nav-data.phtml:76
+#: config/nav.component.php:61 template/admin/nav-data.phtml:80
 msgid "Permission"
 msgstr "دسترسی"
 
@@ -965,13 +973,13 @@ msgstr "پروفایل"
 msgid "Register"
 msgstr "ثبت"
 
-#: config/nav.front.php:44 template/admin/member-index.phtml:37
+#: config/nav.front.php:44 template/admin/member-index.phtml:43
 msgid "Password"
 msgstr "کلمه ی عبور"
 
 #: config/nav.front.php:52 template/admin/event.phtml:25
 #: template/admin/perm.phtml:16 template/admin/perm.phtml:22
-#: template/admin/role.phtml:36 template/admin/theme-index.phtml:17
+#: template/admin/role.phtml:36 template/admin/theme-index.phtml:21
 msgid "Admin"
 msgstr "مدیر"
 
@@ -999,7 +1007,7 @@ msgstr "گزارش خطا"
 #: src/Controller/Module/DashboardController.php:374
 #: template/admin/dashboard-system.phtml:20
 msgid "Dashboard"
-msgstr "داشبرد"
+msgstr "داشبورد"
 
 #: config/page.php:51
 msgid "Readme"
@@ -1167,8 +1175,8 @@ msgstr "داده‌ی بلاک ذخیره نشد."
 
 #: src/Controller/Admin/BlockController.php:198
 #: src/Controller/Admin/BlockController.php:304
-#: src/Controller/Admin/PageController.php:169
-#: src/Controller/Admin/PageController.php:280
+#: src/Controller/Admin/PageController.php:170
+#: src/Controller/Admin/PageController.php:281
 msgid "Invalid data, please check and re-submit."
 msgstr "داده‌ی نامعتبر، لطفا بررسی کنید و دوباره ارسال کنید."
 
@@ -1200,9 +1208,9 @@ msgid "Page cache updated successfully."
 msgstr "کَش صفحه با موفقیت به روز شد."
 
 #: src/Controller/Admin/CacheController.php:94
-#: src/Controller/Admin/PageController.php:64 template/admin/event.phtml:24
+#: src/Controller/Admin/PageController.php:65 template/admin/event.phtml:24
 #: template/admin/perm.phtml:15 template/admin/perm.phtml:21
-#: template/admin/role.phtml:35 template/admin/theme-index.phtml:12
+#: template/admin/role.phtml:35 template/admin/theme-index.phtml:14
 msgid "Front"
 msgstr "کاربر"
 
@@ -1219,13 +1227,13 @@ msgid "Action data"
 msgstr "داده های اکشن"
 
 #: src/Controller/Admin/CacheController.php:161
-#: src/Controller/Admin/PageController.php:87
-#: src/Controller/Admin/PageController.php:417
+#: src/Controller/Admin/PageController.php:88
+#: src/Controller/Admin/PageController.php:418
 msgid "Module wide"
 msgstr "تمام صفحات ماژول"
 
 #: src/Controller/Admin/CacheController.php:171
-#: src/Controller/Admin/PageController.php:97
+#: src/Controller/Admin/PageController.php:98
 msgid "Module home"
 msgstr "صفحه اصلی ماژول"
 
@@ -1239,11 +1247,11 @@ msgstr "فهرست کَش"
 msgid "Never updated."
 msgstr "هرگز به روز نشده"
 
-#: src/Controller/Admin/ConfigController.php:174
+#: src/Controller/Admin/ConfigController.php:173
 msgid "Configuration data saved successfully."
 msgstr "داده‌های پیکربندی با موفقیت ذخیره شدند."
 
-#: src/Controller/Admin/ConfigController.php:188
+#: src/Controller/Admin/ConfigController.php:187
 msgid "Module configurations"
 msgstr "پیکربندی ماژول"
 
@@ -1490,105 +1498,105 @@ msgstr "فعال سازی ماژول"
 msgid "Title is required."
 msgstr "عنوان ضروری است."
 
-#: src/Controller/Admin/NavController.php:64
-#: src/Controller/Admin/NavController.php:91 template/admin/nav-data.phtml:44
-#: template/admin/nav-index.phtml:37
+#: src/Controller/Admin/NavController.php:66
+#: src/Controller/Admin/NavController.php:93 template/admin/nav-data.phtml:45
+#: template/admin/nav-index.phtml:42
 msgid "Custom"
 msgstr "شخصی سازی"
 
-#: src/Controller/Admin/NavController.php:160
+#: src/Controller/Admin/NavController.php:162
 msgid "Navigation set up successfully."
 msgstr "منو با موفقیت نصب شد"
 
-#: src/Controller/Admin/NavController.php:194
+#: src/Controller/Admin/NavController.php:196
 msgid "Navigation added successfully."
 msgstr "منو با موفقیت اضافه شد"
 
-#: src/Controller/Admin/NavController.php:209
+#: src/Controller/Admin/NavController.php:211
 msgid "Add a navigation"
 msgstr "منو جدید"
 
-#: src/Controller/Admin/NavController.php:245
+#: src/Controller/Admin/NavController.php:247
 msgid "Navigation saved successfully."
 msgstr "منو با موفقیت ذخیره شد"
 
-#: src/Controller/Admin/NavController.php:251
+#: src/Controller/Admin/NavController.php:253
 msgid "Navigation data not saved."
 msgstr "داده‌های منو ذخیره نشده‌اند"
 
-#: src/Controller/Admin/NavController.php:289
+#: src/Controller/Admin/NavController.php:291
 msgid "Clone navigation"
 msgstr "کپی برداری از منو"
 
-#: src/Controller/Admin/NavController.php:309
+#: src/Controller/Admin/NavController.php:311
 msgid "The navigation is in use and not allowed to delete."
 msgstr "منو در حال استفاده است و نمی‌توان آن را حذف کرد"
 
-#: src/Controller/Admin/NavController.php:321
+#: src/Controller/Admin/NavController.php:323
 msgid "The navigation is deleted successfully."
 msgstr "منو با موفقیت حذف شد"
 
-#: src/Controller/Admin/NavController.php:388
+#: src/Controller/Admin/NavController.php:390
 #, php-format
 msgid "View of navigation details: %s"
 msgstr "مشاهده‌ی جزییات منو :%s"
 
-#: src/Controller/Admin/NavController.php:390
+#: src/Controller/Admin/NavController.php:392
 #, php-format
 msgid "Navigation data edit: %s"
 msgstr "ویرایش داده‌های منو %s"
 
-#: src/Controller/Admin/NavController.php:476
+#: src/Controller/Admin/NavController.php:478
 msgid "Navigation data saved successfully."
 msgstr "داده‌های منو با موفقیت ذخیره شدند"
 
-#: src/Controller/Admin/NavController.php:483
+#: src/Controller/Admin/NavController.php:485
 msgid "Navigation not found."
 msgstr "منو یافت نشد"
 
-#: src/Controller/Admin/NavController.php:487
+#: src/Controller/Admin/NavController.php:489
 msgid "Only custom navigations are allowed to manipulate."
 msgstr "تنها منو های دست ساز را می‌توان تغییر داد"
 
-#: src/Controller/Admin/PageController.php:128
+#: src/Controller/Admin/PageController.php:129
 msgid "Pages list"
 msgstr "فهرست صفحه‌ها"
 
-#: src/Controller/Admin/PageController.php:154
-#: src/Controller/Admin/PageController.php:214
-#: src/Controller/Admin/PageController.php:278
-#: src/Controller/Admin/PageController.php:326
+#: src/Controller/Admin/PageController.php:155
+#: src/Controller/Admin/PageController.php:215
+#: src/Controller/Admin/PageController.php:279
+#: src/Controller/Admin/PageController.php:327
 msgid "Page data saved successfully."
 msgstr "داده‌های صفحه با موفقیت ذخیره شدند"
 
-#: src/Controller/Admin/PageController.php:166
-#: src/Controller/Admin/PageController.php:236
+#: src/Controller/Admin/PageController.php:167
+#: src/Controller/Admin/PageController.php:237
 msgid "Page data not saved."
 msgstr "داده‌های صفحه ذخیره نشدند"
 
-#: src/Controller/Admin/PageController.php:181 template/admin/page-list.phtml:9
+#: src/Controller/Admin/PageController.php:182 template/admin/page-list.phtml:11
 msgid "Setup a page"
 msgstr "ساختن صفحه"
 
-#: src/Controller/Admin/PageController.php:294
+#: src/Controller/Admin/PageController.php:295
 msgid "Pages edit"
 msgstr "ویرایش صفحه"
 
-#: src/Controller/Admin/PageController.php:370
+#: src/Controller/Admin/PageController.php:371
 msgid "Page is deleted."
 msgstr "صفحه حذف شده است"
 
-#: src/Controller/Admin/PageController.php:375
-#: src/Controller/Admin/PageController.php:550
+#: src/Controller/Admin/PageController.php:376
+#: src/Controller/Admin/PageController.php:551
 msgid "Page is not found."
 msgstr "صفحه پیدا نشد"
 
-#: src/Controller/Admin/PageController.php:490
+#: src/Controller/Admin/PageController.php:491
 #, php-format
 msgid "%s blocks"
 msgstr "چیدمان بلاک های %s"
 
-#: src/Controller/Admin/PageController.php:576
+#: src/Controller/Admin/PageController.php:577
 msgid "Page block links are updated."
 msgstr "بلاک پیوندهای صفحه به روز شدند."
 
@@ -1604,53 +1612,53 @@ msgstr "دیریت ماژول"
 msgid "Permission assigned successfully."
 msgstr "دسترسی با موفقیت اعطا شد"
 
-#: src/Controller/Admin/RepoController.php:60
-#: src/Controller/Admin/RepoController.php:84
+#: src/Controller/Admin/RepoController.php:59
+#: src/Controller/Admin/RepoController.php:83
 #, php-format
 msgid "A new version %s is available"
 msgstr "نسخه‌ی جدید %s موجود است"
 
-#: src/Controller/Admin/RepoController.php:65
-#: src/Controller/Admin/RepoController.php:89
+#: src/Controller/Admin/RepoController.php:64
+#: src/Controller/Admin/RepoController.php:88
 msgid "No update available"
 msgstr "هیچ به روز رسانی وجود ندارد"
 
-#: src/Controller/Admin/RepoController.php:69
-#: src/Controller/Admin/RepoController.php:93
+#: src/Controller/Admin/RepoController.php:68
+#: src/Controller/Admin/RepoController.php:92
 msgid "Error occurred, check later."
 msgstr "بروز خطا، بعدا بررسی کنید."
 
-#: src/Controller/Admin/RoleController.php:160
-#: src/Controller/Admin/RoleController.php:214
+#: src/Controller/Admin/RoleController.php:162
+#: src/Controller/Admin/RoleController.php:216
 msgid "Role data saved successfully."
 msgstr "داده‌های نقش با موفقیت ذخیره شدند."
 
-#: src/Controller/Admin/RoleController.php:163
-#: src/Controller/Admin/RoleController.php:217
+#: src/Controller/Admin/RoleController.php:165
+#: src/Controller/Admin/RoleController.php:219
 msgid "Role data not saved."
 msgstr "داده‌های نقش ذخیره نشدند."
 
-#: src/Controller/Admin/RoleController.php:185
+#: src/Controller/Admin/RoleController.php:187
 msgid "Add a role"
 msgstr "اضافه کردن نقش"
 
-#: src/Controller/Admin/RoleController.php:243
+#: src/Controller/Admin/RoleController.php:245
 msgid "Edit a role"
 msgstr "ویرایش نقش"
 
-#: src/Controller/Admin/RoleController.php:263
+#: src/Controller/Admin/RoleController.php:265
 msgid "Only custom roles are allowed to activate/deactivate."
 msgstr "تنها نقش‌های دست ساز را می‌توان فعال یا غیرفعال کرد."
 
-#: src/Controller/Admin/RoleController.php:273
+#: src/Controller/Admin/RoleController.php:275
 msgid "Role updated successfully."
 msgstr "نقش با موفقیت به روز شد"
 
-#: src/Controller/Admin/RoleController.php:312
+#: src/Controller/Admin/RoleController.php:314
 msgid "Only custom roles are allowed to delete."
 msgstr "تنها نقش‌های دست ساز را می‌توان حذف کرد."
 
-#: src/Controller/Admin/RoleController.php:318
+#: src/Controller/Admin/RoleController.php:320
 msgid "Role deleted successfully."
 msgstr "نقش با موفقیت حذف شد"
 
@@ -1717,25 +1725,25 @@ msgstr "قالب \"%s\" آن اینستال شد"
 msgid "No permitted operation available."
 msgstr "هیچ عملیات مجازی وجود ندارد."
 
-#: src/Form/ModuleCategoryForm.php:30 template/admin/asset-index.phtml:11
+#: src/Form/ModuleCategoryForm.php:29 template/admin/asset-index.phtml:11
 #: template/admin/block-list.phtml:18 template/admin/cache-list.phtml:14
 #: template/admin/dashboard-system.phtml:26 template/admin/event.phtml:17
 #: template/admin/flush-index.phtml:10 template/admin/module-available.phtml:9
 #: template/admin/module-index.phtml:7 template/admin/nav-index.phtml:10
-#: template/admin/page-list.phtml:13 template/admin/role.phtml:22
+#: template/admin/page-list.phtml:15 template/admin/role.phtml:22
 #: template/admin/role.phtml:30
 msgid "Title"
 msgstr "عنوان"
 
-#: src/Form/ModuleCategoryForm.php:40
+#: src/Form/ModuleCategoryForm.php:39
 msgid "Font-awesome icon"
 msgstr "آیکن Font-awesome"
 
-#: src/Form/ModuleCategoryForm.php:44
+#: src/Form/ModuleCategoryForm.php:43
 msgid "Check http://fortawesome.github.io/Font-Awesome/icons/"
 msgstr "این آدرس را بررسی کنید  http://fortawesome.github.io/Font-Awesome/icons/"
 
-#: src/Form/ModuleCategoryForm.php:51 template/admin/module-category.phtml:78
+#: src/Form/ModuleCategoryForm.php:50 template/admin/module-category.phtml:83
 msgid "Order"
 msgstr "ترتیب"
 
@@ -1782,67 +1790,67 @@ msgstr "به کار بستن"
 #: template/admin/asset-index.phtml:12 template/admin/block-list.phtml:21
 #: template/admin/event.phtml:18 template/admin/flush-index.phtml:11
 #: template/admin/module-available.phtml:12 template/admin/module-index.phtml:11
-#: template/admin/module-index.phtml:66 template/admin/nav-data.phtml:116
-#: template/admin/nav-index.phtml:13 template/admin/page-list.phtml:14
+#: template/admin/module-index.phtml:71 template/admin/nav-data.phtml:124
+#: template/admin/nav-index.phtml:13 template/admin/page-list.phtml:16
 #: template/admin/role.phtml:28
 msgid "Action"
 msgstr "اکشن"
 
-#: template/admin/asset-index.phtml:19
+#: template/admin/asset-index.phtml:20
 msgid "Re-publish all"
 msgstr "انتشار مجدد همه"
 
-#: template/admin/asset-index.phtml:31 template/admin/asset-index.phtml:44
+#: template/admin/asset-index.phtml:33 template/admin/asset-index.phtml:47
 msgid "Publish"
 msgstr "انتشار"
 
-#: template/admin/asset-index.phtml:54
+#: template/admin/asset-index.phtml:57
 msgid "Asset publish in process"
 msgstr "انتشار محتوا در جریان است"
 
-#: template/admin/audit-index.phtml:12
+#: template/admin/audit-index.phtml:13
 msgid "Audit list"
 msgstr "فهرست حسابرسی"
 
-#: template/admin/audit-index.phtml:16
+#: template/admin/audit-index.phtml:17
 msgid "time"
 msgstr "زمان"
 
-#: template/admin/audit-index.phtml:17
+#: template/admin/audit-index.phtml:18
 msgid "User ID"
 msgstr "شناسه‌ی کاربری"
 
-#: template/admin/audit-index.phtml:18
+#: template/admin/audit-index.phtml:19
 msgid "IP"
 msgstr "آی‌پی"
 
-#: template/admin/audit-index.phtml:24
+#: template/admin/audit-index.phtml:25
 msgid "Message"
 msgstr "پیغام"
 
-#: template/admin/audit-index.phtml:25
+#: template/admin/audit-index.phtml:26
 msgid "extra"
 msgstr "اضافه"
 
-#: template/admin/audit-index.phtml:48
+#: template/admin/audit-index.phtml:53
 msgid "Count of items to display: "
 msgstr "تعداد آیتم‌ها برای نمایش"
 
-#: template/admin/audit-index.phtml:51
+#: template/admin/audit-index.phtml:57
 msgid "10"
 msgstr "10"
 
-#: template/admin/audit-index.phtml:52
+#: template/admin/audit-index.phtml:58
 msgid "20"
 msgstr "20"
 
-#: template/admin/audit-index.phtml:53
+#: template/admin/audit-index.phtml:59
 msgid "50"
 msgstr "50"
 
 #: template/admin/block-list.phtml:19 template/admin/module-available.phtml:11
 #: template/admin/module-index.phtml:9 template/admin/theme-available.phtml:27
-#: template/admin/theme-index.phtml:58 template/admin/theme-installed.phtml:33
+#: template/admin/theme-index.phtml:65 template/admin/theme-installed.phtml:33
 msgid "Description"
 msgstr "توضیح"
 
@@ -1855,19 +1863,19 @@ msgid "Preview"
 msgstr "پیش نمایش"
 
 #: template/admin/block-list.phtml:24 template/admin/dashboard-system.phtml:21
-#: template/admin/member-index.phtml:35 template/admin/nav-index.phtml:48
-#: template/admin/page-list.phtml:27
+#: template/admin/member-index.phtml:40 template/admin/nav-index.phtml:53
+#: template/admin/page-list.phtml:29
 msgid "Edit"
 msgstr "ویرایش"
 
-#: template/admin/block-list.phtml:25 template/admin/member-index.phtml:39
-#: template/admin/nav-index.phtml:49 template/admin/page-list.phtml:34
+#: template/admin/block-list.phtml:25 template/admin/member-index.phtml:46
+#: template/admin/nav-index.phtml:54 template/admin/page-list.phtml:37
 #: template/admin/role.phtml:19
 msgid "Delete"
 msgstr "حذف"
 
-#: template/admin/block-list.phtml:26 template/admin/module-available.phtml:66
-#: template/admin/nav-index.phtml:45
+#: template/admin/block-list.phtml:26 template/admin/module-available.phtml:67
+#: template/admin/nav-index.phtml:50
 msgid "Clone"
 msgstr "کپی برداری"
 
@@ -1891,7 +1899,7 @@ msgstr "دانه دانه"
 msgid "Scope"
 msgstr "محدوده"
 
-#: template/admin/cache-list.phtml:38
+#: template/admin/cache-list.phtml:39
 msgid "Force for all pages"
 msgstr "اجبار برای همه صفحات"
 
@@ -1944,7 +1952,7 @@ msgstr "خلاصه"
 msgid "Announcement"
 msgstr "اعلان"
 
-#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:125
+#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:134
 msgid "Save"
 msgstr "ذخیره"
 
@@ -1986,6 +1994,30 @@ msgstr ""
 "می‌کند. پای یک پروژه‌ی تماما متن باز است و هدف این بوده تا محیط مناسبی ایجاد شود "
 "که تمام کاربران و برنامه‌نویس‌ها از آن استفاده کنند. "
 
+#: template/admin/database-check.phtml:13
+msgid "Back"
+msgstr "برگشت"
+
+#: template/admin/database-check.phtml:20
+msgid "Results for tables"
+msgstr "نتایج جدول ها"
+
+#: template/admin/database-check.phtml:30
+msgid "Results for columns"
+msgstr "نتایج ستون ها"
+
+#: template/admin/database-index.phtml:14
+msgid "Check for encoding"
+msgstr "بررسی اینکودینگ"
+
+#: template/admin/database-index.phtml:19
+msgid "This tool help you to check non-utf8 data fields for all tables"
+msgstr "این ابزار به شما کمک میکند تمام جدول ها و فیلد های non-utf8 را بررسی کنید"
+
+#: template/admin/database-index.phtml:24
+msgid "Check UTF8"
+msgstr "بررسی UTF-8"
+
 #: template/admin/event.phtml:19
 msgid "Events"
 msgstr "رخ‌دادها"
@@ -2006,20 +2038,20 @@ msgstr "هیچ رخدادی وجود ندارد."
 msgid "Error, please try again later."
 msgstr "خطا، لطفا بعدا تلاش کنید."
 
-#: template/admin/flush-index.phtml:17
+#: template/admin/flush-index.phtml:18
 msgid "Flush all"
 msgstr "تخلیه‌ی همه"
 
-#: template/admin/flush-index.phtml:24 template/admin/flush-index.phtml:33
-#: template/admin/flush-index.phtml:41 template/admin/flush-index.phtml:50
+#: template/admin/flush-index.phtml:26 template/admin/flush-index.phtml:36
+#: template/admin/flush-index.phtml:45 template/admin/flush-index.phtml:55
 msgid "Flush"
 msgstr "تخلیه"
 
-#: template/admin/flush-index.phtml:39
+#: template/admin/flush-index.phtml:42
 msgid "Registry"
 msgstr "رجیستری"
 
-#: template/admin/flush-index.phtml:62
+#: template/admin/flush-index.phtml:66
 msgid "Cache flush in process"
 msgstr "تخلیه‌ی کَش درحال انجام است."
 
@@ -2029,55 +2061,55 @@ msgstr ""
 "این ماژول فاقد بخش مدیریت است و تمام قسمت های آن از بخش تنظیمات یا بخش کاربری "
 "کنترل می شود. شما می توانید :"
 
-#: template/admin/index.phtml:9
+#: template/admin/index.phtml:11
 msgid "Module config"
 msgstr "پیکربندی ماژول"
 
-#: template/admin/index.phtml:9
+#: template/admin/index.phtml:11
 msgid "Go to set up module configs;"
 msgstr "به بخش پیکربندی در تنظیمات ماژول بروید."
 
-#: template/admin/index.phtml:10
+#: template/admin/index.phtml:13
 msgid "System admin"
 msgstr "مدیر سیستم"
 
-#: template/admin/index.phtml:10
+#: template/admin/index.phtml:13
 msgid "Go back to system dashboard."
 msgstr "به داشبورد سیستم باز گردید."
 
-#: template/admin/member-index.phtml:6
+#: template/admin/member-index.phtml:7
 msgid "Add a member"
 msgstr "یک عضو اضافه کنید"
 
-#: template/admin/member-index.phtml:11
+#: template/admin/member-index.phtml:12
 msgid "Select a role: "
 msgstr "یک نقش انتخاب کنید:"
 
-#: template/admin/member-index.phtml:24 template/admin/role.phtml:21
+#: template/admin/member-index.phtml:28 template/admin/role.phtml:21
 msgid "Name"
 msgstr "نام"
 
-#: template/admin/member-index.phtml:26
+#: template/admin/member-index.phtml:30
 msgid "Front role"
 msgstr "نقش سمت کاربر"
 
-#: template/admin/member-index.phtml:27
+#: template/admin/member-index.phtml:31
 msgid "Admin role"
 msgstr "نقش سمت مدیر"
 
-#: template/admin/member-index.phtml:28 template/admin/role.phtml:25
+#: template/admin/member-index.phtml:32 template/admin/role.phtml:25
 msgid "Active"
 msgstr "فعال"
 
-#: template/admin/member-index.phtml:43
+#: template/admin/member-index.phtml:50
 msgid "Not set"
 msgstr "تنظیم نشده"
 
-#: template/admin/member-index.phtml:46
+#: template/admin/member-index.phtml:53
 msgid "Yes"
 msgstr "بله"
 
-#: template/admin/member-index.phtml:46
+#: template/admin/member-index.phtml:53
 msgid "No"
 msgstr "خیر"
 
@@ -2086,18 +2118,18 @@ msgid "Icon"
 msgstr "آیکون"
 
 #: template/admin/module-available.phtml:10 template/admin/module-index.phtml:8
-#: template/admin/theme-available.phtml:23 template/admin/theme-index.phtml:56
+#: template/admin/theme-available.phtml:23 template/admin/theme-index.phtml:63
 #: template/admin/theme-installed.phtml:29
 msgid "Version"
 msgstr "نسخه"
 
-#: template/admin/module-available.phtml:34 template/admin/module-index.phtml:36
-#: template/admin/theme-available.phtml:18 template/admin/theme-index.phtml:53
+#: template/admin/module-available.phtml:34 template/admin/module-index.phtml:40
+#: template/admin/theme-available.phtml:18 template/admin/theme-index.phtml:60
 #: template/admin/theme-installed.phtml:22
 msgid "Detail"
 msgstr "جزییات"
 
-#: template/admin/module-available.phtml:37 template/admin/module-index.phtml:40
+#: template/admin/module-available.phtml:37 template/admin/module-index.phtml:44
 msgid "Directory:"
 msgstr "شاخه"
 
@@ -2106,23 +2138,23 @@ msgstr "شاخه"
 msgid "Install"
 msgstr "نصب"
 
-#: template/admin/module-category.phtml:38
+#: template/admin/module-category.phtml:39
 msgid "Assign to:"
 msgstr "تخصیص به"
 
-#: template/admin/module-category.phtml:56
+#: template/admin/module-category.phtml:58
 msgid "Edit this category"
 msgstr "ویرایش این طبقه"
 
-#: template/admin/module-category.phtml:59
+#: template/admin/module-category.phtml:62
 msgid "Delete this category"
 msgstr "حذف این طبقه"
 
-#: template/admin/module-category.phtml:73
+#: template/admin/module-category.phtml:78
 msgid "Remove"
 msgstr "حذف"
 
-#: template/admin/module-category.phtml:92
+#: template/admin/module-category.phtml:98
 msgid "Sort modules"
 msgstr "مرتب‌سازی ماژول‌ها"
 
@@ -2130,23 +2162,23 @@ msgstr "مرتب‌سازی ماژول‌ها"
 msgid "Last Update"
 msgstr "آخرین به روز رسانی"
 
-#: template/admin/module-index.phtml:28
+#: template/admin/module-index.phtml:32
 msgid "Rename"
 msgstr "تغییر نام"
 
-#: template/admin/module-index.phtml:38
+#: template/admin/module-index.phtml:42
 msgid "Name:"
 msgstr "نام"
 
-#: template/admin/module-index.phtml:42
+#: template/admin/module-index.phtml:46
 msgid "Author"
 msgstr "نویسنده"
 
-#: template/admin/module-index.phtml:58 template/admin/theme-installed.phtml:26
+#: template/admin/module-index.phtml:62 template/admin/theme-installed.phtml:26
 msgid "Update"
 msgstr "به روز رسانی"
 
-#: template/admin/module-index.phtml:62
+#: template/admin/module-index.phtml:66
 msgid ""
 "Are you sure to update all module? make sure have backup from your website "
 "before use this option"
@@ -2154,23 +2186,23 @@ msgstr ""
 "آیا اطمینان دارید که میخواهید تمام ماژول ها را به صورت هم زمان به روز کنید؟ "
 "لطفا قبل از این عمل از اطلاعات خود نسخه پشتیبان تهیه فرمایید"
 
-#: template/admin/module-index.phtml:62
+#: template/admin/module-index.phtml:66
 msgid "Update all"
 msgstr "به روز رسانی همه"
 
-#: template/admin/module-index.phtml:70
+#: template/admin/module-index.phtml:75
 msgid "Disable"
 msgstr "غیرفعال سازی"
 
-#: template/admin/module-index.phtml:72
+#: template/admin/module-index.phtml:77
 msgid "Enable"
 msgstr "فعال‌سازی"
 
-#: template/admin/module-index.phtml:75
+#: template/admin/module-index.phtml:80
 msgid "Are you sure to uninstall this module?"
 msgstr "مطمئنید که می‌خواهید این ماژول را حذف کنید."
 
-#: template/admin/module-index.phtml:75 template/admin/theme-installed.phtml:20
+#: template/admin/module-index.phtml:80 template/admin/theme-installed.phtml:20
 msgid "Uninstall"
 msgstr "آن اینستال"
 
@@ -2207,71 +2239,71 @@ msgstr ""
 "ویرایش هر گزینه حتما همان گزینه را ذخیره نمایید و در انتها با استفاده از دکمه "
 "آبی رنگ بالای صفحه کل تغییرات منو را مجدد ذخیره نمایید."
 
-#: template/admin/nav-data.phtml:17
+#: template/admin/nav-data.phtml:18
 msgid "Only click this button to save data"
 msgstr "این دکمه را برای ذخیره‌سازی داده کلیک کنید"
 
-#: template/admin/nav-data.phtml:18
+#: template/admin/nav-data.phtml:19
 msgid "Save menu"
 msgstr "منوی ذخیره سازی"
 
-#: template/admin/nav-data.phtml:26
+#: template/admin/nav-data.phtml:27
 msgid "Add to menu"
 msgstr "اضافه کردن به منو"
 
-#: template/admin/nav-data.phtml:35
+#: template/admin/nav-data.phtml:36
 msgid "This navgation is only for viewing"
 msgstr "این منو تنها برای مشاهده است."
 
-#: template/admin/nav-data.phtml:43
+#: template/admin/nav-data.phtml:44
 msgid "Click to toggle edit"
 msgstr "کلیک برای ویرایش"
 
-#: template/admin/nav-data.phtml:55
+#: template/admin/nav-data.phtml:56
 msgid "Label"
 msgstr "برچسب"
 
-#: template/admin/nav-data.phtml:61
+#: template/admin/nav-data.phtml:62
 msgid "Url"
 msgstr "آدرس"
 
-#: template/admin/nav-data.phtml:63
+#: template/admin/nav-data.phtml:65
 msgid "Page link by url or by the after of route"
 msgstr "لینک صفحه با یو آر ال و یا با مسیر یاب"
 
-#: template/admin/nav-data.phtml:67
+#: template/admin/nav-data.phtml:69
 msgid "Target"
 msgstr "هدف"
 
-#: template/admin/nav-data.phtml:70
+#: template/admin/nav-data.phtml:73
 msgid "None"
 msgstr "هیچ کدام"
 
-#: template/admin/nav-data.phtml:71
+#: template/admin/nav-data.phtml:75
 msgid "_blank"
 msgstr "خالی"
 
-#: template/admin/nav-data.phtml:84
+#: template/admin/nav-data.phtml:89
 msgid "To display in menu."
 msgstr "برای نمایش دادن منو"
 
-#: template/admin/nav-data.phtml:89
+#: template/admin/nav-data.phtml:94
 msgid "Page link by route"
 msgstr "لینک به صفحه با مسیر یاب"
 
-#: template/admin/nav-data.phtml:94
+#: template/admin/nav-data.phtml:99
 msgid "Route"
 msgstr "مسیر یاب"
 
-#: template/admin/nav-data.phtml:100
+#: template/admin/nav-data.phtml:106
 msgid "Controller"
 msgstr "کنترل کننده"
 
-#: template/admin/nav-data.phtml:110
+#: template/admin/nav-data.phtml:117
 msgid "Module"
 msgstr "ماژول"
 
-#: template/admin/nav-data.phtml:427
+#: template/admin/nav-data.phtml:440
 msgid "You have made unsaved changes. Would you still like to leave this page?"
 msgstr ""
 "تغییراتی که انجام داده‌اید ذخیره نشده‌اند، آیا می‌خواهید این صفحه را ترک کنید؟"
@@ -2284,35 +2316,35 @@ msgstr "راه اندازی"
 msgid "Related"
 msgstr "مرتبط"
 
-#: template/admin/nav-index.phtml:20
+#: template/admin/nav-index.phtml:24
 msgid "None to use"
 msgstr "چیزی برای استفاده وجود ندارد."
 
-#: template/admin/nav-index.phtml:31
+#: template/admin/nav-index.phtml:36
 msgid "Set global"
 msgstr "تنظیم سراسری"
 
-#: template/admin/nav-index.phtml:43
+#: template/admin/nav-index.phtml:48
 msgid "View"
 msgstr "نمایش"
 
-#: template/admin/nav-index.phtml:82
+#: template/admin/nav-index.phtml:87
 msgid "Are you sure to delete this navigation"
 msgstr "آیا از پاک کردن این منو مطمئن هستید؟"
 
-#: template/admin/page-block.phtml:165 template/admin/role.phtml:31
+#: template/admin/page-block.phtml:192 template/admin/role.phtml:31
 msgid "Submit"
 msgstr "ثبت"
 
-#: template/admin/page-block.phtml:171 template/admin/page-block.phtml:172
+#: template/admin/page-block.phtml:198 template/admin/page-block.phtml:199
 msgid "Available Themes"
 msgstr "قالب‌های موجود"
 
-#: template/admin/page-list.phtml:31
+#: template/admin/page-list.phtml:34
 msgid "Dress up"
 msgstr "چیدن"
 
-#: template/admin/page-list.phtml:86
+#: template/admin/page-list.phtml:89
 msgid "Are you sure to delete the page?"
 msgstr "آیا مطمئنید قصد دارید این صفحه را حذف کنید؟"
 
@@ -2385,7 +2417,7 @@ msgstr "این نام نقش از پیش گرفته شده است"
 msgid "Are you sure to delete this role?"
 msgstr "آیا مطمئن هستید که می‌خواهید این نقش را پاک کنید؟"
 
-#: template/admin/theme-available.phtml:10 template/admin/theme-index.phtml:47
+#: template/admin/theme-available.phtml:10 template/admin/theme-index.phtml:53
 #: template/admin/theme-installed.phtml:12
 msgid "Click To preview"
 msgstr "برای بازبینی کلیک کنید"
@@ -2394,15 +2426,15 @@ msgstr "برای بازبینی کلیک کنید"
 msgid "Check"
 msgstr "بررسی"
 
-#: template/admin/theme-index.phtml:23
+#: template/admin/theme-index.phtml:27
 msgid "Theme in use"
 msgstr "قالب فعلی"
 
-#: template/admin/theme-index.phtml:40
+#: template/admin/theme-index.phtml:46
 msgid "Themes available to use"
 msgstr "قالب‌های در دسترس برای استفاده"
 
-#: template/admin/theme-index.phtml:52
+#: template/admin/theme-index.phtml:59
 msgid "Apply"
 msgstr "به کار بستن"
 
@@ -2413,6 +2445,12 @@ msgstr "قالب با موفقیت به روز شد"
 #: template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr "آیا مطمئنید می‌خواهید این قالب را آن اینستال کنید؟"
+
+#~ msgid "Website local"
+#~ msgstr "کد بومی سازی وب سایت"
+
+#~ msgid "Set website local, like en_GB"
+#~ msgstr "تنظیم کد بومی سازی وب سایت ، مشابه en_GB"
 
 #~ msgid "JavaScript"
 #~ msgstr "جاوا اسکریپت"
