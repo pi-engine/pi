@@ -1,50 +1,51 @@
 <?php
-    $this->css($this->assetModule('admin/admin.css'));
-    $this->jQuery();
-    $this->backbone();
-?> 
+$this->css($this->assetModule('admin/admin.css'));
+$this->jQuery();
+$this->backbone();
+?>
 <div id="page-list-page" class="page-list-page">
     <form method="POST">
         <?php foreach ($pagesBySection as $section => $data) { ?>
-        <fieldset>
-            <legend><?php echo $data['title']; ?></legend>
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th style="width: 40%;"><?php echo _a('Title'); ?></th>
-                    <th><?php echo _a('Expiration'); ?></th>
-                    <th><?php echo _a('Granularity'); ?></th>
-                    <th><?php echo _a('Scope'); ?></th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($data['pages'] as $page) { ?>
-                <tr data-id="<?php echo $page['id']; ?>">
-                    <td>
-                        <?php echo _escape($page['title']); ?>
-                    </td>
-                    <td>
-                        <?php echo $page['ttl']; ?>
-                    </td>
-                    <td>
-                        <?php echo $page['level']; ?>
-                    </td>
-                    <td>
-                        <?php echo $page['type']; ?>
-                    </td>
-                    <td>
-                        <?php if (!empty($page['is_module']) && 'front' == $section) { ?>
-                            <input type="submit" class="btn btn-default btn-primary" name="force" value="<?php echo _a('Force for all pages'); ?>">
-                            <input type="hidden" name="page" value="<?php echo $page['id']; ?>">
-                        <?php } ?>
-                        &nbsp;
-                    </td>
-                </tr>
-                <?php } ?>
-             </tbody>
-            </table>
-        </fieldset>
+            <fieldset>
+                <legend><?php echo $data['title']; ?></legend>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th style="width: 40%;"><?php echo _a('Title'); ?></th>
+                        <th><?php echo _a('Expiration'); ?></th>
+                        <th><?php echo _a('Granularity'); ?></th>
+                        <th><?php echo _a('Scope'); ?></th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($data['pages'] as $page) { ?>
+                        <tr data-id="<?php echo $page['id']; ?>">
+                            <td>
+                                <?php echo _escape($page['title']); ?>
+                            </td>
+                            <td>
+                                <?php echo $page['ttl']; ?>
+                            </td>
+                            <td>
+                                <?php echo $page['level']; ?>
+                            </td>
+                            <td>
+                                <?php echo $page['type']; ?>
+                            </td>
+                            <td>
+                                <?php if (!empty($page['is_module']) && 'front' == $section) { ?>
+                                    <input type="submit" class="btn btn-default btn-primary" name="force"
+                                           value="<?php echo _a('Force for all pages'); ?>">
+                                    <input type="hidden" name="page" value="<?php echo $page['id']; ?>">
+                                <?php } ?>
+                                &nbsp;
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </fieldset>
         <?php } ?>
         <input type="submit" class="btn btn-default btn-primary" name="submit" value="<?php _e('Submit'); ?>">
         <input type="reset" class="btn btn-default" name="cancel" value="<?php _e('Cancel'); ?>">

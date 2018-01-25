@@ -11,7 +11,6 @@ namespace Module\System\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Debug\Debug;
 
 /**
  * Test cases controller
@@ -31,23 +30,24 @@ class TestController extends ActionController
         return;
 
         //$this->view()->setTemplate(false);
-        $content = array();
+        $content = [];
 
-        $url = Pi::service('url')->assemble('', array('action' => 'index'), array('fragment' => '!/test'));
+        $url = Pi::service('url')->assemble('', ['action' => 'index'], ['fragment' => '!/test']);
         echo $url;
 
-        $text = <<<EOT
+        $text
+                                 = <<<EOT
         Test for user and tag:
             @admin tested tag #good# ok?
 EOT;
         $content['User and tag'] = Pi::service('markup')->render($text);
 
-        $url = '/user/profile';
-        $routeMatch = Pi::service('url')->route($url);
+        $url            = '/user/profile';
+        $routeMatch     = Pi::service('url')->route($url);
         $content['URL'] = $routeMatch;
 
         $content['site name'] = __('site name');
-        $content['locale'] = Pi::service('i18n')->locale
+        $content['locale']    = Pi::service('i18n')->locale
             . ' ' . Pi::service('i18n')->charset;
 
         //Pi::service('user')->test('ss');
@@ -81,21 +81,21 @@ EOT;
         $this->redirect()->toRoute('home');
         return;
 
-        $args = array(rand(), 'var1', 'var, val and exp');
+        $args = [rand(), 'var1', 'var, val and exp'];
         Pi::service('audit')->log('full', $args);
         Pi::service('audit')->log('csv', $args);
         Pi::service('audit')->log('lean', $args);
         Pi::service('audit')->log('test', $args);
 
-        $args = array(rand(), 'var2', 'var, val and exp');
+        $args = [rand(), 'var2', 'var, val and exp'];
         Pi::service('audit')->log('full', $args);
         Pi::service('audit')->log('csv', $args);
         Pi::service('audit')->log('lean', $args);
         Pi::service('audit')->log('test', $args);
 
-        Pi::service('audit')->attach('custom', array(
-            'file'  => Pi::path('log') . '/custom.csv'
-        ));
+        Pi::service('audit')->attach('custom', [
+            'file' => Pi::path('log') . '/custom.csv',
+        ]);
         Pi::service('audit')->log('custom', $args);
 
         $this->view()->setTemplate(false);
@@ -113,23 +113,23 @@ EOT;
 
         $this->view()->setTemplate(false);
 
-        $to = array(
-            Pi::config('adminmail') => Pi::config('adminname'),
-            'infomax@gmail.com'             => 'Pi GMail',
-            'taiwenjiang@tsinghua.org.cn'   => 'Pi THU',
-        );
-        $vars = array(
-            'username'      => 'Pier',
-            'sn'            => _date(),
-        );
+        $to   = [
+            Pi::config('adminmail')       => Pi::config('adminname'),
+            'infomax@gmail.com'           => 'Pi GMail',
+            'taiwenjiang@tsinghua.org.cn' => 'Pi THU',
+        ];
+        $vars = [
+            'username' => 'Pier',
+            'sn'       => _date(),
+        ];
 
         // Load from text template
         $data = Pi::service('mail')->template('mail-text', $vars);
 
         // Set subject and body
         $subject = $data['subject'];
-        $body = $data['body'];
-        $type = $data['format'];
+        $body    = $data['body'];
+        $type    = $data['format'];
         // Set message
         $message = Pi::service('mail')->message($subject, $body, $type);
         $message->addTo($to);
@@ -160,8 +160,8 @@ EOT;
         $data = Pi::service('mail')->template('mail-html', $vars);
         // Set subject and body
         $subject = $data['subject'];
-        $body = $data['body'];
-        $type = $data['format'];
+        $body    = $data['body'];
+        $type    = $data['format'];
         // Set message
         $message = Pi::service('mail')->message();
         $message->addTo($to);
@@ -177,8 +177,8 @@ EOT;
         $data = Pi::service('mail')->template('mail-body', $vars);
         // Set subject and body
         $subject = sprintf(__('Greetings in raw body %d'), time());
-        $body = $data['body'];
-        $type = '';
+        $body    = $data['body'];
+        $type    = '';
         // Set message
         $message = Pi::service('mail')->message();
         $message->addTo($to);

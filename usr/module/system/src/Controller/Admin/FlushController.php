@@ -33,29 +33,29 @@ class FlushController extends ActionController
     {
         $type = $this->params('type');
 
-        $cacheList = array(
-            'stat'          => _a('File status cache'),
-            'apc'           => _a('APC file cache'),
-            'file'          => _a('System cache files'),
-            'persist'       => _a('System persistent data'),
-            'module'        => _a('Module cache'),
-            'comment'       => _a('Comment cache'),
-        );
+        $cacheList = [
+            'stat'    => _a('File status cache'),
+            'apc'     => _a('APC file cache'),
+            'file'    => _a('System cache files'),
+            'persist' => _a('System persistent data'),
+            'module'  => _a('Module cache'),
+            'comment' => _a('Comment cache'),
+        ];
         if (!function_exists('apc_clear_cache')) {
             unset($cacheList['apc']);
         } elseif (class_exists('\\APCIterator')) {
             $apcIterator = new \APCIterator('file');
-            $size = $apcIterator->getTotalSize();
-            foreach (array('','K','M','G') as $i => $k) {
+            $size        = $apcIterator->getTotalSize();
+            foreach (['', 'K', 'M', 'G'] as $i => $k) {
                 if ($size < 1024) break;
                 $size /= 1024;
             }
-            $totalSize = sprintf("%5.1f %s", $size, $k);
-            $totalCount = $apcIterator->getTotalCount();
+            $totalSize        = sprintf("%5.1f %s", $size, $k);
+            $totalCount       = $apcIterator->getTotalCount();
             $cacheList['apc'] .= ' (' . $totalCount . '-' . $totalSize . ')';
         }
-        $cacheStorageClass = get_class(Pi::service('cache')->storage());
-        $cacheStorageName = substr(
+        $cacheStorageClass        = get_class(Pi::service('cache')->storage());
+        $cacheStorageName         = substr(
             $cacheStorageClass,
             strrpos($cacheStorageClass, '\\') + 1
         );
@@ -74,13 +74,13 @@ class FlushController extends ActionController
                 $cacheStorage = Pi::service('cache')->storage();
             }
             $cacheStorageClass = get_class($cacheStorage);
-            $cacheStorageName = substr(
+            $cacheStorageName  = substr(
                 $cacheStorageClass,
                 strrpos($cacheStorageClass, '\\') + 1
             );
-            $page['title'] = sprintf(_a('Page cache [%s]'), $cacheStorageName);
-            $modules = Pi::service('module')->meta();
-            $page['modules'] = array_keys($modules);
+            $page['title']     = sprintf(_a('Page cache [%s]'), $cacheStorageName);
+            $modules           = Pi::service('module')->meta();
+            $page['modules']   = array_keys($modules);
             $this->view()->assign('page', $page);
         }
 
@@ -106,17 +106,17 @@ class FlushController extends ActionController
 
         try {
             Pi::service('cache')->flush($type, $item);
-            $status = 1;
+            $status  = 1;
             $message = _a('Cache is flushed successfully.');
         } catch (\Exception $e) {
-            $status = 0;
+            $status  = 0;
             $message = sprintf(_a('Cache flush failed: %s'), $e->getMessage());
         }
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+        ];
     }
 
     /**
@@ -143,7 +143,7 @@ class FlushController extends ActionController
      */
     protected function flushFolder()
     {
-        $path = Pi::path('cache');
+        $path     = Pi::path('cache');
         $iterator = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator($path),
             \RecursiveIteratorIterator::CHILD_FIRST

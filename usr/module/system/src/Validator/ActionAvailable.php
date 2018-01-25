@@ -9,7 +9,6 @@
 
 namespace Module\System\Validator;
 
-use Pi;
 use Zend\Validator\AbstractValidator;
 
 /**
@@ -27,9 +26,9 @@ class ActionAvailable extends AbstractValidator
      */
     public function __construct($options = null)
     {
-        $this->messageTemplates = array(
+        $this->messageTemplates = [
             static::ACTION_UNAVAILABLE => __('The action is not available.'),
-        );
+        ];
         parent::__construct($options);
     }
 
@@ -44,16 +43,16 @@ class ActionAvailable extends AbstractValidator
     {
         $this->setValue($value);
 
-        $module = $context['module'];
+        $module     = $context['module'];
         $controller = $context['controller'];
-        $action = $value;
+        $action     = $value;
 
         $controllerClass = sprintf(
             'Module\\%s\Controller\Front\\%sController',
             ucfirst($module),
             ucfirst($controller)
         );
-        $actionMethod = $action . 'Action';
+        $actionMethod    = $action . 'Action';
         if (!method_exists($controllerClass, $actionMethod)) {
             $this->error(static::ACTION_UNAVAILABLE);
             return false;

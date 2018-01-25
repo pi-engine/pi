@@ -22,32 +22,32 @@ class FindPasswordForm extends BaseForm
 
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name'       => 'email',
-            'options'    => array(
+            'options'    => [
                 'label' => __('Email'),
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'text',
-            ),
-        ));
+            ],
+        ]);
 
         $captchaMode = Pi::user()->config('register_captcha');
-        if($captchaElement = Pi::service('form')->getReCaptcha($captchaMode)){
+        if ($captchaElement = Pi::service('form')->getReCaptcha($captchaMode)) {
             $this->add($captchaElement);
         }
 
-        $this->add(array(
+        $this->add([
             'name' => 'security',
             'type' => 'csrf',
-        ));
+        ]);
 
-        $this->add(array(
-            'name'  => 'submit',
-            'type'  => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Find password'),
-            ),
-        ));
+            ],
+        ]);
     }
 }

@@ -42,7 +42,7 @@ class Block extends AbstractApi
             unset($root['id']);
         }
 
-        return array($block, $root);
+        return [$block, $root];
     }
 
     /**
@@ -53,17 +53,17 @@ class Block extends AbstractApi
      */
     public function add($block)
     {
-        $return = array(
-            'status'    => 0,
-            'message'   => '',
-            'id'        => 0,
-            'root'      => 0,
-        );
+        $return = [
+            'status'  => 0,
+            'message' => '',
+            'id'      => 0,
+            'root'    => 0,
+        ];
         list($block, $root) = $this->canonize($block);
 
-        $module = (string) $block['module'];
+        $module     = (string)$block['module'];
         $modelBlock = Pi::model('block');
-        $modelRoot = Pi::model('block_root');
+        $modelRoot  = Pi::model('block_root');
 
         // Create block root for module block
         if ($module && empty($block['root'])) {
@@ -75,7 +75,7 @@ class Block extends AbstractApi
                     return $return;
                 }
                 $return['root'] = $rowRoot->id;
-                $block['root'] = $rowRoot->id;
+                $block['root']  = $rowRoot->id;
             }
 
             // Create block view
@@ -83,9 +83,9 @@ class Block extends AbstractApi
                 ? $module . $this->moduleSeparator . $block['name'] : null;
         }
 
-        $config = array();
+        $config = [];
         if (!isset($block['config'])) {
-            $block['config'] = array();
+            $block['config'] = [];
         }
         foreach ($block['config'] as $name => $data) {
             $config[$name] = is_scalar($data)
@@ -105,16 +105,16 @@ class Block extends AbstractApi
         }
 
         // Build permission rules
-        $roles = array('guest', 'member');
+        $roles = ['guest', 'member'];
         foreach ($roles as $role) {
-            Pi::service('permission')->grantPermission($role, array(
-                'section'   => 'front',
-                'module'    => $module,
-                'resource'  => 'block-' . $rowBlock->id
-            ));
+            Pi::service('permission')->grantPermission($role, [
+                'section'  => 'front',
+                'module'   => $module,
+                'resource' => 'block-' . $rowBlock->id,
+            ]);
         }
         $return['status'] = 1;
-        $return['id'] = $rowBlock->id;
+        $return['id']     = $rowBlock->id;
 
         return $return;
     }
@@ -131,7 +131,7 @@ class Block extends AbstractApi
     public function update($entity, $block)
     {
         $modelBlock = Pi::model('block');
-        $modelRoot = Pi::model('block_root');
+        $modelRoot  = Pi::model('block_root');
         if ($entity instanceof RowGateway) {
             $rootRow = $entity;
         } else {
@@ -140,8 +140,8 @@ class Block extends AbstractApi
 
         list($block, $root) = $this->canonize($block);
 
-        $configRemove = array();
-        $configAdd = array();
+        $configRemove = [];
+        $configAdd    = [];
         if (isset($block['config'])) {
             /*
             if (!isset($block['config'])) {
@@ -171,20 +171,20 @@ class Block extends AbstractApi
             $status = false;
         }
 
-        $update = array(
-            'render'        => isset($block['render']) ? $block['render'] : '',
-            'cache_level'   => isset($block['cache_level']) ? $block['cache_level'] : '',
+        $update = [
+            'render'      => isset($block['render']) ? $block['render'] : '',
+            'cache_level' => isset($block['cache_level']) ? $block['cache_level'] : '',
             //'content'       => isset($block['content']) ? $block['content'] : '',
-        );
+        ];
 
         // Update cloned blocks
-        $blockList = $modelBlock->select(array('root' => $rootRow->id));
+        $blockList = $modelBlock->select(['root' => $rootRow->id]);
         foreach ($blockList as $blockRow) {
             $blockRow->assign($update);
 
             // Update config
             if (isset($block['config'])) {
-                $blockConfig = (array) $blockRow->config;
+                $blockConfig = (array)$blockRow->config;
                 if ($configRemove) {
                     foreach ($configRemove as $name) {
                         unset($blockConfig[$name]);
@@ -205,7 +205,7 @@ class Block extends AbstractApi
         }
 
         // Update title , description , template and content for non-cloned blocks
-        $updates = array();
+        $updates = [];
         if (isset($block['title'])) {
             $updates['title'] = $block['title'];
         }
@@ -219,16 +219,16 @@ class Block extends AbstractApi
             $updates['content'] = $block['content'];
         }
         if ($updates) {
-            $modelBlock->update($updates, array(
-                'root'      => $rootRow->id,
-                'cloned'    => 0,
-            ));
+            $modelBlock->update($updates, [
+                'root'   => $rootRow->id,
+                'cloned' => 0,
+            ]);
         }
 
-        return array(
-            'status'    => 1,
-            'message'   => '',
-        );
+        return [
+            'status'  => 1,
+            'message' => '',
+        ];
     }
 
     /**
@@ -240,14 +240,14 @@ class Block extends AbstractApi
      */
     public function delete($entity, $isRoot = false)
     {
-        $return = array(
-            'status'    => 0,
-            'message'   => '',
-        );
-        $modelBlock = Pi::model('block');
-        $modelRoot = Pi::model('block_root');
-        $modelRule = Pi::model('permission_rule');
-        $modelPage = Pi::model('page');
+        $return         = [
+            'status'  => 0,
+            'message' => '',
+        ];
+        $modelBlock     = Pi::model('block');
+        $modelRoot      = Pi::model('block_root');
+        $modelRule      = Pi::model('permission_rule');
+        $modelPage      = Pi::model('page');
         $modelPageBlock = Pi::model('page_block');
 
         if ($entity instanceof RowGateway) {
@@ -262,32 +262,32 @@ class Block extends AbstractApi
         if ($isRoot) {
             // delete root from block_root table
             try {
-                $status = $modelRoot->delete(array('id' => $rootId));
+                $status = $modelRoot->delete(['id' => $rootId]);
             } catch (\Exception $e) {
                 $return['message'] = 'Block root is not deleted: ' . $e->getMessage();
                 return $return;
             }
 
-            $rowset = $modelBlock->select(array('root' => $rootId));
+            $rowset = $modelBlock->select(['root' => $rootId]);
         } elseif ($entity instanceof RowGateway) {
-            $rowset = array($entity);
+            $rowset = [$entity];
         } else {
-            $rowset = $modelBlock->select(array('id' => $entity));
+            $rowset = $modelBlock->select(['id' => $entity]);
         }
 
         foreach ($rowset as $blockRow) {
             try {
-                $status = $modelBlock->delete(array('id' => $blockRow->id));
+                $status = $modelBlock->delete(['id' => $blockRow->id]);
             } catch (\Exception $e) {
                 $return['message'] = 'Block is not deleted: '
-                                   . $e->getMessage();
+                    . $e->getMessage();
                 return $return;
             }
 
             // delete from rule table
             try {
                 $status = $modelRule->delete(
-                    array('resource' => 'block-' . $blockRow->id, 'section' => 'front')
+                    ['resource' => 'block-' . $blockRow->id, 'section' => 'front']
                 );
             } catch (\Exception $e) {
                 $return['message'] = 'Permission rules are not deleted: ' . $e->getMessage();
@@ -296,9 +296,9 @@ class Block extends AbstractApi
 
             // delete page-block links from page_block table
             $rowsetPage = $modelPageBlock->select(
-                array('block' => $blockRow->id)
+                ['block' => $blockRow->id]
             );
-            $pages = array();
+            $pages      = [];
             foreach ($rowsetPage as $row) {
                 $pages[$row->page] = 1;
                 try {
@@ -312,9 +312,9 @@ class Block extends AbstractApi
             if (isset($pages[0])) {
                 Pi::registry('block')->flush();
             } else {
-                $modules = array();
+                $modules = [];
                 foreach (array_keys($pages) as $page) {
-                    $row = $modelPage->find($page);
+                    $row                   = $modelPage->find($page);
                     $modules[$row->module] = 1;
                 }
                 foreach (array_keys($modules) as $mod) {
@@ -354,9 +354,9 @@ class Block extends AbstractApi
             $status = false;
         }
 
-        return array(
-            'status'    => 1,
-            'message'   => '',
-        );
+        return [
+            'status'  => 1,
+            'message' => '',
+        ];
     }
 }

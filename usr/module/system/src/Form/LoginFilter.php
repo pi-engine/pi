@@ -9,7 +9,6 @@
 
 namespace Module\System\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**
@@ -26,31 +25,31 @@ class LoginFilter extends InputFilter
      */
     public function __construct(array $config)
     {
-        $this->add(array(
-            'name'          => 'identity',
-            'required'      => true,
-        ));
+        $this->add([
+            'name'     => 'identity',
+            'required' => true,
+        ]);
 
-        $this->add(array(
-            'name'          => 'credential',
-            'required'      => true,
-            'filters'    => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'     => 'credential',
+            'required' => true,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
         if (!empty($config['rememberme'])) {
-            $this->add(array(
-                'name'      => 'rememberme',
-                'required'  => false,
-            ));
+            $this->add([
+                'name'     => 'rememberme',
+                'required' => false,
+            ]);
         }
 
-        $this->add(array(
-            'name'      => 'redirect',
-            'required'  => false,
-        ));
+        $this->add([
+            'name'     => 'redirect',
+            'required' => false,
+        ]);
     }
 }

@@ -33,8 +33,8 @@ class SitemapController extends ActionController
         $this->view()->setTemplate(false)->setLayout('layout-content');
         $sitemapConfig = Pi::registry('navigation')->read('sitemap')
             ?: Pi::registry('navigation')->read('front');
-        $sitemap = $this->view()->navigation($sitemapConfig)->sitemap();
-        $content = $sitemap->setFormatOutput(true)->render();
+        $sitemap       = $this->view()->navigation($sitemapConfig)->sitemap();
+        $content       = $sitemap->setFormatOutput(true)->render();
 
         return $content;
     }

@@ -20,24 +20,24 @@ class FindPasswordFilter extends InputFilter
 {
     public function __construct()
     {
-        $this->add(array(
-            'name' => 'email',
-            'required' => true,
-            'filters' => array(
-                array(
+        $this->add([
+            'name'       => 'email',
+            'required'   => true,
+            'filters'    => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-            'validators' => array(
-                array(
-                    'name' => 'EmailAddress',
-                    'options' => array(
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'EmailAddress',
+                    'options' => [
                         'useMxCheck'     => false,
                         'useDeepMxCheck' => false,
                         'useDomainCheck' => false,
-                    ),
-                ),
-            ),
-        ));
+                    ],
+                ],
+            ],
+        ]);
     }
 }

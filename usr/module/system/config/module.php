@@ -12,36 +12,36 @@
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
+return [
     // Module meta
-    'meta'  => array(
+    'meta'     => [
         // Module title, required
-        'title'         => _a('System'),
+        'title'       => _a('System'),
         // Description, for admin, optional
-        'description'   =>
+        'description' =>
             _a('For administration of core functions of the site.'),
         // Version number, required
-        'version'       => '3.6.2',
+        'version'     => '3.6.3',
         // Distribution license, required
-        'license'       => 'New BSD',
+        'license'     => 'New BSD',
         // Logo image, for admin, optional
-        'logo'          => 'image/logo.png',
+        'logo'        => 'image/logo.png',
         // Readme file, for admin, optional
-        'readme'        => 'docs/readme.txt',
+        'readme'      => 'docs/readme.txt',
         // Direct download link, available for wget, optional
         //'download'      => 'http://dl.xoopsengine.org/core',
         // Demo site link, optional
-        'demo'          => 'http://piengine.org',
+        'demo'        => 'http://piengine.org',
 
         // Module is ready for clone? Default as false
-        'clonable'      => false,
+        'clonable'    => false,
         //font-awesome: http://fontawesome.io/icons/
-        'icon'          => 'fa-tachometer'
-    ),
+        'icon'        => 'fa-tachometer',
+    ],
     // Author information
-    'author'    => array(
+    'author'   => [
         // Author full name, required
-        'Dev'      => 'Taiwen Jiang; Liu Chuang; Liaowei; Zongshu Lin',
+        'Dev'       => 'Taiwen Jiang; Liu Chuang; Liaowei; Zongshu Lin',
         'Architect' => '@taiwen',
         'UI/UE'     => '@zhangsimon, @loidco, @voltan, Zeng Long',
         'QA'        => '@MarcoXoops, Zhang Hua, @lavenderli',
@@ -50,28 +50,28 @@ return array(
         // Website link, optional
         'Website'   => 'http://piengine.org',
         // Credits and aknowledgement, optional
-        'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
-    ),
+        'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.',
+    ],
     // Resource
-    'resource' => array(
+    'resource' => [
         // Database meta
-        'database'      => array(
+        'database'   => [
             // SQL schema/data file
-            'sqlfile'   => 'sql/mysql.sql',
-        ),
+            'sqlfile' => 'sql/mysql.sql',
+        ],
         // System config
-        'config'        => 'config.php',
+        'config'     => 'config.php',
         // Permission specs
-        'permission'    => 'permission.php',
+        'permission' => 'permission.php',
         // Block definition
-        'block'         => 'block.php',
+        'block'      => 'block.php',
         // Event specs
-        'event'         => 'event.php',
+        'event'      => 'event.php',
         // View pages
-        'page'          => 'page.php',
+        'page'       => 'page.php',
         // Navigation definition
-        'navigation'    => 'nav.php',
+        'navigation' => 'nav.php',
         // Routes, first in last out; bigger priority earlier out
-        'route'         => 'route.php',
-    ),
-);
+        'route'      => 'route.php',
+    ],
+];

@@ -20,16 +20,16 @@ use Zend\Validator\AbstractValidator;
 class BlockNameDuplicate extends AbstractValidator
 {
     /** @var string */
-    const TAKEN        = 'blockExists';
+    const TAKEN = 'blockExists';
 
     /**
      * {@inheritDoc}
      */
     public function __construct($options = null)
     {
-        $this->messageTemplates = array(
-            static::TAKEN     => __('Block name already exists'),
-        );
+        $this->messageTemplates = [
+            static::TAKEN => __('Block name already exists'),
+        ];
         parent::__construct($options);
     }
 
@@ -45,7 +45,7 @@ class BlockNameDuplicate extends AbstractValidator
         $this->setValue($value);
 
         if (null !== $value) {
-            $where = array('name' => $value);
+            $where = ['name' => $value];
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }

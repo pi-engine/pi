@@ -27,15 +27,15 @@ class Event extends AbstractApi
     public function moduleinstall($data)
     {
         $model = Pi::model('update', $this->module);
-        $data = array(
-            'title'     => sprintf(__('Module `%s` installed'), $data),
-            'content'   => sprintf(
+        $data  = [
+            'title'   => sprintf(__('Module `%s` installed'), $data),
+            'content' => sprintf(
                 __('The module `%s` is installed successfully.'),
                 $data
             ),
-            'uri'       => Pi::url('www', true),
-            'time'      => time(),
-        );
+            'uri'     => Pi::url('www', true),
+            'time'    => time(),
+        ];
         $model->insert($data);
     }
 
@@ -47,15 +47,15 @@ class Event extends AbstractApi
     public function moduleuninstall($data)
     {
         $model = Pi::model('update', $this->module);
-        $data = array(
-            'title'     => sprintf(__('Module `%s` uninstalled'), $data),
-            'content'   => sprintf(
+        $data  = [
+            'title'   => sprintf(__('Module `%s` uninstalled'), $data),
+            'content' => sprintf(
                 __('The module `%s` is uninstalled successfully.'),
                 $data
             ),
-            'uri'       => Pi::url('www', true),
-            'time'      => time(),
-        );
+            'uri'     => Pi::url('www', true),
+            'time'    => time(),
+        ];
         $model->insert($data);
     }
 
@@ -67,15 +67,15 @@ class Event extends AbstractApi
     public function moduleupdate($data)
     {
         $model = Pi::model('update', $this->module);
-        $row = array(
-            'title'     => sprintf(__('Module `%s` updated'), $data),
-            'content'   => sprintf(
+        $row   = [
+            'title'   => sprintf(__('Module `%s` updated'), $data),
+            'content' => sprintf(
                 __('The module `%s` is updated successfully.'),
                 $data
             ),
-            'uri'       => Pi::url('www', true),
-            'time'      => time(),
-        );
+            'uri'     => Pi::url('www', true),
+            'time'    => time(),
+        ];
         $model->insert($row);
     }
 
@@ -87,15 +87,15 @@ class Event extends AbstractApi
     public function moduleactivate($data)
     {
         $model = Pi::model('update', $this->module);
-        $data = array(
-            'title'     => sprintf(__('Module `%s` activated'), $data),
-            'content'   => sprintf(
+        $data  = [
+            'title'   => sprintf(__('Module `%s` activated'), $data),
+            'content' => sprintf(
                 __('The module `%s` is activated successfully.'),
                 $data
             ),
-            'uri'       => Pi::url('www', true),
-            'time'      => time(),
-        );
+            'uri'     => Pi::url('www', true),
+            'time'    => time(),
+        ];
         $model->insert($data);
     }
 
@@ -107,15 +107,15 @@ class Event extends AbstractApi
     public function moduledeactivate($data)
     {
         $model = Pi::model('update', $this->module);
-        $data = array(
-            'title'     => sprintf(__('Module %s deactivated'), $data),
-            'content'   => sprintf(
+        $data  = [
+            'title'   => sprintf(__('Module %s deactivated'), $data),
+            'content' => sprintf(
                 __('The module %s is deactivated successfully.'),
                 $data
             ),
-            'uri'       => Pi::url('www', true),
-            'time'      => time(),
-        );
+            'uri'     => Pi::url('www', true),
+            'time'    => time(),
+        ];
         $model->insert($data);
     }
 }

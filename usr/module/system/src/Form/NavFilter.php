@@ -9,7 +9,6 @@
 
 namespace Module\System\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**
@@ -24,36 +23,36 @@ class NavFilter extends InputFilter
      */
     public function __construct()
     {
-        $this->add(array(
-            'name'          => 'name',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'Regex',
-                    'options'   => array(
-                        'pattern'   => '/[a-z0-9_]/',
-                    ),
-                ),
+        $this->add([
+            'name'       => 'name',
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'Regex',
+                    'options' => [
+                        'pattern' => '/[a-z0-9_]/',
+                    ],
+                ],
                 new \Module\System\Validator\NavNameDuplicate(),
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'title',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'    => 'title',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'section',
-        ));
+        $this->add([
+            'name' => 'section',
+        ]);
 
         /*
         $this->add(array(
@@ -61,14 +60,14 @@ class NavFilter extends InputFilter
         ));
         */
 
-        $this->add(array(
-            'name'          => 'id',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'id',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'parent',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'parent',
+            'required' => false,
+        ]);
     }
 }

@@ -1,32 +1,32 @@
 <?php
-$this->angular(array(
-  'angular-route.js',
-  'angular-sanitize.js',
-  'pi.js'
-));
+$this->angular([
+    'angular-route.js',
+    'angular-sanitize.js',
+    'pi.js',
+]);
 ?>
 <script>
-angular.module('system', ['ngRoute', 'ngSanitize', 'pi'])
-.constant('config', {
-    urlRoot: '<?php echo $this->url('', array('controller' => 'theme')); ?>',
-    bootstrapLessUrl: '<?php echo Pi::url('public/vendor/bootstrap/less/'); ?>',
-    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
-    data: {
-      custom: <?php echo json_encode($custom); ?>,
-      name: '<?php echo $name; ?>',
-    },
-    t: {
-        COMPILING: '<?php _e('In process of compiling'); ?>',
-        COMPILE: '<?php _e('Compile'); ?>',
-        RESET: '<?php _e('Rebuild'); ?>'
-    }
-});
-less = {
-    env: '<?php echo Pi::environment(); ?>'
-};
+    angular.module('system', ['ngRoute', 'ngSanitize', 'pi'])
+        .constant('config', {
+            urlRoot: '<?php echo $this->url('', ['controller' => 'theme']); ?>',
+            bootstrapLessUrl: '<?php echo Pi::url('public/vendor/bootstrap/less/'); ?>',
+            assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+            data: {
+                custom: <?php echo json_encode($custom); ?>,
+                name: '<?php echo $name; ?>',
+            },
+            t: {
+                COMPILING: '<?php _e('In process of compiling'); ?>',
+                COMPILE: '<?php _e('Compile'); ?>',
+                RESET: '<?php _e('Rebuild'); ?>'
+            }
+        });
+    less = {
+        env: '<?php echo Pi::environment(); ?>'
+    };
 </script>
-<script src="<?php echo Pi::url('static/js/less.min.js');?>"></script>
-<script src="<?php echo Pi::url('static/js/markdown.min.js');?>"></script>
-<script src="<?php echo Pi::url('static/js/bs-lessdoc-parser.js');?>"></script>
+<script src="<?php echo Pi::url('static/js/less.min.js'); ?>"></script>
+<script src="<?php echo Pi::url('static/js/markdown.min.js'); ?>"></script>
+<script src="<?php echo Pi::url('static/js/bs-lessdoc-parser.js'); ?>"></script>
 <script src="<?php echo $this->assetModule('admin/theme-customize.js'); ?>"></script>
 

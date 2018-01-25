@@ -9,8 +9,8 @@
 
 namespace Module\System\Api;
 
-use Pi;
 use Module\System\Api\AbstractUser as AbstractUseApi;
+use Pi;
 use Pi\Db\Sql\Where;
 use Pi\User\Model\System as UserModel;
 
@@ -30,29 +30,29 @@ class User extends AbstractUseApi
     /**
      * Get fields specs of specific type and action
      *
-     * @param string $type      Not used
-     * @param string $action    Not used
+     * @param string $type Not used
+     * @param string $action Not used
      * @return array
      * @api
      */
     public function getMeta($type = '', $action = '')
     {
-        $meta = array(
-            'identity'      => array(),
-            'credential'    => array(),
-            'salt'          => array(),
-            'email'         => array(),
-            'name'          => array(),
-            'avatar'        => array(),
-            'birthdate'     => array(),
-            'gender'        => array(),
-            'active'        => array(),
+        $meta = [
+            'identity'   => [],
+            'credential' => [],
+            'salt'       => [],
+            'email'      => [],
+            'name'       => [],
+            'avatar'     => [],
+            'birthdate'  => [],
+            'gender'     => [],
+            'active'     => [],
 
-            'time_created'      => array(),
-            'time_activated'    => array(),
-            'time_disabled'     => array(),
-            'time_deleted'      => array(),
-        );
+            'time_created'   => [],
+            'time_activated' => [],
+            'time_disabled'  => [],
+            'time_deleted'   => [],
+        ];
 
         return $meta;
     }
@@ -61,7 +61,7 @@ class User extends AbstractUseApi
      * Get user model
      *
      * @param int|string|array $uid
-     * @param string    $field
+     * @param string $field
      *
      * @return UserModel|null
      */
@@ -78,20 +78,21 @@ class User extends AbstractUseApi
     /**
      * Get user IDs subject to conditions
      *
-     * @param array|Where   $condition
-     * @param int           $limit
-     * @param int           $offset
-     * @param string        $order
+     * @param array|Where $condition
+     * @param int $limit
+     * @param int $offset
+     * @param string $order
      * @return int[]
      * @api
      */
     public function getUids(
-        $condition  = array(),
-        $limit      = 0,
-        $offset     = 0,
-        $order      = ''
-    ) {
-        $result = array();
+        $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = ''
+    )
+    {
+        $result = [];
 
         if ($condition instanceof Where) {
             $where = $condition;
@@ -104,8 +105,8 @@ class User extends AbstractUseApi
         }
 
         $modelAccount = Pi::model('user_account');
-        $select = $modelAccount->select();
-        $select->columns(array('id'));
+        $select       = $modelAccount->select();
+        $select->columns(['id']);
         $select->where($where);
         if ($order) {
             $select->order($order);
@@ -118,7 +119,7 @@ class User extends AbstractUseApi
         }
         $rowset = $modelAccount->selectWith($select);
         foreach ($rowset as $row) {
-            $result[] = (int) $row['id'];
+            $result[] = (int)$row['id'];
         }
 
         return $result;
@@ -128,13 +129,14 @@ class User extends AbstractUseApi
      * {@inheritDoc}
      */
     public function getList(
-        $condition  = array(),
-        $limit      = 0,
-        $offset     = 0,
-        $order      = '',
-        $field      = array()
-    ) {
-        $result = array();
+        $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = '',
+        $field = []
+    )
+    {
+        $result = [];
 
         if ($condition instanceof Where) {
             $where = $condition;
@@ -147,8 +149,8 @@ class User extends AbstractUseApi
         }
 
         $modelAccount = Pi::model('user_account');
-        $select = $modelAccount->select();
-        $select->columns(array('id'));
+        $select       = $modelAccount->select();
+        $select->columns(['id']);
         $select->where($where);
         if ($order) {
             $select->order($order);
@@ -161,7 +163,7 @@ class User extends AbstractUseApi
         }
         $rowset = $modelAccount->selectWith($select);
         foreach ($rowset as $row) {
-            $result[] = (int) $row['id'];
+            $result[] = (int)$row['id'];
         }
 
         return $result;
@@ -170,12 +172,12 @@ class User extends AbstractUseApi
     /**
      * Get user count subject to conditions
      *
-     * @param array|Where  $condition
+     * @param array|Where $condition
      *
      * @return int
      * @api
      */
-    public function getCount($condition = array())
+    public function getCount($condition = [])
     {
         if ($condition instanceof Where) {
             $where = $condition;
@@ -204,8 +206,8 @@ class User extends AbstractUseApi
     /**
      * Add a user with full set of data
      *
-     * @param   array   $data
-     * @param   bool    $setRole
+     * @param   array $data
+     * @param   bool $setRole
      *
      * @return  int
      * @api
@@ -218,8 +220,8 @@ class User extends AbstractUseApi
     /**
      * Update a user
      *
-     * @param   int         $uid
-     * @param   array       $data
+     * @param   int $uid
+     * @param   array $data
      *
      * @return  bool
      * @api
@@ -232,7 +234,7 @@ class User extends AbstractUseApi
     /**
      * Delete a user
      *
-     * @param   int         $uid
+     * @param   int $uid
      * @return  bool|null   Null for no-action
      * @api
      */
@@ -244,7 +246,7 @@ class User extends AbstractUseApi
     /**
      * Activate a user account
      *
-     * @param   int         $uid
+     * @param   int $uid
      * @return  bool|null   Null for no-action
      * @api
      */
@@ -256,7 +258,7 @@ class User extends AbstractUseApi
     /**
      * Enable a user
      *
-     * @param   int     $uid
+     * @param   int $uid
      *
      * @return  bool|null   Null for no-action
      * @api
@@ -269,7 +271,7 @@ class User extends AbstractUseApi
     /**
      * Disable a user
      *
-     * @param   int     $uid
+     * @param   int $uid
      *
      * @return  bool|null   Null for no-action
      * @api
@@ -282,27 +284,28 @@ class User extends AbstractUseApi
     /**
      * Get field value(s) of a user field(s)
      *
-     * @param int|int[]         $uid
-     * @param string|string[]   $field
-     * @param bool              $filter
-     * @param bool              $activeOnly
+     * @param int|int[] $uid
+     * @param string|string[] $field
+     * @param bool $filter
+     * @param bool $activeOnly
      *
      * @return mixed|mixed[]
      * @api
      */
     public function get(
         $uid,
-        $field      = array(),
-        $filter     = false,
+        $field = [],
+        $filter = false,
         $activeOnly = false
-    ) {
+    )
+    {
         if (!$uid) {
             return false;
         }
 
-        $result = array();
-        $uids   = (array) $uid;
-        $fields   = $field ? (array) $field : array_keys($this->getMeta());
+        $result = [];
+        $uids   = (array)$uid;
+        $fields = $field ? (array)$field : array_keys($this->getMeta());
 
         /*
         $activeMarked = false;
@@ -335,13 +338,13 @@ class User extends AbstractUseApi
         */
 
         if (is_scalar($uid)) {
-            $result = isset($result[$uid]) ? $result[$uid] : array();
+            $result = isset($result[$uid]) ? $result[$uid] : [];
             if (is_scalar($field)) {
-                $result = isset($result[$field]) ? $result[$field] : array();
+                $result = isset($result[$field]) ? $result[$field] : [];
             }
         } elseif (is_scalar($field)) {
             foreach ($result as $id => &$data) {
-                $data = isset($data[$field]) ? $data[$field] : array();
+                $data = isset($data[$field]) ? $data[$field] : [];
             }
         }
 
@@ -351,20 +354,21 @@ class User extends AbstractUseApi
     /**
      * Get field value(s) of users
      *
-     * @param int[]             $uids
-     * @param string|string[]   $field
-     * @param bool              $filter
-     * @param bool              $activeOnly
+     * @param int[] $uids
+     * @param string|string[] $field
+     * @param bool $filter
+     * @param bool $activeOnly
      *
      * @return mixed[]
      * @api
      */
     public function mget(
         array $uids,
-        $field = array(),
+        $field = [],
         $filter = false,
         $activeOnly = false
-    ) {
+    )
+    {
         $result = $this->get($uids, $field, $filter, $activeOnly);
 
         return $result;
@@ -373,15 +377,15 @@ class User extends AbstractUseApi
     /**
      * Set value of a user field
      *
-     * @param int       $uid
-     * @param string    $field
-     * @param mixed     $value
+     * @param int $uid
+     * @param string $field
+     * @param mixed $value
      * @return bool
      * @api
      */
     public function set($uid, $field, $value)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
@@ -390,7 +394,7 @@ class User extends AbstractUseApi
         if (!$row) {
             $result = false;
         } else {
-            $row->assign(array($field => $value));
+            $row->assign([$field => $value]);
             try {
                 $row->save();
                 $result = true;
@@ -405,8 +409,8 @@ class User extends AbstractUseApi
     /**
      * Set user role(s)
      *
-     * @param int           $uid
-     * @param string|array  $role
+     * @param int $uid
+     * @param string|array $role
      *
      * @return bool
      */
@@ -418,7 +422,7 @@ class User extends AbstractUseApi
     /**
      * Revoke user role(s)
      *
-     * @param int          $uid
+     * @param int $uid
      * @param string|array $role
      *
      * @return bool
@@ -431,8 +435,8 @@ class User extends AbstractUseApi
     /**
      * Get user role
      *
-     * @param int    $uid
-     * @param string $section   Section name: admin, front
+     * @param int $uid
+     * @param string $section Section name: admin, front
      *
      * @return string|array
      */
@@ -450,7 +454,7 @@ class User extends AbstractUseApi
      */
     public function canonizeField(array $fields)
     {
-        $meta = array();
+        $meta      = [];
         $fieldMeta = $this->getMeta();
         foreach ($fields as $field) {
             if (isset($fieldMeta[$field])) {
@@ -464,13 +468,13 @@ class User extends AbstractUseApi
     /**
      * Canonize user full set data or for a specific type
      *
-     * @param array     $rawData
-     * @param string    $type
+     * @param array $rawData
+     * @param string $type
      * @return array
      */
     public function canonizeUser(array $rawData, $type = '')
     {
-        $result = array();
+        $result = [];
 
         $fields = $this->getMeta();
         foreach ($rawData as $key => $value) {
@@ -545,8 +549,8 @@ class User extends AbstractUseApi
      * and reset `time_disabled`; only enabled account can be disabled,
      * set `active` to false and set `time_disabled`.
      *
-     * @param int   $uid
-     * @param bool  $flag
+     * @param int $uid
+     * @param bool $flag
      *
      * @return bool|null   Null for no-action
      */
@@ -559,8 +563,8 @@ class User extends AbstractUseApi
      * Get a type of field value(s) of a list of user
      *
      * @param int[]|int $uid
-     * @param string[]  $fields
-     * @param bool      $filter     To filter for display
+     * @param string[] $fields
+     * @param bool $filter To filter for display
      * @param bool $activeOnly
      *
      * @return array|bool
@@ -568,16 +572,17 @@ class User extends AbstractUseApi
      */
     public function getFields(
         $uid,
-        $fields = array(),
+        $fields = [],
         $filter = false,
         $activeOnly = false
-    ) {
+    )
+    {
         if (!$uid) {
             return false;
         }
 
-        $result = array();
-        $uids   = (array) $uid;
+        $result = [];
+        $uids   = (array)$uid;
         if (!$fields) {
             $fields = array_keys($this->getMeta());
         } else {
@@ -585,16 +590,16 @@ class User extends AbstractUseApi
         }
 
         $primaryKey = 'id';
-        $fields[] = $primaryKey;
-        $where = array($primaryKey => $uids);
+        $fields[]   = $primaryKey;
+        $where      = [$primaryKey => $uids];
         if ($activeOnly) {
             $where['active'] = 1;
         }
-        $model = Pi::model('user_account');
+        $model  = Pi::model('user_account');
         $select = $model->select()->where($where)->columns($fields);
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $id = (int) $row[$primaryKey];
+            $id = (int)$row[$primaryKey];
             if ($filter) {
                 $result[$id] = $row->filter($fields);
             } else {
@@ -605,10 +610,10 @@ class User extends AbstractUseApi
             if (isset($result[$uid])) {
                 $result = $result[$uid];
             } else {
-                $result = array();
+                $result = [];
             }
         } else {
-            $sorted = array();
+            $sorted = [];
             foreach ($uid as $id) {
                 $sorted[$id] = $result[$id];
             }

@@ -9,9 +9,7 @@
 
 namespace Module\System\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
-use Zend\InputFilter\InputFilter;
 
 /**
  * Config form
@@ -37,8 +35,8 @@ class ConfigForm extends BaseForm
      */
     public function __construct($configs, $module)
     {
-        $this->module   = $module;
-        $this->configs  = $configs;
+        $this->module  = $module;
+        $this->configs = $configs;
         parent::__construct($this->name);
     }
 
@@ -51,13 +49,13 @@ class ConfigForm extends BaseForm
             $this->addElement($config);
         }
 
-        $this->add(array(
-            'name'  => 'submit',
-            'type'  => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            )
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -79,20 +77,20 @@ class ConfigForm extends BaseForm
      */
     protected function addElement($config)
     {
-        $attributes = isset($config->edit['attributes'])
-            ? $config->edit['attributes'] : array();
-        $attributes['value'] = $config->value;
+        $attributes                = isset($config->edit['attributes'])
+            ? $config->edit['attributes'] : [];
+        $attributes['value']       = $config->value;
         $attributes['description'] = __($config->description);
 
-        $options = array(
-            'label'     => __($config->title),
-            'module'    => $this->module,
-        );
+        $options = [
+            'label'  => __($config->title),
+            'module' => $this->module,
+        ];
         if (!empty($config->edit['options'])) {
             $options = array_merge($config->edit['options'], $options);
         }
 
-        $valueOptions = array();
+        $valueOptions = [];
         if (isset($options['options'])) {
             $valueOptions = $options['options'];
             unset($options['options']);
@@ -108,11 +106,11 @@ class ConfigForm extends BaseForm
             $options['value_options'] = $valueOptions;
         }
 
-        $element = array(
-            'name'          => $config->name,
-            'attributes'    => $attributes,
-            'options'       => $options,
-        );
+        $element = [
+            'name'       => $config->name,
+            'attributes' => $attributes,
+            'options'    => $options,
+        ];
         if (!empty($config->edit['type'])) {
             $element['type'] = $config->edit['type'];
         }
@@ -127,15 +125,15 @@ class ConfigForm extends BaseForm
      */
     protected function addFilter($config)
     {
-        $filter = array(
-            'name'          => $config->name,
-            'required'      => false,
-            'filters'    => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        );
+        $filter = [
+            'name'     => $config->name,
+            'required' => false,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ];
 
         $this->getInputFilter()->add($filter);
     }

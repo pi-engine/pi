@@ -9,9 +9,9 @@
 
 namespace Module\System\Controller\Admin;
 
-use Pi;
 use Module\System\Controller\ComponentController;
 use Module\System\Form\BlockModuleForm;
+use Pi;
 use Zend\Db\Sql\Predicate\Expression;
 
 /**
@@ -47,24 +47,24 @@ class BlockController extends ComponentController
      */
     protected function getModules()
     {
-        $model = Pi::model('block');
-        $select = $model->select()->group('module')
-            ->columns(array('count' => new Expression('count(*)'), 'module'));
-        $rowset = $model->selectWith($select);
-        $blockCounts = array();
+        $model       = Pi::model('block');
+        $select      = $model->select()->group('module')
+            ->columns(['count' => new Expression('count(*)'), 'module']);
+        $rowset      = $model->selectWith($select);
+        $blockCounts = [];
         foreach ($rowset as $row) {
             $blockCounts[$row->module] = $row->count;
         }
 
         // Get module list
-        $modules = array();
-        $moduleSet = Pi::model('module')->select(array('active' => 1));
+        $modules   = [];
+        $moduleSet = Pi::model('module')->select(['active' => 1]);
         foreach ($moduleSet as $row) {
             if (!empty($blockCounts[$row->name])) {
-                $modules[] = array(
+                $modules[] = [
                     'name'  => $row->name,
                     'title' => $row->title . ' (' . $blockCounts[$row->name] . ')',
-                );
+                ];
             }
         }
 
@@ -86,49 +86,49 @@ class BlockController extends ComponentController
         }
 
         // BLocks of the module
-        $model = Pi::model('block');
-        $select = $model->select()->where(array('module' => $name))
-            ->order(array('id ASC'));
+        $model  = Pi::model('block');
+        $select = $model->select()->where(['module' => $name])
+            ->order(['id ASC']);
         $rowset = $model->selectWith($select);
-        $blocks = array();
-        $list   = array();
+        $blocks = [];
+        $list   = [];
         foreach ($rowset as $row) {
-            $list[$row->id] = array(
-                'id'            => $row->id,
-                'name'          => $row->name,
-                'title'         => $row->title,
-                'description'   => $row->description,
-                'module'        => $row->module,
-                'root'          => $row->root,
-                'cloned'        => $row->cloned,
-                'type'          => $row->type,
+            $list[$row->id] = [
+                'id'          => $row->id,
+                'name'        => $row->name,
+                'title'       => $row->title,
+                'description' => $row->description,
+                'module'      => $row->module,
+                'root'        => $row->root,
+                'cloned'      => $row->cloned,
+                'type'        => $row->type,
                 //'clonable'      => $row->render ? true : false,
-                'clonable'      => true,
-            );
+                'clonable'    => true,
+            ];
         }
         ksort($list);
         array_walk($list, function ($item) use (&$blocks, $name) {
             $item['previewUrl'] = $this->url(
                 'default',
-                array('module' => 'widget'),
-                array('query' => array('block' => $item['id']))
+                ['module' => 'widget'],
+                ['query' => ['block' => $item['id']]]
             );
-            $item['editUrl'] = $this->url('', array(
-                'action'    => 'edit',
-                'id'        => $item['id'],
-                'name'      => $name
-            ));
-            $item['deleteUrl'] = $this->url('', array(
-                'action'    => 'delete',
-                'id'        => $item['id'],
-                'name'      => $name
-            ));
-            $item['cloneUrl'] = $this->url('', array(
-                'action'    => 'clone',
-                'id'        => $item['id'],
-                'name'      => $name
-            ));
-            $blocks[] = $item;
+            $item['editUrl']    = $this->url('', [
+                'action' => 'edit',
+                'id'     => $item['id'],
+                'name'   => $name,
+            ]);
+            $item['deleteUrl']  = $this->url('', [
+                'action' => 'delete',
+                'id'     => $item['id'],
+                'name'   => $name,
+            ]);
+            $item['cloneUrl']   = $this->url('', [
+                'action' => 'clone',
+                'id'     => $item['id'],
+                'name'   => $name,
+            ]);
+            $blocks[]           = $item;
         });
 
         $this->view()->assign('blocks', $blocks);
@@ -145,20 +145,20 @@ class BlockController extends ComponentController
     public function cloneAction()
     {
         if ($this->request->isPost()) {
-            $data       = $this->request->getPost();
-            $base       = $data['id'];
-            $baseRow    = Pi::model('block')->find($base);
+            $data    = $this->request->getPost();
+            $base    = $data['id'];
+            $baseRow = Pi::model('block')->find($base);
             if (!$baseRow) {
                 $message = _a('Base block is not found.');
                 $this->jump(
-                    array('action' => 'index'),
+                    ['action' => 'index'],
                     $message,
                     'error'
                 );
                 return;
             }
-            $root       = $baseRow->root;
-            $rootRow    = Pi::model('block_root')->find($root);
+            $root    = $baseRow->root;
+            $rootRow = Pi::model('block_root')->find($root);
             /*
             if (!$rootRow->render) {
                 $message = _a('The block is not allowed to clone.');
@@ -176,7 +176,7 @@ class BlockController extends ComponentController
                 $values = $baseRow->toArray();
                 $values = array_replace($values, $form->getData());
                 //$values = $form->getData();
-                $values['cloned']   = 1;
+                $values['cloned'] = 1;
                 //$values['root']     = $rootRow->id;
                 //$values['module']   = $rootRow->module;
                 //$values['render']   = $rootRow->render;
@@ -187,7 +187,7 @@ class BlockController extends ComponentController
                 if (!empty($result['status'])) {
                     $message = _a('Block data saved successfully.');
                     $this->jump(
-                        array('action' => 'index', 'name' => $rootRow->module),
+                        ['action' => 'index', 'name' => $rootRow->module],
                         $message
                     );
                     return;
@@ -198,18 +198,18 @@ class BlockController extends ComponentController
                 $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
-            $base       = $this->params('id');
-            $baseRow    = Pi::model('block')->find($base);
+            $base    = $this->params('id');
+            $baseRow = Pi::model('block')->find($base);
             if (!$baseRow) {
                 $message = _a('Base block is not found.');
                 $this->jump(
-                    array('action' => 'index'),
+                    ['action' => 'index'],
                     $message,
                     'error'
                 );
                 return;
             }
-            $root = $baseRow->root;
+            $root    = $baseRow->root;
             $rootRow = Pi::model('block_root')->find($root);
             /*
             if (!$rootRow->render) {
@@ -247,7 +247,7 @@ class BlockController extends ComponentController
             $form->setData($data);
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'clone'))
+                $this->url('', ['action' => 'clone'])
             );
             $message = '';
         }
@@ -269,10 +269,10 @@ class BlockController extends ComponentController
     public function editAction()
     {
         if ($this->request->isPost()) {
-            $data       = $this->request->getPost();
-            $id         = $data['id'];
-            $blockRow   = Pi::model('block')->find($id);
-            $rootRow    = Pi::model('block_root')->find($blockRow->root);
+            $data     = $this->request->getPost();
+            $id       = $data['id'];
+            $blockRow = Pi::model('block')->find($id);
+            $rootRow  = Pi::model('block_root')->find($blockRow->root);
 
             $form = new BlockModuleForm('block-edit', $rootRow, $blockRow->cloned);
             $form->setData($data);
@@ -284,7 +284,7 @@ class BlockController extends ComponentController
                 }
                 // Start add by voltan
                 if (isset($rootRow->config) && !empty($rootRow->config)) {
-                    $values['config'] = array();
+                    $values['config'] = [];
                     foreach ($rootRow->config as $name => $field) {
                         if (isset($values[$name])) {
                             $values['config'][$name] = $values[$name];
@@ -293,10 +293,10 @@ class BlockController extends ComponentController
                     }
                 }
                 // End add by voltan
-                $result = Pi::api('block', 'system')->updateBlock($blockRow, $values);
+                $result  = Pi::api('block', 'system')->updateBlock($blockRow, $values);
                 $message = _a('Block data saved successfully.');
                 $this->jump(
-                    array('action' => 'index', 'name' => $blockRow->module),
+                    ['action' => 'index', 'name' => $blockRow->module],
                     $message
                 );
                 return;
@@ -304,16 +304,16 @@ class BlockController extends ComponentController
                 $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
-            $id = $this->params('id');
+            $id       = $this->params('id');
             $blockRow = Pi::model('block')->find($id);
             if (!$blockRow) {
                 $message = _a('Block is not found.');
-                $this->jump(array('action' => 'index'), $message, 'error');
+                $this->jump(['action' => 'index'], $message, 'error');
                 return;
             }
             $rootRow = Pi::model('block_root')->find($blockRow->root);
-            $form = new BlockModuleForm('block-edit', $rootRow, $blockRow->cloned);
-            $values = $blockRow->toArray();
+            $form    = new BlockModuleForm('block-edit', $rootRow, $blockRow->cloned);
+            $values  = $blockRow->toArray();
             // Start add by voltan
             if (isset($values['config']) && !empty($values['config'])) {
                 foreach ($values['config'] as $name => $value) {
@@ -324,7 +324,7 @@ class BlockController extends ComponentController
             $form->setData($values);
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'edit'))
+                $this->url('', ['action' => 'edit'])
             );
             $message = '';
         }
@@ -346,11 +346,11 @@ class BlockController extends ComponentController
      */
     public function deleteAction()
     {
-        $id = $this->params('id');
+        $id     = $this->params('id');
         $result = Pi::api('block', 'system')->delete($id, false);
 
         $message = _a('Block is deleted.');
-        $this->jump(array('action' => 'index'), $message);
+        $this->jump(['action' => 'index'], $message);
     }
 
     /**
@@ -360,40 +360,40 @@ class BlockController extends ComponentController
      */
     public function pageAction()
     {
-        $pages = array();
-        $id = $this->params('id');
-        $rowset = Pi::model('page_block')->select(array('block' => $id));
-        $pageIds = array();
+        $pages   = [];
+        $id      = $this->params('id');
+        $rowset  = Pi::model('page_block')->select(['block' => $id]);
+        $pageIds = [];
         foreach ($rowset as $row) {
             $pageIds[] = $row->page;
         }
         if ($pageIds) {
 
-            $modules = Pi::registry('module')->read();
-            $select = Pi::model('page')->select()
-                ->where(array('id' => $pageIds))
-                ->order(array('module ASC', 'controller ASC', 'action ASC'));
-            $rowset = Pi::model('page')->selectWith($select);
-            $pageList = array();
+            $modules  = Pi::registry('module')->read();
+            $select   = Pi::model('page')->select()
+                ->where(['id' => $pageIds])
+                ->order(['module ASC', 'controller ASC', 'action ASC']);
+            $rowset   = Pi::model('page')->selectWith($select);
+            $pageList = [];
             foreach ($rowset as $row) {
-                $pageList[$row->module][] = array(
+                $pageList[$row->module][] = [
                     'title' => $row->title,
-                    'url'   => $this->url('', array(
-                        'controller'    => 'page',
-                        'action'        => 'block',
-                        'page'          => $row->id
-                    )),
-                );
+                    'url'   => $this->url('', [
+                        'controller' => 'page',
+                        'action'     => 'block',
+                        'page'       => $row->id,
+                    ]),
+                ];
             }
 
             foreach ($modules as $name => $data) {
                 if (!isset($pageList[$name])) {
                     continue;
                 }
-                $pages[$name] = array(
-                    'title'     => $data['title'],
-                    'pages'     => $pageList[$name],
-                );
+                $pages[$name] = [
+                    'title' => $data['title'],
+                    'pages' => $pageList[$name],
+                ];
             }
         }
 
