@@ -26,87 +26,87 @@ class RegisterForm extends BaseForm
     {
         $config = Pi::user()->config();
 
-        $this->add(array(
-            'name'          => 'identity',
-            'options'       => array(
+        $this->add([
+            'name'       => 'identity',
+            'options'    => [
                 'label' => __('User account'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
+            ],
+            'attributes' => [
+                'type'     => 'text',
                 'required' => true,
-            )
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'name',
-            'options'       => array(
+        $this->add([
+            'name'       => 'name',
+            'options'    => [
                 'label' => __('Display name'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
+            ],
+            'attributes' => [
+                'type'     => 'text',
                 'required' => true,
-            )
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'email',
-            'options'       => array(
+        $this->add([
+            'name'       => 'email',
+            'options'    => [
                 'label' => __('Email address'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
+            ],
+            'attributes' => [
+                'type'     => 'text',
                 'required' => true,
-            )
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'credential',
-            'options'       => array(
+        $this->add([
+            'name'       => 'credential',
+            'options'    => [
                 'label' => __('Password'),
-            ),
-            'attributes'    => array(
-                'type'  => 'password',
+            ],
+            'attributes' => [
+                'type'     => 'password',
                 'required' => true,
-            )
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'credential-confirm',
-            'options'       => array(
+        $this->add([
+            'name'       => 'credential-confirm',
+            'options'    => [
                 'label' => __('Confirm password'),
-            ),
-            'attributes'    => array(
-                'type'  => 'password',
+            ],
+            'attributes' => [
+                'type'     => 'password',
                 'required' => true,
-            )
-        ));
+            ],
+        ]);
 
         if ($config['register_captcha']) {
-            $this->add(array(
-                'name'          => 'captcha',
-                'type'          => 'captcha',
-                'options'       => array(
-                    'label'     => __('Please type the word.'),
-                    'separator'         => '<br />',
-                    'captcha_position'  => 'append',
-                ),
-                'attributes'    => array(
+            $this->add([
+                'name'       => 'captcha',
+                'type'       => 'captcha',
+                'options'    => [
+                    'label'            => __('Please type the word.'),
+                    'separator'        => '<br />',
+                    'captcha_position' => 'append',
+                ],
+                'attributes' => [
                     'required' => true,
-                )
-            ));
+                ],
+            ]);
         }
 
-        $this->add(array(
-            'name'  => 'security',
-            'type'  => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            )
-        ));
+            ],
+        ]);
     }
 }

@@ -9,9 +9,9 @@
 
 namespace Module\System\Controller\Admin;
 
+use Module\System\Controller\Front\LoginController as ActionController;
 use Pi;
 use Pi\Authentication\Result;
-use Module\System\Controller\Front\LoginController as ActionController;
 
 /**
  * Login/logout for admin
@@ -64,11 +64,11 @@ class LoginController extends ActionController
     protected function getConfig($name = '')
     {
         if (!$this->configs) {
-            $data = Pi::config('', '', 'admin');
-            $config = array();
+            $data   = Pi::config('', '', 'admin');
+            $config = [];
             array_walk($data, function ($value, $key) use (&$config) {
                 // Remove prefix of `admin_`
-                $key = substr($key, 6);
+                $key          = substr($key, 6);
                 $config[$key] = $value;
             });
             $loginDisable = Pi::config('admin_disable');

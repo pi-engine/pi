@@ -1,35 +1,35 @@
 <?php
-$this->angular(array(
+$this->angular([
     'angular-route.js',
-    'pi.js'
-));
+    'pi.js',
+]);
 ?>
 <script>
-angular
-    .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
-    .constant('config', {
-        urlRoot: '<?php echo $this->url('', array('controller' => 'dashboard')); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
-        data: {
-            messagePerm: <?php echo (int) $messagePerm; ?>,
-            message: <?php echo json_encode($message) ?>,
-            links: <?php echo json_encode($links); ?>,
-            summaryList: <?php echo json_encode($summaryList); ?>
-        },
-        t: {
-            DASHBOARD: '<?php echo _a('Dashboard', 'system:admin'); ?>',
-            EDIT: '<?php echo _a('Edit'); ?>',
-            ANNOUNCEMENT: '<?php echo _a('Announcement'); ?>',
-            SAVE: '<?php echo _a('Save'); ?>',
-            CANCEL: '<?php echo _a('Cancel'); ?>',
-            QUICKLINKS: '<?php echo _a('Quicklinks'); ?>',
-            TITLE: '<?php echo _a('Title'); ?>',
-            URL: '<?php echo _a('URL'); ?>',
-            SUMMARY: '<?php echo _a('Summary'); ?>',
-            POWEREDBY: '<?php echo _a('Powered by'); ?>',
-            POWEREDP1: '<?php echo _a('Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation and a successor to Xoops. Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to Zend Framework library, jQuery, Bootstrap and Backbone.');?>',
-            POWEREDP2: '<?php echo _a(' Pi Project follows the philosophy of open standard, open design, open development and open structure. Pi is born as a complete open source project and intended to build a sustainable ecosystem that benefits all contributors and users.');?>'
-        }
-   });
+    angular
+        .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
+        .constant('config', {
+            urlRoot: '<?php echo $this->url('', ['controller' => 'dashboard']); ?>',
+            assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+            data: {
+                messagePerm: <?php echo (int)$messagePerm; ?>,
+                message: <?php echo json_encode($message) ?>,
+                links: <?php echo json_encode($links); ?>,
+                summaryList: <?php echo json_encode($summaryList); ?>
+            },
+            t: {
+                DASHBOARD: '<?php echo _a('Dashboard', 'system:admin'); ?>',
+                EDIT: '<?php echo _a('Edit'); ?>',
+                ANNOUNCEMENT: '<?php echo _a('Announcement'); ?>',
+                SAVE: '<?php echo _a('Save'); ?>',
+                CANCEL: '<?php echo _a('Cancel'); ?>',
+                QUICKLINKS: '<?php echo _a('Quicklinks'); ?>',
+                TITLE: '<?php echo _a('Title'); ?>',
+                URL: '<?php echo _a('URL'); ?>',
+                SUMMARY: '<?php echo _a('Summary'); ?>',
+                POWEREDBY: '<?php echo _a('Powered by'); ?>',
+                POWEREDP1: '<?php echo _a('Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation and a successor to Xoops. Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to Zend Framework library, jQuery, Bootstrap and Backbone.');?>',
+                POWEREDP2: '<?php echo _a(' Pi Project follows the philosophy of open standard, open design, open development and open structure. Pi is born as a complete open source project and intended to build a sustainable ecosystem that benefits all contributors and users.');?>'
+            }
+        });
 </script>
 <script src="<?php echo $this->assetModule('admin/dashboard.js'); ?>"></script>

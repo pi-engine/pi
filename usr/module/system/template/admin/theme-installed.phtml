@@ -8,94 +8,94 @@ $this->js($this->assetModule('script/system-msg.js'));
 </div>
 <div class="row" id="js-theme"></div>
 <script id="temp-theme" type="text/template">
-<div class="thumbnail">
-    <img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php echo _a('Click To preview'); ?>">
-    <div class="caption">
-        <h5 class="clearfix">
-            <span class="pull-right label"><%= type %></span>
-            <%- title %>
-        </h5>
-        <div class="clearfix theme-actions" style="margin-left: -5px;">
-            <% if(name!="default") { %>
-            <span class="pull-right btn btn-default theme-uninstall"><?php echo _a('Uninstall'); ?></span>
-            <% } %>
-            <span class="btn btn-link theme-detail"><?php echo _a('Detail'); ?></span>
-            <span class="text-muted">|</span>
-            <span class="btn btn-link theme-Check"><?php echo _a('Check'); ?></span>
-            <span class="text-muted">|</span>
-            <span class="btn btn-link theme-update"><?php echo _a('Update'); ?></span>
+    <div class="thumbnail">
+        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>">
+        <div class="caption">
+            <h5 class="clearfix">
+                <span class="pull-right label"><%= type %></span>
+                <%- title %>
+            </h5>
+            <div class="clearfix theme-actions" style="margin-left: -5px;">
+                <% if(name!="default") { %>
+                <span class="pull-right btn btn-default theme-uninstall"><?php echo _a('Uninstall'); ?></span>
+                <% } %>
+                <span class="btn btn-link theme-detail"><?php echo _a('Detail'); ?></span>
+                <span class="text-muted">|</span>
+                <span class="btn btn-link theme-Check"><?php echo _a('Check'); ?></span>
+                <span class="text-muted">|</span>
+                <span class="btn btn-link theme-update"><?php echo _a('Update'); ?></span>
+            </div>
+            <dl class="hide">
+                <dt><?php echo _a('Version'); ?>
+                <dd><%= version %>
+                <dt><?php echo _a('Type'); ?>
+                <dd><%= type %>
+                <dt><?php echo _a('Description'); ?>
+                <dd><%= description %>
+                    <dl>
         </div>
-        <dl class="hide">
-            <dt><?php echo _a('Version'); ?>
-            <dd><%= version %>
-            <dt><?php echo _a('Type'); ?>
-            <dd><%= type %>
-            <dt><?php echo _a('Description'); ?>
-            <dd><%= description %>
-        <dl>  
-   </div>
-</div>
+    </div>
 </script>
 <script>
-var themeCollection = new Backbone.Collection(<?php echo json_encode(array_values($themes)) ?>);
-var ThemeItemView = Backbone.View.extend({
-    className: 'col-md-4',
-    template: _.template($('#temp-theme').html()),
-    events: {
-        'click .theme-check': 'check',
-        'click .theme-update': 'update',
-        'click .theme-uninstall': 'uninstall',
-        'click .theme-detail': 'toggleDetail'
-    },
-    initialize: function() {
-        this.model.on('destroy', this.remove, this);
-        this.model.on('change', this.render, this);
-    },
-    render: function() {
-        this.$el.html(this.template(this.model.toJSON()));
-        return this.el;
-    },
-    check: function() {
+    var themeCollection = new Backbone.Collection(<?php echo json_encode(array_values($themes)) ?>);
+    var ThemeItemView = Backbone.View.extend({
+        className: 'col-md-4',
+        template: _.template($('#temp-theme').html()),
+        events: {
+            'click .theme-check': 'check',
+            'click .theme-update': 'update',
+            'click .theme-uninstall': 'uninstall',
+            'click .theme-detail': 'toggleDetail'
+        },
+        initialize: function () {
+            this.model.on('destroy', this.remove, this);
+            this.model.on('change', this.render, this);
+        },
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this.el;
+        },
+        check: function () {
 
-    },
-    update:function() {
-        var url = '<?php echo $this->url('', array('action' => 'update', 'name' => '__NAME__')); ?>';
-        this.model.fetch({
-            url: url.replace('__NAME__', this.model.get('name')),
-            success: function() {
-                systemMessage.succ('<?php echo _a('Theme Updated successfully.')?>');
-            },
-            error: function() {
-                systemMessage.fail();
-            } 
-        });
-    },
-    uninstall: function() {
-        if (confirm('<?php echo _a('Are you sure to uninstall this theme ? ') ?>')) {
-            var url = '<?php echo $this->url('', array('action' => 'uninstall', 'name' => '__NAME__')); ?>';
-            this.model.destroy({
-               url: url.replace('__NAME__', this.model.get('name'))
+        },
+        update: function () {
+            var url = '<?php echo $this->url('', ['action' => 'update', 'name' => '__NAME__']); ?>';
+            this.model.fetch({
+                url: url.replace('__NAME__', this.model.get('name')),
+                success: function () {
+                    systemMessage.succ('<?php echo _a('Theme Updated successfully.')?>');
+                },
+                error: function () {
+                    systemMessage.fail();
+                }
             });
+        },
+        uninstall: function () {
+            if (confirm('<?php echo _a('Are you sure to uninstall this theme ? ') ?>')) {
+                var url = '<?php echo $this->url('', ['action' => 'uninstall', 'name' => '__NAME__']); ?>';
+                this.model.destroy({
+                    url: url.replace('__NAME__', this.model.get('name'))
+                });
+            }
+        },
+        toggleDetail: function () {
+            this.$('dl').toggleClass('hide');
         }
-    },
-    toggleDetail: function() {
-        this.$('dl').toggleClass('hide');
-    }
-});
-var ThemeListView = Backbone.View.extend({
-    el: $('#js-theme'),
-    initialize: function() {
-        this.render();
-    },
-    render: function() {
-        var el = this.$el,
-            m = themeCollection.models;
-        for (var i = 0, l = m.length; i < l; i++) {
-            el.append(new ThemeItemView({
-                model: m[i]
-            }).render());
+    });
+    var ThemeListView = Backbone.View.extend({
+        el: $('#js-theme'),
+        initialize: function () {
+            this.render();
+        },
+        render: function () {
+            var el = this.$el,
+                m = themeCollection.models;
+            for (var i = 0, l = m.length; i < l; i++) {
+                el.append(new ThemeItemView({
+                    model: m[i]
+                }).render());
+            }
         }
-    }
-});
-new ThemeListView;
+    });
+    new ThemeListView;
 </script>

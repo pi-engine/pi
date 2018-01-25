@@ -12,7 +12,6 @@ namespace Module\System\Controller\Admin;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Zend\Db\Sql\Predicate\Expression;
 
 /**
  * Audit controller
@@ -28,12 +27,12 @@ class AuditController extends ActionController
      */
     public function indexAction()
     {
-        $limit = (int) $this->params('count', 20);
-        $page = $this->params('p', 1);
+        $limit = (int)$this->params('count', 20);
+        $page  = $this->params('p', 1);
 
-        $model = Pi::model('audit');
-        $offset = (int) ($page - 1) * $limit;
-        $select = $model->select()->where(array())->order('id DESC')
+        $model  = Pi::model('audit');
+        $offset = (int)($page - 1) * $limit;
+        $select = $model->select()->where([])->order('id DESC')
             ->offset($offset)->limit($limit);
         $rowset = $model->selectWith($select);
 
@@ -44,16 +43,16 @@ class AuditController extends ActionController
         */
         $count = $model->count();
 
-        $paginator = Paginator::factory($count, array(
-            'limit' => $limit,
-            'page'  => $page,
-            'url_options'   => array(
-                'page_param'    => 'p',
-                'params'    => array(
+        $paginator = Paginator::factory($count, [
+            'limit'       => $limit,
+            'page'        => $page,
+            'url_options' => [
+                'page_param' => 'p',
+                'params'     => [
                     'count' => $limit,
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
         $this->view()->assign('count', $limit);
         $this->view()->assign('items', $rowset->toArray());

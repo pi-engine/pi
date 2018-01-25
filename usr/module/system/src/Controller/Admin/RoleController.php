@@ -9,12 +9,13 @@
 
 namespace Module\System\Controller\Admin;
 
-use Pi;
-use Pi\Mvc\Controller\ActionController;
-use Pi\Filter;
-//use Pi\Paginator\Paginator;
-use Module\System\Form\RoleForm;
 use Module\System\Form\RoleFilter;
+use Module\System\Form\RoleForm;
+use Pi;
+use Pi\Filter;
+use Pi\Mvc\Controller\ActionController;
+
+//use Pi\Paginator\Paginator;
 
 /**
  * Role controller
@@ -37,9 +38,10 @@ class RoleController extends ActionController
      *
      * @var string[]
      */
-    protected $roleColumns = array(
-        'id', 'section', 'custom', 'active', 'name', 'title'
-    );
+    protected $roleColumns
+        = [
+            'id', 'section', 'custom', 'active', 'name', 'title',
+        ];
 
     /**
      * Get role model
@@ -69,19 +71,19 @@ class RoleController extends ActionController
      */
     protected function getRoles($section = '')
     {
-        $roles = array();
+        $roles = [];
 
         $select = $this->model()->select();
         $select->order('title ASC');
         if ($section) {
-            $select->where(array('section' => $section));
+            $select->where(['section' => $section]);
         }
         $rowset = $this->model()->selectWith($select);
         foreach ($rowset as $row) {
-            $role = $row->toArray();
-            $role['active'] = (int) $role['active'];
-            $role['custom'] = (int) $role['custom'];
-            $roles[$row['name']] =$role;
+            $role                = $row->toArray();
+            $role['active']      = (int)$role['active'];
+            $role['custom']      = (int)$role['custom'];
+            $roles[$row['name']] = $role;
         }
 
         return $roles;
@@ -119,9 +121,9 @@ class RoleController extends ActionController
         }
         */
 
-        return array(
-            'roles'    => array_values($roles),
-        );
+        return [
+            'roles' => array_values($roles),
+        ];
     }
 
     /**
@@ -137,8 +139,8 @@ class RoleController extends ActionController
             $form->setInputFilter(new RoleFilter);
             $form->setData($data);
 
-            $status = 1;
-            $roleData = array();
+            $status   = 1;
+            $roleData = [];
             if ($form->isValid()) {
                 $values = $form->getData();
                 foreach (array_keys($values) as $key) {
@@ -149,7 +151,7 @@ class RoleController extends ActionController
                 $values['custom'] = 1;
                 unset($values['id']);
 
-                $filter = new Filter\Slug;
+                $filter         = new Filter\Slug;
                 $values['name'] = $filter($values['name']);
 
                 $row = $this->model()->createRow($values);
@@ -157,30 +159,30 @@ class RoleController extends ActionController
                 if ($row->id) {
                     Pi::registry('role')->flush();
                     $roleData = $row->toArray();
-                    $message = _a('Role data saved successfully.');
+                    $message  = _a('Role data saved successfully.');
                 } else {
-                    $status = 0;
+                    $status  = 0;
                     $message = _a('Role data not saved.');
                 }
             } else {
-                $status = 0;
+                $status   = 0;
                 $messages = $form->getMessages();
-                $message = array();
+                $message  = [];
                 foreach ($messages as $key => $msg) {
                     $message[$key] = array_values($msg);
                 }
             }
-            return array(
-                'status'    => $status,
-                'message'   => $message,
-                'data'      => $roleData,
-            );
+            return [
+                'status'  => $status,
+                'message' => $message,
+                'data'    => $roleData,
+            ];
         } else {
             $type = $this->params('type', 'front');
             $form = new RoleForm('role', $type);
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'add'))
+                $this->url('', ['action' => 'add'])
             );
             $this->view()->assign('title', _a('Add a role'));
             $this->view()->assign('form', $form);
@@ -201,43 +203,43 @@ class RoleController extends ActionController
             $form->setInputFilter(new RoleFilter);
             $form->setData($data);
 
-            $status = 1;
-            $roleData = array();
+            $status   = 1;
+            $roleData = [];
             if ($form->isValid()) {
                 $values = $form->getData();
-                $row = $this->model()->find($values['id']);
+                $row    = $this->model()->find($values['id']);
                 $row->assign($values);
                 try {
                     $row->save();
                     Pi::registry('role')->flush();
                     $roleData = $row->toArray();
-                    $message = _a('Role data saved successfully.');
+                    $message  = _a('Role data saved successfully.');
                 } catch (\Exception $e) {
-                    $status = 0;
+                    $status  = 0;
                     $message = _a('Role data not saved.');
                 }
             } else {
-                $status = 0;
+                $status   = 0;
                 $messages = $form->getMessages();
-                $message = array();
+                $message  = [];
                 foreach ($messages as $key => $msg) {
                     $message[$key] = array_values($msg);
                 }
             }
-            return array(
-                'status'    => $status,
-                'message'   => $message,
-                'data'      => $roleData,
-            );
+            return [
+                'status'  => $status,
+                'message' => $message,
+                'data'    => $roleData,
+            ];
         } else {
-            $id = $this->params('id');
-            $row = $this->model()->find($id);
+            $id      = $this->params('id');
+            $row     = $this->model()->find($id);
             $section = $row->section;
-            $data = $row->toArray();
-            $form = new RoleForm('role', $section);
+            $data    = $row->toArray();
+            $form    = new RoleForm('role', $section);
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'edit'))
+                $this->url('', ['action' => 'edit'])
             );
             $form->setData($data);
             $this->view()->assign('title', _a('Edit a role'));
@@ -254,13 +256,13 @@ class RoleController extends ActionController
     public function activateAction()
     {
         $status = 1;
-        $data = 0;
-        $id = $this->params('id');
-        $row = $this->model()->find($id);
+        $data   = 0;
+        $id     = $this->params('id');
+        $row    = $this->model()->find($id);
         if (!$row['custom']) {
             $status = 0;
-            $message =
-                _a('Only custom roles are allowed to activate/deactivate.');
+            $message
+                    = _a('Only custom roles are allowed to activate/deactivate.');
         } else {
             if ($row->active) {
                 $row->active = 0;
@@ -272,11 +274,11 @@ class RoleController extends ActionController
             Pi::registry('role')->flush();
             $message = _a('Role updated successfully.');
         }
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-            'data'      => $data,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+            'data'    => $data,
+        ];
     }
 
     /**
@@ -286,15 +288,15 @@ class RoleController extends ActionController
      */
     public function renameAction()
     {
-        $id = $this->params('id');
-        $title = $this->params('title');
-        $row = $this->model()->find($id);
+        $id         = $this->params('id');
+        $title      = $this->params('title');
+        $row        = $this->model()->find($id);
         $row->title = $title;
         $row->save();
 
         Pi::registry('role')->flush();
 
-        return array('status' => 1);
+        return ['status' => 1];
     }
 
     /**
@@ -305,14 +307,14 @@ class RoleController extends ActionController
     public function deleteAction()
     {
         $status = 1;
-        $id = $this->params('id');
-        $row = $this->model()->find($id);
+        $id     = $this->params('id');
+        $row    = $this->model()->find($id);
         if (!$row['custom']) {
-            $status = 0;
+            $status  = 0;
             $message = _a('Only custom roles are allowed to delete.');
         } else {
-            Pi::model('user_role')->delete(array('role' => $row->name));
-            Pi::model('permission_rule')->delete(array('role' => $row->name));
+            Pi::model('user_role')->delete(['role' => $row->name]);
+            Pi::model('permission_rule')->delete(['role' => $row->name]);
             $row->delete();
             Pi::registry('role')->flush();
             $message = _a('Role deleted successfully.');
@@ -320,11 +322,11 @@ class RoleController extends ActionController
 
         $data = $this->getRoles($row->section);
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-            'data'      => $data,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+            'data'    => $data,
+        ];
     }
 
     /**
@@ -334,12 +336,12 @@ class RoleController extends ActionController
      */
     public function checkExistAction()
     {
-        $role = _get('name');
-        $row = Pi::model('role')->find($role, 'name');
+        $role   = _get('name');
+        $row    = Pi::model('role')->find($role, 'name');
         $status = $row ? 1 : 0;
 
-        return array(
-            'status' => $status
-        );
+        return [
+            'status' => $status,
+        ];
     }
 }

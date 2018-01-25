@@ -7,11 +7,11 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\System\Installer\Action;
+namespace Module\System\Installer\Action;
 
+use Module\System\Installer\Schema;
 use Pi;
 use Pi\Application\Installer\Action\Update as BasicUpdate;
-use Module\System\Installer\Schema;
 use Zend\EventManager\Event;
 
 /**
@@ -27,9 +27,9 @@ class Update extends BasicUpdate
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('update.pre', array($this, 'updateSchema'));
-        $events->attach('update.post', array($this, 'updateLog'));
-        $events->attach('update.post', array($this, 'updateUserData'));
+        $events->attach('update.pre', [$this, 'updateSchema']);
+        $events->attach('update.post', [$this, 'updateLog']);
+        $events->attach('update.post', [$this, 'updateUserData']);
         parent::attachDefaultListeners();
 
         return $this;
@@ -43,12 +43,12 @@ class Update extends BasicUpdate
     public function updateLog(Event $e)
     {
         $model = Pi::model('update', $this->module);
-        $data = array(
-            'title'     => _a('System updated'),
-            'content'   => _a('The system is updated successfully.'),
-            'uri'       => Pi::url('www', true),
-            'time'      => time(),
-        );
+        $data  = [
+            'title'   => _a('System updated'),
+            'content' => _a('The system is updated successfully.'),
+            'uri'     => Pi::url('www', true),
+            'time'    => time(),
+        ];
         $model->insert($data);
     }
 
@@ -71,8 +71,8 @@ class Update extends BasicUpdate
     public function updateSchema(Event $e)
     {
         $moduleVersion = $e->getParam('version');
-        $updator = new Schema\Updator361($this);
-        $result = $updator->upgrade($moduleVersion);
+        $updator       = new Schema\Updator361($this);
+        $result        = $updator->upgrade($moduleVersion);
 
         return $result;
     }

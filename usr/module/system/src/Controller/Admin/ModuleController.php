@@ -9,13 +9,13 @@
 
 namespace Module\System\Controller\Admin;
 
-use Pi;
-use Pi\Mvc\Controller\ActionController;
-use Pi\Application\Installer\Module as ModuleInstaller;
-use Module\System\Form\ModuleForm;
-use Module\System\Form\ModuleFilter;
-use Module\System\Form\ModuleCategoryForm;
 use Module\System\Form\ModuleCategoryFilter;
+use Module\System\Form\ModuleCategoryForm;
+use Module\System\Form\ModuleFilter;
+use Module\System\Form\ModuleForm;
+use Pi;
+use Pi\Application\Installer\Module as ModuleInstaller;
+use Pi\Mvc\Controller\ActionController;
 use Zend\Db\Sql\Expression;
 
 /**
@@ -55,23 +55,23 @@ class ModuleController extends ActionController
      */
     public function indexAction()
     {
-        $active = Pi::registry('modulelist')->read('active');
+        $active   = Pi::registry('modulelist')->read('active');
         $inactive = Pi::registry('modulelist')->read('inactive');
 
         $modules = array_merge($active, $inactive);
         foreach ($modules as $name => &$data) {
-            $meta = Pi::service('module')->loadMeta(
+            $meta                = Pi::service('module')->loadMeta(
                 $data['directory'],
                 'meta'
             );
-            $author = Pi::service('module')->loadMeta(
+            $author              = Pi::service('module')->loadMeta(
                 $data['directory'],
                 'author'
             );
             $data['description'] = $meta['description'];
-            $data['author'] = $author;
-            $data['active'] = isset($active[$name]) ? true : false;
-            $data['icon'] = $data['icon'] ?: 'fa-th';
+            $data['author']      = $author;
+            $data['active']      = isset($active[$name]) ? true : false;
+            $data['icon']        = $data['icon'] ?: 'fa-th';
             if (empty($data['update'])) {
                 $data['update'] = _a('Never updated.');
             } else {
@@ -87,8 +87,8 @@ class ModuleController extends ActionController
      */
     public function availableAction()
     {
-        $modules = array();
-        $filter = function ($fileinfo) use (&$modules) {
+        $modules = [];
+        $filter  = function ($fileinfo) use (&$modules) {
             if (!$fileinfo->isDir()) {
                 return false;
             }
@@ -100,17 +100,17 @@ class ModuleController extends ActionController
             if (empty($meta)) {
                 return false;
             }
-            $author = Pi::service('module')->loadMeta($directory, 'author');
+            $author            = Pi::service('module')->loadMeta($directory, 'author');
             $meta['installed'] = Pi::registry('module')
                 ->read($directory) ? true : false;
             if (empty($meta['clonable']) && $meta['installed']) {
                 return false;
             }
-            $meta['icon'] = !empty($meta['icon']) ? $meta['icon'] : 'fa-th';
-            $modules[$directory] = array(
-                'meta'      => $meta,
-                'author'    => $author,
-            );
+            $meta['icon']        = !empty($meta['icon']) ? $meta['icon'] : 'fa-th';
+            $modules[$directory] = [
+                'meta'   => $meta,
+                'author' => $author,
+            ];
         };
         Pi::service('file')->getList('module', $filter);
 
@@ -136,21 +136,21 @@ class ModuleController extends ActionController
         $from = $this->params('from');
 
         $message = '';
-        $model = Pi::model('category', 'system');
+        $model   = Pi::model('category', 'system');
         switch ($op) {
             case 'move':
                 if ($m) {
                     if ($from) {
-                        $row = $model->find($from);
-                        $modules = $row->modules;
-                        $modules = array_diff($modules, array($m));
+                        $row          = $model->find($from);
+                        $modules      = $row->modules;
+                        $modules      = array_diff($modules, [$m]);
                         $row->modules = $modules;
                         $row->save();
                     }
                     if ($id && is_numeric($id)) {
-                        $row = $model->find($id);
-                        $modules = (array) $row['modules'];
-                        $modules[] = $m;
+                        $row          = $model->find($id);
+                        $modules      = (array)$row['modules'];
+                        $modules[]    = $m;
                         $row->modules = $modules;
                         $row->save();
                     } else {
@@ -162,7 +162,7 @@ class ModuleController extends ActionController
 
             case 'delete':
                 if ($id && is_numeric($id)) {
-                    $model->delete(array('id' => $id));
+                    $model->delete(['id' => $id]);
                     $message = _a('Category deleted successfully.');
                 }
                 break;
@@ -170,16 +170,16 @@ class ModuleController extends ActionController
             case 'add':
             case 'edit':
                 if ($id && is_numeric($id)) {
-                    $row = $model->find($id);
+                    $row  = $model->find($id);
                     $data = $row->toArray();
                 } else {
-                    $data = array();
+                    $data = [];
                 }
                 $form = new ModuleCategoryForm;
                 $form->setData($data);
-                $form->setAttributes(array('action' => $this->url('', array(
-                        'action'    => 'category',
-                    ))));
+                $form->setAttributes(['action' => $this->url('', [
+                    'action' => 'category',
+                ])]);
                 $this->view()->assign('form', $form);
                 break;
 
@@ -201,7 +201,7 @@ class ModuleController extends ActionController
                         }
                         $row->assign($values);
                         $row->save();
-                        $id = (int) $row->id;
+                        $id = (int)$row->id;
                     }
                     $message = _a('Category updated successfully.');
                 }
@@ -209,10 +209,10 @@ class ModuleController extends ActionController
 
             case 'sort':
                 if ($id && is_numeric($id) && $this->request->isPost()) {
-                    $sort = $this->request->getPost('sort');
+                    $sort    = $this->request->getPost('sort');
                     $modules = array_keys($sort);
                     array_multisort(array_values($sort), $modules);
-                    $row = $model->find($id);
+                    $row          = $model->find($id);
                     $row->modules = $modules;
                     $row->save();
                     $message = _a('Modules sorted successfully.');
@@ -232,68 +232,68 @@ class ModuleController extends ActionController
         $moduleList = Pi::registry('modulelist')->read();
         unset($moduleList['system']);
         array_walk($categories, function (&$category) use (&$moduleList) {
-            $modules = (array) $category['modules'];
-            $category['modules'] = array();
+            $modules             = (array)$category['modules'];
+            $category['modules'] = [];
             foreach ($modules as $name) {
                 if (isset($moduleList[$name])) {
-                    $category['modules'][] = array(
+                    $category['modules'][] = [
                         'name'  => $name,
                         'title' => $moduleList[$name]['title'],
-                    );
+                    ];
                     unset($moduleList[$name]);
                 }
             }
         });
 
         // Build navigation tabs
-        $tabs = array(
-            array(
-                'label'     => _a('All categorized'),
-                'href'      => $this->url('', array(
-                        'action'    => 'category',
-                        'id'        => '_all'
-                    )),
-                'active'    => ($id == '_all') ? 1 : 0,
-            ),
-            array(
-                'label'     => _a('Uncategorized'),
-                'href'      => $this->url('', array(
-                        'action'    => 'category',
-                        'id'        => '_none'
-                    )),
-                'active'    => ($id == '_none') ? 1 : 0,
-            )
-        );
+        $tabs = [
+            [
+                'label'  => _a('All categorized'),
+                'href'   => $this->url('', [
+                    'action' => 'category',
+                    'id'     => '_all',
+                ]),
+                'active' => ($id == '_all') ? 1 : 0,
+            ],
+            [
+                'label'  => _a('Uncategorized'),
+                'href'   => $this->url('', [
+                    'action' => 'category',
+                    'id'     => '_none',
+                ]),
+                'active' => ($id == '_none') ? 1 : 0,
+            ],
+        ];
         foreach ($categories as $key => $category) {
-            $tabs[] = array(
-                'label'     => $category['title'],
-                'href'      => $this->url('', array(
-                        'action'    => 'category',
-                        'id'        => $category['id']
-                    )),
-                'active'    => ($id == $category['id']) ? 1 : 0,
-            );
+            $tabs[] = [
+                'label'  => $category['title'],
+                'href'   => $this->url('', [
+                    'action' => 'category',
+                    'id'     => $category['id'],
+                ]),
+                'active' => ($id == $category['id']) ? 1 : 0,
+            ];
         }
-        $tabs[] = array(
-            'label'     => _a('+ New category'),
-            'href'      => $this->url('', array(
-                    'action'    => 'category',
-                    'id'        => '_new'
-                )),
-            'active'    => ($id == '_new') ? 1 : 0,
-        );
-        $this->view()->assign(array(
+        $tabs[] = [
+            'label'  => _a('+ New category'),
+            'href'   => $this->url('', [
+                'action' => 'category',
+                'id'     => '_new',
+            ]),
+            'active' => ($id == '_new') ? 1 : 0,
+        ];
+        $this->view()->assign([
             // Operation
-            'op'            => $op,
+            'op'         => $op,
             // Category id
-            'id'            => $id,
+            'id'         => $id,
             // Categorized modules
-            'categories'    => $categories,
+            'categories' => $categories,
             // Uncategorized modules
-            'modules'       => $moduleList,
+            'modules'    => $moduleList,
             // Tabs
-            'tabs'          => $tabs,
-        ));
+            'tabs'       => $tabs,
+        ]);
     }
 
     /**
@@ -301,17 +301,17 @@ class ModuleController extends ActionController
      */
     public function installAction()
     {
-        $directory = _get('directory', 'regexp', array(
-            'regexp' => '/^[a-z0-9_]+$/i')
+        $directory = _get('directory', 'regexp', [
+                'regexp' => '/^[a-z0-9_]+$/i']
         );
-        $name = _get('name', 'regexp', array('regexp' => '/^[a-z0-9_]+$/i'))
+        $name      = _get('name', 'regexp', ['regexp' => '/^[a-z0-9_]+$/i'])
             ?: $directory;
-        $title = _get('title');
+        $title     = _get('title');
 
-        $result     = false;
-        $error      = '';
-        $message    = '';
-        $details    = array();
+        $result  = false;
+        $error   = '';
+        $message = '';
+        $details = [];
 
         if (empty($directory) && $name) {
             $directory = $name;
@@ -345,14 +345,14 @@ class ModuleController extends ActionController
             }
         }
         if (!$error) {
-            $args = array(
+            $args = [
                 'directory' => $directory,
                 'title'     => $title ?: $meta['title'],
-            );
+            ];
 
             $installer = new ModuleInstaller;
-            $result = $installer->install($name, $args);
-            $details = $installer->getResult();
+            $result    = $installer->install($name, $args);
+            $details   = $installer->getResult();
         }
         if ($result) {
             $message = sprintf(
@@ -374,14 +374,14 @@ class ModuleController extends ActionController
             $message = _a('Module is not installed.');
         }
 
-        $data = array(
-            'title'     => _a('Module installation'),
-            'result'    => $result,
-            'error'     => $error,
-            'message'   => $message,
-            'details'   => $details,
-            'url'       => $this->url('', array('action' => 'available')),
-        );
+        $data = [
+            'title'   => _a('Module installation'),
+            'result'  => $result,
+            'error'   => $error,
+            'message' => $message,
+            'details' => $details,
+            'url'     => $this->url('', ['action' => 'available']),
+        ];
         $this->view()->assign($data);
         $this->view()->setTemplate('module-operation');
     }
@@ -401,33 +401,33 @@ class ModuleController extends ActionController
             $form->setInputFilter(new ModuleFilter);
             if ($form->isValid()) {
                 $values = $form->getData();
-                return array(
-                    'status'    => 1,
-                    'data'      => $values,
-                );
+                return [
+                    'status' => 1,
+                    'data'   => $values,
+                ];
             }
 
             $messages = $form->getMessages();
-            $message = array();
+            $message  = [];
             foreach ($messages as $key => $msg) {
                 $message[$key] = array_values($msg);
             }
-            return array(
-                'status'    => 0,
-                'message'   => $message,
-            );
+            return [
+                'status'  => 0,
+                'message' => $message,
+            ];
         } else {
             $directory = _get('directory');
-            $meta = Pi::service('module')->loadMeta($directory, 'meta');
-            $form->setData(array(
+            $meta      = Pi::service('module')->loadMeta($directory, 'meta');
+            $form->setData([
                 'directory' => $directory,
                 'name'      => $directory,
                 'title'     => $meta['title'],
-            ));
+            ]);
         }
         $form->setAttribute(
             'action',
-            $this->url('', array('action' => 'clone'))
+            $this->url('', ['action' => 'clone'])
         );
         $this->view()->assign('title', _a('Module installation'));
         $this->view()->setTemplate('system:component/form-popup');
@@ -438,14 +438,14 @@ class ModuleController extends ActionController
      */
     public function uninstallAction()
     {
-        $id         = _get('id', 'int');
-        $name       = _get('name', 'regexp',
-                           array('regexp' => '/^[a-z0-9_]+$/i'));
+        $id   = _get('id', 'int');
+        $name = _get('name', 'regexp',
+            ['regexp' => '/^[a-z0-9_]+$/i']);
 
-        $result     = false;
-        $error      = '';
-        $details    = array();
-        $row        = null;
+        $result  = false;
+        $error   = '';
+        $details = [];
+        $row     = null;
 
         if (!$id && !$name) {
             $error = _a('Module is not specified.');
@@ -462,8 +462,8 @@ class ModuleController extends ActionController
                 $error = _a('System module is protected.');
             } else {
                 $installer = new ModuleInstaller;
-                $result = $installer->uninstall($row);
-                $details = $installer->getResult();
+                $result    = $installer->uninstall($row);
+                $details   = $installer->getResult();
             }
         }
         if ($result) {
@@ -488,14 +488,14 @@ class ModuleController extends ActionController
             $message = _a('Module is not uninstalled.');
         }
 
-        $data = array(
-            'title'     => _a('Module uninstallation'),
-            'result'    => $result,
-            'error'     => $error,
-            'message'   => $message,
-            'details'   => $details,
-            'url'       => $this->url('', array('action' => 'index')),
-        );
+        $data = [
+            'title'   => _a('Module uninstallation'),
+            'result'  => $result,
+            'error'   => $error,
+            'message' => $message,
+            'details' => $details,
+            'url'     => $this->url('', ['action' => 'index']),
+        ];
         $this->view()->assign($data);
         $this->view()->setTemplate('module-operation');
     }
@@ -507,27 +507,27 @@ class ModuleController extends ActionController
     {
         @set_time_limit(0);
 
-        $result     = array();
-        $rowset     = Pi::model('module')->select(array('active' => 1));
+        $result = [];
+        $rowset = Pi::model('module')->select(['active' => 1]);
         foreach ($rowset as $row) {
-            $installer  = new ModuleInstaller;
-            $status = $installer->update($row);
-            $details = $installer->getResult();
-            $result[$row['name']] = array(
-                'title'     => $row['title'],
-                'status'    => $status,
-                'result'    => $details,
-            );
+            $installer            = new ModuleInstaller;
+            $status               = $installer->update($row);
+            $details              = $installer->getResult();
+            $result[$row['name']] = [
+                'title'  => $row['title'],
+                'status' => $status,
+                'result' => $details,
+            ];
             if ($status) {
                 Pi::service('event')->trigger('module_update', $row['name']);
             }
         }
 
-        $data = array(
-            'title'     => _a('Module updates'),
-            'result'    => $result,
-            'url'       => $this->url('', array('action' => 'index')),
-        );
+        $data = [
+            'title'  => _a('Module updates'),
+            'result' => $result,
+            'url'    => $this->url('', ['action' => 'index']),
+        ];
         $this->view()->assign($data);
         $this->view()->setTemplate('module-refresh');
     }
@@ -537,14 +537,14 @@ class ModuleController extends ActionController
      */
     public function updateAction()
     {
-        $id         = _get('id', 'int');
-        $name       = _get('name', 'regexp',
-            array('regexp' => '/^[a-z0-9_]+$/i'));
+        $id   = _get('id', 'int');
+        $name = _get('name', 'regexp',
+            ['regexp' => '/^[a-z0-9_]+$/i']);
 
-        $result     = false;
-        $error      = '';
-        $details    = array();
-        $row        = null;
+        $result  = false;
+        $error   = '';
+        $details = [];
+        $row     = null;
 
         if (!$id && !$name) {
             $error = _a('Module is not specified.');
@@ -559,8 +559,8 @@ class ModuleController extends ActionController
                 $error = _a('Module is not found.');
             } else {
                 $installer = new ModuleInstaller;
-                $result = $installer->update($row);
-                $details = $installer->getResult();
+                $result    = $installer->update($row);
+                $details   = $installer->getResult();
             }
         }
         if ($result) {
@@ -580,14 +580,14 @@ class ModuleController extends ActionController
             $message = _a('Module is not updated.');
         }
 
-        $data = array(
-            'title'     => _a('Module update'),
-            'result'    => $result,
-            'error'     => $error,
-            'message'   => $message,
-            'details'   => $details,
-            'url'       => $this->url('', array('action' => 'index')),
-        );
+        $data = [
+            'title'   => _a('Module update'),
+            'result'  => $result,
+            'error'   => $error,
+            'message' => $message,
+            'details' => $details,
+            'url'     => $this->url('', ['action' => 'index']),
+        ];
         $this->view()->assign($data);
         $this->view()->setTemplate('module-operation');
     }
@@ -597,15 +597,15 @@ class ModuleController extends ActionController
      */
     public function enableAction()
     {
-        $id         = _get('id', 'int');
-        $name       = _get('name', 'regexp',
-                           array('regexp' => '/^[a-z0-9_]+$/i'));
-        $active     = _get('active', 'int');
+        $id     = _get('id', 'int');
+        $name   = _get('name', 'regexp',
+            ['regexp' => '/^[a-z0-9_]+$/i']);
+        $active = _get('active', 'int');
 
-        $result     = false;
-        $error      = '';
-        $details    = array();
-        $row        = null;
+        $result  = false;
+        $error   = '';
+        $details = [];
+        $row     = null;
 
         if (!$id && !$name) {
             $error = _a('Module is not specified.');
@@ -674,14 +674,14 @@ class ModuleController extends ActionController
             }
         }
 
-        $data = array(
-            'title'     => _a('Module activation'),
-            'result'    => $result,
-            'error'     => $error,
-            'message'   => $message,
-            'details'   => $details,
-            'url'       => $this->url('', array('action' => 'index')),
-        );
+        $data = [
+            'title'   => _a('Module activation'),
+            'result'  => $result,
+            'error'   => $error,
+            'message' => $message,
+            'details' => $details,
+            'url'     => $this->url('', ['action' => 'index']),
+        ];
         $this->view()->assign($data);
         $this->view()->setTemplate('module-operation');
     }
@@ -696,24 +696,24 @@ class ModuleController extends ActionController
         //$post = $this->params()->fromPost();
         $title = _post('title');
         if (empty($title)) {
-            return array(
-                'status'    => 0,
-                'message'   => _a('Title is required.')
-            );
+            return [
+                'status'  => 0,
+                'message' => _a('Title is required.'),
+            ];
         }
-        $id     = _post('id', 'int');
-        $name   = _post('name', 'regexp',
-                        array('regexp' => '/^[a-z0-9_]+$/i'));
+        $id   = _post('id', 'int');
+        $name = _post('name', 'regexp',
+            ['regexp' => '/^[a-z0-9_]+$/i']);
         if ($id) {
             $row = Pi::model('module')->find($id);
         } else {
             $row = Pi::model('module')->find($name, 'name');
         }
         if (!$row) {
-            return array(
-                'status'    => 0,
-                'message'   => _a('Module is not found.')
-            );
+            return [
+                'status'  => 0,
+                'message' => _a('Module is not found.'),
+            ];
         }
 
         $row->title = $title;
@@ -721,12 +721,12 @@ class ModuleController extends ActionController
         Pi::registry('module')->clear();
         Pi::registry('modulelist')->clear();
 
-        return array(
-            'status'    => 1,
-            'data'      => array(
+        return [
+            'status' => 1,
+            'data'   => [
                 'title' => $row->title,
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -736,11 +736,11 @@ class ModuleController extends ActionController
      */
     protected function installedModules()
     {
-        $model = Pi::model('module');
-        $select = $model->select()
-            ->columns(array('dir' => new Expression('DISTINCT directory')));
-        $rowset = $model->selectWith($select);
-        $modules = array();
+        $model   = Pi::model('module');
+        $select  = $model->select()
+            ->columns(['dir' => new Expression('DISTINCT directory')]);
+        $rowset  = $model->selectWith($select);
+        $modules = [];
         foreach ($rowset as $row) {
             $modules[] = $row->dir;
         }

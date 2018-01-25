@@ -3,7 +3,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <strong><?php echo _a('About')?></strong>
+        <strong><?php echo _a('About') ?></strong>
     </div>
     <div class="panel-body">
         <div class="media">
@@ -13,39 +13,39 @@
             <div class="media-body">
                 <legend><?php echo _a('Module information'); ?></legend>
                 <dl class="dl-horizontal">
-                     <dt><?php echo _a('Title:'); ?>
-                     <dd><?php echo _escape($data['title']); ?>
-                     <dt><?php echo _a('Version:'); ?>
-                     <dd><?php echo _escape($data['version']); ?>
-                     <dt><?php echo _a('Update:'); ?>
-                     <dd><?php echo _escape($data['update']); ?>
-                     <dt><?php echo _a('Description:'); ?>
-                     <dd><?php echo _escape($data['description']); ?>
-                     <?php if (!empty($data['demo'])) { ?>
-                     <dt><?php echo _a('Demo:'); ?>
-                     <dd><?php echo _escape($data['demo']); ?>
-                     <?php } ?>
-                 </dl>
-                 <legend><?php echo _a('Author information'); ?></legend>
+                    <dt><?php echo _a('Title:'); ?>
+                    <dd><?php echo _escape($data['title']); ?>
+                    <dt><?php echo _a('Version:'); ?>
+                    <dd><?php echo _escape($data['version']); ?>
+                    <dt><?php echo _a('Update:'); ?>
+                    <dd><?php echo _escape($data['update']); ?>
+                    <dt><?php echo _a('Description:'); ?>
+                    <dd><?php echo _escape($data['description']); ?>
+                        <?php if (!empty($data['demo'])) { ?>
+                    <dt><?php echo _a('Demo:'); ?>
+                    <dd><?php echo _escape($data['demo']); ?>
+                        <?php } ?>
+                </dl>
+                <legend><?php echo _a('Author information'); ?></legend>
                 <dl class="dl-horizontal" style="margin-bottom: 0;">
-                    <?php 
+                    <?php
                     foreach ($data['author'] as $key => $value) {
                         echo '<dt>' . _escape($key) . ':';
                         echo '<dd>' . _escape($value);
                     }
                     ?>
-                 </dl>
+                </dl>
             </div>
         </div>
     </div>
 </div>
 <?php if (!empty($summary)) { ?>
-<div class="panel panel-default">
-     <div class="panel-heading">
-         <?php echo _a('Summary'); ?>
-     </div>
-     <div class="panel-body">
-         <?php echo $summary; ?>
-     </div>
-</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <?php echo _a('Summary'); ?>
+        </div>
+        <div class="panel-body">
+            <?php echo $summary; ?>
+        </div>
+    </div>
 <?php } ?>

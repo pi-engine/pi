@@ -10,8 +10,8 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
 use Pi\Application\Installer\Theme as ThemeInstaller;
+use Pi\Mvc\Controller\ActionController;
 use Zend\Json\Json;
 
 /**
@@ -39,17 +39,17 @@ class ThemeController extends ActionController
         $section = $this->params('side', '_front');
 
         // Themes
-        $type = ('_admin' == $section) ? 'admin' : 'front';
+        $type   = ('_admin' == $section) ? 'admin' : 'front';
         $themes = Pi::registry('themelist')->read($type);
         foreach ($themes as $key => &$theme) {
             $theme['name'] = $key;
         }
 
         if ('_admin' == $section) {
-            $subject = _a('admin');
+            $subject   = _a('admin');
             $themeName = Pi::config('theme_admin');
         } else {
-            $subject = _a('front');
+            $subject   = _a('front');
             $themeName = Pi::config('theme');
         }
         $data = isset($themes[$themeName])
@@ -74,7 +74,7 @@ class ThemeController extends ActionController
      */
     public function applyAction()
     {
-        $theme = $this->params('theme');
+        $theme   = $this->params('theme');
         $section = $this->params('side');
         switch ($section) {
             case '_front':
@@ -88,13 +88,13 @@ class ThemeController extends ActionController
                 $name = 'theme_module';
                 break;
         }
-        $row = Pi::model('config')->select(array(
-            'module'    => 'system',
-            'name'      => $name,
-        ))->current();
+        $row         = Pi::model('config')->select([
+            'module' => 'system',
+            'name'   => $name,
+        ])->current();
         $configValue = $row->value;
         if ('_all' == $section) {
-            $configValue = array();
+            $configValue = [];
         } elseif ('theme_module' == $name) {
             $configValue[$section] = $theme;
         } else {
@@ -104,10 +104,10 @@ class ThemeController extends ActionController
         $row->save();
         Pi::registry('config')->clear('system');
 
-        $result = array(
-            'status'    => 1,
-            'message'   => _a('Theme set up successfully.'),
-        );
+        $result = [
+            'status'  => 1,
+            'message' => _a('Theme set up successfully.'),
+        ];
         return $result;
     }
 
@@ -129,9 +129,9 @@ class ThemeController extends ActionController
      */
     public function availableAction()
     {
-        $themes = array();
+        $themes          = [];
         $themesInstalled = Pi::registry('themelist')->read();
-        $filter = function ($fileinfo) use (&$themes, $themesInstalled) {
+        $filter          = function ($fileinfo) use (&$themes, $themesInstalled) {
             if (!$fileinfo->isDir()) {
                 return false;
             }
@@ -145,7 +145,7 @@ class ThemeController extends ActionController
             if (empty($meta)) {
                 return false;
             }
-            $meta['name'] = $directory;
+            $meta['name']       = $directory;
             $meta['screenshot'] = !empty($meta['screenshot'])
                 ? Pi::url('script/browse.php') . '?' . sprintf(
                     'theme/%s/asset/%s',
@@ -171,17 +171,17 @@ class ThemeController extends ActionController
      */
     public function updateAction()
     {
-        $status = 1;
+        $status    = 1;
         $themeName = $this->params('name');
         $installer = new ThemeInstaller;
-        $ret = $installer->update($themeName);
-        $message = '';
+        $ret       = $installer->update($themeName);
+        $message   = '';
         if (!$ret) {
-            $status = 0;
+            $status  = 0;
             $message = $installer->renderMessage()
                 ?: sprintf(_a('The theme "%s" is not updated.'), $themeName);
         }
-        $message = $message
+        $message   = $message
             ?: sprintf(_a('The theme "%s" is updated.'), $themeName);
         $themelist = Pi::registry('themelist')->read();
 
@@ -198,21 +198,21 @@ class ThemeController extends ActionController
         $themeName = $this->params('name');
         $installer = new ThemeInstaller;
 
-        $ret = $installer->install($themeName);
-        $status = 1;
+        $ret     = $installer->install($themeName);
+        $status  = 1;
         $message = '';
         if (!$ret) {
             $message = $installer->renderMessage()
                 ?: sprintf(_a('The theme "%s" is not installed.'), $themeName);
-            $status = 0;
+            $status  = 0;
         }
         $message = $message
             ?: sprintf(_a('The theme "%s" is installed.'), $themeName);
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+        ];
     }
 
     /**
@@ -222,17 +222,17 @@ class ThemeController extends ActionController
      */
     public function uninstallAction()
     {
-        $status = 1;
+        $status    = 1;
         $themeName = $this->params('name');
         if ('default' == $themeName) {
-            $status = 0;
+            $status  = 0;
             $message = _a('Default theme is protected from uninstallation.');
         } else {
             $installer = new ThemeInstaller;
-            $ret = $installer->uninstall($themeName);
-            $message = '';
+            $ret       = $installer->uninstall($themeName);
+            $message   = '';
             if (!$ret) {
-                $status = 0;
+                $status  = 0;
                 $message = $installer->renderMessage()
                     ?: sprintf(
                         _a('The theme "%s" is not uninstalled.'),
@@ -242,10 +242,10 @@ class ThemeController extends ActionController
         }
         $message = $message
             ?: sprintf(_a('The theme "%s" is uninstalled.'), $themeName);
-        $result = array(
-            'status'    => $status,
-            'message'   => $message,
-        );
+        $result  = [
+            'status'  => $status,
+            'message' => $message,
+        ];
 
         return $result;
     }
@@ -290,10 +290,10 @@ class ThemeController extends ActionController
         // Read bootstrap configs
         $custom = json_decode(file_get_contents($customFile), true);
 
-        $this->view()->assign(array(
-            'name'    => $name,
-            'custom'  => $custom
-        ));
+        $this->view()->assign([
+            'name'   => $name,
+            'custom' => $custom,
+        ]);
     }
 
     /**
@@ -302,23 +302,23 @@ class ThemeController extends ActionController
     public function compileAction()
     {
         // Theme name
-        $name       = _post('name') ?: Pi::theme()->current();
+        $name = _post('name') ?: Pi::theme()->current();
 
         // Compiled boostrap.min.css, string
-        $bsString   = _post('less');
+        $bsString = _post('less');
 
         // Config JSON string
-        $cfgString  = _post('custom');
+        $cfgString = _post('custom');
 
         // Write bootstrap scripts to online custom theme folder
-        $path = sprintf(
+        $path       = sprintf(
             '%s/custom/theme/%s/asset/vendor/bootstrap/css',
             Pi::path('asset'),
             $name
         );
-        $configJson = Json::prettyPrint(json_encode($cfgString), array(
-            'indent' => '  '
-        ));
+        $configJson = Json::prettyPrint(json_encode($cfgString), [
+            'indent' => '  ',
+        ]);
 
         Pi::service('file')->mkdir($path);
         file_put_contents($path . '/bootstrap.min.css', $bsString);
@@ -327,10 +327,10 @@ class ThemeController extends ActionController
         // Republish the theme
         Pi::service('asset')->publishTheme($name);
 
-        return array(
-            'status'    => 1,
-            'message'   => __('Bootstrap compiled successfully.')
-        );
+        return [
+            'status'  => 1,
+            'message' => __('Bootstrap compiled successfully.'),
+        ];
     }
 
     /**
@@ -370,10 +370,10 @@ class ThemeController extends ActionController
         // Read bootstrap configs
         $config = json_decode(file_get_contents($customFile), true);
 
-        return array(
-            'status'    => 1,
-            'message'   => __('Bootstrap reset successfully.'),
-            'custom'    => $config
-        );
+        return [
+            'status'  => 1,
+            'message' => __('Bootstrap reset successfully.'),
+            'custom'  => $config,
+        ];
     }
 }

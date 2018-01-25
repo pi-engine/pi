@@ -10,8 +10,9 @@
 namespace Module\System\Validator;
 
 use Pi;
-//use Zend\Validator\AbstractValidator;
 use Zend\Validator\EmailAddress;
+
+//use Zend\Validator\AbstractValidator;
 
 /**
  * User email check
@@ -21,10 +22,10 @@ use Zend\Validator\EmailAddress;
 class UserEmail extends EmailAddress
 {
     /** @var string */
-    const RESERVED  = 'userEmailReserved';
+    const RESERVED = 'userEmailReserved';
 
     /** @var string */
-    const USED      = 'userEmailUsed';
+    const USED = 'userEmailUsed';
 
     /**
      * Message templates
@@ -37,17 +38,17 @@ class UserEmail extends EmailAddress
      */
     public function __construct($options = null)
     {
-        $options = $options ?: array();
-        $options = array_merge(array(
-            'blacklist'         => array(),
+        $options = $options ?: [];
+        $options = array_merge([
+            'blacklist'         => [],
             'check_duplication' => true,
-        ), $options);
+        ], $options);
 
         parent::__construct($options);
-        $this->abstractOptions['messageTemplates'] = array(
-            static::RESERVED    => __('User email is reserved'),
-            static::USED        => __('User email is already used'),
-        ) + $this->abstractOptions['messageTemplates'];
+        $this->abstractOptions['messageTemplates'] = [
+                static::RESERVED => __('User email is reserved'),
+                static::USED     => __('User email is already used'),
+            ] + $this->abstractOptions['messageTemplates'];
     }
 
     /**
@@ -77,7 +78,7 @@ class UserEmail extends EmailAddress
         }
 
         if ($this->options['check_duplication']) {
-            $where = array('email' => $value);
+            $where = ['email' => $value];
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }

@@ -9,7 +9,6 @@
 
 namespace Module\System\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -39,59 +38,59 @@ class PageAddForm extends BaseForm
      */
     public function init()
     {
-        $this->add(array(
-            'name'          => 'title',
-            'options'       => array(
+        $this->add([
+            'name'       => 'title',
+            'options'    => [
                 'label' => __('Title'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
-        ));
+            ],
+            'attributes' => [
+                'type' => 'text',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'section',
-            'attributes'    => array(
-                'type'      => 'hidden',
-                'value'     => 'front',
-            ),
-        ));
+        $this->add([
+            'name'       => 'section',
+            'attributes' => [
+                'type'  => 'hidden',
+                'value' => 'front',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'controller',
-            'options'       => array(
-                'label'     => __('Controller'),
-                'module'    => $this->module,
-            ),
-            'type'          => 'Module\System\Form\Element\Controller',
-        ));
+        $this->add([
+            'name'    => 'controller',
+            'options' => [
+                'label'  => __('Controller'),
+                'module' => $this->module,
+            ],
+            'type'    => 'Module\System\Form\Element\Controller',
+        ]);
 
-        $this->add(array(
-            'name'          => 'action',
-            'options'       => array(
+        $this->add([
+            'name'    => 'action',
+            'options' => [
                 'label' => __('Action'),
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'  => 'security',
-            'type'  => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
-        $this->add(array(
-            'name'  => 'module',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'module',
+            'attributes' => [
                 'type'  => 'hidden',
                 'value' => $this->module,
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            )
-        ));
+            ],
+        ]);
     }
 }

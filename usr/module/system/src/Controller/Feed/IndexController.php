@@ -10,8 +10,8 @@
 namespace Module\System\Controller\Feed;
 
 use Pi;
-use Pi\Mvc\Controller\FeedController;
 use Pi\Feed\Model as DataModel;
+use Pi\Mvc\Controller\FeedController;
 use Zend\Db\RowGateway\AbstractRowGateway;
 
 /**
@@ -28,11 +28,11 @@ class IndexController extends FeedController
      */
     public function indexAction()
     {
-        $feed = $this->getDataModel(array(
-            'title'         => __('What\'s new'),
-            'description'   => __('Recent module feeds.'),
-            'date_created'  => time(),
-        ));
+        $feed = $this->getDataModel([
+            'title'        => __('What\'s new'),
+            'description'  => __('Recent module feeds.'),
+            'date_created' => time(),
+        ]);
 
         $moduleList = Pi::registry('modulelist')->read();
         unset($moduleList['system']);
@@ -40,12 +40,12 @@ class IndexController extends FeedController
         foreach ($moduleList as $module) {
             $feedClass = sprintf('Module\%s\Controller\Feed\IndexController', ucfirst($module['name']));
             if (class_exists($feedClass)) {
-                $entry = array(
+                $entry       = [
                     'title'         => $module['title'],
                     'description'   => sprintf(__('Resent feeds of %s module'), $module['title']),
                     'date_modified' => time(),
                     'link'          => $this->getHref($module),
-                );
+                ];
                 $feed->entry = $entry;
             }
         }

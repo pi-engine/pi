@@ -9,7 +9,6 @@
 
 namespace Module\System\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -24,39 +23,39 @@ class ModuleForm extends BaseForm
      */
     public function init()
     {
-        $this->add(array(
-            'name'          => 'name',
-            'options'       => array(
+        $this->add([
+            'name'       => 'name',
+            'options'    => [
                 'label' => __('Unique name'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
-        ));
+            ],
+            'attributes' => [
+                'type' => 'text',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'title',
-            'options'       => array(
+        $this->add([
+            'name'       => 'title',
+            'options'    => [
                 'label' => __('Title'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
-        ));
+            ],
+            'attributes' => [
+                'type' => 'text',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'directory',
-            'attributes'    => array(
-                'type'  => 'hidden',
-            ),
-        ));
+        $this->add([
+            'name'       => 'directory',
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            )
-        ));
+            ],
+        ]);
     }
 }

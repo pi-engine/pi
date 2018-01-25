@@ -12,202 +12,202 @@
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
-    'modules' => array(
-        'label'         => _t('Modules'),
-        'permission'    => array(
-            'resource'  => 'module',
-        ),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'module',
+return [
+    'modules' => [
+        'label'      => _t('Modules'),
+        'permission' => [
+            'resource' => 'module',
+        ],
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'module',
         //'action'        => 'index',
 
-        'pages'     => array(
-            'list'  => array(
-                'label'         => _t('Installed'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'module',
-                'action'        => 'index',
+        'pages' => [
+            'list'      => [
+                'label'      => _t('Installed'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'module',
+                'action'     => 'index',
                 //'visible'       => 0,
 
-                'pages'         => array(
-                    'operation' => array(
-                        'route'         => 'admin',
-                        'module'        => 'system',
-                        'controller'    => 'module',
-                        'params'        => array(
-                            'from'      => 'installed',
-                        ),
-                        'visible'       => 0,
-                    ),
-                ),
-            ),
-            'available' => array(
-                'label'         => _t('Availables'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'module',
-                'action'        => 'available',
+                'pages' => [
+                    'operation' => [
+                        'route'      => 'admin',
+                        'module'     => 'system',
+                        'controller' => 'module',
+                        'params'     => [
+                            'from' => 'installed',
+                        ],
+                        'visible'    => 0,
+                    ],
+                ],
+            ],
+            'available' => [
+                'label'      => _t('Availables'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'module',
+                'action'     => 'available',
 
-                'pages'         => array(
-                    'operation' => array(
-                        'route'         => 'admin',
-                        'module'        => 'system',
-                        'controller'    => 'module',
-                        'params'        => array(
-                            'from'      => 'available',
-                        ),
-                        'visible'       => 0,
-                    ),
-                ),
-            ),
-            'category'  => array(
-                'label'         => _t('Category'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'module',
-                'action'        => 'category',
-            ),
-            'repo'  => array(
-                'label'         => _t('Repository'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'module',
-                'action'        => 'repo',
-                'visible'       => 0,
-            ),
-        ),
-    ),
+                'pages' => [
+                    'operation' => [
+                        'route'      => 'admin',
+                        'module'     => 'system',
+                        'controller' => 'module',
+                        'params'     => [
+                            'from' => 'available',
+                        ],
+                        'visible'    => 0,
+                    ],
+                ],
+            ],
+            'category'  => [
+                'label'      => _t('Category'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'module',
+                'action'     => 'category',
+            ],
+            'repo'      => [
+                'label'      => _t('Repository'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'module',
+                'action'     => 'repo',
+                'visible'    => 0,
+            ],
+        ],
+    ],
 
-    'themes'    => array(
-        'label'         => _t('Themes'),
-        'permission'    => array(
-            'resource'  => 'theme',
-        ),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'theme',
+    'themes' => [
+        'label'      => _t('Themes'),
+        'permission' => [
+            'resource' => 'theme',
+        ],
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'theme',
         //'action'        => 'index',
 
-        'pages'     => array(
-            'apply' => array(
-                'label'         => _t('In action'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'theme',
-                'action'        => 'index',
+        'pages' => [
+            'apply'   => [
+                'label'      => _t('In action'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'theme',
+                'action'     => 'index',
                 //'visible'       => 0,
-            ),
-            'list' => array(
-                'label'         => _t('Installed'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'theme',
-                'action'        => 'installed',
+            ],
+            'list'    => [
+                'label'      => _t('Installed'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'theme',
+                'action'     => 'installed',
                 //'visible'       => 0,
-            ),
-            'install' => array(
-                'label'         => _t('Availables'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'theme',
-                'action'        => 'available',
+            ],
+            'install' => [
+                'label'      => _t('Availables'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'theme',
+                'action'     => 'available',
                 //'visible'       => 0,
-            ),
-            'repo' => array(
-                'label'         => _t('Repository'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'theme',
-                'action'        => 'repo',
-                'visible'       => 0,
-            ),
-        ),
+            ],
+            'repo'    => [
+                'label'      => _t('Repository'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'theme',
+                'action'     => 'repo',
+                'visible'    => 0,
+            ],
+        ],
 
-    ),
+    ],
 
-    'navigation'    => array(
-        'label'         => _t('Navigation'),
-        'permission'    => array(
-            'resource'  => 'navigation',
-        ),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'nav',
+    'navigation' => [
+        'label'      => _t('Navigation'),
+        'permission' => [
+            'resource' => 'navigation',
+        ],
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'nav',
         //'action'        => 'index',
 
-        'pages' => array(
-            'front' => array(
-                'label'         => _t('Navigation list'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'nav',
-                'action'        => 'index',
+        'pages' => [
+            'front' => [
+                'label'      => _t('Navigation list'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'nav',
+                'action'     => 'index',
                 //'visible'       => 0,
 
-                'pages' => array(
-                    'data'      => array(
-                        'label'         => _t('Data manipulation'),
-                        'route'         => 'admin',
-                        'module'        => 'system',
-                        'controller'    => 'nav',
-                        'action'        => 'data',
-                        'visible'       => 0,
-                    ),
-                ),
-            ),
+                'pages' => [
+                    'data' => [
+                        'label'      => _t('Data manipulation'),
+                        'route'      => 'admin',
+                        'module'     => 'system',
+                        'controller' => 'nav',
+                        'action'     => 'data',
+                        'visible'    => 0,
+                    ],
+                ],
+            ],
 
-            'add'    => array(
-                'label'         => _t('Add'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'nav',
-                'action'        => 'add',
+            'add' => [
+                'label'      => _t('Add'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'nav',
+                'action'     => 'add',
                 //'visible'       => 0,
-            ),
+            ],
 
-            'select'    => array(
-                'label'         => _t('Navigation setup'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'nav',
-                'action'        => 'index',
-                'visible'       => 0,
-            ),
-        ),
-    ),
+            'select' => [
+                'label'      => _t('Navigation setup'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'nav',
+                'action'     => 'index',
+                'visible'    => 0,
+            ],
+        ],
+    ],
 
-    'role'   => array(
-        'label'         => _t('Role'),
-        'permission'    => array(
-            'resource'  => 'role',
-        ),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'role',
-        'action'        => 'index',
+    'role' => [
+        'label'      => _t('Role'),
+        'permission' => [
+            'resource' => 'role',
+        ],
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'role',
+        'action'     => 'index',
 
-        'pages'     => array(
-            'list'      => array(
-                'label'         => _t('Role list'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'role',
-                'action'        => '',
-                'fragment'      => '!/all',
-            ),
-            'add'      => array(
-                'label'         => _t('Add role'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'role',
-                'action'        => '',
-                'fragment'      => '!/new',
-            ),
-        ),
-    ),
+        'pages' => [
+            'list' => [
+                'label'      => _t('Role list'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'role',
+                'action'     => '',
+                'fragment'   => '!/all',
+            ],
+            'add'  => [
+                'label'      => _t('Add role'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'role',
+                'action'     => '',
+                'fragment'   => '!/new',
+            ],
+        ],
+    ],
 
     /*
     'user'  => array(
@@ -256,76 +256,76 @@ return array(
     ),
     */
 
-    'flush'     => array(
-        'label'         => _t('Cache flush'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'flush',
-        'permission'    => array(
-            'resource'  => 'maintenance',
-        ),
-    ),
+    'flush' => [
+        'label'      => _t('Cache flush'),
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'flush',
+        'permission' => [
+            'resource' => 'maintenance',
+        ],
+    ],
 
-    'asset'     => array(
-        'label'         => _t('Asset publish'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'asset',
-        'action'        => 'index',
-        'permission'    => array(
-            'resource'  => 'maintenance',
-        ),
-    ),
+    'asset' => [
+        'label'      => _t('Asset publish'),
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'asset',
+        'action'     => 'index',
+        'permission' => [
+            'resource' => 'maintenance',
+        ],
+    ],
 
-    'toolkit'   => array(
-        'label'         => _t('Toolkit'),
-        'permission'    => array(
-            'resource'  => 'maintenance',
-        ),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'audit',
-        'action'        => 'index',
+    'toolkit' => [
+        'label'      => _t('Toolkit'),
+        'permission' => [
+            'resource' => 'maintenance',
+        ],
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'audit',
+        'action'     => 'index',
 
-        'pages'     => array(
-            'audit'     => array(
-                'label'         => _t('Audit'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'audit',
-                'action'        => 'index',
-                'visible'       => 0,
-            ),
-            'mailing'   => array(
-                'label'         => _t('Mailing'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'mail',
-                'action'        => 'index',
-                'visible'       => 0,
-            ),
-        ),
-    ),
+        'pages' => [
+            'audit'   => [
+                'label'      => _t('Audit'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'audit',
+                'action'     => 'index',
+                'visible'    => 0,
+            ],
+            'mailing' => [
+                'label'      => _t('Mailing'),
+                'route'      => 'admin',
+                'module'     => 'system',
+                'controller' => 'mail',
+                'action'     => 'index',
+                'visible'    => 0,
+            ],
+        ],
+    ],
 
-    'database'     => array(
-        'label'         => _t('Database tools'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'database',
-        'action'        => 'index',
-        'permission'    => array(
-            'resource'  => 'maintenance',
-        ),
-    ),
+    'database' => [
+        'label'      => _t('Database tools'),
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'database',
+        'action'     => 'index',
+        'permission' => [
+            'resource' => 'maintenance',
+        ],
+    ],
 
-    'layout'     => array(
-        'label'         => _t('Homepage layout'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'page',
-        'action'        => 'homepage',
-        'permission'    => array(
-            'resource'  => 'maintenance',
-        ),
-    ),
-);
+    'layout' => [
+        'label'      => _t('Homepage layout'),
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'page',
+        'action'     => 'homepage',
+        'permission' => [
+            'resource' => 'maintenance',
+        ],
+    ],
+];

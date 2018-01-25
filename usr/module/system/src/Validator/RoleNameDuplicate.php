@@ -27,9 +27,9 @@ class RoleNameDuplicate extends AbstractValidator
      */
     public function __construct($options = null)
     {
-        $this->messageTemplates = array(
-            static::TAKEN     => __('Role name is already taken'),
-        );
+        $this->messageTemplates = [
+            static::TAKEN => __('Role name is already taken'),
+        ];
         parent::__construct($options);
     }
 
@@ -45,7 +45,7 @@ class RoleNameDuplicate extends AbstractValidator
         $this->setValue($value);
 
         if (null !== $value) {
-            $where = array('name' => $value);
+            $where = ['name' => $value];
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }

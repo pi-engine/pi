@@ -12,84 +12,84 @@
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
+return [
     // default route
-    'default'   => array(
-        'name'      => 'default',
-        'section'   => 'front',
-        'priority'  => -999,
+    'default' => [
+        'name'     => 'default',
+        'section'  => 'front',
+        'priority' => -999,
 
-        'type'      => 'Standard',
-        'options'   =>array(
-            'prefix'                => '',
-            'structure_delimiter'   => '/',
-            'param_delimiter'       => '/',
-            'key_value_delimiter'   => '-',
-            'defaults'              => array(
-                'module'        => 'system',
-                'controller'    => 'index',
-                'action'        => 'index',
-            )
-        )
-    ),
+        'type'    => 'Standard',
+        'options' => [
+            'prefix'              => '',
+            'structure_delimiter' => '/',
+            'param_delimiter'     => '/',
+            'key_value_delimiter' => '-',
+            'defaults'            => [
+                'module'     => 'system',
+                'controller' => 'index',
+                'action'     => 'index',
+            ],
+        ],
+    ],
 
     // Home route
-    'home'  => array(
-        'name'      => 'home',
-        'type'      => 'Home',
-        'priority'  => 10000,
+    'home'    => [
+        'name'     => 'home',
+        'type'     => 'Home',
+        'priority' => 10000,
 
-        'options'   =>array(
-            'prefix'                => '',
-            'structure_delimiter'   => '-',
-            'param_delimiter'       => '/',
-            'key_value_delimiter'   => '-',
-        ),
-    ),
+        'options' => [
+            'prefix'              => '',
+            'structure_delimiter' => '-',
+            'param_delimiter'     => '/',
+            'key_value_delimiter' => '-',
+        ],
+    ],
 
     // admin route
-    'admin' => array(
-        'name'      => 'admin',
-        'section'   => 'admin',
-        'priority'  => 100,
+    'admin'   => [
+        'name'     => 'admin',
+        'section'  => 'admin',
+        'priority' => 100,
 
-        'type'      => 'Standard',
-        'options'   => array(
-            'prefix'     => '/admin',
-        ),
-    ),
+        'type'    => 'Standard',
+        'options' => [
+            'prefix' => '/admin',
+        ],
+    ],
 
     // API route
-    'api' => array(
-        'name'      => 'api',
-        'section'   => 'api',
-        'priority'  => 100,
+    'api'     => [
+        'name'     => 'api',
+        'section'  => 'api',
+        'priority' => 100,
 
-        'type'      => 'Api',
-        'options'   => array(
-            'prefix'     => '/api',
-        ),
-    ),
+        'type'    => 'Api',
+        'options' => [
+            'prefix' => '/api',
+        ],
+    ],
 
     // feed route
-    'feed' => array(
-        'name'      => 'feed',
-        'section'   => 'feed',
-        'priority'  => 100,
+    'feed'    => [
+        'name'     => 'feed',
+        'section'  => 'feed',
+        'priority' => 100,
 
-        'type'      => 'Feed',
-        'options'   => array(
-            'prefix'     => '/feed',
-        ),
-    ),
+        'type'    => 'Feed',
+        'options' => [
+            'prefix' => '/feed',
+        ],
+    ],
 
     // System user route
-    'sysuser'   => array(
-        'name'      => 'sysuser',
-        'type'      => 'Module\System\Route\User',
-        'priority'  => 5,
-        'options'   => array(
-            'prefix'    => '/system/user',
-        ),
-    ),
-);
+    'sysuser' => [
+        'name'     => 'sysuser',
+        'type'     => 'Module\System\Route\User',
+        'priority' => 5,
+        'options'  => [
+            'prefix' => '/system/user',
+        ],
+    ],
+];

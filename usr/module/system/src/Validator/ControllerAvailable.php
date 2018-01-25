@@ -9,7 +9,6 @@
 
 namespace Module\System\Validator;
 
-use Pi;
 use Zend\Validator\AbstractValidator;
 
 /**
@@ -27,9 +26,9 @@ class ControllerAvailable extends AbstractValidator
      */
     public function __construct($options = null)
     {
-        $this->messageTemplates = array(
+        $this->messageTemplates = [
             static::CONTROLLER_UNAVAILABLE => __('The controller is not available.'),
-        );
+        ];
         parent::__construct($options);
     }
 
@@ -44,7 +43,7 @@ class ControllerAvailable extends AbstractValidator
     {
         $this->setValue($value);
 
-        $module = $context['module'];
+        $module     = $context['module'];
         $controller = $value;
 
         $controllerClass = sprintf(

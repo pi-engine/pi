@@ -1,80 +1,80 @@
 <ul pi-nav-tabs class="nav nav-pills well well-sm" data-ng-controller="piNavTopCtrl">
-  <li data-ng-class="navClass('/front')">
-    <a href="#!/front">{{'Front' | translate}}</a>
-  <li data-ng-class="navClass('/admin')">
-    <a href="#!/admin">{{'Admin' | translate}}</a>
+    <li data-ng-class="navClass('/front')">
+        <a href="#!/front">{{'Front' | translate}}</a>
+    <li data-ng-class="navClass('/admin')">
+        <a href="#!/admin">{{'Admin' | translate}}</a>
 </ul>
 <div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th style="width: 12%;">
-        <th ng-repeat="role in roles" class="text-center">
-          {{role.title}}
-        <td>
-    <tbody>
-      <tr>
-        <th colspan="{{cols}}">{{'GLOBAL' | translate}}
-      <tr ng-repeat="item in resources.global">
-        <td class="pi-indent">{{item.title}}
-        <td ng-repeat="role in item.roles" class="text-center">
-            <button class="btn btn-sm"
-                    data-ng-class="{'btn-success': role.value, 'btn-default': !role.value}"
-                    data-ng-click="assignAction(role, item)">
-              <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
-            </button>
-        <td>
-          <div ng-include src="'allResource.html'"></div>
-      <tr data-ng-if="resources.module.length">
-        <th colspan="{{cols}}">{{'MODULE' | translate}}
-      <tr ng-repeat="item in resources.module">
-        <td class="pi-indent">{{item.title}}
-        <td ng-repeat="role in item.roles" class="text-center">
-            <button class="btn btn-sm"
-                    data-ng-class="{'btn-success': role.value, 'btn-default': !role.value}"
-                    data-ng-click="assignAction(role, item)">
-              <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
-            </button>
-        <td>
-            <div ng-include src="'allResource.html'"></div>
-      <tr data-ng-if="resources.block.length">
-        <th colspan="{{cols}}">{{'BLOCK' | translate}}
-      <tr ng-repeat="item in resources.block">
-        <td class="pi-indent">{{item.title}}
-        <td ng-repeat="role in item.roles" class="text-center">
-          <button class="btn btn-sm"
-                  data-ng-class="{'btn-success': role.value, 'btn-default': !role.value}"
-                  data-ng-click="assignAction(role, item)">
-            <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
-          </button>
-        <td>
-          <div ng-include src="'allResource.html'"></div>
-      <tr>
-        <td>
-        <td ng-repeat="item in roles" class="text-center">
-            <div ng-include src="'allRole.html'"></div>
-        <td>
-  </table>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 12%;">
+            <th ng-repeat="role in roles" class="text-center">
+                {{role.title}}
+            <td>
+        <tbody>
+        <tr>
+            <th colspan="{{cols}}">{{'GLOBAL' | translate}}
+        <tr ng-repeat="item in resources.global">
+            <td class="pi-indent">{{item.title}}
+            <td ng-repeat="role in item.roles" class="text-center">
+                <button class="btn btn-sm"
+                        data-ng-class="{'btn-success': role.value, 'btn-default': !role.value}"
+                        data-ng-click="assignAction(role, item)">
+                    <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
+                </button>
+            <td>
+                <div ng-include src="'allResource.html'"></div>
+        <tr data-ng-if="resources.module.length">
+            <th colspan="{{cols}}">{{'MODULE' | translate}}
+        <tr ng-repeat="item in resources.module">
+            <td class="pi-indent">{{item.title}}
+            <td ng-repeat="role in item.roles" class="text-center">
+                <button class="btn btn-sm"
+                        data-ng-class="{'btn-success': role.value, 'btn-default': !role.value}"
+                        data-ng-click="assignAction(role, item)">
+                    <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
+                </button>
+            <td>
+                <div ng-include src="'allResource.html'"></div>
+        <tr data-ng-if="resources.block.length">
+            <th colspan="{{cols}}">{{'BLOCK' | translate}}
+        <tr ng-repeat="item in resources.block">
+            <td class="pi-indent">{{item.title}}
+            <td ng-repeat="role in item.roles" class="text-center">
+                <button class="btn btn-sm"
+                        data-ng-class="{'btn-success': role.value, 'btn-default': !role.value}"
+                        data-ng-click="assignAction(role, item)">
+                    <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
+                </button>
+            <td>
+                <div ng-include src="'allResource.html'"></div>
+        <tr>
+            <td>
+            <td ng-repeat="item in roles" class="text-center">
+                <div ng-include src="'allRole.html'"></div>
+            <td>
+    </table>
 </div>
 <script type="text/ng-template" id="allRole.html">
-  <div class="btn-group" data-toggle="tooltip" title="{{'ALL' | translate}}">
-    <button class="btn btn-sm btn-default" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
-            data-ng-click="assignAllResource(item, 1)">
-      <i class="fa fa-check"></i>
-    </button>
-    <button class="btn btn-sm btn-default" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
-            data-ng-click="assignAllResource(item, 0)">
-      <i class="fa fa-times"></i>
-    </button>
-  </div>
+    <div class="btn-group" data-toggle="tooltip" title="{{'ALL' | translate}}">
+        <button class="btn btn-sm btn-default" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+                data-ng-click="assignAllResource(item, 1)">
+            <i class="fa fa-check"></i>
+        </button>
+        <button class="btn btn-sm btn-default" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+                data-ng-click="assignAllResource(item, 0)">
+            <i class="fa fa-times"></i>
+        </button>
+    </div>
 </script>
 <script type="text/ng-template" id="allResource.html">
-  <div class="btn-group" data-toggle="tooltip" title="{{'ALL' | translate}}">
-    <button class="btn btn-sm btn-default" data-ng-click="assignAllRole(item, 1)">
-      <i class="fa fa-check"></i>
-    </button>
-    <button class="btn btn-sm btn-default" data-ng-click="assignAllRole(item, 0)">
-      <i class="fa fa-times"></i>
-    </button>
-  </div>
+    <div class="btn-group" data-toggle="tooltip" title="{{'ALL' | translate}}">
+        <button class="btn btn-sm btn-default" data-ng-click="assignAllRole(item, 1)">
+            <i class="fa fa-check"></i>
+        </button>
+        <button class="btn btn-sm btn-default" data-ng-click="assignAllRole(item, 0)">
+            <i class="fa fa-times"></i>
+        </button>
+    </div>
 </script>

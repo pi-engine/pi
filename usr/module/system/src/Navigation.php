@@ -27,9 +27,9 @@ class Navigation
      */
     public static function front($module)
     {
-        $nav = array(
-            'parent' => array(),
-        );
+        $nav = [
+            'parent' => [],
+        ];
 
         $modules = Pi::registry('modulelist')->read('active');
         unset($modules['system']);
@@ -39,12 +39,12 @@ class Navigation
                 continue;
             }
 
-            $nav['parent'][$key] = array(
-                'label'     => $data['title'],
-                'route'     => 'default',
-                'module'    => $key,
-                'pages'     => $node,
-            );
+            $nav['parent'][$key] = [
+                'label'  => $data['title'],
+                'route'  => 'default',
+                'module' => $key,
+                'pages'  => $node,
+            ];
         }
         if (empty($nav['parent'])) {
             $nav['visible'] = 0;
@@ -61,19 +61,19 @@ class Navigation
      */
     public static function admin($module)
     {
-        $pages = array();
-        $nav = array(
+        $pages = [];
+        $nav   = [
             'parent' => &$pages,
-        );
+        ];
 
         $modules = Pi::registry('modulelist')->read('active');
         unset($modules['system']);
         foreach ($modules as $key => $data) {
-            $pages[$key] = array(
-                'label'     => $data['title'],
-                'module'    => $key,
-                'route'     => 'admin',
-            );
+            $pages[$key] = [
+                'label'  => $data['title'],
+                'module' => $key,
+                'route'  => 'admin',
+            ];
         }
 
         return $nav;
@@ -87,16 +87,16 @@ class Navigation
      */
     public static function config($module)
     {
-        $pages = array();
-        $nav = array(
+        $pages = [];
+        $nav   = [
             'parent' => &$pages,
-        );
+        ];
 
-        $model = Pi::model('config');
-        $select = $model->select()->group('module')
-            ->columns(array('count' => new Expression('count(*)'), 'module'));
-        $rowset = $model->selectWith($select);
-        $configCounts = array();
+        $model        = Pi::model('config');
+        $select       = $model->select()->group('module')
+            ->columns(['count' => new Expression('count(*)'), 'module']);
+        $rowset       = $model->selectWith($select);
+        $configCounts = [];
         foreach ($rowset as $row) {
             $configCounts[$row->module] = $row->count;
         }
@@ -105,16 +105,16 @@ class Navigation
         unset($modules['system']);
         foreach ($modules as $key => $data) {
             if (!empty($configCounts[$key])) {
-                $pages[$key] = array(
-                    'label'         => $data['title'],
-                    'module'        => $module,
-                    'route'         => 'admin',
-                    'controller'    => 'config',
-                    'action'        => 'module',
-                    'params'        => array(
-                        'name'  => $key,
-                    ),
-                );
+                $pages[$key] = [
+                    'label'      => $data['title'],
+                    'module'     => $module,
+                    'route'      => 'admin',
+                    'controller' => 'config',
+                    'action'     => 'module',
+                    'params'     => [
+                        'name' => $key,
+                    ],
+                ];
             }
         }
 
@@ -129,16 +129,16 @@ class Navigation
      */
     public static function block($module)
     {
-        $pages = array();
-        $nav = array(
-            'pages'     => &$pages,
-        );
+        $pages = [];
+        $nav   = [
+            'pages' => &$pages,
+        ];
 
-        $model = Pi::model('block');
-        $select = $model->select()->group('module')
-            ->columns(array('count' => new Expression('count(*)'), 'module'));
-        $rowset = $model->selectWith($select);
-        $blockCounts = array();
+        $model       = Pi::model('block');
+        $select      = $model->select()->group('module')
+            ->columns(['count' => new Expression('count(*)'), 'module']);
+        $rowset      = $model->selectWith($select);
+        $blockCounts = [];
         foreach ($rowset as $row) {
             $blockCounts[$row->module] = $row->count;
         }
@@ -148,39 +148,39 @@ class Navigation
             if (empty($blockCounts[$key])) {
                 continue;
             }
-            $pages[$key] = array(
-                'label'         => $data['title'],
-                'module'        => $module,
-                'route'         => 'admin',
-                'controller'    => 'block',
-                'params'        => array(
-                    'name'  => $key,
-                ),
-                'pages'         => array(
-                    'edit'  => array(
-                        'label' => __('Edit a block'),
-                        'module' => 'system',
-                        'route' => 'admin',
+            $pages[$key] = [
+                'label'      => $data['title'],
+                'module'     => $module,
+                'route'      => 'admin',
+                'controller' => 'block',
+                'params'     => [
+                    'name' => $key,
+                ],
+                'pages'      => [
+                    'edit'  => [
+                        'label'      => __('Edit a block'),
+                        'module'     => 'system',
+                        'route'      => 'admin',
                         'controller' => 'block',
-                        'action' => 'edit',
-                        'visible' => 0,
-                        'params'    => array(
-                            'name'  => $key,
-                        ),
-                    ),
-                    'clone' => array(
-                        'label' => __('Clone a block'),
-                        'module' => 'system',
-                        'route' => 'admin',
+                        'action'     => 'edit',
+                        'visible'    => 0,
+                        'params'     => [
+                            'name' => $key,
+                        ],
+                    ],
+                    'clone' => [
+                        'label'      => __('Clone a block'),
+                        'module'     => 'system',
+                        'route'      => 'admin',
                         'controller' => 'block',
-                        'action' => 'clone',
-                        'visible' => 0,
-                        'params'    => array(
-                            'name'  => $key,
-                        ),
-                    ),
-                ),
-            );
+                        'action'     => 'clone',
+                        'visible'    => 0,
+                        'params'     => [
+                            'name' => $key,
+                        ],
+                    ],
+                ],
+            ];
         }
 
         return $nav;
@@ -194,50 +194,50 @@ class Navigation
      */
     public static function page($module)
     {
-        $pages = array();
-        $nav = array(
-            'pages'     => &$pages,
-        );
+        $pages = [];
+        $nav   = [
+            'pages' => &$pages,
+        ];
 
-        $modules = Pi::registry('modulelist')->read('active');
+        $modules      = Pi::registry('modulelist')->read('active');
         $systemModule = $modules['system'];
         unset($modules['system']);
-        $modules = array('system' => $systemModule) + $modules;
+        $modules = ['system' => $systemModule] + $modules;
 
         foreach ($modules as $key => $data) {
-            $pages[$key] = array(
-                'label'         => $data['title'],
-                'module'        => $module,
-                'route'         => 'admin',
-                'controller'    => 'page',
-                'params'        => array(
-                    'name'  => $key,
-                ),
-                'pages'         => array(
-                    'layout'    => array(
-                        'label'         => __('Block layout'),
-                        'module'        => 'system',
-                        'route'         => 'admin',
-                        'controller'    => 'page',
-                        'action'        => 'block',
-                        'visible'       => 0,
-                        'params'        => array(
-                            'name'  => $key,
-                        ),
-                    ),
-                    'add'   => array(
-                        'label' => __('Setup page'),
-                        'module' => 'system',
-                        'route' => 'admin',
+            $pages[$key] = [
+                'label'      => $data['title'],
+                'module'     => $module,
+                'route'      => 'admin',
+                'controller' => 'page',
+                'params'     => [
+                    'name' => $key,
+                ],
+                'pages'      => [
+                    'layout' => [
+                        'label'      => __('Block layout'),
+                        'module'     => 'system',
+                        'route'      => 'admin',
                         'controller' => 'page',
-                        'action' => 'add',
-                        'visible' => 0,
-                        'params'    => array(
-                            'name'  => $key,
-                        ),
-                    ),
-                ),
-            );
+                        'action'     => 'block',
+                        'visible'    => 0,
+                        'params'     => [
+                            'name' => $key,
+                        ],
+                    ],
+                    'add'    => [
+                        'label'      => __('Setup page'),
+                        'module'     => 'system',
+                        'route'      => 'admin',
+                        'controller' => 'page',
+                        'action'     => 'add',
+                        'visible'    => 0,
+                        'params'     => [
+                            'name' => $key,
+                        ],
+                    ],
+                ],
+            ];
         }
 
         return $nav;

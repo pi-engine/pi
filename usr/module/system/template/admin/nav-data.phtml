@@ -14,14 +14,15 @@ $this->js($this->assetModule('script/system-msg.js'));
         </div>
         <div class="form-actions form-inline" style="text-align: left;">
             <div class="form-group">
-            <span class="btn btn-primary menu-submit" data-original-title="<?php echo _a('Only click this button to save data'); ?>">
+            <span class="btn btn-primary menu-submit"
+                  data-original-title="<?php echo _a('Only click this button to save data'); ?>">
                 <?php echo _a('Save menu'); ?>
             </span>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <input type="text" class="form-control js-add-label" placeholder="Label">
-              <span class="input-group-btn">
+                    <span class="input-group-btn">
                 <button class="btn btn-default js-add-to">
                     <?php echo _a('Add to menu'); ?>
                 </button>
@@ -60,15 +61,18 @@ $this->js($this->assetModule('script/system-msg.js'));
             <div class="form-group">
                 <label class="col-md-2 control-label"><?php echo _a('Url'); ?></label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" name="uri" value="<%= uri %>" data-original-title="<?php echo _a('Page link by url or by the after of route'); ?>">
+                    <input class="form-control" type="text" name="uri" value="<%= uri %>"
+                           data-original-title="<?php echo _a('Page link by url or by the after of route'); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label"><?php echo _a('Target'); ?></label>
                 <div class="col-md-6">
                     <select name="target">
-                        <option value="" <% if (!target) { print('selected'); } %>><?php echo _a('None'); ?>
-                        <option value="_blank" <% if (target == "_blank") { print('selected'); } %>><?php echo _a('_blank'); ?>
+                        <option value=""
+                        <% if (!target) { print('selected'); } %>><?php echo _a('None'); ?>
+                        <option value="_blank"
+                        <% if (target == "_blank") { print('selected'); } %>><?php echo _a('_blank'); ?>
                     </select>
                 </div>
             </div>
@@ -81,7 +85,8 @@ $this->js($this->assetModule('script/system-msg.js'));
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-6">
                     <label class="checkbox">
-                        <input type="checkbox" name="visible" <% if (visible) { print('checked'); } %>><?php echo _a('To display in menu.'); ?>
+                        <input type="checkbox" name="visible" <% if (visible) { print('checked'); }
+                        %>><?php echo _a('To display in menu.'); ?>
                     </label>
                 </div>
             </div>
@@ -93,13 +98,15 @@ $this->js($this->assetModule('script/system-msg.js'));
                     <div class="form-group">
                         <label class="col-md-2 control-label"><?php echo _a('Route'); ?></label>
                         <div class="col-md-6">
-                            <input class="form-control" type="text" value="<%= route %>" name="route" class="input-small">
+                            <input class="form-control" type="text" value="<%= route %>" name="route"
+                                   class="input-small">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label"><?php echo _a('Controller'); ?></label>
                         <div class="col-md-6">
-                            <input class="form-control" type="text" name="controller" value="<%= controller %>" class="input-small">
+                            <input class="form-control" type="text" name="controller" value="<%= controller %>"
+                                   class="input-small">
                         </div>
                     </div>
                 </div>
@@ -109,13 +116,15 @@ $this->js($this->assetModule('script/system-msg.js'));
                     <div class="form-group">
                         <label class="col-md-2 control-label"><?php echo _a('Module'); ?></label>
                         <div class="col-md-6">
-                            <input class="form-control" type="text" value="<%= module %>" name="module" class="input-small">
+                            <input class="form-control" type="text" value="<%= module %>" name="module"
+                                   class="input-small">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label"><?php echo _a('Action'); ?></label>
                         <div class="col-md-6">
-                            <input class="form-control" type="text" name="action" value="<%= action %>" class="input-small">
+                            <input class="form-control" type="text" name="action" value="<%= action %>"
+                                   class="input-small">
                         </div>
                     </div>
                 </div>
@@ -127,7 +136,7 @@ $this->js($this->assetModule('script/system-msg.js'));
     </div>
 </script>
 <script>
-    (function($) {
+    (function ($) {
         var isDone = false;
         var Menu = Backbone.Model.extend({
             idAttribute: "_id",
@@ -145,13 +154,13 @@ $this->js($this->assetModule('script/system-msg.js'));
                 action: "",
                 visible: 1
             },
-            getChild: function() {
+            getChild: function () {
                 var ret = [],
-                    get = function(model) {
+                    get = function (model) {
                         var c = model.collection.where({
                             pid: model.get('id')
                         });
-                        for(var i = 0 , l = c.length; i < l; i++) {
+                        for (var i = 0, l = c.length; i < l; i++) {
                             get1(c[i]);
                         }
                     },
@@ -178,25 +187,25 @@ $this->js($this->assetModule('script/system-msg.js'));
                 'click .js-delete': 'deleteItem',
                 'click .tree-item-save': 'saveItem'
             },
-            initialize: function() {
+            initialize: function () {
                 this.model.on('destroy', this.remove, this);
                 this.model.on("change", this.render, this);
                 this.model.el = this.el;
                 this.$el.data('model', this.model);
             },
-            toggle: function() {
+            toggle: function () {
                 this.$el.toggleClass('tree-item-editing');
                 this.$('.js-toggle').toggleClass('active');
             },
-            deleteItem: function() {
+            deleteItem: function () {
                 var m = this.model;
                 m.collection.trigger('deleteItem', m);
                 m.destroy();
                 isDone = true;
             },
-            saveItem: function() {
+            saveItem: function () {
                 var self = this,
-                    val = function(name) {
+                    val = function (name) {
                         return $.trim(self.$('[name=' + name + ']').val());
                     },
                     label = val('label');
@@ -217,8 +226,8 @@ $this->js($this->assetModule('script/system-msg.js'));
                 }
                 isDone = true;
             },
-            render: function() {
-                this.$el.html(_.template(this.template,this.model.toJSON()))[0].className = 'tree-item menu-item-depth' + this.model.get('depth');
+            render: function () {
+                this.$el.html(_.template(this.template, this.model.toJSON()))[0].className = 'tree-item menu-item-depth' + this.model.get('depth');
                 this.$('[name=uri]').tooltip();
                 return this;
             }
@@ -230,7 +239,7 @@ $this->js($this->assetModule('script/system-msg.js'));
                 'click .menu-submit': 'saveMenu',
                 'keypress .js-add-label': 'enterSaveMenu'
             },
-            initialize: function(option) {
+            initialize: function (option) {
                 this.box = this.$('.menu-to-edit');
                 this.render();
                 this.$('.menu-submit').tooltip();
@@ -243,11 +252,11 @@ $this->js($this->assetModule('script/system-msg.js'));
                     this.sortable();
                 }
             },
-            sortable: function() {
-                var getDepth = function(el) {
+            sortable: function () {
+                var getDepth = function (el) {
                     return el.length && parseInt(el.data('model').get('depth'));
                 };
-                var placePosition = function() {
+                var placePosition = function () {
                     depth = Math.max(depth, 0);
                     depth = Math.min(depth, 9);
                     place[0].className = "tree-sortable-placeholder menu-item-depth" + depth;
@@ -261,29 +270,29 @@ $this->js($this->assetModule('script/system-msg.js'));
                 this.box.sortable({
                     handle: ".tree-item-header",
                     placeholder: "tree-sortable-placeholder",
-                    start: function(e, ui) {
+                    start: function (e, ui) {
                         item = ui.item;
                         depth = item.data('model').get('depth');
                         place = ui.placeholder;
                         itemChild = self.getChild(item);
                         var maxDepth = depth,
                             w;
-                        itemChild.each(function() {
+                        itemChild.each(function () {
                             var d = getDepth($(this));
                             maxDepth = Math.max(maxDepth, d);
                         });
                         w = item.find(".tree-item-header").outerWidth() + (maxDepth - depth) * 30;
                         place.css({
                             width: w,
-                            height: (item.find(".tree-item-header").outerHeight() + 10) * (itemChild.length + 1) -12
+                            height: (item.find(".tree-item-header").outerHeight() + 10) * (itemChild.length + 1) - 12
                         });
                         item.css('width', w + 20);
                         placePosition();
                         item.append(itemChild);
                         $(this).sortable('refresh');
                     },
-                    sort: function(e, ui) {
-                        var l = function(str) {
+                    sort: function (e, ui) {
+                        var l = function (str) {
                             console.log(str);
                         };
                         var itemOffset = ui.item.offset().left;
@@ -308,7 +317,7 @@ $this->js($this->assetModule('script/system-msg.js'));
                             if (itemOffset - 10 > prevOffset.left) {
                                 depth = prevDepth + 1;
                             } else if ((next.length && itemOffset + 10 < prevOffset.left && nextDepth != prevDepth && nextDepth != prevDepth + 1) || (!nextDepth && itemOffset + 10 < prevOffset.left)) {
-                                depth = prevDepth - Math.floor((prevOffset.left - itemOffset - 10)/30);
+                                depth = prevDepth - Math.floor((prevOffset.left - itemOffset - 10) / 30);
                                 if (depth < nextDepth) {
                                     depth = nextDepth;
                                 }
@@ -318,22 +327,22 @@ $this->js($this->assetModule('script/system-msg.js'));
                         }
                         placePosition();
                     },
-                    stop: function(e, ui) {
+                    stop: function (e, ui) {
                         var pid,
                             diff = depth - item.data('model').get('depth');
                         if (depth == 0) {
                             pid = 0;
                         } else {
-                            item.prevAll().each(function() {
+                            item.prevAll().each(function () {
                                 var m = $(this).data('model');
-                                if (m.get('depth') == depth-1) {
+                                if (m.get('depth') == depth - 1) {
                                     pid = m.get('id');
                                     return false;
                                 }
                             });
                         }
                         if (itemChild.length) {
-                            itemChild.insertAfter(item).each(function() {
+                            itemChild.insertAfter(item).each(function () {
                                 var m = $(this).data('model');
                                 m.set({
                                     depth: m.get('depth') + diff
@@ -345,15 +354,15 @@ $this->js($this->assetModule('script/system-msg.js'));
                             pid: pid
                         });
                     },
-                    update: function() {
+                    update: function () {
                         isDone = true;
                     }
                 });
             },
-            render: function() {
+            render: function () {
                 this.collection.forEach(this.addOne, this);
             },
-            addMenu: function() {
+            addMenu: function () {
                 var input = this.$('.js-add-label'),
                     val = $.trim(input.val());
                 if (val) {
@@ -364,20 +373,20 @@ $this->js($this->assetModule('script/system-msg.js'));
                 }
                 input.val('');
             },
-            enterSaveMenu: function(e) {
+            enterSaveMenu: function (e) {
                 if (e.keyCode == 13) {
                     this.addMenu();
                 }
             },
-            addOne: function(item) {
+            addOne: function (item) {
                 this.box.append(new MenuItemView({
                     model: item
                 }).render().el);
             },
-            getChild: function(el) {
+            getChild: function (el) {
                 var i = 0,
                     child = $('');
-                el.nextAll().not('.tree-sortable-placeholder').each(function() {
+                el.nextAll().not('.tree-sortable-placeholder').each(function () {
                     var $this = $(this);
                     if ($this.data('model').get('depth') > el.data('model').get('depth')) {
                         child[i++] = this;
@@ -388,8 +397,8 @@ $this->js($this->assetModule('script/system-msg.js'));
                 child.length = i;
                 return child;
             },
-            deleteItem: function(model) {
-                this.getChild($(model.el)).each(function() {
+            deleteItem: function (model) {
+                this.getChild($(model.el)).each(function () {
                     var m = $(this).data('model');
                     m.set('depth', parseInt(m.get('depth')) - 1);
                     if (m.get('depth') == model.get('depth')) {
@@ -401,15 +410,15 @@ $this->js($this->assetModule('script/system-msg.js'));
                     }
                 });
             },
-            saveMenu: function() {
+            saveMenu: function () {
                 var ret = [];
-                this.box.find('>').each(function() {
+                this.box.find('>').each(function () {
                     ret.push($(this).data('model').toJSON());
                 });
-                $.post('<?php echo $this->url('', array('action' => 'update')); ?>', {
+                $.post('<?php echo $this->url('', ['action' => 'update']); ?>', {
                     name: '<?php echo $navigation['name']; ?>',
                     pages: ret
-                }).done(function(result) {
+                }).done(function (result) {
                     result = $.parseJSON(result);
                     if (result.status == 1) {
                         systemMessage.succ(result.message);
@@ -420,9 +429,13 @@ $this->js($this->assetModule('script/system-msg.js'));
         });
         new MenuListItemView({
             collection: new MenuCollection(<?php echo json_encode($pages) ?>),
-            onlyView: <?php if ($navigation['module']) {  echo 1; } else { echo 0; } ?>
+            onlyView: <?php if ($navigation['module']) {
+            echo 1;
+        } else {
+            echo 0;
+        } ?>
         });
-        window.onbeforeunload = function() {
+        window.onbeforeunload = function () {
             if (isDone) {
                 return '<?php echo _a('You have made unsaved changes. Would you still like to leave this page?'); ?>'
             }

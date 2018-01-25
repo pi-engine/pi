@@ -17,26 +17,26 @@ use Zend\Validator\AbstractValidator;
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
-
 class Password extends AbstractValidator
 {
     const TOO_SHORT = 'stringLengthTooShort';
     const TOO_LONG  = 'stringLengthTooLong';
 
-    protected $messageVariables = array(
-        'max'        => 'max',
-        'min'        => 'min',
-    );
+    protected $messageVariables
+        = [
+            'max' => 'max',
+            'min' => 'min',
+        ];
 
     protected $max;
     protected $min;
 
     public function __construct()
     {
-        $this->messageTemplates = array(
+        $this->messageTemplates = [
             self::TOO_SHORT => __('Password is less than %min% characters long'),
             self::TOO_LONG  => __('Password is more than %max% characters long'),
-        );
+        ];
 
         parent::__construct();
     }
@@ -71,10 +71,10 @@ class Password extends AbstractValidator
      */
     public function setConfigOption()
     {
-        $this->options = array(
-            'min'       => Pi::user()->config('password_min'),
-            'max'       => Pi::user()->config('password_max'),
-        );
+        $this->options = [
+            'min' => Pi::user()->config('password_min'),
+            'max' => Pi::user()->config('password_max'),
+        ];
 
         return $this;
     }

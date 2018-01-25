@@ -15,4 +15,5 @@ namespace Module\System\Controller\Front;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class HomeController extends ProfileController
-{}
+{
+}
