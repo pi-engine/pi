@@ -13,30 +13,30 @@ class Block
 {
     public static function blocka($options, $module = null)
     {
-        $block = array(
-            'caption'   => _b('Block A'),
-            'content'   => sprintf(
+        $block = [
+            'caption' => _b('Block A'),
+            'content' => sprintf(
                 _b('Called by %s through %s'),
                 $module,
                 __METHOD__
             ),
-            'options'   => $options,
-        );
+            'options' => $options,
+        ];
 
         return $block;
     }
 
     public static function blockb($options, $module = null)
     {
-        $block = array(
-            'caption'   => _b('Block B'),
-            'content'   => sprintf(
+        $block = [
+            'caption' => _b('Block B'),
+            'content' => sprintf(
                 _b('Called by %s through %s'),
                 $module,
                 __METHOD__
             ),
-            'options'   => $options,
-        );
+            'options' => $options,
+        ];
 
         return $block;
     }

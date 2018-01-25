@@ -35,31 +35,31 @@ class BlockStaticForm extends AbstractBaseForm
         $set = '';
         switch ($this->contentType) {
             case 'html':
-                $editor         = 'html';
+                $editor = 'html';
                 break;
             case 'markdown':
-                $editor         = 'markitup';
-                $set            = 'markdown';
+                $editor = 'markitup';
+                $set    = 'markdown';
                 break;
             case 'text':
             default:
-                $editor         = 'textarea';
+                $editor = 'textarea';
                 break;
         }
 
-        return array(
-            'name'          => 'content',
-            'options'       => array(
-                'label'     =>  _a('Content'),
-                'editor'    => $editor,
-                'set'       => $set,
-            ),
-            'type'          => 'editor',
-            'attributes'    => array(
-                'class'         => 'span6',
-                'description'   => _a('Tags supported: `%sitename%` - site name; `%siteurl%` - site root URL; `%slogan%` - site slogan'),
-            )
-        );
+        return [
+            'name'       => 'content',
+            'options'    => [
+                'label'  => _a('Content'),
+                'editor' => $editor,
+                'set'    => $set,
+            ],
+            'type'       => 'editor',
+            'attributes' => [
+                'class'       => 'span6',
+                'description' => _a('Tags supported: `%sitename%` - site name; `%siteurl%` - site root URL; `%slogan%` - site slogan'),
+            ],
+        ];
     }
 
     /**
@@ -67,11 +67,11 @@ class BlockStaticForm extends AbstractBaseForm
      */
     protected function getContentFilter()
     {
-        return array(
-            'name'          => 'content',
-            'required'      => true,
-            'allow_empty'   => false,
-        );
+        return [
+            'name'        => 'content',
+            'required'    => true,
+            'allow_empty' => false,
+        ];
     }
 
     /**
@@ -79,15 +79,15 @@ class BlockStaticForm extends AbstractBaseForm
      */
     protected function getTypeElement()
     {
-        return array(
-            'name'  => 'type',
-            'options'       => array(
-                'label' =>  _a('Content type'),
-            ),
-            'attributes'    => array(
-                'readonly'  => true,
-                'value'     => $this->contentType,
-            ),
-        );
+        return [
+            'name'       => 'type',
+            'options'    => [
+                'label' => _a('Content type'),
+            ],
+            'attributes' => [
+                'readonly' => true,
+                'value'    => $this->contentType,
+            ],
+        ];
     }
 }

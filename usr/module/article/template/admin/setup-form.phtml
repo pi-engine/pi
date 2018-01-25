@@ -1,9 +1,9 @@
 <?php
-    $this->css(array(
-        $this->assetModule('script/admin.css'),
-    ));
-    $this->jQuery();
-    $this->Backbone();
+$this->css([
+    $this->assetModule('script/admin.css'),
+]);
+$this->jQuery();
+$this->Backbone();
 ?>
 
 <div>
@@ -14,29 +14,31 @@
         <?php echo $this->form()->openTag($form); ?>
         <div><?php $element = $form->get('mode'); ?>
             <?php
-                $options = $element->getValueOptions();
-                $value   = $element->getValue();
-                foreach ($options as $name => $label) {
-            ?>
-            <div class="row" style="margin-left: 30px">
-                <label class="radio col-md-1" style="padding-top: 0">
-                    <input type="radio" value="<?php echo $this->escape($name); ?>" name="mode"<?php echo ($value == $name) ? ' checked' : ''; ?>>
+            $options = $element->getValueOptions();
+            $value   = $element->getValue();
+            foreach ($options as $name => $label) {
+                ?>
+                <div class="row" style="margin-left: 30px">
+                    <label class="radio col-md-1" style="padding-top: 0">
+                        <input type="radio" value="<?php echo $this->escape($name); ?>"
+                               name="mode"<?php echo ($value == $name) ? ' checked' : ''; ?>>
                         <?php echo $this->escape($label); ?>
-                </label>
-                <a class="article-form-mode col-md-1" data-mode="<?php echo $this->escape($name); ?>" href="javascript:void(0)">
-                    <?php echo _a('Preview'); ?>
-                </a>
-            </div>
-            <?php
-                }
+                    </label>
+                    <a class="article-form-mode col-md-1" data-mode="<?php echo $this->escape($name); ?>"
+                       href="javascript:void(0)">
+                        <?php echo _a('Preview'); ?>
+                    </a>
+                </div>
+                <?php
+            }
             ?>
         </div>
 
-        <div id="article-config-form-elements" 
-            <?php 
-                if ($custom != $form->get('mode')->getValue()) {
-                    echo 'style="display: none"';
-                }
+        <div id="article-config-form-elements"
+            <?php
+            if ($custom != $form->get('mode')->getValue()) {
+                echo 'style="display: none"';
+            }
             ?> class="row">
             <h5 class="col-md-12 page-header">
                 <?php echo _a('Form Elements'); ?>
@@ -53,7 +55,7 @@
         </div>
 
         <div class="row">
-        <?php $element = $form->get('submit'); ?>
+            <?php $element = $form->get('submit'); ?>
             <div><?php echo $this->formElement($element); ?></div>
         </div>
         <?php echo $this->form()->closeTag(); ?>
@@ -62,21 +64,21 @@
 
 <script>
     var page = {
-        init        : function() {
+        init: function () {
             $('input[name="submit"]').css('margin', '20px 0 0 50px');
             $('.article-form-mode').click(this.preview.bind(this));
             $('input[name="mode"]').change(this.changeMode.bind(this));
             $('.custom-form-update').click(this.update.bind(this));
         },
-        preview     : function(e) {
-            var obj  = $(e.target);
+        preview: function (e) {
+            var obj = $(e.target);
             var mode = obj.data('mode');
-            var url  = '<?php echo $this->url('', array('action' => 'preview')); ?>';
+            var url = '<?php echo $this->url('', ['action' => 'preview']); ?>';
             url += 'mode/' + mode;
-            
+
             if ('custom' == mode) {
                 var form = '';
-                $('input[type="checkbox"]:checked').each(function() {
+                $('input[type="checkbox"]:checked').each(function () {
                     if (form.length) {
                         form += ',' + $(this).attr('name');
                     } else {
@@ -88,17 +90,17 @@
             obj.attr('target', '_blank');
             obj.attr("href", url);
         },
-        changeMode  : function(e) {
+        changeMode: function (e) {
             if ('custom' == $(e.target).val()) {
                 $('#article-config-form-elements').css('display', 'block');
             } else {
                 $('#article-config-form-elements').css('display', 'none');
             }
         },
-        update      : function() {
-            var url = '<?php echo $this->url('', array('action' => 'update')); ?>';
+        update: function () {
+            var url = '<?php echo $this->url('', ['action' => 'update']); ?>';
             var form = '';
-            $('input[type="checkbox"]:checked').each(function() {
+            $('input[type="checkbox"]:checked').each(function () {
                 if (form.length) {
                     form += ',' + $(this).attr('name');
                 } else {
@@ -106,18 +108,18 @@
                 }
             });
             url += 'elements/' + form;
-            
+
             var self = this;
-            $.get(url, function(result) {
+            $.get(url, function (result) {
                 result = $.parseJSON(result);
                 self.renderMessage(result.status, result.message);
             });
         },
-        renderMessage   : function(status, message) {
+        renderMessage: function (status, message) {
             $('#message-box').html(
                 _.template($('#template-message').html(), {
-                    status      : status ? 'success' : 'error',
-                    message     : message
+                    status: status ? 'success' : 'error',
+                    message: message
                 })
             );
         }

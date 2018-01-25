@@ -26,17 +26,17 @@ class IndexController extends ActionController
 {
     public function indexAction()
     {
-        $block  = _get('block');
-        $zone   = _get('zone');
-        $theme  = _get('theme');
-        $placeholder = array(array(
-            'title'         => __('Block title'),
-            'content'       => __('Block content placeholder.'),
-            'class'         => 'widget-preview-placeholder',
+        $block       = _get('block');
+        $zone        = _get('zone');
+        $theme       = _get('theme');
+        $placeholder = [[
+                            'title'   => __('Block title'),
+                            'content' => __('Block content placeholder.'),
+                            'class'   => 'widget-preview-placeholder',
 
-            'subline'       => null,
-            'title_hidden'  => true,
-        ));
+                            'subline'      => null,
+                            'title_hidden' => true,
+                        ]];
 
         $parse = function ($input) {
             if (!$input) {
@@ -50,14 +50,14 @@ class IndexController extends ActionController
 
             return $list;
         };
-        $block  = $parse($block);
-        $zone   = $parse($zone);
+        $block = $parse($block);
+        $zone  = $parse($zone);
 
-        $list   = array();
+        $list        = [];
         $blockLoader = $this->view()->helper('blocks');
         if ($block) {
             $blockRender = $this->view()->helper('block');
-            $blocks = array();
+            $blocks      = [];
             foreach ($block as $id) {
                 $blockRow = $blockRender($id);
                 if ($blockRow) {
@@ -65,11 +65,11 @@ class IndexController extends ActionController
                 }
             }
             if ($blocks) {
-                $zones = array_keys($blockLoader->getZones());
-                $zoneLoad = $zones;
-                $zoneEmpty = array();
+                $zones     = array_keys($blockLoader->getZones());
+                $zoneLoad  = $zones;
+                $zoneEmpty = [];
                 if ($zone) {
-                    $zoneLoad = array_intersect($zones, $zone);
+                    $zoneLoad  = array_intersect($zones, $zone);
                     $zoneEmpty = array_diff($zones, $zone);
                 }
                 foreach ($zoneLoad as $key) {

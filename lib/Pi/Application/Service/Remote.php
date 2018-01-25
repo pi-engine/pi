@@ -12,8 +12,8 @@ namespace Pi\Application\Service;
 
 use CurlFile;
 use Pi;
-use Zend\Http\Response;
 use Zend\Http\Client\Adapter\AdapterInterface;
+use Zend\Http\Response;
 use Zend\Uri\Uri;
 
 /**
@@ -88,14 +88,14 @@ class Remote extends AbstractService
      *
      * @return AdapterInterface
      */
-    public function adapter($name = '', array $options = array())
+    public function adapter($name = '', array $options = [])
     {
         if ($name) {
             $adapter = $this->loadAdapter($name, $options);
         } else {
             if (!$this->adapter) {
-                $name = $this->getOption('adapter');
-                $options = array_merge($this->getOption($name), $options);
+                $name          = $this->getOption('adapter');
+                $options       = array_merge($this->getOption($name), $options);
                 $this->adapter = $this->loadAdapter($name, $options);
             }
             $adapter = $this->adapter;
@@ -112,7 +112,7 @@ class Remote extends AbstractService
      *
      * @return AdapterInterface
      */
-    public function loadAdapter($name, array $options = array())
+    public function loadAdapter($name, array $options = [])
     {
         $class = sprintf('Pi\Http\Client\Adapter\%s', ucfirst($name));
         if (!class_exists($class)) {
@@ -130,8 +130,8 @@ class Remote extends AbstractService
      * Connect to the remote server
      *
      * @param string|Uri $host
-     * @param int    $port
-     * @param bool   $secure
+     * @param int $port
+     * @param bool $secure
      *
      * @return void
      */
@@ -149,23 +149,24 @@ class Remote extends AbstractService
     /**
      * Send request to the remote server
      *
-     * @param string        $method
-     * @param Uri|string    $url
-     * @param string        $httpVer
-     * @param array         $headers
-     * @param string        $body
-     * @param array         $options
+     * @param string $method
+     * @param Uri|string $url
+     * @param string $httpVer
+     * @param array $headers
+     * @param string $body
+     * @param array $options
      *
      * @return string|bool Request as text
      */
     public function write(
         $method,
         $url,
-        $httpVer    = '1.1',
-        array $headers    = array(),
-        $body       = '',
-        array $options = array()
-    ) {
+        $httpVer = '1.1',
+        array $headers = [],
+        $body = '',
+        array $options = []
+    )
+    {
         $method = strtoupper($method);
         if (!$url instanceof Uri) {
             $url = new Uri($url);
@@ -234,9 +235,9 @@ class Remote extends AbstractService
             trigger_error('Response error: ' . $e->getMessage(), E_USER_WARNING);
         }
         if ($response && $response->isOk()) {
-            $result         = $response->getBody();
-            $contentType    = $response->getHeaders()->get('Content-Type');
-            $isJson         = false;
+            $result      = $response->getBody();
+            $contentType = $response->getHeaders()->get('Content-Type');
+            $isJson      = false;
             if ($contentType) {
                 $value  = $contentType->getFieldValue();
                 $isJson = false !== stripos($value, 'application/json');
@@ -258,7 +259,7 @@ class Remote extends AbstractService
      *
      * @return array
      */
-    protected function canonizeHeaders($headers = array())
+    protected function canonizeHeaders($headers = [])
     {
         if (!isset($headers['User-Agent'])) {
             $headers['User-Agent'] = 'Pi Engine cURL';
@@ -284,8 +285,8 @@ class Remote extends AbstractService
      */
     public function setAuthorization($params)
     {
-        $params = $params ? : array();
-        foreach (array('httpauth', 'username', 'password') as $key) {
+        $params = $params ?: [];
+        foreach (['httpauth', 'username', 'password'] as $key) {
             if (array_key_exists($key, $params)) {
                 $this->options[$key] = $params[$key];
             }
@@ -303,14 +304,14 @@ class Remote extends AbstractService
      */
     public function buildAuthorization($params)
     {
-        $params = $params ? : array();
+        $params        = $params ?: [];
         $authorization = '';
         if (!empty($params['username']) && !empty($params['password'])) {
-            $httpauth = !empty($params['httpauth'])
+            $httpauth      = !empty($params['httpauth'])
                 ? ucfirst($params['httpauth']) : 'basic';
             $authorization = ucfirst($httpauth) . ' ' . base64_encode(
-                $params['username'] . ':' . $params['password']
-            );
+                    $params['username'] . ':' . $params['password']
+                );
         }
 
         return $authorization;
@@ -324,7 +325,7 @@ class Remote extends AbstractService
      *
      * @return Uri
      */
-    protected function canonizeUrl($uri, array $params = array())
+    protected function canonizeUrl($uri, array $params = [])
     {
         if (!$uri instanceof Uri) {
             $uri = new Uri($uri);
@@ -341,19 +342,20 @@ class Remote extends AbstractService
     /**
      * Perform a GET request
      *
-     * @param string|Uri    $url
-     * @param array         $params
-     * @param array         $headers
-     * @param array         $options
+     * @param string|Uri $url
+     * @param array $params
+     * @param array $headers
+     * @param array $options
      *
      * @return mixed
      */
     public function get(
         $url,
-        array $params = array(),
-        array $headers = array(),
-        array $options = array()
-    ) {
+        array $params = [],
+        array $headers = [],
+        array $options = []
+    )
+    {
         if ($params) {
             // @FIXME: Convert sub arrays to string
             array_walk($params, function (&$param) {
@@ -367,7 +369,7 @@ class Remote extends AbstractService
         /**@+
          * Check against cache
          */
-        $cache = array();
+        $cache = [];
         if (isset($options['cache'])) {
             $cache = $options['cache'];
             unset($options['cache']);
@@ -392,10 +394,10 @@ class Remote extends AbstractService
         }
 
         if ($cache) {
-            $storage = null;
-            $cacheOptions = array(
+            $storage      = null;
+            $cacheOptions = [
                 'namespace' => 'remote',
-            );
+            ];
             if (!empty($cache['storage'])) {
                 $storage = Pi::service('cache')->loadStorage($cache['storage']);
             }
@@ -404,11 +406,11 @@ class Remote extends AbstractService
             }
             $cacheKey = md5($uri->__toString() . serialize($headers));
 
-            $cache = array(
-                'storage'   => $storage,
-                'key'       => $cacheKey,
-                'options'   => $cacheOptions,
-            );
+            $cache = [
+                'storage' => $storage,
+                'key'     => $cacheKey,
+                'options' => $cacheOptions,
+            ];
 
             $data = Pi::service('cache')->getItem(
                 $cache['key'],
@@ -437,7 +439,7 @@ class Remote extends AbstractService
          * Save to cache
          */
         if (false !== $result && $cache) {
-            $data = json_encode($result);
+            $data   = json_encode($result);
             $status = Pi::service('cache')->setItem(
                 $cache['key'],
                 $data,
@@ -453,29 +455,30 @@ class Remote extends AbstractService
     /**
      * Perform a POST request
      *
-     * @param string|Uri    $url
-     * @param array         $params
-     * @param array         $headers
-     * @param array         $options
+     * @param string|Uri $url
+     * @param array $params
+     * @param array $headers
+     * @param array $options
      *
      * @return mixed
      */
     public function post(
         $url,
-        array $params = array(),
-        array $headers = array(),
-        array $options = array()
-    ) {
+        array $params = [],
+        array $headers = [],
+        array $options = []
+    )
+    {
         $headers = $this->canonizeHeaders($headers);
         // Pass `CURLOPT_POSTFIELDS` as array with `Content-Type` header set to `multipart/form-data`
         if (isset($headers['Content-Type'])
             && 'multipart/form-data' == $headers['Content-Type']
         ) {
-            $uri = $url;
+            $uri  = $url;
             $body = $params;
-        // Pass `CURLOPT_POSTFIELDS` as string
+            // Pass `CURLOPT_POSTFIELDS` as string
         } else {
-            $uri = $this->canonizeUrl($url, $params);
+            $uri  = $this->canonizeUrl($url, $params);
             $body = $uri->getQuery();
         }
         $this->connect($uri);
@@ -511,17 +514,18 @@ class Remote extends AbstractService
     public function upload(
         $url,
         $file,
-        array $params = array(),
-        array $headers = array(),
-        array $options = array()
-    ) {
+        array $params = [],
+        array $headers = [],
+        array $options = []
+    )
+    {
         @ignore_user_abort(true);
         @set_time_limit(0);
 
         $uri = $this->canonizeUrl($url, $params);
 
-        $isFtp = false;
-        $ftpOptions = array();
+        $isFtp      = false;
+        $ftpOptions = [];
         if (isset($options['ftp'])) {
             $ftpOptions = $options['ftp'];
             unset($options['ftp']);
@@ -569,7 +573,7 @@ class Remote extends AbstractService
                 }
             }
             $params[] = $curlFile;
-            $result = $this->post($uri, $params, $headers, $options);
+            $result   = $this->post($uri, $params, $headers, $options);
 
             return $result;
         }
@@ -591,7 +595,7 @@ class Remote extends AbstractService
             ->setCurlOption(CURLOPT_INFILESIZE, $size);
         $this->connect($uri);
 
-        $body = $uri->getQuery();
+        $body    = $uri->getQuery();
         $headers = $this->canonizeHeaders($headers);
         $this->write('PUT', $url, '1.1', $headers, $body, $options);
         $response = $this->read();
@@ -625,17 +629,18 @@ class Remote extends AbstractService
     public function download(
         $url,
         $file,
-        array $params = array(),
-        array $headers = array(),
-        array $options = array()
-    ) {
+        array $params = [],
+        array $headers = [],
+        array $options = []
+    )
+    {
         @ignore_user_abort(true);
         @set_time_limit(0);
 
         $uri = $this->canonizeUrl($url, $params);
 
-        $isFtp = false;
-        $ftpOptions = array();
+        $isFtp      = false;
+        $ftpOptions = [];
         if (isset($options['ftp'])) {
             $ftpOptions = $options['ftp'];
             unset($options['ftp']);
@@ -664,7 +669,7 @@ class Remote extends AbstractService
         $this->adapter()->setOutputStream($file);
         // Disable cache for download
         $options['cache'] = false;
-        $result = $this->get($uri, $params, $headers, $options);
+        $result           = $this->get($uri, $params, $headers, $options);
 
         return $result;
     }
@@ -677,17 +682,18 @@ class Remote extends AbstractService
      *  - password
      *  - timeout
      *
-     * @param string|Uri      $url
+     * @param string|Uri $url
      * @param string|Resource $file
-     * @param array           $options
+     * @param array $options
      *
      * @return bool
      */
     public function ftpUpload(
         $url,
         $file,
-        array $options = array()
-    ) {
+        array $options = []
+    )
+    {
         if (is_resource($file)) {
             $resource = $file;
         } else {
@@ -699,7 +705,7 @@ class Remote extends AbstractService
         $stat = fstat($resource);
         $size = $stat['size'];
 
-        $uri = $this->canonizeUrl($url);
+        $uri  = $this->canonizeUrl($url);
         $curl = $this->ftpCurl($uri, $options);
 
         curl_setopt($curl, CURLOPT_UPLOAD, 1);
@@ -725,17 +731,18 @@ class Remote extends AbstractService
      *  - password
      *  - timeout
      *
-     * @param string|Uri      $url
+     * @param string|Uri $url
      * @param string|Resource $file
-     * @param array           $options
+     * @param array $options
      *
      * @return bool
      */
     public function ftpDownload(
         $url,
         $file,
-        array $options = array()
-    ) {
+        array $options = []
+    )
+    {
         if (is_resource($file)) {
             $resource = $file;
         } else {
@@ -745,7 +752,7 @@ class Remote extends AbstractService
             return false;
         }
 
-        $uri = $this->canonizeUrl($url);
+        $uri  = $this->canonizeUrl($url);
         $curl = $this->ftpCurl($uri, $options);
 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -765,7 +772,7 @@ class Remote extends AbstractService
     /**
      * Build cURL for FTP
      *
-     * @param Uri   $uri
+     * @param Uri $uri
      * @param array $options
      *
      * @return resource
@@ -785,7 +792,7 @@ class Remote extends AbstractService
             curl_setopt($curl, CURLOPT_USERPWD, $userpwd);
         }
         if (isset($options['timeout'])) {
-            curl_setopt($curl, CURLOPT_TIMEOUT, (int) $options['timeout']);
+            curl_setopt($curl, CURLOPT_TIMEOUT, (int)$options['timeout']);
         }
 
         return $curl;

@@ -10,4 +10,5 @@
 namespace Module\Widget\Form;
 
 class BlockVideoForm extends BlockMediaForm
-{}
+{
+}

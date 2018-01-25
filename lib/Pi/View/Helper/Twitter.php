@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 /**
@@ -34,7 +33,8 @@ class Twitter extends AbstractHtmlElement
      */
     public function __invoke()
     {
-        $content = <<<'EOT'
+        $content
+            = <<<'EOT'
 <a href="https://twitter.com/share" class="twitter-share-button"
     data-lang="en">Tweet</a>
 <script>

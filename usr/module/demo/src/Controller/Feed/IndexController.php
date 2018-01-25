@@ -9,7 +9,6 @@
 
 namespace Module\Demo\Controller\Feed;
 
-use Pi;
 use Pi\Mvc\Controller\FeedController;
 
 /**
@@ -21,9 +20,9 @@ class IndexController extends FeedController
 {
     public function indexAction()
     {
-        $feed = array(
-            'title' =>  'Feed from ' . __METHOD__,
-        );
+        $feed = [
+            'title' => 'Feed from ' . __METHOD__,
+        ];
 
         return $feed;
     }

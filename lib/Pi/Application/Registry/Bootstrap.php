@@ -5,7 +5,7 @@
  * @link            http://code.piengine.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://piengine.org
  * @license         http://piengine.org/license.txt BSD 3-Clause License
-  * @package         Registry
+ * @package         Registry
  */
 
 namespace Pi\Application\Registry;
@@ -22,18 +22,18 @@ class Bootstrap extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $model = Pi::model('bootstrap');
+        $model  = Pi::model('bootstrap');
         $select = $model->select()->order('priority ASC, id ASC')
-            ->where(array('active' => 1));
+            ->where(['active' => 1]);
         $rowset = $model->selectWith($select);
 
-        $configs = array();
+        $configs = [];
         foreach ($rowset as $row) {
-            $module = $row->module;
-            $directory = Pi::service('module')->directory($module);
-            $class = sprintf('Module\\%s\Bootstrap', ucfirst($directory));
+            $module           = $row->module;
+            $directory        = Pi::service('module')->directory($module);
+            $class            = sprintf('Module\\%s\Bootstrap', ucfirst($directory));
             $configs[$module] = $class;
         }
 

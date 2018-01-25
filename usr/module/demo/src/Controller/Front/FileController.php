@@ -9,10 +9,10 @@
 
 namespace Module\Demo\Controller\Front;
 
-use Pi;
 use Exception;
-use Pi\Mvc\Controller\ActionController;
 use Module\Demo\Form\FileForm;
+use Pi;
+use Pi\Mvc\Controller\ActionController;
 
 class FileController extends ActionController
 {
@@ -21,7 +21,7 @@ class FileController extends ActionController
      */
     public function indexAction()
     {
-        $path = $this->getUploadPath();
+        $path   = $this->getUploadPath();
         $filter = function ($fileinfo) {
             if (!$fileinfo->isFile()) {
                 return false;
@@ -32,28 +32,28 @@ class FileController extends ActionController
             }
             return $filename;
         };
-        $list = Pi::service('file')->getList($path, $filter);
-        $files = array();
+        $list   = Pi::service('file')->getList($path, $filter);
+        $files  = [];
         foreach ($list as $file) {
-            $files[] = array(
-                'filename'      => $file,
-                'url_download'  => $this->url('', array(
-                        'action'    => 'download',
-                        'file'      => $file,
-                    )),
-                'url_delete'  => $this->url('', array(
-                        'action'    => 'delete',
-                        'file'      => $file,
-                    )),
-            );
+            $files[] = [
+                'filename'     => $file,
+                'url_download' => $this->url('', [
+                    'action' => 'download',
+                    'file'   => $file,
+                ]),
+                'url_delete'   => $this->url('', [
+                    'action' => 'delete',
+                    'file'   => $file,
+                ]),
+            ];
         }
 
         $form = new FileForm;
-        $form->setAttribute('action', $this->url('', array('action' => 'upload')));
-        $this->view()->assign(array(
+        $form->setAttribute('action', $this->url('', ['action' => 'upload']));
+        $this->view()->assign([
             'files' => $files,
             'form'  => $form,
-        ));
+        ]);
 
         $this->view()->setTemplate('file-list');
     }
@@ -61,17 +61,17 @@ class FileController extends ActionController
     public function uploadAction()
     {
         if (!$this->request->isPost()) {
-            $result = array(
-                'status'    => 'error',
-                'message'   => __('Error action.'),
-            );
+            $result = [
+                'status'  => 'error',
+                'message' => __('Error action.'),
+            ];
         } else {
             //$rename         = '%random%';
-            $rename         = '';
-            $destination    = $this->getUploadPath();
-            $extensions     = '';
-            $maxImageSize   = array();
-            $maxFileSize    = 0;
+            $rename       = '';
+            $destination  = $this->getUploadPath();
+            $extensions   = '';
+            $maxImageSize = [];
+            $maxFileSize  = 0;
 
             $post = $this->request->getPost();
             if ('overwrite' != $post['rename']) {
@@ -79,22 +79,22 @@ class FileController extends ActionController
             }
             $config = $this->config();
             if (!empty($config['image_extension'])) {
-                $exts = explode(',', $config['image_extension']);
-                $exts = array_filter(array_walk($exts, 'trim'));
+                $exts       = explode(',', $config['image_extension']);
+                $exts       = array_filter(array_walk($exts, 'trim'));
                 $extensions = implode(',', $exts);
             }
             if (!empty($config['file_max_size'])) {
-                $maxFileSize = (int) $config['file_max_size']  * 1024;
+                $maxFileSize = (int)$config['file_max_size'] * 1024;
             }
             if (!empty($config['image_max_width'])) {
-                $maxImageSize['width'] = (int) $config['image_max_width'];
+                $maxImageSize['width'] = (int)$config['image_max_width'];
             }
             if (!empty($config['image_max_height'])) {
-                $maxImageSize['height'] = (int) $config['image_max_height'];
+                $maxImageSize['height'] = (int)$config['image_max_height'];
             }
-            $options = array();
-            $options['rename']  = $rename;
-            $options['destination']  = $destination;
+            $options                = [];
+            $options['rename']      = $rename;
+            $options['destination'] = $destination;
             if ($extensions) {
                 $options['extension'] = $extensions;
             }
@@ -107,21 +107,21 @@ class FileController extends ActionController
             $uploader = Pi::service('file')->upload($options);
 
             if ($uploader->isValid()) {
-                $file = $uploader->getUploaded();
-                $result = array(
-                    'status'    => 'success',
-                    'message'   => sprintf(__('File uploaded: %s'), $file),
-                );
+                $file   = $uploader->getUploaded();
+                $result = [
+                    'status'  => 'success',
+                    'message' => sprintf(__('File uploaded: %s'), $file),
+                ];
             } else {
                 $messages = $uploader->getMessages();
-                $result = array(
-                    'status'    => 'error',
-                    'message'   => $messages ? implode('; ', $messages) : __('File not uploaded.'),
-                );
+                $result   = [
+                    'status'  => 'error',
+                    'message' => $messages ? implode('; ', $messages) : __('File not uploaded.'),
+                ];
             }
         }
 
-        $redirect = $this->url('', array('action' => 'index'));
+        $redirect = $this->url('', ['action' => 'index']);
         $this->jump($redirect, $result['message'], $result['status']);
     }
 
@@ -130,9 +130,9 @@ class FileController extends ActionController
      */
     public function downloadAction()
     {
-        $path = $this->getUploadPath(true);
+        $path     = $this->getUploadPath(true);
         $filename = _get('file');
-        $file = $path . '/' . $filename;
+        $file     = $path . '/' . $filename;
         try {
             Pi::service('file')->download($file);
         } catch (Exception $e) {
@@ -145,23 +145,23 @@ class FileController extends ActionController
      */
     public function deleteAction()
     {
-        $path = $this->getUploadPath(true);
+        $path     = $this->getUploadPath(true);
         $filename = _get('file');
-        $file = $path . '/' . $filename;
+        $file     = $path . '/' . $filename;
         try {
             Pi::service('file')->remove($file);
             $message = sprintf(__('File "%s" deleted.'), $filename);
-            $status = 'success';
+            $status  = 'success';
         } catch (Exception $e) {
             $message = sprintf(
                 __('File "%s" not deleted: %s.'),
                 $filename,
                 $e->getMessage()
             );
-            $status = 'error';
+            $status  = 'error';
         }
 
-        $this->jump(array('action' => 'index'), $message, $status);
+        $this->jump(['action' => 'index'], $message, $status);
     }
 
     /**

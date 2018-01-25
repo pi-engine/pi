@@ -54,20 +54,21 @@ use Pi;
 class Comment extends AbstractResource
 {
     /** @var array Columns of type */
-    protected $typeColumn = array(
-        'id',
-        'title',
-        'callback',
-        'locator',
-        'active',
-        'icon',
+    protected $typeColumn
+        = [
+            'id',
+            'title',
+            'callback',
+            'locator',
+            'active',
+            'icon',
 
-        'module',
-        'controller',
-        'action',
-        'identifier',
-        'params'
-    );
+            'module',
+            'controller',
+            'action',
+            'identifier',
+            'params',
+        ];
 
     /**
      * Check if comment spec is applicable
@@ -87,7 +88,7 @@ class Comment extends AbstractResource
      */
     protected function canonize($config)
     {
-        $result = array();
+        $result = [];
         foreach ($config as $type => $data) {
             foreach ($data as $key => $val) {
                 if (!in_array($key, $this->typeColumn)) {
@@ -96,13 +97,13 @@ class Comment extends AbstractResource
             }
             if (!empty($data['locator'])) {
                 if (is_array($data['locator'])) {
-                    foreach (array(
-                        'module',
-                        'controller',
-                        'action',
-                        'identifier',
-                        'params'
-                     ) as $key) {
+                    foreach ([
+                                 'module',
+                                 'controller',
+                                 'action',
+                                 'identifier',
+                                 'params',
+                             ] as $key) {
                         if (isset($data['locator'][$key])) {
                             $data[$key] = $data['locator'][$key];
                         }
@@ -159,19 +160,19 @@ class Comment extends AbstractResource
         }
         Pi::registry('type', 'comment')->clear();
 
-        $model = Pi::model('type', 'comment');
+        $model  = Pi::model('type', 'comment');
         $config = $this->canonize($this->config);
         foreach ($config as $key => $spec) {
-            $row = $model->createRow($spec);
+            $row    = $model->createRow($spec);
             $status = $row->save();
             if (!$status) {
-                return array(
-                    'status'    => false,
-                    'message'   => sprintf(
+                return [
+                    'status'  => false,
+                    'message' => sprintf(
                         '"%s" is not created.',
                         $key
                     ),
-                );
+                ];
             }
         }
 
@@ -193,10 +194,10 @@ class Comment extends AbstractResource
             return;
         }
 
-        $itemsDeleted = array();
-        $items = $this->canonize($this->config);
-        $model = Pi::model('type', 'comment');
-        $rowset = $model->select(array('module' => $module));
+        $itemsDeleted = [];
+        $items        = $this->canonize($this->config);
+        $model        = Pi::model('type', 'comment');
+        $rowset       = $model->select(['module' => $module]);
         foreach ($rowset as $row) {
             $key = $row->name;
             // Update existent item
@@ -208,7 +209,7 @@ class Comment extends AbstractResource
                 $row->save();
                 unset($items[$key]);
 
-            // Delete deprecated items
+                // Delete deprecated items
             } else {
                 $itemsDeleted[] = $key;
                 $row->delete();
@@ -216,29 +217,29 @@ class Comment extends AbstractResource
         }
         // Add new items
         foreach ($items as $key => $spec) {
-            $row = $model->createRow($spec);
+            $row    = $model->createRow($spec);
             $status = $row->save();
             if (!$status) {
-                return array(
-                    'status'    => false,
-                    'message'   => sprintf(
+                return [
+                    'status'  => false,
+                    'message' => sprintf(
                         '"%s" is not created.',
                         $key
                     ),
-                );
+                ];
             }
         }
 
         // Delete deprecated comments
         if ($itemsDeleted) {
             $categories = "'" . implode("','", $itemsDeleted) . "'";
-            $modelRoot = Pi::model('root', 'comment');
-            $modelPost = Pi::model('post', 'comment');
-            $sql = 'DELETE post FROM %s AS post'
-                 . ' LEFT JOIN %s AS root'
-                 . ' ON root.id=post.root'
-                 . ' WHERE root.module=\'%s\' AND root.category IN(%s)';
-            $sql = sprintf(
+            $modelRoot  = Pi::model('root', 'comment');
+            $modelPost  = Pi::model('post', 'comment');
+            $sql        = 'DELETE post FROM %s AS post'
+                . ' LEFT JOIN %s AS root'
+                . ' ON root.id=post.root'
+                . ' WHERE root.module=\'%s\' AND root.category IN(%s)';
+            $sql        = sprintf(
                 $sql,
                 $modelPost->getTable(),
                 $modelRoot->getTable(),
@@ -246,10 +247,10 @@ class Comment extends AbstractResource
                 $module
             );
             Pi::db()->query($sql);
-            $modelRoot->delete(array(
-                'module'    => $module,
-                'category'  => $itemsDeleted
-            ));
+            $modelRoot->delete([
+                'module'   => $module,
+                'category' => $itemsDeleted,
+            ]);
         }
 
         return true;
@@ -267,9 +268,9 @@ class Comment extends AbstractResource
         }
         Pi::registry('type', 'comment')->clear();
 
-        Pi::model('type', 'comment')->delete(array('module' => $module));
-        Pi::model('root', 'comment')->delete(array('module' => $module));
-        Pi::model('post', 'comment')->delete(array('module' => $module));
+        Pi::model('type', 'comment')->delete(['module' => $module]);
+        Pi::model('root', 'comment')->delete(['module' => $module]);
+        Pi::model('post', 'comment')->delete(['module' => $module]);
 
         return true;
     }

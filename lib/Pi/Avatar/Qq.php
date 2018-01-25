@@ -9,8 +9,6 @@
 
 namespace Pi\Avatar;
 
-use Pi;
-
 /**
  * QQ avatar handler
  *
@@ -33,7 +31,7 @@ class Qa extends AbstractAvatar
      */
     public function getSourceList($uids, $size = 80)
     {
-        $result = array();
+        $result = [];
 
         return $result;
     }
@@ -44,7 +42,7 @@ class Qa extends AbstractAvatar
     public function build($source, $size = '', $uid = null)
     {
         $size = $this->canonizeSize($size);
-        $src = $this->getUrl($source, $size);
+        $src  = $this->getUrl($source, $size);
 
         return $src;
     }

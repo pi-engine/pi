@@ -33,7 +33,7 @@ class Database extends AbstractResource
                 'user to database',
                 $e->getMessage()
             );
-            $message = '<h1>' . 'Database connection is failed.' . '</h1>'
+            $message          = '<h1>' . 'Database connection is failed.' . '</h1>'
                 . '<p>' . $exceptionMessage . '</p>';
             echo $message;
 

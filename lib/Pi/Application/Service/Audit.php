@@ -114,10 +114,10 @@ class Audit extends AbstractService
     protected $format = 'csv';
 
     /** @var array Log container */
-    protected $logs = array();
+    protected $logs = [];
 
     /** @var array Log items */
-    protected $items = array();
+    protected $items = [];
 
     /**
      * Shutdown function, triggered by {@link Pi::shutdown()}
@@ -136,17 +136,17 @@ class Audit extends AbstractService
     /**
      * Attach a log
      *
-     * @param string                $name
-     * @param array|string|null     $options
+     * @param string $name
+     * @param array|string|null $options
      * @return void
      */
     public function attach($name, $options = null)
     {
         if (null === $options) {
             $options = isset($this->options[$name])
-                ? $this->options[$name] : array();
+                ? $this->options[$name] : [];
         }
-        $options = $options ?: array();
+        $options = $options ?: [];
         if (is_string($options)) {
             $options['file'] = $options;
         }
@@ -166,8 +166,8 @@ class Audit extends AbstractService
     /**
      * Write messages to a log
      *
-     * @param string    $name
-     * @param array     $messages
+     * @param string $name
+     * @param array $messages
      * @return bool
      */
     public function write($name, $messages)
@@ -176,22 +176,22 @@ class Audit extends AbstractService
             $this->attach($name);
         }
         $options = $this->logs[$name];
-        $file = fopen($options['file'], 'a');
+        $file    = fopen($options['file'], 'a');
         if (!$file) {
             return false;
         }
 
-        $msgs = array();
+        $msgs = [];
         foreach ($messages as $message) {
             list($time, $args) = $message;
-            $args = (array) $args;
+            $args       = (array)$args;
             $timeString = date($options['timeformat'], $time);
             if ('csv' == strtolower($options['format'])) {
                 array_unshift($args, $timeString);
                 fputcsv($file, $args);
             } elseif ($options['format']) {
-                $msg = str_replace('%time%', $timeString, $options['format']);
-                $msg = vsprintf($msg, $args);
+                $msg    = str_replace('%time%', $timeString, $options['format']);
+                $msg    = vsprintf($msg, $args);
                 $msgs[] = $msg;
             }
         }
@@ -213,12 +213,12 @@ class Audit extends AbstractService
      *      array(<val1>, <val2>, <val3>, ..., <valn>));
      * ```
      *
-     * @param  string       $name  Log name
-     * @param  array|string $args  Parameters to log
+     * @param  string $name Log name
+     * @param  array|string $args Parameters to log
      * @return void
      */
     public function log($name, $args)
     {
-        $this->items[$name][] = array(time(),$args);
+        $this->items[$name][] = [time(), $args];
     }
 }

@@ -75,7 +75,7 @@ class Theme extends AbstractService
         if (file_exists($configFile)) {
             $config = include $configFile;
         } else {
-            $config = array();
+            $config = [];
         }
 
         return $config;
@@ -90,7 +90,7 @@ class Theme extends AbstractService
     public function path($theme = '')
     {
         $theme = $theme ?: $this->current();
-        $path = Pi::path('theme') . '/' . $theme;
+        $path  = Pi::path('theme') . '/' . $theme;
 
         return $path;
     }
@@ -103,7 +103,7 @@ class Theme extends AbstractService
      */
     public function getParent($theme = null)
     {
-        $theme = $theme ?: $this->current();
+        $theme  = $theme ?: $this->current();
         $config = $this->loadConfig($theme);
         $parent = !empty($config['parent'])
             ? $config['parent']
@@ -121,9 +121,9 @@ class Theme extends AbstractService
      */
     public function getThemes($type = 'front')
     {
-        $list = array();
+        $list   = [];
         $themes = Pi::registry('theme')->read($type);
-        foreach($themes as $name => $theme) {
+        foreach ($themes as $name => $theme) {
             $list[$name] = $theme['title'];
         }
 
@@ -139,12 +139,12 @@ class Theme extends AbstractService
      */
     public function getLayouts($theme = '')
     {
-        $list = array(
-            'layout-front'      => __('Full layout (header/footer and blocks)'),
-            'layout-simple'     => __('Simple layout (header/footer)'),
-            'layout-style'      => __('Content only (with style)'),
-            'layout-content'    => __('Raw content (no style)'),
-        );
+        $list = [
+            'layout-front'   => __('Full layout (header/footer and blocks)'),
+            'layout-simple'  => __('Simple layout (header/footer)'),
+            'layout-style'   => __('Content only (with style)'),
+            'layout-content' => __('Raw content (no style)'),
+        ];
         if ($theme) {
             Pi::service('i18n')->loadTheme('default', $theme);
             $config = $this->loadConfig($theme);

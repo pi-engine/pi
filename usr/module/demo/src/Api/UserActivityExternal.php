@@ -9,8 +9,8 @@
 
 namespace Module\Demo\Api;
 
-use Pi;
 use Module\User\Api\AbstractActivityCallback;
+use Pi;
 
 class UserActivityExternal extends AbstractActivityCallback
 {
@@ -20,11 +20,11 @@ class UserActivityExternal extends AbstractActivityCallback
     public function get($uid, $limit, $offset = 0)
     {
         Pi::service('url')->redirect(
-            Pi::service('url')->assemble('default', array(
-                'module'        => $this->module,
-                'controller'    => 'activity',
-                'action'        => 'index',
-            ))
+            Pi::service('url')->assemble('default', [
+                'module'     => $this->module,
+                'controller' => 'activity',
+                'action'     => 'index',
+            ])
         );
     }
 }

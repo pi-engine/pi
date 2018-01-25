@@ -1,6 +1,6 @@
 <?php
 $cloudHTML = ' ';
-$tags = $block['tags'];
+$tags      = $block['tags'];
 foreach ($tags as $term => $tag) {
     $cloudHTML .= PHP_EOL . sprintf('<a style="font-size: %spx; color: %s" href="%s" rel="tag">%s</a>', $tag['size'], $tag['color'], $tag['url'], _escape($tag['term']));
 }

@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Pi\View\Resolver\ModuleTemplate as ModuleTemplateResolver;
 use Zend\View\Helper\AbstractHelper;
 
@@ -32,7 +31,7 @@ class TemplateModule extends AbstractHelper
     /**
      * Get full path to a module template
      *
-     * @param   string  $template
+     * @param   string $template
      * @param   string|null $module
      * @return  string|false
      */

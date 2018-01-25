@@ -9,10 +9,8 @@
 
 namespace Pi\I18n\Translator\Loader;
 
-use Pi;
 use Zend\I18n\Translator\Loader\FileLoaderInterface;
 use Zend\I18n\Translator\TextDomain;
-use Zend\I18n\Exception;
 use Zend\Stdlib\ErrorHandler;
 
 /**
@@ -33,11 +31,12 @@ class Csv implements FileLoaderInterface
      * Options for CSV file
      * @var array
      */
-    protected $options = array(
-        'delimiter' => ',',
-        'length'    => 0,
-        'enclosure' => '"',
-    );
+    protected $options
+        = [
+            'delimiter' => ',',
+            'length'    => 0,
+            'enclosure' => '"',
+        ];
 
     /**
      * Set options
@@ -45,7 +44,7 @@ class Csv implements FileLoaderInterface
      * @param  array $options
      * @return self
      */
-    public function setOptions($options = array())
+    public function setOptions($options = [])
     {
         $this->options = array_merge($this->options, $options);
 
@@ -61,21 +60,21 @@ class Csv implements FileLoaderInterface
     public function load($locale, $filename)
     {
         //$filename .= $this->fileExtension;
-        $messages = array();
+        $messages = [];
 
         ErrorHandler::start();
-        $file = fopen($filename, 'rb');
+        $file  = fopen($filename, 'rb');
         $error = ErrorHandler::stop();
         if (false === $file) {
             return false;
         }
 
-        while(($data = fgetcsv(
-            $file,
-            $this->options['length'],
-            $this->options['delimiter'],
-            $this->options['enclosure']
-        )) !== false) {
+        while (($data = fgetcsv(
+                $file,
+                $this->options['length'],
+                $this->options['delimiter'],
+                $this->options['enclosure']
+            )) !== false) {
             if (substr($data[0], 0, 1) === '#') {
                 continue;
             }
@@ -87,7 +86,7 @@ class Csv implements FileLoaderInterface
             if (count($data) == 2) {
                 $messages[$data[0]] = $data[1];
             } else {
-                $singular = array_shift($data);
+                $singular            = array_shift($data);
                 $messages[$singular] = $data;
             }
         }

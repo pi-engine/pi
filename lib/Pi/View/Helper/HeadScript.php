@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\HeadScript as ZendHeadScript;
 
 /**
@@ -52,7 +51,7 @@ class HeadScript extends ZendHeadScript
      * Added by Taiwen Jiang
      */
     /** @var string[] Segment names for capture */
-    protected static $captureNames = array();
+    protected static $captureNames = [];
     /**#@-*/
 
     /**

@@ -10,8 +10,6 @@
 namespace Module\Tag\Api;
 
 use Pi;
-use Pi\Application\Api\AbstractApi;
-use Zend\Db\Sql\Expression;
 
 /**
  * Tag draft API
@@ -24,22 +22,22 @@ class Draft extends Api
     /**
      * Get tags of a draft item or multi-items
      *
-     * @param string        $module Module name
-     * @param string|array  $item   Item identifier
-     * @param string        $type   Item type, default as ''
+     * @param string $module Module name
+     * @param string|array $item Item identifier
+     * @param string $type Item type, default as ''
      *
      * @return string[]
      */
     public function get($module, $item, $type = '')
     {
-        $result = array();
+        $result = [];
 
-        $items  = (array) $item;
-        $rowset = Pi::model('draft', $this->module)->select(array(
-            'module'    => $module,
-            'type'      => $type,
-            'item'      => $items,
-        ));
+        $items  = (array)$item;
+        $rowset = Pi::model('draft', $this->module)->select([
+            'module' => $module,
+            'type'   => $type,
+            'item'   => $items,
+        ]);
         foreach ($rowset as $row) {
             $result[$row['item']][] = $row['term'];
         }
@@ -47,7 +45,7 @@ class Draft extends Api
             if (isset($result[$item])) {
                 $result = $result[$item];
             } else {
-                $result = array();
+                $result = [];
             }
         }
 
@@ -57,11 +55,11 @@ class Draft extends Api
     /**
      * Add tags of a draft item
      *
-     * @param string       $module Module name
-     * @param string       $item   Item identifier
-     * @param string       $type   Item type, default as ''
-     * @param array|string $tags   Tags to add
-     * @param int          $time   Time adding the tags
+     * @param string $module Module name
+     * @param string $item Item identifier
+     * @param string $type Item type, default as ''
+     * @param array|string $tags Tags to add
+     * @param int $time Time adding the tags
      *
      * @return bool
      */
@@ -74,18 +72,18 @@ class Draft extends Api
             return true;
         }
 
-        $modelLink  = Pi::model('draft', $this->module);
+        $modelLink = Pi::model('draft', $this->module);
 
         foreach ($tags as $index => $tag) {
             // Insert data to link table
-            $row = $modelLink->createRow(array(
-                'term'      => $tag,
-                'module'    => $module,
-                'type'      => $type,
-                'item'      => $item,
-                'time'      => $time,
-                'order'     => $index
-            ));
+            $row = $modelLink->createRow([
+                'term'   => $tag,
+                'module' => $module,
+                'type'   => $type,
+                'item'   => $item,
+                'time'   => $time,
+                'order'  => $index,
+            ]);
             $row->save();
         }
 
@@ -95,22 +93,22 @@ class Draft extends Api
     /**
      * Update tag list of a draft item
      *
-     * @param string       $module Module name
-     * @param string       $item   Item identifier
-     * @param string       $type   Item type, default as ''
-     * @param array|string $tags   Tags to add
-     * @param int          $time   Time adding new tags
+     * @param string $module Module name
+     * @param string $item Item identifier
+     * @param string $type Item type, default as ''
+     * @param array|string $tags Tags to add
+     * @param int $time Time adding new tags
      *
      * @return bool
      */
     public function update($module, $item, $type, $tags, $time = 0)
     {
-        $type       = $type ?: '';
-        $where = array(
-            'module'    => $module,
-            'type'      => $type,
-            'item'      => $item,
-        );
+        $type  = $type ?: '';
+        $where = [
+            'module' => $module,
+            'type'   => $type,
+            'item'   => $item,
+        ];
         Pi::model('draft', $this->module)->delete($where);
         $result = $this->add($module, $item, $type, $tags, $time);
 
@@ -121,19 +119,19 @@ class Draft extends Api
      * Delete tags of an item
      *
      * @param string $module Module name
-     * @param string $item   Item identifier
-     * @param string $type   Item type, default as ''
+     * @param string $item Item identifier
+     * @param string $type Item type, default as ''
      *
      * @return bool
      */
     public function delete($module, $item, $type = '')
     {
         $type = $type ?: '';
-        Pi::model('draft', $this->module)->delete(array(
-            'module'    => $module,
-            'type'      => $type,
-            'item'      => $item,
-        ));
+        Pi::model('draft', $this->module)->delete([
+            'module' => $module,
+            'type'   => $type,
+            'item'   => $item,
+        ]);
 
         return true;
     }

@@ -27,27 +27,28 @@ class Tag extends Standard
      * Default values.
      * @var array
      */
-    protected $defaults = array(
-        'module'        => 'tag',
-        'controller'    => 'index',
-        'action'        => 'list'
-    );
+    protected $defaults
+        = [
+            'module'     => 'tag',
+            'controller' => 'index',
+            'action'     => 'list',
+        ];
 
     /**
      * {@inheritDoc}
      */
     protected function parse($path)
     {
-        $matches = array();
+        $matches = [];
 
-        $parts = array();
+        $parts = [];
         if ($path) {
-            $parts = explode($this->paramDelimiter, $path);
+            $parts          = explode($this->paramDelimiter, $path);
             $matches['tag'] = $this->decode(array_shift($parts));
         }
         if ($parts) {
             $matches = array_merge(
-                (array) $matches,
+                (array)$matches,
                 $this->parseParams($parts)
             );
         }
@@ -77,7 +78,7 @@ class Tag extends Standard
         }
         $url = $this->encode($term);
         foreach ($params as $key => $value) {
-            if (in_array($key, array('module', 'controller', 'action'))) {
+            if (in_array($key, ['module', 'controller', 'action'])) {
                 continue;
             }
             if (null === $value || '' === $value) {

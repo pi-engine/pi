@@ -2,10 +2,12 @@
     .tab-pane li {
         color: #999999;
     }
+
     .list-content {
         color: #48484C;
         font-weight: bolder;
     }
+
     .article-block-submitter-statistics {
         padding: 10px;
     }
@@ -22,53 +24,53 @@
         <div class="tab-content">
             <div class="tab-pane active" id="today">
                 <ul>
-                    <?php foreach ($block['day'] as $detail) { 
-                        $name     = isset($detail['name']) ? $detail['name'] : '';
-                        $total    = isset($detail['total']) ? $detail['total'] : '';
-                    ?>
-                    <li>
-                        <span class="list-content"><?php echo $this->escape($name); ?></span>
-                        <span style="float: right"><?php echo $this->escape($total); ?></span>
-                    </li>
+                    <?php foreach ($block['day'] as $detail) {
+                        $name  = isset($detail['name']) ? $detail['name'] : '';
+                        $total = isset($detail['total']) ? $detail['total'] : '';
+                        ?>
+                        <li>
+                            <span class="list-content"><?php echo $this->escape($name); ?></span>
+                            <span style="float: right"><?php echo $this->escape($total); ?></span>
+                        </li>
                     <?php } ?>
                 </ul>
             </div>
             <div class="tab-pane" id="7days">
                 <ul>
-                    <?php foreach ($block['week'] as $detail) { 
-                        $name     = isset($detail['name']) ? $detail['name'] : '';
-                        $total    = isset($detail['total']) ? $detail['total'] : '';
-                    ?>
-                    <li>
-                        <span class="list-content"><?php echo $this->escape($name); ?></span>
-                        <span style="float: right"><?php echo $this->escape($total); ?></span>
-                    </li>
+                    <?php foreach ($block['week'] as $detail) {
+                        $name  = isset($detail['name']) ? $detail['name'] : '';
+                        $total = isset($detail['total']) ? $detail['total'] : '';
+                        ?>
+                        <li>
+                            <span class="list-content"><?php echo $this->escape($name); ?></span>
+                            <span style="float: right"><?php echo $this->escape($total); ?></span>
+                        </li>
                     <?php } ?>
                 </ul>
             </div>
             <div class="tab-pane" id="30days">
                 <ul>
-                    <?php foreach ($block['month'] as $detail) { 
-                        $name     = isset($detail['name']) ? $detail['name'] : '';
-                        $total    = isset($detail['total']) ? $detail['total'] : '';
-                    ?>
-                    <li>
-                        <span class="list-content"><?php echo $this->escape($name); ?></span>
-                        <span style="float: right"><?php echo $this->escape($total); ?></span>
-                    </li>
+                    <?php foreach ($block['month'] as $detail) {
+                        $name  = isset($detail['name']) ? $detail['name'] : '';
+                        $total = isset($detail['total']) ? $detail['total'] : '';
+                        ?>
+                        <li>
+                            <span class="list-content"><?php echo $this->escape($name); ?></span>
+                            <span style="float: right"><?php echo $this->escape($total); ?></span>
+                        </li>
                     <?php } ?>
                 </ul>
             </div>
             <div class="tab-pane" id="all">
                 <ul>
-                    <?php foreach ($block['history'] as $detail) { 
-                        $name     = isset($detail['name']) ? $detail['name'] : '';
-                        $total    = isset($detail['total']) ? $detail['total'] : '';
-                    ?>
-                    <li>
-                        <span class="list-content"><?php echo $this->escape($name); ?></span>
-                        <span style="float: right"><?php echo $this->escape($total); ?></span>
-                    </li>
+                    <?php foreach ($block['history'] as $detail) {
+                        $name  = isset($detail['name']) ? $detail['name'] : '';
+                        $total = isset($detail['total']) ? $detail['total'] : '';
+                        ?>
+                        <li>
+                            <span class="list-content"><?php echo $this->escape($name); ?></span>
+                            <span style="float: right"><?php echo $this->escape($total); ?></span>
+                        </li>
                     <?php } ?>
                 </ul>
             </div>

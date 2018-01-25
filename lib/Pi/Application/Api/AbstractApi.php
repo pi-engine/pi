@@ -15,4 +15,5 @@ namespace Pi\Application\Api;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class AbstractApi extends AbstractModuleAwareness
-{}
+{
+}

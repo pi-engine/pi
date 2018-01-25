@@ -9,7 +9,6 @@
 
 namespace Pi\Application\Model\User\RowGateway;
 
-use Pi;
 use Pi\Db\RowGateway\RowGateway;
 use Pi\Filter\FilterChain;
 
@@ -62,11 +61,11 @@ abstract class AbstractFieldRowGateway extends RowGateway
      */
     public function filter($col = null)
     {
-        $result = array();
+        $result = [];
         if (!$col) {
             $cols = array_keys($this->getMeta());
         } else {
-            $cols = (array) $col;
+            $cols = (array)$col;
         }
 
         foreach ($cols as $field) {

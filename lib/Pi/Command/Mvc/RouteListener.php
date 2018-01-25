@@ -16,7 +16,7 @@ use Zend\Mvc\Router\Console\RouteMatch;
 
 /**
  * Route listener for command line
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class RouteListener extends AbstractListenerAggregate
@@ -29,7 +29,7 @@ class RouteListener extends AbstractListenerAggregate
      */
     public function attach(EventManagerInterface $events)
     {
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_ROUTE, array($this, 'onRoute'));
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_ROUTE, [$this, 'onRoute']);
     }
 
     /**
@@ -55,7 +55,7 @@ class RouteListener extends AbstractListenerAggregate
 
             $results = $target->getEventManager()->trigger(MvcEvent::EVENT_DISPATCH_ERROR, $e);
             if (count($results)) {
-                $return  = $results->last();
+                $return = $results->last();
             } else {
                 $return = $e->getParams();
             }

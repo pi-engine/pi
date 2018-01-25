@@ -32,110 +32,110 @@ class RouteController extends ActionController
     protected function loadRoutes()
     {
         // Route definitions
-        $params = array(
-            'id'            => time(),
-            'slug'          => 'china-love-day',
-            'category'      => 'summer',
-            'time'          => time(),
-            'module'        => $this->getModule(),
-            'controller'    => 'route',
-        );
-        $id = $this->params('id');
-        $slug = $this->params('slug');
-        $category = $this->params('category');
-        $time = $this->params('time');
-        $module = $this->getModule();
-        $module = $this->params('module');
+        $params     = [
+            'id'         => time(),
+            'slug'       => 'china-love-day',
+            'category'   => 'summer',
+            'time'       => time(),
+            'module'     => $this->getModule(),
+            'controller' => 'route',
+        ];
+        $id         = $this->params('id');
+        $slug       = $this->params('slug');
+        $category   = $this->params('category');
+        $time       = $this->params('time');
+        $module     = $this->getModule();
+        $module     = $this->params('module');
         $controller = $this->params('controller');
 
-        $routeDefs = array(
-            'demo-id'   => array(
-                'label'     => __('Default with ID'),
-                'route'     => 'demo-slug',
-                'params'    => array(
-                    'action'        => 'id',
-                    'id'            => $params['id'],
-                ),
-            ),
-            'demo-slug' => array(
-                'route'     => 'demo-slug',
-                'label'     => __('Slug'),
-                'params'    => array(
-                    'action'        => 'slug',
-                    'slug'          => $params['slug'],
-                ),
-            ),
-            'demo-slug-id'  => array(
-                'label'     => __('Slug & ID'),
-                'route'     => 'demo-slug',
-                'params'    => array(
-                    'action'        => 'slug',
-                    'id'            => $params['id'],
-                    'slug'          => $params['slug'],
-                ),
-            ),
-            'demo-category' => array(
-                'label'     => __('Category'),
-                'route'     => 'demo-category',
-                'params'    => array(
-                    'action'        => 'category',
-                    'id'            => $params['id'],
-                    'slug'          => $params['slug'],
-                    'category'      => $params['category'],
-                ),
-            ),
-            'demo-time' => array(
-                'label'     => __('Time'),
-                'route'     => 'demo-time',
-                'params'    => array(
-                    'action'        => 'time',
-                    'id'            => $params['id'],
-                    'slug'          => $params['slug'],
-                    'time'          => $params['time'],
-                ),
-            ),
-            'demo-compound'  => array(
-                'label'     => __('Time and category'),
-                'route'     => 'demo-compound',
-                'params'    => array(
-                    'action'        => 'compound',
-                    'id'            => $params['id'],
-                    'slug'          => $params['slug'],
-                    'time'          => $params['time'],
-                    'category'      => $params['category'],
-                ),
-            ),
-        );
+        $routeDefs = [
+            'demo-id'       => [
+                'label'  => __('Default with ID'),
+                'route'  => 'demo-slug',
+                'params' => [
+                    'action' => 'id',
+                    'id'     => $params['id'],
+                ],
+            ],
+            'demo-slug'     => [
+                'route'  => 'demo-slug',
+                'label'  => __('Slug'),
+                'params' => [
+                    'action' => 'slug',
+                    'slug'   => $params['slug'],
+                ],
+            ],
+            'demo-slug-id'  => [
+                'label'  => __('Slug & ID'),
+                'route'  => 'demo-slug',
+                'params' => [
+                    'action' => 'slug',
+                    'id'     => $params['id'],
+                    'slug'   => $params['slug'],
+                ],
+            ],
+            'demo-category' => [
+                'label'  => __('Category'),
+                'route'  => 'demo-category',
+                'params' => [
+                    'action'   => 'category',
+                    'id'       => $params['id'],
+                    'slug'     => $params['slug'],
+                    'category' => $params['category'],
+                ],
+            ],
+            'demo-time'     => [
+                'label'  => __('Time'),
+                'route'  => 'demo-time',
+                'params' => [
+                    'action' => 'time',
+                    'id'     => $params['id'],
+                    'slug'   => $params['slug'],
+                    'time'   => $params['time'],
+                ],
+            ],
+            'demo-compound' => [
+                'label'  => __('Time and category'),
+                'route'  => 'demo-compound',
+                'params' => [
+                    'action'   => 'compound',
+                    'id'       => $params['id'],
+                    'slug'     => $params['slug'],
+                    'time'     => $params['time'],
+                    'category' => $params['category'],
+                ],
+            ],
+        ];
 
-        $rowset = Pi::model('route')->select(array(
-            'module'    => $this->getModule(),
-            'custom'    => 1,
-            'active'    => 1
-        ));
-        $routeList = array();
+        $rowset    = Pi::model('route')->select([
+            'module' => $this->getModule(),
+            'custom' => 1,
+            'active' => 1,
+        ]);
+        $routeList = [];
         foreach ($rowset as $row) {
             $routeList[$row->name] = $row->data;
         }
 
         // Build route list
-        $routes = array();
-        $routes['list'] = array(
+        $routes         = [];
+        $routes['list'] = [
             'label' => __('List'),
-            'url'   => $this->url('default', array(
-                'module'        => $this->getModule(),
-                'controller'    => 'route',
-                'action'        => 'index',
-            )),
-        );
+            'url'   => $this->url('default', [
+                'module'     => $this->getModule(),
+                'controller' => 'route',
+                'action'     => 'index',
+            ]),
+        ];
 
         foreach ($routeDefs as $key => $def) {
             if (!isset($routeList[$def['route']])) {
                 continue;
             }
-            $routes[$key] = array(
+            $routes[$key] = [
                 'label' => $def['label'],
                 'url'   => $this->url($def['route'], $def['params']),
-            );
+            ];
         }
 
         $this->view()->assign('routes', $routes);

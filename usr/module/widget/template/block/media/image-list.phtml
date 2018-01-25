@@ -1,8 +1,8 @@
 <?php
-$options    = (array) $block['options'];
-$items      = (array) $block['items'];
-$target     = $options['target_new'] ? '_self' : '_blank';
-$circle     = $options['circle_image'] ? 'img-circle' : '';
+$options = (array)$block['options'];
+$items   = (array)$block['items'];
+$target  = $options['target_new'] ? '_self' : '_blank';
+$circle  = $options['circle_image'] ? 'img-circle' : '';
 
 switch ($options['max_rows']) {
     case '0':
@@ -33,23 +33,27 @@ switch ($options['max_rows']) {
 ?>
 <div class="widget-list widget-list-media">
     <div class="row clearfix">
-        <?php foreach($items as $item) { ?>
+        <?php foreach ($items as $item) { ?>
             <div class="<?php echo $rows; ?>">
                 <div class="widget-list-media-single text-center">
                     <div class="widget-list-media-single-image">
                         <?php if (!empty($item['link'])) { ?>
-                            <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>" target="<?php echo $target; ?>">
-                                <img class="img-responsive <?php echo $circle ?>" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
+                            <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>"
+                               target="<?php echo $target; ?>">
+                                <img class="img-responsive <?php echo $circle ?>" src="<?php echo $item['image']; ?>"
+                                     alt="<?php echo _escape($item['caption']); ?>">
                             </a>
                         <?php } else { ?>
-                            <img class="img-responsive <?php echo $circle ?>" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
+                            <img class="img-responsive <?php echo $circle ?>" src="<?php echo $item['image']; ?>"
+                                 alt="<?php echo _escape($item['caption']); ?>">
                         <?php } ?>
                     </div>
                     <?php if (!empty($item['summary'])) { ?>
                         <?php if (!empty($item['caption'])) { ?>
                             <h4 class="pi-ellipsis pi-ellipsis-1">
                                 <?php if (!empty($item['link'])) { ?>
-                                    <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>" target="<?php echo $target; ?>">
+                                    <a href="<?php echo $item['link']; ?>"
+                                       title="<?php echo _escape($item['caption']); ?>" target="<?php echo $target; ?>">
                                         <?php echo _escape($item['caption']); ?>
                                     </a>
                                 <?php } else { ?>

@@ -1,19 +1,19 @@
 <?php
 // Authentication strategy specs
 
-return array(
+return [
     // Identity field name for user binding; optional, default as `identity`
-    'identity_field'    => 'identity',
+    'identity_field' => 'identity',
 
     // Source ID for simplesamlphp
-    'source_id' => 'default-sp',
+    'source_id'      => 'default-sp',
 
     // Storage
-    'storage'   => array(
-        'class' => 'Pi\Authentication\Storage\Session',
-        'options' => array(
+    'storage'        => [
+        'class'   => 'Pi\Authentication\Storage\Session',
+        'options' => [
             'namespace' => 'PI_AUTH',
             'member'    => 'member',
-        ),
-    ),
-);
+        ],
+    ],
+];

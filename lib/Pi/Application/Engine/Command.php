@@ -13,7 +13,7 @@ use Pi\Command\Mvc\Application;
 
 /**
  * Pi command line application engine
- * 
+ *
  * How to use command line:
  * path/to/www/pi {module}/{controller}/{action} param1 param2
  *
@@ -30,15 +30,15 @@ class Command extends Standard
      * {@inheritDoc}
      */
     protected $fileIdentifier = 'command';
-    
+
     /**
      * {@inheritDoc}
      */
     public function application()
     {
         if (!$this->application) {
-            $options = isset($this->options['application'])
-                       ? $this->options['application'] : array();
+            $options           = isset($this->options['application'])
+                ? $this->options['application'] : [];
             $this->application = Application::load($options);
             $this->application->setEngine($this)->setSection($this->section());
         }

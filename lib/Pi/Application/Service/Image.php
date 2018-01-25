@@ -10,16 +10,16 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
+use Imagine\Image\Box;
+use Imagine\Image\FontInterface;
 use Imagine\Image\ImageInterface;
 use Imagine\Image\ImagineInterface;
-use Imagine\Image\FontInterface;
-use Imagine\Image\Box;
-use Imagine\Image\Point;
-use Imagine\Image\Palette\Color\ColorInterface;
 use Imagine\Image\Palette\CMYK;
-use Imagine\Image\Palette\RGB;
+use Imagine\Image\Palette\Color\ColorInterface;
 use Imagine\Image\Palette\Grayscale;
+use Imagine\Image\Palette\RGB;
+use Imagine\Image\Point;
+use Pi;
 
 /**
  * Image handler service
@@ -200,7 +200,7 @@ class Image extends AbstractService
     public function getDriver($driver = '')
     {
         if (null === $this->driver) {
-            $driverName = $driver ?: $this->getOption('driver');
+            $driverName  = $driver ?: $this->getOption('driver');
             $driverClass = false;
             switch ($driverName) {
                 case 'gd':
@@ -242,8 +242,8 @@ class Image extends AbstractService
     /**
      * Canonize Box element
      *
-     * @param array|int|Box $width   Width or width and height, or Box
-     * @param int           $height  Height
+     * @param array|int|Box $width Width or width and height, or Box
+     * @param int $height Height
      *
      * @return Box
      */
@@ -296,7 +296,7 @@ class Image extends AbstractService
             $result = $color;
         } else {
             if (!is_array($color)) {
-                $color = array($color);
+                $color = [$color];
             }
             switch (count($color)) {
                 case 1:
@@ -323,8 +323,8 @@ class Image extends AbstractService
     /**
      * Creates a new empty image with an optional background color
      *
-     * @param array|Box             $size   Width and height
-     * @param string|array|ColorInterface    $color  Color value and alpha
+     * @param array|Box $size Width and height
+     * @param string|array|ColorInterface $color Color value and alpha
      *
      * @return ImageInterface|bool
      */
@@ -334,7 +334,7 @@ class Image extends AbstractService
             return false;
         }
 
-        $size = $this->box($size);
+        $size  = $this->box($size);
         $color = $color ? $this->color($color) : null;
         try {
             $image = $this->getDriver()->create($size, $color);
@@ -416,9 +416,9 @@ class Image extends AbstractService
      *
      * The font size is to be specified in points (e.g. 10pt means 10)
      *
-     * @param string  $file
+     * @param string $file
      * @param integer $size
-     * @param string|array|ColorInterface $color  Color value and alpha
+     * @param string|array|ColorInterface $color Color value and alpha
      *
      * @return FontInterface|bool
      */
@@ -441,21 +441,22 @@ class Image extends AbstractService
     /**
      * Add watermark to an image
      *
-     * @param string|Image          $sourceImage
-     * @param string                $to
-     * @param string                $watermarkImage
-     * @param string|array|Point    $position
-     * @param array                 $options
+     * @param string|Image $sourceImage
+     * @param string $to
+     * @param string $watermarkImage
+     * @param string|array|Point $position
+     * @param array $options
      *
      * @return bool
      */
     public function watermark(
         $sourceImage,
-        $to             = '',
+        $to = '',
         $watermarkImage = '',
-        $position       = '',
-        array $options  = array()
-    ) {
+        $position = '',
+        array $options = []
+    )
+    {
         if (!$this->getDriver()) {
             return false;
         }
@@ -469,18 +470,18 @@ class Image extends AbstractService
             $watermark = $watermarkImage;
         } else {
             $watermarkImage = $watermarkImage ?: $this->getOption('watermark');
-            $watermark = $this->getDriver()->open($watermarkImage);
+            $watermark      = $this->getDriver()->open($watermarkImage);
         }
         if ($position instanceof Point) {
             $start = $position;
         } elseif (is_array($position)) {
             $start = $this->point($position[0], $position[1]);
         } else {
-            $size      = $image->getSize();
-            $wSize     = $watermark->getSize();
+            $size  = $image->getSize();
+            $wSize = $watermark->getSize();
             switch ($position) {
                 case 'top-left':
-                    list($x, $y) = array(0, 0);
+                    list($x, $y) = [0, 0];
                     break;
                 case 'top-right':
                     $x = $size->getWidth() - $wSize->getWidth();
@@ -501,7 +502,7 @@ class Image extends AbstractService
         try {
             $image->paste($watermark, $start);
             $result = $this->saveImage($image, $to, $sourceImage, $options);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $result = false;
         }
 
@@ -512,11 +513,11 @@ class Image extends AbstractService
      * Crops a specified box out of the source image (modifies the source image)
      * Returns cropped self
      *
-     * @param string|Image      $sourceImage
-     * @param array|Point       $start
-     * @param array|float|int|Box   $size
-     * @param string            $to
-     * @param array             $options Options:
+     * @param string|Image $sourceImage
+     * @param array|Point $start
+     * @param array|float|int|Box $size
+     * @param string $to
+     * @param array $options Options:
      *
      * @return bool
      */
@@ -525,8 +526,9 @@ class Image extends AbstractService
         $start,
         $size,
         $to = '',
-        array $options = array()
-    ) {
+        array $options = []
+    )
+    {
         if (!$this->getDriver()) {
             return false;
         }
@@ -535,24 +537,24 @@ class Image extends AbstractService
         } else {
             $image = $this->getDriver()->open($sourceImage);
         }
-        $start = $this->point($start);
+        $start  = $this->point($start);
         $origin = $image->getSize();
 
         // Check if square
         if (is_integer($size)) {
-            $size = array($size, $size);
+            $size = [$size, $size];
         }
         // With specified width and/or height
         if (is_array($size)) {
             // Specified height only
             if (!$size[0]) {
                 $size[0] = $origin->getWidth();
-            // Specified width only
+                // Specified width only
             } elseif (!$size[1]) {
                 $size[1] = $origin->getHeight();
             }
             $box = $this->box($size);
-        // With size ratio
+            // With size ratio
         } elseif (is_float($size)) {
             $box = $origin->scale($size);
         } elseif ($size instanceof Box) {
@@ -564,7 +566,7 @@ class Image extends AbstractService
         try {
             $image->crop($start, $box);
             $result = $this->saveImage($image, $to, $sourceImage, $options);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $result = false;
         }
 
@@ -574,21 +576,22 @@ class Image extends AbstractService
     /**
      * Resizes current image
      *
-     * @param string|Image      $sourceImage
-     * @param array|float|Box   $size
-     * @param string            $to
-     * @param string            $filter
-     * @param array             $options
+     * @param string|Image $sourceImage
+     * @param array|float|Box $size
+     * @param string $to
+     * @param string $filter
+     * @param array $options
      *
      * @return bool
      */
     public function resize(
         $sourceImage,
         $size,
-        $to             = '',
-        $filter         = '',
-        array $options  = array()
-    ) {
+        $to = '',
+        $filter = '',
+        array $options = []
+    )
+    {
         if (!$this->getDriver()) {
             return false;
         }
@@ -598,11 +601,11 @@ class Image extends AbstractService
             $image = $this->getDriver()->open($sourceImage);
         }
         $filter = $filter ?: ImageInterface::FILTER_UNDEFINED;
-        $box = $this->canonizeSize($size, $image->getSize());
+        $box    = $this->canonizeSize($size, $image->getSize());
         try {
             $image->resize($box, $filter);
             $result = $this->saveImage($image, $to, $sourceImage, $options);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $result = false;
         }
 
@@ -613,11 +616,11 @@ class Image extends AbstractService
      * Generates a thumbnail from a current image
      * Returns it as a new image, doesn't modify the current image
      *
-     * @param string|Image      $sourceImage
-     * @param array|float|Box   $size
-     * @param string            $to
-     * @param string            $mode
-     * @param array             $options
+     * @param string|Image $sourceImage
+     * @param array|float|Box $size
+     * @param string $to
+     * @param string $mode
+     * @param array $options
      *
      * @return bool|ImageInterface
      */
@@ -626,8 +629,9 @@ class Image extends AbstractService
         $size,
         $to,
         $mode = '',
-        array $options = array()
-    ) {
+        array $options = []
+    )
+    {
         if (!$this->getDriver()) {
             return false;
         }
@@ -636,11 +640,11 @@ class Image extends AbstractService
         } else {
             $image = $this->getDriver()->open($sourceImage);
         }
-        $box = $this->canonizeSize($size, $image->getSize());
+        $box  = $this->canonizeSize($size, $image->getSize());
         $mode = $mode ?: ImageInterface::THUMBNAIL_INSET;
         try {
             $thumbnail = $image->thumbnail($box, $mode);
-            $result = $this->saveImage($thumbnail, $to, $sourceImage, $options);
+            $result    = $this->saveImage($thumbnail, $to, $sourceImage, $options);
         } catch (\Exception $e) {
             $result = false;
         }
@@ -653,21 +657,22 @@ class Image extends AbstractService
      * Optional $background can be used to specify the fill color of the empty
      * area of rotated image.
      *
-     * @param string|Image                  $sourceImage
-     * @param int                           $angle
-     * @param string                        $to
-     * @param string|array|ColorInterface   $background
-     * @param array                         $options
+     * @param string|Image $sourceImage
+     * @param int $angle
+     * @param string $to
+     * @param string|array|ColorInterface $background
+     * @param array $options
      *
      * @return bool
      */
     public function rotate(
         $sourceImage,
         $angle,
-        $to             = '',
-        $background     = null,
-        array $options  = array()
-    ) {
+        $to = '',
+        $background = null,
+        array $options = []
+    )
+    {
         if (!$this->getDriver()) {
             return false;
         }
@@ -680,7 +685,7 @@ class Image extends AbstractService
         try {
             $image->rotate($angle, $background);
             $result = $this->saveImage($image, $to, $sourceImage, $options);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $result = false;
         }
 
@@ -694,9 +699,9 @@ class Image extends AbstractService
      *
      * @param string|Image $sourceImage
      * @param string|Image $childImage
-     * @param array|Point  $start
-     * @param string       $to
-     * @param array        $options
+     * @param array|Point $start
+     * @param string $to
+     * @param array $options
      *
      * @return bool
      */
@@ -705,8 +710,9 @@ class Image extends AbstractService
         $childImage,
         $start,
         $to,
-        array $options = array()
-    ) {
+        array $options = []
+    )
+    {
         if (!$this->getDriver()) {
             return false;
         }
@@ -724,7 +730,7 @@ class Image extends AbstractService
         try {
             $image->paste($child, $start);
             $result = $this->saveImage($image, $to, $sourceImage, $options);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $result = false;
         }
 
@@ -737,12 +743,12 @@ class Image extends AbstractService
      * supported
      *
      * @param string|Image $sourceImage
-     * @param string       $to
-     * @param array        $options
+     * @param string $to
+     * @param array $options
      *
      * @return bool
      */
-    public function save($sourceImage, $to = '', array $options = array())
+    public function save($sourceImage, $to = '', array $options = [])
     {
         if (!$this->getDriver()) {
             return false;
@@ -754,7 +760,7 @@ class Image extends AbstractService
         }
         try {
             $result = $this->saveImage($image, $to, '', $options);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $result = false;
         }
 
@@ -771,7 +777,7 @@ class Image extends AbstractService
      */
     public function mkdir($file, $isFile = true)
     {
-        $path = $isFile ? dirname($file) : $file;
+        $path   = $isFile ? dirname($file) : $file;
         $result = Pi::service('file')->mkdir($path);
 
         return $result;
@@ -780,10 +786,10 @@ class Image extends AbstractService
     /**
      * Save Image to a file
      *
-     * @param ImageInterface        $image
-     * @param string                $to
+     * @param ImageInterface $image
+     * @param string $to
      * @param string|ImageInterface $source
-     * @param array                 $options
+     * @param array $options
      *
      * @return bool|ImageInterface
      */
@@ -791,14 +797,15 @@ class Image extends AbstractService
         ImageInterface $image,
         $to,
         $source = '',
-        array $options = array()
-    ) {
+        array $options = []
+    )
+    {
         if (!$to && $source && !$source instanceof ImageInterface) {
             $to = $source;
         }
         if ($to) {
             $result = true;
-            $mkdir = $this->getOption('auto_mkdir');
+            $mkdir  = $this->getOption('auto_mkdir');
             if ((null === $mkdir || $mkdir) && !$this->mkdir($to)) {
                 $result = false;
             } else {
@@ -827,7 +834,7 @@ class Image extends AbstractService
     {
         // Check if square
         if (is_integer($size)) {
-            $size = array($size, $size);
+            $size = [$size, $size];
         }
         // With specified width and/or height
         if (is_array($size)) {
@@ -843,14 +850,14 @@ class Image extends AbstractService
             // Specified height only
             if (!$size[0]) {
                 $box = $origin->heighten($size[1]);
-            // Specified width only
+                // Specified width only
             } elseif (!$size[1]) {
                 $box = $origin->widen($size[0]);
-            // Specified width and height
+                // Specified width and height
             } else {
                 $box = $this->box($size);
             }
-        // With size ratio
+            // With size ratio
         } elseif (is_float($size)) {
             $box = $origin->scale($size);
         } elseif ($size instanceof Box) {

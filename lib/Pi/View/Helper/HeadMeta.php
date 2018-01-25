@@ -30,9 +30,10 @@ class HeadMeta extends ZendHeadMeta
         $content = null,
         $keyValue = null,
         $keyType = 'name',
-        $modifiers = array(),
+        $modifiers = [],
         $placement = null
-    ) {
+    )
+    {
         if (null === $placement) {
             $placement = Placeholder\Container\AbstractContainer::SET;
         }
@@ -82,7 +83,7 @@ class HeadMeta extends ZendHeadMeta
     {
         if ('name' == $value->type) {
             $container = $this->getContainer();
-            $content = '';
+            $content   = '';
             foreach ($container->getArrayCopy() as $index => $item) {
                 if ('name' == $item->type && $item->name == $value->name) {
                     $content = $item->content;
@@ -90,7 +91,7 @@ class HeadMeta extends ZendHeadMeta
                 }
             }
             if ($content) {
-                $separator = ('description' == $value->name) ? ' ' : ', ';
+                $separator      = ('description' == $value->name) ? ' ' : ', ';
                 $value->content = $content . $separator . $value->content;
             }
         }
@@ -108,7 +109,7 @@ class HeadMeta extends ZendHeadMeta
     {
         if ('name' == $value->type) {
             $container = $this->getContainer();
-            $content = '';
+            $content   = '';
             foreach ($container->getArrayCopy() as $index => $item) {
                 if ('name' == $item->type && $item->name == $value->name) {
                     $content = $item->content;
@@ -116,7 +117,7 @@ class HeadMeta extends ZendHeadMeta
                 }
             }
             if ($content) {
-                $separator = ('description' == $value->name) ? ' ' : ', ';
+                $separator      = ('description' == $value->name) ? ' ' : ', ';
                 $value->content = $value->content . $separator . $content;
             }
         }

@@ -6,6 +6,7 @@
  * @copyright       Copyright (c) Pi Engine http://piengine.org
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
+
 namespace Module\Tag\Api;
 
 use Pi;
@@ -17,22 +18,24 @@ class Search extends AbstractSearch
      * {@inheritDoc}
      */
     protected $table = 'tag';
-    
-    /**
-     * {@inheritDoc}
-     */
-    protected $searchIn = array(
-        'id',
-        'term'
-    );
 
     /**
      * {@inheritDoc}
      */
-    protected $meta = array(
-        'id'            => 'id',
-        'term'          => 'title',
-    );
+    protected $searchIn
+        = [
+            'id',
+            'term',
+        ];
+
+    /**
+     * {@inheritDoc}
+     */
+    protected $meta
+        = [
+            'id'   => 'id',
+            'term' => 'title',
+        ];
 
     /**
      * {@inheritDoc}
@@ -41,12 +44,12 @@ class Search extends AbstractSearch
     {
         $url = Pi::service('url')->assemble(
             'default',
-            array(
-                'module'        => 'tag',
-                'controller'    => 'index',
-                'action'        => 'list',
-                'tag'           => $item['term']
-            ));
+            [
+                'module'     => 'tag',
+                'controller' => 'index',
+                'action'     => 'list',
+                'tag'        => $item['term'],
+            ]);
 
         return $url;
     }

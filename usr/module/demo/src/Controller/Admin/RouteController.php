@@ -9,10 +9,10 @@
 
 namespace Module\Demo\Controller\Admin;
 
+use Module\Demo\Form\RouteFilter;
+use Module\Demo\Form\RouteForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\Demo\Form\RouteForm;
-use Module\Demo\Form\RouteFilter;
 
 /**
  * Feature list:
@@ -23,9 +23,10 @@ use Module\Demo\Form\RouteFilter;
  */
 class RouteController extends ActionController
 {
-    protected $routeColumns = array(
-        'id', 'module', 'name', 'title', 'type', 'section', 'priority'
-    );
+    protected $routeColumns
+        = [
+            'id', 'module', 'name', 'title', 'type', 'section', 'priority',
+        ];
 
     /**
      * List of routes
@@ -34,18 +35,18 @@ class RouteController extends ActionController
     {
         $module = $this->getModule();
         $select = Pi::model('route')->select()
-            ->where(array('module' => $module, 'custom' => 1))
-            ->order(array('priority DESC'));
+            ->where(['module' => $module, 'custom' => 1])
+            ->order(['priority DESC']);
         $rowset = Pi::model('route')->selectWith($select);
-        $routes = array();
+        $routes = [];
         foreach ($rowset as $row) {
-            $data = $row->data;
-            $routes[$row->id] = array(
-                'id'            => $row->id,
-                'name'          => $row->name,
-                'module'        => $row->module,
-                'class'         => $data['type'],
-            );
+            $data             = $row->data;
+            $routes[$row->id] = [
+                'id'     => $row->id,
+                'name'   => $row->name,
+                'module' => $row->module,
+                'class'  => $data['type'],
+            ];
         }
 
         $this->view()->assign('routes', $routes);
@@ -71,13 +72,13 @@ class RouteController extends ActionController
                         unset($values[$key]);
                     }
                 }
-                $values['data'] = array(
-                    'type'  => $values['type'],
-                );
+                $values['data'] = [
+                    'type' => $values['type'],
+                ];
                 unset($values['type']);
-                $values['active'] = 1;
+                $values['active']  = 1;
                 $values['section'] = 'front';
-                $values['custom'] = 1;
+                $values['custom']  = 1;
                 unset($values['id']);
 
                 $row = Pi::model('route')->createRow($values);
@@ -87,7 +88,7 @@ class RouteController extends ActionController
                     Pi::registry('route')->flush();
 
                     //$this->view()->setTemplate(false);
-                    $this->redirect()->toRoute('', array('action' => 'index'));
+                    $this->redirect()->toRoute('', ['action' => 'index']);
                     return;
                 } else {
                     $message = _a('Route data not saved.');
@@ -99,12 +100,12 @@ class RouteController extends ActionController
             $form = new RouteForm('route');
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'add'))
+                $this->url('', ['action' => 'add'])
             );
-            $form->setData(array(
-                'module'    => $module,
-                'section'   => 'front',
-            ));
+            $form->setData([
+                'module'  => $module,
+                'section' => 'front',
+            ]);
             $message = '';
         }
 
@@ -120,9 +121,9 @@ class RouteController extends ActionController
      */
     public function addsaveAction()
     {
-        $status     = 1;
-        $message    = '';
-        $route      = array();
+        $status  = 1;
+        $message = '';
+        $route   = [];
 
         $data = $this->request->getPost();
         $form = new RouteForm('route');
@@ -135,9 +136,9 @@ class RouteController extends ActionController
                     unset($values[$key]);
                 }
             }
-            $values['data'] = array(
-                'type'  => $values['type'],
-            );
+            $values['data'] = [
+                'type' => $values['type'],
+            ];
             unset($values['type']);
             $values['active'] = 1;
             unset($values['id']);
@@ -146,37 +147,37 @@ class RouteController extends ActionController
             $row->save();
             if ($row->id) {
                 $message = _a('Route added successfully.');
-                $route = array(
-                    'id'            => $row->id,
-                    'title'         => $row->title,
-                    'edit'          => $this->url(
+                $route   = [
+                    'id'     => $row->id,
+                    'title'  => $row->title,
+                    'edit'   => $this->url(
                         '',
-                        array('action' => 'edit', 'id' => $row->id)
+                        ['action' => 'edit', 'id' => $row->id]
                     ),
-                    'delete'        => $this->url(
+                    'delete' => $this->url(
                         '',
-                        array('action' => 'delete', 'id' => $row->id)
+                        ['action' => 'delete', 'id' => $row->id]
                     ),
-                );
+                ];
                 Pi::registry('route')->flush();
             } else {
                 $message = _a('Route data not saved.');
-                $status = 0;
+                $status  = 0;
             }
         } else {
             $messages = $form->getMessages();
-            $message = array();
+            $message  = [];
             foreach ($messages as $key => $msg) {
                 $message[$key] = array_values($msg);
             }
             $status = -1;
         }
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-            'route'     => $route,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+            'route'   => $route,
+        ];
     }
 
     /**
@@ -187,8 +188,8 @@ class RouteController extends ActionController
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
 
-            $id = $data['id'];
-            $row = Pi::model('route')->find($id);
+            $id   = $data['id'];
+            $row  = Pi::model('route')->find($id);
             $form = new RouteForm('route');
             $form->setInputFilter(new RouteFilter);
             $form->setData($data);
@@ -199,29 +200,29 @@ class RouteController extends ActionController
                         unset($values[$key]);
                     }
                 }
-                $values['data'] = array(
-                    'type'  => $values['type'],
-                );
+                $values['data'] = [
+                    'type' => $values['type'],
+                ];
                 unset($values['type']);
                 $row->assign($values);
                 $row->save();
                 $message = _a('Route data saved successfully.');
-                $this->redirect()->toRoute('', array('action' => 'index'));
+                $this->redirect()->toRoute('', ['action' => 'index']);
                 return;
             } else {
                 $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
-            $id = $this->params('id');
-            $row = Pi::model('route')->find($id);
-            $data = $row->toArray();
+            $id           = $this->params('id');
+            $row          = Pi::model('route')->find($id);
+            $data         = $row->toArray();
             $data['type'] = $data['data']['type'];
             unset($data['data']);
             $form = new RouteForm('route');
             $form->setData($data);
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'edit'))
+                $this->url('', ['action' => 'edit'])
             );
             $message = '';
         }
@@ -237,14 +238,14 @@ class RouteController extends ActionController
      */
     public function editsaveAction()
     {
-        $status     = 1;
-        $message    = '';
-        $route      = array();
+        $status  = 1;
+        $message = '';
+        $route   = [];
 
         $data = $this->request->getPost();
 
-        $id = $data['id'];
-        $row = Pi::model('route')->find($id);
+        $id   = $data['id'];
+        $row  = Pi::model('route')->find($id);
         $form = new RouteForm('route');
         $form->setInputFilter(new RouteFilter);
         $form->setData($data);
@@ -255,40 +256,40 @@ class RouteController extends ActionController
                     unset($values[$key]);
                 }
             }
-            $values['data'] = array(
-                'type'  => $values['type'],
-            );
+            $values['data'] = [
+                'type' => $values['type'],
+            ];
             unset($values['type']);
             $row->assign($values);
             $row->save();
 
             $message = _a('Route data saved successfully.');
-            $route = array(
-                'id'            => $id,
-                'title'         => $row->title,
-                'edit'          => $this->url(
+            $route   = [
+                'id'     => $id,
+                'title'  => $row->title,
+                'edit'   => $this->url(
                     '',
-                    array('action' => 'edit', 'id' => $id)
+                    ['action' => 'edit', 'id' => $id]
                 ),
-                'delete'        => $this->url('', array(
-                    'action'    => 'delete',
-                    'id'        => $id
-                )),
-            );
+                'delete' => $this->url('', [
+                    'action' => 'delete',
+                    'id'     => $id,
+                ]),
+            ];
         } else {
             $messages = $form->getMessages();
-            $message = array();
+            $message  = [];
             foreach ($messages as $key => $msg) {
                 $message[$key] = array_values($msg);
             }
             $status = -1;
         }
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-            'route'     => $route,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+            'route'   => $route,
+        ];
     }
 
     /**
@@ -297,13 +298,13 @@ class RouteController extends ActionController
      */
     public function deleteAction()
     {
-        $id = $this->params('id');
+        $id  = $this->params('id');
         $row = Pi::model('route')->find($id);
         // Only custom or cloned pages are allowed to delete
         if ($row && $row->custom) {
             $row->delete();
         }
-        $this->redirect()->toRoute('', array('action' => 'index'));
+        $this->redirect()->toRoute('', ['action' => 'index']);
         //return 1;
     }
 }

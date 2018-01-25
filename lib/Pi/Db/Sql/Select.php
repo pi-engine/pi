@@ -23,7 +23,7 @@ class Select extends ZendSelect
      */
     public function limit($limit)
     {
-        parent::limit((int) $limit);
+        parent::limit((int)$limit);
 
         return $this;
     }
@@ -33,7 +33,7 @@ class Select extends ZendSelect
      */
     public function offset($offset)
     {
-        parent::offset((int) $offset);
+        parent::offset((int)$offset);
 
         return $this;
     }

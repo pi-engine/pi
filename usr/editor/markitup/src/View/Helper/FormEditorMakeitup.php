@@ -30,10 +30,10 @@ class FormEditorMakeitup extends AbstractEditor
     public function render(ElementInterface $element)
     {
         $options = $element->getOptions();
-        $view = $this->view;
+        $view    = $this->view;
 
         // Set up set and skin
-        $set = isset($options['set']) ? $options['set'] : 'html';
+        $set  = isset($options['set']) ? $options['set'] : 'html';
         $skin = isset($options['skin']) ? $options['skin'] : 'simple';
 
         // Set up CSS
@@ -69,7 +69,8 @@ class FormEditorMakeitup extends AbstractEditor
                 $parserpath = sprintf('~/sets/%s/preview.php', $set);
             }
         }
-        $scriptJs =<<<EOT
+        $scriptJs
+            = <<<EOT
 $(document).ready(function()    {
     mySettings.previewParserPath = '{$parserpath}';
     mySettings.previewParserVar = 'preview';

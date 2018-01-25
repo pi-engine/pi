@@ -10,7 +10,6 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
 use Zend\Captcha\AdapterInterface;
 
 /**
@@ -26,14 +25,14 @@ class Captcha extends AbstractService
     /**
      * Load CAPTCHA adapter
      *
-     * @param string  $type
+     * @param string $type
      * @param array $options
      *
      * @return AdapterInterface
      */
-    public function load($type = null, $options = array())
+    public function load($type = null, $options = [])
     {
-        $type = $type ?: 'image';
+        $type  = $type ?: 'image';
         $class = 'Pi\Captcha\\' . ucfirst($type);
         if (!class_exists($class)) {
             $class = 'Zend\Captcha\\' . ucfirst($type);

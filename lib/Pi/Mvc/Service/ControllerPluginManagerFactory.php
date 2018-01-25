@@ -10,8 +10,8 @@
 namespace Pi\Mvc\Service;
 
 use Pi\Mvc\Controller\PluginManager;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Mvc\Service\AbstractPluginManagerFactory;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Controller plugin manager factory

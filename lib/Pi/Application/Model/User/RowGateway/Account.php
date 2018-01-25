@@ -38,7 +38,7 @@ class Account extends AbstractFieldRowGateway
      */
     protected function getMetaList()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -80,7 +80,7 @@ class Account extends AbstractFieldRowGateway
     /**
      * Transform credential upon raw data
      *
-     * @param string    $credential     Credential
+     * @param string $credential Credential
      * @return string Encrypted credential value
      */
     public function transformCredential($credential)

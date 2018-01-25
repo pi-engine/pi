@@ -23,7 +23,7 @@ class AbstractResource
     protected $adapter;
 
     /** @var array Options */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * If user module available for time handling
@@ -61,7 +61,7 @@ class AbstractResource
      * @param array $options
      * @return self
      */
-    public function setOptions($options = array())
+    public function setOptions($options = [])
     {
         $this->options = $options;
 

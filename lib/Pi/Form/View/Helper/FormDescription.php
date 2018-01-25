@@ -23,7 +23,7 @@ class FormDescription extends AbstractHelper
     /**
      * @var array Default attributes for the open format tag
      */
-    protected $attributes = array();
+    protected $attributes = [];
 
     /**
      * Generate an opening text tag
@@ -58,8 +58,9 @@ class FormDescription extends AbstractHelper
      */
     public function render(
         ElementInterface $element,
-        $attributes = array()
-     ) {
+        $attributes = []
+    )
+    {
         $message = $element->getAttribute('description');
         if (!$message) {
             return '';

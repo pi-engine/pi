@@ -38,7 +38,7 @@ class Api extends AbstractService
      *
      * @var array
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
      * Instantiate API handler
@@ -49,11 +49,11 @@ class Api extends AbstractService
      *
      * @return AbstractApi|bool
      */
-    public function handler($api, $module = '', array $options = array())
+    public function handler($api, $module = '', array $options = [])
     {
         if (is_array($module)) {
-            $options= $module;
-            $module = '';
+            $options = $module;
+            $module  = '';
         }
         // Load system service
         if (!$module) {
@@ -63,7 +63,7 @@ class Api extends AbstractService
         }
         // Load module API
         $directory = Pi::service('module')->directory($module);
-        $class = sprintf(
+        $class     = sprintf(
             'Module\\%s\Api\\%s',
             ucfirst($directory),
             ucfirst($api)
@@ -83,7 +83,7 @@ class Api extends AbstractService
      *  Pi::service('api')-><service-name>-><api-method>($args);
      * ```
      *
-     * @param string    $name
+     * @param string $name
      * @return AbstractApi|bool
      */
     public function __get($name)
@@ -103,11 +103,11 @@ class Api extends AbstractService
      * </code>
      *
      * @param string $api
-     * @param array  $args
+     * @param array $args
      *
      * @return AbstractApi|bool
      */
-    public function __call($api, array $args = array())
+    public function __call($api, array $args = [])
     {
         $module = '';
         if ($args && is_string($args[0])) {

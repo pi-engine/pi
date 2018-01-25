@@ -1,7 +1,11 @@
-<?php if ($this->pageCount <= 1) { return; } ?>
+<?php if ($this->pageCount <= 1) {
+    return;
+} ?>
 <?php // See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination ?>
 <div class="text-center" itemscope itemtype="https://schema.org/SiteNavigationElement">
-    <ul class="pagination<?php if (!empty($class)) { echo ' ' . $class; } ?>">
+    <ul class="pagination<?php if (!empty($class)) {
+        echo ' ' . $class;
+    } ?>">
         <!-- First page link -->
         <?php if ($this->previous) { ?>
             <li itemprop="url">
@@ -18,15 +22,18 @@
         <?php foreach ($this->pagesInRange as $page): ?>
             <?php if ($page->number < $this->current) { ?>
                 <li itemprop="url">
-                    <a rel="prev" itemprop="name" href="<?php echo Pi::url($page->url); ?>"><?php echo _number($page->number); ?></a>
+                    <a rel="prev" itemprop="name"
+                       href="<?php echo Pi::url($page->url); ?>"><?php echo _number($page->number); ?></a>
                 </li>
-            <?php } elseif($page->number == $this->current) { ?>
+            <?php } elseif ($page->number == $this->current) { ?>
                 <li class="active" itemprop="url">
-                    <a itemprop="name" href="<?php echo Pi::url($page->url); ?>"><?php echo _number($page->number); ?></a>
+                    <a itemprop="name"
+                       href="<?php echo Pi::url($page->url); ?>"><?php echo _number($page->number); ?></a>
                 </li>
-            <?php } elseif($page->number > $this->current) { ?>
+            <?php } elseif ($page->number > $this->current) { ?>
                 <li itemprop="url">
-                    <a rel="next" itemprop="name" href="<?php echo Pi::url($page->url); ?>"><?php echo _number($page->number); ?></a>
+                    <a rel="next" itemprop="name"
+                       href="<?php echo Pi::url($page->url); ?>"><?php echo _number($page->number); ?></a>
                 </li>
             <?php } ?>
         <?php endforeach; ?>

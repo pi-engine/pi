@@ -39,21 +39,21 @@ class Page extends Standard
         }
         $params  = $path
             ? explode($this->paramDelimiter, trim($path, $this->paramDelimiter))
-            : array();
-        $params = parent::parseParams($params);
+            : [];
+        $params  = parent::parseParams($params);
         $matches = array_merge($this->defaults, $params);
 
         // Set id
         if (is_numeric($name)) {
-            $matches['id'] = (int) $name;
-            $name = '';
-        // Set name
+            $matches['id'] = (int)$name;
+            $name          = '';
+            // Set name
         } else {
             $name = $this->decode($name);
         }
 
         // Set action
-        $action = '';
+        $action   = '';
         $pageList = Pi::registry('page', $module)->read();
         if (!empty($matches['id'])) {
             if (isset($pageList[$matches['id']])) {
@@ -63,19 +63,19 @@ class Page extends Standard
             $pName = empty($matches['name']) ? $name : $matches['name'];
             $pSlug = empty($matches['slug']) ? $name : $matches['slug'];
 
-            $filter = new \Pi\Filter\Slug;
+            $filter         = new \Pi\Filter\Slug;
             $filtered_pName = $filter($pName);
             $filtered_pSlug = $filter($pSlug);
 
             if ($filtered_pName || $filtered_pSlug) {
                 foreach ($pageList as $id => $page) {
                     if ($filtered_pName && $filtered_pName == $page['name']) {
-                        $action = $pName;
+                        $action        = $pName;
                         $matches['id'] = $id;
                         break;
                     }
                     if ($filtered_pSlug && $filtered_pSlug == $page['slug']) {
-                        $action = $pSlug;
+                        $action        = $pSlug;
                         $matches['id'] = $id;
                         break;
                     }
@@ -92,28 +92,28 @@ class Page extends Standard
     /**
      * {@inheritDoc}
      */
-    public function assemble(array $params = array(), array $options = array())
+    public function assemble(array $params = [], array $options = [])
     {
         //$this->prefix = $this->defaults['module'];
 
         $mergedParams = array_merge($this->defaults, $params);
-        $url = '';
+        $url          = '';
         if (!empty($mergedParams['slug'])) {
             $url = $this->encode($mergedParams['slug']);
         } elseif (!empty($mergedParams['name'])) {
             $url = $this->encode($mergedParams['name']);
         } elseif (!empty($mergedParams['id'])) {
-            $url = (int) $mergedParams['id'];
+            $url = (int)$mergedParams['id'];
         }
         if (empty($url)) {
             return $this->prefix;
         }
-        $params = array();
-        $prefix = $this->prefix;
+        $params       = [];
+        $prefix       = $this->prefix;
         $this->prefix .= $this->paramDelimiter . $url;
-        $url = parent::assemble($params, $options);
+        $url          = parent::assemble($params, $options);
         $this->prefix = $prefix;
-        $url = rtrim($url, '/');
+        $url          = rtrim($url, '/');
 
         return $url;
     }

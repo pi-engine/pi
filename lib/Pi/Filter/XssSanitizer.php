@@ -37,8 +37,8 @@ class XssSanitizer extends AbstractFilter
         // Remove NULL bytes
         $content = str_replace("\0", '', $value);
 
-        $patterns = array();
-        $replaces = array();
+        $patterns = [];
+        $replaces = [];
 
         // Convert decimal
         // Disabled temporarily for issue #1144
@@ -49,7 +49,9 @@ class XssSanitizer extends AbstractFilter
         // Convert hex
         //$patterns[] = '/&#x([a-f0-9]+)/mei';
         //$replaces[] = "chr(0x\\1)";
-        $content = preg_replace_callback('/&#x([a-f0-9]+)/mi', function ($matches) { return "chr(0x".$matches[1].")"; }, $content);
+        $content = preg_replace_callback('/&#x([a-f0-9]+)/mi', function ($matches) {
+            return "chr(0x" . $matches[1] . ")";
+        }, $content);
 
         $patterns[] = '/(&#*\w+)[\x00-\x20]+;/U';
         $replaces[] = "\\1;";
@@ -65,10 +67,10 @@ class XssSanitizer extends AbstractFilter
 
         $c = "[\x01-\x20]*";
         // Remove `javascript:`, `vbscript:`, `about:`, `moz-binding` and `xss:` protocol
-        $script = "j{$c}a{$c}v{$c}a{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t";
+        $script     = "j{$c}a{$c}v{$c}a{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t";
         $patterns[] = "/([a-z]*){$c}={$c}([\`\'\"]*){$c}{$script}{$c}:/iU";
         $replaces[] = '\\1=\\2noscript:';
-        $script = "v{$c}b{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t|a{$c}b{$c}o{$c}u{$c}t"
+        $script     = "v{$c}b{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t|a{$c}b{$c}o{$c}u{$c}t"
             . "|x{$c}s{$c}s|-moz-binding";
         $patterns[] = "/([a-z]*){$c}={$c}([\'\"]*){$c}({$script}){$c}:/iU";
         $replaces[] = '\\1=\\2noscript:';

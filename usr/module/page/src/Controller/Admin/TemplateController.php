@@ -22,22 +22,22 @@ class TemplateController extends ActionController
      */
     public function indexAction()
     {
-        $filter = function ($fileinfo) {
+        $filter        = function ($fileinfo) {
             if (!$fileinfo->isFile()) {
                 return false;
             }
-            $name = $fileinfo->getFilename();
+            $name      = $fileinfo->getFilename();
             $extension = pathinfo($name, PATHINFO_EXTENSION);
             if ('phtml' != $extension) {
                 return false;
             }
             $name = pathinfo($name, PATHINFO_FILENAME);
             $file = $fileinfo->getPathname();
-            return array(
-                'name'  => $name,
-                'time'  => filemtime($file),
-                'size'  => filesize($file),
-            );
+            return [
+                'name' => $name,
+                'time' => filemtime($file),
+                'size' => filesize($file),
+            ];
         };
         $baseTemplates = Pi::service('file')->getList(
             'custom/module/page/template/front',
@@ -45,7 +45,7 @@ class TemplateController extends ActionController
         );
 
         $customTemplates = Pi::service('file')->getList(
-            Pi::path('theme') . '/'. Pi::config('theme') . '/custom/page',
+            Pi::path('theme') . '/' . Pi::config('theme') . '/custom/page',
             $filter
         );
 
@@ -64,7 +64,7 @@ class TemplateController extends ActionController
         $name = $this->params('name');
 
         $file = sprintf(
-            '%s/'. Pi::config('theme') . '/custom/page/%s.phtml',
+            '%s/' . Pi::config('theme') . '/custom/page/%s.phtml',
             Pi::path('theme'),
             $name
         );
@@ -84,9 +84,9 @@ class TemplateController extends ActionController
         } else {
             $content = '';
         }
-        $this->view()->assign(array(
-            'content' => $content
-        ));
+        $this->view()->assign([
+            'content' => $content,
+        ]);
         $this->view()->setLayout('layout-content')->setTemplate(false);
     }
 }

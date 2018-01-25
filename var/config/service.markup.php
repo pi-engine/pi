@@ -1,32 +1,32 @@
 <?php
 // Markup service configuration
 
-return array(
-    'renderer'  => array(
-        'text'  => array(
-            'nl2br' => array(),
-        ),
-        'html'  => array(
-        ),
-    ),
-    'parser'    => array(
-        'text'  => array(
-            'nl2br'     => true,
-            'filters'   => array(
+return [
+    'renderer' => [
+        'text' => [
+            'nl2br' => [],
+        ],
+        'html' => [
+        ],
+    ],
+    'parser'   => [
+        'text'     => [
+            'nl2br'   => true,
+            'filters' => [
                 // Linkify
                 // @see Pi\Filter\Linkify
-                'linkify'   => array(),
+                'linkify' => [],
 
                 // User filter
                 // @see Pi\Filter\User
-                'user'  => array(
-                    'callback'      => function ($value) {
+                'user'    => [
+                    'callback' => function ($value) {
                         $value = preg_replace_callback(
                             '`(^|\s)@([a-zA-Z0-9]{3,32})`',
                             function ($m) {
-                                $url = Pi::service('user')->getUrl(
+                                $url         = Pi::service('user')->getUrl(
                                     'profile',
-                                    array('name' => $m[2])
+                                    ['name' => $m[2]]
                                 );
                                 $escapedName = _escape($m[2]);
                                 return sprintf(
@@ -41,12 +41,12 @@ return array(
                         );
                         return $value;
                     },
-                ),
+                ],
 
                 // Tag filter
                 // @see Pi\Filter\Tag
-                'tag'   => array(
-                    'callback'      => function ($value) {
+                'tag'     => [
+                    'callback' => function ($value) {
                         $value = preg_replace(
                             '`(^|\s)\#(\w+)`',
                             '$1<a href="' . Pi::url('www') . '/tag/$2" title="$2">#$2</a>',
@@ -54,23 +54,23 @@ return array(
                         );
                         return $value;
                     },
-                ),
+                ],
 
-            ),
-        ),
-        'markdown'  => array(
-            'filters'   => array(
-            ),
-        ),
-        'html'  => array(
-            'safe_tags' => array(),
-            'filters'   => array(
+            ],
+        ],
+        'markdown' => [
+            'filters' => [
+            ],
+        ],
+        'html'     => [
+            'safe_tags' => [],
+            'filters'   => [
                 // Xss filter
                 // @see Pi\Filter\XssSanitizer
-                'xss_sanitizer'  => array(
-                    'length'    => 8,
-                ),
-            ),
-        ),
-    ),
-);
+                'xss_sanitizer' => [
+                    'length' => 8,
+                ],
+            ],
+        ],
+    ],
+];

@@ -16,23 +16,23 @@ class PiGithub
     public static function render($options, $module = null)
     {
         if (empty($options['github_org'])) {
-            $org    = 'pi-engine';
-            $repo   = 'pi';
+            $org  = 'pi-engine';
+            $repo = 'pi';
         } else {
-            $org    = $options['github_org'];
-            $repo   = $options['github_repo'];
+            $org  = $options['github_org'];
+            $repo = $options['github_repo'];
         }
-        $limit      = $options['limit'] ?: 10;
-        $subline    = $options['subline'] ?: _a('Updates from GitHub');
+        $limit   = $options['limit'] ?: 10;
+        $subline = $options['subline'] ?: _a('Updates from GitHub');
 
-        $url = sprintf('https://github.com/%s%s', $org, $repo ? '/' . $repo : '');
+        $url   = sprintf('https://github.com/%s%s', $org, $repo ? '/' . $repo : '');
         $items = static::loadGithub($org, $repo, $limit);
 
-        $block = array(
-            'subline'   => $subline,
-            'url'       => $url,
-            'items'     => $items,
-        );
+        $block = [
+            'subline' => $subline,
+            'url'     => $url,
+            'items'   => $items,
+        ];
 
         return $block;
     }
@@ -58,13 +58,13 @@ class PiGithub
         $assembleAction = function ($event, $repo) {
             switch ($event['type']) {
                 case 'CommitCommentEvent':
-                    $comment = sprintf(
+                    $comment   = sprintf(
                         '<a href="%s" target="_blank">comment</a>',
                         $event['payload']['comment']['html_url']
                     );
-                    $segs = explode('#', $event['payload']['comment']['html_url'], 1);
+                    $segs      = explode('#', $event['payload']['comment']['html_url'], 1);
                     $commitUrl = $segs[0];
-                    $commit = sprintf(
+                    $commit    = sprintf(
                         '<a href="%s" target="_blank">#%s</a>',
                         $commitUrl,
                         substr($event['payload']['comment']['commit_id'], 0, 7)
@@ -102,7 +102,7 @@ class PiGithub
                     break;
 
                 case 'GollumEvent':
-                    $pages = array();
+                    $pages = [];
                     foreach ($event['payload']['pages'] as $page) {
                         $pages[] = sprintf(
                             '%s <a href="%s" target="_blank">%s</a>',
@@ -122,12 +122,12 @@ class PiGithub
                         '<a href="%s" target="_blank">comment</a>',
                         $event['payload']['comment']['html_url']
                     );
-                    $issue = sprintf(
+                    $issue   = sprintf(
                         '<a href="%s" target="_blank">%s</a>',
                         $event['payload']['issue']['html_url'],
                         _escape($event['payload']['issue']['title'])
                     );
-                    $action = sprintf(
+                    $action  = sprintf(
                         '%s a %s on issue: %s',
                         $event['payload']['action'],
                         $comment,
@@ -136,7 +136,7 @@ class PiGithub
                     break;
 
                 case 'IssuesEvent':
-                    $issue = sprintf(
+                    $issue  = sprintf(
                         '<a href="%s" target="_blank">%s</a>',
                         $event['payload']['issue']['html_url'],
                         _escape($event['payload']['issue']['title'])
@@ -149,7 +149,7 @@ class PiGithub
                     break;
 
                 case 'PullRequestEvent':
-                    $pr = sprintf(
+                    $pr     = sprintf(
                         '<a href="%s" target="_blank">%s</a>',
                         $event['payload']['pull_request']['html_url'],
                         _escape($event['payload']['pull_request']['title'])
@@ -166,14 +166,14 @@ class PiGithub
                         '<a href="%s" target="_blank">comment</a>',
                         $event['payload']['comment']['html_url']
                     );
-                    $segs = explode('#', $event['payload']['comment']['html_url'], 1);
-                    $prUrl = $segs[0];
-                    $pr = sprintf(
+                    $segs    = explode('#', $event['payload']['comment']['html_url'], 1);
+                    $prUrl   = $segs[0];
+                    $pr      = sprintf(
                         'from commit <a href="%s" target="_blank">#%s</a>',
                         $prUrl,
                         $event['payload']['comment']['commit_id']
                     );
-                    $action = sprintf(
+                    $action  = sprintf(
                         'created a %s on a pull request %s',
                         $comment,
                         $pr
@@ -181,7 +181,7 @@ class PiGithub
                     break;
 
                 case 'PushEvent':
-                    $commits = array();
+                    $commits = [];
                     foreach ($event['payload']['commits'] as $item) {
                         $commits[] = sprintf(
                             '<a href="https://github.com/%s/commit/%s" target="_blank">#%s</a>',
@@ -190,8 +190,8 @@ class PiGithub
                             substr($item['sha'], 0, 7)
                         );
                     }
-                    $segs = explode('/', $event['payload']['ref']);
-                    $ref = $segs[2];
+                    $segs   = explode('/', $event['payload']['ref']);
+                    $ref    = $segs[2];
                     $branch = sprintf(
                         '<a href="https://github.com/%s/tree/%s">%s</a>',
                         $event['repo']['name'],
@@ -211,7 +211,7 @@ class PiGithub
                         $event['payload']['release']['html_url'],
                         $event['payload']['release']['rag_name']
                     );
-                    $action = sprintf(
+                    $action  = sprintf(
                         '%s release %s',
                         $event['payload']['action'] ?: 'published',
                         $release
@@ -228,9 +228,9 @@ class PiGithub
 
             return $action;
         };
-        $assembleEvent = function ($event) use ($assembleAction, $org, $repo) {
-            $time = _date($event['created_at']);
-            $actor = sprintf(
+        $assembleEvent  = function ($event) use ($assembleAction, $org, $repo) {
+            $time   = _date($event['created_at']);
+            $actor  = sprintf(
                 '<a href="https://github.com/%s" target="_blank">@%s</a>',
                 $event['actor']['login'],
                 $event['actor']['login']
@@ -241,7 +241,7 @@ class PiGithub
                 $event['actor']['gravatar_id'],
                 $event['actor']['login']
             );
-            $actor = sprintf('%s %s', $avatar, $actor);
+            $actor  = sprintf('%s %s', $avatar, $actor);
             if (!$repo && !empty($event['repo'])) {
                 $repo = sprintf(
                     '<a href="https://github.com/%s" target="_blank">%s</a>',
@@ -251,17 +251,17 @@ class PiGithub
             } else {
                 $repo = '';
             }
-            $result = array(
-                'time'      => $time,
-                'actor'     => $actor,
-                'action'    => $assembleAction($event, $repo),
-            );
+            $result = [
+                'time'   => $time,
+                'actor'  => $actor,
+                'action' => $assembleAction($event, $repo),
+            ];
 
             return $result;
         };
 
-        $result = array();
-        $events = Pi::service('remote')->get($repoApi) ?: array();
+        $result = [];
+        $events = Pi::service('remote')->get($repoApi) ?: [];
         $count  = 0;
         foreach ($events as $event) {
             $result[] = $assembleEvent($event);

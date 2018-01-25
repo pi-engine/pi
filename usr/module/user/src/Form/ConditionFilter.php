@@ -13,7 +13,6 @@
 
 namespace Module\User\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 class ConditionFilter extends InputFilter

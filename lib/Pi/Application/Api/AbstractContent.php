@@ -22,13 +22,14 @@ abstract class AbstractContent extends AbstractApi
     protected $table;
 
     /** @var array Columns to fetch: table column => meta key */
-    protected $meta = array(
-        'id'        => 'id',
-        'title'     => 'title',
-        'content'   => 'content',
-        'time'      => 'time',
-        'uid'       => 'uid',
-    );
+    protected $meta
+        = [
+            'id'      => 'id',
+            'title'   => 'title',
+            'content' => 'content',
+            'time'    => 'time',
+            'uid'     => 'uid',
+        ];
 
     /**
      * Get list of item(s)
@@ -40,30 +41,31 @@ abstract class AbstractContent extends AbstractApi
      *   - time
      *   - uid
      *
-     * @param string[]      $variables
-     * @param array         $conditions
-     * @param int           $limit
-     * @param int           $offset
-     * @param string|array  $order
+     * @param string[] $variables
+     * @param array $conditions
+     * @param int $limit
+     * @param int $offset
+     * @param string|array $order
      *
      * @return array
      */
     public function getList(
         array $variables,
         array $conditions,
-        $limit  = 0,
+        $limit = 0,
         $offset = 0,
-        $order  = array()
-    ) {
-        $result = array();
+        $order = []
+    )
+    {
+        $result = [];
         if (!$this->table) {
             return $result;
         }
 
-        $variables = $this->canonizeVariables($variables);
+        $variables  = $this->canonizeVariables($variables);
         $conditions = $this->canonizeConditions($conditions);
 
-        $model = Pi::model($this->table, $this->module);
+        $model  = Pi::model($this->table, $this->module);
         $select = $model->select();
         if ($limit) {
             $select->limit($limit);
@@ -78,9 +80,9 @@ abstract class AbstractContent extends AbstractApi
         $select->where($conditions);
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $item = $row->toArray();
+            $item        = $row->toArray();
             $item['url'] = $this->buildUrl($item);
-            $result[] = $this->canonizeResult($item);
+            $result[]    = $this->canonizeResult($item);
         }
 
         return $result;
@@ -105,7 +107,7 @@ abstract class AbstractContent extends AbstractApi
     protected function canonizeResult(array $data)
     {
         $meta   = $this->meta;
-        $result = array();
+        $result = [];
         foreach ($data as $var => $value) {
             if (isset($meta[$var])) {
                 $result[$meta[$var]] = $value;
@@ -131,8 +133,8 @@ abstract class AbstractContent extends AbstractApi
      */
     protected function canonizeVariables(array $variables)
     {
-        $meta       = array_flip($this->meta);
-        $columns    = array();
+        $meta    = array_flip($this->meta);
+        $columns = [];
         foreach ($variables as $var) {
             if (isset($meta[$var])) {
                 $columns[] = $meta[$var];
@@ -152,7 +154,7 @@ abstract class AbstractContent extends AbstractApi
     protected function canonizeConditions(array $conditions)
     {
         $meta   = array_flip($this->meta);
-        $result = array();
+        $result = [];
         foreach ($conditions as $var => $condition) {
             if (isset($meta[$var])) {
                 $result[$meta[$var]] = $condition;

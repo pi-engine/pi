@@ -24,8 +24,8 @@ class Uninstall extends AbstractAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('uninstall.pre', array($this, 'checkDependent'));
-        $events->attach('uninstall.post', array($this, 'removeDependency'));
+        $events->attach('uninstall.pre', [$this, 'checkDependent']);
+        $events->attach('uninstall.post', [$this, 'removeDependency']);
 
         return $this;
     }
@@ -36,8 +36,8 @@ class Uninstall extends AbstractAction
     public function process()
     {
         $result = $this->event->getParam('result');
-        $model = Pi::model('module');
-        $row = $model->select(array('name' => $this->module))->current();
+        $model  = Pi::model('module');
+        $row    = $model->select(['name' => $this->module])->current();
         // save module entry into database
         if ($row) {
             $row->delete();

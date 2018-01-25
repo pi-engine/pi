@@ -22,18 +22,19 @@ abstract class AbstractAdjacency extends AbstractTableGateway
      * Predefined columns
      * @var array
      */
-    protected $column = array(
-        'parent'    => 'parent',
-    );
+    protected $column
+        = [
+            'parent' => 'parent',
+        ];
 
     /**
      * {@inheritDoc}
      */
-    public function setup($options = array())
+    public function setup($options = [])
     {
         foreach (array_keys($this->column) as $key) {
             if (isset($options[$key])) {
-                $this->column[$key] = (string) $options[$key];
+                $this->column[$key] = (string)$options[$key];
                 unset($options[$key]);
             }
         }
@@ -60,22 +61,22 @@ abstract class AbstractAdjacency extends AbstractTableGateway
      */
     public function getAncestors($node)
     {
-        $parents = array();
-        $select = $this->getAdapter()->select()
-                    ->from(array('r' => $this->_name))
-                    ->where(array('r.active' => 1))
-                    ->joinLeft(array(
-                        'i' =>
-                            $this->getAdapter()->prefix('acl_inherit', 'xo')),
-                        'r.name = i.parent')
-                    ->where(array('i.child' => $node));
-                    //->order(array('i.order'));
+        $parents = [];
+        $select  = $this->getAdapter()->select()
+            ->from(['r' => $this->_name])
+            ->where(['r.active' => 1])
+            ->joinLeft([
+                'i' =>
+                    $this->getAdapter()->prefix('acl_inherit', 'xo')],
+                'r.name = i.parent')
+            ->where(['i.child' => $node]);
+        //->order(array('i.order'));
         $result = $select->query()->fetchAll();
         if (empty($result)) {
             return $parents;
         }
         foreach ($result as $row) {
-            $parents += $this->getAncestors($row['name']);
+            $parents   += $this->getAncestors($row['name']);
             $parents[] = $row['name'];
         }
 

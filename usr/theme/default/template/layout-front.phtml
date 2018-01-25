@@ -6,23 +6,23 @@ $this->doctype('HTML5');
 $this->i18nTheme();
 
 //HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-$this->js(array(
-    pi::url('static/js/html5shiv.js') => array(
-        'conditional' => 'lt IE 9'
-    ),
-    pi::url('static/js/respond.min.js') => array(
-        'conditional' => 'lt IE 9'
-    ),
-));
+$this->js([
+    pi::url('static/js/html5shiv.js')   => [
+        'conditional' => 'lt IE 9',
+    ],
+    pi::url('static/js/respond.min.js') => [
+        'conditional' => 'lt IE 9',
+    ],
+]);
 
 // Load jQuery
 $this->jquery();
 
 // Load Bootstrap css/js and font-awesome
-$this->bootstrap(array(
+$this->bootstrap([
     'js/bootstrap.min.js',
-    'font-awesome/css/font-awesome.min.css'
-));
+    'font-awesome/css/font-awesome.min.css',
+]);
 
 // Load front.css
 $this->css($this->assetTheme('css/front.css'));
@@ -35,43 +35,43 @@ $this->footScript()->appendFile($this->assetTheme('js/front.js'));
 
 // Apple icons
 // Apple icon for iphone
-$this->headLink(array(
-    'rel'   => 'apple-touch-icon',
-    'href'  => $this->assetTheme('image/touch-icon-iphone.png')
-));
+$this->headLink([
+    'rel'  => 'apple-touch-icon',
+    'href' => $this->assetTheme('image/touch-icon-iphone.png'),
+]);
 // Apple icon for ipad
-$this->headLink(array(
+$this->headLink([
     'rel'   => 'apple-touch-icon',
     'sizes' => '72x72',
-    'href'  => $this->assetTheme('image/touch-icon-ipad.png')
-));
+    'href'  => $this->assetTheme('image/touch-icon-ipad.png'),
+]);
 // Apple icon for iphone retina
-$this->headLink(array(
+$this->headLink([
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
-    'href'  => $this->assetTheme('image/touch-icon-iphone-retina.png')
-));
+    'href'  => $this->assetTheme('image/touch-icon-iphone-retina.png'),
+]);
 // Apple icon for ipad retina
-$this->headLink(array(
+$this->headLink([
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
-    'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png')
-));
+    'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png'),
+]);
 
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 
 // Explicitly load favicon
-$this->headLink(array(
-    'rel'   => 'shortcut icon',
-    'type'  => 'image/x-icon',
-    'href'  => $this->favicon(),
-));
-$this->headLink(array(
-    'rel'   => 'shortcut icon',
-    'type'  => 'image/png',
-    'href'  => $this->favicon('favicon.png'),
-));
+$this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/x-icon',
+    'href' => $this->favicon(),
+]);
+$this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/png',
+    'href' => $this->favicon('favicon.png'),
+]);
 
 // Load google analytics code
 $this->ga();
@@ -83,24 +83,25 @@ $module = Pi::service('module')->current();
 $navigation = $this->nav('front');
 
 // Get block
-$blocks = $this->blocks();
+$blocks        = $this->blocks();
 $blockTemplate = $this->template('block');
 
 // Get breadcrumbs
 $breadcrumbs = $this->breadcrumb(
-    array('prefix' => array(
-        array(
+    ['prefix' => [
+        [
             'label' => __('Home'),
-            'href' => Pi::url($this->url('home'))
-        )
-    ))
+            'href'  => Pi::url($this->url('home')),
+        ],
+    ]]
 );
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
 <head>
     <meta charset="<?php echo $charset; ?>">
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-front">
 <!-- Header: brand, slogan, user bar -->
@@ -111,14 +112,18 @@ $breadcrumbs = $this->breadcrumb(
                 <div class="col-md-3">
                     <?php if ($module == 'system') { ?>
                         <h1>
-                            <a href="<?php echo Pi::url($this->url('home')); ?>" title="<?php echo _escape($sitename); ?>">
-                                <img src="<?php echo $this->assetTheme('image/logo.png'); ?>" alt="<?php echo _escape($sitename); ?>">
+                            <a href="<?php echo Pi::url($this->url('home')); ?>"
+                               title="<?php echo _escape($sitename); ?>">
+                                <img src="<?php echo $this->assetTheme('image/logo.png'); ?>"
+                                     alt="<?php echo _escape($sitename); ?>">
                             </a>
                         </h1>
                     <?php } else { ?>
                         <h2>
-                            <a href="<?php echo Pi::url($this->url('home')); ?>" title="<?php echo _escape($sitename); ?>">
-                                <img src="<?php echo $this->assetTheme('image/logo.png'); ?>" alt="<?php echo _escape($sitename); ?>">
+                            <a href="<?php echo Pi::url($this->url('home')); ?>"
+                               title="<?php echo _escape($sitename); ?>">
+                                <img src="<?php echo $this->assetTheme('image/logo.png'); ?>"
+                                     alt="<?php echo _escape($sitename); ?>">
                             </a>
                         </h2>
                     <?php } ?>
@@ -153,7 +158,9 @@ $breadcrumbs = $this->breadcrumb(
 <section class="pi-section">
     <div class="container">
         <div class="pi-main-container">
-            <?php if ($breadcrumbs) { echo $breadcrumbs; } ?>
+            <?php if ($breadcrumbs) {
+                echo $breadcrumbs;
+            } ?>
             <!-- Flash messenger -->
             <?php include $this->template('flash-messenger'); ?>
             <!-- Top head zone -->
@@ -218,7 +225,7 @@ $breadcrumbs = $this->breadcrumb(
                             <div class="pi-module-content" data-ng-app="<?php echo $module; ?>">
                                 <?php echo $content; ?>
                             </div>
-                            <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
+                            <?php echo Pi::service('comment')->load(['options' => ['type' => 'js']]); ?>
                         </div>
                     <?php } ?>
                     <!-- Module content ends -->
@@ -300,8 +307,6 @@ $breadcrumbs = $this->breadcrumb(
         </div>
     <?php } ?>
 </footer>
-
 <?php echo $this->conditions() ?>
-
 </body>
 </html>

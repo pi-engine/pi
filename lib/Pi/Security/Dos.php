@@ -22,9 +22,9 @@ class Dos extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public static function check($options = array())
+    public static function check($options = [])
     {
-        $key = 'HTTP_USER_AGENT';
+        $key   = 'HTTP_USER_AGENT';
         $agent = '';
         if (isset($_SERVER[$key])) {
             $agent = $_SERVER[$key];

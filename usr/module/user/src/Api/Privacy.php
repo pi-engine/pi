@@ -20,13 +20,14 @@ use Pi\Application\Api\AbstractApi;
 class Privacy extends AbstractApi
 {
     /** @var array Privacy level map */
-    protected $map = [
-        'everyone'  => 0,
-        'member'    => 1,
-        'follower'  => 2,
-        'following' => 4,
-        'owner'     => 255,
-    ];
+    protected $map
+        = [
+            'everyone'  => 0,
+            'member'    => 1,
+            'follower'  => 2,
+            'following' => 4,
+            'owner'     => 255,
+        ];
 
     /**
      * Transform a privacy value from value to name, or from name to value

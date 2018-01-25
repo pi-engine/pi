@@ -3,11 +3,11 @@
  * Comment service configuration
  */
 
-return array(
+return [
     // Cache specs
-    'cache' => array(
-    // TTL for comments on leading page, in seconds
-        'ttl'       => 1800,
-        'storage'   => '',
-    ),
-);
+    'cache' => [
+        // TTL for comments on leading page, in seconds
+        'ttl'     => 1800,
+        'storage' => '',
+    ],
+];

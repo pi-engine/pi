@@ -41,7 +41,7 @@ $this->sticky();
                    class="list-group-item<?php if (isset($sideActive) && $sideActive == 'dashboard') {
                        echo ' active';
                    } ?>"><?php _e('My items'); ?></a>
-                
+
                 <?php if ($guideConfig['sponsor_active']) { ?>
                     <a title="<?php _e('Sponsorship'); ?>"
                        href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'sponsor'])); ?>"
@@ -153,7 +153,7 @@ $this->sticky();
                } ?>"><?php _e('My videos'); ?></a>
         <?php } ?>
     </div>
-    
+
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne">
@@ -168,14 +168,15 @@ $this->sticky();
             <div id="collapseOne"
                  class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
                  role="tabpanel" aria-labelledby="headingOne">
-                 <div class="list-group">
-                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>" title="<?php echo _b('Manage account'); ?>" 
-                        class="list-group-item<?php if ($controller == 'profile') {
+                <div class="list-group">
+                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>"
+                       title="<?php echo _b('Manage account'); ?>"
+                       class="list-group-item<?php if ($controller == 'profile') {
                            echo ' active';
                        } ?>">
                         <?php echo _e('Manage account'); ?>
                     </a>
-                                
+
                     <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'account'])); ?>"
                        class="list-group-item<?php if ($controller == 'account') {
                            echo ' active';
@@ -214,8 +215,8 @@ $this->sticky();
             </div>
         </div>
     </div>
-    
-    
+
+
 </div>
 
 <script>
@@ -229,7 +230,7 @@ $this->sticky();
         }
 
         var Sticky = new hcSticky('#sticky-sidebar-manage', {
-            responsive : true,
+            responsive: true,
             top: $('#pi-header nav').height() + affixWrapperHeight + 20,
             stickTo: '.pi-module-content',
             queries: {

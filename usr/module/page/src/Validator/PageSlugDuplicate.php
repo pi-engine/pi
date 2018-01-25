@@ -1,4 +1,5 @@
 <?php
+
 namespace Module\Page\Validator;
 
 use Pi;
@@ -6,13 +7,13 @@ use Zend\Validator\AbstractValidator;
 
 class PageSlugDuplicate extends AbstractValidator
 {
-    const TAKEN        = 'slugExists';
+    const TAKEN = 'slugExists';
 
     public function __construct()
     {
-        $this->messageTemplates = array(
+        $this->messageTemplates = [
             self::TAKEN => _a('Page slug already exists.'),
-        );
+        ];
 
         parent::__construct();
     }
@@ -29,7 +30,7 @@ class PageSlugDuplicate extends AbstractValidator
         $this->setValue($value);
 
         if (null !== $value) {
-            $where = array('slug' => $value);
+            $where = ['slug' => $value];
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }

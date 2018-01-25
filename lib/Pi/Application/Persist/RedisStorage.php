@@ -9,7 +9,6 @@
 
 namespace Pi\Application\Persist;
 
-use Pi;
 use Redis;
 
 /**
@@ -26,10 +25,10 @@ class RedisStorage extends AbstractStorage
     const SERVER_HOST = '127.0.0.1';
 
     /** @var int */
-    const SERVER_PORT =  6379;
+    const SERVER_PORT = 6379;
 
     /** @var int */
-    const SERVER_TIMEOUT =  0;
+    const SERVER_TIMEOUT = 0;
 
     /** @var Redis Redis storage */
     protected $redis;
@@ -40,14 +39,14 @@ class RedisStorage extends AbstractStorage
      * @param array $options
      * @throws \Exception
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         if (!extension_loaded('redis')) {
             throw new \Exception(
                 'The redis extension must be loaded for using this model !'
             );
         }
-        $redis = new Redis;
+        $redis  = new Redis;
         $status = $redis->connect(
             isset($options['host']) ? $options['host'] : static::SERVER_HOST,
             isset($options['port']) ? $options['port'] : static::SERVER_PORT,
@@ -83,7 +82,7 @@ class RedisStorage extends AbstractStorage
      */
     public function load($id)
     {
-        $id = $this->prefix($id);
+        $id   = $this->prefix($id);
         $data = $this->redis->get($id);
 
         return $data;
@@ -111,7 +110,7 @@ class RedisStorage extends AbstractStorage
     public function remove($id)
     {
         $id = $this->prefix($id);
-        
+
         return $this->redis->delete($id);
     }
 
@@ -121,7 +120,7 @@ class RedisStorage extends AbstractStorage
     public function flush()
     {
         $members = $this->redis->sMembers($this->namespace);
-        $multi = $this->redis->multi();
+        $multi   = $this->redis->multi();
         foreach ($members as $id) {
             $multi->delete($id);
             $this->redis->sRem($this->namespace, $id);

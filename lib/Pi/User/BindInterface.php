@@ -9,7 +9,6 @@
 
 namespace Pi\User;
 
-use Pi;
 use Pi\User\Model\AbstractModel as UserModel;
 
 /**

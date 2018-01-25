@@ -10,9 +10,10 @@
 namespace Pi\Authentication\Strategy;
 
 use Pi;
-//use Pi\Authentication\Adapter\AdapterInterface;
 use Pi\Authentication\Storage\StorageInterface;
 use Zend\Authentication\Result as AuthenticationResult;
+
+//use Pi\Authentication\Adapter\AdapterInterface;
 
 /**
  * Pi authentication strategy interface
@@ -28,7 +29,7 @@ abstract class AbstractStrategy
     protected $name = '';
 
     /** @var array Options */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Storage handler
@@ -45,7 +46,7 @@ abstract class AbstractStrategy
      *
      * @param array $options Parameters to send to the service
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         // Set specified options
         if ($options) {
@@ -62,10 +63,10 @@ abstract class AbstractStrategy
      * @param array|string $options Array of options or config file name
      * @return void
      */
-    public function setOptions($options = array())
+    public function setOptions($options = [])
     {
         if (is_string($options)) {
-            $options = Pi::config()->load($options) ?: array();
+            $options = Pi::config()->load($options) ?: [];
         }
         $this->options = $options;
     }
@@ -102,7 +103,7 @@ abstract class AbstractStrategy
      */
     public function getOption()
     {
-        $args = func_get_args();
+        $args   = func_get_args();
         $result = $this->options;
         foreach ($args as $name) {
             if (!is_array($result)) {
@@ -140,17 +141,17 @@ abstract class AbstractStrategy
     public function getIdentity()
     {
         $identity = false;
-        $storage = $this->getStorage();
+        $storage  = $this->getStorage();
         if (!$storage->isEmpty()) {
-            $field  = $this->getIdentityField();
-            $data   = $storage->read();
+            $field = $this->getIdentityField();
+            $data  = $storage->read();
             if (is_scalar($data)) {
                 $identity = $data;
             } elseif (is_array($data) && isset($data[$field])) {
                 $identity = $data[$field];
             }
             if ($identity && 'id' == $field) {
-                $identity = (int) $identity;
+                $identity = (int)$identity;
             }
         }
 
@@ -170,7 +171,7 @@ abstract class AbstractStrategy
     /**
      * Get URIs
      *
-     * @param string $type  Type for URI: login, logout
+     * @param string $type Type for URI: login, logout
      * @param array|string $params
      *
      * @return string
@@ -218,7 +219,7 @@ abstract class AbstractStrategy
      *
      * @return void
      */
-    abstract public function requireLogin(array $params = array());
+    abstract public function requireLogin(array $params = []);
 
     /**
      * Go to login process
@@ -227,7 +228,7 @@ abstract class AbstractStrategy
      *
      * @return void
      */
-    abstract public function login(array $params = array());
+    abstract public function login(array $params = []);
 
     /**
      * Go to logout process
@@ -236,7 +237,7 @@ abstract class AbstractStrategy
      *
      * @return void
      */
-    abstract public function logout(array $params = array());
+    abstract public function logout(array $params = []);
 
     /**
      * Get user profile data from current session
@@ -245,5 +246,5 @@ abstract class AbstractStrategy
      *
      * @return array
      */
-    abstract public function getData(array $fields = array());
+    abstract public function getData(array $fields = []);
 }

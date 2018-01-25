@@ -21,11 +21,11 @@ class IndexController extends ActionController
     public function indexAction()
     {
         // Assign multiple params
-        $data = array(
-            'data'      => 'Pi-Zend',
-            'module'    => $this->params('module'),
-            'title'     => __('Demo page'),
-        );
+        $data = [
+            'data'   => 'Pi-Zend',
+            'module' => $this->params('module'),
+            'title'  => __('Demo page'),
+        ];
         $this->view()->assign($data);
 
         // Assign all route params
@@ -52,14 +52,14 @@ class IndexController extends ActionController
         $page = $this->params('p', 5);
         $flag = $this->params('f', 0);
 
-        $limit = (int) $this->config('item_per_page');
+        $limit = (int)$this->config('item_per_page');
         $model = $this->getModel('page');
 
-        $offset = (int) ($page - 1) * $this->config('item_per_page');
-        $select = $model->select()->where(array('flag' => $flag))
+        $offset = (int)($page - 1) * $this->config('item_per_page');
+        $select = $model->select()->where(['flag' => $flag])
             ->order('id')->offset($offset)->limit($limit);
         $rowset = $model->selectWith($select);
-        $items = array();
+        $items  = [];
         foreach ($rowset as $row) {
             $items[] = $row;
         }
@@ -70,7 +70,7 @@ class IndexController extends ActionController
             ->columns(array('count' => new Expression('count(*)')))
             ->where(array('flag' => $flag));
         */
-        $count = $model->count(array('flag' => $flag));
+        $count = $model->count(['flag' => $flag]);
 
         /*
         $paginator = Paginator::factory(intval($count));
@@ -92,16 +92,16 @@ class IndexController extends ActionController
             ), true),
         ));
         */
-        $paginator = Paginator::factory(intval($count), array(
-            'limit' => $limit,
-            'page'  => $page,
-            'url_options'           => array(
+        $paginator = Paginator::factory(intval($count), [
+            'limit'       => $limit,
+            'page'        => $page,
+            'url_options' => [
                 // Use router to build URL for each page
-                'page_param'    => 'p',
-                'total_param'   => 't',
-                'params'        => array(
-                    'f'             => $flag,
-                ),
+                'page_param'  => 'p',
+                'total_param' => 't',
+                'params'      => [
+                    'f' => $flag,
+                ],
 
                 // Or use a URL template to create URLs
                 //'template'      => '/url/p/__page__/t/__total__',
@@ -112,8 +112,8 @@ class IndexController extends ActionController
                     'f' => $flag,
                 ), true),
                 */
-            ),
-        ));
+            ],
+        ]);
         $this->view()->assign('items', $items);
         $this->view()->assign('paginator', $paginator);
     }
@@ -155,7 +155,7 @@ class IndexController extends ActionController
      */
     public function redirectAction()
     {
-        $this->redirect()->toRoute('', array('action' => 'test'));
+        $this->redirect()->toRoute('', ['action' => 'test']);
     }
 
     /**

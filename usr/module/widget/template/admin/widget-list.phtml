@@ -47,6 +47,6 @@ echo $this->form($form);
 <script>
     widgetAction({
         prefix: "block-",
-        items: <?php echo $content ?: json_encode(array()); ?>
+        items: <?php echo $content ?: json_encode([]); ?>
     });
 </script>

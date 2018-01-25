@@ -13,7 +13,6 @@ use Pi;
 use Zend\Http\Response;
 use Zend\Mvc\ResponseSender\HttpResponseSender as ZendHttpResponseSender;
 use Zend\Mvc\ResponseSender\SendResponseEvent;
-use Zend\Filter\Compress\Gz;
 
 class HttpResponseSender extends ZendHttpResponseSender
 {

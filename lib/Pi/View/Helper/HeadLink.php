@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use stdClass;
 use Zend\View\Helper\HeadLink as ZendHeadLink;
 use Zend\View\Helper\Placeholder;
@@ -27,7 +26,7 @@ class HeadLink extends ZendHeadLink
     const CONTEXT_LAYOUT = 'layout';
 
     /** @var array Placeholder for assets loaded by child templates */
-    protected $assets = array();
+    protected $assets = [];
 
     /**
      * {@inheritDoc}
@@ -36,7 +35,8 @@ class HeadLink extends ZendHeadLink
     public function __invoke(
         array $attributes = null,
         $placement = Placeholder\Container\AbstractContainer::APPEND
-    ) {
+    )
+    {
         parent::__invoke($attributes, strtoupper($placement));
 
         return $this;
@@ -50,7 +50,7 @@ class HeadLink extends ZendHeadLink
         $context = $this->view->context();
         if ($context && $context != static::CONTEXT_LAYOUT) {
             if (!empty($value->type) && 'text/css' == $value->type) {
-                $this->assets[] = array($value, 'append');
+                $this->assets[] = [$value, 'append'];
                 return;
             }
         }
@@ -66,7 +66,7 @@ class HeadLink extends ZendHeadLink
         $context = $this->view->context();
         if ($context && $context != static::CONTEXT_LAYOUT) {
             if (!empty($value->type) && 'text/css' == $value->type) {
-                $this->assets[] = array($value, 'prepend');
+                $this->assets[] = [$value, 'prepend'];
                 return;
             }
         }
@@ -82,7 +82,7 @@ class HeadLink extends ZendHeadLink
     {
         if (isset($item->conditional)) {
             $item->conditionalStylesheet = $item->conditional;
-            $item->conditional = null;
+            $item->conditional           = null;
         }
 
         return parent::itemToString($item);

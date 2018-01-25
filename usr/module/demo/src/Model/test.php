@@ -12,4 +12,5 @@ namespace Module\Demo\Model;
 use Pi\Application\Model\Model;
 
 class Test extends Model
-{}
+{
+}

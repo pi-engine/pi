@@ -9,10 +9,10 @@
 
 namespace Module\User\Controller\Front;
 
-use Pi;
 use Module\System\Controller\Front\LoginController as ActionController;
-use Module\User\Form\LoginForm;
 use Module\User\Form\LoginFilter;
+use Module\User\Form\LoginForm;
+use Pi;
 
 /**
  * User login/logout controller

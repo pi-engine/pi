@@ -8,7 +8,7 @@
  * @package         View
  */
 
-namespace   Pi\View\Helper;
+namespace Pi\View\Helper;
 
 use Pi\Db\RowGateway\RowGateway as BlockModel;
 
@@ -49,9 +49,9 @@ class Widget extends Block
      * @param   array $options
      * @return  string|false
      */
-    public function render(BlockModel $block, $options = array())
+    public function render(BlockModel $block, $options = [])
     {
-        $data = parent::render($block, $options);
+        $data    = parent::render($block, $options);
         $content = (is_array($data) && isset($data['content']))
             ? $data['content'] : false;
         return $content;

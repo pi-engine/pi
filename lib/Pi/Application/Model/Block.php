@@ -19,19 +19,21 @@ class Block extends Model
     /**
      * {@inheritDoc}
      */
-    protected $columns = array(
-        'id',
-        'root', 'name', 'title', 'description',
-        'module', 'template', 'render',
-        'config', 'type', 'content',
-        'cache_ttl', 'cache_level', 'title_hidden', 'body_fullsize',
-        'active', 'cloned', 'class', 'subline'
-    );
+    protected $columns
+        = [
+            'id',
+            'root', 'name', 'title', 'description',
+            'module', 'template', 'render',
+            'config', 'type', 'content',
+            'cache_ttl', 'cache_level', 'title_hidden', 'body_fullsize',
+            'active', 'cloned', 'class', 'subline',
+        ];
 
     /**
      * {@inheritDoc}
      */
-    protected $encodeColumns = array(
-        'config'    => true,
-    );
+    protected $encodeColumns
+        = [
+            'config' => true,
+        ];
 }

@@ -9,25 +9,25 @@
 
 /**
  * Custom route config
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
-return array(
-    'article' => array(
+return [
+    'article' => [
         'section'  => 'front',
         'priority' => 100,
 
-        'type'      => 'Module\Article\Route\Article',
-        'options'   => array(
-            'structure_delimiter'   => '/',
-            'param_delimiter'       => '/',
-            'key_value_delimiter'   => '-',
+        'type'    => 'Module\Article\Route\Article',
+        'options' => [
+            'structure_delimiter' => '/',
+            'param_delimiter'     => '/',
+            'key_value_delimiter' => '-',
             //'prefix'                => '/article',
-            'defaults'              => array(
-                'module'        => 'article',
-                'controller'    => 'index',
-                'action'        => 'index',
-            ),
-        ),
-    ),
-);
+            'defaults'            => [
+                'module'     => 'article',
+                'controller' => 'index',
+                'action'     => 'index',
+            ],
+        ],
+    ],
+];

@@ -19,7 +19,8 @@ class Search extends Model
     /**
      * {@inheritDoc}
      */
-    protected $encodeColumns = array(
-        'callback'  => true,
-    );
+    protected $encodeColumns
+        = [
+            'callback' => true,
+        ];
 }

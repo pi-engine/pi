@@ -55,7 +55,7 @@ class Rename extends ZendRename
     public function __construct($options)
     {
         if ($options instanceof Closure) {
-            $options = array('target' => $options);
+            $options = ['target' => $options];
         }
 
         parent::__construct($options);
@@ -67,7 +67,7 @@ class Rename extends ZendRename
     protected function _convertOptions($options)
     {
         if (isset($options['target']) && $options['target'] instanceof Closure) {
-            $this->closure = $options['target'];
+            $this->closure     = $options['target'];
             $options['target'] = static::CLOSURE_TOKEN;
         } else {
             $this->closure = null;
@@ -119,25 +119,25 @@ class Rename extends ZendRename
             $name = $file['source'];
         }
         if (static::CLOSURE_TOKEN == $file['target'] && $this->closure) {
-            $closure = $this->closure;
+            $closure        = $this->closure;
             $file['target'] = $closure($name);
         } elseif (false !== strpos($file['target'], '%')) {
-            $extension = pathinfo($name, PATHINFO_EXTENSION);
-            $terms = array(
-                '%source%'      => $name,
-                '%term%'        => $name,
-                '%random%'      => uniqid(),
-                '%date:l%'      => date('YmdHis'),
-                '%date:m%'      => date('Ymd'),
-                '%date:s%'      => date('Ym'),
-                '%time%'        => time(),
-                '%microtime%'   => microtime(),
-            );
+            $extension      = pathinfo($name, PATHINFO_EXTENSION);
+            $terms          = [
+                '%source%'    => $name,
+                '%term%'      => $name,
+                '%random%'    => uniqid(),
+                '%date:l%'    => date('YmdHis'),
+                '%date:m%'    => date('Ymd'),
+                '%date:s%'    => date('Ym'),
+                '%time%'      => time(),
+                '%microtime%' => microtime(),
+            ];
             $file['target'] = str_replace(
                     array_keys($terms),
                     array_values($terms),
                     $file['target']
-            ) . '.' . $extension;
+                ) . '.' . $extension;
         }
     }
 

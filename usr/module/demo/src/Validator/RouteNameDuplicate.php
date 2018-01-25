@@ -14,14 +14,15 @@ use Zend\Validator\AbstractValidator;
 
 class RouteNameDuplicate extends AbstractValidator
 {
-    const TAKEN        = 'routeExists';
+    const TAKEN = 'routeExists';
 
     /**
      * @var array
      */
-    protected $messageTemplates = array(
-        self::TAKEN     => 'Route name already exists',
-    );
+    protected $messageTemplates
+        = [
+            self::TAKEN => 'Route name already exists',
+        ];
 
     /**
      * Route name validate
@@ -35,7 +36,7 @@ class RouteNameDuplicate extends AbstractValidator
         $this->setValue($value);
 
         if (null !== $value) {
-            $where = array('name' => $value);
+            $where = ['name' => $value];
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }

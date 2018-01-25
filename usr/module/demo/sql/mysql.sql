@@ -1,20 +1,20 @@
 # Quote all table names with '{' and '}', and prefix all system tables with 'core.'
 
 CREATE TABLE `{test}` (
-  `id`            int(10) unsigned        NOT NULL auto_increment,
-  `message`       varchar(255)            NOT NULL default '',
-  `active`        tinyint(1)              NOT NULL default '1',
+  `id`      INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `message` VARCHAR(255)     NOT NULL DEFAULT '',
+  `active`  TINYINT(1)       NOT NULL DEFAULT '1',
 
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `{page}` (
-  `id`            int(10) unsigned        NOT NULL auto_increment,
-  `title`         varchar(255)            NOT NULL default '',
-  `uid`           int(10)         unsigned    NOT NULL default '0',
-  `time_created`  int(10)         unsigned    NOT NULL default '0',
-  `content`       text,
-  `flag`          tinyint(1) unsigned     NOT NULL default '0',
+  `id`           INT(10) UNSIGNED    NOT NULL AUTO_INCREMENT,
+  `title`        VARCHAR(255)        NOT NULL DEFAULT '',
+  `uid`          INT(10) UNSIGNED    NOT NULL DEFAULT '0',
+  `time_created` INT(10) UNSIGNED    NOT NULL DEFAULT '0',
+  `content`      TEXT,
+  `flag`         TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
 
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY (`id`)
 );

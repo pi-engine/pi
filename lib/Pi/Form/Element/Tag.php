@@ -22,7 +22,6 @@ use Pi;
  *      'type'      => 'tag',
  *      'name'      => <element-name>,
  *  );
-
  *  $form->add(
  *      'type'      => 'tag',
  *      'name'      => <element-name>,
@@ -72,10 +71,11 @@ class Tag extends Textarea
     /**
      * {@inheritDoc}
      */
-    protected $attributes = array(
-        'type'  => 'textarea',
-        'rows'  => 2,
-    );
+    protected $attributes
+        = [
+            'type' => 'textarea',
+            'rows' => 2,
+        ];
 
     /**
      * Retrieve the element value. Retrieve from tag database if not specified
@@ -87,19 +87,19 @@ class Tag extends Textarea
         if (null === $this->value) {
             $module = $this->getOption('module')
                 ?: Pi::service('module')->current();
-            $type = $this->getOption('type') ?: '';
+            $type   = $this->getOption('type') ?: '';
             $active = $this->getOption('active');
             if (null === $active) {
                 $active = true;
             }
             $item = $this->getOption('item');
             if (!$item) {
-                $data = Pi::service('url')->getRequestUri();
+                $data       = Pi::service('url')->getRequestUri();
                 $routeMatch = Pi::service('url')->match($data);
-                $item = $routeMatch->getParam('id');
+                $item       = $routeMatch->getParam('id');
             }
             if ($item) {
-                $tags = Pi::service('tag')->get($module, $item, $type, $active);
+                $tags        = Pi::service('tag')->get($module, $item, $type, $active);
                 $this->value = Pi::service('tag')->implode($tags);
             }
         }

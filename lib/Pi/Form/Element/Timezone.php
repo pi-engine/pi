@@ -11,9 +11,9 @@
 
 namespace Pi\Form\Element;
 
+use DateTimeZone;
 use Pi;
 use Zend\Form\Element\Select;
-use DateTimeZone;
 
 /**
  * Navigation select element
@@ -23,7 +23,7 @@ use DateTimeZone;
 class Timezone extends Select
 {
     /** @var array Timezones */
-    static protected $timezones = array();
+    static protected $timezones = [];
 
     /**
      * Get options of value select
@@ -35,7 +35,7 @@ class Timezone extends Select
         if (empty($this->valueOptions)) {
             if (!static::$timezones) {
                 Pi::service('i18n')->load('timezone');
-                $groups = array();
+                $groups = [];
                 foreach (DateTimeZone::listIdentifiers() as $timezone) {
                     if ($pos = strpos($timezone, '/')) {
                         $group = substr($timezone, 0, $pos);

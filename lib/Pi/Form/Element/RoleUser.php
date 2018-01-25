@@ -28,12 +28,12 @@ class RoleUser extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $rowset = Pi::model('acl_role')->select(array(
-                'section'   => 'front',
-            ));
-            $roles = array(
-                ''  => __('None'),
-            );
+            $rowset = Pi::model('acl_role')->select([
+                'section' => 'front',
+            ]);
+            $roles  = [
+                '' => __('None'),
+            ];
             foreach ($rowset as $row) {
                 $roles[$row->name] = __($row->title);
             }

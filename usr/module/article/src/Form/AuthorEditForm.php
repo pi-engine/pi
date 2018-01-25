@@ -9,86 +9,85 @@
 
 namespace Module\Article\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
  * Class for initializing form of add author page
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
- */ 
+ */
 class AuthorEditForm extends BaseForm
 {
     /**
-     * Initalizing form 
+     * Initalizing form
      */
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name'       => 'name',
-            'options'    => array(
-                'label'     => __('Name'),
-            ),
-            'attributes' => array(
-                'id'        => 'name',
-                'type'      => 'text',
-            ),
-        ));
+            'options'    => [
+                'label' => __('Name'),
+            ],
+            'attributes' => [
+                'id'   => 'name',
+                'type' => 'text',
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'placeholder',
-            'options'    => array(
-                'label'     => __('Photo'),
-            ),
-            'attributes' => array(
-            ),
-        ));
+            'options'    => [
+                'label' => __('Photo'),
+            ],
+            'attributes' => [
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'description',
-            'options'    => array(
-                'label'     => __('Biography'),
-            ),
-            'attributes' => array(
-                'id'        => 'bio',
-                'type'      => 'textarea',
-            ),
-        ));
+            'options'    => [
+                'label' => __('Biography'),
+            ],
+            'attributes' => [
+                'id'   => 'bio',
+                'type' => 'textarea',
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'photo',
-            'attributes' => array(
-                'type'      => 'hidden',
-            ),
-        ));
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'       => 'security',
-            'type'       => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'id',
-            'attributes' => array(
-                'id'        => 'id',
-                'type'      => 'hidden',
-            ),
-        ));
+            'attributes' => [
+                'id'   => 'id',
+                'type' => 'hidden',
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'fake_id',
-            'attributes' => array(
-                'id'        => 'fake_id',
-                'type'      => 'hidden',
-            ),
-        ));
+            'attributes' => [
+                'id'   => 'fake_id',
+                'type' => 'hidden',
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'submit',
-            'attributes' => array(               
-                'value'     => __('Submit'),
-            ),
+            'attributes' => [
+                'value' => __('Submit'),
+            ],
             'type'       => 'submit',
-        ));
+        ]);
     }
 }

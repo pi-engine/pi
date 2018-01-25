@@ -10,8 +10,8 @@
 namespace Pi\Application\Installer;
 
 use Pi;
-use Zend\EventManager\EventManager;
 use Zend\EventManager\Event;
+use Zend\EventManager\EventManager;
 
 /**
  * Theme maintenance
@@ -41,49 +41,50 @@ class Theme
      *
      * @var array
      */
-    protected $fileList = array(
-        'front' => array(
-            // Complete layout template:
-            // header, footer, body, blocks, navigation
-            'template/layout-front.phtml',
-            // Simple page layout: header, footer, body
-            'template/layout-simple.phtml',
-            // Content with stylesheets
-            'template/layout-style.phtml',
-            // Raw content
-            'template/layout-content.phtml',
+    protected $fileList
+        = [
+            'front' => [
+                // Complete layout template:
+                // header, footer, body, blocks, navigation
+                'template/layout-front.phtml',
+                // Simple page layout: header, footer, body
+                'template/layout-simple.phtml',
+                // Content with stylesheets
+                'template/layout-style.phtml',
+                // Raw content
+                'template/layout-content.phtml',
 
-            // Pagination template
-            'template/paginator.phtml',
+                // Pagination template
+                'template/paginator.phtml',
 
-            // Exception error template
-            'template/error.phtml',
-            // 404 error template
-            'template/error-404.phtml',
-            // Denied error template
-            'template/error-denied.phtml',
+                // Exception error template
+                'template/error.phtml',
+                // 404 error template
+                'template/error-404.phtml',
+                // Denied error template
+                'template/error-denied.phtml',
 
-            // Main css file
-            'asset/css/style.css',
-        ),
-        'admin' => array(
-            // Backoffice layout
-            'template/layout-admin.phtml',
+                // Main css file
+                'asset/css/style.css',
+            ],
+            'admin' => [
+                // Backoffice layout
+                'template/layout-admin.phtml',
 
-            // Pagination template
-            'template/paginator.phtml',
+                // Pagination template
+                'template/paginator.phtml',
 
-            // Exception error template
-            'template/error.phtml',
-            // 404 error template
-            'template/error-404.phtml',
-            // Denied error template
-            'template/error-denied.phtml',
+                // Exception error template
+                'template/error.phtml',
+                // 404 error template
+                'template/error-404.phtml',
+                // Denied error template
+                'template/error-denied.phtml',
 
-            // Main css file
-            'asset/css/style.css',
-        ),
-    );
+                // Main css file
+                'asset/css/style.css',
+            ],
+        ];
 
     /**
      * Magic methods for install, uninstall, update, etc.
@@ -95,23 +96,23 @@ class Theme
      */
     public function __call($method, $args)
     {
-        if (!in_array($method, array('install', 'uninstall', 'update'))) {
+        if (!in_array($method, ['install', 'uninstall', 'update'])) {
             throw new \InvalidArgumentException(
                 sprintf('Invalid action "%s".', $method)
             );
         }
 
-        $name = array_shift($args);
-        $options = empty($args) ? array() : array_shift($args);
+        $name    = array_shift($args);
+        $options = empty($args) ? [] : array_shift($args);
         $version = isset($options['version']) ? $options['version'] : null;
-        $event = new Event;
-        $event->setParams(array(
-            'name'          => $name,
-            'version'       => $version,
-            'action'        => $method,
-            'config'        => array(),
+        $event   = new Event;
+        $event->setParams([
+            'name'    => $name,
+            'version' => $version,
+            'action'  => $method,
+            'config'  => [],
             //'result'        => array(),
-        ));
+        ]);
         $this->event = $event;
         $this->attachDefaultListeners();
 
@@ -124,7 +125,7 @@ class Theme
             }
             return false;
         };
-        $result = $this->getEventManager()->trigger(
+        $result       = $this->getEventManager()->trigger(
             sprintf('%s.pre', $method),
             null,
             $event,
@@ -134,9 +135,9 @@ class Theme
             return false;
         }
         $actionMethod = $method . 'Action';
-        $result = $this->{$actionMethod}();
+        $result       = $this->{$actionMethod}();
         if (!$result['status']) {
-            $ret = array($method => $result);
+            $ret = [$method => $result];
             $this->event->setParam('result', $ret);
             return false;
         }
@@ -160,10 +161,10 @@ class Theme
         $status = true;
         $result = $event->getParam('result');
         //foreach ($result as $action => $state) {
-            if ($result['status'] === false) {
-                $status = false;
-                //break;
-            }
+        if ($result['status'] === false) {
+            $status = false;
+            //break;
+        }
         //}
 
         return $status;
@@ -191,8 +192,8 @@ class Theme
     protected function attachDefaultListeners()
     {
         $events = $this->getEventManager();
-        $events->attach('start', array($this, 'loadConfig'));
-        $events->attach('finish', array($this, 'clearCache'));
+        $events->attach('start', [$this, 'loadConfig']);
+        $events->attach('finish', [$this, 'clearCache']);
     }
 
     /**
@@ -227,20 +228,20 @@ class Theme
     public function renderMessage($message = null)
     {
         if (null === $message) {
-            $message = (array) $this->getResult();
+            $message = (array)$this->getResult();
         }
         $content = '';
         foreach ($message as $action => $state) {
             $content .= '<p>';
             $content .= $action . ': '
-                      . (($state['status'] === false)
-                         ? 'failed' : 'passed'
-                      );
+                . (($state['status'] === false)
+                    ? 'failed' : 'passed'
+                );
             if (!empty($state['message'])) {
                 $content .= '<br />&nbsp;&nbsp;' . implode(
-                    '<br />&nbsp;&nbsp;',
-                    (array) $state['message']
-                );
+                        '<br />&nbsp;&nbsp;',
+                        (array)$state['message']
+                    );
             }
             $content .= '</p>';
         }
@@ -267,13 +268,13 @@ class Theme
      */
     protected function canonizeData(array $data)
     {
-        $return = array(
-            'name'      => isset($data['name'])
-                            ? $data['name'] : $this->event->getParam('name'),
-            'version'   => $data['version'],
-            'update'    => isset($data['update']) ? $data['update'] : time(),
-            'type'      => !empty($data['type']) ? $data['type'] : 'both',
-        );
+        $return = [
+            'name'    => isset($data['name'])
+                ? $data['name'] : $this->event->getParam('name'),
+            'version' => $data['version'],
+            'update'  => isset($data['update']) ? $data['update'] : time(),
+            'type'    => !empty($data['type']) ? $data['type'] : 'both',
+        ];
 
         return $return;
     }
@@ -285,40 +286,40 @@ class Theme
      */
     protected function installAction()
     {
-        $name = $this->event->getParam('name');
+        $name   = $this->event->getParam('name');
         $config = $this->event->getParam('config');
 
-        $type = isset($config['type']) ? $config['type'] : 'both';
-        $result = array(
-            'status'    => true,
-            'message'   => ''
-        );
+        $type   = isset($config['type']) ? $config['type'] : 'both';
+        $result = [
+            'status'  => true,
+            'message' => '',
+        ];
         if (empty($config['parent'])
             && $files = $this->checkFiles($name, $type)
         ) {
-            $result = array(
-                'status'    => false,
-                'message'   => 'Files missing: ' . implode('; ', $files)
-            );
+            $result = [
+                'status'  => false,
+                'message' => 'Files missing: ' . implode('; ', $files),
+            ];
         } else {
-            $data = $this->canonizeData($config);
+            $data  = $this->canonizeData($config);
             $model = Pi::model('theme');
-            $row = $model->createRow($data);
+            $row   = $model->createRow($data);
             $row->save();
             if (!$row->id) {
-                $result = array(
-                    'status'    => false,
-                    'message'   => 'Theme row save failed.'
-                );
+                $result = [
+                    'status'  => false,
+                    'message' => 'Theme row save failed.',
+                ];
                 return $result;
             }
             Pi::service('asset')->remove('theme/' . $name);
             $status = Pi::service('asset')->publishTheme($name);
             if (!$status) {
-                $result = array(
-                    'status'    => false,
-                    'message'   => 'Theme asset publish failed.'
-                );
+                $result = [
+                    'status'  => false,
+                    'message' => 'Theme asset publish failed.',
+                ];
             } else {
                 //Pi::service('asset')->publishThemeCustom($name);
             }
@@ -334,13 +335,13 @@ class Theme
      */
     protected function updateAction()
     {
-        $name = $this->event->getParam('name');
+        $name    = $this->event->getParam('name');
         $version = $this->event->getParam('version');
-        $config = $this->event->getParam('config');
-        $status = true;
+        $config  = $this->event->getParam('config');
+        $status  = true;
         //$message = '';
 
-        $row = Pi::model('theme')->find($name, 'name');
+        $row       = Pi::model('theme')->find($name, 'name');
         $isUpgrade = version_compare($version, $config['version'], '<');
         if (!$isUpgrade) {
             $row->update = time();
@@ -351,23 +352,23 @@ class Theme
             $row->assign($data);
             $row->save();
             if (!$row->id) {
-                $status = false;
+                $status  = false;
                 $message = __('Theme failed to update.');
             } else {
                 $message = __('Theme upgraded successfully.');
                 Pi::service('asset')->remove('theme/' . $name);
                 $res = Pi::service('asset')->publishTheme($name);
                 if (!$res) {
-                    $status = false;
+                    $status  = false;
                     $message = __('Theme asset publish failed.');
                 }
             }
         }
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+        ];
     }
 
     /**
@@ -382,26 +383,26 @@ class Theme
         if ('default' == $name) {
             throw new \Exception('Theme "default" is protected.');
         }
-        $result = array(
-            'status'    => true,
-            'message'   => ''
-        );
-        $model = Pi::model('theme');
-        $status = $model->delete(array('name' => $name));
+        $result = [
+            'status'  => true,
+            'message' => '',
+        ];
+        $model  = Pi::model('theme');
+        $status = $model->delete(['name' => $name]);
         if (!$status) {
-            $result = array(
-                'status'    => false,
-                'message'   => 'Theme uninstallation failed.'
-            );
+            $result = [
+                'status'  => false,
+                'message' => 'Theme uninstallation failed.',
+            ];
             return $result;
         }
 
         $status = Pi::service('asset')->remove('theme/' . $name);
         if (!$status) {
-            $result = array(
-                'status'    => false,
-                'message'   => 'Theme assets removal failed.'
-            );
+            $result = [
+                'status'  => false,
+                'message' => 'Theme assets removal failed.',
+            ];
         }
 
         return $result;
@@ -418,7 +419,7 @@ class Theme
     protected function checkFiles($theme, $type = 'both')
     {
         $fileList = $this->fileList;
-        $path = Pi::path('theme/' . $theme);
+        $path     = Pi::path('theme/' . $theme);
 
         if (isset($fileList[$type])) {
             $files = $fileList[$type];
@@ -431,7 +432,7 @@ class Theme
                 sprintf('Wrong type "%s" configured.', $type)
             );
         }
-        $missingFiles = array();
+        $missingFiles = [];
         foreach ($files as $file) {
             if (!file_exists($path . '/' . $file)) {
                 $missingFiles[] = $file;

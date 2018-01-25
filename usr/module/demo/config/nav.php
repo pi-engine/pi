@@ -7,110 +7,110 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
+return [
     //'translate' => 'navigation',
-    'front'   => array(
-        'pagea'     => array(
-            'label'         => _a('Homepage'),
-            'route'         => 'default',
-            'controller'    => 'index',
-            'action'        => 'index',
+    'front' => [
+        'pagea'  => [
+            'label'      => _a('Homepage'),
+            'route'      => 'default',
+            'controller' => 'index',
+            'action'     => 'index',
 
-            'pages'         => array(
-                'paginator' => array(
-                    'label'         => _a('Full Paginator'),
-                    'route'         => 'default',
-                    'controller'    => 'index',
-                    'action'        => 'page',
-                ),
-                'simple'    => array(
-                    'label'         => _a('Lean Paginator'),
-                    'route'         => 'default',
-                    'controller'    => 'index',
-                    'action'        => 'simple',
-                ),
-                'pageaa'    => array(
-                    'label'         => _a('Subpage one'),
-                    'route'         => 'default',
-                    'controller'    => 'index',
-                    'action'        => 'index',
-                ),
-                'pageab'    => array(
-                    'label'         => _a('Subpage two'),
-                    'route'         => 'default',
-                    'controller'    => 'index',
-                    'action'        => 'index',
-                    'params'        => array(
-                        'op'    => 'test',
-                    ),
+            'pages' => [
+                'paginator' => [
+                    'label'      => _a('Full Paginator'),
+                    'route'      => 'default',
+                    'controller' => 'index',
+                    'action'     => 'page',
+                ],
+                'simple'    => [
+                    'label'      => _a('Lean Paginator'),
+                    'route'      => 'default',
+                    'controller' => 'index',
+                    'action'     => 'simple',
+                ],
+                'pageaa'    => [
+                    'label'      => _a('Subpage one'),
+                    'route'      => 'default',
+                    'controller' => 'index',
+                    'action'     => 'index',
+                ],
+                'pageab'    => [
+                    'label'      => _a('Subpage two'),
+                    'route'      => 'default',
+                    'controller' => 'index',
+                    'action'     => 'index',
+                    'params'     => [
+                        'op' => 'test',
+                    ],
 
-                    'pages'         => array(
-                        'pageaba'   => array(
-                            'label'         => _a('Leaf one'),
-                            'route'         => 'default',
-                            'controller'    => 'index',
-                            'action'        => 'index',
-                            'params'        => array(
-                                'op'    => 'test',
-                                'page'  => 2,
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-        'pages'     => array(
-            'label'         => _a('Pages'),
-            'route'         => 'default',
-            'controller'    => 'page',
-        ),
-        'files'     => array(
-            'label'         => _a('Files'),
-            'route'         => 'default',
-            'controller'    => 'file',
-        ),
-        'images'     => array(
-            'label'         => _a('Images'),
-            'route'         => 'default',
-            'controller'    => 'image',
-        ),
-        'forms'     => array(
-            'label'         => _a('Forms'),
-            'route'         => 'default',
-            'controller'    => 'form',
-        ),
-        'route' => array(
-            'label'         => _a('Routes'),
-            'route'         => 'default',
-            'controller'    => 'route'
-        ),
-        'tree'     => array(
-            'label'         => _a('Test User Call'),
-            'route'         => 'default',
-            'controller'    => 'index',
-            'action'        => 'user',
-        ),
-    ),
-    'admin' => array(
-        'pagea'     => array(
-            'label'         => _t('Sample'),
-            'route'         => 'admin',
-            'controller'    => 'index',
-            'action'        => 'index',
-            'fragment'      => '!/test',
-        ),
-        'route'     => array(
-            'label'         => _t('Routes'),
-            'route'         => 'admin',
-            'controller'    => 'route',
+                    'pages' => [
+                        'pageaba' => [
+                            'label'      => _a('Leaf one'),
+                            'route'      => 'default',
+                            'controller' => 'index',
+                            'action'     => 'index',
+                            'params'     => [
+                                'op'   => 'test',
+                                'page' => 2,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'pages'  => [
+            'label'      => _a('Pages'),
+            'route'      => 'default',
+            'controller' => 'page',
+        ],
+        'files'  => [
+            'label'      => _a('Files'),
+            'route'      => 'default',
+            'controller' => 'file',
+        ],
+        'images' => [
+            'label'      => _a('Images'),
+            'route'      => 'default',
+            'controller' => 'image',
+        ],
+        'forms'  => [
+            'label'      => _a('Forms'),
+            'route'      => 'default',
+            'controller' => 'form',
+        ],
+        'route'  => [
+            'label'      => _a('Routes'),
+            'route'      => 'default',
+            'controller' => 'route',
+        ],
+        'tree'   => [
+            'label'      => _a('Test User Call'),
+            'route'      => 'default',
+            'controller' => 'index',
+            'action'     => 'user',
+        ],
+    ],
+    'admin' => [
+        'pagea' => [
+            'label'      => _t('Sample'),
+            'route'      => 'admin',
+            'controller' => 'index',
+            'action'     => 'index',
+            'fragment'   => '!/test',
+        ],
+        'route' => [
+            'label'      => _t('Routes'),
+            'route'      => 'admin',
+            'controller' => 'route',
             //'action'        => '!/action',
-            'fragment'      => '!/action',
-        ),
-        array(
-            'label'         => _t('Form'),
-            'route'         => 'admin',
-            'controller'    => 'form',
-            'action'        => 'index',
-        ) 
-    ),
-);
+            'fragment'   => '!/action',
+        ],
+        [
+            'label'      => _t('Form'),
+            'route'      => 'admin',
+            'controller' => 'form',
+            'action'     => 'index',
+        ],
+    ],
+];

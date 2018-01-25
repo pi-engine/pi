@@ -10,11 +10,9 @@
 namespace Module\Page\Controller\Front;
 
 use Pi;
+use Pi\Db\RowGateway\RowGateway;
 use Pi\Filter;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Db\RowGateway\RowGateway;
-use Zend\Mvc\MvcEvent;
-use Zend\Db\Sql\Expression;
 
 class IndexController extends ActionController
 {
@@ -26,12 +24,12 @@ class IndexController extends ActionController
             $this->view()->setLayout('layout-simple');
             return;
         } else {
-            $shearContent  = '';
-            $content       = $row->content;
-            $markup        = $row->markup ?: 'text';
+            $shearContent = '';
+            $content      = $row->content;
+            $markup       = $row->markup ?: 'text';
 
             if ($content && 'phtml' != $markup) {
-                $content = Pi::service('markup')->compile(
+                $content      = Pi::service('markup')->compile(
                     $content,
                     $markup
                 );
@@ -39,22 +37,22 @@ class IndexController extends ActionController
             }
 
             $title = $row->title;
-            $url = Pi::url($this->url('page', $row->toArray()));
+            $url   = Pi::url($this->url('page', $row->toArray()));
             // update clicks
             $model = $this->getModel('page');
-            $model->increment('clicks', array('id' => $row->id));
+            $model->increment('clicks', ['id' => $row->id]);
 
             // Module config
             $config = Pi::config('', $this->getModule());
             // Set SEO data
-            $seoTitle = $row->seo_title ?: $row->title;
+            $seoTitle       = $row->seo_title ?: $row->title;
             $seoDescription = $row->seo_description ?: $row->title;
-            $seoKeywords = $row->seo_keywords ?: $row->title;
-            $filter = new Filter\HeadKeywords;
+            $seoKeywords    = $row->seo_keywords ?: $row->title;
+            $filter         = new Filter\HeadKeywords;
             if (isset($config['keywords_replace_space'])) {
-                $filter->setOptions(array(
-                    'force_replace_space' => (bool) $config['keywords_replace_space']
-                ));
+                $filter->setOptions([
+                    'force_replace_space' => (bool)$config['keywords_replace_space'],
+                ]);
             }
             $seoKeywords = $filter($seoKeywords);
             // Set view
@@ -76,13 +74,13 @@ class IndexController extends ActionController
             $this->view()->setTemplate('page-view');
         }
 
-        $this->view()->assign(array(
-            'title'         => $title,
-            'content'       => $content,
-            'markup'        => $markup,
-            'url'           => $url,
-            'shearContent'  => $shearContent,
-        ));
+        $this->view()->assign([
+            'title'        => $title,
+            'content'      => $content,
+            'markup'       => $markup,
+            'url'          => $url,
+            'shearContent' => $shearContent,
+        ]);
     }
 
     /**
@@ -95,7 +93,7 @@ class IndexController extends ActionController
         $id     = $this->params('id');
         $name   = $this->params('name');
         $slug   = $this->params('slug');
-        $action   = $this->params('action');
+        $action = $this->params('action');
 
         $row = null;
         if ($id) {
@@ -106,13 +104,13 @@ class IndexController extends ActionController
             $row = $this->getModel('page')->find($name, 'slug');
         }
 
-        if($row){
-            if($slug && $slug != $row->slug){
-                return $this->redirect()->toRoute('', array('slug' => $row->slug))->setStatusCode(301);
+        if ($row) {
+            if ($slug && $slug != $row->slug) {
+                return $this->redirect()->toRoute('', ['slug' => $row->slug])->setStatusCode(301);
             }
 
-            if($action && $action != $row->slug){
-                return $this->redirect()->toRoute('', array('slug' => $row->slug))->setStatusCode(301);
+            if ($action && $action != $row->slug) {
+                return $this->redirect()->toRoute('', ['slug' => $row->slug])->setStatusCode(301);
             }
         }
 
@@ -121,10 +119,10 @@ class IndexController extends ActionController
             if (isset($nav[$row->id])) {
                 $nav[$row->id]['active'] = 1;
             } else {
-                $nav = array();
+                $nav = [];
             }
         } else {
-            $nav = array();
+            $nav = [];
         }
         $this->view()->assign('nav', $nav);
 

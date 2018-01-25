@@ -10,8 +10,8 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
 use GeoIp2\Database\Reader;
+use Pi;
 
 /*
  * Geo IP location lookup
@@ -23,6 +23,7 @@ use GeoIp2\Database\Reader;
  * @see https://github.com/maxmind/GeoIP2-php
  * @see http://www.php.net/manual/en/book.geoip.php
  */
+
 class GeoIp extends AbstractService
 {
     /** {@inheritDoc} */
@@ -42,7 +43,7 @@ class GeoIp extends AbstractService
         if ($pos = strpos($locale, '-')) {
             $locale = substr($locale, 0, $pos) . '-' . strtoupper(substr($locale, $pos + 1));
         }
-        $locales = array($locale);
+        $locales = [$locale];
         if ('en' != $locale) {
             $locales[] = 'en';
         }
@@ -91,7 +92,7 @@ class GeoIp extends AbstractService
             return false;
         }
 
-        $result = array();
+        $result = [];
         try {
             $record = $reader->city($ip);
         } catch (\Exception $e) {
@@ -99,41 +100,41 @@ class GeoIp extends AbstractService
         }
         $attr = $attribute;
         if (!$attr || 'country' == $attribute) {
-            $result['country'] = array(
-                'code'  => $record->country->isoCode,
-                'name'  => $record->country->name,
-            );
-            $attribute = '';
+            $result['country'] = [
+                'code' => $record->country->isoCode,
+                'name' => $record->country->name,
+            ];
+            $attribute         = '';
         }
         if (!$attr || 'subdivision' == $attribute) {
-            $result['subdivision'] = array(
-                'code'  => $record->mostSpecificSubdivision->isoCode,
-                'name'  => $record->mostSpecificSubdivision->name,
-            );
-            $attribute = '';
+            $result['subdivision'] = [
+                'code' => $record->mostSpecificSubdivision->isoCode,
+                'name' => $record->mostSpecificSubdivision->name,
+            ];
+            $attribute             = '';
         }
         if (!$attr || 'city' == $attribute) {
-            $result['city'] = array(
-                'name'  => $record->city->name,
-            );
-            $attribute = '';
+            $result['city'] = [
+                'name' => $record->city->name,
+            ];
+            $attribute      = '';
         }
         if (!$attr || 'postal' == $attribute) {
-            $result['postal'] = array(
-                'code'  => $record->postal->code,
-            );
-            $attribute = '';
+            $result['postal'] = [
+                'code' => $record->postal->code,
+            ];
+            $attribute        = '';
         }
         if (!$attr || 'location' == $attribute) {
-            $result['location'] = array(
+            $result['location'] = [
                 'latitude'  => $record->location->latitude,
                 'longitude' => $record->location->longitude,
                 'timezone'  => $record->location->timeZone,
-            );
-            $attribute = '';
+            ];
+            $attribute          = '';
         }
         if ('traits' == $attribute) {
-            foreach (array(
+            foreach ([
                          'autonomousSystemNumber',
                          'autonomousSystemOrganization',
                          'domain',
@@ -142,8 +143,8 @@ class GeoIp extends AbstractService
                          'isp',
                          'ipAddress',
                          'organization',
-                         'userType'
-                     ) as $param) {
+                         'userType',
+                     ] as $param) {
                 if (isset($record->traits->{$param})) {
                     $result['traits'][$param] = $record->traits->{$param};
                 }
@@ -179,18 +180,18 @@ class GeoIp extends AbstractService
         } catch (\Exception $e) {
             return false;
         }
-        $result = array();
+        $result = [];
         if (!$attribute || 'country' == $attribute) {
-            $result['country'] = array(
-                'code'  => $record->country->isoCode,
-                'name'  => $record->country->name,
-            );
+            $result['country'] = [
+                'code' => $record->country->isoCode,
+                'name' => $record->country->name,
+            ];
         }
         if (!$attribute || 'continent' == $attribute) {
-            $result['continent'] = array(
-                'code'  => $record->continent->code,
-                'name'  => $record->continent->name,
-            );
+            $result['continent'] = [
+                'code' => $record->continent->code,
+                'name' => $record->continent->name,
+            ];
         }
         if ($attribute) {
             $result = $result[$attribute];

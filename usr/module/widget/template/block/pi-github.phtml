@@ -3,11 +3,11 @@
 </legend>
 <div class="list-group">
     <?php foreach ($block['items'] as $item) { ?>
-    <div style="padding: 10px 5px;">
-        <h4 class="list-group-item-heading"><?php echo $item['time']; ?></h4>
-        <p class="list-group-item-text">
-            <?php echo $item['actor'] . ' ' . $item['action']; ?>
-        </p>
-    </div>
+        <div style="padding: 10px 5px;">
+            <h4 class="list-group-item-heading"><?php echo $item['time']; ?></h4>
+            <p class="list-group-item-text">
+                <?php echo $item['actor'] . ' ' . $item['action']; ?>
+            </p>
+        </div>
     <?php } ?>
 </div>

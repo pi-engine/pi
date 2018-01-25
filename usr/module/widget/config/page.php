@@ -7,40 +7,40 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
+return [
     // Admin section
-    'admin' => array(
-        array(
-            'controller'    => 'script',
-            'permission'    => 'script',
-        ),
-        array(
-            'controller'    => 'static',
-            'permission'    => 'static',
-        ),
-        array(
-            'controller'    => 'list',
-            'permission'    => 'list',
-        ),
-        array(
-            'controller'    => 'media',
-            'permission'    => 'media',
-        ),
-        array(
-            'controller'    => 'carousel',
-            'permission'    => 'carousel',
-        ),
-        array(
-            'controller'    => 'spotlight',
-            'permission'    => 'spotlight',
-        ),
-        array(
-            'controller'    => 'tab',
-            'permission'    => 'tab',
-        ),
-        array(
-            'controller'    => 'video',
-            'permission'    => 'video',
-        ),
-    ),
-);
+    'admin' => [
+        [
+            'controller' => 'script',
+            'permission' => 'script',
+        ],
+        [
+            'controller' => 'static',
+            'permission' => 'static',
+        ],
+        [
+            'controller' => 'list',
+            'permission' => 'list',
+        ],
+        [
+            'controller' => 'media',
+            'permission' => 'media',
+        ],
+        [
+            'controller' => 'carousel',
+            'permission' => 'carousel',
+        ],
+        [
+            'controller' => 'spotlight',
+            'permission' => 'spotlight',
+        ],
+        [
+            'controller' => 'tab',
+            'permission' => 'tab',
+        ],
+        [
+            'controller' => 'video',
+            'permission' => 'video',
+        ],
+    ],
+];

@@ -9,9 +9,8 @@
 
 namespace Pi\File\Transfer;
 
-use Pi;
-use Zend\File\Transfer\Transfer as TransferHandler;
 use Zend\File\Exception;
+use Zend\File\Transfer\Transfer as TransferHandler;
 
 /**
  * File transfer
@@ -28,8 +27,9 @@ class Transfer extends TransferHandler
     public function setAdapter(
         $adapter,
         $direction = false,
-        $options = array()
-    ) {
+        $options = []
+    )
+    {
         if (!is_string($adapter)) {
             throw new Exception\InvalidArgumentException(
                 'Adapter must be a string'

@@ -53,7 +53,7 @@ class PriorityList extends ZendPriorityList
     protected function loadExtraRoute($name)
     {
         $extraRoutes = $this->loadExtraRoutes();
-        $route = isset($extraRoutes[$name]) ? $extraRoutes[$name] : null;
+        $route       = isset($extraRoutes[$name]) ? $extraRoutes[$name] : null;
 
         return $route;
     }
@@ -87,6 +87,6 @@ class PriorityList extends ZendPriorityList
             $this->extraRoutes = call_user_func($this->extraRouteLoader);
         }
 
-        return (array) $this->extraRoutes;
+        return (array)$this->extraRoutes;
     }
 }

@@ -22,22 +22,23 @@ class Url extends ZendUrl
     /**
      * Generates a URL based on a route
      *
-     * @param string        $route      Route name
-     * @param array         $params
+     * @param string $route Route name
+     * @param array $params
      *      Parameters to use in url generation, if any
-     * @param array|bool    $options
+     * @param array|bool $options
      *      RouteInterface-specific options to use in url generation, if any.
      *      If boolean, and no fourth argument, used as $reuseMatchedParams
-     * @param bool          $reuseMatchedParams
+     * @param bool $reuseMatchedParams
      *      Whether to reuse matched parameters
      * @return string|$this
      */
     public function __invoke(
         $route = null,
-        array $params = array(),
-        $options = array(),
+        array $params = [],
+        $options = [],
         $reuseMatchedParams = false
-    ) {
+    )
+    {
         if (0 == func_num_args()) {
             return $this;
         }
@@ -48,7 +49,7 @@ class Url extends ZendUrl
     /**
      * {@inheritDoc}
      */
-    public function fromRoute($route = null, $params = array(), $options = array(), $reuseMatchedParams = false)
+    public function fromRoute($route = null, $params = [], $options = [], $reuseMatchedParams = false)
     {
         $url = Pi::service('url')->assemble(
             $route,

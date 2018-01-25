@@ -24,20 +24,20 @@ abstract class AbstractActivity extends AbstractApi
      *   - log
      *
      *
-     * @param int       $uid
-     * @param int       $limit
-     * @param int       $offset
+     * @param int $uid
+     * @param int $limit
+     * @param int $offset
      *
      * @return array
      */
     public function get($uid, $limit, $offset = 0)
     {
-        $link = $this->getLink($uid);
-        $items = $this->getItems($uid, $limit, $offset);
-        $result = array(
+        $link   = $this->getLink($uid);
+        $items  = $this->getItems($uid, $limit, $offset);
+        $result = [
             'link'  => $link,
             'items' => $items,
-        );
+        ];
 
         return $result;
     }
@@ -50,15 +50,15 @@ abstract class AbstractActivity extends AbstractApi
      *   - log
      *
      *
-     * @param int       $uid
-     * @param int       $limit
-     * @param int       $offset
+     * @param int $uid
+     * @param int $limit
+     * @param int $offset
      *
      * @return array
      */
     public function getItems($uid, $limit, $offset = 0)
     {
-        $items = array();
+        $items = [];
 
         return $items;
     }

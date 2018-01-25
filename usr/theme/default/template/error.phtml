@@ -16,7 +16,8 @@
         <dl>
             <dt>File:</dt>
             <dd>
-                <pre class="prettyprint linenums"><?php echo Pi::service('security')->path($this->exception->getFile()); ?>: <?php echo $this->exception->getLine(); ?></pre>
+                <pre class="prettyprint linenums"><?php echo Pi::service('security')->path($this->exception->getFile()); ?>
+                    : <?php echo $this->exception->getLine(); ?></pre>
             </dd>
             <dt>Message:</dt>
             <dd>
@@ -33,13 +34,14 @@
             ?>
             <h2 class="page-header">Previous exceptions:</h2>
             <ul class="unstyled">
-                <?php while($e): ?>
+                <?php while ($e): ?>
                     <li>
                         <h2><?php echo get_class($e); ?></h2>
                         <dl>
                             <dt>File:</dt>
                             <dd>
-                                <pre class="prettyprint linenums"><?php echo Pi::service('security')->path($e->getFile()); ?>: <?php echo $e->getLine(); ?></pre>
+                                <pre class="prettyprint linenums"><?php echo Pi::service('security')->path($e->getFile()); ?>
+                                    : <?php echo $e->getLine(); ?></pre>
                             </dd>
                             <dt>Message:</dt>
                             <dd>

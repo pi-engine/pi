@@ -47,9 +47,10 @@ use Pi\Mvc\Controller\ApiController;
  */
 class UserController extends ApiController
 {
-    protected $protectedFields = [
-        'credential', 'salt',
-    ];
+    protected $protectedFields
+        = [
+            'credential', 'salt',
+        ];
 
     /**
      * Placeholder

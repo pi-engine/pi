@@ -10,34 +10,34 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
-return array(
+return [
     // ServiceMananger configuration
-    'service_manager'   => array(
+    'service_manager'    => [
         // Services that can be instantiated without factories
-        'invokables' => array(
-            'SharedEventManager'        => 'Zend\EventManager\SharedEventManager',
+        'invokables' => [
+            'SharedEventManager'   => 'Zend\EventManager\SharedEventManager',
 
             // From ServiceListenerFactory
-            'DispatchListener'          => 'Zend\Mvc\DispatchListener',
-            'RouteListener'             => 'Zend\Mvc\RouteListener',
+            'DispatchListener'     => 'Zend\Mvc\DispatchListener',
+            'RouteListener'        => 'Zend\Mvc\RouteListener',
             //'SendResponseListener'      => 'Zend\Mvc\SendResponseListener',
-            'ViewJsonRenderer'          => 'Zend\View\Renderer\JsonRenderer',
-            'ViewFeedRenderer'          => 'Zend\View\Renderer\FeedRenderer',
+            'ViewJsonRenderer'     => 'Zend\View\Renderer\JsonRenderer',
+            'ViewFeedRenderer'     => 'Zend\View\Renderer\FeedRenderer',
 
             // Pi custom service
-            'SendResponseListener'      => 'Pi\Mvc\SendResponseListener',
-            'ViewHelperManager'         => 'Pi\Mvc\Service\ViewHelperManager',
-            'Config'                    => 'Pi\Mvc\Service\Config',
-            'ErrorStrategy'             => 'Pi\Mvc\View\Http\ErrorStrategy',
-            'ViewStrategyListener'      => 'Pi\Mvc\View\Http\ViewStrategyListener',
-            'FeedStrategyListener'      => 'Pi\Mvc\View\Http\FeedStrategyListener',
-            'ApiStrategyListener'       => 'Pi\Mvc\View\Http\ApiStrategyListener',
-        ),
+            'SendResponseListener' => 'Pi\Mvc\SendResponseListener',
+            'ViewHelperManager'    => 'Pi\Mvc\Service\ViewHelperManager',
+            'Config'               => 'Pi\Mvc\Service\Config',
+            'ErrorStrategy'        => 'Pi\Mvc\View\Http\ErrorStrategy',
+            'ViewStrategyListener' => 'Pi\Mvc\View\Http\ViewStrategyListener',
+            'FeedStrategyListener' => 'Pi\Mvc\View\Http\FeedStrategyListener',
+            'ApiStrategyListener'  => 'Pi\Mvc\View\Http\ApiStrategyListener',
+        ],
 
         // Service factories
-        'factories' => array(
-            'EventManager'              => 'Zend\Mvc\Service\EventManagerFactory',
-            'ModuleManager'             => 'Zend\Mvc\Service\ModuleManagerFactory',
+        'factories'  => [
+            'EventManager'                   => 'Zend\Mvc\Service\EventManagerFactory',
+            'ModuleManager'                  => 'Zend\Mvc\Service\ModuleManagerFactory',
 
             // From ServiceListenerFactory
             'Application'                    => 'Zend\Mvc\Service\ApplicationFactory',
@@ -81,17 +81,17 @@ return array(
             'ViewPrefixPathStackResolver'    => 'Zend\Mvc\Service\ViewPrefixPathStackResolverFactory',
 
             // Pi custom service
-            'Application'                   => 'Pi\Mvc\Service\ApplicationFactory',
-            'ControllerLoader'              => 'Pi\Mvc\Service\ControllerLoaderFactory',
-            'ControllerPluginManager'       => 'Pi\Mvc\Service\ControllerPluginManagerFactory',
-            'MvcTranslator'                 => 'Pi\Mvc\Service\TranslatorServiceFactory',
-            'ViewResolver'                  => 'Pi\Mvc\Service\ViewResolverFactory',
-        ),
+            'Application'                    => 'Pi\Mvc\Service\ApplicationFactory',
+            'ControllerLoader'               => 'Pi\Mvc\Service\ControllerLoaderFactory',
+            'ControllerPluginManager'        => 'Pi\Mvc\Service\ControllerPluginManagerFactory',
+            'MvcTranslator'                  => 'Pi\Mvc\Service\TranslatorServiceFactory',
+            'ViewResolver'                   => 'Pi\Mvc\Service\ViewResolverFactory',
+        ],
 
         // Aliases
-        'aliases' => array(
-            'Zend\EventManager\EventManagerInterface'   => 'EventManager',
-            'Zend\Mvc\View\Http\InjectTemplateListener' => 'InjectTemplateListener',
+        'aliases'    => [
+            'Zend\EventManager\EventManagerInterface'    => 'EventManager',
+            'Zend\Mvc\View\Http\InjectTemplateListener'  => 'InjectTemplateListener',
 
             // From ServiceListenerFactory
             'Configuration'                              => 'Config',
@@ -106,41 +106,41 @@ return array(
             'Zend\View\Resolver\AggregateResolver'       => 'ViewResolver',
             'Zend\View\Resolver\ResolverInterface'       => 'ViewResolver',
             'ControllerManager'                          => 'ControllerLoader',
-        ),
+        ],
 
-    ),
+    ],
 
     // Listeners to be registered on Application::bootstrap
-    'listeners' => array(
+    'listeners'          => [
         'ViewStrategyListener',
-    ),
+    ],
 
     // ViewManager configuration
-    'view_manager' => array(
-        'display_not_found_reason'  => true,
-        'display_exceptions'        => true,
-        'not_found_template'        => 'error-404',
-        'exception_template'        => 'error',
-        'error_template'            => 'error',
-        'denied_template'           => 'error-denied',
-        'layout'                    => 'layout-front',
-        'layout_error'              => 'layout-simple',
-        'layout_ajax'               => 'layout-content',
+    'view_manager'       => [
+        'display_not_found_reason' => true,
+        'display_exceptions'       => true,
+        'not_found_template'       => 'error-404',
+        'exception_template'       => 'error',
+        'error_template'           => 'error',
+        'denied_template'          => 'error-denied',
+        'layout'                   => 'layout-front',
+        'layout_error'             => 'layout-simple',
+        'layout_ajax'              => 'layout-content',
 
-        'mvc_strategies'            => array(
+        'mvc_strategies' => [
             'ErrorStrategy',
-        ),
+        ],
 
-        'strategies'                => array(
-            'ViewJsonStrategy'
-        ),
-    ),
+        'strategies' => [
+            'ViewJsonStrategy',
+        ],
+    ],
 
     // ViewHelper config placeholder
-    'view_helper_config'    => array(),
+    'view_helper_config' => [],
 
     // Response sender config
-    'send_response' => array(
+    'send_response'      => [
         // Compression for response
         // By enabling response compression, bandwidth and response time can be decreased but CPU utilization will be increased
         // If compress is needed, it is highly recommended to enable it through web server
@@ -149,6 +149,6 @@ return array(
 
         // Just in case compression is not enabled by web server or by PHP, specify following specs
         // @note PHP `zlib` extension is required
-        'compress'  => false,
-    ),
-);
+        'compress' => false,
+    ],
+];

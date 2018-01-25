@@ -27,7 +27,7 @@ class Route extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
         $model  = Pi::model('route');
         $select = $model->select();
@@ -35,25 +35,25 @@ class Route extends AbstractRegistry
             $select->where
                 ->equalTo('active', 1)
                 ->NEST
-                    ->equalTo('section', $options['section'])
-                    ->OR
-                    ->equalTo('section', '')
+                ->equalTo('section', $options['section'])
+                ->OR
+                ->equalTo('section', '')
                 ->UNNEST;
         } else {
-            $select->where(array(
-                'active'        => 1,
-                'section <> ?'  => $options['section'],
-            ));
+            $select->where([
+                'active'       => 1,
+                'section <> ?' => $options['section'],
+            ]);
         }
         $rowset = $model->selectWith($select);
 
-        $configs = array();
+        $configs = [];
         foreach ($rowset as $row) {
             $spec = $row->data;
             if ($row->priority) {
                 $spec['priority'] = $row->priority;
             }
-            $name = $row->name;
+            $name           = $row->name;
             $configs[$name] = $spec;
         }
 
@@ -62,21 +62,21 @@ class Route extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string    $section
-     * @param bool      $exclude    To exclude the specified section
+     * @param string $section
+     * @param bool $exclude To exclude the specified section
      */
     public function read($section = 'front', $exclude = false)
     {
         $options = compact('section', 'exclude');
-        $data = $this->loadData($options);
+        $data    = $this->loadData($options);
 
         return $data;
     }
 
     /**
      * {@inheritDoc}
-     * @param string    $section
-     * @param bool      $exclude    To exclude the specified section
+     * @param string $section
+     * @param bool $exclude To exclude the specified section
      */
     public function create($section = 'front', $exclude = false)
     {

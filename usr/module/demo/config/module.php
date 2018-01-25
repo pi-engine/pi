@@ -7,77 +7,77 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
+return [
     // Module meta
-    'meta'  => array(
+    'meta'       => [
         // Module title, required
-        'title'         => _a('DEMO Sandbox'),
+        'title'       => _a('DEMO Sandbox'),
         // Description, for admin, optional
-        'description'   => _a('Examples and tests for developers.'),
+        'description' => _a('Examples and tests for developers.'),
         // Version number, required
-        'version'       => '1.1.1',
+        'version'     => '1.1.1',
         // Distribution license, required
-        'license'       => 'New BSD',
+        'license'     => 'New BSD',
         // Logo image, for admin, optional
-        'logo'          => 'image/logo.png',
+        'logo'        => 'image/logo.png',
         // Readme file, for admin, optional
-        'readme'        => 'docs/readme.txt',
+        'readme'      => 'docs/readme.txt',
         // Demo site link, optional
-        'demo'          => 'http://demo.piengine.org/demo',
+        'demo'        => 'http://demo.piengine.org/demo',
         // Logo icon
-        'icon'          => 'fa-code',
+        'icon'        => 'fa-code',
 
         // Module is ready for clone? Default as false
-        'clonable'      => true,
-    ),
+        'clonable'    => true,
+    ],
     // Author information
-    'author'    => array(
+    'author'     => [
         // Author full name, required
-        'Name'      => 'Taiwen Jiang',
+        'Name'    => 'Taiwen Jiang',
         // Email address, optional
-        'Email'     => 'taiwenjiang@tsinghua.org.cn',
+        'Email'   => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'Website'   => 'http://piengine.org',
+        'Website' => 'http://piengine.org',
         // Credits and aknowledgement, optional
-        'Credits'   => 'Pi Engine Team'
-    ),
+        'Credits' => 'Pi Engine Team',
+    ],
     // Module dependency: list of module directory names, optional
-    'dependency'    => array(
-    ),
+    'dependency' => [
+    ],
 
     // Resource
-    'resource' => array(
+    'resource'   => [
         // Database meta
-        'database'  => array(
+        'database'   => [
             // SQL schema/data file
-            'sqlfile'   => 'sql/mysql.sql',
-        ),
+            'sqlfile' => 'sql/mysql.sql',
+        ],
         // Module configs
-        'config'    => 'config.php',
+        'config'     => 'config.php',
         // Permission specs
-        'permission'    => 'permission.php',
+        'permission' => 'permission.php',
         // Block definition
-        'block'     => 'block.php',
+        'block'      => 'block.php',
         // Bootstrap, priority
-        'bootstrap' => 1,
+        'bootstrap'  => 1,
         // Event specs
-        'event'     => 'event.php',
+        'event'      => 'event.php',
         // Search registry, 'class:method'
         //'search'    => array('callback' => array('search', 'index')),
         // View pages
-        'page'      => 'page.php',
+        'page'       => 'page.php',
         // Navigation definition
-        'navigation'    => 'nav.php',
+        'navigation' => 'nav.php',
         // Routes, first in last out; bigger priority earlier out
-        'route'     => 'route.php',
+        'route'      => 'route.php',
         // Callback for stats and monitoring
-        'monitor'   => array('callback' => array('monitor', 'index')),
+        'monitor'    => ['callback' => ['monitor', 'index']],
         // Additional custom extension
-        'test'      => array(
-            'config'    => 'For test',
-        ),
+        'test'       => [
+            'config' => 'For test',
+        ],
 
-        'user'      => 'user.php',
-        'comment'   => 'comment.php',
-    ),
-);
+        'user'    => 'user.php',
+        'comment' => 'comment.php',
+    ],
+];

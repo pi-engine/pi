@@ -19,14 +19,15 @@ use Zend\Filter\AbstractFilter;
 class HeadKeywords extends AbstractFilter
 {
     /** @var array */
-    protected $options = array(
-        // Force lower case
-        'force_lower'           => false,
-        // replace space by comma(,)
-        'force_replace_space'   => false,
-        // Maximum count
-        'max_count'             => 0,
-    );
+    protected $options
+        = [
+            // Force lower case
+            'force_lower'         => false,
+            // replace space by comma(,)
+            'force_replace_space' => false,
+            // Maximum count
+            'max_count'           => 0,
+        ];
 
     /**
      * Filter for keywords text

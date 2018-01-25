@@ -12,12 +12,6 @@ namespace Pi\View\Helper;
 
 use Pi;
 
-use Zend\Navigation\Navigation as Container;
-use Zend\View\Helper\AbstractHelper;
-use Zend\View\Helper\Navigation as NavigationHelper;
-use Zend\View\Helper\Navigation\AbstractHelper as AbstractNavigationHelper;
-use Zend\Navigation\Page\Mvc as MvcPage;
-
 /**
  * Helper for loading global navigation
  *
@@ -39,19 +33,19 @@ class Nav extends Navigation
     /**
      * Load a navigation
      *
-     * @param string    $name       navigation name
-     * @param array     $options
+     * @param string $name navigation name
+     * @param array $options
      *      Render options: cache_ttl, cache_level, cache_id
      * @return  self|false
      */
-    public function __invoke($name = null, $options = array())
+    public function __invoke($name = null, $options = [])
     {
         if (0 == func_num_args()) {
             return $this;
         }
 
         $config = ('admin' == $name) ? 'nav_admin' : 'nav_front';
-        $name = Pi::config($config);
+        $name   = Pi::config($config);
         if (!$name) {
             return false;
         }

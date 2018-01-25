@@ -17,7 +17,7 @@ define('ERROR_REPORTING_PRODUCTION', 0);
 define('ERROR_REPORTING_DEVELOPMENT', -1);
 /** @var int Debug/test mode, all errors except deprecated/notice messages */
 define('ERROR_REPORTING_DEBUG',
-    E_ALL & ~ (E_DEPRECATED | E_USER_DEPRECATED | E_NOTICE));
+    E_ALL & ~(E_DEPRECATED | E_USER_DEPRECATED | E_NOTICE));
 
 /**
  * Custom error handler
@@ -32,32 +32,34 @@ class ErrorHandler
      *
      * @var array
      */
-    static protected $errorLevel = array(
-        'production'    => ERROR_REPORTING_PRODUCTION,
-        'development'   => ERROR_REPORTING_DEVELOPMENT,
-        'debug'         => ERROR_REPORTING_DEBUG
-    );
+    static protected $errorLevel
+        = [
+            'production'  => ERROR_REPORTING_PRODUCTION,
+            'development' => ERROR_REPORTING_DEVELOPMENT,
+            'debug'       => ERROR_REPORTING_DEBUG,
+        ];
 
     /**
      * Error level map against Logger priority
      *
      * @var array
      */
-    protected $errorHandlerMap = array(
-        E_NOTICE            => Logger::NOTICE,
-        E_USER_NOTICE       => Logger::NOTICE,
-        E_WARNING           => Logger::WARN,
-        E_CORE_WARNING      => Logger::WARN,
-        E_USER_WARNING      => Logger::WARN,
-        E_ERROR             => Logger::ERR,
-        E_PARSE             => Logger::ERR,
-        E_USER_ERROR        => Logger::ERR,
-        E_CORE_ERROR        => Logger::ERR,
-        E_RECOVERABLE_ERROR => Logger::ERR,
-        E_STRICT            => Logger::DEBUG,
-        E_DEPRECATED        => Logger::DEBUG,
-        E_USER_DEPRECATED   => Logger::DEBUG
-    );
+    protected $errorHandlerMap
+        = [
+            E_NOTICE            => Logger::NOTICE,
+            E_USER_NOTICE       => Logger::NOTICE,
+            E_WARNING           => Logger::WARN,
+            E_CORE_WARNING      => Logger::WARN,
+            E_USER_WARNING      => Logger::WARN,
+            E_ERROR             => Logger::ERR,
+            E_PARSE             => Logger::ERR,
+            E_USER_ERROR        => Logger::ERR,
+            E_CORE_ERROR        => Logger::ERR,
+            E_RECOVERABLE_ERROR => Logger::ERR,
+            E_STRICT            => Logger::DEBUG,
+            E_DEPRECATED        => Logger::DEBUG,
+            E_USER_DEPRECATED   => Logger::DEBUG,
+        ];
 
     /** @var bool The handler is enabled */
     protected $active = true;
@@ -70,7 +72,7 @@ class ErrorHandler
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $errorReporting = static::$errorLevel['development'];
         if (isset($options['error_reporting'])) {
@@ -83,7 +85,7 @@ class ErrorHandler
         $this->errorReporting = $errorReporting;
         // Active
         if (isset($options['active'])) {
-            $this->active = (bool) $options['active'];
+            $this->active = (bool)$options['active'];
         }
         /*
         // Disable error handling if xdebug is enabled
@@ -100,9 +102,9 @@ class ErrorHandler
             register_shutdown_function(function () use ($logFile) {
                 $error = error_get_last();
                 if (null !== $error && $error['type'] == E_ERROR | E_PARSE) {
-                    $log = array(
-                        array(time(), array($error['message'], $error['file'], $error['line']))
-                    );
+                    $log = [
+                        [time(), [$error['message'], $error['file'], $error['line']]],
+                    ];
                     Pi::service('audit')->write($logFile, $log);
                 }
             });
@@ -125,7 +127,7 @@ class ErrorHandler
         }
 
         // Register regular error handler
-        set_error_handler(array($this, 'handleError'));
+        set_error_handler([$this, 'handleError']);
 
         return true;
     }
@@ -168,11 +170,11 @@ class ErrorHandler
     /**
      * Log error information
      *
-     * @param int       $errno
-     * @param string    $errstr
-     * @param string    $errfile
-     * @param int       $errline
-     * @param array     $errcontext
+     * @param int $errno
+     * @param string $errstr
+     * @param string $errfile
+     * @param int $errline
+     * @param array $errcontext
      * @return bool
      */
     public function handleError(
@@ -180,21 +182,22 @@ class ErrorHandler
         $errstr = '',
         $errfile = '',
         $errline = 0,
-        $errcontext = array()
-    ) {
+        $errcontext = []
+    )
+    {
         if ($this->errorReporting & $errno) {
             if (isset($this->errorHandlerMap[$errno])) {
                 $priority = $this->errorHandlerMap[$errno];
             } else {
                 $priority = Logger::INFO;
             }
-            $this->logger->log($priority, $errstr, array(
-                'errno'     => $errno,
-                'file'      => $errfile,
-                'line'      => $errline,
-                'context'   => $errcontext,
-                'time'      => microtime(true)
-            ));
+            $this->logger->log($priority, $errstr, [
+                'errno'   => $errno,
+                'file'    => $errfile,
+                'line'    => $errline,
+                'context' => $errcontext,
+                'time'    => microtime(true),
+            ]);
         }
 
         return true;

@@ -10,10 +10,10 @@
 namespace Pi\I18n\Translator;
 
 use Pi;
-use Zend\I18n\Translator\Translator as ZendTranslator;
 use Zend\I18n\Translator\Loader\FileLoaderInterface;
-use Zend\Validator\Translator\TranslatorInterface as ValidatorInterface;
 use Zend\I18n\Translator\TextDomain;
+use Zend\I18n\Translator\Translator as ZendTranslator;
+use Zend\Validator\Translator\TranslatorInterface as ValidatorInterface;
 
 
 /**
@@ -55,7 +55,7 @@ class Translator extends ZendTranslator implements ValidatorInterface
     protected $extension;
 
     /** @var array Loaded i18n files */
-    protected $loaded = array();
+    protected $loaded = [];
 
     /**
      * Set translation file extension
@@ -80,7 +80,7 @@ class Translator extends ZendTranslator implements ValidatorInterface
     {
         if (null !== $locale && $locale != $this->locale) {
             $this->previousLocale = $this->locale;
-            $this->locale = $locale;
+            $this->locale         = $locale;
         }
 
         return $this;
@@ -134,7 +134,7 @@ class Translator extends ZendTranslator implements ValidatorInterface
     {
         if ($textDomain != $this->textDomain) {
             $this->previousTextDomain = $this->textDomain;
-            $this->textDomain = $textDomain;
+            $this->textDomain         = $textDomain;
         }
 
         return $this;
@@ -169,7 +169,7 @@ class Translator extends ZendTranslator implements ValidatorInterface
      */
     public function restore()
     {
-        $this->locale = $this->previousLocale ?: $this->locale;
+        $this->locale     = $this->previousLocale ?: $this->locale;
         $this->textDomain = $this->previousTextDomain;
 
         return $this;
@@ -220,7 +220,8 @@ class Translator extends ZendTranslator implements ValidatorInterface
         $number,
         $textDomain = null,
         $locale = null
-    ) {
+    )
+    {
         if (!$textDomain) {
             $textDomain = $this->getTextDomain();
         }
@@ -241,7 +242,8 @@ class Translator extends ZendTranslator implements ValidatorInterface
         $message,
         $locale = null,
         $textDomain = null
-    ) {
+    )
+    {
         if ($message === '') {
             return '';
         }
@@ -264,9 +266,9 @@ class Translator extends ZendTranslator implements ValidatorInterface
     /**
      * Load translation resource, existent data will be flushed
      *
-     * @param array|string  $rawDomain
-     * @param string|null   $locale
-     * @param bool|null     $custom
+     * @param array|string $rawDomain
+     * @param string|null $locale
+     * @param bool|null $custom
      *
      * @return bool
      */
@@ -283,8 +285,8 @@ class Translator extends ZendTranslator implements ValidatorInterface
                 list($domain, $file) = $rawDomain;
             }
         } else {
-            list($domain, $file) =
-                Pi::service('i18n')->canonizeDomain($rawDomain);
+            list($domain, $file)
+                = Pi::service('i18n')->canonizeDomain($rawDomain);
         }
         if ('custom/' == substr($domain, 0, 7)) {
             $custom = true;
@@ -298,13 +300,13 @@ class Translator extends ZendTranslator implements ValidatorInterface
             $domain,
             $file,
             $locale,
-            null === $custom ? -1 : (int) $custom
+            null === $custom ? -1 : (int)$custom
         );
         if (isset($this->loaded[$keyLoaded])) {
             return $this->loaded[$keyLoaded];
         }
         $messages = Pi::registry('i18n')->read(
-            array($domain, $file),
+            [$domain, $file],
             $locale,
             $custom
         );
@@ -349,12 +351,12 @@ class Translator extends ZendTranslator implements ValidatorInterface
     public function loadResource($options)
     {
         $filename = Pi::service('i18n')->getPath(
-            array($options['domain'], $options['file']),
-            $options['locale']
-        ) . '.' . $this->extension;
+                [$options['domain'], $options['file']],
+                $options['locale']
+            ) . '.' . $this->extension;
         try {
             $result = $this->loader->load($options['locale'], $filename);
-            $result = (array) $result;
+            $result = (array)$result;
         } catch (\Exception $e) {
             if (Pi::service()->hasService('log')) {
                 Pi::service()->getService('log')->info(sprintf(
@@ -364,7 +366,7 @@ class Translator extends ZendTranslator implements ValidatorInterface
                     $options['locale']
                 ));
             }
-            $result = array();
+            $result = [];
         }
 
         return $result;

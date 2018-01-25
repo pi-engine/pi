@@ -11,6 +11,7 @@ namespace Module\Widget\Form;
 
 use Pi\Form\Form;
 use Zend\InputFilter\InputFilter;
+
 //use Module\Widget\Validator\WidgetNameDuplicate;
 
 abstract class AbstractBaseForm extends Form
@@ -49,37 +50,37 @@ abstract class AbstractBaseForm extends Form
 
     public function init()
     {
-        $this->add(array(
-            'name'          => 'title',
-            'options'       => array(
-                'label' =>  _a('Title'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-                'required'  => true,
-            )
-        ));
+        $this->add([
+            'name'       => 'title',
+            'options'    => [
+                'label' => _a('Title'),
+            ],
+            'attributes' => [
+                'type'     => 'text',
+                'required' => true,
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'name',
-            'options'       => array(
-                'label' =>  _a('Unique name'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-                'required'  => true,
-            )
-        ));
+        $this->add([
+            'name'       => 'name',
+            'options'    => [
+                'label' => _a('Unique name'),
+            ],
+            'attributes' => [
+                'type'     => 'text',
+                'required' => true,
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'description',
-            'options'       => array(
-                'label' =>  _a('Description'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
-        ));
+        $this->add([
+            'name'       => 'description',
+            'options'    => [
+                'label' => _a('Description'),
+            ],
+            'attributes' => [
+                'type' => 'text',
+            ],
+        ]);
 
         $template = $this->getTemplateElement();
         if ($template) {
@@ -93,71 +94,71 @@ abstract class AbstractBaseForm extends Form
 
         $this->add($this->getTypeElement());
 
-        $this->add(array(
-            'name'  => 'security',
-            'type'  => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
-        $this->add(array(
-            'name'  => 'id',
-            'type'  => 'hidden',
-        ));
+        $this->add([
+            'name' => 'id',
+            'type' => 'hidden',
+        ]);
 
-        $this->add(array(
-            'name'          => 'title_hidden',
-            'type'          => 'hidden',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'title_hidden',
+            'type'       => 'hidden',
+            'attributes' => [
                 'value' => 1,
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
-                'value' =>  _a('Submit'),
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
+                'value' => _a('Submit'),
                 'class' => 'btn btn-primary',
-            )
-        ));
+            ],
+        ]);
     }
 
     public function isValid()
     {
         $inputFilter = $this->getInputFilter();
 
-        $inputFilter->add(array(
-            'name'          => 'title',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $inputFilter->add([
+            'name'    => 'title',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $inputFilter->add(array(
-            'name'          => 'name',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'  => 'Module\Widget\Validator\WidgetNameDuplicate',
-                ),
-            ),
-        ));
+        $inputFilter->add([
+            'name'       => 'name',
+            'required'   => false,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name' => 'Module\Widget\Validator\WidgetNameDuplicate',
+                ],
+            ],
+        ]);
 
-        $inputFilter->add(array(
-            'name'          => 'description',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $inputFilter->add([
+            'name'     => 'description',
+            'required' => false,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
         $template = $this->getTemplateFilter();
         if ($template) {
@@ -169,23 +170,23 @@ abstract class AbstractBaseForm extends Form
             $inputFilter->add($content);
         }
 
-        $inputFilter->add(array(
-            'name'          => 'id',
-            'required'      => true,
-            'allow_empty'   => true,
-        ));
+        $inputFilter->add([
+            'name'        => 'id',
+            'required'    => true,
+            'allow_empty' => true,
+        ]);
 
-        $inputFilter->add(array(
-            'name'          => 'title_hidden',
-            'required'      => true,
-            'allow_empty'   => true,
-        ));
+        $inputFilter->add([
+            'name'        => 'title_hidden',
+            'required'    => true,
+            'allow_empty' => true,
+        ]);
 
-        $inputFilter->add(array(
-            'name'          => 'type',
-            'required'      => true,
-            'allow_empty'   => true,
-        ));
+        $inputFilter->add([
+            'name'        => 'type',
+            'required'    => true,
+            'allow_empty' => true,
+        ]);
 
         return parent::isValid();
     }
@@ -197,13 +198,13 @@ abstract class AbstractBaseForm extends Form
      */
     protected function getTypeElement()
     {
-        return array(
-            'name'  => 'type',
-            'type'  => 'hidden',
-            'attributes'    => array(
-                'value'     => $this->contentType,
-            ),
-        );
+        return [
+            'name'       => 'type',
+            'type'       => 'hidden',
+            'attributes' => [
+                'value' => $this->contentType,
+            ],
+        ];
     }
 
     /**

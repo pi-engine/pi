@@ -1,228 +1,235 @@
 <?php
-    $this->css($this->assetModule('script/front.css'));
-    $this->jQuery();
-    $this->Backbone();
+$this->css($this->assetModule('script/front.css'));
+$this->jQuery();
+$this->Backbone();
 ?>
 <div class="row">
     <div class="col-md-12">
-    <div id="jsList">
-        <div class="clearfix">
-            <div class="pull-left form-inline">
-                <div class="form-group">
-                    <select class="bulk-operation form-control hide">
-                        <option value=""><?php echo _a('Bulk operation'); ?></option>
-                        <option value="activate" data-status="1"><?php echo _a('Activate'); ?></option>
-                        <option value="activate" data-status="0"><?php echo _a('Deactivate'); ?></option>
-                        <option value="delete"><?php echo _a('Delete'); ?></option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select class="search-status form-control">
-                        <option value=""><?php echo _a('All articles'); ?></option>
-                        <option value="deactive" <?php if ($filter == 'deactive') echo 'selected'; ?>><?php echo _a('Inactive'); ?></option>
-                        <option value="active" <?php if ($filter == 'active') echo 'selected'; ?> ><?php echo _a('Active'); ?></option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select class="search-category form-control">
-                        <option value=""><?php echo _a('All categories'); ?></option>
-                        <?php foreach ($categories as $val) { ?>
-                        <option value="<?php echo $this->escape($val['id']); ?>" <?php if ($category == $val['id']) echo 'selected'; ?>>
-                            <?php echo str_pad('', $val['depth'], '-', STR_PAD_LEFT) . ' ' . $this->escape($val['title']); ?>
-                        </option>
-                        <?php } ?>
-                    </select>
-                </div>
-           </div>
-            <?php 
-            $form->setAttributes(array(
-                'action' => $this->url('', array('action' => 'published', 'from' => $from)),
-                'method' => 'get',
-                'class'  => 'navbar-form navbar-right',
-                'style'  => 'margin: 0; padding-right: 0',
-            ));
-            echo $this->form()->openTag($form);
-            ?>
-            <div class="form-group">
-                <?php
-                $element = $form->get('keyword');
-                $element->setAttributes(array(
-                    'class'       => 'form-control',
-                    'placeholder' => $element->getOption('label') ?: _a('Subject'),
-                ));
-                echo $this->formElement($element);
-                ?>
-            </div>
-            <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
-            <?php echo $this->form()->closeTag(); ?>
-        </div>
-        <table class="table table-striped">
-            <tbody>
-            <tr>
-                <th style="width: 2.2em;">
-                    <input type="checkbox" class="check-all">
-                </th>
-                <th><?php echo _a('Title'); ?></th>
-                <th style="width: 10%;"><?php echo _a('Category'); ?></th>
-                <?php
-                /*
-                <th style="width: 14%"><?php echo _a('Tag'); ?></th>
-                */
-                ?>
-                <th style="width: 8%"><?php echo _a('Submitter'); ?></th>
-                <th style="width: 8%"><?php echo _a('View'); ?></th>
-                <th style="width: 100px;"><?php echo _a('Publish date'); ?></th>
-            </tr>
-            <?php $now = time(); ?>    
-            <?php foreach ($data as $article) { ?>
-            <tr data-id="<?php echo $this->escape($article['id']); ?>">
-                <td>
-                    <input type="checkbox" value="<?php echo $this->escape($article['id']); ?>" class="check-one">
-                </td>
-                <td>
-                    <?php if ($article['time_publish'] > $now ) { ?>
-                    <span><?php echo $this->escape($article['subject']); ?></span>    
-                    <?php } else { ?>    
-                    <a href="<?php echo $this->escape($article['url']); ?>" title="<?php echo $this->escape($article['subject']); ?>" target="_blank">
-                        <?php echo $this->escape($article['subject']); ?>
-                    </a>
-                    <?php } ?>
-                    <?php if ($article['active'] == 0) { ?> - <strong class="text-warning"><?php echo _a('Inactive'); ?></strong> <?php } ?>
-                    <?php if ($article['image']) { ?><i class="icon-picture" title="<?php echo _a('Feature image'); ?>"></i> <?php } ?>
-                    <div class="row-actions">
-                        <a href="<?php echo $this->url('', array('controller' => 'article', 'action' => 'edit', 'id' => $article['id'])); ?>?from=all"><?php echo _a('Edit'); ?></a>
-                        <span class="divider">|</span>
-                        <a href="javascript:void(0)" class="one-action" data-value="delete"><?php echo _a('Delete'); ?></a>
-                        <?php if ($article['active']) { ?>
-                        <span class="divider">|</span>
-                        <a class="one-action" data-value="activate" data-status="0" href="javascript:void(0)"><?php echo _a('Deactivate'); ?></a>
-                        <?php } else { ?>
-                        <span class="divider">|</span> 
-                        <a class="one-action" data-value="activate" data-status="1" href="javascript:void(0)"><?php echo _a('Activate'); ?></a>
-                        <?php } ?>   
+        <div id="jsList">
+            <div class="clearfix">
+                <div class="pull-left form-inline">
+                    <div class="form-group">
+                        <select class="bulk-operation form-control hide">
+                            <option value=""><?php echo _a('Bulk operation'); ?></option>
+                            <option value="activate" data-status="1"><?php echo _a('Activate'); ?></option>
+                            <option value="activate" data-status="0"><?php echo _a('Deactivate'); ?></option>
+                            <option value="delete"><?php echo _a('Delete'); ?></option>
+                        </select>
                     </div>
-                </td>
-                <td><?php echo $this->escape($article['category_title']); ?></td>
+                    <div class="form-group">
+                        <select class="search-status form-control">
+                            <option value=""><?php echo _a('All articles'); ?></option>
+                            <option value="deactive" <?php if ($filter == 'deactive') echo 'selected'; ?>><?php echo _a('Inactive'); ?></option>
+                            <option value="active" <?php if ($filter == 'active') echo 'selected'; ?> ><?php echo _a('Active'); ?></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="search-category form-control">
+                            <option value=""><?php echo _a('All categories'); ?></option>
+                            <?php foreach ($categories as $val) { ?>
+                                <option value="<?php echo $this->escape($val['id']); ?>" <?php if ($category == $val['id']) echo 'selected'; ?>>
+                                    <?php echo str_pad('', $val['depth'], '-', STR_PAD_LEFT) . ' ' . $this->escape($val['title']); ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
                 <?php
-                /*
+                $form->setAttributes([
+                    'action' => $this->url('', ['action' => 'published', 'from' => $from]),
+                    'method' => 'get',
+                    'class'  => 'navbar-form navbar-right',
+                    'style'  => 'margin: 0; padding-right: 0',
+                ]);
+                echo $this->form()->openTag($form);
                 ?>
-                <td><?php 
-                    echo !empty($article['tag']) ? $this->escape(join($article['tag'], ',')) 
-                        : '<span class="muted">' . _a('No tags') . '</span>'
-                ?>
-                </td>
-                */
-                ?>
-                <td><?php echo !empty($article['user_name']) ? $this->escape($article['user_name']) : '&nbsp;'; ?></td>
-                <td><?php echo $article['visits'] ? $this->escape($article['visits']) : 0; ?></td>
-                <td><?php echo _date($article['time_publish']); ?></td>
-            </tr>
-            <?php } ?>
-            </tbody>
-        </table>
-       <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', array('class' => 'pagination-right')); ?>
-    </div>
+                <div class="form-group">
+                    <?php
+                    $element = $form->get('keyword');
+                    $element->setAttributes([
+                        'class'       => 'form-control',
+                        'placeholder' => $element->getOption('label') ?: _a('Subject'),
+                    ]);
+                    echo $this->formElement($element);
+                    ?>
+                </div>
+                <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
+                <?php echo $this->form()->closeTag(); ?>
+            </div>
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <th style="width: 2.2em;">
+                        <input type="checkbox" class="check-all">
+                    </th>
+                    <th><?php echo _a('Title'); ?></th>
+                    <th style="width: 10%;"><?php echo _a('Category'); ?></th>
+                    <?php
+                    /*
+                    <th style="width: 14%"><?php echo _a('Tag'); ?></th>
+                    */
+                    ?>
+                    <th style="width: 8%"><?php echo _a('Submitter'); ?></th>
+                    <th style="width: 8%"><?php echo _a('View'); ?></th>
+                    <th style="width: 100px;"><?php echo _a('Publish date'); ?></th>
+                </tr>
+                <?php $now = time(); ?>
+                <?php foreach ($data as $article) { ?>
+                    <tr data-id="<?php echo $this->escape($article['id']); ?>">
+                        <td>
+                            <input type="checkbox" value="<?php echo $this->escape($article['id']); ?>"
+                                   class="check-one">
+                        </td>
+                        <td>
+                            <?php if ($article['time_publish'] > $now) { ?>
+                                <span><?php echo $this->escape($article['subject']); ?></span>
+                            <?php } else { ?>
+                                <a href="<?php echo $this->escape($article['url']); ?>"
+                                   title="<?php echo $this->escape($article['subject']); ?>" target="_blank">
+                                    <?php echo $this->escape($article['subject']); ?>
+                                </a>
+                            <?php } ?>
+                            <?php if ($article['active'] == 0) { ?> - <strong
+                                    class="text-warning"><?php echo _a('Inactive'); ?></strong> <?php } ?>
+                            <?php if ($article['image']) { ?><i class="icon-picture"
+                                                                title="<?php echo _a('Feature image'); ?>"></i> <?php } ?>
+                            <div class="row-actions">
+                                <a href="<?php echo $this->url('', ['controller' => 'article', 'action' => 'edit', 'id' => $article['id']]); ?>?from=all"><?php echo _a('Edit'); ?></a>
+                                <span class="divider">|</span>
+                                <a href="javascript:void(0)" class="one-action"
+                                   data-value="delete"><?php echo _a('Delete'); ?></a>
+                                <?php if ($article['active']) { ?>
+                                    <span class="divider">|</span>
+                                    <a class="one-action" data-value="activate" data-status="0"
+                                       href="javascript:void(0)"><?php echo _a('Deactivate'); ?></a>
+                                <?php } else { ?>
+                                    <span class="divider">|</span>
+                                    <a class="one-action" data-value="activate" data-status="1"
+                                       href="javascript:void(0)"><?php echo _a('Activate'); ?></a>
+                                <?php } ?>
+                            </div>
+                        </td>
+                        <td><?php echo $this->escape($article['category_title']); ?></td>
+                        <?php
+                        /*
+                        ?>
+                        <td><?php 
+                            echo !empty($article['tag']) ? $this->escape(join($article['tag'], ',')) 
+                                : '<span class="muted">' . _a('No tags') . '</span>'
+                        ?>
+                        </td>
+                        */
+                        ?>
+                        <td><?php echo !empty($article['user_name']) ? $this->escape($article['user_name']) : '&nbsp;'; ?></td>
+                        <td><?php echo $article['visits'] ? $this->escape($article['visits']) : 0; ?></td>
+                        <td><?php echo _date($article['time_publish']); ?></td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+            <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', ['class' => 'pagination-right']); ?>
+        </div>
     </div>
 </div>
 <script>
-(function($) {
-    var page = {
-        url : "<?php echo $this->url('', array('controller' => 'article', 'action' => '')); ?>".replace(/published\/$/,""),
-        el  : $("#jsList"),
-        $   : function(selector) {
-            return this.el.find(selector);
-        },
-        init : function() {
-            _.bindAll(this);
-            this.$(".check-all").click(this.checkAll);
-            this.$(".search-status").change(this.search);
-            this.$(".search-category").change(this.search);
-            this.$(".bulk-operation").change(this.bulk);
-            this.$(".check-one").click(this.clickOne);
-            this.$(".one-action").click(this.oneAction);
-        },
-        checkAll : function() {
-            var flag = this.$(".check-all").prop("checked");
-            this.$(".check-one").prop("checked",flag).each(function() {
-                var tr = $(this).parents("tr:first");
-                if (flag) {
+    (function ($) {
+        var page = {
+            url: "<?php echo $this->url('', ['controller' => 'article', 'action' => '']); ?>".replace(/published\/$/, ""),
+            el: $("#jsList"),
+            $: function (selector) {
+                return this.el.find(selector);
+            },
+            init: function () {
+                _.bindAll(this);
+                this.$(".check-all").click(this.checkAll);
+                this.$(".search-status").change(this.search);
+                this.$(".search-category").change(this.search);
+                this.$(".bulk-operation").change(this.bulk);
+                this.$(".check-one").click(this.clickOne);
+                this.$(".one-action").click(this.oneAction);
+            },
+            checkAll: function () {
+                var flag = this.$(".check-all").prop("checked");
+                this.$(".check-one").prop("checked", flag).each(function () {
+                    var tr = $(this).parents("tr:first");
+                    if (flag) {
+                        tr.addClass("info");
+                    } else {
+                        tr.removeClass("info");
+                    }
+                });
+                this.toggleBulk();
+            },
+            search: function () {
+                var url = "<?php echo $this->url('', ['action' => 'published', 'from' => 'all']); ?>";
+                location.href = url + "?filter=" + this.$(".search-status").val() + "&category="
+                    + this.$(".search-category").val();
+            },
+            bulk: function () {
+                var id = [],
+                    val = this.$(".bulk-operation").val(),
+                    status = this.$(".bulk-operation").find("option:selected").attr("data-status"),
+                    fn = function () {
+                        this.$(".check-one:checked").each(function () {
+                            id.push($(this).val());
+                        });
+                        if (!_.isUndefined(status)) {
+                            location.href = this.url + val + "?id=" + id.join(",") + "&status="
+                                + status + "&from=" + this.encodeUrl();
+                        } else {
+                            location.href = this.url + val + "?id=" + id.join(",") + "&from="
+                                + this.encodeUrl();
+                        }
+                    };
+                if (val) {
+                    if (val == "delete") {
+                        if (confirm("<?php echo _a('Are you sure delete selected article?'); ?>")) {
+                            fn.call(this);
+                        } else {
+                            this.$(".bulk-operation").val("");
+                        }
+                    } else {
+                        fn.call(this);
+                    }
+                }
+            },
+            clickOne: function (e) {
+                var el = $(e.target),
+                    tr = el.parents("tr:first");
+                if (el.prop("checked")) {
                     tr.addClass("info");
                 } else {
                     tr.removeClass("info");
                 }
-            });
-            this.toggleBulk();
-        },
-        search : function() {
-            var url = "<?php echo $this->url('', array('action' => 'published', 'from' => 'all')); ?>";
-            location.href = url + "?filter=" +this.$(".search-status").val() + "&category="
-                          + this.$(".search-category").val();
-        },
-        bulk : function() {
-            var id = [],
-                val = this.$(".bulk-operation").val(),
-                status = this.$(".bulk-operation").find("option:selected").attr("data-status"),
-                fn = function() {
-                    this.$(".check-one:checked").each(function() {
-                        id.push($(this).val()); 
-                    });
-                    if (!_.isUndefined(status)) {
-                        location.href = this.url + val + "?id=" + id.join(",") + "&status="
-                                      + status + "&from=" + this.encodeUrl();
-                    } else {
-                        location.href = this.url + val + "?id=" + id.join(",") + "&from="
-                                      + this.encodeUrl();
-                    }
-                };
-            if (val) {
-                if (val == "delete") {
-                    if (confirm("<?php echo _a('Are you sure delete selected article?'); ?>")) {
-                        fn.call(this);
-                    } else {
-                        this.$(".bulk-operation").val("");
-                    }
+                this.toggleBulk();
+            },
+            toggleBulk: function () {
+                if (this.$(".check-one:checked").length) {
+                    this.$(".bulk-operation").removeClass("hide");
                 } else {
-                    fn.call(this);
+                    this.$(".bulk-operation").addClass("hide");
                 }
-            }
-        },
-        clickOne : function(e) {
-            var el = $(e.target),
-                tr = el.parents("tr:first");
-            if (el.prop("checked")) {
-                tr.addClass("info");
-            } else {
-                tr.removeClass("info");
-            }
-            this.toggleBulk();
-        },
-        toggleBulk : function() {
-            if (this.$(".check-one:checked").length) {
-                this.$(".bulk-operation").removeClass("hide");
-            } else {
-                this.$(".bulk-operation").addClass("hide");
-            }
-        },
-        oneAction : function(e) {
-            var el = $(e.target),
-                id = el.parents("tr:first").attr("data-id"),
-                val = el.attr("data-value"),
-                status=el.attr("data-status");
-            if (val == "delete") {
-                if (confirm("<?php echo _a('Are you sure delete this article?'); ?>")) {
-                    location.href = this.url + "delete?id=" + id + "&from=" + this.encodeUrl(); 
+            },
+            oneAction: function (e) {
+                var el = $(e.target),
+                    id = el.parents("tr:first").attr("data-id"),
+                    val = el.attr("data-value"),
+                    status = el.attr("data-status");
+                if (val == "delete") {
+                    if (confirm("<?php echo _a('Are you sure delete this article?'); ?>")) {
+                        location.href = this.url + "delete?id=" + id + "&from=" + this.encodeUrl();
+                    }
+                } else if (status) {
+                    location.href = this.url + val + "?id=" + id + "&status="
+                        + status + "&from=" + this.encodeUrl();
+                } else {
+                    location.href = this.url + val + "?id=" + id + "&from=" + this.encodeUrl();
                 }
-            } else if (status) {
-                location.href = this.url + val + "?id=" + id + "&status=" 
-                              + status + "&from=" + this.encodeUrl();
-            } else {
-                location.href = this.url + val + "?id=" + id + "&from=" + this.encodeUrl();
+            },
+            encodeUrl: function () {
+                return encodeURIComponent(location.href);
             }
-        },
-        encodeUrl : function() {
-            return encodeURIComponent(location.href);
         }
-    }
-    page.init();
-})(jQuery)
+        page.init();
+    })(jQuery)
 </script>

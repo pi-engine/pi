@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\HeadTitle as ZendHeadTitle;
 
 /**

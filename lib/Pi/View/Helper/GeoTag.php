@@ -31,10 +31,10 @@ class GeoTag extends AbstractHelper
     /**
      * Set head Geo-Tags
      *
-     * @param string    $latitude      Head geo.position
-     * @param string    $longitude     Head geo.position
-     * @param string    $placename     Head geo.placename
-     * @param string    $region        Head geo.region
+     * @param string $latitude Head geo.position
+     * @param string $longitude Head geo.position
+     * @param string $placename Head geo.placename
+     * @param string $region Head geo.region
      * @return $this
      */
     public function __invoke(
@@ -42,7 +42,8 @@ class GeoTag extends AbstractHelper
         $longitude,
         $placename = '',
         $region = ''
-    ) {
+    )
+    {
         // Set geo.position
         if (!empty($latitude) && !empty($longitude)) {
             $position = sprintf('%s; %s', $latitude, $longitude);
@@ -58,7 +59,7 @@ class GeoTag extends AbstractHelper
         // Set geo.region
         if (!empty($region)) {
             $this->view->headMeta($region, 'geo.region');
-        }   
+        }
 
         return $this;
     }

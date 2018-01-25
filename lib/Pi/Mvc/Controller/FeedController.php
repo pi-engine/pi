@@ -25,19 +25,19 @@ abstract class FeedController extends ActionController
      * @param array $data
      * @return DataModel;
      */
-    public function getDataModel(array $data = array())
+    public function getDataModel(array $data = [])
     {
         if (!isset($data['feed_link'])) {
-            $e = $this->getEvent();
-            $routeMatch = $e->getRouteMatch();
-            $feedType = $this->params('type', 'rss');
-            $data['feed_link'] = array(
-                'link'      => Pi::url(
+            $e                 = $this->getEvent();
+            $routeMatch        = $e->getRouteMatch();
+            $feedType          = $this->params('type', 'rss');
+            $data['feed_link'] = [
+                'link' => Pi::url(
                     $this->url('feed', $routeMatch->getParams()),
                     true
                 ),
-                'type'      => $feedType,
-            );
+                'type' => $feedType,
+            ];
         }
 
         $model = new DataModel($data);

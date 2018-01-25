@@ -51,9 +51,9 @@
 // Render heading and body
 if (is_array($block['content'])) {
     // Tab block
-    $class = sprintf('panel panel-default pi-panel-tab %s', $block['class']);
+    $class   = sprintf('panel panel-default pi-panel-tab %s', $block['class']);
     $heading = '<ul class="pi-panel-tab-indicators">';
-    $body = '<div class="panel-body tab-content">';
+    $body    = '<div class="panel-body tab-content">';
     foreach ($block['content'] as $key => $item) {
         $heading .= sprintf(
             '<li class="%s"><a href="%s" data-toggle="tab" data-target="#panel-%s">%s</a>',
@@ -62,7 +62,7 @@ if (is_array($block['content'])) {
             $block['id'] . $key,
             $item['caption']
         );
-        $body .= sprintf(
+        $body    .= sprintf(
             '<div class="tab-pane%s" id="panel-%s">%s</div>',
             $key == 0 ? ' active' : '',
             $block['id'] . $key,
@@ -70,7 +70,7 @@ if (is_array($block['content'])) {
         );
     }
     $heading .= '</ul>';
-    $body .= '</div>';
+    $body    .= '</div>';
     $heading = sprintf('<div class="panel-heading">%s</div>', $heading);
 } else {
     // Check subline

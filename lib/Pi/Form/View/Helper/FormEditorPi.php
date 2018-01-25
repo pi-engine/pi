@@ -10,8 +10,6 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\ElementInterface;
-
 /**
  * Editor element helper
  *

@@ -64,11 +64,11 @@ class Saml extends AbstractStrategy
     public function getUrl($type, $params = null)
     {
         if (is_string($params)) {
-            $params = array(
-                'redirect'  => $params,
-            );
+            $params = [
+                'redirect' => $params,
+            ];
         } else {
-            $params = (array) $params;
+            $params = (array)$params;
         }
 
         if (isset($params['redirect'])) {
@@ -79,18 +79,18 @@ class Saml extends AbstractStrategy
         $return = Pi::url($return, true);
         if ('login' == $type) {
             //$url = $this->getAuthSource()->getLoginURL($return);
-            $url = Pi::service('url')->assemble('default', array(
-                'module'        => 'saml',
-                'controller'    => 'index',
-                'action'        => 'login',
-            ));
+            $url = Pi::service('url')->assemble('default', [
+                'module'     => 'saml',
+                'controller' => 'index',
+                'action'     => 'login',
+            ]);
         } elseif ('logout' == $type) {
             //$url = $this->getAuthSource()->getLogoutURL($return);
-            $url = Pi::service('url')->assemble('default', array(
-                'module'        => 'saml',
-                'controller'    => 'index',
-                'action'        => 'logout',
-            ));
+            $url = Pi::service('url')->assemble('default', [
+                'module'     => 'saml',
+                'controller' => 'index',
+                'action'     => 'logout',
+            ]);
         } else {
             $url = '';
         }
@@ -107,16 +107,16 @@ class Saml extends AbstractStrategy
     public function bind()
     {
         //return;
-        $ssoAuthenticated   = $this->getAuthSource()->isAuthenticated();
-        $identity           = $this->getIdentity() ?: '';
-        $field              = $this->getIdentityField();
+        $ssoAuthenticated = $this->getAuthSource()->isAuthenticated();
+        $identity         = $this->getIdentity() ?: '';
+        $field            = $this->getIdentityField();
 
         if (!$ssoAuthenticated && $identity) {
             $this->clearIdentity();
         } elseif ($ssoAuthenticated && !$identity) {
-            $profile = array();
+            $profile    = [];
             $attributes = $this->getAuthSource()->getAttributes();
-            array_walk($attributes, function($data, $key) use (&$profile) {
+            array_walk($attributes, function ($data, $key) use (&$profile) {
                 $profile[$key] = is_array($data) ? array_pop($data) : $data;
             });
             $identity = $profile[$field];
@@ -161,10 +161,10 @@ class Saml extends AbstractStrategy
      * @param array $config
      * @return StorageInterface
      */
-    public function loadStorage($config = array())
+    public function loadStorage($config = [])
     {
-        $class      = $config['class'];
-        $options    = isset($config['options']) ? $config['options'] : array();
+        $class   = $config['class'];
+        $options = isset($config['options']) ? $config['options'] : [];
         $storage = new $class($options);
 
         return $storage;
@@ -197,7 +197,7 @@ class Saml extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    public function requireLogin(array $params = array())
+    public function requireLogin(array $params = [])
     {
         if (isset($params['redirect'])) {
             $return = $params['redirect'];
@@ -212,7 +212,7 @@ class Saml extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    public function login(array $params = array())
+    public function login(array $params = [])
     {
         if (isset($params['redirect'])) {
             $return = $params['redirect'];
@@ -227,7 +227,7 @@ class Saml extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    public function logout(array $params = array())
+    public function logout(array $params = [])
     {
         if (isset($params['redirect'])) {
             $return = $params['redirect'];
@@ -242,7 +242,7 @@ class Saml extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    public function getData(array $fields = array())
+    public function getData(array $fields = [])
     {
         $attributes = $this->getAuthSource()->getAttributes();
         foreach ($attributes as $key => $val) {

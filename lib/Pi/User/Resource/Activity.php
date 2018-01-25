@@ -27,16 +27,16 @@ class Activity extends AbstractResource
      *
      * Returns activity meta data and log list
      *
-     * @param int       $uid
-     * @param string    $name
-     * @param int       $limit
-     * @param int       $offset
+     * @param int $uid
+     * @param string $name
+     * @param int $limit
+     * @param int $offset
      *
      * @return array
      */
     public function get($uid, $name, $limit, $offset = 0)
     {
-        $result = array();
+        $result = [];
 
         if (!$this->isAvailable()) {
             return $result;

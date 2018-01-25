@@ -24,36 +24,36 @@ class Form extends AbstractService
      */
     public function getReCaptcha($captchaMode = null)
     {
-        $captchaPublicKey = Pi::config('captcha_public_key');
+        $captchaPublicKey  = Pi::config('captcha_public_key');
         $captchaPrivateKey = Pi::config('captcha_private_key');
 
         $captchaElement = null;
 
-        if($captchaMode == 1){
-            $captchaElement = array(
-                'name'          => 'captcha',
-                'type'          => 'captcha',
-                'options'       => array(
-                    'label'     => _a('Please type the word.'),
-                    'separator'         => '<br />',
-                    'captcha_position'  => 'append',
-                ),
-                'attributes'    => array(
+        if ($captchaMode == 1) {
+            $captchaElement = [
+                'name'       => 'captcha',
+                'type'       => 'captcha',
+                'options'    => [
+                    'label'            => _a('Please type the word.'),
+                    'separator'        => '<br />',
+                    'captcha_position' => 'append',
+                ],
+                'attributes' => [
                     'required' => true,
-                ),
-            );
-        } elseif($captchaMode == 2 && $captchaPublicKey && $captchaPrivateKey){
-            $captchaElement = array(
-                'name'          => 'captcha',
-                'type'          => 'captcha',
-                'options'       => array(
-                    'captcha' => new \LosReCaptcha\Captcha\ReCaptcha(array(
-                            'site_key' => $captchaPublicKey,
+                ],
+            ];
+        } elseif ($captchaMode == 2 && $captchaPublicKey && $captchaPrivateKey) {
+            $captchaElement = [
+                'name'    => 'captcha',
+                'type'    => 'captcha',
+                'options' => [
+                    'captcha' => new \LosReCaptcha\Captcha\ReCaptcha([
+                            'site_key'   => $captchaPublicKey,
                             'secret_key' => $captchaPrivateKey,
-                        )
+                        ]
                     ),
-                ),
-            );
+                ],
+            ];
         }
 
         return $captchaElement;

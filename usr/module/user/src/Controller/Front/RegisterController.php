@@ -9,10 +9,10 @@
 
 namespace Module\User\Controller\Front;
 
+use Module\User\Form\ResendActivationFilter;
+use Module\User\Form\ResendActivationForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\User\Form\ResendActivationForm;
-use Module\User\Form\ResendActivationFilter;
 
 /**
  * Register controller

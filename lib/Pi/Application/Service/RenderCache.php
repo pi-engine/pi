@@ -57,19 +57,20 @@ class RenderCache extends AbstractService
      *
      * @var array
      */
-    protected $meta = array(
-        'key'       => '',
-        'ttl'       => 0,
-        'namespace' => '',
-        'level'     => ''
-    );
+    protected $meta
+        = [
+            'key'       => '',
+            'ttl'       => 0,
+            'namespace' => '',
+            'level'     => '',
+        ];
 
     /**
      * Cached contents
      *
      * @var array
      */
-    protected $cachedContent = array();
+    protected $cachedContent = [];
 
     /**
      * Generated content
@@ -171,7 +172,7 @@ class RenderCache extends AbstractService
     public function isCachable($flag = null)
     {
         if (null !== $flag) {
-            $this->cachable = (bool) $flag;
+            $this->cachable = (bool)$flag;
         }
 
         return $this->cachable;
@@ -186,7 +187,7 @@ class RenderCache extends AbstractService
     public function isOpened($flag = null)
     {
         if (null !== $flag) {
-            $this->opened = (bool) $flag;
+            $this->opened = (bool)$flag;
         }
 
         return $this->opened;
@@ -210,8 +211,8 @@ class RenderCache extends AbstractService
     /**
      * Get/set meta
      *
-     * @param string        $meta
-     * @param mixed|null    $value
+     * @param string $meta
+     * @param mixed|null $value
      * @return self|mixed
      */
     public function meta($meta, $value = null)

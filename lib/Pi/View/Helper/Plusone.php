@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 /**
@@ -34,19 +33,19 @@ class Plusone extends AbstractHtmlElement
      * @param   array $config
      * @return  string
      */
-    public function __invoke($config = array())
+    public function __invoke($config = [])
     {
-        $attribs = array();
+        $attribs = [];
 
         // Set size
         if (isset($config['data-size'])
-            && in_array($config['data-size'], array('small', 'medium', 'tall'))
+            && in_array($config['data-size'], ['small', 'medium', 'tall'])
         ) {
             $attribs['data-size'] = $config['data-size'];
         }
         // Set annotation
         if (isset($config['data-annotation'])
-            && in_array($config['data-annotation'], array('inline', 'none'))
+            && in_array($config['data-annotation'], ['inline', 'none'])
         ) {
             $attribs['data-annotation'] = $config['data-annotation'];
         }
@@ -60,9 +59,10 @@ class Plusone extends AbstractHtmlElement
         $attributeString = $attribs ? $this->htmlAttribs($attribs) : '';
 
         $content = '<div class="g-plusone"'
-                 . ($attributeString ? ' ' . $attributeString : '')
-                 . '></div>' . PHP_EOL;
-        $content .= <<<'EOT'
+            . ($attributeString ? ' ' . $attributeString : '')
+            . '></div>' . PHP_EOL;
+        $content
+                 .= <<<'EOT'
 <script>
   (function() {
     var po = document.createElement("script");

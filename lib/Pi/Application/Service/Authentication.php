@@ -67,12 +67,12 @@ class Authentication extends AbstractService
     /**
      * Set strategy
      *
-     * @param AbstractStrategy|string   $strategy
-     * @param array                     $options
+     * @param AbstractStrategy|string $strategy
+     * @param array $options
      *
      * @return $this
      */
-    public function setStrategy($strategy, array $options = array())
+    public function setStrategy($strategy, array $options = [])
     {
         if (!$strategy instanceof AbstractStrategy) {
             if (false === strpos($strategy, '\\')) {
@@ -95,12 +95,12 @@ class Authentication extends AbstractService
         if (!$this->strategy) {
             $option = $this->getOption('strategy');
             if (is_string($option)) {
-                $class = $option;
-                $options = array();
+                $class   = $option;
+                $options = [];
             } else {
-                $class = $option['class'];
+                $class   = $option['class'];
                 $options = isset($option['options'])
-                    ? $option['options'] : array();
+                    ? $option['options'] : [];
             }
             if (false === strpos($class, '\\')) {
                 $class = 'Pi\Authentication\Strategy\\' . ucfirst($class);
@@ -114,7 +114,7 @@ class Authentication extends AbstractService
     /**
      * Get URIs
      *
-     * @param string $type  Type for URI: login, logout
+     * @param string $type Type for URI: login, logout
      * @param array|string $params
      *
      * @return string
@@ -202,7 +202,7 @@ class Authentication extends AbstractService
      *
      * @return void
      */
-    public function requireLogin(array $params = array())
+    public function requireLogin(array $params = [])
     {
         $this->getStrategy()->requireLogin($params);
     }
@@ -214,7 +214,7 @@ class Authentication extends AbstractService
      *
      * @return void
      */
-    public function login(array $params = array())
+    public function login(array $params = [])
     {
         $this->getStrategy()->login($params);
     }
@@ -226,7 +226,7 @@ class Authentication extends AbstractService
      *
      * @return void
      */
-    public function logout(array $params = array())
+    public function logout(array $params = [])
     {
         $this->getStrategy()->logout($params);
     }
@@ -238,7 +238,7 @@ class Authentication extends AbstractService
      *
      * @return array
      */
-    public function getData(array $fields = array())
+    public function getData(array $fields = [])
     {
         return $this->getStrategy()->getData($fields);
     }

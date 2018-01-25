@@ -23,7 +23,8 @@ class Node extends Model
      *
      * @var array
      */
-    protected $encodeColumns = array(
-        'data'      => true,
-    );
+    protected $encodeColumns
+        = [
+            'data' => true,
+        ];
 }

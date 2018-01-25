@@ -21,7 +21,8 @@ class Data extends Model
     /**
      * {@inheritDoc}
      */
-    protected $encodeColumns = array(
-        'value_multi'   => true,
-    );
+    protected $encodeColumns
+        = [
+            'value_multi' => true,
+        ];
 }

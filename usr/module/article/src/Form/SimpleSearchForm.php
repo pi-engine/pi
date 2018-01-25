@@ -9,34 +9,33 @@
 
 namespace Module\Article\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
  * Simple search form class
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class SimpleSearchForm extends BaseForm
 {
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name'       => 'keyword',
-            'options'    => array(
-                'label'     => '',
-            ),
-            'attributes' => array(
-                'type'      => 'text',
-            ),
-        ));
+            'options'    => [
+                'label' => '',
+            ],
+            'attributes' => [
+                'type' => 'text',
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'submit',
-            'attributes' => array(               
-                'value'     => __('Search'),
-            ),
+            'attributes' => [
+                'value' => __('Search'),
+            ],
             'type'       => 'submit',
-        ));
+        ]);
     }
 }

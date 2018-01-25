@@ -21,16 +21,18 @@ class Root extends Model
     /**
      * {@inheritDoc}
      */
-    protected $columns = array(
-        'id',
-        'name', 'title', 'description', 'render', 'module', 'template',
-        'config', 'cache_level', 'type',
-    );
+    protected $columns
+        = [
+            'id',
+            'name', 'title', 'description', 'render', 'module', 'template',
+            'config', 'cache_level', 'type',
+        ];
 
     /**
      * {@inheritDoc}
      */
-    protected $encodeColumns = array(
-        'config'    => true,
-    );
+    protected $encodeColumns
+        = [
+            'config' => true,
+        ];
 }

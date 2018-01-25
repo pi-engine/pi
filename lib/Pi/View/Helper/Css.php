@@ -10,8 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
-
 /**
  * Helper for loading CSS files
  *
@@ -47,7 +45,7 @@ use Pi;
 class Css extends AssetCanonize
 {
     /** @var array Container for loaded files */
-    static protected $loaded = array();
+    static protected $loaded = [];
 
     /**
      * Load CSS files
@@ -82,7 +80,7 @@ class Css extends AssetCanonize
      */
     public function load($files = null, $attributes = 'append')
     {
-        $files = $this->canonize($files, $attributes);
+        $files  = $this->canonize($files, $attributes);
         $helper = $this->view->headLink();
         foreach ($files as $file => $attrs) {
             if (isset(static::$loaded[$file])) {

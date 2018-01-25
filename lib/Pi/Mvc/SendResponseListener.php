@@ -9,12 +9,12 @@
 
 namespace Pi\Mvc;
 
-use Pi\Mvc\ResponseSender\PhpEnvironmentResponseSender;
 use Pi\Mvc\ResponseSender\HttpResponseSender;
-use Zend\Mvc\SendResponseListener as ZendSendResponseListener;
+use Pi\Mvc\ResponseSender\PhpEnvironmentResponseSender;
 use Zend\Mvc\ResponseSender\ConsoleResponseSender;
 use Zend\Mvc\ResponseSender\SendResponseEvent;
 use Zend\Mvc\ResponseSender\SimpleStreamResponseSender;
+use Zend\Mvc\SendResponseListener as ZendSendResponseListener;
 
 class SendResponseListener extends ZendSendResponseListener
 {

@@ -22,15 +22,15 @@ class PermissionResource extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $result = array();
+        $result = [];
         if ('page' == $options['type']) {
-            $model = Pi::model('page');
-            $where = array(
-                'section'   => $options['section'],
-                'module'    => $options['module'],
-            );
+            $model  = Pi::model('page');
+            $where  = [
+                'section' => $options['section'],
+                'module'  => $options['module'],
+            ];
             $rowset = $model->select($where);
             foreach ($rowset as $row) {
                 if (!$row['permission']) {
@@ -46,12 +46,12 @@ class PermissionResource extends AbstractRegistry
                 $result[$key] = $row['permission'];
             }
         } else {
-            $model = Pi::model('permission_resource');
-            $where = array(
-                'section'   => $options['section'],
-                'module'    => $options['module'],
-                'type'      => $options['type'],
-            );
+            $model  = Pi::model('permission_resource');
+            $where  = [
+                'section' => $options['section'],
+                'module'  => $options['module'],
+                'type'    => $options['type'],
+            ];
             $rowset = $model->select($where);
             foreach ($rowset as $row) {
                 $result[$row->name] = $row->toArray();
@@ -66,15 +66,15 @@ class PermissionResource extends AbstractRegistry
      *
      * Get all resources with specific section, module and type
      *
-     * @param string        $section   Section name: front, admin, module
-     * @param string        $module    Module name
-     * @param string|null   $type      system, callback or page
+     * @param string $section Section name: front, admin, module
+     * @param string $module Module name
+     * @param string|null $type system, callback or page
      */
     public function read($section = 'front', $module = '', $type = null)
     {
         //$this->cache = false;
-        $module = $module ?: Pi::service('module')->current();
-        $type = $type ?: 'system';
+        $module  = $module ?: Pi::service('module')->current();
+        $type    = $type ?: 'system';
         $options = compact('section', 'module', 'type');
 
         return $this->loadData($options);
@@ -82,9 +82,9 @@ class PermissionResource extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string        $section   Section name: front, admin, module
-     * @param string        $module    Module name
-     * @param string|null   $type      system, page or other custom types
+     * @param string $section Section name: front, admin, module
+     * @param string $module Module name
+     * @param string|null $type system, page or other custom types
      */
     public function create($section = 'front', $module = '', $type = null)
     {

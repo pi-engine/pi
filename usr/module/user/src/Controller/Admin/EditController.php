@@ -9,12 +9,12 @@
 
 namespace Module\User\Controller\Admin;
 
+use Module\User\Form\CompoundFilter;
+use Module\User\Form\CompoundForm;
+use Module\User\Form\EditUserFilter;
+use Module\User\Form\EditUserForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\User\Form\EditUserForm;
-use Module\User\Form\EditUserFilter;
-use Module\User\Form\CompoundForm;
-use Module\User\Form\CompoundFilter;
 
 /**
  * Edit user controller

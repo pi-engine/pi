@@ -22,7 +22,7 @@ class FormHtml extends AbstractHelper
     /**
      * {@inheritDoc}
      */
-    public function render(ElementInterface $element, $options = array())
+    public function render(ElementInterface $element, $options = [])
     {
         return $element->getValue();
     }

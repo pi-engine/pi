@@ -9,7 +9,6 @@
 
 namespace Module\Page\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 class PageForm extends BaseForm
@@ -39,185 +38,185 @@ class PageForm extends BaseForm
 
     public function init()
     {
-        $this->add(array(
-            'name'          => 'title',
-            'options'       => array(
+        $this->add([
+            'name'       => 'title',
+            'options'    => [
                 'label' => _a('Page title'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
-        ));
+            ],
+            'attributes' => [
+                'type' => 'text',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'name',
-            'options'       => array(
+        $this->add([
+            'name'       => 'name',
+            'options'    => [
                 'label' => _a('Unique name'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-                'description'   => _a('Only alphabet, number and underscore allowed.'),
-            ),
-        ));
+            ],
+            'attributes' => [
+                'type'        => 'text',
+                'description' => _a('Only alphabet, number and underscore allowed.'),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'slug',
-            'options'       => array(
+        $this->add([
+            'name'       => 'slug',
+            'options'    => [
                 'label' => _a('SEO slug'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-                'description'   => _a('Unique slug for SEO URL, space is not allowed.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'type'        => 'text',
+                'description' => _a('Unique slug for SEO URL, space is not allowed.'),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'theme',
-            'type'          => 'theme',
-            'options'       => array(
-                'allow_auto'    => true,
-            ),
-        ));
+        $this->add([
+            'name'    => 'theme',
+            'type'    => 'theme',
+            'options' => [
+                'allow_auto' => true,
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'layout',
-            'type'          => 'layout',
-            'options'       => array(
+        $this->add([
+            'name'    => 'layout',
+            'type'    => 'layout',
+            'options' => [
                 'theme' => '', // Specify theme name here
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name' => 'template',
-            'type' => 'select',
-            'options' => array(
-                'label' => __('Template'),
-                'value_options' => array(
+        $this->add([
+            'name'    => 'template',
+            'type'    => 'select',
+            'options' => [
+                'label'         => __('Template'),
+                'value_options' => [
                     'page-view-simple' => __('Simple'),
-                    'page-view' => __('Default ( By panel )'),
-                ),
-            ),
-        ));
+                    'page-view'        => __('Default ( By panel )'),
+                ],
+            ],
+        ]);
 
         if ('phtml' == $this->markup) {
-            $this->add(array(
-                'name'          => 'content',
-                'options'       => array(
+            $this->add([
+                'name'       => 'content',
+                'options'    => [
                     'label' => _a('Template name'),
-                ),
-                'attributes'    => array(
-                    'description'   => _a('Select a template from `usr/custom/module/page/template/front/` w/o extension. You can also locate it in `usr/themes/yourtheme/custom/page/`'),
-                ),
-            ));
+                ],
+                'attributes' => [
+                    'description' => _a('Select a template from `usr/custom/module/page/template/front/` w/o extension. You can also locate it in `usr/themes/yourtheme/custom/page/`'),
+                ],
+            ]);
         } else {
             $set = '';
             switch ($this->markup) {
                 case 'html':
-                    $editor         = 'html';
+                    $editor = 'html';
                     break;
                 case 'markdown':
-                    $editor         = 'markitup';
-                    $set            = 'markdown';
+                    $editor = 'markitup';
+                    $set    = 'markdown';
                     break;
                 case 'text':
                 default:
-                    $editor         = 'textarea';
+                    $editor = 'textarea';
                     break;
             }
 
-            $this->add(array(
-                'name'          => 'content',
-                'type'          => 'editor',
-                'options'       => array(
-                    'label'     => _a('Content'),
-                    'editor'    => $editor,
-                    'set'       => $set,
-                ),
-                'attributes'    => array(
-                    'rows'         => 5,
-                ),
-            ));
+            $this->add([
+                'name'       => 'content',
+                'type'       => 'editor',
+                'options'    => [
+                    'label'  => _a('Content'),
+                    'editor' => $editor,
+                    'set'    => $set,
+                ],
+                'attributes' => [
+                    'rows' => 5,
+                ],
+            ]);
         }
 
         // extra_seo
-        $this->add(array(
-            'name' => 'extra_seo',
-            'type' => 'fieldset',
-            'options' => array(
+        $this->add([
+            'name'    => 'extra_seo',
+            'type'    => 'fieldset',
+            'options' => [
                 'label' => _a('SEO settings'),
-            ),
-        ));
+            ],
+        ]);
 
         // seo_title
-        $this->add(array(
-            'name' => 'seo_title',
-            'options' => array(
+        $this->add([
+            'name'       => 'seo_title',
+            'options'    => [
                 'label' => _a('SEO Title'),
-            ),
-            'attributes' => array(
-                'type'          => 'text',
-                'description'   => _a('To be used for HTML head meta.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'type'        => 'text',
+                'description' => _a('To be used for HTML head meta.'),
+            ],
+        ]);
 
         // seo_keywords
-        $this->add(array(
-            'name' => 'seo_keywords',
-            'options' => array(
+        $this->add([
+            'name'       => 'seo_keywords',
+            'options'    => [
                 'label' => _a('SEO Keywords'),
-            ),
-            'attributes' => array(
-                'type'          => 'text',
-                'description'   => _a('To be used for HTML head meta.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'type'        => 'text',
+                'description' => _a('To be used for HTML head meta.'),
+            ],
+        ]);
 
         // seo_description
-        $this->add(array(
-            'name' => 'seo_description',
-            'options' => array(
+        $this->add([
+            'name'       => 'seo_description',
+            'options'    => [
                 'label' => _a('SEO Description'),
-            ),
-            'attributes' => array(
-                'type'          => 'text',
-                'description'   => _a('To be used for HTML head meta.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'type'        => 'text',
+                'description' => _a('To be used for HTML head meta.'),
+            ],
+        ]);
 
         // Enable for online
-        $this->add(array(
-            'name'          => 'active',
-            'type'          => 'checkbox',
-            'options'       => array(
+        $this->add([
+            'name'       => 'active',
+            'type'       => 'checkbox',
+            'options'    => [
                 'label' => _a('Active'),
-            ),
-            'attributes'    => array(
-                'value'     => '1',
-            )
-        ));
+            ],
+            'attributes' => [
+                'value' => '1',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'id',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'id',
+            'attributes' => [
                 'type'  => 'hidden',
                 'value' => 0,
-            )
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'markup',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'markup',
+            'attributes' => [
                 'type'  => 'hidden',
                 'value' => $this->markup,
-            )
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            )
-        ));
+            ],
+        ]);
     }
 }

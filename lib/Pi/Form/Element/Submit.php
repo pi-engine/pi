@@ -10,7 +10,6 @@
 
 namespace Pi\Form\Element;
 
-use Pi;
 use Zend\Form\Element;
 
 /**
@@ -24,10 +23,11 @@ class Submit extends Element
      * Seed attributes
      * @var array
      */
-    protected $attributes = array(
-        'type'  => 'submit',
-        'class' => 'btn btn-default',
-    );
+    protected $attributes
+        = [
+            'type'  => 'submit',
+            'class' => 'btn btn-default',
+        ];
 
     /**
      * {@inheritDoc}

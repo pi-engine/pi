@@ -10,8 +10,9 @@
 namespace Pi\Avatar;
 
 use Pi;
-//use Pi\User\Resource\Avatar as AvatarResource;
 use Pi\User\Model\AbstractModel;
+
+//use Pi\User\Resource\Avatar as AvatarResource;
 
 /**
  * User avatar abstract class
@@ -37,7 +38,7 @@ abstract class AbstractAvatar
      *
      * @param array $options
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         if ($options) {
             $this->setOptions($options);
@@ -53,7 +54,7 @@ abstract class AbstractAvatar
      */
     public function setForce($flag)
     {
-        $this->force = (bool) $flag;
+        $this->force = (bool)$flag;
 
         return $this;
     }
@@ -65,7 +66,7 @@ abstract class AbstractAvatar
      *
      * @return $this
      */
-    public function setOptions(array $options = array())
+    public function setOptions(array $options = [])
     {
         $this->options = $options;
 
@@ -99,8 +100,8 @@ abstract class AbstractAvatar
     /**
      * Build avatar img element
      *
-     * @param int               $uid
-     * @param string            $size
+     * @param int $uid
+     * @param string $size
      *      Size of image to display, integer for width, string for named size:
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
      * @param array|string|bool $attributes
@@ -109,7 +110,7 @@ abstract class AbstractAvatar
      *
      * @return string
      */
-    public function get($uid, $size = '', $attributes = array())
+    public function get($uid, $size = '', $attributes = [])
     {
         $result = false;
 
@@ -123,9 +124,9 @@ abstract class AbstractAvatar
         }
 
         if (is_string($attributes)) {
-            $attributes = array(
-                'alt'   => $attributes,
-            );
+            $attributes = [
+                'alt' => $attributes,
+            ];
         } elseif (!isset($attributes['alt'])) {
             $attributes['alt'] = '';
         }
@@ -148,24 +149,24 @@ abstract class AbstractAvatar
     /**
      * Get avatars of a list of users
      *
-     * @param int[]  $uids
+     * @param int[] $uids
      * @param string $size
-     * @param array  $attributes
+     * @param array $attributes
      *
      * @return array
      */
-    public function getList($uids, $size = '', $attributes = array())
+    public function getList($uids, $size = '', $attributes = [])
     {
-        $result = array();
+        $result  = [];
         $srcList = $this->getSourceList($uids, $size);
         if (false === $attributes) {
             return $srcList;
         }
 
         if (is_string($attributes)) {
-            $attributes = array(
-                'alt'   => $attributes,
-            );
+            $attributes = [
+                'alt' => $attributes,
+            ];
         } elseif (!isset($attributes['alt'])) {
             $attributes['alt'] = '';
         }
@@ -190,7 +191,7 @@ abstract class AbstractAvatar
     /**
      * Get user avatar link
      *
-     * @param int    $uid
+     * @param int $uid
      * @param string $size
      *      Size of image to display, integer for width, string for named size:
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
@@ -202,7 +203,7 @@ abstract class AbstractAvatar
     /**
      * Get user avatar links
      *
-     * @param int[]  $uids
+     * @param int[] $uids
      * @param string $size
      *
      * @return array
@@ -212,12 +213,12 @@ abstract class AbstractAvatar
     /**
      * Build user avatar link from corresponding source
      *
-     * @param string    $source
-     * @param string    $size
+     * @param string $source
+     * @param string $size
      *      Size of image to display, integer for width, string for named size:
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
      *
-     * @param int|null  $uid
+     * @param int|null $uid
      *
      * @return string
      */
@@ -230,13 +231,13 @@ abstract class AbstractAvatar
      *
      * @param string|int $size
      *
-     * @param bool       $toInt
+     * @param bool $toInt
      *
      * @return int|string
      */
     public function canonizeSize($size, $toInt = true)
     {
-        $sizeMap = array();
+        $sizeMap = [];
         if (!empty($this->options['size_list'])) {
             $sizeList = Pi::service('avatar')->getSize();
             foreach ($this->options['size_list'] as $name) {
@@ -261,7 +262,7 @@ abstract class AbstractAvatar
         if ($size) {
             $result = Pi::service('avatar')->getSize($size);
         } else {
-            $result = array();
+            $result   = [];
             $sizeList = Pi::service('avatar')->getSize();
             if (!empty($this->options['size_list'])) {
                 foreach ($this->options['size_list'] as $name) {

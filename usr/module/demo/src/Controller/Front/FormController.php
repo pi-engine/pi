@@ -9,9 +9,8 @@
 
 namespace Module\Demo\Controller\Front;
 
-use Pi;
-use Pi\Mvc\Controller\ActionController;
 use Module\Demo\Form\DemoForm;
+use Pi\Mvc\Controller\ActionController;
 
 class FormController extends ActionController
 {

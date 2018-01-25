@@ -9,8 +9,8 @@
 
 namespace Module\User\Validator;
 
-use Pi;
 use Module\System\Validator\UserEmail as SystemUserEmail;
+use Pi;
 
 /**
  * Validate user email

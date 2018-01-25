@@ -34,13 +34,13 @@ abstract class AbstractModel extends ArrayObject
      * Constructor
      *
      * @param array|int|string|null $data
-     * @param string                $field
+     * @param string $field
      *
      * @return \Pi\User\Model\AbstractModel
      */
     public function __construct($data = null, $field = 'id')
     {
-        $this->data = array();
+        $this->data = [];
 
         if (is_array($data)) {
             $this->assign($data);
@@ -90,7 +90,7 @@ abstract class AbstractModel extends ArrayObject
     public function offsetSet($offset, $value)
     {
         if ('role' == $offset) {
-            $this->role = (string) $value;
+            $this->role = (string)$value;
         } else {
             $this->data[$offset] = $value;
         }
@@ -161,7 +161,7 @@ abstract class AbstractModel extends ArrayObject
     public function role($role = null)
     {
         if (null !== $role) {
-            $this->role = (array) $role;
+            $this->role = (array)$role;
             return $this;
         } elseif (null === $this->role) {
             $this->role = $this->loadRole();
@@ -181,8 +181,8 @@ abstract class AbstractModel extends ArrayObject
     /**
      * Load user attributes
      *
-     * @param int|string    $uid
-     * @param string        $field
+     * @param int|string $uid
+     * @param string $field
      * @return $this
      */
     abstract public function load($uid, $field = 'id');
@@ -233,11 +233,11 @@ abstract class AbstractModel extends ArrayObject
      */
     public function getGuest()
     {
-        $guest = array(
-            'id'    => 0,
-            'identity'  => '',
-            'name'      => __('Guest'),
-        );
+        $guest = [
+            'id'       => 0,
+            'identity' => '',
+            'name'     => __('Guest'),
+        ];
 
         return $guest;
     }

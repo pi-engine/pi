@@ -9,100 +9,99 @@
 
 # Entity meta for custom user profile fields
 CREATE TABLE `{profile}` (
-  `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `uid`             int(10)         unsigned    NOT NULL,
+  `id`  INT(10) UNSIGNED NOT NULL    AUTO_INCREMENT,
+  `uid` INT(10) UNSIGNED NOT NULL,
   -- Custom profile field
 
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY  `uid` (`uid`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uid` (`uid`)
 );
-
 
 # Entity for user profile compound fields
 CREATE TABLE `{compound}` (
-  `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `uid`             int(10)         unsigned    NOT NULL,
+  `id`       INT(10) UNSIGNED     NOT NULL    AUTO_INCREMENT,
+  `uid`      INT(10) UNSIGNED     NOT NULL,
   -- Compound name, stored in table `field`
-  `compound`        varchar(64)     NOT NULL,
+  `compound` VARCHAR(64)          NOT NULL,
   -- Field set key, integer
-  `set`             smallint(5)     unsigned    NOT NULL default '0',
+  `set`      SMALLINT(5) UNSIGNED NOT NULL    DEFAULT '0',
   -- Compound field name, stored in table `compound_field`
-  `field`           varchar(64)     NOT NULL,
-  `value`           text,
+  `field`    VARCHAR(64)          NOT NULL,
+  `value`    TEXT,
 
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY  `field` (`uid`, `compound`, `set`, `field`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `field` (`uid`, `compound`, `set`, `field`)
 );
 
 # Entity meta for all profile fields: account, basic profile and custom fields
 CREATE TABLE `{field}` (
-  `id`              smallint(5)     unsigned    NOT NULL    auto_increment,
-  `name`            varchar(64)     NOT NULL,
-  `module`          varchar(64)     NOT NULL default '',
-  `title`           varchar(255)    NOT NULL default '',
+  `id`          SMALLINT(5) UNSIGNED                    NOT NULL    AUTO_INCREMENT,
+  `name`        VARCHAR(64)                             NOT NULL,
+  `module`      VARCHAR(64)                             NOT NULL    DEFAULT '',
+  `title`       VARCHAR(255)                            NOT NULL    DEFAULT '',
   -- Specs for edit form element, filters and validators, encoded with json
-  `edit`            text,
+  `edit`        TEXT,
   -- Filter for display value
-  `filter`          text,
+  `filter`      TEXT,
   -- Handler for custom compound
-  `handler`         text,
+  `handler`     TEXT,
 
   -- Field type, default as 'profile'
-  `type`            enum('profile', 'account', 'compound') NOT NULL,
+  `type`        ENUM ('profile', 'account', 'compound') NOT NULL,
 
   -- Is editable by user
-  `is_edit`         tinyint(1)      unsigned NOT NULL default '0',
+  `is_edit`     TINYINT(1) UNSIGNED                     NOT NULL    DEFAULT '0',
   -- Is capable for searching user
-  `is_search`       tinyint(1)      unsigned NOT NULL default '0',
+  `is_search`   TINYINT(1) UNSIGNED                     NOT NULL    DEFAULT '0',
   -- Available for display
-  `is_display`      tinyint(1)      unsigned NOT NULL default '0',
+  `is_display`  TINYINT(1) UNSIGNED                     NOT NULL    DEFAULT '0',
   -- Required by profile edit
-  `is_required`     tinyint(1)      unsigned NOT NULL default '0',
+  `is_required` TINYINT(1) UNSIGNED                     NOT NULL    DEFAULT '0',
 
   -- Available, usually set by module activation/deactivation
-  `active`          tinyint(1)      unsigned NOT NULL default '0',
+  `active`      TINYINT(1) UNSIGNED                     NOT NULL    DEFAULT '0',
 
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY  `name` (`name`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
 );
 
 # Entity meta for compound fields and custom compound fields
 CREATE TABLE `{compound_field}` (
-  `id`              smallint(5)     unsigned    NOT NULL    auto_increment,
-  `name`            varchar(64)     NOT NULL,
-  `compound`        varchar(64)     NOT NULL,
-  `module`          varchar(64)     NOT NULL default '',
-  `title`           varchar(255)    NOT NULL default '',
+  `id`          SMALLINT(5) UNSIGNED NOT NULL    AUTO_INCREMENT,
+  `name`        VARCHAR(64)          NOT NULL,
+  `compound`    VARCHAR(64)          NOT NULL,
+  `module`      VARCHAR(64)          NOT NULL    DEFAULT '',
+  `title`       VARCHAR(255)         NOT NULL    DEFAULT '',
 
-  `edit`            text,
-  `filter`          text,
+  `edit`        TEXT,
+  `filter`      TEXT,
 
   -- Required by profile edit
-  `is_required`     tinyint(1)      unsigned NOT NULL default '0',
+  `is_required` TINYINT(1) UNSIGNED  NOT NULL    DEFAULT '0',
 
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY  `name` (`compound`, `name`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`compound`, `name`)
 );
 
 # Display group for profile fields
 CREATE TABLE `{display_group}` (
-  `id`            int(10) unsigned        NOT NULL auto_increment,
-  `title`         varchar(255)            NOT NULL default '',
-  `order`         smallint(5) unsigned    NOT NULL default '0',
+  `id`       INT(10) UNSIGNED     NOT NULL AUTO_INCREMENT,
+  `title`    VARCHAR(255)         NOT NULL DEFAULT '',
+  `order`    SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
   -- Compound name;
-  `compound`      varchar(64)     default NULL,
+  `compound` VARCHAR(64)                   DEFAULT NULL,
 
   PRIMARY KEY (`id`)
 );
 
 # Display grouping and order of field
 CREATE TABLE `{display_field}` (
-  `id`         int(10) unsigned         NOT NULL auto_increment,
+  `id`    INT(10) UNSIGNED     NOT NULL AUTO_INCREMENT,
   -- Profile field name;
   -- Or compound field name if `compound` is specified in table 'display_group'
-  `field`      varchar(64)              NOT NULL default '',
-  `group`      int(10)     unsigned     NOT NULL default '0',
-  `order`      smallint(5) unsigned     NOT NULL default '0',
+  `field` VARCHAR(64)          NOT NULL DEFAULT '',
+  `group` INT(10) UNSIGNED     NOT NULL DEFAULT '0',
+  `order` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `group_field` (`group`, `field`)
@@ -110,79 +109,79 @@ CREATE TABLE `{display_field}` (
 
 # Timeline meta
 CREATE TABLE `{timeline}` (
-  `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `name`            varchar(64)     NOT NULL    default '',
-  `title`           varchar(255)    NOT NULL    default '',
-  `module`          varchar(64)     NOT NULL    default '',
-  `icon`            varchar(255)    NOT NULL    default '',
-  `app_key`         varchar(32)     NOT NULL    default '',
-  `active`          tinyint(1)      NOT NULL    default '0',
+  `id`      INT(10) UNSIGNED NOT NULL    AUTO_INCREMENT,
+  `name`    VARCHAR(64)      NOT NULL    DEFAULT '',
+  `title`   VARCHAR(255)     NOT NULL    DEFAULT '',
+  `module`  VARCHAR(64)      NOT NULL    DEFAULT '',
+  `icon`    VARCHAR(255)     NOT NULL    DEFAULT '',
+  `app_key` VARCHAR(32)      NOT NULL    DEFAULT '',
+  `active`  TINYINT(1)       NOT NULL    DEFAULT '0',
 
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`, `app_key`)
 );
 
 # Activity meta
 CREATE TABLE `{activity}` (
-  `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `name`            varchar(64)     NOT NULL    default '',
-  `title`           varchar(255)    NOT NULL    default '',
-  `description`     text,
-  `module`          varchar(64)     NOT NULL    default '',
+  `id`          INT(10) UNSIGNED     NOT NULL    AUTO_INCREMENT,
+  `name`        VARCHAR(64)          NOT NULL    DEFAULT '',
+  `title`       VARCHAR(255)         NOT NULL    DEFAULT '',
+  `description` TEXT,
+  `module`      VARCHAR(64)          NOT NULL    DEFAULT '',
   -- Render template
-  `template`        varchar(255)    NOT NULL    default '',
-  `icon`            varchar(255)    NOT NULL    default '',
-  `active`          tinyint(1)      unsigned    NOT NULL    default '0',
+  `template`    VARCHAR(255)         NOT NULL    DEFAULT '',
+  `icon`        VARCHAR(255)         NOT NULL    DEFAULT '',
+  `active`      TINYINT(1) UNSIGNED  NOT NULL    DEFAULT '0',
   -- Display order, '0' for hidden
-  `display`         smallint(5)     unsigned    NOT NULL    default '0',
+  `display`     SMALLINT(5) UNSIGNED NOT NULL    DEFAULT '0',
 
   -- Callback to get user activity data
-  `callback`        varchar(64)     NOT NULL,
+  `callback`    VARCHAR(64)          NOT NULL,
 
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 );
 
 # Quicklinks
 CREATE TABLE `{quicklink}` (
-  `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `name`            varchar(64)     NOT NULL    default '',
-  `title`           varchar(255)    NOT NULL    default '',
-  `module`          varchar(64)     NOT NULL    default '',
-  `link`            varchar(255)    NOT NULL    default '',
-  `icon`            varchar(255)    NOT NULL    default '',
-  `active`          tinyint(1)      unsigned NOT NULL    default '0',
+  `id`      INT(10) UNSIGNED     NOT NULL    AUTO_INCREMENT,
+  `name`    VARCHAR(64)          NOT NULL    DEFAULT '',
+  `title`   VARCHAR(255)         NOT NULL    DEFAULT '',
+  `module`  VARCHAR(64)          NOT NULL    DEFAULT '',
+  `link`    VARCHAR(255)         NOT NULL    DEFAULT '',
+  `icon`    VARCHAR(255)         NOT NULL    DEFAULT '',
+  `active`  TINYINT(1) UNSIGNED  NOT NULL    DEFAULT '0',
   -- Display order, '0' for hidden
-  `display`         smallint(5)     unsigned    NOT NULL    default '0',
+  `display` SMALLINT(5) UNSIGNED NOT NULL    DEFAULT '0',
 
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 );
 
 # Timeline for user activities
 CREATE TABLE `{timeline_log}` (
-  `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `uid`             int(10)         unsigned    NOT NULL,
+  `id`       INT(10) UNSIGNED NOT NULL    AUTO_INCREMENT,
+  `uid`      INT(10) UNSIGNED NOT NULL,
   -- Timeline name, defined in table `timeline`
-  `timeline`        varchar(64)     NOT NULL    default '',
-  `module`          varchar(64)     NOT NULL    default '',
-  `message`         text,
-  `data`        varchar(64)     NOT NULL    default '',
-  `link`            varchar(255)    NOT NULL    default '',
-  `time`            int(11)         unsigned    NOT NULL,
+  `timeline` VARCHAR(64)      NOT NULL    DEFAULT '',
+  `module`   VARCHAR(64)      NOT NULL    DEFAULT '',
+  `message`  TEXT,
+  `data`     VARCHAR(64)      NOT NULL    DEFAULT '',
+  `link`     VARCHAR(255)     NOT NULL    DEFAULT '',
+  `time`     INT(11) UNSIGNED NOT NULL,
 
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY (`uid`)
 );
 
 #Privacy setting
 CREATE TABLE `{privacy}` (
-  `id`        int(10)              unsigned NOT NULL auto_increment,
-  `field`     varchar(64)          NOT NULL default '',
+  `id`        INT(10) UNSIGNED     NOT NULL AUTO_INCREMENT,
+  `field`     VARCHAR(64)          NOT NULL DEFAULT '',
   -- Default access level: 0 - everyone/public; 1 - member; 2 - follower; 4 - following; 255 - owner
-  `value`     smallint(5)           unsigned NOT NULL default '0',
+  `value`     SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
   -- Is forced by admin
-  `is_forced` tinyint(1)            unsigned NOT NULL default '0',
+  `is_forced` TINYINT(1) UNSIGNED  NOT NULL DEFAULT '0',
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `field` (`field`)
@@ -190,11 +189,11 @@ CREATE TABLE `{privacy}` (
 
 #Privacy setting for user profile field
 CREATE TABLE `{privacy_user}` (
-  `id`        int(10)             unsigned NOT NULL auto_increment,
-  `uid`       int(10)             unsigned NOT NULL,
-  `field`     varchar(64)         NOT NULL default '',
+  `id`    INT(10) UNSIGNED     NOT NULL AUTO_INCREMENT,
+  `uid`   INT(10) UNSIGNED     NOT NULL,
+  `field` VARCHAR(64)          NOT NULL DEFAULT '',
   -- Access level: 0 - everyone/public; 1 - member; 2 - follower; 4 - following; 255 - owner
-  `value`     smallint(5)         unsigned NOT NULL default '0',
+  `value` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_field` (`uid`, `field`)
@@ -202,27 +201,25 @@ CREATE TABLE `{privacy_user}` (
 
 # User action log generated for user module
 CREATE TABLE `{log}` (
-  `id`              int(10)             unsigned NOT NULL auto_increment,
-  `uid`             int(10)             unsigned NOT NULL,
-  `time`            int(10)             unsigned NOT NULL default '0',
-  `data`            varchar(255)        NOT NULL default '',
-  `action`          varchar(64)         NOT NULL default '',
+  `id`     INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `uid`    INT(10) UNSIGNED NOT NULL,
+  `time`   INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `data`   VARCHAR(255)     NOT NULL DEFAULT '',
+  `action` VARCHAR(64)      NOT NULL DEFAULT '',
 
   PRIMARY KEY (`id`),
   KEY (`uid`)
 );
 
-
-
 --
 -- CGU TABLE
 --
 
-CREATE TABLE {condition} (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `version` varchar(255) NOT NULL,
-  `filename` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `active_at` timestamp NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE { CONDITION} (
+`id` INT (11) NOT NULL AUTO_INCREMENT,
+`version` VARCHAR (255) NOT NULL,
+`filename` VARCHAR (255) NOT NULL,
+`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`active_at` TIMESTAMP NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE =InnoDB DEFAULT CHARSET =utf8;

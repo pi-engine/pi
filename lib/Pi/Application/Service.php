@@ -23,19 +23,19 @@ class Service
      *
      * @var Service\AbstractService[]
      */
-    protected static $services = array();
+    protected static $services = [];
 
     /**
      * Load a service
      *
-     * @param string    $name
-     * @param array     $options
+     * @param string $name
+     * @param array $options
      * @return Service\AbstractService
      * @throws \Exception
      */
-    public function load($name, $options = array())
+    public function load($name, $options = [])
     {
-        $key = strtolower($name);
+        $key  = strtolower($name);
         $name = str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
         if (!isset(static::$services[$key])) {
             static::$services[$key] = false;
@@ -56,7 +56,7 @@ class Service
             }
             if (method_exists(static::$services[$key], 'shutdown')) {
                 Pi::registerShutdown(
-                    array(static::$services[$key], 'shutdown')
+                    [static::$services[$key], 'shutdown']
                 );
             }
             if ('log' != $name && $this->hasService('log')) {
@@ -78,7 +78,7 @@ class Service
     public function hasService($name)
     {
         $name = strtolower($name);
-        
+
         return isset(static::$services[$name]) && static::$services[$name];
     }
 

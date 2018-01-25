@@ -9,12 +9,11 @@
 
 namespace Module\Article\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
  * Category move form class
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class CategoryMoveForm extends BaseForm
@@ -24,41 +23,41 @@ class CategoryMoveForm extends BaseForm
      */
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name'       => 'from',
-            'options'    => array(
-                'label'     => __('From'),
-            ),
-            'attributes' => array(
-                'id'        => 'from',
-                'class'     => 'form-control',
-            ),
+            'options'    => [
+                'label' => __('From'),
+            ],
+            'attributes' => [
+                'id'    => 'from',
+                'class' => 'form-control',
+            ],
             'type'       => 'Module\Article\Form\Element\Category',
-        ));
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'to',
-            'options'    => array(
-                'label'     => __('To'),
-            ),
-            'attributes' => array(
-                'id'        => 'to',
-                'class'     => 'form-control',
-            ),
+            'options'    => [
+                'label' => __('To'),
+            ],
+            'attributes' => [
+                'id'    => 'to',
+                'class' => 'form-control',
+            ],
             'type'       => 'Module\Article\Form\Element\CategoryWithRoot',
-        ));
+        ]);
 
-        $this->add(array(
-            'name'       => 'security',
-            'type'       => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'submit',
-            'attributes' => array(              
-                'value'     => __('Submit'),
-            ),
+            'attributes' => [
+                'value' => __('Submit'),
+            ],
             'type'       => 'submit',
-        ));
+        ]);
     }
 }

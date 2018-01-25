@@ -12,7 +12,6 @@ namespace Module\Tag\Controller\Front;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Zend\Db\Sql\Expression;
 
 /**
  * Tag cases controller
@@ -26,7 +25,7 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
-        return $this->redirect()->toRoute('', array('action' => 'list'));
+        return $this->redirect()->toRoute('', ['action' => 'list']);
     }
 
     /**
@@ -34,14 +33,14 @@ class IndexController extends ActionController
      */
     public function listAction()
     {
-        $tag        = _get('tag');
-        $limit      = (int) $this->config('item_per_page');
-        $page       = _get('page') ? (int) _get('page') : 1;
-        $offset     = (int) ($page - 1) * $limit;
-        $module     = _get('m');
+        $tag    = _get('tag');
+        $limit  = (int)$this->config('item_per_page');
+        $page   = _get('page') ? (int)_get('page') : 1;
+        $offset = (int)($page - 1) * $limit;
+        $module = _get('m');
 
-        $type           = null;
-        $moduleTitle    = '';
+        $type        = null;
+        $moduleTitle = '';
 
         $modules = Pi::registry('modulelist')->read();
         if ($module && !isset($modules[$module])) {
@@ -52,8 +51,8 @@ class IndexController extends ActionController
         }
 
         $paginator = null;
-        $list = array();
-        $count = Pi::service('tag')->getCount($tag, $module, $type);
+        $list      = [];
+        $count     = Pi::service('tag')->getCount($tag, $module, $type);
         if ($count) {
             $items = Pi::service('tag')->getList(
                 $tag,
@@ -63,68 +62,68 @@ class IndexController extends ActionController
                 $offset
             );
 
-            $content = array();
-            $batches = array();
+            $content = [];
+            $batches = [];
             foreach ($items as $item) {
                 //$key = $item['module'] . '-' . $item['type'];
                 $batches[$item['module']][$item['type']][] = $item['item'];
             }
-            $vars = array('id', 'title', 'link', 'time');
+            $vars = ['id', 'title', 'link', 'time'];
             foreach ($batches as $m => $mData) {
                 foreach ($mData as $t => $tData) {
                     $content[$m . '-' . $t] = Pi::service('module')->content(
                         $vars,
-                        array(
-                            'module'    => $m,
-                            'type'      => $t,
-                            'id'        => $tData
-                        )
+                        [
+                            'module' => $m,
+                            'type'   => $t,
+                            'id'     => $tData,
+                        ]
                     );
                 }
             }
 
-            $list = array();
+            $list = [];
             array_walk($items, function ($item) use ($modules, $content, &$list) {
                 $key = $item['module'] . '-' . $item['type'];
                 if (isset($content[$key]) && isset($modules[$item['module']])) {
                     $found = false;
                     foreach ($content[$key] as $data) {
                         if ($data['id'] == $item['item']) {
-                            $item['url'] = $data['link'];
+                            $item['url']   = $data['link'];
                             $item['title'] = $data['title'];
-                            $item['time'] = $data['time'];
-                            $found = true;
+                            $item['time']  = $data['time'];
+                            $found         = true;
                             break;
                         }
                     }
                     if ($found) {
                         $item['module'] = $modules[$item['module']]['title'];
-                        $list[] = $item;
+                        $list[]         = $item;
                     }
                 }
             });
 
-            $paginator = Paginator::factory($count, array(
+            $paginator = Paginator::factory($count, [
                 'limit'       => $limit,
                 'page'        => $page,
-                'url_options' => array(
-                    'route' => 'tag',
-                    'params' => array(
-                        'tag'    => $tag,
-                        'm'      => $module
-                    )
-                ),
-            ));
+                'url_options' => [
+                    'route'  => 'tag',
+                    'params' => [
+                        'tag' => $tag,
+                        'm'   => $module,
+                    ],
+                ],
+            ]);
         }
 
-        $this->view()->assign(array(
-            'paginator'     => $paginator,
-            'list'          => $list,
-            'tag'           => $tag,
-            'count'         => $count,
-            'm'             => $module,
-            'moduleTitle'   => $moduleTitle,
-        ));
+        $this->view()->assign([
+            'paginator'   => $paginator,
+            'list'        => $list,
+            'tag'         => $tag,
+            'count'       => $count,
+            'm'           => $module,
+            'moduleTitle' => $moduleTitle,
+        ]);
 
         $this->view()->setTemplate('list');
     }

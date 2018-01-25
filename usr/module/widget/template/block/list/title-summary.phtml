@@ -1,7 +1,7 @@
 <?php
-$options    = (array) $block['options'];
-$items      = (array) $block['items'];
-$target     = $options['target_new'] ? '_self' : '_blank';
+$options = (array)$block['options'];
+$items   = (array)$block['items'];
+$target  = $options['target_new'] ? '_self' : '_blank';
 switch ($options['max_rows']) {
     case '0':
     case '1':
@@ -31,7 +31,7 @@ switch ($options['max_rows']) {
 ?>
 <div class="widget-list widget-list-text">
     <div class="row clearfix">
-        <?php foreach($items as $item) { ?>
+        <?php foreach ($items as $item) { ?>
             <div class="<?php echo $rows; ?>">
                 <div class="widget-list-text-single text-center">
                     <?php if (!empty($item['icon'])) { ?>
@@ -42,7 +42,8 @@ switch ($options['max_rows']) {
                     <?php if (!empty($item['caption'])) { ?>
                         <h4 class="pi-ellipsis pi-ellipsis-1">
                             <?php if (!empty($item['link'])) { ?>
-                                <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>" target="<?php echo $target; ?>">
+                                <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>"
+                                   target="<?php echo $target; ?>">
                                     <?php echo _escape($item['caption']); ?>
                                 </a>
                             <?php } else { ?>

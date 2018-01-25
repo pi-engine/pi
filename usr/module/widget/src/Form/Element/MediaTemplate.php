@@ -30,12 +30,12 @@ class MediaTemplate extends Select
             Pi::path('custom'),
             $this->templateDir
         );
-        $list =  array();
-        $filter = function ($fileinfo) use (&$list) {
+        $list       = [];
+        $filter     = function ($fileinfo) use (&$list) {
             if (!$fileinfo->isFile()) {
                 return false;
             }
-            $filename = $fileinfo->getFilename();
+            $filename  = $fileinfo->getFilename();
             $extension = pathinfo($filename, PATHINFO_EXTENSION);
             if ('phtml' != $extension) {
                 return false;
@@ -45,7 +45,7 @@ class MediaTemplate extends Select
                 return false;
             }
 
-            $list[$this->templateDir . '/' . $name] =  _a('Custom: ') . substr($name, 0, -6);
+            $list[$this->templateDir . '/' . $name] = _a('Custom: ') . substr($name, 0, -6);
         };
         Pi::service('file')->getList($customPath, $filter);
 
@@ -59,11 +59,11 @@ class MediaTemplate extends Select
      */
     protected function getStyles()
     {
-        $styles = array(
-            $this->templateDir . '/image-list' => _a('List of images on lines'),
+        $styles = [
+            $this->templateDir . '/image-list'  => _a('List of images on lines'),
             $this->templateDir . '/image-left'  => _a('Image on left'),
             $this->templateDir . '/image-right' => _a('Image on right'),
-        );
+        ];
         $styles += $this->getList();
 
         return $styles;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Module\Page\Validator;
 
 use Pi;
@@ -6,13 +7,13 @@ use Zend\Validator\AbstractValidator;
 
 class PageTemplateAvailable extends AbstractValidator
 {
-    const UNAVAILABLE        = 'templateUnavailable';
+    const UNAVAILABLE = 'templateUnavailable';
 
     public function __construct()
     {
-        $this->messageTemplates = array(
+        $this->messageTemplates = [
             self::UNAVAILABLE => _a('Template file is not available.'),
-        );
+        ];
 
         parent::__construct();
     }
@@ -30,7 +31,7 @@ class PageTemplateAvailable extends AbstractValidator
 
         if ('phtml' == $context['markup']) {
             $file = sprintf(
-                '%s/'. Pi::config('theme') . '/custom/page/%s.phtml',
+                '%s/' . Pi::config('theme') . '/custom/page/%s.phtml',
                 Pi::path('theme'),
                 $value
             );

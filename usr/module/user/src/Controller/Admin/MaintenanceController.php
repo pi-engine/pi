@@ -11,7 +11,6 @@ namespace Module\User\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Db\Sql\Where;
 use Zend\Db\Sql\Predicate\Expression;
 
 /**

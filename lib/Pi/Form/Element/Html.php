@@ -23,7 +23,8 @@ class Html extends Element
      * Seed attributes
      * @var array
      */
-    protected $attributes = array(
-        'type'  => 'html',
-    );
+    protected $attributes
+        = [
+            'type' => 'html',
+        ];
 }

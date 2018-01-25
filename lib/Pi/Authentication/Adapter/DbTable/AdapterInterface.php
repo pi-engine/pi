@@ -9,7 +9,6 @@
 
 namespace Pi\Authentication\Adapter\DbTable;
 
-use Pi;
 use Pi\Authentication\Adapter\AdapterInterface as BaseInterface;
 use Zend\Db\Adapter\Adapter as DbAdapter;
 

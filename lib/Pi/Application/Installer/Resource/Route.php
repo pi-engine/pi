@@ -70,10 +70,10 @@ class Route extends AbstractResource
      */
     protected function canonize(array $configs)
     {
-        $module     = $this->event->getParam('module');
-        $directory  = $this->event->getParam('directory');
+        $module    = $this->event->getParam('module');
+        $directory = $this->event->getParam('directory');
 
-        $routes = array();
+        $routes = [];
         foreach ($configs as $key => $data) {
             if (isset($data['name'])) {
                 $name = $data['name'];
@@ -85,12 +85,12 @@ class Route extends AbstractResource
             if ($module != $directory) {
                 $name = $module . '-' . $name;
             }
-            $route = array(
-                'name'      => $name,
-                'section'   => 'front',
-                'module'    => $module,
-                'priority'  => 0,
-            );
+            $route = [
+                'name'     => $name,
+                'section'  => 'front',
+                'module'   => $module,
+                'priority' => 0,
+            ];
             if (isset($data['section'])) {
                 $route['section'] = $data['section'];
                 unset($data['section']);
@@ -125,17 +125,17 @@ class Route extends AbstractResource
         }
 
         $modelRoute = Pi::model('route');
-        $routes = $this->canonize($this->config);
+        $routes     = $this->canonize($this->config);
 
         // Add new routes
         foreach ($routes as $name => $data) {
-            $row = $modelRoute->createRow($data);
+            $row    = $modelRoute->createRow($data);
             $status = $row->save();
             if (!$status) {
-                return array(
-                    'status'    => false,
-                    'message'   => sprintf('Route "%s" is not created.', $name)
-                );
+                return [
+                    'status'  => false,
+                    'message' => sprintf('Route "%s" is not created.', $name),
+                ];
             }
         }
         Pi::registry('route')->flush();
@@ -155,10 +155,10 @@ class Route extends AbstractResource
         }
 
         $modelRoute = Pi::model('route');
-        $routes = $this->canonize($this->config);
+        $routes     = $this->canonize($this->config);
 
         // Update existing routes
-        $rowset = $modelRoute->select(array('module' => $module));
+        $rowset = $modelRoute->select(['module' => $module]);
         foreach ($rowset as $row) {
             if (!isset($routes[$row->name])) {
                 $row->delete();
@@ -171,13 +171,13 @@ class Route extends AbstractResource
 
         // Add new routes
         foreach ($routes as $name => $data) {
-            $row = $modelRoute->createRow($data);
+            $row    = $modelRoute->createRow($data);
             $status = $row->save();
             if (!$status) {
-                return array(
-                    'status'    => false,
-                    'message'   => sprintf('Route "%s" is not created.', $name)
-                );
+                return [
+                    'status'  => false,
+                    'message' => sprintf('Route "%s" is not created.', $name),
+                ];
             }
         }
         Pi::registry('route')->flush();
@@ -190,9 +190,9 @@ class Route extends AbstractResource
      */
     public function uninstallAction()
     {
-        $module = $this->event->getParam('module');
+        $module     = $this->event->getParam('module');
         $modelRoute = Pi::model('route');
-        $modelRoute->delete(array('module' => $module));
+        $modelRoute->delete(['module' => $module]);
         Pi::registry('route')->flush();
 
         return true;
@@ -203,9 +203,9 @@ class Route extends AbstractResource
      */
     public function activateAction()
     {
-        $module = $this->event->getParam('module');
+        $module     = $this->event->getParam('module');
         $modelRoute = Pi::model('route');
-        $modelRoute->update(array('active' => 1), array('module' => $module));
+        $modelRoute->update(['active' => 1], ['module' => $module]);
         Pi::registry('route')->flush();
 
         return true;
@@ -216,9 +216,9 @@ class Route extends AbstractResource
      */
     public function deactivateAction()
     {
-        $module = $this->event->getParam('module');
+        $module     = $this->event->getParam('module');
         $modelRoute = Pi::model('route');
-        $modelRoute->update(array('active' => 0), array('module' => $module));
+        $modelRoute->update(['active' => 0], ['module' => $module]);
         Pi::registry('route')->flush();
 
         return true;

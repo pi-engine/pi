@@ -10,6 +10,7 @@
 namespace Pi\User\Adapter;
 
 use Pi;
+
 //use Pi\User\Model\System as UserModel;
 
 /**
@@ -54,11 +55,12 @@ class System extends AbstractAdapter
      * {@inheritDoc}
      */
     public function getUids(
-        $condition  = array(),
-        $limit      = 0,
-        $offset     = 0,
-        $order      = ''
-    ) {
+        $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = ''
+    )
+    {
         $result = Pi::api('user', 'system')->getUids(
             $condition,
             $limit,
@@ -73,12 +75,13 @@ class System extends AbstractAdapter
      * {@inheritDoc}
      */
     public function getList(
-        array $condition  = array(),
-        $limit      = 0,
-        $offset     = 0,
-        $order      = '',
-        array $field  = array()
-    ) {
+        array $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = '',
+        array $field = []
+    )
+    {
         $result = Pi::api('user', 'system')->getList(
             $condition,
             $limit,
@@ -93,7 +96,7 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getCount($condition = array())
+    public function getCount($condition = [])
     {
         $result = Pi::api('user', 'system')->getCount($condition);
 
@@ -163,10 +166,11 @@ class System extends AbstractAdapter
      */
     public function get(
         $uid,
-        $field = array(),
+        $field = [],
         $filter = false,
         $activeOnly = false
-    ) {
+    )
+    {
         return Pi::api('user', 'system')->get(
             $uid,
             $field,
@@ -180,10 +184,11 @@ class System extends AbstractAdapter
      */
     public function mget(
         array $uids,
-        $field = array(),
+        $field = [],
         $filter = false,
         $activeOnly = false
-    ) {
+    )
+    {
         return Pi::api('user', 'system')->mget(
             $uids,
             $field,
@@ -251,7 +256,7 @@ class System extends AbstractAdapter
      */
     public function killUser($uid)
     {
-        $result = Pi::service('session')->killUser($uid);
+        $result      = Pi::service('session')->killUser($uid);
         $this->model = null;
 
         return $result;

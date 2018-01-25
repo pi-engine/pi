@@ -10,8 +10,8 @@
 namespace Pi\View\Resolver;
 
 use Pi;
-use Zend\View\Resolver\ResolverInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
+use Zend\View\Resolver\ResolverInterface;
 
 /**
  * Module template resolver
@@ -73,7 +73,7 @@ class ModuleTemplate implements ResolverInterface
      */
     public function setSuffix($suffix)
     {
-        $this->suffix = (string) $suffix;
+        $this->suffix = (string)$suffix;
 
         return $this;
     }
@@ -99,7 +99,7 @@ class ModuleTemplate implements ResolverInterface
     {
         // Empty template
         if ('__NULL__' == $name) {
-            return array('system', 'dummy');
+            return ['system', 'dummy'];
         }
         // With suffix
         if (substr($name, -6) == '.' . $this->suffix) {
@@ -119,11 +119,11 @@ class ModuleTemplate implements ResolverInterface
             }
             */
         } else {
-            $module = Pi::service('module')->current();
+            $module   = Pi::service('module')->current();
             $template = $name;
         }
 
-        return array($module, $template);
+        return [$module, $template];
     }
 
     /**
@@ -134,9 +134,9 @@ class ModuleTemplate implements ResolverInterface
      * @param  string $name Relative or full path to template,
      *      it is highly recommended to remove suffix from relative template
      * @param  null|Renderer $renderer
-     * @param  bool $forcefront force to find template in the front theme 
+     * @param  bool $forcefront force to find template in the front theme
      * @return string|false
-      */
+     */
     public function resolve($name, Renderer $renderer = null, $forcefront = false)
     {
         // Set template context

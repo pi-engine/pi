@@ -45,64 +45,70 @@ class Updator110 extends AbstractUpdator
         $result = true;
         if (version_compare($version, '1.1.0', '<')) {
             $module = $this->handler->getParam('module');
-            
+
             // Modify field type of article table
             $tableArticle = Pi::db()->prefix('article', $module);
-            $sql =<<<EOD
+            $sql
+                          = <<<EOD
 ALTER TABLE {$tableArticle} MODIFY `summary` text;
 ALTER TABLE {$tableArticle} MODIFY `content` longtext;
 EOD;
-            $result = $this->queryTable($sql);
+            $result       = $this->queryTable($sql);
             if (false === $result) {
                 return $result;
             }
 
             // Modify field type of compiled table
             $tableCompiled = Pi::db()->prefix('compiled', $module);
-            $sql =<<<EOD
+            $sql
+                           = <<<EOD
 ALTER TABLE {$tableCompiled} MODIFY `content` longtext;
 EOD;
-            $result = $this->queryTable($sql);
+            $result        = $this->queryTable($sql);
             if (false === $result) {
                 return $result;
             }
 
             // Modify field type of draft table
             $tableDraft = Pi::db()->prefix('draft', $module);
-            $sql =<<<EOD
+            $sql
+                        = <<<EOD
 ALTER TABLE {$tableDraft} MODIFY `detail` longtext;
 EOD;
-            $result = $this->queryTable($sql);
+            $result     = $this->queryTable($sql);
             if (false === $result) {
                 return $result;
             }
-            
+
             // Modify field type of author table
             $tableAuthor = Pi::db()->prefix('author', $module);
-            $sql =<<<EOD
+            $sql
+                         = <<<EOD
 ALTER TABLE {$tableAuthor} MODIFY `description` text;
 EOD;
-            $result = $this->queryTable($sql);
+            $result      = $this->queryTable($sql);
             if (false === $result) {
                 return $result;
             }
-            
+
             // Modify field type of topic table
             $tableTopic = Pi::db()->prefix('topic', $module);
-            $sql =<<<EOD
+            $sql
+                        = <<<EOD
 ALTER TABLE {$tableTopic} MODIFY `content` text;
 EOD;
-            $result = $this->queryTable($sql);
+            $result     = $this->queryTable($sql);
             if (false === $result) {
                 return $result;
             }
 
             // Modify field type of media table
             $tableMedia = Pi::db()->prefix('media', $module);
-            $sql =<<<EOD
+            $sql
+                        = <<<EOD
 ALTER TABLE {$tableMedia} MODIFY `meta` text;
 EOD;
-            $result = $this->queryTable($sql);
+            $result     = $this->queryTable($sql);
             if (false === $result) {
                 return $result;
             }

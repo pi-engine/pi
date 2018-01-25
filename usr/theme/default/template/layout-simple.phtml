@@ -6,23 +6,23 @@ $this->doctype('HTML5');
 $this->i18nTheme();
 
 //HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-$this->js(array(
-    pi::url('static/js/html5shiv.js') => array(
-        'conditional' => 'lt IE 9'
-    ),
-    pi::url('static/js/respond.min.js') => array(
-        'conditional' => 'lt IE 9'
-    ),
-));
+$this->js([
+    pi::url('static/js/html5shiv.js')   => [
+        'conditional' => 'lt IE 9',
+    ],
+    pi::url('static/js/respond.min.js') => [
+        'conditional' => 'lt IE 9',
+    ],
+]);
 
 // Load jQuery
 $this->jquery();
 
 // Load Bootstrap css/js and font-awesome
-$this->bootstrap(array(
+$this->bootstrap([
     'js/bootstrap.min.js',
-    'font-awesome/css/font-awesome.min.css'
-));
+    'font-awesome/css/font-awesome.min.css',
+]);
 
 // Load front.css
 $this->css($this->assetTheme('css/front.css'));
@@ -32,43 +32,43 @@ $this->css($this->assetLocale('locale.css'));
 
 // Apple icons
 // Apple icon for iphone
-$this->headLink(array(
-    'rel'   => 'apple-touch-icon',
-    'href'  => $this->assetTheme('image/touch-icon-iphone.png')
-));
+$this->headLink([
+    'rel'  => 'apple-touch-icon',
+    'href' => $this->assetTheme('image/touch-icon-iphone.png'),
+]);
 // Apple icon for ipad
-$this->headLink(array(
+$this->headLink([
     'rel'   => 'apple-touch-icon',
     'sizes' => '72x72',
-    'href'  => $this->assetTheme('image/touch-icon-ipad.png')
-));
+    'href'  => $this->assetTheme('image/touch-icon-ipad.png'),
+]);
 // Apple icon for iphone retina
-$this->headLink(array(
+$this->headLink([
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
-    'href'  => $this->assetTheme('image/touch-icon-iphone-retina.png')
-));
+    'href'  => $this->assetTheme('image/touch-icon-iphone-retina.png'),
+]);
 // Apple icon for ipad retina
-$this->headLink(array(
+$this->headLink([
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
-    'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png')
-));
+    'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png'),
+]);
 
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 
 // Explicitly load favicon
-$this->headLink(array(
-    'rel'   => 'shortcut icon',
-    'type'  => 'image/x-icon',
-    'href'  => $this->favicon(),
-));
-$this->headLink(array(
-    'rel'   => 'shortcut icon',
-    'type'  => 'image/png',
-    'href'  => $this->favicon('favicon.png'),
-));
+$this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/x-icon',
+    'href' => $this->favicon(),
+]);
+$this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/png',
+    'href' => $this->favicon('favicon.png'),
+]);
 
 // Load google analytics code
 $this->ga();
@@ -88,11 +88,12 @@ $module = Pi::service('module')->current();
     <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <h2>
-                <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
+                <a class="navbar-brand" href="<?php echo $this->url('home'); ?>"
+                   title="<?php echo _escape($slogan); ?>">
                     <?php echo _escape($sitename); ?>
                 </a>
             </h2>
-            <?php echo $this->widget('system-user-bar', array('type' => 'js')); ?>
+            <?php echo $this->widget('system-user-bar', ['type' => 'js']); ?>
         </div>
     </div>
 </header>

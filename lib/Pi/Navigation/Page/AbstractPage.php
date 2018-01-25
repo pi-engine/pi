@@ -9,10 +9,9 @@
 
 namespace Pi\Navigation\Page;
 
-use Pi;
 use Traversable;
-use Zend\Navigation\Page\AbstractPage as ZendAbstractPage;
 use Zend\Navigation\Exception;
+use Zend\Navigation\Page\AbstractPage as ZendAbstractPage;
 use Zend\Stdlib\ArrayUtils;
 
 /**
@@ -89,7 +88,7 @@ abstract class AbstractPage extends ZendAbstractPage
         */
         $hasUri = true;
         $hasMvc = !empty($options['action']) || !empty($options['controller'])
-                || !empty($options['route']);
+            || !empty($options['route']);
         /**#@-*/
 
         if ($hasMvc) {

@@ -12,6 +12,7 @@ namespace Pi\View\Helper;
 
 use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
+
 /**
  * Helper for rendering module breadcrumbs
  *
@@ -65,14 +66,14 @@ class Breadcrumb extends AbstractHtmlElement
      *
      * @var array
      */
-    protected $attributes = array();
+    protected $attributes = [];
 
     /**
      * Items to prepend
      *
      * @var array
      */
-    protected $prefix = array();
+    protected $prefix = [];
 
     /**
      * Renders module breadcrumbs
@@ -99,10 +100,10 @@ class Breadcrumb extends AbstractHtmlElement
      *
      * @return string
      */
-    public function render(array $options = array())
+    public function render(array $options = [])
     {
         $result = '';
-        $data   = array();
+        $data   = [];
 
         $module = isset($options['module'])
             ? $options['module']
@@ -112,32 +113,34 @@ class Breadcrumb extends AbstractHtmlElement
         $class = sprintf('Custom\%s\Api\Breadcrumbs', ucfirst($module));
         if (!class_exists($class)) {
             $directory = Pi::service('module')->directory($module);
-            $class = sprintf('Module\%s\Api\Breadcrumbs', ucfirst($directory));
+            $class     = sprintf('Module\%s\Api\Breadcrumbs', ucfirst($directory));
         }
         if (class_exists($class)) {
             $bcHandler = new $class($module);
-            $data = $bcHandler->load();
+            $data      = $bcHandler->load();
         }
         if ($data) {
             $prefix = isset($options['prefix'])
                 ? $options['prefix']
                 : $this->prefix;
 
-            $data = array_merge($prefix, $data);
+            $data      = array_merge($prefix, $data);
             $separator = isset($options['separator'])
                 ? $options['separator']
                 : $this->separator;
-            $attribs = isset($options['attributes'])
+            $attribs   = isset($options['attributes'])
                 ? $options['attributes']
                 : $this->attributes;
 
-            $pattern = <<<'EOT'
+            $pattern
+                = <<<'EOT'
 <ol itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb"%s>
     %s
 </ol>
 EOT;
 
-            $patternLink = <<<'EOT'
+            $patternLink
+                = <<<'EOT'
 <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
     <a itemprop="item" href="%s">
         <span itemprop="name">%s</span>
@@ -146,7 +149,8 @@ EOT;
 </li>
 EOT;
 
-            $patternLabel = <<<'EOT'
+            $patternLabel
+                = <<<'EOT'
 <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
     <span itemprop="name">%s</span>
     <meta itemprop="position" content="%s" />
@@ -158,11 +162,11 @@ EOT;
                 if (empty($item['href'])) {
                     $elements .= sprintf($patternLabel, _escape($item['label']), _escape($item['label']));
                 } else {
-                    $elements .= sprintf($patternLink,$item['href'],  _escape($item['label']), _escape($item['label']));
+                    $elements .= sprintf($patternLink, $item['href'], _escape($item['label']), _escape($item['label']));
                 }
             }
             $attributes = $attribs ? $this->htmlAttribs($attribs) : '';
-            $result = sprintf($pattern, $attributes, $elements);
+            $result     = sprintf($pattern, $attributes, $elements);
         }
 
         return $result;

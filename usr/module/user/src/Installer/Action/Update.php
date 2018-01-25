@@ -9,9 +9,8 @@
 
 namespace Module\User\Installer\Action;
 
-use Pi;
-use Pi\Application\Installer\Action\Update as BasicUpdate;
 use Module\User\Installer\Schema;
+use Pi\Application\Installer\Action\Update as BasicUpdate;
 use Zend\EventManager\Event;
 
 /**

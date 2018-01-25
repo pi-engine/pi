@@ -9,14 +9,14 @@
 
 # Entity for user custom compound: social tools
 CREATE TABLE `{social}` (
-  `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `uid`             int(10)         unsigned    NOT NULL,
-  `order`           smallint(5)     unsigned    NOT NULL default '0',
+  `id`         INT(10) UNSIGNED     NOT NULL    AUTO_INCREMENT,
+  `uid`        INT(10) UNSIGNED     NOT NULL,
+  `order`      SMALLINT(5) UNSIGNED NOT NULL    DEFAULT '0',
 
-  `type`            varchar(64)     NOT NULL default '',
-  `title`           varchar(64)     NOT NULL,
-  `identifier`      varchar(64)     NOT NULL,
+  `type`       VARCHAR(64)          NOT NULL    DEFAULT '',
+  `title`      VARCHAR(64)          NOT NULL,
+  `identifier` VARCHAR(64)          NOT NULL,
 
-  PRIMARY KEY  (`id`),
-  KEY  `uid` (`uid`)
+  PRIMARY KEY (`id`),
+  KEY `uid` (`uid`)
 );

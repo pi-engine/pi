@@ -9,9 +9,6 @@
 
 namespace Pi\Media\Adapter;
 
-use Pi;
-use Pi\Media\Dispatch\AbstractDispatch as MediaDispatch;
-
 /**
  * Media service abstract adapter
  *
@@ -21,39 +18,39 @@ use Pi\Media\Dispatch\AbstractDispatch as MediaDispatch;
 abstract class AbstractAdapter
 {
     /** @var array Options */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Constructor
-     * 
+     *
      * @params array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setOptions($options);
     }
-    
+
     /**
      * Set options
-     * 
+     *
      * @param array $options
      * @return  AbstractAdapter
      */
-    public function setOptions(array $options = array())
+    public function setOptions(array $options = [])
     {
         $this->options = $options;
 
         return $this;
     }
-    
+
     /**
      * Get options
-     * 
+     *
      * @return mixed
      */
     public function getOption()
     {
-        $args = func_get_args();
+        $args   = func_get_args();
         $result = $this->options;
         foreach ($args as $name) {
             if (is_array($result) && isset($result[$name])) {
@@ -92,37 +89,37 @@ abstract class AbstractAdapter
 
     /**
      * Upload a local media doc
-     * 
+     *
      * @param string|array|Resource $file
      * @param array $data Doc attribute data
      *
      * @return int Doc id
      */
-    abstract public function upload($file, array $data = array());
+    abstract public function upload($file, array $data = []);
 
     /**
      * Download a doc file
      *
-     * @param int|int[] $id   Doc id
+     * @param int|int[] $id Doc id
      *
      * @return bool
      */
     abstract public function download($id);
-    
+
     /**
      * Update doc details
-     * 
-     * @param int   $id    doc ID
-     * @param array $data  data to update
+     *
+     * @param int $id doc ID
+     * @param array $data data to update
      *
      * @return bool
      */
     abstract public function update($id, array $data);
-    
+
     /**
      * Activate/deactivate a doc
-     * 
-     * @param int $id     Doc ID
+     *
+     * @param int $id Doc ID
      * @param bool $flag
      *
      * @return bool
@@ -131,23 +128,23 @@ abstract class AbstractAdapter
 
     /**
      * Get attributes of a doc
-     * 
-     * @param int               $id    Doc ID
-     * @param string|string[]   $attr  attribute key
+     *
+     * @param int $id Doc ID
+     * @param string|string[] $attr attribute key
      *
      * @return mixed
      */
-    abstract public function get($id, $attr = array());
-    
+    abstract public function get($id, $attr = []);
+
     /**
      * Get attributes of files
-     * 
-     * @param int[]             $ids   Doc IDs
-     * @param string|string[]   $attr  attribute key
+     *
+     * @param int[] $ids Doc IDs
+     * @param string|string[] $attr attribute key
      *
      * @return array
      */
-    abstract public function mget(array $ids, $attr = array());
+    abstract public function mget(array $ids, $attr = []);
 
     /**
      * Get doc file url
@@ -160,8 +157,8 @@ abstract class AbstractAdapter
 
     /**
      * Get statistics data of a file
-     * 
-     * @param int    $id    Doc ID
+     *
+     * @param int $id Doc ID
      *
      * @return array
      */
@@ -169,8 +166,8 @@ abstract class AbstractAdapter
 
     /**
      * Get statistics data of files
-     * 
-     * @param int[]  $ids   Doc IDs
+     *
+     * @param int[] $ids Doc IDs
      *
      * @return array
      */
@@ -178,27 +175,27 @@ abstract class AbstractAdapter
 
     /**
      * Get file IDs by given condition
-     * 
-     * @param array  $condition
-     * @param int    $limit
-     * @param int    $offset
+     *
+     * @param array $condition
+     * @param int $limit
+     * @param int $offset
      * @param string|array $order
      *
      * @return int[]
      */
     abstract public function getIds(
         array $condition,
-        $limit  = 0,
+        $limit = 0,
         $offset = 0,
-        $order  = ''
+        $order = ''
     );
-    
+
     /**
      * Get list by condition
-     * 
-     * @param array  $condition
-     * @param int    $limit
-     * @param int    $offset
+     *
+     * @param array $condition
+     * @param int $limit
+     * @param int $offset
      * @param string|array $order
      * @param array $attr
      *
@@ -206,24 +203,24 @@ abstract class AbstractAdapter
      */
     abstract public function getList(
         array $condition,
-        $limit  = 0,
+        $limit = 0,
         $offset = 0,
-        $order  = '',
-        array $attr = array()
+        $order = '',
+        array $attr = []
     );
-    
+
     /**
      * Get doc count by condition
-     * 
+     *
      * @param array $condition
      *
      * @return int
      */
-    abstract public function getCount(array $condition = array());
+    abstract public function getCount(array $condition = []);
 
     /**
      * Delete file(s)
-     * 
+     *
      * @param int|int[] $id
      */
     abstract public function delete($id);

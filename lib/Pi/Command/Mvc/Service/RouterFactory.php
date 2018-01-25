@@ -22,26 +22,26 @@ class RouterFactory implements FactoryInterface
      * to instantiate the router. Uses the TreeRouteStack implementation by
      * default.
      *
-     * @param  ServiceLocatorInterface        $serviceLocator
-     * @param  string|null                     $cName
-     * @param  string|null                     $rName
+     * @param  ServiceLocatorInterface $serviceLocator
+     * @param  string|null $cName
+     * @param  string|null $rName
      * @return \Zend\Mvc\Router\RouteStackInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator, $cName = null, $rName = null)
     {
-        $config             = $serviceLocator->has('Config') ? $serviceLocator->get('Config') : array();
+        $config = $serviceLocator->has('Config') ? $serviceLocator->get('Config') : [];
 
         // Defaults
-        $routerClass        = 'Zend\Mvc\Router\Http\TreeRouteStack';
-        $routerConfig       = isset($config['router']) ? $config['router'] : array();
+        $routerClass  = 'Zend\Mvc\Router\Http\TreeRouteStack';
+        $routerConfig = isset($config['router']) ? $config['router'] : [];
 
         // Console environment?
         if ($rName === 'ConsoleRouter'                       // force console router
             || ($cName === 'router' && Console::isConsole()) // auto detect console
         ) {
             // We are in a console, use console router defaults.
-            $routerClass = 'Zend\Mvc\Router\Console\SimpleRouteStack';
-            $routerConfig = isset($config['console']['router']) ? $config['console']['router'] : array();
+            $routerClass  = 'Zend\Mvc\Router\Console\SimpleRouteStack';
+            $routerConfig = isset($config['console']['router']) ? $config['console']['router'] : [];
         }
 
         // Obtain the configured router class, if any
@@ -51,7 +51,7 @@ class RouterFactory implements FactoryInterface
 
         // Inject the route plugins
         if (!isset($routerConfig['route_plugins'])) {
-            $routePluginManager = $serviceLocator->get('RoutePluginManager');
+            $routePluginManager            = $serviceLocator->get('RoutePluginManager');
             $routerConfig['route_plugins'] = $routePluginManager;
         }
 

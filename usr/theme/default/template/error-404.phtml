@@ -12,7 +12,7 @@
 <?php if (!empty($reason)): ?>
     <h2 class="page-header">Additional information:</h2>
     <?php
-    $reasonMessage= '';
+    $reasonMessage = '';
     switch ($reason) {
         case 'error-controller-cannot-dispatch':
             $reasonMessage = __('The requested controller was unable to dispatch the request.');
@@ -41,7 +41,7 @@
                 && $this->controller_class
                 && $this->controller_class != $this->controller
             ) {
-                echo ' (resolves to '  . _escape($this->controller_class) . ')';
+                echo ' (resolves to ' . _escape($this->controller_class) . ')';
             }
             ?>
         </dd>

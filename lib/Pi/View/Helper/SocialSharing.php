@@ -55,17 +55,17 @@ class SocialSharing extends AbstractHtmlElement
      *
      * @todo The icon is not responsive yet
      *
-     * @param string[]|true|null|   $items      List of social network items
-     * @param string                $title      Title
-     * @param string                $url        Page URL
-     * @param string                $image      Image url for pinterest
+     * @param string[]|true|null|   $items List of social network items
+     * @param string $title Title
+     * @param string $url Page URL
+     * @param string $image Image url for pinterest
      *
      * @return  string
      */
     public function __invoke($items, $title, $url, $image = '')
     {
         $title = _escape($title);
-        $url = $this->view->escapeUrl($url);
+        $url   = $this->view->escapeUrl($url);
         if ($image) {
             $image = $this->view->escapeUrl($image);
         }
@@ -73,7 +73,7 @@ class SocialSharing extends AbstractHtmlElement
         if (!$items) {
             $itemList = Pi::service('social_sharing')->buildItems($title, $url, $image);
         } else {
-            $itemList = array();
+            $itemList = [];
             foreach ($items as $item) {
                 $itemList[$item] = Pi::service('social_sharing')->buildItem($item, $title, $url, $image);
             }
@@ -83,7 +83,8 @@ class SocialSharing extends AbstractHtmlElement
                 return '';
             }
 
-            $template = <<<'EOT'
+            $template
+                    = <<<'EOT'
 <li class="rrssb-%s">
     <a title="%s" href="%s" class="popup">
         <span class="rrssb-icon"><i class="fa %s"></i></span>
@@ -103,16 +104,17 @@ EOT;
 
         // Generate
         if (!empty($buttons)) {
-        	// Load jQuery and css file
-        	$this->view->jQuery(array(
-            	'extension/rrssb.css',
-        	));
+            // Load jQuery and css file
+            $this->view->jQuery([
+                'extension/rrssb.css',
+            ]);
             // Load rrssb.min.js on footer
             $url = 'vendor/jquery/extension/rrssb.min.js';
             $url = Pi::service('asset')->getStaticUrl($url);
             $this->view->footScript()->appendFile($url);
-        	// Set content
-            $content = <<<'EOT'
+            // Set content
+            $content
+                     = <<<'EOT'
 <div class="share-container clearfix">
     <ul class="rrssb-buttons clearfix">
         %s
@@ -121,7 +123,7 @@ EOT;
 EOT;
             $content = sprintf($content, $buttons);
         } else {
-        	$content = '';
+            $content = '';
         }
 
         return $content;

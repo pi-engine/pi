@@ -9,7 +9,6 @@
 
 namespace Module\User\Form\Element;
 
-use Pi;
 use Zend\Form\Element\Radio;
 
 /**
@@ -22,9 +21,10 @@ class Gender extends Radio
     /**
      * {@inheritDoc}
      */
-    protected $labelAttributes = [
-        'class' => 'radio-inline',
-    ];
+    protected $labelAttributes
+        = [
+            'class' => 'radio-inline',
+        ];
 
     /**
      * {@inheritDoc}

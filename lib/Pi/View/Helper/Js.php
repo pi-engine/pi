@@ -10,8 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
-
 /**
  * Helper for loading JavaScript files
  *
@@ -49,7 +47,7 @@ use Pi;
 class Js extends AssetCanonize
 {
     /** @var array Container for loaded files */
-    static protected $loaded = array();
+    static protected $loaded = [];
 
     /**
      * Load JavaScript file
@@ -86,7 +84,7 @@ class Js extends AssetCanonize
      */
     public function load($files = null, $attributes = 'append')
     {
-        $files = $this->canonize($files, $attributes);
+        $files  = $this->canonize($files, $attributes);
         $helper = $this->view->headScript();
         foreach ($files as $file => $attrs) {
             if (isset(static::$loaded[$file])) {

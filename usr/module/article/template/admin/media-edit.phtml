@@ -1,15 +1,15 @@
 <?php
-    $this->css($this->assetModule('script/admin.css'));
-    $this->jQuery('extension/fileupload-min.js');
-    $this->Backbone();
+$this->css($this->assetModule('script/admin.css'));
+$this->jQuery('extension/fileupload-min.js');
+$this->Backbone();
 ?>
 
 <?php include $this->template('./message-box.phtml'); ?>
 
-<?php 
-    $error = $this->formElementErrors(
-        $form->get('url')
-    ) ? _a('Media must be uploaded!') : null;
+<?php
+$error = $this->formElementErrors(
+    $form->get('url')
+) ? _a('Media must be uploaded!') : null;
 ?>
 
 <script id="template-result" type="text/template">
@@ -24,29 +24,31 @@
 <script id="temp-upload" type="text/template">
     <div id="jsUpload">
         <div class="upload-media">
-        <?php 
+            <?php
             $imageExtension = array_map('trim', explode(',', $configs['image_format']));
-            $src = $form->get('url')->getValue();
+            $src            = $form->get('url')->getValue();
             if ($src) {
                 if (in_array(
-                        strtolower($form->get('type')->getValue()),
-                        $imageExtension
-                    )
+                    strtolower($form->get('type')->getValue()),
+                    $imageExtension
+                )
                 ) {
-        ?>
-                <div class="upload-image-bg">
-                    <div class="black-bg"><button type="button" class="close js-close">&times;</button></div>    
-                    <img src="<?php echo Pi::url($src); ?>">
-                </div>
+                    ?>
+                    <div class="upload-image-bg">
+                        <div class="black-bg">
+                            <button type="button" class="close js-close">&times;</button>
+                        </div>
+                        <img src="<?php echo Pi::url($src); ?>">
+                    </div>
+                <?php } else { ?>
+                    <div class="alert alert-success col-md-8">
+                        <button class="close" data-dismiss="alert" type="button">×</button>
+                        <?php echo basename($src); ?>
+                    </div>
+                <?php } ?>
             <?php } else { ?>
-                <div class="alert alert-success col-md-8">
-                    <button class="close" data-dismiss="alert" type="button">×</button>
-                    <?php echo basename($src); ?>
-                </div>
+                <div class="alert alert-warning col-md-4"><?php echo _a('No item!'); ?></div>
             <?php } ?>
-        <?php } else { ?>
-            <div class="alert alert-warning col-md-4"><?php echo _a('No item!'); ?></div>
-        <?php } ?>
         </div>
         <span class="btn btn-default upload fileinput-button">
             <span><?php echo _a('Upload'); ?></span>
@@ -55,110 +57,110 @@
     </div>
 </script>
 <script>
-(function($) {
-    var page = {
-        id      : function() {
-            return "<?php echo $form->get('id')->getValue()
-                ? 'id/' . $form->get('id')->getValue()
-                : 'fake_id/' . $form->get('fake_id')->getValue(); ?>";
-        },
-        form    : $("form.form-horizontal"),
-        $       : function(selector) {
-            return this.form.find(selector);
-        }
-    };
+    (function ($) {
+        var page = {
+            id: function () {
+                return "<?php echo $form->get('id')->getValue()
+                    ? 'id/' . $form->get('id')->getValue()
+                    : 'fake_id/' . $form->get('fake_id')->getValue(); ?>";
+            },
+            form: $("form.form-horizontal"),
+            $: function (selector) {
+                return this.form.find(selector);
+            }
+        };
 
-    var UploadView = Backbone.View.extend({
-        template: _.template('<div class="upload-image-bg"><div class="black-bg">'
-            + '<button type="button" class="close js-close">&times;</button></div>'
-            + '<img style="<% if (w/h > 1) { %>width: 100px; <% } else { %>height: 100px <% } %>"'
-            + 'src="<%= preview_url %>"></div>'
-        ),
-        events: {
-            "click .js-close" : "remove",
-            "click button.close"      : "remove"
-        },
-        initialize: function() {
-            page.$("[name=placeholder]")
-                .parents(".form-group:first")
-                .find(".js-form-element")
-                .html($("#temp-upload").html());
-            this.$el   = $("#jsUpload");
-            this.input = this.$("[name=upload]");
-            this.fileupload();
-        },
-        fileupload: function() {
-            var self      = this;
-            var imageExt  = '<?php echo implode(',', $imageExtension); ?>';
-            var imageExts = new Array;
-            imageExts = imageExt.split(',');
-            this.input.fileupload({
-                formData    : function() {
-                    return [];
-                },
-                url: '<?php echo $this->url(
-                    '',
-                    array(
-                        'controller' => 'media',
-                        'action'     => 'upload',
-                        'source'     => 'media'
-                    )
-                ); ?>/' + page.id(),
-                start: function(e) {
-                    self.$(".fileinput-button").find("span").html("<?php echo __("In processing ..."); ?>");
-                    self.$(".fileinput-button").attr("disabled", "disabled");
-                },
-                done: function(e, data) {
-                    var d = $.parseJSON(data.result);
-                    if (d.status == 1) {
-                        page.$("[name=url]").val(d.data.filename);
-                        page.$("[name=type]").val(d.data.type);
-                        var isImage = false;
-                        for (i = 0; i < imageExts.length; i++) {
-                            if (d.data.type == imageExts[i]) {
-                                isImage = true;
-                                break;
-                            }
-                        }
-                        if (isImage) {
-                            self.render(d.data);
-                        } else {
-                            $(".upload-media").html(_.template(
-                                $("#template-result").html(),
-                                {
-                                    basename    : d.data.basename
+        var UploadView = Backbone.View.extend({
+            template: _.template('<div class="upload-image-bg"><div class="black-bg">'
+                + '<button type="button" class="close js-close">&times;</button></div>'
+                + '<img style="<% if (w/h > 1) { %>width: 100px; <% } else { %>height: 100px <% } %>"'
+                + 'src="<%= preview_url %>"></div>'
+            ),
+            events: {
+                "click .js-close": "remove",
+                "click button.close": "remove"
+            },
+            initialize: function () {
+                page.$("[name=placeholder]")
+                    .parents(".form-group:first")
+                    .find(".js-form-element")
+                    .html($("#temp-upload").html());
+                this.$el = $("#jsUpload");
+                this.input = this.$("[name=upload]");
+                this.fileupload();
+            },
+            fileupload: function () {
+                var self = this;
+                var imageExt = '<?php echo implode(',', $imageExtension); ?>';
+                var imageExts = new Array;
+                imageExts = imageExt.split(',');
+                this.input.fileupload({
+                    formData: function () {
+                        return [];
+                    },
+                    url: '<?php echo $this->url(
+                        '',
+                        [
+                            'controller' => 'media',
+                            'action'     => 'upload',
+                            'source'     => 'media',
+                        ]
+                    ); ?>/' + page.id(),
+                    start: function (e) {
+                        self.$(".fileinput-button").find("span").html("<?php echo __("In processing ..."); ?>");
+                        self.$(".fileinput-button").attr("disabled", "disabled");
+                    },
+                    done: function (e, data) {
+                        var d = $.parseJSON(data.result);
+                        if (d.status == 1) {
+                            page.$("[name=url]").val(d.data.filename);
+                            page.$("[name=type]").val(d.data.type);
+                            var isImage = false;
+                            for (i = 0; i < imageExts.length; i++) {
+                                if (d.data.type == imageExts[i]) {
+                                    isImage = true;
+                                    break;
                                 }
-                            ));
+                            }
+                            if (isImage) {
+                                self.render(d.data);
+                            } else {
+                                $(".upload-media").html(_.template(
+                                    $("#template-result").html(),
+                                    {
+                                        basename: d.data.basename
+                                    }
+                                ));
+                            }
+                        } else {
+                            alert(d.message);
                         }
-                    } else {
-                        alert(d.message);
+                        self.$(".fileinput-button").find("span").html("<?php echo __("Upload"); ?>");
+                        self.$(".fileinput-button").removeAttr("disabled");
                     }
-                    self.$(".fileinput-button").find("span").html("<?php echo __("Upload"); ?>");
-                    self.$(".fileinput-button").removeAttr("disabled");
-                }
-            });  
-        },
-        remove: function() {
-            var self = this;
-            $.getJSON('<?php echo $this->url(
-                '',
-                array(
-                    'controller' => 'media',
-                    'action'     => 'remove'
-                )
-            ); ?>' + page.id()).done(function() {
-                page.$("[name=url]").val('');
-                page.$("[name=type]").val('');
-                content = '<div class="alert alert-warning col-md-4">'
+                });
+            },
+            remove: function () {
+                var self = this;
+                $.getJSON('<?php echo $this->url(
+                        '',
+                        [
+                            'controller' => 'media',
+                            'action'     => 'remove',
+                        ]
+                    ); ?>' + page.id()).done(function () {
+                    page.$("[name=url]").val('');
+                    page.$("[name=type]").val('');
+                    content = '<div class="alert alert-warning col-md-4">'
                         + '<?php echo _a('No item!'); ?>'
                         + '</div>';
-                self.$(".upload-media").html(content);
-            });
-        },
-        render: function(obj) {
-            this.$(".upload-media").html(this.template(obj));
-        }
-    });
-new UploadView;
-})(jQuery)
+                    self.$(".upload-media").html(content);
+                });
+            },
+            render: function (obj) {
+                this.$(".upload-media").html(this.template(obj));
+            }
+        });
+        new UploadView;
+    })(jQuery)
 </script>

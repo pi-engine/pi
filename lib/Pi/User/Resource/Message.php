@@ -42,9 +42,9 @@ class Message extends AbstractResource
     /**
      * Send a message
      *
-     * @param int       $uid
-     * @param string    $message
-     * @param int       $from
+     * @param int $uid
+     * @param string $message
+     * @param int $from
      *
      * @return int|bool
      */
@@ -65,10 +65,10 @@ class Message extends AbstractResource
     /**
      * Send a notification
      *
-     * @param int       $uid
-     * @param string    $message
-     * @param string    $subject
-     * @param string    $tag
+     * @param int $uid
+     * @param string $message
+     * @param string $subject
+     * @param string $tag
      *
      * @return int|bool
      */
@@ -150,7 +150,7 @@ class Message extends AbstractResource
         }
         $url = Pi::service('url')->assemble(
             'default',
-            array('module' => 'message')
+            ['module' => 'message']
         );
 
         return $url;

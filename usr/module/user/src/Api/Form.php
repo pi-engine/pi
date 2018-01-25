@@ -9,9 +9,9 @@
 
 namespace Module\User\Api;
 
+use Module\User\Form\UserForm;
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Module\User\Form\UserForm;
 
 /**
  * User profile form manipulation APIs

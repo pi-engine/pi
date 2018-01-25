@@ -37,13 +37,13 @@ class Registry extends AbstractService
      * Handler container
      * @var AbstractRegistry[]
      */
-    protected $handler = array();
+    protected $handler = [];
 
     /**
      * Get registry handler
      *
-     * @param string        $name
-     * @param sting|null    $module
+     * @param string $name
+     * @param sting|null $module
      * @return AbstractRegistry
      */
     public function handler($name, $module = null)
@@ -61,8 +61,8 @@ class Registry extends AbstractService
     /**
      * Load registry handler
      *
-     * @param string        $name
-     * @param string|null   $module
+     * @param string $name
+     * @param string|null $module
      * @return AbstractRegistry
      */
     protected function loadHandler($name, $module = null)
@@ -72,7 +72,7 @@ class Registry extends AbstractService
             $class = sprintf('Pi\Application\Registry\\%s', $name);
         } else {
             $directory = Pi::service('module')->directory($module);
-            $class = sprintf(
+            $class     = sprintf(
                 'Module\\%s\Registry\\%s',
                 ucfirst($directory),
                 $name
@@ -127,16 +127,16 @@ class Registry extends AbstractService
      * `Pi::service('registry')-><registry-method>(<registry-name>, $args);`
      *
      * @param string $handlerName
-     * @param array  $args
+     * @param array $args
      *
      * @return mixed
      */
     public function __call($handlerName, $args)
     {
-        $method = array_shift($args);
+        $method  = array_shift($args);
         $handler = $this->handler($handlerName);
-        if (is_callable(array($handler, $method))) {
-            return call_user_func_array(array($handler, $method), $args);
+        if (is_callable([$handler, $method])) {
+            return call_user_func_array([$handler, $method], $args);
         }
     }
 
@@ -186,7 +186,7 @@ class Registry extends AbstractService
      */
     public function getList()
     {
-        $filter = function ($fileinfo) {
+        $filter       = function ($fileinfo) {
             if (!$fileinfo->isFile()) {
                 return false;
             }
@@ -196,8 +196,8 @@ class Registry extends AbstractService
             ) {
                 return false;
             }
-            $name = basename($directory, '.php');
-            $words = preg_split('/(?=[A-Z])/', $name, -1, PREG_SPLIT_NO_EMPTY);
+            $name     = basename($directory, '.php');
+            $words    = preg_split('/(?=[A-Z])/', $name, -1, PREG_SPLIT_NO_EMPTY);
             $registry = strtolower(implode('_', $words));
 
             return $registry;

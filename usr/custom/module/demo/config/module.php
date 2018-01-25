@@ -7,16 +7,16 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
+return [
     // Module meta
-    'meta'  => array(
+    'meta'     => [
         // Build metadata, optional
-        'build'         => '20140101',
-    ),
+        'build' => '20140101',
+    ],
     // Custom resource
-    'resource' => array(
-        'route'     => 'route.php',
-        'user'      => 'user.php',
-        'comment'   => 'comment.php',
-    ),
-);
+    'resource' => [
+        'route'   => 'route.php',
+        'user'    => 'user.php',
+        'comment' => 'comment.php',
+    ],
+];

@@ -68,83 +68,86 @@ class Host
      *
      * @var array
      */
-    protected $uri = array(
-        'www'       => '',
-        'asset'     => '',
-        'upload'    => '',
-        'static'    => '',
-    );
+    protected $uri
+        = [
+            'www'    => '',
+            'asset'  => '',
+            'upload' => '',
+            'static' => '',
+        ];
 
     /**
      * Specified paths
      *
      * @var array
      */
-    protected $path = array(
-        // paths specified in local hosts file
-        'www'       => '',
-        'asset'     => '',
-        'upload'    => '',
-        'static'    => '',
-        'usr'       => '',
-        'module'    => '',
-        'theme'     => '',
+    protected $path
+        = [
+            // paths specified in local hosts file
+            'www'    => '',
+            'asset'  => '',
+            'upload' => '',
+            'static' => '',
+            'usr'    => '',
+            'module' => '',
+            'theme'  => '',
 
-        // paths defined in boot.php or in application host
-        'lib'       => '',
-        'var'       => '',
+            // paths defined in boot.php or in application host
+            'lib'    => '',
+            'var'    => '',
 
-        // path dependent on var
-        'config'    => '',
+            // path dependent on var
+            'config' => '',
 
-        // paths dependent on var or specified in host file
-        'cache'     => '',
-        'log'       => '',
-    );
+            // paths dependent on var or specified in host file
+            'cache'  => '',
+            'log'    => '',
+        ];
 
     /**
      * Paths dependent on other paths
      *
      * @var array
      */
-    protected $directory = array(
-        'public'    => array(
-            'parent'    => 'www',
-            'folder'    => 'public',
-        ),
-        'asset' => array(
-            'parent'    => 'www',
-            'folder'    => 'asset',
-        ),
-        'upload' => array(
-            'parent'    => 'www',
-            'folder'    => 'upload',
-        ),
-        'static' => array(
-            'parent'    => 'www',
-            'folder'    => 'static',
-        ),
-        'module' => array(
-            'parent'    => 'usr',
-            'folder'    => 'module',
-        ),
-        'theme' => array(
-            'parent'    => 'usr',
-            'folder'    => 'theme',
-        ),
-        'custom' => array(
-            'parent'    => 'usr',
-            'folder'    => 'custom',
-        ),
-        'config' => array(
-            'parent'    => 'var',
-            'folder'    => 'config',
-        ),
-        'log' => array(
-            'parent'    => 'var',
-            'folder'    => 'log',
-        ),
-    );
+    protected $directory
+        = [
+            'public' => [
+                'parent' => 'www',
+                'folder' => 'public',
+            ],
+            'asset'  => [
+                'parent' => 'www',
+                'folder' => 'asset',
+            ],
+            'upload' => [
+                'parent' => 'www',
+                'folder' => 'upload',
+            ],
+            'static' => [
+                'parent' => 'www',
+                'folder' => 'static',
+            ],
+            'module' => [
+                'parent' => 'usr',
+                'folder' => 'module',
+            ],
+            'theme'  => [
+                'parent' => 'usr',
+                'folder' => 'theme',
+            ],
+            'custom' => [
+                'parent' => 'usr',
+                'folder' => 'custom',
+            ],
+            'config' => [
+                'parent' => 'var',
+                'folder' => 'config',
+            ],
+            'log'    => [
+                'parent' => 'var',
+                'folder' => 'log',
+            ],
+        ];
 
     /**
      * Constructor
@@ -153,7 +156,7 @@ class Host
      *
      * @return \Pi\Application\Host
      */
-    public function __construct($config = array())
+    public function __construct($config = [])
     {
         $this->setHost($config);
     }
@@ -167,7 +170,7 @@ class Host
     {
         // Build current request URI
         $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
-                  ? 'https' : 'http';
+            ? 'https' : 'http';
         $host   = $_SERVER['HTTP_HOST'];
         if (!$host) {
             $port = $_SERVER['SERVER_PORT'];
@@ -188,8 +191,8 @@ class Host
     /**
      * Lookup host configuration file path in central host configuration
      *
-     * @param array     $config
-     * @param string    $hostIdentifier
+     * @param array $config
+     * @param string $hostIdentifier
      * @return array
      */
     protected function lookup($config, $hostIdentifier = '')
@@ -201,18 +204,18 @@ class Host
         // Invalid hosts data, return empty data
         if (!isset($config['hosts']) || !isset($config['alias'])) {
             trigger_error('Invalid hosts config.', E_USER_ERROR);
-            return array();
+            return [];
         }
 
         // Build current request URI
-        $uri = isset($_SERVER['REQUEST_URI'])
-               ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
+        $uri        = isset($_SERVER['REQUEST_URI'])
+            ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
         $requestUri = rtrim($this->getBaseLocation()
-                    . ($uri ? '/' . trim($uri, '/') : ''), '/') . '/';
+                . ($uri ? '/' . trim($uri, '/') : ''), '/') . '/';
 
         // Lookup identifier against alias list
         $lookup = function ($conf) use ($requestUri) {
-            foreach($conf as $uri => $identifier) {
+            foreach ($conf as $uri => $identifier) {
                 $uri = rtrim($uri, '/') . '/';
                 if (0 === strpos($requestUri, $uri)) {
                     return $identifier;
@@ -239,19 +242,19 @@ class Host
     /**
      * Set host data based on passed config or data loaded from config file
      *
-     * @param string|array  $config Host file path or array of path settings
+     * @param string|array $config Host file path or array of path settings
      * @return self
      */
     public function setHost($config)
     {
-        $hostConfig = array();
-        $hostFile = '';
+        $hostConfig     = [];
+        $hostFile       = '';
         $hostIdentifier = '';
 
         // Host file path is specified
         if (is_string($config)) {
             $hostFile = $config;
-            $config = array();
+            $config   = [];
         } elseif (isset($config['file'])) {
             $hostFile = $config['file'];
             unset($config['file']);
@@ -306,24 +309,24 @@ class Host
         }
 
         // Load from config file
-        $this->path         = $hostConfig['path'];
-        $this->uri          = $hostConfig['uri'];
+        $this->path = $hostConfig['path'];
+        $this->uri  = $hostConfig['uri'];
         if (!empty($hostConfig['directory'])) {
-            $this->directory    = $hostConfig['directory'];
+            $this->directory = $hostConfig['directory'];
         }
 
         // Set baseLocation
         $pos = strpos($hostConfig['uri']['www'], '/', 9);
         if ($pos === false) {
             $this->baseLocation = $hostConfig['uri']['www'];
-            $this->baseUrl = '';
+            $this->baseUrl      = '';
         } else {
             $this->baseLocation = substr($hostConfig['uri']['www'], 0, $pos);
-            $this->baseUrl = substr($hostConfig['uri']['www'], $pos);
+            $this->baseUrl      = substr($hostConfig['uri']['www'], $pos);
         }
 
         // Set dependent paths
-        foreach (array('config', 'cache', 'log') as $path) {
+        foreach (['config', 'cache', 'log'] as $path) {
             if (empty($this->path[$path])) {
                 $this->path[$path] = $this->path['var'] . '/' . $path;
             }
@@ -335,7 +338,7 @@ class Host
     /**
      * Get a protected variable
      *
-     * @param  string    $var
+     * @param  string $var
      * @return mixed
      */
     public function get($var)
@@ -350,8 +353,8 @@ class Host
     /**
      * Get value for a protected variable
      *
-     * @param  string   $var
-     * @param  mixed    $value
+     * @param  string $var
+     * @param  mixed $value
      * @return self
      */
     public function set($var, $value = null)
@@ -375,34 +378,34 @@ class Host
      */
     public function path($url)
     {
-        $uri        = null;
-        $section    = null;
-        $path       = null;
+        $uri     = null;
+        $section = null;
+        $path    = null;
         // Path of predefined section, w/o sub path
         if (!empty($this->path[$url])) {
-            list($section, $path) = array($url, '');
-        // Relative path with predefined directory
+            list($section, $path) = [$url, ''];
+            // Relative path with predefined directory
         } elseif (!empty($this->directory[$url])) {
-            $directory  = $this->directory[$url];
-            $section    = $directory['parent'];
-            $path       = $directory['folder'];
-        // Relative path
+            $directory = $this->directory[$url];
+            $section   = $directory['parent'];
+            $path      = $directory['folder'];
+            // Relative path
         } elseif (false === strpos($url, ':') && $url{0} !== '/') {
             // No '/' included, map to www path
             if (false === strpos($url, '/')) {
-                list($section, $path) = array('www', $url);
-            // Split at the first '/'
+                list($section, $path) = ['www', $url];
+                // Split at the first '/'
             } else {
                 list($section, $path) = explode('/', $url, 2);
                 // If $root is not a section, match to www
                 if (!isset($this->path[$section])) {
-                    list($section, $path) = array('www', $url);
+                    list($section, $path) = ['www', $url];
                 }
             }
             if (!empty($this->directory[$section])) {
-                $directory  = $this->directory[$section];
-                $section    = $directory['parent'];
-                $path       = $directory['folder'] . '/' . $path;
+                $directory = $this->directory[$section];
+                $section   = $directory['parent'];
+                $path      = $directory['folder'] . '/' . $path;
             }
         } else {
             $uri = $url;
@@ -416,7 +419,7 @@ class Host
             } else {
                 // Append www path to sectionUri if it is relative
                 $uri = $this->path['www']
-                     . ($sectionUri ? '/' . $sectionUri : '');
+                    . ($sectionUri ? '/' . $sectionUri : '');
             }
             // Assemble full path
             $uri .= $path ? '/' . $path : '';
@@ -436,53 +439,53 @@ class Host
      *  - First part as section, map to `www` if no section matched, otherwise
      *  - If section URI is relative, `www` URI will be appended.
      *
-     * @param string    $url
-     * @param bool      $absolute
+     * @param string $url
+     * @param bool $absolute
      *  Convert to full URI; Default as relative URI with no hostname
      * @return string
      * @see Pi::url()
      */
     public function url($url = '', $absolute = false)
     {
-        $uri        = null;
-        $section    = null;
-        $path       = null;
+        $uri     = null;
+        $section = null;
+        $path    = null;
         // URI of predefined section, w/o sub path
         if (!empty($this->uri[$url])) {
-            list($section, $path) = array($url, '');
-        // Relative URI with predefined directory
+            list($section, $path) = [$url, ''];
+            // Relative URI with predefined directory
         } elseif (!empty($this->directory[$url])
             && !empty($this->uri[$this->directory[$url]['parent']])
         ) {
-            $directory  = $this->directory[$url];
-            $section    = $directory['parent'];
-            $path       = $directory['folder'];
-        // Absolute URI with leading `//`
+            $directory = $this->directory[$url];
+            $section   = $directory['parent'];
+            $path      = $directory['folder'];
+            // Absolute URI with leading `//`
         } elseif (0 === strpos($url, '//')) {
             $uri = $url;
-        // In-Pi absolute URI with leading `/`
+            // In-Pi absolute URI with leading `/`
         } elseif (0 === strpos($url, '/')) {
             $uri = $this->baseLocation . $url;
-        // Absolute URI with scheme
+            // Absolute URI with scheme
         } elseif (false !== strpos($url, '://')) {
             $uri = $url;
-        // Relative URI
+            // Relative URI
         } else {
             // No '/' included, map to www path
             if (false === strpos($url, '/')) {
-                list($section, $path) = array('www', $url);
-            // Split at the first '/'
+                list($section, $path) = ['www', $url];
+                // Split at the first '/'
             } else {
                 list($section, $path) = explode('/', $url, 2);
                 // If $root is not a section, match to www
                 if (!isset($this->uri[$section])) {
-                    list($section, $path) = array('www', $url);
+                    list($section, $path) = ['www', $url];
                 }
             }
             if (!empty($this->directory[$section])) {
-                $directory  = $this->directory[$section];
-                $section    = $directory['parent'];
-                $path       = $directory['folder'] . '/' . $path;
+                $directory = $this->directory[$section];
+                $section   = $directory['parent'];
+                $path      = $directory['folder'] . '/' . $path;
             }
         }
 
@@ -496,7 +499,7 @@ class Host
                 $uri = $this->baseUrl . ($sectionUri ? '/' . $sectionUri : '');
                 if ($absolute) {
                     $uri = $this->baseLocation
-                         . ($uri ? '/' . ltrim($uri, '/') : '');
+                        . ($uri ? '/' . ltrim($uri, '/') : '');
                 }
             }
             // Assemble full URI

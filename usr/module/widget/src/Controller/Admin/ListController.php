@@ -13,7 +13,7 @@ use Pi;
 
 /**
  * For list group block
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class ListController extends WidgetController
@@ -40,10 +40,10 @@ class ListController extends WidgetController
      */
     protected function canonizePost(array $values)
     {
-        $items = json_decode($values['content'], true);
-        $items = $this->canonizeUrls($items);
+        $items             = json_decode($values['content'], true);
+        $items             = $this->canonizeUrls($items);
         $values['content'] = json_encode($items);
-        $values = parent::canonizePost($values);
+        $values            = parent::canonizePost($values);
 
         return $values;
     }
@@ -73,8 +73,8 @@ class ListController extends WidgetController
      */
     protected function prepareContent($content)
     {
-        $items = $content ? json_decode($content, true) : array();
-        $items = array_filter($items);
+        $items   = $content ? json_decode($content, true) : [];
+        $items   = array_filter($items);
         $content = json_encode($items);
 
         return $content;

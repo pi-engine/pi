@@ -9,11 +9,11 @@
 
 namespace Module\Page\Controller\Admin;
 
+use Module\Page\Form\PageFilter;
+use Module\Page\Form\PageForm;
 use Pi;
 use Pi\Filter;
 use Pi\Mvc\Controller\ActionController;
-use Module\Page\Form\PageForm;
-use Module\Page\Form\PageFilter;
 
 /**
  * Index action controller
@@ -26,13 +26,13 @@ class IndexController extends ActionController
     public function indexAction()
     {
         $model  = $this->getModel('page');
-        $select = $model->select()->order(array('active DESC', 'nav_order ASC', 'id DESC'));
+        $select = $model->select()->order(['active DESC', 'nav_order ASC', 'id DESC']);
         $rowset = $model->selectWith($select);
-        $pages  = array();
-        $menu   = array();
+        $pages  = [];
+        $menu   = [];
         foreach ($rowset as $row) {
-            $page           = $row->toArray();
-            $page['url']    = $this->url('page', $page);
+            $page        = $row->toArray();
+            $page['url'] = $this->url('page', $page);
             if ($page['nav_order'] && $page['active']) {
                 $menu[] = $page;
             } else {
@@ -52,16 +52,16 @@ class IndexController extends ActionController
     public function addAction()
     {
         if ($this->request->isPost()) {
-            $data = $this->request->getPost();
+            $data   = $this->request->getPost();
             $markup = $data['markup'];
             // Set slug
             if (!empty($data['slug'])) {
-                $filter = new Filter\Slug;
+                $filter       = new Filter\Slug;
                 $data['slug'] = $filter($data['slug']);
             }
             // Set name
             if (!empty($data['name'])) {
-                $filter = new Filter\Slug;
+                $filter       = new Filter\Slug;
                 $data['name'] = $filter($data['name']);
             }
             // Set form
@@ -76,8 +76,8 @@ class IndexController extends ActionController
                 if (empty($values['slug'])) {
                     $values['slug'] = null;
                 }
-                $values['active'] = 1;
-                $values['user'] = Pi::service('user')->getUser()->id;
+                $values['active']       = 1;
+                $values['user']         = Pi::service('user')->getUser()->id;
                 $values['time_created'] = time();
                 unset($values['id']);
                 // Save
@@ -85,11 +85,11 @@ class IndexController extends ActionController
                 if ($id) {
                     // Add / Edit sitemap link
                     if (Pi::service('module')->isActive('sitemap')) {
-                        $loc = Pi::url($this->url('page', array(
-                            'slug'  => $values['slug'],
-                            'name'  => $values['name'],
-                            'id'    => $id,
-                        )));
+                        $loc = Pi::url($this->url('page', [
+                            'slug' => $values['slug'],
+                            'name' => $values['name'],
+                            'id'   => $id,
+                        ]));
                         Pi::api('sitemap', 'sitemap')->singleLink(
                             $loc,
                             $values['active'] ? 1 : 2,
@@ -100,7 +100,7 @@ class IndexController extends ActionController
                     }
                     // Set jump
                     $message = _a('Page data saved successfully.');
-                    return $this->jump(array('action' => 'index'), $message);
+                    return $this->jump(['action' => 'index'], $message);
                 } else {
                     $message = _a('Page data not saved.');
                 }
@@ -109,17 +109,17 @@ class IndexController extends ActionController
             }
         } else {
             $markup = $this->params('type', 'html');
-            $form = new PageForm('page-form', $markup);
+            $form   = new PageForm('page-form', $markup);
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'add'))
+                $this->url('', ['action' => 'add'])
             );
             if ('phtml' == $markup) {
                 $template = $this->params('template');
                 if ($template) {
-                    $form->setData(array(
-                        'content'   => $template,
-                    ));
+                    $form->setData([
+                        'content' => $template,
+                    ]);
                 }
             }
             $message = '';
@@ -139,16 +139,16 @@ class IndexController extends ActionController
     {
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
-            $id = $data['id'];
-            $row = $this->getModel('page')->find($id);
+            $id   = $data['id'];
+            $row  = $this->getModel('page')->find($id);
             // Set slug
             if (!empty($data['slug'])) {
-                $filter = new Filter\Slug;
+                $filter       = new Filter\Slug;
                 $data['slug'] = $filter($data['slug']);
             }
             // Set name
             if (!empty($data['name'])) {
-                $filter = new Filter\Slug;
+                $filter       = new Filter\Slug;
                 $data['name'] = $filter($data['name']);
             }
             // Set form
@@ -177,11 +177,11 @@ class IndexController extends ActionController
                 Pi::service('cache')->flush('module', $this->getModule());
                 // Add / Edit sitemap link
                 if (Pi::service('module')->isActive('sitemap')) {
-                    $loc = Pi::url($this->url('page', array(
-                        'slug'  => $row->slug,
-                        'name'  => $row->name,
-                        'id'    => $row->id,
-                    )));
+                    $loc = Pi::url($this->url('page', [
+                        'slug' => $row->slug,
+                        'name' => $row->name,
+                        'id'   => $row->id,
+                    ]));
                     Pi::api('sitemap', 'sitemap')->singleLink($loc,
                         $row->active ? 1 : 2,
                         $this->getModule(),
@@ -190,19 +190,19 @@ class IndexController extends ActionController
                     );
                 }
                 $message = _a('Page data saved successfully.');
-                return $this->jump(array('action' => 'index'), $message);
+                return $this->jump(['action' => 'index'], $message);
             } else {
                 $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
-            $id = $this->params('id');
-            $row = $this->getModel('page')->find($id);
+            $id   = $this->params('id');
+            $row  = $this->getModel('page')->find($id);
             $data = $row->toArray();
             $form = new PageForm('page-form', $row->markup);
             $form->setData($data);
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'edit'))
+                $this->url('', ['action' => 'edit'])
             );
             $message = '';
         }
@@ -219,7 +219,7 @@ class IndexController extends ActionController
      */
     public function deleteAction()
     {
-        $id = $this->params('id');
+        $id  = $this->params('id');
         $row = $this->getModel('page')->find($id);
         if ($row) {
             $page = $row->toArray();
@@ -238,7 +238,7 @@ class IndexController extends ActionController
         }
 
         return $this->jump(
-            array('action' => 'index'),
+            ['action' => 'index'],
             _a('Page deleted successfully.')
         );
     }
@@ -249,7 +249,7 @@ class IndexController extends ActionController
      */
     public function activateAction()
     {
-        $id = $this->params('id');
+        $id  = $this->params('id');
         $row = $this->getModel('page')->find($id);
         if ($row) {
             $row->active = $row->active ? 0 : 1;
@@ -260,11 +260,11 @@ class IndexController extends ActionController
         Pi::registry('nav', $this->getModule())->flush();
 
         if (Pi::service('module')->isActive('sitemap')) {
-            $loc = Pi::url($this->url('page', array(
-                'slug'  => $row->slug,
-                'name'  => $row->name,
-                'id'    => $row->id,
-            )));
+            $loc = Pi::url($this->url('page', [
+                'slug' => $row->slug,
+                'name' => $row->name,
+                'id'   => $row->id,
+            ]));
             Pi::api('sitemap', 'sitemap')->singleLink(
                 $loc,
                 $row->active ? 1 : 2,
@@ -275,7 +275,7 @@ class IndexController extends ActionController
         }
 
         return $this->jump(
-            array('action' => 'index'),
+            ['action' => 'index'],
             _a('Page updated successfully.')
         );
     }
@@ -287,17 +287,17 @@ class IndexController extends ActionController
     public function menuAction()
     {
         $orders = $this->params('order');
-        $model = $this->getModel('page');
+        $model  = $this->getModel('page');
         foreach ($orders as $id => $value) {
             $model->update(
-                array('nav_order' => (int) $value),
-                array('id' => (int) $id)
+                ['nav_order' => (int)$value],
+                ['id' => (int)$id]
             );
         }
         Pi::registry('nav', $this->getModule())->flush();
 
         return $this->jump(
-            array('action' => 'index'),
+            ['action' => 'index'],
             _a('Page navigation menu updated successfully.')
         );
     }
@@ -314,26 +314,26 @@ class IndexController extends ActionController
         if (!$name) {
             return;
         }
-        $page = array(
-            'section'       => 'front',
-            'module'        => $this->getModule(),
-            'controller'    => 'index',
-            'action'        => $name,
-        );
-        $row = Pi::model('page')->select($page)->current();
+        $page = [
+            'section'    => 'front',
+            'module'     => $this->getModule(),
+            'controller' => 'index',
+            'action'     => $name,
+        ];
+        $row  = Pi::model('page')->select($page)->current();
         if ($row) {
             $row->title = $title;
         } else {
-            $page = array(
-                'section'       => 'front',
-                'module'        => $this->getModule(),
-                'controller'    => 'index',
-                'action'        => $name,
-                'title'         => $title,
-                'block'         => 1,
-                'custom'        => 0,
-            );
-            $row = Pi::model('page')->createRow($page);
+            $page = [
+                'section'    => 'front',
+                'module'     => $this->getModule(),
+                'controller' => 'index',
+                'action'     => $name,
+                'title'      => $title,
+                'block'      => 1,
+                'custom'     => 0,
+            ];
+            $row  = Pi::model('page')->createRow($page);
         }
         $row->save();
         Pi::registry('page', $this->getModule())->flush();
@@ -349,12 +349,12 @@ class IndexController extends ActionController
      */
     protected function removePage($name)
     {
-        $where = array(
-            'section'       => 'front',
-            'module'        => $this->getModule(),
-            'controller'    => 'index',
-            'action'        => $name,
-        );
+        $where = [
+            'section'    => 'front',
+            'module'     => $this->getModule(),
+            'controller' => 'index',
+            'action'     => $name,
+        ];
         $count = Pi::model('page')->delete($where);
 
         return $count;

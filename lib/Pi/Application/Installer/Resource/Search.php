@@ -54,14 +54,14 @@ class Search extends AbstractResource
                 $class = $config['class'];
             }
         }
-        $class = $class ?: 'search';
+        $class     = $class ?: 'search';
         $directory = $this->event->getParam('directory');
-        $class = sprintf(
+        $class     = sprintf(
             'Module\\%s\Api\\%s',
             ucfirst($directory),
             ucfirst($class)
         );
-        $abstract = 'Pi\Search\AbstractSearch';
+        $abstract  = 'Pi\Search\AbstractSearch';
         if (class_exists($class) && is_subclass_of($class, $abstract)) {
             $result = $class;
         } else {
@@ -82,11 +82,11 @@ class Search extends AbstractResource
         if (!$class) {
             return;
         }
-        $data = array(
-            'module'    => $module,
-            'callback'  => $class,
-        );
-        $row = Pi::model('search')->createRow($data);
+        $data = [
+            'module'   => $module,
+            'callback' => $class,
+        ];
+        $row  = Pi::model('search')->createRow($data);
         $row->save();
 
         return true;
@@ -107,17 +107,17 @@ class Search extends AbstractResource
         if (!$class) {
             return;
         }
-        $model = Pi::model('search');
-        $rowset = $model->select(array('module' => $module));
-        $row = $rowset->current();
+        $model  = Pi::model('search');
+        $rowset = $model->select(['module' => $module]);
+        $row    = $rowset->current();
         if ($row && !$class) {
             $row->delete();
             return;
         }
-        $data = array(
-            'module'    => $module,
-            'callback'  => $class,
-        );
+        $data = [
+            'module'   => $module,
+            'callback' => $class,
+        ];
         if ($row) {
             $row->assign($data);
         } else {
@@ -137,7 +137,7 @@ class Search extends AbstractResource
         Pi::registry('search')->flush();
 
         $model = Pi::model('search');
-        $model->delete(array('module' => $module));
+        $model->delete(['module' => $module]);
 
         return true;
     }
@@ -148,8 +148,8 @@ class Search extends AbstractResource
     public function activateAction()
     {
         $module = $this->event->getParam('module');
-        $model = Pi::model('search');
-        $model->update(array('active' => 1), array('module' => $module));
+        $model  = Pi::model('search');
+        $model->update(['active' => 1], ['module' => $module]);
         Pi::registry('search')->flush();
 
         return true;
@@ -161,8 +161,8 @@ class Search extends AbstractResource
     public function deactivateAction()
     {
         $module = $this->event->getParam('module');
-        $model = Pi::model('search');
-        $model->update(array('active' => 0), array('module' => $module));
+        $model  = Pi::model('search');
+        $model->update(['active' => 0], ['module' => $module]);
         Pi::registry('search')->flush();
 
         return true;

@@ -32,8 +32,8 @@ class I18n extends AbstractHelper
     /**
      * Load an i18n resource
      *
-     * @param   string  $component
-     * @param   string  $file
+     * @param   string $component
+     * @param   string $file
      * @return  self
      */
     public function __invoke($component, $file)

@@ -21,10 +21,10 @@ class VideoTemplate extends MediaTemplate
      */
     protected function getStyles()
     {
-        $styles = array(
-            $this->templateDir . '/video-only'      => _a('Player only'),
-            $this->templateDir . '/video-summary'   => _a('Player and summary'),
-        );
+        $styles = [
+            $this->templateDir . '/video-only'    => _a('Player only'),
+            $this->templateDir . '/video-summary' => _a('Player and summary'),
+        ];
         $styles += $this->getList();
 
         return $styles;

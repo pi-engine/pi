@@ -18,4 +18,5 @@ namespace Pi\View\Helper;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Pagination extends PaginationControl
-{}
+{
+}

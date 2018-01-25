@@ -27,23 +27,25 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
-    protected $searchIn = array(
-        'subject',
-        'subtitle',
-        'summary',
-        'content'
-    );
+    protected $searchIn
+        = [
+            'subject',
+            'subtitle',
+            'summary',
+            'content',
+        ];
 
     /**
      * {@inheritDoc}
      */
-    protected $meta = array(
-        'id'            => 'id',
-        'subject'       => 'title',
-        'summary'       => 'content',
-        'time_publish'  => 'time',
-        'uid'           => 'uid',
-    );
+    protected $meta
+        = [
+            'id'           => 'id',
+            'subject'      => 'title',
+            'summary'      => 'content',
+            'time_publish' => 'time',
+            'uid'          => 'uid',
+        ];
 
     /**
      * {@inheritDoc}
@@ -52,7 +54,7 @@ class Search extends AbstractSearch
     {
         $link = Pi::service('url')->assemble(
             'article',
-            array('module' => $this->module, 'id' => $item['id'])
+            ['module' => $this->module, 'id' => $item['id']]
         );
 
         return $link;
