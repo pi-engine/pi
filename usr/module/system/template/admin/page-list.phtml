@@ -1,105 +1,108 @@
 <?php
-    $this->css($this->assetModule('admin/admin.css'));
-    $this->jQuery();
-    $this->backbone();
-?> 
+$this->css($this->assetModule('admin/admin.css'));
+$this->jQuery();
+$this->backbone();
+?>
 <div id="page-list-page" class="page-list-page">
     <?php foreach ($pagesBySection as $key => $section) { ?>
-    <fieldset>
-        <legend><?php echo $section['title']; ?><?php if ($key == 'front') { ?><button class="btn btn-primary js-add" style="margin-left: 20px;"><?php echo _a('Setup a page'); ?></button><?php } ?></legend>
-        <table class="table table-striped">
-        <thead>
-            <tr>
-                <th style="width: 40%;"><?php echo _a('Title'); ?></th>
-                <th><?php echo _a('Action'); ?></th>
-            </tr>    
-        </thead>
-        <tbody>
-            <?php foreach ($section['pages'] as $page) { ?>
-            <tr data-id="<?php echo $page['id']; ?>">
-                <td>
-                    <?php echo _escape($page['title']); ?>
-                </td>
-                <td>
-                    <div class="btn-group btns-indent">
-                        <!--
+        <fieldset>
+            <legend><?php echo $section['title']; ?><?php if ($key == 'front') { ?>
+                    <button class="btn btn-primary js-add"
+                            style="margin-left: 20px;"><?php echo _a('Setup a page'); ?></button><?php } ?></legend>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th style="width: 40%;"><?php echo _a('Title'); ?></th>
+                    <th><?php echo _a('Action'); ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($section['pages'] as $page) { ?>
+                    <tr data-id="<?php echo $page['id']; ?>">
+                        <td>
+                            <?php echo _escape($page['title']); ?>
+                        </td>
+                        <td>
+                            <div class="btn-group btns-indent">
+                                <!--
                         <?php if ($page['id']) { ?>
                             <a class="btn btn-link js-edit"><?php echo _a('Edit'); ?></a>
                         <?php } ?>
                         -->
-                        <?php if ($page['block']) { ?>
-                            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'block', 'page' => $page['id'], 'name' => $name)); ?>"><?php echo _a('Dress up'); ?></a>
-                        <?php } ?>
-                        <?php if ($page['custom']) { ?>
-                            <a class="btn btn-link js-delete"><?php echo _a('Delete'); ?></a>
-                        <?php } ?>
-                    </div>
-                </td>    
-            </tr>
-            <?php } ?>
-         </tbody>   
-        </table>
-    </fieldset>
+                                <?php if ($page['block']) { ?>
+                                    <a class="btn btn-link"
+                                       href="<?php echo $this->url('', ['action' => 'block', 'page' => $page['id'], 'name' => $name]); ?>"><?php echo _a('Dress up'); ?></a>
+                                <?php } ?>
+                                <?php if ($page['custom']) { ?>
+                                    <a class="btn btn-link js-delete"><?php echo _a('Delete'); ?></a>
+                                <?php } ?>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </fieldset>
     <?php } ?>
 </div>
 <script>
-(function($) {
-    var page = {
-        modal: $("<div>", { "class": "modal fade" }).appendTo(document.body),
-        el: $('#page-list-page'),
-        $: function(selector) {
-            return this.el.find(selector);
-        },
-        init: function() {
-            _.bindAll(this);
-            this.$('.js-edit').click(this.showEditModal);
-            this.$('.js-delete').click(this.deleteAction);
-            this.$('.js-add').click(this.addAction);
-        },
-        showEditModal: function(e) {
-            var self = this;
-            var urlEdit = '<?php echo $this->url('', array('action' => 'edit', 'id' => '__PAGEID__')); ?>';
-            urlEdit = urlEdit.replace('__PAGEID__', this.getId($(e.target)));
-            //$.get('<?php echo $this->url('', array('action' => 'edit', 'id' => '')); ?>' + this.getId($(e.target))).done(function(res) {
-            $.get(urlEdit).done(function(res) {
-                self.modal.html(res);
-                self.modal.modal('show');
-                formModule.success =  function() {
-                    self.modal.modal('hide');
-                };
-            });
-        },
-        addAction: function() {
-            var self = this;
-            $.get('<?php echo $this->url('', array('action' => 'add', 'name' => $name)); ?>').done(function(res) {
-                self.modal.html(res);
-                self.modal.modal('show');
-                formModule.success = function() {
-                    self.modal.modal('hide');
-                    location.href = location.href;
-                };
-            });
-        },
-        deleteAction: function(e) {
-            var tar = $(e.target),
-                p = tar.parents('tr');
-            if (confirm('<?php echo _a("Are you sure to delete the page?") ?>')) {
-                var urlDelete = '<?php echo $this->url('', array('action' => 'delete', 'id' => '__PAGEID__')); ?>';
-                urlDelete = urlDelete.replace('__PAGEID__', this.getId(tar));
-                //$.get('<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>' + this.getId(tar)).done(function(res) {
-                $.get(urlDelete).done(function(res) {
-                    if (res == 1) {
-                        p.fadeOut(150, function() {
-                            p.remove();
-                        });
-                    }
+    (function ($) {
+        var page = {
+            modal: $("<div>", {"class": "modal fade"}).appendTo(document.body),
+            el: $('#page-list-page'),
+            $: function (selector) {
+                return this.el.find(selector);
+            },
+            init: function () {
+                _.bindAll(this);
+                this.$('.js-edit').click(this.showEditModal);
+                this.$('.js-delete').click(this.deleteAction);
+                this.$('.js-add').click(this.addAction);
+            },
+            showEditModal: function (e) {
+                var self = this;
+                var urlEdit = '<?php echo $this->url('', ['action' => 'edit', 'id' => '__PAGEID__']); ?>';
+                urlEdit = urlEdit.replace('__PAGEID__', this.getId($(e.target)));
+                //$.get('<?php echo $this->url('', ['action' => 'edit', 'id' => '']); ?>' + this.getId($(e.target))).done(function(res) {
+                $.get(urlEdit).done(function (res) {
+                    self.modal.html(res);
+                    self.modal.modal('show');
+                    formModule.success = function () {
+                        self.modal.modal('hide');
+                    };
                 });
+            },
+            addAction: function () {
+                var self = this;
+                $.get('<?php echo $this->url('', ['action' => 'add', 'name' => $name]); ?>').done(function (res) {
+                    self.modal.html(res);
+                    self.modal.modal('show');
+                    formModule.success = function () {
+                        self.modal.modal('hide');
+                        location.href = location.href;
+                    };
+                });
+            },
+            deleteAction: function (e) {
+                var tar = $(e.target),
+                    p = tar.parents('tr');
+                if (confirm('<?php echo _a("Are you sure to delete the page?") ?>')) {
+                    var urlDelete = '<?php echo $this->url('', ['action' => 'delete', 'id' => '__PAGEID__']); ?>';
+                    urlDelete = urlDelete.replace('__PAGEID__', this.getId(tar));
+                    //$.get('<?php echo $this->url('', ['action' => 'delete', 'id' => '']); ?>' + this.getId(tar)).done(function(res) {
+                    $.get(urlDelete).done(function (res) {
+                        if (res == 1) {
+                            p.fadeOut(150, function () {
+                                p.remove();
+                            });
+                        }
+                    });
+                }
+            },
+            getId: function (tar) {
+                return tar.parents('tr').attr('data-id');
             }
-        },
-        getId: function(tar) {
-            return tar.parents('tr').attr('data-id');
         }
-    }
-    page.init();
-})(jQuery)
+        page.init();
+    })(jQuery)
 </script>

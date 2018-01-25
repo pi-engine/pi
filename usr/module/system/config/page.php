@@ -12,137 +12,137 @@
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
+return [
     // Front section
-    'front' => array(
+    'front' => [
         // homepage
-        array(
-            'title'         => _a('Homepage'),
-            'module'        => 'system',
-            'controller'    => 'index',
-            'action'        => 'index',
-            'block'         => 1,
-        ),
+        [
+            'title'      => _a('Homepage'),
+            'module'     => 'system',
+            'controller' => 'index',
+            'action'     => 'index',
+            'block'      => 1,
+        ],
         // utility page, not used yet
-        array(
-            'title'         => _a('Utility'),
-            'module'        => 'system',
-            'controller'    => 'utility',
-            'block'         => 1,
-        ),
+        [
+            'title'      => _a('Utility'),
+            'module'     => 'system',
+            'controller' => 'utility',
+            'block'      => 1,
+        ],
         // error message page
-        array(
-            'title'         => _a('Error reporting'),
-            'module'        => 'system',
-            'controller'    => 'error',
-            'block'         => 0,
-        ),
-    ),
+        [
+            'title'      => _a('Error reporting'),
+            'module'     => 'system',
+            'controller' => 'error',
+            'block'      => 0,
+        ],
+    ],
     // Admin section
-    'admin' => array(
+    'admin' => [
         // System dashboard access
-        array(
-            'title'         => _a('Dashboard'),
-            'controller'    => 'dashboard',
+        [
+            'title'      => _a('Dashboard'),
+            'controller' => 'dashboard',
             //'permission'    => 'generic',
-        ),
+        ],
         // System readme
-        array(
-            'title'         => _a('Readme'),
-            'controller'    => 'readme',
+        [
+            'title'      => _a('Readme'),
+            'controller' => 'readme',
             //'permission'    => 'generic',
-        ),
+        ],
 
         // System managed components
         // config
-        array(
-            'title'         => _a('Config'),
-            'controller'    => 'config',
-            'permission'    => 'config',
-        ),
+        [
+            'title'      => _a('Config'),
+            'controller' => 'config',
+            'permission' => 'config',
+        ],
         // block
-        array(
-            'title'         => _a('Blocks'),
-            'controller'    => 'block',
-            'permission'    => 'block',
-        ),
+        [
+            'title'      => _a('Blocks'),
+            'controller' => 'block',
+            'permission' => 'block',
+        ],
         // page
-        array(
-            'title'         => _a('Pages'),
-            'controller'    => 'page',
-            'permission'    => 'page',
-        ),
+        [
+            'title'      => _a('Pages'),
+            'controller' => 'page',
+            'permission' => 'page',
+        ],
         // event
-        array(
-            'title'         => _a('Event/listener'),
-            'controller'    => 'event',
-            'permission'    => 'event',
-        ),
+        [
+            'title'      => _a('Event/listener'),
+            'controller' => 'event',
+            'permission' => 'event',
+        ],
         // Permissions
-        array(
-            'title'         => _a('Permissions'),
-            'controller'    => 'perm',
-            'permission'    => 'permission',
-        ),
+        [
+            'title'      => _a('Permissions'),
+            'controller' => 'perm',
+            'permission' => 'permission',
+        ],
 
         // Operations
         // module
-        array(
-            'title'         => _a('Modules'),
-            'controller'    => 'module',
-            'permission'    => 'module',
-        ),
+        [
+            'title'      => _a('Modules'),
+            'controller' => 'module',
+            'permission' => 'module',
+        ],
         // theme
-        array(
-            'title'         => _a('Themes'),
-            'controller'    => 'theme',
-            'permission'    => 'theme',
-        ),
+        [
+            'title'      => _a('Themes'),
+            'controller' => 'theme',
+            'permission' => 'theme',
+        ],
         // navigation
-        array(
-            'title'         => _a('Navigation'),
-            'controller'    => 'nav',
-            'permission'    => 'navigation',
-        ),
+        [
+            'title'      => _a('Navigation'),
+            'controller' => 'nav',
+            'permission' => 'navigation',
+        ],
 
         // Role
-        array(
-            'title'         => _a('Roles'),
-            'controller'    => 'role',
-            'permission'    => 'role',
-        ),
+        [
+            'title'      => _a('Roles'),
+            'controller' => 'role',
+            'permission' => 'role',
+        ],
         // User
-        array(
-            'title'         => _a('User'),
-            'controller'    => 'user',
-            'permission'    => 'user',
-        ),
+        [
+            'title'      => _a('User'),
+            'controller' => 'user',
+            'permission' => 'user',
+        ],
         // Maintenance operations
         // asset
-        array(
-            'title'         => _a('Asset'),
-            'controller'    => 'asset',
-            'permission'    => 'maintenance',
-        ),
+        [
+            'title'      => _a('Asset'),
+            'controller' => 'asset',
+            'permission' => 'maintenance',
+        ],
         // audit
-        array(
-            'title'         => _a('Auditing'),
-            'controller'    => 'audit',
-            'permission'    => 'maintenance',
-        ),
+        [
+            'title'      => _a('Auditing'),
+            'controller' => 'audit',
+            'permission' => 'maintenance',
+        ],
         // cache
-        array(
-            'title'         => _a('Cache'),
-            'controller'    => 'cache',
-            'permission'    => 'maintenance',
-        ),
-    ),
+        [
+            'title'      => _a('Cache'),
+            'controller' => 'cache',
+            'permission' => 'maintenance',
+        ],
+    ],
     // Feed section
-    'feed' => array(
-        array(
-            'cache_ttl'     => 0,
-            'cache_level'   => '',
-            'title'         => _a('What\'s new'),
-        ),
-    ),
-);
+    'feed'  => [
+        [
+            'cache_ttl'   => 0,
+            'cache_level' => '',
+            'title'       => _a('What\'s new'),
+        ],
+    ],
+];

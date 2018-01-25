@@ -9,7 +9,6 @@
 
 namespace Module\System\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**
@@ -24,29 +23,29 @@ class RoleFilter extends InputFilter
      */
     public function __construct()
     {
-        $this->add(array(
-            'name'          => 'name',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
+        $this->add([
+            'name'       => 'name',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
                 new \Module\System\Validator\RoleNameDuplicate(),
-            ),
+            ],
 
-        ));
+        ]);
 
-        $this->add(array(
-            'name'          => 'title',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'     => 'title',
+            'required' => true,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
         /*
         $this->add(array(
@@ -60,17 +59,17 @@ class RoleFilter extends InputFilter
         ));
         */
 
-        $this->add(array(
-            'name'          => 'id',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'id',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'section',
-        ));
+        $this->add([
+            'name' => 'section',
+        ]);
 
-        $this->add(array(
-            'name'          => 'active',
-        ));
+        $this->add([
+            'name' => 'active',
+        ]);
     }
 }

@@ -19,7 +19,7 @@ use Pi\Form\Form as BaseForm;
  */
 class LoginForm extends BaseForm
 {
-    protected $config = array();
+    protected $config = [];
 
     /**
      * Constructor
@@ -27,12 +27,12 @@ class LoginForm extends BaseForm
      * @param string $name
      * @param array $config
      */
-    public function __construct($name, array $config = array())
+    public function __construct($name, array $config = [])
     {
         if (!$config) {
             $config = Pi::user()->config();
         }
-        $this->config  = $config;
+        $this->config = $config;
         parent::__construct($name);
     }
 
@@ -44,59 +44,59 @@ class LoginForm extends BaseForm
         $config = $this->config;
 
         // Get config data.
-        $this->add(array(
-            'name'          => 'identity',
-            'type'          => 'Pi\Form\Element\LoginField',
-            'options'       => array(
-                'fields'    => $config['login_field'],
-            ),
-            'attributes' => array(
+        $this->add([
+            'name'       => 'identity',
+            'type'       => 'Pi\Form\Element\LoginField',
+            'options'    => [
+                'fields' => $config['login_field'],
+            ],
+            'attributes' => [
                 'autocomplete' => in_array('email', $config['login_field']) ? 'email' : 'username',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'credential',
-            'options'       => array(
+        $this->add([
+            'name'       => 'credential',
+            'options'    => [
                 'label' => __('Password'),
-            ),
-            'attributes'    => array(
-                'type'  => 'password',
-            )
-        ));
+            ],
+            'attributes' => [
+                'type' => 'password',
+            ],
+        ]);
 
         $captchaMode = $config['login_captcha'];
-        if($captchaElement = Pi::service('form')->getReCaptcha($captchaMode)){
+        if ($captchaElement = Pi::service('form')->getReCaptcha($captchaMode)) {
             $this->add($captchaElement);
         }
 
         if (!empty($config['rememberme'])) {
-            $this->add(array(
-                'name'          => 'rememberme',
-                'type'          => 'checkbox',
-                'options'       => array(
+            $this->add([
+                'name'       => 'rememberme',
+                'type'       => 'checkbox',
+                'options'    => [
 //                    'label' => __('Remember me'),
-                ),
-                'attributes'    => array(
-                    'value'         => '1',
-                    'description'   => __('Remember login status')
-                )
-            ));
+                ],
+                'attributes' => [
+                    'value'       => '1',
+                    'description' => __('Remember login status'),
+                ],
+            ]);
         }
 
-        $this->add(array(
-            'name'  => 'security',
-            'type'  => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
         $redirect = _get('redirect');
         if (!$redirect) {
             $routeMatch = Pi::engine()->application()->getRouteMatch();
             if ($routeMatch) {
-                $module = $routeMatch->getParam('module');
+                $module     = $routeMatch->getParam('module');
                 $controller = $routeMatch->getParam('controller');
                 if (('user' == $module || 'system' == $module)
-                     && ('login' == $controller || 'register' == $controller)
+                    && ('login' == $controller || 'register' == $controller)
                 ) {
                 } else {
                     $redirect = Pi::service('url')->getRequestUri();
@@ -104,21 +104,21 @@ class LoginForm extends BaseForm
             }
         }
         $redirect = $redirect ? rawurlencode($redirect) : '';
-        $this->add(array(
-            'name'  => 'redirect',
-            'type'  => 'hidden',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'redirect',
+            'type'       => 'hidden',
+            'attributes' => [
                 'value' => $redirect,
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'attributes' => [
                 'type'  => 'submit',
                 'value' => __('Login'),
                 'class' => 'btn btn-primary',
-            )
-        ));
+            ],
+        ]);
     }
 }

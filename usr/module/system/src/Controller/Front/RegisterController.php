@@ -9,10 +9,10 @@
 
 namespace Module\System\Controller\Front;
 
+use Module\System\Form\RegisterFilter;
+use Module\System\Form\RegisterForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\System\Form\RegisterForm;
-use Module\System\Form\RegisterFilter;
 
 /**
  * User register operations
@@ -69,7 +69,7 @@ class RegisterController extends ActionController
         }
 
         if (!$this->request->isPost()) {
-            return $this->redirect()->toRoute('', array('action' => 'index'));
+            return $this->redirect()->toRoute('', ['action' => 'index']);
         }
 
         $post = $this->request->getPost();
@@ -87,15 +87,15 @@ class RegisterController extends ActionController
             return;
         }
         $values = $form->getData();
-        $data = array(
-            'identity'      => $values['identity'],
-            'name'          => $values['name'],
-            'email'         => $values['email'],
-            'credential'    => $values['credential'],
+        $data   = [
+            'identity'   => $values['identity'],
+            'name'       => $values['name'],
+            'email'      => $values['email'],
+            'credential' => $values['credential'],
             //'active'        => 1,
             //'role'          => Acl::MEMBER,
-        );
-        $uid = Pi::api('user', 'system')->addUser($data);
+        ];
+        $uid    = Pi::api('user', 'system')->addUser($data);
         if (!$uid) {
             $this->view()->assign(
                 'message',
@@ -123,7 +123,7 @@ class RegisterController extends ActionController
         $form = new RegisterForm('register');
         $form->setAttribute(
             'action',
-            $this->url('', array('action' => 'process'))
+            $this->url('', ['action' => 'process'])
         );
 
         return $form;

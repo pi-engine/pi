@@ -38,41 +38,41 @@ class RoleForm extends BaseForm
      */
     public function init()
     {
-        $this->add(array(
-            'name'          => 'name',
-            'options'       => array(
+        $this->add([
+            'name'       => 'name',
+            'options'    => [
                 'label' => __('Name'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-            ),
-        ));
+            ],
+            'attributes' => [
+                'type' => 'text',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'title',
-            'options'       => array(
+        $this->add([
+            'name'       => 'title',
+            'options'    => [
                 'label' => __('Title'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-            ),
-        ));
+            ],
+            'attributes' => [
+                'type' => 'text',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'  => 'section',
-            'type'  => 'select',
-            'options'       => array(
-                'label' => __('Section'),
-                'value_options' => array(
+        $this->add([
+            'name'       => 'section',
+            'type'       => 'select',
+            'options'    => [
+                'label'         => __('Section'),
+                'value_options' => [
                     'front' => __('Front'),
                     'admin' => __('Admin'),
-                ),
-            ),
-            'attributes'    => array(
+                ],
+            ],
+            'attributes' => [
                 //'type'  => 'select',
                 'value' => $this->section,
-            ),
-        ));
+            ],
+        ]);
 
         /*
         $this->add(array(
@@ -86,20 +86,20 @@ class RoleForm extends BaseForm
         ));
         */
 
-        $this->add(array(
-            'name'  => 'id',
-            'attributes'    => array(
-                'type'  => 'hidden',
-            ),
-        ));
+        $this->add([
+            'name'       => 'id',
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'  => 'active',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'active',
+            'attributes' => [
                 'type'  => 'hidden',
                 'value' => '1',
-            ),
-        ));
+            ],
+        ]);
 
         /*
         $this->add(array(
@@ -108,12 +108,12 @@ class RoleForm extends BaseForm
         ));
         */
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            ),
-        ));
+            ],
+        ]);
     }
 }

@@ -7,7 +7,7 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\System\Installer\Schema;
+namespace Module\System\Installer\Schema;
 
 use Pi;
 use Pi\Application\Installer\Schema\AbstractUpdator;
@@ -30,7 +30,7 @@ class Updator350 extends AbstractUpdator
     {
         if (version_compare($version, '3.4.0', '<')) {
             $updator = new Updator340($this->handler);
-            $result = $updator->upgrade($version);
+            $result  = $updator->upgrade($version);
             if (false === $result) {
                 return $result;
             }
@@ -53,7 +53,7 @@ class Updator350 extends AbstractUpdator
 
         if (version_compare($version, '3.5.0', '<')) {
             $moduleList = Pi::registry('module')->read();
-            $modules = array();
+            $modules    = [];
             foreach ($moduleList as $module => $data) {
                 if ($module == $data['directory']) {
                     $modules[] = $module;
@@ -61,12 +61,12 @@ class Updator350 extends AbstractUpdator
             }
             // trim module name from non-cloned module route names
             if ($modules) {
-                $update = array(
+                $update = [
                     'name' => Pi::db()->expression("SUBSTR(name, LOCATE('-', name) + 1)"),
-                );
-                $where = array(
-                    'module'    => $modules,
-                );
+                ];
+                $where  = [
+                    'module' => $modules,
+                ];
                 Pi::model('route')->update($update, $where);
             }
         }

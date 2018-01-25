@@ -20,16 +20,16 @@ use Zend\Validator\AbstractValidator;
 class NavNameDuplicate extends AbstractValidator
 {
     /** @var string */
-    const TAKEN        = 'navExists';
+    const TAKEN = 'navExists';
 
     /**
      * {@inheritDoc}
      */
     public function __construct($options = null)
     {
-        $this->messageTemplates = array(
-            static::TAKEN     => __('Navigation name is already taken'),
-        );
+        $this->messageTemplates = [
+            static::TAKEN => __('Navigation name is already taken'),
+        ];
         parent::__construct($options);
     }
 
@@ -45,7 +45,7 @@ class NavNameDuplicate extends AbstractValidator
         $this->setValue($value);
 
         if (null !== $value) {
-            $where = array('name' => $value);
+            $where = ['name' => $value];
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }

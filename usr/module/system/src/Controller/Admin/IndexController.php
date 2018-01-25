@@ -33,8 +33,8 @@ class IndexController extends ActionController
         }
 
         // Security check for boot file
-        $fileList = array('boot.php', '.htaccess');
-        $pattern = _a('Security: `%s` is writable!');
+        $fileList = ['boot.php', '.htaccess'];
+        $pattern  = _a('Security: `%s` is writable!');
         foreach ($fileList as $file) {
             $path = Pi::path($file);
             if (file_exists($path) && is_writable($path)) {
@@ -43,8 +43,8 @@ class IndexController extends ActionController
         }
 
         // Write permission check
-        $folderList = array('var', 'upload', 'asset', 'config', 'cache');
-        $pattern = _a('Permission: `%s` is not available for write!');
+        $folderList = ['var', 'upload', 'asset', 'config', 'cache'];
+        $pattern    = _a('Permission: `%s` is not available for write!');
         foreach ($folderList as $fodler) {
             $path = Pi::path($fodler);
             if (!is_dir($path) || !is_writable($path)) {
@@ -52,8 +52,8 @@ class IndexController extends ActionController
             }
         }
 
-        return $this->redirect()->toRoute('', array(
-            'controller' => 'dashboard'
-        ));
+        return $this->redirect()->toRoute('', [
+            'controller' => 'dashboard',
+        ]);
     }
 }

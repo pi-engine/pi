@@ -1,10 +1,10 @@
 <h1 class="page-header"><?php echo _escape($title); ?></h1>
 <div class="alert alert-success">
     <?php
-    $homeUrl = $this->url('home');
-    $homeString = sprintf('<a href="%s" title="%s">%s</a>', $homeUrl, __('homepage'), __('homepage'));
-    $redirect = '';
-    $loginUrl = Pi::service('authentication')->getUrl('login', $redirect);
+    $homeUrl     = $this->url('home');
+    $homeString  = sprintf('<a href="%s" title="%s">%s</a>', $homeUrl, __('homepage'), __('homepage'));
+    $redirect    = '';
+    $loginUrl    = Pi::service('authentication')->getUrl('login', $redirect);
     $loginString = sprintf('<a href="%s" title="%s">%s</a>', $loginUrl, __('login'), __('login'));
     echo sprintf(__('You have registered successfully, please go to %s or to %s.'), $homeString, $loginString);
     ?>

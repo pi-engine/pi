@@ -3,31 +3,31 @@ $this->css($this->assetModule('admin/admin.css'));
 ?>
 <h2 class="page-header"><?php echo _escape($title); ?></h2>
 <?php
-    // Display result message
-    echo sprintf('<div class="lead"><span class="%s">%s</span> <a href="%s" title="">%s</a></div>', $error ? 'text-error' : 'text-success', _escape($message), $url, _a('Press to continue ...'));
-    // Display summary error message
-    if ($error) {
-        echo '<div class="text-error">' . _escape($error) . '</div>';
-    }
-    // Display detailed information
-    if ($details) {
-        echo '<ol>';
-        foreach ($details as $action => $state) {
-            if (isset($state['status']) && $state['status'] === false) {
-                echo '<li>' . _escape($action)  . ': <strong class="text-error">' . _a('Failed') . '</strong><script>$(".alert-success").addClass("alert-error")</script>';
-            } else {
-                echo '<li>' . _escape($action)  . ': <strong class="text-success">' . _a('Succeeded'). '</strong>';
-            }
-            
-            if (!empty($state['message'])) {
-                echo '<ul>';
-                foreach ((array) $state['message'] as $msg) {
-                    echo '<li>' . _escape($msg);
-                }
-                echo '</ul>';
-            }
-            
+// Display result message
+echo sprintf('<div class="lead"><span class="%s">%s</span> <a href="%s" title="">%s</a></div>', $error ? 'text-error' : 'text-success', _escape($message), $url, _a('Press to continue ...'));
+// Display summary error message
+if ($error) {
+    echo '<div class="text-error">' . _escape($error) . '</div>';
+}
+// Display detailed information
+if ($details) {
+    echo '<ol>';
+    foreach ($details as $action => $state) {
+        if (isset($state['status']) && $state['status'] === false) {
+            echo '<li>' . _escape($action) . ': <strong class="text-error">' . _a('Failed') . '</strong><script>$(".alert-success").addClass("alert-error")</script>';
+        } else {
+            echo '<li>' . _escape($action) . ': <strong class="text-success">' . _a('Succeeded') . '</strong>';
         }
-        echo '</ol>';
+
+        if (!empty($state['message'])) {
+            echo '<ul>';
+            foreach ((array)$state['message'] as $msg) {
+                echo '<li>' . _escape($msg);
+            }
+            echo '</ul>';
+        }
+
     }
+    echo '</ol>';
+}
 ?>

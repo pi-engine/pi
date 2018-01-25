@@ -9,8 +9,8 @@
 
 namespace Module\System\Controller\Admin;
 
-use Pi;
 use Module\System\Controller\ComponentController;
+use Pi;
 use Zend\Db\Sql\Expression;
 
 /**
@@ -40,54 +40,54 @@ class EventController extends ComponentController
         }
 
         // Events of the module
-        $events = array();
-        $rowset = Pi::model('event')->select(array('module' => $name));
+        $events = [];
+        $rowset = Pi::model('event')->select(['module' => $name]);
         foreach ($rowset as $row) {
-            $events[$row->name] = array(
+            $events[$row->name] = [
                 'id'        => $row->id,
                 'title'     => _a($row->title),
-                'active'    => (int) $row->active,
-                'listeners' => array(),
-            );
+                'active'    => (int)$row->active,
+                'listeners' => [],
+            ];
         }
         if ($events) {
             $rowset = Pi::model('event_listener')
-                ->select(array(
+                ->select([
                     'event_module' => $name,
-                    'event_name' => array_keys($events)
-                ));
+                    'event_name'   => array_keys($events),
+                ]);
             foreach ($rowset as $row) {
-                $events[$row->event_name]['listeners'][] = array(
-                    'id'        => $row->id,
-                    'module'    => $row->module,
-                    'class'     => $row->class,
-                    'method'    => $row->method,
-                    'active'    => (int) $row->active,
-                );
+                $events[$row->event_name]['listeners'][] = [
+                    'id'     => $row->id,
+                    'module' => $row->module,
+                    'class'  => $row->class,
+                    'method' => $row->method,
+                    'active' => (int)$row->active,
+                ];
             }
         }
 
         // Listeners of the module
-        $select = Pi::model('event_listener')->select()
-            ->where(array('module' => $name))
-            ->order(array('event_module', 'event_name'));
-        $rowset = Pi::model('event_listener')->selectWith($select);
-        $listeners = array();
+        $select    = Pi::model('event_listener')->select()
+            ->where(['module' => $name])
+            ->order(['event_module', 'event_name']);
+        $rowset    = Pi::model('event_listener')->selectWith($select);
+        $listeners = [];
         foreach ($rowset as $row) {
-            $listeners[$row->id] = array(
-                'id'        => $row->id,
-                'active'    => (int) $row->active,
-                'title'     => sprintf('%s::%s', $row->class, $row->method),
-                'event'     => sprintf('%s-%s',
-                                       $row->event_module, $row->event_name),
-            );
+            $listeners[$row->id] = [
+                'id'     => $row->id,
+                'active' => (int)$row->active,
+                'title'  => sprintf('%s::%s', $row->class, $row->method),
+                'event'  => sprintf('%s-%s',
+                    $row->event_module, $row->event_name),
+            ];
         }
 
-        $this->view()->assign(array(
-            'events'     => $events,
-            'listeners'  => $listeners,
-            'name'       => $name
-        ));
+        $this->view()->assign([
+            'events'    => $events,
+            'listeners' => $listeners,
+            'name'      => $name,
+        ]);
         $this->view()->setTemplate('event');
     }
 
@@ -106,33 +106,33 @@ class EventController extends ComponentController
         }
 
         // Listeners of the module
-        $select = Pi::model('event_listener')->select()
-            ->where(array('module' => $name))
-            ->order(array('event_module', 'event_name'));
-        $rowset = Pi::model('event_listener')->selectWith($select);
-        $listeners = array();
+        $select    = Pi::model('event_listener')->select()
+            ->where(['module' => $name])
+            ->order(['event_module', 'event_name']);
+        $rowset    = Pi::model('event_listener')->selectWith($select);
+        $listeners = [];
         foreach ($rowset as $row) {
-            $listeners[$row->id] = array(
-                'id'        => $row->id,
-                'active'    => $row->active,
-                'title'     => sprintf('%s::%s', $row->class, $row->method),
-                'event'     => sprintf('%s-%s',
-                                       $row->event_module, $row->event_name),
-            );
+            $listeners[$row->id] = [
+                'id'     => $row->id,
+                'active' => $row->active,
+                'title'  => sprintf('%s::%s', $row->class, $row->method),
+                'event'  => sprintf('%s-%s',
+                    $row->event_module, $row->event_name),
+            ];
         }
 
         // Get module list
-        $modules = array();
-        $select = Pi::model('event_listener')->select()
-            ->columns(array('module' => new Expression('DISTINCT module')));
-        $rowset = Pi::model('event_listener')->selectWith($select);
-        $moduleList = array();
+        $modules    = [];
+        $select     = Pi::model('event_listener')->select()
+            ->columns(['module' => new Expression('DISTINCT module')]);
+        $rowset     = Pi::model('event_listener')->selectWith($select);
+        $moduleList = [];
         foreach ($rowset as $row) {
             $moduleList[] = $row->module;
         }
         if ($moduleList) {
             $modules = Pi::model('module')
-                ->select(array('active' => 1, 'name' => $moduleList));
+                ->select(['active' => 1, 'name' => $moduleList]);
         }
 
         $this->view()->assign('listeners', $listeners);
@@ -153,10 +153,10 @@ class EventController extends ComponentController
      */
     public function activeAction()
     {
-        $status = 1;
+        $status  = 1;
         $message = '';
 
-        $id = $this->params('id');
+        $id   = $this->params('id');
         $type = $this->params('type');
         if ('event' == $type) {
             $row = Pi::model('event')->find($id);
@@ -164,13 +164,13 @@ class EventController extends ComponentController
             $row = Pi::model('event_listener')->find($id);
         }
         if (!$row) {
-            $status = -1;
+            $status  = -1;
             $message = _a('The item not found.');
         } else {
             // Disable
             if ($row->active) {
                 $row->active = 0;
-            // Enable
+                // Enable
             } else {
                 if (!Pi::service('module')->isActive($row->module)) {
                     $status = 0;
@@ -195,9 +195,9 @@ class EventController extends ComponentController
             }
         }
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+        ];
     }
 }

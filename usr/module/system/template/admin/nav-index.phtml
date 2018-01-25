@@ -1,34 +1,39 @@
 <?php
-    $this->css($this->assetModule('admin/admin.css'));
-    $this->jQuery();
-    $this->backbone();
+$this->css($this->assetModule('admin/admin.css'));
+$this->jQuery();
+$this->backbone();
 ?>
 <div id="page-nav" class="table-responsive">
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th style="width: 250px;"><?php echo _a('Title'); ?></th>
-                <th style="width: 200px;"><?php echo _a('Setup'); ?></th>
-                <th style="width: 200px;"><?php echo _a('Related'); ?></th>
-                <th><?php echo _a('Action'); ?></th>
-            </tr>    
-        </thead>        
+        <tr>
+            <th style="width: 250px;"><?php echo _a('Title'); ?></th>
+            <th style="width: 200px;"><?php echo _a('Setup'); ?></th>
+            <th style="width: 200px;"><?php echo _a('Related'); ?></th>
+            <th><?php echo _a('Action'); ?></th>
+        </tr>
+        </thead>
         <tbody>
-            <tr class="none-set">
-                <td></td>
-                <td colspan="3">
-                    <span class="btn btn-default <?php if (!$navGlobal) { echo 'active'; } else { echo 'js-apply'; } ?>"><?php echo _a('None to use'); ?></span>
-                </td>
-            </tr>
+        <tr class="none-set">
+            <td></td>
+            <td colspan="3">
+                <span class="btn btn-default <?php if (!$navGlobal) {
+                    echo 'active';
+                } else {
+                    echo 'js-apply';
+                } ?>"><?php echo _a('None to use'); ?></span>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>
 <script id="temp-nav" type="text/template">
     <td>
         <%- title %>
-    </td>    
+    </td>
     <td>
-        <span class="btn btn-default <% if(name == '<?php echo $navGlobal; ?>') {  print('btn-primary active'); } else { print('js-apply'); } %> " data-name="<%= name %>"><?php echo _a('Set global'); ?></span>
+        <span class="btn btn-default <% if(name == '<?php echo $navGlobal; ?>') {  print('btn-primary active'); } else { print('js-apply'); } %> "
+              data-name="<%= name %>"><?php echo _a('Set global'); ?></span>
     </td>
     <td>
         <% if(module) { %>
@@ -47,99 +52,99 @@
             <% } else { %>
             <a class="btn btn-link" href="<%= editUrl%>"><?php echo _a('Edit'); ?></a>
             <span class="btn btn-link js-delete"><?php echo _a('Delete'); ?></span>
-            <% } %>    
+            <% } %>
         </div>
-    </td>    
+    </td>
 </script>
 <script>
-(function($){
-    var urlRoot = '<?php echo $this->url('', array('controller' => $controller)); ?>';
-    var modal = $('<div>',{'class':'modal fade'}).appendTo(document.body);
-    var NavItemView = Backbone.View.extend({
-        tagName: 'tr',
-        template: $('#temp-nav').html(),
-        events: {
-            'click .js-clone': 'cloneAction',
-            'click .js-delete': 'deleteAction'
-        },
-        initialize: function() {
-            this.model.set('editUrl', urlRoot + 'data?name=' + this.model.get('name'));
-            this.model.on('destroy', this.remove, this);    
-        },
-        cloneAction: function() {
-            var self = this;
-            $.get(urlRoot + 'clone', {
-                name: this.model.get('name')
-            }).done(function(res) {
-                modal.html(res).modal('show');
-                formModule.success = function(res) {
-                    modal.modal('hide');
-                    self.model.collection.add(res.navigation);            
+    (function ($) {
+        var urlRoot = '<?php echo $this->url('', ['controller' => $controller]); ?>';
+        var modal = $('<div>', {'class': 'modal fade'}).appendTo(document.body);
+        var NavItemView = Backbone.View.extend({
+            tagName: 'tr',
+            template: $('#temp-nav').html(),
+            events: {
+                'click .js-clone': 'cloneAction',
+                'click .js-delete': 'deleteAction'
+            },
+            initialize: function () {
+                this.model.set('editUrl', urlRoot + 'data?name=' + this.model.get('name'));
+                this.model.on('destroy', this.remove, this);
+            },
+            cloneAction: function () {
+                var self = this;
+                $.get(urlRoot + 'clone', {
+                    name: this.model.get('name')
+                }).done(function (res) {
+                    modal.html(res).modal('show');
+                    formModule.success = function (res) {
+                        modal.modal('hide');
+                        self.model.collection.add(res.navigation);
+                    }
+                });
+            },
+            deleteAction: function () {
+                if (confirm('<?php echo _a('Are you sure to delete this navigation') ?>')) {
+                    this.model.destroy({
+                        url: urlRoot + 'delete?name=' + this.model.get('name')
+                    });
                 }
-            });
-        },
-        deleteAction: function() {
-            if (confirm('<?php echo _a('Are you sure to delete this navigation') ?>')) {
-                this.model.destroy({
-                    url: urlRoot + 'delete?name=' + this.model.get('name')
-                });    
-            }    
-        },
-        render: function() {
-            this.$el.html(_.template(this.template,this.model.toJSON()));
-            if (this.$('.active').length) {
-                this.$('.js-delete').addClass('hide')    
+            },
+            render: function () {
+                this.$el.html(_.template(this.template, this.model.toJSON()));
+                if (this.$('.active').length) {
+                    this.$('.js-delete').addClass('hide')
+                }
+                return this;
             }
-            return this;
-        }    
-    });
-    var NavListView = Backbone.View.extend({
-        el: $('#page-nav'),
-        events: {
-            'click .js-apply': 'applyAction',
-            'click .js-add': 'addAction'            
-        },
-        initialize: function() {
-            this.noset = this.$('.none-set');
-            this.render();
-            this.collection.on('add', this.addOne, this);
-        },
-        applyAction: function(e) {
-            var el = $(e.currentTarget),
-                name = el.attr('data-name');
-            $.post(urlRoot + 'apply', {
-                nav_front: name || ''    
-            }).done(_.bind(function() {
-                this.$('.btn.active').removeClass('btn-primary active').addClass('js-apply');
-                this.$('.js-delete.hide').removeClass('hide');
-                el.addClass('btn-primary active').removeClass('js-apply');
-                el.parents('tr').find('.js-delete').addClass('hide');          
-            }, this));    
-        },
-        addAction: function() {
-            var self = this;
-            $.get('<?php echo $this->url('', array('action' => 'add')); ?>').done(function(res) {
-                modal.html(res).modal('show');
-                formModule.success = function(res) {
-                    modal.modal('hide');
-                    self.collection.add(res.navigation);            
-                }    
-            });    
-        },
-        render: function() {
-            var c = this.collection.models;
-            for (var i = 0, l = c.length; i < l; i++) {
-                this.addOne(c[i]);    
+        });
+        var NavListView = Backbone.View.extend({
+            el: $('#page-nav'),
+            events: {
+                'click .js-apply': 'applyAction',
+                'click .js-add': 'addAction'
+            },
+            initialize: function () {
+                this.noset = this.$('.none-set');
+                this.render();
+                this.collection.on('add', this.addOne, this);
+            },
+            applyAction: function (e) {
+                var el = $(e.currentTarget),
+                    name = el.attr('data-name');
+                $.post(urlRoot + 'apply', {
+                    nav_front: name || ''
+                }).done(_.bind(function () {
+                    this.$('.btn.active').removeClass('btn-primary active').addClass('js-apply');
+                    this.$('.js-delete.hide').removeClass('hide');
+                    el.addClass('btn-primary active').removeClass('js-apply');
+                    el.parents('tr').find('.js-delete').addClass('hide');
+                }, this));
+            },
+            addAction: function () {
+                var self = this;
+                $.get('<?php echo $this->url('', ['action' => 'add']); ?>').done(function (res) {
+                    modal.html(res).modal('show');
+                    formModule.success = function (res) {
+                        modal.modal('hide');
+                        self.collection.add(res.navigation);
+                    }
+                });
+            },
+            render: function () {
+                var c = this.collection.models;
+                for (var i = 0, l = c.length; i < l; i++) {
+                    this.addOne(c[i]);
+                }
+            },
+            addOne: function (model) {
+                new NavItemView({
+                    model: model
+                }).render().$el.insertBefore(this.noset);
             }
-        },
-        addOne: function(model) {
-            new NavItemView({
-                model: model    
-            }).render().$el.insertBefore(this.noset);
-        }
-    });
-    new NavListView({
-        collection: new Backbone.Collection(<?php echo json_encode($navList); ?>)
-    });     
-})(jQuery)
+        });
+        new NavListView({
+            collection: new Backbone.Collection(<?php echo json_encode($navList); ?>)
+        });
+    })(jQuery)
 </script>

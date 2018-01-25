@@ -1,13 +1,4 @@
-<?php
-    $this->css($this->assetModule('admin/admin.css'));
-?>
-
-<a href="<?php echo $this->url('', array('action' => 'index')); ?>" class="btn btn-primary btn-sm">
-    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-    <?php echo _a('Back'); ?>
-</a>
-<br />
-<br />
+<?php $this->css($this->assetModule('admin/admin.css')); ?>
 <div class="clearfix">
     <?php if (isset($message)) { ?>
         <div class="alert alert-danger">
@@ -15,15 +6,18 @@
             <?php echo $message; ?>
         </div>
     <?php } ?>
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success clearfix" role="alert">
         <?php _e('You can use this page tools for check some database integrity'); ?>
+        <a href="<?php echo $this->url('', ['action' => 'index']); ?>" class="btn btn-success btn-sm text-right pull-right">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <?php echo _a('Back'); ?>
+        </a>
     </div>
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-
-                    <?php echo _a('Results for tables'); ?> :
+                    <?php echo _a('Results for tables'); ?>
                 </div>
                 <div class="panel-body">
                     <pre><?php print_r($tablesError) ?></pre>
@@ -33,7 +27,7 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <?php echo _a('Results for columns'); ?> :
+                    <?php echo _a('Results for columns'); ?>
                 </div>
                 <div class="panel-body">
                     <pre><?php print_r($columnsError) ?></pre>

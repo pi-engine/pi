@@ -7,7 +7,7 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\System\Installer\Schema;
+namespace Module\System\Installer\Schema;
 
 use Pi;
 use Pi\Application\Installer\Schema\AbstractUpdator;
@@ -30,12 +30,12 @@ class Updator3513 extends AbstractUpdator
     {
         if (version_compare($version, '3.5.8', '<')) {
             $updator = new Updator358($this->handler);
-            $result = $updator->upgrade($version);
+            $result  = $updator->upgrade($version);
             if (false === $result) {
                 return $result;
             }
         }
-        
+
         $result = $this->from3513($version);
 
         return $result;
@@ -54,11 +54,12 @@ class Updator3513 extends AbstractUpdator
 
         if (version_compare($version, '3.5.13', '<')) {
             $table = Pi::db()->prefix('config');
-            $sql =<<<'EOT'
+            $sql
+                   = <<<'EOT'
 ALTER TABLE %s CHANGE `description` `description` TEXT NOT NULL DEFAULT '';
 EOT;
 
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
             if (false === $status) {

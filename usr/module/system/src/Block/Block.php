@@ -9,10 +9,10 @@
 
 namespace Module\System\Block;
 
-use Module\User\Form\LoginForm;
-use Pi;
 use Module\System\Form\LoginForm as LoginFormSystem;
+use Module\User\Form\LoginForm;
 use Module\User\Form\LoginForm as LoginFormUser;
+use Pi;
 
 /**
  * Block renderer
@@ -28,13 +28,13 @@ class Block
      */
     public static function site()
     {
-        return array(
-            'caption'   => sprintf(_b('About %s'), Pi::config('sitename')),
-            'items'     => array(
+        return [
+            'caption' => sprintf(_b('About %s'), Pi::config('sitename')),
+            'items'   => [
                 _b('Site name') => Pi::config('sitename'),
                 _b('Slogan')    => Pi::config('slogan'),
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -51,21 +51,21 @@ class Block
         // Get uid
         $uid = Pi::user()->getId();
         // Get user
-        $parameters = array('id', 'identity', 'name', 'email');
+        $parameters = ['id', 'identity', 'name', 'email'];
         // User module installed
         if (Pi::service('module')->isActive('user')) {
             $parameters[] = 'first_name';
         }
         // Get user
-        $user = Pi::user()->get($uid, $parameters);
+        $user               = Pi::user()->get($uid, $parameters);
         $user['profileUrl'] = Pi::service('user')->getUrl('profile');
-        $user['avatar'] = Pi::service('user')->avatar($uid, 'large' , array(
-            'alt' => $user['name'],
-            'class' => 'img-thumbnail'
-        ));
+        $user['avatar']     = Pi::service('user')->avatar($uid, 'large', [
+            'alt'   => $user['name'],
+            'class' => 'img-thumbnail',
+        ]);
         if (Pi::service('module')->isActive('user')) {
-            $user['accountUrl'] = Pi::service('user')->getUrl('user' , array('controller' => 'account'));
-            $user['avatarUrl'] = Pi::service('user')->getUrl('user' , array('controller' => 'avatar'));
+            $user['accountUrl'] = Pi::service('user')->getUrl('user', ['controller' => 'account']);
+            $user['avatarUrl']  = Pi::service('user')->getUrl('user', ['controller' => 'avatar']);
         }
         return $user;
     }
@@ -79,7 +79,7 @@ class Block
      *
      * @return array
      */
-    public static function userbar($options = array())
+    public static function userbar($options = [])
     {
         $hasIdentity = Pi::service('user')->hasIdentity();
 
@@ -92,10 +92,10 @@ class Block
         if (!empty($options['params'])) {
             $params = $options['params'];
         } else {
-            $params = array();
+            $params = [];
         }
 
-        $result = array(
+        $result = [
             'type'           => $type,
             'float'          => $options['float'],
             'show_title'     => $options['show_title'],
@@ -105,21 +105,21 @@ class Block
             'show_support'   => $options['show_support'],
             'show_favourite' => $options['show_favourite'],
             'count'          => 0,
-        );
+        ];
 
         if (!$hasIdentity) {
-            $user = array(
-                'uid'       => 0,
-                'login'     => Pi::url(Pi::service('authentication')->getUrl('login', $params)),
-                'register'  => Pi::url(Pi::service('user')->getUrl('register', $params)),
-            );
+            $user = [
+                'uid'      => 0,
+                'login'    => Pi::url(Pi::service('authentication')->getUrl('login', $params)),
+                'register' => Pi::url(Pi::service('user')->getUrl('register', $params)),
+            ];
         } else {
             $uid    = Pi::service('user')->getUser()->get('id');
             $name   = Pi::service('user')->getUser()->get('name');
             $avatar = Pi::service('user')->getPersist('avatar-small');
 
             if (!$avatar) {
-                $avatar = Pi::service('user')->avatar($uid, 'small', array('width' => 16, 'height' => 16));
+                $avatar = Pi::service('user')->avatar($uid, 'small', ['width' => 16, 'height' => 16]);
                 Pi::service('user')->setPersist('avatar-small', $avatar);
             }
 
@@ -129,73 +129,73 @@ class Block
                 $firstName = Pi::service('user')->getUser()->first_name;
             }
 
-            $user = array(
+            $user = [
                 'uid'        => Pi::service('user')->getId(),
                 'name'       => $name,
                 'first_name' => $firstName,
                 'avatar'     => $avatar,
                 'profile'    => Pi::url(Pi::service('user')->getUrl('profile', $params)),
                 'logout'     => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),
-            );
-            
+            ];
+
             if (Pi::service('module')->isActive('user')) {
                 $user['dashboard_url'] = Pi::service('url')->assemble(
                     'user',
-                    array(
-                        'module'        => 'user',
-                        'controller'    => 'dashboard',
-                        'action'        => 'index',
-                    )
+                    [
+                        'module'     => 'user',
+                        'controller' => 'dashboard',
+                        'action'     => 'index',
+                    ]
                 );
-            
+
             }
-            
+
         }
 
         if ($options['show_message'] != 'none' && Pi::service('module')->isActive('message') && $hasIdentity) {
             switch ($options['show_message']) {
                 case 'boot':
-                    $countMessage = Pi::api('api', 'message')->getUnread($user['uid'], 'message');
-                    $countNotification = Pi::api('api', 'message')->getUnread($user['uid'], 'notification');
-                    $user['message_url'] = Pi::url(Pi::service('user')->message()->getUrl());
-                    $user['notification_url'] = Pi::url(Pi::service('url')->assemble(
+                    $countMessage               = Pi::api('api', 'message')->getUnread($user['uid'], 'message');
+                    $countNotification          = Pi::api('api', 'message')->getUnread($user['uid'], 'notification');
+                    $user['message_url']        = Pi::url(Pi::service('user')->message()->getUrl());
+                    $user['notification_url']   = Pi::url(Pi::service('url')->assemble(
                         'default',
-                        array(
-                            'module'        => 'message',
-                            'controller'    => 'notify',
-                            'action'        => 'index',
-                        )
+                        [
+                            'module'     => 'message',
+                            'controller' => 'notify',
+                            'action'     => 'index',
+                        ]
                     ));
-                    $user['message_count'] = _number($countMessage);
+                    $user['message_count']      = _number($countMessage);
                     $user['notification_count'] = _number($countNotification);
-                    $result['count'] = $result['count'] + $countMessage + $countNotification;
+                    $result['count']            = $result['count'] + $countMessage + $countNotification;
                     break;
 
                 case 'message':
-                    $count = Pi::api('api', 'message')->getUnread($user['uid'], 'message');
-                    $user['message_url'] = Pi::url(Pi::service('user')->message()->getUrl());
+                    $count                 = Pi::api('api', 'message')->getUnread($user['uid'], 'message');
+                    $user['message_url']   = Pi::url(Pi::service('user')->message()->getUrl());
                     $user['message_count'] = _number($count);
-                    $result['count'] = $result['count'] + $count;
+                    $result['count']       = $result['count'] + $count;
                     break;
 
                 case 'notification':
-                    $count = Pi::api('api', 'message')->getUnread($user['uid'], 'notification');
-                    $user['notification_url'] = Pi::url(Pi::service('url')->assemble(
+                    $count                      = Pi::api('api', 'message')->getUnread($user['uid'], 'notification');
+                    $user['notification_url']   = Pi::url(Pi::service('url')->assemble(
                         'default',
-                        array(
-                            'module'        => 'message',
-                            'controller'    => 'notify',
-                            'action'        => 'index',
-                        )
+                        [
+                            'module'     => 'message',
+                            'controller' => 'notify',
+                            'action'     => 'index',
+                        ]
                     ));
                     $user['notification_count'] = _number($count);
-                    $result['count'] = $result['count'] + $count;
+                    $result['count']            = $result['count'] + $count;
                     break;
 
                 case 'merge':
-                    $count = Pi::api('api', 'message')->getUnread($user['uid']);
+                    $count           = Pi::api('api', 'message')->getUnread($user['uid']);
                     $user['message'] = Pi::url(Pi::service('user')->message()->getUrl());
-                    $user['count'] = _number($count);
+                    $user['count']   = _number($count);
                     $result['count'] = $result['count'] + $count;
                     break;
             }
@@ -205,74 +205,74 @@ class Block
         if ($options['show_order'] && Pi::service('module')->isActive('order') && $hasIdentity) {
             $user['order'] = Pi::url(Pi::service('url')->assemble(
                 'order',
-                array(
-                    'module'        => 'order',
-                    'controller'    => 'index',
-                    'action'        => 'index',
-                )
+                [
+                    'module'     => 'order',
+                    'controller' => 'index',
+                    'action'     => 'index',
+                ]
             ));
         }
-        
+
         if ($options['show_offer'] && Pi::service('module')->isActive('guide') && $hasIdentity) {
             $user['offer_url'] = Pi::url(Pi::service('url')->assemble(
                 'guide',
-                array(
-                    'module'        => 'guide',
-                    'controller'    => 'offer',
-                    'action'        => 'index',
-                )
+                [
+                    'module'     => 'guide',
+                    'controller' => 'offer',
+                    'action'     => 'index',
+                ]
             ));
         }
 
         if ($options['show_credit'] && Pi::service('module')->isActive('order') && $hasIdentity) {
             $orderConfig = Pi::service('registry')->config->read('order');
             if ($orderConfig['credit_active']) {
-                $credit = Pi::api('credit', 'order')->getCredit();
-                $user['amount'] = $credit['amount'];
+                $credit              = Pi::api('credit', 'order')->getCredit();
+                $user['amount']      = $credit['amount'];
                 $user['amount_view'] = $credit['amount_view'];
-                $user['credit'] = Pi::url(Pi::service('url')->assemble(
+                $user['credit']      = Pi::url(Pi::service('url')->assemble(
                     'order',
-                    array(
-                        'module'        => 'order',
-                        'controller'    => 'credit',
-                        'action'        => 'index',
-                    )
+                    [
+                        'module'     => 'order',
+                        'controller' => 'credit',
+                        'action'     => 'index',
+                    ]
                 ));
             }
         }
 
         if ($options['show_support'] && Pi::service('module')->isActive('support') && $hasIdentity) {
-            $count = Pi::api('ticket', 'support')->getCount();
+            $count                 = Pi::api('ticket', 'support')->getCount();
             $user['support_count'] = _number($count);
-            $user['support_url'] = Pi::url(Pi::service('url')->assemble(
+            $user['support_url']   = Pi::url(Pi::service('url')->assemble(
                 'support',
-                array(
-                    'module'        => 'support',
-                    'controller'    => 'index',
-                    'action'        => 'index',
-                )
+                [
+                    'module'     => 'support',
+                    'controller' => 'index',
+                    'action'     => 'index',
+                ]
             ));
-            $result['count'] = $result['count'] + $count;
+            $result['count']       = $result['count'] + $count;
         }
 
         if ($options['show_favourite'] && Pi::service('module')->isActive('favourite') && $hasIdentity) {
             if (Pi::service('module')->isActive('guide')) {
                 $user['favourite_url'] = Pi::url(Pi::service('url')->assemble(
                     'guide',
-                    array(
-                        'module'        => 'guide',
-                        'controller'    => 'favourite',
-                        'action'        => 'index',
-                    )
+                    [
+                        'module'     => 'guide',
+                        'controller' => 'favourite',
+                        'action'     => 'index',
+                    ]
                 ));
             } else {
                 $user['favourite_url'] = Pi::url(Pi::service('url')->assemble(
                     'default',
-                    array(
-                        'module'        => 'favourite',
-                        'controller'    => 'index',
-                        'action'        => 'index',
-                    )
+                    [
+                        'module'     => 'favourite',
+                        'controller' => 'index',
+                        'action'     => 'index',
+                    ]
                 ));
             }
         }
@@ -282,22 +282,22 @@ class Block
         if (Pi::service('module')->isActive('user')) {
 
             $enabledModal = Pi::user()->config('enable_modal');
-            if($enabledModal){
+            if ($enabledModal) {
                 /*
                 * Login form
                 */
-                $processPath = Pi::service('url')->assemble('user', array('module' => 'user', 'controller' => 'login', 'action' => 'process'));
-                $loginForm = Pi::api('form', 'user')->loadForm('login');
+                $processPath = Pi::service('url')->assemble('user', ['module' => 'user', 'controller' => 'login', 'action' => 'process']);
+                $loginForm   = Pi::api('form', 'user')->loadForm('login');
                 $loginForm->setAttribute('action', Pi::url($processPath));
 
                 /**
                  * Register form
                  */
-                $processPath = Pi::service('url')->assemble('user', array('module' => 'user', 'controller' => 'register'));
+                $processPath  = Pi::service('url')->assemble('user', ['module' => 'user', 'controller' => 'register']);
                 $registerForm = Pi::api('form', 'user')->loadForm('register');
                 $registerForm->setAttribute('action', Pi::url($processPath));
 
-                $result['loginForm'] = $loginForm;
+                $result['loginForm']    = $loginForm;
                 $result['registerForm'] = $registerForm;
             }
 
@@ -320,7 +320,7 @@ class Block
      *
      * @return bool|array
      */
-    public static function login($options = array())
+    public static function login($options = [])
     {
         if (Pi::service('user')->hasIdentity()) {
             return false;
@@ -342,11 +342,11 @@ class Block
         } else {
             $action = Pi::service('url')->assemble(
                 $route,
-                array(
-                    'module'        => 'system',
-                    'controller'    => 'login',
-                    'action'        => 'process',
-                )
+                [
+                    'module'     => 'system',
+                    'controller' => 'login',
+                    'action'     => 'process',
+                ]
             );
         }
         if ($options) {
@@ -354,9 +354,9 @@ class Block
         }
         $form->setAttribute('action', $action);
 
-        return array(
-            'form'  => $form,
-        );
+        return [
+            'form' => $form,
+        ];
     }
 
     /**
@@ -366,10 +366,10 @@ class Block
      */
     public static function pi()
     {
-        $featureApi =
-            'https://raw.github.com/pi-engine/pi/master/doc/README.html';
-        return array(
-            'api'   => $featureApi,
-        );
+        $featureApi
+            = 'https://raw.github.com/pi-engine/pi/master/doc/README.html';
+        return [
+            'api' => $featureApi,
+        ];
     }
 }

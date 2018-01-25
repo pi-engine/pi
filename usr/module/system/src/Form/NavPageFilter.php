@@ -9,7 +9,6 @@
 
 namespace Module\System\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**
@@ -24,78 +23,78 @@ class NavPageFilter extends InputFilter
      */
     public function __construct()
     {
-        $this->add(array(
-            'name'          => 'title',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'    => 'title',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'route',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'    => 'route',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'module',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'    => 'module',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'controller',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'    => 'controller',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'action',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'    => 'action',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'uri',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-                array(
-                    'name'  => 'Pi\Filter\Uri',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'    => 'uri',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+                [
+                    'name' => 'Pi\Filter\Uri',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'      => 'active',
-        ));
+        $this->add([
+            'name' => 'active',
+        ]);
 
-        $this->add(array(
-            'name'      => 'target',
-        ));
+        $this->add([
+            'name' => 'target',
+        ]);
 
-        $this->add(array(
-            'name'      => 'id',
-        ));
+        $this->add([
+            'name' => 'id',
+        ]);
 
-        $this->add(array(
-            'name'      => 'navigation',
-            'required'  => true,
-        ));
+        $this->add([
+            'name'     => 'navigation',
+            'required' => true,
+        ]);
     }
 }

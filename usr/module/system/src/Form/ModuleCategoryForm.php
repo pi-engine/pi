@@ -9,7 +9,6 @@
 
 namespace Module\System\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -24,58 +23,58 @@ class ModuleCategoryForm extends BaseForm
      */
     public function init()
     {
-        $this->add(array(
-            'name'          => 'title',
-            'options'       => array(
+        $this->add([
+            'name'       => 'title',
+            'options'    => [
                 'label' => _a('Title'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
-        ));
+            ],
+            'attributes' => [
+                'type' => 'text',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'icon',
-            'options'       => array(
+        $this->add([
+            'name'       => 'icon',
+            'options'    => [
                 'label' => _a('Font-awesome icon'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-                'description'   => _a('Check http://fortawesome.github.io/Font-Awesome/icons/'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'type'        => 'text',
+                'description' => _a('Check http://fortawesome.github.io/Font-Awesome/icons/'),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'order',
-            'options'       => array(
+        $this->add([
+            'name'       => 'order',
+            'options'    => [
                 'label' => _a('Order'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
-        ));
+            ],
+            'attributes' => [
+                'type' => 'text',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'id',
-            'attributes'    => array(
-                'type'  => 'hidden',
-            ),
-        ));
+        $this->add([
+            'name'       => 'id',
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'op',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'op',
+            'attributes' => [
                 'type'  => 'hidden',
                 'value' => 'save',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'class' => 'btn btn-primary',
-            )
-        ));
+            ],
+        ]);
     }
 }

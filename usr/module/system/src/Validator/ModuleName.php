@@ -20,33 +20,34 @@ use Zend\Validator\AbstractValidator;
 class ModuleName extends AbstractValidator
 {
     /** @var string */
-    const RESERVED  = 'moduleNameReserved';
+    const RESERVED = 'moduleNameReserved';
 
     /** @var string */
-    const TAKEN     = 'moduleNameTaken';
+    const TAKEN = 'moduleNameTaken';
 
     /**
      * Options
      * @var array
      */
-    protected $options = array(
-        // Reserved module name which could be
-        // potentially conflicted with system
-        'blacklist' => array(
-            'pi', 'zend', 'module', 'service', 'theme',
-            'application', 'event', 'registry', 'config'
-        ),
-    );
+    protected $options
+        = [
+            // Reserved module name which could be
+            // potentially conflicted with system
+            'blacklist' => [
+                'pi', 'zend', 'module', 'service', 'theme',
+                'application', 'event', 'registry', 'config',
+            ],
+        ];
 
     /**
      * {@inheritDoc}
      */
     public function __construct($options = null)
     {
-        $this->messageTemplates = array(
-            static::RESERVED  => __('Module name is reserved'),
-            static::TAKEN     => __('Module name is already taken'),
-        );
+        $this->messageTemplates = [
+            static::RESERVED => __('Module name is reserved'),
+            static::TAKEN    => __('Module name is already taken'),
+        ];
         parent::__construct($options);
     }
 
@@ -69,7 +70,7 @@ class ModuleName extends AbstractValidator
             }
         }
 
-        $where = array('name' => $value);
+        $where = ['name' => $value];
         if (!empty($context['id'])) {
             $where['id <> ?'] = $context['id'];
         }

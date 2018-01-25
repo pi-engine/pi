@@ -7,7 +7,7 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\System\Installer\Schema;
+namespace Module\System\Installer\Schema;
 
 use Pi;
 use Pi\Application\Installer\Schema\AbstractUpdator;
@@ -30,7 +30,7 @@ class Updator358 extends AbstractUpdator
     {
         if (version_compare($version, '3.5.4', '<')) {
             $updator = new Updator354($this->handler);
-            $result = $updator->upgrade($version);
+            $result  = $updator->upgrade($version);
             if (false === $result) {
                 return $result;
             }
@@ -53,11 +53,12 @@ class Updator358 extends AbstractUpdator
 
         if (version_compare($version, '3.5.8', '<')) {
 
-            $table = Pi::db()->prefix('user_account');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('user_account');
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s DROP INDEX `name`, ADD INDEX `name` (`name`) USING BTREE;
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
             if (false === $status) {

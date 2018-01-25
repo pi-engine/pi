@@ -10,9 +10,9 @@
 namespace Module\System\Form;
 
 use Pi;
+use Pi\Db\RowGateway\RowGateway as BlockRow;
 use Pi\Form\Form as BaseForm;
 use Zend\InputFilter\InputFilter;
-use Pi\Db\RowGateway\RowGateway as BlockRow;
 
 /**
  * Block module form
@@ -31,12 +31,12 @@ class BlockModuleForm extends BaseForm
      * Constructor
      *
      * @param null|string|int $name Optional name for the element
-     * @param BlockRow        $root Root block to be cloned
-     * @param bool            $isClone
+     * @param BlockRow $root Root block to be cloned
+     * @param bool $isClone
      */
     public function __construct($name = null, $root = null, $isClone = false)
     {
-        $this->root = $root;
+        $this->root    = $root;
         $this->isClone = $isClone;
         parent::__construct($name);
     }
@@ -60,57 +60,57 @@ class BlockModuleForm extends BaseForm
      */
     public function init()
     {
-        $this->add(array(
-            'name'          => 'title',
-            'options'       => array(
+        $this->add([
+            'name'       => 'title',
+            'options'    => [
                 'label' => __('Title'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-                'description'   => __('Block label for display.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'type'        => 'text',
+                'description' => __('Block label for display.'),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'title_hidden',
-            'type'          => 'checkbox',
-            'options'       => array(
+        $this->add([
+            'name'       => 'title_hidden',
+            'type'       => 'checkbox',
+            'options'    => [
                 'label' => __('Hide title'),
-            ),
-            'attributes'    => array(
-                'description'   => __('Hide block title from display.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'description' => __('Hide block title from display.'),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'body_fullsize',
-            'type'          => 'checkbox',
-            'options'       => array(
+        $this->add([
+            'name'       => 'body_fullsize',
+            'type'       => 'checkbox',
+            'options'    => [
                 'label' => __('Full-size body'),
-            ),
-            'attributes'    => array(
-                'description'   => __('Display block body in full-size w/o padding.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'description' => __('Display block body in full-size w/o padding.'),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'name',
-            'options'       => array(
+        $this->add([
+            'name'       => 'name',
+            'options'    => [
                 'label' => __('Unique name'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-                'description'   => __('A unique name to be called as widget.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'type'        => 'text',
+                'description' => __('A unique name to be called as widget.'),
+            ],
+        ]);
 
-        $templateSpec = array(
-            'type'          => 'text',
-            'attributes'    => array(
-                'value'         => $this->root->template,
-                'description'   => __('PHTML rendering template, file extension is optional.'),
-            )
-        );
+        $templateSpec = [
+            'type'       => 'text',
+            'attributes' => [
+                'value'       => $this->root->template,
+                'description' => __('PHTML rendering template, file extension is optional.'),
+            ],
+        ];
         if ('widget' == $this->root->module) {
             $spec = Pi::api('block', 'widget')->templateSpec($this->root->type);
             if (false === $spec) {
@@ -120,63 +120,63 @@ class BlockModuleForm extends BaseForm
             }
         }
         if (false !== $templateSpec) {
-            $templateSpec = array_replace($templateSpec, array(
-                'name'          => 'template',
-                'options'       => array(
+            $templateSpec = array_replace($templateSpec, [
+                'name'    => 'template',
+                'options' => [
                     'label' => __('Template'),
-                )
-            ));
+                ],
+            ]);
 
             // Only cloned blocks are allowed to change template
             if (!$this->isClone) {
-                $templateSpec['type'] = 'text';
+                $templateSpec['type']                   = 'text';
                 $templateSpec['attributes']['readonly'] = 'readonly';
             }
             $this->add($templateSpec);
         }
 
-        $this->add(array(
-            'name'          => 'description',
-            'options'       => array(
+        $this->add([
+            'name'       => 'description',
+            'options'    => [
                 'label' => __('Description'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-                'description'   => __('Set a hint to distinguish the block.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'type'        => 'text',
+                'description' => __('Set a hint to distinguish the block.'),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'subline',
-            'options'       => array(
+        $this->add([
+            'name'       => 'subline',
+            'options'    => [
                 'label' => __('Subline'),
-            ),
-            'attributes'    => array(
-                'type'          => 'textarea',
-                'description'   => __('Header subline. HTML is allowed.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'type'        => 'textarea',
+                'description' => __('Header subline. HTML is allowed.'),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'class',
-            'options'       => array(
+        $this->add([
+            'name'       => 'class',
+            'options'    => [
                 'label' => __('Style class'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-                'description'   => __('Specified block container CSS class.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'type'        => 'text',
+                'description' => __('Specified block container CSS class.'),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'cache_ttl',
-            'type'          => 'cache_ttl',
-        ));
+        $this->add([
+            'name' => 'cache_ttl',
+            'type' => 'cache_ttl',
+        ]);
 
-        $this->add(array(
-            'name'          => 'cache_level',
-            'type'          => 'cache_level',
-        ));
+        $this->add([
+            'name' => 'cache_level',
+            'type' => 'cache_level',
+        ]);
 
         //$this->addConfigFieldset();
 
@@ -184,16 +184,16 @@ class BlockModuleForm extends BaseForm
         if ($this->root->config) {
 
             // extra_text
-            $this->add(array(
-                'name'  => 'extra_config',
-                'type'  => 'fieldset',
-                'options'   => array(
+            $this->add([
+                'name'    => 'extra_config',
+                'type'    => 'fieldset',
+                'options' => [
                     'label' => __('Configs'),
-                )
-            ));
+                ],
+            ]);
 
             foreach ($this->root->config as $name => $field) {
-                $edit = array();
+                $edit = [];
                 if (!empty($field['edit'])) {
                     if (is_string($field['edit'])) {
                         $edit['type'] = $field['edit'];
@@ -201,27 +201,27 @@ class BlockModuleForm extends BaseForm
                         $edit = $field['edit'];
                     }
                 }
-                $attributes = !empty($edit['attributes'])
-                    ? $edit['attributes'] : array();
-                $attributes['value'] = isset($field['value'])
+                $attributes                = !empty($edit['attributes'])
+                    ? $edit['attributes'] : [];
+                $attributes['value']       = isset($field['value'])
                     ? $field['value'] : null;
                 $attributes['description'] = empty($field['description'])
                     ? '' : __($field['description']);
 
-                $options = array(
-                    'label'     => __($field['title']),
-                    'module'    => $this->root->module,
+                $options = [
+                    'label'                     => __($field['title']),
+                    'module'                    => $this->root->module,
                     'disable_inarray_validator' => true,
-                );
+                ];
                 if (!empty($edit['options'])) {
                     $options = array_merge($edit['options'], $options);
                 }
 
-                $element = array(
-                    'name'          => $name,
-                    'attributes'    => $attributes,
-                    'options'       => $options,
-                );
+                $element = [
+                    'name'       => $name,
+                    'attributes' => $attributes,
+                    'options'    => $options,
+                ];
                 if (!empty($edit['type'])) {
                     $element['type'] = $edit['type'];
                 }
@@ -232,10 +232,10 @@ class BlockModuleForm extends BaseForm
             }
         }
 
-        $this->add(array(
-            'name'  => 'security',
-            'type'  => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
         /*
         $this->add(array(
@@ -247,18 +247,18 @@ class BlockModuleForm extends BaseForm
         ));
         */
 
-        $this->add(array(
-            'name'  => 'id',
-            'type'  => 'hidden',
-        ));
+        $this->add([
+            'name' => 'id',
+            'type' => 'hidden',
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            )
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -326,75 +326,75 @@ class BlockModuleForm extends BaseForm
     {
         $inputFilter = $this->getInputFilter();
 
-        $inputFilter->add(array(
-            'name'          => 'title',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $inputFilter->add([
+            'name'    => 'title',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $inputFilter->add(array(
-            'name'          => 'name',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'  => 'Module\System\Validator\BlockNameDuplicate',
-                ),
-            ),
-        ));
+        $inputFilter->add([
+            'name'       => 'name',
+            'required'   => false,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name' => 'Module\System\Validator\BlockNameDuplicate',
+                ],
+            ],
+        ]);
 
-        $inputFilter->add(array(
-            'name'          => 'description',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $inputFilter->add([
+            'name'     => 'description',
+            'required' => false,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $inputFilter->add(array(
-            'name'          => 'subline',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $inputFilter->add([
+            'name'     => 'subline',
+            'required' => false,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $inputFilter->add(array(
-            'name'          => 'class',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $inputFilter->add([
+            'name'     => 'class',
+            'required' => false,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $inputFilter->add(array(
-            'name'      => 'cache_ttl',
-            'required'  => false,
-        ));
+        $inputFilter->add([
+            'name'     => 'cache_ttl',
+            'required' => false,
+        ]);
 
-        $inputFilter->add(array(
-            'name'      => 'cache_level',
-            'required'  => false,
-        ));
+        $inputFilter->add([
+            'name'     => 'cache_level',
+            'required' => false,
+        ]);
 
-        $inputFilter->add(array(
-            'name'          => 'id',
-            'required'      => true,
+        $inputFilter->add([
+            'name'     => 'id',
+            'required' => true,
             //'allow_empty'   => true,
-        ));
+        ]);
 
         /*
         $inputFilter->add(array(
@@ -404,28 +404,28 @@ class BlockModuleForm extends BaseForm
         ));
         */
 
-        $inputFilter->add(array(
-            'name'          => 'title_hidden',
-            'required'      => true,
-            'allow_empty'   => true,
-        ));
+        $inputFilter->add([
+            'name'        => 'title_hidden',
+            'required'    => true,
+            'allow_empty' => true,
+        ]);
 
-        $inputFilter->add(array(
-            'name'          => 'body_fullsize',
-            'required'      => true,
-            'allow_empty'   => true,
-        ));
+        $inputFilter->add([
+            'name'        => 'body_fullsize',
+            'required'    => true,
+            'allow_empty' => true,
+        ]);
 
         //$this->addConfigFilter($inputFilter);
 
         // Load config filter
         if ($this->root->config) {
             foreach ($this->root->config as $name => $field) {
-                $element = array(
-                    'name'          => $name,
-                    'required'      => false,
-                    'allow_empty'   => true,
-                );
+                $element = [
+                    'name'        => $name,
+                    'required'    => false,
+                    'allow_empty' => true,
+                ];
                 $inputFilter->add($element);
             }
         }

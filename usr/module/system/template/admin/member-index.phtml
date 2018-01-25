@@ -1,42 +1,49 @@
 <?php
-    $this->css($this->assetModule('admin/admin.css'));
+$this->css($this->assetModule('admin/admin.css'));
 ?>
 <h2 class="page-header"><?php echo _escape($title); ?></h2>
 <div class="mb10">
-    <a class="btn btn-primary" href="<?php echo $this->url('', array('action' => 'add')); ?>" title="<?php echo _a('Add a member'); ?>"><?php echo _a('Add a member'); ?></a>
+    <a class="btn btn-primary" href="<?php echo $this->url('', ['action' => 'add']); ?>"
+       title="<?php echo _a('Add a member'); ?>"><?php echo _a('Add a member'); ?></a>
 </div>
 
 <div style="padding: 10px">
-<form method='GET'>
-    <?php echo _a('Select a role: '); ?><select id='role-selection' list-url='<?php echo $this->url('admin', array('controller' => 'member', 'action' => 'role', 'role' => '')) ?>'>
-    <?php foreach ($roles as $roleName => $roleTitle) { ?>
-        <option value="<?php echo $roleName; ?>"<?php if (isset($role) && $role == $roleName) { echo ' selected'; } ?>><?php echo _escape($roleTitle); ?></option>
-    <?php } ?>
-    </select>
-</form>
+    <form method='GET'>
+        <?php echo _a('Select a role: '); ?><select id='role-selection'
+                                                    list-url='<?php echo $this->url('admin', ['controller' => 'member', 'action' => 'role', 'role' => '']) ?>'>
+            <?php foreach ($roles as $roleName => $roleTitle) { ?>
+                <option value="<?php echo $roleName; ?>"<?php if (isset($role) && $role == $roleName) {
+                    echo ' selected';
+                } ?>><?php echo _escape($roleTitle); ?></option>
+            <?php } ?>
+        </select>
+    </form>
 </div>
 
 
 <table class="table table-striped">
     <tbody>
-        <tr>
-            <th><?php echo _a('Username'); ?></th>
-            <th style="width:10%;"><?php echo _a('Name'); ?></th>
-            <th style="width:14%"><?php echo _a('Email'); ?></th>
-            <th style="width:8%"><?php echo _a('Front role'); ?></th>
-            <th style="width:8%"><?php echo _a('Admin role'); ?></th>
-            <th style="width:8%"><?php echo _a('Active'); ?></th>
-        </tr>
-        <?php foreach ($users as $id => $user) { ?>
+    <tr>
+        <th><?php echo _a('Username'); ?></th>
+        <th style="width:10%;"><?php echo _a('Name'); ?></th>
+        <th style="width:14%"><?php echo _a('Email'); ?></th>
+        <th style="width:8%"><?php echo _a('Front role'); ?></th>
+        <th style="width:8%"><?php echo _a('Admin role'); ?></th>
+        <th style="width:8%"><?php echo _a('Active'); ?></th>
+    </tr>
+    <?php foreach ($users as $id => $user) { ?>
         <tr>
             <td>
                 <?php echo _escape($user['identity']); ?>
                 <div class="row-actions">
-                    <a href="<?php echo $this->url('', array('action' => 'edit', 'id' => $user['id'])); ?>" title="<?php echo _a('Edit'); ?>"><?php echo _a('Edit'); ?></a>
+                    <a href="<?php echo $this->url('', ['action' => 'edit', 'id' => $user['id']]); ?>"
+                       title="<?php echo _a('Edit'); ?>"><?php echo _a('Edit'); ?></a>
                     <span class="divider">|</span>
-                    <a href="<?php echo $this->url('', array('action' => 'password', 'id' => $user['id'])); ?>" title="<?php echo _a('Password'); ?>"><?php echo _a('Password'); ?></a>
+                    <a href="<?php echo $this->url('', ['action' => 'password', 'id' => $user['id']]); ?>"
+                       title="<?php echo _a('Password'); ?>"><?php echo _a('Password'); ?></a>
                     <span class="divider">|</span>
-                    <a href="<?php echo $this->url('', array('action' => 'delete', 'id' => $user['id'])); ?>" title="<?php echo _a('Delete'); ?>"><?php echo _a('Delete'); ?></a>
+                    <a href="<?php echo $this->url('', ['action' => 'delete', 'id' => $user['id']]); ?>"
+                       title="<?php echo _a('Delete'); ?>"><?php echo _a('Delete'); ?></a>
                 </div>
             </td>
             <td><?php echo $user['name'] ? _escape($user['name']) : ''; ?></td>
@@ -45,15 +52,15 @@
             <td><?php echo _escape($user['role_staff']); ?></td>
             <td><?php echo $user['active'] ? _a('Yes') : _a('No'); ?></td>
         </tr>
-        <?php } ?>
+    <?php } ?>
     </tbody>
 </table>
 <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
 <script>
-(function($) {
-    $("#role-selection").change(function() {
-        var $this = $(this);
-        location.href = $this.attr('list-url') + $this.val();
-    })
-})(jQuery)
+    (function ($) {
+        $("#role-selection").change(function () {
+            var $this = $(this);
+            location.href = $this.attr('list-url') + $this.val();
+        })
+    })(jQuery)
 </script>

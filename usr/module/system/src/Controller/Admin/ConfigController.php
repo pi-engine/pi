@@ -9,10 +9,9 @@
 
 namespace Module\System\Controller\Admin;
 
-use Pi;
 use Module\System\Controller\ComponentController;
 use Module\System\Form\ConfigForm;
-use Zend\Db\Sql\Expression;
+use Pi;
 
 /**
  * Configuration controller
@@ -48,37 +47,37 @@ class ConfigController extends ComponentController
         $updateLanguage = false;
         $updateEnv      = false;
         if ($module) {
-            $where = array('module' => $module, 'visible' => 1);
+            $where = ['module' => $module, 'visible' => 1];
             if ('system' == $module
                 && Pi::service('module')->isActive('user')
             ) {
                 $where['category <> ?'] = 'user';
             }
 
-            $model = Pi::model('config');
-            $select = $model->select()
+            $model   = Pi::model('config');
+            $select  = $model->select()
                 ->where($where)
-                ->order(array('order ASC'));
-            $rowset = $model->selectWith($select);
-            $configs = array();
+                ->order(['order ASC']);
+            $rowset  = $model->selectWith($select);
+            $configs = [];
             foreach ($rowset as $row) {
                 $configs[] = $row;
             }
             if ($configs) {
-                $groups = array();
-                $select = Pi::model('config_category')->select()
-                    ->where(array('module' => $module))
-                    ->order(array('order ASC'));
+                $groups     = [];
+                $select     = Pi::model('config_category')->select()
+                    ->where(['module' => $module])
+                    ->order(['order ASC']);
                 $categories = Pi::model('config_category')
                     ->selectWith($select);
                 if ($categories->count() > 1) {
                     foreach ($categories as $category) {
-                        $groups[$category->name] = array(
-                            'label'     => _a($category->title),
-                            'elements'  => array(),
-                        );
+                        $groups[$category->name] = [
+                            'label'    => _a($category->title),
+                            'elements' => [],
+                        ];
                     }
-                    $generalList = array();
+                    $generalList = [];
                     foreach ($configs as $config) {
                         $category = $config->category;
                         if (isset($groups[$category])) {
@@ -91,10 +90,10 @@ class ConfigController extends ComponentController
                         if (isset($groups['general'])) {
                             $groups['general']['elements'] += $generalList;
                         } else {
-                            array_unshift($groups, array(
-                                'label'     => _a('General'),
-                                'elements'  => $generalList,
-                            ));
+                            array_unshift($groups, [
+                                'label'    => _a('General'),
+                                'elements' => $generalList,
+                            ]);
                         }
                     }
                     foreach (array_keys($groups) as $group) {
@@ -107,13 +106,13 @@ class ConfigController extends ComponentController
 
                 $form = $this->getForm($configs, $module);
                 $form->setGroups($groups);
-                $form->add(array(
-                    'name'          => 'name',
-                    'attributes'    => array(
+                $form->add([
+                    'name'       => 'name',
+                    'attributes' => [
                         'type'  => 'hidden',
                         'value' => $module,
-                    ),
-                ));
+                    ],
+                ]);
 
                 if ($this->request->isPost()) {
                     $post = $this->request->getPost();
@@ -121,16 +120,16 @@ class ConfigController extends ComponentController
                     if ($form->isValid()) {
 
                         // Prepare for language check
-                        $currentLocale  = null;
-                        $currentEnv     = null;
+                        $currentLocale = null;
+                        $currentEnv    = null;
                         if ('system' == $module) {
-                            $currentLocale = array(
-                                'locale'    => Pi::config('locale'),
-                                'charset'   => Pi::config('charset'),
-                            );
-                            $currentEnv = array(
-                                'environment'   =>  Pi::config('environment')
-                            );
+                            $currentLocale = [
+                                'locale'  => Pi::config('locale'),
+                                'charset' => Pi::config('charset'),
+                            ];
+                            $currentEnv    = [
+                                'environment' => Pi::config('environment'),
+                            ];
                         }
 
                         $values = $form->getData();
@@ -151,7 +150,7 @@ class ConfigController extends ComponentController
                                 && $row->value != $currentEnv[$row->name]
                             ) {
                                 $currentEnv[$row->name] = $row->value;
-                                $updateEnv = true;
+                                $updateEnv              = true;
                             }
                         }
                         Pi::registry('config')->clear($module);
@@ -161,7 +160,7 @@ class ConfigController extends ComponentController
                         }
 
                         if ($updateEnv) {
-                            $data = Pi::config()->load('engine');
+                            $data           = Pi::config()->load('engine');
                             $data['config'] = array_replace_recursive(
                                 $data['config'],
                                 $currentEnv
@@ -170,7 +169,7 @@ class ConfigController extends ComponentController
                         }
 
                         $this->jump(
-                            array('action' => 'index', 'name' => $module),
+                            ['action' => 'index', 'name' => $module],
                             _a('Configuration data saved successfully.'),
                             'success'
                         );

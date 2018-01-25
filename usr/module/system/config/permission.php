@@ -12,76 +12,76 @@
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
+return [
     // Front section
-    'front' => array(
+    'front' => [
         // global public
-        'public'    => array(
-            'title'         => _t('Global public resource'),
-            'access'        => array(
+        'public' => [
+            'title'  => _t('Global public resource'),
+            'access' => [
                 'guest',
                 'member',
-            ),
-        ),
+            ],
+        ],
         // global guest
-        'guest' => array(
-            'title'         => _t('Guest only'),
-            'access'        => array(
+        'guest'  => [
+            'title'  => _t('Guest only'),
+            'access' => [
                 'guest',
-            ),
-        ),
+            ],
+        ],
         // global member
-        'member'    => array(
-            'title'         => _t('Member only'),
-            'access'        => array(
+        'member' => [
+            'title'  => _t('Member only'),
+            'access' => [
                 'member',
-            ),
-        ),
-    ),
+            ],
+        ],
+    ],
     // Admin section
-    'admin' => array(
+    'admin' => [
         // Generic admin resource
-        'generic'   => array(
-            'title'         => _t('Generic permission'),
-            'access'        => array(
+        'generic'     => [
+            'title'  => _t('Generic permission'),
+            'access' => [
                 //'admin',
                 'staff',
                 'moderator',
                 'manager',
-            ),
-        ),
+            ],
+        ],
 
         // System operations
         // Modules
-        'module'    => array(
-            'title'         => _t('Operation: modules'),
-            'access'        => array(
+        'module'      => [
+            'title'  => _t('Operation: modules'),
+            'access' => [
                 'manager',
-            ),
-        ),
+            ],
+        ],
         // Themes
-        'theme'    => array(
-            'title'         => _t('Operation: themes'),
-            'access'        => array(
+        'theme'       => [
+            'title'  => _t('Operation: themes'),
+            'access' => [
                 //'admin',
                 'manager',
-            ),
-        ),
+            ],
+        ],
         // Navigation
-        'navigation'    => array(
-            'title'         => _t('Operation: navigation'),
-            'access'        => array(
+        'navigation'  => [
+            'title'  => _t('Operation: navigation'),
+            'access' => [
                 //'admin',
                 'manager',
-            ),
-        ),
+            ],
+        ],
         // Roles
-        'role'    => array(
-            'title'         => _t('Operation: roles'),
-            'access'        => array(
+        'role'        => [
+            'title'  => _t('Operation: roles'),
+            'access' => [
                 //'admin',
-            ),
-        ),
+            ],
+        ],
         /*
         // Users
         'user'    => array(
@@ -92,60 +92,60 @@ return array(
         ),
         */
         // maintenance
-        'maintenance'   => array(
-            'title'         => _t('Operation: maintenance'),
-            'access'        => array(
+        'maintenance' => [
+            'title'  => _t('Operation: maintenance'),
+            'access' => [
                 //'admin',
                 'manager',
-            ),
-        ),
+            ],
+        ],
 
         // Managed components
         // Configurations
-        'config'    => array(
-            'title'         => _t('Management: configs'),
-            'access'        => array(
+        'config'      => [
+            'title'  => _t('Management: configs'),
+            'access' => [
                 'moderator',
                 //'admin',
-            ),
-        ),
+            ],
+        ],
         // Block content and permission
-        'block'     => array(
-            'title'         => _t('Management: blocks'),
-            'access'        => array(
+        'block'       => [
+            'title'  => _t('Management: blocks'),
+            'access' => [
                 'moderator',
                 //'admin',
-            ),
-        ),
+            ],
+        ],
         // Page dress up, cache and permission
-        'page'     => array(
-            'title'         => _t('Management: pages'),
-            'access'        => array(
+        'page'        => [
+            'title'  => _t('Management: pages'),
+            'access' => [
                 'moderator',
                 //'admin',
-            ),
-        ),
+            ],
+        ],
         // Caches
-        'cache'  => array(
-            'title'         => _t('Management: caches'),
-            'access'        => array(
+        'cache'       => [
+            'title'  => _t('Management: caches'),
+            'access' => [
                 //'admin',
-            ),
-        ),
+            ],
+        ],
         // Permissions
-        'permission'  => array(
-            'title'         => _t('Management: permissions'),
-            'access'        => array(
+        'permission'  => [
+            'title'  => _t('Management: permissions'),
+            'access' => [
                 //'admin',
-            ),
-        ),
+            ],
+        ],
         // Event hooks
-        'event'     => array(
-            'title'         => _t('Management: events/hooks'),
-            'access'        => array(
+        'event'       => [
+            'title'  => _t('Management: events/hooks'),
+            'access' => [
                 //'admin',
                 'moderator',
-            ),
-        ),
-    ),
-);
+            ],
+        ],
+    ],
+];

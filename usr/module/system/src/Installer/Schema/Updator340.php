@@ -7,7 +7,7 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\System\Installer\Schema;
+namespace Module\System\Installer\Schema;
 
 use Pi;
 use Pi\Application\Installer\Schema\AbstractUpdator;
@@ -30,7 +30,7 @@ class Updator340 extends AbstractUpdator
     {
         if (version_compare($version, '3.3.0', '<')) {
             $updator = new Updator330($this->handler);
-            $result = $updator->upgrade($version);
+            $result  = $updator->upgrade($version);
             if (false === $result) {
                 return $result;
             }
@@ -53,45 +53,49 @@ class Updator340 extends AbstractUpdator
 
         if (version_compare($version, '3.4.2', '<')) {
 
-            $table = Pi::db()->prefix('user_data');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('user_data');
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s
 ADD `expire`          int(10)         unsigned    NOT NULL default '0' AFTER `time`;
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
         }
 
         if (version_compare($version, '3.4.1', '<')) {
 
-            Pi::model('page')->update(array('block' => 1), array(
-                'section'   => 'front',
-                'controller'    => '',
-                'action'        => '',
-            ));
+            Pi::model('page')->update(['block' => 1], [
+                'section'    => 'front',
+                'controller' => '',
+                'action'     => '',
+            ]);
 
-            $table = Pi::db()->prefix('user_account');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('user_account');
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s
 MODIFY `gender` enum('male', 'female', 'unknown') default 'unknown';
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
         }
 
         if (version_compare($version, '3.4.0', '<')) {
 
-            $table = Pi::db()->prefix('user_account');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('user_account');
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s
 MODIFY `identity`        varchar(32)     default NULL;
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
         }
 
         if (version_compare($version, '3.3.1', '<')) {
-            $sql =<<<'EOD'
+            $sql
+                    = <<<'EOD'
 CREATE TABLE `{category}` (
   `id`          int(10)         unsigned NOT NULL auto_increment,
   `title`       varchar(255)    default NULL,

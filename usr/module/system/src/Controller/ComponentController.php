@@ -11,6 +11,7 @@ namespace Module\System\Controller;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+
 //use Zend\Mvc\MvcEvent;
 
 /**
@@ -77,10 +78,10 @@ class ComponentController extends ActionController
 
         $result = Pi::service('permission')->modulePermission($module, 'admin');
         if ($result) {
-            $result = Pi::service('permission')->hasPermission(array(
-                'module'    => 'system',
-                'resource'  => $op
-            ));
+            $result = Pi::service('permission')->hasPermission([
+                'module'   => 'system',
+                'resource' => $op,
+            ]);
         }
         if (!$result) {
             $this->terminate('Access denied.');

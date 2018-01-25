@@ -1,32 +1,32 @@
 <?php
-$this->angular(array(
+$this->angular([
     'angular-route.js',
     'pi.js',
-    'pi-dropdown.js'
-));
+    'pi-dropdown.js',
+]);
 ?>
 <script>
-angular
-    .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
-    .constant('config', {
-        urlRoot: '<?php echo $this->url('', array('controller' => 'block')); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
-        data: {
-            blocks: <?php echo json_encode($blocks); ?>
-        },
-        t: {
-            Title: '<?php echo _a('Title'); ?>',
-            Description: '<?php echo _a('Description'); ?>',
-            Related: '<?php echo _a('Related pages'); ?>',
-            Action: '<?php echo _a('Action'); ?>',
-            Pages: '<?php echo _a('Pages'); ?>',
-            Preview: '<?php echo _a('Preview'); ?>',
-            Edit: '<?php echo _a('Edit'); ?>',
-            Delete: '<?php echo _a('Delete'); ?>',
-            Clone: '<?php echo _a('Clone'); ?>',
-            None: '<?php echo _a('No page uses this block yet.'); ?>',
-            Search: '<?php echo _a('Search in block title'); ?>'
-        }
-    });
+    angular
+        .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
+        .constant('config', {
+            urlRoot: '<?php echo $this->url('', ['controller' => 'block']); ?>',
+            assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+            data: {
+                blocks: <?php echo json_encode($blocks); ?>
+            },
+            t: {
+                Title: '<?php echo _a('Title'); ?>',
+                Description: '<?php echo _a('Description'); ?>',
+                Related: '<?php echo _a('Related pages'); ?>',
+                Action: '<?php echo _a('Action'); ?>',
+                Pages: '<?php echo _a('Pages'); ?>',
+                Preview: '<?php echo _a('Preview'); ?>',
+                Edit: '<?php echo _a('Edit'); ?>',
+                Delete: '<?php echo _a('Delete'); ?>',
+                Clone: '<?php echo _a('Clone'); ?>',
+                None: '<?php echo _a('No page uses this block yet.'); ?>',
+                Search: '<?php echo _a('Search in block title'); ?>'
+            }
+        });
 </script>
 <script src="<?php echo $this->assetModule('admin/block.js'); ?>"></script>
