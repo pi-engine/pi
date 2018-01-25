@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-09-06 15:24+0430\n"
-"PO-Revision-Date: 2017-09-06 15:24+0430\n"
+"POT-Creation-Date: 2018-01-25 09:55+0330\n"
+"PO-Revision-Date: 2018-01-25 09:55+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -14,29 +14,33 @@ msgstr ""
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/Block/Block.php:58
+#: src/Block/Block.php:59
 msgid "Avatar"
 msgstr "آواتار"
 
-#: template/block/completeness.phtml:21
+#: template/block/completeness.phtml:22
 msgid ""
 "Please complete your profile information, to can use all website features"
 msgstr ""
 "لطفا اطلاعات حساب کاربری خود را تکمیل فرمایید تا بتوانید از تمام امکانات وب "
 "سایت استفاده نمایید."
 
-#: template/block/completeness.phtml:22
+#: template/block/completeness.phtml:23 template/block/completeness.phtml:24
 msgid "update all"
 msgstr "به روز رسانی همه"
 
-#: template/block/completeness.phtml:26
+#: template/block/completeness.phtml:30
 #, php-format
 msgid "%s%s Complete"
 msgstr "%s%s تکمیل شده"
 
-#: template/block/completeness.phtml:40
+#: template/block/completeness.phtml:44 template/block/completeness.phtml:45
 msgid "update"
 msgstr "به روز رسانی"
+
+#: template/front/profile-sidebar.phtml:163
+msgid "Manage account"
+msgstr ""
 
 #, fuzzy
 #~ msgid "Register template file name"
