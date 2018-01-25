@@ -33,54 +33,56 @@ class Navigation extends AbstractRegistry
      *
      * @var array
      */
-    protected $uriColumns = array(
-        'label',
-        'fragment',
-        'id',
-        'class',
-        'title',
-        'target',
-        'rel',
-        'rev',
-        'resource',
-        'visible',
-        'callback',
-        'pages',
+    protected $uriColumns
+        = [
+            'label',
+            'fragment',
+            'id',
+            'class',
+            'title',
+            'target',
+            'rel',
+            'rev',
+            'resource',
+            'visible',
+            'callback',
+            'pages',
 
-        'uri',
-    );
+            'uri',
+        ];
 
     /**
      * Columns for MVC pages
      *
      * @var array
      */
-    protected $mvcColumns = array(
-        'label',
-        'fragment',
-        'id',
-        'class',
-        'title',
-        'target',
-        'rel',
-        'rev',
-        'resource',
-        'visible',
-        'callback',
-        'pages',
+    protected $mvcColumns
+        = [
+            'label',
+            'fragment',
+            'id',
+            'class',
+            'title',
+            'target',
+            'rel',
+            'rev',
+            'resource',
+            'visible',
+            'callback',
+            'pages',
 
-        'section',
-        'route',
-        'module',
-        'controller',
-        'action',
-        'params',
-    );
+            'section',
+            'route',
+            'module',
+            'controller',
+            'action',
+            'params',
+        ];
 
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
         $name = $options['name'];
         if ('front' == $name) {
@@ -109,9 +111,9 @@ class Navigation extends AbstractRegistry
      * @param array $options
      * @return array
      */
-    protected function loadNavigation($options = array())
+    protected function loadNavigation($options = [])
     {
-        $name = $options['name'];
+        $name   = $options['name'];
         $locale = $options['locale'];
         //$module = $options['module'];
         $this->role = $options['role'];
@@ -146,10 +148,10 @@ class Navigation extends AbstractRegistry
      * @param array $options
      * @return array
      */
-    protected function loadFront($options = array())
+    protected function loadFront($options = [])
     {
         $options['section'] = 'front';
-        $options['name'] = 'system-front';
+        $options['name']    = 'system-front';
 
         $navigation = $this->loadNavigation($options);
 
@@ -164,7 +166,7 @@ class Navigation extends AbstractRegistry
      * @param array $options
      * @return array
      */
-    protected function loadAdmin($options = array())
+    protected function loadAdmin($options = [])
     {
         $options['section'] = 'admin';
         //$this->route = 'admin';
@@ -178,11 +180,11 @@ class Navigation extends AbstractRegistry
     /**
      * {@inheritDoc}
      *
-     * @param string        $name
-     * @param string        $module
-     * @param string        $section
-     * @param string|null   $role
-     * @param string        $locale
+     * @param string $name
+     * @param string $module
+     * @param string $section
+     * @param string|null $role
+     * @param string $locale
      */
     public function read(
         $name = '',
@@ -190,7 +192,8 @@ class Navigation extends AbstractRegistry
         $section = '',
         $role = null,
         $locale = ''
-    ) {
+    )
+    {
         //$this->cache = false;
         if (null === $role) {
             if (Pi::service('permission')->isAdmin()) {
@@ -203,10 +206,10 @@ class Navigation extends AbstractRegistry
             $this->checkPermission = false;
         } else {
             $this->checkPermission = true;
-            $role = $this->canonizeRole($role);
+            $role                  = $this->canonizeRole($role);
         }
         $options = compact('name', 'module', 'section', 'role', 'locale');
-        $data = $this->loadData($options);
+        $data    = $this->loadData($options);
 
         return $data;
     }
@@ -214,18 +217,19 @@ class Navigation extends AbstractRegistry
     /**
      * {@inheritDoc}
      *
-     * @param string        $name
-     * @param string        $module
-     * @param string        $section
-     * @param string|null   $role
-     * @param string        $locale
+     * @param string $name
+     * @param string $module
+     * @param string $section
+     * @param string|null $role
+     * @param string $locale
      */
     public function create(
         $name = '',
         $module = '',
         $role = null,
         $locale = ''
-    ) {
+    )
+    {
         $this->clear('');
         $this->read($name, $module, $role, $locale);
 
@@ -261,9 +265,9 @@ class Navigation extends AbstractRegistry
     /**
      * Translate navigation config
      *
-     * @param array     $config
-     * @param string    $domain
-     * @param string    $locale
+     * @param array $config
+     * @param string $domain
+     * @param string $locale
      * @return array
      */
     protected function translateConfig($config, $domain, $locale)
@@ -403,9 +407,9 @@ class Navigation extends AbstractRegistry
      * </ul>
      *
      * @see     \Module\System\Navigation for details
-     * @param array     $page   Page data to be canonized
-     * @param array     $parent Sibling of parent page
-     * @param string    $pKey   Key of parent in sibling
+     * @param array $page Page data to be canonized
+     * @param array $parent Sibling of parent page
+     * @param string $pKey Key of parent in sibling
      * @return array
      */
     protected function canonizeCallback($page, &$parent, $pKey)
@@ -414,7 +418,7 @@ class Navigation extends AbstractRegistry
             return $page;
         }
 
-        $data = array();
+        $data     = [];
         $callback = null;
         if (is_string($page['callback']) && is_callable($page['callback'])) {
             $callback = $page['callback'];
@@ -424,7 +428,7 @@ class Navigation extends AbstractRegistry
             if (!class_exists($class)) {
                 $module = empty($page['module'])
                     ? $this->module : $page['module'];
-                $class = sprintf(
+                $class  = sprintf(
                     'Module\\%s\\%s',
                     ucfirst(Pi::service('module')->directory($module)),
                     ucfirst($class)
@@ -432,39 +436,39 @@ class Navigation extends AbstractRegistry
             }
 
             if (method_exists($class, $method)) {
-                $callback = array($class, $method);
+                $callback = [$class, $method];
             }
         }
         unset($page['callback']);
 
         if ($callback) {
-            $data = (array) call_user_func($callback, $this->module);
+            $data       = (array)call_user_func($callback, $this->module);
             $parentNode = null;
             if (isset($data['parent'])) {
                 $parentNode = $data['parent'];
                 unset($data['parent']);
             }
             if ($data) {
-                $pages = isset($page['pages']) ? $page['pages'] : array();
+                $pages = isset($page['pages']) ? $page['pages'] : [];
                 if (!empty($data['pages'])) {
                     $pages = array_merge($pages, $data['pages']);
                 }
-                $page = array_merge($page, (array) $data);
+                $page = array_merge($page, (array)$data);
                 if ($pages) {
                     $page['pages'] = $pages;
                 }
             }
             if ($parentNode) {
-                $newParent = array();
+                $newParent = [];
                 foreach ($parent as $key => $node) {
                     // Insert new parent nodes
                     if ($pKey == $key) {
                         if (!empty($parentNode['position'])) {
-                            $position = $parentNode['position'];
+                            $position    = $parentNode['position'];
                             $parentItems = $parentNode['pages'];
                             unset($node['callback']);
                         } else {
-                            $position = false;
+                            $position    = false;
                             $parentItems = $parentNode;
                         }
                         // Insert parent items after current node
@@ -484,7 +488,7 @@ class Navigation extends AbstractRegistry
                     }
                 }
                 $parent = $newParent;
-           }
+            }
         }
 
         return $page;
@@ -493,10 +497,10 @@ class Navigation extends AbstractRegistry
     /**
      * Canonize a page
      *
-     * @param array     $page   Page data to be canonized
-     * @param array     $parent Sibling of parent page
-     * @param string    $pKey   Key of parent in sibling
-     * @param bool      $isTop  If the page is top level,
+     * @param array $page Page data to be canonized
+     * @param array $parent Sibling of parent page
+     * @param string $pKey Key of parent in sibling
+     * @param bool $isTop If the page is top level,
      *      only top level menu is shown in non-system module admin
      * @return array
      */
@@ -535,10 +539,10 @@ class Navigation extends AbstractRegistry
     /**
      * Translate a page
      *
-     * @param array     $page   Page data to be canonized
-     * @param array     $parent Sibling of parent page
-     * @param string    $pKey   Key of parent in sibling
-     * @param bool      $isTop  If the page is top level,
+     * @param array $page Page data to be canonized
+     * @param array $parent Sibling of parent page
+     * @param string $pKey Key of parent in sibling
+     * @param bool $isTop If the page is top level,
      *      only top level menu is shown in non-system module admin
      * @return array
      */
@@ -548,8 +552,8 @@ class Navigation extends AbstractRegistry
 
         // Check permission
         if (!$this->isAllowed($page)) {
-            $page['visible'] = 0;
-            $page['pages'] = array();
+            $page['visible']  = 0;
+            $page['pages']    = [];
             $page['resource'] = null;
             return;
         }
@@ -584,17 +588,17 @@ class Navigation extends AbstractRegistry
             && !empty($page['resource'])
             && !empty($page['resource']['resource'])
         ) {
-            $params = $page['resource'];
-            $section = empty($params['section'])
+            $params   = $page['resource'];
+            $section  = empty($params['section'])
                 ? $this->section : $params['section'];
-            $module = empty($params['module'])
+            $module   = empty($params['module'])
                 ? $this->module : $params['module'];
             $resource = $params['resource'];
-            $result = Pi::service('permission')->hasPermission(array(
-                'section'   => $section,
-                'module'    => $module,
-                'resource'  => $resource,
-            ), array_values($this->roles));
+            $result   = Pi::service('permission')->hasPermission([
+                'section'  => $section,
+                'module'   => $module,
+                'resource' => $resource,
+            ], array_values($this->roles));
 
             return $result;
         }

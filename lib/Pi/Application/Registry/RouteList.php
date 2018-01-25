@@ -27,16 +27,16 @@ class RouteList extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $where = array('module' => $options['module']);
+        $where = ['module' => $options['module']];
         if (!empty($options['section'])) {
             $where['section'] = $options['section'];
         }
         $model  = Pi::model('route');
         $rowset = $model->select($where);
 
-        $configs = array();
+        $configs = [];
         foreach ($rowset as $row) {
             $spec = $row->data;
             if ($row->priority) {
@@ -50,7 +50,7 @@ class RouteList extends AbstractRegistry
                 $name = $row->name;
             }
             */
-            $name = $row->name;
+            $name           = $row->name;
             $configs[$name] = $spec;
         }
 
@@ -59,21 +59,21 @@ class RouteList extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string    $module
-     * @param string    $section
+     * @param string $module
+     * @param string $section
      */
     public function read($module = '', $section = '')
     {
         $options = compact('module', 'section');
-        $data = $this->loadData($options);
+        $data    = $this->loadData($options);
 
         return $data;
     }
 
     /**
      * {@inheritDoc}
-     * @param string    $module
-     * @param string    $section
+     * @param string $module
+     * @param string $section
      */
     public function create($module = '', $section = '')
     {

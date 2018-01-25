@@ -21,11 +21,11 @@ class Search extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
-     * @param   array   $options    Potential values for type:
+     * @param   array $options Potential values for type:
      *          active, inactive, all
      * @return  array   Keys: dirname => callback, active
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
         $model = Pi::model('search');
 
@@ -36,7 +36,7 @@ class Search extends AbstractRegistry
         }
         $rowset = $model->select($where);
 
-        $modules = array();
+        $modules = [];
         foreach ($rowset as $row) {
             $modules[$row->module] = $row->callback;
         }

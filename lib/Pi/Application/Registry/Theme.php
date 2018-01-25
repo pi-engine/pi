@@ -25,27 +25,27 @@ class Theme extends AbstractRegistry
      * @param array $options
      * @return array    Keys: dirname => title, screenshot
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
         $model = Pi::model('theme');
-        $type = empty($options['type']) ? 'front' : $options['type'];
+        $type  = empty($options['type']) ? 'front' : $options['type'];
 
         $select = $model->select();
-        $select->where->in('type', array('both', $type));
+        $select->where->in('type', ['both', $type]);
         $rowset = $model->selectWith($select);
 
-        $themes = array();
+        $themes = [];
         foreach ($rowset as $row) {
-            $config = Pi::service('theme')->loadConfig($row->name);
-            $themes[$row->name] = array(
-                'title'         => $config['title'],
-                'screenshot'    => !empty($config['screenshot'])
+            $config             = Pi::service('theme')->loadConfig($row->name);
+            $themes[$row->name] = [
+                'title'      => $config['title'],
+                'screenshot' => !empty($config['screenshot'])
                     ? Pi::service('asset')->getAssetUrl(
                         'theme/' . $row->name,
                         $config['screenshot']
-                      )
+                    )
                     : Pi::url('static/image/theme.png'),
-            );
+            ];
         }
 
         return $themes;

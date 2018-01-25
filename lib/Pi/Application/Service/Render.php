@@ -18,4 +18,5 @@ namespace Pi\Application\Service;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Render extends RenderCache
-{}
+{
+}

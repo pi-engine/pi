@@ -11,8 +11,8 @@
 namespace Pi\Form\View\Helper;
 
 //use Zend\Form\View\Helper\AbstractHelper;
-use Zend\Form\ElementInterface;
 use Zend\Captcha\AdapterInterface as CaptchaAdapter;
+use Zend\Form\ElementInterface;
 
 /**
  * CAPTCHA element helper
@@ -24,7 +24,7 @@ class FormCaptcha extends AbstractHelper
     /**
      * {@inheritDoc}
      */
-    public function render(ElementInterface $element, $options = array())
+    public function render(ElementInterface $element, $options = [])
     {
         $captcha = $element->getCaptcha();
 
@@ -36,8 +36,8 @@ class FormCaptcha extends AbstractHelper
             ));
         }
 
-        $helper     = $captcha->getHelperName();
-        $renderer   = $this->getView();
+        $helper   = $captcha->getHelperName();
+        $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
             throw new \DomainException(sprintf(
                 '%s requires that the renderer implements plugin();'

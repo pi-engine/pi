@@ -31,7 +31,7 @@ class FlashMessenger extends ZendFlashMessenger
         if (!$message) {
             return $this;
         }
-        $messages = (array) $message;
+        $messages = (array)$message;
         foreach ($messages as $msg) {
             $this->addMessage($msg, $namespace);
         }
@@ -49,7 +49,7 @@ class FlashMessenger extends ZendFlashMessenger
     public function load($namespace = '')
     {
         $this->getMessagesFromContainer();
-        $result = array();
+        $result = [];
         if ($namespace) {
             $result = $this->getMessages($namespace);
         } elseif ($this->messages) {

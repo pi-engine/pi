@@ -28,13 +28,14 @@ class Model extends AbstractTableGateway
      */
     protected $rowClass = 'Pi\Db\RowGateway\RowGateway';
 
-    protected $mediaLinks = array();
+    protected $mediaLinks = [];
 
     /**
      * Return media links
      * @return array
      */
-    public function getMediaLinks(){
+    public function getMediaLinks()
+    {
 
         return $this->mediaLinks;
     }

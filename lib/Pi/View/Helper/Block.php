@@ -10,11 +10,11 @@
 
 namespace Pi\View\Helper;
 
+use MarkdownDocument;
 use Pi;
 use Pi\Db\RowGateway\RowGateway as BlockRow;
-use Zend\View\Model\ViewModel;
 use Zend\View\Helper\AbstractHelper;
-use MarkdownDocument;
+use Zend\View\Model\ViewModel;
 
 /**
  * Helper for fetching and rendering a block
@@ -55,8 +55,8 @@ class Block extends AbstractHelper
         if (is_numeric($id)) {
             $block = $model->find($id);
         } elseif (is_string($id)) {
-            $rowset = $model->select(array('name' => $id));
-            $block = $rowset->current();
+            $rowset = $model->select(['name' => $id]);
+            $block  = $rowset->current();
         }
 
         return $block;
@@ -69,7 +69,7 @@ class Block extends AbstractHelper
      * @param   array $options
      * @return  self|array|false
      */
-    public function __invoke($block = null, $options = array())
+    public function __invoke($block = null, $options = [])
     {
         if (null === $block) {
             return $this;
@@ -91,7 +91,7 @@ class Block extends AbstractHelper
      * @param   array $options
      * @return  array
      */
-    public function render(BlockRow $blockRow, $options = array())
+    public function render(BlockRow $blockRow, $options = [])
     {
         return $this->renderBlock($blockRow, $options);
     }
@@ -103,7 +103,7 @@ class Block extends AbstractHelper
      * @param   array $options
      * @return  array
      */
-    public function renderBlock(BlockRow $blockRow, $options = array())
+    public function renderBlock(BlockRow $blockRow, $options = [])
     {
         if (!$blockRow->active) {
             return false;
@@ -111,15 +111,15 @@ class Block extends AbstractHelper
         $block = $blockRow->toArray();
 
         // Override with instant options
-        foreach (array(
-            'title',
-            'link',
-            'class',
-            'cache_ttl',
-            'cache_level',
-            'template',
-            'title_hidden'
-        ) as $key) {
+        foreach ([
+                     'title',
+                     'link',
+                     'class',
+                     'cache_ttl',
+                     'cache_level',
+                     'template',
+                     'title_hidden',
+                 ] as $key) {
             if (isset($options[$key])) {
                 $block[$key] = $options[$key];
             }
@@ -129,9 +129,9 @@ class Block extends AbstractHelper
         }
 
         $renderCache = null;
-        $blockData = null;
+        $blockData   = null;
         if ('tab' != $block['type'] && $block['cache_ttl']) {
-            $cacheKey = empty($options)
+            $cacheKey    = empty($options)
                 ? md5($block['id']) : md5($block['id'] . serialize($options));
             $renderCache = Pi::service('render_cache')->setType('block');
             $renderCache->meta('key', $cacheKey)
@@ -205,12 +205,12 @@ class Block extends AbstractHelper
      * @return array|string Variable array for module blocks
      *      and string content for custom blocks
      */
-    public function buildBlock(BlockRow $blockRow, $configs = array())
+    public function buildBlock(BlockRow $blockRow, $configs = [])
     {
         $block = $blockRow->toArray();
 
         // Merge run-time configs with system settings
-        $options = isset($block['config']) ? $block['config'] : array();
+        $options = isset($block['config']) ? $block['config'] : [];
         if (!empty($configs)) {
             $options = array_merge($options, $configs);
         }
@@ -218,7 +218,7 @@ class Block extends AbstractHelper
         // Render blocks from `widget` module
         if ('widget' == $block['module']) {
             $result = Pi::api('block', 'widget')->render($this, $block, $options);
-        // Render block from regular modules
+            // Render block from regular modules
         } else {
             // Load translations for corresponding module block
             Pi::service('i18n')->loadModule('block', $block['module']);
@@ -226,7 +226,7 @@ class Block extends AbstractHelper
             // Render contents
             $result = call_user_func_array(
                 $block['render'],
-                array($options, $block['module'])
+                [$options, $block['module']]
             );
         }
 

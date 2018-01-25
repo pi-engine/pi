@@ -23,12 +23,13 @@ use Zend\Filter\AbstractFilter;
 class Linkify extends AbstractFilter
 {
     /** @var array */
-    protected $options = array(
-        // attributes
-        'attributes'    => array(),
-        // open in new window
-        'open_new'      => true,
-    );
+    protected $options
+        = [
+            // attributes
+            'attributes' => [],
+            // open in new window
+            'open_new'   => true,
+        ];
 
     /**
      * Filter text
@@ -48,7 +49,7 @@ class Linkify extends AbstractFilter
      */
     protected function linkCallback($url)
     {
-        $attributes = array();
+        $attributes = [];
         if (!empty($this->options['attributes'])) {
             $attributes = $this->options['attributes'];
         }
@@ -58,7 +59,7 @@ class Linkify extends AbstractFilter
         if (!isset($attributes['title'])) {
             $attributes['title'] = __('Click to open');
         }
-        
+
         $nofollow = true;
         if (Pi::service('module')->isActive('comment')) {
             $trustDomains = Pi::config('linkify_trust_domain', 'comment');
@@ -68,12 +69,12 @@ class Linkify extends AbstractFilter
                 $nofollow = false;
             }
         }
-        
+
         if ($nofollow) {
             $attributes['rel'] = 'nofollow noopener noreferrer';
         }
-        
-        
+
+
         $helper = Pi::service('view')->getHelper('html_link');
 
         $callback = function ($href, $title) use ($helper, $attributes) {
@@ -97,7 +98,7 @@ class Linkify extends AbstractFilter
 
         //$pattern = '!((((f|ht)tp(s)?:)?//|www\.)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i';
         $pattern = '!(^|\s)((((f|ht)tps?:)?//|www\.)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i';
-        $value = preg_replace_callback($pattern, function ($matches) use ($callback) {
+        $value   = preg_replace_callback($pattern, function ($matches) use ($callback) {
             $url = $matches[2];
             if ('www.' == $matches[3]) {
                 $href = 'http://' . $url;
@@ -122,7 +123,8 @@ class Linkify extends AbstractFilter
      */
     protected function filterMisd($value)
     {
-        $pattern = '~(?xi)
+        $pattern
+              = '~(?xi)
               (?:
                 ((ht|f)tps?://)                    # scheme://
                 |                                  #   or

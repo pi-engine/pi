@@ -34,15 +34,15 @@ class Timeline extends AbstractResource
     /**
      * Get timeline log list
      *
-     * @param int          $uid
-     * @param int          $limit
-     * @param int          $offset
+     * @param int $uid
+     * @param int $limit
+     * @param int $offset
      *
      * @return array
      */
     public function get($uid, $limit, $offset = 0)
     {
-        $result = array();
+        $result = [];
 
         if (!$this->isAvailable()) {
             return $result;
@@ -55,7 +55,7 @@ class Timeline extends AbstractResource
     /**
      * Get timeline log count subject to type(s)
      *
-     * @param int           $uid
+     * @param int $uid
      *
      * @return int
      */
@@ -94,7 +94,7 @@ class Timeline extends AbstractResource
 
         return $result;
     }
-    
+
     public function delete(array $log)
     {
         if (!$this->isAvailable()) {
@@ -104,5 +104,5 @@ class Timeline extends AbstractResource
 
         return $result;
     }
-    
+
 }

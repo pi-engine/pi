@@ -10,8 +10,8 @@
 namespace Pi\View\Resolver;
 
 use Pi;
-use Zend\View\Resolver\ResolverInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
+use Zend\View\Resolver\ResolverInterface;
 
 /**
  * Theme template resolver
@@ -47,7 +47,7 @@ class ThemeTemplate implements ResolverInterface
      */
     public function setSuffix($suffix)
     {
-        $this->suffix = (string) $suffix;
+        $this->suffix = (string)$suffix;
 
         return $this;
     }
@@ -75,7 +75,7 @@ class ThemeTemplate implements ResolverInterface
         if (substr($name, -6) == '.' . $this->suffix) {
             $name = substr($name, 0, -6);
         }
-        $theme = $theme ?: Pi::service('theme')->current();
+        $theme    = $theme ?: Pi::service('theme')->current();
         $template = sprintf(
             '%s/%s/%s/%s.%s',
             Pi::path('theme'),

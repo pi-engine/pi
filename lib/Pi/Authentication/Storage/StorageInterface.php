@@ -9,7 +9,6 @@
 
 namespace Pi\Authentication\Storage;
 
-use Pi;
 use Zend\Authentication\Storage\StorageInterface as ZendStorageInterface;
 
 /**
@@ -25,5 +24,5 @@ interface StorageInterface extends ZendStorageInterface
      * @param array $options
      * @return void
      */
-    public function setOptions($options = array());
+    public function setOptions($options = []);
 }

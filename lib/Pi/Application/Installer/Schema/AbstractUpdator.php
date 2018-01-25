@@ -7,7 +7,7 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Pi\Application\Installer\Schema;
+namespace Pi\Application\Installer\Schema;
 
 use Pi;
 use Pi\Application\Installer\Action\Update as UpdateAction;
@@ -46,11 +46,11 @@ class AbstractUpdator
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $this->handler->setResult('db', array(
-                'status'    => false,
-                'message'   => 'Table alter query failed: '
+            $this->handler->setResult('db', [
+                'status'  => false,
+                'message' => 'Table alter query failed: '
                     . $exception->getMessage(),
-            ));
+            ]);
 
             return false;
         }
@@ -72,11 +72,11 @@ class AbstractUpdator
         try {
             $sqlHandler->queryContent($sql, $type);
         } catch (\Exception $exception) {
-            $this->handler->setResult('db', array(
-                'status'    => false,
-                'message'   => 'SQL schema query failed: '
+            $this->handler->setResult('db', [
+                'status'  => false,
+                'message' => 'SQL schema query failed: '
                     . $exception->getMessage(),
-            ));
+            ]);
 
             return false;
         }
@@ -87,7 +87,7 @@ class AbstractUpdator
     /**
      * Update module table schema
      *
-     * @param string       $version
+     * @param string $version
      *
      * @throws \Exception
      * @return bool

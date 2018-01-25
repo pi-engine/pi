@@ -22,15 +22,15 @@ class PageCache extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
         $modelPage = Pi::model('page');
-        $cacheList = $modelPage->select(array(
-            'section'   => $options['section'],
-            'module'    => $options['module'],
-            'cache_ttl >= 0'
-        ));
-        $caches = array();
+        $cacheList = $modelPage->select([
+            'section' => $options['section'],
+            'module'  => $options['module'],
+            'cache_ttl >= 0',
+        ]);
+        $caches    = [];
         foreach ($cacheList as $cache) {
             $key = $cache['module'];
             if (!empty($cache['controller'])) {
@@ -39,11 +39,11 @@ class PageCache extends AbstractRegistry
                     $key .= '-' . $cache['action'];
                 }
             }
-            $caches[$key] = array(
+            $caches[$key] = [
                 'type'  => $cache['cache_type'],
                 'ttl'   => $cache['cache_ttl'],
-                'level' => $cache['cache_level']
-            );
+                'level' => $cache['cache_level'],
+            ];
         }
 
         return $caches;
@@ -57,7 +57,7 @@ class PageCache extends AbstractRegistry
      */
     public function read($module = '', $section = 'front', $type = 'action')
     {
-        $module = $module ?: Pi::service('module')->current();
+        $module  = $module ?: Pi::service('module')->current();
         $options = compact('module', 'section', 'type');
 
         return $this->loadData($options);

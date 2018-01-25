@@ -15,7 +15,7 @@ use Zend\Mvc\MvcEvent;
 
 /**
  * Command controller
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 abstract class CommandController extends AbstractActionController
@@ -30,10 +30,10 @@ abstract class CommandController extends AbstractActionController
     public function onDispatch(MvcEvent $e)
     {
         $actionResponse = null;
-        $result = $this->preAction($e);
+        $result         = $this->preAction($e);
         if (false !== $result) {
             //$actionResponse = parent::onDispatch($e);
-            
+
             $routeMatch = $e->getRouteMatch();
             if (!$routeMatch) {
                 /**
@@ -42,7 +42,7 @@ abstract class CommandController extends AbstractActionController
                  */
                 throw new Exception\DomainException('Missing route matches; unsure how to retrieve action');
             }
-            
+
             $action = $routeMatch->getParam('action', 'not-found');
             $method = static::getMethodFromAction($action);
 
@@ -53,23 +53,23 @@ abstract class CommandController extends AbstractActionController
 
             $actionResponse = call_user_func_array([$this, $method], $args);
             $e->setResult($actionResponse);
-            
+
             $this->postAction($e, $actionResponse);
         }
 
         return $actionResponse;
     }
-    
+
     public function preAction($e)
     {
         Pi::service('log')->mute();
     }
-    
+
     public function postAction($e)
     {
         return true;
     }
-    
+
     /**
      * Get name of current module
      *
@@ -79,15 +79,15 @@ abstract class CommandController extends AbstractActionController
     {
         return $this->getEvent()->getRouteMatch()->getParam('module');
     }
-    
+
     /**
      * Get database model
      *
-     * @param  string   $name
-     * @param  array    $options
+     * @param  string $name
+     * @param  array $options
      * @return Pi\Application\Model\Model
      */
-    public function getModel($name, $options = array())
+    public function getModel($name, $options = [])
     {
         return Pi::db()->model($this->getModule() . '/' . $name, $options);
     }

@@ -23,12 +23,13 @@ abstract class AbstractComment extends AbstractApi
     protected $table;
 
     /** @var array Columns to fetch: table column => meta key */
-    protected $meta = array(
-        'id'        => 'id',
-        'title'     => 'title',
-        'time'      => 'time',
-        'uid'       => 'uid',
-    );
+    protected $meta
+        = [
+            'id'    => 'id',
+            'title' => 'title',
+            'time'  => 'time',
+            'uid'   => 'uid',
+        ];
 
     /**
      * Get target data of item(s)
@@ -46,19 +47,19 @@ abstract class AbstractComment extends AbstractApi
      */
     public function get($id)
     {
-        $result = array();
+        $result = [];
         if (!$this->table) {
             return $result;
         }
 
-        $items = (array) $id;
-        $where = $this->canonizeConditions(array('id' => $items));
-        $model = Pi::model($this->table, $this->module);
+        $items  = (array)$id;
+        $where  = $this->canonizeConditions(['id' => $items]);
+        $model  = Pi::model($this->table, $this->module);
         $rowset = $model->select($where);
         foreach ($rowset as $row) {
-            $item = $this->canonizeResult($row->toArray());
+            $item        = $this->canonizeResult($row->toArray());
             $item['url'] = $this->buildUrl($item);
-            $result[] = $item;
+            $result[]    = $item;
         }
         if (is_scalar($id)) {
             $result = array_pop($result);
@@ -103,7 +104,7 @@ abstract class AbstractComment extends AbstractApi
     protected function canonizeResult(array $data)
     {
         $meta   = $this->meta;
-        $result = array();
+        $result = [];
         foreach ($data as $var => $value) {
             if (isset($meta[$var])) {
                 $result[$meta[$var]] = $value;
@@ -123,7 +124,7 @@ abstract class AbstractComment extends AbstractApi
     protected function canonizeConditions(array $conditions)
     {
         $meta   = array_flip($this->meta);
-        $result = array();
+        $result = [];
         foreach ($conditions as $var => $condition) {
             if (isset($meta[$var])) {
                 $result[$meta[$var]] = $condition;

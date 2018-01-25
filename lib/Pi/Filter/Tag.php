@@ -9,7 +9,6 @@
 
 namespace Pi\Filter;
 
-use Pi;
 use Zend\Filter\AbstractFilter;
 
 /**
@@ -26,19 +25,20 @@ class Tag extends AbstractFilter
      * Filter options
      * @var array
      */
-    protected $options = array(
-        'tag'           => '%tag%',
-        'pattern'       => '#([^\s\,\;]{3,32})#',
-        'replacement'   => '<a href="pi.url/tag/%tag%" title="%tag%">#%tag%#</a>',
-        'callback'      => null,
-    );
+    protected $options
+        = [
+            'tag'         => '%tag%',
+            'pattern'     => '#([^\s\,\;]{3,32})#',
+            'replacement' => '<a href="pi.url/tag/%tag%" title="%tag%">#%tag%#</a>',
+            'callback'    => null,
+        ];
 
     /**
      * Constructor
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setOptions($options);
     }
@@ -54,9 +54,9 @@ class Tag extends AbstractFilter
         if (!empty($this->options['callback'])) {
             $value = $this->options['callback']($value);
         } else {
-            $tag = $this->options['tag'];
+            $tag         = $this->options['tag'];
             $replacement = $this->options['replacement'];
-            $value = preg_replace_callback(
+            $value       = preg_replace_callback(
                 '`' . $this->options['pattern'] . '`',
                 function ($m) use ($replacement, $tag) {
                     return str_replace($tag, $m[1], $replacement);

@@ -11,9 +11,9 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Zend\Mvc\Router\RouteStackInterface;
-use Zend\Mvc\Router\Http\RouteMatch;
 use Zend\Http\PhpEnvironment\Request;
+use Zend\Mvc\Router\Http\RouteMatch;
+use Zend\Mvc\Router\RouteStackInterface;
 use Zend\Uri\Http as HttpUri;
 
 /**
@@ -141,13 +141,13 @@ class Url extends AbstractService
      *
      * @see    Zend\Mvc\Router\RouteInterface::assemble()
      *
-     * @param  string       $route              Route name
-     * @param  array        $params
+     * @param  string $route Route name
+     * @param  array $params
      *          Parameters to use in url generation, if any
-     * @param  array|bool   $options
+     * @param  array|bool $options
      *          RouteInterface-specific options to use in url generation, if any.
      *          If boolean, and no fourth argument, used as $reuseMatchedParams.
-     * @param  bool         $reuseMatchedParams
+     * @param  bool $reuseMatchedParams
      *          Whether to reuse matched parameters
      *
      * @throws \RuntimeException
@@ -155,10 +155,11 @@ class Url extends AbstractService
      */
     public function assemble(
         $route = null,
-        array $params = array(),
-        $options = array(),
+        array $params = [],
+        $options = [],
         $reuseMatchedParams = false
-    ) {
+    )
+    {
         if (is_array($options) && isset($options['router'])) {
             $router = $options['router'];
             unset($options['router']);
@@ -174,9 +175,9 @@ class Url extends AbstractService
         if (3 == func_num_args()) {
             if (is_bool($options)) {
                 $reuseMatchedParams = $options;
-                $options = array();
+                $options            = [];
             } elseif (isset($options['reuse_matched_params'])) {
-                $reuseMatchedParams = (bool) $options['reuse_matched_params'];
+                $reuseMatchedParams = (bool)$options['reuse_matched_params'];
                 unset($options['reuse_matched_params']);
             }
         }
@@ -189,7 +190,7 @@ class Url extends AbstractService
             $params['module'] = $routeMatch->getParam('module');
         }
         if ($reuseMatchedParams && $routeMatch) {
-            foreach (array('module', 'controller', 'action') as $key) {
+            foreach (['module', 'controller', 'action'] as $key) {
                 if (empty($params[$key])) {
                     $params[$key] = $routeMatch->getParam($key);
                 }
@@ -225,7 +226,7 @@ class Url extends AbstractService
             );
         }
 
-        $uri = new HttpUri($url);
+        $uri     = new HttpUri($url);
         $request = new Request();
         $request->setUri($uri);
         if ($route) {
@@ -268,8 +269,8 @@ class Url extends AbstractService
     /**
      * Redirect to a URL
      *
-     * @param string    $url
-     * @param bool      $return
+     * @param string $url
+     * @param bool $return
      *
      * @return void
      */

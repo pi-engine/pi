@@ -32,15 +32,15 @@ class Data extends AbstractResource
      * Get user data
      *
      * @param int|int[] $uid
-     * @param string    $name
-     * @param bool      $returnArray
-     * @param string    $module
+     * @param string $name
+     * @param bool $returnArray
+     * @param string $module
      *
      * @return int|mixed|array
      */
     public function get($uid, $name, $returnArray = false, $module = '')
     {
-        $uids = (array) $uid;
+        $uids = (array)$uid;
         array_walk($uids, 'intval');
         $result = false;
 
@@ -49,7 +49,7 @@ class Data extends AbstractResource
             if ($row) {
                 if (!$row['expire'] || $row['expire'] > time()) {
                     if (null !== $row['value_int']) {
-                        $value = (int) $row['value_int'];
+                        $value = (int)$row['value_int'];
                     } elseif (null !== $row['value']) {
                         $value = $row['value'];
                     } else {
@@ -58,11 +58,11 @@ class Data extends AbstractResource
                     if (!$returnArray) {
                         $result = $value;
                     } else {
-                        $result = array(
-                            'time'      => $row['time'],
-                            'value'     => $value,
-                            'module'    => $row['module'],
-                        );
+                        $result = [
+                            'time'   => $row['time'],
+                            'value'  => $value,
+                            'module' => $row['module'],
+                        ];
                     }
                 }
             }
@@ -70,18 +70,18 @@ class Data extends AbstractResource
             return $result;
         };
 
-        $where = array(
-            'uid'       => $uids,
-            'name'      => $name,
-            'module'    => $module ?: Pi::service('module')->current(),
-        );
+        $where  = [
+            'uid'    => $uids,
+            'name'   => $name,
+            'module' => $module ?: Pi::service('module')->current(),
+        ];
         $rowset = Pi::model('user_data')->select($where);
         if (is_scalar($uid)) {
-            $row = $rowset->current();
+            $row    = $rowset->current();
             $result = $getValue($row);
         } else {
             foreach ($rowset as $row) {
-                $result[(int) $row['uid']] = $getValue($row, $returnArray);
+                $result[(int)$row['uid']] = $getValue($row, $returnArray);
             }
         }
 
@@ -92,21 +92,21 @@ class Data extends AbstractResource
      * Delete user data
      *
      * @param int|int[] $uid
-     * @param string    $name
-     * @param string    $module
+     * @param string $name
+     * @param string $module
      *
      * @return bool
      */
     public function delete($uid, $name, $module = '')
     {
-        $uids = (array) $uid;
+        $uids = (array)$uid;
         array_walk($uids, 'intval');
 
-        $where = array(
-            'uid'       => $uids,
-            'name'      => $name,
-            'module'    => $module ?: Pi::service('module')->current(),
-        );
+        $where = [
+            'uid'    => $uids,
+            'name'   => $name,
+            'module' => $module ?: Pi::service('module')->current(),
+        ];
         try {
             Pi::model('user_data')->delete($where);
             $result = true;
@@ -121,52 +121,53 @@ class Data extends AbstractResource
      * Write user data
      *
      * @param int|array $uid
-     * @param string    $name
+     * @param string $name
      * @param mixed|int $value
-     * @param string    $module
-     * @param int       $expire
+     * @param string $module
+     * @param int $expire
      *
      * @return bool
      */
     public function set(
         $uid,
-        $name   = null,
-        $value  = null,
+        $name = null,
+        $value = null,
         $module = '',
         $expire = 0
-    ) {
+    )
+    {
         if (is_array($uid)) {
-            $id = isset($uid['uid']) ? (int) $uid['uid'] : 0;
+            $id = isset($uid['uid']) ? (int)$uid['uid'] : 0;
             extract($uid);
             $uid = $id;
         }
-        $module = $module ?: Pi::service('module')->current();
-        $time = time();
-        $expire = $expire ? $time + (int) $expire : 0;
-        $vars = array(
-            'uid'       => (int) $uid,
-            'name'      => $name,
-            'expire'    => $expire,
-            'module'    => $module,
-            'time'      => $time,
-        );
-        $vars['value']          = null;
-        $vars['value_int']      = null;
-        $vars['value_multi']    = null;
+        $module              = $module ?: Pi::service('module')->current();
+        $time                = time();
+        $expire              = $expire ? $time + (int)$expire : 0;
+        $vars                = [
+            'uid'    => (int)$uid,
+            'name'   => $name,
+            'expire' => $expire,
+            'module' => $module,
+            'time'   => $time,
+        ];
+        $vars['value']       = null;
+        $vars['value_int']   = null;
+        $vars['value_multi'] = null;
         if (is_int($value)) {
-            $vars['value_int']      = $value;
+            $vars['value_int'] = $value;
         } elseif (is_scalar($value)) {
-            $vars['value']          = $value;
+            $vars['value'] = $value;
         } else {
             $vars['value_multi'] = $value;
         }
 
-        $where = array(
-            'uid'       => (int) $uid,
-            'name'      => $name,
-            'module'    => $module,
-        );
-        $row = Pi::model('user_data')->select($where)->current();
+        $where = [
+            'uid'    => (int)$uid,
+            'name'   => $name,
+            'module' => $module,
+        ];
+        $row   = Pi::model('user_data')->select($where)->current();
         if ($row) {
             $row->assign($vars);
         } else {
@@ -200,7 +201,7 @@ class Data extends AbstractResource
             }
         }
         $rowset = Pi::model('user_data')->select($conditions);
-        $row = $rowset->current();
+        $row    = $rowset->current();
         if ($row) {
             if (!$row['expire'] || $row['expire'] > time()) {
                 $result = $returnObject ? $row : $row->toArray();
@@ -214,24 +215,25 @@ class Data extends AbstractResource
      * Write user integer data
      *
      * @param int|array $uid
-     * @param string    $name
-     * @param int       $value
-     * @param string    $module
-     * @param int       $expire
+     * @param string $name
+     * @param int $value
+     * @param string $module
+     * @param int $expire
      *
      * @return bool
      */
     public function setInt(
         $uid,
-        $name   = null,
-        $value  = 0,
+        $name = null,
+        $value = 0,
         $module = '',
         $expire = 0
-    ) {
+    )
+    {
         if (is_array($uid) && isset($uid['value'])) {
-            $uid['value'] = (int) $uid['value'];
+            $uid['value'] = (int)$uid['value'];
         }
-        $value = (int) $value;
+        $value = (int)$value;
 
         return $this->set($uid, $name, $value, $expire, $module);
     }
@@ -242,38 +244,38 @@ class Data extends AbstractResource
      * Positive to increment or negative to decrement; 0 to reset!
      *
      * @param int|int[] $uid
-     * @param string    $name
-     * @param int       $value
-     * @param string    $module
-     * @param int       $expire
+     * @param string $name
+     * @param int $value
+     * @param string $module
+     * @param int $expire
      *
      * @return bool
      */
     public function increment($uid, $name, $value, $module = '', $expire = 0)
     {
-        $value = (int) $value;
+        $value  = (int)$value;
         $module = $module ?: Pi::service('module')->current();
-        $where = array(
-            'uid'       => (int) $uid,
-            'name'      => $name,
-            'module'    => $module,
-        );
-        $row = Pi::model('user_data')->select($where)->current();
+        $where  = [
+            'uid'    => (int)$uid,
+            'name'   => $name,
+            'module' => $module,
+        ];
+        $row    = Pi::model('user_data')->select($where)->current();
 
         // Insert new value
         if (!$row) {
             $result = $this->setInt($uid, $name, $value, $expire, $module);
-        // Reset
+            // Reset
         } elseif (0 == $value || null === $row['value_int']) {
             $row['value_int'] = $value;
-            $row['expire'] = $expire ? time() + $expire : 0;
+            $row['expire']    = $expire ? time() + $expire : 0;
             try {
                 $row->save();
                 $result = true;
             } catch (\Exception $e) {
                 $result = false;
             }
-        // Increase/Decrease
+            // Increase/Decrease
         } else {
             $model = Pi::model('user_data');
             if (0 < $value) {
@@ -283,7 +285,7 @@ class Data extends AbstractResource
             }
             $expire = $expire ? time() + $expire : 0;
             $string .= ', `expire`=\'' . $expire . '\'';
-            $sql = 'UPDATE ' . $model->getTable()
+            $sql    = 'UPDATE ' . $model->getTable()
                 . ' SET ' . $string
                 . ' WHERE `uid`=' . $uid
                 . ' AND `name`=\'' . $name . '\'';
@@ -303,9 +305,9 @@ class Data extends AbstractResource
      */
     public function gc()
     {
-        Pi::model('user_data')->delete(array(
-            'expire <> ?'    => 0,
-            'expire < ?'    => time(),
-        ));
+        Pi::model('user_data')->delete([
+            'expire <> ?' => 0,
+            'expire < ?'  => time(),
+        ]);
     }
 }

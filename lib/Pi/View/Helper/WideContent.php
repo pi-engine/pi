@@ -33,12 +33,13 @@ use Zend\View\Helper\AbstractHelper;
 class WideContent extends AbstractHelper
 {
     public function __invoke(
-        $content, $module) {
+        $content, $module)
+    {
 
         // Get config
         $config = Pi::service('registry')->config->read($module);
 
-        if(!empty($config['wide_content']) && $config['wide_content'] == 1){
+        if (!empty($config['wide_content']) && $config['wide_content'] == 1) {
             $GLOBALS['wideContent'] = $content;
             return null;
         }

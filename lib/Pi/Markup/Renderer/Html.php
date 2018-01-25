@@ -9,9 +9,6 @@
 
 namespace Pi\Markup\Renderer;
 
-use Pi;
-use Pi\Markup\Parser\AbstractParser;
-
 /**
  * Render to HTML format
  *

@@ -9,9 +9,7 @@
 
 namespace Pi\File\Transfer\Adapter;
 
-use Pi;
 use Zend\File\Transfer\Adapter\Http as ZendHttp;
-use Zend\File\Exception;
 
 /**
  * File transfer HTTP protocol

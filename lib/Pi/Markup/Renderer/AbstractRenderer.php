@@ -9,8 +9,8 @@
 
 namespace Pi\Markup\Renderer;
 
-use Traversable;
 use Pi\Markup\Parser\AbstractParser;
+use Traversable;
 use Zend\Stdlib\ArrayUtils;
 
 /**
@@ -35,14 +35,14 @@ abstract class AbstractRenderer
     //protected $encoding = 'UTF-8';
 
     /** @var array Options */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Constructor
      *
      * @param  array|Traversable $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setOptions($options);
     }

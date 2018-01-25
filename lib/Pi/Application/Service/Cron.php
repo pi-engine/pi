@@ -57,8 +57,8 @@ class Cron extends AbstractService
      */
     public function moduleList()
     {
-        $moduleList = array();
-        $modules = Pi::registry('modulelist')->read('active');
+        $moduleList = [];
+        $modules    = Pi::registry('modulelist')->read('active');
         foreach ($modules as $module) {
             $moduleList[] = $module['name'];
         }

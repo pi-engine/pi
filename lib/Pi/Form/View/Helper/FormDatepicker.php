@@ -27,17 +27,17 @@ class FormDatepicker extends FormInput
     /**
      * {@inheritDoc}
      */
-    public function render(ElementInterface $element, array $options = array())
+    public function render(ElementInterface $element, array $options = [])
     {
         if (!$element instanceof Datepicker) {
             throw new Exception\InvalidElementException('Invalid element type');
         }
 
         // Canonize options
-        $options    = array_replace((array) $element->getOption('datepicker'), $options);
-        $language   = !empty($options['language']) ? $options['language'] : Pi::service('i18n')->getLocale();
-        $segs       = explode(' ', str_replace(array('-', '_'), ' ', $language));
-        $language   = array_shift($segs);
+        $options  = array_replace((array)$element->getOption('datepicker'), $options);
+        $language = !empty($options['language']) ? $options['language'] : Pi::service('i18n')->getLocale();
+        $segs     = explode(' ', str_replace(['-', '_'], ' ', $language));
+        $language = array_shift($segs);
         if ($segs) {
             $language .= '-' . strtoupper(implode('-', $segs));
         }
@@ -52,19 +52,19 @@ class FormDatepicker extends FormInput
         $view->jquery();
         // quick fix to prevent multi-css load : need to improve ZF class usage
         if ($view->core_datepicker_initialized) {
-            $bsLoad = array();
+            $bsLoad = [];
         } else {
-            $bsLoad = array(
+            $bsLoad = [
                 'datepicker/datepicker.css',
-                'datepicker/bootstrap-datepicker.js'
-            );
+                'datepicker/bootstrap-datepicker.js',
+            ];
         }
         $view->core_datepicker_initialized = true;
         // end fix 
         if (!empty($options['language'])) {
             $bsLoad[] = sprintf('datepicker/locales/bootstrap-datepicker.%s.js', $options['language']);
         }
-        $view->bootstrap($bsLoad, array(), null, false);
+        $view->bootstrap($bsLoad, [], null, false);
 
         $format = !empty($options['format']) ? $options['format'] : 'mm/dd/yyy';
         $element->setAttribute('data-date-format', $format);
@@ -74,15 +74,15 @@ class FormDatepicker extends FormInput
         $element->setAttribute('class', $class);
         $html = parent::render($element);
 
-        $dpOptions = array();
+        $dpOptions = [];
         foreach ($options as $key => $val) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace(array('_', '-'), ' ', $key))));
+            $key         = lcfirst(str_replace(' ', '', ucwords(str_replace(['_', '-'], ' ', $key))));
             $dpOptions[] = $key . ': "' . $val . '"';
         }
         $datapickerOptions = implode(',' . PHP_EOL, $dpOptions);
 
-        $id = $element->getAttribute('id');
-        $id = $id ? '#' . $id : '.datepicker';
+        $id   = $element->getAttribute('id');
+        $id   = $id ? '#' . $id : '.datepicker';
         $html .= PHP_EOL . <<<EOT
 <script>
     $("{$id}").datepicker({

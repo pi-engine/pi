@@ -17,4 +17,5 @@ use Pi\Search\AbstractSearch as SearchAbstract;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class AbstractSearch extends SearchAbstract
-{}
+{
+}

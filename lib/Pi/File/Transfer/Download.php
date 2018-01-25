@@ -108,9 +108,9 @@ class Download
     /**
      * Creates a file download handler
      *
-     * @param  array   $options   OPTIONAL Options
+     * @param  array $options OPTIONAL Options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setOptions($options);
     }
@@ -121,10 +121,10 @@ class Download
      * @param array $options
      * @return $this
      */
-    public function setOptions($options = array())
+    public function setOptions($options = [])
     {
         if (isset($options['exit'])) {
-            $this->exit = (bool) $options['exit'];
+            $this->exit = (bool)$options['exit'];
         }
         $this->tmp = isset($options['tmp'])
             ? $options['tmp'] : Pi::path('cache');
@@ -135,13 +135,13 @@ class Download
     /**
      * Send the file to the client (Download)
      *
-     * @param string|array $source  File or file meta to download
-     * @param array        $options Options for the file(s) to send
+     * @param string|array $source File or file meta to download
+     * @param array $options Options for the file(s) to send
      *
      * @throws \Exception
      * @return bool|void
      */
-    public function send($source, array $options = array())
+    public function send($source, array $options = [])
     {
         // Disable logging service
         Pi::service('log')->mute();
@@ -198,7 +198,7 @@ class Download
      *
      * @return string
      */
-    protected function canonizeDownload($source, array &$options = array())
+    protected function canonizeDownload($source, array &$options = [])
     {
         if (!isset($options['type'])) {
             $options['type'] = 'file';
@@ -206,23 +206,23 @@ class Download
         if (is_array($source)) {
             array_walk($source, function (&$item) {
                 if (!is_array($item)) {
-                    $item = array('filename' => $item);
+                    $item = ['filename' => $item];
                     if (empty($item['localname'])) {
                         $item['localname'] = basename($item['filename']);
                     }
                 }
             });
             $zipFile = tempnam($this->tmp, 'zip');
-            $zip = new ZipArchive;
+            $zip     = new ZipArchive;
             if ($zip->open($zipFile, ZipArchive::CREATE) !== true) {
-                return array();
+                return [];
             }
 
             foreach ($source as $item) {
                 $zip->addFile($item['filename'], $item['localname']);
             }
             $zip->close();
-            $source = $zipFile;
+            $source            = $zipFile;
             $options['source'] = $zipFile;
 
             $options['type'] = 'zip';
@@ -243,8 +243,8 @@ class Download
             $options['source'] = $source;
         } else {
             if (!isset($options['filename'])) {
-                $filename = str_replace('\\\\', '/', $source);
-                $segs = explode('/', $filename);
+                $filename            = str_replace('\\\\', '/', $source);
+                $segs                = explode('/', $filename);
                 $options['filename'] = array_pop($segs);
             }
             if (!isset($options['content_length'])) {
@@ -276,11 +276,12 @@ class Download
         $filename,
         $contentType,
         $contentLength = 0
-    ) {
+    )
+    {
         $isIe = Pi::service('browser')->isIe();
         if ($isIe) {
             $contentType = $contentType ?: 'application/octet-stream';
-            $filename = urlencode($filename);
+            $filename    = urlencode($filename);
         } else {
             $contentType = $contentType ?: 'application/force-download';
         }

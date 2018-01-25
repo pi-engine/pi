@@ -9,10 +9,9 @@
 
 namespace Pi\Navigation;
 
-use Pi;
 use Traversable;
-use Zend\Navigation\Navigation as ZendNavigation;
 use Zend\Navigation\Exception;
+use Zend\Navigation\Navigation as ZendNavigation;
 
 /**
  * Navigation class
@@ -58,7 +57,7 @@ class Navigation extends ZendNavigation
         // adds page to container and sets dirty flag
         $this->pages[$hash] = $page;
         $this->index[$hash] = $page->getOrder();
-        $this->dirtyIndex = true;
+        $this->dirtyIndex   = true;
 
         // inject self as page parent
         $page->setParent($this);

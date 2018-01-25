@@ -10,12 +10,12 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
-use Traversable;
 use DirectoryIterator;
-use RecursiveIteratorIterator;
-use RecursiveDirectoryIterator;
 use FilesystemIterator;
+use Pi;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use Traversable;
 
 /**
  * Asset maintenance service:
@@ -93,7 +93,7 @@ class Asset extends AbstractService
     const DIR_BUILD = '_build';
 
     /** @var array List of files/directories not published or removed */
-    protected $error = array();
+    protected $error = [];
 
     /**
      * Get path to assets root folder
@@ -144,7 +144,7 @@ class Asset extends AbstractService
     {
         $result = null;
         if (null !== $flag) {
-            $flag = (bool) $flag;
+            $flag = (bool)$flag;
             if ($flag != $this->getOption('append_version')) {
                 $result = $this->getOption('append_version');
                 $this->setOption('append_version', $flag);
@@ -166,9 +166,9 @@ class Asset extends AbstractService
     public function versionStamp($path, $url, $appendVersion = null)
     {
         $appendVersion = (null !== $appendVersion)
-            ? (bool) $appendVersion
-            : (bool) $this->getOption('append_version');
-        $version = ($appendVersion && file_exists($path)) ? filemtime($path) : '';
+            ? (bool)$appendVersion
+            : (bool)$this->getOption('append_version');
+        $version       = ($appendVersion && file_exists($path)) ? filemtime($path) : '';
         if ($version) {
             $url .= '?' . $version;
         }
@@ -218,7 +218,7 @@ class Asset extends AbstractService
      * Gets path of an asset
      *
      * @param string $component component name
-     * @param string $file      file path
+     * @param string $file file path
      *
      * @return string Full path to an asset
      */
@@ -230,8 +230,8 @@ class Asset extends AbstractService
     /**
      * Gets URL of an asset
      *
-     * @param string    $component  Component name
-     * @param string    $file       File path
+     * @param string $component Component name
+     * @param string $file File path
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
@@ -240,7 +240,8 @@ class Asset extends AbstractService
         $component,
         $file,
         $appendVersion = null
-    ) {
+    )
+    {
         $file = $this->versionStamp(
             $this->getAssetPath($component, $file),
             $file,
@@ -253,18 +254,19 @@ class Asset extends AbstractService
     /**
      * Gets URL of an asset in current module
      *
-     * @param string    $file       File path
-     * @param string    $module     Module name
+     * @param string $file File path
+     * @param string $module Module name
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
      */
     public function getModuleAsset(
         $file,
-        $module         = '',
-        $appendVersion  = null
-    ) {
-        $module = $module ?: Pi::service('module')->current();
+        $module = '',
+        $appendVersion = null
+    )
+    {
+        $module    = $module ?: Pi::service('module')->current();
         $component = 'module/' . $module;
 
         return $this->getAssetUrl($component, $file, $appendVersion);
@@ -273,18 +275,19 @@ class Asset extends AbstractService
     /**
      * Gets URL of an asset in current theme
      *
-     * @param string    $file       File path
-     * @param string    $theme      Theme directory
+     * @param string $file File path
+     * @param string $theme Theme directory
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
      */
     public function getThemeAsset(
         $file,
-        $theme          = '',
-        $appendVersion  = null
-    ) {
-        $theme = $theme ?: Pi::service('theme')->current();
+        $theme = '',
+        $appendVersion = null
+    )
+    {
+        $theme     = $theme ?: Pi::service('theme')->current();
         $component = 'theme/' . $theme;
 
         return $this->getAssetUrl($component, $file, $appendVersion);
@@ -293,17 +296,18 @@ class Asset extends AbstractService
     /**
      * Gets URL of a custom module asset in current theme
      *
-     * @param string    $file       File path
-     * @param string    $module
+     * @param string $file File path
+     * @param string $module
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
      */
     public function getThemeModuleAsset(
         $file,
-        $module         = '',
-        $appendVersion  = null
-    ) {
+        $module = '',
+        $appendVersion = null
+    )
+    {
         $file = sprintf(
             'module/%s/%s',
             $module ?: Pi::service('module')->current(),
@@ -316,14 +320,14 @@ class Asset extends AbstractService
     /**
      * Gets source path of an asset
      *
-     * @param string $component     Component name
-     * @param string $file          File path
+     * @param string $component Component name
+     * @param string $file File path
      *
      * @return string Full path to an asset source
      */
     public function getSourcePath($component, $file = '')
     {
-        $dir = static::DIR_ASSET;
+        $dir        = static::DIR_ASSET;
         $sourcePath = Pi::path($component) . '/' . $dir;
         if (is_dir($sourcePath . '/' . static::DIR_BUILD)) {
             $sourcePath .= '/' . static::DIR_BUILD;
@@ -338,14 +342,14 @@ class Asset extends AbstractService
     /**
      * Gets custom source path of an asset
      *
-     * @param string $component     Component name
-     * @param string $file          File path
+     * @param string $component Component name
+     * @param string $file File path
      *
      * @return string Full path to an asset source
      */
     protected function getCustomPath($component, $file = '')
     {
-        $component = 'custom/' . $component;
+        $component  = 'custom/' . $component;
         $sourcePath = $this->getSourcePath($component, $file);
 
         return $sourcePath;
@@ -357,8 +361,8 @@ class Asset extends AbstractService
     /**
      * Publishes component assets folder
      *
-     * @param string $component     Component name
-     * @param string $target        Target component
+     * @param string $component Component name
+     * @param string $target Target component
      * @param Traversable $iterator A Traversable instance for directory scan
      * @param bool $hasCustom
      *
@@ -369,7 +373,8 @@ class Asset extends AbstractService
         $target = '',
         Traversable $iterator = null,
         $hasCustom = false
-    ) {
+    )
+    {
         // Initialize erroneous file list
         $this->setErrors();
 
@@ -407,16 +412,16 @@ class Asset extends AbstractService
 
         $result = true;
         // Publish original assets
-        $component  = 'module/' . Pi::service('module')->directory($module);
-        $hasCustom  = $this->hasCustom($component);
-        $target     = 'module/' . $module;
-        $status     = $this->publish($component, $target, null, $hasCustom);
+        $component = 'module/' . Pi::service('module')->directory($module);
+        $hasCustom = $this->hasCustom($component);
+        $target    = 'module/' . $module;
+        $status    = $this->publish($component, $target, null, $hasCustom);
         if (!$status) {
             $result = $status;
         }
         // Publish custom assets
-        $component  = 'module/' . $module;
-        $status     = $this->publishCustom($component);
+        $component = 'module/' . $module;
+        $status    = $this->publishCustom($component);
         if (!$status) {
             $result = $status;
         }
@@ -441,7 +446,7 @@ class Asset extends AbstractService
         $result = true;
 
         $config = Pi::service('theme')->loadConfig($theme);
-        $errors = array();
+        $errors = [];
         if (!empty($config['parent'])) {
             $this->publishTheme($config['parent'], $theme);
             $errors = array_merge($errors, $this->getErrors());
@@ -449,7 +454,7 @@ class Asset extends AbstractService
         }
 
         // Publish original assets
-        $component  = 'theme/' . $theme;
+        $component = 'theme/' . $theme;
         // Disable symbolic link for inherited assets
         if (!empty($target) || !empty($config['parent'])) {
             $hasCustom = true;
@@ -460,7 +465,7 @@ class Asset extends AbstractService
         }
 
         $targetTheme = $target ? 'theme/' . $target : '';
-        $status = $this->publish($component, $targetTheme, null, $hasCustom);
+        $status      = $this->publish($component, $targetTheme, null, $hasCustom);
         if (!$status) {
             $result = $status;
         }
@@ -504,16 +509,17 @@ class Asset extends AbstractService
         $targetFile,
         Traversable $iterator = null,
         $disableSymlink = false
-    ) {
+    )
+    {
         if (!is_dir($sourceFile) && !is_link($sourceFile)) {
             return true;
         }
 
         $result = true;
         try {
-            $copyOnWindows  = true;
-            $override       = (false === $this->getOption('override')) ? false : true;
-            $useSymlink     = $this->getOption('use_symlink');
+            $copyOnWindows = true;
+            $override      = (false === $this->getOption('override')) ? false : true;
+            $useSymlink    = $this->getOption('use_symlink');
             if ($disableSymlink) {
                 $useSymlink = false;
             }
@@ -523,13 +529,13 @@ class Asset extends AbstractService
                     $sourceFile,
                     $targetFile,
                     $iterator,
-                    array(
-                        'copy_on_windows'   => $copyOnWindows,
-                        'override'          => $override,
-                    )
+                    [
+                        'copy_on_windows' => $copyOnWindows,
+                        'override'        => $override,
+                    ]
                 );
 
-            // Use symlink for performance consideration
+                // Use symlink for performance consideration
             } else {
                 Pi::service('file')->symlink(
                     $sourceFile,
@@ -553,16 +559,16 @@ class Asset extends AbstractService
     /**
      * Publishes custom assets
      *
-     * @param string $component     Component name
-     * @param string $target        Target component
-     * @param string $source        Source path
+     * @param string $component Component name
+     * @param string $target Target component
+     * @param string $source Source path
      *
      * @return bool
      */
     protected function publishCustom($component, $target = '', $source = '')
     {
-        $result     = true;
-        $iterator   = function ($folder) {
+        $result       = true;
+        $iterator     = function ($folder) {
             return new RecursiveIteratorIterator(
                 new RecursiveDirectoryIterator(
                     $folder,
@@ -571,11 +577,11 @@ class Asset extends AbstractService
                 RecursiveIteratorIterator::LEAVES_ONLY
             );
         };
-        $target         = $target ?: $component;
-        $sourceFolder   = $source ?: $this->getSourcePath('custom/' . $component);
+        $target       = $target ?: $component;
+        $sourceFolder = $source ?: $this->getSourcePath('custom/' . $component);
         if (is_dir($sourceFolder)) {
-            $targetFolder   = $this->getPath($target);
-            $status         = $this->publishFile(
+            $targetFolder = $this->getPath($target);
+            $status       = $this->publishFile(
                 $sourceFolder,
                 $targetFolder,
                 $iterator($sourceFolder),
@@ -592,15 +598,15 @@ class Asset extends AbstractService
     /**
      * Publishes online custom assets
      *
-     * @param string $component     Component name
-     * @param string $target        Target component
+     * @param string $component Component name
+     * @param string $target Target component
      *
      * @return bool
      */
     protected function publishOnline($component, $target = '')
     {
         $sourceFolder = Pi::path('asset') . '/custom/' . $component;
-        $result = $this->publishCustom($component, $target, $sourceFolder);
+        $result       = $this->publishCustom($component, $target, $sourceFolder);
 
         return $result;
     }
@@ -618,8 +624,8 @@ class Asset extends AbstractService
         if (!is_dir($path)) {
             return true;
         }
-        $result     = true;
-        $iterator   = function ($folder) {
+        $result            = true;
+        $iterator          = function ($folder) {
             return new RecursiveIteratorIterator(
                 new RecursiveDirectoryIterator(
                     $folder,
@@ -628,7 +634,7 @@ class Asset extends AbstractService
                 RecursiveIteratorIterator::LEAVES_ONLY
             );
         };
-        $directoryIterator  = new DirectoryIterator($path);
+        $directoryIterator = new DirectoryIterator($path);
         foreach ($directoryIterator as $fileinfo) {
             if (!$fileinfo->isDir() && !$fileinfo->isLink()
                 || $fileinfo->isDot()
@@ -649,7 +655,7 @@ class Asset extends AbstractService
                 $this->getPath('theme/' . $theme),
                 $module
             );
-            $status = $this->publishFile(
+            $status       = $this->publishFile(
                 $sourceFolder,
                 $targetFolder,
                 $iterator($sourceFolder),
@@ -695,14 +701,14 @@ class Asset extends AbstractService
     /**
      * Check if custom assets available
      *
-     * @param string $component     Component name
+     * @param string $component Component name
      *
      * @return bool
      */
     protected function hasCustom($component)
     {
-        $sourceFolder   = $this->getSourcePath('custom/' . $component);
-        $result         = $this->hasFile($sourceFolder);
+        $sourceFolder = $this->getSourcePath('custom/' . $component);
+        $result       = $this->hasFile($sourceFolder);
 
         return $result;
     }
@@ -710,14 +716,14 @@ class Asset extends AbstractService
     /**
      * Check if online custom assets available
      *
-     * @param string $component     Component name
+     * @param string $component Component name
      *
      * @return bool
      */
     protected function hasOnline($component)
     {
-        $sourceFolder   = Pi::path('asset') . '/custom/' . $component;
-        $result         = $this->hasFile($sourceFolder);
+        $sourceFolder = Pi::path('asset') . '/custom/' . $component;
+        $result       = $this->hasFile($sourceFolder);
 
         return $result;
     }
@@ -771,7 +777,7 @@ class Asset extends AbstractService
         $this->setErrors();
 
         $result = true;
-        $path = $this->getPath($component);
+        $path   = $this->getPath($component);
         try {
             /*
              * @fixme The method of `flush` will remove all contents inside the path.
@@ -800,9 +806,9 @@ class Asset extends AbstractService
      *
      * @return $this
      */
-    public function setErrors($errors = array())
+    public function setErrors($errors = [])
     {
-        $this->errors = (array) $errors;
+        $this->errors = (array)$errors;
 
         return $this;
     }
@@ -814,9 +820,9 @@ class Asset extends AbstractService
      *
      * @return $this
      */
-    protected function appendErrors($errors = array())
+    protected function appendErrors($errors = [])
     {
-        $this->errors = array_merge($this->errors, (array) $errors);
+        $this->errors = array_merge($this->errors, (array)$errors);
 
         return $this;
     }
@@ -845,7 +851,7 @@ class Asset extends AbstractService
     /**
      * Gets path of a public asset
      *
-     * @param string $file      File path
+     * @param string $file File path
      *
      * @return string Full path to a public asset
      */
@@ -857,7 +863,7 @@ class Asset extends AbstractService
     /**
      * Gets URL of a public asset
      *
-     * @param string    $file       File path
+     * @param string $file File path
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
@@ -880,7 +886,7 @@ class Asset extends AbstractService
     /**
      * Gets path of a static asset
      *
-     * @param string $file      File path
+     * @param string $file File path
      * @return string Full path to a static asset
      */
     public function getStaticPath($file)
@@ -891,7 +897,7 @@ class Asset extends AbstractService
     /**
      * Gets URL of a static asset
      *
-     * @param string    $file       File path
+     * @param string $file File path
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
@@ -911,23 +917,23 @@ class Asset extends AbstractService
     /**
      * Get logo URL
      *
-     * @param  string $name    Logo filename
+     * @param  string $name Logo filename
      *
      * @return string
      */
     public function logo($name = '')
     {
-        $src = '';
+        $src  = '';
         $name = $name ?: 'logo.png';
 
         $customFile = 'asset/custom/image/' . $name;
         if (file_exists(Pi::path($customFile))) {
             $src = Pi::url($customFile);
         } else {
-            $theme = Pi::service('theme')->current();
+            $theme     = Pi::service('theme')->current();
             $component = 'theme/' . $theme;
-            $asset = 'image/' . $name;
-            $file = $this->getAssetPath($component, $asset);
+            $asset     = 'image/' . $name;
+            $file      = $this->getAssetPath($component, $asset);
             if (file_exists($file)) {
                 $src = $this->getAssetUrl($component, $asset);
             } else {
@@ -944,23 +950,23 @@ class Asset extends AbstractService
     /**
      * Get social network logo URL
      *
-     * @param  string $name    social network logo filename
+     * @param  string $name social network logo filename
      *
      * @return string
      */
     public function socialNetworkLogo($name = '')
     {
-        $src = '';
+        $src  = '';
         $name = $name ?: 'social-network.png';
 
         $customFile = 'asset/custom/image/' . $name;
         if (file_exists(Pi::path($customFile))) {
             $src = Pi::url($customFile);
         } else {
-            $theme = Pi::service('theme')->current();
+            $theme     = Pi::service('theme')->current();
             $component = 'theme/' . $theme;
-            $asset = 'image/' . $name;
-            $file = $this->getAssetPath($component, $asset);
+            $asset     = 'image/' . $name;
+            $file      = $this->getAssetPath($component, $asset);
             if (file_exists($file)) {
                 $src = $this->getAssetUrl($component, $asset);
             } else {

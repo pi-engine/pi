@@ -19,9 +19,10 @@ class Config extends Model
     /**
      * {@inheritDoc}
      */
-    protected $encodeColumns = array(
-        'edit'  => true,
-    );
+    protected $encodeColumns
+        = [
+            'edit' => true,
+        ];
 
     /**
      * {@inheritDoc}

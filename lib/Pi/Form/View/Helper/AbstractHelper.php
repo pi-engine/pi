@@ -10,8 +10,8 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\View\Helper\AbstractHelper as ZendAbstractHelper;
 use Zend\Form\ElementInterface;
+use Zend\Form\View\Helper\AbstractHelper as ZendAbstractHelper;
 
 /**
  * Basic class for helpers
@@ -25,15 +25,16 @@ abstract class AbstractHelper extends ZendAbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  null|ElementInterface    $element
-     * @param  array|mixed              $options
+     * @param  null|ElementInterface $element
+     * @param  array|mixed $options
      *
      * @return string|self
      */
     public function __invoke(
         ElementInterface $element = null,
-        $options = array()
-    ) {
+        $options = []
+    )
+    {
         if (null === $element) {
             return $this;
         }
@@ -44,13 +45,13 @@ abstract class AbstractHelper extends ZendAbstractHelper
     /**
      * Render element content
      *
-     * @param ElementInterface  $element
-     * @param array|mixed       $options
+     * @param ElementInterface $element
+     * @param array|mixed $options
      *
      * @return string
      */
     abstract public function render(
         ElementInterface $element,
-        $options = array()
+        $options = []
     );
 }

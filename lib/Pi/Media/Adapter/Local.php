@@ -13,15 +13,15 @@ use Pi;
 
 /**
  * Local media service provided by media module
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class Local extends AbstractAdapter
 {
     /**
      * Get api handler
-     * 
-     * @return string 
+     *
+     * @return string
      */
     protected function handler()
     {
@@ -31,7 +31,7 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function setOptions(array $options = array())
+    public function setOptions(array $options = [])
     {
         parent::setOptions($options);
         //$this->handler()->setOptions($options);
@@ -52,10 +52,10 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function upload($file, array $data = array())
+    public function upload($file, array $data = [])
     {
         $data['file'] = $file;
-        $result = $this->handler()->upload($data, 'MOVE');
+        $result       = $this->handler()->upload($data, 'MOVE');
 
         return $result;
     }
@@ -79,7 +79,7 @@ class Local extends AbstractAdapter
 
         return $result;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -93,7 +93,7 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function get($id, $attr = array())
+    public function get($id, $attr = [])
     {
         $result = $this->handler()->get($id, $attr);
 
@@ -103,7 +103,7 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function mget(array $ids, $attr = array())
+    public function mget(array $ids, $attr = [])
     {
         $result = $this->handler()->mget($ids, $attr);
 
@@ -129,7 +129,7 @@ class Local extends AbstractAdapter
 
         return $result;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -139,36 +139,38 @@ class Local extends AbstractAdapter
 
         return $result;
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public function getIds(
         array $condition,
-        $limit  = 0,
+        $limit = 0,
         $offset = 0,
-        $order  = ''
-    ) {
+        $order = ''
+    )
+    {
         $result = $this->handler()->getIds(
             $condition,
             $limit,
             $offset,
             $order
         );
-        
+
         return $result;
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public function getList(
         array $condition,
-        $limit  = 0,
+        $limit = 0,
         $offset = 0,
-        $order  = '',
-        array $attr = array()
-    ) {
+        $order = '',
+        array $attr = []
+    )
+    {
         $result = $this->handler()->getList(
             $condition,
             $limit,
@@ -176,14 +178,14 @@ class Local extends AbstractAdapter
             $order,
             $attr
         );
-        
+
         return $result;
     }
-    
+
     /**
      * {@inheritDoc}
      */
-    public function getCount(array $condition = array())
+    public function getCount(array $condition = [])
     {
         $result = $this->handler()->getCount($condition);
 

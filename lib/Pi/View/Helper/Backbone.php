@@ -62,32 +62,33 @@ class Backbone extends AssetCanonize
      */
     public function __invoke(
         $files = null,
-        $attributes = array(),
+        $attributes = [],
         $appendVersion = null
-    ) {
+    )
+    {
         $files = $this->canonize($files, $attributes);
         if (!static::$rootLoaded) {
-            $autoLoad = array();
+            $autoLoad = [];
             // Required underscore js
             if (!isset($files['underscore-min.js'])) {
-                $autoLoad += array(
+                $autoLoad += [
                     'underscore-min.js' =>
-                        $this->canonizeFile('underscore-min.js')
-                );
+                        $this->canonizeFile('underscore-min.js'),
+                ];
             }
             // Required primary js
             if (!isset($files['backbone-min.js'])) {
-                $autoLoad += array(
-                    'backbone-min.js' => $this->canonizeFile('backbone-min.js')
-                );
+                $autoLoad += [
+                    'backbone-min.js' => $this->canonizeFile('backbone-min.js'),
+                ];
             }
-            $files = $autoLoad + $files;
+            $files              = $autoLoad + $files;
             static::$rootLoaded = true;
         }
 
         foreach ($files as $file => $attrs) {
-            $file = static::DIR_ROOT . '/' . $file;
-            $url = Pi::service('asset')->getStaticUrl($file, $appendVersion);
+            $file     = static::DIR_ROOT . '/' . $file;
+            $url      = Pi::service('asset')->getStaticUrl($file, $appendVersion);
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
             if ($attrs['ext'] == 'css') {

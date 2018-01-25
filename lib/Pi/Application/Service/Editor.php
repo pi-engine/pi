@@ -20,7 +20,7 @@ use Pi\Form\View\Helper\AbstractEditor;
 class Editor extends AbstractService
 {
     /** @var array */
-    protected $loadedEditors = array();
+    protected $loadedEditors = [];
 
     /**
      * Loads an editor view helper with configs
@@ -30,7 +30,7 @@ class Editor extends AbstractService
      *
      * @return AbstractEditor
      */
-    public function load($type = '', array $options = array())
+    public function load($type = '', array $options = [])
     {
         if (empty($type)) {
             $type = Pi::config('editor') ?: 'pi';
@@ -52,7 +52,7 @@ class Editor extends AbstractService
                 $editor = $type;
                 break;
         }
-        $rendererClass =  sprintf(
+        $rendererClass = sprintf(
             'Editor\%s\View\Helper\FormEditor%s',
             ucfirst($editor),
             ucfirst($editor)
@@ -65,7 +65,7 @@ class Editor extends AbstractService
         if (isset($this->loadedEditors[$rendererClass])) {
             $renderer = $this->loadedEditors[$rendererClass];
         } else {
-            $renderer = new $rendererClass;
+            $renderer                            = new $rendererClass;
             $this->loadedEditors[$rendererClass] = $renderer;
         }
         $renderer->setOptions($options);
@@ -80,7 +80,7 @@ class Editor extends AbstractService
      */
     public function getList()
     {
-        $list = array('pi' => __('Pi Default Editor'));
+        $list = ['pi' => __('Pi Default Editor')];
 
         $filter = function ($fileinfo) use (&$list) {
             if (!$fileinfo->isDir()) {

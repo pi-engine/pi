@@ -23,18 +23,19 @@ class Audit implements FormatterInterface
      * {@see module/system/sql/mysql.system.sql}
      * @var array
      */
-    protected $columns = array(
-        'timestamp'     => 'time',
-        'user'          => 'user',
-        'ip'            => 'ip',
-        'section'       => 'section',
-        'module'        => 'module',
-        'controller'    => 'controller',
-        'action'        => 'action',
-        'method'        => 'method',
-        'message'       => 'message',
-        'extra'         => 'extra',
-    );
+    protected $columns
+        = [
+            'timestamp'  => 'time',
+            'user'       => 'user',
+            'ip'         => 'ip',
+            'section'    => 'section',
+            'module'     => 'module',
+            'controller' => 'controller',
+            'action'     => 'action',
+            'method'     => 'method',
+            'message'    => 'message',
+            'extra'      => 'extra',
+        ];
 
     /** @var string DateTime forat */
     protected $dateTimeFormat = '';
@@ -47,8 +48,8 @@ class Audit implements FormatterInterface
      */
     public function format($event)
     {
-        $data = array();
-        $extra = array();
+        $data  = [];
+        $extra = [];
         foreach ($event as $key => $val) {
             if (isset($this->columns[$key])) {
                 $data[$this->columns[$key]] = $val;
@@ -80,7 +81,7 @@ class Audit implements FormatterInterface
      */
     public function setDateTimeFormat($dateTimeFormat)
     {
-        $this->dateTimeFormat = (string) $dateTimeFormat;
+        $this->dateTimeFormat = (string)$dateTimeFormat;
 
         return $this;
     }

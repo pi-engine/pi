@@ -11,7 +11,6 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Module\Tag\Service as TagService;
 
 /**
  * Tag service
@@ -67,8 +66,8 @@ class Tag extends AbstractService
     /**
      * Undefined method handler allows a shortcut
      *
-     * @param  string  $method  priority name
-     * @param  array  $args
+     * @param  string $method priority name
+     * @param  array $args
      * @return mixed
      */
     public function __call($method, $args)
@@ -77,9 +76,9 @@ class Tag extends AbstractService
             return false;
         }
         if (method_exists(Pi::api('api', 'tag'), $method)) {
-            return call_user_func_array(array(Pi::api('api', 'tag'), $method), $args);
+            return call_user_func_array([Pi::api('api', 'tag'), $method], $args);
         }
-        
+
         return null;
     }
 }

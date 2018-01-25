@@ -10,17 +10,16 @@
 namespace Pi\Command\Mvc\Router\Http;
 
 use Traversable;
-use Zend\Console\RouteMatcher\DefaultRouteMatcher;
 use Zend\Console\Request as ConsoleRequest;
+use Zend\Console\RouteMatcher\DefaultRouteMatcher;
 use Zend\Console\RouteMatcher\RouteMatcherInterface;
 use Zend\Filter\FilterChain;
 use Zend\Mvc\Exception\InvalidArgumentException;
-use Zend\Mvc\Router\Exception;
+use Zend\Mvc\Router\Console\RouteInterface;
+use Zend\Mvc\Router\Console\RouteMatch;
 use Zend\Stdlib\ArrayUtils;
 use Zend\Stdlib\RequestInterface as Request;
 use Zend\Validator\ValidatorChain;
-use Zend\Mvc\Router\Console\RouteInterface;
-use Zend\Mvc\Router\Console\RouteMatch;
 
 /**
  * @author Zongshu Lin <lin40553024@163.com>
@@ -32,13 +31,13 @@ class Standard implements RouteInterface
      *
      * @var array
      */
-    protected $assembledParams = array();
+    protected $assembledParams = [];
 
     /**
      * @var RouteMatcherInterface
      */
     protected $matcher;
-    
+
     /**
      * Path prefix
      * @var string
@@ -67,31 +66,33 @@ class Standard implements RouteInterface
      * Default values.
      * @var array
      */
-    protected $defaults = array(
-        'module'        => 'system',
-        'controller'    => 'index',
-        'action'        => 'index'
-    );
+    protected $defaults
+        = [
+            'module'     => 'system',
+            'controller' => 'index',
+            'action'     => 'index',
+        ];
 
     /**
      * Create a new simple console route.
      *
-     * @param  string|RouteMatcherInterface             $routeOrRouteMatcher
-     * @param  array                                    $constraints
-     * @param  array                                    $defaults
-     * @param  array                                    $aliases
-     * @param  null|array|Traversable|FilterChain       $filters
-     * @param  null|array|Traversable|ValidatorChain    $validators
+     * @param  string|RouteMatcherInterface $routeOrRouteMatcher
+     * @param  array $constraints
+     * @param  array $defaults
+     * @param  array $aliases
+     * @param  null|array|Traversable|FilterChain $filters
+     * @param  null|array|Traversable|ValidatorChain $validators
      * @throws InvalidArgumentException
      */
     public function __construct(
         $routeOrRouteMatcher,
-        array $constraints = array(),
-        array $defaults = array(),
-        array $aliases = array(),
+        array $constraints = [],
+        array $defaults = [],
+        array $aliases = [],
         $filters = null,
         $validators = null
-    ) {
+    )
+    {
         if (is_string($routeOrRouteMatcher)) {
             $this->matcher = new DefaultRouteMatcher($routeOrRouteMatcher, $constraints, $defaults, $aliases);
         } elseif ($routeOrRouteMatcher instanceof RouteMatcherInterface) {
@@ -112,7 +113,7 @@ class Standard implements RouteInterface
      * @throws InvalidArgumentException
      * @return self
      */
-    public static function factory($options = array())
+    public static function factory($options = [])
     {
         if ($options instanceof Traversable) {
             $options = ArrayUtils::iteratorToArray($options);
@@ -124,13 +125,13 @@ class Standard implements RouteInterface
             throw new InvalidArgumentException('Missing "route" in options array');
         }
 
-        foreach (array(
-            'constraints',
-            'defaults',
-            'aliases',
-        ) as $opt) {
+        foreach ([
+                     'constraints',
+                     'defaults',
+                     'aliases',
+                 ] as $opt) {
             if (!isset($options[$opt])) {
-                $options[$opt] = array();
+                $options[$opt] = [];
             }
         }
 
@@ -157,8 +158,8 @@ class Standard implements RouteInterface
      * match(): defined by Route interface.
      *
      * @see     Route::match()
-     * @param   Request             $request
-     * @param   null|int            $pathOffset
+     * @param   Request $request
+     * @param   null|int $pathOffset
      * @return  RouteMatch
      */
     public function match(Request $request, $pathOffset = null)
@@ -167,10 +168,10 @@ class Standard implements RouteInterface
             return null;
         }
 
-        $params  = $request->getParams()->toArray();
+        $params = $request->getParams()->toArray();
         //$matches = $this->matcher->match($params);
-        
-        $path = array_shift($params);
+
+        $path            = array_shift($params);
         $structureParams = explode($this->structureDelimiter, $path);
         if (count($structureParams) < 3) {
             return null;
@@ -183,10 +184,10 @@ class Standard implements RouteInterface
         if (!empty($structureParams)) {
             return null;
         }
-        
+
         $this->defaults  = array_merge($this->defaults, $matches);
         $matches['args'] = $params;
-        
+
         if (null !== $matches) {
             return new RouteMatch($matches);
         }
@@ -201,9 +202,9 @@ class Standard implements RouteInterface
      * @param  array $options
      * @return mixed
      */
-    public function assemble(array $params = array(), array $options = array())
+    public function assemble(array $params = [], array $options = [])
     {
-        $this->assembledParams = array();
+        $this->assembledParams = [];
     }
 
     /**

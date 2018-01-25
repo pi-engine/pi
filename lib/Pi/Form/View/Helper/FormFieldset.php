@@ -10,16 +10,16 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\FieldsetInterface;
 use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
+use Zend\Form\FieldsetInterface;
+
 //use Zend\Form\View\Helper\AbstractHelper;
 
 /**
  * Fieldset helper
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * 
+ *
  * ToDo : fix for zend version 2.4.9
  */
 class FormFieldset extends AbstractHelper
@@ -42,7 +42,7 @@ class FormFieldset extends AbstractHelper
      */
     public function setShouldWrap($wrap)
     {
-        $this->shouldWrap = (bool) $wrap;
+        $this->shouldWrap = (bool)$wrap;
 
         return $this;
     }
@@ -78,7 +78,7 @@ class FormFieldset extends AbstractHelper
     /**
      * {@inheritDoc}
      */
-    public function render(ElementInterface $element, $options = array())
+    public function render(ElementInterface $element, $options = [])
     {
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
@@ -89,17 +89,17 @@ class FormFieldset extends AbstractHelper
         if (is_bool($options)) {
             $wrap = $options;
         } elseif (is_array($options) && isset($options['wrap'])) {
-            $wrap = (bool) $options['wrap'];
+            $wrap = (bool)$options['wrap'];
         }
         if (null !== $wrap) {
             $this->setShouldWrap($wrap);
         }
 
-        $markup = '';
+        $markup           = '';
         $escapeHtmlHelper = $this->getEscapeHtmlHelper();
-        $rowHelper = $this->getRowHelper();
+        $rowHelper        = $this->getRowHelper();
 
-        foreach($element->getIterator() as $elementOrFieldset) {
+        foreach ($element->getIterator() as $elementOrFieldset) {
             if ($elementOrFieldset instanceof FieldsetInterface) {
                 $markup .= $this->render($elementOrFieldset);
             } elseif ($elementOrFieldset instanceof ElementInterface) {

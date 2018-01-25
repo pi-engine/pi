@@ -22,8 +22,9 @@ class Textarea extends ZendTextarea
      *
      * @var array
      */
-    protected $attributes = array(
-        'type'  => 'textarea',
-        'rows'  => 3,
-    );
+    protected $attributes
+        = [
+            'type' => 'textarea',
+            'rows' => 3,
+        ];
 }

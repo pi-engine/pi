@@ -25,16 +25,17 @@ class Uri extends AbstractFilter
      * Filter options
      * @var array
      */
-    protected $options = array(
-        'allowRelative' => false,
-    );
+    protected $options
+        = [
+            'allowRelative' => false,
+        ];
 
     /**
      * Constructor
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setOptions($options);
     }

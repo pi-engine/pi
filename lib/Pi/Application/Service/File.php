@@ -10,17 +10,17 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
 use ArrayObject;
 use Closure;
-use Exception;
-use Traversable;
 use DirectoryIterator;
+use Exception;
 use FilesystemIterator;
-use RecursiveIteratorIterator;
-use RecursiveDirectoryIterator;
-use Pi\File\Transfer\Upload;
+use Pi;
 use Pi\File\Transfer\Download;
+use Pi\File\Transfer\Upload;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use Traversable;
 
 /**
  * Filesystem manipulation service
@@ -132,7 +132,7 @@ class File extends AbstractService
      * @return Upload
      * @see Pi\File\Upload
      */
-    public function upload(array $options = array(), $doUpload = true)
+    public function upload(array $options = [], $doUpload = true)
     {
         $uploader = new Upload($options);
         if ($doUpload && $uploader->isValid()) {
@@ -151,7 +151,7 @@ class File extends AbstractService
      * @return Download
      * @see Pi\File\Download
      */
-    public function download($source, array $options = array())
+    public function download($source, array $options = [])
     {
         $downloader = new Download;
         $downloader->send($source, $options);
@@ -168,21 +168,21 @@ class File extends AbstractService
      */
     public function transformSize($value)
     {
-        $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+        $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
         if (is_numeric($value)) {
-            $value = (int) $value;
+            $value = (int)$value;
             for ($i = 0; $value >= 1024 && $i < 9; $i++) {
                 $value /= 1024;
             }
 
             $result = round($value, 2) . $sizes[$i];
         } else {
-            $value = trim($value);
-            $pattern = '/^([0-9]+)[\s]?(' . implode('|', $sizes). ')$/i';
+            $value   = trim($value);
+            $pattern = '/^([0-9]+)[\s]?(' . implode('|', $sizes) . ')$/i';
             if (preg_match($pattern, $value, $matches)) {
-                $value = (int) $matches[1];
-                $unit = strtoupper($matches[2]);
-                $idx = array_search($unit, $sizes);
+                $value = (int)$matches[1];
+                $unit  = strtoupper($matches[2]);
+                $idx   = array_search($unit, $sizes);
                 if (false !== $idx) {
                     $result = $value * pow(1024, $idx);
                 }
@@ -202,9 +202,9 @@ class File extends AbstractService
      *
      * By default, if the target already exists, it is not overridden.
      *
-     * @param string    $originFile The original filename
-     * @param string    $targetFile The target filename
-     * @param bool      $override   Whether to override an existing file
+     * @param string $originFile The original filename
+     * @param string $targetFile The target filename
+     * @param bool $override Whether to override an existing file
      * @return $this
      *
      * @throws Exception When copy fails
@@ -235,8 +235,8 @@ class File extends AbstractService
     /**
      * Creates a directory recursively.
      *
-     * @param string|array|Traversable  $dirs The directory path
-     * @param int                       $mode The directory mode
+     * @param string|array|Traversable $dirs The directory path
+     * @param int $mode The directory mode
      * @return $this
      *
      * @throws Exception On any directory creation failure
@@ -280,9 +280,9 @@ class File extends AbstractService
      *
      * @param string|array|Traversable $files
      *      A filename, an array of files, or a Traversable instance to create
-     * @param int                       $time
+     * @param int $time
      *      The touch time as a unix timestamp
-     * @param int                       $atime
+     * @param int $atime
      *      The access time as a unix timestamp
      * @return $this
      *
@@ -361,7 +361,7 @@ class File extends AbstractService
                             sprintf('Failed to remove file "%s"', $file)
                         );
                     }
-                // symbolic directory or file
+                    // symbolic directory or file
                 } else {
                     if (true !== @unlink($file)) {
                         throw new Exception(
@@ -381,9 +381,9 @@ class File extends AbstractService
      * @param string|array|Traversable $files
      *      A filename, an array of files,
      *      or a Traversable instance to change mode
-     * @param int                       $mode      The new mode (octal)
-     * @param int                       $umask     The mode mask (octal)
-     * @param Bool                      $recursive
+     * @param int $mode The new mode (octal)
+     * @param int $umask The mode mask (octal)
+     * @param Bool $recursive
      *      Whether change the mod recursively or not
      * @return $this
      *
@@ -414,8 +414,8 @@ class File extends AbstractService
      * @param string|array|Traversable $files
      *      A filename, an array of files,
      *      or a \Traversable instance to change owner
-     * @param string                    $user      The new owner user name
-     * @param Bool                      $recursive
+     * @param string $user The new owner user name
+     * @param Bool $recursive
      *      Whether change the owner recursively or not
      * @return $this
      *
@@ -451,8 +451,8 @@ class File extends AbstractService
      * @param string|array|Traversable $files
      *      A filename, an array of files,
      *      or a Traversable instance to change group
-     * @param string                    $group     The group name
-     * @param Bool                      $recursive
+     * @param string $group The group name
+     * @param Bool $recursive
      *      Whether change the group recursively or not
      * @return $this
      *
@@ -514,10 +514,10 @@ class File extends AbstractService
     /**
      * Creates a symbolic link or copy a directory.
      *
-     * @param string    $originDir     The origin directory path
-     * @param string    $targetDir     The symbolic link name
-     * @param Bool      $copyOnWindows Whether to copy files if on Windows
-     * @param Bool      $override
+     * @param string $originDir The origin directory path
+     * @param string $targetDir The symbolic link name
+     * @param Bool $copyOnWindows Whether to copy files if on Windows
+     * @param Bool $override
      *      Whether to override existing files
      * @return $this
      *
@@ -528,14 +528,15 @@ class File extends AbstractService
         $targetDir,
         $copyOnWindows = true,
         $override = false
-    ) {
+    )
+    {
         if (!function_exists('symlink')
             || (defined('PHP_WINDOWS_VERSION_MAJOR') && $copyOnWindows)
         ) {
-            $this->mirror($originDir, $targetDir, null, array(
-                'copy_on_windows'   => $copyOnWindows,
-                'override'          => $override,
-            ));
+            $this->mirror($originDir, $targetDir, null, [
+                'copy_on_windows' => $copyOnWindows,
+                'override'        => $override,
+            ]);
 
             return $this;
         }
@@ -584,7 +585,7 @@ class File extends AbstractService
      * Given an existing path,
      * convert it to a path relative to a given starting path
      *
-     * @param string $endPath   Absolute path of target
+     * @param string $endPath Absolute path of target
      * @param string $startPath Absolute path where traversal begins
      *
      * @return string Path of target relative to starting path
@@ -593,19 +594,19 @@ class File extends AbstractService
     {
         // Normalize separators on windows
         if (defined('PHP_WINDOWS_VERSION_MAJOR')) {
-            $endPath = strtr($endPath, '\\', '/');
+            $endPath   = strtr($endPath, '\\', '/');
             $startPath = strtr($startPath, '\\', '/');
         }
 
         // Split the paths into arrays
         $startPathArr = explode('/', trim($startPath, '/'));
-        $endPathArr = explode('/', trim($endPath, '/'));
+        $endPathArr   = explode('/', trim($endPath, '/'));
 
         // Find for which directory the common path stops
         $index = 0;
         while (isset($startPathArr[$index])
-               && isset($endPathArr[$index])
-               && $startPathArr[$index] === $endPathArr[$index]
+            && isset($endPathArr[$index])
+            && $startPathArr[$index] === $endPathArr[$index]
         ) {
             $index++;
         }
@@ -622,8 +623,8 @@ class File extends AbstractService
         // Construct $endPath from traversing to the common path,
         // then to the remaining $endPath
         $relativePath = $traverser
-                      . (strlen($endPathRemainder) > 0
-                         ? $endPathRemainder . '/' : '');
+            . (strlen($endPathRemainder) > 0
+                ? $endPathRemainder . '/' : '');
 
         return (strlen($relativePath) === 0) ? './' : $relativePath;
     }
@@ -638,10 +639,10 @@ class File extends AbstractService
      *  - copy_on_windows: Whether to copy files instead of links on Windows
      *      {@see symlink()}.
      *
-     * @param string        $originDir The origin directory
-     * @param string        $targetDir The target directory
-     * @param Traversable   $iterator  A Traversable instance
-     * @param array         $options   An array of bool options
+     * @param string $originDir The origin directory
+     * @param string $targetDir The target directory
+     * @param Traversable $iterator A Traversable instance
+     * @param array $options An array of bool options
      * @return $this
      *
      * @throws Exception When file type is unknown
@@ -650,8 +651,9 @@ class File extends AbstractService
         $originDir,
         $targetDir,
         Traversable $iterator = null,
-        $options = array()
-    ) {
+        $options = []
+    )
+    {
         $copyOnWindows = true;
         if (isset($options['copy_on_windows'])
             && defined('PHP_WINDOWS_VERSION_MAJOR')
@@ -660,9 +662,9 @@ class File extends AbstractService
         }
 
         if (null === $iterator) {
-            $flags = $copyOnWindows
+            $flags    = $copyOnWindows
                 ? FilesystemIterator::SKIP_DOTS
-                    | FilesystemIterator::FOLLOW_SYMLINKS
+                | FilesystemIterator::FOLLOW_SYMLINKS
                 : FilesystemIterator::SKIP_DOTS;
             $iterator = new RecursiveIteratorIterator(
                 new RecursiveDirectoryIterator($originDir, $flags),
@@ -715,7 +717,7 @@ class File extends AbstractService
             || (strlen($file) > 3 && ctype_alpha($file[0])
                 && substr($file, 1, 1) === ':'
                 && (strspn($file, '/\\', 2, 1))
-               )
+            )
             || null !== parse_url($file, PHP_URL_SCHEME)
         ) {
             $result = true;
@@ -734,7 +736,7 @@ class File extends AbstractService
     {
         if (!$files instanceof Traversable) {
             $files = new ArrayObject(is_array($files)
-                ? $files : array($files));
+                ? $files : [$files]);
         }
 
         return $files;
@@ -743,16 +745,16 @@ class File extends AbstractService
     /**
      * Get file list in a directory
      *
-     * @param DirectoryIterator|string  $path
-     * @param Closure|null              $filter
-     * @param bool                      $recursive
+     * @param DirectoryIterator|string $path
+     * @param Closure|null $filter
+     * @param bool $recursive
      *
      * @return array
      */
     public function getList($path, $filter = null, $recursive = false)
     {
-        $result     = array();
-        $iterator   = null;
+        $result   = [];
+        $iterator = null;
         if ($path instanceof DirectoryIterator) {
             $iterator = $path;
         } else {

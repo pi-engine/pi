@@ -30,17 +30,18 @@ class Home extends Standard
      * Default values.
      * @var array
      */
-    protected $defaults = array(
-        'module'        => 'system',
-        'controller'    => 'index',
-        'action'        => 'index'
-    );
+    protected $defaults
+        = [
+            'module'     => 'system',
+            'controller' => 'index',
+            'action'     => 'index',
+        ];
 
     /**
      * Matches homepage route
      *
      * @param Request $request
-     * @param int|null  $pathOffset
+     * @param int|null $pathOffset
      * @return RouteMatch|null
      */
     public function match(Request $request, $pathOffset = null)
@@ -56,20 +57,20 @@ class Home extends Standard
             $path = substr($path, $pathOffset);
         }
         $pathLength = strlen($path);
-        $path = trim($path, $this->paramDelimiter);
-        $matches = array();
+        $path       = trim($path, $this->paramDelimiter);
+        $matches    = [];
 
         if (!empty($path)) {
-            $params  = explode($this->paramDelimiter, $path);
+            $params = explode($this->paramDelimiter, $path);
             if (empty($params)
-                    || empty($params[0])
-                    || ($params[0] == 'system' && empty($params[1]))
-                    || ($params[0] == 'system' && $params[1] == 'index'
-                        && empty($params[2])
-                    )
-                    || ($params[0] == 'system' && $params[1] == 'index'
-                        && $params[2] == 'index'
-                    )
+                || empty($params[0])
+                || ($params[0] == 'system' && empty($params[1]))
+                || ($params[0] == 'system' && $params[1] == 'index'
+                    && empty($params[2])
+                )
+                || ($params[0] == 'system' && $params[1] == 'index'
+                    && $params[2] == 'index'
+                )
             ) {
             } else {
                 return false;
@@ -90,7 +91,7 @@ class Home extends Standard
      * @param  array $options
      * @return string
      */
-    public function assemble(array $params = array(), array $options = array())
+    public function assemble(array $params = [], array $options = [])
     {
         if (isset($params['section'])) {
             $section = $params['section'];
@@ -98,11 +99,11 @@ class Home extends Standard
             $section = Pi::engine()->application()->getSection();
         }
         if ('admin' == $section) {
-            $url = Pi::service('url')->getRouter()->getRoute('admin')->assemble(array(
-                'module'        => 'system',
-                'controller'    => 'index',
-                'action'        => 'index'
-            ), $options);
+            $url = Pi::service('url')->getRouter()->getRoute('admin')->assemble([
+                'module'     => 'system',
+                'controller' => 'index',
+                'action'     => 'index',
+            ], $options);
         } else {
             $url = '/';
         }
@@ -118,6 +119,6 @@ class Home extends Standard
      */
     public function getAssembledParams()
     {
-        return array();
+        return [];
     }
 }

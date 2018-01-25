@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHelper;
 
 /**
@@ -30,8 +29,8 @@ class TemplateTheme extends AbstractHelper
     /**
      * Get full path to a theme template
      *
-     * @param   string  $template
-     * @param   string|null $theme, not implemented yet
+     * @param   string $template
+     * @param   string|null $theme , not implemented yet
      * @return  string
      */
     public function __invoke($template, $theme = null)

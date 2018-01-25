@@ -35,7 +35,7 @@ class ThemeAssemble extends AbstractHelper
     /**
      * Render a section's anchor
      *
-     * @param   string  $section
+     * @param   string $section
      * @param   string|int $indent
      * @return  string|self
      */
@@ -48,7 +48,7 @@ class ThemeAssemble extends AbstractHelper
         if (null !== $indent) {
             $helper->setIndent($indent);
         }
-        $label = sprintf(
+        $label                        = sprintf(
             '<%s id="%s" />',
             $section,
             md5(Pi::config('salt') . $section)
@@ -89,7 +89,7 @@ class ThemeAssemble extends AbstractHelper
         unset($configGeneral['foot_script']);
 
         // Set global variables to root ViewModel, e.g. theme template
-        $configGeneral['locale'] = Pi::service('i18n')->getLocale()
+        $configGeneral['locale']  = Pi::service('i18n')->getLocale()
             ?: $configGeneral['locale'];
         $configGeneral['charset'] = Pi::service('i18n')->getCharset()
             ?: $configGeneral['charset'];
@@ -109,7 +109,7 @@ class ThemeAssemble extends AbstractHelper
         $headMeta = $this->view->headMeta();
         // Load meta config
         $configMeta = Pi::config('', 'system', 'head_meta');
-        $moduleMeta = array();
+        $moduleMeta = [];
         unset($configMeta['head_title']);
         if ('system' != $module) {
             $moduleMeta = Pi::config('', $module, 'head_meta');
@@ -131,18 +131,18 @@ class ThemeAssemble extends AbstractHelper
         $image = Pi::service('asset')->socialNetworkLogo();
 
         // Get informations
-        $sitename = Pi::config('sitename');
-        $slogan = Pi::config('slogan');
-        $description = Pi::config('description');
-        $locale = Pi::service('i18n')->getLocale();
-        $ogLocale = Pi::config('og_local');
-        $twitter = Pi::config('twitter_account');
-        $facebook = Pi::config('facebook_appid');
-        $pinterest = Pi::config('pinterest_verify');
-        $geoLatitude = Pi::config('geo_latitude');
+        $sitename      = Pi::config('sitename');
+        $slogan        = Pi::config('slogan');
+        $description   = Pi::config('description');
+        $locale        = Pi::service('i18n')->getLocale();
+        $ogLocale      = Pi::config('og_local');
+        $twitter       = Pi::config('twitter_account');
+        $facebook      = Pi::config('facebook_appid');
+        $pinterest     = Pi::config('pinterest_verify');
+        $geoLatitude   = Pi::config('geo_latitude');
         $geoLongitudet = Pi::config('geo_longitude');
-        $geoPlacename = Pi::config('geo_placename');
-        $geoRegion = Pi::config('geo_region');
+        $geoPlacename  = Pi::config('geo_placename');
+        $geoRegion     = Pi::config('geo_region');
 
         // Meta author and generator
         $headMeta($sitename, 'author');
@@ -193,10 +193,10 @@ class ThemeAssemble extends AbstractHelper
     {
         $headTitle = $this->view->headTitle();
         $separator = $headTitle->getSeparator();
-        $postfix = $headTitle->getPostfix();
-        $prefix = $headTitle->getPrefix();
-        $type = Pi::config('title_type');
-        $sitename = Pi::config('sitename');
+        $postfix   = $headTitle->getPostfix();
+        $prefix    = $headTitle->getPrefix();
+        $type      = Pi::config('title_type');
+        $sitename  = Pi::config('sitename');
 
         // Set prefix or postfix
         switch ($type) {
@@ -206,7 +206,7 @@ class ThemeAssemble extends AbstractHelper
                     if ($headTitle->count()) {
                         if ($module && 'system' != $module) {
                             $moduleMeta = Pi::registry('module')->read($module);
-                            $postfix = $moduleMeta['title'] . $separator . $postfix;
+                            $postfix    = $moduleMeta['title'] . $separator . $postfix;
                         }
                     }
                     $postfix = $separator . $postfix;
@@ -228,10 +228,10 @@ class ThemeAssemble extends AbstractHelper
                     if ($headTitle->count()) {
                         if ($module && 'system' != $module) {
                             $moduleMeta = Pi::registry('module')->read($module);
-                            $prefix = $prefix . $separator . $moduleMeta['title'];
+                            $prefix     = $prefix . $separator . $moduleMeta['title'];
                         }
                     }
-                    $prefix =  $prefix . $separator;
+                    $prefix = $prefix . $separator;
                     $headTitle->setPrefix($prefix);
                 }
                 break;
@@ -239,7 +239,7 @@ class ThemeAssemble extends AbstractHelper
             case 4:
                 if (!$prefix) {
                     $prefix = $sitename;
-                    $prefix =  $prefix . $separator;
+                    $prefix = $prefix . $separator;
                     $headTitle->setPrefix($prefix);
                 }
                 break;
@@ -252,7 +252,7 @@ class ThemeAssemble extends AbstractHelper
         if (!$headTitle->count()) {
             $headTitleStr = Pi::config('head_title', $module);
             if (empty($headTitleStr) && $module && 'system' != $module) {
-                $moduleMeta = Pi::registry('module')->read($module);
+                $moduleMeta   = Pi::registry('module')->read($module);
                 $headTitleStr = $moduleMeta['title'];
             }
             if ($headTitleStr && $headTitleStr == $sitename) {
@@ -281,13 +281,13 @@ class ThemeAssemble extends AbstractHelper
         $pos = stripos($content, '</head>');
         if ($pos) {
             $head = '';
-            foreach (array(
+            foreach ([
                          'headTitle',
                          'headMeta',
                          'headLink',
                          'headStyle',
-                         'headScript'
-                     ) as $section) {
+                         'headScript',
+                     ] as $section) {
                 $sectionContent = $this->view->plugin($section)->toString();
                 $sectionContent .= $sectionContent ? PHP_EOL : '';
                 if (!empty($this->sectionLabel[$section])) {
@@ -302,9 +302,9 @@ class ThemeAssemble extends AbstractHelper
             }
 
             if ($head) {
-                $preHead = substr($content, 0, $pos);
+                $preHead  = substr($content, 0, $pos);
                 $postHead = substr($content, $pos);
-                $content = $preHead . PHP_EOL . $head . PHP_EOL . $postHead;
+                $content  = $preHead . PHP_EOL . $head . PHP_EOL . $postHead;
             }
         }
         /**#@-*/
@@ -314,7 +314,7 @@ class ThemeAssemble extends AbstractHelper
          */
         $pos = stripos($content, '</body>');
         if ($pos) {
-            $section = 'footScript';
+            $section        = 'footScript';
             $sectionContent = $this->view->plugin($section)->toString();
             if (!empty($this->sectionLabel[$section])) {
                 $content = str_replace(
@@ -323,9 +323,9 @@ class ThemeAssemble extends AbstractHelper
                     $content
                 );
             } elseif ($sectionContent) {
-                $preFoot = substr($content, 0, $pos);
+                $preFoot  = substr($content, 0, $pos);
                 $postFoot = substr($content, $pos);
-                $content = $preFoot . PHP_EOL . $sectionContent . PHP_EOL . PHP_EOL
+                $content  = $preFoot . PHP_EOL . $sectionContent . PHP_EOL . PHP_EOL
                     . $postFoot;
             }
         }

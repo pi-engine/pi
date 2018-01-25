@@ -9,9 +9,6 @@
 
 namespace Pi\Mvc\Router\Http;
 
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Stdlib\RequestInterface as Request;
-
 /**
  * Feed route
  *

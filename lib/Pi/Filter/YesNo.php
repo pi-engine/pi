@@ -9,7 +9,6 @@
 
 namespace Pi\Filter;
 
-use Pi;
 use Zend\Filter\AbstractFilter;
 
 /**
@@ -29,10 +28,10 @@ class YesNo extends AbstractFilter
     {
         // Convert '000<...>000' to 0
         if (is_numeric($value)) {
-            $value = (int) $value;
+            $value = (int)$value;
         }
         if (!is_string($value)) {
-            $value = (bool) $value ? 'yes' : 'no';
+            $value = (bool)$value ? 'yes' : 'no';
         }
         switch ($value) {
             case 'n':

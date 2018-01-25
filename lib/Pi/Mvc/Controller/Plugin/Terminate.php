@@ -22,22 +22,23 @@ class Terminate extends AbstractPlugin
     /**
      * Terminate an action and display corresponding messages
      *
-     * @param string $message   Message to display or type of messages: login, register
+     * @param string $message Message to display or type of messages: login, register
      * @param string $title
      * @param string $template
      *
      * @return void
      */
     public function __invoke(
-        $message    = '',
-        $title      = '',
-        $template   = ''
-    ) {
+        $message = '',
+        $title = '',
+        $template = ''
+    )
+    {
         $template = $template ?: 'error.phtml';
         switch ($message) {
             case 'login':
-                $title = __('Login');
-                $link = Pi::service('user')->getUrl('login');
+                $title   = __('Login');
+                $link    = Pi::service('user')->getUrl('login');
                 $message = sprintf(
                     __('Please <a href="%s" title="">login</a> and come again.'),
                     $link
@@ -49,10 +50,10 @@ class Terminate extends AbstractPlugin
         }
         $view = $this->getController()->plugin('view');
         $view->setTemplate($template, false);
-        $view->assign(array(
-            'message'   => $message,
-            'title'     => $title,
-        ));
+        $view->assign([
+            'message' => $message,
+            'title'   => $title,
+        ]);
 
         return;
     }

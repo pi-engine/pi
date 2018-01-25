@@ -12,8 +12,8 @@ namespace Pi\Authentication\Adapter\DbTable;
 use Pi;
 use Pi\Authentication\Adapter\AbstractAdapter as BaseAbstractAdapter;
 use Pi\Authentication\Result as AuthenticationResult;
-use Zend\Db\RowGateway\AbstractRowGateway;
 use Zend\Db\Adapter\Adapter as DbAdapter;
+use Zend\Db\RowGateway\AbstractRowGateway;
 
 /**
  * Pi authentication db table abstract adapter
@@ -172,12 +172,12 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
             throw new \RuntimeException($exception);
         }
 
-        $this->authenticateResultInfo = array(
-            'code'      => AuthenticationResult::FAILURE,
-            'identity'  => $this->identity,
-            'messages'  => array(),
-            'data'      => array(),
-        );
+        $this->authenticateResultInfo = [
+            'code'     => AuthenticationResult::FAILURE,
+            'identity' => $this->identity,
+            'messages' => [],
+            'data'     => [],
+        ];
 
         return true;
     }
@@ -234,7 +234,7 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
         $this->authenticateSetup();
 
         $resultIdentities = $this->getQueryResult();
-        $authResult = $this->authenticateValidateResultSet($resultIdentities);
+        $authResult       = $this->authenticateValidateResultSet($resultIdentities);
         if ($authResult instanceof AuthenticationResult) {
             return $authResult;
         }
@@ -258,21 +258,21 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
      */
     protected function getQueryResult()
     {
-        $options = array();
+        $options = [];
         if ($this->dbAdapter instanceof DbAdapter) {
             $options['adapter'] = $this->dbAdapter;
         }
         if (is_array($this->tableName)) {
             list($modelName, $module) = $this->tableName;
         } else {
-            list($modelName, $module) = array($this->tableName, '');
+            list($modelName, $module) = [$this->tableName, ''];
         }
-        $model = Pi::model($modelName, $module, $options);
-        $rowset = $model->select(array(
-            $this->identityColumn => $this->identity
-        ));
-        $resultIdentities = array();
-        foreach($rowset as $row) {
+        $model            = Pi::model($modelName, $module, $options);
+        $rowset           = $model->select([
+            $this->identityColumn => $this->identity,
+        ]);
+        $resultIdentities = [];
+        foreach ($rowset as $row) {
             $resultIdentities[] = $row;
         }
 
@@ -291,12 +291,12 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
     /**
      * {@inheritDoc}
      */
-    public function setResultRow($resultRow = array())
+    public function setResultRow($resultRow = [])
     {
         if ($resultRow instanceof AbstractRowGateway) {
             $this->resultRow = $resultRow->toArray();
         } else {
-            $this->resultRow = (array) $resultRow;
+            $this->resultRow = (array)$resultRow;
         }
 
         return $this;
@@ -308,15 +308,15 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
     public function getResultRow($returnColumns = null, $omitColumns = null)
     {
         if (isset($this->options['return_columns'])) {
-            $columns = (array) $this->options['return_columns'];
+            $columns = (array)$this->options['return_columns'];
             if (!in_array('id', $columns)) {
                 $columns[] = 'id';
             }
             $this->options['return_columns'] = $columns;
         } elseif (isset($this->options['omit_columns'])) {
-            $columns = (array) $this->options['omit_columns'];
+            $columns = (array)$this->options['omit_columns'];
             if (in_array('id', $columns)) {
-                $columns = array_diff($columns, array('id'));
+                $columns                       = array_diff($columns, ['id']);
                 $this->options['omit_columns'] = $columns;
             }
         }
@@ -373,12 +373,12 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
             throw new \RuntimeException($exception);
         }
 
-        $this->authenticateResultInfo = array(
-            'code'      => AuthenticationResult::FAILURE,
-            'identity'  => $this->identity,
-            'messages'  => array(),
-            'data'      => array(),
-        );
+        $this->authenticateResultInfo = [
+            'code'     => AuthenticationResult::FAILURE,
+            'identity' => $this->identity,
+            'messages' => [],
+            'data'     => [],
+        ];
 
         return true;
     }

@@ -46,10 +46,10 @@ class Fieldset extends ZendFieldset
      */
     public function elementList()
     {
-        $elements = array(
-            'active'    => array(),
-            'hidden'    => array(),
-        );
+        $elements = [
+            'active' => [],
+            'hidden' => [],
+        ];
 
         foreach ($this->elements as $key => $value) {
             $type = $value->getAttribute('type');

@@ -10,8 +10,8 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\View\Helper\FormElement as ZendFormElement;
 use Zend\Form\ElementInterface;
+use Zend\Form\View\Helper\FormElement as ZendFormElement;
 
 /**
  * Form element helper

@@ -10,12 +10,12 @@
 namespace Pi\Navigation\Page;
 
 use Pi;
-use Zend\Navigation\Page as ZendPage;
-use Zend\Navigation\Page\Mvc as ZendMvcPage;
+use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\Router\RouteMatch;
 use Zend\Mvc\Router\RouteStackInterface;
 use Zend\Navigation\Exception;
-use Zend\Mvc\ModuleRouteListener;
+use Zend\Navigation\Page as ZendPage;
+use Zend\Navigation\Page\Mvc as ZendMvcPage;
 
 /**
  * Mvc page
@@ -46,7 +46,7 @@ class Mvc extends ZendMvcPage
     /**
      * Returns whether page should be considered active or not
      *
-     * @param  bool $recursive  [optional] whether page should be considered
+     * @param  bool $recursive [optional] whether page should be considered
      *      active if any child pages are active. Default is false.
      * @return bool             whether page should be considered active
      * @see Zend\Navigation\Page\AbstractPage::isActive()
@@ -74,7 +74,7 @@ class Mvc extends ZendMvcPage
      * This method will inject the container as the given page's parent by
      * calling {@link Page\AbstractPage::setParent()}.
      *
-     * @param AbstractPage|array|Traversable $page  page to add
+     * @param AbstractPage|array|Traversable $page page to add
      *
      * @return this
      * @throws Exception\InvalidArgumentException if page is invalid
@@ -110,7 +110,7 @@ class Mvc extends ZendMvcPage
         // adds page to container and sets dirty flag
         $this->pages[$hash] = $page;
         $this->index[$hash] = $page->getOrder();
-        $this->dirtyIndex = true;
+        $this->dirtyIndex   = true;
 
         // inject self as page parent
         $page->setParent($this);
@@ -125,7 +125,7 @@ class Mvc extends ZendMvcPage
     {
         //if (!$this->active) {
         if (null === $this->active) {
-            $reqParams = array();
+            $reqParams = [];
 
             /**#@+
              * Added by Taiwen Jiang
@@ -134,14 +134,14 @@ class Mvc extends ZendMvcPage
             /**#@-*/
 
             if ($this->routeMatch instanceof RouteMatch) {
-                $reqParams  = $this->routeMatch->getParams();
+                $reqParams = $this->routeMatch->getParams();
 
                 $originalController = ModuleRouteListener::ORIGINAL_CONTROLLER;
                 if (isset($reqParams[$originalController])) {
                     $reqParams['controller'] = $reqParams[$originalController];
                 }
 
-                $myParams   = $this->params;
+                $myParams = $this->params;
                 /**#@+
                  * Added by Taiwen Jiang
                  */
@@ -175,7 +175,7 @@ class Mvc extends ZendMvcPage
                         }
                     }
                     if ($this->routeMatch->getMatchedRouteName()
-                            === $this->getRoute()
+                        === $this->getRoute()
                         && (count(array_intersect_assoc($reqParams, $myParams))
                             == count($myParams)
                         )
@@ -188,7 +188,7 @@ class Mvc extends ZendMvcPage
                     /**#@-*/
 
                     if ($this->routeMatch->getMatchedRouteName()
-                            === $this->getRoute()
+                        === $this->getRoute()
                         && (count(array_intersect_assoc($reqParams, $myParams))
                             == count($myParams)
                         )
@@ -283,8 +283,8 @@ class Mvc extends ZendMvcPage
             $rmParams = $this->getRouteMatch()->getParams();
 
             if (isset($rmParams[ModuleRouteListener::ORIGINAL_CONTROLLER])) {
-                $rmParams['controller'] =
-                    $rmParams[ModuleRouteListener::ORIGINAL_CONTROLLER];
+                $rmParams['controller']
+                    = $rmParams[ModuleRouteListener::ORIGINAL_CONTROLLER];
                 unset($rmParams[ModuleRouteListener::ORIGINAL_CONTROLLER]);
             }
 
@@ -330,7 +330,7 @@ class Mvc extends ZendMvcPage
                 );
         }
 
-        $options = array('name' => $name);
+        $options = ['name' => $name];
 
         // Add the fragment identifier if it is set
         $fragment = $this->getFragment();
@@ -347,7 +347,7 @@ class Mvc extends ZendMvcPage
          * Modified by Taiwen Jiang
          */
         try {
-           $url = $router->assemble($params, $options);
+            $url = $router->assemble($params, $options);
         } catch (\Exception $e) {
             $url = '';
             trigger_error($e->getMessage(), E_USER_WARNING);
@@ -365,13 +365,13 @@ class Mvc extends ZendMvcPage
      *
      * @see getHref()
      *
-     * @param  string|null $section    section name
+     * @param  string|null $section section name
      * @return $this
      */
     public function setSection($section)
     {
-        $this->section = $section;
-        $this->hrefCache  = null;
+        $this->section   = $section;
+        $this->hrefCache = null;
 
         return $this;
     }
@@ -393,7 +393,7 @@ class Mvc extends ZendMvcPage
      *
      * @see getHref()
      *
-     * @param  string|null $module    module name
+     * @param  string|null $module module name
      * @return Mvc   fluent interface, returns self
      * @throws Exception\InvalidArgumentException
      *      if invalid module name is given
@@ -406,8 +406,8 @@ class Mvc extends ZendMvcPage
             );
         }
 
-        $this->module = $module;
-        $this->hrefCache  = null;
+        $this->module    = $module;
+        $this->hrefCache = null;
 
         return $this;
     }
@@ -458,14 +458,14 @@ class Mvc extends ZendMvcPage
     {
         return array_merge(
             parent::toArray(),
-            array(
+            [
                 /**#@+
                  * Added by Taiwen Jiang
                  */
-                'section'      => $this->getSection(),
-                'module'       => $this->getModule(),
+                'section' => $this->getSection(),
+                'module'  => $this->getModule(),
                 /**#@-*/
-            )
+            ]
         );
     }
 }

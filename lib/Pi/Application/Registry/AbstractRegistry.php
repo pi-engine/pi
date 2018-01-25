@@ -62,13 +62,13 @@ abstract class AbstractRegistry
      *
      * @var string[]
      */
-    protected $namespaceMeta = array();
+    protected $namespaceMeta = [];
 
     /**
      * Roles in process loop
      * @var array
      */
-    protected $roles = array();
+    protected $roles = [];
 
     /**
      * Data generator
@@ -124,8 +124,8 @@ abstract class AbstractRegistry
             if (is_string($meta)) {
                 $namespace = $meta;
             } elseif (isset($meta['module'])) {
-                $namespace = $meta['module'];
-                $this->namespaceMeta = array('module');
+                $namespace           = $meta['module'];
+                $this->namespaceMeta = ['module'];
             } else {
                 throw new \Exception(
                     'Custom namespace is required for registry '
@@ -151,10 +151,10 @@ abstract class AbstractRegistry
      */
     protected function canonizeRole($role)
     {
-        $roles = Pi::service('permission')->canonizeRole($role);
+        $roles    = Pi::service('permission')->canonizeRole($role);
         $roleList = Pi::registry('role')->read();
         foreach ($roles as $roleName) {
-            $id = $roleList[$roleName]['id'];
+            $id               = $roleList[$roleName]['id'];
             $this->roles[$id] = $roleName;
         }
         if ($this->roles) {
@@ -170,7 +170,7 @@ abstract class AbstractRegistry
      * @param array $meta
      * @return string
      */
-    protected function createKey($meta = array())
+    protected function createKey($meta = [])
     {
         $key = '';
         foreach (array_keys($meta) as $var) {
@@ -204,7 +204,7 @@ abstract class AbstractRegistry
                     $val = md5(json_encode($meta[$var]));
                 } else {
                     $val = str_replace(
-                        array(':', '-', '.', '/'),
+                        [':', '-', '.', '/'],
                         '_',
                         strval($meta[$var])
                     );
@@ -250,7 +250,7 @@ abstract class AbstractRegistry
      * @param array $meta
      * @return array|bool
      */
-    protected function loadData($meta = array())
+    protected function loadData($meta = [])
     {
         //$isCached = true;
         $this->setNamespace($meta);
@@ -269,12 +269,12 @@ abstract class AbstractRegistry
      * @param array $meta
      * @return array|bool
      */
-    protected function loadCacheData($meta = array())
+    protected function loadCacheData($meta = [])
     {
         $data = null;
         if ($this->cache()) {
             $cacheKey = $this->createKey($meta);
-            $data = Pi::service('cache')->getItem($cacheKey, $this->namespace);
+            $data     = Pi::service('cache')->getItem($cacheKey, $this->namespace);
             if (null !== $data) {
                 $data = json_decode($data, true);
             }
@@ -290,7 +290,7 @@ abstract class AbstractRegistry
      * @param array $meta
      * @return bool
      */
-    protected function saveCache($data, $meta = array())
+    protected function saveCache($data, $meta = [])
     {
         if ($data === false) {
             return false;
@@ -298,7 +298,7 @@ abstract class AbstractRegistry
         $status = false;
         if ($this->cache()) {
             $cacheKey = $this->createKey($meta);
-            $data = Pi::service('cache')->setItem(
+            $data     = Pi::service('cache')->setItem(
                 $cacheKey,
                 json_encode($data),
                 $this->namespace
@@ -370,11 +370,11 @@ abstract class AbstractRegistry
      */
     public function flushBySections()
     {
-        $sections = array(
+        $sections = [
             'front',
             'admin',
             'feed',
-        );
+        ];
         foreach ($sections as $section) {
             $this->clear($section);
         }

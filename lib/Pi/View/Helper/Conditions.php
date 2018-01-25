@@ -35,23 +35,24 @@ class Conditions extends AbstractHtmlElement
     {
         $content = '';
 
-        if (Pi::service('module')->isActive('user') && Pi::service('authentication')->hasIdentity()){
-            $barLabel = __("New terms and conditions are available. Please accept them.");
+        if (Pi::service('module')->isActive('user') && Pi::service('authentication')->hasIdentity()) {
+            $barLabel      = __("New terms and conditions are available. Please accept them.");
             $agrementLabel = __("I agree");
-            $linkLabel = __("Read Term and conditions");
-            $downloadUrl = Pi::url(Pi::service('view')->getHelper('url')->__invoke('user', array('module' => 'user', 'controller' => 'condition', 'action' => 'download')));
-            $acceptUrl = Pi::url(Pi::service('view')->getHelper('url')->__invoke('user', array('module' => 'user', 'controller' => 'condition', 'action' => 'accept')));
+            $linkLabel     = __("Read Term and conditions");
+            $downloadUrl   = Pi::url(Pi::service('view')->getHelper('url')->__invoke('user', ['module' => 'user', 'controller' => 'condition', 'action' => 'download']));
+            $acceptUrl     = Pi::url(Pi::service('view')->getHelper('url')->__invoke('user', ['module' => 'user', 'controller' => 'condition', 'action' => 'accept']));
 
             /**
              * Check if last version of terms and conditions matches with any user timeline log
              */
 
-            if($condition = Pi::api('condition', 'user')->getLastEligibleCondition()){
+            if ($condition = Pi::api('condition', 'user')->getLastEligibleCondition()) {
                 $timelineLogCollection = Pi::api('log', 'user')->getLogCollectionByUserId(Pi::user()->getId(), 'accept_conditions', null, $condition->version);
 
-                if(!$timelineLogCollection || $timelineLogCollection->count() == 0){
+                if (!$timelineLogCollection || $timelineLogCollection->count() == 0) {
 
-                    $content = <<<HTML
+                    $content
+                        = <<<HTML
     <div id="cookie-bar" class="terms-conditions-bar fixed bottom" style="z-index:110000;"><p>{$barLabel} <a href="{$downloadUrl}" class="cb-policy" target="_blank">{$linkLabel}</a> <a href="{$acceptUrl}" class="cb-enable">{$agrementLabel}</a></p></div>
     <script>
         $(document).ready(function(){

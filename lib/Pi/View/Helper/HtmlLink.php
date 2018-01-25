@@ -28,10 +28,10 @@ class HtmlLink extends AbstractHtmlElement
      *
      * @return string
      */
-    public function __invoke($href, $label = '', array $attribs = array())
+    public function __invoke($href, $label = '', array $attribs = [])
     {
         $escapeHtml = $this->getView()->plugin('escapehtml');
-        $label = $escapeHtml($label ?: $href);
+        $label      = $escapeHtml($label ?: $href);
         if ($attribs) {
             $attribs = $this->htmlAttribs($attribs);
         } else {

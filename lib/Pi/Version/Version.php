@@ -9,8 +9,8 @@
 
 namespace Pi\Version;
 
-use Zend\Version\Version as ZendVersion;
 use Zend\Json\Json;
+use Zend\Version\Version as ZendVersion;
 
 /**
  * Class to store and retrieve Pi Engine version.
@@ -45,15 +45,15 @@ class Version
      * API URL to retrieve latest commit from Github
      * @var string
      */
-    protected static $githubApiCommit =
-        'https://api.github.com/repos/pi-engine/pi/git/refs/heads';
+    protected static $githubApiCommit
+        = 'https://api.github.com/repos/pi-engine/pi/git/refs/heads';
 
     /**
      * API URL to retrieve release tags from Github
      * @var string
      */
-    protected static $githubApiRelease =
-        'https://api.github.com/repos/pi-engine/pi/git/refs/tags/release-';
+    protected static $githubApiRelease
+        = 'https://api.github.com/repos/pi-engine/pi/git/refs/tags/release-';
 
     /**
      * API URL to retrieve latest Pi release
@@ -67,7 +67,8 @@ class Version
      * Solely to avoid conflict with method of `version`
      */
     public function __construct()
-    {}
+    {
+    }
 
     /**
      * Get version number
@@ -101,7 +102,7 @@ class Version
      * Compare the specified Pi Engine version string $version
      * with the current Pi\Version::VERSION of Pi Engine.
      *
-     * @param  string  $version  A version string (e.g. "0.7.1").
+     * @param  string $version A version string (e.g. "0.7.1").
      * @return int
      * @see http://www.php.net/manual/en/function.version-compare.php
      */
@@ -134,9 +135,9 @@ class Version
     {
         if (null === static::$latestVersion) {
             static::$latestVersion = false;
-            $service = strtoupper($service);
+            $service               = strtoupper($service);
             if ($service == 'GITHUB') {
-                $url  = static::$githubApiRelease;
+                $url = static::$githubApiRelease;
 
                 $apiResponse = Json::decode(
                     file_get_contents($url),
@@ -192,17 +193,17 @@ class Version
     {
         if (null === static::$latestCommit) {
             static::$latestCommit = false;
-            $url  = static::$githubApiCommit;
+            $url                  = static::$githubApiCommit;
 
-            $apiResponse = Json::decode(
+            $apiResponse          = Json::decode(
                 file_get_contents($url),
                 Json::TYPE_ARRAY
             );
-            $latestCommit = $apiResponse[0];
-            static::$latestCommit = array(
-                'commit'    => $latestCommit['object']['sha'],
-                'url'       => $latestCommit['object']['url'],
-            );
+            $latestCommit         = $apiResponse[0];
+            static::$latestCommit = [
+                'commit' => $latestCommit['object']['sha'],
+                'url'    => $latestCommit['object']['url'],
+            ];
         }
 
         return static::$latestCommit;

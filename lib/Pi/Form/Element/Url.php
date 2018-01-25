@@ -24,7 +24,7 @@ class Url extends ZendUrl
      */
     public function getInputSpecification()
     {
-        $spec = parent::getInputSpecification();
+        $spec             = parent::getInputSpecification();
         $spec['required'] = false;
 
         return $spec;

@@ -11,8 +11,8 @@
 namespace Pi\View\Helper;
 
 use Pi;
-use Zend\View\Helper\AbstractHelper;
 use Pi\Mvc\Router\RouteMatch as RouteMatchHandler;
+use Zend\View\Helper\AbstractHelper;
 
 /**
  * Helper for loading parameters from routeMatch

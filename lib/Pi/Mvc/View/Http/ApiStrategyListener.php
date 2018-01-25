@@ -9,8 +9,6 @@
 
 namespace Pi\Mvc\View\Http;
 
-use Pi;
-
 /**
  * API view strategy listener
  *

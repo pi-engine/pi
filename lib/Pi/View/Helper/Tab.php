@@ -30,7 +30,7 @@ class Tab extends NavMenu
     /**
      * {@inheritDoc}
      */
-    public function __invoke(array $items, $attribs = array())
+    public function __invoke(array $items, $attribs = [])
     {
         if (is_array($attribs) && !isset($attribs['type'])) {
             $attribs['type'] = 'horizontal';

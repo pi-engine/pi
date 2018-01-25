@@ -9,8 +9,8 @@
 
 namespace Pi\Markup\Parser;
 
-use Traversable;
 use Pi\Filter\FilterChain;
+use Traversable;
 use Zend\Stdlib\ArrayUtils;
 
 /**
@@ -21,20 +21,20 @@ use Zend\Stdlib\ArrayUtils;
 abstract class AbstractParser
 {
     /** @var array Options */
-    protected $options = array();
+    protected $options = [];
 
     /** @var FilterChain Filters */
     protected $filterChain;
 
     /** @var array */
-    protected $filters = array();
+    protected $filters = [];
 
     /**
      * Constructor
      *
      * @param array|\Traversable $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setOptions($options);
     }

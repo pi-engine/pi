@@ -9,8 +9,6 @@
 
 namespace Pi\Security;
 
-use Pi;
-
 /**
  * Security handler with variety of adapters
  *
@@ -33,9 +31,9 @@ class Security
      * @param array $options
      * @return bool|null
      */
-    public static function ip($options = array())
+    public static function ip($options = [])
     {
-        $clientIp = array();
+        $clientIp = [];
         if (!empty($_SERVER['REMOTE_ADDR'])) {
             $clientIp[] = $_SERVER['REMOTE_ADDR'];
         }
@@ -82,7 +80,7 @@ class Security
      * @param array $globals Name of super globals to check
      * @return bool|null
      */
-    public static function globals($globals = array())
+    public static function globals($globals = [])
     {
         array_walk($globals, 'trim');
         $items = array_filter($globals);
@@ -104,7 +102,7 @@ class Security
      */
     public static function filter($content)
     {
-        $class = __NAMESPACE__ . '\\Xss';
+        $class   = __NAMESPACE__ . '\\Xss';
         $content = $class::checkXss($content, true);
 
         return $content;
@@ -114,10 +112,10 @@ class Security
      * Magic method to access against custom security adapters
      *
      * @param string $method Security adapter to be checked
-     * @param array  $args  Arguments for the setting
+     * @param array $args Arguments for the setting
      * @return bool|null
      */
-    public static function __callStatic($method, $args = array())
+    public static function __callStatic($method, $args = [])
     {
         $class = __NAMESPACE__ . '\\' . ucfirst($method);
         if (class_exists($class)

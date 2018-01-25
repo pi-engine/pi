@@ -28,7 +28,7 @@ class Layout extends Select
      */
     public function getValueOptions()
     {
-        $theme = $this->getOption('theme');
+        $theme              = $this->getOption('theme');
         $this->valueOptions = Pi::service('theme')->getLayouts($theme);
 
         return $this->valueOptions;

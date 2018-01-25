@@ -22,7 +22,7 @@ abstract class AbstractResource
      * Bootstrap options
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Pi Engine handler
@@ -39,14 +39,14 @@ abstract class AbstractResource
     /**
      * Constructor
      *
-     * @param AbstractEngine    $engine
-     * @param array             $options
+     * @param AbstractEngine $engine
+     * @param array $options
      */
-    public function __construct(AbstractEngine $engine, $options = array())
+    public function __construct(AbstractEngine $engine, $options = [])
     {
-        $this->options      = $options;
-        $this->engine       = $engine;
-        $this->application  = $engine->application();
+        $this->options     = $options;
+        $this->engine      = $engine;
+        $this->application = $engine->application();
     }
 
     /**

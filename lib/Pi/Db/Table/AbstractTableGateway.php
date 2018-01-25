@@ -12,13 +12,14 @@ namespace Pi\Db\Table;
 use ArrayObject;
 use Pi;
 use Pi\Db\Sql\Sql;
-//use Zend\Db\RowGateway\AbstractRowGateway;
+use Pi\Db\Sql\Where;
+use Zend\Db\Metadata\Metadata;
+use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\AbstractTableGateway as ZendAbstractTableGateway;
 use Zend\Db\TableGateway\Feature;
+
+//use Zend\Db\RowGateway\AbstractRowGateway;
 //use Zend\Db\Sql\Sql;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\Metadata\Metadata;
-use Pi\Db\Sql\Where;
 
 /**
  * Pi Table Gateway
@@ -46,7 +47,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      *
      * @var string[]
      */
-    protected $columns = array();
+    protected $columns = [];
 
     /**
      * Non-scalar columns to be encoded before saving to DB
@@ -57,11 +58,12 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      *  - false: keep as array object.
      * @var array
      */
-    protected $encodeColumns = array(
-        // column name => convert to associative array?
-        //'col_array'     => true,
-        //'col_object'    => false,
-    );
+    protected $encodeColumns
+        = [
+            // column name => convert to associative array?
+            //'col_array'     => true,
+            //'col_object'    => false,
+        ];
 
     /**
      * Primary key column
@@ -78,7 +80,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setup($options);
         $this->initialize();
@@ -91,7 +93,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * @return $this
      * @throws \InvalidArgumentException
      */
-    public function setup($options = array())
+    public function setup($options = [])
     {
         $tablePrefix = '';
         if (isset($options['prefix'])) {
@@ -107,7 +109,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         // process features
         if (isset($options['features'])) {
             if ($options['features'] instanceof Feature\AbstractFeature) {
-                $options['features'] = array($options['features']);
+                $options['features'] = [$options['features']];
             }
             if (is_array($options['features'])) {
                 $this->featureSet = new Feature\FeatureSet(
@@ -156,8 +158,8 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         if (!$this->resultSetPrototype) {
             $rowObjectPrototype = $this->createRow();
             if ($this->resultSetClass) {
-                $resultSetPrototype =
-                    new $this->resultSetClass(null, $rowObjectPrototype);
+                $resultSetPrototype
+                    = new $this->resultSetClass(null, $rowObjectPrototype);
             } else {
                 $resultSetPrototype = new ResultSet(null, $rowObjectPrototype);
             }
@@ -187,13 +189,13 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
             $this->initialize();
         }
         if (null === $where) {
-           return $this->sql->select();
+            return $this->sql->select();
         }
 
         return parent::select($where);
     }
 
-    /**#@APIs+*/
+    /**#@APIs+ */
     /**
      * Creates Row object
      *
@@ -302,8 +304,8 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * if key array is provided or a Row object
      * if a single key value is provided.
      *
-     * @param array|string|int  $key    The value(s) of the key
-     * @param string|null       $column Column name of the key
+     * @param array|string|int $key The value(s) of the key
+     * @param string|null $column Column name of the key
      * @return ResultSet|Row Row(s) matching the criteria.
      * @throws \Exception Throw exception if column is not specified
      */
@@ -316,7 +318,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         $isScalar = false;
         if (!is_array($key)) {
             $isScalar = true;
-            $key = array($key);
+            $key      = [$key];
         }
         $where = new Where;
         if (count($key) == 1) {
@@ -324,7 +326,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         } else {
             $where->in($column, $key);
         }
-        $select = $this->select()->where($where); //->limit(1);
+        $select    = $this->select()->where($where); //->limit(1);
         $resultSet = $this->selectWith($select);
 
         $result = $isScalar ? $resultSet->current() : $resultSet;
@@ -369,12 +371,12 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     /**
      * Fetch count against condition
      *
-     * @param array|Where  $where
+     * @param array|Where $where
      * @param array|string $params
      *
      * @return bool|int|ResultSet
      */
-    public function count($where = array(), $params = null)
+    public function count($where = [], $params = null)
     {
         $group = $having = $limit = null;
         if ($params) {
@@ -390,9 +392,9 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
             }
         }
 
-        $columns = array('count' => Pi::db()->expression('COUNT(*)'));
+        $columns = ['count' => Pi::db()->expression('COUNT(*)')];
         if ($group) {
-            $columns += (array) $group;
+            $columns += (array)$group;
         }
         $select = $this->select();
         $select->columns($columns);
@@ -413,8 +415,8 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
             if ($group) {
                 $result = $rowset;
             } else {
-                $row = $rowset->current();
-                $result = (int) $row['count'];
+                $row    = $rowset->current();
+                $result = (int)$row['count'];
             }
         } catch (\Exception $e) {
             $result = false;
@@ -427,17 +429,17 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * Perform an increment operation upon certain integer fields
      *
      * @param string|string[] $columns Column(s) to be incremented
-     * @param array|Where  $where
+     * @param array|Where $where
      * @param int $increment
      *
      * @return int
      */
     public function increment($columns, $where = null, $increment = 1)
     {
-        $operator   = ($increment > 0) ? '+' : '-';
-        $segment    = $operator . ' ' . abs($increment);
-        $set = array();
-        foreach ((array) $columns as $column) {
+        $operator = ($increment > 0) ? '+' : '-';
+        $segment  = $operator . ' ' . abs($increment);
+        $set      = [];
+        foreach ((array)$columns as $column) {
             $set[$column] = Pi::db()->expression($column . $segment);
         }
         if (null !== $where && !$where instanceof Where) {

@@ -22,21 +22,21 @@ class Module extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $modules = array();
-        $model = Pi::model('module');
-        $select = $model->select();
-        $select->order('title')->where(array());
+        $modules = [];
+        $model   = Pi::model('module');
+        $select  = $model->select();
+        $select->order('title')->where([]);
         $rowset = $model->selectWith($select);
         foreach ($rowset as $module) {
-            $modules[$module->name] = array(
+            $modules[$module->name] = [
                 'id'        => $module->id,
                 'name'      => $module->name,
                 'title'     => $module->title,
                 'active'    => $module->active,
                 'directory' => $module->directory,
-            );
+            ];
         }
 
         return $modules;
@@ -49,11 +49,11 @@ class Module extends AbstractRegistry
     public function read($module = '')
     {
         $data = $this->loadData();
-        $ret = empty($module)
-                    ? $data
-                    : (isset($data[$module])
-                        ? $data[$module]
-                        : false);
+        $ret  = empty($module)
+            ? $data
+            : (isset($data[$module])
+                ? $data[$module]
+                : false);
 
         return $ret;
     }

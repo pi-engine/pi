@@ -78,14 +78,14 @@ class SqlSchema
         // Remove comments to prevent from invalid syntax
         $content = preg_replace('/(#.*|-- .*)/', '', $content);
 
-        $type = $type ?: static::$type;
+        $type           = $type ?: static::$type;
         $canonizePrefix = function ($matches) use ($type) {
             $name = $matches[1];
             // Core tables: {core.<table_name>}
             if (substr($name, 0, 6) == '{core.') {
                 $tableName = substr($name, 6, -1);
                 $tableName = Pi::db()->prefix($tableName, 'core');
-            // Module tables: {<module_table>}
+                // Module tables: {<module_table>}
             } else {
                 $tableName = substr($name, 1, -1);
                 $tableName = Pi::db()->prefix($tableName, $type);
@@ -153,7 +153,7 @@ class SqlSchema
      * Fetch schema from a file
      *
      * @param string $file
-     * @param bool $isCore  Fetch core schema, default as false
+     * @param bool $isCore Fetch core schema, default as false
      * @return array
      */
     public static function fetchSchema($file, $isCore = false)
@@ -167,19 +167,19 @@ class SqlSchema
      * Parse schema names and types
      *
      * @param string $content
-     * @param bool $isCore  Fetch core schema, default as false
+     * @param bool $isCore Fetch core schema, default as false
      * @return array
      */
     public static function parseSchema($content, $isCore = false)
     {
-        $result     = array();
+        $result = [];
         // Remove comments to prevent from invalid syntax
-        $content    = preg_replace('/(#.*|-- .*)/', '', $content);
+        $content = preg_replace('/(#.*|-- .*)/', '', $content);
 
-        $pattern    = '/create\s+(table|view|trigger)\s+\`\{'
-                    . ($isCore ? 'core\.' : '')
-                    . '([a-z0-9_]+)\}\`/i';
-        $matches    = array();
+        $pattern = '/create\s+(table|view|trigger)\s+\`\{'
+            . ($isCore ? 'core\.' : '')
+            . '([a-z0-9_]+)\}\`/i';
+        $matches = [];
         preg_match_all($pattern, $content, $matches);
         if ($matches) {
             foreach ($matches[2] as $key => $schema) {

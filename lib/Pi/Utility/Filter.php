@@ -8,8 +8,8 @@
  * @package         Filter
  */
 
-namespace Pi\Utility
-{
+namespace Pi\Utility {
+
     use Pi;
 
     /**
@@ -106,7 +106,8 @@ namespace Pi\Utility
          * Solely to avoid conflict with method of `filter`
          */
         public function __construct()
-        {}
+        {
+        }
 
         /**
          * Loads filter methods, nothing to do at this moment
@@ -114,7 +115,8 @@ namespace Pi\Utility
          * @return void
          */
         public static function load()
-        {}
+        {
+        }
 
         /**
          * Filter value with filter_var
@@ -128,14 +130,15 @@ namespace Pi\Utility
             $value,
             $filter,
             $options = null
-        ) {
+        )
+        {
             if (empty($filter)) {
                 return $value;
             }
 
             // Canonize filter flag
             $filterFlag = function ($name) {
-                $flag = null;
+                $flag       = null;
                 $filterName = 'FILTER_FLAG_' . strtoupper($name);
                 if (defined($filterName)) {
                     $flag = constant($filterName);
@@ -154,18 +157,18 @@ namespace Pi\Utility
                         if (is_string($options['flags'])) {
                             $options['flags'] = $filterFlag($options['flags']);
                         }
-                    // Options are passed in an array
+                        // Options are passed in an array
                     } elseif (isset($options['options'])) {
                         if (is_string($options['options'])) {
                             $options['options'] = $filterFlag(
                                 $options['options']
                             );
                         }
-                    // Options are passed directly
+                        // Options are passed directly
                     } else {
-                        $options = array(
-                            'options'   => $options,
-                        );
+                        $options = [
+                            'options' => $options,
+                        ];
                     }
                 }
             }
@@ -263,9 +266,9 @@ namespace Pi\Utility
         {
             if (null === static::$isJson) {
                 static::$isJson = false;
-                $ContentType = static::getRequest()->getHeaders('Content-Type');
+                $ContentType    = static::getRequest()->getHeaders('Content-Type');
                 if ($ContentType) {
-                    $value = $ContentType->getFieldValue();
+                    $value          = $ContentType->getFieldValue();
                     static::$isJson = false !== stripos($value, 'application/json');
                 }
             }
@@ -300,7 +303,7 @@ namespace Pi\Utility
 
             if (null === $value) {
                 $request = static::getRequest();
-                $value = $request ? $request->getQuery($variable) : null;
+                $value   = $request ? $request->getQuery($variable) : null;
             }
 
             return static::filter($value, $filter, $options);
@@ -316,14 +319,15 @@ namespace Pi\Utility
          * @return mixed
          */
         public static function fromPost(
-            $param      = null,
-            $filter     = null,
-            $options    = null
-        ) {
+            $param = null,
+            $filter = null,
+            $options = null
+        )
+        {
             if (null === static::$postParams) {
                 $request = static::getRequest();
                 if (static::isRequestJson()) {
-                    $content = $request->getContent();
+                    $content            = $request->getContent();
                     static::$postParams = json_decode($content, true);
                 } else {
                     static::$postParams = $request->getPost()->toArray();
@@ -359,7 +363,8 @@ namespace Pi\Utility
             $param = null,
             $filter = null,
             $options = null
-        ) {
+        )
+        {
             if (null === static::$putParams) {
                 $request = static::getRequest();
                 $content = $request->getContent();
@@ -388,8 +393,8 @@ namespace Pi\Utility
     }
 }
 
-namespace
-{
+namespace {
+
     use Pi\Utility\Filter as FilterManager;
     use Zend\Escaper\Escaper;
 
@@ -399,9 +404,9 @@ namespace
     /**
      * Retrieve a variable from query
      *
-     * @param string            $variable   Variable name
-     * @param int|string        $filter     Filter name or filter_id
-     * @param array|int|string  $options    Filter options or flag
+     * @param string $variable Variable name
+     * @param int|string $filter Filter name or filter_id
+     * @param array|int|string $options Filter options or flag
      * @return mixed
      */
     function _get($variable = null, $filter = '', $options = null)
@@ -414,9 +419,9 @@ namespace
     /**
      * Retrieve a variable from POST
      *
-     * @param string            $variable   Variable name
-     * @param int|string        $filter     Filter name or filter_id
-     * @param array|int|string  $options    Filter options or flag
+     * @param string $variable Variable name
+     * @param int|string $filter Filter name or filter_id
+     * @param array|int|string $options Filter options or flag
      * @return mixed
      */
     function _post($variable = null, $filter = '', $options = null)
@@ -429,9 +434,9 @@ namespace
     /**
      * Filter a value with PHP filter_var
      *
-     * @param string            $value      Variable name
-     * @param int|string        $filter     Filter name or filter_id
-     * @param array|int|string  $options    Filter options or flag
+     * @param string $value Variable name
+     * @param int|string $filter Filter name or filter_id
+     * @param array|int|string $options Filter options or flag
      * @return mixed
      */
     function _filter($value, $filter = '', $options = null)
@@ -445,9 +450,9 @@ namespace
      * Sanitize a value with PHP filter_var
      *
      * @param                  $value
-     * @param int|string       $filter Filter name or filter_id,
+     * @param int|string $filter Filter name or filter_id,
      *                                  default as 'full_special_chars'
-     * @param array|int|string $options    Filter options or flag
+     * @param array|int|string $options Filter options or flag
      *
      * @internal param string $variable Variable name
      * @return mixed
@@ -471,7 +476,7 @@ namespace
     function _escape($value, $context = 'html')
     {
         $context = $context ? ucfirst($context) : 'Html';
-        $method = 'escape' . $context;
+        $method  = 'escape' . $context;
         $escaper = new Escaper(Pi::service('i18n')->getCharset());
         if (method_exists($escaper, $method)) {
             $value = $escaper->{$method}($value);
@@ -484,20 +489,20 @@ namespace
      * Clean a string by stripping HTML tags
      * and removing unrecognizable characters
      *
-     * @param string        $text           Text to be cleaned
-     * @param string|null   $replacement    Replacement for stripped characters
-     * @param array         $pattern        Custom pattern array
+     * @param string $text Text to be cleaned
+     * @param string|null $replacement Replacement for stripped characters
+     * @param array $pattern Custom pattern array
      * @return string
      */
-    function _strip($text, $replacement = null, $pattern = array())
+    function _strip($text, $replacement = null, $pattern = [])
     {
         if (empty($pattern)) {
-            $pattern = array(
+            $pattern = [
                 "\t", "\r\n", "\r", "\n", "'", "\\",
                 '&nbsp;', ',', '.', ';', ':', ')', '(',
                 '"', '?', '!', '{', '}', '[', ']', '<', '>', '/', '+', '-', '_',
-                '*', '=', '@', '#', '$', '%', '^', '&'
-            );
+                '*', '=', '@', '#', '$', '%', '^', '&',
+            ];
         }
         $replacement = (null === $replacement) ? ' ' : $replacement;
 

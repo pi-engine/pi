@@ -51,15 +51,15 @@ class Template extends AbstractHelper
     /**
      * Get full path to a module template
      *
-     * @param   string  $template
+     * @param   string $template
      * @return  string
      */
     public function __invoke($template)
     {
         if (func_num_args() > 1) {
-            $args = func_get_args();
+            $args     = func_get_args();
             $template = $args[0];
-            $section = $args[1] ?: Pi::engine()->application()->getSection();
+            $section  = $args[1] ?: Pi::engine()->application()->getSection();
             if (!empty($args[2])) {
                 $module = $args[2];
             } else {
@@ -67,7 +67,7 @@ class Template extends AbstractHelper
             }
             $template = sprintf('module/%s:%s/%s', $module, $section, $template);
         } elseif ('./' == substr($template, 0, 2)) {
-            $section = Pi::engine()->application()->getSection();
+            $section  = Pi::engine()->application()->getSection();
             $template = $section . substr($template, 1);
         }
         return $this->getView()->resolver($template);

@@ -61,12 +61,12 @@ class Factory extends ZendFactory
                     ' ',
                     '',
                     ucwords(str_replace(
-                        array('_', '-'),
+                        ['_', '-'],
                         ' ',
                         $spec['type']
                     ))
                 );
-                $type = sprintf(
+                $type          = sprintf(
                     '%s\Element\\%s',
                     __NAMESPACE__,
                     $canonizedType

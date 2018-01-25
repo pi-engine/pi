@@ -89,39 +89,41 @@ class Markup extends AbstractService
     /**
      * Compile and render content
      *
-     * @param string $content   Raw content
-     * @param string $parser    Markup format of raw content: `text`, `html`, `markdown`
+     * @param string $content Raw content
+     * @param string $parser Markup format of raw content: `text`, `html`, `markdown`
      * @param string|array $renderer Markup type for rendering (`html`, ``), or array for options
-     * @param array  $options
+     * @param array $options
      *
      * @return string
      */
     public function Compile(
         $content,
-        $parser     = null,
-        $renderer   = null,
-        $options    = array()
-    ) {
+        $parser = null,
+        $renderer = null,
+        $options = []
+    )
+    {
         return $this->getCompiler()->render($content, $parser, $renderer, $options);
     }
 
     /**
      * Render content
      *
-     * @param string $content   Raw content
+     * @param string $content Raw content
      * @param string $renderer Markup type for rendering (`html`, ``)
      * @param string|array $parser Markup format for raw (`text`, `html`, `markdown`), or array for options
-     * @param array  $options
+     * @param array $options
      *
      * @return string
      * @deprecated
      */
     public function render(
         $content,
-        $renderer   = null,
-        $parser     = null,
-        $options    = array()
-    ) {
+        $renderer = null,
+        $parser = null,
+        $options = []
+    )
+    {
         return $this->compile($content, $parser, $renderer, $options);
     }
 }

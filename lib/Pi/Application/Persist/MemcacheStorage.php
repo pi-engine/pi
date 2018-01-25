@@ -9,8 +9,6 @@
 
 namespace Pi\Application\Persist;
 
-use Pi;
-
 /**
  * Memcache storage
  *
@@ -27,13 +25,13 @@ class MemcacheStorage extends AbstractStorage
     const DEFAULT_HOST = '127.0.0.1';
 
     /** @var int */
-    const DEFAULT_PORT =  11211;
+    const DEFAULT_PORT = 11211;
 
     /** @var bool */
     const DEFAULT_PERSISTENT = true;
 
     /** @var int */
-    const DEFAULT_WEIGHT  = 1;
+    const DEFAULT_WEIGHT = 1;
 
     /** @var int */
     const DEFAULT_TIMEOUT = 1;
@@ -89,20 +87,21 @@ class MemcacheStorage extends AbstractStorage
      *
      * @var array available options
      */
-    protected $options = array(
-        'servers' => array(array(
-            'host'              => self::DEFAULT_HOST,
-            'port'              => self::DEFAULT_PORT,
-            'persistent'        => self::DEFAULT_PERSISTENT,
-            'weight'            => self::DEFAULT_WEIGHT,
-            'timeout'           => self::DEFAULT_TIMEOUT,
-            'retry_interval'    => self::DEFAULT_RETRY_INTERVAL,
-            'status'            => self::DEFAULT_STATUS,
-            'failure_callback'  => self::DEFAULT_FAILURE_CALLBACK
-        )),
-        'compression'   => false,
-        'compatibility' => false,
-    );
+    protected $options
+        = [
+            'servers'       => [[
+                                    'host'             => self::DEFAULT_HOST,
+                                    'port'             => self::DEFAULT_PORT,
+                                    'persistent'       => self::DEFAULT_PERSISTENT,
+                                    'weight'           => self::DEFAULT_WEIGHT,
+                                    'timeout'          => self::DEFAULT_TIMEOUT,
+                                    'retry_interval'   => self::DEFAULT_RETRY_INTERVAL,
+                                    'status'           => self::DEFAULT_STATUS,
+                                    'failure_callback' => self::DEFAULT_FAILURE_CALLBACK,
+                                ]],
+            'compression'   => false,
+            'compatibility' => false,
+        ];
 
     /**
      * Memcache object
@@ -118,7 +117,7 @@ class MemcacheStorage extends AbstractStorage
      * @throws \Exception
      * @return void
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         if (!extension_loaded('memcache')) {
             throw new \Exception(
@@ -126,11 +125,11 @@ class MemcacheStorage extends AbstractStorage
             );
         }
         $this->memcache = new \memcache;
-        $options = array_merge($this->options, $options);
-        $value= $options['servers'];
+        $options        = array_merge($this->options, $options);
+        $value          = $options['servers'];
         if (isset($value['host'])) {
             // Transform into a classical array of associative arrays
-            $value = array(0 => $value);
+            $value = [0 => $value];
         }
         $options['servers'] = $value;
         foreach ($options['servers'] as $server) {

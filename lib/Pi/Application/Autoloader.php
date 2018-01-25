@@ -10,7 +10,6 @@
 namespace Pi\Application;
 
 use Pi;
-use Pi\Application\Persist;
 
 /**
  * Autoloader handler
@@ -55,16 +54,16 @@ class Autoloader
      *
      * @var string
      */
-    const NS_SEPARATOR     = '\\';
+    const NS_SEPARATOR = '\\';
 
     /**
      * Top namespace/directory pairs to match; Pi, Zend added by default
      * @var array
      */
-    protected $tops = array();
+    protected $tops = [];
 
     /** @var array Callbacks to locate class file */
-    protected $callbacks = array();
+    protected $callbacks = [];
 
     /**
      * Persist handler
@@ -97,7 +96,7 @@ class Autoloader
      * Factory variables
      */
     /** @var array All autoloaders registered */
-    protected $loaders = array();
+    protected $loaders = [];
     /**#@-*/
 
     /**#@+
@@ -108,21 +107,21 @@ class Autoloader
      *
      * @var array
      */
-    protected $mapsLoaded = array();
+    protected $mapsLoaded = [];
 
     /**
      * Class name/filename map
      *
      * @var array
      */
-    protected $map = array();
+    protected $map = [];
     /**#@-*/
 
     /**
      * Namespace/directory pairs to search; ZF library added by default
      * @var array
      */
-    protected $namespaces = array();
+    protected $namespaces = [];
 
     /**
      * Constructor
@@ -140,7 +139,7 @@ class Autoloader
      *
      * @return \Pi\Application\Autoloader
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         // Include paths, adding vendor path
         if (!empty($options['include_path'])) {
@@ -196,15 +195,15 @@ class Autoloader
     public function register()
     {
         // Register class map autoloader
-        spl_autoload_register(array($this, 'autoloadMap'));
+        spl_autoload_register([$this, 'autoloadMap']);
 
         // Register persist class map autoloader
         //if ($this->persist) {
-            spl_autoload_register(array($this, 'autoloadPersist'));
+        spl_autoload_register([$this, 'autoloadPersist']);
         //}
 
         // Register PSR rule map autoloader
-        spl_autoload_register(array($this, 'autoloadStandard'));
+        spl_autoload_register([$this, 'autoloadStandard']);
     }
 
     /**
@@ -283,44 +282,44 @@ class Autoloader
             if ($directory != $module) {
                 $originalClass = implode(
                     static::NS_SEPARATOR,
-                    array($top, $directory, $trimmedClass)
+                    [$top, $directory, $trimmedClass]
                 );
                 class_alias($originalClass, $class);
 
                 return;
             }
 
-            $path = $this->modulePath . DIRECTORY_SEPARATOR
-                  . strtolower($directory) . DIRECTORY_SEPARATOR
-                  . static::SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
+            $path     = $this->modulePath . DIRECTORY_SEPARATOR
+                . strtolower($directory) . DIRECTORY_SEPARATOR
+                . static::SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
             $filePath = $this->transformClassNameToFilename(
                 $trimmedClass,
                 $path
             );
 
-        // Extra classes, Custom\ModuleName\ClassNamespace\ClassName
+            // Extra classes, Custom\ModuleName\ClassNamespace\ClassName
         } elseif (static::TOP_NAMESPACE_CUSTOM === $top) {
             list($top, $module, $trimmedClass) = explode(
                 static::NS_SEPARATOR,
                 $class,
                 3
             );
-            $path = $this->customPath . DIRECTORY_SEPARATOR
-                  . strtolower($module) . DIRECTORY_SEPARATOR
-                  . static::SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
+            $path     = $this->customPath . DIRECTORY_SEPARATOR
+                . strtolower($module) . DIRECTORY_SEPARATOR
+                . static::SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
             $filePath = $this->transformClassNameToFilename(
                 $trimmedClass,
                 $path
             );
 
-        // Editor classes, Editor\EditorName\ClassNamespace\ClassName
+            // Editor classes, Editor\EditorName\ClassNamespace\ClassName
         } elseif (static::TOP_NAMESPACE_EDITOR === $top) {
             list($top, $editor, $trimmedClass) = explode(
                 static::NS_SEPARATOR,
                 $class,
                 3
             );
-            $path = $this->editorPath . DIRECTORY_SEPARATOR
+            $path     = $this->editorPath . DIRECTORY_SEPARATOR
                 . strtolower($editor) . DIRECTORY_SEPARATOR
                 . static::SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
             $filePath = $this->transformClassNameToFilename(
@@ -328,20 +327,20 @@ class Autoloader
                 $path
             );
 
-        // Top namespaces
+            // Top namespaces
         } elseif (!empty($this->tops[$top])) {
             // Trim off leader
             $trimmedClass = substr(
                 $class,
                 strlen($top . static::NS_SEPARATOR)
             );
-            $path = $this->tops[$top];
+            $path         = $this->tops[$top];
             // Get file full path
             $filePath = $this->transformClassNameToFilename(
                 $trimmedClass,
                 $path
             );
-        /*#@-*/
+            /*#@-*/
 
         } else {
             // Lookup in regular namespaces
@@ -388,8 +387,8 @@ class Autoloader
     /**
      * Register a custom callback to locate class file
      *
-     * @param array|string  $callback array of (class, method) or function
-     * @param bool          $append  append or prepend to callback list
+     * @param array|string $callback array of (class, method) or function
+     * @param bool $append append or prepend to callback list
      * @return $this
      */
     public function registerCallback($callback, $append = true)
@@ -454,7 +453,7 @@ class Autoloader
                 static::NS_SEPARATOR,
                 DIRECTORY_SEPARATOR,
                 $class
-              )
+            )
             . '.php';
     }
 
@@ -487,7 +486,7 @@ class Autoloader
      * @throws \InvalidArgumentException for invalid options
      * @throws \InvalidArgumentException for unloadable autoloader classes
      */
-    public function factory($options = array())
+    public function factory($options = [])
     {
         if (!is_array($options) && !($options instanceof \Traversable)) {
             throw new \InvalidArgumentException(
@@ -639,18 +638,18 @@ class Autoloader
 
         $parts = explode(
             '/',
-            str_replace(array('/','\\'), '/', substr($path, 8))
+            str_replace(['/', '\\'], '/', substr($path, 8))
         );
         $parts = array_values(array_filter(
             $parts,
-            function($p) {
+            function ($p) {
                 return ($p !== '' && $p !== '.');
             }
         ));
 
         array_walk($parts, function ($value, $key) use (&$parts) {
             if ($value === '..') {
-                unset($parts[$key], $parts[$key-1]);
+                unset($parts[$key], $parts[$key - 1]);
                 $parts = array_values($parts);
             }
         });
@@ -675,7 +674,7 @@ class Autoloader
      */
     public function registerNamespace($namespace, $directory)
     {
-        $namespace = $namespace . static::NS_SEPARATOR;
+        $namespace                    = $namespace . static::NS_SEPARATOR;
         $this->namespaces[$namespace] = $this->normalizeDirectory($directory);
 
         return $this;
@@ -713,7 +712,7 @@ class Autoloader
     protected function normalizeDirectory($directory)
     {
         $last = $directory[strlen($directory) - 1];
-        if (in_array($last, array('/', '\\'))) {
+        if (in_array($last, ['/', '\\'])) {
             $directory[strlen($directory) - 1] = DIRECTORY_SEPARATOR;
             return $directory;
         }

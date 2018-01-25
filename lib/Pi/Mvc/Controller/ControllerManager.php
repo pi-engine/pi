@@ -39,18 +39,18 @@ class ControllerManager extends ZendControllerManager
         $invokableClass = null;
         if (false === strpos($name, '\\')) {
             $application = $this->serviceLocator->get('Application');
-            $routeMatch = $application->getRouteMatch();
+            $routeMatch  = $application->getRouteMatch();
             if ($routeMatch) {
                 $module = $routeMatch->getParam('module');
                 // Only active module controller are accessible
                 if (!Pi::service('module')->isActive($module)) {
                     return '';
                 }
-                $params = array(
-                    'section'       => $application->getSection(),
-                    'module'        => $module,
-                    'controller'    => $routeMatch->getParam('controller'),
-                );
+                $params    = [
+                    'section'    => $application->getSection(),
+                    'module'     => $module,
+                    'controller' => $routeMatch->getParam('controller'),
+                ];
                 $directory = Pi::service('module')->directory($module)
                     ?: $module;
 

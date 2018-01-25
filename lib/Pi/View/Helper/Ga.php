@@ -36,15 +36,15 @@ class Ga extends AbstractHelper
     /**
      * Load GA scripts
      *
-     * @param   string  $trackingId
-     * @param   string  $host
+     * @param   string $trackingId
+     * @param   string $host
      *
      * @return  $this
      */
     public function __invoke($trackingId = '', $host = '')
     {
         if (!$trackingId) {
-            $trackingId   = Pi::config('ga_account');
+            $trackingId = Pi::config('ga_account');
         }
         $hostConfig = '';
         if (false !== ($pos = strpos($trackingId, ';'))) {
@@ -58,7 +58,8 @@ class Ga extends AbstractHelper
             $host = $hostConfig ?: $_SERVER['HTTP_HOST'];
         }
 
-        $gaScripts =<<<'EOT'
+        $gaScripts
+            = <<<'EOT'
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

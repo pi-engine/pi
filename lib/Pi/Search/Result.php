@@ -16,26 +16,26 @@ use ArrayAccess;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Result implements  ArrayAccess
+class Result implements ArrayAccess
 {
     /** @var array Result container */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * Constructor
      *
      * @param array $data
      */
-    public function __construct(array $data = array())
+    public function __construct(array $data = [])
     {
-        $this->data = array(
-            'id'        => 0,
-            'title'     => '',
-            'url'       => '',
-            'time'      => 0,
-            'content'   => '',
-            'uid'       => '',
-        );
+        $this->data = [
+            'id'      => 0,
+            'title'   => '',
+            'url'     => '',
+            'time'    => 0,
+            'content' => '',
+            'uid'     => '',
+        ];
         if ($data) {
             $this->data = array_merge($this->data, $data);
         }

@@ -124,9 +124,9 @@ class GoogleMap extends AbstractHelper
                 // Set location array
                 $polygonLocationScript = [];
                 foreach ($locations as $location) {
-                    $locationInfo            = [
-                        'lat'  => $location[0],
-                        'lon'  => $location[1],
+                    $locationInfo = [
+                        'lat' => $location[0],
+                        'lon' => $location[1],
                     ];
 
                     if (isset($option['icon']) && !empty($option['icon'])) {
@@ -137,7 +137,8 @@ class GoogleMap extends AbstractHelper
                 }
                 $polygonLocationScript = json_encode($polygonLocationScript);
                 // Set polygon script
-                $polygonScript = <<<'EOT'
+                $polygonScript
+                    = <<<'EOT'
 $(function() {
     var Location = %s;
   
@@ -194,7 +195,8 @@ EOT;
                 $routeLocationScript = json_encode($routeLocationScript);
 
                 // Set route script
-                $routeScript = <<<'EOT'
+                $routeScript
+                    = <<<'EOT'
 $(function() {
     var Location = %s;
     
@@ -232,7 +234,8 @@ EOT;
 
             case 'route':
                 // Set route script
-                $routeScript = <<<'EOT'
+                $routeScript
+                    = <<<'EOT'
 $(function() {
     var Location = [
         {lat: %s, lon: %s, title: "%s"},
@@ -300,7 +303,8 @@ EOT;
 
             case 'list':
                 // Set script
-                $listScript = <<<'EOT'
+                $listScript
+                    = <<<'EOT'
 var MaPlace = {};
 $(function() {
     var noPoi = [
@@ -358,7 +362,8 @@ EOT;
             case 'point':
             default:
                 // Set point script
-                $pointScript = <<<'EOT'
+                $pointScript
+                    = <<<'EOT'
 function initialize() {
     var noPoi = [
         {
@@ -410,7 +415,8 @@ EOT;
         }
 
         // render html
-        $htmlTemplate = <<<'EOT'
+        $htmlTemplate
+            = <<<'EOT'
 <div class="pi-map clearfix">
     <div class="thumbnail">
         <div id="%s" class="%s"></div>

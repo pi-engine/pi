@@ -44,7 +44,7 @@ class AdminMode extends AbstractResource
             // Check and set admin mode if not set yet
             $this->application->getEventManager()->attach(
                 MvcEvent::EVENT_RENDER,
-                array($this, 'setMode'),
+                [$this, 'setMode'],
                 5
             );
         }
@@ -60,13 +60,13 @@ class AdminMode extends AbstractResource
     {
         $route = $e->getRouteMatch();
         if (empty($_SESSION['PI_BACKOFFICE']['changed']) && $route) {
-            $mode       = static::MODE_ACCESS;
+            $mode = static::MODE_ACCESS;
 
             $module     = $route->getParam('module');
             $controller = $route->getParam('controller');
             if ('system' == $module) {
                 $controllerClass = 'Module\System\Controller\Admin\\'
-                                 . ucfirst($controller) . 'Controller';
+                    . ucfirst($controller) . 'Controller';
                 /*
                  * @FIXME `is_subclass_of` does not call __autoload in case if first argument is an object.
                  *  If first argument is string, PHP will call __autoload.

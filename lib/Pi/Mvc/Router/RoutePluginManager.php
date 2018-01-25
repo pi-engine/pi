@@ -36,9 +36,10 @@ class RoutePluginManager extends ZendRoutePluginManager
      */
     public function get(
         $name,
-        $options = array(),
+        $options = [],
         $usePeeringServiceManagers = true
-    ) {
+    )
+    {
         if (!$this->has($name) && !class_exists($name)) {
             $class = sprintf(
                 '%s\\%s\\%s',
@@ -68,7 +69,7 @@ class RoutePluginManager extends ZendRoutePluginManager
     public function setSubNamespace($namespace)
     {
         $this->subNamespace = $namespace;
-        
+
         return $this;
     }
 }

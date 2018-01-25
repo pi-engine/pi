@@ -10,8 +10,6 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
-
 /**
  * Items for social sharing rendering
  *
@@ -52,7 +50,7 @@ class SocialSharing extends AbstractService
     public function getList()
     {
         $items = $this->getItems();
-        $list = array();
+        $list  = [];
         foreach ($items as $key => $item) {
             $list[$key] = $item['title'];
         }
@@ -71,8 +69,8 @@ class SocialSharing extends AbstractService
      */
     public function buildItems($title, $url, $image)
     {
-        $result = array();
-        $items = $this->getItems();
+        $result = [];
+        $items  = $this->getItems();
         foreach (array_keys($items) as $name) {
             $result[$name] = $this->buildItem($name, $title, $url, $image);
         }
@@ -93,14 +91,14 @@ class SocialSharing extends AbstractService
     public function buildItem($item, $title, $url, $image)
     {
         if (is_string($item)) {
-            $identifier = $item;
-            $item = $this->getItem($item);
+            $identifier         = $item;
+            $item               = $this->getItem($item);
             $item['identifier'] = $identifier;
         }
         if ($item) {
             $item['url'] = str_replace(
-                array('%title%', '%url%', '%image%'),
-                array($title . ' ', $url, $image),
+                ['%title%', '%url%', '%image%'],
+                [$title . ' ', $url, $image],
                 $item['url']
             );
         }

@@ -60,7 +60,7 @@ class Breadcrumbs extends ZendBreadcrumbs
         // Try to load from cache
         if ($this->cache) {
             $cacheKey = $this->cache->key . '-bs';
-            $content = $this->cache->storage->getItem($cacheKey);
+            $content  = $this->cache->storage->getItem($cacheKey);
             if (null !== $content) {
                 if (Pi::service()->hasService('log')) {
                     Pi::service('log')->info(

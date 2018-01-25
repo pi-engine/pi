@@ -137,15 +137,15 @@ class Mail extends AbstractService
     {
         $name = $name ?: $this->options['transport'];
         if (isset($this->options[$name])) {
-            $config = array_merge($this->options[$name], (array) $config);
+            $config = array_merge($this->options[$name], (array)$config);
         }
-        $option     = null;
-        $exception  = null;
-        $transport  = null;
+        $option    = null;
+        $exception = null;
+        $transport = null;
         switch ($name) {
             case 'smtp':
                 try {
-                    $option = new MailHandler\Transport\SmtpOptions($config);
+                    $option         = new MailHandler\Transport\SmtpOptions($config);
                     $transportClass = 'Smtp';
                 } catch (\Exception $exception) {
                     $transportClass = '';
@@ -153,7 +153,7 @@ class Mail extends AbstractService
                 break;
             case 'file':
                 try {
-                    $option = new MailHandler\Transport\FileOptions($config);
+                    $option         = new MailHandler\Transport\FileOptions($config);
                     $transportClass = 'File';
                 } catch (\Exception $exception) {
                     $transportClass = '';
@@ -161,14 +161,14 @@ class Mail extends AbstractService
                 break;
             case 'sendmail':
             default:
-                $option = $config;
+                $option         = $config;
                 $transportClass = 'Sendmail';
                 break;
         }
         if ($transportClass) {
             try {
                 $transportClass = 'Zend\Mail\Transport\\' . $transportClass;
-                $transport = new $transportClass($option);
+                $transport      = new $transportClass($option);
             } catch (\Exception $eTransport) {
                 trigger_error($eTransport->getMessage());
                 $transport = null;
@@ -202,7 +202,8 @@ class Mail extends AbstractService
      */
     public function setTransport(
         MailHandler\Transport\TransportInterface $transport
-    ) {
+    )
+    {
         $this->transport = $transport;
 
         return $this;
@@ -217,8 +218,8 @@ class Mail extends AbstractService
      */
     public function send(MailHandler\Message $message)
     {
-        $result     = false;
-        $transport  = $this->transport();
+        $result    = false;
+        $transport = $this->transport();
         if ($transport) {
             try {
                 @set_time_limit(0);
@@ -243,14 +244,14 @@ class Mail extends AbstractService
     public function message($subject = null, $body = null, $type = null)
     {
         $message = new MailHandler\Message;
-        $sender = array(
-            'mail'  => Pi::config('adminmail'),
-            'name'  => Pi::config('adminname') ?: null
-        );
+        $sender  = [
+            'mail' => Pi::config('adminmail'),
+            'name' => Pi::config('adminname') ?: null,
+        ];
         if ($sender['mail']) {
             $message->setSender($sender['mail'], $sender['name']);
             $message->setFrom($sender['mail'], $sender['name']);
-			$message->setReplyTo($sender['mail'], $sender['name']);
+            $message->setReplyTo($sender['mail'], $sender['name']);
         }
         $encoding = Pi::config('mail_encoding');
         if ($encoding) {
@@ -281,7 +282,7 @@ class Mail extends AbstractService
      * @param array $vars
      * @return array Associative array of subject, body and format, etc.
      */
-    public function template($template, $vars = array())
+    public function template($template, $vars = [])
     {
         // Load content
         $content = $this->loadTemplate($template);
@@ -306,7 +307,7 @@ class Mail extends AbstractService
         // Load directly for absolute path
         if (!is_array($template) && file_exists($template)) {
             $path = $template;
-        // Get realpath
+            // Get realpath
         } else {
             // Canonize path from array('module' => , 'locale' => , 'file' => )
             if (is_array($template)) {
@@ -314,12 +315,12 @@ class Mail extends AbstractService
                     ? $template['module'] : Pi::service('module')->current();
                 $locale = isset($template['locale'])
                     ? $template['locale'] : null;
-                $file = $template['file'];
-            // Canonize for current module
+                $file   = $template['file'];
+                // Canonize for current module
             } else {
                 $module = Pi::service('module')->current();
                 $locale = null;
-                $file = $template;
+                $file   = $template;
             }
 
             // Canonize file extension, only txt is accepted
@@ -330,13 +331,13 @@ class Mail extends AbstractService
             $lookup = function ($file, $locale) use ($module) {
                 // Assemble module mail template
                 $path = Pi::service('i18n')->getPath(
-                    array('custom/module/' . $module, 'mail/' . $file),
+                    ['custom/module/' . $module, 'mail/' . $file],
                     $locale
                 );
                 // Load default template if custom template is not available
                 if (!file_exists($path)) {
                     $path = Pi::service('i18n')->getPath(
-                        array('module/' . Pi::service('module')->directory($module), 'mail/' . $file),
+                        ['module/' . Pi::service('module')->directory($module), 'mail/' . $file],
                         $locale
                     );
                 }
@@ -374,18 +375,18 @@ class Mail extends AbstractService
      * @param array $vars
      * @return string
      */
-    public function assignTemplate($content, $vars = array())
+    public function assignTemplate($content, $vars = [])
     {
         // Bind system variables
-        $systemVars = array(
-            'site_adminmail'    => _sanitize(Pi::config('adminmail')),
-            'site_adminname'    => _sanitize(Pi::config('adminname')),
-            'site_name'         => _sanitize(Pi::config('sitename')),
-            'site_slogan'       => _sanitize(Pi::config('slogan')),
-            'site_description'  => _sanitize(Pi::config('description')),
-            'site_url'          => Pi::url('www', true),
-        );
-        $vars = array_merge($systemVars, $vars);
+        $systemVars = [
+            'site_adminmail'   => _sanitize(Pi::config('adminmail')),
+            'site_adminname'   => _sanitize(Pi::config('adminname')),
+            'site_name'        => _sanitize(Pi::config('sitename')),
+            'site_slogan'      => _sanitize(Pi::config('slogan')),
+            'site_description' => _sanitize(Pi::config('description')),
+            'site_url'         => Pi::url('www', true),
+        ];
+        $vars       = array_merge($systemVars, $vars);
         // Assign variables
         foreach ($vars as $key => $val) {
             $content = str_replace('%' . $key . '%', $val, $content);
@@ -423,33 +424,33 @@ class Mail extends AbstractService
      *  </code>
      *
      * @param string $content
-     * @param array $elements   Names for elements to parse
+     * @param array $elements Names for elements to parse
      * @return array
      */
-    public function parseTemplate($content, $elements = array())
+    public function parseTemplate($content, $elements = [])
     {
         // Default elements
-        $defaultElements = array('subject', 'body', 'format');
-        $elements = array_merge($defaultElements, $elements);
-        $result = array_fill_keys($elements, '');
+        $defaultElements = ['subject', 'body', 'format'];
+        $elements        = array_merge($defaultElements, $elements);
+        $result          = array_fill_keys($elements, '');
 
         // Extract elements
         $subpattern = '#(\[%s\](?P<%s>.*)\[\/%s\])#msU';
-        $tagged = false;
+        $tagged     = false;
         foreach ($elements as $element) {
             $pattern = str_replace('%s', $element, $subpattern);
             $matched = preg_match($pattern, $content, $matches);
             if ($matched) {
                 $result[$element] = $matches[$element];
-                $tagged = true;
+                $tagged           = true;
             }
         }
         if (!$tagged && in_array('body', $elements)) {
             $result['body'] = $content;
         }
-        
+
         $result['subject'] = html_entity_decode(htmlspecialchars_decode($result['subject'], ENT_QUOTES));
-        
+
         return $result;
     }
 
@@ -474,11 +475,11 @@ class Mail extends AbstractService
         };
         if (!is_array($data)) {
             if (null !== $type) {
-                $part = array($data, $type);
+                $part = [$data, $type];
             } else {
                 $part = $data;
             }
-            $parts = array($part);
+            $parts = [$part];
         } else {
             $parts = $data;
         }
@@ -503,9 +504,9 @@ class Mail extends AbstractService
 
         // Canonize type
         if (!$type) {
-            $type = array();
+            $type = [];
         } elseif (is_string($type)) {
-            $type = array('type' => $type);
+            $type = ['type' => $type];
         }
         if (!isset($type['type'])) {
             $type['type'] = 'text';

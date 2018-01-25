@@ -10,7 +10,6 @@
 
 namespace Pi\Form\Element;
 
-use Pi;
 use Zend\Form\Element\Csrf as ZendCsrf;
 use Zend\Form\FormInterface;
 

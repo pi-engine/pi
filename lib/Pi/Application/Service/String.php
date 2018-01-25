@@ -36,7 +36,7 @@ class String extends AbstractService
     /**
      * @var array of StringWrapperInterface
      */
-    protected $stringWrapper = array();
+    protected $stringWrapper = [];
 
     /**
      * Get string wrapper
@@ -64,7 +64,7 @@ class String extends AbstractService
      * Check if the given character encoding is supported by this wrapper
      * and the character encoding to convert to is also supported.
      *
-     * @param  string      $encoding
+     * @param  string $encoding
      * @param  string|null $convertEncoding
      *
      * @return bool
@@ -72,8 +72,8 @@ class String extends AbstractService
     public function isSupported($encoding, $convertEncoding = null)
     {
         $result = call_user_func_array(
-            array($this->getWrapper(), 'isSupported'),
-            array($encoding, $convertEncoding)
+            [$this->getWrapper(), 'isSupported'],
+            [$encoding, $convertEncoding]
         );
 
         return $result;
@@ -87,7 +87,7 @@ class String extends AbstractService
     public function getSupportedEncodings()
     {
         $result = call_user_func(
-            array($this->getWrapper(), 'getSupportedEncodings')
+            [$this->getWrapper(), 'getSupportedEncodings']
         );
 
         return $result;
@@ -96,7 +96,7 @@ class String extends AbstractService
     /**
      * Convert a string from defined encoding to the defined convert encoding
      *
-     * @param string  $str
+     * @param string $str
      * @param string $toEncoding
      * @param string $fromEncoding
      *
@@ -104,11 +104,11 @@ class String extends AbstractService
      */
     public function convert($str, $toEncoding = null, $fromEncoding = null)
     {
-        $wrapper = $this->getWrapper();
-        $encoding = $this->getEncoding();
+        $wrapper         = $this->getWrapper();
+        $encoding        = $this->getEncoding();
         $convertEncoding = $this->getConvertEncoding();
-        $fromEncoding = $fromEncoding ?: $encoding;
-        $toEncoding = $toEncoding ?: $convertEncoding;
+        $fromEncoding    = $fromEncoding ?: $encoding;
+        $toEncoding      = $toEncoding ?: $convertEncoding;
         try {
             $this->setEncoding($toEncoding, $fromEncoding);
             $str = $wrapper->convert($str);
@@ -131,10 +131,10 @@ class String extends AbstractService
     public function __call($method, $args)
     {
         $wrapper = $this->getWrapper();
-        if (is_callable(array($wrapper, $method))) {
-            $result = call_user_func_array(array($wrapper, $method), $args);
-        } elseif (is_callable(array('Zend\Stdlib\StringUtils', $method))) {
-            $result = call_user_func_array(array('Zend\Stdlib\StringUtils', $method), $args);
+        if (is_callable([$wrapper, $method])) {
+            $result = call_user_func_array([$wrapper, $method], $args);
+        } elseif (is_callable(['Zend\Stdlib\StringUtils', $method])) {
+            $result = call_user_func_array(['Zend\Stdlib\StringUtils', $method], $args);
         } else {
             $result = false;
         }

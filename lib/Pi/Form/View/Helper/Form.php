@@ -10,8 +10,8 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\View\Helper\Form as FormHelper;
 use Zend\Form\FormInterface;
+use Zend\Form\View\Helper\Form as FormHelper;
 
 
 /**
@@ -31,7 +31,7 @@ class Form extends FormHelper
      * {@inheritDoc}
      * @param array|string|false $options
      */
-    public function __invoke(FormInterface $form = null, $options = array())
+    public function __invoke(FormInterface $form = null, $options = [])
     {
         if (!$form) {
             return $this;
@@ -46,15 +46,15 @@ class Form extends FormHelper
      *                                    `style`   - horizontal, vertical, inline, popup, raw
      *                                    `column`  - single, multiple
      */
-    public function render(FormInterface $form, $options = array())
+    public function render(FormInterface $form, $options = [])
     {
         // Canonize options
         if (!is_array($options)) {
             if (is_string($options)) {
                 if ('single' == $options || 'multiple' == $options) {
-                    $options = array('column' => $options);
+                    $options = ['column' => $options];
                 } else {
-                    $options = array('style' => $options);
+                    $options = ['style' => $options];
                 }
             }
         }
@@ -92,20 +92,20 @@ class Form extends FormHelper
         }
 
         $parsePattern = function ($pattern, $vars) {
-            $params = array();
-            $vals   = array();
+            $params = [];
+            $vals   = [];
             foreach ($vars as $var => $val) {
-                $params[]   = '%' . $var . '%';
-                $vals[]     = $val;
+                $params[] = '%' . $var . '%';
+                $vals[]   = $val;
             }
             $result = str_replace($params, $vals, $pattern);
             return $result;
         };
 
-        $attributes     = array();
-        $formClass      = array($class);
-        $formClass[]    = $form->getAttribute('class');
-        $class          = implode(' ', array_filter($formClass));
+        $attributes  = [];
+        $formClass   = [$class];
+        $formClass[] = $form->getAttribute('class');
+        $class       = implode(' ', array_filter($formClass));
         if ($class) {
             $attributes['class'] = $class;
         }
@@ -114,7 +114,7 @@ class Form extends FormHelper
                 $form->setLabel($options['label']);
             }
 
-            $id = !empty($options['id'])
+            $id               = !empty($options['id'])
                 ? $options['id']
                 : ($form->getAttribute('id') ?: 'popup-form');
             $attributes['id'] = $id;
@@ -125,9 +125,9 @@ class Form extends FormHelper
             $form->prepare();
         }
 
-        $column     = isset($options['column']) ? $options['column'] : 'single';
-        $elements   = $form->elementList();
-        $groups     = $form->getGroups();
+        $column   = isset($options['column']) ? $options['column'] : 'single';
+        $elements = $form->elementList();
+        $groups   = $form->getGroups();
         $this->view->FormElementErrors()
             ->setMessageOpenFormat('')
             ->setMessageCloseString('');
@@ -138,49 +138,56 @@ class Form extends FormHelper
             $column,
             $parsePattern
         ) {
-            $type = $element->getAttribute('type') ? : 'text';
+            $type = $element->getAttribute('type') ?: 'text';
 
-            if (!in_array($type, array(
+            if (!in_array($type, [
                 'checkbox',
                 'multi_checkbox',
                 'radio',
-                'file'
-            ))) {
-                $class      = $element->getAttribute('class');
-                $attrClass  = 'form-control' . ($class ? ' ' . $class : '');
+                'file',
+            ])
+            ) {
+                $class     = $element->getAttribute('class');
+                $attrClass = 'form-control' . ($class ? ' ' . $class : '');
                 $element->setAttribute('class', $attrClass);
             }
 
-            $renderPattern = <<<EOT
+            $renderPattern
+                = <<<EOT
 <div class="form-group%error_class% has-feedback" data-name="%element_name%">
     %label_html%
     %element_html%
 </div>
 EOT;
-            $labelPattern = <<<EOT
+            $labelPattern
+                = <<<EOT
 <label class="%label_size% control-label">
     %mark_required%%label_content%
 </label>
 EOT;
 
-            if($type == 'checkbox'){
-            $descPattern = <<<EOT
+            if ($type == 'checkbox') {
+                $descPattern
+                    = <<<EOT
 <span style="display:block;" class="text-muted">%desc_content%</span>
 EOT;
-            } else{
-            $descPattern = <<<EOT
+            } else {
+                $descPattern
+                    = <<<EOT
 <div style="display:block;" class="text-muted">%desc_content%</div>
 EOT;
             }
 
             $required = __('Required');
-            $markRequired = <<<EOT
+            $markRequired
+                      = <<<EOT
 <i class="text-danger" style="margin-right: 5px;" title="{$required}">*</i>
 EOT;
 
             switch ($type) {
                 case 'checkbox':
-                    $elementPattern =<<<EOT
+                    $elementPattern
+                        = <<<EOT
 <div class="%element_size% js-form-element">
     <div class="checkbox">
         <label>
@@ -194,7 +201,8 @@ EOT;
                     break;
 
                 case 'multi_checkbox':
-                    $elementPattern =<<<EOT
+                    $elementPattern
+                        = <<<EOT
 <div class="%element_size% js-form-element">
     <div class="checkbox">
         %element_content%
@@ -206,7 +214,8 @@ EOT;
                     break;
 
                 case 'radio':
-                    $elementPattern =<<<EOT
+                    $elementPattern
+                        = <<<EOT
 <div class="%element_size% js-form-element">
     <div class="radio">
         %element_content%
@@ -218,7 +227,8 @@ EOT;
                     break;
 
                 case 'description':
-                    $elementPattern =<<<EOT
+                    $elementPattern
+                        = <<<EOT
 <div class="%element_size% js-form-element">
     <div class="description">
         %element_content%
@@ -229,13 +239,15 @@ EOT;
                     break;
 
                 case 'button':
-                    $labelPattern = <<<EOT
+                    $labelPattern
+                        = <<<EOT
 <div class="%label_size% control-label">
     %mark_required%
 </div>
 EOT;
-                    
-                    $elementPattern =<<<EOT
+
+                    $elementPattern
+                        = <<<EOT
 <div class="%element_size% js-form-element">
     %element_content%
     %desc_html%
@@ -245,7 +257,8 @@ EOT;
                     break;
 
                 default:
-                    $elementPattern =<<<EOT
+                    $elementPattern
+                        = <<<EOT
 <div class="%element_size% js-form-element">
     %element_content%
     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -257,68 +270,70 @@ EOT;
                     break;
             }
 
-            $vars = array();
+            $vars = [];
 
             switch ($style) {
                 case 'popup':
-                    $vars['label_size']     = 'col-sm-4';
-                    $vars['element_size']   = 'col-sm-8';
-                    $vars['error_size']     = 'col-sm-12';
+                    $vars['label_size']   = 'col-sm-4';
+                    $vars['element_size'] = 'col-sm-8';
+                    $vars['error_size']   = 'col-sm-12';
                     break;
 
                 case 'inline':
-                    $labelPattern =<<<EOT
+                    $labelPattern
+                        = <<<EOT
 <label class="sr-only">
     %label_content%
 </label>
 EOT;
-                    $elementPattern =<<<EOT
+                    $elementPattern
+                        = <<<EOT
     %element_content%
 EOT;
                     break;
 
                 case 'vertical':
-                    $vars['label_size']     = '';
-                    $vars['element_size']   = '';
-                    $vars['error_size']     = '';
+                    $vars['label_size']   = '';
+                    $vars['element_size'] = '';
+                    $vars['error_size']   = '';
                     break;
 
                 case 'horizontal':
                 default:
                     if ('single' == $column) {
-                        $vars['label_size']     = 'col-sm-3';
-                        $vars['element_size']   = 'col-sm-5';
-                        $vars['error_size']     = 'col-sm-4';
+                        $vars['label_size']   = 'col-sm-3';
+                        $vars['element_size'] = 'col-sm-5';
+                        $vars['error_size']   = 'col-sm-4';
                     } else {
-                        $vars['label_size']     = 'col-md-2';
-                        $vars['element_size']   = 'col-md-4';
-                        $vars['error_size']     = 'col-md-4';
+                        $vars['label_size']   = 'col-md-2';
+                        $vars['element_size'] = 'col-md-4';
+                        $vars['error_size']   = 'col-md-4';
                     }
                     break;
             }
 
             // Style settings for editor
             if ($type == 'editor') {
-                $vars['label_size']     = 'col-md-12 text-left';
-                $vars['element_size']   = 'col-md-12';
-                $vars['error_size']     = 'col-md-12';
+                $vars['label_size']   = 'col-md-12 text-left';
+                $vars['element_size'] = 'col-md-12';
+                $vars['error_size']   = 'col-md-12';
             }
 
-            $vars['element_name']       = $element->getName();
-            $vars['element_content']    = $this->view->formElement($element);
-            $vars['error_content']      = $this->view->formElementErrors($element);
-            $vars['error_class']        = $element->getMessages() ? ' has-error' : '';
-            $vars['desc_content']       = $element->getAttribute('description') . ($element->getAttribute('required') && !$element->getLabel() ? $markRequired : '');
-            $vars['desc_html']          = $parsePattern($descPattern, $vars);
-            $vars['label_content']      = $element->getLabel();
-            $vars['mark_required']      = $element->getAttribute('required') && $element->getLabel() ? $markRequired : '';
-            $vars['label_html']         = $parsePattern($labelPattern, $vars);
-            $vars['element_html']       = $parsePattern($elementPattern, $vars);
+            $vars['element_name']    = $element->getName();
+            $vars['element_content'] = $this->view->formElement($element);
+            $vars['error_content']   = $this->view->formElementErrors($element);
+            $vars['error_class']     = $element->getMessages() ? ' has-error' : '';
+            $vars['desc_content']    = $element->getAttribute('description') . ($element->getAttribute('required') && !$element->getLabel() ? $markRequired : '');
+            $vars['desc_html']       = $parsePattern($descPattern, $vars);
+            $vars['label_content']   = $element->getLabel();
+            $vars['mark_required']   = $element->getAttribute('required') && $element->getLabel() ? $markRequired : '';
+            $vars['label_html']      = $parsePattern($labelPattern, $vars);
+            $vars['element_html']    = $parsePattern($elementPattern, $vars);
 
             /**
              * If vertical and label is empty, remove label tag
              */
-            if($style == 'vertical' && !$element->getLabel()){
+            if ($style == 'vertical' && !$element->getLabel()) {
                 $vars['label_html'] = '';
             }
 
@@ -331,7 +346,7 @@ EOT;
         $renderRow = function ($element) use ($renderElement) {
             $return = '';
             if (method_exists($element, 'getElements')) {
-                $return .= '<fieldset><legend>' .  $this->view->formLabel($element) . '</legend>' . PHP_EOL;
+                $return .= '<fieldset><legend>' . $this->view->formLabel($element) . '</legend>' . PHP_EOL;
 
                 $eles = $element->elementList();
                 foreach ($eles['active'] as $ele) {
@@ -353,7 +368,8 @@ EOT;
             $csrfMessages = '';
             if (!empty($hiddenMessages['security'])) {
                 foreach ($hiddenMessages['security'] as $elMessage) {
-                    $csrfMessages .= <<<EOT
+                    $csrfMessages
+                        .= <<<EOT
     <p>{$elMessage}</p>
 EOT;
                 }
@@ -367,18 +383,21 @@ EOT;
                 }
                 $elMessages = '';
                 foreach ($elMessages as $elMessage) {
-                    $elMessages .= <<<EOT
+                    $elMessages
+                        .= <<<EOT
         <li>{$elMessage}</li>
 EOT;
                 }
-                $elementMessages .= <<<EOT
+                $elementMessages
+                    .= <<<EOT
     <h4>{$elName}</h4>
     <ol>
         {$elMessages}
     </ol>
 EOT;
             }
-            $htmlAlert = <<<EOT
+            $htmlAlert
+                = <<<EOT
 <div class="alert alert-danger">
     {$csrfMessages}
     {$elementMessages}
@@ -402,7 +421,7 @@ EOT;
                 }
 
                 foreach ($group['elements'] as $name) {
-                    $element = $form->get($name);
+                    $element  = $form->get($name);
                     $htmlForm .= $renderRow($element) . PHP_EOL;
                 }
 
@@ -423,12 +442,13 @@ EOT;
             foreach ($elements['submit'] as $element) {
                 $submit .= $this->view->formElement($element) . " ";
             }
-            
+
             $cancel = !empty($elements['cancel']) ? $this->view->formElement($elements['cancel']) : '';
             switch ($style) {
                 case 'popup':
                     $waiting = '<img src="' . $this->view->assetTheme('image/wait.gif') . '" class="hide">';
-                    $htmlSubmit =<<<EOT
+                    $htmlSubmit
+                             = <<<EOT
         <div class="modal-footer">
             {$waiting}
             {$submit}
@@ -443,7 +463,8 @@ EOT;
                     } else {
                         $submitSize = 'col-md-offset-2 col-md-10';
                     }
-                    $htmlSubmit =<<<EOT
+                    $htmlSubmit
+                        = <<<EOT
         <div class="form-group has-feedback">
             <div class="{$submitSize}">
                 {$submit}
@@ -454,7 +475,8 @@ EOT;
                     break;
 
                 default:
-                    $htmlSubmit = <<<EOT
+                    $htmlSubmit
+                        = <<<EOT
         <div class="form-group has-feedback">
             {$submit}
             {$cancel}
@@ -462,31 +484,33 @@ EOT;
 EOT;
                     break;
             }
-            
+
             $htmlForm .= $htmlSubmit . PHP_EOL;
         }
-        
+
         // Close of form content
         $htmlForm .= $this->closeTag();
 
         // Render complete html
-        $htmlPattern = <<<EOT
+        $htmlPattern
+              = <<<EOT
 %html_open%
 %html_alert%
 %html_form%
 %html_close%
 EOT;
-        $vars = array(
-            'html_open'     => '',
-            'html_close'    => '',
-            'html_alert'    => $htmlAlert,
-            'html_form'     => $htmlForm,
-        );
+        $vars = [
+            'html_open'  => '',
+            'html_close' => '',
+            'html_alert' => $htmlAlert,
+            'html_form'  => $htmlForm,
+        ];
         if ('popup' == $style) {
             $this->view->jQuery();
             $this->view->bootstrap('js/bootstrap.min.js');
 
-            $openPattern = <<<EOT
+            $openPattern
+                       = <<<EOT
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -501,7 +525,8 @@ EOT;
                 _escape($form->getLabel() ?: __('Form'))
             );
 
-            $script =<<<EOT
+            $script
+                        = <<<EOT
         <script>
             var formModule = (function($) {
                 var formModule = {},

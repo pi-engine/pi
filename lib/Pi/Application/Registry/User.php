@@ -43,12 +43,12 @@ class User extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
         $parseView = function ($row) {
-            $view = array();
+            $view = [];
             if (!empty($row->view)) {
-                $view['method'] = array($row->module . '_profile', $row->view);
+                $view['method'] = [$row->module . '_profile', $row->view];
             } elseif (!empty($row->options)) {
                 $view['options'] = unserialize($row->options);
             }
@@ -65,12 +65,12 @@ class User extends AbstractRegistry
             if (!empty($input)) {
                 $input = unserialize($input);
                 if (is_string($input) && !empty($input)) {
-                    $input = array('type' => $input);
+                    $input = ['type' => $input];
                 }
                 if (empty($input['options']['multiOptions'])) {
                     if (!empty($row->options)) {
-                        $input['options']['multiOptions'] =
-                            unserialize($row->options);
+                        $input['options']['multiOptions']
+                            = unserialize($row->options);
                     }
                 }
                 if (!empty($input['module'])) {
@@ -98,12 +98,12 @@ class User extends AbstractRegistry
             if (!empty($input)) {
                 $input = unserialize($input);
                 if (is_string($input) && !empty($input)) {
-                    $input = array('type' => $input);
+                    $input = ['type' => $input];
                 }
                 if (empty($input['options']['multiOptions'])) {
                     if (!empty($row->options)) {
-                        $input['options']['multiOptions'] =
-                            unserialize($row->options);
+                        $input['options']['multiOptions']
+                            = unserialize($row->options);
                     }
                 }
                 if (!empty($input['module'])) {
@@ -117,11 +117,11 @@ class User extends AbstractRegistry
             return $input;
         };
 
-        $model = Pi::model('user_meta');
-        $select = $model->select()->where(array('active' => 1))
+        $model  = Pi::model('user_meta');
+        $select = $model->select()->where(['active' => 1])
             ->order('id ASC');
         $rowset = $model->selectWith($select);
-        $data = array();
+        $data   = [];
         foreach ($rowset as $row) {
             if ($options['action'] == 'edit') {
                 $meta = $parseEdit($row, 'edit');
@@ -161,7 +161,7 @@ class User extends AbstractRegistry
     public function read($action = 'view', $meta = null)
     {
         $options = compact('action');
-        $data = $this->loadData($options);
+        $data    = $this->loadData($options);
         if (isset($meta)) {
             $result = isset($data[$meta]) ? $data[$meta] : false;
         } else {

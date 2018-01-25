@@ -9,9 +9,7 @@
 
 namespace Pi\Authentication\Adapter;
 
-use Pi;
-use Zend\Authentication\Adapter\ValidatableAdapterInterface
-    as ZendAdapterInterface;
+use Zend\Authentication\Adapter\ValidatableAdapterInterface as ZendAdapterInterface;
 
 /**
  * Pi authentication adapter interface
@@ -26,7 +24,7 @@ interface AdapterInterface extends ZendAdapterInterface
      * @param array $options
      * @return void
      */
-    public function setOptions($options = array());
+    public function setOptions($options = []);
 
     /**
      * Set result data
@@ -34,7 +32,7 @@ interface AdapterInterface extends ZendAdapterInterface
      * @param array|object $resultRow
      * @return self
      */
-    public function setResultRow($resultRow = array());
+    public function setResultRow($resultRow = []);
 
     /**
      * Returns the result row

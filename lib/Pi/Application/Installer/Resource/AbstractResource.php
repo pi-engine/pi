@@ -23,7 +23,7 @@ class AbstractResource
     protected $event;
 
     /** @var array Meta config data */
-    protected $config = array();
+    protected $config = [];
 
     /**
      * Constructor
@@ -32,7 +32,7 @@ class AbstractResource
      */
     public function __construct($config)
     {
-        $this->config = (array) $config;
+        $this->config = (array)$config;
     }
 
     /**
@@ -70,7 +70,7 @@ class AbstractResource
      */
     protected function versionCompare($operator = '>=')
     {
-        $config = $this->event->getParam('config');
+        $config        = $this->event->getParam('config');
         $configVersion = $config['meta']['version'];
         $moduleVersion = $this->event->getParam('version');
         if (version_compare($moduleVersion, $configVersion, $operator)) {
@@ -164,7 +164,7 @@ class AbstractResource
     protected function getModule()
     {
         $module = $this->event ? $this->event->getParam('module') : '';
-        
+
         return $module;
     }
 }

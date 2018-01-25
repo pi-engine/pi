@@ -10,10 +10,9 @@
 namespace Pi\Log\Writer;
 
 use Pi;
-use Pi\Log\Logger;
 use Pi\Log\Formatter\Audit as AuditFormatter;
+use Pi\Log\Logger;
 use Zend\Log\Writer\AbstractWriter;
-use Zend\Log\Formatter\FormatterInterface;
 
 /**
  * Audit writer
@@ -23,10 +22,10 @@ use Zend\Log\Formatter\FormatterInterface;
 class Audit extends AbstractWriter
 {
     /** @var array Options */
-    protected $options = array();
+    protected $options = [];
 
     /** @var array Event container */
-    protected $events = array();
+    protected $events = [];
 
     /** @var array Extra data meta */
     protected $extra;
@@ -36,7 +35,7 @@ class Audit extends AbstractWriter
      *
      * @param  array $params Array of options
      */
-    public function __construct(array $params = array())
+    public function __construct(array $params = [])
     {
         $this->options = $params;
     }
@@ -94,8 +93,8 @@ class Audit extends AbstractWriter
 
         foreach ($this->events as $event) {
             $event = array_merge($event, $extra);
-            $data = $this->formatter()->format($event);
-            $row = Pi::model('audit')->createRow($data);
+            $data  = $this->formatter()->format($event);
+            $row   = Pi::model('audit')->createRow($data);
             $row->save();
             unset($row);
         }
@@ -125,7 +124,7 @@ class Audit extends AbstractWriter
             return $this->extra;
         }
         $this->extra = false;
-        $data = array();
+        $data        = [];
         if (!empty($this->options['role'])) {
             if (array_intersect(
                 Pi::service('user')->getUser()->role,
@@ -146,12 +145,12 @@ class Audit extends AbstractWriter
             $segs = explode('.', $data['ip']);
             if (!in_array($segs[0] . '.*', $this->options['ip'])
                 && !in_array($segs[0] . '.' . $segs[1] . '.*',
-                             $this->options['ip'])
+                    $this->options['ip'])
                 && !in_array($segs[0] . '.' . $segs[1] . '.' . $segs[2] . '.*',
-                             $this->options['ip'])
+                    $this->options['ip'])
                 && !in_array($segs[0] . '.' . $segs[1] . '.' . $segs[2]
-                                . '.' . $segs[3],
-                             $this->options['ip'])
+                    . '.' . $segs[3],
+                    $this->options['ip'])
             ) {
                 return $this->extra;
             }
@@ -173,26 +172,26 @@ class Audit extends AbstractWriter
         }
         $routeMatch = $event->getRouteMatch();
         if ($routeMatch) {
-            $data['module'] = $routeMatch->getParam('module');
+            $data['module']     = $routeMatch->getParam('module');
             $data['controller'] = $routeMatch->getParam('controller');
-            $data['action'] = $routeMatch->getParam('action');
+            $data['action']     = $routeMatch->getParam('action');
             if (!empty($this->options['page'])) {
                 if (!in_array($data['module'], $this->options['page'])
                     && !in_array($data['module'] . '-' . $data['controller'],
-                                 $this->options['page'])
+                        $this->options['page'])
                     && !in_array($data['module'] . '-' . $data['controller']
-                                    . '-' . $data['action'],
-                                 $this->options['page'])
+                        . '-' . $data['action'],
+                        $this->options['page'])
                 ) {
                     return $this->extra;
                 }
             }
         }
 
-        $data['extra'] = array(
-            'uri'           => $request->getRequestUri(),
-            'user-agent'    => $_SERVER['HTTP_USER_AGENT'],
-        );
+        $data['extra'] = [
+            'uri'        => $request->getRequestUri(),
+            'user-agent' => $_SERVER['HTTP_USER_AGENT'],
+        ];
         if ($request->isPost()) {
             $data['content'] = $request->getContent();
         }

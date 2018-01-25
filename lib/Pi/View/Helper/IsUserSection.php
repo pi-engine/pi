@@ -17,7 +17,6 @@ use Zend\View\Helper\AbstractHelper;
  * Return is user section status
  *
  * Usage inside a phtml template
-
  * ```
  *  // Load helper for current request URI
  *  $userSection = $this->isUserSection();
@@ -35,13 +34,13 @@ class IsUserSection extends AbstractHelper
      */
     public function __invoke($module)
     {
-        $uid = Pi::user()->getId();
+        $uid         = Pi::user()->getId();
         $userSection = false;
 
-        if (in_array($module, array('order', 'favourite', 'message', 'support', 'media')) && $uid > 0) {
+        if (in_array($module, ['order', 'favourite', 'message', 'support', 'media']) && $uid > 0) {
             $userSection = true;
         } elseif ($module == 'user') {
-            $d = (array) Pi::service('url')->getRouteMatch();
+            $d = (array)Pi::service('url')->getRouteMatch();
             foreach ($d as $value) {
                 $a[] = $value;
             }
@@ -57,17 +56,17 @@ class IsUserSection extends AbstractHelper
             if ($a[1]['controller'] == 'password' && $a[1]['action'] != 'find') {
                 $userSection = true;
             }
-            
+
             if ($a[1]['controller'] == 'activity' && !isset($a[1]['uid'])) {
                 $userSection = true;
             }
 
-            if (in_array($a[1]['controller'], array('dashboard', 'account', 'avatar', 'privacy'))) {
+            if (in_array($a[1]['controller'], ['dashboard', 'account', 'avatar', 'privacy'])) {
                 $userSection = true;
             }
 
         } elseif ($module == 'guide' && $uid > 0) {
-            $d = (array) Pi::service('url')->getRouteMatch();
+            $d = (array)Pi::service('url')->getRouteMatch();
             foreach ($d as $value) {
                 $a[] = $value;
             }
@@ -77,18 +76,16 @@ class IsUserSection extends AbstractHelper
             if ($a[1]['controller'] == 'favourite' || $a[1]['controller'] == 'offer') {
                 $userSection = true;
             }
-        }
-        elseif ($module == 'event' && $uid > 0) {
-            $d = (array) Pi::service('url')->getRouteMatch();
+        } elseif ($module == 'event' && $uid > 0) {
+            $d = (array)Pi::service('url')->getRouteMatch();
             foreach ($d as $value) {
                 $a[] = $value;
             }
             if ($a[1]['controller'] == 'manage') {
                 $userSection = true;
             }
-        }
-        elseif ($module == 'comment') {
-            $d = (array) Pi::service('url')->getRouteMatch();
+        } elseif ($module == 'comment') {
+            $d = (array)Pi::service('url')->getRouteMatch();
             foreach ($d as $value) {
                 $a[] = $value;
             }

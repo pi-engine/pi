@@ -26,18 +26,19 @@ class Dag extends AbstractDag
     /**
      * {@inheritDoc}
      */
-    protected $column = array(
-        // Start vertex column name
-        'start'     => 'start',
-        // End vertex column name
-        'end'       => 'end',
-        // Entry edge column name
-        'entry'     => 'entry',
-        // Direct edge column name
-        'direct'    => 'direct',
-        // Exit edge column name
-        'exit'      => 'exit',
-        // Number of hops from start to end
-        'hops'      => 'hops',
-    );
+    protected $column
+        = [
+            // Start vertex column name
+            'start'  => 'start',
+            // End vertex column name
+            'end'    => 'end',
+            // Entry edge column name
+            'entry'  => 'entry',
+            // Direct edge column name
+            'direct' => 'direct',
+            // Exit edge column name
+            'exit'   => 'exit',
+            // Number of hops from start to end
+            'hops'   => 'hops',
+        ];
 }

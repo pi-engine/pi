@@ -44,7 +44,7 @@ class System extends AbstractModel
                 $data = $row->toArray();
                 unset($data['credential'], $data['salt']);
             } else {
-                $data = array();
+                $data = [];
             }
         } else {
             $data = $this->getGuest();

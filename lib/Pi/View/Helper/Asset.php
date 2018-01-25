@@ -32,8 +32,8 @@ class Asset extends AbstractHelper
     /**
      * Get URI of an asset
      *
-     * @param   string    $component
-     * @param   string    $file
+     * @param   string $component
+     * @param   string $file
      * @param   bool|null $appendVersion
      *
      * @return  string
@@ -42,7 +42,8 @@ class Asset extends AbstractHelper
         $component,
         $file,
         $appendVersion = null
-    ) {
+    )
+    {
         //$type = $isPublic ? 'public' : 'asset';
 
         $result = Pi::service('asset')->getAssetUrl(

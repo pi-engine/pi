@@ -44,7 +44,8 @@ class Datepicker extends Element
     /**
      * {@inheritDoc}
      */
-    protected $attributes = array(
-        'type'  => 'datepicker',
-    );
+    protected $attributes
+        = [
+            'type' => 'datepicker',
+        ];
 }

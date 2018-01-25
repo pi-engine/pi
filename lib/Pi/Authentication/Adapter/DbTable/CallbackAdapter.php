@@ -47,7 +47,7 @@ class CallbackAdapter extends AbstractAdapter
     protected function getCallback()
     {
         if (!$this->callback || !is_callable($this->callback)) {
-            $this->callback = function($a, $b, $identity) {
+            $this->callback = function ($a, $b, $identity) {
                 return $a === md5($b);
             };
         }

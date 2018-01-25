@@ -12,8 +12,8 @@ namespace Pi\Form;
 
 use Pi;
 use Traversable;
-use Zend\Form\Form as ZendForm;
 use Zend\Form\Exception;
+use Zend\Form\Form as ZendForm;
 
 /**
  * Form class
@@ -51,7 +51,7 @@ class Form extends ZendForm
      *
      * {@inheritDoc}
      */
-    public function __construct($name = null, $options = array())
+    public function __construct($name = null, $options = [])
     {
         parent::__construct($name, $options);
         $this->init();
@@ -90,7 +90,9 @@ class Form extends ZendForm
      *
      * @return void
      */
-    public function init() {}
+    public function init()
+    {
+    }
 
     /**
      * Get list of elements
@@ -105,11 +107,11 @@ class Form extends ZendForm
      */
     public function elementList()
     {
-        $elements = array(
-            'active'    => array(),
-            'hidden'    => array(),
-            'submit'    => array(),
-        );
+        $elements = [
+            'active' => [],
+            'hidden' => [],
+            'submit' => [],
+        ];
 
         foreach ($this->elements as $key => $value) {
             $type = $value->getAttribute('type');
@@ -159,7 +161,7 @@ class Form extends ZendForm
     public function getHiddenMessages($elementName = null)
     {
         if (null === $elementName) {
-            $messages = array();
+            $messages = [];
             foreach ($this->elements as $name => $element) {
                 if ('hidden' != $element->getAttribute('type')) {
                     continue;
@@ -167,10 +169,11 @@ class Form extends ZendForm
                 $messageSet = $element->getMessages();
                 if (!is_array($messageSet)
                     && !$messageSet instanceof Traversable
-                    || empty($messageSet)) {
+                    || empty($messageSet)
+                ) {
                     continue;
                 }
-                $messages[$name] = (array) $messageSet;
+                $messages[$name] = (array)$messageSet;
             }
             return $messages;
         }
@@ -190,14 +193,14 @@ class Form extends ZendForm
     /**
      * Get assembled message
      *
-     * @param bool      $OnlyHidden  Return only hidden field messages
-     * @param string    $delimiter
+     * @param bool $OnlyHidden Return only hidden field messages
+     * @param string $delimiter
      * @return string
      */
     public function getMessage($OnlyHidden = true, $delimiter = '; ')
     {
         $messages = $this->getMessages();
-        $list = array();
+        $list     = [];
         foreach ($messages as $name => $msgs) {
             if (!$msgs) {
                 continue;

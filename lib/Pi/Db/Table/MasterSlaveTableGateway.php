@@ -9,12 +9,7 @@
 
 namespace Pi\Db\Table;
 
-use Pi;
 use Pi\Application\Db;
-use Zend\Db\TableGateway\TableGateway;
-use Zend\Db\Sql\Sql;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\Metadata\Metadata;
 
 /**
  *  Pi Master-Slave Table Gateway
@@ -105,7 +100,7 @@ class MasterSlaveTableGateway extends AbstractTableGateway
     public function delete($where)
     {
         $this->adapter = $this->masterAdapter;
-        
+
         return parent::delete($where);
     }
 }
