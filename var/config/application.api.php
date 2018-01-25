@@ -13,22 +13,22 @@
 $config = include __DIR__ . '/application.front.php';
 
 // Security resource, load configs from resource.security.php
-$config['resource']['security'] = array(
+$config['resource']['security'] = [
     // IP check: deny 'bad' IPs, approve 'good' IPs
-    'ip'        => true,
+    'ip'      => true,
 
     // Super GLOBALS
-    'globals'   => true,
+    'globals' => true,
 
     // XSS check
-    'xss'       => true,
+    'xss'     => true,
 
     // Enable DoS protection on HTTP_USER_AGENT
-    'dos'       => false,
+    'dos'     => false,
 
     // crawl bots protection on HTTP_USER_AGENT
-    'bot'       => false,
-);
+    'bot'     => false,
+];
 
 // Session resource, disabled
 $config['resource']['session'] = false;
@@ -37,13 +37,13 @@ $config['resource']['authentication'] = false;
 // Permission resource, disabled
 $config['resource']['permission'] = false;
 // Rendering cache resource
-$config['resource']['render_cache'] = array();
+$config['resource']['render_cache'] = [];
 
 // Application service configuration
-$config['application']['listeners'] = array('ApiStrategyListener');
+$config['application']['listeners']                      = ['ApiStrategyListener'];
 $config['application']['view_manager']['mvc_strategies'] = null;
-$config['application']['view_manager']['strategies'] = array('ViewJsonStrategy');
-$config['application']['send_response'] = null;
+$config['application']['view_manager']['strategies']     = ['ViewJsonStrategy'];
+$config['application']['send_response']                  = null;
 
 // Application environment
 //$config['config']['environment'] = 'production';

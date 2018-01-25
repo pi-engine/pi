@@ -1,18 +1,18 @@
 <?php
 // Cache configuration for APC
 
-$config = array(
+$config = [
     // Storage adapter
-    'adapter'   => array(
-        'name'  => 'apc',
+    'adapter' => [
+        'name'    => 'apc',
         // Options, see Zend\Cache\Storage\Adapter\ApcOptions
-        'options'    => array(
-        ),
-    ),
+        'options' => [
+        ],
+    ],
     // Plugin list
-    'plugins'   => array(
-        'exception_handler' => array('throw_exceptions' => false),
-    ),
-);
+    'plugins' => [
+        'exception_handler' => ['throw_exceptions' => false],
+    ],
+];
 
 return $config;

@@ -1,19 +1,19 @@
 <?php
 // User avatar service configuration
 
-return array(
+return [
     // GD 2
-    'driver'        => 'gd',
+    'driver'     => 'gd',
     // ImageMagicK
-    'driver'        => 'imagick',
+    'driver'     => 'imagick',
     // GraphicMagicK
-    'driver'        => 'gmagick',
+    'driver'     => 'gmagick',
     // Auto detected
-    'driver'        => 'auto',
+    'driver'     => 'auto',
 
     // Source image for watermark generation
-    'watermark'     => Pi::path('static/image/logo.png'),
+    'watermark'  => Pi::path('static/image/logo.png'),
 
     // Auto create path to save image
-    'auto_mkdir'    => true,
-);
+    'auto_mkdir' => true,
+];

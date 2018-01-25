@@ -4,7 +4,7 @@
  *
  * Different mode of audits.
  *
- * 
+ *
  * - Full specified mode with option array:
  *   - file: path to the log file
  *   - timeformat: time stamp format in log, {@link http://www.php.net/manual/en/function.date.php}
@@ -55,23 +55,23 @@
  */
 
 $path = Pi::path('log');
-return array(
-    'full'  => array(
-        'file'          => $path . '/full.log',
-        'timeformat'    => 'c',
-        'format'        => '%time% %d %s [%s]',
-    ),
-    'csv'   => array(
-        'file'          => $path . '/csv.log',
-        'format'        => 'csv',
-        'timeformat'    => 'c',
-    ),
-    'relative'  => array(
-        'timeformat'    => 'c',
-    ),
-    'lean'      => array(
-        'file'          => $path . '/lean.log',
-    ),
-    'easy'      => $path . '/easy.log',
-    'simple'    => array(),
-);
+return [
+    'full'     => [
+        'file'       => $path . '/full.log',
+        'timeformat' => 'c',
+        'format'     => '%time% %d %s [%s]',
+    ],
+    'csv'      => [
+        'file'       => $path . '/csv.log',
+        'format'     => 'csv',
+        'timeformat' => 'c',
+    ],
+    'relative' => [
+        'timeformat' => 'c',
+    ],
+    'lean'     => [
+        'file' => $path . '/lean.log',
+    ],
+    'easy'     => $path . '/easy.log',
+    'simple'   => [],
+];

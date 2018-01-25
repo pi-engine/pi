@@ -10,48 +10,48 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
-return array(
+return [
     // Alias of hosts
     // Root URL => identifier of specifications
-    'alias' => array(
-        'http://pi-engine.org'      => 'default',
-        'http://www.pi-engine.org'  => 'default',
-        'http://pi-demo.org'        => 'demo',
-        'http://www.pi-demo.org'    => 'demo',
-        'http://piengine.org'         => 'org',
-        'http://www.piengine.org'     => 'org',
-    ),
+    'alias' => [
+        'http://pi-engine.org'     => 'default',
+        'http://www.pi-engine.org' => 'default',
+        'http://pi-demo.org'       => 'demo',
+        'http://www.pi-demo.org'   => 'demo',
+        'http://piengine.org'      => 'org',
+        'http://www.piengine.org'  => 'org',
+    ],
     // Host specifications
-    'hosts' => array(
+    'hosts' => [
         // Specifications defined by files
-        'demo'      => __DIR__ . '/host.demo.php',
-        'org'       => '/path/to/org/config/host.php',
+        'demo'    => __DIR__ . '/host.demo.php',
+        'org'     => '/path/to/org/config/host.php',
 
         // Specifications defined instantly
-        'default'       => array(
+        'default' => [
             // URIs to resources
-            'uri'       => array(
-                'www'       => 'http://pi-engine.org',
-                'upload'    => 'http://pi-engine.org/upload',
-                'static'    => 'http://pi-engine.org/static',
-            ),
+            'uri'  => [
+                'www'    => 'http://pi-engine.org',
+                'upload' => 'http://pi-engine.org/upload',
+                'static' => 'http://pi-engine.org/static',
+            ],
             // Paths to resources
-            'path'      => array(
-                'usr'       => '/path/to/pi/usr',
-                'var'       => '/path/to/pi/var',
-                'module'    => '/path/to/pi/usr/module',
-                'theme'     => '/path/to/pi/usr/theme',
-                'custom'    => '/path/to/pi/usr/custom',
+            'path' => [
+                'usr'    => '/path/to/pi/usr',
+                'var'    => '/path/to/pi/var',
+                'module' => '/path/to/pi/usr/module',
+                'theme'  => '/path/to/pi/usr/theme',
+                'custom' => '/path/to/pi/usr/custom',
 
-                'upload'    => '/path/to/pi/upload',
-                'static'    => '/path/to/pi/static',
+                'upload' => '/path/to/pi/upload',
+                'static' => '/path/to/pi/static',
 
-                'vendor'    => '/path/to/pi/vendor',
+                'vendor' => '/path/to/pi/vendor',
 
-                'config'    => '/path/to/pi/config',
-                'cache'     => '/path/to/pi/cache',
-                'log'       => '/path/to/pi/log',
-            ),
-        ),
-    ),
-);
+                'config' => '/path/to/pi/config',
+                'cache'  => '/path/to/pi/cache',
+                'log'    => '/path/to/pi/log',
+            ],
+        ],
+    ],
+];

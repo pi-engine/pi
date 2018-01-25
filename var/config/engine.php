@@ -11,9 +11,9 @@
  */
 
 // Application configs
-return array(
+return [
     // application configs
-    'config'    => array(
+    'config'  => [
         // Site specific identifier, should not change it after installation
         'identifier'    => 'siteidentifier',
 
@@ -31,13 +31,13 @@ return array(
 
         // Disable admin login
         'admin_disable' => 0,
-    ),
+    ],
 
     // System persist storage configs
-    'persist'   => array(
+    'persist' => [
         'storage'   => 'filesystem',
         'namespace' => 'apcns',
-        'options'   => array(
-        ),
-    ),
-);
+        'options'   => [
+        ],
+    ],
+];

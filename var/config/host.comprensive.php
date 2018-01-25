@@ -20,59 +20,59 @@
  * - URIs with a leading slash are considered semi-relative
  *      requires proper rewriting rules in server conf
  */
-return array(
+return [
     // URIs to resources
     // If URI is a relative one then www root URI will be prepended
-    'uri'       => array(
+    'uri'       => [
         // WWW root URI
-        'www'       => 'http://pi.tld',
+        'www'    => 'http://pi.tld',
         // URI to access uploads directory
-        'upload'    => 'http://upload.pi.tld',
+        'upload' => 'http://upload.pi.tld',
         // URI to access static files directory
-        'static'    => 'http://static.pi.tld',
-    ),
+        'static' => 'http://static.pi.tld',
+    ],
 
     // Paths to resources
     // If path is a relative one then www root path will be prepended
-    'path'      => array(
+    'path'      => [
         // Sharable paths
         // WWW root path, dependent sub folders: `script`, `public`
-        'www'       => '/path/to/pi-application/www',
+        'www'    => '/path/to/pi-application/www',
         // Library directory
-        'lib'       => '/path/to/pi-framework/lib',
+        'lib'    => '/path/to/pi-framework/lib',
         // User extension directory
-        'usr'       => '/path/to/pi-framework/usr',
+        'usr'    => '/path/to/pi-framework/usr',
         // Application module directory
-        'module'    => '/path/to/pi-framework/module',
+        'module' => '/path/to/pi-framework/module',
         // Theme directory
-        'theme'     => '/path/to/pi-framework/theme',
+        'theme'  => '/path/to/pi-framework/theme',
         // Path to static files directory
-        'static'    => '/path/to/pi-framework/static',
+        'static' => '/path/to/pi-framework/static',
         // Path to vendor library directory: default as `lib/vendor`
-        'vendor'    => '/path/to/pi-framework/vendor',
+        'vendor' => '/path/to/pi-framework/vendor',
         // Path to module custom directory: default as `usr/custom`
-        'custom'    => '/path/to/pi-framework/custom',
+        'custom' => '/path/to/pi-framework/custom',
 
         // Application specific paths
         // Path to uploads directory
-        'upload'    => '/path/to/pi-application/upload',
+        'upload' => '/path/to/pi-application/upload',
         // User data directory
-        'var'       => '/path/to/pi-application/var',
+        'var'    => '/path/to/pi-application/var',
 
         // Sub-paths of var
         // Path to global collective configuration directory
-        'config'    => '/path/to/pi-application/config',
+        'config' => '/path/to/pi-application/config',
         // Path to cache files directory
-        'cache'     => '/path/to/pi-application/cache',
+        'cache'  => '/path/to/pi-application/cache',
         // Path to logs directory
-        'log'       => '/path/to/pi-application/log',
-    ),
+        'log'    => '/path/to/pi-application/log',
+    ],
 
     // Dependent paths to resources
-    'directory'     => array(
-        'asset'     => array(
-            'parent'    => 'www',
-            'folder'    => 'asset',
-        ),
-    ),
-);
+    'directory' => [
+        'asset' => [
+            'parent' => 'www',
+            'folder' => 'asset',
+        ],
+    ],
+];

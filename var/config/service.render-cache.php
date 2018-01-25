@@ -1,9 +1,9 @@
 <?php
 // Rendering cache service configuration
 
-return array(
+return [
     // Do not specify storage and use storage specified by generic cache service
-    'storage'   => '',
+    'storage' => '',
 
 
     // Use generic filesystem cache service explicitly
@@ -53,4 +53,4 @@ return array(
         ),
     ),
     */
-);
+];

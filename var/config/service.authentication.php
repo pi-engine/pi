@@ -1,8 +1,8 @@
 <?php
 // Authentication service configuration
 
-return array(
-    'strategy'   => 'Local',
+return [
+    'strategy' => 'Local',
     //'strategy'   => 'Saml',
     //'strategy'   => 'client',
-);
+];
