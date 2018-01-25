@@ -1,14 +1,14 @@
 <?php
-$this->css(array(
-    $this->assetModule('script/test.css')
-));
+$this->css([
+    $this->assetModule('script/test.css'),
+]);
 ?>
 <h2 class="page-header">Customized module template: <?php _e('Paginator'); ?></h2>
 <ul>
-<?php foreach ($items as $article) { ?>
-<li><?php echo _escape($article['title']); ?></li>
-<?php } ?>
+    <?php foreach ($items as $article) { ?>
+        <li><?php echo _escape($article['title']); ?></li>
+    <?php } ?>
 </ul>
 
 <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator'); ?>
-<p class="test"><?php echo $module .'-'. $controller . '-' . $action; ?></p>
+<p class="test"><?php echo $module . '-' . $controller . '-' . $action; ?></p>

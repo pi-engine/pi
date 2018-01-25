@@ -9,23 +9,23 @@ $this->i18nTheme();
 $this->headTitle()->setPrefix(_a('Admin - '));
 
 //HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-$this->js(array(
-    pi::url('static/js/html5shiv.js') => array(
-        'conditional' => 'lt IE 9'
-    ),
-    pi::url('static/js/respond.min.js') => array(
-        'conditional' => 'lt IE 9'
-    ),
-));
+$this->js([
+    pi::url('static/js/html5shiv.js')   => [
+        'conditional' => 'lt IE 9',
+    ],
+    pi::url('static/js/respond.min.js') => [
+        'conditional' => 'lt IE 9',
+    ],
+]);
 
 // Load jQuery
 $this->jquery();
 
 // Load Bootstrap css/js and font-awesome
-$this->bootstrap(array(
+$this->bootstrap([
     'js/bootstrap.min.js',
-    'font-awesome/css/font-awesome.min.css'
-));
+    'font-awesome/css/font-awesome.min.css',
+]);
 
 // Load admin.css
 $this->css($this->assetTheme('css/admin.css'));
@@ -40,16 +40,16 @@ $this->footScript()->appendFile($this->assetTheme('js/admin.js'));
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 
 // Explicitly load favicon
-$this->headLink(array(
-    'rel'   => 'shortcut icon',
-    'type'  => 'image/x-icon',
-    'href'  => $this->favicon(),
-));
-$this->headLink(array(
-    'rel'   => 'shortcut icon',
-    'type'  => 'image/png',
-    'href'  => $this->favicon('favicon.png'),
-));
+$this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/x-icon',
+    'href' => $this->favicon(),
+]);
+$this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/png',
+    'href' => $this->favicon('favicon.png'),
+]);
 
 // Get module name
 $module = Pi::service('module')->current();
@@ -59,7 +59,8 @@ $module = Pi::service('module')->current();
 <html lang="<?php echo $locale ?>">
 <head>
     <meta charset="<?php echo $charset; ?>">
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-admin">
 <!-- header: brand, navbar-nav, user link -->
@@ -84,19 +85,19 @@ $module = Pi::service('module')->current();
                     </a>
                 </li>
             </ul>
-            <?php echo $this->widget('system-user-bar', array(
-                'type'            => 'flat',
-                'float'           => 'right',
-                'show_title'      => 1,
-                'show_message'    => 'merge',
-                'show_support'    => 0,
-                'show_order'      => 0,
-                'show_credit'     => 0,
-                'show_favourite'  => 0,
-                'params'          => array(
-                    'section'     => Pi::engine()->application()->getSection(),
-                ),
-            )); ?>
+            <?php echo $this->widget('system-user-bar', [
+                'type'           => 'flat',
+                'float'          => 'right',
+                'show_title'     => 1,
+                'show_message'   => 'merge',
+                'show_support'   => 0,
+                'show_order'     => 0,
+                'show_credit'    => 0,
+                'show_favourite' => 0,
+                'params'         => [
+                    'section' => Pi::engine()->application()->getSection(),
+                ],
+            ]); ?>
         </nav>
     </div>
 </header>
@@ -110,12 +111,12 @@ $module = Pi::service('module')->current();
         <div pi-message="alert"></div>
         <nav class="pi-nav-top" id="pi-nav-top" data-ng-controller="piNavTopCtrl">
             <?php
-            echo $this->adminNav()->top(array(
-                'ulClass'  => 'nav nav-tabs',
-                'sub'      => array(
-                    'ulClass' => 'nav nav-pills well well-sm'
-                )
-            ));
+            echo $this->adminNav()->top([
+                'ulClass' => 'nav nav-tabs',
+                'sub'     => [
+                    'ulClass' => 'nav nav-pills well well-sm',
+                ],
+            ]);
             ?>
         </nav>
         <!-- Flash messenger -->
