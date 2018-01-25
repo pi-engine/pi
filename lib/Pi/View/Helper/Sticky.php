@@ -47,13 +47,17 @@ $(document).ready(function(){
         affixWrapper.find('.nav').removeClass('forceVisible');
     }
 
-    $("#sticky-sidebar").hcSticky({
+    var Sticky = new hcSticky('#sticky-sidebar', {
         responsive : true,
         top: $('#pi-header nav').height() + affixWrapperHeight + 20,
-        stickTo: $('#sticky-container'),
-        offResolutions: -992
+        stickTo: '#sticky-container',
+        queries: {
+            992: {
+              disable: true
+            }
+        }
     });
-    
+
     $('#sticky-sidebar div.modal').insertAfter('.wrapper-sticky');
     
   });

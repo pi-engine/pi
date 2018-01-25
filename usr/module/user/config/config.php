@@ -42,7 +42,7 @@ $category = [
     ],
     [
         'title' => _a('Cron'),
-        'name'  => 'cron',
+        'name' => 'cron'
     ],
 ];
 
@@ -99,11 +99,11 @@ $config = [
     ],
 
     'shortcuts_enable' => [
-        'title'  => _t('Enable shortcuts on dashboard'),
+        'title'       => _t('Enable shortcuts on dashboard'),
         //        'description' => _t('Login / register with modal, with GET redirect (hidden input instead). Modal template are located into system module, because used by user-bar template'),
-        'edit'   => 'checkbox',
-        'value'  => 0,
-        'filter' => 'int',
+        'edit'        => 'checkbox',
+        'value'       => 0,
+        'filter'      => 'int',
     ],
 
     'side_menu'     => [
@@ -115,6 +115,7 @@ $config = [
                 'options' => [
                     'guide'           => _t('Guide'),
                     'media'           => _t('Media'),
+                    'stats'           => _t('Stats'),
                     'shop'            => _t('Shop'),
                     'order'           => _t('Order'),
                     'message'         => _t('Message'),
@@ -629,7 +630,7 @@ $config = [
         'value'    => '',
     ],
 
-    'oauth_github_client_secret'    => [
+    'oauth_github_client_secret' => [
         'category' => 'oauth',
         'title'    => _a('Github client secret'),
         'edit'     => 'text',
@@ -638,21 +639,21 @@ $config = [
     ],
 
     // Cron
-    'module_cron'                   => [
-        'category'    => 'cron',
-        'title'       => _a('Active this module cron system'),
+    'module_cron' => [
+        'category' => 'cron',
+        'title' => _a('Active this module cron system'),
         'description' => '',
-        'edit'        => 'checkbox',
-        'filter'      => 'number_int',
-        'value'       => 1,
+        'edit' => 'checkbox',
+        'filter' => 'number_int',
+        'value' => 1,
     ],
     'cron_clean_session_days_after' => [
-        'category'    => 'cron',
-        'title'       => _a('Session timeout / in days'),
-        'description' => 'Days count after expired session must be cleaned by cron job',
-        'edit'        => 'text',
-        'filter'      => 'number_int',
-        'value'       => 15,
+        'category' => 'cron',
+        'title' => _a('Session timeout / in days'),
+        'description' => 'Days count after expired session must be cleaned by cron job. Delay is from expired session (remember me config value). So final timeout is "remember me timeout" + this config value',
+        'edit' => 'text',
+        'filter' => 'number_int',
+        'value' => 15,
     ],
 ];
 
