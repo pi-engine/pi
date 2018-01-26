@@ -85,30 +85,37 @@ class Comment extends AbstractService
             $review = $params['review'];
         } 
 
-        if (0 && 'js' == $type) {
+        $ajaxLoad = Pi::config('ajax_load', 'comment');
+
+        if ($ajaxLoad) {
             $callback = Pi::service('url')->assemble('comment', array(
                 'module'        => 'comment',
                 'controller'    => 'index',
                 'action'        => 'load',
                 'review'        => $review
             ));
+            $rand = rand();
             $content =<<<EOT
-            <a id="pi-comment-lead-anchor" style="display: block;
+            <a id="pi-comment-lead-anchor-$rand" style="display: block;
     position: relative;
     top: -100px;
     visibility: hidden;"></a>
-<div class="pi-comment-lead" class="hidden"></div>
+<div class="pi-comment-lead-$rand" class="hidden"></div>
 <script>
-    $.getJSON("{$callback}", {
-        uri: $(location).attr('href'),
-        time: new Date().getTime()
-    })
-    .done(function (data) {
-        if (data.content) {
-            var el = $('.pi-comment-lead');
-            el.attr('class','show').html(data.content);
-        }
+    $( document ).ready(function() {
+
+        $.getJSON("{$callback}", {
+            uri: $(location).attr('href'),
+            time: new Date().getTime()
+        })
+        .done(function (data) {
+            if (data.content) {
+                var el = $('.pi-comment-lead-$rand');
+                el.attr('class','show').html(data.content);
+            }
+        });
     });
+    
 </script>
 EOT;
         } else {
@@ -139,10 +146,10 @@ EOT;
             $params = (array) $params;
             $uri = $params['uri'];
             $routeMatch = Pi::service('url')->match($uri);
-            $review = isset($params['review']) ? $params['review'] : false;
         }
+                $params = array_replace($params, $routeMatch->getParams());
         
-        $params = array_replace($params, $routeMatch->getParams());
+        $review = isset($params['review']) ? $params['review'] : false;
         $options = array(
             'review' => $review,
             'page' => isset($params['page']) ? $params['page'] : 1
@@ -156,7 +163,8 @@ EOT;
             ? $params['uri']
             : Pi::service('url')->getRequestUri();
         $data['uid'] = Pi::user()->getId();
-        $data['review'] = isset($params['review']) ? $params['review'] : false;        
+        
+        $data['review'] = $review;        
         $data['owner'] = isset($params['owner']) ? $params['owner'] : false;
         $data['admin'] =  Pi::service('permission')->isAdmin('comment', $data['uid']);
         $data['page'] = isset($params['page']) ? $params['page'] : 1;
