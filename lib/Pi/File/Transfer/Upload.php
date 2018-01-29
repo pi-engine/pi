@@ -346,6 +346,9 @@ class Upload extends Transfer
      */
     public function isValid()
     {
+        $translator = Pi::service('i18n')->getTranslator();
+        $translator->load('validator');
+
         if (null === $this->isValid) {
             $this->isValid = parent::isValid();
         }

@@ -492,8 +492,12 @@ class Input implements
     {
         $notEmpty = new NotEmpty();
         $templates = $notEmpty->getOption('messageTemplates');
+
+        /** @var \Pi\I18n\Translator\Translator $translator */
+        $translator = \Pi::service('i18n')->getTranslator();
+
         return array(
-            NotEmpty::IS_EMPTY => $templates[NotEmpty::IS_EMPTY],
+            NotEmpty::IS_EMPTY => $translator->translate($templates[NotEmpty::IS_EMPTY]),
         );
     }
 }
