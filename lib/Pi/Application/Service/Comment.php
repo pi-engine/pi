@@ -92,7 +92,8 @@ class Comment extends AbstractService
                 'module'        => 'comment',
                 'controller'    => 'index',
                 'action'        => 'load',
-                'review'        => $review
+                'review'        => $review,
+                'caller'        => Pi::service('module')->current()
             ));
             $rand = rand();
             $content =<<<EOT
@@ -111,7 +112,7 @@ class Comment extends AbstractService
         .done(function (data) {
             if (data.content) {
                 var el = $('.pi-comment-lead-$rand');
-                el.attr('class','show').html(data.content);
+                el.attr('class','show pi-comment-lead').html(data.content);
             }
         });
     });
@@ -120,7 +121,7 @@ class Comment extends AbstractService
 EOT;
         } else {
             $params['uri'] = $_SERVER['REQUEST_URI'];
-             
+            $params['caller'] = Pi::service('module')->current();
             $content = $this->loadContent($params);
             $content = '<div class="pi-comment-lead">' . $content . '</div>';
         }
@@ -168,6 +169,7 @@ EOT;
         $data['owner'] = isset($params['owner']) ? $params['owner'] : false;
         $data['admin'] =  Pi::service('permission')->isAdmin('comment', $data['uid']);
         $data['page'] = isset($params['page']) ? $params['page'] : 1;
+        $data['caller'] = isset($params['caller']) ? $params['caller'] : null;
         $template = 'comment:front/comment-lead';
         $result = Pi::service('view')->render($template, $data);
 
