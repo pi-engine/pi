@@ -82,7 +82,21 @@ class Form extends ZendForm
 
         Pi::service('i18n')->load('validator');
 
-        return parent::isValid();
+        $isValid = parent::isValid();
+
+        /** @var \Pi\I18n\Translator\Translator $translator */
+        $translator = \Pi::service('i18n')->getTranslator();
+
+        $messages = $this->getMessages();
+        foreach($this->getMessages() as $name => $messageGroup){
+            foreach($messageGroup as $keyMessage => $message){
+                $messages[$name][$keyMessage] = $translator->translate($message);
+            }
+        }
+
+        $this->setMessages($messages);
+
+        return $isValid;
     }
 
     /**
