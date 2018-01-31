@@ -529,6 +529,25 @@ class Asset extends AbstractService
                     )
                 );
 
+                /**
+                 * If production instance, minify CSS and JS
+                 */
+                if('production' == Pi::environment()){
+                    foreach (glob($targetFile . "/**/*.css") as $filename) {
+                        if(!preg_match('#.min.#', $filename) && preg_match('#.css$#', $filename)){
+                            $minifier = new \MatthiasMullie\Minify\CSS($filename);
+                            $minifier->minify($filename);
+                        }
+                    }
+
+                    foreach (glob($targetFile . "/**/*.js") as $filename) {
+                        if(!preg_match('#.min.#', $filename) && preg_match('#.js$#', $filename)){
+                            $minifier = new \MatthiasMullie\Minify\JS($filename);
+                            $minifier->minify($filename);
+                        }
+                    }
+                }
+
             // Use symlink for performance consideration
             } else {
                 Pi::service('file')->symlink(
