@@ -101,7 +101,7 @@ class Comment extends AbstractService
     position: relative;
     top: -100px;
     visibility: hidden;"></a>
-<div class="pi-comment-lead-$rand" class="hidden"></div>
+<div class="hidden pi-comment-lead-$rand"></div>
 <script>
     $( document ).ready(function() {
 
