@@ -93,7 +93,8 @@ class Comment extends AbstractService
                 'controller'    => 'index',
                 'action'        => 'load',
                 'review'        => $review,
-                'caller'        => Pi::service('module')->current()
+                'caller'        => Pi::service('module')->current(),
+                'owner'         => $params['owner']
             ));
             $rand = rand();
             $content =<<<EOT
