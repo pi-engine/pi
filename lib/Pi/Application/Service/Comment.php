@@ -94,7 +94,7 @@ class Comment extends AbstractService
                 'action'        => 'load',
                 'review'        => $review,
                 'caller'        => Pi::service('module')->current(),
-                'owner'         => $params['owner']
+                'owner'         => isset($params['owner']) ? $params['owner'] : null 
             ));
             $rand = rand();
             $content =<<<EOT
@@ -250,6 +250,21 @@ EOT;
         return Pi::api('api', 'comment')->getForm($data, $options);
     }
 
+    /**
+     * Get comment post edit form
+     *
+     * @param array $data
+     *
+     * @return bool|PostForm
+     */
+    public function getFormReply(array $data = array(), array $options = array())
+    {
+        if (!$this->active()) {
+            return false;
+        }
+
+        return Pi::api('api', 'comment')->getFormReply($data, $options);
+    }
     /**
      * Render post content
      *
