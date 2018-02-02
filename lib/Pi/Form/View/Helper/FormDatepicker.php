@@ -55,14 +55,14 @@ class FormDatepicker extends FormInput
             $bsLoad = array();
         } else {
             $bsLoad = array(
-                'datepicker/datepicker.css',
-                'datepicker/bootstrap-datepicker.js'
+                'datepicker/bootstrap-datepicker.min.css',
+                'datepicker/bootstrap-datepicker.min.js'
             );
         }
         $view->core_datepicker_initialized = true;
         // end fix 
         if (!empty($options['language'])) {
-            $bsLoad[] = sprintf('datepicker/locales/bootstrap-datepicker.%s.js', $options['language']);
+            $bsLoad[] = sprintf('datepicker/locales/bootstrap-datepicker.%s.min.js', $options['language']);
         }
         $view->bootstrap($bsLoad, array(), null, false);
 
