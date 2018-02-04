@@ -211,15 +211,12 @@ CREATE TABLE `{log}` (
   KEY (`uid`)
 );
 
---
--- CGU TABLE
---
-
-CREATE TABLE { CONDITION} (
-`id` INT (11) NOT NULL AUTO_INCREMENT,
-`version` VARCHAR (255) NOT NULL,
-`filename` VARCHAR (255) NOT NULL,
-`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-`active_at` TIMESTAMP NOT NULL,
-PRIMARY KEY (`id`)
-) ENGINE =InnoDB DEFAULT CHARSET =utf8;
+# Condition
+CREATE TABLE `{condition}` (
+  `id`         INT(11)      NOT NULL AUTO_INCREMENT,
+  `version`    VARCHAR(255) NOT NULL,
+  `filename`   VARCHAR(255) NOT NULL,
+  `created_at` TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active_at`  TIMESTAMP    NOT NULL,
+  PRIMARY KEY (`id`)
+);
