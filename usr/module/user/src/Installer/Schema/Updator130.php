@@ -119,13 +119,13 @@ EOT;
             $sql
                     = <<<'EOT'
 CREATE TABLE %s (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `version` varchar(255) NOT NULL,
-  `filename` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `active_at` timestamp NOT NULL,
+  `id`         INT(11)      NOT NULL AUTO_INCREMENT,
+  `version`    VARCHAR(255) NOT NULL,
+  `filename`   VARCHAR(255) NOT NULL,
+  `created_at` TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active_at`  TIMESTAMP    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 EOT;
             $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
