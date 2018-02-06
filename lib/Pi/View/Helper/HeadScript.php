@@ -48,6 +48,15 @@ use Zend\View\Helper\HeadScript as ZendHeadScript;
 class HeadScript extends ZendHeadScript
 {
 
+    protected $optionalAttributes = array(
+        'charset',
+        'crossorigin',
+        'defer',
+        'async',
+        'language',
+        'src',
+    );
+
     /**#@+
      * Added by Taiwen Jiang
      */

@@ -304,9 +304,9 @@ class Block
             /**
              * Form validator JS
              */
-            $view = Pi::service('view');
-            $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/validator.min.js', 'user'));
-            $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-boostrap.init.js', 'user'));
+//            $view = Pi::service('view');
+//            $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/validator.min.js', 'user'));
+//            $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-boostrap.init.js', 'user'));
 
         }
 
