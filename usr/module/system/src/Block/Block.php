@@ -116,11 +116,11 @@ class Block
         } else {
             $uid    = Pi::service('user')->getUser()->get('id');
             $name   = Pi::service('user')->getUser()->get('name');
-            $avatar = Pi::service('user')->getPersist('avatar-small');
+            $avatar = Pi::service('user')->getPersist('avatar-medium');
 
             if (!$avatar) {
-                $avatar = Pi::service('user')->avatar($uid, 'small', ['width' => 16, 'height' => 16]);
-                Pi::service('user')->setPersist('avatar-small', $avatar);
+                $avatar = Pi::service('user')->avatar($uid, 'medium', ['width' => 28, 'height' => 28]);
+                Pi::service('user')->setPersist('avatar-medium', $avatar);
             }
 
             // User module installed
