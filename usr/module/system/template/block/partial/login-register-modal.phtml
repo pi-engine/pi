@@ -6,8 +6,6 @@ $this->js($this->assetModule('front/pwstrength-bootstrap.min.js', 'user'), array
 $this->js($this->assetModule('front/pwstrength-boostrap.init.js', 'user'), array('defer' => 'defer'));
 $this->js($this->assetModule('front/validator.min.js', 'user'), array('defer' => 'defer'));
 
-$this->css($this->assetModule('front/front.css', 'user'));
-
 if (!empty(Pi::user()->config('login_description'))) {
     $descriptionLogin = Pi::user()->config('login_description');
     $titleLogin       = Pi::user()->config('login_modal_title');
