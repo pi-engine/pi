@@ -350,8 +350,8 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url);
-                $this->view->js(pi::url('static/js/maplace.min.js'));
+                $this->view->js($url, array('defer' => 'defer'));
+                $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
                 $this->view->footScript()->appendScript($script);
                 break;
 

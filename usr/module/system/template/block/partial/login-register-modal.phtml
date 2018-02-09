@@ -1,10 +1,10 @@
 <?php
 
 $this->jQuery();
-$this->js($this->assetModule('front/jquery-ui.draggable.min.js', 'user'));
-$this->js($this->assetModule('front/pwstrength-bootstrap.min.js', 'user'));
-
-$this->css($this->assetModule('front/front.css', 'user'));
+$this->js($this->assetModule('front/jquery-ui.draggable.min.js', 'user'), array('defer' => 'defer'));
+$this->js($this->assetModule('front/pwstrength-bootstrap.min.js', 'user'), array('defer' => 'defer'));
+$this->js($this->assetModule('front/pwstrength-boostrap.init.js', 'user'), array('defer' => 'defer'));
+$this->js($this->assetModule('front/validator.min.js', 'user'), array('defer' => 'defer'));
 
 if (!empty(Pi::user()->config('login_description'))) {
     $descriptionLogin = Pi::user()->config('login_description');
@@ -147,7 +147,11 @@ if (Pi::engine()->application()->getResponse()->getStatusCode() == 404) {
         return false;
     });
 
-    $("#loginRegisterModal").draggable({
-        handle: ".modal-header"
+    window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+            $("#loginRegisterModal").draggable({
+                handle: ".modal-header"
+            });
+        })(jQuery);
     });
 </script>

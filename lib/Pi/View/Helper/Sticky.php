@@ -35,34 +35,34 @@ class Sticky extends AbstractHelper
     ) {
 
         $script = <<<'EOT'
-$(document).ready(function(){
-    var affixWrapperHeight = 0;
+        
+        window.addEventListener('DOMContentLoaded', function() {
+            var affixWrapperHeight = 0;
     
-    var affixWrapper = $('#affixWrapper');
-    
-    if(affixWrapper.length > 0){
-        affixWrapper.find('.nav').addClass('forceVisible');
-        var affixWrapperHeight = affixWrapper.height();
-        affixWrapper.find('.nav').removeClass('forceVisible');
-    }
-
-    var Sticky = new hcSticky('#sticky-sidebar', {
-        responsive : true,
-        top: $('#pi-header nav').height() + affixWrapperHeight + 20,
-        stickTo: '#sticky-container',
-        queries: {
-            992: {
-              disable: true
+            var affixWrapper = $('#affixWrapper');
+            
+            if(affixWrapper.length > 0){
+                affixWrapper.find('.nav').addClass('forceVisible');
+                var affixWrapperHeight = affixWrapper.height();
+                affixWrapper.find('.nav').removeClass('forceVisible');
             }
-        }
-    });
-
-    $('#sticky-sidebar div.modal').insertAfter('.wrapper-sticky');
-    
-  });
+        
+            var Sticky = new hcSticky('#sticky-sidebar', {
+                responsive : true,
+                top: $('#pi-header nav').height() + affixWrapperHeight + 20,
+                stickTo: '#sticky-container',
+                queries: {
+                    992: {
+                      disable: true
+                    }
+                }
+            });
+        
+            $('#sticky-sidebar div.modal').insertAfter('.wrapper-sticky');
+        });
 EOT;
 
-        $this->view->js(pi::url('static/vendor/jquery/extension/jquery.hc-sticky.min.js'));
+        $this->view->js(pi::url('static/vendor/jquery/extension/jquery.hc-sticky.min.js'), array('defer' => 'defer'));
         $this->view->footScript()->appendScript($script);
 
         return $this;
