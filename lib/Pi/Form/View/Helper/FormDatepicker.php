@@ -85,9 +85,11 @@ class FormDatepicker extends FormInput
         $id = $id ? '#' . $id : '.datepicker';
         $html .= PHP_EOL . <<<EOT
 <script>
-    $("{$id}").datepicker({
-        {$datapickerOptions}
-    })
+    $(document).ready(function () {
+        $("{$id}").datepicker({
+            {$datapickerOptions}
+        })
+    });
 </script>
 EOT;
 
