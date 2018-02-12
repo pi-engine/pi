@@ -70,8 +70,8 @@ class Form extends FormHelper
                 $style = 'inline';
                 $class = 'form-inline';
                 break;
-            case 'modale':
-                $style = 'modale';
+            case 'modal':
+                $style = 'modal';
                 $class = 'form-horizontal';
                 break;
             case 'popup':
@@ -264,7 +264,7 @@ EOT;
             $vars = array();
 
             switch ($style) {
-                case 'modale':
+                case 'modal':
                     $vars['label_size']     = 'col-sm-3';
                     $vars['element_size']   = 'col-sm-9';
                     $vars['error_size']     = 'col-sm-12';
@@ -435,7 +435,7 @@ EOT;
             
             $cancel = !empty($elements['cancel']) ? $this->view->formElement($elements['cancel']) : '';
             switch ($style) {
-                case 'modale':
+                case 'modal':
                 case 'popup':
                     $waiting = '<img src="' . $this->view->assetTheme('image/wait.gif') . '" class="hide">';
                     $htmlSubmit =<<<EOT
