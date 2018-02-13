@@ -185,8 +185,6 @@ class HeadLink extends ZendHeadLink
             }
         }
 
-//        die('HIT');
-
         $deferString = $indent . implode($this->escape($this->getSeparator()) . $indent, $itemsDefer);
 
         /* @var \Pi\Application\Service\View $view */
