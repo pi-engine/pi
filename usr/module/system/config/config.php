@@ -124,6 +124,23 @@ $config['item'] = [
         'category'    => 'general',
     ],
 
+    'compile_css' => [
+        'title'       => _t('Compile CSS'),
+        'edit'        => 'checkbox',
+        'value'       => 0,
+        'filter'      => 'int',
+        'category'    => 'general',
+    ],
+
+    'compile_js' => [
+        'title'       => _t('Compile JS'),
+        'edit'        => 'checkbox',
+        'value'       => 0,
+        'filter'      => 'int',
+        'category'    => 'general',
+    ],
+
+
     'ga_account' => [
         'title'       => _t('GA account'),
         'description' => _t('Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to the code `UA-XXXXXXXX-X; XXXX.tld`.'),

@@ -115,6 +115,68 @@ class HeadLink extends ZendHeadLink
         $itemsDefer = array();
 
         $this->getContainer()->ksort();
+
+        // Load general config
+        $configGeneral = Pi::config('', 'system', 'general');
+
+        if (Pi::engine()->section() == 'front' && $configGeneral['compile_css']) {
+            $assetsByHash = array();
+            $baseUrl = Pi::url();
+            $basePath = Pi::host()->path(null);
+
+            foreach ($this->getContainer()->getArrayCopy() as $key => $item) {
+                if(!empty($item->rel) && !empty($item->type) && !empty($item->href) && $item->rel == 'stylesheet' && $item->type == 'text/css' && preg_match('#' . $baseUrl . '#', $item->href)){
+                    $parts = parse_url($item->href);
+
+                    $hash = md5($parts['path'] . $parts['query']);
+
+                    $content = file_get_contents($basePath . $parts['path']);
+
+                    $deferHash = !empty($item->defer) && $item->defer == 'defer' ? 'defer' : 'nodefer';
+
+                    $dirName =  dirname($parts['path']);
+
+                    if(preg_match('#url\(#', $content)){
+                        $content = str_replace('url(..', 'url(' . $dirName . '/..', $content);
+                        $content = str_replace('url(\'..', 'url(\'' . $dirName . '/..', $content);
+                    }
+
+                    $assetsByHash[$deferHash][$hash] = $content;
+                    $this->getContainer()->offsetUnset($key);
+                }
+            }
+
+            if($assetsByHash){
+                foreach($assetsByHash as $defer => $assetsByHashDefer){
+                    $finalHash = md5(implode('', array_keys($assetsByHashDefer)));
+                    $compiledCssDirPath = Pi::host()->path('asset/compiled/css');
+                    $compiledCssDirUrl = Pi::url('asset/compiled/css');
+                    $compiledCssFilePath = $compiledCssDirPath . DIRECTORY_SEPARATOR . $finalHash . '.css';
+                    $compiledCssFileUrl = $compiledCssDirUrl . DIRECTORY_SEPARATOR . $finalHash . '.css';
+
+                    if(!is_dir($compiledCssDirPath)){
+                        mkdir($compiledCssDirPath, 0777, true);
+                    }
+
+                    if(!file_exists($compiledCssFilePath)){
+                        file_put_contents($compiledCssFilePath, implode("\n\n\n", $assetsByHashDefer));
+                    }
+
+                    $cssObject = new stdClass();
+
+                    $cssObject->href = $compiledCssFileUrl;
+                    $cssObject->rel = 'stylesheet';
+                    $cssObject->media = 'screen';
+
+                    if($defer == 'defer'){
+                        $cssObject->defer = 'defer';
+                    }
+
+                    $this->getContainer()->append($cssObject);
+                }
+            }
+        }
+
         foreach ($this as $item) {
             if(isset($item->defer)){
                 $itemsDefer[] = $this->itemToString($item);
@@ -122,6 +184,8 @@ class HeadLink extends ZendHeadLink
                 $items[] = $this->itemToString($item);
             }
         }
+
+//        die('HIT');
 
         $deferString = $indent . implode($this->escape($this->getSeparator()) . $indent, $itemsDefer);
 
