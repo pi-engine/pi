@@ -107,6 +107,49 @@ class HeadLink extends ZendHeadLink
             }
         }
 
-        return parent::toString($indent);
+        $indent = (null !== $indent)
+            ? $this->getWhitespace($indent)
+            : $this->getIndent();
+
+        $items = array();
+        $itemsDefer = array();
+
+        $this->getContainer()->ksort();
+        foreach ($this as $item) {
+            if(isset($item->defer)){
+                $itemsDefer[] = $this->itemToString($item);
+            } else {
+                $items[] = $this->itemToString($item);
+            }
+        }
+
+        $deferString = $indent . implode($this->escape($this->getSeparator()) . $indent, $itemsDefer);
+
+        /* @var \Pi\Application\Service\View $view */
+        $view = Pi::service('view');
+
+        $deferCssHtml = <<<HTML
+
+<noscript id="deferred-css">
+    $deferString
+</noscript>
+<script>
+    var loadDeferredCss = function() {
+        var addStylesNode = document.getElementById("deferred-css");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+    };
+    var rafCss = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    if (rafCss) rafCss(function() { window.setTimeout(loadDeferredCss, 0); });
+    else window.addEventListener('load', loadDeferredCss);
+</script>
+HTML;
+        $view->getHelper('footScript')->addHtml($deferCssHtml);
+
+
+        return $indent . implode($this->escape($this->getSeparator()) . $indent, $items);
     }
 }
