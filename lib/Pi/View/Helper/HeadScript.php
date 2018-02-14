@@ -183,7 +183,7 @@ class HeadScript extends ZendHeadScript
                         $jsObject->attributes['defer'] = 'defer';
                     }
 
-                    $this->getContainer()->append($jsObject);
+                    $this->getContainer()->prepend($jsObject);
                 }
             }
         }
