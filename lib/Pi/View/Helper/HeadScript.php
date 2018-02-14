@@ -152,7 +152,7 @@ class HeadScript extends ZendHeadScript
 
                     $deferHash = !empty($item->attributes['defer']) && $item->attributes['defer'] == 'defer' ? 'defer' : 'nodefer';
 
-                    $assetsByHash[$deferHash][$hash] = $content;
+                    $assetsByHash[$deferHash][$hash] = $content . ";"; // add semicolon for keeping conflicts / wrong syntax for next script
                     $this->getContainer()->offsetUnset($key);
                 }
             }
