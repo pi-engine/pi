@@ -152,7 +152,7 @@ class HeadLink extends ZendHeadLink
 
                     $hash = md5($parts['path'] . $parts['query']);
 
-                    $content = file_get_contents($basePath . $parts['path']);
+                    $content = file_get_contents($basePath . str_replace($baseUrl, '', strtok($item->href, '?')));
 
                     $deferHash = !empty($item->defer) && $item->defer == 'defer' ? 'defer' : 'nodefer';
 

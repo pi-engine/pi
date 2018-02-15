@@ -133,7 +133,6 @@ class HeadScript extends ZendHeadScript
         $configGeneral = Pi::config('', 'system', 'general');
 
         if (Pi::engine()->section() == 'front' && $configGeneral['compile_js']) {
-//            die();
             $assetsByHash = array();
             $baseUrl = Pi::url();
             $basePath = Pi::host()->path(null);
@@ -148,7 +147,7 @@ class HeadScript extends ZendHeadScript
 
                     $hash = md5($parts['path'] . $parts['query']);
 
-                    $content = file_get_contents($basePath . $parts['path']);
+                    $content = file_get_contents($basePath . str_replace($baseUrl, '', strtok($item->attributes['src'], '?')));
 
                     $deferHash = !empty($item->attributes['defer']) && $item->attributes['defer'] == 'defer' ? 'defer' : 'nodefer';
 
