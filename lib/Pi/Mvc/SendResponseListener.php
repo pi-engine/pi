@@ -56,6 +56,23 @@ class SendResponseListener extends ZendSendResponseListener
         $minifier = new TinyHtmlMinifier(array());
         $content = $minifier->minify($content);
 
+
+        $search = array(
+            '/\>[^\S ]+/s',         //strip whitespaces after tags, except space
+            '/[^\S ]+\</s',         //strip whitespaces before tags, except space
+            '/(\s)+/s',             // shorten multiple whitespace sequences
+//            '/<!--(.|\s)*?-->/',    //strip HTML comments
+            '#(?://)?<!\[CDATA\[(.*?)(?://)?\]\]>#s', //leave CDATA alone
+        );
+        $replace = array(
+            '>',
+            '<',
+            '\\1',
+//            '',
+            "//<![CDATA[\n".'\1'."\n//]]>",
+        );
+        $content = preg_replace($search, $replace, $content);
+
         return $content;
     }
 }
