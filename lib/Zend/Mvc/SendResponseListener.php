@@ -91,22 +91,6 @@ class SendResponseListener extends AbstractListenerAggregate implements
         }
         $event = $this->getEvent();
 
-        // Load general config
-        $configGeneral = \Pi::config('', 'system', 'general');
-
-        /** @var PhpEnvironmentResponse $response  */
-
-        if ($response instanceof PhpEnvironmentResponse && $response->getHeaders()->has('content-type') && \Pi::engine()->section() == 'front' && $configGeneral['minify_html_output']) {
-            /** @var \Zend\Http\Header\ContentType $mediaType  */
-            $mediaType = $response->getHeaders()->get('content-type');
-
-            if($mediaType->getMediaType() == 'text/html'){
-                $content = $response->getContent();
-                $content = preg_replace(array("/[[:blank:]]+/"),array(' '),str_replace(array("\n","\r","\t"),'',$content));
-                $response->setContent($content);
-            }
-        }
-
         $event->setResponse($response);
         $event->setTarget($this);
         $this->getEventManager()->trigger($event);
