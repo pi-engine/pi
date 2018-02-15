@@ -45,9 +45,14 @@ class SendResponseListener extends ZendSendResponseListener
         $configGeneral = \Pi::config('', 'system', 'general');
 
         /** @var PhpEnvironmentResponse $response  */
-
         if ($response instanceof PhpEnvironmentResponse && $response->getHeaders()->has('content-type') && \Pi::engine()->section() == 'front' && $configGeneral['minify_html_output']) {
-            $response->setContent($this->_compress($response->getBody()));
+
+            /**
+             * Only public pages
+             */
+            if(!\Pi::user()->getId()){
+                $response->setContent($this->_compress($response->getBody()));
+            }
         }
     }
 
