@@ -10,6 +10,7 @@
 namespace Pi\Mvc;
 
 use Pi\Mvc\ResponseSender\PhpEnvironmentResponseSender;
+use TinyHtmlMinifier\TinyHtmlMinifier;
 use Zend\Mvc\SendResponseListener as ZendSendResponseListener;
 use Zend\Mvc\ResponseSender\ConsoleResponseSender;
 use Zend\Mvc\ResponseSender\SendResponseEvent;
@@ -32,23 +33,13 @@ class SendResponseListener extends ZendSendResponseListener
         $events->attach(SendResponseEvent::EVENT_SEND_RESPONSE, new ConsoleResponseSender(), -2000);
         $events->attach(SendResponseEvent::EVENT_SEND_RESPONSE, new SimpleStreamResponseSender(), -3000);
         $events->attach(SendResponseEvent::EVENT_SEND_RESPONSE, new HttpResponseSender(), -4000);
+        $events->attach(SendResponseEvent::EVENT_SEND_RESPONSE, array($this, 'outputCompress'), 100);
     }
 
 
-
-    /**
-     * Send the response
-     *
-     * @param  MvcEvent $e
-     * @return void
-     */
-    public function sendResponse(MvcEvent $e)
+    public function outputCompress($e)
     {
         $response = $e->getResponse();
-        if (!$response instanceof Response) {
-            return; // there is no response to send
-        }
-        $event = $this->getEvent();
 
         // Load general config
         $configGeneral = \Pi::config('', 'system', 'general');
@@ -56,18 +47,15 @@ class SendResponseListener extends ZendSendResponseListener
         /** @var PhpEnvironmentResponse $response  */
 
         if ($response instanceof PhpEnvironmentResponse && $response->getHeaders()->has('content-type') && \Pi::engine()->section() == 'front' && $configGeneral['minify_html_output']) {
-            /** @var \Zend\Http\Header\ContentType $mediaType  */
-            $mediaType = $response->getHeaders()->get('content-type');
-
-            if($mediaType->getMediaType() == 'text/html'){
-                $content = $response->getContent();
-                $content = preg_replace(array("/[[:blank:]]+/"),array(' '),str_replace(array("\n","\r","\t"),'',$content));
-                $response->setContent($content);
-            }
+            $response->setContent($this->_compress($response->getBody()));
         }
+    }
 
-        $event->setResponse($response);
-        $event->setTarget($this);
-        $this->getEventManager()->trigger($event);
+    private function _compress($content)
+    {
+        $minifier = new TinyHtmlMinifier(array());
+        $content = $minifier->minify($content);
+
+        return $content;
     }
 }
