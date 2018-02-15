@@ -140,6 +140,14 @@ $config['item'] = [
         'category'    => 'general',
     ],
 
+    'minify_html_output' => [
+        'title'       => _t('Minify HTML output'),
+        'edit'        => 'checkbox',
+        'value'       => 0,
+        'filter'      => 'int',
+        'category'    => 'general',
+    ],
+
 
     'ga_account' => [
         'title'       => _t('GA account'),
