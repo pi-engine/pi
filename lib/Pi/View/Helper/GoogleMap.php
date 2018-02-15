@@ -166,7 +166,7 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url);
+                $this->view->js($url, array('defer' => 'defer'));
                 $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
                 $this->view->footScript()->appendScript($script);
                 break;
@@ -225,7 +225,7 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url);
+                $this->view->js($url, array('defer' => 'defer'));
                 $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
                 $this->view->footScript()->appendScript($script);
                 break;
@@ -293,7 +293,7 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url);
+                $this->view->js($url, array('defer' => 'defer'));
                 $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
                 $this->view->footScript()->appendScript($script);
                 break;
@@ -405,7 +405,7 @@ EOT;
 
                 // Load script
                 $this->view->footScript()->appendScript($script);
-                $this->view->footScript()->appendFile($url);
+                $this->view->js($url, array('defer' => 'defer'));
                 break;
         }
 
