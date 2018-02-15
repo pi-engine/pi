@@ -159,8 +159,8 @@ class HeadLink extends ZendHeadLink
                     $dirName =  dirname($parts['path']);
 
                     if(preg_match('#url\(#', $content)){
-                        $content = str_replace('url(..', 'url(' . $dirName . '/..', $content);
-                        $content = str_replace('url(\'..', 'url(\'' . $dirName . '/..', $content);
+                        $content = str_replace('url(\'.', 'url(\'' . $dirName . '/.', $content);
+                        $content = str_replace('url(.', 'url(' . $dirName . '/.', $content);
                     }
 
                     $assetsByHash[$deferHash][$hash] = $content;
