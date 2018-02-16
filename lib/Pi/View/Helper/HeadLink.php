@@ -199,8 +199,12 @@ class HeadLink extends ZendHeadLink
             }
         }
 
+        $isUserSection = new IsUserSection();
+        $module = Pi::service('module')->current();
+        $isUserSectionValue = $isUserSection->__invoke($module);
+
         foreach ($this as $item) {
-            if(isset($item->defer)){
+            if(!$isUserSectionValue && isset($item->defer)){
 
                 $itemsDeferNoScript[] = $this->itemToString($item);
 
