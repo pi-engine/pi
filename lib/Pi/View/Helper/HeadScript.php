@@ -133,58 +133,65 @@ class HeadScript extends ZendHeadScript
         $configGeneral = Pi::config('', 'system', 'general');
 
         if (Pi::engine()->section() == 'front' && $configGeneral['compile_js']) {
-            $assetsByHash = array();
-            $baseUrl = Pi::url();
-            $basePath = Pi::host()->path(null);
+            $isUserSection = new IsUserSection();
+            $module = Pi::service('module')->current();
+            $isUserSectionValue = $isUserSection->__invoke($module);
 
-            foreach ($this->getContainer()->getArrayCopy() as $key => $item) {
-                if(!empty($item->type) && !empty($item->attributes['src']) && $item->type == 'text/javascript' && preg_match('#' . $baseUrl . '#', $item->attributes['src'])){
-                    $parts = parse_url($item->attributes['src']);
+            if(!$isUserSectionValue){
+                $assetsByHash = array();
+                $baseUrl = Pi::url();
+                $basePath = Pi::host()->path(null);
 
-                    if(empty($parts['query'])){
-                        $parts['query'] = '';
+                foreach ($this->getContainer()->getArrayCopy() as $key => $item) {
+                    if(!empty($item->type) && !empty($item->attributes['src']) && $item->type == 'text/javascript' && preg_match('#' . $baseUrl . '#', $item->attributes['src'])){
+                        $parts = parse_url($item->attributes['src']);
+
+                        if(empty($parts['query'])){
+                            $parts['query'] = '';
+                        }
+
+                        $hash = md5($parts['path'] . $parts['query']);
+
+                        $content = file_get_contents($basePath . str_replace($baseUrl, '', strtok($item->attributes['src'], '?')));
+
+                        $deferHash = !empty($item->attributes['defer']) && $item->attributes['defer'] == 'defer' ? 'defer' : 'nodefer';
+
+                        $assetsByHash[$deferHash][$hash] = $content . ";"; // add semicolon for keeping conflicts / wrong syntax for next script
+                        $this->getContainer()->offsetUnset($key);
                     }
+                }
 
-                    $hash = md5($parts['path'] . $parts['query']);
+                if($assetsByHash){
+                    foreach($assetsByHash as $defer => $assetsByHashDefer){
+                        $finalHash = md5(implode('', array_keys($assetsByHashDefer)));
+                        $compiledJsDirPath = Pi::host()->path('asset/compiled/js');
+                        $compiledJsDirUrl = Pi::url('asset/compiled/js');
+                        $compiledJsFilePath = $compiledJsDirPath . DIRECTORY_SEPARATOR . $finalHash . '.js';
+                        $compiledJsFileUrl = $compiledJsDirUrl . DIRECTORY_SEPARATOR . $finalHash . '.js';
 
-                    $content = file_get_contents($basePath . str_replace($baseUrl, '', strtok($item->attributes['src'], '?')));
+                        if(!is_dir($compiledJsDirPath)){
+                            mkdir($compiledJsDirPath, 0777, true);
+                        }
 
-                    $deferHash = !empty($item->attributes['defer']) && $item->attributes['defer'] == 'defer' ? 'defer' : 'nodefer';
+                        if(!file_exists($compiledJsFilePath)){
+                            file_put_contents($compiledJsFilePath, implode("\n\n\n", $assetsByHashDefer));
+                        }
 
-                    $assetsByHash[$deferHash][$hash] = $content . ";"; // add semicolon for keeping conflicts / wrong syntax for next script
-                    $this->getContainer()->offsetUnset($key);
+                        $jsObject = new \stdClass();
+                        $jsObject->type = 'text/javascript';
+                        $jsObject->attributes['ext'] = 'js';
+                        $jsObject->attributes['src'] = $compiledJsFileUrl;
+
+                        if($defer == 'defer'){
+
+                            $jsObject->attributes['defer'] = 'defer';
+                        }
+
+                        $this->getContainer()->prepend($jsObject);
+                    }
                 }
             }
 
-            if($assetsByHash){
-                foreach($assetsByHash as $defer => $assetsByHashDefer){
-                    $finalHash = md5(implode('', array_keys($assetsByHashDefer)));
-                    $compiledJsDirPath = Pi::host()->path('asset/compiled/js');
-                    $compiledJsDirUrl = Pi::url('asset/compiled/js');
-                    $compiledJsFilePath = $compiledJsDirPath . DIRECTORY_SEPARATOR . $finalHash . '.js';
-                    $compiledJsFileUrl = $compiledJsDirUrl . DIRECTORY_SEPARATOR . $finalHash . '.js';
-
-                    if(!is_dir($compiledJsDirPath)){
-                        mkdir($compiledJsDirPath, 0777, true);
-                    }
-
-                    if(!file_exists($compiledJsFilePath)){
-                        file_put_contents($compiledJsFilePath, implode("\n\n\n", $assetsByHashDefer));
-                    }
-
-                    $jsObject = new \stdClass();
-                    $jsObject->type = 'text/javascript';
-                    $jsObject->attributes['ext'] = 'js';
-                    $jsObject->attributes['src'] = $compiledJsFileUrl;
-
-                    if($defer == 'defer'){
-
-                        $jsObject->attributes['defer'] = 'defer';
-                    }
-
-                    $this->getContainer()->prepend($jsObject);
-                }
-            }
         }
 
 
