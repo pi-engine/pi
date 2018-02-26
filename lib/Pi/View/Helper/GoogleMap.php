@@ -384,6 +384,10 @@ function initialize() {
         draggable:true,
         title: "%s"
     });
+    
+    $(window).on('load', function(){
+        google.maps.event.trigger(map, 'resize');
+    });
 }
 EOT;
                 // Set item info on script
