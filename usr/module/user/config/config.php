@@ -655,6 +655,22 @@ $config = [
         'filter' => 'number_int',
         'value' => 15,
     ],
+    'reminder_user' => [
+        'category' => 'cron',
+        'title' => _a('Reminder user'),
+        'description' => 'Send email to reminder user',
+        'edit' => 'checkbox',
+        'filter' => 'number_int',
+        'value' => 1,
+    ],
+    'reminder_user_days' => [
+        'category' => 'cron',
+        'title' => _a('Reminder user days'),
+        'description' => 'Send email to reminder user after X days',
+        'edit' => 'text',
+        'filter' => 'number_int',
+        'value' => 3,
+    ],
 ];
 
 return [

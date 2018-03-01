@@ -26,4 +26,14 @@ class CronController extends ActionController
             'message' => "Clean session Ok",
         );
     }
+
+    public function sendReminderAction()
+    {
+        Pi::api('user', 'user')->sendReminderEmail();
+
+        $this->response->setStatusCode(200);
+        return array(
+            'message' => "Send reminder OK",
+        );
+    }
 }
