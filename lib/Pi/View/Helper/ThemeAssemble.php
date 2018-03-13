@@ -284,6 +284,7 @@ class ThemeAssemble extends AbstractHelper
             foreach ([
                          'headTitle',
                          'headMeta',
+                         'headStyleCritical',
                          'headLink',
                          'headStyle',
                          'headScript',

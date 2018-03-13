@@ -6,10 +6,10 @@ if (false !== strpos('-', $locale)) {
     $list   = explode('-', $locale, 2);
     $locale = $list[0] . '-' . strtoupper($list[1]);
 }
-$datepickerLocale = sprintf('datepicker/locales/bootstrap-datepicker.%s.js', $locale);
-$this->bootstrap([
-    'datepicker/datepicker.css',
-    'datepicker/bootstrap-datepicker.js',
+$datepickerLocale = sprintf('datepicker/locales/bootstrap-datepicker.%s.min.js', $locale);
+$this->bootstrap(array(
+    'datepicker/bootstrap-datepicker.min.css',
+    'datepicker/bootstrap-datepicker.min.js',
     $datepickerLocale,
     'js/bootstrap-typeahead.js',
 ]);

@@ -492,6 +492,7 @@ class Input implements
     {
         $notEmpty = new NotEmpty();
         $templates = $notEmpty->getOption('messageTemplates');
+
         return array(
             NotEmpty::IS_EMPTY => $templates[NotEmpty::IS_EMPTY],
         );

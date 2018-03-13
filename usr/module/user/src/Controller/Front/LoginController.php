@@ -38,7 +38,7 @@ class LoginController extends ActionController
      */
     protected function getForm(array $config)
     {
-        $form = new LoginForm('login', $config);
+        $form = new LoginForm('login_page', $config);
         $form->setAttribute(
             'action',
             $this->url('', ['controller' => 'login', 'action' => 'process'])

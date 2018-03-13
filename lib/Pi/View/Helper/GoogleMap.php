@@ -167,8 +167,8 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url);
-                $this->view->js(pi::url('static/js/maplace.min.js'));
+                $this->view->js($url, array('defer' => 'defer'));
+                $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
                 $this->view->footScript()->appendScript($script);
                 break;
 
@@ -227,8 +227,8 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url);
-                $this->view->js(pi::url('static/js/maplace.min.js'));
+                $this->view->js($url, array('defer' => 'defer'));
+                $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
                 $this->view->footScript()->appendScript($script);
                 break;
 
@@ -296,8 +296,8 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url);
-                $this->view->js(pi::url('static/js/maplace.min.js'));
+                $this->view->js($url, array('defer' => 'defer'));
+                $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
                 $this->view->footScript()->appendScript($script);
                 break;
 
@@ -354,8 +354,8 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url);
-                $this->view->js(pi::url('static/js/maplace.min.js'));
+                $this->view->js($url, array('defer' => 'defer'));
+                $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
                 $this->view->footScript()->appendScript($script);
                 break;
 
@@ -389,6 +389,10 @@ function initialize() {
         draggable:true,
         title: "%s"
     });
+    
+    $(window).on('load', function(){
+        google.maps.event.trigger(map, 'resize');
+    });
 }
 EOT;
                 // Set item info on script
@@ -410,7 +414,7 @@ EOT;
 
                 // Load script
                 $this->view->footScript()->appendScript($script);
-                $this->view->footScript()->appendFile($url);
+                $this->view->js($url, array('defer' => 'defer'));
                 break;
         }
 

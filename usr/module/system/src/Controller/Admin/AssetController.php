@@ -94,6 +94,10 @@ class AssetController extends ActionController
         }
         clearstatcache();
 
+        $compiledFilesPath = Pi::host()->path('asset/compiled');
+
+
+
         if (!$result) {
             if (!empty($errors['publish']) && !empty($errors['remove'])) {
                 $message = $this->renderMessage(
@@ -181,6 +185,17 @@ class AssetController extends ActionController
             }
         }
         clearstatcache();
+
+        /**
+         * Remove compiled files
+         */
+        $compiledDir = Pi::host()->path('asset/compiled');
+        $files = glob($compiledDir . '/**/*'); // get all file names
+        foreach($files as $file){ // iterate files
+            if(is_file($file)){
+                unlink($file); // delete file
+            }
+        }
 
         if (!$result) {
             $message = $this->renderMessage(
