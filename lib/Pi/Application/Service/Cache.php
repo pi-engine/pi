@@ -376,4 +376,22 @@ class Cache extends AbstractService
             clearstatcache(true);
         }
     }
+
+
+    /**
+     * Flush cache from url and namespace
+     * Url without domain
+     * @param $url
+     * @param $namespace
+     */
+    public function flushCacheByUrl($url, $namespace)
+    {
+        $url = parse_url($url, PHP_URL_PATH);
+        $key = md5($url);
+
+        $this->removeItem(
+            Pi::config('theme') . '_page_' . $key,
+            array('namespace' => $namespace)
+        );
+    }
 }
