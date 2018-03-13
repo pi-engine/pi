@@ -1345,7 +1345,7 @@ class User extends AbstractUseApi
         $config = Pi::service('registry')->config->read($this->getModule());
 
         // Check cron active for this module
-        if ($config['reminder_user']) {
+        if ($config['reminder_user_days']) {
 
             // Set log
             Pi::service('audit')->log('cron', 'user - reminder start');
@@ -1390,6 +1390,10 @@ class User extends AbstractUseApi
 
             // Set log
             Pi::service('audit')->log('cron', 'user - reminder end');
+
+            return true;
+        } else {
+            return false;
         }
     }
 }

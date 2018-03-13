@@ -29,11 +29,17 @@ class CronController extends ActionController
 
     public function sendReminderAction()
     {
-        Pi::api('user', 'user')->sendReminderEmail();
+        $result = Pi::api('user', 'user')->sendReminderEmail();
 
         $this->response->setStatusCode(200);
-        return array(
-            'message' => "Send reminder OK",
-        );
+        if($result){
+            return array(
+                'message' => "Send reminder OK",
+            );
+        } else {
+            return array(
+                'message' => "Send reminder disabled",
+            );
+        }
     }
 }
