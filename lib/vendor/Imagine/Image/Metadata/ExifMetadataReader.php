@@ -36,6 +36,14 @@ class ExifMetadataReader extends AbstractMetadataReader
      */
     protected function extractFromFile($file)
     {
+        if (stream_is_local($file)) {
+            if (false === is_readable($file)) {
+                throw new InvalidArgumentException(sprintf('File %s is not readable.', $file));
+            }
+
+            return $this->extract($file);
+        }
+
         if (false === $data = @file_get_contents($file)) {
             throw new InvalidArgumentException(sprintf('File %s is not readable.', $file));
         }
@@ -56,13 +64,6 @@ class ExifMetadataReader extends AbstractMetadataReader
      */
     protected function extractFromStream($resource)
     {
-        if (0 < ftell($resource)) {
-            $metadata = stream_get_meta_data($resource);
-            if ($metadata['seekable']) {
-                rewind($resource);
-            }
-        }
-
         return $this->doReadData(stream_get_contents($resource));
     }
 

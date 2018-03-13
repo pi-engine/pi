@@ -84,36 +84,44 @@ class Comment extends AbstractService
             $review = $params['review'];
         }
 
-        if (0 && 'js' == $type) {
-            $callback = Pi::service('url')->assemble('comment', [
-                'module'     => 'comment',
-                'controller' => 'index',
-                'action'     => 'load',
-                'review'     => $review,
-            ]);
-            $content
-                      = <<<EOT
-            <a id="pi-comment-lead-anchor" style="display: block;
+        $ajaxLoad = Pi::config('ajax_load', 'comment');
+
+        if ($ajaxLoad) {
+            $callback = Pi::service('url')->assemble('comment', array(
+                'module'        => 'comment',
+                'controller'    => 'index',
+                'action'        => 'load',
+                'review'        => $review,
+                'caller'        => Pi::service('module')->current(),
+                'owner'         => isset($params['owner']) ? $params['owner'] : null 
+            ));
+            $rand = rand();
+            $content =<<<EOT
+            <a id="pi-comment-lead-anchor-$rand" style="display: block;
     position: relative;
     top: -100px;
     visibility: hidden;"></a>
-<div class="pi-comment-lead" class="hidden"></div>
+<div class="hidden pi-comment-lead-$rand"></div>
 <script>
-    $.getJSON("{$callback}", {
-        uri: $(location).attr('href'),
-        time: new Date().getTime()
-    })
-    .done(function (data) {
-        if (data.content) {
-            var el = $('.pi-comment-lead');
-            el.attr('class','show').html(data.content);
-        }
+    $( document ).ready(function() {
+
+        $.getJSON("{$callback}", {
+            uri: $(location).attr('href'),
+            time: new Date().getTime()
+        })
+        .done(function (data) {
+            if (data.content) {
+                var el = $('.pi-comment-lead-$rand');
+                el.attr('class','show pi-comment-lead').html(data.content);
+            }
+        });
     });
+    
 </script>
 EOT;
         } else {
             $params['uri'] = $_SERVER['REQUEST_URI'];
-
+            $params['caller'] = Pi::service('module')->current();
             $content = $this->loadContent($params);
             $content = '<div class="pi-comment-lead">' . $content . '</div>';
         }
@@ -139,11 +147,11 @@ EOT;
             $params     = (array)$params;
             $uri        = $params['uri'];
             $routeMatch = Pi::service('url')->match($uri);
-            $review     = isset($params['review']) ? $params['review'] : false;
         }
-
-        $params  = array_replace($params, $routeMatch->getParams());
-        $options = [
+                $params = array_replace($params, $routeMatch->getParams());
+        
+        $review = isset($params['review']) ? $params['review'] : false;
+        $options = array(
             'review' => $review,
             'page'   => isset($params['page']) ? $params['page'] : 1,
 
@@ -155,13 +163,15 @@ EOT;
         $data['uri']    = isset($params['uri'])
             ? $params['uri']
             : Pi::service('url')->getRequestUri();
-        $data['uid']    = Pi::user()->getId();
-        $data['review'] = isset($params['review']) ? $params['review'] : false;
-        $data['owner']  = isset($params['owner']) ? $params['owner'] : false;
-        $data['admin']  = Pi::service('permission')->isAdmin('comment', $data['uid']);
-        $data['page']   = isset($params['page']) ? $params['page'] : 1;
-        $template       = 'comment:front/comment-lead';
-        $result         = Pi::service('view')->render($template, $data);
+        $data['uid'] = Pi::user()->getId();
+        
+        $data['review'] = $review;        
+        $data['owner'] = isset($params['owner']) ? $params['owner'] : false;
+        $data['admin'] =  Pi::service('permission')->isAdmin('comment', $data['uid']);
+        $data['page'] = isset($params['page']) ? $params['page'] : 1;
+        $data['caller'] = isset($params['caller']) ? $params['caller'] : null;
+        $template = 'comment:front/comment-lead';
+        $result = Pi::service('view')->render($template, $data);
 
         return $result;
     }
@@ -239,6 +249,21 @@ EOT;
         return Pi::api('api', 'comment')->getForm($data, $options);
     }
 
+    /**
+     * Get comment post edit form
+     *
+     * @param array $data
+     *
+     * @return bool|PostForm
+     */
+    public function getFormReply(array $data = array(), array $options = array())
+    {
+        if (!$this->active()) {
+            return false;
+        }
+
+        return Pi::api('api', 'comment')->getFormReply($data, $options);
+    }
     /**
      * Render post content
      *

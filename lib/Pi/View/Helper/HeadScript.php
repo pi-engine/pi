@@ -47,6 +47,15 @@ use Zend\View\Helper\HeadScript as ZendHeadScript;
 class HeadScript extends ZendHeadScript
 {
 
+    protected $optionalAttributes = array(
+        'charset',
+        'crossorigin',
+        'defer',
+        'async',
+        'language',
+        'src',
+    );
+
     /**#@+
      * Added by Taiwen Jiang
      */
@@ -94,4 +103,105 @@ class HeadScript extends ZendHeadScript
         $this->captureEnd();
     }
     /**#@-*/
+
+    /**
+     * Retrieve string representation
+     *
+     * @param  string|int $indent Amount of whitespaces or string to use for indention
+     * @return string
+     */
+    public function toString($indent = null)
+    {
+        $indent = (null !== $indent)
+            ? $this->getWhitespace($indent)
+            : $this->getIndent();
+
+        if ($this->view) {
+            $useCdata = $this->view->plugin('doctype')->isXhtml();
+        } else {
+            $useCdata = $this->useCdata;
+        }
+
+        $escapeStart = ($useCdata) ? '//<![CDATA[' : '//<!--';
+        $escapeEnd   = ($useCdata) ? '//]]>' : '//-->';
+
+        $items = array();
+        $this->getContainer()->ksort();
+
+        // Load general config
+        $configGeneral = Pi::config('', 'system', 'general');
+
+        if (Pi::engine()->section() == 'front' && $configGeneral['compile_js']) {
+            $isUserSection = new IsUserSection();
+            $module = Pi::service('module')->current();
+            $isUserSectionValue = $isUserSection->__invoke($module);
+
+            if(!$isUserSectionValue){
+                $assetsByHash = array();
+                $baseUrl = Pi::url();
+                $basePath = Pi::host()->path(null);
+
+                foreach ($this->getContainer()->getArrayCopy() as $key => $item) {
+                    if(!empty($item->type) && !empty($item->attributes['src']) && $item->type == 'text/javascript' && preg_match('#' . $baseUrl . '#', $item->attributes['src'])){
+                        $parts = parse_url($item->attributes['src']);
+
+                        if(empty($parts['query'])){
+                            $parts['query'] = '';
+                        }
+
+                        $hash = md5($parts['path'] . $parts['query']);
+
+                        $content = file_get_contents($basePath . str_replace($baseUrl, '', strtok($item->attributes['src'], '?')));
+
+                        $deferHash = !empty($item->attributes['defer']) && $item->attributes['defer'] == 'defer' ? 'defer' : 'nodefer';
+
+                        $assetsByHash[$deferHash][$hash] = $content . ";"; // add semicolon for keeping conflicts / wrong syntax for next script
+                        $this->getContainer()->offsetUnset($key);
+                    }
+                }
+
+                if($assetsByHash){
+                    foreach($assetsByHash as $defer => $assetsByHashDefer){
+                        $finalHash = md5(implode('', array_keys($assetsByHashDefer)));
+                        $compiledJsDirPath = Pi::host()->path('asset/compiled/js');
+                        $compiledJsDirUrl = Pi::url('asset/compiled/js');
+                        $compiledJsFilePath = $compiledJsDirPath . DIRECTORY_SEPARATOR . $finalHash . '.js';
+                        $compiledJsFileUrl = $compiledJsDirUrl . DIRECTORY_SEPARATOR . $finalHash . '.js';
+
+                        if(!is_dir($compiledJsDirPath)){
+                            mkdir($compiledJsDirPath, 0777, true);
+                        }
+
+                        if(!file_exists($compiledJsFilePath)){
+                            file_put_contents($compiledJsFilePath, implode("\n\n\n", $assetsByHashDefer));
+                        }
+
+                        $jsObject = new \stdClass();
+                        $jsObject->type = 'text/javascript';
+                        $jsObject->attributes['ext'] = 'js';
+                        $jsObject->attributes['src'] = $compiledJsFileUrl;
+
+                        if($defer == 'defer'){
+
+                            $jsObject->attributes['defer'] = 'defer';
+                        }
+
+                        $this->getContainer()->prepend($jsObject);
+                    }
+                }
+            }
+
+        }
+
+
+        foreach ($this as $item) {
+            if (!$this->isValid($item)) {
+                continue;
+            }
+
+            $items[] = $this->itemToString($item, $indent, $escapeStart, $escapeEnd);
+        }
+
+        return implode($this->getSeparator(), $items);
+    }
 }

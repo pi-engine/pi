@@ -3,9 +3,23 @@ $this->css($this->assetModule('admin/admin.css'));
 $this->jQuery([
     'ui/jquery-ui.min.js',
     'extension/fileupload-min.js',
-    'extension/jquery.magnific-popup.min.js',
-    'extension/magnific-popup.css',
-]);
+));
+
+$script = <<<'EOT'
+window.addEventListener('DOMContentLoaded', function() {
+    $('.image-popup').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        image: {
+            verticalFit: false
+        }
+    });
+});
+EOT;
+$this->jQuery(array('extension/jquery.magnific-popup.min.js' => array('defer' => 'defer')));
+$this->jQuery('extension/magnific-popup.min.css');
+$this->footScript()->appendScript($script);
+
 $this->Backbone();
 
 echo $this->form($form);
@@ -50,18 +64,9 @@ echo $this->form($form);
 </script>
 <script src="<?php echo $this->assetModule('admin/widget-media.js'); ?>"></script>
 <script>
-    widgetAction({
-        prefix: "block-",
-        uploadUrl: '<?php echo $this->url('', ['action' => 'upload']); ?>',
-        items: <?php echo $content ?: json_encode([]); ?>
-    });
-    $(document).ready(function () {
-        $('.image-popup').magnificPopup({
-            type: 'image',
-            closeOnContentClick: true,
-            image: {
-                verticalFit: false
-            }
-        });
-    });
+widgetAction({
+    prefix: "block-",
+    uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>',
+    items: <?php echo $content ?: json_encode(array()); ?>
+});
 </script>

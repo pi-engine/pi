@@ -19,6 +19,7 @@ use Zend\Mvc\ResponseSender\PhpEnvironmentResponseSender;
 use Zend\Mvc\ResponseSender\SendResponseEvent;
 use Zend\Mvc\ResponseSender\SimpleStreamResponseSender;
 use Zend\Stdlib\ResponseInterface as Response;
+use Zend\Http\PhpEnvironment\Response as PhpEnvironmentResponse;
 
 class SendResponseListener extends AbstractListenerAggregate implements
     EventManagerAwareInterface
@@ -89,6 +90,7 @@ class SendResponseListener extends AbstractListenerAggregate implements
             return; // there is no response to send
         }
         $event = $this->getEvent();
+
         $event->setResponse($response);
         $event->setTarget($this);
         $this->getEventManager()->trigger($event);

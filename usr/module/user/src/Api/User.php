@@ -1339,4 +1339,61 @@ class User extends AbstractUseApi
 
         return true;
     }
+
+    public function sendReminderEmail()
+    {
+        $config = Pi::service('registry')->config->read($this->getModule());
+
+        // Check cron active for this module
+        if ($config['reminder_user_days']) {
+
+            // Set log
+            Pi::service('audit')->log('cron', 'user - reminder start');
+
+            $template = 'reminder-html';
+            $select = Pi::Model('user_account')->select();
+            $select->where->addPredicate(new \Zend\Db\Sql\Predicate\Expression("DATE(FROM_UNIXTIME(time_created)) = subdate(current_date, ?)", (int) $config['reminder_user_days']));
+            $select->where(array(
+                'active' => 1,
+            ));
+            $users = Pi::Model('user_account')->selectWith($select);
+
+            $failedUsers = [];
+
+            foreach ($users as $id => $data) {
+                $url      = Pi::api('user', 'user')->getUrl('login', [
+                    'section'  => 'front',
+                ]);
+                $url      = Pi::url($url, true);
+                $params   = [
+                    'username'  => $data['identity'],
+                    'login_url' => $url,
+                ];
+
+                // Load from HTML template
+                $template = Pi::service('mail')->template($template, $params);
+                $subject  = $template['subject'];
+                $body     = $template['body'];
+                $type     = $template['format'];
+
+                // Send email
+                $message = Pi::service('mail')->message($subject, $body, $type);
+                $message->addTo($data['email']);
+                $transport = Pi::service('mail')->transport();
+                try {
+                    $transport->send($message);
+                } catch (\Exception $e) {
+                    $failedUsers[] = $id;
+                }
+            }
+            $result = $failedUsers ? false : true;
+
+            // Set log
+            Pi::service('audit')->log('cron', 'user - reminder end');
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -35,9 +35,6 @@ class PasswordController extends ActionController
     {
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
-        $view = Pi::service('view');
-        $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-bootstrap.min.js', 'user'));
-        $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-boostrap.init.js', 'user'));
 
         $uid = Pi::user()->getId();
 
@@ -305,10 +302,6 @@ HTML;
      */
     public function processAction()
     {
-        $view = Pi::service('view');
-        $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-bootstrap.min.js', 'user'));
-        $view->getHelper('footScript')->prependFile($view->getHelper('assetModule')->__invoke('front/pwstrength-boostrap.init.js', 'user'));
-
         $result = [
             'status'  => 0,
             'message' => __('Invalid token for password reset.'),

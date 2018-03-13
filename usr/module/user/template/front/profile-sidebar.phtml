@@ -167,11 +167,10 @@ $this->sticky();
 
             <div id="collapseOne"
                  class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
-                 role="tabpanel" aria-labelledby="headingOne">
-                <div class="list-group">
-                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>"
-                       title="<?php echo _b('Manage account'); ?>"
-                       class="list-group-item<?php if ($controller == 'profile') {
+                 role="tabpanel">
+                 <div class="list-group">
+                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>" title="<?php echo _b('Manage account'); ?>" 
+                        class="list-group-item<?php if ($controller == 'profile') {
                            echo ' active';
                        } ?>">
                         <?php echo _e('Manage account'); ?>

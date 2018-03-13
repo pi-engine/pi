@@ -115,7 +115,7 @@ $config = [
                 'options' => [
                     'guide'           => _t('Guide'),
                     'media'           => _t('Media'),
-                    'stats'           => _t('Stats'),
+                    'stats'           => _t('Guide Stats'),
                     'shop'            => _t('Shop'),
                     'order'           => _t('Order'),
                     'message'         => _t('Message'),
@@ -654,6 +654,14 @@ $config = [
         'edit'        => 'text',
         'filter'      => 'number_int',
         'value'       => 15,
+    ],
+    'reminder_user_days' => [
+        'category' => 'cron',
+        'title' => _a('Reminder user days'),
+        'description' => 'Send email to reminder user after X days - 0 means no reminder at all',
+        'edit' => 'text',
+        'filter' => 'number_int',
+        'value' => 3,
     ],
 ];
 

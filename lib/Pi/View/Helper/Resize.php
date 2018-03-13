@@ -14,7 +14,12 @@ class Resize extends AbstractHelper
     /** @var  string */
     protected $commands;
 
-    /** @var  string */
+    /**
+     * @var
+     */
+    protected $timestamp = null;
+
+    /** @var  string*/
     protected $cropping;
 
     protected $imgPath;
@@ -360,7 +365,13 @@ class Resize extends AbstractHelper
 
         $filepath = 'upload/media/processed/' . $this->commands . '/' . str_replace('upload/media/original/', '', $file) . '.' . $targetExtension;
 
-        return \Pi::url($filepath);
+        $finalUrl = \Pi::url($filepath);
+
+        if($this->timestamp){
+            $finalUrl .= '?' . $this->timestamp;
+        }
+
+        return $finalUrl;
     }
 
     /**
@@ -372,5 +383,10 @@ class Resize extends AbstractHelper
     public static function encode($data)
     {
         return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
+
+
+    public function setTimestamp($timestamp){
+        $this->timestamp = $timestamp;
     }
 }

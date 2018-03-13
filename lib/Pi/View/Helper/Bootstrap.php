@@ -68,9 +68,9 @@ class Bootstrap extends AssetCanonize
         $files = null,
         $attributes = [],
         $appendVersion = null,
-        $rootLoaded = true
-    )
-    {
+        $rootLoaded = true,
+        $deferBootstrapCss = false
+    ) {
         $files = $this->canonize($files, $attributes);
 
         $bootstrap = 'css/bootstrap.min.css';
@@ -89,7 +89,12 @@ class Bootstrap extends AssetCanonize
             }
             $attrs         = $this->canonizeFile($bootstrap);
             $attrs['href'] = $url;
-            $position      = isset($attrs['position']) ? $attrs['position'] : 'append';
+
+            if($deferBootstrapCss){
+                $attrs['defer'] = 'defer';
+            }
+
+            $position = isset($attrs['position']) ? $attrs['position'] : 'append';
             if ('prepend' == $position) {
                 $this->view->headLink()->prependStylesheet($attrs);
             } else {

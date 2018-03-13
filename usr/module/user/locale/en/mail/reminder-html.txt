@@ -1,0 +1,16 @@
+﻿[comment]Pi Engine - reminder après création de compte[/comment]
+
+[format]html[/format]
+
+[subject]Rappel création de compte[/subject]
+
+[body]
+<p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
+
+<p style="margin-top: 5px">Merci d'avoir créé votre compte sur le site %site_name%.</p>
+<p>Profitez de vos avantages...</p>
+
+<p style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+</p>
+[/body]
