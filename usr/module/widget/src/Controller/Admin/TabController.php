@@ -37,31 +37,31 @@ class TabController extends ListController
     protected function assignModules()
     {
         // Get block counts per module
-        $model = Pi::model('block');
-        $select = $model->select()->group('module')
-            ->columns(array('count' => Pi::db()->expression('count(*)'), 'module'));
-        $rowset = $model->selectWith($select);
-        $blockCounts = array();
+        $model       = Pi::model('block');
+        $select      = $model->select()->group('module')
+            ->columns(['count' => Pi::db()->expression('count(*)'), 'module']);
+        $rowset      = $model->selectWith($select);
+        $blockCounts = [];
         foreach ($rowset as $row) {
             $blockCounts[$row->module] = $row->count;
         }
 
         // Get module list
-        $modules = array();
-        $moduleSet = Pi::model('module')->select(array('active' => 1));
-        $widgetModule = array();
+        $modules      = [];
+        $moduleSet    = Pi::model('module')->select(['active' => 1]);
+        $widgetModule = [];
         foreach ($moduleSet as $row) {
             if ('widget' == $row->name) {
-                $count = empty($blockCounts['widget']) ? '0' : $blockCounts['widget'];
-                $widgetModule = array(
+                $count        = empty($blockCounts['widget']) ? '0' : $blockCounts['widget'];
+                $widgetModule = [
                     'name'  => $row->name,
                     'title' => $row->title . ' (' . $count . ')',
-                );
+                ];
             } elseif (!empty($blockCounts[$row->name])) {
-                $modules[] = array(
+                $modules[] = [
                     'name'  => $row->name,
                     'title' => $row->title . ' (' . $blockCounts[$row->name] . ')',
-                );
+                ];
             }
         }
         array_unshift($modules, $widgetModule);
@@ -88,24 +88,24 @@ class TabController extends ListController
         // Module name
         $name = $this->params('name', '');
 
-        $rowset = Pi::model('block')->select(array('module' => $name));
-        $blocks = array();
+        $rowset = Pi::model('block')->select(['module' => $name]);
+        $blocks = [];
         foreach ($rowset as $row) {
             if ('tab' == $row->type) {
                 continue;
             }
-            $blocks[] = array(
-                'id'            => $row->id,
-                'name'          => $row->name,
-                'caption'       => $row->title,
-                'description'   => $row->description,
-            );
+            $blocks[] = [
+                'id'          => $row->id,
+                'name'        => $row->name,
+                'caption'     => $row->title,
+                'description' => $row->description,
+            ];
         }
 
-        return array(
-            'status'    => 1,
-            'data'      => $blocks,
-        );
+        return [
+            'status' => 1,
+            'data'   => $blocks,
+        ];
     }
 
     /**
@@ -122,14 +122,14 @@ class TabController extends ListController
      */
     protected function prepareContent($content)
     {
-        $items = $content ? json_decode($content, true) : array();
+        $items = $content ? json_decode($content, true) : [];
         $items = array_filter($items);
         foreach ($items as &$item) {
-            $item = array_merge(array(
-                'id'        => 0,
-                'caption'   => '',
-                'link'      => '',
-            ), $item);
+            $item = array_merge([
+                'id'      => 0,
+                'caption' => '',
+                'link'    => '',
+            ], $item);
         }
         $content = json_encode($items);
 

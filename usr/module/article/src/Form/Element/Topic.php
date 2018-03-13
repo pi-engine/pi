@@ -14,28 +14,28 @@ use Zend\Form\Element\Select;
 
 /**
  * Topic form element class
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class Topic extends Select
 {
     /**
      * Read added topic from database
-     * 
-     * @return array 
+     *
+     * @return array
      */
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $module = $this->getOption('module') 
+            $module = $this->getOption('module')
                 ?: Pi::service('module')->current();
             $model  = Pi::model('topic', $module);
-            $rowset = $model->select(array());
-            $topics = array();
+            $rowset = $model->select([]);
+            $topics = [];
             foreach ($rowset as $row) {
                 $topics[$row->id] = $row->title;
             }
-            $this->valueOptions = array(0 => __('Null')) + $topics;
+            $this->valueOptions = [0 => __('Null')] + $topics;
         }
 
         return $this->valueOptions;

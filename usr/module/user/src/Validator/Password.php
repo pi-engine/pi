@@ -30,10 +30,11 @@ class Password extends AbstractValidator
 
     protected $messageTemplates;
 
-    protected $messageVariables = [
-        'max' => 'max',
-        'min' => 'min',
-    ];
+    protected $messageVariables
+        = [
+            'max' => 'max',
+            'min' => 'min',
+        ];
 
     protected $max;
     protected $min;

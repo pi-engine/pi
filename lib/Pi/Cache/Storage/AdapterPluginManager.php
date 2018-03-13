@@ -23,18 +23,19 @@ class AdapterPluginManager extends ZendAdapterPluginManager
      *
      * @var array
      */
-    protected $invokableClasses = array(
-        'filesystem'     => 'Pi\Cache\Storage\Adapter\Filesystem',
-        'memcached'      => 'Pi\Cache\Storage\Adapter\Memcached',
-        'redis'          => 'Pi\Cache\Storage\Adapter\Redis',
+    protected $invokableClasses
+        = [
+            'filesystem' => 'Pi\Cache\Storage\Adapter\Filesystem',
+            'memcached'  => 'Pi\Cache\Storage\Adapter\Memcached',
+            'redis'      => 'Pi\Cache\Storage\Adapter\Redis',
 
-        'apc'            => 'Zend\Cache\Storage\Adapter\Apc',
-        //'memcached'      => 'Zend\Cache\Storage\Adapter\Memcached',
-        'memory'         => 'Zend\Cache\Storage\Adapter\Memory',
-        //'redis'          => 'Zend\Cache\Storage\Adapter\Redis',
-        'dba'            => 'Zend\Cache\Storage\Adapter\Dba',
-        'wincache'       => 'Zend\Cache\Storage\Adapter\WinCache',
-        'zendserverdisk' => 'Zend\Cache\Storage\Adapter\ZendServerDisk',
-        'zendservershm'  => 'Zend\Cache\Storage\Adapter\ZendServerShm',
-    );
+            'apc'            => 'Zend\Cache\Storage\Adapter\Apc',
+            //'memcached'      => 'Zend\Cache\Storage\Adapter\Memcached',
+            'memory'         => 'Zend\Cache\Storage\Adapter\Memory',
+            //'redis'          => 'Zend\Cache\Storage\Adapter\Redis',
+            'dba'            => 'Zend\Cache\Storage\Adapter\Dba',
+            'wincache'       => 'Zend\Cache\Storage\Adapter\WinCache',
+            'zendserverdisk' => 'Zend\Cache\Storage\Adapter\ZendServerDisk',
+            'zendservershm'  => 'Zend\Cache\Storage\Adapter\ZendServerShm',
+        ];
 }

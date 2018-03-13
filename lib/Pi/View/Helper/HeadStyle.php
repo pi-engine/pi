@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\HeadStyle as ZendHeadStyle;
 use stdClass;
 use Zend\View;
@@ -47,7 +46,7 @@ class HeadStyle extends ZendHeadStyle
      * Added by Taiwen Jiang
      */
     /** @var string[] Segment names for catch */
-    protected static $captureNames = array();
+    protected static $captureNames = [];
     /**#@-*/
 
     /**#@+

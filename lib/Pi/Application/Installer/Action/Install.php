@@ -24,8 +24,8 @@ class Install extends AbstractAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.pre', array($this, 'checkIndependent'));
-        $events->attach('install.post', array($this, 'createDependency'));
+        $events->attach('install.pre', [$this, 'checkIndependent']);
+        $events->attach('install.post', [$this, 'createDependency']);
 
         return $this;
     }
@@ -35,21 +35,21 @@ class Install extends AbstractAction
      */
     public function process()
     {
-        $model = Pi::model('module');
-        $moduleData = array(
-            'name'          => $this->module,
-            'directory'     => $this->directory,
-            'title'         => $this->title ?: $this->config['meta']['title'],
-            'version'       => $this->config['meta']['version'],
-        );
+        $model      = Pi::model('module');
+        $moduleData = [
+            'name'      => $this->module,
+            'directory' => $this->directory,
+            'title'     => $this->title ?: $this->config['meta']['title'],
+            'version'   => $this->config['meta']['version'],
+        ];
 
         $row = $model->createRow($moduleData);
         // save module entry into database
         if (!$row->save()) {
-            $this->setResult('module', array(
-                'status'    => false,
-                'message'   => array('Module insert failed')
-            ));
+            $this->setResult('module', [
+                'status'  => false,
+                'message' => ['Module insert failed'],
+            ]);
             return false;
         }
 

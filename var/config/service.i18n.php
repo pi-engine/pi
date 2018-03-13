@@ -1,9 +1,9 @@
 <?php
 // I18n service configuration
 
-return array(
-    'translator'    => array(
+return [
+    'translator' => [
         'type'      => 'gettext',
         'extension' => 'mo',
-    ),
-);
+    ],
+];

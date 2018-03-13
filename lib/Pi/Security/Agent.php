@@ -22,9 +22,9 @@ class Agent extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public static function check($options = array())
+    public static function check($options = [])
     {
-        $key = 'HTTP_USER_AGENT';
+        $key   = 'HTTP_USER_AGENT';
         $agent = '';
         if (isset($_SERVER[$key])) {
             $agent = $_SERVER[$key];
@@ -46,7 +46,7 @@ class Agent extends AbstractAdapter
         if (!empty($options['bot'])) {
             $pattern = is_array($options['bot'])
                 ? implode('|', $options['bot']) : $options['bot'];
-            $status = preg_match('/' . $pattern . '/i', $agent) ? false : null;
+            $status  = preg_match('/' . $pattern . '/i', $agent) ? false : null;
             return $status;
         }
 

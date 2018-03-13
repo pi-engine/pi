@@ -32,13 +32,14 @@ class Content extends AbstractContent
     /**
      * {@inheritDoc}
      */
-    protected $meta = array(
-        'id'            => 'id',
-        'title'         => 'title',
-        'content'       => 'content',
-        'time_created'  => 'time',
-        'uid'           => 'uid',
-    );
+    protected $meta
+        = [
+            'id'           => 'id',
+            'title'        => 'title',
+            'content'      => 'content',
+            'time_created' => 'time',
+            'uid'          => 'uid',
+        ];
 
     /**
      * {@inheritDoc}
@@ -46,21 +47,22 @@ class Content extends AbstractContent
     public function ____getList(
         array $variables,
         array $conditions,
-        $limit  = 0,
+        $limit = 0,
         $offset = 0,
-        $order  = array()
-    ) {
-        $result = array();
+        $order = []
+    )
+    {
+        $result = [];
 
         for ($i = 1; $i <= $limit; $i++) {
-            $item = array(
-                'id'        => $i,
-                'title'     => sprintf('Demo title %d', $i),
-                'content'   => sprintf('Demo content %d', $i),
-                'url'      => Pi::url('www/demo/content/' . $i),
-                'uid'       => rand(1, 5),
-                'time'      => time() - rand(0, 1000),
-            );
+            $item     = [
+                'id'      => $i,
+                'title'   => sprintf('Demo title %d', $i),
+                'content' => sprintf('Demo content %d', $i),
+                'url'     => Pi::url('www/demo/content/' . $i),
+                'uid'     => rand(1, 5),
+                'time'    => time() - rand(0, 1000),
+            ];
             $result[] = $item;
         }
 
@@ -78,12 +80,12 @@ class Content extends AbstractContent
     {
         $url = Pi::service('url')->assemble(
             'default',
-            array(
-                'module'        => $this->module,
-                'controller'    => 'page',
-                'action'        => 'view',
-                'id'            => $item['id'],
-            )
+            [
+                'module'     => $this->module,
+                'controller' => 'page',
+                'action'     => 'view',
+                'id'         => $item['id'],
+            ]
         );
 
         return $url;

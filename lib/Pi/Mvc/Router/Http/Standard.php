@@ -9,9 +9,9 @@
 
 namespace Pi\Mvc\Router\Http;
 
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Mvc\Router\Http\RouteInterface;
 use Traversable;
+use Zend\Mvc\Router\Http\RouteInterface;
+use Zend\Mvc\Router\Http\RouteMatch;
 use Zend\Stdlib\ArrayUtils;
 use Zend\Stdlib\RequestInterface as Request;
 
@@ -68,20 +68,21 @@ class Standard implements RouteInterface
      * Default values.
      * @var array
      */
-    protected $defaults = array(
-        'module'        => 'system',
-        'controller'    => 'index',
-        'action'        => 'index'
-    );
+    protected $defaults
+        = [
+            'module'     => 'system',
+            'controller' => 'index',
+            'action'     => 'index',
+        ];
 
     /**
      * List of assembled parameters.
      * @var array
      */
-    protected $assembledParams = array();
+    protected $assembledParams = [];
 
     /** @var array Specific options */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Create a new wildcard route.
@@ -90,7 +91,7 @@ class Standard implements RouteInterface
      * @param string $structureDelimiter
      * @param string $keyValueDelimiter
      * @param string $paramDelimiter
-     * @param array  $defaults
+     * @param array $defaults
      *
      * @return \Pi\Mvc\Router\Http\Standard
      */
@@ -99,13 +100,14 @@ class Standard implements RouteInterface
         $structureDelimiter = '/',
         $keyValueDelimiter = '/',
         $paramDelimiter = '/',
-        array $defaults = array()
-    ) {
-        $this->prefix               = (null !== $prefix) ? $prefix : $this->prefix;
-        $this->structureDelimiter   = $structureDelimiter;
-        $this->keyValueDelimiter    = $keyValueDelimiter;
-        $this->paramDelimiter       = $paramDelimiter;
-        $this->defaults             = array_merge($this->defaults, $defaults);
+        array $defaults = []
+    )
+    {
+        $this->prefix             = (null !== $prefix) ? $prefix : $this->prefix;
+        $this->structureDelimiter = $structureDelimiter;
+        $this->keyValueDelimiter  = $keyValueDelimiter;
+        $this->paramDelimiter     = $paramDelimiter;
+        $this->defaults           = array_merge($this->defaults, $defaults);
     }
 
     /**
@@ -115,7 +117,7 @@ class Standard implements RouteInterface
      *
      * @return $this
      */
-    public function setOptions(array $options = array())
+    public function setOptions(array $options = [])
     {
         $this->options = array_merge($this->options, $options);
 
@@ -150,7 +152,7 @@ class Standard implements RouteInterface
      * @throws \InvalidArgumentException
      * @return RouteInterface
      */
-    public static function factory($options = array())
+    public static function factory($options = [])
     {
         if ($options instanceof Traversable) {
             $options = ArrayUtils::iteratorToArray($options);
@@ -177,7 +179,7 @@ class Standard implements RouteInterface
         }
 
         if (!isset($options['defaults'])) {
-            $options['defaults'] = array();
+            $options['defaults'] = [];
         }
 
         $route = new static(
@@ -220,9 +222,9 @@ class Standard implements RouteInterface
             $path = rtrim($path, $this->paramDelimiter)
                 . $this->paramDelimiter;
             */
-            $prefix = trim($this->prefix, $this->paramDelimiter)
+            $prefix       = trim($this->prefix, $this->paramDelimiter)
                 . $this->paramDelimiter;
-            $path = trim($path, $this->paramDelimiter)
+            $path         = trim($path, $this->paramDelimiter)
                 . $this->paramDelimiter;
             $prefixLength = strlen($prefix);
             if ($prefix != substr($path, 0, $prefixLength)) {
@@ -232,7 +234,7 @@ class Standard implements RouteInterface
         }
         $path = trim($path, $this->paramDelimiter);
 
-        return array($path, $pathLength);
+        return [$path, $pathLength];
     }
 
     /**
@@ -243,7 +245,7 @@ class Standard implements RouteInterface
      */
     protected function parseParams(array $params)
     {
-        $matches = array();
+        $matches = [];
 
         if ($this->keyValueDelimiter === $this->paramDelimiter) {
             $count = count($params);
@@ -277,21 +279,21 @@ class Standard implements RouteInterface
      */
     protected function parse($path)
     {
-        $matches = array();
+        $matches = [];
         $params  = $path
             ? explode($this->paramDelimiter,
                 trim($path, $this->paramDelimiter))
-            : array();
+            : [];
 
         if ($this->paramDelimiter === $this->structureDelimiter) {
-            foreach(array('module', 'controller', 'action') as $key) {
+            foreach (['module', 'controller', 'action'] as $key) {
                 if (!empty($params)) {
                     $matches[$key] = array_shift($params);
                 }
             }
         } else {
             $mca = explode($this->structureDelimiter, $params[0]);
-            foreach(array('module', 'controller', 'action') as $key) {
+            foreach (['module', 'controller', 'action'] as $key) {
                 if (!empty($mca)) {
                     $matches[$key] = array_shift($mca);
                 }
@@ -310,7 +312,7 @@ class Standard implements RouteInterface
      *
      * @see    Route::match()
      * @param  Request $request
-     * @param int|null  $pathOffset
+     * @param int|null $pathOffset
      * @return RouteMatch|null
      */
     public function match(Request $request, $pathOffset = null)
@@ -339,7 +341,7 @@ class Standard implements RouteInterface
     {
         $url = '';
         foreach ($params as $key => $value) {
-            if (in_array($key, array('section', 'module', 'controller', 'action'))) {
+            if (in_array($key, ['section', 'module', 'controller', 'action'])) {
                 continue;
             }
             if (null === $value || '' === $value) {
@@ -361,20 +363,20 @@ class Standard implements RouteInterface
      * Assemble structure
      *
      * @param array $params
-     * @param string $url   URL to append
+     * @param string $url URL to append
      *
      * @return string
      */
     protected function assembleStructure(array $params, $url = '')
     {
-        $mca = array();
-        foreach (array('module', 'controller', 'action') as $key) {
+        $mca = [];
+        foreach (['module', 'controller', 'action'] as $key) {
             if (!empty($params[$key])) {
                 $mca[$key] = $this->encode($params[$key]);
             }
         }
         if ($this->paramDelimiter === $this->structureDelimiter) {
-            foreach(array('action', 'controller', 'module') as $key) {
+            foreach (['action', 'controller', 'module'] as $key) {
                 if (!empty($url) || $mca[$key] !== $this->defaults[$key]) {
                     $url = $this->encode($mca[$key]) . $this->paramDelimiter
                         . $url;
@@ -413,7 +415,7 @@ class Standard implements RouteInterface
      * @param  array $options
      * @return string
      */
-    public function assemble(array $params = array(), array $options = array())
+    public function assemble(array $params = [], array $options = [])
     {
         $mergedParams = array_merge($this->defaults, $params);
         if (!$mergedParams) {
@@ -443,7 +445,7 @@ class Standard implements RouteInterface
      */
     public function getAssembledParams()
     {
-        return array();
+        return [];
     }
 
     /**

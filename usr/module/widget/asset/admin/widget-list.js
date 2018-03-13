@@ -1,22 +1,22 @@
-(function($, _, Backbone) {
+(function ($, _, Backbone) {
     var options;
 
     var page = {
         form: $("form#block"),
-        init: function() {
-            this.form.submit(function() {
+        init: function () {
+            this.form.submit(function () {
                 var content = [];
-                page.form.find(".widget-item").each(function() {
+                page.form.find(".widget-item").each(function () {
                     var el = $(this);
-                    var getVal = function(name) {
+                    var getVal = function (name) {
                         return $.trim(el.find('[name=' + options.prefix + name + ']').val());
                     };
 
                     content.push({
-                        "caption":  getVal('caption'),
-                        "icon":     getVal('icon'),
-                        "link":     getVal('link'),
-                        "summary":  getVal('summary')
+                        "caption": getVal('caption'),
+                        "icon": getVal('icon'),
+                        "link": getVal('link'),
+                        "summary": getVal('summary')
 
                     });
                 });
@@ -30,17 +30,17 @@
         events: {
             "click .close": "cancel"
         },
-        initialize: function() {
+        initialize: function () {
             this.model.on("destroy", this.remove, this);
             this.model.on("change", this.render, this);
         },
-        render: function() {
+        render: function () {
             var data = this.model.clone();
             data.set('prefix', options.prefix);
             this.$el.html(this.template(data.toJSON()));
             return this.$el;
         },
-        cancel: function() {
+        cancel: function () {
             this.remove();
         }
     });
@@ -48,41 +48,41 @@
     var allView = Backbone.View.extend({
         el: $("#widget-items"),
         events: {
-            'click .widget-item-add' : 'addItem'
+            'click .widget-item-add': 'addItem'
         },
-        initialize: function() {
+        initialize: function () {
             this.$addBtn = this.$('.widget-item-add');
             this.$el.insertBefore(page.form.find('.form-group:last'));
             this.collection.on("add", this.addOne, this);
             this.render();
         },
-        render: function() {
+        render: function () {
             this.collection.forEach(this.addOne, this);
             this.sortable();
         },
-        addOne: function(model) {
+        addOne: function (model) {
             var item = new itemView({
-                model : model
+                model: model
             }).render();
             item.insertBefore(this.$addBtn);
         },
-        sortable: function() {
+        sortable: function () {
             this.$el.sortable({
                 items: ".widget-item",
                 tolerance: "pointer"
             });
         },
-        addItem: function() {
+        addItem: function () {
             this.collection.add({
-                caption : '',
-                icon    : '',
-                link    : '',
-                summary : ''
+                caption: '',
+                icon: '',
+                link: '',
+                summary: ''
             });
         }
     });
 
-    this.widgetAction = function(opts) {
+    this.widgetAction = function (opts) {
         options = opts;
         new allView({
             collection: new Backbone.Collection(opts.items)

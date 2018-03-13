@@ -60,9 +60,9 @@ class AssetCanonize extends AbstractHelper
      * @see Pi\Application\Service\Asset::versionStamp()
      *      for versioning information
      */
-    protected function canonizeFile($file, $attrs = array())
+    protected function canonizeFile($file, $attrs = [])
     {
-        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        $ext          = strtolower(pathinfo($file, PATHINFO_EXTENSION));
         $attrs['ext'] = $ext;
         if (false !== ($pos = strpos($ext, '?'))) {
             $ext = substr($ext, 0, $pos);
@@ -101,32 +101,32 @@ class AssetCanonize extends AbstractHelper
      * @param   array $attributes
      * @return array
      */
-    protected function canonize($files = null, $attributes = array())
+    protected function canonize($files = null, $attributes = [])
     {
-        $result = array();
+        $result = [];
         if (!$files) {
             return $result;
         }
 
         if ($files && is_string($files)) {
             if (is_string($attributes)) {
-                $attributes = array(
+                $attributes = [
                     'position' => $attributes,
-                );
+                ];
             }
-            $files = array(
+            $files = [
                 $files => $attributes,
-            );
+            ];
         } elseif (!is_array($files)) {
-            $files = (array) $files;
+            $files = (array)$files;
         }
 
         foreach ($files as $file => $attrs) {
             if (is_int($file)) {
-                $file = $attrs;
-                $attrs = array();
+                $file  = $attrs;
+                $attrs = [];
             }
-            $attrs = $this->canonizeFile($file, $attrs);
+            $attrs         = $this->canonizeFile($file, $attrs);
             $result[$file] = $attrs;
         }
 

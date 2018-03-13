@@ -1,6 +1,6 @@
 <?php
-    $categories = $block['categories'];
-    $target     = $block['target'];
+$categories = $block['categories'];
+$target     = $block['target'];
 ?>
 
 <div class="article-block-hot-category">
@@ -9,11 +9,12 @@
             <?php $i = 0; ?>
             <?php foreach ($categories as $category) { ?>
                 <?php if ($i++ % 2 == 0) { ?>
-            <div class="text-muted">
-                <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($category['url']); ?>" style="color: #48484C">
-                    <?php echo $this->escape($category['title']); ?>
-                </a>
-            </div>
+                    <div class="text-muted">
+                        <a target="<?php echo $this->escape($target); ?>"
+                           href="<?php echo $this->escape($category['url']); ?>" style="color: #48484C">
+                            <?php echo $this->escape($category['title']); ?>
+                        </a>
+                    </div>
                 <?php } ?>
             <?php } ?>
         </div>
@@ -21,11 +22,12 @@
             <?php $j = 0; ?>
             <?php foreach ($categories as $category) { ?>
                 <?php if ($j++ % 2 == 1) { ?>
-            <div class="text-muted">
-                <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($category['url']); ?>" style="color: #48484C">
-                    <?php echo $this->escape($category['title']); ?>
-                </a>
-            </div>
+                    <div class="text-muted">
+                        <a target="<?php echo $this->escape($target); ?>"
+                           href="<?php echo $this->escape($category['url']); ?>" style="color: #48484C">
+                            <?php echo $this->escape($category['title']); ?>
+                        </a>
+                    </div>
                 <?php } ?>
             <?php } ?>
         </div>

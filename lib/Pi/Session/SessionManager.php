@@ -10,8 +10,8 @@
 namespace Pi\Session;
 
 use Pi\Session\SaveHandler\UserAwarenessInterface;
-use Zend\Session\SessionManager as ZendSessionManager;
 use Zend\Session\Container;
+use Zend\Session\SessionManager as ZendSessionManager;
 
 /**
  * Session manager
@@ -31,13 +31,14 @@ class SessionManager extends ZendSessionManager implements
      *      any stored values.
      * @var array
      */
-    protected $defaultDestroyOptions = array(
-        'send_expire_cookie' => true,
-        'clear_storage'      => true,
-    );
+    protected $defaultDestroyOptions
+        = [
+            'send_expire_cookie' => true,
+            'clear_storage'      => true,
+        ];
 
     /** @var array Session containers */
-    protected $containers = array();
+    protected $containers = [];
 
     /** @var bool Session is valid */
     protected $isValid;
@@ -95,12 +96,12 @@ class SessionManager extends ZendSessionManager implements
      * @param array $validators
      * @return self
      */
-    public function setValidators($validators = array())
+    public function setValidators($validators = [])
     {
         $chain = $this->getValidatorChain();
         foreach ($validators as $validator) {
             $validator = new $validator();
-            $chain->attach('session.validate', array($validator, 'isValid'));
+            $chain->attach('session.validate', [$validator, 'isValid']);
         }
 
         return $this;
@@ -160,7 +161,7 @@ class SessionManager extends ZendSessionManager implements
      */
     public function killUser($uid)
     {
-        $result = null;
+        $result      = null;
         $saveHandler = $this->getSaveHandler();
         if ($saveHandler instanceof UserAwarenessInterface) {
             $result = $saveHandler->killUser($uid);

@@ -9,58 +9,57 @@
 
 namespace Module\Demo\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 class RouteFilter extends InputFilter
 {
     public function __construct()
     {
-        $this->add(array(
-            'name'          => 'name',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
+        $this->add([
+            'name'       => 'name',
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
                 new \Module\Demo\Validator\RouteNameDuplicate(),
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'type',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'    => 'type',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'priority',
+        $this->add([
+            'name' => 'priority',
 
-            'filters'       => array(
-                array(
-                    'name'  => 'Int',
-                ),
-            ),
+            'filters' => [
+                [
+                    'name' => 'Int',
+                ],
+            ],
 
-        ));
+        ]);
 
-        $this->add(array(
-            'name'          => 'id',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'id',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'module',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'module',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'          => 'section',
-            'required'      => false,
-        ));
+        $this->add([
+            'name'     => 'section',
+            'required' => false,
+        ]);
     }
 }

@@ -19,15 +19,15 @@ class BlockMediaForm extends AbstractBaseForm
     protected function getTemplateElement()
     {
         $tplSpec = Pi::api('block', 'widget')->templateSpec($this->contentType);
-        $spec = array_replace($tplSpec, array(
-            'name'          => 'template',
-            'options'       => array(
-                'label' =>  _a('Template'),
-            ),
-            'attributes'    => array(
-                'required'  => true,
-            )
-        ));
+        $spec    = array_replace($tplSpec, [
+            'name'       => 'template',
+            'options'    => [
+                'label' => _a('Template'),
+            ],
+            'attributes' => [
+                'required' => true,
+            ],
+        ]);
 
         return $spec;
     }
@@ -37,14 +37,14 @@ class BlockMediaForm extends AbstractBaseForm
      */
     protected function getTemplateFilter()
     {
-        return array(
-            'name'          => 'template',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        );
+        return [
+            'name'    => 'template',
+            'filters' => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ];
     }
 
     /**
@@ -52,10 +52,10 @@ class BlockMediaForm extends AbstractBaseForm
      */
     protected function getContentElement()
     {
-        return array(
-            'name'  => 'content',
-            'type'  => 'hidden',
-        );
+        return [
+            'name' => 'content',
+            'type' => 'hidden',
+        ];
     }
 
     /**
@@ -63,10 +63,10 @@ class BlockMediaForm extends AbstractBaseForm
      */
     protected function getContentFilter()
     {
-        return array(
-            'name'          => 'content',
-            'required'      => true,
-            'allow_empty'   => true,
-        );
+        return [
+            'name'        => 'content',
+            'required'    => true,
+            'allow_empty' => true,
+        ];
     }
 }

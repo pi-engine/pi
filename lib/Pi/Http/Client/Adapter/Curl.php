@@ -25,7 +25,7 @@ class Curl extends ZendCurl
      * As of PHP 5.2.0, value must be an array if files are passed to this option with the @ prefix.
      * @see http://www.php.net/curl_setopt
      */
-    public function write($method, $uri, $httpVersion = 1.1, $headers = array(), $body = '')
+    public function write($method, $uri, $httpVersion = 1.1, $headers = [], $body = '')
     {
         // Make sure we're properly connected
         if (!$this->curl) {
@@ -66,7 +66,7 @@ class Curl extends ZendCurl
                     }
 
                     if (isset($headers['Content-Length'])) {
-                        $this->config['curloptions'][CURLOPT_INFILESIZE] = (int) $headers['Content-Length'];
+                        $this->config['curloptions'][CURLOPT_INFILESIZE] = (int)$headers['Content-Length'];
                         unset($headers['Content-Length']);
                     }
 
@@ -77,33 +77,33 @@ class Curl extends ZendCurl
                     $curlMethod = CURLOPT_UPLOAD;
                 } else {
                     $curlMethod = CURLOPT_CUSTOMREQUEST;
-                    $curlValue = "PUT";
+                    $curlValue  = "PUT";
                 }
                 break;
 
             case 'PATCH' :
                 $curlMethod = CURLOPT_CUSTOMREQUEST;
-                $curlValue = "PATCH";
+                $curlValue  = "PATCH";
                 break;
 
             case 'DELETE' :
                 $curlMethod = CURLOPT_CUSTOMREQUEST;
-                $curlValue = "DELETE";
+                $curlValue  = "DELETE";
                 break;
 
             case 'OPTIONS' :
                 $curlMethod = CURLOPT_CUSTOMREQUEST;
-                $curlValue = "OPTIONS";
+                $curlValue  = "OPTIONS";
                 break;
 
             case 'TRACE' :
                 $curlMethod = CURLOPT_CUSTOMREQUEST;
-                $curlValue = "TRACE";
+                $curlValue  = "TRACE";
                 break;
 
             case 'HEAD' :
                 $curlMethod = CURLOPT_CUSTOMREQUEST;
-                $curlValue = "HEAD";
+                $curlValue  = "HEAD";
                 break;
 
             default:
@@ -125,7 +125,7 @@ class Curl extends ZendCurl
         if ($this->outputStream) {
             // headers will be read into the response
             curl_setopt($this->curl, CURLOPT_HEADER, false);
-            curl_setopt($this->curl, CURLOPT_HEADERFUNCTION, array($this, "readHeader"));
+            curl_setopt($this->curl, CURLOPT_HEADERFUNCTION, [$this, "readHeader"]);
             // and data will be written into the file
             curl_setopt($this->curl, CURLOPT_FILE, $this->outputStream);
         } else {
@@ -147,7 +147,7 @@ class Curl extends ZendCurl
         if (!isset($headers['Accept'])) {
             $headers['Accept'] = '';
         }
-        $curlHeaders = array();
+        $curlHeaders = [];
         foreach ($headers as $key => $value) {
             $curlHeaders[] = $key . ': ' . $value;
         }
@@ -180,7 +180,7 @@ class Curl extends ZendCurl
 
         // set additional curl options
         if (isset($this->config['curloptions'])) {
-            foreach ((array) $this->config['curloptions'] as $k => $v) {
+            foreach ((array)$this->config['curloptions'] as $k => $v) {
                 if (!in_array($k, $this->invalidOverwritableCurlOptions)) {
                     if (curl_setopt($this->curl, $k, $v) == false) {
                         throw new AdapterException\RuntimeException(sprintf("Unknown or erroreous cURL option '%s' set", $k));
@@ -197,7 +197,7 @@ class Curl extends ZendCurl
             $this->response = $response;
         }
 
-        $request  = curl_getinfo($this->curl, CURLINFO_HEADER_OUT);
+        $request = curl_getinfo($this->curl, CURLINFO_HEADER_OUT);
         /**#@+
          * Modified by Taiwen Jiang
          */
@@ -232,12 +232,12 @@ class Curl extends ZendCurl
 
         // Eliminate multiple HTTP responses.
         do {
-            $parts  = preg_split('|(?:\r?\n){2}|m', $this->response, 2);
-            $again  = false;
+            $parts = preg_split('|(?:\r?\n){2}|m', $this->response, 2);
+            $again = false;
 
             if (isset($parts[1]) && preg_match("|^HTTP/1\.[01](.*?)\r\n|mi", $parts[1])) {
-                $this->response    = $parts[1];
-                $again              = true;
+                $this->response = $parts[1];
+                $again          = true;
             }
         } while ($again);
 

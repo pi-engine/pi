@@ -11,8 +11,8 @@
 namespace Pi\Form\View\Helper;
 
 use Pi\Form\Element\LoginField as LoginFieldElement;
-use Zend\Form\View\Helper\FormInput;
 use Zend\Form\ElementInterface;
+use Zend\Form\View\Helper\FormInput;
 
 /**
  * Login identity element helper
@@ -37,7 +37,8 @@ class FormLoginField extends FormInput
         $template = $element->getOption('template')
             ?: '<div class="input-group">%s</div>';
 
-        $pattern =<<<EOT
+        $pattern
+            = <<<EOT
 <input name="%s[0]" %s%s
 <span class="input-group-addon">
     <select class="pull-right" name="%s[1]">
@@ -48,19 +49,19 @@ EOT;
 
         $name = $element->getName();
         list($value, $field) = $element->getValue();
-        $attributes = array_replace($element->getAttributes(), array(
+        $attributes = array_replace($element->getAttributes(), [
             'type'  => 'text',
             'value' => $value,
-        ));
+        ]);
         if (!isset($attributes['class'])) {
             $attributes['class'] = 'form-control';
         }
         $attribString = $this->createAttributesString($attributes);
 
         $patternField = '<option value="%s"%s>%s</option>' . PHP_EOL;
-        $fieldString = '';
+        $fieldString  = '';
         foreach ($fields as $key => $label) {
-            $class = $field == $key ? ' selected' : '';
+            $class       = $field == $key ? ' selected' : '';
             $fieldString .= sprintf($patternField, $key, $class, $label);
         }
 

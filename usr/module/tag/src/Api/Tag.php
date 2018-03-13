@@ -9,9 +9,8 @@
 
 namespace Module\Tag\Api;
 
-use Zend\Db\Sql\Expression;
-use Pi\Application\Api\AbstractApi;
 use Pi;
+use Pi\Application\Api\AbstractApi;
 
 /**
  * Tag APIs
@@ -23,11 +22,11 @@ class Tag extends AbstractApi
     /**
      * Add tags of an item
      *
-     * @param  string       $module Module name
-     * @param  string       $item   Item identifier
-     * @param  string       $type   Item type, default as ''
-     * @param  array|string $tags   Tags to add
-     * @param  int     $time   Time adding the tags
+     * @param  string $module Module name
+     * @param  string $item Item identifier
+     * @param  string $type Item type, default as ''
+     * @param  array|string $tags Tags to add
+     * @param  int $time Time adding the tags
      *
      * @return bool
      */
@@ -39,11 +38,11 @@ class Tag extends AbstractApi
     /**
      * Update tag list of an item
      *
-     * @param  string       $module Module name
-     * @param  string       $item   Item identifier
-     * @param  string       $type   Item type
-     * @param  array|string $tags   Tags to add
-     * @param  int     $time   Time adding new tags
+     * @param  string $module Module name
+     * @param  string $item Item identifier
+     * @param  string $type Item type
+     * @param  array|string $tags Tags to add
+     * @param  int $time Time adding new tags
      *
      * @return bool
      */
@@ -56,8 +55,8 @@ class Tag extends AbstractApi
      * Delete tags of an item
      *
      * @param  string $module Module name
-     * @param  string $item   Item identifier
-     * @param  string $type   Item type
+     * @param  string $item Item identifier
+     * @param  string $type Item type
      *
      * @return bool
      */
@@ -69,9 +68,9 @@ class Tag extends AbstractApi
     /**
      * Get tags of an item
      *
-     * @param  string     $module Module name
-     * @param  string|array     $item   Item identifier
-     * @param  string     $type   Item type
+     * @param  string $module Module name
+     * @param  string|array $item Item identifier
+     * @param  string $type Item type
      *
      * @return array
      */
@@ -83,11 +82,11 @@ class Tag extends AbstractApi
     /**
      * Get item list of a tag
      *
-     * @param  string       $module Module name
-     * @param  string|array $tag    Tag
-     * @param  string|null  $type   Item type, null for all types
-     * @param  int          $limit  Limit
-     * @param  int          $offset Offset
+     * @param  string $module Module name
+     * @param  string|array $tag Tag
+     * @param  string|null $type Item type, null for all types
+     * @param  int $limit Limit
+     * @param  int $offset Offset
      * @return array|bool
      */
     public function getList($module, $tag, $type = null, $limit = null, $offset = 0)
@@ -98,9 +97,9 @@ class Tag extends AbstractApi
     /**
      * Get count items of tags
      *
-     * @param  string       $module Module name
-     * @param  string|array $tag    Tag
-     * @param  string|null  $type   Item type, null for all types
+     * @param  string $module Module name
+     * @param  string|array $tag Tag
+     * @param  string|null $type Item type, null for all types
      * @return int|bool
      */
     public function getCount($module, $tag, $type = null)
@@ -111,10 +110,10 @@ class Tag extends AbstractApi
     /**
      * Get matched tags for quick match
      *
-     * @param  string     $term   Term
-     * @param  int        $limit  Limit
-     * @param  string     $module Module name, null for all modules
-     * @param  string     $type   Item type, null for all types
+     * @param  string $term Term
+     * @param  int $limit Limit
+     * @param  string $module Module name, null for all modules
+     * @param  string $type Item type, null for all types
      * @return array|bool
      */
     public function match($term, $limit, $module = null, $type = null)
@@ -126,8 +125,8 @@ class Tag extends AbstractApi
      * Fetch top tag and count
      *
      * @param string $module Module name
-     * @param string   $type   Item type
-     * @param int   $limit  Return tag count
+     * @param string $type Item type
+     * @param int $limit Return tag count
      *
      * @return array
      */

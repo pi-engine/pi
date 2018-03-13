@@ -13,7 +13,6 @@
 
 namespace Module\User\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 class ConditionForm extends BaseForm

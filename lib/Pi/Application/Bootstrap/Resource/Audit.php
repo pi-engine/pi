@@ -34,7 +34,7 @@ class Audit extends AbstractResource
     {
         $events = $this->application->getEventManager();
         // Setup auditing, must go after access check whose priority is 9999
-        $events->attach(MvcEvent::EVENT_DISPATCH, array($this, 'log'), -8000);
+        $events->attach(MvcEvent::EVENT_DISPATCH, [$this, 'log'], -8000);
     }
 
     /**
@@ -63,8 +63,8 @@ class Audit extends AbstractResource
         }
 
         $message = $e->getRequest()->isPost()
-                   ? $e->getRequest()->toString()
-                   : $e->getRequest()->getRequestUri();
+            ? $e->getRequest()->toString()
+            : $e->getRequest()->getRequestUri();
         Pi::service('log')->audit($message);
     }
 }

@@ -12,8 +12,8 @@ namespace Pi\View\Helper;
 
 use pi;
 use Zend\Paginator\Paginator;
-use Zend\View\Helper\PaginationControl as ZendPaginationControl;
 use Zend\View\Exception;
+use Zend\View\Helper\PaginationControl as ZendPaginationControl;
 
 /**
  * Pagination creation helper
@@ -56,7 +56,8 @@ class PaginationControl extends ZendPaginationControl
         $scrollingStyle = null,
         $partial = null,
         $params = null
-    ) {
+    )
+    {
         if ($paginator === null) {
             if (isset($this->view->paginator)
                 && $this->view->paginator !== null
@@ -87,7 +88,7 @@ class PaginationControl extends ZendPaginationControl
         $pages = get_object_vars($paginator->getPages($scrollingStyle));
 
         if ($params !== null) {
-            $pages = array_merge($pages, (array) $params);
+            $pages = array_merge($pages, (array)$params);
         }
 
         if (is_array($partial)) {
@@ -111,7 +112,7 @@ class PaginationControl extends ZendPaginationControl
         if ($pages['current'] > 1) {
             $headTitle = $this->view->headTitle();
             $separator = $headTitle->getSeparator();
-            $sitename = Pi::config('sitename');
+            $sitename  = Pi::config('sitename');
 
             $postfix = sprintf(' %s %s %s %s %s',
                 $separator,
@@ -120,7 +121,7 @@ class PaginationControl extends ZendPaginationControl
                 $separator,
                 $sitename
             );
-            $prefix = sprintf('%s %s %s',
+            $prefix  = sprintf('%s %s %s',
                 __('Page'),
                 _number($pages['current']),
                 trim($separator)
@@ -132,18 +133,18 @@ class PaginationControl extends ZendPaginationControl
 
         if (isset($pages['previous'])) {
             $previous = get_object_vars($pages['previous']);
-            $this->view->headLink(array(
-                'rel'   => 'prev',
-                'href'  => Pi::url($previous['url']),
-            ));
+            $this->view->headLink([
+                'rel'  => 'prev',
+                'href' => Pi::url($previous['url']),
+            ]);
         }
 
         if (isset($pages['next'])) {
             $next = get_object_vars($pages['next']);
-            $this->view->headLink(array(
-                'rel'   => 'next',
-                'href'  => Pi::url($next['url']),
-            ));
+            $this->view->headLink([
+                'rel'  => 'next',
+                'href' => Pi::url($next['url']),
+            ]);
         }
 
         return $partialHelper($partial, $pages);

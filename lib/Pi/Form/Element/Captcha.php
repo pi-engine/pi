@@ -11,8 +11,8 @@
 namespace Pi\Form\Element;
 
 use Pi;
-use Zend\Form\Element\Captcha as ZendCaptcha;
 use Zend\Captcha\AdapterInterface as CaptchaAdapter;
+use Zend\Form\Element\Captcha as ZendCaptcha;
 
 /**
  * CAPTCHA element

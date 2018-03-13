@@ -11,16 +11,17 @@
 namespace Pi\Form\View\Helper;
 
 use Pi;
-//use IntlDateFormatter;
-use Zend\Form\View\Helper\FormDateSelect as ZendFormDateSelect;
 use Zend\Form\ElementInterface;
+use Zend\Form\View\Helper\FormDateSelect as ZendFormDateSelect;
+
+//use IntlDateFormatter;
 
 /**
  * Form element helper
  *
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * 
+ *
  * ToDo : fix for zend version 2.4.9
  */
 class FormDateSelect extends ZendFormDateSelect
@@ -37,7 +38,7 @@ class FormDateSelect extends ZendFormDateSelect
         }
 
         $this->dateType = Pi::config('date_format'); //'Y-m-d';
-        $this->pattern = '';
+        $this->pattern  = '';
     }
 
     /**
@@ -100,7 +101,7 @@ class FormDateSelect extends ZendFormDateSelect
         $monthElement->setAttribute('class', 'form-control');
         $yearElement->setAttribute('class', 'form-control');
 
-        $data = array();
+        $data                    = [];
         $data[$pattern['day']]   = $selectHelper->render($dayElement);
         $data[$pattern['month']] = $selectHelper->render($monthElement);
         $data[$pattern['year']]  = $selectHelper->render($yearElement);
@@ -133,12 +134,12 @@ class FormDateSelect extends ZendFormDateSelect
         }
         */
 
-        $result = array();
-        $patternMap = array(
+        $result     = [];
+        $patternMap = [
             'y' => 'year',
             'm' => 'month',
             'd' => 'day',
-        );
+        ];
         preg_match_all('/(y+|m+|d+)/i', $this->dateType, $matches);
         if ($matches) {
             foreach ($matches[1] as $pattern) {
@@ -146,11 +147,11 @@ class FormDateSelect extends ZendFormDateSelect
             }
         }
         if (!$result) {
-            $result = array(
+            $result = [
                 'year'  => 'Y',
                 'month' => 'm',
                 'day'   => 'd',
-            );
+            ];
         }
 
         return $result;
@@ -194,12 +195,12 @@ class FormDateSelect extends ZendFormDateSelect
         }
         */
 
-        $result = array(
+        $result = [
             //'' => __('Month'),
-        );
+        ];
         for ($month = 1; $month <= 12; $month++) {
             if ($pattern) {
-                $time = mktime(0, 0, 0, $month, 1, 1970);
+                $time           = mktime(0, 0, 0, $month, 1, 1970);
                 $result[$month] = date($pattern, $time);
             } else {
                 $result[$month] = str_pad($month, 2, '0', STR_PAD_LEFT);
@@ -220,12 +221,12 @@ class FormDateSelect extends ZendFormDateSelect
         }
         */
 
-        $result = array(
+        $result = [
             //'' => __('Day'),
-        );
+        ];
         for ($day = 1; $day <= 31; $day++) {
             if ($pattern) {
-                $time = mktime(0, 0, 0, 1, $day, 1970);
+                $time         = mktime(0, 0, 0, 1, $day, 1970);
                 $result[$day] = date($pattern, $time);
             } else {
                 $result[$day] = str_pad($day, 2, '0', STR_PAD_LEFT);

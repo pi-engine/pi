@@ -10,7 +10,6 @@
 namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
-use Locale;
 use Zend\Mvc\MvcEvent;
 use Zend\Validator\AbstractValidator;
 
@@ -29,7 +28,7 @@ class I18n extends AbstractResource
         $this->engine->bootResource('config');
 
         // Load options for locale and charset
-        $locale = Pi::config('locale') ?: 'auto';
+        $locale  = Pi::config('locale') ?: 'auto';
         $charset = Pi::config('charset') ?: 'utf-8';
 
         if ('auto' == $locale) {
@@ -54,7 +53,7 @@ class I18n extends AbstractResource
             // Load global translations
             $global = !empty($this->options['translator']['global'])
                 ? $this->options['translator']['global']
-                : array();
+                : [];
             if ($global) {
                 foreach ($global as $domain) {
                     $translator->load($domain);
@@ -64,7 +63,7 @@ class I18n extends AbstractResource
             if (!empty($this->options['translator']['module'])) {
                 $this->application->getEventManager()->attach(
                     'dispatch',
-                    array($this, 'loadTranslator')
+                    [$this, 'loadTranslator']
                 );
             }
         }
@@ -84,7 +83,7 @@ class I18n extends AbstractResource
      */
     public function loadTranslator(MvcEvent $e)
     {
-        foreach ((array) $this->options['translator']['module'] as $domain) {
+        foreach ((array)$this->options['translator']['module'] as $domain) {
             Pi::service('i18n')->loadModule($domain);
         }
     }

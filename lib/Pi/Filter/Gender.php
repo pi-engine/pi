@@ -9,7 +9,6 @@
 
 namespace Pi\Filter;
 
-use Pi;
 use Zend\Filter\AbstractFilter;
 
 /**

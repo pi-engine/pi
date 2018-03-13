@@ -10,7 +10,6 @@
 
 namespace Pi\Form\Element;
 
-use Pi;
 use Zend\Form\Element\Select;
 
 /**
@@ -28,14 +27,14 @@ class CacheLevel extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $this->valueOptions = array(
-                'whole'     => __('As a whole'),
-                'locale'    => __('Per language'),
-                'role'      => __('Per role'),
-                'guest'     => __('Guest only'),
+            $this->valueOptions = [
+                'whole'  => __('As a whole'),
+                'locale' => __('Per language'),
+                'role'   => __('Per role'),
+                'guest'  => __('Guest only'),
                 //'auth'      => __('Authenticated or not'),
                 //'user'      => __('By user'),
-            );
+            ];
         }
 
         return $this->valueOptions;

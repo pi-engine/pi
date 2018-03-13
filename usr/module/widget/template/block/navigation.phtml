@@ -1,12 +1,12 @@
 <?php
-$config = $block;
+$config     = $block;
 $navigation = $this->navigation($config['navigation']);
 if (!$navigation) {
     return;
 }
 if ($config['menu_show']) {
-    $menu = $navigation->menu();
-    $options = array();
+    $menu    = $navigation->menu();
+    $options = [];
     if ($config['menu_ul_class']) {
         $options['ulClass'] = $config['menu_ul_class'];
     }

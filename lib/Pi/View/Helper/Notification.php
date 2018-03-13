@@ -67,7 +67,8 @@ class Notification extends AbstractHtmlElement
         $js = Pi::service('asset')->getStaticUrl($js);
 
         // Set js script
-        $scripts = <<<'EOT'
+        $scripts
+                 = <<<'EOT'
 $(function(){
     setInterval(oneSecondFunction, %s);
 });

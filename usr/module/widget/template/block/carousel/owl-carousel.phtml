@@ -1,5 +1,5 @@
 <?php
-$options    = (array) $block['options'];
+$options    = (array)$block['options'];
 $items      = $block['items'];
 $class      = isset($block['class']) ? $block['class'] : '';
 $target     = $options['target_new'] ? '_self' : '_blank';
@@ -9,27 +9,28 @@ $locale     = Pi::service('i18n')->getLocale();
 
 
 // Set style
-$imgStyle   = '';
+$imgStyle = '';
 if (!empty($options['width'])) {
-    $imgStyle .= 'width: '  . $options['width'] . 'px;';
+    $imgStyle .= 'width: ' . $options['width'] . 'px;';
 }
 if (!empty($options['height'])) {
-    $imgStyle .= 'height: '  . $options['height'] . 'px;';
+    $imgStyle .= 'height: ' . $options['height'] . 'px;';
 }
 if (!empty($imgStyle)) {
     $imgStyle = sprintf('style="%s" ', $imgStyle);
 }
 
 // Get local
-$rtl = (in_array($locale, array('fa', 'ar'))) ? 'true' : 'false';
+$rtl  = (in_array($locale, ['fa', 'ar'])) ? 'true' : 'false';
 $loop = 'true';
 
 // Set arrow
-$iconOwlLeft = in_array($locale, array('fa', 'ar'))  ? '<i class="fa fa-angle-right"></i>' : '<i class="fa fa-angle-left"></i>';
-$iconOwlRight = in_array($locale, array('fa', 'ar')) ? '<i class="fa fa-angle-left"></i>' : '<i class="fa fa-angle-right"></i>';
+$iconOwlLeft  = in_array($locale, ['fa', 'ar']) ? '<i class="fa fa-angle-right"></i>' : '<i class="fa fa-angle-left"></i>';
+$iconOwlRight = in_array($locale, ['fa', 'ar']) ? '<i class="fa fa-angle-left"></i>' : '<i class="fa fa-angle-right"></i>';
 
 // Set script
-$script = <<<'EOT'
+$script
+        = <<<'EOT'
     $(document).ready(function($) {
 		$('#%s').owlCarousel({
     		loop: %s,
@@ -53,7 +54,7 @@ EOT;
 $script = sprintf($script, $carouselId, $loop, $rtl, $iconOwlLeft, $iconOwlRight, $number);
 
 // Load files
-$this->jQuery(array(
+$this->jQuery([
     'extension/owl.carousel.min.js',
     'extension/owl.carousel.min.css',
     'extension/owl.theme.default.min.css',
@@ -62,7 +63,7 @@ $this->footScript()->appendScript($script);
 ?>
 <div class="widget-owl-carousel">
     <div id="<?php echo $carouselId; ?>" class="owl-carousel owl-theme text-center clearfix <?php echo $class; ?>">
-        <?php foreach($items as $item) { ?>
+        <?php foreach ($items as $item) { ?>
             <?php $href = !empty($item['link']) ? $item['link'] : 'javascript:void(0)'; ?>
             <a href="<?php echo $href; ?>" target="<?php echo $target; ?>">
                 <img src="<?php echo $item['image']; ?>" <?php echo $imgStyle; ?> />

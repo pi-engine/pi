@@ -11,7 +11,6 @@
 namespace Pi\Application\Registry;
 
 use Pi;
-use Pi\Acl\Acl as AclManager;
 
 /**
  * List of blocks on pages of a module
@@ -23,19 +22,19 @@ class Block extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $model = Pi::model('page');
+        $model  = Pi::model('page');
         $module = $options['module'];
-        $role = isset($options['role']) ? $options['role'] : null;
+        $role   = isset($options['role']) ? $options['role'] : null;
 
-        $pageList = $model->select(array(
-            'module'    => $module,
-            'section'   => 'front',
-            'block'     => 1,
-        ));
+        $pageList = $model->select([
+            'module'  => $module,
+            'section' => 'front',
+            'block'   => 1,
+        ]);
         // Created page list indexed by module-controller-action
-        $pages = array();
+        $pages = [];
         foreach ($pageList as $page) {
             $key = $module;
             if (!empty($page['controller'])) {
@@ -48,14 +47,14 @@ class Block extends AbstractRegistry
         }
 
         if (empty($pages)) {
-            return array();
+            return [];
         }
 
         $modelLinks = Pi::model('page_block');
-        $select = $modelLinks->select()->order(array('zone', 'order'))
-            ->where(array('page' => array_values($pages)));
+        $select     = $modelLinks->select()->order(['zone', 'order'])
+            ->where(['page' => array_values($pages)]);
         $blockLinks = $modelLinks->selectWith($select)->toArray();
-        $blocksId = array();
+        $blocksId   = [];
 
         // Get all block Ids
         foreach ($blockLinks as $link) {
@@ -64,9 +63,9 @@ class Block extends AbstractRegistry
         // Check for active for blocks
         if (!empty($blocksId)) {
             $modelBlock = Pi::model('block');
-            $select = $modelBlock->select()->columns(array('id'))
-                ->where(array('id' => array_keys($blocksId), 'active' => 0));
-            $rowset = $modelBlock->selectWith($select);
+            $select     = $modelBlock->select()->columns(['id'])
+                ->where(['id' => array_keys($blocksId), 'active' => 0]);
+            $rowset     = $modelBlock->selectWith($select);
             foreach ($rowset as $row) {
                 unset($blocksId[$row->id]);
             }
@@ -84,7 +83,7 @@ class Block extends AbstractRegistry
         }
 
         // Reorganize blocks by page and zone
-        $blocksByPageZone = array();
+        $blocksByPageZone = [];
         foreach ($blockLinks as $link) {
             // Skip inactive blocks
             if (!in_array($link['block'], $blocksId)) {
@@ -94,10 +93,10 @@ class Block extends AbstractRegistry
                 || in_array($link['block'], $blocksAllowed)
             ) {
                 if (!isset($blocksByPageZone[$link['page']][$link['zone']])) {
-                    $blocksByPageZone[$link['page']][$link['zone']] = array();
+                    $blocksByPageZone[$link['page']][$link['zone']] = [];
                 }
-                $blocksByPageZone[$link['page']][$link['zone']][] =
-                    $link['block'];
+                $blocksByPageZone[$link['page']][$link['zone']][]
+                    = $link['block'];
             }
         }
 
@@ -105,7 +104,7 @@ class Block extends AbstractRegistry
             if (isset($blocksByPageZone[$item])) {
                 $item = $blocksByPageZone[$item];
             } else {
-                $item = array();
+                $item = [];
             }
         }
 
@@ -114,13 +113,13 @@ class Block extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string        $module
-     * @param string|null   $role
+     * @param string $module
+     * @param string|null $role
      */
     public function read($module = '', $role = null)
     {
         //$this->cache = false;
-        $role = $this->canonizeRole($role);
+        $role   = $this->canonizeRole($role);
         $module = $module ?: Pi::service('module')->current();
         if ($role) {
             $options = compact('module', 'role');
@@ -133,8 +132,8 @@ class Block extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string        $module
-     * @param string|null   $role
+     * @param string $module
+     * @param string|null $role
      */
     public function create($module = '', $role = null)
     {

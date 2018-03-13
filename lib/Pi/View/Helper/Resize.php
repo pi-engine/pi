@@ -2,16 +2,16 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
-use Zend\View\Helper\AbstractHelper;
-use Pi\Application\Service\ImageProcessing;
 use Imagine\Gd\Imagine;
+use Pi;
+use Pi\Application\Service\ImageProcessing;
+use Zend\View\Helper\AbstractHelper;
 
 class Resize extends AbstractHelper
 {
     /** @var  array */
     protected $imgParts;
-    /** @var  string*/
+    /** @var  string */
     protected $commands;
 
     /**
@@ -24,27 +24,28 @@ class Resize extends AbstractHelper
 
     protected $imgPath;
 
-    protected $defaultSizes = array(
-        'large' => array(
-            'width' => 1024,
-            'height' => 768
-        ),
-        'item' => array(
-            'width' => 800,
-            'height' => 600
-        ),
-        'medium' => array(
-            'width' => 640,
-            'height' => 480
-        ),
-        'thumbnail' => array(
-            'width' => 320,
-            'height' => 240
-        )
-    );
+    protected $defaultSizes
+        = [
+            'large'     => [
+                'width'  => 1024,
+                'height' => 768,
+            ],
+            'item'      => [
+                'width'  => 800,
+                'height' => 600,
+            ],
+            'medium'    => [
+                'width'  => 640,
+                'height' => 480,
+            ],
+            'thumbnail' => [
+                'width'  => 320,
+                'height' => 240,
+            ],
+        ];
 
     /**
-     * @var $quality;
+     * @var $quality ;
      */
     protected $quality = 90;
 
@@ -55,15 +56,15 @@ class Resize extends AbstractHelper
     public function __invoke($imgPath, $cropping = null)
     {
         $mediaModuleActive = Pi::service('module')->isActive('media') ? true : false;
-        if($mediaModuleActive){
-            $mediaQuality = (int) Pi::service('module')->config('image_quality', 'media');
+        if ($mediaModuleActive) {
+            $mediaQuality = (int)Pi::service('module')->config('image_quality', 'media');
 
-            if($mediaQuality){
+            if ($mediaQuality) {
                 $this->quality = $mediaQuality;
             }
         }
 
-        $this->imgPath = $imgPath;
+        $this->imgPath  = $imgPath;
         $this->imgParts = pathinfo($imgPath);
         $this->commands = '';
         $this->cropping = $cropping;
@@ -78,45 +79,45 @@ class Resize extends AbstractHelper
      */
     public function setConfigModule($module)
     {
-        if(is_string($module) && Pi::service('module')->isActive($module)){
+        if (is_string($module) && Pi::service('module')->isActive($module)) {
             $moduleConfig = Pi::service('registry')->config->read($module);
 
-            if(isset($moduleConfig['image_quality'])){
-                $quality = (int) $moduleConfig['image_quality'];
+            if (isset($moduleConfig['image_quality'])) {
+                $quality = (int)$moduleConfig['image_quality'];
 
-                if($quality){
+                if ($quality) {
                     $this->quality = $quality;
                 }
             }
 
             $defaultSizes = $this->getDefaultSizes();
 
-            if(!empty($moduleConfig['image_largew']) && !empty($moduleConfig['image_largeh'])){
-                $defaultSizes['large'] = array(
-                    'width' => $moduleConfig['image_largew'],
+            if (!empty($moduleConfig['image_largew']) && !empty($moduleConfig['image_largeh'])) {
+                $defaultSizes['large'] = [
+                    'width'  => $moduleConfig['image_largew'],
                     'height' => $moduleConfig['image_largeh'],
-                );
+                ];
             }
 
-            if(!empty($moduleConfig['image_itemw']) && !empty($moduleConfig['image_itemh'])){
-                $defaultSizes['item'] = array(
-                    'width' => $moduleConfig['image_itemw'],
+            if (!empty($moduleConfig['image_itemw']) && !empty($moduleConfig['image_itemh'])) {
+                $defaultSizes['item'] = [
+                    'width'  => $moduleConfig['image_itemw'],
                     'height' => $moduleConfig['image_itemh'],
-                );
+                ];
             }
 
-            if(!empty($moduleConfig['image_mediumw']) && !empty($moduleConfig['image_mediumh'])){
-                $defaultSizes['medium'] = array(
-                    'width' => $moduleConfig['image_mediumw'],
+            if (!empty($moduleConfig['image_mediumw']) && !empty($moduleConfig['image_mediumh'])) {
+                $defaultSizes['medium'] = [
+                    'width'  => $moduleConfig['image_mediumw'],
                     'height' => $moduleConfig['image_mediumh'],
-                );
+                ];
             }
 
-            if(!empty($moduleConfig['image_thumbw']) && !empty($moduleConfig['image_thumbh'])){
-                $defaultSizes['thumbnail'] = array(
-                    'width' => $moduleConfig['image_thumbw'],
+            if (!empty($moduleConfig['image_thumbw']) && !empty($moduleConfig['image_thumbh'])) {
+                $defaultSizes['thumbnail'] = [
+                    'width'  => $moduleConfig['image_thumbw'],
                     'height' => $moduleConfig['image_thumbh'],
-                );
+                ];
             }
 
             $this->setDefaultSizes($defaultSizes);
@@ -130,7 +131,8 @@ class Resize extends AbstractHelper
      * @param array $defaultSizes
      * @return $this
      */
-    public function setDefaultSizes($defaultSizes){
+    public function setDefaultSizes($defaultSizes)
+    {
         $this->defaultSizes = $defaultSizes;
 
         return $this;
@@ -141,7 +143,8 @@ class Resize extends AbstractHelper
      * @param array $defaultSizes
      * @return array
      */
-    public function getDefaultSizes(){
+    public function getDefaultSizes()
+    {
         return $this->defaultSizes;
     }
 
@@ -152,10 +155,10 @@ class Resize extends AbstractHelper
      */
     public function thumb($widthOrSizeCode, $height = null)
     {
-        if(is_string($widthOrSizeCode)){
+        if (is_string($widthOrSizeCode)) {
             $defaultSizes = $this->getDefaultSizes();
-            $width = $defaultSizes[$widthOrSizeCode]['width'];
-            $height = $defaultSizes[$widthOrSizeCode]['height'];
+            $width        = $defaultSizes[$widthOrSizeCode]['width'];
+            $height       = $defaultSizes[$widthOrSizeCode]['height'];
         } else {
             $width = $widthOrSizeCode;
         }
@@ -172,10 +175,10 @@ class Resize extends AbstractHelper
      */
     public function thumbcrop($widthOrSizeCode, $height = null)
     {
-        if(is_string($widthOrSizeCode)){
+        if (is_string($widthOrSizeCode)) {
             $defaultSizes = $this->getDefaultSizes();
-            $width = $defaultSizes[$widthOrSizeCode]['width'];
-            $height = $defaultSizes[$widthOrSizeCode]['height'];
+            $width        = $defaultSizes[$widthOrSizeCode]['width'];
+            $height       = $defaultSizes[$widthOrSizeCode]['height'];
         } else {
             $width = $widthOrSizeCode;
         }
@@ -192,10 +195,10 @@ class Resize extends AbstractHelper
      */
     public function resize($widthOrSizeCode, $height = null)
     {
-        if(is_string($widthOrSizeCode)){
+        if (is_string($widthOrSizeCode)) {
             $defaultSizes = $this->getDefaultSizes();
-            $width = $defaultSizes[$widthOrSizeCode]['width'];
-            $height = $defaultSizes[$widthOrSizeCode]['height'];
+            $width        = $defaultSizes[$widthOrSizeCode]['width'];
+            $height       = $defaultSizes[$widthOrSizeCode]['height'];
         } else {
             $width = $widthOrSizeCode;
         }
@@ -211,9 +214,9 @@ class Resize extends AbstractHelper
      */
     public function quality($value = null)
     {
-        if($value !== null && is_numeric($value)){
+        if ($value !== null && is_numeric($value)) {
             $this->commands .= '$quality,' . $value;
-            $this->quality = $value;
+            $this->quality  = $value;
         }
 
         return $this;
@@ -307,23 +310,23 @@ class Resize extends AbstractHelper
      */
     public function __toString()
     {
-        if($this->commands == ''){
+        if ($this->commands == '') {
             return \Pi::url($this->imgPath);
         }
 
-        $options = array();
+        $options = [];
 
         $options['quality'] = $this->quality;
 
-        try{
+        try {
 
-            if(empty($this->imgParts['dirname'])){
+            if (empty($this->imgParts['dirname'])) {
                 throw new \Exception('No dirname found');
             }
 
             $file = ($this->imgParts['dirname'] && $this->imgParts['dirname'] !== '.' ? $this->imgParts['dirname'] . '/' : '') . $this->imgParts['filename'];
 
-            if(!isset($this->imgParts['extension']) || $this->imgParts['extension'] == ''){
+            if (!isset($this->imgParts['extension']) || $this->imgParts['extension'] == '') {
                 throw new \Exception('No extension found');
             }
 
@@ -334,7 +337,7 @@ class Resize extends AbstractHelper
                 . '.' . $targetExtension;
 
             if (!file_exists($source)) {
-                $source = null;
+                $source          = null;
                 $targetExtension = '404.' . $targetExtension;
             }
 
@@ -343,23 +346,20 @@ class Resize extends AbstractHelper
                 . str_replace('upload/media/original', '', $file)
                 . '.' . $targetExtension;
 
-            if(!is_file($target))
-            {
-                ini_set("memory_limit","512M");
+            if (!is_file($target)) {
+                ini_set("memory_limit", "512M");
 
-                $imagine = new Imagine();
+                $imagine         = new Imagine();
                 $imageProcessing = new ImageProcessing($imagine);
 
                 if ($source) {
-                    $imageProcessing->process($source, $target, preg_replace('#^\$#','',$this->commands), $this->cropping, $options);
+                    $imageProcessing->process($source, $target, preg_replace('#^\$#', '', $this->commands), $this->cropping, $options);
 
                 } else {
-                    $imageProcessing->process404($target, preg_replace('#^\$#','',$this->commands));
+                    $imageProcessing->process404($target, preg_replace('#^\$#', '', $this->commands));
                 }
             }
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             return '';
         }
 

@@ -26,9 +26,10 @@ class Nest extends AbstractNest
     /**
      * {@inheritDoc}
      */
-    protected $column = array(
-        'left'  => 'left',
-        'right' => 'right',
-        'depth' => 'depth',
-    );
+    protected $column
+        = [
+            'left'  => 'left',
+            'right' => 'right',
+            'depth' => 'depth',
+        ];
 }

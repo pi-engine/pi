@@ -13,11 +13,11 @@
  * @see Pi\Application\Installer\Resource\Comment
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
-    'page' => array(
-        'title'     => _a('Page comments'),
-        'icon'      => 'icon-post',
-        'callback'  => 'Module\Page\Api\Comment',
-        'locator'   => 'Module\Page\Api\Comment',
-    ),
-);
+return [
+    'page' => [
+        'title'    => _a('Page comments'),
+        'icon'     => 'icon-post',
+        'callback' => 'Module\Page\Api\Comment',
+        'locator'  => 'Module\Page\Api\Comment',
+    ],
+];

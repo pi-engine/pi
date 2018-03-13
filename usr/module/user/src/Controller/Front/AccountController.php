@@ -9,13 +9,13 @@
 
 namespace Module\User\Controller\Front;
 
-use Pi;
-use Pi\Mvc\Controller\ActionController;
-use Module\User\Form\AccountForm;
 use Module\User\Form\AccountFilter;
+use Module\User\Form\AccountForm;
+use Module\User\Validator\Name as NameValidator;
 use Module\User\Validator\UserEmail as UserEmailValidator;
 use Module\User\Validator\Username as UsernameValidator;
-use Module\User\Validator\Name as NameValidator;
+use Pi;
+use Pi\Mvc\Controller\ActionController;
 
 /**
  * Account controller
@@ -44,7 +44,7 @@ class AccountController extends ActionController
         );
 
         // Generate form
-        $form        = new AccountForm('account');
+        $form = new AccountForm('account');
         $form->setAttribute('action', '#');
         $data['uid'] = $uid;
         $data['id']  = $uid;

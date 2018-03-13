@@ -126,7 +126,7 @@ class Navigation extends AbstractResource
                 $page['route'] = substr($page['route'], 1);
             }
             if (isset($page['params']) && !is_array($page['params'])) {
-                $page['params'] = array();
+                $page['params'] = [];
             }
             //$validColumns = $this->mvcColumns;
         } else {
@@ -156,7 +156,7 @@ class Navigation extends AbstractResource
     protected function canonizePages(array &$list)
     {
         foreach ($list as $key => &$page) {
-            $pages = array();
+            $pages = [];
             if (!empty($page['pages'])) {
                 $pages = $page['pages'];
             }
@@ -176,41 +176,41 @@ class Navigation extends AbstractResource
      */
     protected function canonizeConfig($config)
     {
-        $module = $this->event->getParam('module');
+        $module       = $this->event->getParam('module');
         $this->module = $module;
 
-        $result = array(
-            'meta'  => array(),
-            'node'  => array(),
-        );
+        $result = [
+            'meta' => [],
+            'node' => [],
+        ];
 
-        $meta = array();
+        $meta = [];
         if (!isset($config['item']) && !isset($config['meta'])) {
             $item = $config;
         } else {
-            $meta = isset($config['meta']) ? $config['meta'] : array();
-            $item =  isset($config['item']) ? $config['item'] : array();
+            $meta = isset($config['meta']) ? $config['meta'] : [];
+            $item = isset($config['item']) ? $config['item'] : [];
         }
 
         // Set up front nav
         if (!isset($item['front'])) {
-            $item['front'] = array();
+            $item['front'] = [];
         } elseif (false === $item['front']) {
             unset($item['front']);
         }
 
-        $navNames = array();
+        $navNames = [];
         foreach ($meta as $key => $nav) {
-            $nav['module']  = $module;
-            $nav['title']   = __($nav['title']);
+            $nav['module'] = $module;
+            $nav['title']  = __($nav['title']);
             if (isset($nav['name'])) {
                 $name = $nav['name'];
             } else {
-                $name           = $module . '-' . $key;
-                $nav['name']    = $name;
+                $name        = $module . '-' . $key;
+                $nav['name'] = $name;
             }
             $result['meta'][$name] = $nav;
-            $navNames[$key] = $name;
+            $navNames[$key]        = $name;
         }
         foreach ($item as $key => $data) {
             if (isset($navNames[$key])) {
@@ -218,13 +218,13 @@ class Navigation extends AbstractResource
             } else {
                 $name = $module . '-' . $key;
             }
-            $data = is_array($data) ? $data : array();
+            $data = is_array($data) ? $data : [];
             $this->canonizePages($data);
-            $node = array(
-                'module'        => $module,
-                'navigation'    => $name,
-                'data'          => $data,
-            );
+            $node                  = [
+                'module'     => $module,
+                'navigation' => $name,
+                'data'       => $data,
+            ];
             $result['node'][$name] = $node;
         }
 
@@ -236,20 +236,20 @@ class Navigation extends AbstractResource
      */
     public function installAction()
     {
-        $module = $this->event->getParam('module');
-        $message = array();
+        $module  = $this->event->getParam('module');
+        $message = [];
 
         $navigationList = $this->loadNavigation();
         // Insert navigation meta
         foreach ($navigationList['meta'] as $key => $navigation) {
             $status = $this->insertNavigation($navigation, $message);
             if (!$status) {
-                $msg = 'Navigation "%s" is not created.';
+                $msg       = 'Navigation "%s" is not created.';
                 $message[] = sprintf($msg, $navigation['name']);
-                return array(
-                    'status'    => false,
-                    'message'   => $message
-                );
+                return [
+                    'status'  => false,
+                    'message' => $message,
+                ];
             }
         }
 
@@ -257,12 +257,12 @@ class Navigation extends AbstractResource
         foreach ($navigationList['node'] as $key => $node) {
             $status = $this->insertNavigationNode($node, $message);
             if (!$status) {
-                $msg = 'Navigation data for "%s" is not created.';
+                $msg       = 'Navigation data for "%s" is not created.';
                 $message[] = sprintf($msg, $node['navigation']);
-                return array(
-                    'status'    => false,
-                    'message'   => $message
-                );
+                return [
+                    'status'  => false,
+                    'message' => $message,
+                ];
             }
         }
 
@@ -282,13 +282,13 @@ class Navigation extends AbstractResource
         if ($this->skipUpgrade()) {
             return;
         }
-        $message = array();
+        $message        = [];
         $navigationList = $this->loadNavigation();
 
         // Update navigation meta
-        $navigations = $navigationList['meta'];
+        $navigations     = $navigationList['meta'];
         $modelNavigation = Pi::model('navigation');
-        $rowset = $modelNavigation->select(array('module' => $module));
+        $rowset          = $modelNavigation->select(['module' => $module]);
         foreach ($rowset as $row) {
             // Updated existent navigation
             if (isset($navigations[$row->name])) {
@@ -302,16 +302,16 @@ class Navigation extends AbstractResource
 
                 unset($navigations[$row->name]);
                 continue;
-            // Delete deprecated navigation
+                // Delete deprecated navigation
             } else {
                 $status = $this->deleteNavigation($row, $message);
                 if (!$status) {
-                    $msg = 'Deprecated navigation "%s" is not deleted.';
+                    $msg       = 'Deprecated navigation "%s" is not deleted.';
                     $message[] = sprintf($msg, $row->name);
-                    return array(
-                        'status'    => false,
-                        'message'   => $message
-                    );
+                    return [
+                        'status'  => false,
+                        'message' => $message,
+                    ];
                 }
             }
         }
@@ -319,19 +319,19 @@ class Navigation extends AbstractResource
         foreach ($navigations as $key => $navigation) {
             $status = $this->insertNavigation($navigation, $message);
             if (!$status) {
-                $msg = 'Navigation "%s" is not created.';
+                $msg       = 'Navigation "%s" is not created.';
                 $message[] = sprintf($msg, $navigation['name']);
-                return array(
-                    'status'    => false,
-                    'message'   => $message
-                );
+                return [
+                    'status'  => false,
+                    'message' => $message,
+                ];
             }
         }
 
         // Update navigation nodes
-        $nodes = $navigationList['node'];
+        $nodes     = $navigationList['node'];
         $modelNode = Pi::model('navigation_node');
-        $rowset = $modelNode->select(array('module' => $module));
+        $rowset    = $modelNode->select(['module' => $module]);
         foreach ($rowset as $row) {
             // Updated existent node
             if (isset($nodes[$row->navigation])) {
@@ -344,7 +344,7 @@ class Navigation extends AbstractResource
                 }
                 unset($nodes[$row->navigation]);
                 continue;
-            // Delete deprecated node
+                // Delete deprecated node
             } else {
                 $row->delete();
             }
@@ -353,12 +353,12 @@ class Navigation extends AbstractResource
         foreach ($nodes as $key => $node) {
             $status = $this->insertNavigationNode($node, $message);
             if (!$status) {
-                $msg = 'Navigation node "%s" is not created.';
+                $msg       = 'Navigation node "%s" is not created.';
                 $message[] = sprintf($msg, $node['navigation']);
-                return array(
-                    'status'    => false,
-                    'message'   => $message
-                );
+                return [
+                    'status'  => false,
+                    'message' => $message,
+                ];
             }
         }
 
@@ -376,22 +376,22 @@ class Navigation extends AbstractResource
         $module = $this->event->getParam('module');
 
         // Remove navigations
-        $model = Pi::model('navigation');
-        $rowset = $model->select(array('module' => $module));
+        $model  = Pi::model('navigation');
+        $rowset = $model->select(['module' => $module]);
         foreach ($rowset as $row) {
             $status = $this->deleteNavigation($row, $message);
             if (!$status) {
-                $msg = 'Deprecated navigation "%s" is not deleted.';
+                $msg       = 'Deprecated navigation "%s" is not deleted.';
                 $message[] = sprintf($msg, $row->name);
-                return array(
-                    'status'    => false,
-                    'message'   => $message
-                );
+                return [
+                    'status'  => false,
+                    'message' => $message,
+                ];
             }
         }
         // Remove nodes
-        $model = Pi::model('navigation_node');
-        $rowset = $model->select(array('module' => $module));
+        $model  = Pi::model('navigation_node');
+        $rowset = $model->select(['module' => $module]);
         foreach ($rowset as $row) {
             $row->delete();
         }
@@ -410,8 +410,8 @@ class Navigation extends AbstractResource
         $module = $this->event->getParam('module');
 
         // update role active => 1
-        $where = array('module' => $module);
-        Pi::model('navigation')->update(array('active' => 1), $where);
+        $where = ['module' => $module];
+        Pi::model('navigation')->update(['active' => 1], $where);
         Pi::registry('navigation')->flush();
         Pi::service('cache')->clearByNamespace('nav');
 
@@ -426,13 +426,13 @@ class Navigation extends AbstractResource
         $module = $this->event->getParam('module');
 
         // update role active => 1
-        $where = array('module' => $module);
-        Pi::model('navigation')->update(array('active' => 0), $where);
+        $where = ['module' => $module];
+        Pi::model('navigation')->update(['active' => 0], $where);
         Pi::registry('navigation')->flush();
         Pi::service('cache')->clearByNamespace('nav');
 
         return true;
-     }
+    }
 
     /**
      * Insert all pages of a navigation
@@ -457,7 +457,7 @@ class Navigation extends AbstractResource
     protected function loadNavigation()
     {
         if (false === ($navigations = $this->config)) {
-            return array();
+            return [];
         }
         $module = $this->event->getParam('module');
         //Pi::service('i18n')->load(sprintf('module/%s:navigation', $module));
@@ -476,7 +476,7 @@ class Navigation extends AbstractResource
     protected function insertNavigation($navigation, &$message)
     {
         $model = Pi::model('navigation');
-        $row = $model->createRow($navigation);
+        $row   = $model->createRow($navigation);
         $row->save();
         if (!$row->id) {
             return false;
@@ -495,7 +495,8 @@ class Navigation extends AbstractResource
     protected function deleteNavigation(
         NavigationRow $navigationRow,
         &$message
-    ) {
+    )
+    {
         try {
             $navigationRow->delete();
         } catch (\Exception $e) {

@@ -7,21 +7,21 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
+return [
     // route name
-    'page'  => array(
-        'name'      => 'page',
-        'section'   => 'front',
-        'priority'  => 10,
+    'page' => [
+        'name'     => 'page',
+        'section'  => 'front',
+        'priority' => 10,
 
-        'type'      => 'Module\Page\Route\Page',
-        'options'   => array(
+        'type'    => 'Module\Page\Route\Page',
+        'options' => [
             //'route'     => '/page',
-            'defaults'  => array(
-                'module'        => 'page',
-                'controller'    => 'index',
-                'action'        => 'index'
-            )
-        ),
-    )
-);
+            'defaults' => [
+                'module'     => 'page',
+                'controller' => 'index',
+                'action'     => 'index',
+            ],
+        ],
+    ],
+];

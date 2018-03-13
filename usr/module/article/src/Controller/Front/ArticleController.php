@@ -9,28 +9,28 @@
 
 namespace Module\Article\Controller\Front;
 
-use Pi\Mvc\Controller\ActionController;
-use Pi;
-use Pi\Paginator\Paginator;
+use Module\Article\Draft;
+use Module\Article\Entity;
+use Module\Article\Form\SimpleSearchForm;
+use Module\Article\Media;
 use Module\Article\Model\Article;
 use Module\Article\Model\Draft as DraftModel;
-use Module\Article\Form\SimpleSearchForm;
 use Module\Article\Rule;
-use Module\Article\Entity;
 use Module\Article\Stats;
-use Module\Article\Draft;
-use Module\Article\Media;
+use Pi;
+use Pi\Mvc\Controller\ActionController;
+use Pi\Paginator\Paginator;
 
 /**
  * Article controller
- * 
+ *
  * Feature list:
- * 
+ *
  * 1. Article homepage
  * 2. Article detail page
  * 5. AJAX action for seaching article
  * 6. AJAX action for checking article subject exists
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class ArticleController extends ActionController
@@ -40,30 +40,30 @@ class ArticleController extends ActionController
      * @var string
      */
     protected $section = 'front';
-    
+
     /**
-     * Article homepage, all page content are dressed up by user 
+     * Article homepage, all page content are dressed up by user
      */
     public function indexAction()
     {
         if ($this->config('default_homepage')) {
             return $this->redirect()
-                        ->toUrl(Pi::url($this->config('default_homepage')));
+                ->toUrl(Pi::url($this->config('default_homepage')));
         }
     }
-    
+
     /**
      * Article detail page
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function detailAction()
     {
-        $id       = $this->params('id');
-        $slug     = $this->params('slug', '');
-        $page     = $this->params('p', 1);
-        $remain   = $this->params('r', '');
-        
+        $id     = $this->params('id');
+        $slug   = $this->params('slug', '');
+        $page   = $this->params('p', 1);
+        $remain = $this->params('r', '');
+
         if ('' !== $remain) {
             $this->view()->assign('remain', $remain);
         }
@@ -72,7 +72,7 @@ class ArticleController extends ActionController
             $id = $this->getModel('extended')->slugToId($slug);
         }
 
-        $details = Entity::getEntity($id);
+        $details       = Entity::getEntity($id);
         $details['id'] = $id;
 
         if (!$id or ($details['time_publish'] > time())) {
@@ -85,20 +85,20 @@ class ArticleController extends ActionController
             );
         }
         $module = $this->getModule();
-        $params  = array(
-            'module'        => $module,
-        );
+        $params = [
+            'module' => $module,
+        ];
         //$route = Pi::api('api', $module)->getRouteName();
         $route = 'article';
         if (strval($slug) != $details['slug']) {
-            $routeParams = array(
-                'time'          => date('Ymd', $details['time_publish']),
-                'id'            => $id,
-                'slug'          => $details['slug'],
-                'p'             => $page,
-                'controller'    => 'article',
-                'action'        => 'detail',
-            );
+            $routeParams = [
+                'time'       => date('Ymd', $details['time_publish']),
+                'id'         => $id,
+                'slug'       => $details['slug'],
+                'p'          => $page,
+                'controller' => 'article',
+                'action'     => 'detail',
+            ];
             if ($remain) {
                 $params['r'] = $remain;
             }
@@ -106,17 +106,17 @@ class ArticleController extends ActionController
                 ->setStatusCode(301)
                 ->toRoute($route, array_merge($routeParams, $params));
         }
-        
+
         foreach ($details['content'] as &$value) {
-            $value['url'] = $this->url($route, array_merge(array(
-                'time'          => date('Ymd', $details['time_publish']),
-                'id'            => $id,
-                'slug'          => $slug,
-                'p'             => $value['page'],
-                'controller'    => 'article',
-                'action'        => 'detail',
-            ), $params));
-            if (isset($value['title']) 
+            $value['url'] = $this->url($route, array_merge([
+                'time'       => date('Ymd', $details['time_publish']),
+                'id'         => $id,
+                'slug'       => $slug,
+                'p'          => $value['page'],
+                'controller' => 'article',
+                'action'     => 'detail',
+            ], $params));
+            if (isset($value['title'])
                 and preg_replace('/&nbsp;/', '', trim($value['title'])) !== ''
             ) {
                 $showTitle = true;
@@ -124,38 +124,38 @@ class ArticleController extends ActionController
                 $value['title'] = '';
             }
         }
-        $details['view'] = $this->url($route, array_merge(array(
-            'time'        => date('Ymd', $details['time_publish']),
-            'id'          => $id,
-            'slug'        => $slug,
-            'r'           => 0,
-            'controller'  => 'article',
-            'action'      => 'detail',
-        ), $params));
-        $details['remain'] = $this->url($route, array_merge(array(
-            'time'        => date('Ymd', $details['time_publish']),
-            'id'          => $id,
-            'slug'        => $slug,
-            'r'           => $page,
-            'controller'  => 'article',
-            'action'      => 'detail',
-        ), $params));
-        
+        $details['view']   = $this->url($route, array_merge([
+            'time'       => date('Ymd', $details['time_publish']),
+            'id'         => $id,
+            'slug'       => $slug,
+            'r'          => 0,
+            'controller' => 'article',
+            'action'     => 'detail',
+        ], $params));
+        $details['remain'] = $this->url($route, array_merge([
+            'time'       => date('Ymd', $details['time_publish']),
+            'id'         => $id,
+            'slug'       => $slug,
+            'r'          => $page,
+            'controller' => 'article',
+            'action'     => 'detail',
+        ], $params));
+
         $config = Pi::config('', $this->getModule());
-        $this->view()->assign(array(
-            'details'     => $details,
-            'page'        => $page,
-            'showTitle'   => isset($showTitle) ? $showTitle : null,
-            'config'      => $config,
-            'module'      => $module,
-        ));
+        $this->view()->assign([
+            'details'   => $details,
+            'page'      => $page,
+            'showTitle' => isset($showTitle) ? $showTitle : null,
+            'config'    => $config,
+            'module'    => $module,
+        ]);
     }
 
     /**
-     * Edit a published article, the article details will be copied to 
+     * Edit a published article, the article details will be copied to
      * draft table, and then redirect to edit page.
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function editAction()
     {
@@ -163,59 +163,59 @@ class ArticleController extends ActionController
         if (!$this->config('enable_front_edit') && 'front' == $this->section) {
             return $this->jumpTo404();
         }
-        
+
         $id     = $this->params('id', 0);
         $module = $this->getModule();
 
         if (!$id) {
             return $this->jumpTo404(__('Invalid article ID'));
         }
-        
+
         $model = $this->getModel('article');
         $row   = $model->find($id);
 
         // Check user has permission to edit
-        $rules = Rule::getPermission();
-        $slug  = Draft::getStatusSlug($row->status);
+        $rules    = Rule::getPermission();
+        $slug     = Draft::getStatusSlug($row->status);
         $resource = $slug . '-edit';
-        if (!(isset($rules[$row->category][$resource]) 
+        if (!(isset($rules[$row->category][$resource])
             and $rules[$row->category][$resource])
         ) {
             return $this->jumpToDenied();
         }
-        
+
         // Check if draft exists
         $draftModel = $this->getModel('draft');
         $rowDraft   = $draftModel->find($id, 'article');
 
         if ($rowDraft) {
-            $draftModel->delete(array('id' => $rowDraft->id));
+            $draftModel->delete(['id' => $rowDraft->id]);
         }
 
         // Create new draft if no draft exists
         if (!$row->id or $row->status != Article::FIELD_STATUS_PUBLISHED) {
             return $this->jumpTo404(__('Can not create draft'));
         }
-        $draft = array(
-            'article'         => $row->id,
-            'subject'         => $row->subject,
-            'subtitle'        => $row->subtitle,
-            'summary'         => $row->summary,
-            'content'         => $row->content,
-            'uid'             => $row->uid,
-            'author'          => $row->author,
-            'source'          => $row->source,
-            'pages'           => $row->pages,
-            'category'        => $row->category,
-            'status'          => DraftModel::FIELD_STATUS_DRAFT,
-            'time_save'       => time(),
-            'time_submit'     => $row->time_submit,
-            'time_publish'    => $row->time_publish,
-            'time_update'     => $row->time_update,
-            'image'           => $row->image,
-            'user_update'     => $row->user_update,
-        );
-        
+        $draft = [
+            'article'      => $row->id,
+            'subject'      => $row->subject,
+            'subtitle'     => $row->subtitle,
+            'summary'      => $row->summary,
+            'content'      => $row->content,
+            'uid'          => $row->uid,
+            'author'       => $row->author,
+            'source'       => $row->source,
+            'pages'        => $row->pages,
+            'category'     => $row->category,
+            'status'       => DraftModel::FIELD_STATUS_DRAFT,
+            'time_save'    => time(),
+            'time_submit'  => $row->time_submit,
+            'time_publish' => $row->time_publish,
+            'time_update'  => $row->time_update,
+            'image'        => $row->image,
+            'user_update'  => $row->user_update,
+        ];
+
         // Get extended fields
         $modelExtended = $this->getModel('extended');
         $rowExtended   = $modelExtended->find($row->id, 'article');
@@ -225,8 +225,8 @@ class ArticleController extends ActionController
         }
 
         // Get related articles
-        $relatedModel = $this->getModel('related');
-        $related      = $relatedModel->getRelated($id);
+        $relatedModel     = $this->getModel('related');
+        $related          = $relatedModel->getRelated($id);
         $draft['related'] = $related;
 
         // Get tag
@@ -242,36 +242,36 @@ class ArticleController extends ActionController
         $draftId = $draftRow->id;
 
         // Copy assets to draft
-        $resultsetAsset = $this->getModel('asset')->select(array(
+        $resultsetAsset  = $this->getModel('asset')->select([
             'article' => $id,
-        ));
+        ]);
         $modelDraftAsset = $this->getModel('asset_draft');
         foreach ($resultsetAsset as $asset) {
-            $data = array(
-                'media'    => $asset->media,
-                'type'     => $asset->type,
-                'draft'    => $draftId,
-            );
+            $data          = [
+                'media' => $asset->media,
+                'type'  => $asset->type,
+                'draft' => $draftId,
+            ];
             $rowDraftAsset = $modelDraftAsset->createRow($data);
             $rowDraftAsset->save();
         }
 
         // Redirect to edit draft
         if ($draftId) {
-            return $this->redirect()->toRoute('', array(
-                'module'        => $module,
-                'action'        => 'edit',
-                'controller'    => 'draft',
-                'id'            => $draftId,
-                'from'          => 'all',
-            ));
+            return $this->redirect()->toRoute('', [
+                'module'     => $module,
+                'action'     => 'edit',
+                'controller' => 'draft',
+                'id'         => $draftId,
+                'from'       => 'all',
+            ]);
         }
     }
 
     /**
      * List all published article for management
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function publishedAction()
     {
@@ -280,34 +280,34 @@ class ArticleController extends ActionController
             return $this->jumpTo404();
         }
 
-        $page       = $this->params('p', 1);
-        $limit      = $this->params('limit', 20);
-        $from       = $this->params('from', 'my');
-        $keyword    = $this->params('keyword', '');
-        $category   = $this->params('category', 0);
-        $filter     = $this->params('filter', '');
-        $order      = 'time_publish DESC';
+        $page     = $this->params('p', 1);
+        $limit    = $this->params('limit', 20);
+        $from     = $this->params('from', 'my');
+        $keyword  = $this->params('keyword', '');
+        $category = $this->params('category', 0);
+        $filter   = $this->params('filter', '');
+        $order    = 'time_publish DESC';
 
-        $where      = array();
+        $where = [];
         // Get permission
         $rules = Rule::getPermission();
         if (empty($rules)) {
             return $this->jumpToDenied();
         }
-        $categories = array();
+        $categories = [];
         foreach (array_keys($rules) as $key) {
             $categories[$key] = true;
         }
         $where['category'] = array_keys($categories);
-        
+
         // Select article of mine
         if ('my' == $from) {
             $where['uid'] = Pi::user()->getId() ?: 0;
         }
 
-        $module         = $this->getModule();
-        $modelArticle   = $this->getModel('article');
-        $categoryModel  = $this->getModel('category');
+        $module        = $this->getModule();
+        $modelArticle  = $this->getModel('article');
+        $categoryModel = $this->getModel('category');
 
         if (!empty($category) and !in_array($category, $where['category'])) {
             return $this->jumpToDenied();
@@ -321,12 +321,12 @@ class ArticleController extends ActionController
 
         // Build where
         $where['status'] = Article::FIELD_STATUS_PUBLISHED;
-        
+
         if (!empty($keyword)) {
             $where['subject like ?'] = sprintf('%%%s%%', $keyword);
         }
         $where = array_filter($where);
-        
+
         // The where must be added after array_filter function
         if ($filter == 'active') {
             $where['active'] = 1;
@@ -362,36 +362,36 @@ class ArticleController extends ActionController
         ));
         */
 
-        $params = array(
-            'module'    => $module,
-        );
-        foreach (array('category', 'filter', 'keyword', 'from') as $key) {
+        $params = [
+            'module' => $module,
+        ];
+        foreach (['category', 'filter', 'keyword', 'from'] as $key) {
             if (${$key}) {
                 $params[$key] = ${$key};
             }
         }
-        $paginator = Paginator::factory($totalCount, array(
+        $paginator = Paginator::factory($totalCount, [
             'limit'       => $limit,
             'page'        => $page,
-            'url_options' => array(
-                'page_param'    => 'p',
-                'params'        => $params,
-            ),
-        ));
+            'url_options' => [
+                'page_param' => 'p',
+                'params'     => $params,
+            ],
+        ]);
 
         // Prepare search form
         $form = new SimpleSearchForm;
         $form->setData($this->params()->fromQuery());
-        
-        $flags = array(
+
+        $flags = [
             'draft'     => DraftModel::FIELD_STATUS_DRAFT,
             'pending'   => DraftModel::FIELD_STATUS_PENDING,
             'rejected'  => DraftModel::FIELD_STATUS_REJECTED,
             'published' => Article::FIELD_STATUS_PUBLISHED,
-        );
+        ];
 
         $cacheCategories = Pi::api('api', $module)->getCategoryList();
-        $this->view()->assign(array(
+        $this->view()->assign([
             'title'      => __('Published'),
             'data'       => $data,
             'form'       => $form,
@@ -405,19 +405,19 @@ class ArticleController extends ActionController
             'status'     => Article::FIELD_STATUS_PUBLISHED,
             'from'       => $from,
             'rules'      => $rules,
-        ));
-        
+        ]);
+
         if ('my' == $from) {
             $this->view()->setTemplate('draft-list', $module, 'front');
         } else {
             $this->view()->setTemplate('article-published', $module, 'front');
         }
     }
-    
+
     /**
      * Delete published articles
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function deleteAction()
     {
@@ -425,37 +425,37 @@ class ArticleController extends ActionController
         if (!$this->config('enable_front_edit') && 'front' == $this->section) {
             return $this->jumpTo404();
         }
-        
-        $id     = $this->params('id', '');
-        $ids    = array_filter(explode(',', $id));
-        $from   = $this->params('from', '');
+
+        $id   = $this->params('id', '');
+        $ids  = array_filter(explode(',', $id));
+        $from = $this->params('from', '');
 
         if (empty($ids)) {
             return $this->jumpTo404(__('Invalid article ID'));
         }
-        
-        $module         = $this->getModule();
-        $modelArticle   = $this->getModel('article');
-        $modelAsset     = $this->getModel('asset');
-        
+
+        $module       = $this->getModule();
+        $modelArticle = $this->getModel('article');
+        $modelAsset   = $this->getModel('asset');
+
         // Delete articles that user has permission to do
         $rules = Rule::getPermission();
         if (1 == count($ids)) {
             $row      = $modelArticle->find($ids[0]);
             $slug     = Draft::getStatusSlug($row->status);
             $resource = $slug . '-delete';
-            if (!(isset($rules[$row->category][$resource]) 
+            if (!(isset($rules[$row->category][$resource])
                 and $rules[$row->category][$resource])
             ) {
                 return $this->jumpToDenied();
             }
         } else {
-            $rows     = $modelArticle->select(array('id' => $ids));
-            $ids      = array();
+            $rows = $modelArticle->select(['id' => $ids]);
+            $ids  = [];
             foreach ($rows as $row) {
                 $slug     = Draft::getStatusSlug($row->status);
                 $resource = $slug . '-delete';
-                if (isset($rules[$row->category][$resource]) 
+                if (isset($rules[$row->category][$resource])
                     and $rules[$row->category][$resource]
                 ) {
                     $ids[] = $row->id;
@@ -463,7 +463,7 @@ class ArticleController extends ActionController
             }
         }
 
-        $resultsetArticle = $modelArticle->select(array('id' => $ids));
+        $resultsetArticle = $modelArticle->select(['id' => $ids]);
 
         // Step operation
         foreach ($resultsetArticle as $article) {
@@ -473,32 +473,32 @@ class ArticleController extends ActionController
                 @unlink(Pi::path(Media::getThumbFromOriginal($article->image)));
             }
         }
-        
+
         // Batch operation
         // Deleting extended fields
-        $this->getModel('extended')->delete(array('article' => $ids));
-        
+        $this->getModel('extended')->delete(['article' => $ids]);
+
         // Deleting statistics
-        $this->getModel('stats')->delete(array('article' => $ids));
-        
+        $this->getModel('stats')->delete(['article' => $ids]);
+
         // Deleting compiled article
-        $this->getModel('compiled')->delete(array('article' => $ids));
-        
+        $this->getModel('compiled')->delete(['article' => $ids]);
+
         // Delete tag
         if ($this->config('enable_tag')) {
             Pi::service('tag')->delete($module, $ids);
         }
         // Delete related articles
-        $this->getModel('related')->delete(array('article' => $ids));
+        $this->getModel('related')->delete(['article' => $ids]);
 
         // Delete visits
-        $this->getModel('visit')->delete(array('article' => $ids));
+        $this->getModel('visit')->delete(['article' => $ids]);
 
         // Delete assets
-        $modelAsset->delete(array('article' => $ids));
+        $modelAsset->delete(['article' => $ids]);
 
         // Delete article directly
-        $modelArticle->delete(array('id' => $ids));
+        $modelArticle->delete(['id' => $ids]);
 
         // Clear cache
         Pi::service('render')->flushCache($module);
@@ -508,27 +508,27 @@ class ArticleController extends ActionController
             return $this->redirect()->toUrl($from);
         } else {
             // Go to list page
-            return $this->redirect()->toRoute('', array(
-                'module'        => $module,
-                'controller'    => 'article',
-                'action'        => 'published',
-                'from'          => 'all',
-            ));
+            return $this->redirect()->toRoute('', [
+                'module'     => $module,
+                'controller' => 'article',
+                'action'     => 'published',
+                'from'       => 'all',
+            ]);
         }
     }
-    
+
     /**
      * Get article by title via AJAX.
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function getFuzzyArticleAction()
     {
         Pi::service('log')->mute();
-        $articles   = array();
-        $pageCount  = $total = 0;
-        $module     = $this->getModule();
-        $where      = array('status' => Article::FIELD_STATUS_PUBLISHED);
+        $articles  = [];
+        $pageCount = $total = 0;
+        $module    = $this->getModule();
+        $where     = ['status' => Article::FIELD_STATUS_PUBLISHED];
 
         $keyword = $this->params('keyword', '');
         $type    = $this->params('type', 'title');
@@ -538,7 +538,7 @@ class ArticleController extends ActionController
         $exclude = $this->params('exclude', 0);
         $offset  = $limit * ($page - 1);
 
-        $articleModel   = $this->getModel('article');
+        $articleModel = $this->getModel('article');
 
         if (strcasecmp('tag', $type) == 0) {
             if ($keyword) {
@@ -547,10 +547,10 @@ class ArticleController extends ActionController
 
                 // Get article ids
                 $articleIds = Pi::service('tag')->getList(
-                    $keyword, 
+                    $keyword,
                     $module,
-                    '', 
-                    $limit, 
+                    '',
+                    $limit,
                     $offset
                 );
                 if ($articleIds) {
@@ -559,11 +559,11 @@ class ArticleController extends ActionController
 
                     // Get articles
                     $resultsetArticle = Entity::getArticlePage(
-                        $where, 
-                        1, 
-                        $limit, 
-                        null, 
-                        null, 
+                        $where,
+                        1,
+                        $limit,
+                        null,
+                        null,
                         $module
                     );
 
@@ -571,7 +571,7 @@ class ArticleController extends ActionController
                         $articles[$key] = $val;
                     }
 
-                    $articles = array_filter($articles, function($var) {
+                    $articles = array_filter($articles, function ($var) {
                         return is_array($var);
                     });
                 }
@@ -585,8 +585,8 @@ class ArticleController extends ActionController
             $articles = Entity::getArticlePage($where, $page, $limit);
 
             // Get total
-            $total      = $articleModel->getSearchRowsCount($where);
-            $pageCount  = ceil($total / $limit);
+            $total     = $articleModel->getSearchRowsCount($where);
+            $pageCount = ceil($total / $limit);
         }
 
         foreach ($articles as $key => &$article) {
@@ -599,25 +599,25 @@ class ArticleController extends ActionController
             );
         }
 
-        echo json_encode(array(
+        echo json_encode([
             'status'    => true,
             'message'   => __('OK'),
             'data'      => array_values($articles),
-            'paginator' => array(
+            'paginator' => [
                 'currentPage' => $page,
                 'pageCount'   => $pageCount,
                 'keyword'     => $keyword,
                 'type'        => $type,
                 'limit'       => $limit,
                 'totalCount'  => $total,
-            ),
-        ));
-        exit ;
+            ],
+        ]);
+        exit;
     }
-    
+
     /**
      * Check whether article is exists by subject
-     * 
+     *
      * @return array
      */
     public function checkArticleExistsAction()
@@ -629,33 +629,33 @@ class ArticleController extends ActionController
 
         if ($subject) {
             $articleModel = $this->getModel('article');
-            $result = $articleModel->checkSubjectExists($subject, $id);
+            $result       = $articleModel->checkSubjectExists($subject, $id);
         }
 
-        echo json_encode(array(
+        echo json_encode([
             'status'  => $result ? false : true,
-            'message' => $result ? __('Subject is used by another article.') 
+            'message' => $result ? __('Subject is used by another article.')
                 : __('ok'),
-        ));
+        ]);
         exit;
     }
-    
+
     /**
      * Count view number by AJAX
      */
     public function countAction()
     {
         Pi::service('log')->mute();
-        
+
         $id = $this->params('id', 0);
         if (!empty($id)) {
             Stats::addVisit($id, $this->getModule());
         }
-        
-        echo json_encode(array(
+
+        echo json_encode([
             'status'  => true,
             'message' => __('success'),
-        ));
+        ]);
         exit;
     }
 }

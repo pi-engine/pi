@@ -15,21 +15,21 @@ class Test extends AbstractResource
 {
     public function installAction()
     {
-        return array(
-            'status'    => true,
-            'message'   => sprintf('%s: %s',
-                                   __METHOD__,
-                                  $this->config['config']),
-        );
+        return [
+            'status'  => true,
+            'message' => sprintf('%s: %s',
+                __METHOD__,
+                $this->config['config']),
+        ];
     }
 
     public function updateAction()
     {
-        return array(
-            'status'    => true,
-            'message'   => sprintf('%s: %s',
-                                   __METHOD__,
-                                   $this->config['config']),
-        );
+        return [
+            'status'  => true,
+            'message' => sprintf('%s: %s',
+                __METHOD__,
+                $this->config['config']),
+        ];
     }
 }

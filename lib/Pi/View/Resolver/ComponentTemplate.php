@@ -10,8 +10,8 @@
 namespace Pi\View\Resolver;
 
 use Pi;
-use Zend\View\Resolver\ResolverInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
+use Zend\View\Resolver\ResolverInterface;
 
 /**
  * Component template resolver
@@ -52,7 +52,7 @@ class ComponentTemplate implements ResolverInterface
      */
     public function setSuffix($suffix)
     {
-        $this->suffix = (string) $suffix;
+        $this->suffix = (string)$suffix;
 
         return $this;
     }
@@ -80,7 +80,7 @@ class ComponentTemplate implements ResolverInterface
         }
         list($component, $template) = explode(':', $name, 2);
 
-        return array($component, $template);
+        return [$component, $template];
     }
 
     /**
@@ -89,7 +89,7 @@ class ComponentTemplate implements ResolverInterface
      * @param  string $name
      * @param  null|Renderer $renderer
      * @return string|false
-      */
+     */
     public function resolve($name, Renderer $renderer = null)
     {
         if (false === strpos($name, ':')) {

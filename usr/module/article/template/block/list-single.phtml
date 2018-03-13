@@ -6,7 +6,7 @@ if (empty($elements)) {
     } else {
         $render = '<ol class="pi-order-list">';
     }
-    foreach($items as $item) {
+    foreach ($items as $item) {
         $render .= sprintf(
             '<li><a href="%s" title="%s">%s</a>',
             $item['url'],
@@ -19,43 +19,43 @@ if (empty($elements)) {
     return;
 }
 ?>
-<?php foreach($items as $item) { ?>
-<div class="media">
-    <?php 
-    if (in_array('feature', $elements) && $item['image']) {
-        echo sprintf('
+<?php foreach ($items as $item) { ?>
+    <div class="media">
+        <?php
+        if (in_array('feature', $elements) && $item['image']) {
+            echo sprintf('
             <a href="%s" class="pull-left">
                 <img src="%s" class="img-responsive">
             </a>',
-            $item['url'],
-            $item['image']
-        );
-    } 
-    ?>
-    <div class="media-body">
-        <h4 class="media-heading">
-            <a href="<?php echo $item['url']?>" 
-               title="<?php echo _escape($item['subject']); ?>"
-               class="pi-ellipsis pi-ellipsis-1"
-               target="<?php echo _escape($target); ?>">
-                <?php echo _escape($item['subject']); ?>
-            </a>
-        </h4>
-        <?php
-        if (in_array('time', $elements)) {
-            echo sprintf(
-                '<div class="text-muted"><small>%s</small></div>',
-                _date($item['time_publish'])
-            );   
-        }
-        if (in_array('summary', $elements)) {
-            echo sprintf(
-                '<div class="pi-ellipsis pi-ellipsis-%s">%s</div>',
-                $block['rows'],
-                $item['summary']
+                $item['url'],
+                $item['image']
             );
         }
         ?>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="<?php echo $item['url'] ?>"
+                   title="<?php echo _escape($item['subject']); ?>"
+                   class="pi-ellipsis pi-ellipsis-1"
+                   target="<?php echo _escape($target); ?>">
+                    <?php echo _escape($item['subject']); ?>
+                </a>
+            </h4>
+            <?php
+            if (in_array('time', $elements)) {
+                echo sprintf(
+                    '<div class="text-muted"><small>%s</small></div>',
+                    _date($item['time_publish'])
+                );
+            }
+            if (in_array('summary', $elements)) {
+                echo sprintf(
+                    '<div class="pi-ellipsis pi-ellipsis-%s">%s</div>',
+                    $block['rows'],
+                    $item['summary']
+                );
+            }
+            ?>
+        </div>
     </div>
-</div>
 <?php } ?>

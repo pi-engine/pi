@@ -10,7 +10,6 @@
 
 namespace Pi\Form\View\Helper;
 
-use Pi\Form\View\Helper\FormElement as ZendFormElement;
 use Zend\Form\ElementInterface;
 
 /**
@@ -28,35 +27,39 @@ class FormMedia extends FormElement
      */
     public function render(ElementInterface $element)
     {
-         ini_set('display_errors', 1);
- error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+        error_reporting(E_ALL);
         $parsePattern = function ($pattern, $vars) {
-            $params = array();
-            $vals   = array();
+            $params = [];
+            $vals   = [];
             foreach ($vars as $var => $val) {
-                $params[]   = '%' . $var . '%';
-                $vals[]     = $val;
+                $params[] = '%' . $var . '%';
+                $vals[]   = $val;
             }
             $result = str_replace($params, $vals, $pattern);
             return $result;
         };
-        $renderPattern = <<<EOT
+        $renderPattern
+                      = <<<EOT
 <div class="form-group%error_class% has-feedback" data-name="%element_name%">
     %label_html%
     %element_html%
 </div>
 EOT;
-            $labelPattern = <<<EOT
+        $labelPattern
+                      = <<<EOT
 <label class="%label_size% control-label">
     %mark_required%%label_content%
 </label>
 EOT;
 
-  $descPattern = <<<EOT
+        $descPattern
+            = <<<EOT
 <div class="text-muted">%desc_content%</div>
 EOT;
 
-        $elementPattern =<<<EOT
+        $elementPattern
+            = <<<EOT
 <div class="%element_size% js-form-element">
     %element_content%
     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -66,22 +69,22 @@ EOT;
 <div class="%error_size% help-block with-errors">%error_content%</div>
 EOT;
 
- $vars['element_name']       = $element->getName();
-$vars['element_content']    = $this->view->formElement($element);
-$vars['error_content']      = $this->view->formElementErrors($element);
-$vars['error_class']        = $element->getMessages() ? ' has-error' : '';
-$vars['desc_content']       = $element->getAttribute('description') . ($element->getAttribute('required') && !$element->getLabel() ? $markRequired : '');
-$vars['desc_html']          = $parsePattern($descPattern, $vars);
-$vars['label_content']      = $element->getLabel();
-$vars['mark_required']      = $element->getAttribute('required') && $element->getLabel() ? $markRequired : '';
-$vars['label_html']         = $parsePattern($labelPattern, $vars);
-$vars['element_html']       = $parsePattern($elementPattern, $vars);
- 
-            $rendered = $parsePattern($renderPattern, $vars);
+        $vars['element_name']    = $element->getName();
+        $vars['element_content'] = $this->view->formElement($element);
+        $vars['error_content']   = $this->view->formElementErrors($element);
+        $vars['error_class']     = $element->getMessages() ? ' has-error' : '';
+        $vars['desc_content']    = $element->getAttribute('description') . ($element->getAttribute('required') && !$element->getLabel() ? $markRequired : '');
+        $vars['desc_html']       = $parsePattern($descPattern, $vars);
+        $vars['label_content']   = $element->getLabel();
+        $vars['mark_required']   = $element->getAttribute('required') && $element->getLabel() ? $markRequired : '';
+        $vars['label_html']      = $parsePattern($labelPattern, $vars);
+        $vars['element_html']    = $parsePattern($elementPattern, $vars);
 
-            return $rendered;       
-            
-             $renderer = $this->getView();
+        $rendered = $parsePattern($renderPattern, $vars);
+
+        return $rendered;
+
+        $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
             // Bail early if renderer is not pluggable
             return '';

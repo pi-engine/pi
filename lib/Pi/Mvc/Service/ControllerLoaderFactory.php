@@ -10,7 +10,6 @@
 namespace Pi\Mvc\Service;
 
 use Pi\Mvc\Controller\ControllerManager;
-use Zend\Mvc\Service\DiStrictAbstractServiceFactory;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 

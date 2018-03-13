@@ -9,9 +9,8 @@
 
 namespace Pi\Cache\Storage\Adapter;
 
-use Zend\Cache\Storage\Adapter\Memcached as ZendMemcached;
-use Exception as BaseException;
 use Zend\Cache\Storage\Adapter\Exception;
+use Zend\Cache\Storage\Adapter\Memcached as ZendMemcached;
 
 /**
  * Memcached cache adapter
@@ -31,17 +30,17 @@ class Memcached extends ZendMemcached
      */
     public function clearByNamespace($namespace)
     {
-        $namespace = (string) $namespace;
+        $namespace = (string)$namespace;
         if ($namespace === '') {
             throw new Exception\InvalidArgumentException('No namespace given');
         }
 
         $options = $this->getOptions();
         $prefix  = $namespace . $options->getNamespaceSeparator();
-        
+
         $memc       = $this->getMemcachedResource();
         $result     = $memc->get($prefix);
-        $existsKeys = array();
+        $existsKeys = [];
         if ($result) {
             $existsKeys = unserialize($result);
         }
@@ -51,18 +50,18 @@ class Memcached extends ZendMemcached
 
         return true;
     }
-    
+
     /**
      * Add custom code to check if key is exists in item with namespace as key.
      * Null value will be returned if it is not exists, therefore, the key will
      * be rebuilded into the item and then it can be flushed.
-     * 
+     *
      * {@inheritDoc}
      */
     public function getItem($key, &$success = null, &$casToken = null)
     {
-        $memc       = $this->getMemcachedResource();
-        $result     = $memc->get($this->namespacePrefix);
+        $memc   = $this->getMemcachedResource();
+        $result = $memc->get($this->namespacePrefix);
         if (!$result) {
             return null;
         }
@@ -71,14 +70,14 @@ class Memcached extends ZendMemcached
         if (!isset($existsKeys[$key])) {
             return null;
         }
-        
+
         return parent::getItem($key, $success, $casToken);
     }
-    
+
     /**
      * Custom internal method to store an item, use a item with namespace as key
      * to manage all keys so that memcached can be flushed by namespace.
-     * 
+     *
      * <code>
      * `{namespacePrefix}` = array(
      *     `{namespacePrefix}{normalizedKey1}` => `{namespacePrefix}{normalizedKey1}`,
@@ -93,16 +92,16 @@ class Memcached extends ZendMemcached
     {
         $memc       = $this->getMemcachedResource();
         $expiration = $this->expirationTime();
-        
+
         // Use namespace to manage all keys belong to it
-        $existsKeys = array();
+        $existsKeys = [];
         $result     = $memc->get($this->namespacePrefix);
         if ($result) {
             $existsKeys = unserialize($result);
         }
         $existsKeys[$normalizedKey] = $normalizedKey;
         $memc->set($this->namespacePrefix, serialize($existsKeys), $expiration);
-        
+
         // Set item to memcached
         if (!$memc->set($this->namespacePrefix . $normalizedKey, $value, $expiration)) {
             throw $this->getExceptionByResultCode($memc->getResultCode());

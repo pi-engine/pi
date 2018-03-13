@@ -11,11 +11,11 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Pi\Log\Logger;
+use Pi\Log\DbProfiler;
 use Pi\Log\ErrorHandler;
 use Pi\Log\ExceptionHandler;
+use Pi\Log\Logger;
 use Pi\Log\Profiler;
-use Pi\Log\DbProfiler;
 use Pi\Log\Writer\Debugger;
 
 /**
@@ -60,13 +60,13 @@ class Log extends AbstractService
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         parent::__construct($options);
 
         // Active
         if (isset($this->options['active'])) {
-            $this->active = (bool) $this->options['active'];
+            $this->active = (bool)$this->options['active'];
         }
         // Set logger
         $this->logger = $this->logger();
@@ -132,7 +132,7 @@ class Log extends AbstractService
     public function active($flag = null)
     {
         if (null !== $flag) {
-            $this->active = (bool) $flag;
+            $this->active = (bool)$flag;
             if ($this->errorHandler) {
                 $this->errorHandler->active($this->active);
             }
@@ -141,9 +141,9 @@ class Log extends AbstractService
             }
         } elseif (null === $this->active) {
             if (!empty($this->options['ip'])) {
-                $this->active = (bool) Pi::service('security')->ip(array(
+                $this->active = (bool)Pi::service('security')->ip([
                     'good' => $this->options['ip'],
-                ));
+                ]);
             } else {
                 $this->active = true;
             }
@@ -364,8 +364,8 @@ class Log extends AbstractService
      * or
      *   `$log->log('message', 'err')`
      *
-     * @param  string $method  priority name
-     * @param  array  $args
+     * @param  string $method priority name
+     * @param  array $args
      *
      * @return void
      */
@@ -378,7 +378,7 @@ class Log extends AbstractService
             $method = 'info';
         }
         if (method_exists($this->logger, $method)) {
-            call_user_func_array(array($this->logger, $method), $args);
+            call_user_func_array([$this->logger, $method], $args);
         }
 
         return $this;

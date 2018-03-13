@@ -31,7 +31,7 @@ class DbProfiler
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->writers = new SplPriorityQueue();
     }
@@ -48,7 +48,8 @@ class DbProfiler
         foreach ($this->writers->toArray() as $writer) {
             try {
                 $writer->shutdown();
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         }
     }
 

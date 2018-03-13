@@ -11,7 +11,6 @@
 namespace Pi\Form\View\Helper;
 
 use Pi;
-use Zend\Form\ElementInterface;
 use Zend\Form\View\Helper\FormTextarea;
 
 /**
@@ -29,10 +28,10 @@ abstract class AbstractEditor extends FormTextarea
     protected $configFile = '';
 
     /** @var array Global options */
-    protected $globalOptions = array();
+    protected $globalOptions = [];
 
     /** @var array Options */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Constructor
@@ -52,7 +51,7 @@ abstract class AbstractEditor extends FormTextarea
      *
      * @param array $options
      */
-    public function setOptions(array $options = array())
+    public function setOptions(array $options = [])
     {
         $this->options = array_replace($this->globalOptions, $options);
     }

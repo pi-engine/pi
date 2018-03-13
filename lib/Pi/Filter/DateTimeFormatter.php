@@ -25,7 +25,7 @@ class DateTimeFormatter extends ZendDateTimeFormatter
     protected function normalizeDateTime($value)
     {
         if (is_numeric($value)) {
-            $value = (int) $value;
+            $value = (int)$value;
         }
         if ($value && is_int($value)) {
             $result = _date($value);

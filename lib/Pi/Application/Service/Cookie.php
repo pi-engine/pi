@@ -22,13 +22,13 @@ class Cookie extends AbstractService
     /**
      * Set and send a cookie
      *
-     * @param   string           $name
-     * @param   string           $value
+     * @param   string $name
+     * @param   string $value
      * @param   int|string|array $expires
-     * @param   string           $path
-     * @param   string           $domain
-     * @param   bool             $secure
-     * @param   bool             $httponly
+     * @param   string $path
+     * @param   string $domain
+     * @param   bool $secure
+     * @param   bool $httponly
      *
      * @throws \InvalidArgumentException
      * @return  bool
@@ -41,7 +41,8 @@ class Cookie extends AbstractService
         $domain = null,
         $secure = false,
         $httponly = false
-    ) {
+    )
+    {
         if (preg_match("/[=,; \t\r\n\013\014]/", $name)) {
             throw new \InvalidArgumentException("Cookie name cannot contain these characters: =,; \\t\\r\\n\\013\\014 ({$name})");
         }
@@ -55,7 +56,7 @@ class Cookie extends AbstractService
         if (!$path) {
             $path = Pi::host()->get('baseUrl') ?: '/';
         }
-        $expires = time() + (int) $expires;
+        $expires = time() + (int)$expires;
 
         //vd(compact('name', 'value', 'expires', 'path', 'domain', 'secure'));
         $result = setcookie($name, $value, $expires, $path, $domain, $secure, $httponly);
@@ -68,8 +69,8 @@ class Cookie extends AbstractService
      * Fetch a cookie variable
      *
      * @param string $name
-     * @param bool   $decode
-     * @param bool   $onetime
+     * @param bool $decode
+     * @param bool $onetime
      *
      * @return mixed
      */

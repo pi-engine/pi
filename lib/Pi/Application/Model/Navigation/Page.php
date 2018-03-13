@@ -24,10 +24,11 @@ class Page extends Nest
     /**
      * {@inheritDoc}
      */
-    protected $encodeColumns = array(
-        'params'    => true,
-        'resource'  => true,
-    );
+    protected $encodeColumns
+        = [
+            'params'   => true,
+            'resource' => true,
+        ];
 
     /**
      * Set navigation name
@@ -57,14 +58,14 @@ class Page extends Nest
     /**
      * Remove pages of a navigation
      *
-     * @param string $nav  Navigation name
+     * @param string $nav Navigation name
      * @return bool
      */
     public function removeByNavigation($nav)
     {
         $pageRoots = $this->getRoots(
-            array('navigation' => $nav),
-            array($this->column('left') . ' DESC')
+            ['navigation' => $nav],
+            [$this->column('left') . ' DESC']
         );
         foreach ($pageRoots as $root) {
             $this->remove($root);

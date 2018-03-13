@@ -25,14 +25,14 @@ class Client extends System
     {
         if ($uid) {
             if ('id' == $field) {
-                $data = (array) Pi::service('user')->get($uid);
+                $data = (array)Pi::service('user')->get($uid);
             } else {
-                $list = Pi::service('user')->getList(array($field => $uid), 1);
+                $list = Pi::service('user')->getList([$field => $uid], 1);
                 if ($list) {
                     $data = array_values($list);
                     $data = array_pop($data);
                 } else {
-                    $data = array();
+                    $data = [];
                 }
             }
         } else {
@@ -52,7 +52,7 @@ class Client extends System
         if (null === $result && 'id' != $name) {
             $uid = $this->get('id');
             if ($uid) {
-                $result = Pi::api('user', 'uclient')->get($uid, $name);
+                $result            = Pi::api('user', 'uclient')->get($uid, $name);
                 $this->data[$name] = $result;
             }
         }

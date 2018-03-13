@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2017-09-06 15:24+0430\n"
-"PO-Revision-Date: 2017-09-06 15:24+0430\n"
+"POT-Creation-Date: 2018-01-25 09:05+0330\n"
+"PO-Revision-Date: 2018-01-25 09:05+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -27,83 +27,89 @@ msgstr "نام سایت"
 msgid "Slogan"
 msgstr "شعار"
 
-#: template/block/user-bar.phtml:17 template/block/user-bar.phtml:19
+#: template/block/user-bar.phtml:20 template/block/user-bar.phtml:22
 msgid "Login"
 msgstr "ورود"
 
-#: template/block/user-bar.phtml:23 template/block/user-bar.phtml:24
+#: template/block/user-bar.phtml:29 template/block/user-bar.phtml:30
 msgid "Register"
 msgstr "ثبت نام"
 
-#: template/block/user-bar.phtml:47 template/block/user-bar.phtml:125
-#: template/block/user-bar.phtml:127 template/block/user-bar.phtml:321
-#: template/block/user-bar.phtml:323
+#: template/block/user-bar.phtml:55 template/block/user-bar.phtml:144
+#: template/block/user-bar.phtml:147 template/block/user-bar.phtml:360
+#: template/block/user-bar.phtml:362
 msgid "Favourite"
 msgstr "مورد علاقه ها"
 
-#: template/block/user-bar.phtml:49
-msgid "Guide dashboard"
-msgstr "مدیریت اماکن"
+#: template/block/user-bar.phtml:58
+msgid "Dashboard"
+msgstr "داشبورد"
 
-#: template/block/user-bar.phtml:54 template/block/user-bar.phtml:56
-msgid "Manage account"
-msgstr "مدیریت حساب کاربری"
-
-#: template/block/user-bar.phtml:61 template/block/user-bar.phtml:72
-#: template/block/user-bar.phtml:144 template/block/user-bar.phtml:157
-#: template/block/user-bar.phtml:257 template/block/user-bar.phtml:268
+#: template/block/user-bar.phtml:66 template/block/user-bar.phtml:78
+#: template/block/user-bar.phtml:166 template/block/user-bar.phtml:180
+#: template/block/user-bar.phtml:294 template/block/user-bar.phtml:306
 msgid "message(s)"
 msgstr "پیام"
 
-#: template/block/user-bar.phtml:63 template/block/user-bar.phtml:74
-#: template/block/user-bar.phtml:147 template/block/user-bar.phtml:160
-#: template/block/user-bar.phtml:259 template/block/user-bar.phtml:270
+#: template/block/user-bar.phtml:68 template/block/user-bar.phtml:80
+#: template/block/user-bar.phtml:169 template/block/user-bar.phtml:183
+#: template/block/user-bar.phtml:296 template/block/user-bar.phtml:308
 msgid "Message"
 msgstr "پیام"
 
-#: template/block/user-bar.phtml:83 template/block/user-bar.phtml:170
-#: template/block/user-bar.phtml:279
+#: template/block/user-bar.phtml:90 template/block/user-bar.phtml:194
+#: template/block/user-bar.phtml:318
 msgid "notification(s)"
 msgstr "آگاهی رسانی"
 
-#: template/block/user-bar.phtml:85 template/block/user-bar.phtml:173
-#: template/block/user-bar.phtml:281
+#: template/block/user-bar.phtml:92 template/block/user-bar.phtml:197
+#: template/block/user-bar.phtml:320
 msgid "Notification"
 msgstr "آگاهی رسانی"
 
-#: template/block/user-bar.phtml:95 template/block/user-bar.phtml:97
-#: template/block/user-bar.phtml:184 template/block/user-bar.phtml:187
-#: template/block/user-bar.phtml:291 template/block/user-bar.phtml:293
+#: template/block/user-bar.phtml:103 template/block/user-bar.phtml:105
+#: template/block/user-bar.phtml:208 template/block/user-bar.phtml:211
+#: template/block/user-bar.phtml:330 template/block/user-bar.phtml:332
 msgid "Support"
 msgstr "پشتیبانی"
 
-#: template/block/user-bar.phtml:106 template/block/user-bar.phtml:108
-#: template/block/user-bar.phtml:197 template/block/user-bar.phtml:200
-#: template/block/user-bar.phtml:302 template/block/user-bar.phtml:304
+#: template/block/user-bar.phtml:124 template/block/user-bar.phtml:126
+#: template/block/user-bar.phtml:232 template/block/user-bar.phtml:235
+#: template/block/user-bar.phtml:341 template/block/user-bar.phtml:343
 msgid "Follow up orders"
 msgstr "پیگیری سفارش‌ها"
 
-#: template/block/user-bar.phtml:114 template/block/user-bar.phtml:116
-#: template/block/user-bar.phtml:207 template/block/user-bar.phtml:210
-#: template/block/user-bar.phtml:310 template/block/user-bar.phtml:312
+#: template/block/user-bar.phtml:133 template/block/user-bar.phtml:135
+#: template/block/user-bar.phtml:242 template/block/user-bar.phtml:245
+#: template/block/user-bar.phtml:349 template/block/user-bar.phtml:351
 msgid "Credit"
 msgstr "اعتبار"
 
-#: template/block/user-bar.phtml:132 template/block/user-bar.phtml:134
-#: template/block/user-bar.phtml:235 template/block/user-bar.phtml:238
-#: template/block/user-bar.phtml:328 template/block/user-bar.phtml:330
-#: template/block/user.phtml:30 template/block/user.phtml:32
+#: template/block/user-bar.phtml:153 template/block/user-bar.phtml:155
+#: template/block/user-bar.phtml:271 template/block/user-bar.phtml:274
+#: template/block/user-bar.phtml:367 template/block/user-bar.phtml:369
+#: template/block/user.phtml:34 template/block/user.phtml:36
 msgid "Logout"
 msgstr "خروج"
 
-#: template/block/user-bar.phtml:222 template/block/user-bar.phtml:250
+#: template/block/user-bar.phtml:222 template/block/user-bar.phtml:225
+msgid "My offer"
+msgstr "پیشنهاد های من"
+
+#: template/block/user-bar.phtml:257 template/block/user-bar.phtml:286
 msgid "Welcome"
 msgstr "خوش آمدید"
 
-#: template/block/user.phtml:20 template/block/user.phtml:22
+#: template/block/user.phtml:22 template/block/user.phtml:24
 msgid "Profile"
 msgstr "حساب کاربری"
 
-#: template/block/user.phtml:25 template/block/user.phtml:27
+#: template/block/user.phtml:28 template/block/user.phtml:30
 msgid "Settings"
 msgstr "تنظیمات"
+
+#~ msgid "Guide dashboard"
+#~ msgstr "مدیریت اماکن"
+
+#~ msgid "Manage account"
+#~ msgstr "مدیریت حساب کاربری"

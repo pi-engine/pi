@@ -1,18 +1,18 @@
 <?php
-    $this->css(array(
-        $this->assetModule('script/block.css'),
-    ));
-    $this->jQuery();
+$this->css([
+    $this->assetModule('script/block.css'),
+]);
+$this->jQuery();
 ?>
 
 <div class="row">
-<?php 
+    <?php
     if (!empty($navs)) {
-?>
-    <div class="col-md-2"><?php echo $this->navigation($navs); ?></div>
-<?php
+        ?>
+        <div class="col-md-2"><?php echo $this->navigation($navs); ?></div>
+        <?php
     }
-?>
+    ?>
     <div class="<?php echo !empty($navs) ? 'col-md-10' : 'col-md-12'; ?>">
         <div class="pi-article-module">
             <div class="clearfix pi-block-header">
@@ -23,97 +23,98 @@
             </div>
             <div class="article-list-content">
                 <div style="margin: 10px 0 20px 0">
-                <?php $index = 0;
+                    <?php $index = 0;
                     foreach ($subCategoryId as $id) {
                         if (++$index > $config['max_sub_category']) {
                             break;
                         }
-                ?>
-                    <span style="margin-right: 10px">
-                        <a href="<?php echo $this->url($route, array(
+                        ?>
+                        <span style="margin-right: 10px">
+                        <a href="<?php echo $this->url($route, [
                             'action'   => 'list',
                             'category' => $categories[$id]['slug'] ?: $categories[$id]['id'],
-                        )); ?>" style="font-size: 15px; font-weight: bold; color: #333333">
+                        ]); ?>" style="font-size: 15px; font-weight: bold; color: #333333">
                             <?php echo $this->escape($categories[$id]['title']); ?>
                         </a>
                         <span class="text-muted" style="margin-left: 3px">
                             (<?php echo isset($counts[$id]) ? $this->escape($counts[$id]) : 0 ?>)
                         </span>
                     </span>
-                <?php
+                        <?php
                     }
-                ?>
+                    ?>
                 </div>
                 <ul class="list list14" id="jsList" style="list-style: none">
                     <?php $index = 0 ?>
-                    <?php foreach ($articles as $article) { $index++ ?>
+                    <?php foreach ($articles as $article) {
+                        $index++ ?>
                         <li class="text-muted">
-                        <?php
+                            <?php
                             if (in_array('feature', $elements)) {
-                        ?>
-                            <div class="pull-left" style="margin-right: 10px;">
-                                <img src="<?php echo Pi::url($article['image']); ?>" style="width: 100px">
-                            </div>
-                        <?php
+                                ?>
+                                <div class="pull-left" style="margin-right: 10px;">
+                                    <img src="<?php echo Pi::url($article['image']); ?>" style="width: 100px">
+                                </div>
+                                <?php
                             }
-                        ?>
+                            ?>
                             <div class="list-hover">
                                 <div class="list-title">
-                                <?php
+                                    <?php
                                     if (in_array('time', $elements)) {
-                                ?>
-                                    <span class="pull-right article-list-desc">
-                                        <?php echo  _date($article['time_publish']); ?>
+                                        ?>
+                                        <span class="pull-right article-list-desc">
+                                        <?php echo _date($article['time_publish']); ?>
                                     </span>
-                                <?php
+                                        <?php
                                     }
-                                ?>
-                                    <a class="article-list-title" target="_blank" href="<?php echo $article['url'] ?>" 
-                                    title="<?php echo $this->escape($article['subject']); ?>" style="color: #333333">
+                                    ?>
+                                    <a class="article-list-title" target="_blank" href="<?php echo $article['url'] ?>"
+                                       title="<?php echo $this->escape($article['subject']); ?>" style="color: #333333">
                                         <?php echo $this->escape($article['subject']); ?>
                                     </a>
                                 </div>
-                            <?php
+                                <?php
                                 if (in_array('author', $elements) || in_array('category', $elements)) {
-                            ?>
-                                <div class="list-desc">
-                                <?php
-                                    if (in_array('author', $elements)) {
-                                ?>
-                                    <span style="margin-right: 10px"><?php echo $authors[$article['author']]['name']; ?></span>
-                                <?php
-                                    }
-                                    if (in_array('category', $elements)) {
-                                ?>
-                                    <span style="margin-right: 10px"><?php echo $categories[$article['category']]['title']; ?></span>
-                                <?php
-                                    }
-                                ?>
-                                </div>
-                            <?php
+                                    ?>
+                                    <div class="list-desc">
+                                        <?php
+                                        if (in_array('author', $elements)) {
+                                            ?>
+                                            <span style="margin-right: 10px"><?php echo $authors[$article['author']]['name']; ?></span>
+                                            <?php
+                                        }
+                                        if (in_array('category', $elements)) {
+                                            ?>
+                                            <span style="margin-right: 10px"><?php echo $categories[$article['category']]['title']; ?></span>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    <?php
                                 }
                                 if (in_array('summary', $elements)) {
-                            ?>
-                                <div class="list-summary">
-                                    <?php echo mb_substr($article['summary'], 0, $length, 'UTF8'); ?>
-                                </div>
-                            <?php
+                                    ?>
+                                    <div class="list-summary">
+                                        <?php echo mb_substr($article['summary'], 0, $length, 'UTF8'); ?>
+                                    </div>
+                                    <?php
                                 }
-                            ?>
+                                ?>
                             </div>
                         </li>
                         <?php if ($index % 5 == 0) { ?>
                             <li class="dashed"></li>
                         <?php } ?>
-                    <?php } ?>   
+                    <?php } ?>
                 </ul>
                 <div style="text-align: center">
-                    <?php 
-                        echo $this->paginationControl(
-                            $paginator,
-                            'Sliding',
-                            'paginator.phtml'
-                        );
+                    <?php
+                    echo $this->paginationControl(
+                        $paginator,
+                        'Sliding',
+                        'paginator.phtml'
+                    );
                     ?>
                 </div>
             </div>

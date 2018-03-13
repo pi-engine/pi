@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 /**
@@ -44,9 +43,9 @@ class Page extends AbstractHtmlElement
      *
      * @return string
      */
-    public function __invoke($name, $title, $attributes = array())
+    public function __invoke($name, $title, $attributes = [])
     {
-        $pattern    = '<a href="%s"%s>%s</a>';
+        $pattern = '<a href="%s"%s>%s</a>';
         if (!isset($attributes['title'])) {
             $attributes['title'] = $title;
         }
@@ -57,7 +56,7 @@ class Page extends AbstractHtmlElement
         }
         $attribs = $this->htmlAttribs($attributes);
         try {
-            $params = array('name' => $name);
+            $params = ['name' => $name];
             if ($type) {
                 $params['type'] = $type;
             }

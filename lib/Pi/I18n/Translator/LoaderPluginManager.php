@@ -28,17 +28,18 @@ class LoaderPluginManager extends ZendLoaderPluginManager
      * Default set of loaders
      * @var array
      */
-    protected $invokableClasses = array();
+    protected $invokableClasses = [];
 
     /**
      * Default set of filters
      * @var array
      */
-    protected $invokableList = array(
-        'phparray'  => 'I18n\Translator\Loader\PhpArray',
-        'gettext'   => 'I18n\Translator\Loader\Gettext',
-        'csv'       => 'I18n\Translator\Loader\Csv',
-    );
+    protected $invokableList
+        = [
+            'phparray' => 'I18n\Translator\Loader\PhpArray',
+            'gettext'  => 'I18n\Translator\Loader\Gettext',
+            'csv'      => 'I18n\Translator\Loader\Csv',
+        ];
 
     /**
      * Retrieve a service from the manager by name
@@ -54,14 +55,15 @@ class LoaderPluginManager extends ZendLoaderPluginManager
      */
     public function get(
         $name,
-        $options = array(),
+        $options = [],
         $usePeeringServiceManagers = true
-    ) {
+    )
+    {
         // Canonize invokable class from name
         if (!$this->has($name) && !class_exists($name)) {
             // Lookup in default invokable list
             $cname = strtolower(
-                str_replace(array('-', '_', ' ', '\\', '/'), '', $name)
+                str_replace(['-', '_', ' ', '\\', '/'], '', $name)
             );
             if (isset($this->invokableList[$cname])) {
                 $invokableClass = 'Pi\\' . $this->invokableList[$cname];
@@ -69,10 +71,10 @@ class LoaderPluginManager extends ZendLoaderPluginManager
                     $invokableClass = 'Zend\\' . $this->invokableList[$cname];
                 }
                 $name = $invokableClass;
-            // Lookup in helper locations
+                // Lookup in helper locations
             } else {
                 $class = str_replace(' ', '', ucwords(
-                    str_replace(array('-', '_', '\\', '/'), ' ', $name)
+                    str_replace(['-', '_', '\\', '/'], ' ', $name)
                 ));
                 if (class_exists('Pi\I18n\Translator\Loader\\' . $class)) {
                     $name = 'Pi\I18n\Translator\Loader\\' . $class;

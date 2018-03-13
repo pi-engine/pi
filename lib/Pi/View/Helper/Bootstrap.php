@@ -66,7 +66,7 @@ class Bootstrap extends AssetCanonize
      */
     public function __invoke(
         $files = null,
-        $attributes = array(),
+        $attributes = [],
         $appendVersion = null,
         $rootLoaded = true,
         $deferBootstrapCss = false
@@ -82,12 +82,12 @@ class Bootstrap extends AssetCanonize
             $theme  = Pi::service('theme')->current();
             $custom = Pi::service('asset')->getAssetPath('theme/' . $theme, $file);
             if (is_readable($custom)) {
-                $url = Pi::service('asset')->getThemeAsset($file, $theme,  $appendVersion);
-            // Load original bootstrap
+                $url = Pi::service('asset')->getThemeAsset($file, $theme, $appendVersion);
+                // Load original bootstrap
             } else {
                 $url = Pi::service('asset')->getPublicUrl($file, $appendVersion);
             }
-            $attrs = $this->canonizeFile($bootstrap);
+            $attrs         = $this->canonizeFile($bootstrap);
             $attrs['href'] = $url;
 
             if($deferBootstrapCss){
@@ -107,8 +107,8 @@ class Bootstrap extends AssetCanonize
         }
 
         foreach ($files as $file => $attrs) {
-            $file = static::DIR_ROOT . '/' . $file;
-            $url = Pi::service('asset')->getPublicUrl($file, $appendVersion);
+            $file     = static::DIR_ROOT . '/' . $file;
+            $url      = Pi::service('asset')->getPublicUrl($file, $appendVersion);
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
             if ('css' == $attrs['ext']) {

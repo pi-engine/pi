@@ -10,8 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
-
 /**
  * Helper for setting and retrieving script elements for HTML foot section
  *
@@ -45,10 +43,10 @@ class FootScript extends HeadScript
     /**
      * Create script HTML
      *
-     * @param  mixed  $item        Item to convert
-     * @param  string $indent      String to add before the item
+     * @param  mixed $item Item to convert
+     * @param  string $indent String to add before the item
      * @param  string $escapeStart Starting sequence
-     * @param  string $escapeEnd   Ending sequence
+     * @param  string $escapeEnd Ending sequence
      * @return string
      */
     public function itemToString($item, $indent, $escapeStart, $escapeEnd)

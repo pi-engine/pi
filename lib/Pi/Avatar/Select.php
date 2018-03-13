@@ -49,7 +49,7 @@ class Select extends AbstractAvatar
      */
     public function getSourceList($uids, $size = '')
     {
-        $result = array();
+        $result  = [];
         $avatars = Pi::user()->get($uids, 'avatar');
         foreach ($avatars as $uid => $avatar) {
             if ($avatar
@@ -83,18 +83,18 @@ class Select extends AbstractAvatar
         } else {
             $extension = isset($this->options['extension'])
                 ? $this->options['extension'] : 'jpg';
-            $pattern = '%source%/%size%.' . $extension;
+            $pattern   = '%source%/%size%.' . $extension;
         }
         $size = $this->canonizeSize($size, false);
         if (is_callable($pattern)) {
-            $path = call_user_func($pattern, array(
-                'source'    => $source,
-                'size'      => $size
-            ));
+            $path = call_user_func($pattern, [
+                'source' => $source,
+                'size'   => $size,
+            ]);
         } else {
             $path = str_replace(
-                array('source', 'size'),
-                array($source, $size),
+                ['source', 'size'],
+                [$source, $size],
                 $pattern
             );
         }
@@ -113,7 +113,7 @@ class Select extends AbstractAvatar
      *  );
      * ```
      *
-     * @param string    $size
+     * @param string $size
      *
      * @return array|bool
      */
@@ -137,7 +137,7 @@ class Select extends AbstractAvatar
             }
             $result[$directory] = $this->build($directory, $size);
         };
-        $result = array();
+        $result = [];
         Pi::service('file')->getList($root, $filter);
         return $result;
     }

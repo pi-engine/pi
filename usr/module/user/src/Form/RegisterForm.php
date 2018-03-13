@@ -74,18 +74,19 @@ class RegisterForm extends UserForm
             $wordNotEmail            = __("Do not use your email as your password");
             $wordSimilarToUsername   = __("Your password cannot contain your username");
             $wordTwoCharacterClasses = __("Use different character classes");
-            $wordRepetitions = __("Too many repetitions");
-            $wordSequences = __("Your password contains sequences");
-            $errorList = __("Errors:");
-            $veryWeak = __("Very week");
-            $weak = __("Week");
-            $normal = __("Normal");
-            $medium = __("Medium");
-            $strong = __("Strong");
-            $veryStrong = __("Very Strong");
-            $message = __("Password must contain at least one uppercase letter, one lowercase letter and one digit character");
+            $wordRepetitions         = __("Too many repetitions");
+            $wordSequences           = __("Your password contains sequences");
+            $errorList               = __("Errors:");
+            $veryWeak                = __("Very week");
+            $weak                    = __("Week");
+            $normal                  = __("Normal");
+            $medium                  = __("Medium");
+            $strong                  = __("Strong");
+            $veryStrong              = __("Very Strong");
+            $message                 = __("Password must contain at least one uppercase letter, one lowercase letter and one digit character");
 
-            $showPasswordBtn = <<<HTML
+            $showPasswordBtn
+                = <<<HTML
 <label>
     <input
         onchange="$('input[name=credential], input[name=credential-confirm]').attr('type', function(index, attr){ return attr == 'text' ? 'password' : 'text';})"

@@ -28,11 +28,11 @@ class ExceptionHandler
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         // Active
         if (isset($options['active'])) {
-            $this->active = (bool) $options['active'];
+            $this->active = (bool)$options['active'];
         }
         // Disable error handling if xdebug is enabled
         if (extension_loaded('xdebug')) {
@@ -81,13 +81,13 @@ class ExceptionHandler
         }
         $logger = $this->logger;
 
-        set_exception_handler(function ($exception) use ($logger){
-            $extra = array (
+        set_exception_handler(function ($exception) use ($logger) {
+            $extra = [
                 'file'  => $exception->getFile(),
                 'line'  => $exception->getLine(),
                 'trace' => $exception->getTrace(),
                 'time'  => microtime(true),
-            );
+            ];
             if (isset($exception->xdebug_message)) {
                 $extra['xdebug'] = $exception->xdebug_message;
             }

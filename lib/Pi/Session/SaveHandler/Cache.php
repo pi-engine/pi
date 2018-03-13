@@ -27,11 +27,11 @@ class Cache extends ZendCache
     public function __construct($storage)
     {
         if (is_string($storage)) {
-            $storageClass   = $storage;
-            $options        = array();
+            $storageClass = $storage;
+            $options      = [];
         } else {
-            $storageClass   = $storage['class'];
-            $options        = $storage['options'];
+            $storageClass = $storage['class'];
+            $options      = $storage['options'];
         }
         $storageAdapter = new $storageClass($options);
         parent::__construct($storageAdapter);

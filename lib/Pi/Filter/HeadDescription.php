@@ -28,11 +28,11 @@ class HeadDescription extends AbstractFilter
     public function filter($value)
     {
         // Strip HTML tags
-        $value =trim(strip_tags($value));
+        $value = trim(strip_tags($value));
         // Remove duplicated spaces, commas
         $value = preg_replace(
-            array('/[\s]+/', '/[\s]?[\,]+/', '/[\,]?[\,]+/'),
-            array(' ', ',', ','),
+            ['/[\s]+/', '/[\s]?[\,]+/', '/[\,]?[\,]+/'],
+            [' ', ',', ','],
             $value
         );
 

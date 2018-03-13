@@ -22,9 +22,10 @@ class Editor extends Textarea
      * Seed attributes
      * @var array
      */
-    protected $attributes = array(
-        'type'  => 'editor',
-    );
+    protected $attributes
+        = [
+            'type' => 'editor',
+        ];
 
     /**
      * {@inheritDoc}

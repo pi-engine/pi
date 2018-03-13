@@ -1,24 +1,24 @@
 <?php
 // Authentication strategy specs
 
-return array(
+return [
     // Identity field name for user binding; optional, default as `id`
-    'identity_field'    => 'id',
+    'identity_field' => 'id',
 
     // Storage
-    'storage'   => array(
-        'class' => 'Pi\Authentication\Storage\Session',
-        'options' => array(
+    'storage'        => [
+        'class'   => 'Pi\Authentication\Storage\Session',
+        'options' => [
             'namespace' => 'PI_AUTH',
             'member'    => 'member',
-        ),
-    ),
+        ],
+    ],
 
     // Adapter
-    'adapter'  => array(
+    'adapter'        => [
         // Adapter class
-        'class'     => 'Pi\Authentication\Adapter\DbTable',
-        'options'   => array(
+        'class'   => 'Pi\Authentication\Adapter\DbTable',
+        'options' => [
             // Database table for user account
             'table_name'        => 'user_account',
             // Identity column for authentication
@@ -32,9 +32,9 @@ return array(
             },
 
             // Columns to return from valid authentication result
-            'return_columns'    => array('id', 'identity'),
+            'return_columns'    => ['id', 'identity'],
             // Columns to omit, applicable only if `return_columns` not specified
             //'omit_columns'      => array('credential', 'salt'),
-        ),
-    ),
-);
+        ],
+    ],
+];

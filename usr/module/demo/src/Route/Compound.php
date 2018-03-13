@@ -24,7 +24,7 @@ use Zend\Stdlib\RequestInterface as Request;
  */
 class Compound extends Standard
 {
-    protected $prefix = '/demo-route';
+    protected $prefix        = '/demo-route';
     protected $dateDelimiter = '/';
 
     /**
@@ -32,11 +32,12 @@ class Compound extends Standard
      *
      * @var array
      */
-    protected $defaults = array(
-        'module'        => 'demo',
-        'controller'    => 'route',
-        'action'        => 'compound'
-    );
+    protected $defaults
+        = [
+            'module'     => 'demo',
+            'controller' => 'route',
+            'action'     => 'compound',
+        ];
 
 
     /**
@@ -81,7 +82,7 @@ class Compound extends Standard
         // 2012/08/24
         if ($this->dateDelimiter) {
             list($y, $m, $d) = explode($this->dateDelimiter, $dateString);
-        // 20120824
+            // 20120824
         } else {
             $y = substr($dateString, 0, 4);
             $m = substr($dateString, 4, 2);
@@ -89,13 +90,14 @@ class Compound extends Standard
         }
         if (!is_numeric($y) || $y > 2050 || $y < 1970
             || !is_numeric($m) || $m < 0 || $m > 12
-            || !is_numeric($d) || $d < 0 || $d > 31) {
+            || !is_numeric($d) || $d < 0 || $d > 31
+        ) {
             return null;
         }
-        $time = array($y, $m, $d);
+        $time = [$y, $m, $d];
 
         $path = $slugString;
-        list($id, $slug) = array(null, null);
+        list($id, $slug) = [null, null];
         if (false === ($pos = strpos($path, '-'))) {
             if (is_numeric($path)) {
                 $id = $path;
@@ -105,21 +107,21 @@ class Compound extends Standard
         } else {
             list($id, $slug) = explode('-', $path, 2);
             if (!is_numeric($id)) {
-                $id = null;
+                $id   = null;
                 $slug = $path;
             }
         }
 
-        $matches = array(
-            'action'        => 'compound',
-            'category'      => $this->decode($category),
-            'time'          => $time,
-            'id'            => $id,
-            'slug'          => $this->decode($slug),
-        );
+        $matches = [
+            'action'   => 'compound',
+            'category' => $this->decode($category),
+            'time'     => $time,
+            'id'       => $id,
+            'slug'     => $this->decode($slug),
+        ];
 
         return new RouteMatch(array_merge($this->defaults, $matches),
-                              $pathLength);
+            $pathLength);
     }
 
     /**
@@ -130,7 +132,7 @@ class Compound extends Standard
      * @param  array $options
      * @return mixed
      */
-    public function assemble(array $params = array(), array $options = array())
+    public function assemble(array $params = [], array $options = [])
     {
         $mergedParams = array_merge($this->defaults, $params);
         if (!$mergedParams) {
@@ -147,9 +149,9 @@ class Compound extends Standard
             'Y' . $this->dateDelimiter . 'm' . $this->dateDelimiter . 'd',
             $mergedParams['time']
         );
-        $url = $timeString . $this->paramDelimiter . $url;
-        $url = $this->encode($mergedParams['category'])
-             . $this->paramDelimiter . $url;
+        $url        = $timeString . $this->paramDelimiter . $url;
+        $url        = $this->encode($mergedParams['category'])
+            . $this->paramDelimiter . $url;
 
         return $this->paramDelimiter
             . trim($this->prefix, $this->paramDelimiter)

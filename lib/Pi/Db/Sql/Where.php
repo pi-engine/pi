@@ -9,10 +9,9 @@
 
 namespace Pi\Db\Sql;
 
-use Zend\Db\Sql\Where as ZendWhere;
-use Zend\Db\Sql\Predicate;
 use Zend\Db\Sql\Exception;
-use Zend\Db\Sql\Predicate\NotIn;
+use Zend\Db\Sql\Predicate;
+use Zend\Db\Sql\Where as ZendWhere;
 
 /**
  * Clause class
@@ -33,7 +32,8 @@ class Where extends ZendWhere
     public function __construct(
         $predicates = null,
         $defaultCombination = self::COMBINED_BY_AND
-    ) {
+    )
+    {
         parent::__construct(null, $defaultCombination);
         if ($predicates) {
             $this->addPredicates($predicates);
@@ -53,7 +53,7 @@ class Where extends ZendWhere
      */
     public function canonize($predicate)
     {
-        $predicates = array();
+        $predicates = [];
 
         if ($predicate instanceof Predicate\PredicateInterface) {
             $predicates[] = $predicate;
@@ -62,7 +62,7 @@ class Where extends ZendWhere
         } else {
             if (is_string($predicate)) {
                 // String $predicate should be passed as an expression
-                $predicate = (strpos($predicate,
+                $predicate    = (strpos($predicate,
                         Expression::PLACEHOLDER) !== false)
                     ? new Predicate\Expression($predicate)
                     : new Predicate\Literal($predicate);
@@ -113,7 +113,7 @@ class Where extends ZendWhere
                         // must be an array of expressions
                         // (with int-indexed array)
                         $predicate = (strpos($pvalue, Expression::PLACEHOLDER)
-                                !== false)
+                            !== false)
                             ? new Predicate\Expression($pvalue)
                             : new Predicate\Literal($pvalue);
                     }

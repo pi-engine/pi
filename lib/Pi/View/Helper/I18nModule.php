@@ -33,9 +33,9 @@ class I18nModule extends AbstractHelper
     /**
      * Load a module i18n resource
      *
-     * @param   string  $domain
-     * @param   string|null  $module
-     * @param   string|null  $locale
+     * @param   string $domain
+     * @param   string|null $module
+     * @param   string|null $locale
      * @return  self
      */
     public function __invoke($domain, $module = null, $locale = null)

@@ -41,14 +41,15 @@ class Module extends AbstractService
     protected $currentModule;
 
     /** @var array Container of module meta */
-    protected $container = array(
-        // Meta of modules: directory, active, path
-        'meta'  => array(),
-        // module models
-        //'model'     => array(),
-        // module configs
-        //'config'    => array()
-    );
+    protected $container
+        = [
+            // Meta of modules: directory, active, path
+            'meta' => [],
+            // module models
+            //'model'     => array(),
+            // module configs
+            //'config'    => array()
+        ];
 
     /**
      * Constructor
@@ -56,7 +57,7 @@ class Module extends AbstractService
      * @param array $options
      *      Parameters to send to the service during instantiation
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         parent::__construct($options);
         $this->init();
@@ -102,15 +103,15 @@ class Module extends AbstractService
      */
     public function createMeta()
     {
-        $meta = array();
-        $rowset = Pi::model('module')->select(array());
+        $meta   = [];
+        $rowset = Pi::model('module')->select([]);
         foreach ($rowset as $row) {
-            $meta[$row->name] = array(
+            $meta[$row->name] = [
                 'directory' => $row->directory,
                 'title'     => $row->title,
                 'version'   => $row->version,
-                'active'    => (int) $row->active,
-            );
+                'active'    => (int)$row->active,
+            ];
         }
 
         $status = Pi::service('config')->write($this->fileMeta, $meta);
@@ -128,7 +129,7 @@ class Module extends AbstractService
     public function init($force = false)
     {
         if ($force || empty($this->container['meta'])) {
-            $list = Pi::config()->load($this->fileMeta);
+            $list                    = Pi::config()->load($this->fileMeta);
             $this->container['meta'] = $list;
         }
 
@@ -189,15 +190,15 @@ class Module extends AbstractService
     /**
      * Load meta data of a module and category
      *
-     * @param string    $module
-     * @param string    $type
-     * @param bool      $fetch  Fetch resource meta from config file
+     * @param string $module
+     * @param string $type
+     * @param bool $fetch Fetch resource meta from config file
      *
      * @return array
      */
     public function loadMeta($module, $type = null, $fetch = false)
     {
-        $result = array();
+        $result = [];
 
         // Load module meta data
         $configFile = sprintf('%s/config/module.php', $this->path($module));
@@ -205,7 +206,7 @@ class Module extends AbstractService
             return $result;
         }
 
-        Pi::service('i18n')->load(array('module/' . $module, 'admin'));
+        Pi::service('i18n')->load(['module/' . $module, 'admin']);
         $config = include $configFile;
 
         // For backward compatibility
@@ -221,13 +222,13 @@ class Module extends AbstractService
             $resource = $config['resource'];
             unset($config['resource']);
         } else {
-            $resource = array();
+            $resource = [];
         }
 
         // Load module custom meta if available
-        $resourceCustom     = array();
-        $directory          = $this->directory($module);
-        $configFileCustom   = sprintf('%s/module/%s/config/module.php', Pi::path('custom'), $directory);
+        $resourceCustom   = [];
+        $directory        = $this->directory($module);
+        $configFileCustom = sprintf('%s/module/%s/config/module.php', Pi::path('custom'), $directory);
         if (file_exists($configFileCustom)) {
             $configCustom = include $configFileCustom;
             if (!empty($configCustom['meta']['build'])) {
@@ -263,11 +264,11 @@ class Module extends AbstractService
                 if (isset($resourceCustom[$name])) {
                     if (is_string($resourceCustom[$name]) && $fetch) {
                         $file = Pi::path('custom') . '/module/' . $directory . '/config/'
-                              . $resourceCustom[$name];
+                            . $resourceCustom[$name];
                         if (file_exists($file)) {
                             $result = include $file;
                             if (!is_array($result)) {
-                                $result = array();
+                                $result = [];
                             }
                         }
                     } else {
@@ -281,7 +282,7 @@ class Module extends AbstractService
                         if (file_exists($file)) {
                             $result = include $file;
                             if (!is_array($result)) {
-                                $result = array();
+                                $result = [];
                             }
                         }
                     } else {
@@ -304,7 +305,7 @@ class Module extends AbstractService
                 $result = $getResource($type);
             }
         } else {
-            $result = $config;
+            $result             = $config;
             $result['resource'] = $getResource();
         }
 
@@ -354,13 +355,13 @@ class Module extends AbstractService
      * Fetch content of an item from a type of module content by calling
      * `Module\<ModuleName>\Api\Content::getList()`
      *
-     * @param array $variables  array of variables to be returned:
+     * @param array $variables array of variables to be returned:
      *                          title, summary, uid, time, etc.
      * @param array $conditions associative array of conditions:
      *                          item - item ID or ID list, module, type - optional, user, Where
-     * @param int           $limit
-     * @param int           $offset
-     * @param string|array  $order
+     * @param int $limit
+     * @param int $offset
+     * @param string|array $order
      *
      * @throws \Exception
      * @return  array Associative array of returned content,
@@ -369,10 +370,11 @@ class Module extends AbstractService
     public function content(
         array $variables,
         array $conditions,
-        $limit  = 0,
+        $limit = 0,
         $offset = 0,
-        $order  = array()
-    ) {
+        $order = []
+    )
+    {
         if (!isset($conditions['module'])) {
             throw new \Exception('module is required.');
         }
@@ -386,7 +388,7 @@ class Module extends AbstractService
                 $order
             );
         } else {
-            $result = array();
+            $result = [];
         }
 
         return $result;

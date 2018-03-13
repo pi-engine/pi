@@ -42,13 +42,13 @@ class I18n extends AbstractRegistry
     {
         $translator = Pi::service('i18n')->getTranslator();
         if (!isset($options['custom']) || !empty($options['custom'])) {
-            $optionsCustom = $options;
+            $optionsCustom           = $options;
             $optionsCustom['domain'] = 'custom/' . $options['domain'];
             //d($optionsCustom);
             $custom = $translator->loadResource($optionsCustom);
             //d($custom);
         } else {
-            $custom = array();
+            $custom = [];
         }
         if (empty($options['custom'])) {
             //d($options);
@@ -65,8 +65,8 @@ class I18n extends AbstractRegistry
     /**
      * {@inheritDoc}
      * @param string|string[]|array $rawDomain
-     * @param string                $locale
-     * @param bool|null             $custom
+     * @param string $locale
+     * @param bool|null $custom
      */
     public function read($rawDomain = '', $locale = '', $custom = null)
     {
@@ -82,8 +82,8 @@ class I18n extends AbstractRegistry
                 list($domain, $file) = $rawDomain;
             }
         } else {
-            list($domain, $file) =
-                Pi::service('i18n')->canonizeDomain($rawDomain);
+            list($domain, $file)
+                = Pi::service('i18n')->canonizeDomain($rawDomain);
             if ('custom/' == substr($domain, 0, 7)) {
                 $custom = true;
                 $domain = substr($domain, 7);
@@ -101,7 +101,7 @@ class I18n extends AbstractRegistry
         if (null === $custom) {
             $options = compact('domain', 'file', 'locale');
         } else {
-            $custom = (int) $custom;
+            $custom  = (int)$custom;
             $options = compact('domain', 'file', 'locale', 'custom');
         }
 
@@ -114,7 +114,7 @@ class I18n extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string    $domain
+     * @param string $domain
      */
     public function create($domain = '')
     {

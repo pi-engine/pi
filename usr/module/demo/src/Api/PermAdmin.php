@@ -17,11 +17,11 @@ class PermAdmin extends AbstractApi
 
     public function getResources()
     {
-        $resources = array();
+        $resources = [];
 
         for ($i = 1; $i <= 5; $i++) {
-            $name = $this->module . '-resource-' . $i;
-            $title = ucwords($this->module . ' resource admin ' . $i);
+            $name             = $this->module . '-resource-' . $i;
+            $title            = ucwords($this->module . ' resource admin ' . $i);
             $resources[$name] = $title;
         }
 

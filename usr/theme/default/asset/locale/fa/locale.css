@@ -2029,6 +2029,7 @@ th {
     direction: rtl !important;
     width: 220px !important;
 }
+
 .datepicker table tr td span {
     float: right !important;
 }

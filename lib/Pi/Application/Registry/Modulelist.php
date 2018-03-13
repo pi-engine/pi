@@ -11,7 +11,6 @@
 namespace Pi\Application\Registry;
 
 use Pi;
-use Pi\Acl\Acl as AclManager;
 
 /**
  * Module list of different types
@@ -22,43 +21,43 @@ class Modulelist extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
-     * @param   array  $options potential values for type: active, inactive
+     * @param   array $options potential values for type: active, inactive
      * @return  array
      *  - keys: directory, name, title, id, logo, version, update, icon
      */
     protected function loadDynamic($options)
     {
-        $modules = array();
-        $model = Pi::model('module');
-        $where = array();
+        $modules = [];
+        $model   = Pi::model('module');
+        $where   = [];
         if ($options['type'] == 'inactive') {
-            $where = array('active' => 0);
+            $where = ['active' => 0];
         } else {
-            $where = array('active' => 1);
+            $where = ['active' => 1];
         }
         $select = $model->select();
         $select->order('title')->where($where);
         $rowset = $model->selectWith($select);
         foreach ($rowset as $module) {
-            $info = Pi::service('module')->loadMeta(
+            $info                   = Pi::service('module')->loadMeta(
                 $module->directory,
                 'meta'
             );
-            $modules[$module->name] = array(
-                'id'            => $module->id,
-                'name'          => $module->name,
-                'title'         => $module->title,
-                'version'       => $module->version,
-                'directory'     => $module->directory,
-                'update'        => $module->update,
-                'logo'          => isset($info['logo']) ? $info['logo'] : '',
-                'icon'          => isset($info['icon']) ? $info['icon'] : '',
-            );
+            $modules[$module->name] = [
+                'id'        => $module->id,
+                'name'      => $module->name,
+                'title'     => $module->title,
+                'version'   => $module->version,
+                'directory' => $module->directory,
+                'update'    => $module->update,
+                'logo'      => isset($info['logo']) ? $info['logo'] : '',
+                'icon'      => isset($info['icon']) ? $info['icon'] : '',
+            ];
         }
 
         //asort($modules);
         if (isset($modules['system'])) {
-            $systemModule = array('system' => $modules['system']);
+            $systemModule = ['system' => $modules['system']];
             unset($modules['system']);
             $modules = array_merge($systemModule, $modules);
         }

@@ -24,8 +24,8 @@ class Deactivate extends AbstractAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('deactivate.pre', array($this, 'checkDependent'));
-        $events->attach('deactivate.post', array($this, 'removeDependency'));
+        $events->attach('deactivate.pre', [$this, 'checkDependent']);
+        $events->attach('deactivate.post', [$this, 'removeDependency']);
 
         return $this;
     }
@@ -35,17 +35,17 @@ class Deactivate extends AbstractAction
      */
     public function process()
     {
-        $model = Pi::model('module');
-        $row = $model->select(array('name' => $this->module))->current();
+        $model       = Pi::model('module');
+        $row         = $model->select(['name' => $this->module])->current();
         $row->active = 0;
         // save module entry into database
         try {
             $row->save();
         } catch (\Exception $e) {
-            $this->setResult('module', array(
-                'status'    => false,
-                'message'   => array('Module deactivate failed')
-            ));
+            $this->setResult('module', [
+                'status'  => false,
+                'message' => ['Module deactivate failed'],
+            ]);
             return false;
         }
 
@@ -59,7 +59,7 @@ class Deactivate extends AbstractAction
      */
     public function rollback()
     {
-        $row = $this->event->getParam('row');
+        $row         = $this->event->getParam('row');
         $row->active = 1;
 
         return $row->save();

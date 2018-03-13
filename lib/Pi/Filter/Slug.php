@@ -19,12 +19,13 @@ use Zend\Filter\AbstractFilter;
 class Slug extends AbstractFilter
 {
     /** @var array */
-    protected $options = array(
-        // Force lower case
-        'force_lower' => true,
-        // Force normalize chars
-        'normalize_chars' => true,
-    );
+    protected $options
+        = [
+            // Force lower case
+            'force_lower'     => true,
+            // Force normalize chars
+            'normalize_chars' => true,
+        ];
 
     /**
      * Filter for slug text
@@ -36,7 +37,7 @@ class Slug extends AbstractFilter
     public function filter($value)
     {
         // List of normalize chars
-        $pattern = array(
+        $pattern = [
             'Š' => 'S', 'š' => 's', 'Ð' => 'Dj', 'Ž' => 'Z', 'ž' => 'z', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A',
             'Å' => 'A', 'Æ' => 'A', 'Ç' => 'C', 'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I',
             'Ï' => 'I', 'Ñ' => 'N', 'Ń' => 'N', 'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O', 'Ù' => 'U',
@@ -45,7 +46,7 @@ class Slug extends AbstractFilter
             'î' => 'i', 'ï' => 'i', 'ð' => 'o', 'ñ' => 'n', 'ń' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o',
             'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'ý' => 'y', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y', 'ƒ' => 'f',
             'ă' => 'a', 'î' => 'i', 'â' => 'a', 'ș' => 's', 'ț' => 't', 'Ă' => 'A', 'Î' => 'I', 'Â' => 'A', 'Ș' => 'S', 'Ț' => 'T',
-        );
+        ];
         // Strip HTML tags and remove unrecognizable characters
         $value = trim(_strip($value));
         // Normalize chars

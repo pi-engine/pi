@@ -7,8 +7,8 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace Pi\Debug
-{
+namespace Pi\Debug {
+
     use Closure;
     use Pi;
 
@@ -58,7 +58,8 @@ namespace Pi\Debug
          * @return void
          */
         public static function load()
-        {}
+        {
+        }
 
         /**
          * Enable/Disable conditional debugging
@@ -69,7 +70,7 @@ namespace Pi\Debug
         public static function enable($flag = true)
         {
             static::$inProcess = $flag;
-            $message = static::render(sprintf(
+            $message           = static::render(sprintf(
                 'Conditional debug %s',
                 $flag ? 'enabled' : 'disabled'),
                 2
@@ -81,7 +82,7 @@ namespace Pi\Debug
          * Renders a variable or an object during conditional period
          *
          * @param mixed $data a variable or an object
-         * @param int   $skip steps to skip
+         * @param int $skip steps to skip
          * @return string|null
          */
         public static function conditional($data, $skip = 0)
@@ -133,18 +134,18 @@ namespace Pi\Debug
          * Renders a variable or an object
          *
          * @param mixed $data a variable or an object
-         * @param int   $skip steps to skip
+         * @param int $skip steps to skip
          * @return string
          */
         public static function render($data, $skip = 0)
         {
-            $time = microtime(true);
+            $time     = microtime(true);
             $location = date('H:i:s', $time)
-                      . substr($time, strpos($time, '.'), 5) . ' ';
-            $list = debug_backtrace();
+                . substr($time, strpos($time, '.'), 5) . ' ';
+            $list     = debug_backtrace();
             foreach ($list as $item) {
                 if ($skip-- > 0) continue;
-                $file = Pi::service('security')->path($item['file']);
+                $file     = Pi::service('security')->path($item['file']);
                 $location .= $file . ':' . $item['line'];
                 break;
             }
@@ -167,7 +168,7 @@ namespace Pi\Debug
                 $result .= PHP_EOL;
             } else {
                 $result = '<div style="padding: .8em;'
-                        . ' margin-bottom: 1em; border: 2px solid #ddd;">';
+                    . ' margin-bottom: 1em; border: 2px solid #ddd;">';
                 if (!is_scalar($data)) {
                     $result .= $location;
                     $result .= '<div><pre>';
@@ -193,8 +194,8 @@ namespace Pi\Debug
         /**
          * Displays formatted backtrace information
          *
-         * @param bool  $display To display or return as a string
-         * @param int   $skip steps to skip
+         * @param bool $display To display or return as a string
+         * @param int $skip steps to skip
          * @return void|string
          */
         public static function backtrace($display = true, $skip = 0)
@@ -210,11 +211,11 @@ namespace Pi\Debug
                     $location = empty($backtrace['file'])
                         ? 'Internal'
                         : Pi::service('security')->path($backtrace['file'])
-                            . '(' . $backtrace['line'] . ')';
-                    $bt .= $location . ': '
-                         . (empty($backtrace['class'])
+                        . '(' . $backtrace['line'] . ')';
+                    $bt       .= $location . ': '
+                        . (empty($backtrace['class'])
                             ? '' : $backtrace['class'] . '::')
-                         . $backtrace['function'] . '()' . PHP_EOL;
+                        . $backtrace['function'] . '()' . PHP_EOL;
                 }
                 $bt .= PHP_EOL;
             } else {
@@ -225,11 +226,11 @@ namespace Pi\Debug
                     $location = empty($backtrace['file'])
                         ? 'Internal'
                         : Pi::service('security')->path($backtrace['file'])
-                            . '(' . $backtrace['line'] . ')';
-                    $bt .= '<li>' . $location . ': '
-                         . (empty($backtrace['class'])
+                        . '(' . $backtrace['line'] . ')';
+                    $bt       .= '<li>' . $location . ': '
+                        . (empty($backtrace['class'])
                             ? '' : $backtrace['class'] . '::')
-                         . $backtrace['function'] . '()</li>';
+                        . $backtrace['function'] . '()</li>';
                 }
                 $bt .= '</ul>';
                 $bt .= '</pre>';
@@ -254,20 +255,20 @@ namespace Pi\Debug
          * htmlspecialchars() before output.
          *
          * @see Zend\Debug::dump()
-         * @param mixed     $var        The variable to dump.
-         * @param bool      $display    OPTIONAL echo output if true.
-         * @param int       $skip       steps to skip
+         * @param mixed $var The variable to dump.
+         * @param bool $display OPTIONAL echo output if true.
+         * @param int $skip steps to skip
          * @return string|void
          */
         public static function dump($var, $display = true, $skip = 1)
         {
-            $time = microtime(true);
+            $time     = microtime(true);
             $location = date('H:i:s', $time)
-                      . substr($time, strpos($time, '.'), 5) . ' ';
-            $list = debug_backtrace();
+                . substr($time, strpos($time, '.'), 5) . ' ';
+            $list     = debug_backtrace();
             foreach ($list as $item) {
                 if ($skip-- > 0) continue;
-                $file = Pi::service('security')->path($item['file']);
+                $file     = Pi::service('security')->path($item['file']);
                 $location .= $file . ':' . $item['line'];
                 break;
             }
@@ -286,7 +287,7 @@ namespace Pi\Debug
                     $output = htmlspecialchars($output, ENT_QUOTES);
                 }
                 $result = '<div style="padding: .8em;'
-                        . ' margin-bottom: 1em; border: 2px solid #ddd;">';
+                    . ' margin-bottom: 1em; border: 2px solid #ddd;">';
                 $result .= $location;
                 $result .= '<div><pre>';
                 $result .= $output;
@@ -334,8 +335,9 @@ namespace Pi\Debug
  *      dc($var);   // No output
  *  ```
  */
-namespace
-{
+
+namespace {
+
     use Pi\Debug\Debug;
 
     /**

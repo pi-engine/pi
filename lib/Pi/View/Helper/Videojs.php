@@ -33,10 +33,10 @@ class Videojs extends AbstractHtmlElement
      *
      * @todo The icon is not responsive yet
      *
-     * @param string    $source MP4 video or MP3 audio full url
-     * @param string    $poster Player image full url
-     * @param int       $width  Player width
-     * @param int       $height Player height
+     * @param string $source MP4 video or MP3 audio full url
+     * @param string $poster Player image full url
+     * @param int $width Player width
+     * @param int $height Player height
      *
      * @return  string
      */
@@ -60,11 +60,12 @@ class Videojs extends AbstractHtmlElement
                 }
 
                 // Set player width and height
-                $width = !empty($width) ? $width : 1280;
+                $width  = !empty($width) ? $width : 1280;
                 $height = !empty($height) ? $height : 180;
 
                 // Set html template
-                $template = <<<'EOT'
+                $template
+                    = <<<'EOT'
 <audio id="%s" class="video-js vjs-default-skin" width="%d" height="%d" controls preload="none" poster="%s" data-setup='{"aspectRatio":"%s:%s"}'>
     <source src="%s" type='audio/mp3' />
 </audio>
@@ -83,11 +84,12 @@ EOT;
                 }
 
                 // Set player width and height
-                $width = !empty($width) ? $width : 1280;
+                $width  = !empty($width) ? $width : 1280;
                 $height = !empty($height) ? $height : 720;
 
                 // Set html template
-                $template = <<<'EOT'
+                $template
+                    = <<<'EOT'
 <video id="%s" class="video-js vjs-default-skin" width="%d" height="%d" controls preload="none" poster="%s" data-setup='{"aspectRatio":"%s:%s"}'>
     <source src="%s" type='video/mp4' />
 </video>
@@ -110,7 +112,7 @@ EOT;
 
         // Set random unique ID
         $id = uniqid("video-js-");
-       
+
         // Set final content
         $content = sprintf($template, $id, $width, $height, $poster, $width, $height, $source);
 

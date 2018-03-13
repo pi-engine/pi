@@ -24,7 +24,7 @@ class FormEditor extends AbstractHelper
     /**
      * {@inheritDoc}
      */
-    public function render(ElementInterface $element, $options = array())
+    public function render(ElementInterface $element, $options = [])
     {
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
@@ -41,9 +41,9 @@ class FormEditor extends AbstractHelper
             ));
         }
 
-        $options = array_replace($element->getOptions(), $options);
+        $options    = array_replace($element->getOptions(), $options);
         $editorType = $element->getOption('editor') ?: 'textarea';
-        $editor = Pi::service('editor')->load($editorType, $options);
+        $editor     = Pi::service('editor')->load($editorType, $options);
 
         $html = '';
         if ($editor) {

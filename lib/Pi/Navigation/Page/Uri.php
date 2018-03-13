@@ -9,10 +9,10 @@
 
 namespace Pi\Navigation\Page;
 
-use Zend\Navigation\Page as ZendPage;
-use Zend\Navigation\Page\Uri as ZendUriPage;
 use Zend\Http\Request;
 use Zend\Navigation\Exception;
+use Zend\Navigation\Page as ZendPage;
+use Zend\Navigation\Page\Uri as ZendUriPage;
 
 /**
  * URI page
@@ -67,7 +67,7 @@ class Uri extends ZendUriPage
         // adds page to container and sets dirty flag
         $this->pages[$hash] = $page;
         $this->index[$hash] = $page->getOrder();
-        $this->dirtyIndex = true;
+        $this->dirtyIndex   = true;
 
         // inject self as page parent
         $page->setParent($this);

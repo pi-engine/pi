@@ -1,8 +1,8 @@
-<?php 
-    $totalWidth = 900;
-    $topCount   = count($block['items']);
-    $maxCount   = $topCount > 6 ? 6 : $topCount;
-    $width      = floor($totalWidth / $maxCount) - 20;
+<?php
+$totalWidth = 900;
+$topCount   = count($block['items']);
+$maxCount   = $topCount > 6 ? 6 : $topCount;
+$width      = floor($totalWidth / $maxCount) - 20;
 ?>
 
 <style>
@@ -14,36 +14,39 @@
 </style>
 
 <div class="article-all-category">
-    <?php 
-        $index = 0;
-        foreach ($block['items'] as $top) {
-    ?>
-    <div class="each-category<?php echo (++$index != $maxCount) ? ' category-item' : ''; ?>">
-        <div>
-            <a target="<?php echo $this->escape($block['target']); ?>" href="<?php echo $this->escape($top['url']); ?>" class="article-front-title"><?php echo $this->escape($top['title']); ?></a>
-        </div>
-        <?php 
-        if (isset($top['child'])) {
-            foreach ($top['child'] as $sub) { 
+    <?php
+    $index = 0;
+    foreach ($block['items'] as $top) {
         ?>
-        <div class="text-muted article-size12">
+        <div class="each-category<?php echo (++$index != $maxCount) ? ' category-item' : ''; ?>">
+            <div>
+                <a target="<?php echo $this->escape($block['target']); ?>"
+                   href="<?php echo $this->escape($top['url']); ?>"
+                   class="article-front-title"><?php echo $this->escape($top['title']); ?></a>
+            </div>
             <?php
-                for ($i = 1; $i < $sub['depth']; $i++) {
-                    echo '-';
+            if (isset($top['child'])) {
+                foreach ($top['child'] as $sub) {
+                    ?>
+                    <div class="text-muted article-size12">
+                        <?php
+                        for ($i = 1; $i < $sub['depth']; $i++) {
+                            echo '-';
+                        }
+                        ?>
+                        <a class="text-muted" target="<?php echo $this->escape($block['target']); ?>"
+                           href="<?php echo $this->escape($sub['url']); ?>">
+                            <?php echo $this->escape($sub['title']); ?>
+                        </a>
+                    </div>
+                    <?php
                 }
-            ?>
-            <a class="text-muted" target="<?php echo $this->escape($block['target']); ?>" href="<?php echo $this->escape($sub['url']); ?>">
-                <?php echo $this->escape($sub['title']); ?>
-            </a>
-        </div>
-        <?php 
             }
-        } 
-        ?>
-        <?php if ($index < $maxCount) { ?>
-        <div class="category-deimiter" style="left: <?php echo ($width + 20) * $index ?>px"></div>
-        <?php } ?>
-    </div>
+            ?>
+            <?php if ($index < $maxCount) { ?>
+                <div class="category-deimiter" style="left: <?php echo ($width + 20) * $index ?>px"></div>
+            <?php } ?>
+        </div>
     <?php } ?>
 </div>
 

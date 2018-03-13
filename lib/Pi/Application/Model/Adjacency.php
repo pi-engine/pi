@@ -26,7 +26,8 @@ class Adjacency extends AbstractAdjacency
     /**
      * {@inheritDoc}
      */
-    protected $column = array(
-        'parent'    => 'parent'
-    );
+    protected $column
+        = [
+            'parent' => 'parent',
+        ];
 }

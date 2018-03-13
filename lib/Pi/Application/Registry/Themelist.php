@@ -22,28 +22,28 @@ class Themelist extends AbstractRegistry
     /**
      * Load raw data
      *
-     * @param   array   $options potential values for type: front, admin, both
+     * @param   array $options potential values for type: front, admin, both
      * @return  array   keys: dirname => name, image, author, version
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
         $model = Pi::model('theme');
-        $type = empty($options['type']) ? 'front' : $options['type'];
+        $type  = empty($options['type']) ? 'front' : $options['type'];
 
         $select = $model->select();
-        $select->where->in('type', array('both', $type));
+        $select->where->in('type', ['both', $type]);
         $rowset = $model->selectWith($select);
 
-        $themes = array();
+        $themes = [];
         foreach ($rowset as $row) {
-            $config = Pi::service('theme')->loadConfig($row->name);
+            $config               = Pi::service('theme')->loadConfig($row->name);
             $config['screenshot'] = !empty($config['screenshot'])
                 ? Pi::service('asset')->getAssetUrl(
                     'theme/' . $row->name,
                     $config['screenshot']
-                  )
+                )
                 : Pi::url('static/image/theme.png');
-            $themes[$row->name] = array_merge($config, $row->toArray());
+            $themes[$row->name]   = array_merge($config, $row->toArray());
         }
 
         return $themes;

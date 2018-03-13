@@ -9,9 +9,9 @@
 
 namespace Pi\Cache\Storage\Adapter;
 
-use Zend\Cache\Storage\Adapter\Filesystem as ZendFilesystem;
 use Exception as BaseException;
 use Zend\Cache\Storage\Adapter\Exception;
+use Zend\Cache\Storage\Adapter\Filesystem as ZendFilesystem;
 
 /**
  * Filesystem cache adapter
@@ -27,7 +27,8 @@ class Filesystem extends ZendFilesystem
         &$normalizedKey,
         &$success = null,
         &$casToken = null
-    ) {
+    )
+    {
         /**#@+
          * Skip extra file reading cost
          */
@@ -45,15 +46,15 @@ class Filesystem extends ZendFilesystem
              * Internal file content parsing
              */
             //$data     = $this->getFileContent($filespec . '.dat');
-            $data     = $this->getFileData($filespec . '.dat');
+            $data = $this->getFileData($filespec . '.dat');
             /**#@-*/
 
             // use filemtime + filesize as CAS token
             if (func_num_args() > 2) {
                 $casToken = filemtime($filespec . '.dat')
-                          . filesize($filespec . '.dat');
+                    . filesize($filespec . '.dat');
             }
-            $success  = (null === $data) ? false : true;
+            $success = (null === $data) ? false : true;
             return $data;
 
         } catch (BaseException $e) {
@@ -69,8 +70,8 @@ class Filesystem extends ZendFilesystem
     {
         $options = $this->getOptions();
         // Don't change argument passed by reference
-        $keys    = $normalizedKeys;
-        $result  = array();
+        $keys   = $normalizedKeys;
+        $result = [];
         while ($keys) {
 
             // LOCK_NB if more than one items have to read
@@ -96,7 +97,7 @@ class Filesystem extends ZendFilesystem
                  */
                 //$data     = $this->getFileContent($filespec . '.dat',
                 //$nonBlocking, $wouldblock);
-                $data     = $this->getFileData(
+                $data = $this->getFileData(
                     $filespec . '.dat',
                     $nonBlocking, $wouldblock
                 );
@@ -173,16 +174,16 @@ class Filesystem extends ZendFilesystem
      */
     protected function internalSetItems(array & $normalizedKeyValuePairs)
     {
-        $oldUmask    = null;
+        $oldUmask = null;
 
         // create an associated array of files and contents to write
-        $contents = array();
+        $contents = [];
         foreach ($normalizedKeyValuePairs as $key => & $value) {
             $filespec = $this->getFileSpec($key);
             $this->prepareDirectoryStructure($filespec);
 
             // *.dat file
-            $contents[$filespec . '.dat'] = & $value;
+            $contents[$filespec . '.dat'] = &$value;
 
             // *.tag file
             $this->unlink($filespec . '.tag');
@@ -208,15 +209,15 @@ class Filesystem extends ZendFilesystem
         }
 
         // return OK
-        return array();
+        return [];
     }
 
     /**
      * Read and validate cache data, return valid content
      *
-     * @param  string  $file        File complete path
+     * @param  string $file File complete path
      * @param  bool $nonBlocking Don't block script if file is locked
-     * @param  bool $wouldblock  The optional argument is set to TRUE
+     * @param  bool $wouldblock The optional argument is set to TRUE
      *      if the lock would block
      * @return string|null
      */
@@ -224,7 +225,8 @@ class Filesystem extends ZendFilesystem
         $file,
         $nonBlocking = false,
         &$wouldblock = null
-    ) {
+    )
+    {
         $result = null;
         if (file_exists($file)) {
             $content = $this->getFileContent($file, $nonBlocking, $wouldblock);
@@ -240,10 +242,10 @@ class Filesystem extends ZendFilesystem
     /**
      * Assemble content data and write to a cache file
      *
-     * @param  string  $file        File complete path
-     * @param  string  $data        Data to write
+     * @param  string $file File complete path
+     * @param  string $data Data to write
      * @param  bool $nonBlocking Don't block script if file is locked
-     * @param  bool $wouldblock  The optional argument is set to TRUE
+     * @param  bool $wouldblock The optional argument is set to TRUE
      *      if the lock would block
      * @return void
      */
@@ -252,8 +254,9 @@ class Filesystem extends ZendFilesystem
         $data,
         $nonBlocking = false,
         &$wouldblock = null
-    ) {
-        $expire = 0;
+    )
+    {
+        $expire  = 0;
         $options = $this->getOptions();
         if ($options->ttl) {
             $expire = time() + $options->ttl;
@@ -265,7 +268,7 @@ class Filesystem extends ZendFilesystem
     /**
      * Check if cached file content valid
      *
-     * @param  string  $file        File complete path
+     * @param  string $file File complete path
      * @return bool
      */
     protected function fileValid($file)
@@ -275,11 +278,11 @@ class Filesystem extends ZendFilesystem
         }
 
         $content = $this->getFileContent($file);
-        $pos = strpos($content, ':');
+        $pos     = strpos($content, ':');
         if (false === $pos) {
             return false;
         }
-        $expire = (int) substr($content, 0, $pos);
+        $expire = (int)substr($content, 0, $pos);
         if ($expire && time() >= $expire) {
             return false;
         }

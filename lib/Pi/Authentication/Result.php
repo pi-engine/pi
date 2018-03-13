@@ -9,7 +9,6 @@
 
 namespace Pi\Authentication;
 
-use Pi;
 use Zend\Authentication\Result as BaseResult;
 
 /**
@@ -24,26 +23,27 @@ class Result extends BaseResult
      *
      * @var array
      */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * Sets the result code, identity, failure messages and success data
      *
-     * @param int|array     $code
-     * @param mixed         $identity
-     * @param array         $messages
-     * @param array         $data
+     * @param int|array $code
+     * @param mixed $identity
+     * @param array $messages
+     * @param array $data
      */
     public function __construct(
         $code,
         $identity = '',
-        array $messages = array(),
-        array $data = array()
-    ) {
+        array $messages = [],
+        array $data = []
+    )
+    {
         if (is_array($code)) {
             extract($code);
         }
-        $this->code     = (int) $code;
+        $this->code     = (int)$code;
         $this->identity = $identity;
         $this->messages = $messages;
         $this->setData($data);
@@ -57,7 +57,7 @@ class Result extends BaseResult
      */
     public function setData($data)
     {
-        $this->data = (array) $data;
+        $this->data = (array)$data;
 
         return $this;
     }
@@ -65,7 +65,7 @@ class Result extends BaseResult
     /**
      * Returns the result data
      *
-     * @param  string|null  $column
+     * @param  string|null $column
      * @return bool|mixed
      */
     public function getData($column = null)
@@ -89,7 +89,7 @@ class Result extends BaseResult
      */
     public function setCode($code)
     {
-        $this->code = (int) $code;
+        $this->code = (int)$code;
 
         return $this;
     }

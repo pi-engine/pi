@@ -32,10 +32,10 @@ class BlockTabForm extends AbstractBaseForm
      */
     protected function getContentElement()
     {
-        return array(
-            'name'  => 'content',
-            'type'  => 'hidden',
-        );
+        return [
+            'name' => 'content',
+            'type' => 'hidden',
+        ];
     }
 
     /**
@@ -43,10 +43,10 @@ class BlockTabForm extends AbstractBaseForm
      */
     protected function getContentFilter()
     {
-        return array(
-            'name'          => 'content',
-            'required'      => true,
-            'allow_empty'   => true,
-        );
+        return [
+            'name'        => 'content',
+            'required'    => true,
+            'allow_empty' => true,
+        ];
     }
 }

@@ -13,7 +13,7 @@ use Pi;
 
 /**
  * Remote media service provided by media module
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class Remote extends AbstractAdapter
@@ -38,13 +38,13 @@ class Remote extends AbstractAdapter
      */
     public function add(array $data)
     {
-        $query = array();
+        $query = [];
         array_walk($data, function ($value, $key) use (&$query) {
             $query[] = $key . ':' . $value;
         });
         $params['query'] = implode(',', $query);
-        $uri    = $this->getOption('api', 'add');
-        $result = $this->handler()->post($uri, $params);
+        $uri             = $this->getOption('api', 'add');
+        $result          = $this->handler()->post($uri, $params);
 
         return $result['status'] ? $result['data'] : false;
     }
@@ -52,11 +52,11 @@ class Remote extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function upload($file, array $data = array())
+    public function upload($file, array $data = [])
     {
         $uri    = $this->getOption('api', 'upload');
         $result = $this->handler()->upload($uri, $file, $data);
-        
+
         return $result['status'] ? $result['data'] : false;
     }
 
@@ -75,13 +75,13 @@ class Remote extends AbstractAdapter
      */
     public function update($id, array $data)
     {
-        $params = array('id' => $id);
+        $params = ['id' => $id];
         array_walk($data, function ($value, $key) use (&$query) {
             $query[] = $key . ':' . $value;
         });
         $params['query'] = implode(',', $query);
-        $uri    = $this->getOption('api', 'update');
-        $result = $this->handler()->post($uri, $params);
+        $uri             = $this->getOption('api', 'update');
+        $result          = $this->handler()->post($uri, $params);
 
         return $result['status'] ? true : false;
     }
@@ -91,7 +91,7 @@ class Remote extends AbstractAdapter
      */
     public function activate($id, $flag = true)
     {
-        $result = $this->update($id, array('active' => (int) $flag));
+        $result = $this->update($id, ['active' => (int)$flag]);
 
         return $result;
     }
@@ -99,12 +99,12 @@ class Remote extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function get($id, $attr = array())
+    public function get($id, $attr = [])
     {
-        $params = array(
+        $params = [
             'id'    => $id,
-            'field' => implode(',', (array) $attr),
-        );
+            'field' => implode(',', (array)$attr),
+        ];
         $uri    = $this->getOption('api', 'get');
         $result = $this->handler()->get($uri, $params);
         if (!$result['status']) {
@@ -122,12 +122,12 @@ class Remote extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function mget(array $ids, $attr = array())
+    public function mget(array $ids, $attr = [])
     {
-        $params = array(
+        $params = [
             'id'    => implode(',', $ids),
-            'field' => implode(',', (array) $attr),
-        );
+            'field' => implode(',', (array)$attr),
+        ];
         $uri    = $this->getOption('api', 'mget');
         $result = $this->handler()->get($uri, $params);
         if (!$result['status']) {
@@ -163,7 +163,7 @@ class Remote extends AbstractAdapter
      */
     public function getStats($id)
     {
-        $params = array('id' => $id);
+        $params = ['id' => $id];
         $uri    = $this->getOption('api', 'stats');
         $result = $this->handler()->get($uri, $params);
 
@@ -175,7 +175,7 @@ class Remote extends AbstractAdapter
      */
     public function getStatsList(array $ids)
     {
-        $params = array('id' => implode(',', $ids));
+        $params = ['id' => implode(',', $ids)];
         $uri    = $this->getOption('api', 'stats_list');
         $result = $this->handler()->get($uri, $params);
 
@@ -187,19 +187,20 @@ class Remote extends AbstractAdapter
      */
     public function getIds(
         array $condition,
-        $limit  = 0,
+        $limit = 0,
         $offset = 0,
-        $order  = ''
-    ) {
+        $order = ''
+    )
+    {
         $result = $this->getList(
             $condition,
             $limit,
             $offset,
             $order,
-            array('id')
+            ['id']
         );
         array_walk($result, function ($data, $key) use (&$result) {
-            $result[$key] = (int) $data['id'];
+            $result[$key] = (int)$data['id'];
         });
 
         return $result;
@@ -210,30 +211,31 @@ class Remote extends AbstractAdapter
      */
     public function getList(
         array $condition,
-        $limit  = null,
+        $limit = null,
         $offset = null,
-        $order  = null,
-        array $attr = array()
-    ) {
-        $params = array();
+        $order = null,
+        array $attr = []
+    )
+    {
+        $params = [];
         if ($condition) {
-            $query = array();
+            $query = [];
             array_walk($condition, function ($value, $key) use (&$query) {
                 $query[] = $key . ':' . $value;
             });
             $params['query'] = implode(',', $query);
         }
         if ($limit) {
-            $params['limit'] = (int) $limit;
+            $params['limit'] = (int)$limit;
         }
         if ($offset) {
-            $params['offset'] = (int) $offset;
+            $params['offset'] = (int)$offset;
         }
         if ($order) {
-            $params['order'] = implode(',', (array) $order);
+            $params['order'] = implode(',', (array)$order);
         }
         if ($attr) {
-            $params['field'] = implode(',', (array) $attr);
+            $params['field'] = implode(',', (array)$attr);
         }
         $uri    = $this->getOption('api', 'list');
         $result = $this->handler()->get($uri, $params);
@@ -244,11 +246,11 @@ class Remote extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getCount(array $condition = array())
+    public function getCount(array $condition = [])
     {
-        $params = array();
+        $params = [];
         if ($condition) {
-            $query = array();
+            $query = [];
             array_walk($condition, function ($value, $key) use (&$query) {
                 $query[] = $key . ':' . $value;
             });
@@ -256,7 +258,7 @@ class Remote extends AbstractAdapter
         }
         $uri    = $this->getOption('api', 'count');
         $result = $this->handler()->get($uri, $params);
-        $result = (int) $result['data'];
+        $result = (int)$result['data'];
 
         return $result;
     }
@@ -266,7 +268,7 @@ class Remote extends AbstractAdapter
      */
     public function delete($id)
     {
-        $params = array('id' => $id);
+        $params = ['id' => $id];
         $uri    = $this->getOption('api', 'delete');
         $result = $this->handler()->post($uri, $params);
 

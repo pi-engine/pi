@@ -1,4 +1,3 @@
-
 <h2 class="page-header"><?php echo _escape($title); ?></h2>
 
 <ul>
@@ -7,10 +6,13 @@
         <div>
             <h4><?php echo $route['name']; ?></h4>
             <span><?php echo _a('Class: '); ?></span><?php echo $route['class']; ?></span>
-            <span><a  href="<?php echo $this->url('', array('action' => 'edit', 'id' => $route['id'])); ?>" title="<?php echo _a('Edit'); ?>"><?php echo _a('Edit'); ?></a></span>
-            <span><a  href="<?php echo $this->url('', array('action' => 'delete', 'id' => $route['id'])); ?>" title="<?php echo _a('Delete'); ?>"><?php echo _a('Delete'); ?></a></span>
+            <span><a href="<?php echo $this->url('', ['action' => 'edit', 'id' => $route['id']]); ?>"
+                     title="<?php echo _a('Edit'); ?>"><?php echo _a('Edit'); ?></a></span>
+            <span><a href="<?php echo $this->url('', ['action' => 'delete', 'id' => $route['id']]); ?>"
+                     title="<?php echo _a('Delete'); ?>"><?php echo _a('Delete'); ?></a></span>
         </div>
-    <?php } ?>
+        <?php } ?>
 </ul>
 
-<h3><a  href="<?php echo $this->url('', array('action' => 'add')); ?>" title="<?php echo _a('Add a route'); ?>"><?php echo _a('Add a route'); ?></a></h3>
+<h3><a href="<?php echo $this->url('', ['action' => 'add']); ?>"
+       title="<?php echo _a('Add a route'); ?>"><?php echo _a('Add a route'); ?></a></h3>

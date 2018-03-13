@@ -9,7 +9,6 @@
 
 namespace Module\Demo\Form\Element;
 
-use Pi;
 use Zend\Form\Element\Select;
 
 class Choose extends Select
@@ -20,11 +19,11 @@ class Choose extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $this->valueOptions = array(
-                1       => __('First Param'),
-                2       => __('Second Param'),
-                3       => __('Third Param'),
-            );
+            $this->valueOptions = [
+                1 => __('First Param'),
+                2 => __('Second Param'),
+                3 => __('Third Param'),
+            ];
         }
 
         return $this->valueOptions;

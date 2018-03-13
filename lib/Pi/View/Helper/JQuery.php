@@ -62,9 +62,10 @@ class JQuery extends AssetCanonize
      */
     public function __invoke(
         $files = null,
-        $attributes = array(),
+        $attributes = [],
         $appendVersion = null
-    ) {
+    )
+    {
         $files = $this->canonize($files, $attributes);
         if (empty(static::$rootLoaded)) {
             if (isset($files['jquery.min.js'])) {
@@ -73,22 +74,22 @@ class JQuery extends AssetCanonize
                 $baseAttrs = $this->canonizeFile('jquery.min.js');
             }
             if (!is_array($baseAttrs)) {
-                $baseAttrs = array(
-                    'file'  => $baseAttrs
-                );
+                $baseAttrs = [
+                    'file' => $baseAttrs,
+                ];
             }
             /*
             if (!isset($baseAttrs['defer'])) {
                 $baseAttrs['defer'] = false;
             }
             */
-            $files = array('jquery.min.js' => $baseAttrs) + $files;
+            $files              = ['jquery.min.js' => $baseAttrs] + $files;
             static::$rootLoaded = true;
         }
 
         foreach ($files as $file => $attrs) {
-            $file = static::DIR_ROOT . '/' . $file;
-            $url = Pi::service('asset')->getStaticUrl($file, $appendVersion);
+            $file     = static::DIR_ROOT . '/' . $file;
+            $url      = Pi::service('asset')->getStaticUrl($file, $appendVersion);
             $position = isset($file['position'])
                 ? $file['position'] : 'append';
             if ('css' == $attrs['ext']) {

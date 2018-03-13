@@ -25,12 +25,13 @@ class Comment extends AbstractComment
     /**
      * {@inheritDoc}
      */
-    protected $meta = array(
-        'id'            => 'id',
-        'title'         => 'title',
-        'time_created'  => 'time',
-        'user'          => 'uid',
-    );
+    protected $meta
+        = [
+            'id'           => 'id',
+            'title'        => 'title',
+            'time_created' => 'time',
+            'user'         => 'uid',
+        ];
 
     /**
      * {@inheritDoc}

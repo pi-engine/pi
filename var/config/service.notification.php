@@ -3,7 +3,7 @@
  * Notification service configuration
  */
 
-return array(
+return [
     /**
      * Google Firebase Cloud Messaging
      * more information on : https://firebase.google.com/docs/cloud-messaging
@@ -11,11 +11,11 @@ return array(
      */
 
     // server key
-    'fcm_server_key' => '',
+    'fcm_server_key'       => '',
 
     // Token ro topic name like : '/topics/TOPIC_NAME'
-    'fcm_token' => '',
+    'fcm_token'            => '',
 
     // Single device tokens as array
     'fcm_registration_ids' => [],
-);
+];

@@ -78,17 +78,17 @@ class MediaController extends ListController
     protected function updateWidget($id, array $block)
     {
         $result = 0;
-        $row = $this->getModel('widget')->find($id);
+        $row    = $this->getModel('widget')->find($id);
         if (!$row) {
             return $result;
         }
 
-        $items      = $row->meta ? json_decode($row->meta, true) : array();
-        $itemsNew   = json_decode($block['content'], true);
-        $result     = parent::updateWidget($id, $block);
+        $items    = $row->meta ? json_decode($row->meta, true) : [];
+        $itemsNew = json_decode($block['content'], true);
+        $result   = parent::updateWidget($id, $block);
         if ($result) {
-            $images     = array();
-            $imagesNew  = array();
+            $images    = [];
+            $imagesNew = [];
             foreach ($items as $item) {
                 $images[] = $item['image'];
             }
@@ -111,7 +111,7 @@ class MediaController extends ListController
         if (!$row) {
             $result = 0;
         } else {
-            $items = $row->meta ? json_decode($row->meta, true) : array();
+            $items = $row->meta ? json_decode($row->meta, true) : [];
             foreach ($items as $item) {
                 $images[] = $item['image'];
             }
@@ -131,32 +131,32 @@ class MediaController extends ListController
      */
     public function uploadAction()
     {
-        $return = array(
-            'status'    => 1,
-            'message'   => '',
-            'image'     => '',
-        );
-        $rename         = '%random%';
-        $destination    = $this->tmpPath();
-        $uploadUrl      = $this->tmpUrl();
+        $return      = [
+            'status'  => 1,
+            'message' => '',
+            'image'   => '',
+        ];
+        $rename      = '%random%';
+        $destination = $this->tmpPath();
+        $uploadUrl   = $this->tmpUrl();
 
         $config = $this->config();
         if ($config['image_extension']) {
-            $exts = explode(',', $config['image_extension']);
-            $exts = array_filter(array_walk($exts, 'trim'));
+            $exts       = explode(',', $config['image_extension']);
+            $exts       = array_filter(array_walk($exts, 'trim'));
             $extensions = implode(',', $exts);
         }
-        $extensions     = $extensions ?: 'jpg,png,gif';
-        $maxFile        = (int) $config['file_max_size']  * 1024;
-        $maxSize        = array();
+        $extensions = $extensions ?: 'jpg,png,gif';
+        $maxFile    = (int)$config['file_max_size'] * 1024;
+        $maxSize    = [];
         if ($config['image_max_width']) {
-            $maxSize['width'] = (int) $config['image_max_width'];
+            $maxSize['width'] = (int)$config['image_max_width'];
         }
         if ($config['image_max_height']) {
-            $maxSize['height'] = (int) $config['image_max_height'];
+            $maxSize['height'] = (int)$config['image_max_height'];
         }
 
-        $uploader = new Upload(array('rename' => $rename));
+        $uploader = new Upload(['rename' => $rename]);
         $uploader->setDestination($destination)->setExtension($extensions);
         if ($maxFile) {
             $uploader->setSize($maxFile);
@@ -166,15 +166,15 @@ class MediaController extends ListController
         }
         if ($uploader->isValid()) {
             $uploader->receive();
-            $file = $uploader->getUploaded('image');
+            $file            = $uploader->getUploaded('image');
             $return['image'] = $uploadUrl . '/' . $file;
         } else {
             $messages = $uploader->getMessages();
-            $return = array(
-                'status'    => 0,
-                'image'     => '',
-                'message'   => implode('; ', $messages),
-            );
+            $return   = [
+                'status'  => 0,
+                'image'   => '',
+                'message' => implode('; ', $messages),
+            ];
         }
 
         return $return;
@@ -187,10 +187,10 @@ class MediaController extends ListController
      */
     protected function canonizePost(array $values)
     {
-        $content = json_decode($values['content'], true);
-        $items = $this->moveImages($content);
+        $content           = json_decode($values['content'], true);
+        $items             = $this->moveImages($content);
         $values['content'] = json_encode($items);
-        $values = parent::canonizePost($values);
+        $values            = parent::canonizePost($values);
 
         return $values;
 
@@ -211,7 +211,7 @@ class MediaController extends ListController
         $uploadUrl  = $this->tmpUrl() . '/';
         $prefixLen  = strlen($uploadUrl);
 
-        $items = array();
+        $items = [];
         foreach ($list as $item) {
             if ($uploadUrl == substr($item['image'], 0, $prefixLen)) {
                 $imgName = substr($item['image'], $prefixLen);
@@ -238,8 +238,8 @@ class MediaController extends ListController
      */
     protected function deleteImages(array $images)
     {
-        $path   = $this->rootPath();
-        $url    = $this->rootUrl();
+        $path = $this->rootPath();
+        $url  = $this->rootUrl();
         foreach ($images as $image) {
             $file = preg_replace('|^' . $url . '|', $path, $image);
             if (is_file($file)) {

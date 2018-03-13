@@ -32,7 +32,7 @@ class Locale extends Select
         if (empty($this->valueOptions)) {
             Pi::service('i18n')->load('language');
             $this->valueOptions['auto'] = __('Auto-detection');
-            $filter = function ($fileinfo) {
+            $filter                     = function ($fileinfo) {
                 if (!$fileinfo->isDir()) {
                     return false;
                 }

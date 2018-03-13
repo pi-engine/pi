@@ -119,10 +119,10 @@ class Page extends AbstractResource
     protected function canonize($config)
     {
         //$moduleTitle = $this->event->getParam('title');
-        $pageEntry = array(
+        $pageEntry = [
             'title' => 'Module wide',
             'block' => 1,
-        );
+        ];
         /*
         // Set module exception for admin
         if (empty($config['admin']) && !isset($config['exception'])) {
@@ -131,13 +131,13 @@ class Page extends AbstractResource
         */
         if (!isset($config['front']) || false !== $config['front']) {
             if (!isset($config['front'])) {
-                $config['front'] = array();
+                $config['front'] = [];
             }
             $config['front'][] = $pageEntry;
         }
         if (!isset($config['admin']) || false !== $config['admin']) {
             if (!isset($config['admin'])) {
-                $config['admin'] = array();
+                $config['admin'] = [];
             }
             $config['admin'][] = $pageEntry;
         }
@@ -147,7 +147,7 @@ class Page extends AbstractResource
             }
             foreach ($list as $index => &$page) {
                 $page['section'] = $section;
-                $page = $this->canonizePage($page);
+                $page            = $this->canonizePage($page);
             }
         }
         /*
@@ -167,6 +167,7 @@ class Page extends AbstractResource
 
         return $config;
     }
+
     /**
      * Canonize page specs
      *
@@ -175,13 +176,13 @@ class Page extends AbstractResource
      */
     protected function canonizePage(array $page)
     {
-        $columnsPage = array(
+        $columnsPage = [
             'title',
             'section', 'module', 'controller', 'action', 'permission',
-            'cache_ttl', 'cache_level', 'block', 'custom'
-        );
+            'cache_ttl', 'cache_level', 'block', 'custom',
+        ];
 
-        $data = array();
+        $data = [];
         foreach ($page as $col => $val) {
             if (in_array($col, $columnsPage)) {
                 $data[$col] = $val;
@@ -216,7 +217,7 @@ class Page extends AbstractResource
         foreach (array_keys($pages) as $section) {
             // Skip the section if disabled
             if ($pages[$section] === false) continue;
-            $pageList = array();
+            $pageList = [];
             foreach ($pages[$section] as $key => $page) {
                 //$page['section'] = $section;
                 //$page['module'] = $module;
@@ -257,15 +258,15 @@ class Page extends AbstractResource
 
         foreach ($pages as $section => $pageList) {
             foreach ($pageList as $name => $page) {
-                $message = array();
-                $status = $this->insertPage($page, $message);
+                $message = [];
+                $status  = $this->insertPage($page, $message);
                 if (false === $status) {
-                    $msg = 'Page "%s" is not created.';
+                    $msg       = 'Page "%s" is not created.';
                     $message[] = sprintf($msg, $page['title']);
-                    return array(
-                        'status'    => false,
-                        'message'   => $message
-                    );
+                    return [
+                        'status'  => false,
+                        'message' => $message,
+                    ];
                 }
             }
         }
@@ -285,18 +286,18 @@ class Page extends AbstractResource
         }
 
         if ($this->config === false) {
-            $pages = array();
+            $pages       = [];
             $disablePage = true;
         } else {
-            $pages = $this->canonize($this->config);
+            $pages       = $this->canonize($this->config);
             $disablePage = false;
         }
 
-        $model = Pi::model('page');
-        $rowset = $model->select(array('module' => $module));
-        $pages_exist = array();
+        $model       = Pi::model('page');
+        $rowset      = $model->select(['module' => $module]);
+        $pages_exist = [];
         foreach ($rowset as $page) {
-            $key = sprintf(
+            $key               = sprintf(
                 '%s:%s:%s:%s',
                 $page['section'],
                 $page['module'],
@@ -322,8 +323,8 @@ class Page extends AbstractResource
                 }
                 $controller = isset($page['controller'])
                     ? $page['controller'] : '';
-                $action = isset($page['action']) ? $page['action'] : '';
-                $key = sprintf(
+                $action     = isset($page['action']) ? $page['action'] : '';
+                $key        = sprintf(
                     '%s:%s:%s:%s',
                     $section,
                     $page['module'],
@@ -333,7 +334,7 @@ class Page extends AbstractResource
                 //echo ' [' . $key . '] ';
                 if (isset($pages_exist[$key])) {
                     $page_exist = $pages_exist[$key];
-                    $data = array();
+                    $data       = [];
                     if ($page_exist['custom']) {
                         $data['custom'] = 0;
                     }
@@ -343,48 +344,48 @@ class Page extends AbstractResource
                     if (!empty($data)) {
                         $status = $model->update(
                             $data,
-                            array('id' => $page_exist['id'])
+                            ['id' => $page_exist['id']]
                         );
                         if (!$status) {
                             $msg = 'Page "%s" is not updated.';
-                            return array(
-                                'status'    => false,
-                                'message'   => sprintf($msg, $page['title'])
-                            );
+                            return [
+                                'status'  => false,
+                                'message' => sprintf($msg, $page['title']),
+                            ];
                         }
                     }
                     unset($pages_exist[$key]);
                     continue;
                 }
 
-                $message = array();
-                $status = $this->insertPage($page, $message);
+                $message = [];
+                $status  = $this->insertPage($page, $message);
                 if (!$status) {
                     $message[] = sprintf(
                         'Page "%s" is not created.',
                         $page['title']
                     );
-                    return array(
-                        'status'    => false,
-                        'message'   => $message
-                    );
+                    return [
+                        'status'  => false,
+                        'message' => $message,
+                    ];
                 }
             }
         }
 
         foreach ($pages_exist as $key => $page) {
             if ($page['custom'] && !$disablePage) continue;
-            $message = array();
-            $status = $this->deletePage($page, $message);
+            $message = [];
+            $status  = $this->deletePage($page, $message);
             if (false === $status) {
                 $message[] = sprintf(
                     'Deprecated page "%s" is not deleted.',
                     $page['title']
                 );
-                return array(
-                    'status'    => false,
-                    'message'   => $message
-                );
+                return [
+                    'status'  => false,
+                    'message' => $message,
+                ];
             }
         }
 
@@ -399,10 +400,10 @@ class Page extends AbstractResource
         $module = $this->event->getParam('module');
         Pi::registry('page')->clear($module);
 
-        $model = Pi::model('page');
-        $rowset = $model->select(array('module' => $module));
+        $model  = Pi::model('page');
+        $rowset = $model->select(['module' => $module]);
         foreach ($rowset as $row) {
-            $message = array();
+            $message = [];
             $this->deletePage($row, $message);
         }
 
@@ -434,7 +435,7 @@ class Page extends AbstractResource
             }
         }
         */
-        $message = array();
+        $message = [];
         // Insert page
         $pageRow = $modelPage->createRow($page);
         $pageRow->save();

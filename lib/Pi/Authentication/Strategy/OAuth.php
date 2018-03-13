@@ -27,7 +27,7 @@ class OAuth extends Local
      */
     public function authenticate($identity, $credential, $column = '')
     {
-        $column = 'email';
+        $column     = 'email';
         $credential = '';
 
         $adapter = $this->getAdapter();

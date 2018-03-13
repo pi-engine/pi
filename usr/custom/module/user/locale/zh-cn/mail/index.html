@@ -1,1 +1,1 @@
- <script>history.go(-1);</script>
+<script>history.go(-1);</script>

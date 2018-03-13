@@ -9,8 +9,6 @@
 
 namespace Module\Demo;
 
-use Pi;
-
 class Monitor
 {
     /**
@@ -23,7 +21,8 @@ class Monitor
      */
     public static function index($module = null, $redirect = null)
     {
-        $data =<<<'EOT'
+        $data
+            = <<<'EOT'
         <ul>
             <li>First message in Demo.</li>
             <li>Second message in Demo.</li>

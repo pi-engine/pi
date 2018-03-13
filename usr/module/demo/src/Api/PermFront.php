@@ -17,10 +17,10 @@ class PermFront extends AbstractApi
 
     public function getResources()
     {
-        $resources = array();
+        $resources = [];
         for ($i = 1; $i <= 10; $i++) {
-            $name = $this->module . '-resource-' . $i;
-            $title = ucwords($this->module . ' resource front ' . $i);
+            $name             = $this->module . '-resource-' . $i;
+            $title            = ucwords($this->module . ' resource front ' . $i);
             $resources[$name] = $title;
         }
 

@@ -9,8 +9,6 @@
 
 namespace Pi\Application\Persist;
 
-use Pi;
-
 /**
  * Memcached storage
  *
@@ -27,10 +25,10 @@ class MemcachedStorage extends AbstractStorage
     const SERVER_HOST = '127.0.0.1';
 
     /** @var int */
-    const SERVER_PORT =  11211;
+    const SERVER_PORT = 11211;
 
     /** @var int */
-    const SERVER_WEIGHT  = 1;
+    const SERVER_WEIGHT = 1;
 
     /**
      * Memcached object
@@ -46,7 +44,7 @@ class MemcachedStorage extends AbstractStorage
      * @throws \Exception
      * @return void
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         if (!extension_loaded('memcached')) {
             throw new \Exception(
@@ -107,7 +105,7 @@ class MemcachedStorage extends AbstractStorage
     public function remove($id)
     {
         $id = $this->prefix($id);
-        
+
         return $this->memcached->delete($id);
     }
 

@@ -9,105 +9,104 @@
 
 namespace Module\Article\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
  * Media edit form class
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
- */ 
+ */
 class MediaEditForm extends BaseForm
 {
     /**
-     * Initalizing form 
+     * Initalizing form
      */
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name'       => 'name',
-            'options'    => array(
-                'label'       => __('Name'),
-            ),
-            'attributes' => array(
+            'options'    => [
+                'label' => __('Name'),
+            ],
+            'attributes' => [
                 'type'        => 'text',
                 'description' => __('The unique identifier of media.'),
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'title',
-            'options'    => array(
-                'label'       => __('Title'),
-            ),
-            'attributes' => array(
+            'options'    => [
+                'label' => __('Title'),
+            ],
+            'attributes' => [
                 'type'        => 'text',
                 'description' => __('Will be displayed on your website.'),
-            ),
-           
-        ));
+            ],
 
-        $this->add(array(
+        ]);
+
+        $this->add([
             'name'       => 'description',
-            'options'    => array(
-                'label'       => __('Description'),
-            ),
-            'attributes' => array(
+            'options'    => [
+                'label' => __('Description'),
+            ],
+            'attributes' => [
                 'type'        => 'textarea',
                 'description' => __('Display in the website depends on theme.'),
-            ),
-            
-        ));
-        
-        $this->add(array(
+            ],
+
+        ]);
+
+        $this->add([
             'name'       => 'placeholder',
-            'options'    => array(
-                'label'       => __('Media'),
-            ),
-            'attributes' => array(
-                'type'        => '',
-            ),
-        ));
+            'options'    => [
+                'label' => __('Media'),
+            ],
+            'attributes' => [
+                'type' => '',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'       => 'security',
-            'type'       => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'id',
-            'attributes' => array(
-                'type'        => 'hidden',
-            ),
-        ));
-        
-        $this->add(array(
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
+
+        $this->add([
             'name'       => 'fake_id',
-            'attributes' => array(
-                'type'        => 'hidden',
-            ),
-        ));
-        
-        $this->add(array(
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
+
+        $this->add([
             'name'       => 'url',
-            'attributes' => array(
-                'type'        => 'hidden',
-            ),
-        ));
-        
-        $this->add(array(
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
+
+        $this->add([
             'name'       => 'type',
-            'attributes' => array(
-                'type'        => 'hidden',
-            ),
-        ));
-        
-        $this->add(array(
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
+
+        $this->add([
             'name'       => 'submit',
-            'attributes' => array(                
-                'value'       => __('Submit'),
-            ),
+            'attributes' => [
+                'value' => __('Submit'),
+            ],
             'type'       => 'submit',
-        ));
+        ]);
     }
 }

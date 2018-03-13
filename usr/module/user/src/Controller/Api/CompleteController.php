@@ -35,17 +35,19 @@ class CompleteController extends ApiController
      * Fields donot allow user to read
      * @var array
      */
-    protected $protectedFields = [
-        'credential', 'salt',
-    ];
+    protected $protectedFields
+        = [
+            'credential', 'salt',
+        ];
 
     /**
      * Elements do not need to render
      * @var array
      */
-    protected $skipFields = [
-        'submit', 'redirect',
-    ];
+    protected $skipFields
+        = [
+            'submit', 'redirect',
+        ];
 
     /**
      * Get html of form elements as well as their needed asset file url according

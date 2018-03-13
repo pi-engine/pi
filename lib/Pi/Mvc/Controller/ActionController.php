@@ -10,11 +10,11 @@
 namespace Pi\Mvc\Controller;
 
 use Pi;
+use Zend\Http\PhpEnvironment\Response as HttpResponse;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\RequestInterface as Request;
 use Zend\Stdlib\ResponseInterface as Response;
-use Zend\Http\PhpEnvironment\Response as HttpResponse;
 
 /**
  * Basic action controller
@@ -174,11 +174,11 @@ abstract class ActionController extends AbstractActionController
     /**
      * Get database model
      *
-     * @param  string   $name
-     * @param  array    $options
+     * @param  string $name
+     * @param  array $options
      * @return Pi\Application\Model\Model
      */
-    public function getModel($name, $options = array())
+    public function getModel($name, $options = [])
     {
         return Pi::db()->model($this->getModule() . '/' . $name, $options);
     }

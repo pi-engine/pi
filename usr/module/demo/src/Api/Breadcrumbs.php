@@ -24,12 +24,12 @@ class Breadcrumbs extends AbstractBreadcrumbs
      */
     public function load()
     {
-        $result = array(
-            array(
+        $result = [
+            [
                 'label' => __('Demo breadcrumbs'),
                 'href'  => Pi::url('www'),
-            )
-        );
+            ],
+        ];
 
         return $result;
     }

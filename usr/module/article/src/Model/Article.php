@@ -9,13 +9,12 @@
 
 namespace Module\Article\Model;
 
-use Pi;
 use Pi\Application\Model\Model;
 use Zend\Db\Sql\Expression;
 
 /**
  * Article model class
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class Article extends Model
@@ -38,27 +37,27 @@ class Article extends Model
 
     /**
      * Get default columns
-     * 
+     *
      * @return array
      */
     public static function getDefaultColumns()
     {
-        return array(
-            'id', 'subject', 'summary', 'image', 'uid', 'author', 
-            'time_publish', 'category', 'active'
-        );
+        return [
+            'id', 'subject', 'summary', 'image', 'uid', 'author',
+            'time_publish', 'category', 'active',
+        ];
     }
 
     /**
      * Get articles by ids
      *
-     * @param  array  $ids      Article ids
-     * @param  null   $columns  Columns, null for default
+     * @param  array $ids Article ids
+     * @param  null $columns Columns, null for default
      * @return array
      */
     public function getRows($ids, $columns = null)
     {
-        $result = $rows = array();
+        $result = $rows = [];
 
         if (null === $columns) {
             $columns = self::getDefaultColumns();
@@ -67,13 +66,13 @@ class Article extends Model
         if ($ids) {
             $result = array_flip($ids);
 
-            $rows = $this->select(array('id' => $ids));
+            $rows = $this->select(['id' => $ids]);
 
             foreach ($rows as $row) {
                 $result[$row['id']] = $row;
             }
 
-            $result = array_filter($result, function($var) {
+            $result = array_filter($result, function ($var) {
                 return is_array($var);
             });
         }
@@ -83,22 +82,23 @@ class Article extends Model
 
     /**
      * Return rows by search condition
-     * 
-     * @param array        $where
-     * @param int|null     $limit
-     * @param int|null     $offset
-     * @param array|null   $columns
-     * @param string|null  $order
-     * @return array 
+     *
+     * @param array $where
+     * @param int|null $limit
+     * @param int|null $offset
+     * @param array|null $columns
+     * @param string|null $order
+     * @return array
      */
     public function getSearchRows(
-        $where = array(),
+        $where = [],
         $limit = null,
         $offset = null,
         $columns = null,
         $order = null
-    ) {
-        $result = $rows = array();
+    )
+    {
+        $result = $rows = [];
 
         if (null === $columns) {
             $columns = self::getDefaultColumns();
@@ -140,45 +140,45 @@ class Article extends Model
 
     /**
      * Get count of searched row
-     * 
-     * @param array  $where
+     *
+     * @param array $where
      * @return int
      */
-    public function getSearchRowsCount($where = array())
+    public function getSearchRowsCount($where = [])
     {
         $select = $this->select()
-            ->columns(array('total' => new Expression('count(id)')));
+            ->columns(['total' => new Expression('count(id)')]);
 
         if ($where) {
             $select->where($where);
         }
 
-        $resultset  = $this->selectWith($select);
-        $result     = intval($resultset->current()->total);
+        $resultset = $this->selectWith($select);
+        $result    = intval($resultset->current()->total);
 
         return $result;
     }
 
     /**
      * Set status of active field
-     * 
-     * @param array  $ids
-     * @param int    $active
-     * @return bool 
+     *
+     * @param array $ids
+     * @param int $active
+     * @return bool
      */
     public function setActiveStatus($ids, $active)
     {
         return $this->update(
-            array('active' => $active),
-            array('id' => $ids)
+            ['active' => $active],
+            ['id' => $ids]
         );
     }
 
     /**
      * Check whether subject is already exists in database
-     * 
-     * @param string  $subject
-     * @param int     $id
+     *
+     * @param string $subject
+     * @param int $id
      * @return bool
      */
     public function checkSubjectExists($subject, $id = null)
@@ -187,13 +187,13 @@ class Article extends Model
 
         if ($subject) {
             $select = $this->select()
-                ->columns(array('total' => new Expression('count(id)')))
-                ->where(array(
+                ->columns(['total' => new Expression('count(id)')])
+                ->where([
                     'subject' => $subject,
                     'status'  => self::FIELD_STATUS_PUBLISHED,
-                ));
+                ]);
             if ($id) {
-                $select->where(array('id <> ?' => $id));
+                $select->where(['id <> ?' => $id]);
             }
 
             $result = $this->selectWith($select)->current()->total > 0;
@@ -204,9 +204,9 @@ class Article extends Model
 
     /**
      * Check whether slug is already exists
-     * 
-     * @param string  $slug
-     * @param int     $id
+     *
+     * @param string $slug
+     * @param int $id
      * @return bool
      */
     public function checkSlugExists($slug, $id = null)
@@ -215,13 +215,13 @@ class Article extends Model
 
         if ($slug) {
             $select = $this->select()
-                ->columns(array('total' => new Expression('count(id)')))
-                ->where(array(
-                    'slug' => $slug,
-                    'status'  => self::FIELD_STATUS_PUBLISHED,
-                ));
+                ->columns(['total' => new Expression('count(id)')])
+                ->where([
+                    'slug'   => $slug,
+                    'status' => self::FIELD_STATUS_PUBLISHED,
+                ]);
             if ($id) {
-                $select->where(array('id <> ?' => $id));
+                $select->where(['id <> ?' => $id]);
             }
 
             $result = $this->selectWith($select)->current()->total > 0;

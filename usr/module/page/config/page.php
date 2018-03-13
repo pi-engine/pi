@@ -7,7 +7,7 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
+return [
     /*
     // Front section
     'front' => array(
@@ -21,4 +21,4 @@ return array(
         ),
     ),
     */
-);
+];

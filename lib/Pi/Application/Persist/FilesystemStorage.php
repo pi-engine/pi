@@ -30,7 +30,7 @@ class FilesystemStorage extends AbstractStorage
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->cacheDir = isset($options['cache_dir'])
             ? $options['cache_dir'] : Pi::path('cache');
@@ -107,7 +107,7 @@ class FilesystemStorage extends AbstractStorage
     public function flush()
     {
         $cacheFiles = sprintf('%s/%s.php', $this->cacheDir, $this->prefix(''));
-        $list = glob($cacheFiles);
+        $list       = glob($cacheFiles);
         if ($list) {
             foreach ($list as $file) {
                 unlink($file);

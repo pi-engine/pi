@@ -16,7 +16,7 @@ namespace Pi\Application\Api;
  */
 abstract class AbstractModuleAwareness
 {
-    /** @var string Module name**/
+    /** @var string Module name* */
     protected $module;
 
     /**

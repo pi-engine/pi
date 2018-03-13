@@ -9,10 +9,8 @@
 
 namespace Pi\Mvc\Service;
 
-use Zend\View\HelperPluginManager;
 use Zend\View\Helper;
-use Zend\View\Exception;
-use Zend\View\Renderer;
+use Zend\View\HelperPluginManager;
 
 /**
  * View helper manager
@@ -25,130 +23,132 @@ class ViewHelperManager extends HelperPluginManager
      * Default set of helpers
      * @var array
      */
-    protected $invokableClasses = array();
+    protected $invokableClasses = [];
 
     /**
      * Default set of helpers
      * @var array
      */
-    protected $invokableList = array(
-        // View Helpers
-        'doctype'               => 'View\Helper\Doctype',
-        'basepath'              => 'View\Helper\BasePath',
-        'url'                   => 'View\Helper\Url',
-        'cycle'                 => 'View\Helper\Cycle',
-        'declarevars'           => 'View\Helper\DeclareVars',
-        'escapehtml'            => 'View\Helper\EscapeHtml',
-        'escapehtmlattr'        => 'View\Helper\EscapeHtmlAttr',
-        'escapejs'              => 'View\Helper\EscapeJs',
-        'escapecss'             => 'View\Helper\EscapeCss',
-        'escapeurl'             => 'View\Helper\EscapeUrl',
-        'gravatar'              => 'View\Helper\Gravatar',
-        'headlink'              => 'View\Helper\HeadLink',
-        'headmeta'              => 'View\Helper\HeadMeta',
-        'headscript'            => 'View\Helper\HeadScript',
-        'headstyle'             => 'View\Helper\HeadStyle',
-        'headtitle'             => 'View\Helper\HeadTitle',
-        'htmlflash'             => 'View\Helper\HtmlFlash',
-        'htmllist'              => 'View\Helper\HtmlList',
-        'htmlobject'            => 'View\Helper\HtmlObject',
-        'htmlpage'              => 'View\Helper\HtmlPage',
-        'htmlquicktime'         => 'View\Helper\HtmlQuicktime',
-        'inlinescript'          => 'View\Helper\InlineScript',
-        'json'                  => 'View\Helper\Json',
-        'layout'                => 'View\Helper\Layout',
-        'paginationcontrol'     => 'View\Helper\PaginationControl',
-        'partialloop'           => 'View\Helper\PartialLoop',
-        'partial'               => 'View\Helper\Partial',
-        'placeholder'           => 'View\Helper\Placeholder',
-        'renderchildmodel'      => 'View\Helper\RenderChildModel',
-        'rendertoplaceholder'   => 'View\Helper\RenderToPlaceholder',
-        'serverurl'             => 'View\Helper\ServerUrl',
-        'viewmodel'             => 'View\Helper\ViewModel',
+    protected $invokableList
+        = [
+            // View Helpers
+            'doctype'                 => 'View\Helper\Doctype',
+            'basepath'                => 'View\Helper\BasePath',
+            'url'                     => 'View\Helper\Url',
+            'cycle'                   => 'View\Helper\Cycle',
+            'declarevars'             => 'View\Helper\DeclareVars',
+            'escapehtml'              => 'View\Helper\EscapeHtml',
+            'escapehtmlattr'          => 'View\Helper\EscapeHtmlAttr',
+            'escapejs'                => 'View\Helper\EscapeJs',
+            'escapecss'               => 'View\Helper\EscapeCss',
+            'escapeurl'               => 'View\Helper\EscapeUrl',
+            'gravatar'                => 'View\Helper\Gravatar',
+            'headlink'                => 'View\Helper\HeadLink',
+            'headmeta'                => 'View\Helper\HeadMeta',
+            'headscript'              => 'View\Helper\HeadScript',
+            'headstyle'               => 'View\Helper\HeadStyle',
+            'headtitle'               => 'View\Helper\HeadTitle',
+            'htmlflash'               => 'View\Helper\HtmlFlash',
+            'htmllist'                => 'View\Helper\HtmlList',
+            'htmlobject'              => 'View\Helper\HtmlObject',
+            'htmlpage'                => 'View\Helper\HtmlPage',
+            'htmlquicktime'           => 'View\Helper\HtmlQuicktime',
+            'inlinescript'            => 'View\Helper\InlineScript',
+            'json'                    => 'View\Helper\Json',
+            'layout'                  => 'View\Helper\Layout',
+            'paginationcontrol'       => 'View\Helper\PaginationControl',
+            'partialloop'             => 'View\Helper\PartialLoop',
+            'partial'                 => 'View\Helper\Partial',
+            'placeholder'             => 'View\Helper\Placeholder',
+            'renderchildmodel'        => 'View\Helper\RenderChildModel',
+            'rendertoplaceholder'     => 'View\Helper\RenderToPlaceholder',
+            'serverurl'               => 'View\Helper\ServerUrl',
+            'viewmodel'               => 'View\Helper\ViewModel',
 
-        // Form helpers from `Zend\Form\View\HelperConfig`
-        'form'                    => 'Form\View\Helper\Form',
-        'formbutton'              => 'Form\View\Helper\FormButton',
-        'formcaptcha'             => 'Form\View\Helper\FormCaptcha',
-        'captchadumb'             => 'Form\View\Helper\Captcha\Dumb',
-        'formcaptchadumb'         => 'Form\View\Helper\Captcha\Dumb',
-        'captchafiglet'           => 'Form\View\Helper\Captcha\Figlet',
-        'formcaptchafiglet'       => 'Form\View\Helper\Captcha\Figlet',
-        'captchaimage'            => 'Form\View\Helper\Captcha\Image',
-        'formcaptchaimage'        => 'Form\View\Helper\Captcha\Image',
-        'captcharecaptcha'        => 'Form\View\Helper\Captcha\ReCaptcha',
-        'formcaptcharecaptcha'    => 'Form\View\Helper\Captcha\ReCaptcha',
-        'formcheckbox'            => 'Form\View\Helper\FormCheckbox',
-        'formcollection'          => 'Form\View\Helper\FormCollection',
-        'formcolor'               => 'Form\View\Helper\FormColor',
-        'formdate'                => 'Form\View\Helper\FormDate',
-        'formdatetime'            => 'Form\View\Helper\FormDateTime',
-        'formdatetimelocal'       => 'Form\View\Helper\FormDateTimeLocal',
-        'formdatetimeselect'      => 'Form\View\Helper\FormDateTimeSelect',
-        'formdateselect'          => 'Form\View\Helper\FormDateSelect',
-        'formelement'             => 'Form\View\Helper\FormElement',
-        'formelementerrors'       => 'Form\View\Helper\FormElementErrors',
-        'formemail'               => 'Form\View\Helper\FormEmail',
-        'formfile'                => 'Form\View\Helper\FormFile',
-        'formfileapcprogress'     => 'Form\View\Helper\File\FormFileApcProgress',
-        'formfilesessionprogress' => 'Form\View\Helper\File\FormFileSessionProgress',
-        'formfileuploadprogress'  => 'Form\View\Helper\File\FormFileUploadProgress',
-        'formhidden'              => 'Form\View\Helper\FormHidden',
-        'formimage'               => 'Form\View\Helper\FormImage',
-        'forminput'               => 'Form\View\Helper\FormInput',
-        'formlabel'               => 'Form\View\Helper\FormLabel',
-        'formmonth'               => 'Form\View\Helper\FormMonth',
-        'formmonthselect'         => 'Form\View\Helper\FormMonthSelect',
-        'formmulticheckbox'       => 'Form\View\Helper\FormMultiCheckbox',
-        'formnumber'              => 'Form\View\Helper\FormNumber',
-        'formpassword'            => 'Form\View\Helper\FormPassword',
-        'formradio'               => 'Form\View\Helper\FormRadio',
-        'formrange'               => 'Form\View\Helper\FormRange',
-        'formreset'               => 'Form\View\Helper\FormReset',
-        'formrow'                 => 'Form\View\Helper\FormRow',
-        'formsearch'              => 'Form\View\Helper\FormSearch',
-        'formselect'              => 'Form\View\Helper\FormSelect',
-        'formsubmit'              => 'Form\View\Helper\FormSubmit',
-        'formtel'                 => 'Form\View\Helper\FormTel',
-        'formtext'                => 'Form\View\Helper\FormText',
-        'formtextarea'            => 'Form\View\Helper\FormTextarea',
-        'formtime'                => 'Form\View\Helper\FormTime',
-        'formurl'                 => 'Form\View\Helper\FormUrl',
-        'formweek'                => 'Form\View\Helper\FormWeek',
+            // Form helpers from `Zend\Form\View\HelperConfig`
+            'form'                    => 'Form\View\Helper\Form',
+            'formbutton'              => 'Form\View\Helper\FormButton',
+            'formcaptcha'             => 'Form\View\Helper\FormCaptcha',
+            'captchadumb'             => 'Form\View\Helper\Captcha\Dumb',
+            'formcaptchadumb'         => 'Form\View\Helper\Captcha\Dumb',
+            'captchafiglet'           => 'Form\View\Helper\Captcha\Figlet',
+            'formcaptchafiglet'       => 'Form\View\Helper\Captcha\Figlet',
+            'captchaimage'            => 'Form\View\Helper\Captcha\Image',
+            'formcaptchaimage'        => 'Form\View\Helper\Captcha\Image',
+            'captcharecaptcha'        => 'Form\View\Helper\Captcha\ReCaptcha',
+            'formcaptcharecaptcha'    => 'Form\View\Helper\Captcha\ReCaptcha',
+            'formcheckbox'            => 'Form\View\Helper\FormCheckbox',
+            'formcollection'          => 'Form\View\Helper\FormCollection',
+            'formcolor'               => 'Form\View\Helper\FormColor',
+            'formdate'                => 'Form\View\Helper\FormDate',
+            'formdatetime'            => 'Form\View\Helper\FormDateTime',
+            'formdatetimelocal'       => 'Form\View\Helper\FormDateTimeLocal',
+            'formdatetimeselect'      => 'Form\View\Helper\FormDateTimeSelect',
+            'formdateselect'          => 'Form\View\Helper\FormDateSelect',
+            'formelement'             => 'Form\View\Helper\FormElement',
+            'formelementerrors'       => 'Form\View\Helper\FormElementErrors',
+            'formemail'               => 'Form\View\Helper\FormEmail',
+            'formfile'                => 'Form\View\Helper\FormFile',
+            'formfileapcprogress'     => 'Form\View\Helper\File\FormFileApcProgress',
+            'formfilesessionprogress' => 'Form\View\Helper\File\FormFileSessionProgress',
+            'formfileuploadprogress'  => 'Form\View\Helper\File\FormFileUploadProgress',
+            'formhidden'              => 'Form\View\Helper\FormHidden',
+            'formimage'               => 'Form\View\Helper\FormImage',
+            'forminput'               => 'Form\View\Helper\FormInput',
+            'formlabel'               => 'Form\View\Helper\FormLabel',
+            'formmonth'               => 'Form\View\Helper\FormMonth',
+            'formmonthselect'         => 'Form\View\Helper\FormMonthSelect',
+            'formmulticheckbox'       => 'Form\View\Helper\FormMultiCheckbox',
+            'formnumber'              => 'Form\View\Helper\FormNumber',
+            'formpassword'            => 'Form\View\Helper\FormPassword',
+            'formradio'               => 'Form\View\Helper\FormRadio',
+            'formrange'               => 'Form\View\Helper\FormRange',
+            'formreset'               => 'Form\View\Helper\FormReset',
+            'formrow'                 => 'Form\View\Helper\FormRow',
+            'formsearch'              => 'Form\View\Helper\FormSearch',
+            'formselect'              => 'Form\View\Helper\FormSelect',
+            'formsubmit'              => 'Form\View\Helper\FormSubmit',
+            'formtel'                 => 'Form\View\Helper\FormTel',
+            'formtext'                => 'Form\View\Helper\FormText',
+            'formtextarea'            => 'Form\View\Helper\FormTextarea',
+            'formtime'                => 'Form\View\Helper\FormTime',
+            'formurl'                 => 'Form\View\Helper\FormUrl',
+            'formweek'                => 'Form\View\Helper\FormWeek',
 
-        // Pi defined helpers
-        'formdatepicker'        => 'Form\View\Helper\FormDatepicker',
-        'formdescription'       => 'Form\View\Helper\FormDescription',
-        'formfieldset'          => 'Form\View\Helper\FormFieldset',
-        'formeditor'            => 'Form\View\Helper\FormEditor',
+            // Pi defined helpers
+            'formdatepicker'          => 'Form\View\Helper\FormDatepicker',
+            'formdescription'         => 'Form\View\Helper\FormDescription',
+            'formfieldset'            => 'Form\View\Helper\FormFieldset',
+            'formeditor'              => 'Form\View\Helper\FormEditor',
 
-        // i18n helpers
-        'currencyformat'        => 'I18n\View\Helper\CurrencyFormat',
-        'dateformat'            => 'I18n\View\Helper\DateFormat',
-        'numberformat'          => 'I18n\View\Helper\NumberFormat',
-        'translate'             => 'I18n\View\Helper\Translate',
-        'translateplural'       => 'I18n\View\Helper\TranslatePlural',
+            // i18n helpers
+            'currencyformat'          => 'I18n\View\Helper\CurrencyFormat',
+            'dateformat'              => 'I18n\View\Helper\DateFormat',
+            'numberformat'            => 'I18n\View\Helper\NumberFormat',
+            'translate'               => 'I18n\View\Helper\Translate',
+            'translateplural'         => 'I18n\View\Helper\TranslatePlural',
 
-        // Navigation
-        'breadcrumbs'           => 'View\Helper\Navigation\Breadcrumbs',
-        'links'                 => 'View\Helper\Navigation\Links',
-        'menu'                  => 'View\Helper\Navigation\Menu',
-        'sitemap'               => 'View\Helper\Navigation\Sitemap',
+            // Navigation
+            'breadcrumbs'             => 'View\Helper\Navigation\Breadcrumbs',
+            'links'                   => 'View\Helper\Navigation\Links',
+            'menu'                    => 'View\Helper\Navigation\Menu',
+            'sitemap'                 => 'View\Helper\Navigation\Sitemap',
 
-        // Pi helpers
-        'jquery'                => 'View\Helper\JQuery',
-    );
+            // Pi helpers
+            'jquery'                  => 'View\Helper\JQuery',
+        ];
 
     /**
      * Helper locations
      * @var string[]
      */
-    protected $helperLocations = array(
-        'View\Helper',
-        'View\Helper\Navigation',
-        'I18n\View\Helper',
-        'Form\View\Helper',
-    );
+    protected $helperLocations
+        = [
+            'View\Helper',
+            'View\Helper\Navigation',
+            'I18n\View\Helper',
+            'Form\View\Helper',
+        ];
 
     /**
      * Retrieve a service from the manager by name
@@ -164,14 +164,15 @@ class ViewHelperManager extends HelperPluginManager
      */
     public function get(
         $name,
-        $options = array(),
+        $options = [],
         $usePeeringServiceManagers = true
-    ) {
+    )
+    {
         // Canonize invokable class from name
         if (!$this->has($name) && !class_exists($name)) {
             // Lookup in default invokable list
             $cname = strtolower(
-                str_replace(array('-', '_', ' ', '\\', '/'), '', $name)
+                str_replace(['-', '_', ' ', '\\', '/'], '', $name)
             );
             if (isset($this->invokableList[$cname])) {
                 $invokableClass = 'Pi\\' . $this->invokableList[$cname];
@@ -179,10 +180,10 @@ class ViewHelperManager extends HelperPluginManager
                     $invokableClass = 'Zend\\' . $this->invokableList[$cname];
                 }
                 $name = $invokableClass;
-            // Lookup in helper locations
+                // Lookup in helper locations
             } else {
                 $class = str_replace(' ', '', ucwords(
-                    str_replace(array('-', '_', '.', '\\', '/'), ' ', $name)
+                    str_replace(['-', '_', '.', '\\', '/'], ' ', $name)
                 ));
                 foreach ($this->helperLocations as $location) {
                     $invokableClass = 'Pi\\' . $location . '\\' . $class;

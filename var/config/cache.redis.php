@@ -1,18 +1,18 @@
 <?php
 // Cache configuration for redis
 
-$config = array(
+$config = [
     // Storage adapter
-    'adapter'   => array(
-        'name'  => 'redis',
-        'options'    => array(
-            'server'   => array('127.0.0.1', 6379),
-        ),
-    ),
+    'adapter' => [
+        'name'    => 'redis',
+        'options' => [
+            'server' => ['127.0.0.1', 6379],
+        ],
+    ],
     // Plugin list
-    'plugins'   => array(
-        'exception_handler' => array('throw_exceptions' => false),
-    ),
-);
+    'plugins' => [
+        'exception_handler' => ['throw_exceptions' => false],
+    ],
+];
 
 return $config;

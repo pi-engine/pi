@@ -57,7 +57,7 @@ abstract class ApiController extends ActionController
      */
     public function indexAction()
     {
-        return array('status' => 1);
+        return ['status' => 1];
     }
 
     /**
@@ -67,14 +67,14 @@ abstract class ApiController extends ActionController
      */
     public function insertAction()
     {
-        $query  = $this->params('query');
-        $query  = $this->canonizeQuery($query);
-        $row    = $this->model($this->modelName)->createRow($query);
+        $query = $this->params('query');
+        $query = $this->canonizeQuery($query);
+        $row   = $this->model($this->modelName)->createRow($query);
         $row->save();
-        $response = array(
-            'status'    => 1,
-            'id'        => $row->id,
-        );
+        $response = [
+            'status' => 1,
+            'id'     => $row->id,
+        ];
 
         return $response;
     }
@@ -86,21 +86,21 @@ abstract class ApiController extends ActionController
      */
     public function updateAction()
     {
-        $id     = $this->params('id');
-        $query  = $this->params('query');
-        $query  = $this->canonizeQuery($query);
-        $row    = $this->model($this->modelName)->find($id);
+        $id    = $this->params('id');
+        $query = $this->params('query');
+        $query = $this->canonizeQuery($query);
+        $row   = $this->model($this->modelName)->find($id);
         if (!$row) {
-            $response = array(
-                'status'    => 0,
-                'message'   => 'Item not found.',
-            );
+            $response = [
+                'status'  => 0,
+                'message' => 'Item not found.',
+            ];
         } else {
             $row->assign($query)->save();
-            $response = array(
-                'status'    => 1,
-                'id'        => $row->id,
-            );
+            $response = [
+                'status' => 1,
+                'id'     => $row->id,
+            ];
         }
 
         return $response;
@@ -113,24 +113,24 @@ abstract class ApiController extends ActionController
      */
     public function getAction()
     {
-        $id         = $this->params('id');
-        $field      = $this->params('field');
-        $fields     = $this->splitString($field);
+        $id     = $this->params('id');
+        $field  = $this->params('field');
+        $fields = $this->splitString($field);
 
         $model  = $this->model($this->modelName);
-        $select = $model->select()->where(array('id' => $id));
+        $select = $model->select()->where(['id' => $id]);
         if ($fields) {
             $select->columns($fields);
         }
         $rowset = $model->selectWith($select);
-        $result = array();
+        $result = [];
         foreach ($rowset as $row) {
             $result[$row['id']] = $row->toArray();
         }
         if (isset($result[$id])) {
             $response = $result[$id];
         } else {
-            $response = array();
+            $response = [];
         }
 
         return $response;
@@ -143,19 +143,19 @@ abstract class ApiController extends ActionController
      */
     public function mgetAction()
     {
-        $id         = $this->params('id');
-        $field      = $this->params('field');
-        $ids        = $this->splitString($id);
-        $fields     = $this->splitString($field);
+        $id     = $this->params('id');
+        $field  = $this->params('field');
+        $ids    = $this->splitString($id);
+        $fields = $this->splitString($field);
 
         $model  = $this->model($this->modelName);
         $select = $model->select();
-        $select->where(array('id' => $ids));
+        $select->where(['id' => $ids]);
         if ($fields) {
             $select->columns($fields);
         }
         $rowset = $model->selectWith($select);
-        $result = array();
+        $result = [];
         foreach ($rowset as $row) {
             $result[$row['id']] = $row->toArray();
         }
@@ -195,7 +195,7 @@ abstract class ApiController extends ActionController
             $select->order($order);
         }
         $rowset = $model->selectWith($select);
-        $result = array();
+        $result = [];
         foreach ($rowset as $row) {
             $result[] = $row->toArray();
         }
@@ -210,14 +210,14 @@ abstract class ApiController extends ActionController
      */
     public function countAction()
     {
-        $query  = $this->params('query');
-        $query  = $this->canonizeQuery($query);
-        $where  = $this->canonizeCondition($query);
-        $count  = $this->model($this->modelName)->count($where);
-        $response = array(
-            'status'    => 1,
-            'data'      => $count,
-        );
+        $query    = $this->params('query');
+        $query    = $this->canonizeQuery($query);
+        $where    = $this->canonizeCondition($query);
+        $count    = $this->model($this->modelName)->count($where);
+        $response = [
+            'status' => 1,
+            'data'   => $count,
+        ];
 
         return $response;
     }
@@ -229,13 +229,13 @@ abstract class ApiController extends ActionController
      */
     public function existAction()
     {
-        $result = array(
-            'status'    => 1,
-            'data'      => 1,
-        );
+        $result = [
+            'status' => 1,
+            'data'   => 1,
+        ];
 
-        $query  = $this->params('query');
-        $query  = $this->canonizeQuery($query);
+        $query = $this->params('query');
+        $query = $this->canonizeQuery($query);
         if (!$query) {
             return $result;
         }
@@ -244,11 +244,11 @@ abstract class ApiController extends ActionController
             $where->equalTo($key, $val)->or;
         }
 
-        $count = $this->model($this->modelName)->count($where);
-        $result = array(
-            'status'    => 1,
-            'data'      => $count ? 1 : 0,
-        );
+        $count  = $this->model($this->modelName)->count($where);
+        $result = [
+            'status' => 1,
+            'data'   => $count ? 1 : 0,
+        ];
 
         return $result;
     }
@@ -262,7 +262,7 @@ abstract class ApiController extends ActionController
      */
     protected function splitString($string = '')
     {
-        $result = array();
+        $result = [];
         if (!$string) {
             return $result;
         }
@@ -283,7 +283,7 @@ abstract class ApiController extends ActionController
      */
     protected function canonizeQuery($query = '')
     {
-        $result = array();
+        $result = [];
         if (!$query) {
             return $result;
         }
@@ -310,7 +310,7 @@ abstract class ApiController extends ActionController
      */
     protected function canonizeCondition(array $query)
     {
-        $where = array();
+        $where = [];
         if (array_key_exists('active', $query)) {
             if (isset($query['active'])) {
                 $where['active'] = $query['active'] ? 1 : 0;
@@ -326,8 +326,8 @@ abstract class ApiController extends ActionController
                     $where->equalTo($qKey, $qValue);
                 } else {
                     $qValue = str_replace(
-                        array('%', '*', '_'),
-                        array('\\%', '%', '\\_'),
+                        ['%', '*', '_'],
+                        ['\\%', '%', '\\_'],
                         $qValue
                     );
                     $where->like($qKey, $qValue);

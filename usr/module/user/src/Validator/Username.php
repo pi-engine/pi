@@ -9,8 +9,8 @@
 
 namespace Module\User\Validator;
 
-use Pi;
 use Module\System\Validator\Username as SystemUsername;
+use Pi;
 
 /**
  * Validator for username
@@ -34,11 +34,12 @@ class Username extends SystemUsername
     /**
      * {@inheritDoc}
      */
-    protected $messageVariables = [
-        'formatHint' => 'formatHint',
-        'max'        => 'max',
-        'min'        => 'min',
-    ];
+    protected $messageVariables
+        = [
+            'formatHint' => 'formatHint',
+            'max'        => 'max',
+            'min'        => 'min',
+        ];
 
     /**
      * {@inheritDoc}

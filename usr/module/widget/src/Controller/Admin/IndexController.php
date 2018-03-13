@@ -9,7 +9,6 @@
 
 namespace Module\Widget\Controller\Admin;
 
-use Pi;
 use Pi\Mvc\Controller\ActionController;
 
 /**
@@ -22,6 +21,6 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
-        $this->redirect('', array('controller' => 'script'));
+        $this->redirect('', ['controller' => 'script']);
     }
 }

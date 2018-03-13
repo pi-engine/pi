@@ -1,12 +1,12 @@
 .widget-desc {
-	height: 40px;
-	overflow: hidden;
+    height: 40px;
+    overflow: hidden;
 }
 
 @media (max-width: 767px) {
-  .widget-desc {
-    height: auto;
-  }
+    .widget-desc {
+        height: auto;
+    }
 }
 
 /*base*/
@@ -122,7 +122,7 @@
     cursor: not-allowed;
     background: #858585;
     color: #fff;
-    text-shadow: 0 1px 0 rgba(0,0,0,.3);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .3);
 }
 
 /*widget-list*/

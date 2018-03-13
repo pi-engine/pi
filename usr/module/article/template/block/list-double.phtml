@@ -1,14 +1,14 @@
 <?php
-    $left = $right = array();
-    $i = 0;
-    foreach ($articles as $article) {
-        if ($i++ % 2 == 0) {
-            $left[$article['id']] = $article;
-        } else {
-            $right[$article['id']] = $article;
-        }
+$left = $right = [];
+$i    = 0;
+foreach ($articles as $article) {
+    if ($i++ % 2 == 0) {
+        $left[$article['id']] = $article;
+    } else {
+        $right[$article['id']] = $article;
     }
-    $disorder = 1;
+}
+$disorder = 1;
 ?>
 
 <div class="row">

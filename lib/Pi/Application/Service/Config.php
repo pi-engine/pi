@@ -94,19 +94,19 @@ class Config extends AbstractService
      *
      * @var array
      */
-    protected $configs = array();
+    protected $configs = [];
 
     /**
      * Container for system config-domain map
      *
      * @var array  `<domain> => array(<config>)`
      */
-    protected $configsDomain = array();
+    protected $configsDomain = [];
 
     /**
      * {@inheritDoc}
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         parent::__construct($options);
 
@@ -118,7 +118,7 @@ class Config extends AbstractService
         if (!empty($this->options['custom_path'])) {
             $this->customLocation = $this->options['custom_path'];
         } else {
-            $this->customLocation =$this->configLocation . '/custom';
+            $this->customLocation = $this->configLocation . '/custom';
         }
     }
 
@@ -141,9 +141,9 @@ class Config extends AbstractService
      * Get a config by name from a module,
      * or a category of configs if name not specified
      *
-     * @param string    $name       Name of the config element
-     * @param string    $module     Module
-     * @param string    $domain     Domain (category) name
+     * @param string $name Name of the config element
+     * @param string $module Module
+     * @param string $domain Domain (category) name
      *
      * @return mixed|array Configuration value(s)
      */
@@ -167,8 +167,8 @@ class Config extends AbstractService
     /**
      * Get a system config
      *
-     * @param string    $name       Name of the config element
-     * @param string    $domain     Domain (category) name
+     * @param string $name Name of the config element
+     * @param string $domain Domain (category) name
      *
      * @return mixed|array    configuration value
      */
@@ -181,7 +181,7 @@ class Config extends AbstractService
             $result = isset($this->configs[$name])
                 ? $this->configs[$name] : null;
         } else {
-            $result = array();
+            $result = [];
             if ($domain) {
                 if (isset($this->configsDomain[$domain])) {
                     foreach ($this->configsDomain[$domain] as $key) {
@@ -203,19 +203,19 @@ class Config extends AbstractService
     /**
      * Set a config, or a category of configs
      *
-     * @param string|array  $name Name of the config element, or associative configs
-     * @param mixed|string  $value Config value or config domain if first arg is array
-     * @param string $domain     Configuration domain
+     * @param string|array $name Name of the config element, or associative configs
+     * @param mixed|string $value Config value or config domain if first arg is array
+     * @param string $domain Configuration domain
      *
      * @return $this
      */
     public function set($name, $value = '', $domain = '')
     {
         if (is_scalar($name)) {
-            $configs    = array($name => $value);
+            $configs = [$name => $value];
         } else {
-            $configs    = $name;
-            $domain     = $value;
+            $configs = $name;
+            $domain  = $value;
         }
         $this->setDomain($configs, $domain);
 
@@ -226,7 +226,7 @@ class Config extends AbstractService
      * Set a category of configs
      *
      * @param array $configs Associative configs
-     * @param string $domain     Configuration domain
+     * @param string $domain Configuration domain
      *
      * @return $this
      * @deprecated
@@ -239,8 +239,8 @@ class Config extends AbstractService
     /**
      * Set configuration data to a domain (category)
      *
-     * @param array     $configs    Associative array of config data
-     * @param string    $domain     Configuration domain
+     * @param array $configs Associative array of config data
+     * @param string $domain Configuration domain
      *
      * @return $this
      */
@@ -264,7 +264,7 @@ class Config extends AbstractService
     /**
      * Unset configuration data of a domain
      *
-     * @param string    $domain     Configuration domain
+     * @param string $domain Configuration domain
      * @return $this
      */
     public function unsetDomain($domain = '')
@@ -276,11 +276,11 @@ class Config extends AbstractService
                         unset($this->configs[$key]);
                     }
                 }
-                $this->configsDomain[$domain] = array();
+                $this->configsDomain[$domain] = [];
             }
         } else {
-            $this->configs          = array();
-            $this->configsDomain    = array();
+            $this->configs       = [];
+            $this->configsDomain = [];
         }
 
         return $this;
@@ -289,7 +289,7 @@ class Config extends AbstractService
     /**
      * Load system configuration data of a domain from database
      *
-     * @param string    $domain     Configuration domain
+     * @param string $domain Configuration domain
      *
      * @return $this
      */
@@ -309,7 +309,7 @@ class Config extends AbstractService
      *
      * @param string $configFile
      *      Name for the config file located inside var/config and sub folders
-     * @param bool   $checkCustom
+     * @param bool $checkCustom
      *
      * @return array
      */
@@ -318,8 +318,8 @@ class Config extends AbstractService
         if ('.php' != substr($configFile, -4)) {
             $configFile .= '.php';
         }
-        $configs = array();
-        $file = '';
+        $configs = [];
+        $file    = '';
         if ($checkCustom) {
             $file = $this->getPath($configFile, true);
             if (!file_exists($file)) {
@@ -342,9 +342,9 @@ class Config extends AbstractService
     /**
      * Write config data into config file
      *
-     * @param string    $file
-     * @param array     $data
-     * @param bool      $toCustom
+     * @param string $file
+     * @param array $data
+     * @param bool $toCustom
      *
      * @return bool
      */
@@ -373,7 +373,7 @@ class Config extends AbstractService
         $content = '<?php' . PHP_EOL
             . '// Generated on ' . date('Y-m-d H:i:s') . PHP_EOL
             . 'return ' . var_export($data, true) . ';';
-        $result = (bool) file_put_contents($file, $content);
+        $result  = (bool)file_put_contents($file, $content);
 
         return $result;
     }

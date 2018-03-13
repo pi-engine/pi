@@ -9,7 +9,6 @@
 
 namespace Module\User\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**

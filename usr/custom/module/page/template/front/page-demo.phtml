@@ -4,19 +4,20 @@
     </div>
     <div class="panel-body">
         <?php
-            $content =<<<'EOT'
+        $content
+            = <<<'EOT'
 <h3>%s</h3>
 <em>%s</em>
 <p>%s</p>
 EOT;
 
-            $content = sprintf(
-                $content,
-                Pi::config('sitename'),
-                Pi::config('slogan'),
-                Pi::config('description')
-            );
-            echo $content;
+        $content = sprintf(
+            $content,
+            Pi::config('sitename'),
+            Pi::config('slogan'),
+            Pi::config('description')
+        );
+        echo $content;
         ?>
     </div>
 </div>

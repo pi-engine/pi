@@ -7,34 +7,34 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
+return [
     // Event list
-    'events'    => array(
+    'events'    => [
         // event name (unique)
-        'user_call' => array(
+        'user_call' => [
             // title
             'title' => _a('Event hook demo'),
-        ),
-    ),
+        ],
+    ],
     // Listener list
-    'listeners' => array(
-        array(
+    'listeners' => [
+        [
             // event info: module, event name
-            'event'     => array('pm', 'test'),
+            'event'    => ['pm', 'test'],
             // listener callback: class, method
-            'listener'  => array('event', 'message'),
-        ),
-        array(
-            'event'     => array('demo', 'user_call'),
-            'listener'  => array('event', 'selfcall'),
-        ),
-        array(
-            'event'     => array('system', 'module_install'),
-            'listener'  => array('event', 'moduleinstall'),
-        ),
-        array(
-            'event'     => array('system', 'module_update'),
-            'listener'  => array('event', 'moduleupdate'),
-        ),
-    ),
-);
+            'listener' => ['event', 'message'],
+        ],
+        [
+            'event'    => ['demo', 'user_call'],
+            'listener' => ['event', 'selfcall'],
+        ],
+        [
+            'event'    => ['system', 'module_install'],
+            'listener' => ['event', 'moduleinstall'],
+        ],
+        [
+            'event'    => ['system', 'module_update'],
+            'listener' => ['event', 'moduleupdate'],
+        ],
+    ],
+];

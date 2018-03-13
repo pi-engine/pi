@@ -14,7 +14,7 @@ use Pi\Application\Api\AbstractContent;
 
 /**
  * Public API for content fetch
- * 
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Content extends AbstractContent
@@ -32,13 +32,14 @@ class Content extends AbstractContent
     /**
      * {@inheritDoc}
      */
-    protected $meta = array(
-        'id'            => 'id',
-        'subject'       => 'title',
-        'summary'       => 'content',
-        'time_publish'  => 'time',
-        'uid'           => 'uid',
-    );
+    protected $meta
+        = [
+            'id'           => 'id',
+            'subject'      => 'title',
+            'summary'      => 'content',
+            'time_publish' => 'time',
+            'uid'          => 'uid',
+        ];
 
     /**
      * {@inheritDoc}
@@ -46,12 +47,13 @@ class Content extends AbstractContent
     public function ____getList(
         array $variables,
         array $conditions,
-        $limit  = 0,
+        $limit = 0,
         $offset = 0,
-        $order  = array()
-    ) {
-        $result = array();
-        $model = Pi::model('article', $this->module);
+        $order = []
+    )
+    {
+        $result = [];
+        $model  = Pi::model('article', $this->module);
         $select = $model->select();
         if ($limit) {
             $select->limit($limit);
@@ -66,11 +68,11 @@ class Content extends AbstractContent
         $select->where($this->canonizeConditions($conditions));
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $item = $row->toArray();
+            $item          = $row->toArray();
             $item['title'] = $item['subject'];
             unset($item['subject']);
             $item['url'] = $this->buildUrl($item);
-            $result[] = $item;
+            $result[]    = $item;
         }
 
         return $result;
@@ -87,7 +89,7 @@ class Content extends AbstractContent
     {
         $link = Pi::service('url')->assemble(
             'article',
-            array('id' => $item['id'])
+            ['id' => $item['id']]
         );
 
         return $link;

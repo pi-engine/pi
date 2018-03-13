@@ -1,7 +1,7 @@
 <?php
-    $this->css($this->assetModule('script/front.css'));
-    $this->jQuery();
-    $this->Backbone();
+$this->css($this->assetModule('script/front.css'));
+$this->jQuery();
+$this->Backbone();
 ?>
 
 <?php /* include 'draft-nav.phtml'; */ ?>
@@ -11,23 +11,23 @@
     </div>
     <table class="table table-striped">
         <tbody id="jsDraft">
-            <tr>
-                <th style="width:2.2em;">
-                    <input type="checkbox" class="check-all">
-                </th>
-                <th><?php echo __('Title'); ?></th>
-                <th style="width: 15%;"><?php _e('Category'); ?></th>
-                <?php
-                /*
-                <th style="width: 15%;"><?php _e('Tag'); ?></th>
-                */
-                ?>
-                <th style="width: 15%;">
-                <?php echo $status == $flags['published'] ? __('Published time') 
-                    : __('Last update date'); 
+        <tr>
+            <th style="width:2.2em;">
+                <input type="checkbox" class="check-all">
+            </th>
+            <th><?php echo __('Title'); ?></th>
+            <th style="width: 15%;"><?php _e('Category'); ?></th>
+            <?php
+            /*
+            <th style="width: 15%;"><?php _e('Tag'); ?></th>
+            */
+            ?>
+            <th style="width: 15%;">
+                <?php echo $status == $flags['published'] ? __('Published time')
+                    : __('Last update date');
                 ?></th>
-            </tr>
-            <?php foreach ($data as $draft) { ?>
+        </tr>
+        <?php foreach ($data as $draft) { ?>
             <tr data-id="<?php echo $this->escape($draft['id']); ?>">
                 <td>
                     <input type="checkbox" class="check-one" value="<?php echo $this->escape($draft['id']); ?>">
@@ -35,19 +35,19 @@
                 <td>
                     <?php if ($draft['subject']) {
                         if ($status == $flags['published']) {
-                    ?>
-                    <a target="_blank" href="<?php echo $this->escape($draft['url']); ?>">
-                    <?php
+                            ?>
+                            <a target="_blank" href="<?php echo $this->escape($draft['url']); ?>">
+                            <?php
                         }
                         echo $this->escape($draft['subject']);
                         if ($status == $flags['published']) { ?>
-                    </a>
-                    <?php 
+                            </a>
+                            <?php
                         }
                     } else {
-                    ?>
-                    <strong class="text-muted"><?php _e('No Title'); ?></strong>
-                    <?php } ?>    
+                        ?>
+                        <strong class="text-muted"><?php _e('No Title'); ?></strong>
+                    <?php } ?>
                     <div class="row-actions">
                         <?php if ($status == $flags['published']) {
                             $controller = 'article';
@@ -55,28 +55,28 @@
                             $controller = 'draft';
                         } ?>
                         <a href="
-                        <?php echo $this->url('', array(
+                        <?php echo $this->url('', [
                             'action'     => 'edit',
                             'controller' => $controller,
-                            'id'         => $draft['id']
-                        )); ?>"><?php _e('Edit'); ?></a>
+                            'id'         => $draft['id'],
+                        ]); ?>"><?php _e('Edit'); ?></a>
                         <span class="divider">|</span>
                         <a href="javascript:void(0)" class="delete"><?php _e('Delete'); ?></a>
                     </div>
                 </td>
                 <td>
-                <?php if (isset($draft['categoryAncestors'])) {
-                    $step = 0;
-                    foreach ($draft['categoryAncestors'] as $ancestor) {
-                        echo $this->escape($ancestor['title']);
-                        $step++;
-                        if ($step < count($draft['categoryAncestors'])) {
-                            echo '&gt;';
+                    <?php if (isset($draft['categoryAncestors'])) {
+                        $step = 0;
+                        foreach ($draft['categoryAncestors'] as $ancestor) {
+                            echo $this->escape($ancestor['title']);
+                            $step++;
+                            if ($step < count($draft['categoryAncestors'])) {
+                                echo '&gt;';
+                            }
                         }
-                    }
-                } elseif (isset($draft['category_title'])) {
-                    echo $this->escape($draft['category_title']);
-                } ?>
+                    } elseif (isset($draft['category_title'])) {
+                        echo $this->escape($draft['category_title']);
+                    } ?>
                 </td>
                 <?php
                 /*
@@ -88,98 +88,98 @@
                 </td>
                 */
                 ?>
-                <td><?php 
+                <td><?php
                     echo _date($status == $flags['published']
-                        ? $draft['time_publish'] 
+                        ? $draft['time_publish']
                         : ($draft['time_update'] ?: $draft['time_save'])
                     ); ?>
                 </td>
             </tr>
-            <?php } ?>
+        <?php } ?>
         </tbody>
     </table>
     <?php echo $this->paginationControl(
         $paginator,
         'Sliding',
         'paginator.phtml',
-        array('class' => 'pagination-right')
+        ['class' => 'pagination-right']
     ); ?>
 </div>
 
 <script>
-(function($) {
-    var page = {
-        url : "<?php echo $this->url(
-            '', 
-            array(
-                'controller' => (isset($action) && 'published' === $action) ? 'article' : 'draft', 
-                'action'     => 'delete'
-            )
-        ); ?>",
-        el  : $("#jsList"),
-        $   : function(selector) {
-            return this.el.find(selector);
-        },
-        init : function() {
-            _.bindAll(this);
-            this.$(".check-all").click(this.checkAll);
-            this.$(".btn-delete").click(this.bulkDelete);
-            this.$(".check-one").click(this.clickOne);
-            this.$(".delete").click(this.delete);
-        },
-        checkAll : function() {
-            var flag = this.$(".check-all").prop("checked");
-            this.$(".check-one").prop("checked",flag).each(function() {
-                var tr = $(this).parents("tr:first");
-                if (flag) {
+    (function ($) {
+        var page = {
+            url: "<?php echo $this->url(
+                '',
+                [
+                    'controller' => (isset($action) && 'published' === $action) ? 'article' : 'draft',
+                    'action'     => 'delete',
+                ]
+            ); ?>",
+            el: $("#jsList"),
+            $: function (selector) {
+                return this.el.find(selector);
+            },
+            init: function () {
+                _.bindAll(this);
+                this.$(".check-all").click(this.checkAll);
+                this.$(".btn-delete").click(this.bulkDelete);
+                this.$(".check-one").click(this.clickOne);
+                this.$(".delete").click(this.delete);
+            },
+            checkAll: function () {
+                var flag = this.$(".check-all").prop("checked");
+                this.$(".check-one").prop("checked", flag).each(function () {
+                    var tr = $(this).parents("tr:first");
+                    if (flag) {
+                        tr.addClass("info");
+                    } else {
+                        tr.removeClass("info");
+                    }
+                });
+                this.toggleBulk();
+            },
+            bulkDelete: function () {
+                var id = [],
+                    fn = function () {
+                        this.$(".check-one:checked").each(function () {
+                            id.push($(this).val());
+                        });
+                        location.href = this.url + "?id=" + id.join(",") + "&from="
+                            + this.encodeUrl();
+                    };
+                if (confirm("<?php echo _a('Are you sure want to delete selected articles?'); ?>")) {
+                    fn.call(this);
+                }
+            },
+            clickOne: function (e) {
+                var el = $(e.target),
+                    tr = el.parents("tr:first");
+                if (el.prop("checked")) {
                     tr.addClass("info");
                 } else {
                     tr.removeClass("info");
                 }
-            });
-            this.toggleBulk();
-        },
-        bulkDelete : function() {
-            var id = [],
-                fn = function() {
-                    this.$(".check-one:checked").each(function() {
-                        id.push($(this).val()); 
-                    });
-                    location.href = this.url + "?id=" + id.join(",") + "&from="
-                                  + this.encodeUrl();
-                };
-                if (confirm("<?php echo _a('Are you sure want to delete selected articles?'); ?>")) {
-                    fn.call(this);
+                this.toggleBulk();
+            },
+            toggleBulk: function () {
+                if (this.$(".check-one:checked").length) {
+                    this.$(".bulk-operation").removeClass("hide");
+                } else {
+                    this.$(".bulk-operation").addClass("hide");
                 }
-        },
-        clickOne : function(e) {
-            var el = $(e.target),
-                tr = el.parents("tr:first");
-            if (el.prop("checked")) {
-                tr.addClass("info");
-            } else {
-                tr.removeClass("info");
+            },
+            delete: function (e) {
+                var el = $(e.target),
+                    id = el.parents("tr:first").attr("data-id");
+                if (confirm("<?php echo _a('Are you sure want to delete this article?'); ?>")) {
+                    location.href = this.url + "?id=" + id + "&from=" + this.encodeUrl();
+                }
+            },
+            encodeUrl: function () {
+                return encodeURIComponent(location.href);
             }
-            this.toggleBulk();
-        },
-        toggleBulk : function() {
-            if (this.$(".check-one:checked").length) {
-                this.$(".bulk-operation").removeClass("hide");
-            } else {
-                this.$(".bulk-operation").addClass("hide");
-            }
-        },
-        delete : function(e) {
-            var el = $(e.target),
-                id = el.parents("tr:first").attr("data-id");
-            if (confirm("<?php echo _a('Are you sure want to delete this article?'); ?>")) {
-                location.href = this.url + "?id=" + id + "&from=" + this.encodeUrl(); 
-            }
-        },
-        encodeUrl : function() {
-            return encodeURIComponent(location.href);
-        }
-    };
-    page.init();
-})(jQuery);
+        };
+        page.init();
+    })(jQuery);
 </script>

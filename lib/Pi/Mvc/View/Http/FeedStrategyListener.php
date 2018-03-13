@@ -9,8 +9,6 @@
 
 namespace Pi\Mvc\View\Http;
 
-use Pi;
-
 /**
  * Feed view strategy listener
  *

@@ -30,20 +30,21 @@ abstract class AbstractDag extends AbstractTableGateway
      *  - hops: Number of hops from start to end
      * @var array
      */
-    protected $column = array(
-        // Start vertex column name
-        'start'     => 'start',
-        // End vertex column name
-        'end'       => 'end',
-        // Entry edge column name
-        'entry'     => 'entry',
-        // Direct edge column name
-        'direct'    => 'direct',
-        // Exit edge column name
-        'exit'      => 'exit',
-        // Number of hops from start to end
-        'hops'      => 'hops',
-    );
+    protected $column
+        = [
+            // Start vertex column name
+            'start'  => 'start',
+            // End vertex column name
+            'end'    => 'end',
+            // Entry edge column name
+            'entry'  => 'entry',
+            // Direct edge column name
+            'direct' => 'direct',
+            // Exit edge column name
+            'exit'   => 'exit',
+            // Number of hops from start to end
+            'hops'   => 'hops',
+        ];
 
     /**
      * Class for row gateway
@@ -54,11 +55,11 @@ abstract class AbstractDag extends AbstractTableGateway
     /**
      * {@inheritDoc}
      */
-    public function setup($options = array())
+    public function setup($options = [])
     {
         foreach (array_keys($this->column) as $key) {
             if (isset($options[$key])) {
-                $this->column[$key] = (string) $options[$key];
+                $this->column[$key] = (string)$options[$key];
                 unset($options[$key]);
             }
         }
@@ -76,7 +77,7 @@ abstract class AbstractDag extends AbstractTableGateway
         parent::initialize();
 
         $rowObject = $this->resultSetPrototype->getArrayObjectPrototype();
-        if (is_callable(array($rowObject, 'setTableGateway'))) {
+        if (is_callable([$rowObject, 'setTableGateway'])) {
             $rowObject->setTableGateway($this);
         }
     }

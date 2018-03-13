@@ -27,24 +27,25 @@ class User extends AbstractFilter
      * Filter options
      * @var array
      */
-    protected $options = array(
-        // Tag for user identity name
-        'tag'           => '%user%',
-        // Pattern for user identity
-        'pattern'       => '@([a-zA-Z0-9]{3,32})',
-        // Direct replacement for user identity:
-        // <a href="/url/to/user/name/%user%" title="%user%">%user%</a>
-        'replacement'   => '',
-        // Callback for user identity replacement if no direct replacement
-        'callback'      => null,
-    );
+    protected $options
+        = [
+            // Tag for user identity name
+            'tag'         => '%user%',
+            // Pattern for user identity
+            'pattern'     => '@([a-zA-Z0-9]{3,32})',
+            // Direct replacement for user identity:
+            // <a href="/url/to/user/name/%user%" title="%user%">%user%</a>
+            'replacement' => '',
+            // Callback for user identity replacement if no direct replacement
+            'callback'    => null,
+        ];
 
     /**
      * Constructor
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setOptions($options);
         if (empty($this->options['replacement'])
@@ -54,9 +55,9 @@ class User extends AbstractFilter
                 $value = preg_replace_callback(
                     '`(^|\s)@([a-zA-Z0-9]{3,32})`',
                     function ($m) {
-                        $url = Pi::service('user')->getUrl(
+                        $url         = Pi::service('user')->getUrl(
                             'profile',
-                            array('name' => $m[2])
+                            ['name' => $m[2]]
                         );
                         $escapedName = _escape($m[2]);
                         return sprintf(
@@ -86,8 +87,8 @@ class User extends AbstractFilter
             $value = $this->options['callback']($value);
         } else {
             $replacement = $this->options['replacement'];
-            $tag = $this->options['tag'];
-            $value = preg_replace_callback(
+            $tag         = $this->options['tag'];
+            $value       = preg_replace_callback(
                 '`' . $this->options['pattern'] . '`',
                 function ($m) use ($replacement, $tag) {
                     return str_replace($tag, $m[1], $replacement);

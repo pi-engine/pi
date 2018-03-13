@@ -10,4 +10,5 @@
 namespace Module\Widget\Form;
 
 class BlockSpotlightForm extends BlockMediaForm
-{}
+{
+}

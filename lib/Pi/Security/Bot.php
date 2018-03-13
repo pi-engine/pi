@@ -22,12 +22,12 @@ class Bot extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public static function check($options = array())
+    public static function check($options = [])
     {
         if (!$options) {
             return null;
         }
-        $key = 'HTTP_USER_AGENT';
+        $key   = 'HTTP_USER_AGENT';
         $agent = '';
         if (isset($_SERVER[$key])) {
             $agent = $_SERVER[$key];
@@ -43,7 +43,7 @@ class Bot extends AbstractAdapter
         }
         // Check bad bots
         $pattern = implode('|', $options);
-        $status = preg_match('/' . $pattern . '/i', $agent) ? false : null;
+        $status  = preg_match('/' . $pattern . '/i', $agent) ? false : null;
 
         return $status;
     }

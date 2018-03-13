@@ -9,13 +9,12 @@
 
 namespace Pi\Filter;
 
-use Pi;
 use Zend\Filter\FilterChain as ZendFilterChain;
 
 /**
  * Filter chain with specified plugin manager
  *
- *  @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class FilterChain extends ZendFilterChain
 {

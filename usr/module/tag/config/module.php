@@ -11,46 +11,46 @@
 /**
  * Application manifest
  */
-return array(
+return [
     // Module meta
-    'meta'  => array(
+    'meta'     => [
         // Module title, required
-        'title'         => _a('Tags'),
+        'title'       => _a('Tags'),
         // Description, for admin, optional
-        'description'   => _a('Tag'),
+        'description' => _a('Tag'),
         // Version number, required
-        'version'       => '1.1.0',
+        'version'     => '1.1.0',
         // Distribution license, required
-        'license'       => 'New BSD',
+        'license'     => 'New BSD',
         // Logo image, for admin, optional
-        'logo'          => 'image/logo.png',
+        'logo'        => 'image/logo.png',
         // Logo icon
-        'icon'          => 'fa-tags',
-    ),
+        'icon'        => 'fa-tags',
+    ],
     // Author information
-    'author'    => array(
-        'Dev'       => 'Taiwen Jiang; Liu Chuang; Liao Wei',
-        'UI/UE'     => '@zhangsimon, @loidco',
-        'QA'        => '@lavenderli',
-        'Email'     => 'taiwenjiang@tsinghua.org.cn',
-    ),
+    'author'   => [
+        'Dev'   => 'Taiwen Jiang; Liu Chuang; Liao Wei',
+        'UI/UE' => '@zhangsimon, @loidco',
+        'QA'    => '@lavenderli',
+        'Email' => 'taiwenjiang@tsinghua.org.cn',
+    ],
     // resource
-    'resource' => array(
+    'resource' => [
         // Database meta
-        'database'  => array(
-            'sqlfile'   => 'sql/mysql.sql',
-            'schema'    => array(
-                'tag'          => 'table',
-                'link'         => 'table',
-                'stats'        => 'table',
-            ),
-        ),
+        'database'   => [
+            'sqlfile' => 'sql/mysql.sql',
+            'schema'  => [
+                'tag'   => 'table',
+                'link'  => 'table',
+                'stats' => 'table',
+            ],
+        ],
         // Navigation definition
-        'navigation'    => 'navigation.php',
+        'navigation' => 'navigation.php',
         // Config definition.
-        'config'        => 'config.php',
+        'config'     => 'config.php',
         // Block definition.
-        'block'         => 'block.php',
-        'route'         => 'route.php',
-    ),
-);
+        'block'      => 'block.php',
+        'route'      => 'route.php',
+    ],
+];

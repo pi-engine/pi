@@ -30,8 +30,8 @@ class Text extends AbstractParser
         $encoding = empty($this->options['encoding'])
             ? Pi::service('i18n')->getCharset()
             : $this->options['encoding'];
-        $escaper = new Escaper($encoding);
-        $value = $escaper->escapeHtml($value);
+        $escaper  = new Escaper($encoding);
+        $value    = $escaper->escapeHtml($value);
 
         // To keep linebreak?
         if (!empty($this->options['nl2br'])) {

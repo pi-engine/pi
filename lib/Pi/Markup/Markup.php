@@ -23,8 +23,8 @@ use Pi\Markup\Renderer\AbstractRenderer;
  */
 class Markup
 {
-    /** @var array  */
-    protected $options = array();
+    /** @var array */
+    protected $options = [];
 
     /**
      * Encoding for renderer
@@ -36,13 +36,13 @@ class Markup
      * Default global filters, potential: user, tag
      * @var array
      */
-    protected $filters = array();
+    protected $filters = [];
 
     /** @var AbstractParser[] */
-    protected $parsers = array();
+    protected $parsers = [];
 
     /** @var AbstractRenderer[] */
-    protected $renderers = array();
+    protected $renderers = [];
 
     /**
      * Renderer
@@ -57,7 +57,7 @@ class Markup
      *
      * @return $this
      */
-    public function setOptions($options = array())
+    public function setOptions($options = [])
     {
         $this->options = $options;
 
@@ -85,7 +85,7 @@ class Markup
      *
      * @return $this
      */
-    public function setFilters($filters = array())
+    public function setFilters($filters = [])
     {
         $this->filters = $filters;
 
@@ -100,7 +100,7 @@ class Markup
      *
      * @return $this
      */
-    public function setRenderer($renderer, $options = array())
+    public function setRenderer($renderer, $options = [])
     {
         if (!$renderer instanceof AbstractRenderer) {
             $renderer = $this->loadRenderer($renderer, $options);
@@ -118,14 +118,14 @@ class Markup
      *
      * @return AbstractParser
      */
-    public function loadParser($parserName, $options = array())
+    public function loadParser($parserName, $options = [])
     {
         $parser = ucfirst($parserName);
         if (!isset($this->parsers[$parser])) {
             if (isset($this->options['parser'][$parserName])) {
                 $options = array_merge($this->options['parser'][$parserName], $options);
             }
-            $class = 'Pi\Markup\Parser\\' . $parser;
+            $class                  = 'Pi\Markup\Parser\\' . $parser;
             $this->parsers[$parser] = new $class;
         }
         $this->parsers[$parser]->setOptions($options);
@@ -137,19 +137,19 @@ class Markup
      * Load renderer
      *
      * @param string $rendererName
-     * @param array  $options
+     * @param array $options
      *
      * @return AbstractRenderer
      */
-    public function loadRenderer($rendererName = '', $options = array())
+    public function loadRenderer($rendererName = '', $options = [])
     {
         $rendererName = $rendererName ?: 'html';
-        $renderer = ucfirst($rendererName);
+        $renderer     = ucfirst($rendererName);
         if (!isset($this->renderers[$renderer])) {
             if (isset($this->options['renderer'][$rendererName])) {
                 $options = array_merge($this->options['renderer'][$rendererName], $options);
             }
-            $class = 'Pi\Markup\Renderer\\' . $renderer;
+            $class                      = 'Pi\Markup\Renderer\\' . $renderer;
             $this->renderers[$renderer] = new $class;
         }
         $this->renderers[$renderer]->setOptions($options);
@@ -160,11 +160,11 @@ class Markup
     /**
      * Get renderer, load Raw as default renderer if no one is set
      *
-     * @param array  $options
+     * @param array $options
      *
      * @return AbstractRenderer
      */
-    public function getRenderer($options = array())
+    public function getRenderer($options = [])
     {
         if (!$this->renderer) {
             $this->renderer = $this->loadRenderer();
@@ -179,21 +179,22 @@ class Markup
     /**
      * Render content
      *
-     * @param string $content   Raw content
-     * @param string $parser    Markup format of raw content: `text`, `html`, `markdown`
+     * @param string $content Raw content
+     * @param string $parser Markup format of raw content: `text`, `html`, `markdown`
      * @param string|array $renderer Markup type for rendering (`html`, ``), or array for options
-     * @param array  $options
+     * @param array $options
      *
      * @return string
      */
     public function render(
         $content,
-        $parser     = null,
-        $renderer   = null,
-        $options    = array()
-    ) {
+        $parser = null,
+        $renderer = null,
+        $options = []
+    )
+    {
         if (is_array($renderer)) {
-            $options = $renderer;
+            $options  = $renderer;
             $renderer = null;
         }
         if (!$parser) {

@@ -9,8 +9,6 @@
 
 namespace Module\Demo;
 
-use Pi;
-
 class Dashboard
 {
     /**
@@ -24,7 +22,8 @@ class Dashboard
     public static function summary($module = null, $redirect = null)
     {
         $data = 'From Module <strong>' . $module . '</strong>';
-        $data .=<<<'EOT'
+        $data
+              .= <<<'EOT'
         <ul>
             <li>First message in Demo.</li>
             <li>Second message in Demo.</li>

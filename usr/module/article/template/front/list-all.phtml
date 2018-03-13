@@ -1,17 +1,17 @@
 <?php
-    $this->css(array(
-        $this->assetModule('script/block.css'),
-    ));
+$this->css([
+    $this->assetModule('script/block.css'),
+]);
 ?>
 
 <div class="row">
-<?php
+    <?php
     if (!empty($navs)) {
-?>
-    <div class="col-md-2"><?php echo $this->navigation($navs); ?></div>
-<?php
+        ?>
+        <div class="col-md-2"><?php echo $this->navigation($navs); ?></div>
+        <?php
     }
-?>
+    ?>
     <div class="<?php echo !empty($navs) ? 'col-md-10' : 'col-md-12'; ?>">
         <div class="pi-article-module">
             <div class="clearfix pi-block-header">
@@ -22,62 +22,64 @@
                     <?php $index = 0; ?>
                     <?php foreach ($articles as $row) { ?>
                         <li class="text-muted">
-                        <?php
+                            <?php
                             if (in_array('feature', $elements)) {
-                        ?>
-                            <div class="pull-left" style="margin-right: 10px;">
-                                <img src="<?php echo Pi::url($row['image']); ?>" style="width: 100px">
-                            </div>
-                        <?php
+                                ?>
+                                <div class="pull-left" style="margin-right: 10px;">
+                                    <img src="<?php echo Pi::url($row['image']); ?>" style="width: 100px">
+                                </div>
+                                <?php
                             }
-                        ?>
+                            ?>
                             <div class="list-hover">
                                 <div class="list-title">
-                                <?php
+                                    <?php
                                     if (in_array('time', $elements)) {
-                                ?>
-                                    <span class="pull-right article-list-desc">
+                                        ?>
+                                        <span class="pull-right article-list-desc">
                                         <?php echo _date($row['time_publish']); ?>
                                     </span>
-                                <?php
+                                        <?php
                                     }
-                                ?>
-                                    <a class="article-list-title" target="_blank" href="<?php echo $this->escape($row['url']); ?>" title="<?php echo $this->escape($row['subject']); ?>">
+                                    ?>
+                                    <a class="article-list-title" target="_blank"
+                                       href="<?php echo $this->escape($row['url']); ?>"
+                                       title="<?php echo $this->escape($row['subject']); ?>">
                                         <?php echo $this->escape($row['subject']); ?>
                                     </a>
                                 </div>
-                            <?php
+                                <?php
                                 if (in_array('author', $elements) || in_array('category', $elements)) {
-                            ?>
-                                <div class="list-desc">
-                                <?php
-                                    if (in_array('author', $elements)) {
-                                ?>
-                                    <span style="margin-right: 10px"><?php echo $authors[$row['author']]['name']; ?></span>
-                                <?php
-                                    }
-                                    if (in_array('category', $elements)) {
-                                ?>
-                                    <span style="margin-right: 10px"><?php echo $categories[$row['category']]['title']; ?></span>
-                                <?php
-                                    }
-                                ?>
-                                </div>
-                            <?php
+                                    ?>
+                                    <div class="list-desc">
+                                        <?php
+                                        if (in_array('author', $elements)) {
+                                            ?>
+                                            <span style="margin-right: 10px"><?php echo $authors[$row['author']]['name']; ?></span>
+                                            <?php
+                                        }
+                                        if (in_array('category', $elements)) {
+                                            ?>
+                                            <span style="margin-right: 10px"><?php echo $categories[$row['category']]['title']; ?></span>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    <?php
                                 }
                                 if (in_array('summary', $elements)) {
-                            ?>
-                                <div class="list-summary">
-                                    <?php echo mb_substr($row['summary'], 0, $length, 'UTF8'); ?>
-                                </div>
-                            <?php
+                                    ?>
+                                    <div class="list-summary">
+                                        <?php echo mb_substr($row['summary'], 0, $length, 'UTF8'); ?>
+                                    </div>
+                                    <?php
                                 }
-                            ?>
+                                ?>
                             </div>
                         </li>
                         <?php if (!(++$index % 5)) { ?>
-                            <li class="dashed"></li>    
-                        <?php } ?>    
+                            <li class="dashed"></li>
+                        <?php } ?>
                     <?php } ?>
                 </ul>
                 <div style="text-align: center">

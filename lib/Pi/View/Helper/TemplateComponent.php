@@ -10,8 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
-
 /**
  * Helper for system view component template inclusion
  *

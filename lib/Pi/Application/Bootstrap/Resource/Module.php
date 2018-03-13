@@ -27,7 +27,7 @@ class Module extends AbstractResource
         // Setup module service and load module config
         // right after access permission check
         $this->application->getEventManager()
-             ->attach(MvcEvent::EVENT_DISPATCH, array($this, 'setup'), 999);
+            ->attach(MvcEvent::EVENT_DISPATCH, [$this, 'setup'], 999);
     }
 
     /**

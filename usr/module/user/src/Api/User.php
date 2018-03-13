@@ -9,8 +9,8 @@
 
 namespace Module\User\Api;
 
-use Pi;
 use Module\System\Api\AbstractUser as AbstractUseApi;
+use Pi;
 use Pi\Db\Sql\Where;
 use Pi\User\Model\Local as UserModel;
 

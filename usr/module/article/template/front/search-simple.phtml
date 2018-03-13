@@ -1,8 +1,8 @@
 <?php
-    $this->css(array(
-        $this->assetModule('script/block.css'),
-    ));
-    $this->jQuery();
+$this->css([
+    $this->assetModule('script/block.css'),
+]);
+$this->jQuery();
 ?>
 
 <div class="pi-article-module">
@@ -13,21 +13,21 @@
         </span>
         <div class="row" style="margin-right: -30px">
             <?php
-                $form->setAttributes(array(
-                    'action' => $this->url('', array('action' => 'simple')),
-                    'method' => 'get',
-                    'class'  => 'navbar-form navbar-right',
-                    'style'  => 'margin: 1px 10px 0 0; width: auto',
-                ));
-                echo $this->form()->openTag($form);
+            $form->setAttributes([
+                'action' => $this->url('', ['action' => 'simple']),
+                'method' => 'get',
+                'class'  => 'navbar-form navbar-right',
+                'style'  => 'margin: 1px 10px 0 0; width: auto',
+            ]);
+            echo $this->form()->openTag($form);
             ?>
             <div class="form-group">
                 <?php
                 $element = $form->get('keyword');
-                $element->setAttributes(array(
+                $element->setAttributes([
                     'class'       => 'form-control col-md-7',
                     'placeholder' => __('title'),
-                ));
+                ]);
                 echo $this->formElement($element);
                 ?>
             </div>
@@ -38,13 +38,15 @@
     <div class="article-list-content">
         <ul class="list list14" id="jsList">
             <?php $index = 0 ?>
-            <?php foreach ($articles as $article) { $index++ ?>
+            <?php foreach ($articles as $article) {
+                $index++ ?>
                 <li class="text-muted">
                     <div class="list-hover">
                         <span class="pull-right article-list-desc">
                             <?php echo _date($article['time_publish']); ?>
                         </span>
-                        <a class="article-list-title" target="_blank" href="<?php echo $article['url'] ?>" title="<?php echo $this->escape($article['subject']); ?>" style="color: #333333">
+                        <a class="article-list-title" target="_blank" href="<?php echo $article['url'] ?>"
+                           title="<?php echo $this->escape($article['subject']); ?>" style="color: #333333">
                             <?php echo $this->escape($article['subject']); ?>
                         </a>
                     </div>
@@ -52,7 +54,7 @@
                 <?php if ($index % 5 == 0) { ?>
                     <li class="dashed"></li>
                 <?php } ?>
-            <?php } ?>   
+            <?php } ?>
         </ul>
         <div style="text-align: center">
             <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>

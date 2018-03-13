@@ -9,9 +9,9 @@
 
 namespace Module\Widget\Controller\Admin;
 
+use Module\Widget\Form\AbstractBaseForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\Widget\Form\AbstractBaseForm;
 
 /**
  * For static block
@@ -32,9 +32,9 @@ abstract class WidgetController extends ActionController
      */
     public function indexAction()
     {
-        $data = array(
-            'widgets' => $this->widgetList()
-        );
+        $data = [
+            'widgets' => $this->widgetList(),
+        ];
         $this->view()->assign('data', $data);
         $this->view()->setTemplate('ng');
     }
@@ -49,10 +49,10 @@ abstract class WidgetController extends ActionController
         $form = null;
         if ($this->formClass) {
             $formClass = 'Module\Widget\Form\\' . $this->formClass;
-            $form = new $formClass('block', $this->type);
+            $form      = new $formClass('block', $this->type);
         }
 
-        return$form ;
+        return $form;
     }
 
     /**
@@ -64,8 +64,8 @@ abstract class WidgetController extends ActionController
      */
     protected function add(array $block)
     {
-        $status = 0;
-        $module = $this->getModule();
+        $status          = 0;
+        $module          = $this->getModule();
         $block['module'] = $module;
 
         if (empty($block['type'])) {
@@ -83,7 +83,7 @@ abstract class WidgetController extends ActionController
     /**
      * Update a widget and affiliated blocks
      *
-     * @param int   $id
+     * @param int $id
      * @param array $block
      *
      * @return bool
@@ -107,7 +107,7 @@ abstract class WidgetController extends ActionController
     /**
      * Update a widget
      *
-     * @param int   $id
+     * @param int $id
      * @param array $block
      *
      * @return int
@@ -115,7 +115,7 @@ abstract class WidgetController extends ActionController
     protected function updateWidget($id, array $block)
     {
         $result = 0;
-        $row = $this->getModel('widget')->find($id);
+        $row    = $this->getModel('widget')->find($id);
         if (!$row) {
             return $result;
         }
@@ -124,7 +124,7 @@ abstract class WidgetController extends ActionController
             ? $block['meta']
             : $block['content'];
         $row->time = time();
-        $result = $row->save() ? $row->block : 0;
+        $result    = $row->save() ? $row->block : 0;
 
         return $result;
     }
@@ -145,13 +145,13 @@ abstract class WidgetController extends ActionController
     /**
      * Delete a widget and affiliated blocks
      *
-     * @param int   $id
+     * @param int $id
      *
      * @return bool
      */
     protected function delete($id)
     {
-        $status = false;
+        $status  = false;
         $blockId = $this->deleteWidget($id);
         if (!$blockId) {
             return $status;
@@ -172,7 +172,7 @@ abstract class WidgetController extends ActionController
     protected function deleteWidget($id)
     {
         $result = 0;
-        $row = $this->getModel('widget')->find($id);
+        $row    = $this->getModel('widget')->find($id);
         if (!$row) {
             return $result;
         }
@@ -203,7 +203,7 @@ abstract class WidgetController extends ActionController
     protected function processPost(AbstractBaseForm $form)
     {
         $status = 0;
-        $data = $this->getRequest()->getPost();
+        $data   = $this->getRequest()->getPost();
 
         $form->setData($data);
         if ($form->isValid()) {
@@ -224,7 +224,7 @@ abstract class WidgetController extends ActionController
                 $values['type'] = !empty($values['type'])
                     ? $values['type']
                     : $this->type;
-                $status = $this->add($values);
+                $status         = $this->add($values);
             }
 
             if (!$status) {
@@ -245,38 +245,38 @@ abstract class WidgetController extends ActionController
     protected function widgetList($widgets = null)
     {
         if (null === $widgets) {
-            $model = $this->getModel('widget');
-            $rowset = $model->select(array('type' => $this->type));
-            $widgets = array();
+            $model   = $this->getModel('widget');
+            $rowset  = $model->select(['type' => $this->type]);
+            $widgets = [];
             foreach ($rowset as $row) {
                 $widgets[$row->block] = $row->toArray();
             }
         }
-        $list = array();
+        $list = [];
         if ($widgets) {
             $blocks = Pi::model('block_root')->select(
-                array('id' => array_keys($widgets))
+                ['id' => array_keys($widgets)]
             )->toArray();
             foreach ($blocks as $block) {
-                $item = $widgets[$block['id']];
+                $item          = $widgets[$block['id']];
                 $item['block'] = $block;
-                $list[] = $item;
+                $list[]        = $item;
             }
         }
         array_walk($list, function (&$item) {
-            $item['editUrl'] = $this->url('', array(
-                'action'     => 'edit',
-                'id'         => $item['id']
-            ));
-            $item['editConfigUrl'] = $this->url('', array(
+            $item['editUrl']       = $this->url('', [
+                'action' => 'edit',
+                'id'     => $item['id'],
+            ]);
+            $item['editConfigUrl'] = $this->url('', [
                 'module'     => 'system',
                 'controller' => 'block',
                 'name'       => 'widget',
-            ));
-            $item['deleteUrl'] = $this->url('', array(
-                'action'     => 'delete',
-                'id'         => $item['id']
-            ));
+            ]);
+            $item['deleteUrl']     = $this->url('', [
+                'action' => 'delete',
+                'id'     => $item['id'],
+            ]);
         });
 
         return $list;
@@ -293,7 +293,7 @@ abstract class WidgetController extends ActionController
             if ($status > 0) {
                 $message = _a('Block data saved successfully.');
                 $this->jump(
-                    array('action' => 'index', 'name' => ''),
+                    ['action' => 'index', 'name' => ''],
                     $message
                 );
 
@@ -302,7 +302,7 @@ abstract class WidgetController extends ActionController
                 $message = _a('Block data not saved.');
             } else {
                 $formMessage = $form->getMessage();
-                $message = $formMessage
+                $message     = $formMessage
                     ?: _a('Invalid data, please check and re-submit.');
             }
             $content = $this->request->getPost('content');
@@ -331,7 +331,7 @@ abstract class WidgetController extends ActionController
             if ($status > 0) {
                 $message = _a('Block data saved successfully.');
                 $this->jump(
-                    array('action' => 'index', 'name' => ''),
+                    ['action' => 'index', 'name' => ''],
                     $message
                 );
 
@@ -343,14 +343,14 @@ abstract class WidgetController extends ActionController
             }
             $content = $this->request->getPost('content');
         } else {
-            $id = $this->params('id');
-            $row = $this->getModel('widget')->find($id);
+            $id      = $this->params('id');
+            $row     = $this->getModel('widget')->find($id);
             $content = $this->prepareContent($row->meta);
 
-            $blockRow = Pi::model('block_root')->find($row->block);
-            $values = $this->prepareFormValues($blockRow);
+            $blockRow          = Pi::model('block_root')->find($row->block);
+            $values            = $this->prepareFormValues($blockRow);
             $values['content'] = $content;
-            $values['id'] = $id;
+            $values['id']      = $id;
             $form->setData($values);
             $message = '';
         }
@@ -369,16 +369,16 @@ abstract class WidgetController extends ActionController
      */
     public function deleteAction()
     {
-        $id = $this->params('id');
+        $id     = $this->params('id');
         $result = $this->delete($id);
         if ($result) {
             $message = _a('The widget is removed.');
             //Pi::registry('block')->clear($this->getModule());
         } else {
-            $message =  _a('The widget is not removed.');
+            $message = _a('The widget is not removed.');
         }
 
-        $this->jump(array('action' => 'index'), $message);
+        $this->jump(['action' => 'index'], $message);
     }
 
     /**

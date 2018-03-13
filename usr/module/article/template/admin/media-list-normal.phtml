@@ -10,216 +10,219 @@
         </div>
     </div>
     <div class="normal-list" style="max-width: 100%">
-        <?php 
-            $i = 0;
-            $j = 0;
-            foreach ($medias as $media) { 
-                if ($i++ % 6 == 0) {
-        ?>
-        <div class="list-one-line">
         <?php
-                }
-        ?>
+        $i = 0;
+        $j = 0;
+        foreach ($medias as $media) {
+            if ($i++ % 6 == 0) {
+                ?>
+                <div class="list-one-line">
+                <?php
+            }
+            ?>
             <div class="col-md-2 one-item">
                 <div class="list-item" data-id="<?php echo $this->escape($media['id']); ?>">
                     <input type="checkbox" value="<?php echo $this->escape($media['id']); ?>" class="check-one hide">
                     <span type="button" class="close item-delete hide">&times;</span>
-                    <img alt="" src="<?php echo Pi::url($media['url']); ?>" style="vertical-align: bottom; width: 100%; max-height: 100%; margin-bottom: 2px">
+                    <img alt="" src="<?php echo Pi::url($media['url']); ?>"
+                         style="vertical-align: bottom; width: 100%; max-height: 100%; margin-bottom: 2px">
                     <div class="list-operation hide"></div>
-                    <button class="btn btn-small hide" data-url="<?php echo $this->url('', array('action' => 'edit', 'id' => $media['id'])); ?>"><?php echo _a('Edit'); ?></button>
-                    <a class="item-detail hide" target="_blank" href="<?php echo $this->url('', array('action' => 'detail', 'id' => $media['id'])); ?>">
+                    <button class="btn btn-small hide"
+                            data-url="<?php echo $this->url('', ['action' => 'edit', 'id' => $media['id']]); ?>"><?php echo _a('Edit'); ?></button>
+                    <a class="item-detail hide" target="_blank"
+                       href="<?php echo $this->url('', ['action' => 'detail', 'id' => $media['id']]); ?>">
                         <?php echo _a('Full size'); ?>
                     </a>
                 </div>
             </div>
-            <?php if (++$j == 6 or $i == count($medias)) { 
+            <?php if (++$j == 6 or $i == count($medias)) {
                 $j = 0;
-            ?>
-        </div>
+                ?>
+                </div>
             <?php } ?>
         <?php } ?>
     </div>
 </div>
 
 <script>
-(function($){
-    var normalList = {
-        url : "<?php echo $this->url('', array('controller' => 'media', 'action' => '')); ?>" . replace(/list\/$/,""),
-        el  : $(".article-media-normal"),
-        $   : function(selector) {
-            return this.el.find(selector);
-        },
-        init : function() {
-            _.bindAll(this);
-            this.$(".check-all").click(this.checkAll);
-            this.$("div.list-item").mouseover(this.displayDetails);
-            this.$("div.list-item").mouseout(this.hideDetails);
-            this.$(".list-item input").click(this.checkOne);
-            this.$(".remove-checked").click(this.removeChecked);
-            this.$(".item-delete").click(this.removeOne);
-            this.$(".list-item button.btn-small").click(this.edit);
-            this.$(".fa-th-list").click(this.toggleList);
-            this.$(".list-item").click(this.selectOne);
-        },
-        displayElement  : function(el) {
-            el.find('input[type="checkbox"]').removeClass('hide');
-            el.find('.item-delete').removeClass('hide');
-            el.find('.list-operation').removeClass('hide');
-            el.find('button.btn-small').removeClass('hide');
-            el.find('.item-detail').removeClass('hide');
+    (function ($) {
+        var normalList = {
+            url: "<?php echo $this->url('', ['controller' => 'media', 'action' => '']); ?>".replace(/list\/$/, ""),
+            el: $(".article-media-normal"),
+            $: function (selector) {
+                return this.el.find(selector);
+            },
+            init: function () {
+                _.bindAll(this);
+                this.$(".check-all").click(this.checkAll);
+                this.$("div.list-item").mouseover(this.displayDetails);
+                this.$("div.list-item").mouseout(this.hideDetails);
+                this.$(".list-item input").click(this.checkOne);
+                this.$(".remove-checked").click(this.removeChecked);
+                this.$(".item-delete").click(this.removeOne);
+                this.$(".list-item button.btn-small").click(this.edit);
+                this.$(".fa-th-list").click(this.toggleList);
+                this.$(".list-item").click(this.selectOne);
+            },
+            displayElement: function (el) {
+                el.find('input[type="checkbox"]').removeClass('hide');
+                el.find('.item-delete').removeClass('hide');
+                el.find('.list-operation').removeClass('hide');
+                el.find('button.btn-small').removeClass('hide');
+                el.find('.item-detail').removeClass('hide');
 
-            el.find('.list-item').css('border', 'solid 1px #0082be');
-        },
-        hideElement     : function(el) {
-            el.find('input[type="checkbox"]').addClass('hide');
-            el.find('.item-delete').addClass('hide');
-            el.find('.list-operation').addClass('hide');
-            el.find('button.btn-small').addClass('hide');
-            el.find('.item-detail').addClass('hide');
+                el.find('.list-item').css('border', 'solid 1px #0082be');
+            },
+            hideElement: function (el) {
+                el.find('input[type="checkbox"]').addClass('hide');
+                el.find('.item-delete').addClass('hide');
+                el.find('.list-operation').addClass('hide');
+                el.find('button.btn-small').addClass('hide');
+                el.find('.item-detail').addClass('hide');
 
-            el.find('.list-item').css({
-                'background-color'  : '#fff',
-                'border'            : 'solid 1px #fff'
-            });
-        },
-        toggleList      : function() {
-            $("table").removeClass('hide');
-            $(".default-header").removeClass('hide');
-            $(".article-media-normal").addClass('hide');
-            $(".icon-th-large").attr("disabled", "disabled");
-            $(".icon-th-list").removeAttr("disabled");
-            
-            // Change action url of search form
-            var url = '';
-            url = $("form").attr('action');
-            url = url.replace('style/normal', 'style/default');
-            $("form").attr('action', url);
-            
-            // Change url of paginator
-            $('.pagination').find('a').each(function() {
-                url = $(this).attr("href");
+                el.find('.list-item').css({
+                    'background-color': '#fff',
+                    'border': 'solid 1px #fff'
+                });
+            },
+            toggleList: function () {
+                $("table").removeClass('hide');
+                $(".default-header").removeClass('hide');
+                $(".article-media-normal").addClass('hide');
+                $(".icon-th-large").attr("disabled", "disabled");
+                $(".icon-th-list").removeAttr("disabled");
+
+                // Change action url of search form
+                var url = '';
+                url = $("form").attr('action');
                 url = url.replace('style/normal', 'style/default');
-                $(this).attr('href', url);
-            });
-            
-            // Change url of section
-            url = $('.search-type').attr('data-url');
-            url = url.replace('style/normal', 'style/default');
-            $(".search-type").attr('data-url', url);
-        },
-        displayDetails  : function(e) {
-            var el = $(e.target).parents('.one-item');
-            if (!el.find('input[type="checkbox"]').prop("checked")) {
-                this.displayElement(el);
-                this.toggleBackground(el);
-            }
-        },
-        hideDetails     : function(e) {
-            var el = $(e.target).parents('.one-item');
-            if (!el.find('input[type="checkbox"]').prop("checked")) {
-                this.hideElement(el);
-            }
-        },
-        checkOne        : function(e) {
-            var obj = $(e.target);
-            this.toggleBackground(obj.parents('.one-item'));
-            
-            // Check the same item in default style
-            var id = obj.val();
-            var el = $('table').find('input[value="' + id + '"]'),
-                tr = el.parents("tr:first");
-            el.prop("checked", obj.prop("checked"));
-            if (el.prop("checked")) {
-                tr.addClass("info");
-            } else {
-                tr.removeClass("info");
-            }
-        },
-        selectOne       : function(e) {
-            var obj = $(e.target);
-            if (obj.is('input')
-                || obj.is('i')
-                || obj.is('button')
-                || obj.is('a')
-            ) {
-                return ;
-            }
-            
-            obj = obj.parents('.one-item').find('input[type="checkbox"]');
-            var status = obj.prop("checked");
-            obj.prop("checked", status ? false : true);
-            this.toggleBackground(obj.parents('.one-item'));
-            
-            // Check the same item in default style
-            var id = obj.val();
-            var el = $('table').find('input[value="' + id + '"]'),
-                tr = el.parents("tr:first");
-            el.prop("checked", obj.prop("checked"));
-            if (el.prop("checked")) {
-                tr.addClass("info");
-            } else {
-                tr.removeClass("info");
-            }
-        },
-        toggleBackground    : function(el) {
-            if (el.find('input[type="checkbox"]').prop("checked")) {
-                el.find('.list-item').css('background-color', '#c0eaff');
-            } else {
-                el.find('.list-item').css('background-color', '#e8f6ff');
-            }
-        },
-        checkAll        : function(e) {
-            var flag = $(e.target).prop('checked');
-            var self = this;
-            this.$('.normal-list input[type="checkbox"]').prop("checked", flag).each(function() {
-                var el = $(this).parents(".one-item");
-                if (flag) {
-                    self.displayElement(el);
-                    self.toggleBackground(el);
-                } else {
-                    self.hideElement(el);
+                $("form").attr('action', url);
+
+                // Change url of paginator
+                $('.pagination').find('a').each(function () {
+                    url = $(this).attr("href");
+                    url = url.replace('style/normal', 'style/default');
+                    $(this).attr('href', url);
+                });
+
+                // Change url of section
+                url = $('.search-type').attr('data-url');
+                url = url.replace('style/normal', 'style/default');
+                $(".search-type").attr('data-url', url);
+            },
+            displayDetails: function (e) {
+                var el = $(e.target).parents('.one-item');
+                if (!el.find('input[type="checkbox"]').prop("checked")) {
+                    this.displayElement(el);
+                    this.toggleBackground(el);
                 }
-            });
-            
-            // Check all items in default style
-            $('.default-header').find(".check-all").prop("checked", flag);
-            $('table').find(".check-one").prop("checked", flag).each(function() {
-                var tr = $(this).parents("tr:first");
-                if (flag) {
+            },
+            hideDetails: function (e) {
+                var el = $(e.target).parents('.one-item');
+                if (!el.find('input[type="checkbox"]').prop("checked")) {
+                    this.hideElement(el);
+                }
+            },
+            checkOne: function (e) {
+                var obj = $(e.target);
+                this.toggleBackground(obj.parents('.one-item'));
+
+                // Check the same item in default style
+                var id = obj.val();
+                var el = $('table').find('input[value="' + id + '"]'),
+                    tr = el.parents("tr:first");
+                el.prop("checked", obj.prop("checked"));
+                if (el.prop("checked")) {
                     tr.addClass("info");
                 } else {
                     tr.removeClass("info");
                 }
-            });
-        },
-        removeChecked   : function() {
-            var id = [];
-            var count = 0;
-            this.$(".check-one:checked").each(function() {
-                id.push($(this).val());
-                count++;
-            });
-            if (count) {
-                if (confirm("<?php echo _a('Are you sure want to delete selected images?'); ?>")) {
-                    location.href = this.url + "delete?id=" + id.join(",") + "&from=" + this.encodeUrl();
+            },
+            selectOne: function (e) {
+                var obj = $(e.target);
+                if (obj.is('input')
+                    || obj.is('i')
+                    || obj.is('button')
+                    || obj.is('a')
+                ) {
+                    return;
                 }
+
+                obj = obj.parents('.one-item').find('input[type="checkbox"]');
+                var status = obj.prop("checked");
+                obj.prop("checked", status ? false : true);
+                this.toggleBackground(obj.parents('.one-item'));
+
+                // Check the same item in default style
+                var id = obj.val();
+                var el = $('table').find('input[value="' + id + '"]'),
+                    tr = el.parents("tr:first");
+                el.prop("checked", obj.prop("checked"));
+                if (el.prop("checked")) {
+                    tr.addClass("info");
+                } else {
+                    tr.removeClass("info");
+                }
+            },
+            toggleBackground: function (el) {
+                if (el.find('input[type="checkbox"]').prop("checked")) {
+                    el.find('.list-item').css('background-color', '#c0eaff');
+                } else {
+                    el.find('.list-item').css('background-color', '#e8f6ff');
+                }
+            },
+            checkAll: function (e) {
+                var flag = $(e.target).prop('checked');
+                var self = this;
+                this.$('.normal-list input[type="checkbox"]').prop("checked", flag).each(function () {
+                    var el = $(this).parents(".one-item");
+                    if (flag) {
+                        self.displayElement(el);
+                        self.toggleBackground(el);
+                    } else {
+                        self.hideElement(el);
+                    }
+                });
+
+                // Check all items in default style
+                $('.default-header').find(".check-all").prop("checked", flag);
+                $('table').find(".check-one").prop("checked", flag).each(function () {
+                    var tr = $(this).parents("tr:first");
+                    if (flag) {
+                        tr.addClass("info");
+                    } else {
+                        tr.removeClass("info");
+                    }
+                });
+            },
+            removeChecked: function () {
+                var id = [];
+                var count = 0;
+                this.$(".check-one:checked").each(function () {
+                    id.push($(this).val());
+                    count++;
+                });
+                if (count) {
+                    if (confirm("<?php echo _a('Are you sure want to delete selected images?'); ?>")) {
+                        location.href = this.url + "delete?id=" + id.join(",") + "&from=" + this.encodeUrl();
+                    }
+                }
+            },
+            removeOne: function (e) {
+                var el = $(e.target);
+                var id = el.parents(".list-item").data('id');
+                if (confirm("<?php echo _a('Are you sure want to delete this images?'); ?>")) {
+                    location.href = this.url + "delete?id=" + id + "&from=" + this.encodeUrl();
+                }
+            },
+            edit: function (e) {
+                var url = $(e.target).data('url');
+                location.href = url;
+            },
+            encodeUrl: function () {
+                return encodeURIComponent(location.href);
             }
-        },
-        removeOne       : function(e) {
-            var el = $(e.target);
-            var id = el.parents(".list-item").data('id');
-            if (confirm("<?php echo _a('Are you sure want to delete this images?'); ?>")) {
-                location.href = this.url + "delete?id=" + id + "&from=" + this.encodeUrl();
-            }
-        },
-        edit            : function(e) {
-            var url = $(e.target).data('url');
-            location.href = url;
-        },
-        encodeUrl : function() {
-            return encodeURIComponent(location.href);
         }
-    }
-    normalList.init();
-})(jQuery)
+        normalList.init();
+    })(jQuery)
 </script>

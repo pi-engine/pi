@@ -12,9 +12,9 @@ namespace Pi\Mvc\Router\Http;
 use Pi;
 use Pi\Mvc\Router\PriorityList;
 use Pi\Mvc\Router\RoutePluginManager;
+use Zend\Mvc\Router\Http\RouteMatch;
 use Zend\Mvc\Router\Http\TreeRouteStack as ZendTreeRouteStack;
 use Zend\Stdlib\RequestInterface as Request;
-use Zend\Mvc\Router\Http\RouteMatch;
 
 /**
  * Tree RouteStack
@@ -51,7 +51,7 @@ class TreeRouteStack extends ZendTreeRouteStack
      */
     protected function init()
     {
-        $this->routes->setExtraRouteLoader(array($this, 'loadExtraRoutes'));
+        $this->routes->setExtraRouteLoader([$this, 'loadExtraRoutes']);
         $this->routePluginManager->setSubNamespace('Http');
     }
 
@@ -62,11 +62,12 @@ class TreeRouteStack extends ZendTreeRouteStack
     public function match(
         Request $request,
         $pathOffset = null,
-        array $options = array()
-    ) {
+        array $options = []
+    )
+    {
         $routeMatch = parent::match($request, $pathOffset, $options);
         if ($routeMatch) {
-            $module = $routeMatch->getParam('module');
+            $module    = $routeMatch->getParam('module');
             $directory = Pi::service('module')->directory($module);
             if ($directory && $module != $directory) {
                 $name = $routeMatch->getMatchedRouteName();
@@ -87,19 +88,19 @@ class TreeRouteStack extends ZendTreeRouteStack
      * {@inheritDoc}
      * Canonize route name for cloned modules
      */
-    public function assemble(array $params = array(), array $options = array())
+    public function assemble(array $params = [], array $options = [])
     {
         if (!empty($options['name']) && !empty($params['module'])) {
-            $module = $params['module'];
+            $module    = $params['module'];
             $directory = Pi::service('module')->directory($module);
             if ($module != $directory) {
                 $routeList = Pi::registry('route_list')->read($directory);
-                $names = explode('/', $options['name'], 2);
+                $names     = explode('/', $options['name'], 2);
                 if ($routeList && isset($routeList[$names[0]])) {
                     // Prepend module name to route name for cloned modules
                     $options['name'] = $module . '-' . $options['name'];
                 }
-               // d($params);
+                // d($params);
             }
         }
 
@@ -109,17 +110,17 @@ class TreeRouteStack extends ZendTreeRouteStack
     /**
      * Parse by specified route
      *
-     * @param Request   $request
-     * @param string    $name
-     * @param array     $options
+     * @param Request $request
+     * @param string $name
+     * @param array $options
      *
      * @return RouteMatch|null
      */
-    public function parse(Request $request, $name, array $options = array())
+    public function parse(Request $request, $name, array $options = [])
     {
-        $uri            = $request->getUri();
-        $baseUrlLength  = strlen($this->baseUrl) ?: null;
-        $route          = $this->routes->get($name);
+        $uri           = $request->getUri();
+        $baseUrlLength = strlen($this->baseUrl) ?: null;
+        $route         = $this->routes->get($name);
 
         if ($baseUrlLength !== null) {
             $pathLength = strlen($uri->getPath()) - $baseUrlLength;
@@ -151,11 +152,11 @@ class TreeRouteStack extends ZendTreeRouteStack
      *
      * @return void
      */
-    public function loadRoutes(array $options = array())
+    public function loadRoutes(array $options = [])
     {
         $section = !empty($options['section'])
             ? $options['section'] : Pi::engine()->section();
-        $routes = Pi::registry('route')->read($section, $exclude = 0);
+        $routes  = Pi::registry('route')->read($section, $exclude = 0);
         if (!empty($options['routes'])) {
             $routes = array_merge($routes, $options['routes']);
         }
@@ -171,13 +172,13 @@ class TreeRouteStack extends ZendTreeRouteStack
      */
     public function loadExtraRoutes()
     {
-        $extraRoutes = array();
-        $extraConfig = (array) Pi::registry('route')->read(
+        $extraRoutes = [];
+        $extraConfig = (array)Pi::registry('route')->read(
             Pi::engine()->section(),
             true
         );
         foreach ($extraConfig as $key => $options) {
-            $route = $this->routeFromArray($options);
+            $route             = $this->routeFromArray($options);
             $extraRoutes[$key] = $route;
         }
 
@@ -191,7 +192,7 @@ class TreeRouteStack extends ZendTreeRouteStack
      *
      * @return void
      */
-    public function load(array $options = array())
+    public function load(array $options = [])
     {
         $this->loadRoutes($options);
         $this->routes->loadExtraRoutes(true);

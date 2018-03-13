@@ -19,7 +19,8 @@ class Route extends Model
     /**
      * {@inheritDoc}
      */
-    protected $encodeColumns = array(
-        'data'  => true,
-    );
+    protected $encodeColumns
+        = [
+            'data' => true,
+        ];
 }

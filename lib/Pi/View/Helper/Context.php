@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHelper;
 
 /**
@@ -36,7 +35,7 @@ class Context extends AbstractHelper
     /**
      * Set/get context
      *
-     * @param   string|null  $context
+     * @param   string|null $context
      * @return  string|this
      */
     public function __invoke($context = null)

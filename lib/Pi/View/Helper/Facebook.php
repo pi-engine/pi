@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 /**
@@ -33,17 +32,18 @@ class Facebook extends AbstractHtmlElement
      * @param array $config
      * @return  string
      */
-    public function __invoke($config = array())
+    public function __invoke($config = [])
     {
-        $dataSend = isset($config['data-send']) ? $config['data-send'] : false;
-        $dataSend = $dataSend ? 'true' : 'false';
-        $dataWidth = isset($config['data-width'])
+        $dataSend      = isset($config['data-send']) ? $config['data-send'] : false;
+        $dataSend      = $dataSend ? 'true' : 'false';
+        $dataWidth     = isset($config['data-width'])
             ? $config['data-width'] : 120;
         $dataShowFaces = isset($config['data-show-faces'])
             ? $config['data-show-faces'] : false;
         $dataShowFaces = $dataShowFaces ? 'true' : 'false';
 
-        $content = <<<'EOT'
+        $content
+                 = <<<'EOT'
 <div id="fb-root"></div>
 <script>
     (function(d, s, id) {

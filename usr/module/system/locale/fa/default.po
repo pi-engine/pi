@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-09-06 15:24+0430\n"
-"PO-Revision-Date: 2017-09-06 15:24+0430\n"
+"POT-Creation-Date: 2018-01-25 09:03+0330\n"
+"PO-Revision-Date: 2018-01-25 09:05+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -109,11 +109,11 @@ msgid "User login"
 msgstr "ورود کاربر"
 
 #: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:119
-#: template/block/partial/login-register-modal.phtml:52
-#: template/block/partial/login-register-modal.phtml:64
-#: template/block/partial/login-register-modal.phtml:92
-#: template/block/partial/login-register-modal.phtml:93
-#: template/front/login-logout.phtml:13 template/front/register.phtml:6
+#: template/block/partial/login-register-modal.phtml:56
+#: template/block/partial/login-register-modal.phtml:69
+#: template/block/partial/login-register-modal.phtml:100
+#: template/block/partial/login-register-modal.phtml:101
+#: template/front/login-logout.phtml:14 template/front/register.phtml:8
 msgid "Login"
 msgstr "ورود"
 
@@ -142,7 +142,7 @@ msgstr "Invalid credentials provided, please try again."
 msgid "You have logged in successfully."
 msgstr "شما با موفقیت وارد شدید"
 
-#: src/Controller/Front/LoginController.php:244
+#: src/Controller/Front/LoginController.php:255
 msgid "You logged out successfully."
 msgstr "شما با موفقیت خارج شدید"
 
@@ -160,9 +160,10 @@ msgstr ""
 #: src/Controller/Front/PasswordController.php:127
 #: src/Controller/Front/PasswordController.php:128
 #: src/Form/FindPasswordForm.php:49
-#: template/block/partial/login-register-modal.phtml:67
+#: template/block/partial/login-register-modal.phtml:72
+#: template/block/partial/login-register-modal.phtml:73
 #: template/front/login.phtml:17 template/front/password-find.phtml:2
-#: template/front/register.phtml:5
+#: template/front/register.phtml:6
 msgid "Find password"
 msgstr "یافتن کلمه عبور"
 
@@ -222,11 +223,11 @@ msgstr "ایجاد حساب کاربری"
 
 #: src/Controller/Front/RegisterController.php:52
 #: src/Controller/Front/RegisterController.php:113
-#: template/block/partial/login-register-modal.phtml:53
-#: template/block/partial/login-register-modal.phtml:72
-#: template/block/partial/login-register-modal.phtml:73
-#: template/block/partial/login-register-modal.phtml:86
-#: template/front/login-logout.phtml:14 template/front/login.phtml:20
+#: template/block/partial/login-register-modal.phtml:58
+#: template/block/partial/login-register-modal.phtml:79
+#: template/block/partial/login-register-modal.phtml:80
+#: template/block/partial/login-register-modal.phtml:93
+#: template/front/login-logout.phtml:16 template/front/login.phtml:20
 msgid "Register"
 msgstr "ثبت نام"
 
@@ -247,36 +248,36 @@ msgstr "نام سایت"
 msgid "Greetings in raw body %d"
 msgstr "Greetings in raw body %d"
 
-#: src/Controller/Module/IndexController.php:30
+#: src/Controller/Module/IndexController.php:29
 msgid "Admin area"
 msgstr "بخش مدیریت"
 
-#: src/Form/AccountForm.php:47 src/Form/MemberForm.php:59
+#: src/Form/AccountForm.php:46 src/Form/MemberForm.php:59
 #: src/Form/RegisterForm.php:32
 msgid "User account"
 msgstr "حساب کاربری"
 
-#: src/Form/AccountForm.php:58 src/Form/MemberForm.php:70
+#: src/Form/AccountForm.php:57 src/Form/MemberForm.php:70
 #: src/Form/RegisterForm.php:43
 msgid "Display name"
 msgstr "نام نمایشی"
 
-#: src/Form/AccountForm.php:69
+#: src/Form/AccountForm.php:68
 msgid "Birthdate"
 msgstr "تاریخ تولد"
 
-#: src/Form/AccountForm.php:93 src/Form/BlockModuleForm.php:259
-#: src/Form/ConfigForm.php:58 src/Form/MemberForm.php:157
-#: src/Form/ModuleForm.php:58 src/Form/NavForm.php:67
-#: src/Form/NavPageForm.php:131 src/Form/PageAddForm.php:93
-#: src/Form/PageEditForm.php:68 src/Form/RegisterForm.php:108
-#: src/Form/ResetPasswordForm.php:73 src/Form/RoleForm.php:115
-#: template/admin/cache-list.phtml:49
+#: src/Form/AccountForm.php:92 src/Form/BlockModuleForm.php:259
+#: src/Form/ConfigForm.php:56 src/Form/MemberForm.php:157
+#: src/Form/ModuleForm.php:57 src/Form/NavForm.php:66
+#: src/Form/NavPageForm.php:130 src/Form/PageAddForm.php:92
+#: src/Form/PageEditForm.php:67 src/Form/RegisterForm.php:108
+#: src/Form/ResetPasswordForm.php:72 src/Form/RoleForm.php:115
+#: template/admin/cache-list.phtml:50
 msgid "Submit"
 msgstr "ارسال"
 
-#: src/Form/BlockModuleForm.php:66 src/Form/ModuleForm.php:40
-#: src/Form/NavForm.php:40 src/Form/PageAddForm.php:45 src/Form/RoleForm.php:54
+#: src/Form/BlockModuleForm.php:66 src/Form/ModuleForm.php:39
+#: src/Form/NavForm.php:39 src/Form/PageAddForm.php:44 src/Form/RoleForm.php:54
 msgid "Title"
 msgstr "عنوان"
 
@@ -300,8 +301,8 @@ msgstr "بنده تمام اندازه"
 msgid "Display block body in full-size w/o padding."
 msgstr "نمایش بنده بلاک در اندازه کامل بدون پدینگ"
 
-#: src/Form/BlockModuleForm.php:99 src/Form/ModuleForm.php:30
-#: src/Form/NavForm.php:30
+#: src/Form/BlockModuleForm.php:99 src/Form/ModuleForm.php:29
+#: src/Form/NavForm.php:29
 msgid "Unique name"
 msgstr "شناسه یکتا"
 
@@ -347,7 +348,7 @@ msgstr "نام کلاس سی اس اس مخصوص این بلاک"
 msgid "Configs"
 msgstr "تنظیمات"
 
-#: src/Form/Element/Controller.php:53 src/Form/NavPageForm.php:78
+#: src/Form/Element/Controller.php:54 src/Form/NavPageForm.php:77
 msgid "None"
 msgstr "هیچ"
 
@@ -359,12 +360,12 @@ msgstr "وضعیت ورود را به یاد داشته باش"
 msgid "Email address"
 msgstr "آدرس ایمیل"
 
-#: src/Form/MemberForm.php:93 src/Form/ResetPasswordForm.php:42
+#: src/Form/MemberForm.php:93 src/Form/ResetPasswordForm.php:41
 msgid "New password"
 msgstr "کلمه عبور جدید"
 
 #: src/Form/MemberForm.php:101 src/Form/RegisterForm.php:76
-#: src/Form/ResetPasswordForm.php:52
+#: src/Form/ResetPasswordForm.php:51
 msgid "Confirm password"
 msgstr "تایید کلمه عبور"
 
@@ -380,71 +381,71 @@ msgstr "مدیریت نقش"
 msgid "Active"
 msgstr "فعال"
 
-#: src/Form/NavPageForm.php:30
+#: src/Form/NavPageForm.php:29
 msgid "Label"
 msgstr "عنوان"
 
-#: src/Form/NavPageForm.php:37
+#: src/Form/NavPageForm.php:36
 msgid "Route"
 msgstr "روتر"
 
-#: src/Form/NavPageForm.php:40
+#: src/Form/NavPageForm.php:39
 msgid "Route to assemble URI."
 msgstr "روتر برای ایجاد آدرس"
 
-#: src/Form/NavPageForm.php:47
+#: src/Form/NavPageForm.php:46
 msgid "Module"
 msgstr "ماژول"
 
-#: src/Form/NavPageForm.php:54 src/Form/PageAddForm.php:63
+#: src/Form/NavPageForm.php:53 src/Form/PageAddForm.php:62
 msgid "Controller"
 msgstr "کنترولر"
 
-#: src/Form/NavPageForm.php:61 src/Form/PageAddForm.php:72
+#: src/Form/NavPageForm.php:60 src/Form/PageAddForm.php:71
 msgid "Action"
 msgstr "اکشن"
 
-#: src/Form/NavPageForm.php:68
+#: src/Form/NavPageForm.php:67
 msgid "URI"
 msgstr "آدرس"
 
-#: src/Form/NavPageForm.php:76
+#: src/Form/NavPageForm.php:75
 msgid "Open target"
 msgstr "حالت باز شدن"
 
-#: src/Form/NavPageForm.php:79
+#: src/Form/NavPageForm.php:78
 msgid "Current window"
 msgstr "در همان صفحه"
 
-#: src/Form/NavPageForm.php:80
+#: src/Form/NavPageForm.php:79
 msgid "Open a new window"
 msgstr "در صفحه جدید"
 
-#: src/Form/NavPageForm.php:88
+#: src/Form/NavPageForm.php:87
 msgid "Permission resource"
 msgstr "منبع دسترسی"
 
-#: src/Form/NavPageForm.php:92
+#: src/Form/NavPageForm.php:91
 msgid "The resource identity for permission check."
 msgstr "هویت منبع دسترسی برای بررسی"
 
-#: src/Form/NavPageForm.php:100
+#: src/Form/NavPageForm.php:99
 msgid "Display"
 msgstr "نمایش"
 
-#: src/Form/NavPageForm.php:103
+#: src/Form/NavPageForm.php:102
 msgid "To display in menu."
 msgstr "برای نمایش در منو"
 
-#: src/Form/PageEditForm.php:31
+#: src/Form/PageEditForm.php:30
 msgid "Cache type"
 msgstr "نوع کَش"
 
-#: src/Form/PageEditForm.php:35
+#: src/Form/PageEditForm.php:34
 msgid "Page wide"
 msgstr "تمام صفحه"
 
-#: src/Form/PageEditForm.php:36
+#: src/Form/PageEditForm.php:35
 msgid "Action data"
 msgstr "داده های اکشن"
 
@@ -484,7 +485,7 @@ msgstr "طرح بندی بلاک"
 msgid "Setup page"
 msgstr "نصب صفحه"
 
-#: src/Validator/ActionAvailable.php:31
+#: src/Validator/ActionAvailable.php:30
 msgid "The action is not available."
 msgstr "این اکشن در دسترس نیست"
 
@@ -492,15 +493,15 @@ msgstr "این اکشن در دسترس نیست"
 msgid "Block name already exists"
 msgstr "این نام برای بلاک قبلا گرفته شده است"
 
-#: src/Validator/ControllerAvailable.php:31
+#: src/Validator/ControllerAvailable.php:30
 msgid "The controller is not available."
 msgstr "این کنترولر در دسترس نیست"
 
-#: src/Validator/ModuleName.php:47
+#: src/Validator/ModuleName.php:48
 msgid "Module name is reserved"
 msgstr "نام ماژول دریافت شد"
 
-#: src/Validator/ModuleName.php:48
+#: src/Validator/ModuleName.php:49
 msgid "Module name is already taken"
 msgstr "این نام ماژول قبلا گرفته شده است"
 
@@ -528,53 +529,59 @@ msgstr "کلمه عبور بیشتر از مقدار حداکثر %max% کارک
 msgid "Role name is already taken"
 msgstr "این نام برای نقش قبلا گرفته شده است"
 
-#: src/Validator/UserEmail.php:48
+#: src/Validator/UserEmail.php:49
 msgid "User email is reserved"
 msgstr "ایمیل کاربر دریافت شد"
 
-#: src/Validator/UserEmail.php:49
+#: src/Validator/UserEmail.php:50
 msgid "User email is already used"
 msgstr "این ایمیل برای کاربر قبلا گرفته شده است"
 
-#: src/Validator/Username.php:80
+#: src/Validator/Username.php:83
 msgid "Invalid username: %formatHint%"
 msgstr "نام کاربری غیر معتبر : %formatHint%"
 
-#: src/Validator/Username.php:81
+#: src/Validator/Username.php:84
 msgid "Username is reserved"
 msgstr "نام کاربری دریافت شد"
 
-#: src/Validator/Username.php:82
+#: src/Validator/Username.php:85
 msgid "Username is already taken"
 msgstr "این نام کاربری قبلا گرفته شده است"
 
-#: src/Validator/Username.php:86
+#: src/Validator/Username.php:89
 msgid "Only alphabetic and digits are allowed"
 msgstr "فقط حروف الفبا یا اعداد انگلیسی مجاز است"
 
-#: src/Validator/Username.php:87
+#: src/Validator/Username.php:90
 msgid "Only alphabetic, digits and spaces are allowed"
 msgstr "فقط حروف الفبا یا اعداد انگلیسی و اسپیس مجاز است"
 
-#: src/Validator/Username.php:88
+#: src/Validator/Username.php:91
 msgid "Only ASCII characters are allowed"
 msgstr "فقط کاراکترهای ASCII مجاز است"
 
-#: src/Validator/Username.php:89
+#: src/Validator/Username.php:92
 msgid "Only ASCII characters and spaces are allowed"
 msgstr "فقط کاراکترهای ASCII و اسپیس مجاز است"
 
-#: src/Validator/Username.php:90
+#: src/Validator/Username.php:93
 msgid "Only multi-byte characters are allowed"
 msgstr "فقط کاراکترهای مالتی بایت مجاز است"
 
-#: src/Validator/Username.php:91
+#: src/Validator/Username.php:94
 msgid "Only multi-byte characters and spaces are allowed"
 msgstr "فقط کاراکترهای مالتی بایت و اسپیس مجاز است"
 
-#: template/admin/cache-list.phtml:50
+#: template/admin/cache-list.phtml:51
 msgid "Cancel"
 msgstr "لغو"
+
+#: template/admin/database-check.phtml:10
+#: template/admin/database-index.phtml:10
+msgid "You can use this page tools for check some database integrity"
+msgstr ""
+"از این ابزار می توان برای بررسی برخی از ویژگی های پایگاه داده ها استفاده کرد"
 
 #: template/admin/theme-customize.phtml:19
 msgid "In process of compiling"
@@ -588,17 +595,25 @@ msgstr "کامپایل"
 msgid "Rebuild"
 msgstr "دوباره سازی"
 
-#: template/admin/theme-index.phtml:35
+#: template/admin/theme-index.phtml:41
 msgid "Customize"
 msgstr "شخصی سازی"
 
-#: template/block/partial/login-register-modal.phtml:70
+#: template/block/partial/login-register-modal.phtml:76
 msgid "Not already registered ?"
 msgstr "تا کنون ثبت نام نکرده اید؟"
 
-#: template/block/partial/login-register-modal.phtml:90
+#: template/block/partial/login-register-modal.phtml:97
 msgid "Already registered ?"
 msgstr "قبلا ثبت نام کرده اید؟"
+
+#: template/block/user-bar.phtml:40
+msgid "Welcome"
+msgstr "خوش آمدید"
+
+#: template/block/user-bar.phtml:114 template/block/user-bar.phtml:117
+msgid "My offer"
+msgstr "پیشنهاد های من"
 
 #: template/front/login-disabled.phtml:5
 msgid "Sorry, login is temporarily disabled. Please come back later."

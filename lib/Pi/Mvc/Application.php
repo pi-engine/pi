@@ -42,7 +42,7 @@ class Application extends ZendApplication
      * @param string[] $listeners
      * @return $this
      */
-    public function setListeners(array $listeners = array())
+    public function setListeners(array $listeners = [])
     {
         if ($listeners) {
             $this->defaultListeners = array_merge(
@@ -60,12 +60,12 @@ class Application extends ZendApplication
      * @param array $configuration
      * @return $this
      */
-    public static function load($configuration = array())
+    public static function load($configuration = [])
     {
-        $smConfig = isset($configuration['service_manager'])
-            ? $configuration['service_manager'] : array();
-        $listeners = isset($configuration['listeners'])
-            ? $configuration['listeners'] : array();
+        $smConfig       = isset($configuration['service_manager'])
+            ? $configuration['service_manager'] : [];
+        $listeners      = isset($configuration['listeners'])
+            ? $configuration['listeners'] : [];
         $serviceManager = new ServiceManager(
             new Service\ServiceManagerConfig($smConfig)
         );

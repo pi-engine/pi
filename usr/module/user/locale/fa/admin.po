@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2017-09-06 15:24+0430\n"
-"PO-Revision-Date: 2017-09-06 15:24+0430\n"
+"POT-Creation-Date: 2018-01-25 09:55+0330\n"
+"PO-Revision-Date: 2018-01-25 11:56+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -26,7 +26,7 @@ msgstr "بیشترین درصد تکمیل برای نمایش بلاک"
 msgid "Hide after complete main fields"
 msgstr "مخفی کردن بلاک بعد از تکمیل فیلد های ضروری"
 
-#: config/config.php:25 config/config.php:208
+#: config/config.php:25 config/config.php:225
 msgid "Login"
 msgstr "ورود"
 
@@ -38,56 +38,64 @@ msgstr "ثبت نام"
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: config/config.php:37 config/user.php:155
+#: config/config.php:37 config/user.php:152
 #: src/Controller/Admin/EditController.php:331
 msgid "Avatar"
 msgstr "آواتار"
 
+#: config/config.php:41
+msgid "OAuth"
+msgstr "ورود با شبکه های اجتماعی"
+
 #: config/config.php:44
+msgid "Cron"
+msgstr "کرون"
+
+#: config/config.php:52
 msgid "List limit"
 msgstr "محدویت فهرست"
 
-#: config/config.php:45
+#: config/config.php:53
 msgid "Number of items on list page."
 msgstr "تعداد موارد در صفحه فهرست"
 
-#: config/config.php:51
+#: config/config.php:59
 msgid "Birthdate format"
 msgstr "شکل تاریخ تولد"
 
-#: config/config.php:52
+#: config/config.php:60
 msgid "Format for birthdate display."
 msgstr "شکل نمایشی تاریخ تولد"
 
-#: config/config.php:57
+#: config/config.php:65
 msgid "Email expiration"
 msgstr "انقضا ایمیل"
 
-#: config/config.php:58
+#: config/config.php:66
 msgid "Expiration time for email/password reset (in hours)."
 msgstr "زمان انقضا برای ایمیل بازیابی کلمه عبور ( به ساعت )"
 
-#: config/config.php:64
+#: config/config.php:72
 msgid "Email confirmation"
 msgstr "تایید ایمیل"
 
-#: config/config.php:65
+#: config/config.php:73
 msgid "Email confirmation with token is required for email change."
 msgstr "تایید ایمیل با توکن برای تغییر ایمیل نیاز است."
 
-#: config/config.php:72
+#: config/config.php:80
 msgid "Profile complete"
 msgstr "تکمیل پروفایل"
 
-#: config/config.php:73
+#: config/config.php:81
 msgid "Require user to complete profile data."
 msgstr "اجبار کاربر به تکمیل حساب کاربری"
 
-#: config/config.php:80
+#: config/config.php:88
 msgid "Enable modal for login / register"
 msgstr "فعال سازی ثبت نام و ورود به صورت پاپ آپ (modal)"
 
-#: config/config.php:81
+#: config/config.php:89
 msgid ""
 "Login / register with modal, with GET redirect (hidden input instead). Modal "
 "template are located into system module, because used by user-bar template"
@@ -95,15 +103,15 @@ msgstr ""
 "ثبت نام و ورود به صورت پاپ آپ (modal) ، به همراه دریافت آدرس صفحه به صورت "
 "مخفی"
 
-#: config/config.php:88
+#: config/config.php:96
 msgid "Head keywords"
 msgstr "کلمات کلیدی متا"
 
-#: config/config.php:89
+#: config/config.php:97
 msgid "Head keywords for SEO."
 msgstr "کلمات کلیدی متا برای سئو"
 
-#: config/config.php:90
+#: config/config.php:98
 msgid ""
 "account,social,tools,privacy,settings,profile,user,login,register,password,"
 "avatar"
@@ -111,172 +119,180 @@ msgstr ""
 "حساب کاربری,شبکه اجتماعی,ابزار,کاربر,ورود,خروج,پسورد,واژه رمز,نشان,آواتار,"
 "حریم خصوصی,پروفایل"
 
-#: config/config.php:94
+#: config/config.php:102
+msgid "Enable shortcuts on dashboard"
+msgstr "فعال کردن میانبر به داشبورد"
+
+#: config/config.php:110
 msgid "Active modules for show on side bar"
 msgstr "ماژول های فعال برای نمایش در نوار کنار"
 
-#: config/config.php:100
+#: config/config.php:116
 msgid "Guide"
 msgstr "مدیریت اماکن"
 
-#: config/config.php:101
+#: config/config.php:117
 msgid "Media"
 msgstr "چند رسانه ای"
 
-#: config/config.php:102
+#: config/config.php:118
 msgid "Shop"
 msgstr "فروشگاه"
 
-#: config/config.php:103
+#: config/config.php:119
 msgid "Order"
 msgstr "سفارش"
 
-#: config/config.php:104
+#: config/config.php:120
 msgid "Message"
 msgstr "پیام"
 
-#: config/config.php:105
+#: config/config.php:121
 msgid "Support"
 msgstr "پشتیبانی"
 
-#: config/config.php:106
+#: config/config.php:122
 msgid "Event"
 msgstr "رویداد"
 
-#: config/config.php:107
+#: config/config.php:123
 msgid "Vote"
 msgstr "رای"
 
-#: config/config.php:108
+#: config/config.php:124
 msgid "Favourite"
 msgstr "علاقه مندی"
 
-#: config/config.php:109
+#: config/config.php:125
 msgid "Guide favourite"
 msgstr "اماکن مورد علاقه"
 
-#: config/config.php:110
+#: config/config.php:126
 msgid "Video"
 msgstr "ویدیو"
 
-#: config/config.php:111
+#: config/config.php:127
 msgid "Audio"
 msgstr "صوت"
 
-#: config/config.php:112
+#: config/config.php:128
 msgid "Gallery"
 msgstr "گالری"
 
-#: config/config.php:113
+#: config/config.php:129
 msgid "Ask"
 msgstr "پرسش و پاسخ"
 
-#: config/config.php:114
+#: config/config.php:130
 msgid "Subscription"
 msgstr "خبرنامه"
 
-#: config/config.php:115
+#: config/config.php:131
 msgid "Ads"
 msgstr "تبلیغات"
 
-#: config/config.php:116
+#: config/config.php:132
 msgid "Notification"
 msgstr "آگاهی رسانی"
 
-#: config/config.php:142
+#: config/config.php:133
+msgid "Comment"
+msgstr "نظر"
+
+#: config/config.php:159
 msgid "Login disable"
 msgstr "غیر فعال سازی ورود کاربر"
 
-#: config/config.php:143
+#: config/config.php:160
 msgid "Disable user login"
 msgstr "غیر فعال سازی ورود کاربر"
 
-#: config/config.php:151
+#: config/config.php:168
 msgid "Login CAPTCHA"
 msgstr "کپچا برای ورود"
 
-#: config/config.php:152
+#: config/config.php:169
 msgid "Enable CAPTCHA for user login"
 msgstr "فعال سازی کپچا برای ورود کاربر"
 
-#: config/config.php:157 config/config.php:248
+#: config/config.php:174 config/config.php:265
 msgid "No captcha"
 msgstr "بدون کپچا"
 
-#: config/config.php:158 config/config.php:249
+#: config/config.php:175 config/config.php:266
 msgid "Standard captcha"
 msgstr "کپچا استاندارد"
 
-#: config/config.php:159 config/config.php:250
+#: config/config.php:176 config/config.php:267
 msgid "New re-captcha"
 msgstr "ریکپچا گوگل"
 
-#: config/config.php:169
+#: config/config.php:186
 msgid "Remember me"
 msgstr "به خاطر بسپار"
 
-#: config/config.php:170
+#: config/config.php:187
 msgid "Days to remember login, 0 for disable."
 msgstr "روز برای یاد آوری ورود. ، صفر برای غیر فعال بودن"
 
-#: config/config.php:177
+#: config/config.php:194
 msgid "Login field"
 msgstr "فیلد ورود"
 
-#: config/config.php:178
+#: config/config.php:195
 msgid "Identity field(s) for authentication."
 msgstr "فیلدها لازم برای شناسایی"
 
-#: config/config.php:186 config/user.php:26 template/admin/inquiry.phtml:17
+#: config/config.php:203 config/user.php:23 template/admin/inquiry.phtml:17
 #: template/admin/maintenance.phtml:30 template/admin/role.phtml:31
 #: template/admin/user.phtml:21 template/admin/user.phtml:43
 #: template/admin/user.phtml:67
 msgid "Username"
 msgstr "نام کاربری"
 
-#: config/config.php:187 config/user.php:60 template/admin/inquiry.phtml:18
+#: config/config.php:204 config/user.php:57 template/admin/inquiry.phtml:18
 #: template/admin/maintenance.phtml:47 template/admin/role.phtml:33
 #: template/admin/user.phtml:44 template/admin/user.phtml:71
 msgid "Email"
 msgstr "ایمیل"
 
-#: config/config.php:197
+#: config/config.php:214
 msgid "Maximum attempts"
 msgstr "بیشترین تلاش"
 
-#: config/config.php:198
+#: config/config.php:215
 msgid "Maximum attempts allowed to try for user login"
 msgstr "بیشترین تعداد دفعات تلاش برای ورود کاربر به سایت"
 
-#: config/config.php:205
+#: config/config.php:222
 msgid "Login modal title"
 msgstr "عنوان ورود پاپ آپ (modal)"
 
-#: config/config.php:206
+#: config/config.php:223
 msgid "Title text for login modal in modal header"
 msgstr "متن عنوان برای تب ورود در حالت پاپ آپ (modal)"
 
-#: config/config.php:214
+#: config/config.php:231
 msgid "Login description"
 msgstr "توضیحات صفحه ورود"
 
-#: config/config.php:215
+#: config/config.php:232
 msgid "Description text for login page side bar, html allowed"
 msgstr "متن توضیحات برای صفحه ورود، استفاده از کد های HTML مجاز است"
 
-#: config/config.php:224
+#: config/config.php:241
 msgid "Register disable"
 msgstr "غیرفعال شدن ثبت نام"
 
-#: config/config.php:225
+#: config/config.php:242
 msgid "Disable user registration"
 msgstr "غیر فعال شدن ثبت نام کاربران"
 
-#: config/config.php:233
+#: config/config.php:250
 msgid "Add newsletter optin when registering"
 msgstr "اضافه کردن گزینه عضویت در خبرنامه در هنگام ثبت نام"
 
-#: config/config.php:234
+#: config/config.php:251
 msgid ""
 "Whatever the value, newletter optin will be always available on User "
 "Account, if Subscription module is installed"
@@ -284,79 +300,79 @@ msgstr ""
 "اگر ماژول خبرنامه نصب شده باشد ، این گزینه هم در فرم ثبت نام هم در صفحه "
 "ویرایش اطلاعات کاربر فعال خواهد بود"
 
-#: config/config.php:242
+#: config/config.php:259
 msgid "Register CAPTCHA"
 msgstr "کپچا برای ثبت نام"
 
-#: config/config.php:243
+#: config/config.php:260
 msgid "Enable CAPTCHA for user registration"
 msgstr "فعال کردن کپچا برای ثبت نام"
 
-#: config/config.php:260 template/admin/inquiry.phtml:19
+#: config/config.php:277 template/admin/inquiry.phtml:19
 msgid "Activation"
 msgstr "فعال سازی"
 
-#: config/config.php:261
+#: config/config.php:278
 msgid "Activation mode for user accounts"
 msgstr "روش فعال سازی حساب کاربر"
 
-#: config/config.php:266
+#: config/config.php:283
 msgid "Automatically activated"
 msgstr "فعال سازی خودکار"
 
-#: config/config.php:267
+#: config/config.php:284
 msgid "Activated by user email"
 msgstr "فعال سازی با ایمیل توسط کاربر"
 
-#: config/config.php:268
+#: config/config.php:285
 msgid "Activated by admin approval"
 msgstr "فعال سازی دستی توسط مدیر"
 
-#: config/config.php:278
+#: config/config.php:295
 msgid "Activation expiration"
 msgstr "انقضا فعال سازی"
 
-#: config/config.php:279
+#: config/config.php:296
 msgid "Expiration time for activation email (in hours)."
 msgstr "زمان انقضا برای ایمیل فعال سازی ( به ساعت )"
 
-#: config/config.php:286
+#: config/config.php:303
 msgid "Email notification"
 msgstr "آگاهی رسانی از طریق ایمیل"
 
-#: config/config.php:287
+#: config/config.php:304
 msgid "Send email notification on register success by admin approval."
 msgstr "ارسال ایمیل آگاهی رسانی برای ثبت نام های موفق با تایید مدیر"
 
-#: config/config.php:295
+#: config/config.php:312
 msgid "Email notification to admin"
 msgstr " آگاهی رسانی به مدیر"
 
-#: config/config.php:296
+#: config/config.php:313
 msgid "Send email notification for new user registration to admin"
 msgstr "ارسال ایمیل آگاهی رسانی به مدیر بعد از ثبت نام کاربر جدید"
 
-#: config/config.php:304
+#: config/config.php:321
 msgid "Register complete"
 msgstr "تکمیل ثبت نام"
 
-#: config/config.php:305
+#: config/config.php:322
 msgid "Require user to complete register data in an extra form."
 msgstr "اجبار کاربران برای تکمیل ثبت نام در فرم دیگر"
 
-#: config/config.php:313
+#: config/config.php:330
 msgid "Register term and conditions"
 msgstr "شرایط و مقررات ثبت نام"
 
-#: config/config.php:314
+#: config/config.php:331
 msgid "Show term and conditions check box to user"
 msgstr "نمایش گزینه تایید شرایط و مقررات ثبت نام توسط کاربر"
 
-#: config/config.php:322
+#: config/config.php:339
 msgid "Term and conditions page url"
 msgstr "آدرس صفحه شرایط و مقررات"
 
-#: config/config.php:323
+#: config/config.php:340
 msgid ""
 "Set term and conditions page url, if empty term and conditions check box not "
 "active"
@@ -364,119 +380,130 @@ msgstr ""
 "درج آدرس صفحه شرایط و مقررات، اگر خالی باشد گزینه شرایط و مقررات نمایش داده "
 "نمی شود"
 
-#: config/config.php:331
+#: config/config.php:348
 msgid "Register modal title"
 msgstr "عنوان ثبت نام پاپ آپ (modal)"
 
-#: config/config.php:332
+#: config/config.php:349
 msgid "Title text for register modal in modal header"
 msgstr "متن عنوان برای تب ثبت نام در حالت پاپ آپ (modal)"
 
-#: config/config.php:334
+#: config/config.php:351
 msgid "Register"
 msgstr "ثبت نام"
 
-#: config/config.php:340
+#: config/config.php:357
 msgid "Register description"
 msgstr "توضیحات ثبت نام"
 
-#: config/config.php:341
+#: config/config.php:358
 msgid "Description text for register page side bar, html allowed"
 msgstr "متن توضیحات برای صفحه ثبت نام، استفاده از کد های HTML مجاز است"
 
-#: config/config.php:350
+#: config/config.php:367
 msgid "Username format"
 msgstr "قالب شناسه‌ی کاربری"
 
-#: config/config.php:351
+#: config/config.php:368
 msgid "Format of username for registration."
 msgstr "قالب شناسه برای ثبت‌نام"
 
-#: config/config.php:356 config/config.php:392
+#: config/config.php:373 config/config.php:409
 msgid "Strict: alphabet or number only"
 msgstr "اسکریپت: حروف الفبا یا اعداد انگلیسی"
 
-#: config/config.php:357 config/config.php:393
+#: config/config.php:374 config/config.php:410
 msgid "Strict: alphabet, number or space only"
 msgstr "اسکریپت: حروف الفبا یا اعداد انگلیسی و اسپیس"
 
-#: config/config.php:358 config/config.php:394
+#: config/config.php:375 config/config.php:411
 msgid "Medium: ASCII characters"
 msgstr "متوسط: کاراکترهای ASCII"
 
-#: config/config.php:359 config/config.php:395
+#: config/config.php:376 config/config.php:412
 msgid "Medium: ASCII characters and spaces"
 msgstr "متوسط: کاراکترهای ASCII و اسپیس"
 
-#: config/config.php:360 config/config.php:396
+#: config/config.php:377 config/config.php:413
 msgid "Loose: multi-byte characters"
 msgstr "راحت: کاراکترهای مالتی بایت"
 
-#: config/config.php:361 config/config.php:397
+#: config/config.php:378 config/config.php:414
 msgid "Loose: multi-byte characters and spaces"
 msgstr "راحت: کاراکترهای مالتی بایت و اسپیس"
 
-#: config/config.php:371
+#: config/config.php:388
 msgid "Minimum username"
 msgstr "کمترین طول نام کاربری"
 
-#: config/config.php:372
+#: config/config.php:389
 msgid "Minimum length of username for user registration"
 msgstr "کمترین طول نام کاربری برای ثبت نام کاربر"
 
-#: config/config.php:379
+#: config/config.php:396
 msgid "Maximum username"
 msgstr "بیشترین طول نام کاربری"
 
-#: config/config.php:380
+#: config/config.php:397
 msgid "Maximum length of username for user registration"
 msgstr "بیشترین طول نام کاربری برای ثبت نام کاربر"
 
-#: config/config.php:386
+#: config/config.php:403
 msgid "Display name format"
 msgstr "قالب نام نمایشی"
 
-#: config/config.php:387
+#: config/config.php:404
 msgid "Format of display name for registration."
 msgstr "قالب نام نمایشی برای ثبت نام"
 
-#: config/config.php:407
+#: config/config.php:424
 msgid "Minimum display name"
 msgstr "کمترین طول نام نمایشی"
 
-#: config/config.php:408
+#: config/config.php:425
 msgid "Minimum length of display name for user registration"
 msgstr "کمترین طول نام نمایشی برای ثبت نام کاربر"
 
-#: config/config.php:415
+#: config/config.php:432
 msgid "Maximum display name"
 msgstr "بیشترین طول نام نمایشی"
 
-#: config/config.php:416
+#: config/config.php:433
 msgid "Maximum length of display name for user registration"
 msgstr "بیشترین طول نام نمایشی برای ثبت نام کاربر"
 
-#: config/config.php:423
+#: config/config.php:440
 msgid "Minimum password"
 msgstr "کمترین طول کلمه عبور"
 
-#: config/config.php:424
+#: config/config.php:441
 msgid "Minimum length of password for user registration"
 msgstr "کمترین طول کلمه عبور برای ثبت نام کاربر"
 
-#: config/config.php:431
+#: config/config.php:448
 msgid "Maximum password"
 msgstr "بیشترین طول کلمه عبور"
 
-#: config/config.php:432
+#: config/config.php:449
 msgid "Maximum length of password for user registration"
 msgstr "بیشترین طول کلمه عبور برای ثبت نام کاربر"
 
-#: config/config.php:439
+#: config/config.php:456
+msgid "Strenghten password"
+msgstr "تقویت کلمه عبور"
+
+#: config/config.php:457
+msgid ""
+"Add some complexity to password filling : min 1 uppercase character, min 1 "
+"lowercase character, min 1 number"
+msgstr ""
+"درج پیچیدگی برای کلمه عبور : حداقل ۱ حرف کوچک، حداقل یک حرف بزرگ> حداقل ۱ عدد"
+
+#: config/config.php:465
 msgid "Username blacklist"
 msgstr "لیست سایه نام کاربری"
 
-#: config/config.php:440
+#: config/config.php:466
 msgid ""
 "Reserved and forbidden username list, separated with `|`, regexp syntax is "
 "allowed."
@@ -484,11 +511,11 @@ msgstr ""
 "فهرست نام های کاربری غیر مجاز، با استفاده از `|` جدا کنید، عبارات با قاعده "
 "مجاز است."
 
-#: config/config.php:447
+#: config/config.php:473
 msgid "Display blacklist"
 msgstr "لیست سیاه نام نمایشی"
 
-#: config/config.php:448
+#: config/config.php:474
 msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
@@ -496,49 +523,109 @@ msgstr ""
 "فهرست نام های نمایشی غیر مجاز، با استفاده از `|` جدا کنید، عبارات با قاعده "
 "مجاز است."
 
-#: config/config.php:455
+#: config/config.php:481
 msgid "Email blacklist"
 msgstr "لیست سیاه ایمیل"
 
-#: config/config.php:456
+#: config/config.php:482
 msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
 msgstr ""
 "فهرست ایمیل ها غیر مجاز، با استفاده از `|` جدا کنید، عبارات با قاعده مجاز "
 "است."
 
-#: config/config.php:465
+#: config/config.php:491
 msgid "Max Avatar Width"
 msgstr "بیشترین عرض آواتار"
 
-#: config/config.php:466
+#: config/config.php:492
 msgid "Allowed image width, 0 for no limit"
 msgstr "عرض تصویر مجار، صفر یعنی بدون محدودیت"
 
-#: config/config.php:473
+#: config/config.php:499
 msgid "Max Avatar Height"
 msgstr "بیشترین ارتفاع آواتار"
 
-#: config/config.php:474
+#: config/config.php:500
 msgid "Allowed image height, 0 for no limit"
 msgstr "ارتفاع تصویر مجار، صفر یعنی بدون محدودیت"
 
-#: config/config.php:481
+#: config/config.php:507
 msgid "Max File Size"
 msgstr "بیشترین حجم فایل"
 
-#: config/config.php:482
+#: config/config.php:508
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 "فایل های آواتار مورد تایید برای بارگذاری ( به کیلوبایت ) ، صفر یعنی بدون "
 "محدودیت"
 
-#: config/config.php:498
+#: config/config.php:524
 msgid "Temporary Path"
 msgstr "مسیر موقت"
 
-#: config/config.php:499
+#: config/config.php:525
 msgid "For temporary storage of avatar"
 msgstr "برای منبع موقت ذخیره سازی آواتار"
+
+#: config/config.php:533
+msgid "oAuth login"
+msgstr "ورود به شبکه های اجتماعی"
+
+#: config/config.php:542
+msgid "Login by google"
+msgstr "ورود با گوگل"
+
+#: config/config.php:551
+msgid "Google client id"
+msgstr "client id گوگل"
+
+#: config/config.php:559
+msgid "Google client secret"
+msgstr "client secret گوگل"
+
+#: config/config.php:567
+msgid "Login by twitter"
+msgstr "ورود با توییتر"
+
+#: config/config.php:576
+msgid "Twitter consumer Key (API Key)"
+msgstr " consumer Key (API Key) توییتر"
+
+#: config/config.php:584
+msgid "Twitter consumer Secret (API Secret)"
+msgstr "consumer Secret (API Secret) توییتر"
+
+#: config/config.php:592
+msgid "Login by facebook"
+msgstr "ورود با فیسبوک"
+
+#: config/config.php:601
+msgid "Facebook app ID"
+msgstr "app ID فیسبوک"
+
+#: config/config.php:609
+msgid "Facebook app Secret"
+msgstr "app Secret فیسبوک"
+
+#: config/config.php:617
+msgid "Login by github"
+msgstr "ورود با گیت هاب"
+
+#: config/config.php:626
+msgid "Github client id"
+msgstr "client id گیت هاب"
+
+#: config/config.php:634
+msgid "Github client secret"
+msgstr "client secret گیت هاب"
+
+#: config/config.php:643
+msgid "Active this module cron system"
+msgstr "فعال کردن سیستم کرون برای ماژول"
+
+#: config/config.php:651
+msgid "Session timeout / in days"
+msgstr "حذف نشست ها در روز"
 
 #: config/module.php:17 config/nav.php:21
 msgid "User"
@@ -677,87 +764,143 @@ msgstr "آواتار"
 msgid "Forms"
 msgstr "فرم ها"
 
-#: config/user.php:43 template/admin/user.phtml:46 template/admin/user.phtml:72
+#: config/user.php:40 template/admin/user.phtml:46 template/admin/user.phtml:72
 msgid "Password"
 msgstr "واژه رمز"
 
-#: config/user.php:84 template/admin/inquiry.phtml:14
+#: config/user.php:81 template/admin/inquiry.phtml:14
 #: template/admin/role.phtml:32 template/admin/user.phtml:22
 msgid "Display name"
 msgstr "نام نمایشی"
 
-#: config/user.php:100
+#: config/user.php:97
 msgid "Gender"
 msgstr "جنسیت"
 
-#: config/user.php:137
+#: config/user.php:134
 msgid "Birthdate"
 msgstr "تاریخ تولد"
 
-#: config/user.php:166 template/admin/maintenance.phtml:50
+#: config/user.php:163 template/admin/maintenance.phtml:50
 #: template/admin/user.phtml:26 template/admin/user.phtml:48
 msgid "Active"
 msgstr "فعال"
 
-#: config/user.php:176 template/admin/maintenance.phtml:31
+#: config/user.php:173 template/admin/maintenance.phtml:31
 #: template/admin/maintenance.phtml:44 template/admin/user.phtml:30
 msgid "Register time"
 msgstr "تاریخ ثبت نام"
 
-#: config/user.php:186
+#: config/user.php:183
 msgid "Activation time"
 msgstr "زمان فعال شدن"
 
-#: config/user.php:196 template/admin/maintenance.phtml:53
+#: config/user.php:193 template/admin/maintenance.phtml:53
 msgid "Disabled time"
 msgstr "زمان غیر فعال شدن"
 
-#: config/user.php:207 template/admin/maintenance.phtml:41
+#: config/user.php:204 template/admin/maintenance.phtml:41
 msgid "Deleted time"
 msgstr "زمان حذف"
 
-#: config/user.php:220
+#: config/user.php:217
 msgid "Level"
 msgstr "سطح"
 
-#: config/user.php:229
+#: config/user.php:226
 msgid "Last modified"
 msgstr "آخرین ویرایش"
 
-#: config/user.php:237
+#: config/user.php:234
 msgid "Personal website"
 msgstr "وب سایت شخصی"
 
-#: config/user.php:245
+#: config/user.php:242
 msgid "Short bio"
 msgstr "بیوگرافی کوتاه"
 
-#: config/user.php:253
+#: config/user.php:250
 msgid "Signature"
 msgstr "امضا"
 
-#: config/user.php:262 template/admin/maintenance.phtml:32
+#: config/user.php:259 template/admin/maintenance.phtml:32
 #: template/admin/user.phtml:78 template/admin/user.phtml:83
 msgid "Register IP"
 msgstr "آی پی زمان ثبت نام"
 
-#: config/user.php:273
+#: config/user.php:268
+msgid "Register source"
+msgstr "منبع ثبت نام"
+
+#: config/user.php:277
+msgid "Identification number"
+msgstr "کد ملی"
+
+#: config/user.php:283
+msgid "First Name"
+msgstr "نام"
+
+#: config/user.php:289
+msgid "Last Name"
+msgstr "نام خانوادگی"
+
+#: config/user.php:294
+msgid "Language"
+msgstr "زبان"
+
+#: config/user.php:301
+msgid "Mobile phone"
+msgstr "شماره موبایل"
+
+#: config/user.php:307
+msgid "Telephone"
+msgstr "تلفن"
+
+#: config/user.php:313
+msgid "Address 1"
+msgstr "آدرس ۱"
+
+#: config/user.php:319
+msgid "Address 2"
+msgstr "آدرس ۲"
+
+#: config/user.php:325
+msgid "Country"
+msgstr "کشور"
+
+#: config/user.php:331
+msgid "State"
+msgstr "استان"
+
+#: config/user.php:337
+msgid "City"
+msgstr "شهر"
+
+#: config/user.php:343
+msgid "Zip code"
+msgstr "کد پستی"
+
+#: config/user.php:348
+msgid "Device token"
+msgstr "دیوایس توکن"
+
+#: config/user.php:355
 msgid "Social tools"
 msgstr "ابزار های اجتماعی"
 
-#: config/user.php:280
+#: config/user.php:362
 msgid "Tool name"
 msgstr "نام ابزار"
 
-#: config/user.php:283
+#: config/user.php:365
 msgid "ID or URL"
 msgstr "آی دی یا آدرس"
 
-#: config/user.php:293
+#: config/user.php:374
 msgid "User action"
 msgstr "فعالیت کاربر"
 
-#: config/user.php:305
+#: config/user.php:386
 msgid "Logout"
 msgstr "خروج"
 
@@ -793,73 +936,73 @@ msgstr "اطلاعات پایه"
 msgid "User was not found."
 msgstr "کاربر یافت نشد"
 
-#: src/Controller/Admin/IndexController.php:177
+#: src/Controller/Admin/IndexController.php:178
 msgid "Add user failed: user already exists."
 msgstr "خطا در اضافه کردن کاربر : این کاربر وجود دارد"
 
-#: src/Controller/Admin/IndexController.php:193
+#: src/Controller/Admin/IndexController.php:194
 msgid "Add user failed: invalid operation."
 msgstr "خطا در اضافه کردن کاربر : عملکرد اشتباه"
 
-#: src/Controller/Admin/IndexController.php:214
+#: src/Controller/Admin/IndexController.php:215
 msgid "Add user successfully"
 msgstr "کاربر با موفقیت اضافه شد"
 
-#: src/Controller/Admin/IndexController.php:325
+#: src/Controller/Admin/IndexController.php:326
 msgid "Enable user failed: invalid uid."
 msgstr "خطا در فعال سازی کاربر : شناسه کاربری اشتباه"
 
-#: src/Controller/Admin/IndexController.php:346
+#: src/Controller/Admin/IndexController.php:347
 #, php-format
 msgid "%d users enabled."
 msgstr "%d کاربر فعال شدند"
 
-#: src/Controller/Admin/IndexController.php:366
+#: src/Controller/Admin/IndexController.php:367
 msgid "Disable user failed: invalid uid."
 msgstr "خطا در غیر فعال سازی کاربر : شناسه کاربری اشتباه"
 
-#: src/Controller/Admin/IndexController.php:387
+#: src/Controller/Admin/IndexController.php:388
 #, php-format
 msgid "%d disable user successfully"
 msgstr "%d کاربر با موفقیت غیر فعال شدند"
 
-#: src/Controller/Admin/IndexController.php:407
+#: src/Controller/Admin/IndexController.php:408
 msgid "Delete user failed: invalid uid"
 msgstr "خطا در حذف کاربر : شناسه کاربری اشتباه"
 
-#: src/Controller/Admin/IndexController.php:436
+#: src/Controller/Admin/IndexController.php:437
 #, php-format
 msgid "%d delete user successfully"
 msgstr "%d کاربر با موفقیت حذف شدند"
 
-#: src/Controller/Admin/IndexController.php:456
-#: src/Controller/Admin/IndexController.php:462
+#: src/Controller/Admin/IndexController.php:457
+#: src/Controller/Admin/IndexController.php:463
 msgid "Activate user failed: invalid uid."
 msgstr "خطا در فعال سازی کاربر : شناسه کاربری اشتباه"
 
-#: src/Controller/Admin/IndexController.php:483
+#: src/Controller/Admin/IndexController.php:484
 #, php-format
 msgid "%d users activated."
 msgstr "%d کاربر فعال شدند"
 
-#: src/Controller/Admin/IndexController.php:508
+#: src/Controller/Admin/IndexController.php:509
 msgid "Role assignment failed: invalid parameters."
 msgstr "خطا در واگذاری نقش : پارامتر های اشتباه"
 
-#: src/Controller/Admin/IndexController.php:514
+#: src/Controller/Admin/IndexController.php:515
 msgid "Role assignment failed: invalid user ids."
 msgstr "خطا در واگذاری نقش : شناسه کاربری اشتباه"
 
-#: src/Controller/Admin/IndexController.php:519
+#: src/Controller/Admin/IndexController.php:520
 msgid "Role assignment failed: invalid operation."
 msgstr "خطا در واگذاری نقش : عملکرد اشتباه"
 
-#: src/Controller/Admin/IndexController.php:529
-#: src/Controller/Admin/IndexController.php:547
+#: src/Controller/Admin/IndexController.php:530
+#: src/Controller/Admin/IndexController.php:548
 msgid "Role assignment failed."
 msgstr "خطا در واگذاری نقش"
 
-#: src/Controller/Admin/IndexController.php:566
+#: src/Controller/Admin/IndexController.php:567
 msgid "Role assignment succeeded."
 msgstr "واگذاری نقش موفقیت آمیز بود"
 
@@ -921,19 +1064,19 @@ msgstr "کاربران دارای نقش %s"
 msgid "Basic profile"
 msgstr "پروفایل پایه"
 
-#: template/admin/edit-user.phtml:3
+#: template/admin/edit-user.phtml:4
 msgid "Edit user: "
 msgstr "ویرایش کاربر :"
 
-#: template/admin/edit-user.phtml:34 template/admin/user.phtml:88
+#: template/admin/edit-user.phtml:39 template/admin/user.phtml:88
 msgid "Replace with default avatar."
 msgstr "جایگزین با آواتار پیش فرض"
 
-#: template/admin/edit-user.phtml:40
+#: template/admin/edit-user.phtml:45
 msgid "This user doesn't have any you can view"
 msgstr "کاربر هیچ اطلاعات برای نمایش به شما ندارد"
 
-#: template/admin/edit-user.phtml:65
+#: template/admin/edit-user.phtml:70
 msgid "Are you sure delete this group?"
 msgstr "آیا اطمینان دارید که میخواهید این گروه را حذف کنید؟"
 

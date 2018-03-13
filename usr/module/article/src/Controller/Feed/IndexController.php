@@ -9,13 +9,13 @@
 
 namespace Module\Article\Controller\Feed;
 
+use Module\Article\Entity;
 use Pi;
 use Pi\Mvc\Controller\FeedController;
-use Module\Article\Entity;
 
 /**
  * Controller for providing RSS
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class IndexController extends FeedController
@@ -25,22 +25,22 @@ class IndexController extends FeedController
      */
     public function indexAction()
     {
-        $page = $this->params('page', 1);
-        $page = $page > 0 ? $page : 1;
-        $limit = $this->params('limit', 100);
-        $limit = $limit > 500 ? 500 : $limit;
+        $page      = $this->params('page', 1);
+        $page      = $page > 0 ? $page : 1;
+        $limit     = $this->params('limit', 100);
+        $limit     = $limit > 500 ? 500 : $limit;
         $timestamp = time();
-        $sitename = Pi::config('sitename');
+        $sitename  = Pi::config('sitename');
 
-        $feed = $this->getDataModel(array(
-            'title'         => sprintf(__('All Articles of %s'), $sitename),
-            'description'   => sprintf(__('All Articles of %s'), $sitename),
-            'copyright'     => $sitename,
-            'date_created'  => $timestamp,
-            'entries'       => array(),
-        ));
+        $feed = $this->getDataModel([
+            'title'        => sprintf(__('All Articles of %s'), $sitename),
+            'description'  => sprintf(__('All Articles of %s'), $sitename),
+            'copyright'    => $sitename,
+            'date_created' => $timestamp,
+            'entries'      => [],
+        ]);
 
-        $columns = array('id', 'subject', 'time_publish', 'category', 'content');
+        $columns = ['id', 'subject', 'time_publish', 'category', 'content'];
 
         $data = Entity::getAvailableArticlePage(
             null,
@@ -52,9 +52,9 @@ class IndexController extends FeedController
         );
 
         foreach ($data as $row) {
-            $entry = array(
+            $entry = [
                 'title'         => $row['subject'],
-                'date_modified' => (int) $row['time_publish'],
+                'date_modified' => (int)$row['time_publish'],
                 'channel'       => $row['channel_title'],
                 'category'      => $row['category_title'] ?: '&nbsp;',
                 /*
@@ -66,7 +66,7 @@ class IndexController extends FeedController
                 */
                 'link'          => Pi::url($row['url'], true),
                 'description'   => $row['content'] ?: '&nbsp;',
-            );
+            ];
 
             $feed->entry = $entry;
         }

@@ -11,8 +11,8 @@
 namespace Pi\View\Helper;
 
 use Pi;
-use Zend\Mvc\Router\RouteStackInterface;
 use Pi\Mvc\Router\RouteMatch;
+use Zend\Mvc\Router\RouteStackInterface;
 use Zend\View\Helper\Url as ZendUrl;
 
 /**
@@ -57,10 +57,11 @@ class Url extends ZendUrl
      */
     public function __invoke(
         $name = null,
-        $params = array(),
-        $options = array(),
+        $params = [],
+        $options = [],
         $reuseMatchedParams = false
-    ) {
+    )
+    {
         if (!func_num_args()) {
             return $this;
         }

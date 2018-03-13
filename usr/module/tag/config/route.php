@@ -12,14 +12,14 @@
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
+return [
     // Tag route
-    'tag'  => array(
-        'name'      => 'tag',
-        'type'      => 'Module\Tag\Route\Tag',
-        'priority'  => 5,
-        'options'   => array(
-            'route'    => '/tag/term',
-        ),
-    ),
-);
+    'tag' => [
+        'name'     => 'tag',
+        'type'     => 'Module\Tag\Route\Tag',
+        'priority' => 5,
+        'options'  => [
+            'route' => '/tag/term',
+        ],
+    ],
+];

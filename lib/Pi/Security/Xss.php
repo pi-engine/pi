@@ -37,9 +37,9 @@ class Xss extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public static function check($options = array())
+    public static function check($options = [])
     {
-        $filter = isset($options['filter'])
+        $filter         = isset($options['filter'])
             ? $options['filter'] : static::$filter;
         static::$length = isset($options['length'])
             ? $options['length'] : static::$length;
@@ -65,13 +65,13 @@ class Xss extends AbstractAdapter
      */
     public static function test()
     {
-        $test = array(
+        $test           = [
             'xxx= "javascript: test',
             'yyy = \'vbscript: test',
             'zzz = "-moz-binding: test',
             'test @import(ssss)',
             '<test style="\'ase soee\' script:  ( seee )" good>',
-        );
+        ];
         static::$length = 1;
         static::checkXssRecursive($test);
     }
@@ -79,8 +79,8 @@ class Xss extends AbstractAdapter
     /**
      * Check XSS recursively
      *
-     * @param string|array  $content    String or associative array
-     * @param bool          $filter     To filter malicious code
+     * @param string|array $content String or associative array
+     * @param bool $filter To filter malicious code
      * @return bool
      */
     public static function checkXssRecursive(&$content, $filter = true)
@@ -99,8 +99,8 @@ class Xss extends AbstractAdapter
     /**
      * Check XSS code
      *
-     * @param string    $content    Text to be checked
-     * @param bool      $filter     Filter malicious code or just return status
+     * @param string $content Text to be checked
+     * @param bool $filter Filter malicious code or just return status
      *
      * @return string|null
      */
@@ -113,7 +113,7 @@ class Xss extends AbstractAdapter
         }
         if ($filter) {
             $xssFilter = new XssSanitizer;
-            $content = $xssFilter->filter($content);
+            $content   = $xssFilter->filter($content);
 
             return $content;
         } else {
@@ -123,8 +123,8 @@ class Xss extends AbstractAdapter
         // Remove NULL bytes
         $content = str_replace("\0", '', $content);
 
-        $patterns = array();
-        $replaces = array();
+        $patterns = [];
+        $replaces = [];
 
         // Convert decimal
         // Disabled temporarily for issue #1144
@@ -135,7 +135,9 @@ class Xss extends AbstractAdapter
         // Convert hex
         //$patterns[] = '/&#x([a-f0-9]+)/mei';
         //$replaces[] = "chr(0x\\1)";
-        $content = preg_replace_callback('/&#x([a-f0-9]+)/mi', function ($matches) { return "chr(0x".$matches[1].")"; }, $content);
+        $content = preg_replace_callback('/&#x([a-f0-9]+)/mi', function ($matches) {
+            return "chr(0x" . $matches[1] . ")";
+        }, $content);
 
         $patterns[] = '/(&#*\w+)[\x00-\x20]+;/U';
         $replaces[] = "\\1;";
@@ -151,10 +153,10 @@ class Xss extends AbstractAdapter
 
         $c = "[\x01-\x20]*";
         // Remove `javascript:`, `vbscript:`, `about:`, `moz-binding` and `xss:` protocol
-        $script = "j{$c}a{$c}v{$c}a{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t";
+        $script     = "j{$c}a{$c}v{$c}a{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t";
         $patterns[] = "/([a-z]*){$c}={$c}([\`\'\"]*){$c}{$script}{$c}:/iU";
         $replaces[] = '\\1=\\2noscript:';
-        $script = "v{$c}b{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t|a{$c}b{$c}o{$c}u{$c}t"
+        $script     = "v{$c}b{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t|a{$c}b{$c}o{$c}u{$c}t"
             . "|x{$c}s{$c}s|-moz-binding";
         $patterns[] = "/([a-z]*){$c}={$c}([\'\"]*){$c}({$script}){$c}:/iU";
         $replaces[] = '\\1=\\2noscript:';

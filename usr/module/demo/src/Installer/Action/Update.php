@@ -18,7 +18,7 @@ class Update extends BasicUpdate
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.post', array($this, 'postUpdate'));
+        $events->attach('install.post', [$this, 'postUpdate']);
         parent::attachDefaultListeners();
 
         return $this;
@@ -27,20 +27,20 @@ class Update extends BasicUpdate
     public function postUpdate(Event $e)
     {
         $model = Pi::model($module = $e->getParam('directory') . '/test');
-        $data = array(
-            'message'   => sprintf(
+        $data  = [
+            'message' => sprintf(
                 __('The module is updated on %s'),
                 date('Y-m-d H:i:s')
             ),
-        );
+        ];
         $model->insert($data);
 
         $this->setResult(
             'post-update',
-            array(
-                'status'    => true,
-                'message'   => sprintf('Called from %s', __METHOD__),
-            )
+            [
+                'status'  => true,
+                'message' => sprintf('Called from %s', __METHOD__),
+            ]
         );
     }
 }
