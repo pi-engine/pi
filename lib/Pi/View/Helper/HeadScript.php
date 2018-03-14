@@ -10,6 +10,7 @@
 
 namespace Pi\View\Helper;
 
+use Pi;
 use Zend\View\Helper\HeadScript as ZendHeadScript;
 
 /**
