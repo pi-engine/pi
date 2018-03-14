@@ -10,6 +10,7 @@
 
 namespace Pi\View\Helper;
 
+use Pi;
 use stdClass;
 use Zend\View\Helper\HeadLink as ZendHeadLink;
 use Zend\View\Helper\Placeholder;

@@ -151,7 +151,7 @@ EOT;
                 $params = array_replace($params, $routeMatch->getParams());
         
         $review = isset($params['review']) ? $params['review'] : false;
-        $options = array(
+        $options = [
             'review' => $review,
             'page'   => isset($params['page']) ? $params['page'] : 1,
 
