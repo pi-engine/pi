@@ -1,15 +1,19 @@
-﻿[comment]Pi Engine - reminder après création de compte[/comment]
+﻿[comment]Demande de feedback utilisateur x jours après inscription[/comment]
 
 [format]html[/format]
 
-[subject]Rappel création de compte[/subject]
+[subject]Nous avons besoin de votre avis ![/subject]
 
 [body]
 <p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
 
-<p style="margin-top: 5px">Merci d'avoir créé votre compte sur le site %site_name%.</p>
-<p>Profitez de vos avantages...</p>
-
+<p style="margin-top: 5px">Vous avez rejoint notre communauté il y a quelques jours. Nous espérons que vous appréciez nos contenus & nos services, et souhaiterions avoir votre feedback à leur sujet.<p>
+<p style="margin-top: 5px">Comme travaillons sans cesse à l'amélioration de notre plateforme, nous aimons toujours échanger avec nos utilisateurs afin de receuillir vos idées d'amélioration ou besoins fonctionnalités.</p>
+<p style="margin-top: 5px">Tout simplement, nous aimerions mieux comprendre ce qui est important pour vous lorsque vous utilisez notre plateforme %site_name% (site web ou applications mobiles).</p>
+<p style="margin-top: 5px">Merci de nous indiquer par retour de mail ce que vous pensez de nos services, ce qu'il manque ou doit encore être amélioré dans notre guide touristique.</p>
+<p style="margin-top: 5px">Si vous avez découvert le territoire grâce à notre site web, n'oubliez pas de laisser en ligne vos avis sur les lieux visités, les itinéraire empruntés, ou les prestations de nos partenaires, ils  seront utiles aux prochains visiteurs !</p>
+<p style="margin-top: 5px">En vous remerciant d'avance pour vos contributions, </p>
+<div style="padding: 3px 0; margin: 1px 0;">Bien cordialement,</div>
 <p style="margin-top: 10px">
     <a href="%site_url%" title="%site_name%">%site_name%</a>
 </p>

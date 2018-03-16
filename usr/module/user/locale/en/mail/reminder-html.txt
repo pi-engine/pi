@@ -1,15 +1,16 @@
-﻿[comment]Pi Engine - reminder après création de compte[/comment]
+﻿[comment]Ask feedback from user x days after subscription[/comment]
 
 [format]html[/format]
 
-[subject]Rappel création de compte[/subject]
+[subject]We need your feedback ![/subject]
 
 [body]
-<p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
-
-<p style="margin-top: 5px">Merci d'avoir créé votre compte sur le site %site_name%.</p>
-<p>Profitez de vos avantages...</p>
-
+<p style="margin-bottom: 5px">Dear <strong>%username%</strong>,</p>
+<p style="margin-top: 5px">You joined our website few days ago. We hope you enjoyed our contents & services, and want to get your feedback about them.<p>
+<p style="margin-top: 5px"> As we plan for new features in our website, we always like to reach out to our customers to gather some thoughts.</p>
+<p style="margin-top: 5px">Simply put, we'de like to understand more about what's important to you when it comes to use our platform.</p>
+<p style="margin-top: 5px">Please let us know what you think about our services and what is lacking or need to be improved on our platform %site_name%.</p>
+<div style="padding: 3px 0; margin: 1px 0;">Regards,</div>
 <p style="margin-top: 10px">
     <a href="%site_url%" title="%site_name%">%site_name%</a>
 </p>
