@@ -151,7 +151,7 @@ class OauthController extends ActionController
                         echo 'Oops, we ran into an issue! ' . $e->getMessage();
                     }
                 } else {
-                    $this->jump(['route' => 'home'], __('Facebookr login not active'));
+                    $this->jump(['route' => 'home'], __('Facebook login not active'));
                 }
                 break;
 

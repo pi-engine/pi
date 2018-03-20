@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2017-04-19 10:25+0430\n"
-"PO-Revision-Date: 2017-04-19 10:25+0430\n"
+"POT-Creation-Date: 2018-03-20 10:55+0330\n"
+"PO-Revision-Date: 2018-03-20 10:55+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -55,7 +55,7 @@ msgstr "حذف صفحه"
 msgid "Add a page"
 msgstr "صفحه جدید"
 
-#: config/nav.php:50 src/Controller/Admin/TemplateController.php:48
+#: config/nav.php:50 src/Controller/Admin/TemplateController.php:54
 msgid "Template list"
 msgstr "فهرست الگو ها"
 
@@ -121,64 +121,65 @@ msgstr "صفحه با موفقیت به روز شد"
 msgid "Page navigation menu updated successfully."
 msgstr "منو صفحه با موفقیت به روز شد"
 
-#: src/Form/PageForm.php:45 template/admin/page-list.phtml:9
+#: src/Form/PageForm.php:44 template/admin/page-list.phtml:9
 msgid "Page title"
 msgstr "عنوان صفحه"
 
-#: src/Form/PageForm.php:55
+#: src/Form/PageForm.php:54
 msgid "Unique name"
 msgstr "نام یکتا"
 
-#: src/Form/PageForm.php:59
+#: src/Form/PageForm.php:58
 msgid "Only alphabet, number and underscore allowed."
 msgstr "فقط حروف الفبای انگلیسی ، اعداد و علامت آندر لاین مجاز است"
 
-#: src/Form/PageForm.php:66
+#: src/Form/PageForm.php:65
 msgid "SEO slug"
 msgstr "اسلاگ"
 
-#: src/Form/PageForm.php:70
+#: src/Form/PageForm.php:69
 msgid "Unique slug for SEO URL, space is not allowed."
 msgstr "اسلاگ یکتا برای آدرس سئو - استفاده از اسپیس مجاز نیست"
 
-#: src/Form/PageForm.php:106 template/admin/template-list.phtml:8
+#: src/Form/PageForm.php:105 template/admin/template-list.phtml:8
 msgid "Template name"
 msgstr "نام الگو"
 
-#: src/Form/PageForm.php:109
+#: src/Form/PageForm.php:108
 msgid ""
 "Select a template from `usr/custom/module/page/template/front/` w/o "
-"extension."
+"extension. You can also locate it in `usr/themes/yourtheme/custom/page/`"
 msgstr ""
-"انتخاب یک الگو از مسیر `usr/custom/module/page/template/front/` اگر موجود "
-"باشد"
+"یک فایل الگو ار `usr/custom/module/page/template/front/` انتخاب کنید ( بدون "
+"پسوند ) . همچنین شما می توانید فایل الگوی خود را در مسیر `usr/themes/"
+"yourtheme/custom/page/` قرار دهید"
 
-#: src/Form/PageForm.php:132
+#: src/Form/PageForm.php:131
 msgid "Content"
 msgstr "متن"
 
-#: src/Form/PageForm.php:147
+#: src/Form/PageForm.php:146
 msgid "SEO settings"
 msgstr "تنظیمات سئو"
 
-#: src/Form/PageForm.php:155
+#: src/Form/PageForm.php:154
 msgid "SEO Title"
 msgstr "عنوان سئو"
 
-#: src/Form/PageForm.php:159 src/Form/PageForm.php:171
-#: src/Form/PageForm.php:183
+#: src/Form/PageForm.php:158 src/Form/PageForm.php:170
+#: src/Form/PageForm.php:182
 msgid "To be used for HTML head meta."
 msgstr "برای استفاده به عنوان head meta در HTML"
 
-#: src/Form/PageForm.php:167
+#: src/Form/PageForm.php:166
 msgid "SEO Keywords"
 msgstr "کلمات کلیدی سئو"
 
-#: src/Form/PageForm.php:179
+#: src/Form/PageForm.php:178
 msgid "SEO Description"
 msgstr "توضیحات سئو"
 
-#: src/Form/PageForm.php:192
+#: src/Form/PageForm.php:191
 msgid "Active"
 msgstr "فعال"
 
@@ -202,15 +203,15 @@ msgstr "نقشه سایت XML"
 msgid "Pages added."
 msgstr "صفحات اضافه شدند"
 
-#: src/Validator/PageNameDuplicate.php:14
+#: src/Validator/PageNameDuplicate.php:15
 msgid "Page name already exists."
 msgstr "نام صفحه هم اکنون استفاده شده است"
 
-#: src/Validator/PageSlugDuplicate.php:14
+#: src/Validator/PageSlugDuplicate.php:15
 msgid "Page slug already exists."
 msgstr "اسلاگ صفحه هم اکنون استفاده شده است"
 
-#: src/Validator/PageTemplateAvailable.php:14
+#: src/Validator/PageTemplateAvailable.php:15
 msgid "Template file is not available."
 msgstr "فایل تمپلیت انتخابی موجود نیست"
 
@@ -218,35 +219,35 @@ msgstr "فایل تمپلیت انتخابی موجود نیست"
 msgid "Page content type:"
 msgstr "نوع متن صفحه :"
 
-#: template/admin/page-add.phtml:5
+#: template/admin/page-add.phtml:7
 msgid "HTML tags allowed in content."
 msgstr "استفاده از تگ های HTML در صفحه مجاز است"
 
-#: template/admin/page-add.phtml:5
+#: template/admin/page-add.phtml:7
 msgid "HTML"
 msgstr "HTML"
 
-#: template/admin/page-add.phtml:6
+#: template/admin/page-add.phtml:10
 msgid "Only plaintext content is allowed."
 msgstr "فقط استفاده از متن ساده در صفحه مجاز است"
 
-#: template/admin/page-add.phtml:6
+#: template/admin/page-add.phtml:10
 msgid "Text"
 msgstr "Text"
 
-#: template/admin/page-add.phtml:7
+#: template/admin/page-add.phtml:13
 msgid "Markdown syntax allowed in content."
 msgstr "استفاده از روش Markdown در صفحه مجاز است"
 
-#: template/admin/page-add.phtml:7
+#: template/admin/page-add.phtml:13
 msgid "Markdown"
 msgstr "Markdown"
 
-#: template/admin/page-add.phtml:8
+#: template/admin/page-add.phtml:16
 msgid "PHTML template."
 msgstr "الگوی PHTML"
 
-#: template/admin/page-add.phtml:8
+#: template/admin/page-add.phtml:16
 msgid "PHTML"
 msgstr "PHTML"
 
@@ -274,35 +275,35 @@ msgstr "آخرین به روز رسانی"
 msgid "Action"
 msgstr "عملکرد"
 
-#: template/admin/page-list.phtml:47
+#: template/admin/page-list.phtml:48
 msgid "Edit"
 msgstr "ویرایش"
 
-#: template/admin/page-list.phtml:49
+#: template/admin/page-list.phtml:52
 msgid "Are you sure to disable this page?"
 msgstr "آیا اطمینان دارید که میخواهید این صفحه را غیر فعال کنید؟"
 
-#: template/admin/page-list.phtml:49
+#: template/admin/page-list.phtml:52
 msgid "Disable"
 msgstr "غیر فعال"
 
-#: template/admin/page-list.phtml:51
+#: template/admin/page-list.phtml:56
 msgid "Are you sure to dnable this page?"
 msgstr "آیا اطمینان دارید که میخواهید این صفحه را فعال کنید؟"
 
-#: template/admin/page-list.phtml:51
+#: template/admin/page-list.phtml:56
 msgid "Enable"
 msgstr "فعال"
 
-#: template/admin/page-list.phtml:53
+#: template/admin/page-list.phtml:60
 msgid "Are you sure to delete this page?"
 msgstr "آیا اطمینان دارید که می خواهید این صفحه را حذف کنید؟"
 
-#: template/admin/page-list.phtml:53
+#: template/admin/page-list.phtml:60
 msgid "Delete"
 msgstr "حذف"
 
-#: template/admin/page-list.phtml:63
+#: template/admin/page-list.phtml:71
 msgid "Add to menu"
 msgstr "درج در منو"
 
@@ -314,13 +315,20 @@ msgstr "زمان ویرایش"
 msgid "Filesize"
 msgstr "حجم فایل"
 
-#: template/admin/template-list.phtml:28
+#: template/admin/template-list.phtml:30
 msgid "View"
 msgstr "نمایش"
 
-#: template/admin/template-list.phtml:29
+#: template/admin/template-list.phtml:32
 msgid "Add to page"
 msgstr "صفحه جدید"
+
+#~ msgid ""
+#~ "Select a template from `usr/custom/module/page/template/front/` w/o "
+#~ "extension."
+#~ msgstr ""
+#~ "انتخاب یک الگو از مسیر `usr/custom/module/page/template/front/` اگر موجود "
+#~ "باشد"
 
 #~ msgid "Enable sharing on social networks"
 #~ msgstr "اشتراک گذاری در شبکه های اجتماعی"
