@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.0.0",
         "ext-ctype": "*",
         "ext-fileinfo": "*",
         "ext-gd": "*",
@@ -38,12 +38,6 @@
         "ext-apc": "for opcode cache and system persistent data",
         "ext-discount": "for Markdown text parsing",
         "ext-intl": "for i18n features"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.4-dev",
-            "dev-develop": "2.5-dev"
-        }
     },
     "minimum-stability": "dev"
 }
