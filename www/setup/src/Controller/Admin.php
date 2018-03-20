@@ -246,7 +246,7 @@ class Admin extends AbstractController
             ));
 
             // Create system accounts
-            $accounts = array(
+            /* $accounts = array(
                 'manager'   => array(
                     'name'  => __('Manager'),
                     'role'  => array(
@@ -292,7 +292,7 @@ class Admin extends AbstractController
                 if (!empty($data['role'])) {
                     Pi::api('user', 'system')->setRole($uid, $data['role']);
                 }
-            }
+            } */
         }
 
         if ($this->status < 1) {
