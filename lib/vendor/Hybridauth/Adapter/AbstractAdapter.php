@@ -96,7 +96,7 @@ abstract class AbstractAdapter implements AdapterInterface
         StorageInterface    $storage = null,
         LoggerInterface     $logger = null
     ) {
-        $this->providerId = str_replace('Hybridauth\\Provider\\', '', get_class($this));
+        $this->providerId = (new \ReflectionClass($this))->getShortName();
 
         $this->config = new Data\Collection($config);
 
@@ -150,7 +150,7 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function setUserStatus($status)
+    public function getUserPages()
     {
         throw new NotImplementedException('Provider does not support this feature.');
     }
@@ -159,6 +159,22 @@ abstract class AbstractAdapter implements AdapterInterface
      * {@inheritdoc}
      */
     public function getUserActivity($stream)
+    {
+        throw new NotImplementedException('Provider does not support this feature.');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUserStatus($status)
+    {
+        throw new NotImplementedException('Provider does not support this feature.');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPageStatus($status, $pageId)
     {
         throw new NotImplementedException('Provider does not support this feature.');
     }
