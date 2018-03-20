@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2018-01-25 09:03+0330\n"
-"PO-Revision-Date: 2018-01-25 09:05+0330\n"
+"POT-Creation-Date: 2018-03-20 10:47+0330\n"
+"PO-Revision-Date: 2018-03-20 10:48+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -109,10 +109,10 @@ msgid "User login"
 msgstr "ورود کاربر"
 
 #: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:119
-#: template/block/partial/login-register-modal.phtml:56
-#: template/block/partial/login-register-modal.phtml:69
+#: template/block/partial/login-register-modal.phtml:55
+#: template/block/partial/login-register-modal.phtml:68
+#: template/block/partial/login-register-modal.phtml:99
 #: template/block/partial/login-register-modal.phtml:100
-#: template/block/partial/login-register-modal.phtml:101
 #: template/front/login-logout.phtml:14 template/front/register.phtml:8
 msgid "Login"
 msgstr "ورود"
@@ -160,8 +160,8 @@ msgstr ""
 #: src/Controller/Front/PasswordController.php:127
 #: src/Controller/Front/PasswordController.php:128
 #: src/Form/FindPasswordForm.php:49
+#: template/block/partial/login-register-modal.phtml:71
 #: template/block/partial/login-register-modal.phtml:72
-#: template/block/partial/login-register-modal.phtml:73
 #: template/front/login.phtml:17 template/front/password-find.phtml:2
 #: template/front/register.phtml:6
 msgid "Find password"
@@ -223,10 +223,10 @@ msgstr "ایجاد حساب کاربری"
 
 #: src/Controller/Front/RegisterController.php:52
 #: src/Controller/Front/RegisterController.php:113
-#: template/block/partial/login-register-modal.phtml:58
+#: template/block/partial/login-register-modal.phtml:57
+#: template/block/partial/login-register-modal.phtml:78
 #: template/block/partial/login-register-modal.phtml:79
-#: template/block/partial/login-register-modal.phtml:80
-#: template/block/partial/login-register-modal.phtml:93
+#: template/block/partial/login-register-modal.phtml:92
 #: template/front/login-logout.phtml:16 template/front/login.phtml:20
 msgid "Register"
 msgstr "ثبت نام"
@@ -599,11 +599,11 @@ msgstr "دوباره سازی"
 msgid "Customize"
 msgstr "شخصی سازی"
 
-#: template/block/partial/login-register-modal.phtml:76
+#: template/block/partial/login-register-modal.phtml:75
 msgid "Not already registered ?"
 msgstr "تا کنون ثبت نام نکرده اید؟"
 
-#: template/block/partial/login-register-modal.phtml:97
+#: template/block/partial/login-register-modal.phtml:96
 msgid "Already registered ?"
 msgstr "قبلا ثبت نام کرده اید؟"
 

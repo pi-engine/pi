@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
 "POT-Creation-Date: 2017-09-06 15:20+0430\n"
-"PO-Revision-Date: 2017-09-06 15:22+0430\n"
+"PO-Revision-Date: 2018-03-20 10:45+0330\n"
 "Last-Translator: \n"
 "Language-Team: Pi Engine\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-Basepath: ../_source/Validator\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -549,11 +549,11 @@ msgstr "بدون رمز برای مطابقت مقابل ارائه شد"
 
 #: InArray.php:10
 msgid "The input was not found in the haystack"
-msgstr "ورودی در انبار کاه پیدا نشد"
+msgstr "مقدار ورودی یافت نشد"
 
 #: Ip.php:11
 msgid "The input does not appear to be a valid IP address"
-msgstr "ورودی به نظر نمی رسد به یک آدرس IP معتبر"
+msgstr "ورودی یه IP معتبر نیست"
 
 #: IsInstanceOf.php:10
 msgid "The input is not an instance of '%className%'"
@@ -599,19 +599,19 @@ msgstr "ورودی است lastmod نقشه سایت معتبر نیست"
 
 #: Sitemap/Loc.php:10
 msgid "The input is not a valid sitemap location"
-msgstr "ورودی یک محل نقشه سایت معتبر نیست"
+msgstr "ورودی یک location نقشه سایت معتبر نیست"
 
 #: Sitemap/Priority.php:10
 msgid "The input is not a valid sitemap priority"
-msgstr "ورودی است یک اولویت نقشه سایت معتبر نیست"
+msgstr "ورودی است یک priority نقشه سایت معتبر نیست"
 
 #: Sitemap/Priority.php:11
 msgid "Invalid type given. Numeric string, integer or float expected"
-msgstr "نوع نامعتبر داده شده است. رشته عددی، عدد صحیح یا شناور انتظار می رود"
+msgstr "رشته عددی وارد شده نامعتبر است، عدد صحیح یا اعشاری وارد کنید"
 
 #: Step.php:10
 msgid "Invalid value given. Scalar expected"
-msgstr "مقدار نامعتبر داده شده است. عددی انتظار می رود"
+msgstr "مقدار ورودی نا معتبر است، لطفا عدد وارد کنید"
 
 #: StringLength.php:11
 msgid "The input is less than %min% characters long"
@@ -619,11 +619,11 @@ msgstr "ورودی کمتر از%min% کاراکتر است"
 
 #: StringLength.php:12
 msgid "The input is more than %max% characters long"
-msgstr "ورودی بیش از%max% حرف است"
+msgstr "ورودی بیش از%max% کاراکتر است"
 
 #: Uri.php:11
 msgid "The input does not appear to be a valid Uri"
-msgstr "ورودی به نظر نمی رسد به یک یوری معتبر"
+msgstr "ورودی یک آدرس معتبر نیست"
 
 #~ msgid ""
 #~ "Maximum allowed width for image should be '%maxwidth%' but '%width%' "
