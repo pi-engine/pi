@@ -1350,7 +1350,7 @@ class User extends AbstractUseApi
             // Set log
             Pi::service('audit')->log('cron', 'user - reminder start');
 
-            $template = 'reminder-html';
+            $template = 'post-subscription-feedback-html';
             $select = Pi::Model('user_account')->select();
             $select->where->addPredicate(new \Zend\Db\Sql\Predicate\Expression("DATE(FROM_UNIXTIME(time_created)) = subdate(current_date, ?)", (int) $config['reminder_user_days']));
             $select->where(array(

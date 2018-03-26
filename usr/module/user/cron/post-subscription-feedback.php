@@ -17,7 +17,7 @@ function getUrlContent($url){
     return ($httpcode>=200 && $httpcode<300) ? array('data' => $data, 'contentType' => $contentType) : false;
 }
 
-$data = getUrlContent(trim($siteUrl, '/') . '/user/cron/sendReminderEmail');
+$data = getUrlContent(trim($siteUrl, '/') . '/user/cron/sendReminder');
 
 header('Content-type: ' . $data['contentType']);
 echo $data['data'];
