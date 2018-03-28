@@ -6,7 +6,7 @@
 
 [body]
 <p style="margin-bottom: 5px">Dear <strong>%username%</strong>,</p>
-<p style="margin-top: 5px">You joined our website few days ago. We hope you enjoyed our contents & services, and want to get your feedback about them.<p>
+<p style="margin-top: 5px">You joined our website few days ago. We hope you enjoyed our contents & services, and want to get your feedback about them.</p>
 <p style="margin-top: 5px"> As we plan for new features in our website, we always like to reach out to our customers to gather some thoughts.</p>
 <p style="margin-top: 5px">Simply put, we'de like to understand more about what's important to you when it comes to use our platform.</p>
 <p style="margin-top: 5px">Please let us know what you think about our services and what is lacking or need to be improved on our platform %site_name%.</p>
