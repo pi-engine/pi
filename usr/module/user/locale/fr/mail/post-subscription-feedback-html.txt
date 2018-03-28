@@ -7,7 +7,7 @@
 [body]
 <p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
 <p style="margin-top: 5px">Vous avez rejoint notre communauté il y a quelques jours. Nous espérons que vous appréciez nos contenus & nos services, et souhaiterions avoir votre feedback à leur sujet.</p>
-<p style="margin-top: 5px">Travaillant sans cesse à l'amélioration de notre plateforme, nous cherchons sans cesse à échanger avec nos utilisateurs pour recueillir leurs idées d'améliorations.</p>
+<p style="margin-top: 5px">Travaillant sans cesse à l'amélioration de notre plateforme, nous aimons échanger avec nos utilisateurs pour recueillir leurs idées d'améliorations.</p>
 <p style="margin-top: 5px">Tout simplement, nous aimerions mieux comprendre ce qui est important pour vous lorsque vous utilisez notre plateforme %site_name% (site web ET applications mobiles).</p>
 <p style="margin-top: 5px">Merci de <strong>nous indiquer par retour de mail ce que vous pensez de nos services</strong>, ce qu'il manque ou doit encore être amélioré pour rendre notre guide touristique plus utile et efficace.</p>
 <p style="margin-top: 5px">Par ailleurs, n'hésitez pas à <strong>partager votre expérience / vos avis</strong> avec les autres utilisateurs, via le site web ou nos applications mobiles, sur les lieux visités, les itinéraire empruntés, ou les prestataires découverts. Ils  seront utiles aux prochains visiteurs !</p>
