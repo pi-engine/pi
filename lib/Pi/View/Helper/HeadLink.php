@@ -71,7 +71,7 @@ class HeadLink extends ZendHeadLink
     {
         $context = $this->view->context();
         if ($context && $context != static::CONTEXT_LAYOUT) {
-            if (!empty($value->type) && 'text/css' == $value->type) {
+            if (!empty($value->type) && 'text/css' == $value->type && !in_array([$value, 'append'], $this->assets)) {
                 $this->assets[] = [$value, 'append'];
                 return;
             }
@@ -87,7 +87,7 @@ class HeadLink extends ZendHeadLink
     {
         $context = $this->view->context();
         if ($context && $context != static::CONTEXT_LAYOUT) {
-            if (!empty($value->type) && 'text/css' == $value->type) {
+            if (!empty($value->type) && 'text/css' == $value->type && !in_array([$value, 'append'], $this->assets)) {
                 $this->assets[] = [$value, 'prepend'];
                 return;
             }
@@ -151,7 +151,8 @@ class HeadLink extends ZendHeadLink
                 if(!empty($item->rel) && !empty($item->type) && !empty($item->href) && $item->rel == 'stylesheet' && $item->type == 'text/css' && preg_match('#' . $baseUrl . '#', $item->href)){
                     $parts = parse_url($item->href);
 
-                    $hash = md5($parts['path'] . $parts['query']);
+                    $query = !empty($parts['query']) ? $parts['query'] : '';
+                    $hash = md5($parts['path'] . $query);
 
                     $content = file_get_contents($basePath . str_replace($baseUrl, '', strtok($item->href, '?')));
 

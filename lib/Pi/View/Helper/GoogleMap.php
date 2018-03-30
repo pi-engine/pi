@@ -392,6 +392,7 @@ function initialize() {
     
     $(window).on('load', function(){
         google.maps.event.trigger(map, 'resize');
+        map.setCenter(myLatlng);
     });
 }
 EOT;

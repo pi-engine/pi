@@ -657,7 +657,7 @@ $config = [
     ],
     'reminder_user_days' => [
         'category' => 'cron',
-        'title' => _a('Reminder user days'),
+        'title' => _a('User post-subscription Feedback days'),
         'description' => 'Send email to reminder user after X days - 0 means no reminder at all',
         'edit' => 'text',
         'filter' => 'number_int',

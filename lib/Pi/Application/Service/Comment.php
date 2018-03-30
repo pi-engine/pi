@@ -87,6 +87,26 @@ class Comment extends AbstractService
         $ajaxLoad = Pi::config('ajax_load', 'comment');
 
         if ($ajaxLoad) {
+            
+            // Determine language for datepicker
+            $language = !empty($params['language']) ? $params['language'] : Pi::service('i18n')->getLocale();
+            $segs     = explode(' ', str_replace(['-', '_'], ' ', $language));
+            $language = array_shift($segs);
+            if ($segs) {
+                $language .= '-' . strtoupper(implode('-', $segs));
+            }
+            
+            // Add datepicker js
+            $bsLoad = array(
+                'datepicker/bootstrap-datepicker.min.css',
+                'datepicker/bootstrap-datepicker.min.js'
+            );  
+             if ('en' != $language) {
+                $bsLoad[] = sprintf('datepicker/locales/bootstrap-datepicker.%s.min.js', $language);
+            }
+            Pi::Service('View')->getViewManager()->getHelperManager()->get('bootstrap')->__invoke($bsLoad, [], null, false);
+            //
+            
             $callback = Pi::service('url')->assemble('comment', array(
                 'module'        => 'comment',
                 'controller'    => 'index',
