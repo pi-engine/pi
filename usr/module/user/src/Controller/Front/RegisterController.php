@@ -549,21 +549,14 @@ class RegisterController extends ActionController
 
         // Add subscription
         if (Pi::service('module')->isActive('subscription') && isset($values['newsletter']) && $values['newsletter'] == 1) {
-            $peopleModel = Pi::model('people', 'subscription');
-            $people      = $peopleModel->createRow();
-
-            $subscriptionValues               = [];
-            $subscriptionValues['campaign']   = 0;
-            $subscriptionValues['uid']        = $uid;
-            $subscriptionValues['status']     = 1;
-            $subscriptionValues['time_join']  = time();
-            $subscriptionValues['newsletter'] = 1;
-            $subscriptionValues['email']      = null;
-            $subscriptionValues['mobile']     = null;
-
-            $people->assign($subscriptionValues);
-            $people->save();
-
+            
+            Pi::api('people', 'subscription')->createPeople(
+                array(
+                    'uid' => $uid,
+                    'status' => $this->config('register_activation') == 'auto' ? 1 : 0
+                )
+            );
+            
             $log = [
                 'uid'    => $uid,
                 'action' => 'subscribe_newsletter_register',

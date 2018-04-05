@@ -53,17 +53,19 @@ class AccountForm extends BaseForm
         ]);
 
         if (Pi::service('module')->isActive('subscription')) {
+            $people = Pi::api('people', 'subscription')->getCurrentPeople();
             $this->add([
                 'name'    => 'newsletter',
                 'type'    => 'checkbox',
                 'options' => [
                     'label' => __('Newsletter subscription'),
+                    
                 ],
+                'attributes' => [
+                    'value' => (bool)$people
+                ]
+                
             ]);
-
-            $people = $this->_getCurrentPeople();
-
-            $this->get('newsletter')->setValue((bool)$people);
         }
 
         $this->add([
@@ -89,39 +91,15 @@ class AccountForm extends BaseForm
         ]);
     }
 
-    protected function _getCurrentPeople()
-    {
-        $peopleModel = $this->getPeopleModel();
-        $select      = $peopleModel->select();
-        $select->where(
-            [
-                'uid'      => Pi::user()->getId(),
-                'campaign' => 0,
-            ]
-        );
-
-        $people = $peopleModel->selectWith($select)->current();
-
-        return $people;
-    }
-
-    protected function getPeopleModel()
-    {
-        return Pi::model('people', 'subscription');
-    }
-
     public function isValid()
     {
         $isValid = parent::isValid();
 
         if ($isValid && Pi::service('module')->isActive('subscription')) {
             $newsletterValue = $this->get('newsletter')->getValue();
-            $people          = $this->_getCurrentPeople();
-
+            $people          = Pi::api('people', 'subscription')->getCurrentPeople();
             if ($newsletterValue == 1 && !$people) {
-                $peopleModel = $this->getPeopleModel();
-                $people      = $peopleModel->createRow();
-
+                
                 $values               = [];
                 $values['campaign']   = 0;
                 $values['uid']        = Pi::user()->getId();
@@ -130,10 +108,9 @@ class AccountForm extends BaseForm
                 $values['newsletter'] = 1;
                 $values['email']      = null;
                 $values['mobile']     = null;
-
-                $people->assign($values);
-                $people->save();
-
+                
+                Pi::api('people', 'subscription')->createPeople($values);
+               
                 $log = [
                     'uid'    => Pi::user()->getId(),
                     'action' => 'subscribe_newsletter_account',
