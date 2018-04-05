@@ -13,12 +13,8 @@ namespace Pi\Application\Service;
 use Pi;
 
 /**
- * Cron service
- *
- * - Pi::service('observer')->triggerInsertEntry();
- *
- * Save log by audit service on Var/Log/cron.log
- * Each module can add custom log by audit service on Var/Log/cron.log
+ * Observer service
+ * Trigger some events to module's observers
  *
  * @author Frédéric TISSOT
  */
