@@ -14,12 +14,14 @@ use LosReCaptcha\Service\Exception;
  *
  * @see http://recaptcha.net/apidocs/captcha/
  */
-class ReCaptcha extends AbstractAdapter
+class Invisible extends ReCaptcha
 {
-    protected $chanllengeField = 'recaptcha_challenge_field';
-    protected $responseField  = 'recaptcha_response_field';
+    protected $responseField  = 'g-recaptcha-response';
 
     protected $service;
+    protected $callback;
+    protected $siteKey;
+    protected $buttonId;
 
     /**#@+
      * Error codes
@@ -54,18 +56,54 @@ class ReCaptcha extends AbstractAdapter
             throw new Exception('Missing secret key');
         }
 
-        parent::__construct($options);
+        if (! isset($options['callback'])) {
+            throw new Exception('Missing callback function name');
+        }
+
+        if (! isset($options['button_id'])) {
+            throw new Exception('Missing button_id');
+        }
 
         $this->service = new ReCaptchaService($options['site_key'], $options['secret_key']);
 
         if ($options instanceof Traversable) {
             $options = ArrayUtils::iteratorToArray($options);
         }
+
+        parent::__construct($options);
+
+        $this->callback = $options['callback'];
+        $this->buttonId = $options['button_id'];
+        $this->siteKey = $options['site_key'];
     }
 
     public function getService()
     {
         return $this->service;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function callback()
+    {
+        return $this->callback;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function siteKey()
+    {
+        return $this->siteKey;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function buttonId()
+    {
+        return $this->buttonId;
     }
 
     /**
@@ -78,31 +116,21 @@ class ReCaptcha extends AbstractAdapter
      */
     public function isValid($value, $context = null)
     {
-        if (! is_array($value) && ! is_array($context)) {
-            $this->error(self::MISSING_VALUE);
-            return false;
-        }
-
-        if (! is_array($value) && is_array($context)) {
-            $value = $context;
-        }
-
-        if (empty($value[$this->responseField])) {
+        if (empty($value)) {
             $this->error(self::MISSING_VALUE);
             return false;
         }
 
         $service = $this->getService();
 
-        $res = $service->verify($value[$this->responseField]);
+        $res = $service->verify($value);
         if (! $res) {
             $this->error(self::ERR_CAPTCHA);
             return false;
         }
 
         if (! $res->isSuccess()) {
-            $this->error(self::BAD_CAPTCHA, end($res->getErrorCodes()));
-            //$service->setParam('error', $res->getErrorCodes());
+            $this->error(self::BAD_CAPTCHA);
             return false;
         }
 
@@ -119,7 +147,7 @@ class ReCaptcha extends AbstractAdapter
         /**
          * HACK FROM FREDERIC TISSOT / MARC DEROUSSEAUX
          */
-        return \LosReCaptcha\Form\View\Helper\Captcha\ReCaptcha::class;
+        return \LosReCaptcha\Form\View\Helper\Captcha\Invisible::class;
     }
 
     /**
