@@ -61,7 +61,7 @@ class Invisible extends FormInput
 
         $markup = $captcha->getService()->getInvisibleHtml($uniqueId);
         $hidden = $this->renderHiddenInput($responseName, $responseId, $uniqueId);
-        $js     = $this->renderJsEvents($responseId, $captcha->siteKey(), $captcha->buttonId() . '-' . $uniqueId, $captcha->callback() . '-' . $uniqueId, $uniqueId);
+        $js     = $this->renderJsEvents($responseId, $captcha->siteKey(), $captcha->buttonId() . '-' . $uniqueId, $captcha->callback() . '_' . $uniqueId, $uniqueId);
 
         return $hidden . $markup . $js;
     }
@@ -101,19 +101,24 @@ class Invisible extends FormInput
     {
         $js = <<<EOJ
 <script type="text/javascript" language="JavaScript">
-function renderLosInvisibleRecaptcha() {
+function renderLosInvisibleRecaptcha_$uniqueId() {
+  var submitElement = $('#$responseId-$uniqueId').closest('form').find('button[name="submit-button"]');
+  submitElement.attr('id', 'submit-button-$uniqueId');
+  
   grecaptcha.render('$buttonId', {
     'sitekey' : '$siteKey',
-    'callback' : losInvisibleRecaptchaCallback
+    'callback' : losInvisibleRecaptchaCallback_$uniqueId
   });
 };
-function losInvisibleRecaptchaCallback(token) {
+function losInvisibleRecaptchaCallback_$uniqueId(token) {
   document.getElementById("$responseId-$uniqueId").value = token;
   {$callback}();
 };
 
-function captchaSubmit-$uniqueId() {
+function captchaSubmit_$uniqueId() {
   // Any js code, eg. fields validation
+  console.log('test');
+  
   $('#$responseId-$uniqueId').parents('form').submit();
 }
 </script>

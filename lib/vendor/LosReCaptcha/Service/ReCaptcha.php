@@ -174,30 +174,15 @@ JS;
     {
         $host = self::API_SERVER;
 
-        $langOption = '';
-
         $return = <<<HTML
-<div id="recaptcha_widget_$uniqueId" class="g-recaptcha" data-sitekey="{$this->siteKey}" data-theme="{$this->options['theme']}"></div>
+<div id="recaptcha_widget_$uniqueId" class="g-recaptcha" data-sitekey="{$this->siteKey}" data-size="invisible"></div>
 HTML;
 
 
         if(empty($GLOBALS['recaptchaScriptLoaded'])){
             $GLOBALS['recaptchaScriptLoaded'] = true;
 
-            $script = <<<JS
-var renderLosInvisibleRecaptcha = function() {
-    
-    $('.g-recaptcha').each(function(){
-        var elementId = $(this).attr('id');
-        grecaptcha.render(document.getElementById(elementId), {
-            'sitekey' : '{$this->siteKey}'
-        });
-    });
-    
-};
-JS;
-            Pi::service('view')->getHelper('footScript')->appendScript($script);
-            Pi::service('view')->getHelper('footScript')->appendFile($host . '.js?onload=renderLosInvisibleRecaptcha&render=explicit', 'text/javascript', array('async' => 'async', 'defer' => true));
+            Pi::service('view')->getHelper('footScript')->appendFile($host . '.js?onload=renderLosInvisibleRecaptcha_'.$uniqueId.'&render=explicit', 'text/javascript', array('async' => 'async', 'defer' => true));
 
         }
 
