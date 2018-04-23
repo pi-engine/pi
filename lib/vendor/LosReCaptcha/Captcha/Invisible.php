@@ -123,7 +123,10 @@ class Invisible extends ReCaptcha
 
         $service = $this->getService();
 
-        $res = $service->verify($value);
+        /**
+         * Verify google api can't check value if array when invisible mode (why ? regular recaptcha have no problem with that - tested)
+         */
+        $res = $service->verify($value['recaptcha_response_field']);
         if (! $res) {
             $this->error(self::ERR_CAPTCHA);
             return false;
