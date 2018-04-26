@@ -206,7 +206,7 @@ class Notification extends AbstractService
             return $result;
         }
 
-        $fields['data'] = $data;
+//        $fields['data'] = $data;
 
         // Send
         $config  = [
@@ -224,7 +224,7 @@ class Notification extends AbstractService
         if ($response->isSuccess()) {
             $result['status']   = 1;
             $result['message']  = __('Notification send successfully');
-            $result['data']     = $data;
+            $result['request']     = $fields;
             $result['option']   = $option;
             $result['response'] = json_decode($response->getBody(), true);
         } else {

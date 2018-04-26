@@ -2,4 +2,6 @@
 namespace LosReCaptcha\Service;
 
 class Exception extends \Exception
-{}
+{
+
+}

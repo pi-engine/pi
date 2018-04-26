@@ -20,57 +20,53 @@ $this->add([
 ]);
 ```
 
-You need to add the necessary alias to your view_helper instance:
+For [Invisible ReCaptcha](https://developers.google.com/recaptcha/docs/invisible):
 ```php
-return [
-	'view_helpers' {
-	    'aliases' => [
-	        'losrecaptcha/recaptcha'  => LosReCaptcha\Form\View\Helper\Captcha\ReCaptcha::class,
-	    ],
-	    'factories' => [
-	        LosReCaptcha\Form\View\Helper\Captcha\ReCaptcha::class => 
-	            Zend\ServiceManager\Factory\InvokableFactory::class,
-	    ],
+// ...
+$this->add([
+   'name' => 'captcha',
+    'type' => 'captcha',
+    'options' => [
+        'captcha' => new \LosReCaptcha\Captcha\Invisible([
+            'site_key' => $siteKey,
+            'secret_key' => $siteSecret,
+            'callback' => 'captchaSubmit', // Callback to submit the form
+            'button_id' => 'submit-button', // Button id to submit the form
+        ]),
     ],
-];
+]);
+// ...
+$this->add([
+    'name' => 'submit-button',
+    'type' => \Zend\Form\Element\Button::class,
+    'options' => [
+        'label' => _('Log In'),
+    ],
+    'attributes' => [
+        'id'    => 'submit-button',
+        'class' => 'btn btn-block btn-primary',
+        'value' => _('Log In'),
+    ],
+]);
 ```
 
-For Zend Expressive, you can inject the configuration with the ConfigProvider:
-```php
-<?php
-namespace App\View\Helper\Factory;
-
-use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Config;
-use Zend\View\HelperPluginManager;
-use Zend\Form\ConfigProvider as FormConfigProvider;
-use Zend\I18n\ConfigProvider as I18nConfigProvider;
-use LosReCaptcha\ConfigProvider as CaptchaConfigProvider;
-
-class HelperPluginManagerFactory
-{
-    public function __invoke(ContainerInterface $container)
-    {
-        $config = $container->has('config') ? $container->get('config') : [];
-        $config = isset($config['view_helpers']) ? $config['view_helpers'] : [];
-        $manager = new HelperPluginManager($container);
-
-        $manager->configure((new FormConfigProvider())->getViewHelperConfig());
-        $manager->configure((new I18nConfigProvider())->getViewHelperConfig());
-        $manager->configure((new CaptchaConfigProvider())->getViewHelperConfig());
-        $manager->configure($config);
-
-        return $manager;
-    }
+In the view for Invisible ReCaptcha:
+```html
+function captchaSubmit() {
+  // Any js code, eg. fields validation
+  document.getElementById("login").submit();
 }
 ```
 
-And to use the factory, add the following to your dependencies:
+For Zend Expressive, you can inject the configuration with the ConfigProvider inside your config/config.php:
 ```php
-'dependencies' => [
-        'factories' => [
-            Zend\View\HelperPluginManager::class =>
-                App\View\Helper\Factory\HelperPluginManagerFactory::class,
-        ],
-    ],
+<?php
+// ...
+$aggregator = new ConfigAggregator([
+    // ...
+    \LosReCaptcha\ConfigProvider::class,
+    // ...
+], $cacheConfig['config_cache_path']);
+
+return $aggregator->getMergedConfig();
 ```

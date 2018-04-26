@@ -49,12 +49,12 @@ class ReCaptcha
      *
      * @var array
      */
-    protected $params = array(
+    protected $params = [
         'ssl' => false, /* Use SSL or not when generating the recaptcha */
         'xhtml' => false /* Enable XHTML output (this will not be XHTML Strict
                             compliant since the IFRAME is necessary when
                             Javascript is disabled) */
-    );
+    ];
 
     /**
      * Options for tailoring reCaptcha
@@ -63,10 +63,10 @@ class ReCaptcha
      *
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'theme' => 'light',
         'lang' => null, // Auto-detect
-    );
+    ];
 
     protected $request = null;
 
@@ -75,12 +75,18 @@ class ReCaptcha
      *
      * @param string $siteKey
      * @param string $secretKey
-     * @param array|Traversable $params
-     * @param array|Traversable $options
+     * @param array $params
+     * @param array $options
      * @param string $ip
      */
-    public function __construct($siteKey, $secretKey, RequestInterface $request = null, array $params = [], array $options = [], $ip = null)
-    {
+    public function __construct(
+        $siteKey,
+        $secretKey,
+        RequestInterface $request = null,
+        array $params = [],
+        array $options = [],
+        $ip = null
+    ) {
         $this->siteKey = $siteKey;
         $this->secretKey = $secretKey;
 
@@ -161,6 +167,24 @@ JS;
 
         }
 
+        return $return;
+    }
+
+    public function getInvisibleHtml($uniqueId)
+    {
+        $host = self::API_SERVER;
+
+        $return = <<<HTML
+<div id="recaptcha_widget_$uniqueId" class="g-recaptcha" data-sitekey="{$this->siteKey}" data-size="invisible"></div>
+HTML;
+
+
+        if(empty($GLOBALS['recaptchaScriptLoaded'])){
+            $GLOBALS['recaptchaScriptLoaded'] = true;
+
+            Pi::service('view')->getHelper('footScript')->appendFile($host . '.js?onload=renderLosInvisibleRecaptcha_'.$uniqueId.'&render=explicit', 'text/javascript', array('async' => 'async', 'defer' => true));
+
+        }
 
 
         return $return;

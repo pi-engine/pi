@@ -154,5 +154,18 @@ HTML;
             'name' => 'redirect',
             'type' => 'hidden',
         ]);
+
+        /**
+         * For invisible recaptcha, need for button instead of input submit
+         */
+        if(Pi::user()->config('register_captcha') == 3){
+            $this->remove('submit');
+
+            $button = new \Zend\Form\Element\Button('submit-button');
+            $button->setLabel(__('Submit'))->setAttribute('class', 'btn btn-default');
+
+            $this->add($button);
+        }
+
     }
 }
