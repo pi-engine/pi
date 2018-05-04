@@ -42,6 +42,11 @@ class IndexController extends ActionController
             $model = $this->getModel('page');
             $model->increment('clicks', ['id' => $row->id]);
 
+            // Save statistics
+            if (Pi::service('module')->isActive('statistics')) {
+                Pi::api('log', 'statistics')->save('page', 'index', $row->id);
+            }
+
             // Module config
             $config = Pi::config('', $this->getModule());
             // Set SEO data
