@@ -9,7 +9,7 @@ final class Curl implements RequestInterface
 
     public function __construct($curl = null)
     {
-        if (!is_null($curl)) {
+        if (! is_null($curl)) {
             $this->curl = $curl;
         } else {
             $this->curl = curl_init();

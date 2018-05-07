@@ -6,8 +6,6 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 class ConfigProvider
 {
     /**
-     * Return general-purpose zend-i18n configuration.
-     *
      * @return array
      */
     public function __invoke()
@@ -27,9 +25,11 @@ class ConfigProvider
         return [
             'aliases' => [
                 'losrecaptcha/recaptcha'  => Form\View\Helper\Captcha\ReCaptcha::class,
+                'losrecaptcha/invisible'  => Form\View\Helper\Captcha\Invisible::class,
             ],
             'factories' => [
                 Form\View\Helper\Captcha\ReCaptcha::class => InvokableFactory::class,
+                Form\View\Helper\Captcha\Invisible::class => InvokableFactory::class,
             ],
         ];
     }

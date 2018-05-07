@@ -319,6 +319,8 @@ class RowGateway extends AbstractRowGateway
             }
         }
 
+        $wasExisting = true;
+
         if ($this->rowExistsInDatabase()) {
 
             // UPDATE
@@ -342,6 +344,8 @@ class RowGateway extends AbstractRowGateway
             unset($statement, $result); // cleanup
 
         } else {
+
+            $wasExisting = false;
 
             // INSERT
             $insert = $this->sql->insert();
@@ -370,7 +374,6 @@ class RowGateway extends AbstractRowGateway
             foreach ($this->primaryKeyColumn as $pkColumn) {
                 $where[$pkColumn] = $this->primaryKeyData[$pkColumn];
             }
-
         }
 
         if ($rePopulate) {
@@ -386,6 +389,16 @@ class RowGateway extends AbstractRowGateway
             $this->populate($rowData, true);
         }
 
+        /**
+         * Add trigger event for module observers
+         */
+        if (!$wasExisting) {
+            Pi::service('observer')->triggerInsertedRow($this);
+        }
+
+        /**
+         * Media management
+         */
         $model = $this->getModel();
         if (Pi::service('module')->isActive('media') && $model instanceof \Pi\Application\Model\Model && $model->getMediaLinks()) {
             Pi::api('link', 'media')->updateLinks($this);

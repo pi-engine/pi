@@ -271,6 +271,27 @@ class Asset extends AbstractService
 
         return $this->getAssetUrl($component, $file, $appendVersion);
     }
+    
+    /**
+     * Gets PATH of an asset in current module
+     *
+     * @param string $file File path
+     * @param string $module Module name
+     * @param bool|null $appendVersion
+     *
+     * @return string Full PATH to the asset
+     */
+    public function getModuleAssetPath(
+        $file,
+        $module = '',
+        $appendVersion = null
+    )
+    {
+        $module    = $module ?: Pi::service('module')->current();
+        $component = 'module/' . $module;
+
+        return $this->getAssetPath($component, $file, $appendVersion);
+    }
 
     /**
      * Gets URL of an asset in current theme

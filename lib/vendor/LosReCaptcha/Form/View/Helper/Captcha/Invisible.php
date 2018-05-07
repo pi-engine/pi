@@ -14,7 +14,7 @@ use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 use Zend\Form\View\Helper\FormInput;
 
-class ReCaptcha extends FormInput
+class Invisible extends FormInput
 {
     /**
      * Invoke helper as functor
@@ -52,16 +52,16 @@ class ReCaptcha extends FormInput
             ));
         }
 
-        $name          = $element->getName();
-        $id            = isset($attributes['id']) ? $attributes['id'] : $name;
+        $name   = $element->getName();
+        $id     = isset($attributes['id']) ? $attributes['id'] : $name;
         $responseName  = empty($name) ? 'recaptcha_response_field' : $name . '[recaptcha_response_field]';
         $responseId    = $id . '-response';
 
         $uniqueId = rand();
 
-        $markup = $captcha->getService()->getHtml($name, $uniqueId);
+        $markup = $captcha->getService()->getInvisibleHtml($uniqueId);
         $hidden = $this->renderHiddenInput($responseName, $responseId, $uniqueId);
-        $js     = $this->renderJsEvents($responseId, $uniqueId);
+        $js     = $this->renderJsEvents($responseId, $captcha->siteKey(), $captcha->buttonId() . '-' . $uniqueId, $captcha->callback() . '_' . $uniqueId, $uniqueId);
 
         return $hidden . $markup . $js;
     }
@@ -90,26 +90,37 @@ class ReCaptcha extends FormInput
 
     /**
      * Create the JS events used to bind the response value to the submitted form.
-     *
-     * @param  string $challengeId
-     * @param  string $responseId
-     * @param  string $uniqueId
+     * @param $responseId
+     * @param $siteKey
+     * @param $buttonId
+     * @param $callback
+     * @param $uniqueId
      * @return string
      */
-    private function renderJsEvents($responseId, $uniqueId)
+    private function renderJsEvents($responseId, $siteKey, $buttonId, $callback, $uniqueId)
     {
-        $elseif = 'else if'; // php-cs-fixer bug
         $js = <<<EOJ
-<script>
-$(window).on('load', function(){
-    var hiddenElement = $('#$responseId-$uniqueId');
-    var form = hiddenElement.parents('form');
-    
-    form.submit(function(){
-        var responseValue = form.find('.g-recaptcha-response').val();
-        hiddenElement.val(responseValue);
-    });
-});
+<script type="text/javascript" language="JavaScript">
+function renderLosInvisibleRecaptcha_$uniqueId() {
+  var submitElement = $('#$responseId-$uniqueId').closest('form').find('button[name="submit-button"]');
+  submitElement.attr('id', 'submit-button-$uniqueId');
+  
+  grecaptcha.render('$buttonId', {
+    'sitekey' : '$siteKey',
+    'callback' : losInvisibleRecaptchaCallback_$uniqueId
+  });
+};
+function losInvisibleRecaptchaCallback_$uniqueId(token) {
+  document.getElementById("$responseId-$uniqueId").value = token;
+  {$callback}();
+};
+
+function captchaSubmit_$uniqueId() {
+  // Any js code, eg. fields validation
+  console.log('test');
+  
+  $('#$responseId-$uniqueId').parents('form').submit();
+}
 </script>
 EOJ;
         return $js;

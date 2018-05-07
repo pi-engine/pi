@@ -185,17 +185,28 @@ class Notification extends AbstractService
         // Set field
         $fields = [
             'priority' => $option['priority'],
-            'data'     => $data,
+            'content_available' => true,
         ];
+
+        if (!empty($data['title'])) {
+            $fields['notification']['title'] = $data['title'];
+        }
+
+        if (!empty($data['body'])) {
+            $fields['notification']['body'] = $data['body'];
+        }
 
         if (!empty($data['registration_ids'])) {
             $fields['registration_ids'] = $data['registration_ids'];
-        } elseif (!empty($data['token'])) {
+        }
+        elseif (!empty($data['token'])) {
             $fields['token'] = $data['token'];
         } else {
             $result['message'] = __('Registration ids not set');
             return $result;
         }
+
+//        $fields['data'] = $data;
 
         // Send
         $config  = [
@@ -209,10 +220,11 @@ class Notification extends AbstractService
         $client->setRawBody(json_encode($fields));
         $client->setHeaders($headers);
         $response = $client->send();
+
         if ($response->isSuccess()) {
             $result['status']   = 1;
             $result['message']  = __('Notification send successfully');
-            $result['data']     = $data;
+            $result['request']     = $fields;
             $result['option']   = $option;
             $result['response'] = json_decode($response->getBody(), true);
         } else {

@@ -212,7 +212,7 @@ class HeadLink extends ZendHeadLink
 
                 $item->rel = 'preload';
                 $item->as = 'style';
-                $item->onload = "this.rel='stylesheet'";
+                $item->onload = "this.onload=null;this.rel='stylesheet'";
 
                 $this->setAutoEscape(false);
                 $itemsDefer[] = $this->itemToString($item);
