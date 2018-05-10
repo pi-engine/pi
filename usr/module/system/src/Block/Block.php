@@ -119,7 +119,7 @@ class Block
             $avatar = Pi::service('user')->getPersist('avatar-medium');
 
             if (!$avatar) {
-                $avatar = Pi::service('user')->avatar($uid, 'medium', ['width' => 28, 'height' => 28]);
+                $avatar = Pi::service('user')->avatar($uid, 'medium', ['width' => 18, 'height' => 18]);
                 Pi::service('user')->setPersist('avatar-medium', $avatar);
             }
 
