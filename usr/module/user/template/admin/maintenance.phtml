@@ -13,6 +13,7 @@ $this->angular([
             urlRoot: '<?php echo $this->url('', ['controller' => 'maintenance']); ?>',
             assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
             editUrlRoot: '<?php echo $this->url('', ['controller' => 'edit']); ?>',
+            viewUrlRoot: '<?php echo $this->url('', ['controller' => 'view']); ?>',
             t: {
                 TODAY: '<?php echo _a('Today'); ?>',
                 LAST_WEEK: '<?php echo _a('Last week'); ?>',
@@ -53,7 +54,8 @@ $this->angular([
                 TIME_DISABLED: '<?php echo _a('Disabled time'); ?>',
                 LAST_LOGIN: '<?php echo _a('Last login'); ?>',
                 TIME_ACTIVATED: '<?php echo _a('Activated time'); ?>',
-                NULL: '<?php echo _a('Null'); ?>'
+                NULL: '<?php echo _a('Null'); ?>',
+                VIEW: '<?php echo _a('View'); ?>'
             }
         });
 </script>

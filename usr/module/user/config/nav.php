@@ -34,6 +34,12 @@ return [
                     'controller' => 'edit',
                     'visible'    => 0,
                 ],
+                'view'      => [
+                    'route'      => 'admin',
+                    'module'     => 'user',
+                    'controller' => 'view',
+                    'visible'    => 0,
+                ],
                 'all'       => [
                     'label'      => _t('All'),
                     'route'      => 'admin',

@@ -85,6 +85,11 @@ class HomeController extends ActionController
      */
     public function viewAction()
     {
+        // Check front disable
+        if ($this->config('disable_front')) {
+            return $this->jumpToDenied(__('View information is disable'));
+        }
+
         $page   = $this->params('page', 1);
         $limit  = Pi::config('list_limit', 'user');
         $offset = (int)($page - 1) * $limit;

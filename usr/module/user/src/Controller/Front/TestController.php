@@ -26,9 +26,10 @@ class TestController extends ActionController
      */
     public function indexAction()
     {
+        return false;
+        /*
         $this->view()->setTemplate(false);
 
-        /*
         $fields = Pi::registry('field', 'user')->read('compound');
         vd($fields);
         $fields = Pi::registry('compound_field', 'user')->read('education');
@@ -51,19 +52,24 @@ class TestController extends ActionController
         vd($uids);
         vd($count);
         */
-
-        $this->view()->setTemplate(false);
     }
 
     protected function flushUsers()
     {
+        return false;
+
+        /*
         Pi::model('account', 'user')->delete(['id > ?' => 10]);
         Pi::model('profile', 'user')->delete(['uid > ?' => 10]);
         Pi::model('compound', 'user')->delete(['uid > ?' => 10]);
+        */
     }
 
     public function addAction()
     {
+        return false;
+
+        /*
         $this->view()->setTemplate(false);
 
         $this->flushUsers();
@@ -180,11 +186,14 @@ class TestController extends ActionController
             }
         }
 
-        vd($users);
+        vd($users); */
     }
 
     public function getAction()
     {
+        return false;
+
+        /*
         $this->view()->setTemplate(false);
 
         $field = explode(',', _get('field'));
@@ -207,11 +216,14 @@ class TestController extends ActionController
         vd($field);
         $fields = Pi::user()->get($uid, $field, true);
         d($fields);
-
+        */
     }
 
     public function activateAction()
     {
+        return false;
+
+        /*
         $this->view()->setTemplate(false);
 
         $uid = _get('uid');
@@ -222,6 +234,7 @@ class TestController extends ActionController
         //vd($row->active);
         $fields = Pi::user()->get($uid, ['active', 'time_activated']);
         d($fields);
+        */
     }
 
     // enableAction
