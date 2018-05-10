@@ -69,6 +69,11 @@ class ProfileController extends ActionController
      */
     public function viewAction()
     {
+        // Check front disable
+        if ($this->config('disable_front')) {
+            return $this->jumpToDenied(__('View information is disable'));
+        }
+
         $uid  = $this->params('uid', '');
         $name = $this->params('name', null);
         if (empty($uid) && $name != null) {
