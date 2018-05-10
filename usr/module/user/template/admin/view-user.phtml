@@ -1,0 +1,73 @@
+<div class="clearfix">
+    <h1 class="clearfix">
+        <div class="pull-left">
+            <?php echo $user['avatar']; ?>
+            <?php if (isset($user['first_name']) && !empty($user['first_name'])) { ?>
+                <?php echo $this->escape($user['first_name']); ?>
+                <?php echo $this->escape($user['last_name']); ?>
+            <?php } else { ?>
+                <?php echo $this->escape($user['name']); ?>
+            <?php } ?>
+        </div>
+        <div class="pull-right">
+            <a target="_blank" class="btn btn-primary btn-xs" href="<?php echo $this->escape($user['editUrl']); ?>">
+                <?php _e('Edit user'); ?>
+            </a>
+        </div>
+    </h1>
+    <br />
+    <div class="clearfix">
+        <div class="page-header">
+            <h3><?php _e('Main information'); ?></h3>
+        </div>
+        <table class="table table-striped table-bordered table-condensed">
+            <tr>
+                <th><?php _e('Title'); ?></th>
+                <th><?php _e('Value'); ?></th>
+            </tr>
+            <?php foreach ($meta as $key => $value) { ?>
+                <?php if (isset($user[$key]) && !empty($user[$key] && !in_array($key, ['avatar', 'credential']))) { ?>
+                    <tr>
+                        <td><?php echo $this->escape($value['title']); ?></td>
+                        <td><?php echo $this->escape($user[$key]); ?></td>
+                    </tr>
+                <?php } ?>
+            <?php } ?>
+        </table>
+    </div>
+    <br />
+    <div class="clearfix">
+        <div class="page-header">
+            <h3><?php _e('Roles'); ?></h3>
+        </div>
+        <table class="table table-striped table-bordered table-condensed">
+            <tr>
+                <th class="col-md-2"><?php _e('Section'); ?></th>
+                <th><?php _e('Role'); ?></th>
+            </tr>
+            <tr>
+                <td><?php _e('Front'); ?></td>
+                <td>
+                    <?php $i = 1; ?>
+                    <?php foreach ($user['roleList']['front'] as $role) { ?>
+                        <?php if ($i > 1) { ?> | <?php } ?>
+                        <?php echo $this->escape($role['title']); ?>
+                        <?php $i++; ?>
+                    <?php } ?>
+                </td>
+            </tr>
+            <tr>
+                <td><?php _e('Admin'); ?></td>
+                <td>
+                    <?php $i = 1; ?>
+                    <?php foreach ($user['roleList']['admin'] as $role) { ?>
+                        <?php if ($i > 1) { ?> | <?php } ?>
+                        <?php echo $this->escape($role['title']); ?>
+                        <?php $i++; ?>
+                    <?php } ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+</div>

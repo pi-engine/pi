@@ -113,6 +113,7 @@
                 <td>
                     {{user.identity}}
                     <div class="pi-row-action">
+                        <a href="{{user.viewUrl}}">{{'VIEW' | translate}}</a>
                         <a href="{{user.editUrl}}">{{'EDIT' | translate}}</a>
                         <a href="javascript:void(0)" data-ng-click="deleteAction($index)">{{'DELETE' | translate}}</a>
                         <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
