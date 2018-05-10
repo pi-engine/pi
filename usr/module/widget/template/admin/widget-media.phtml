@@ -5,7 +5,8 @@ $this->jQuery([
     'extension/fileupload-min.js',
 ]);
 
-$script = <<<'EOT'
+$script
+    = <<<'EOT'
 window.addEventListener('DOMContentLoaded', function() {
     $('.image-popup').magnificPopup({
         type: 'image',
@@ -16,7 +17,7 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 });
 EOT;
-$this->jQuery(array('extension/jquery.magnific-popup.min.js' => array('defer' => 'defer')));
+$this->jQuery(['extension/jquery.magnific-popup.min.js' => ['defer' => 'defer']]);
 $this->jQuery('extension/magnific-popup.min.css');
 $this->footScript()->appendScript($script);
 
@@ -64,9 +65,9 @@ echo $this->form($form);
 </script>
 <script src="<?php echo $this->assetModule('admin/widget-media.js'); ?>"></script>
 <script>
-widgetAction({
-    prefix: "block-",
-    uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>',
-    items: <?php echo $content ?: json_encode(array()); ?>
-});
+    widgetAction({
+        prefix: "block-",
+        uploadUrl: '<?php echo $this->url('', ['action' => 'upload']); ?>',
+        items: <?php echo $content ?: json_encode([]); ?>
+    });
 </script>
