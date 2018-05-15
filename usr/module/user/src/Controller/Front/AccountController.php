@@ -190,13 +190,25 @@ class AccountController extends ActionController
 
         // Reset email
         $oldEmail = $userRow->email;
-        Pi::api('user', 'user')->updateUser(
-            $userData['uid'],
-            [
-                'email'         => $email,
-                'last_modified' => time(),
-            ]
-        );
+        $dataToUpdate = [
+            'email'         => $email,
+            'last_modified' => time(),
+        ];
+
+        /**
+         * If email connection type, then replicate email to identity field
+         */
+        if (Pi::service('module')->isActive('user')) {
+            $config = Pi::service('registry')->config->read('user');
+            $field = $config['login_field'];
+            $field = array_shift($field);
+
+            if($field == 'email'){
+                $dataToUpdate['identity'] = $dataToUpdate['email'];
+            }
+        }
+
+        Pi::api('user', 'user')->updateUser($userData['uid'], $dataToUpdate);
         Pi::user()->data()->delete($userData['uid'], 'change-email');
         Pi::user()->data()->delete($userData['uid'], 'email-' . $token);
         $args = [
@@ -459,7 +471,7 @@ class AccountController extends ActionController
         $body    = $data['body'];
         $type    = $data['format'];
         $message = Pi::service('mail')->message($subject, $body, $type);
-        $message->addTo($oldEmail);
+        $message->addTo($newEmail);
         $transport = Pi::service('mail')->transport();
         $transport->send($message);
     }
