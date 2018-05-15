@@ -116,11 +116,26 @@ class Block
         } else {
             $uid    = Pi::service('user')->getUser()->get('id');
             $name   = Pi::service('user')->getUser()->get('name');
-            $avatar = Pi::service('user')->getPersist('avatar-medium');
+
+            /**
+             * Default quality
+             */
+            $avatarSize = 'small';
+            $width = 16;
+
+            /**
+             * High quality
+             */
+            if(Pi::user()->config('avatar_topbar_highquality')){
+                $avatarSize = 'medium';
+                $width = 28;
+            }
+
+            $avatar = Pi::service('user')->getPersist('avatar-' . $avatarSize);
 
             if (!$avatar) {
-                $avatar = Pi::service('user')->avatar($uid, 'medium', ['width' => 18, 'height' => 18]);
-                Pi::service('user')->setPersist('avatar-medium', $avatar);
+                $avatar = Pi::service('user')->avatar($uid, $avatarSize, ['width' => $width, 'height' => $width]);
+                Pi::service('user')->setPersist('avatar-' . $avatarSize, $avatar);
             }
 
             // User module installed
