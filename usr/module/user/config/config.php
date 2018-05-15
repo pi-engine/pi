@@ -512,6 +512,13 @@ $config = [
         'filter'      => 'int',
         'category'    => 'avatar',
     ],
+    'avatar_topbar_highquality' => [
+        'title'       => _t('High quality in topbar'),
+        'edit'        => 'checkbox',
+        'value'       => 0,
+        'filter'      => 'int',
+        'category'    => 'avatar',
+    ],
 
     /*
     'avatar_extension'  => array(
