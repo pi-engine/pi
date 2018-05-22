@@ -155,6 +155,14 @@ $config = [
         ],
     ],
 
+    'disable_front' => [
+        'title'       => _t('Disable public front'),
+        'description' => _t('Disable public front side of user module if you dont want visitors see user profile'),
+        'edit'        => 'checkbox',
+        'value'       => 0,
+        'filter'      => 'int',
+    ],
+
     // Login
     'login_disable' => [
         'title'       => _t('Login disable'),

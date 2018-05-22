@@ -26,6 +26,11 @@ class ActivityController extends ActionController
      */
     public function indexAction()
     {
+        // Check front disable
+        if ($this->config('disable_front')) {
+            return $this->jumpToDenied(__('View information is disable'));
+        }
+
         $name     = _get('name');
         $uid      = _get('uid');
         $ownerUid = Pi::user()->getId();
