@@ -206,7 +206,7 @@ $(function() {
         generate_controls: false,
         show_markers: false,
         type: "directions",
-        draggable: true,
+        draggable: false,
         directions_panel: "#route",
         afterRoute: function(distance) {
             $("#km").text(": "+(distance/1000)+"km");
@@ -256,7 +256,7 @@ $(function() {
         generate_controls: false,
         show_markers: false,
         type: "directions",
-        draggable: true,
+        draggable: false,
         directions_panel: "#route",
         directions_options: {
             travelMode: google.maps.TravelMode.WALKING,

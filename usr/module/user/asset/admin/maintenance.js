@@ -43,6 +43,7 @@
                             server.getLog(params).success(function (data) {
                                 data.sort = params.sort;
                                 angular.forEach(data.users, function (item) {
+                                    item.viewUrl = config.viewUrlRoot + 'index/uid/' + item.id;
                                     item.editUrl = config.editUrlRoot + 'index/uid/' + item.id;
                                 });
                                 deferred.resolve(data);

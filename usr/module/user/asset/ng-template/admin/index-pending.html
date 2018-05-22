@@ -79,22 +79,22 @@
         </div>
     </div>
     <table class="table table-striped">
-        <thead>
         <tr>
-            <th style="width: 14px;">
-            <th style="width: 14px;">
-            <th width="5%">{{'ID' | translate}}
-            <th>{{'USERNAME' | translate}}
-            <th>{{'DISPLAYNAME' | translate}}
-            <th width="15%">{{'EMAIL' | translate}}
-            <th width="8%" class="text-center">{{'ENABLED' | translate}}
-            <th width="8%" class="text-center">{{'ACTIVATED' | translate}}
-            <th width="8%">{{'ROLE' | translate}}
-            <th width="10%" class="text-center">{{'REGISTER_TIME' | translate}}
-        <tbody>
+            <th style="width: 14px;"></th>
+            <th style="width: 14px;"></th>
+            <th width="5%">{{'ID' | translate}}</th>
+            <th>{{'USERNAME' | translate}}</th>
+            <th>{{'DISPLAYNAME' | translate}}</th>
+            <th width="10%">{{'EMAIL' | translate}}</th>
+            <th width="8%" class="text-center">{{'ENABLED' | translate}}</th>
+            <th width="8%" class="text-center">{{'ACTIVATED' | translate}}</th>
+            <th>{{'ROLE' | translate}}</th>
+            <th width="10%" class="text-center">{{'REGISTER_TIME' | translate}}</th>
+        </tr>
         <tr ng-repeat="user in users">
             <td>
                 <input type="checkbox" data-ng-model="user.checked" style="margin-top: -2px;">
+            </td>
             <td>
                 <i class="fa fa-circle text-success" data-ng-if="user.active"
                    tooltip="{{'ACTIVE' | translate}}">
@@ -102,42 +102,48 @@
                 <i class="fa fa-circle text-muted" data-ng-if="!user.active"
                    tooltip="{{'INACTIVE' | translate}}">
                 </i>
-            <td>
-                {{user.id}}
+            </td>
+            <td>{{user.id}}</td>
             <td>
                 {{user.identity}}
                 <div class="pi-row-action">
+                    <a href="{{user.viewUrl}}">{{'VIEW' | translate}}</a>
                     <a href="{{user.editUrl}}">{{'EDIT' | translate}}</a>
                     <a href="javascript:void(0)" data-ng-click="deleteAction($index)">{{'DELETE' | translate}}</a>
                     <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
                 </div>
-            <td>
-                {{user.name}}
-            <td>{{user.email}}
+            </td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
             <td class="text-center">
                 <div class="pi-status" data-ng-class="{'active': !user.time_disabled}"
                      data-ng-click="enableAction(user)">
                     <div class="pi-status-director"></div>
                 </div>
+            </td>
             <td class="text-center">
                 <div class="pi-status" data-ng-class="{'active': user.time_activated, 'disabled': user.time_activated}"
                      data-ng-click="activeAction(user)">
                     <div class="pi-status-director"></div>
                 </div>
+            </td>
             <td>
-            <span data-ng-if="user.front_roles" tooltip="{{user.front_roles}}"
-                  style="padding-right: 5px;">
-              <i class="fa fa-user fa-2x"></i>
-            </span>
-                <span data-ng-if="user.admin_roles" tooltip="{{user.admin_roles}}"
-                      style="padding-left: 5px;">
-              <i class="fa fa-user-md fa-2x"></i>
-            </span>
+                <ul class="list-inline">
+                    <li data-ng-if="user.front_roles">
+                        <i class="fa fa-user"></i> {{user.front_roles}}
+                    </li>
+                    <li data-ng-if="user.admin_roles">
+                        <i class="fa fa-user-md"></i> {{user.admin_roles}}
+                    </li>
+                </ul>
+            </td>
             <td class="text-center">
                 {{user.time_created}}
                 <div data-ng-if="user.register_source">
                     ({{user.register_source}})
                 </div>
+            </td>
+        </tr>
     </table>
     <pagination data-ng-if="paginator.count > paginator.limit"
                 total-items="paginator.count" page="paginator.page" max-size="10"

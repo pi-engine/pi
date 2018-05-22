@@ -155,6 +155,14 @@ $config = [
         ],
     ],
 
+    'disable_front' => [
+        'title'       => _t('Disable public front'),
+        'description' => _t('Disable public front side of user module if you dont want visitors see user profile'),
+        'edit'        => 'checkbox',
+        'value'       => 0,
+        'filter'      => 'int',
+    ],
+
     // Login
     'login_disable' => [
         'title'       => _t('Login disable'),
@@ -509,6 +517,13 @@ $config = [
         'title'       => _t('Max File Size'),
         'description' => _t('Allowed avatar file to upload (in KB), 0 for no limit'),
         'value'       => 1024,
+        'filter'      => 'int',
+        'category'    => 'avatar',
+    ],
+    'avatar_topbar_highquality' => [
+        'title'       => _t('High quality in topbar'),
+        'edit'        => 'checkbox',
+        'value'       => 0,
         'filter'      => 'int',
         'category'    => 'avatar',
     ],

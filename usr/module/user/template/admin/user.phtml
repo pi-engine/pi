@@ -12,6 +12,7 @@ $this->angular([
         .constant('config', {
             urlRoot: '<?php echo $this->url('', ['controller' => 'index', 'action' => 'var']); ?>'.replace(/var\/?$/, ''),
             editUrlRoot: '<?php echo $this->url('', ['controller' => 'edit']); ?>',
+            viewUrlRoot: '<?php echo $this->url('', ['controller' => 'view']); ?>',
             assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
             t: {
                 ACTIVE_STATUS: '<?php echo _a('Active State'); ?>',
@@ -86,7 +87,8 @@ $this->angular([
                 NONE_PENDING_USERS: '<?php echo _a('No pending user.'); ?>',
                 EDIT_TITLE: '<?php echo _a('Edit user'); ?>',
                 REPLACE_AVATAR: '<?php echo _a('Replace with default avatar.'); ?>',
-                COMPOUND_CONFIRM: '<?php echo _a('Are you sure to delete this group?'); ?>'
+                COMPOUND_CONFIRM: '<?php echo _a('Are you sure to delete this group?'); ?>',
+                VIEW: '<?php echo _a('View'); ?>'
             },
             roles: <?php echo json_encode($roles); ?>,
             today: '<?php echo date("Y-m-d"); ?>'

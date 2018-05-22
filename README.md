@@ -8,7 +8,7 @@ Pi Engine is an open source project and follows the philosophy of open standard,
 
 Pi Engine is developed by [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team) initially as a successor to Xoops Project since 2001.
 
-**Check out [Latest Release](https://github.com/pi-engine/pi/blob/master/doc/releasenotes.md).**
+**Try [Latest Stable Release](https://github.com/pi-engine/pi/releases/latest).**
 
 
 Highlights

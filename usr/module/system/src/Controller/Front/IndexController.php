@@ -28,6 +28,13 @@ class IndexController extends ActionController
 
         //$this->flashMessenger()->addMessage('Test for flash messenger.');
         //$this->flashMessenger('Test for flash messenger.');
+
+        // Save statistics
+        if (Pi::service('module')->isActive('statistics')) {
+            Pi::api('log', 'statistics')->save('system', 'index');
+        }
+
+        // Set view
         $this->view()->setTemplate('system-home');
     }
 
