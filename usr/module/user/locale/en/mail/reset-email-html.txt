@@ -5,7 +5,7 @@
 [subject]%site_name% Change Email Confirmation[/subject]
 
 [body]
-<p style="margin-bottom: 5px">Dear <strong>%username%</strong>:</p>
+<p style="margin-bottom: 5px">Dear user:</p>
 
 <p style="margin-top: 5px">A request was received to change email address at %site_name% from %old_email% to %new_email%.</p>
 <p style="margin-top: 5px">Please click the following link in %expiration% hours to complete the request.<br>

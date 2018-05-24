@@ -5,7 +5,7 @@
 [subject]Confirmez votre demande de changement Email[/subject]
 
 [body]
-<p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
+<p style="margin-bottom: 5px">Cher utilisateur,</p>
 
 <p style="margin-top: 5px">Une demande a été reçue pour changer l'adresse email de votre compte sur le %site_name% : changement de la valeur %old_email% à %new_email%.</p>
 <p style="margin-top: 5px">Merci de cliquer sur le lien suivant qui expire dans %expiration% heures afin de finaliser votre demande.<br>

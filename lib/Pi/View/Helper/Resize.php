@@ -341,8 +341,11 @@ class Resize extends AbstractHelper
                 $targetExtension = '404.' . $targetExtension;
             }
 
+            $filenameCommand = str_replace(',','-', $this->commands); // remove separator parameters
+            $filenameCommand = str_replace('$','', $filenameCommand); // remove separatir commands
+
             $target = 'upload/media/processed/'
-                . $this->commands . '/'
+                . $filenameCommand . '/'
                 . str_replace('upload/media/original', '', $file)
                 . '.' . $targetExtension;
 
@@ -363,7 +366,7 @@ class Resize extends AbstractHelper
             return '';
         }
 
-        $filepath = 'upload/media/processed/' . $this->commands . '/' . str_replace('upload/media/original/', '', $file) . '.' . $targetExtension;
+        $filepath = 'upload/media/processed/' . $filenameCommand . '/' . str_replace('upload/media/original/', '', $file) . '.' . $targetExtension;
 
         $finalUrl = \Pi::url($filepath);
 
