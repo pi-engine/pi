@@ -32,6 +32,7 @@ class DatabaseController extends ActionController
 
         $tablesError  = [];
         $columnsError = [];
+        $innodbError = [];
 
         foreach ($results->toArray() as $result) {
             $tableName = array_shift($result);
@@ -44,9 +45,12 @@ SQL;
 
 
             foreach ($res->toArray() as $params) {
-
                 if ($params['Collation'] && $params['Collation'] != 'utf8_general_ci') {
                     $tablesError[$tableName] = $params['Collation'];
+                }
+
+                if ($params['Engine'] && $params['Engine'] != 'InnoDB') {
+                    $innodbError[$tableName] = $params['Engine'];
                 }
             }
 
@@ -66,5 +70,18 @@ SQL;
 
         $this->view()->assign('columnsError', $columnsError);
         $this->view()->assign('tablesError', $tablesError);
+        $this->view()->assign('innodbError', $innodbError);
+    }
+
+    public function migrateAction()
+    {
+        $table = $this->params('table');
+
+        if($table){
+            $sql     = "ALTER TABLE $table ENGINE=InnoDB;";
+            Pi::db()->getAdapter()->query($sql, 'execute');
+        }
+
+        $this->redirect()->toRoute('', ['action' => 'check']);
     }
 }
