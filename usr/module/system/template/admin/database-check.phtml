@@ -15,7 +15,7 @@
         </a>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <?php echo _a('Results for tables'); ?>
@@ -25,13 +25,27 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <?php echo _a('Results for columns'); ?>
                 </div>
                 <div class="panel-body">
                     <pre><?php print_r($columnsError) ?></pre>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <?php echo _a('Results for InnoDB check'); ?>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <?php foreach($innodbError as $tableName => $tableType) : ?>
+                            <li><?php echo $tableName ?> (<?php echo $tableType ?>) => <a href="<?php echo $this->url('', ['action' => 'migrate']); ?>?table=<?php echo $tableName ?>">InnoDB</a></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
             </div>
         </div>
