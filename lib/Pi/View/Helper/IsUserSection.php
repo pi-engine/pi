@@ -65,15 +65,22 @@ class IsUserSection extends AbstractHelper
                 $userSection = true;
             }
 
-        } elseif ($module == 'guide' && $uid > 0) {
+        } elseif ($module == 'guide') {
             $d = (array)Pi::service('url')->getRouteMatch();
             foreach ($d as $value) {
                 $a[] = $value;
             }
-            if (($a[1]['controller'] == 'manage' || $a[1]['controller'] == 'request') && $a[1]['action'] != 'preview') {
-                $userSection = true;
-            }
-            if ($a[1]['controller'] == 'favourite' || $a[1]['controller'] == 'offer' || $a[1]['controller'] == 'stats') {
+            if ($uid > 0) {
+                if (($a[1]['controller'] == 'manage' || $a[1]['controller'] == 'request') && $a[1]['action'] != 'preview') {
+                    $userSection = true;
+                }
+                if ($a[1]['controller'] == 'favourite' || $a[1]['controller'] == 'offer' || $a[1]['controller'] == 'stats') {
+                    $userSection = true;
+                }
+            } 
+            
+            if ($a[1]['controller'] == 'map' )
+            {   
                 $userSection = true;
             }
         } elseif ($module == 'event' && $uid > 0) {
