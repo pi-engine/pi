@@ -106,7 +106,7 @@ $config = [
         'filter' => 'int',
     ],
 
-    'side_menu'     => [
+    'side_menu' => [
         'title'       => _t('Active modules for show on side bar'),
         'description' => '',
         'edit'        => [
@@ -487,7 +487,7 @@ $config = [
         'category'    => 'account',
     ],
 
-    'email_blacklist'   => [
+    'email_blacklist'           => [
         'title'       => _t('Email blacklist'),
         'description' => _t('Forbidden email list, separated with `|`, regexp syntax is allowed.'),
         'edit'        => 'textarea',
@@ -497,7 +497,7 @@ $config = [
 
     // Avatar
     // Allowed width of avatar image, 0 for no limit
-    'max_avatar_width'  => [
+    'max_avatar_width'          => [
         'title'       => _t('Max Avatar Width'),
         'description' => _t('Allowed image width, 0 for no limit'),
         'value'       => 512,
@@ -505,7 +505,7 @@ $config = [
         'category'    => 'avatar',
     ],
     // Allowed height of avatar image, 0 for no limit
-    'max_avatar_height' => [
+    'max_avatar_height'         => [
         'title'       => _t('Max Avatar Height'),
         'description' => _t('Allowed image height, 0 for no limit'),
         'value'       => 512,
@@ -513,7 +513,7 @@ $config = [
         'category'    => 'avatar',
     ],
     // Allowed width of avatar image file size, 0 for no limit
-    'max_size'          => [
+    'max_size'                  => [
         'title'       => _t('Max File Size'),
         'description' => _t('Allowed avatar file to upload (in KB), 0 for no limit'),
         'value'       => 1024,
@@ -521,11 +521,11 @@ $config = [
         'category'    => 'avatar',
     ],
     'avatar_topbar_highquality' => [
-        'title'       => _t('High quality in topbar'),
-        'edit'        => 'checkbox',
-        'value'       => 0,
-        'filter'      => 'int',
-        'category'    => 'avatar',
+        'title'    => _t('High quality in topbar'),
+        'edit'     => 'checkbox',
+        'value'    => 0,
+        'filter'   => 'int',
+        'category' => 'avatar',
     ],
 
     /*
@@ -557,7 +557,12 @@ $config = [
     'oauth_google' => [
         'category'    => 'oauth',
         'title'       => _a('Login by google'),
-        'description' => '',
+        'description' => sprintf(__('Callback urls is : %s'), Pi::url(Pi::service('url')->assemble('user', [
+            'module'     => 'user',
+            'controller' => 'oauth',
+            'action'     => 'callback',
+            'provider'   => 'google',
+        ]))),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,
@@ -582,7 +587,12 @@ $config = [
     'oauth_twitter' => [
         'category'    => 'oauth',
         'title'       => _a('Login by twitter'),
-        'description' => '',
+        'description' => sprintf(__('Callback urls is : %s'), Pi::url(Pi::service('url')->assemble('user', [
+            'module'     => 'user',
+            'controller' => 'oauth',
+            'action'     => 'callback',
+            'provider'   => 'twitter',
+        ]))),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,
@@ -607,7 +617,12 @@ $config = [
     'oauth_facebook' => [
         'category'    => 'oauth',
         'title'       => _a('Login by facebook'),
-        'description' => '',
+        'description' => sprintf(__('Callback urls is : %s'), Pi::url(Pi::service('url')->assemble('user', [
+            'module'     => 'user',
+            'controller' => 'oauth',
+            'action'     => 'callback',
+            'provider'   => 'facebook',
+        ]))),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,
@@ -632,7 +647,12 @@ $config = [
     'oauth_github' => [
         'category'    => 'oauth',
         'title'       => _a('Login by github'),
-        'description' => '',
+        'description' => sprintf(__('Callback urls is : %s'), Pi::url(Pi::service('url')->assemble('user', [
+            'module'     => 'user',
+            'controller' => 'oauth',
+            'action'     => 'callback',
+            'provider'   => 'github',
+        ]))),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,
@@ -671,13 +691,13 @@ $config = [
         'filter'      => 'number_int',
         'value'       => 15,
     ],
-    'reminder_user_days' => [
-        'category' => 'cron',
-        'title' => _a('User post-subscription Feedback days'),
+    'reminder_user_days'            => [
+        'category'    => 'cron',
+        'title'       => _a('User post-subscription Feedback days'),
         'description' => 'Send email to reminder user after X days - 0 means no reminder at all',
-        'edit' => 'text',
-        'filter' => 'number_int',
-        'value' => 3,
+        'edit'        => 'text',
+        'filter'      => 'number_int',
+        'value'       => 3,
     ],
 ];
 
