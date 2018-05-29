@@ -41,7 +41,7 @@ class Comment extends AbstractComment
         if (null == $params) {
             $params = Pi::engine()->application()->getRouteMatch();
         }
-        if ($params instanceof RouteMatch) {
+        if ($params instanceof \Zend\Mvc\Router\Http\RouteMatch ) {
             $params = $params->getParams();
         }
         if ($this->module == $params['module']
@@ -65,4 +65,17 @@ class Comment extends AbstractComment
 
         return $url;
     }
+    
+    public function canonize($id)
+    {
+        $row = Pi::model('page', $this->getModule())->find($id);
+        
+        
+        $data = Pi::api('item', 'guide')->getItem($id);
+        return array(
+            'url' => $this->buildUrl(array('id' => $id)),
+            'title' => $row->title,
+        );
+    }
+    
 }
