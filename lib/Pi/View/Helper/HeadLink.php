@@ -161,8 +161,29 @@ class HeadLink extends ZendHeadLink
                     $dirName =  dirname($parts['path']);
 
                     if(preg_match('#url\(#', $content)){
-                        $content = str_replace('url(\'.', 'url(\'' . $dirName . '/.', $content);
-                        $content = str_replace('url(.', 'url(' . $dirName . '/.', $content);
+                        /**
+                         * Keep from external url to be processed
+                         */
+                        $content = str_replace('url(http', 'url_tmp(http', $content);
+
+                        /**
+                         * Replace local files url directives
+                         */
+                        $content = str_replace('url(\'.', 'url_tmp(\'' . $dirName . '/.', $content);
+                        $content = str_replace('url(.', 'url_tmp(' . $dirName . '/.', $content);
+                        $content = str_replace('url("', 'url_tmp("' . $dirName . '/', $content);
+                        $content = str_replace('url(', 'url_tmp(' . $dirName . '/', $content);
+
+                        /**
+                         * Roll back processed lines
+                         */
+                        $content = str_replace('url_tmp', 'url', $content);
+                    }
+
+
+                    if(preg_match("#owl\.video\.play\.png#", $content, $matches)){
+                        print_r($content);
+                        die('hit');
                     }
 
                     $assetsByHash[$deferHash][$hash] = $content;
