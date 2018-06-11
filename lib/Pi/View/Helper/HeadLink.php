@@ -180,12 +180,6 @@ class HeadLink extends ZendHeadLink
                         $content = str_replace('url_tmp', 'url', $content);
                     }
 
-
-                    if(preg_match("#owl\.video\.play\.png#", $content, $matches)){
-                        print_r($content);
-                        die('hit');
-                    }
-
                     $assetsByHash[$deferHash][$hash] = $content;
                     $this->getContainer()->offsetUnset($key);
                 }
