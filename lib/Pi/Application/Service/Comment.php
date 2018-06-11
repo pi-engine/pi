@@ -149,7 +149,7 @@ EOT;
         Pi::Service('View')->getViewManager()->getHelperManager()->get('jQuery')->__invoke('extension/jquery.magnific-popup.min.js', [], null, false);
         Pi::Service('View')->getViewManager()->getHelperManager()->get('jQuery')->__invoke('script/system-msg.js', [], null, false);
         Pi::Service('View')->getViewManager()->getHelperManager()->get('jQuery')->__invoke('extension/magnific-popup.min.css', [], null, false);
-        Pi::Service('View')->getViewManager()->getHelperManager()->get('css')->__invoke('css/front.css', [], null, false);
+        Pi::Service('View')->getViewManager()->getHelperManager()->get('css')->__invoke(Pi::service('asset')->getModuleAsset('css/front.css', 'comment'), [], null, false);
             
         return $content;
     }
