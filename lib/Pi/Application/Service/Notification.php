@@ -196,6 +196,10 @@ class Notification extends AbstractService
             $fields['notification']['body'] = $data['body'];
         }
 
+        if (!empty($data['data'])) {
+            $fields['data'] = $data['data'];
+        }
+
         if (!empty($data['registration_ids'])) {
             $fields['registration_ids'] = $data['registration_ids'];
         }
@@ -205,8 +209,6 @@ class Notification extends AbstractService
             $result['message'] = __('Registration ids not set');
             return $result;
         }
-
-//        $fields['data'] = $data;
 
         // Send
         $config  = [
