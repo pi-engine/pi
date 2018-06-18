@@ -12,7 +12,7 @@ $modalEnabled = Pi::user()->config('enable_modal');
     <div class="pi-userbar">
         <ul class="nav navbar-nav<?php echo $floatClass; ?>">
 
-            <?php if(Pi::service('module')->isActive('guide') && !$userSection) : ?>
+            <?php if(Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
                 <li class="item-promouvoir hidden-xs hidden-sm dropdown">
                     <div class="btn-group">
                         <button class="label-yellow dropdown-toggle" data-toggle="dropdown">
@@ -397,7 +397,9 @@ $modalEnabled = Pi::user()->config('enable_modal');
             <?php } ?>
         </ul>
     </div>
-<?php if ($modalEnabled && !$block['user']['uid']) {
+<?php if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid']) {
+
+    $GLOBALS['userbarLoaded'] = 1;
     ob_start();
     include(Pi::path('module/system/template/block/partial/login-register-modal.phtml'));
     $modalContent = ob_get_clean();
