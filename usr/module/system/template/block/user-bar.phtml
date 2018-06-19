@@ -8,10 +8,35 @@ if ($block['type'] == 'mixed' || $block['type'] == 'mixed_light') {
 $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
 
 $modalEnabled = Pi::user()->config('enable_modal');
-
 ?>
     <div class="pi-userbar">
         <ul class="nav navbar-nav<?php echo $floatClass; ?>">
+
+            <?php if(Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
+                <li class="item-promouvoir hidden-xs hidden-sm dropdown">
+                    <div class="btn-group">
+                        <button class="label-yellow dropdown-toggle" data-toggle="dropdown">
+                            <span class="value"><?php echo __("Propose my activity") ?></span>
+                        </button>
+                        <ul class="dropdown-menu " role="menu">
+                            <?php if(Pi::service('module')->isActive('event')) : ?>
+                                <li>
+                                    <?php if(Pi::user()->getId()) { ?>
+                                        <a href="<?php echo $this->url('home'); ?>event/manage/update" title="<?php echo __("Publish an event") ?>"><?php echo __("Publish an event") ?></a>
+                                    <?php } else { ?>
+                                        <a  title="<?php echo __("Publish an event") ?>" data-redirect="<?php echo $this->url('home'); ?>event/manage/update"
+                                            href="<?php echo (Pi::user()->config('enable_modal')) ? '#' : Pi::service('authentication')->getUrl('login', $this->url('home') . '/event/manage/update'); ?>" <?php if(Pi::user()->config('enable_modal')) : ?>data-action="login" data-toggle="modal" data-target="#loginRegisterModal"<?php endif; ?>>
+                                            <?php echo __("Publish an event") ?>
+                                        </a>
+                                    <?php } ?>
+                                </li>
+                            <?php endif; ?>
+                            <li><a href="<?php echo $this->url('home'); ?>guide/solutions" title="<?php echo __("Promote my activity") ?>"><?php echo __("Promote my activity") ?></a></li>
+                        </ul>
+                    </div>
+                </li>
+            <?php endif; ?>
+
             <?php if (!$block['user']['uid']) { ?>
                 <li class="item-login">
                     <a href="<?php echo $modalEnabled ? '#' : $block['user']['login'] ?>"
@@ -22,7 +47,7 @@ $modalEnabled = Pi::user()->config('enable_modal');
                         <span class="hidden-sm hidden-md"><?php echo _b('Login'); ?></span>
                     </a>
                 </li>
-                <li class="item-register">
+                <li class="item-register hidden-xs">
                     <a href="<?php echo $modalEnabled ? '#' : $block['user']['register'] ?>"
                        data-target="#loginRegisterModal" data-action="register"
                        <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
@@ -36,7 +61,7 @@ $modalEnabled = Pi::user()->config('enable_modal');
                         <button type="button" class="btn pi-userbar-avatar"
                                 onclick="window.location='<?php echo $block['user']['dashboard_url']; ?>'">
                             <?php echo $block['user']['avatar']; ?>
-                            <span class="hidden-sm">
+                            <span class="hidden-xs hidden-sm hidden-md">
                             <?php echo __('Welcome') . ' ' . _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
                                 <?php if (isset($block['count']) && $block['count']) { ?>
                                     <span class="badge"><?php echo _number($block['count']); ?></span>
@@ -372,7 +397,9 @@ $modalEnabled = Pi::user()->config('enable_modal');
             <?php } ?>
         </ul>
     </div>
-<?php if ($modalEnabled && !$block['user']['uid']) {
+<?php if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid']) {
+
+    $GLOBALS['userbarLoaded'] = 1;
     ob_start();
     include(Pi::path('module/system/template/block/partial/login-register-modal.phtml'));
     $modalContent = ob_get_clean();
