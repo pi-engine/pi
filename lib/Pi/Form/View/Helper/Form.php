@@ -259,7 +259,7 @@ EOT;
 <div class="%error_size% help-block with-errors">%error_content%</div>
 EOT;
                     break;
-                case 'html-brut':
+                case 'html-raw':
                 $labelPattern = '';
                 $elementPattern
                         = <<<EOT

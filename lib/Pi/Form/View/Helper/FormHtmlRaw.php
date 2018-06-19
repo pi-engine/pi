@@ -17,7 +17,7 @@ use Zend\Form\ElementInterface;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class FormHtmlBrut extends AbstractHelper
+class FormHtmlRaw extends AbstractHelper
 {
     /**
      * {@inheritDoc}
