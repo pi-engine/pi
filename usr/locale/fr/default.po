@@ -28,7 +28,6 @@ msgstr ""
 "X-Poedit-SearchPath-11: usr/module/user/src/Controller/Front/"
 "PasswordController.php\n"
 "X-Poedit-SearchPath-12: usr/module/user/src/Form/RegisterForm.php\n"
-"X-Poedit-SearchPath-13: usr/module/system/template/block/user-bar.phtml\n"
 "X-Poedit-SearchPathExcluded-0: www/static/js/bs-lessdoc-parser.js\n"
 
 #: lib/Pi/Application/Bootstrap/Resource/Permission.php:64
