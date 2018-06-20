@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2018-06-20 10:30+0200\n"
+"POT-Creation-Date: 2018-06-20 12:51+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 2.0.8\n"
 "X-Poedit-KeywordsList: __;_t;_e;_a\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -327,11 +327,11 @@ msgstr "Cliquez pour rafraîchir le CAPTCHA"
 msgid "Required"
 msgstr "Requis"
 
-#: lib/Pi/Form/View/Helper/Form.php:534
+#: lib/Pi/Form/View/Helper/Form.php:545
 msgid "Close"
 msgstr "Fermer"
 
-#: lib/Pi/Form/View/Helper/Form.php:535
+#: lib/Pi/Form/View/Helper/Form.php:546
 msgid "Form"
 msgstr "Formulaire"
 
@@ -448,6 +448,29 @@ msgstr "Pas encore inscrit ?"
 #: usr/module/system/template/block/partial/login-register-modal.phtml:96
 msgid "Already registered ?"
 msgstr "Déjà inscrit ?"
+
+#: usr/module/system/template/block/user-bar.phtml:19
+msgid "Propose my activity"
+msgstr ""
+
+#: usr/module/system/template/block/user-bar.phtml:25
+#: usr/module/system/template/block/user-bar.phtml:27
+#: usr/module/system/template/block/user-bar.phtml:29
+msgid "Publish an event"
+msgstr ""
+
+#: usr/module/system/template/block/user-bar.phtml:34
+msgid "Promote my activity"
+msgstr ""
+
+#: usr/module/system/template/block/user-bar.phtml:65
+msgid "Welcome"
+msgstr ""
+
+#: usr/module/system/template/block/user-bar.phtml:139
+#: usr/module/system/template/block/user-bar.phtml:142
+msgid "My offer"
+msgstr ""
 
 #: usr/module/user/config/form.register.php:20
 #, php-format
