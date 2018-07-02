@@ -168,7 +168,9 @@ class HeadLink extends ZendHeadLink
 
                         /**
                          * Replace local files url directives
+                         * Escape data-image
                          */
+                        $content = str_replace('url(data:image', 'url_tmp(data:image', $content);
                         $content = str_replace('url(\'.', 'url_tmp(\'' . $dirName . '/.', $content);
                         $content = str_replace('url(.', 'url_tmp(' . $dirName . '/.', $content);
                         $content = str_replace('url("', 'url_tmp("' . $dirName . '/', $content);
