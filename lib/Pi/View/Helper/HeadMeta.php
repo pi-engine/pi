@@ -60,7 +60,7 @@ class HeadMeta extends ZendHeadMeta
                 return '';
             }
         }
-        if ($item->property == 'og:title' || $item->name == 'twitter:title') {
+        if ((!empty($item->property) && $item->property == 'og:title') || (!empty($item->name) && $item->name == 'twitter:title')) {
             $this->_disableEscape = true;
         } else {
             $this->_disableEscape = false;
