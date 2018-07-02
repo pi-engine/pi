@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2018-06-20 12:51+0200\n"
+"POT-Creation-Date: 2018-06-21 17:41+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
@@ -22,17 +22,18 @@ msgstr ""
 "X-Poedit-SearchPath-6: usr/module/system/template/block/partial/login-"
 "register-modal.phtml\n"
 "X-Poedit-SearchPath-7: usr/custom/module/user/config/form.register.php.dist\n"
-"X-Poedit-SearchPath-8: usr/custom/module/user/config/form.register.php\n"
-"X-Poedit-SearchPath-9: usr/module/user/config/form.register.php\n"
-"X-Poedit-SearchPath-10: usr/module/system/src/Form/LoginForm.php\n"
-"X-Poedit-SearchPath-11: usr/module/user/src/Controller/Front/"
+"X-Poedit-SearchPath-8: usr/module/user/config/form.register.php\n"
+"X-Poedit-SearchPath-9: usr/module/system/src/Form/LoginForm.php\n"
+"X-Poedit-SearchPath-10: usr/module/user/src/Controller/Front/"
 "PasswordController.php\n"
-"X-Poedit-SearchPath-12: usr/module/user/src/Form/RegisterForm.php\n"
+"X-Poedit-SearchPath-11: usr/module/user/src/Form/RegisterForm.php\n"
+"X-Poedit-SearchPath-12: usr/module/system/template/block/user-bar.phtml\n"
 "X-Poedit-SearchPathExcluded-0: www/static/js/bs-lessdoc-parser.js\n"
 
 #: lib/Pi/Application/Bootstrap/Resource/Permission.php:64
 msgid "The website is in maintenance - we are back in a couple of minutes !"
 msgstr ""
+"Le site est en maintenance - nous sommes de retour dans quelques minutes !"
 
 #: lib/Pi/Application/Installer/Theme.php:349
 msgid "Theme updated successfully."
@@ -68,7 +69,7 @@ msgstr "Clef Serveur non définie"
 
 #: lib/Pi/Application/Service/Notification.php:209
 msgid "Registration ids not set"
-msgstr ""
+msgstr "Les IDs d'inscription ne sont pas définis"
 
 #: lib/Pi/Application/Service/Notification.php:228
 msgid "Notification send successfully"
@@ -400,24 +401,6 @@ msgstr "Page"
 msgid "Tags: "
 msgstr "Tags :"
 
-#: usr/custom/module/user/config/form.register.php:19
-#: usr/custom/module/user/config/form.register.php.dist:19
-#: usr/module/user/config/form.register.php:19
-msgid "Terms & Conditions"
-msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
-
-#: usr/custom/module/user/config/form.register.php:20
-#: usr/custom/module/user/config/form.register.php.dist:20
-#, php-format
-msgid "Accept %s"
-msgstr "Accepter les %s"
-
-#: usr/custom/module/user/config/form.register.php:43
-#: usr/custom/module/user/config/form.register.php.dist:43
-#: usr/module/user/config/form.register.php:43
-msgid "Confirm credential"
-msgstr "Confirmer le mot de passe"
-
 #: usr/module/system/src/Form/LoginForm.php:61
 msgid "Password"
 msgstr "Mot de passe"
@@ -426,61 +409,22 @@ msgstr "Mot de passe"
 msgid "Remember login status"
 msgstr "Se souvenir de moi"
 
-#: usr/module/system/template/block/partial/login-register-modal.phtml:57
-#: usr/module/system/template/block/partial/login-register-modal.phtml:78
-#: usr/module/system/template/block/partial/login-register-modal.phtml:79
-#: usr/module/system/template/block/partial/login-register-modal.phtml:92
-msgid "Register"
-msgstr "S'enregistrer"
-
-#: usr/module/system/template/block/partial/login-register-modal.phtml:71
-#: usr/module/system/template/block/partial/login-register-modal.phtml:72
-#: usr/module/user/src/Controller/Front/PasswordController.php:294
-#: usr/module/user/src/Controller/Front/PasswordController.php:295
-msgid "Find password"
-msgstr "Trouver le mot de passe"
-
-#: usr/module/system/template/block/partial/login-register-modal.phtml:75
-msgid "Not already registered ?"
-msgstr "Pas encore inscrit ?"
-
-#: usr/module/system/template/block/partial/login-register-modal.phtml:96
-msgid "Already registered ?"
-msgstr "Déjà inscrit ?"
-
-#: usr/module/system/template/block/user-bar.phtml:19
-msgid "Propose my activity"
-msgstr ""
-
-#: usr/module/system/template/block/user-bar.phtml:25
-#: usr/module/system/template/block/user-bar.phtml:27
-#: usr/module/system/template/block/user-bar.phtml:29
-msgid "Publish an event"
-msgstr ""
-
-#: usr/module/system/template/block/user-bar.phtml:34
-msgid "Promote my activity"
-msgstr ""
-
-#: usr/module/system/template/block/user-bar.phtml:65
-msgid "Welcome"
-msgstr ""
-
-#: usr/module/system/template/block/user-bar.phtml:139
-#: usr/module/system/template/block/user-bar.phtml:142
-msgid "My offer"
-msgstr ""
+#: usr/module/user/config/form.register.php:19
+msgid "Terms & Conditions"
+msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
 
 #: usr/module/user/config/form.register.php:20
 #, php-format
 msgid "Accept the %s"
 msgstr "Accepter les %s"
 
+#: usr/module/user/config/form.register.php:43
+msgid "Confirm credential"
+msgstr "Confirmer le mot de passe"
+
 #: usr/module/user/src/Controller/Front/PasswordController.php:43
-#, fuzzy
-#| msgid "Theme asset publish failed."
 msgid "Reset password failed."
-msgstr "La publication de la ressource Thème a échoué."
+msgstr "La remise à zéro de votre mot de passe a échoué."
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:59
 #: usr/module/user/src/Controller/Front/PasswordController.php:434
@@ -489,10 +433,8 @@ msgid "Whoops, these don't match"
 msgstr "Oups, ils ne correspondent pas"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:100
-#, fuzzy
-#| msgid "Theme updated successfully."
 msgid "Reset password successfully."
-msgstr "Thème mis à jour avec succès."
+msgstr "Le mot de passe a été modifié avec succès."
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:115
 #: usr/module/user/src/Controller/Front/PasswordController.php:362
@@ -605,31 +547,35 @@ msgid "Invalid password"
 msgstr "Mot de passe non valide"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:192
-#, fuzzy
-#| msgid "Find password"
 msgid "Change password"
-msgstr "Trouver le mot de passe"
+msgstr "Modifier le mot de passe"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:193
 msgid "To ensure your account security, complex password is required."
 msgstr ""
+"Pour assurer un bon niveau de sécurité, un mot de passe complexe est requis"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:213
-#, fuzzy
-#| msgid "Find password"
 msgid "Find password failed."
-msgstr "Trouver le mot de passe"
+msgstr "Le rappel mot de passe a échoué."
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:285
 msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr ""
+"Le mail de confirmation a été envoyé avec succès. Merci de lire le mail reçu "
+"pour redéfinir votre mot de passe."
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:294
+#: usr/module/user/src/Controller/Front/PasswordController.php:295
+#: usr/module/system/template/block/partial/login-register-modal.phtml:71
+#: usr/module/system/template/block/partial/login-register-modal.phtml:72
+msgid "Find password"
+msgstr "Trouver le mot de passe"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:307
-#, fuzzy
-#| msgid "Invalid password"
 msgid "Invalid token for password reset."
-msgstr "Mot de passe non valide"
+msgstr "Token non valide pour la modification mot de passe"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:418
 #: usr/module/user/src/Form/RegisterForm.php:126
@@ -638,10 +584,8 @@ msgid "Must be less than %s characters"
 msgstr "Doit compter moins de %s caractères"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:456
-#, fuzzy
-#| msgid "Notification send successfully"
 msgid "Password reset successfully."
-msgstr "Notification envoyée avec succès"
+msgstr "Le mot de passe a été modifié avec succès."
 
 #: usr/module/user/src/Form/RegisterForm.php:53
 msgid "Invalid email"
@@ -669,8 +613,49 @@ msgstr "Oups. Ce nom de compte est déjà pris, malformé ou interdit"
 msgid "Newsletter subscription"
 msgstr "Inscription newslettre"
 
+#: usr/module/system/template/block/partial/login-register-modal.phtml:57
+#: usr/module/system/template/block/partial/login-register-modal.phtml:78
+#: usr/module/system/template/block/partial/login-register-modal.phtml:79
+#: usr/module/system/template/block/partial/login-register-modal.phtml:92
+msgid "Register"
+msgstr "S'enregistrer"
+
+#: usr/module/system/template/block/partial/login-register-modal.phtml:75
+msgid "Not already registered ?"
+msgstr "Pas encore inscrit ?"
+
+#: usr/module/system/template/block/partial/login-register-modal.phtml:96
+msgid "Already registered ?"
+msgstr "Déjà inscrit ?"
+
+#: usr/module/system/template/block/user-bar.phtml:19
+msgid "Propose my activity"
+msgstr "Proposer mon activité"
+
+#: usr/module/system/template/block/user-bar.phtml:25
+#: usr/module/system/template/block/user-bar.phtml:27
+#: usr/module/system/template/block/user-bar.phtml:29
+msgid "Publish an event"
+msgstr "Publier un évènement"
+
+#: usr/module/system/template/block/user-bar.phtml:34
+msgid "Promote my activity"
+msgstr "Promouvoir mon activité"
+
+#: usr/module/system/template/block/user-bar.phtml:65
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: usr/module/system/template/block/user-bar.phtml:139
+#: usr/module/system/template/block/user-bar.phtml:142
+msgid "My offer"
+msgstr "Mon offre"
+
 #~ msgid "Token not set"
 #~ msgstr "Token non défini"
+
+#~ msgid "Accept %s"
+#~ msgstr "Accepter les %s"
 
 #~ msgid "Manager"
 #~ msgstr "Manager"

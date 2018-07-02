@@ -29,7 +29,12 @@
                 <?php if (isset($user[$key]) && !empty($user[$key] && !in_array($key, ['avatar', 'credential']))) { ?>
                     <tr>
                         <td><?php echo $this->escape($value['title']); ?></td>
-                        <td><?php echo $this->escape($user[$key]); ?></td>
+                        <td><?php 
+                        if (is_array($user[$key])) {
+                          print_r($user[$key]);  
+                        } else {
+                          echo $this->escape($user[$key]);  
+                        }?></td>
                     </tr>
                 <?php } ?>
             <?php } ?>
