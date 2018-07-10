@@ -380,7 +380,7 @@ function initialize() {
         center: myLatlng,
         mapTypeId: %s,
         scrollwheel: false,
-        styles: noPoi
+        styles: noPoi 
     };
     var map = new google.maps.Map(document.getElementById('%s'), mapOptions);
     var marker = new google.maps.Marker({
@@ -389,6 +389,11 @@ function initialize() {
         draggable:true,
         title: "%s"
     });
+    
+    var icon = %s;
+    if (icon) {
+        marker.setIcon(icon);
+    }
     
     $(window).on('load', function(){
         google.maps.event.trigger(map, 'resize');
@@ -404,7 +409,8 @@ EOT;
                     $locations['zoom'],
                     $mapTypeId,
                     $id,
-                    $locations['title']
+                    $locations['title'],
+                    isset($option['icon']) ? json_encode($option['icon']) : 'undefined' 
                 );
 
                 // Set url and key
