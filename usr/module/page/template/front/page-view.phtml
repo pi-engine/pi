@@ -1,11 +1,11 @@
 <?php
 // Set Open Graph tags for meta
 $this->doctype('HTML5');
-$this->headMeta($this->escape($title), 'og:title', 'property');
+$this->headMeta($title, 'og:title', 'property');
 $this->headMeta($this->escape($url), 'og:url', 'property');
 $this->headMeta($shearContent, 'og:description', 'property');
 // Set twitter for meta
-$this->headMeta($this->escape($title), 'twitter:title');
+$this->headMeta($title, 'twitter:title');
 $this->headMeta($shearContent, 'twitter:description');
 ?>
 <div class="clearfix">
