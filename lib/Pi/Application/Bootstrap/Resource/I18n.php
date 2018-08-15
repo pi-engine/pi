@@ -40,7 +40,15 @@ class I18n extends AbstractResource
         Pi::service('i18n')->setCharset($charset);
         Pi::service('i18n')->setLocale($locale);
         $locale = Pi::service('i18n')->getLocale();
-        setlocale(LC_ALL, $locale);
+
+        /**
+         * Get real locale code (iso) for current language
+         * Language code is needed for translation
+         * Locale code (iso) is needed for PHP time functions - use of setlocale()
+         */
+        $isoLocale = $this->convertLanguageToLocale($locale);
+        setlocale(LC_ALL, $isoLocale);
+
         // Set encoding for multi-byte handling
         mb_internal_encoding($charset);
         // Set `default_charset` for filters like `FILTER_SANITIZE_FULL_SPECIAL_CHARS`
@@ -86,5 +94,21 @@ class I18n extends AbstractResource
         foreach ((array)$this->options['translator']['module'] as $domain) {
             Pi::service('i18n')->loadModule($domain);
         }
+    }
+
+    /**
+     * Convert language to locale (iso)
+     * @todo need to be completed later
+     * @param $language
+     * @return mixed
+     */
+    protected function convertLanguageToLocale($language){
+
+        $mapping = array(
+            'en' => 'en_UK',
+            'fr' => 'fr_FR',
+        );
+
+        return empty($mapping[$language]) ? $language : $mapping[$language];
     }
 }
