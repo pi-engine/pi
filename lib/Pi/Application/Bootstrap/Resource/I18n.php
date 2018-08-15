@@ -47,7 +47,11 @@ class I18n extends AbstractResource
          * Locale code (iso) is needed for PHP time functions - use of setlocale()
          */
         $isoLocale = $this->convertLanguageToLocale($locale);
-        setlocale(LC_ALL, $isoLocale);
+
+        /**
+         * Find first locale with current charset, else locale only
+         */
+        setlocale(LC_ALL, $isoLocale.'.' . strtoupper($charset), $isoLocale);
 
         // Set encoding for multi-byte handling
         mb_internal_encoding($charset);
