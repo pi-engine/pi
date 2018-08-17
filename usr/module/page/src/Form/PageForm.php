@@ -76,6 +76,9 @@ class PageForm extends BaseForm
             'options' => [
                 'allow_auto' => true,
             ],
+            'attributes' => [
+                'description' => _a('Eligible layouts according to specified theme not refreshed until this form is saving'),
+            ]
         ]);
 
         $this->add([
