@@ -77,7 +77,7 @@ class PageForm extends BaseForm
                 'allow_auto' => true,
             ],
             'attributes' => [
-                'description' => _a('Eligible layouts according to specified theme not refreshed until this form is saving'),
+                'description' => _a('The eligible theme layouts are not visible in the select list until this form is saved once with the selected theme'),
             ]
         ]);
 
