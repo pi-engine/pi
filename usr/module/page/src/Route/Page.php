@@ -11,6 +11,7 @@ namespace Module\Page\Route;
 
 use Pi;
 use Pi\Mvc\Router\Http\Standard;
+use Zend\Stdlib\RequestInterface as Request;
 
 /**
  * Route for pages
@@ -94,8 +95,6 @@ class Page extends Standard
      */
     public function assemble(array $params = [], array $options = [])
     {
-        //$this->prefix = $this->defaults['module'];
-
         $mergedParams = array_merge($this->defaults, $params);
         $url          = '';
         if (!empty($mergedParams['slug'])) {
@@ -108,13 +107,82 @@ class Page extends Standard
         if (empty($url)) {
             return $this->prefix;
         }
+
         $params       = [];
         $prefix       = $this->prefix;
         $this->prefix .= $this->paramDelimiter . $url;
-        $url          = parent::assemble($params, $options);
+
+        $url = parent::assemble($params, $options);
+
+        /**
+         * Remove prefixed url
+         */
+        $url = preg_replace('#\/page\/#', '/', $url);
+
+
         $this->prefix = $prefix;
         $url          = rtrim($url, '/');
 
         return $url;
+    }
+
+    /**
+     * Get cleaned path
+     *
+     * @param Request $request
+     * @param string $pathOffset
+     * @return array
+     */
+    protected function canonizePath(Request $request, $pathOffset = null)
+    {
+        if (!method_exists($request, 'getUri')) {
+
+            return null;
+        }
+
+        $uri  = $request->getUri();
+        $path = $uri->getPath();
+
+        if ($pathOffset !== null) {
+            $path = substr($path, $pathOffset);
+        }
+        $pathLength = strlen($path);
+
+        if ($this->prefix) {
+            $prefix       = trim($this->prefix, $this->paramDelimiter)
+                . $this->paramDelimiter;
+
+            $askedPrefix       = explode($this->paramDelimiter, trim($path, $this->paramDelimiter));
+
+            /**
+             * Search for no prefixed path
+             */
+            if(isset($askedPrefix[0])){
+                $modules = Pi::service('module')->meta();
+
+                if(!in_array($askedPrefix[0], array_keys($modules))){
+                    /**
+                     * Add module prefix
+                     */
+                    $path = $this->paramDelimiter . $this->defaults['module'] . $this->paramDelimiter . $askedPrefix[0];
+                }
+            }
+
+            $path         = trim($path, $this->paramDelimiter)
+                . $this->paramDelimiter;
+            $prefixLength = strlen($prefix);
+
+
+
+            if ($prefix != substr($path, 0, $prefixLength)) {
+                return null;
+            }
+            $path = substr($path, $prefixLength);
+        }
+        $path = trim($path, $this->paramDelimiter);
+
+
+
+        return [$path, $pathLength];
     }
 }

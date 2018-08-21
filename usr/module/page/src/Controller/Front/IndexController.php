@@ -100,6 +100,8 @@ class IndexController extends ActionController
         $slug   = $this->params('slug');
         $action = $this->params('action');
 
+        $uri = Pi::service('url')->getRequestUri();
+
         $row = null;
         if ($id) {
             $row = $this->getModel('page')->find($id);
@@ -117,6 +119,13 @@ class IndexController extends ActionController
             if ($action && $action != $row->slug) {
                 return $this->redirect()->toRoute('', ['slug' => $row->slug])->setStatusCode(301);
             }
+        }
+
+        /**
+         * Redirect to non prefixed url
+         */
+        if(preg_match('#\/page\/#', $uri)){
+            return $this->redirect()->toRoute('page', array('slug' => $row->slug))->setStatusCode(301);
         }
 
         if ($row && $row->active) {
