@@ -24,6 +24,13 @@ use Zend\View\Helper\Placeholder;
 class HeadMeta extends ZendHeadMeta
 {
     /**
+     * if true, disable escaping
+     *
+     * @var bool
+     */
+    protected $_disableEscape = false;
+     
+    /**
      * {@inheritDoc}
      */
     public function __invoke(
@@ -53,8 +60,22 @@ class HeadMeta extends ZendHeadMeta
                 return '';
             }
         }
-
+        if ((!empty($item->property) && $item->property == 'og:title') || (!empty($item->name) && $item->name == 'twitter:title')) {
+            $this->_disableEscape = true;
+        } else {
+            $this->_disableEscape = false;
+        }
         return parent::itemToString($item);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function escape($str) {
+        if ($this->_disableEscape) {
+            return $str;
+        }
+        return parent::escape($str);
     }
 
     /**

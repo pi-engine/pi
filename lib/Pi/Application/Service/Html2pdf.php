@@ -30,7 +30,7 @@ class Html2pdf extends AbstractService
         // Generate PDF
         $html2pdf = new \Spipu\Html2Pdf\Html2Pdf();
         $html2pdf->writeHTML($html);
-        $html2pdf->pdf->SetJPEGQuality(1);
+        $html2pdf->pdf->SetJPEGQuality(90);
         $html2pdf->pdf->setImageScale(1.53);
 
         $html2pdf->output($name);

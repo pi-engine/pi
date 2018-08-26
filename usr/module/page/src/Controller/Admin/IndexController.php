@@ -155,6 +155,14 @@ class IndexController extends ActionController
             $form = new PageForm('page-form', $row->markup);
             $form->setInputFilter(new PageFilter);
             $form->setData($data);
+
+            /**
+             * Set current theme for getting custom layout
+             */
+            if(!empty($data['theme'])){
+                $form->get('layout')->setOption('theme', $data['theme']);
+            }
+
             if ($form->isValid()) {
                 $values = $form->getData();
                 if (empty($values['name'])) {
@@ -200,6 +208,14 @@ class IndexController extends ActionController
             $data = $row->toArray();
             $form = new PageForm('page-form', $row->markup);
             $form->setData($data);
+
+            /**
+             * Set current theme for getting custom layout
+             */
+            if(!empty($data['theme'])){
+                $form->get('layout')->setOption('theme', $data['theme']);
+            }
+
             $form->setAttribute(
                 'action',
                 $this->url('', ['action' => 'edit'])

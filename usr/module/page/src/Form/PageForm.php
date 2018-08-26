@@ -76,6 +76,9 @@ class PageForm extends BaseForm
             'options' => [
                 'allow_auto' => true,
             ],
+            'attributes' => [
+                'description' => _a('The eligible theme layouts are not visible in the select list until this form is saved once with the selected theme'),
+            ]
         ]);
 
         $this->add([
