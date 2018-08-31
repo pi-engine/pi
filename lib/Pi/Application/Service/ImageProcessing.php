@@ -105,6 +105,10 @@ class ImageProcessing
             $this->runCustomCommand($command);
         }
 
+        // Auto rotate the image
+        $filter = new \Imagine\Filter\Basic\Autorotate;
+        $filter->apply($this->image);
+
         $this->image->save($target, $options);
     }
 
