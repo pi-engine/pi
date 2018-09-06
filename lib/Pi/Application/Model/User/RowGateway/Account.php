@@ -111,7 +111,7 @@ class Account extends AbstractFieldRowGateway
     /**
      * {@inheritDoc}
      */
-    public function save($rePopulate = true)
+    public function save($rePopulate = true, $filter = true)
     {
         /*
         if (isset($this['credential'])) {
@@ -119,6 +119,6 @@ class Account extends AbstractFieldRowGateway
         }
         */
 
-        return parent::save($rePopulate);
+        return parent::save($rePopulate, $filter);
     }
 }
