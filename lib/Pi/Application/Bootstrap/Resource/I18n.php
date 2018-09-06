@@ -111,6 +111,7 @@ class I18n extends AbstractResource
         $mapping = array(
             'en' => 'en_UK',
             'fr' => 'fr_FR',
+            'fa' => 'fa_IR',
         );
 
         return empty($mapping[$language]) ? $language : $mapping[$language];
