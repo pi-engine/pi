@@ -88,6 +88,12 @@ class ImageProcessing
 
         $this->image = $this->getImagineService()->open($source);
 
+        // Auto rotate the image
+        // JUST BEFORE CROPPING
+        $filter = new \Imagine\Filter\Basic\Autorotate;
+        $filter->apply($this->image);
+
+
         if ($cropping) {
             $croppingData = json_decode($cropping);
 
@@ -104,10 +110,6 @@ class ImageProcessing
             }
             $this->runCustomCommand($command);
         }
-
-        // Auto rotate the image
-        $filter = new \Imagine\Filter\Basic\Autorotate;
-        $filter->apply($this->image);
 
         $this->image->save($target, $options);
     }
