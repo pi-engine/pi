@@ -1,4 +1,4 @@
-﻿[comment]Pi Engine - validation email compte utilisateur[/comment]
+[comment]Pi Engine - validation email compte utilisateur[/comment]
 
 [format]html[/format]
 

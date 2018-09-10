@@ -1,4 +1,4 @@
-﻿[comment]Demande de feedback utilisateur x jours après inscription[/comment]
+[comment]Demande de feedback utilisateur x jours après inscription[/comment]
 
 [format]html[/format]
 

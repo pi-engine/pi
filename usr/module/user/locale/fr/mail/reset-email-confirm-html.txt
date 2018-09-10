@@ -1,4 +1,4 @@
-﻿[comment]Pi Engine - confirmation du succès changement email utilisateur[/comment]
+[comment]Pi Engine - confirmation du succès changement email utilisateur[/comment]
 
 [format]html[/format]
 
