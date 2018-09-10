@@ -117,6 +117,13 @@ $config['item'] = [
         'category'    => 'general',
     ],
 
+    'site_mail_footer' => [
+        'title'       => _t('Mail footer'),
+        'description' => _t('Content to be displayed on footer of emails, HTML tags allowed.'),
+        'edit'        => 'textarea',
+        'category'    => 'general',
+    ],
+
     'foot_script' => [
         'title'       => _t('Foot scripts'),
         'description' => _t('Scripts that will be appended to each page footer. Either naked or wrapped js scripts are allowed.'),

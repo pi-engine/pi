@@ -385,6 +385,7 @@ class Mail extends AbstractService
             'site_slogan'      => _sanitize(Pi::config('slogan')),
             'site_description' => _sanitize(Pi::config('description')),
             'site_url'         => Pi::url('www', true),
+            'site_mail_footer' => Pi::config('site_mail_footer'),
         ];
         $vars       = array_merge($systemVars, $vars);
         // Assign variables
