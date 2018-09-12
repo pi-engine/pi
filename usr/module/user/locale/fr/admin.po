@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2018-06-13 19:52+0200\n"
-"PO-Revision-Date: 2018-09-12 09:23+0200\n"
+"PO-Revision-Date: 2018-09-12 09:30+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -478,7 +478,7 @@ msgstr "Longueur maximum du nom compte utilisateur lors de l'inscription"
 
 #: config/config.php:413
 msgid "Display name format"
-msgstr "Format du Nom d'Affichage/Pseudo"
+msgstr "Format du Nom d\\'Affichage/Pseudo"
 
 #: config/config.php:414
 msgid "Format of display name for registration."
@@ -542,7 +542,7 @@ msgstr ""
 
 #: config/config.php:483
 msgid "Display blacklist"
-msgstr "Liste noire Nom d'Affichage (pseudo)"
+msgstr "Liste noire Nom d\\'Affichage (pseudo)"
 
 #: config/config.php:484
 msgid ""
@@ -806,7 +806,7 @@ msgstr "Mot de passe"
 #: config/user.php:81 template/admin/inquiry.phtml:14
 #: template/admin/role.phtml:32 template/admin/user.phtml:23
 msgid "Display name"
-msgstr "Nom d'affichage/Pseudo"
+msgstr "Nom d\\'affichage/Pseudo"
 
 #: config/user.php:97
 msgid "Gender"
@@ -1265,7 +1265,7 @@ msgstr "IP"
 
 #: template/admin/maintenance.phtml:46
 msgid "Displayname"
-msgstr "Nom d'Affichage/Pseudo"
+msgstr "Nom d\\'Affichage/Pseudo"
 
 #: template/admin/maintenance.phtml:47
 msgid "Clear the users"
@@ -1537,7 +1537,7 @@ msgstr "L\\'email est déja pris."
 
 #: template/admin/user.phtml:41
 msgid "Display name is already taken."
-msgstr "Le nom d'affichage/pseudo est déjà pris"
+msgstr "Le nom d\\'affichage/pseudo est déjà pris"
 
 #: template/admin/user.phtml:42
 msgid "Back to users list"
