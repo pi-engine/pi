@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2018-06-13 19:52+0200\n"
-"PO-Revision-Date: 2018-09-11 19:07+0200\n"
+"PO-Revision-Date: 2018-09-12 09:23+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -66,7 +66,7 @@ msgstr "Format date de naissance"
 
 #: config/config.php:60
 msgid "Format for birthdate display."
-msgstr "Format de l'affichage de la date de naissance"
+msgstr "Format de l\\'affichage de la date de naissance"
 
 #: config/config.php:65
 msgid "Email expiration"
@@ -482,23 +482,23 @@ msgstr "Format du Nom d'Affichage/Pseudo"
 
 #: config/config.php:414
 msgid "Format of display name for registration."
-msgstr "Format du Nom Affichage/Pseudo lors de l'inscription"
+msgstr "Format du Nom d\\'Affichage/Pseudo lors de l'inscription"
 
 #: config/config.php:434
 msgid "Minimum display name"
-msgstr "Minimum Nom Affichage/Pseudo"
+msgstr "Minimum Nom d\\'Affichage/Pseudo"
 
 #: config/config.php:435
 msgid "Minimum length of display name for user registration"
-msgstr "Longueur minimum du nom affichage/pseudo lors de l'inscription"
+msgstr "Longueur minimum du nom d\\'affichage/pseudo lors de l'inscription"
 
 #: config/config.php:442
 msgid "Maximum display name"
-msgstr "Maximum nom affichage/pseudo"
+msgstr "Maximum nom d\\'affichage/pseudo"
 
 #: config/config.php:443
 msgid "Maximum length of display name for user registration"
-msgstr "Longueur maximum du nom affichage/pseudo lors de l'inscription"
+msgstr "Longueur maximum du nom d\\'affichage/pseudo lors de l'inscription"
 
 #: config/config.php:450
 msgid "Minimum password"
@@ -549,8 +549,8 @@ msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
 msgstr ""
-"Liste des noms affichage/pseudo réservés / interdits, séparés par `|`, la "
-"syntaxe regexp est autorisée."
+"Liste des noms d\\'affichage/pseudo réservés / interdits, séparés par `|`, "
+"la syntaxe regexp est autorisée."
 
 #: config/config.php:491
 msgid "Email blacklist"
@@ -1146,7 +1146,8 @@ msgstr "Valider"
 #: template/admin/inquiry.phtml:16
 msgid "Inquire of user via ID, username, display name or email."
 msgstr ""
-"Rechercher le compte par numéro, nom compte, nom affichage/pseudo ou email."
+"Rechercher le compte par numéro, nom compte, nom d\\'affichage/pseudo ou "
+"email."
 
 #: template/admin/inquiry.phtml:20 template/admin/maintenance.phtml:44
 #: template/admin/user.phtml:26
