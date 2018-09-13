@@ -117,13 +117,6 @@ $config['item'] = [
         'category'    => 'general',
     ],
 
-    'site_mail_footer' => [
-        'title'       => _t('Mail footer'),
-        'description' => _t('Content to be displayed on footer of emails, HTML tags allowed.'),
-        'edit'        => 'textarea',
-        'category'    => 'general',
-    ],
-
     'foot_script' => [
         'title'       => _t('Foot scripts'),
         'description' => _t('Scripts that will be appended to each page footer. Either naked or wrapped js scripts are allowed.'),
@@ -569,6 +562,13 @@ $config['item'] = [
         'title'       => _t('Email encoding'),
         'description' => _t('Encoding for email contents'),
         'value'       => 'UTF-8',
+        'category'    => 'mail',
+    ],
+
+    'site_mail_footer' => [
+        'title'       => _t('Mail footer'),
+        'description' => _t('Content to be displayed on email footer, HTML tags allowed. Usefull to diplay Android/iOS links, sign with Official Company Address/Name or logo,etc.'),
+        'edit'        => 'textarea',
         'category'    => 'mail',
     ],
 
