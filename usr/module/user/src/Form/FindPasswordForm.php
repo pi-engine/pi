@@ -41,15 +41,16 @@ class FindPasswordForm extends BaseForm
             'type' => 'csrf',
         ]);
 
-        $this->add([
-            'name'       => 'submit-button',
-            'type'       => 'button',
-            'options'    => [
+        $this->add(array(
+            'name' => 'submit-button',
+            'type' => 'submit',
+            'options'=> array(
                 'label' => __('Find password'),
-            ],
-            'attributes' => [
-                'class' => 'btn-primary',
-            ],
-        ]);
+
+            ),
+            'attributes' => array(
+                'class' => 'btn btn-default'
+            )
+        ));
     }
 }

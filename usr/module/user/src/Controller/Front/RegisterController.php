@@ -82,7 +82,9 @@ class RegisterController extends ActionController
                     }
                 }
             }
+
             $this->view()->assign([
+                'email' => $post['email'],
                 'result'   => $result,
                 'redirect' => !empty($post['redirect']) ? urldecode($post['redirect']) : '',
             ]);
