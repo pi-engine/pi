@@ -4,14 +4,14 @@
     'from'       => $from,
 ]; ?>
 
-<ul class="nav nav-pills" style="margin-bottom: 10px">
-    <li class="<?php if ($status == $flags['published']) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', ['action' => 'published', 'controller' => 'article', 'from' => $from]); ?>">
+<ul class="nav nav-pills bg-light mb-3 p-3" style="margin-bottom: 10px">
+    <li class="nav-item">
+        <a class="nav-link <?php if ($status == $flags['published']) echo 'active'; ?>" href="<?php echo $this->url('', ['action' => 'published', 'controller' => 'article', 'from' => $from]); ?>">
             <?php echo _a('Published'); ?> (<?php echo $this->escape($summary['published']); ?>)
         </a>
     </li>
-    <li class="<?php if ($status == $flags['pending']) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', array_merge($params, ['status' => $flags['pending']])); ?>">
+    <li class="nav-item">
+        <a class="nav-link <?php if ($status == $flags['pending']) echo 'active'; ?>" href="<?php echo $this->url('', array_merge($params, ['status' => $flags['pending']])); ?>">
             <?php echo _a('Pending'); ?> (<?php echo $this->escape($summary['pending']); ?>)
         </a>
     </li>
@@ -26,7 +26,7 @@
     } ?>
     <?php if ($allowCompose) { ?>
         <li style="margin-left: 20px;">
-        <a href="<?php echo $this->url('', array('controller' => 'draft', 'action'=>'add')); ?>" class="btn btn-default">
+        <a href="<?php echo $this->url('', array('controller' => 'draft', 'action'=>'add')); ?>" class="btn btn-secondary">
             <?php echo _a('Compose'); ?>
         </a>
         </li>

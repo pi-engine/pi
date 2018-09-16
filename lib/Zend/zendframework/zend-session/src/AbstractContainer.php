@@ -52,6 +52,7 @@ abstract class AbstractContainer extends ArrayObject
      */
     protected static $defaultManager;
 
+
     /**
      * Default value to return by reference from offsetGet
      */

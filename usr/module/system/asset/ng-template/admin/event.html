@@ -1,6 +1,6 @@
 <legend>{{'Events' | translate}}</legend>
 <div data-ng-show="events.length">
-    <table class="table" ng-repeat="event in events">
+    <table class="table table-responsive" ng-repeat="event in events">
         <thead>
         <tr>
             <th width="30%">{{event.title}}
@@ -23,7 +23,7 @@
     {{'NoneEvents' | translate}}
 </div>
 <legend>{{'Listeners' | translate}}</legend>
-<table class="table" data-ng-show="listeners.length">
+<table class="table table-responsive" data-ng-show="listeners.length">
     <thead>
     <tr>
         <th width="30%">{{'Title' | translate}}

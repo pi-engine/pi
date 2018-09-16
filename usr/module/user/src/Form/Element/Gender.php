@@ -23,7 +23,7 @@ class Gender extends Radio
      */
     protected $labelAttributes
         = [
-            'class' => 'radio-inline',
+            'class' => 'form-check',
         ];
 
     /**

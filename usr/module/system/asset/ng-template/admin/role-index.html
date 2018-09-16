@@ -58,7 +58,7 @@
         <div class="modal-body">
             <div class="control-group"
                  data-ng-class="{'error': roleForm.name.$dirty && roleForm.name.$invalid}">
-                <label class="control-label">{{'ROLE_NAME' | translate}}</label>
+                <label class="col-form-label">{{'ROLE_NAME' | translate}}</label>
                 <div class="controls">
                     <input type="text" data-ng-model="entity.name" name="name" required pi-unique="{{uniqueUrl}}">
                     <span class="help-inline" data-ng-show="roleForm.name.$valid">
@@ -76,7 +76,7 @@
             </div>
             <div class="control-group"
                  data-ng-class="{'error': roleForm.title.$dirty && roleForm.title.$invalid}">
-                <label class="control-label">{{'ROLE_TITLE' | translate}}</label>
+                <label class="col-form-label">{{'ROLE_TITLE' | translate}}</label>
                 <div class="controls">
                     <input type="text" data-ng-model="entity.title" name="title" required>
                     <span class="help-inline" data-ng-show="roleForm.title.$valid">
@@ -89,7 +89,7 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">{{'TYPE' | translate}}</label>
+                <label class="col-form-label">{{'TYPE' | translate}}</label>
                 <div class="controls">
                     <select data-ng-model="entity.section">
                         <option value="front">{{'FRONT' | translate}}</option>
@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">{{'STATUS' | translate}}</label>
+                <label class="col-form-label">{{'STATUS' | translate}}</label>
                 <div class="controls">
                     <div class="btn-group">
               <span class="btn" data-ng-class="{'btn-danger active': !entity.active}"

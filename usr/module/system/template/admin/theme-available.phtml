@@ -6,8 +6,8 @@ $this->Backbone();
     <div class="js-alert"></div>
 </div>
 <script id="temp-theme" type="text/template">
-    <div class="thumbnail">
-        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>"/>
+    <div class="thumbnail card card-body bg-light mb-3">
+        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>" class="img-fluid mb-1" />
         <div class="caption">
             <h5>
                 <span class="pull-right label"><%= type %></span>

@@ -11,12 +11,10 @@ $this->headMeta($shearContent, 'twitter:description');
 <div class="clearfix">
     <?php if (!empty($nav)) { ?>
     <div class="col-md-2">
-        <ul class="nav nav-pills">
+        <ul class="nav nav-pills bg-light mb-3 p-3">
             <?php foreach ($nav as $id => $item) { ?>
-                <li<?php if (!empty($item['active'])) {
-                    echo ' class="active"';
-                } ?>>
-                    <a href="<?php echo $item['url']; ?>"><?php echo _escape($item['title']); ?></a>
+                <li class="nav-item">
+                    <a class="nav-link <?php if (!empty($item['active'])) { echo 'active'; } ?>" href="<?php echo $item['url']; ?>"><?php echo _escape($item['title']); ?></a>
                 </li>
             <?php } ?>
         </ul>
@@ -43,23 +41,23 @@ $this->headMeta($shearContent, 'twitter:description');
             </div>
             <?php if ($config['social_sharing']) { ?>
                 <div class="article-footer clearfix">
-                    <div class="col-md-5 col-sm-10 col-xs-12">
+                    <div class="col-md-5 col-sm-10 col-12">
                         <?php echo $this->socialSharing($config['social_sharing'], $title, $url); ?>
                     </div>
                 </div>
             <?php } ?>
         <?php } else { ?>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h1 class="panel-title"><?php echo $this->escape($title); ?></h1>
+            <div class="card card-body bg-light mb-3">
+                <div class="card-heading">
+                    <h1 class="card-title"><?php echo $this->escape($title); ?></h1>
                 </div>
-                <div class="panel-body clearfix">
+                <div class="card-body clearfix">
                     <div class="clearfix">
                         <?php echo $content; ?>
                     </div>
                     <?php if ($config['social_sharing']) { ?>
                         <div class="clearfix">
-                            <div class="col-md-5 col-sm-10 col-xs-12">
+                            <div class="col-md-5 col-sm-10 col-12">
                                 <?php echo $this->socialSharing($config['social_sharing'], $title, $url); ?>
                             </div>
                         </div>

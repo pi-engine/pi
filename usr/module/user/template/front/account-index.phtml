@@ -27,7 +27,7 @@ $this->headMeta('noindex', 'robots');
                     <?php _e('Input password to verify your identity for account changes.'); ?>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="password">
+                    <label class="col-md-3 col-form-label" for="password">
                         <?php _e('Password'); ?>
                     </label>
                     <div class="col-md-5">
@@ -124,22 +124,22 @@ $this->headMeta('noindex', 'robots');
 
                             if (result.email_error === 0) {
                                 this.emailInitVal = result.email_value;
-                                this.$email.after("<span class='help-block'>" + result.email_message + "</span>");
+                                this.$email.after("<span class='form-text'>" + result.email_message + "</span>");
                             }
 
                             if (result.email_error === 1) {
                                 this.emailReset();
-                                this.$email.after("<span class='help-block'>" + result.email_message + "</span>").closest('.control-group').addClass('error');
+                                this.$email.after("<span class='form-text'>" + result.email_message + "</span>").closest('.control-group').addClass('error');
                             }
 
                             if (result.name_error === 0) {
                                 this.nameInitVal = result.name_value;
-                                this.$name.after("<span class='help-block'>" + result.name_message + "</span>");
+                                this.$name.after("<span class='form-text'>" + result.name_message + "</span>");
                             }
 
                             if (result.name_error === 1) {
                                 this.nameReset();
-                                this.$name.after("<span class='help-block'>" + result.name_message + "</span>").closest('.control-group').addClass('error');
+                                this.$name.after("<span class='form-text'>" + result.name_message + "</span>").closest('.control-group').addClass('error');
                             }
 
                             this.$confirm.modal('hide');
@@ -148,7 +148,7 @@ $this->headMeta('noindex', 'robots');
                     } else {
                         this.confirmReset();
                         this.$confirmPassword.next().remove();
-                        this.$confirmPassword.after("<span class='help-block'>" + result.message + "</span>").closest('.control-group').addClass('error');
+                        this.$confirmPassword.after("<span class='form-text'>" + result.message + "</span>").closest('.control-group').addClass('error');
                     }
                 }, this));
             },
@@ -180,7 +180,7 @@ $this->headMeta('noindex', 'robots');
             },
 
             focusAction: function () {
-                $(this).closest('.control-group').removeClass('error').find('.help-inline, .help-block').remove();
+                $(this).closest('.control-group').removeClass('error').find('.help-inline, .form-text').remove();
             },
 
             emailVerifyAction: function () {

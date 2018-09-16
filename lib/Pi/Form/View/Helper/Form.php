@@ -165,7 +165,7 @@ class Form extends FormHelper
 EOT;
             $labelPattern
                 = <<<EOT
-<label class="%label_size% control-label">
+<label class="%label_size% col-form-label">
     %mark_required%%label_content%
 </label>
 EOT;
@@ -200,7 +200,7 @@ EOT;
         </label>
     </div>
 </div>
-<div class="%error_size% help-block with-errors">%error_content%</div>
+<div class="%error_size% form-text with-errors">%error_content%</div>
 EOT;
                     break;
 
@@ -213,7 +213,7 @@ EOT;
         %desc_html%
     </div>
 </div>
-<div class="%error_size% help-block with-errors">%error_content%</div>
+<div class="%error_size% form-text with-errors">%error_content%</div>
 EOT;
                     break;
 
@@ -226,7 +226,7 @@ EOT;
         %desc_html%
     </div>
 </div>
-<div class="%error_size% help-block with-errors">%error_content%</div>
+<div class="%error_size% form-text with-errors">%error_content%</div>
 EOT;
                     break;
 
@@ -238,14 +238,14 @@ EOT;
         %element_content%
     </div>
 </div>
-<div class="%error_size% help-block with-errors">%error_content%</div>
+<div class="%error_size% form-text with-errors">%error_content%</div>
 EOT;
                     break;
 
                 case 'button':
                     $labelPattern
                         = <<<EOT
-<div class="%label_size% control-label">
+<div class="%label_size% col-form-label">
     %mark_required%
 </div>
 EOT;
@@ -256,7 +256,7 @@ EOT;
     %element_content%
     %desc_html%
 </div>
-<div class="%error_size% help-block with-errors">%error_content%</div>
+<div class="%error_size% form-text with-errors">%error_content%</div>
 EOT;
                     break;
                 case 'html-raw':
@@ -280,7 +280,7 @@ EOT;
     %desc_html%
 </div>
 
-<div class="%error_size% help-block with-errors">%error_content%</div>
+<div class="%error_size% form-text with-errors">%error_content%</div>
 EOT;
                     break;
             }
@@ -553,7 +553,7 @@ EOT;
                 var formModule = {},
                     form = $("#{$form->getAttribute('id')}"),
                     imgWait = form.find("img.hide");
-                var items = form.find(".form-group").removeClass("has-error").find(".help-block").html("").end();
+                var items = form.find(".form-group").removeClass("has-error").find(".form-text").html("").end();
                 form.submit(function(e) {
                     imgWait.removeClass("hide");
                     e.preventDefault();
@@ -565,7 +565,7 @@ EOT;
                             var msg = result.message;
                             for (var i in msg) {
                                 if (msg.hasOwnProperty(i)) {
-                                    items.filter("[data-name=" + i + "]").addClass("has-error").find(".help-block").html(msg[i][0]);
+                                    items.filter("[data-name=" + i + "]").addClass("has-error").find(".form-text").html(msg[i][0]);
                                 }
                             }
                             formModule.fail();

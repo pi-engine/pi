@@ -155,7 +155,7 @@ $uid = Pi::user()->getId();
                 <div class="row">
                     <div class="form-inline">
                         <div class="form-group pi-article-label">
-                            <label class="control-label"><?php _e('Subject:'); ?></label>
+                            <label class="col-form-label"><?php _e('Subject:'); ?></label>
                         </div>
                         <div class="form-group col-md-6">
                             <?php
@@ -190,7 +190,7 @@ $uid = Pi::user()->getId();
                     }
                     ?>">
                         <div class="form-group pi-article-label">
-                            <label class="control-label"><?php _e('Subtitle:'); ?></label>
+                            <label class="col-form-label"><?php _e('Subtitle:'); ?></label>
                         </div>
                         <div class="form-group col-md-8">
                             <?php
@@ -210,7 +210,7 @@ $uid = Pi::user()->getId();
                 <div class="row" style="margin-top: 5px">
                     <div class="form-inline input-col3">
                         <div class="form-group pi-article-label">
-                            <label class="control-label"><?php _e('Category:'); ?></label>
+                            <label class="col-form-label"><?php _e('Category:'); ?></label>
                         </div>
                         <div class="form-group col-md-3">
 
@@ -230,7 +230,7 @@ $uid = Pi::user()->getId();
                 <div class="form-inline input-col3">
                     <?php if (in_array('source', $elements)) { ?>
                         <div class="form-group pi-article-label">
-                            <label class="control-label"><?php _e('Source:'); ?></label>
+                            <label class="col-form-label"><?php _e('Source:'); ?></label>
                         </div>
                         <div class="form-group col-md-3">
                             <?php
@@ -242,7 +242,7 @@ $uid = Pi::user()->getId();
                     <?php } ?>
                     <?php if (in_array('author', $elements)) { ?>
                         <div class="form-group pi-article-label">
-                            <label class="control-label"><?php _e('Author:'); ?></label>
+                            <label class="col-form-label"><?php _e('Author:'); ?></label>
                         </div>
                         <div class="form-group col-md-3">
                             <input type="text" class="author form-control"
@@ -251,7 +251,7 @@ $uid = Pi::user()->getId();
                     <?php } ?>
                     <?php if (!empty($user['name'])) { ?>
                         <div class="form-group pi-article-label">
-                            <label class="control-label"><?php _e('Submitter:'); ?></label>
+                            <label class="col-form-label"><?php _e('Submitter:'); ?></label>
                         </div>
                         <div class="form-group col-md-2">
                             <input type="text" class="submitter form-control"
@@ -268,7 +268,7 @@ $uid = Pi::user()->getId();
                 <div class="row" style="margin-top: 5px">
                     <div class="form-inline clearfix">
                         <div class="form-group pi-article-label">
-                            <label class="control-label" style="vertical-align: top;"><?php _e('Summary:'); ?></label>
+                            <label class="col-form-label" style="vertical-align: top;"><?php _e('Summary:'); ?></label>
                         </div>
                         <div class="form-group col-md-9">
                             <?php
@@ -307,7 +307,7 @@ $uid = Pi::user()->getId();
                     </span>
                 </span>
             </div>
-            <table class="attachment-list table table-condensed"></table>
+            <table class="attachment-list table table-sm"></table>
             <!-- Starting attachment modal box -->
             <?php include $this->template('front/media-attachments-box.phtml'); ?>
         </div>
@@ -362,7 +362,7 @@ $uid = Pi::user()->getId();
             </div>
             <div class="widget-body">
                 <div class="clearfix article-flow">
-                    <span class="pull-right btn btn-default preview" data-src=""><?php _e('Preview'); ?></span>
+                    <span class="pull-right btn btn-secondary preview" data-src=""><?php _e('Preview'); ?></span>
                     <?php if (!$draft['article']) { ?>
                         <span class="btn btn-info save"><?php _e('Save'); ?></span>
                     <?php } ?>
@@ -382,14 +382,14 @@ $uid = Pi::user()->getId();
                     <div class="clearfix time-edit-wrap hide">
                         <div class="pull-right">
                             <div class="time-control-item">
-                                <input type="text" class="input-small text-hour form-control" maxlength="2">
+                                <input type="text" class="form-control-small text-hour form-control" maxlength="2">
                                 <div class="text-muted" style="padding: 0 5px; width: 9px; font-size: 12px">
                                     <span class="fa fa-chevron-up hour-sort" data-action="1"></span>
                                     <span class="fa fa-chevron-down hour-sort"></span>
                                 </div>
                             </div>
                             <div class="time-control-item" style="margin-left: 10px">
-                                <input type="text" class="input-small text-minute form-control" maxlength="2">
+                                <input type="text" class="form-control-small text-minute form-control" maxlength="2">
                                 <div class="text-muted" style="padding: 0 5px; width: 9px; font-size: 12px">
                                     <span class="fa fa-chevron-up minute-sort" data-action="1"></span>
                                     <span class="fa fa-chevron-down minute-sort"></span>
@@ -415,17 +415,13 @@ $uid = Pi::user()->getId();
                         <?php if (isset($currentApprove) and $currentApprove) { ?>
                             <div class="btn-group pull-right">
                                 <button class="btn btn-primary approve"><?php _e('Approve'); ?></button>
-                                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="javascript:void(0)" data-target="#rejectModel" data-toggle="modal"
+                                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"></button>
+                                <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0)" data-target="#rejectModel" data-toggle="modal"
                                            data-backdrop="false">
                                             <?php _e('Reject'); ?>
                                         </a>
-                                    </li>
-                                </ul>
+                                </div>
                             </div>
                         <?php } ?>
                     <?php } else { ?>
@@ -480,7 +476,7 @@ $uid = Pi::user()->getId();
                     <strong><?php _e('Image gallery'); ?></strong>
                 </div>
                 <div class="widget-body" style="padding-right: 0;">
-                <span class="btn btn-default fileinput-button" data-toggle="modal" href="#multi-gallery-box">
+                <span class="btn btn-secondary fileinput-button" data-toggle="modal" href="#multi-gallery-box">
                     <?php _e('Upload'); ?>
                 </span>
                     <div class="clearfix gallery-list">
@@ -2190,7 +2186,7 @@ $uid = Pi::user()->getId();
 
         var TipView = {
             template: '<% _.each(search,function(item) { %><li class="typeahead-item" data-id="<%= item.id %>"><a href="javascript:void(0)" <% if(_.indexOf(exist,item.id)!=-1) { %>style="color:#B94A48;"<% } %> ><%= item.name %></a></li><% }); %>',
-            template2: '<%_.each(data,function(item) { %><span class="label label-info" data-id="<%= item.id %>"><%= item.name %><i class="icon-remove"></i></span><% }); %>',
+            template2: '<%_.each(data,function(item) { %><span class="badge badge-info" data-id="<%= item.id %>"><%= item.name %><i class="icon-remove"></i></span><% }); %>',
             events: {
                 "mouseenter .typeahead-item": "hoverItem",
                 "click .typeahead-item": "select",
@@ -2557,14 +2553,13 @@ $uid = Pi::user()->getId();
                     + '<?php _e('Approve'); ?>'
                     + '</button>'
                     + '<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">'
-                    + '<span class="caret"></span>'
+                    + ''
                     + '</button>'
-                    + '<ul class="dropdown-menu">'
-                    + '<li>'
-                    + '<a href="javascript:void(0)" data-target="#rejectModel" data-toggle="modal" data-backdrop="false">'
+                    + '<div class="dropdown-menu">'
+                    + '<a class="dropdown-item" href="javascript:void(0)" data-target="#rejectModel" data-toggle="modal" data-backdrop="false">'
                     + '<?php _e('Reject'); ?>'
                     + '</a>'
-                    + '</ul>'
+                    + '</div>'
                     + '</div>' + content;
             }
             $('#article-management-operation').html(content);

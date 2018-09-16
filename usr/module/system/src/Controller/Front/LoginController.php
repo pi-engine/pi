@@ -15,6 +15,10 @@ use Pi;
 use Pi\Authentication\Result;
 use Pi\Mvc\Controller\ActionController;
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 /**
  * User login/logout controller
  *

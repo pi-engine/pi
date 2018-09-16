@@ -36,7 +36,7 @@ class Persist
      */
     public function __construct($storage = '', $dir = '')
     {
-        $this->storage  = $storage ?: 'session';
+        $this->storage = $storage ?: 'session';
         if ($dir) {
             $this->setTmpDir($dir);
         }
@@ -53,8 +53,8 @@ class Persist
      */
     protected function storage($method, $data = null)
     {
-        $result = null;
-        $fileLookup = function() {
+        $result     = null;
+        $fileLookup = function () {
             return $this->getTmpDir() . '/' . static::PERSIST_IDENTIFIER;
         };
 
@@ -66,10 +66,10 @@ class Persist
                         if (file_exists($file)) {
                             $content = file_get_contents($file);
                             if ($content) {
-                                $result = (array) json_decode($content, true);
+                                $result = (array)json_decode($content, true);
                             }
                         } else {
-                            $result = array();
+                            $result = [];
                         }
                         break;
                     case 'set':
@@ -92,7 +92,7 @@ class Persist
                 switch ($method) {
                     case 'load':
                         session_start();
-                        $result = empty($_SESSION) ? array() : (array) $_SESSION;
+                        $result = empty($_SESSION) ? [] : (array)$_SESSION;
                         session_write_close();
                         break;
                     case 'save':
@@ -156,7 +156,7 @@ class Persist
      * Set a param
      *
      * @param string|array $key
-     * @param mixed  $value
+     * @param mixed        $value
      *
      * @throws \Exception
      * @return $this
@@ -195,7 +195,8 @@ class Persist
         if (!$key) {
             $result = static::$container;
         } else {
-            $result = isset(static::$container[$key]) ? static::$container[$key] : null;
+            $result = isset(static::$container[$key]) ? static::$container[$key]
+                : null;
         }
 
         return $result;
@@ -229,7 +230,7 @@ class Persist
     public function getTmpDir()
     {
         if (null === $this->tmpDir) {
-            $tmpdir = array();
+            $tmpdir = [];
             if (function_exists('sys_get_temp_dir')) {
                 $tmpdir[] = sys_get_temp_dir();
             }

@@ -1,17 +1,17 @@
 <style>
-    .user-profile-groups .panel-body {
+    .user-profile-groups .card-body {
         display: none;
     }
 
-    .user-profile-groups .panel-heading {
+    .user-profile-groups .card-heading {
         border-bottom: none;
     }
 
-    .user-profile-group-editing .panel-body {
+    .user-profile-group-editing .card-body {
         display: block;
     }
 
-    .user-profile-group-editing .panel-heading {
+    .user-profile-group-editing .card-heading {
         border-bottom: 1px solid #ddd;
     }
 
@@ -25,30 +25,30 @@
 </style>
 <div class="row user-profile-page">
     <div class="col-md-7">
-        <div class="panel panel-success">
-            <div class="clearfix panel-heading">
+        <div class="card bg-success p-3">
+            <div class="clearfix card-heading">
                 <div class="pull-right">
                     <button class="btn btn-link" data-ng-click="cancelAction()">{{'CANCEL' | translate}}</button>
                     <button class="btn btn-success" data-ng-click="saveAction()">{{'SAVE' | translate}}</button>
                 </div>
                 <h5 style="margin: 10px 0 0 0;">{{'FIELD_DISPLAY' | translate}}</h5>
             </div>
-            <div class="panel-body">
+            <div class="card-text">
                 <form class="input-group" ng-submit="AddCustomDisplay()" novalidate
                       name="displayForm" style="margin-bottom: 20px;">
                     <input class="form-control" type="text" placeholder="{{'TITLE' | translate}}"
                            data-ng-model="entity" required>
                     <span class="input-group-btn">
-            <button class="btn btn-default" ng-disabled="displayForm.$invalid">
+            <button class="btn btn-secondary" ng-disabled="displayForm.$invalid">
               {{'ADD_GROUP' | translate}}
             </button>
           </span>
                 </form>
                 <div pi-alert message="saveAlert.message" type="saveAlert.type"></div>
                 <div class="user-profile-groups" ui-sortable="displaysOpts" data-ng-model="displays">
-                    <div ng-repeat="display in displays" class="panel panel-default"
+                    <div ng-repeat="display in displays" class="card card-body bg-light mb-3"
                          data-ng-class="{'user-profile-group-editing': display.$isEditing}">
-                        <div class="clearfix panel-heading">
+                        <div class="clearfix card-heading">
                             <div class="pull-right user-profile-group-action">
                                 <i class="fa fa-lg pi-icon-cursor" style="padding-right: 4px;"
                                    data-ng-class="{'fa-angle-up': display.$isEditing, 'fa-angle-down': !display.$isEditing}"
@@ -60,7 +60,7 @@
                             <div pi-hover-input text="display.title">
                             </div>
                         </div>
-                        <div class="panel-body" ui-sortable data-ng-model="display.fields">
+                        <div class="card-body" ui-sortable data-ng-model="display.fields">
                             <div ng-repeat="displayField in display.fields" class="pi-widget">
                                 <button class="close" data-ng-if="!display.name"
                                         data-ng-click="removeGroupField(display.fields, $index)">&times;
@@ -79,24 +79,23 @@
             <div class="pull-right">
                 <div class="dropdown pi-user-select-disabled">
                     <i dropdown-toggle class="fa fa-plus fa-lg pi-icon-cursor"></i>
-                    <ul class="pull-right dropdown-menu">
-                        <li ng-repeat="item in customGroup">
-                            <a href="javascript:void(0)"
+                    <div class="pull-right dropdown-menu">
+                            <a ng-repeat="item in customGroup" class="dropdown-item" href="javascript:void(0)"
                                data-ng-click="AddGroupField(item, $parent.$index)">{{item}}</a>
-                    </ul>
+                    </div>
                 </div>
             </div>
             {{field.title}}
         </div>
         <legend>{{'COMPOUND' | translate}}</legend>
-        <div ng-repeat="compound in compounds" class="panel panel-default">
-            <div class="panel-heading">
+        <div ng-repeat="compound in compounds" class="card card-body bg-light mb-3">
+            <div class="card-heading">
         <span class="pull-right" data-ng-click="addDisplayGroup($index)">
           <i class="fa fa-plus fa-lg pi-icon-cursor"></i>
         </span>
                 {{compound.title}}
             </div>
-            <div class="panel-body">
+            <div class="card-text">
                 <div class="pi-widget" ng-repeat="item in compound.fields">
                     {{item.title}}
                 </div>

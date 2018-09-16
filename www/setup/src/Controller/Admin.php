@@ -136,6 +136,7 @@ class Admin extends AbstractController
     {
         $installer = new ModuleInstaller;
         $ret = $installer->install('system');
+
         if (!$ret) {
             $this->hasForm = true;
             $this->content = '<p class="alert alert-danger">'

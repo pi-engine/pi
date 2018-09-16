@@ -45,7 +45,7 @@ SQL;
 
 
             foreach ($res->toArray() as $params) {
-                if ($params['Collation'] && $params['Collation'] != 'utf8_general_ci') {
+                if ($params['Collation'] && $params['Collation'] != 'utf8mb4_general_ci') {
                     $tablesError[$tableName] = $params['Collation'];
                 }
 
@@ -62,7 +62,7 @@ SQL;
             $resultsColumns = Pi::db()->getAdapter()->query($sql, 'execute');
 
             foreach ($resultsColumns->toArray() as $resultColumn) {
-                if ($resultColumn['Collation'] && $resultColumn['Collation'] != 'utf8_general_ci') {
+                if ($resultColumn['Collation'] && $resultColumn['Collation'] != 'utf8mb4_general_ci') {
                     $columnsError[$tableName][$resultColumn['Field']] = $resultColumn['Collation'];
                 }
             }

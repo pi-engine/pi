@@ -1,6 +1,6 @@
 <?php $this->css($this->assetModule('admin/admin.css')); ?>
 <div id="js-module" class="table-responsive">
-    <table class="table">
+    <table class="table table-responsive">
         <thead>
         <tr>
             <th><?php echo _a('Icon'); ?></th>
@@ -38,7 +38,7 @@
                 <td>
                     <p><?php echo $module['description']; ?></p>
                     <a href="javascript:void(0)" class="invisible detail-action"><?php echo _a('Detail'); ?></a>
-                    <dl class="pi-hide well well-small dl-horizontal">
+                    <dl class="pi-hide card card-body bg-light mb-3 dl-horizontal">
                         <dt><?php echo _a('Name:'); ?></dt>
                         <dd><?php echo $module['name']; ?></dd>
                         <dt><?php echo _a('Directory:'); ?></dt>
@@ -68,18 +68,18 @@
                             <?php $class = ($module['active']) ? 'btn-danger' : 'btn-success'; ?>
                             <button type="button" class="btn btn-sm <?php echo $class; ?> dropdown-toggle"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php echo _a('Action'); ?> <span class="caret"></span>
+                                <?php echo _a('Action'); ?>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-menu dropdown-menu-right">
                                 <?php if ($module['active']) {
-                                    echo sprintf('<li><a href="%s"><i class="fa fa-hourglass-o"></i> %s</a></li>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 0, 'from' => 'installed']), _a('Disable'));
+                                    echo sprintf('<a class="dropdown-item" href="%s"><i class="fa fa-hourglass-o"></i> %s</a>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 0, 'from' => 'installed']), _a('Disable'));
                                 } else {
-                                    echo sprintf('<li><a href="%s"><i class="fa fa-hourglass"></i> %s</a></li>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 1, 'from' => 'installed']), _a('Enable'));
+                                    echo sprintf('<a class="dropdown-item" href="%s"><i class="fa fa-hourglass"></i> %s</a>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 1, 'from' => 'installed']), _a('Enable'));
                                 }
-                                echo '<li role="separator" class="divider"></li>';
-                                echo sprintf('<li><a class="bg-danger" href="%s" onclick="return confirm(\'%s\')"><i class="fa fa-exclamation-triangle text-danger"></i> %s</a></li>', $this->url('', ['action' => 'uninstall', 'id' => $module['id'], 'from' => 'installed']), _a('Are you sure to uninstall this module?'), _a('Uninstall'));
+                                echo ' <div class="dropdown-divider"></div>';
+                                echo sprintf('<a class="dropdown-item" href="%s" onclick="return confirm(\'%s\')"><i class="fa fa-exclamation-triangle text-danger"></i> %s</a>', $this->url('', ['action' => 'uninstall', 'id' => $module['id'], 'from' => 'installed']), _a('Are you sure to uninstall this module?'), _a('Uninstall'));
                                 ?>
-                            </ul>
+                            </div>
                         <?php } ?>
                     </div>
                 </td>
@@ -105,7 +105,7 @@
                 });
             },
             toggleDetail: function (e) {
-                $(e.target).siblings('.well').toggle();
+                $(e.target).siblings('.card').toggle();
             },
             rename: function (e) {
                 var $this = $(e.target);

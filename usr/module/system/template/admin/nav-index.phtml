@@ -17,7 +17,7 @@ $this->backbone();
         <tr class="none-set">
             <td></td>
             <td colspan="3">
-                <span class="btn btn-default <?php if (!$navGlobal) {
+                <span class="btn btn-secondary <?php if (!$navGlobal) {
                     echo 'active';
                 } else {
                     echo 'js-apply';
@@ -32,7 +32,7 @@ $this->backbone();
         <%- title %>
     </td>
     <td>
-        <span class="btn btn-default <% if(name == '<?php echo $navGlobal; ?>') {  print('btn-primary active'); } else { print('js-apply'); } %> "
+        <span class="btn <% if(name == '<?php echo $navGlobal; ?>') {  print('btn-primary'); } else { print('btn-secondary js-apply'); } %> "
               data-name="<%= name %>"><?php echo _a('Set global'); ?></span>
     </td>
     <td>
@@ -92,7 +92,7 @@ $this->backbone();
             },
             render: function () {
                 this.$el.html(_.template(this.template, this.model.toJSON()));
-                if (this.$('.active').length) {
+                if (this.$('.btn-primary').length) {
                     this.$('.js-delete').addClass('hide')
                 }
                 return this;
@@ -115,9 +115,9 @@ $this->backbone();
                 $.post(urlRoot + 'apply', {
                     nav_front: name || ''
                 }).done(_.bind(function () {
-                    this.$('.btn.active').removeClass('btn-primary active').addClass('js-apply');
+                    this.$('.btn.btn-primary').removeClass('btn-primary').addClass('btn-secondary js-apply');
                     this.$('.js-delete.hide').removeClass('hide');
-                    el.addClass('btn-primary active').removeClass('js-apply');
+                    el.addClass('btn-primary').removeClass('js-apply btn-secondary');
                     el.parents('tr').find('.js-delete').addClass('hide');
                 }, this));
             },

@@ -2,32 +2,32 @@
 $options = (array)$block['options'];
 $items   = (array)$block['items'];
 $target  = $options['target_new'] ? '_self' : '_blank';
-$circle  = $options['circle_image'] ? 'img-circle' : '';
+$circle  = $options['circle_image'] ? 'rounded-circle' : '';
 
 switch ($options['max_rows']) {
     case '0':
     case '1':
-        $rows = 'col-md-12 col-xs-12';
+        $rows = 'col-md-12 col-12';
         break;
 
     case '2':
-        $rows = 'col-md-6 col-xs-12';
+        $rows = 'col-md-6 col-12';
         break;
 
     case '3':
-        $rows = 'col-md-4 col-xs-12';
+        $rows = 'col-md-4 col-12';
         break;
 
     case '4':
-        $rows = 'col-md-3 col-xs-12';
+        $rows = 'col-md-3 col-12';
         break;
 
     case '6':
-        $rows = 'col-md-2 col-xs-12';
+        $rows = 'col-md-2 col-12';
         break;
 
     case '12':
-        $rows = 'col-md-1 col-xs-12';
+        $rows = 'col-md-1 col-12';
         break;
 }
 ?>
@@ -40,11 +40,11 @@ switch ($options['max_rows']) {
                         <?php if (!empty($item['link'])) { ?>
                             <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>"
                                target="<?php echo $target; ?>">
-                                <img class="img-responsive <?php echo $circle ?>" src="<?php echo $item['image']; ?>"
+                                <img class="img-fluid <?php echo $circle ?>" src="<?php echo $item['image']; ?>"
                                      alt="<?php echo _escape($item['caption']); ?>">
                             </a>
                         <?php } else { ?>
-                            <img class="img-responsive <?php echo $circle ?>" src="<?php echo $item['image']; ?>"
+                            <img class="img-fluid <?php echo $circle ?>" src="<?php echo $item['image']; ?>"
                                  alt="<?php echo _escape($item['caption']); ?>">
                         <?php } ?>
                     </div>

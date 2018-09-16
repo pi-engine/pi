@@ -16,31 +16,31 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card card-body bg-light mb-3">
+                <div class="card-heading">
                     <?php echo _a('Results for tables'); ?>
                 </div>
-                <div class="panel-body">
+                <div class="card-text">
                     <pre><?php print_r($tablesError) ?></pre>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card card-body bg-light mb-3">
+                <div class="card-heading">
                     <?php echo _a('Results for columns'); ?>
                 </div>
-                <div class="panel-body">
+                <div class="card-text">
                     <pre><?php print_r($columnsError) ?></pre>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card card-body bg-light mb-3">
+                <div class="card-heading">
                     <?php echo _a('Results for InnoDB check'); ?>
                 </div>
-                <div class="panel-body">
+                <div class="card-text">
                     <ul>
                         <?php foreach($innodbError as $tableName => $tableType) : ?>
                             <li><?php echo $tableName ?> (<?php echo $tableType ?>) => <a href="<?php echo $this->url('', ['action' => 'migrate']); ?>?table=<?php echo $tableName ?>">InnoDB</a></li>

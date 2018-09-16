@@ -20,8 +20,8 @@ $this->jquery();
 
 // Load Bootstrap css/js and font-awesome
 $this->bootstrap([
-    'js/bootstrap.min.js',
-    'font-awesome/css/font-awesome.min.css',
+    'js/bootstrap.bundle.js',
+    'font-awesome/css/font-awesome.css',
 ]);
 
 // Load front.css
@@ -56,7 +56,7 @@ $this->headLink([
 ]);
 
 // Meta Viewport Tag
-$this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
+$this->headMeta('width=device-width, initial-scale=1, shrink-to-fit=no', 'viewport');
 
 // Explicitly load favicon
 $this->headLink([
@@ -85,20 +85,25 @@ $module = Pi::service('module')->current();
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-layout-simple">
 <!-- Header: brand, slogan, user bar -->
 <header class="pi-header">
-    <div class="navbar navbar-inverse" role="navigation">
-        <div class="container">
-            <h2>
-                <a class="navbar-brand" href="<?php echo $this->url('home'); ?>"
-                   title="<?php echo _escape($slogan); ?>">
-                    <?php echo _escape($sitename); ?>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <h1 class="navbar-brand">
+                <a href="<?php echo Pi::url($this->url('home')); ?>"
+                   title="<?php echo _escape($sitename); ?>">
+                    <img src="<?php echo $this->assetTheme('image/logo.png'); ?>"
+                         alt="<?php echo _escape($sitename); ?>">
                 </a>
-            </h2>
+            </h1>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="<?php echo _escape($sitename); ?>">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse">
             <?php echo $this->widget('system-user-bar', ['type' => 'js']); ?>
         </div>
-    </div>
+    </nav>
 </header>
 <!-- Page main content: flash-messenger,and module content -->
-<section class="container pi-main-container">
+<section class="container-fluid pi-main-container">
     <!-- Flash messenger -->
     <?php include $this->template('flash-messenger'); ?>
     <!-- Module content starts -->
@@ -113,7 +118,7 @@ $module = Pi::service('module')->current();
 </section>
 <!-- Footer: sitelink -->
 <footer class="pi-footer text-center">
-    <div class="container">
+    <div class="container-fluid">
         <?php
         $footer = Pi::config('footer');
         if ($footer) {
@@ -121,13 +126,13 @@ $module = Pi::service('module')->current();
         } else {
             ?>
             <ul class="pi-footer-links muted list-inline">
-                <li>
+                <li class="list-inline-item">
                     <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
                         &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
                     </a>
                 </li>
-                <li>-</li>
-                <li>
+                <li class="list-inline-item">-</li>
+                <li class="list-inline-item">
                     <a rel="license" href="http://www.piengine.org" title="Pi Engine" target="_blank">
                         Powered by Pi Engine
                     </a>

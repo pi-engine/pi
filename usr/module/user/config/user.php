@@ -110,13 +110,13 @@ return [
                 'options'       => array(
                     'create_empty_option'   => true,
                     'year_attributes' => array(
-                        'class' => 'input-small',
+                        'class' => 'form-control-small',
                     ),
                     'month_attributes' => array(
-                        'class' => 'input-small',
+                        'class' => 'form-control-small',
                     ),
                     'day_attributes' => array(
-                        'class' => 'input-small',
+                        'class' => 'form-control-small',
                     ),
                 ),
                 'filters'   => array(array(

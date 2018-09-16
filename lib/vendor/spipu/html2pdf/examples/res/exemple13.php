@@ -57,7 +57,7 @@ Exemple de liste avec puce personnalisée :<br>
     </tr>
 </table>
 Exemple de caracteres :<br>
-<table class="tableau" >
+<table class="table table-responsiveau" >
     <tr><th>0</th><th>a</th><th>e</th><th>i</th><th>o</th><th>u</th></tr>
     <tr><th>1</th><td>&agrave;</td><td>&egrave;</td><td>&igrave;</td><td>&ograve;</td><td>&ugrave;</td></tr>
     <tr><th>2</th><td>&aacute;</td><td>&eacute;</td><td>&iacute;</td><td>&oacute;</td><td>&uacute;</td></tr>

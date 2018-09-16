@@ -162,7 +162,7 @@ HTML;
             $this->remove('submit');
 
             $button = new \Zend\Form\Element\Button('submit-button');
-            $button->setLabel(__('Submit'))->setAttribute('class', 'btn btn-default');
+            $button->setLabel(__('Submit'))->setAttribute('class', 'btn btn-secondary');
 
             $this->add($button);
         }

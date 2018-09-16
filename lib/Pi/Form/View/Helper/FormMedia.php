@@ -48,7 +48,7 @@ class FormMedia extends FormElement
 EOT;
         $labelPattern
                       = <<<EOT
-<label class="%label_size% control-label">
+<label class="%label_size% col-form-label">
     %mark_required%%label_content%
 </label>
 EOT;
@@ -66,7 +66,7 @@ EOT;
     %desc_html%
 </div>
 
-<div class="%error_size% help-block with-errors">%error_content%</div>
+<div class="%error_size% form-text with-errors">%error_content%</div>
 EOT;
 
         $vars['element_name']    = $element->getName();

@@ -26,7 +26,7 @@
                             b.append($(tb(data[i])).data("info", data[i]));
                         }
                     } else {
-                        b.append('<span class="label label-info">No Block</span>');
+                        b.append('<span class="badge badge-info">No Block</span>');
                     }
                     self.dragBlock(b.find(".module-block"));
                     b.css('dispaly', 'block');

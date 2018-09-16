@@ -16,7 +16,7 @@ return [
     'meta'     => [
         'title'       => _a('User'),
         'description' => _a('User profile and services.'),
-        'version'     => '1.6.9',
+        'version'     => '1.7.0',
         'license'     => 'New BSD',
         'demo'        => 'http://demo.piengine.org',
         'icon'        => 'fa-user',
@@ -46,11 +46,11 @@ return [
         // Permission specs
         'permission' => 'permission.php',
         'config'     => 'config.php',
-        'user'       => 'user.php',
         'page'       => 'page.php',
         'route'      => 'route.php',
         'navigation' => 'nav.php',
         'event'      => 'event.php',
         'block'      => 'block.php',
+        'user'       => 'user.php',
     ],
 ];
