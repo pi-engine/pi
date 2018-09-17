@@ -51,7 +51,7 @@ class Sticky extends AbstractHelper
                 responsive : true,
                 top: $('#pi-header nav').height() + affixWrapperHeight + 20,
                 stickTo: '#sticky-container',
-                queries: {
+                responsive: {
                     992: {
                       disable: true
                     }
