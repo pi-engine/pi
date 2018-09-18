@@ -177,11 +177,6 @@ class RenderCache extends AbstractResource
                     }
                 }
 
-                $response->getHeaders()->addHeaders([
-                    'toto'          => rand(),
-                ]);
-
-
                 /**
                  * Replace cached security key into login form with dynamic security key
                  */
