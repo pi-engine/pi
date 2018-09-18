@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2018-06-13 19:52+0200\n"
-"PO-Revision-Date: 2018-06-13 19:52+0200\n"
+"POT-Creation-Date: 2018-09-18 23:04+0200\n"
+"PO-Revision-Date: 2018-09-18 23:08+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: config/config.php:650
 #, php-format
 msgid "Callback urls is : %s"
-msgstr ""
+msgstr "Callback urls est : %s"
 
 #: config/event.php:21
 msgid "User logged in"
@@ -95,7 +95,7 @@ msgstr "Confirmer le mot de passe"
 msgid "Login"
 msgstr "Se connecter"
 
-#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:100
+#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:110
 #: template/front/login-logout.phtml:27 template/front/login-logout.phtml:28
 #: template/front/login.phtml:40 template/front/login.phtml:42
 #: template/front/register-disabled.phtml:3
@@ -150,8 +150,8 @@ msgid "Profile"
 msgstr "Profil"
 
 #: src/Api/Breadcrumbs.php:136 src/Api/Breadcrumbs.php:149
-#: src/Controller/Front/ProfileController.php:203
-#: src/Controller/Front/ProfileController.php:252
+#: src/Controller/Front/ProfileController.php:212
+#: src/Controller/Front/ProfileController.php:261
 msgid "Edit profile"
 msgstr "Editer le profi"
 
@@ -281,15 +281,15 @@ msgid "Valid input."
 msgstr "Saisie non valide."
 
 #: src/Controller/Front/AccountController.php:323
-#: src/Controller/Front/RegisterController.php:353
+#: src/Controller/Front/RegisterController.php:363
 msgid "Invalid input."
 msgstr "Saisie non valide."
 
 #: src/Controller/Front/ActivityController.php:31
 #: src/Controller/Front/HomeController.php:90
-#: src/Controller/Front/ProfileController.php:74
+#: src/Controller/Front/ProfileController.php:83
 msgid "View information is disable"
-msgstr ""
+msgstr "La visualisation des informations est désactivée"
 
 #: src/Controller/Front/ActivityController.php:45
 msgid "User was not found."
@@ -396,31 +396,31 @@ msgstr "Voir les activités de %s"
 
 #: src/Controller/Front/OauthController.php:32
 msgid "You logged in before."
-msgstr ""
+msgstr "Vous vous êtes déjà connecté auparavant."
 
 #: src/Controller/Front/OauthController.php:80
 msgid "Google login not active"
-msgstr ""
+msgstr "Login Google non actif"
 
 #: src/Controller/Front/OauthController.php:117
 msgid "Twitter login not active"
-msgstr ""
+msgstr "Login Twitter non actif"
 
 #: src/Controller/Front/OauthController.php:154
 msgid "Facebook login not active"
-msgstr ""
+msgstr "Login Facebook non actif"
 
 #: src/Controller/Front/OauthController.php:191
 msgid "Github login not active"
-msgstr ""
+msgstr "Login GitHub non actif"
 
 #: src/Controller/Front/OauthController.php:198
 msgid "Provider not set"
-msgstr ""
+msgstr "Provider non défini"
 
 #: src/Controller/Front/OauthController.php:248
 msgid "Error on login"
-msgstr ""
+msgstr "Erreur à la connexion"
 
 #: src/Controller/Front/OauthController.php:279
 msgid "You have logged in successfully."
@@ -428,7 +428,7 @@ msgstr "Vous vous êtes connecté avec succès."
 
 #: src/Controller/Front/OauthController.php:283
 msgid "Information not true"
-msgstr ""
+msgstr "Information erronnée"
 
 #: src/Controller/Front/PasswordController.php:43
 msgid "Reset password failed."
@@ -583,14 +583,14 @@ msgstr "Paramètres de confidentialité"
 msgid "Set profile field privacy."
 msgstr "Paramétrer la confidentialité des champs du profil"
 
-#: src/Controller/Front/ProfileController.php:61
-#: src/Controller/Front/ProfileController.php:119
+#: src/Controller/Front/ProfileController.php:70
+#: src/Controller/Front/ProfileController.php:128
 #, php-format
 msgid "%s profile"
 msgstr "Profil de %s"
 
-#: src/Controller/Front/ProfileController.php:62
-#: src/Controller/Front/ProfileController.php:120
+#: src/Controller/Front/ProfileController.php:71
+#: src/Controller/Front/ProfileController.php:129
 #, php-format
 msgid ""
 "To know more about %s profile : his bio, websites and social networks, and "
@@ -599,87 +599,87 @@ msgstr ""
 "Pour en savoir plus à propos du profil de %s : sa bio, ses sites web et "
 "réseaux sociaux, et son activité sur le site"
 
-#: src/Controller/Front/ProfileController.php:147
-#: src/Controller/Front/ProfileController.php:227
-#: src/Controller/Front/ProfileController.php:278
-#: src/Controller/Front/ProfileController.php:417
+#: src/Controller/Front/ProfileController.php:156
+#: src/Controller/Front/ProfileController.php:236
+#: src/Controller/Front/ProfileController.php:287
+#: src/Controller/Front/ProfileController.php:426
 msgid "Profile group ID is invalid."
 msgstr "Le numéro de groupe de profil n'est pas valide."
 
-#: src/Controller/Front/ProfileController.php:181
+#: src/Controller/Front/ProfileController.php:190
 msgid "Profile updated successfully."
 msgstr "Profil mis à jour avec succès."
 
-#: src/Controller/Front/ProfileController.php:183
+#: src/Controller/Front/ProfileController.php:192
 msgid "Profile update failed."
 msgstr "Echec de la mise à jour du profil."
 
-#: src/Controller/Front/ProfileController.php:204
-#: src/Controller/Front/ProfileController.php:253
+#: src/Controller/Front/ProfileController.php:213
+#: src/Controller/Front/ProfileController.php:262
 msgid "Edit profile data."
 msgstr "Editer les informations du profil."
 
-#: src/Controller/Front/ProfileController.php:435
+#: src/Controller/Front/ProfileController.php:444
 msgid "Profile compound requires at least one set of data."
 msgstr "L'organisation du profil requiert au moins un jeu de données."
 
-#: src/Controller/Front/ProfileController.php:440
+#: src/Controller/Front/ProfileController.php:449
 msgid "Profile compound data was not deleted."
 msgstr "Les données de l'organisation du profil n'ont pas été supprimées."
 
-#: src/Controller/Front/ProfileController.php:461
+#: src/Controller/Front/ProfileController.php:470
 msgid "User ID or Profile group ID is invalid."
 msgstr ""
 "Le numéro utilisateur ou le numéro de groupe de profil n'est pas valide."
 
-#: src/Controller/Front/RegisterController.php:101
+#: src/Controller/Front/RegisterController.php:111
 #: template/front/register-index.phtml:18
 msgid "Account registration"
 msgstr "Création de compte"
 
-#: src/Controller/Front/RegisterController.php:166
+#: src/Controller/Front/RegisterController.php:176
 msgid "Activation token is invalid."
 msgstr "Le token de confirmation n'est pas valide."
 
-#: src/Controller/Front/RegisterController.php:232
+#: src/Controller/Front/RegisterController.php:242
 msgid "Account Activated successfully."
 msgstr "Le compte a été confirmé avec succès."
 
-#: src/Controller/Front/RegisterController.php:262
+#: src/Controller/Front/RegisterController.php:272
 msgid "Activation email sent failed."
 msgstr "L'envoi de l'email de confirmation-activation a échoué."
 
-#: src/Controller/Front/RegisterController.php:296
+#: src/Controller/Front/RegisterController.php:306
 msgid "Resend activation mail successfully."
 msgstr "Le mail de confirmation-activation a été renvoyé avec succès."
 
-#: src/Controller/Front/RegisterController.php:324
+#: src/Controller/Front/RegisterController.php:334
 msgid "Email was not found."
 msgstr "L'email n'a pas été trouvé."
 
-#: src/Controller/Front/RegisterController.php:329
+#: src/Controller/Front/RegisterController.php:339
 msgid "Account already activated."
 msgstr "Le compte est déjà confirmé."
 
-#: src/Controller/Front/RegisterController.php:340
+#: src/Controller/Front/RegisterController.php:350
 msgid "Activation mail sent successfully."
 msgstr "Le mail de confirmation-activation a été envoyé avec succès."
 
-#: src/Controller/Front/RegisterController.php:345
+#: src/Controller/Front/RegisterController.php:355
 msgid "Activation mail was not sent."
 msgstr "Le mail de confirmation-activation n'a pas été envoyé."
 
-#: src/Controller/Front/RegisterController.php:454
+#: src/Controller/Front/RegisterController.php:464
 msgid "User information was not completed and user account was not saved."
 msgstr ""
 "Toutes les informations utilisateurs n'ont pas été saisies, le compte n'a "
 "pas été crée."
 
-#: src/Controller/Front/RegisterController.php:480
+#: src/Controller/Front/RegisterController.php:490
 msgid "User account was not saved."
 msgstr "Le compte utilisateur n'a pas été enregistré."
 
-#: src/Controller/Front/RegisterController.php:503
+#: src/Controller/Front/RegisterController.php:513
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
@@ -687,7 +687,7 @@ msgstr ""
 "Le compte utilisateur a été crée avec succès mais la confirmation a échoué, "
 "merci de contacter l'administrateur."
 
-#: src/Controller/Front/RegisterController.php:535
+#: src/Controller/Front/RegisterController.php:545
 msgid "Account activation email was not able to send, please contact admin."
 msgstr ""
 "Le mail de confirmation-activation du compte n'a pu être envoyé, merci de "
@@ -970,44 +970,37 @@ msgid "Shortcut : latest version of term and condition is available from"
 msgstr "Shortcut : la dernière version des CGU/CGV se trouve à cette adresse"
 
 #: template/admin/view-user.phtml:14
-#, fuzzy
-#| msgid "Edit"
 msgid "Edit user"
-msgstr "Editer"
+msgstr "Editer l'utilisateur"
 
 #: template/admin/view-user.phtml:21
 msgid "Main information"
-msgstr ""
+msgstr "Information principale"
 
 #: template/admin/view-user.phtml:26
 msgid "Value"
-msgstr ""
-
-#: template/admin/view-user.phtml:41
-msgid "Roles"
-msgstr ""
-
-#: template/admin/view-user.phtml:45
-#, fuzzy
-#| msgid "Action"
-msgid "Section"
-msgstr "Action"
+msgstr "Valeur"
 
 #: template/admin/view-user.phtml:46
-msgid "Role"
-msgstr ""
+msgid "Roles"
+msgstr "Roles"
 
-#: template/admin/view-user.phtml:49
-#, fuzzy
+#: template/admin/view-user.phtml:50
+msgid "Section"
+msgstr "Section"
+
+#: template/admin/view-user.phtml:51
+msgid "Role"
+msgstr "Role"
+
+#: template/admin/view-user.phtml:54
 #| msgid "Front role"
 msgid "Front"
-msgstr "Rôle côté utilisateur"
+msgstr "Front"
 
-#: template/admin/view-user.phtml:60
-#, fuzzy
-#| msgid "Admin role"
+#: template/admin/view-user.phtml:65
 msgid "Admin"
-msgstr "Rôle côté admin"
+msgstr "Admin"
 
 #: template/front/account-index.phtml:23
 msgid "Verify identity"
@@ -1257,19 +1250,19 @@ msgstr "Pas encore inscrit ?"
 
 #: template/front/login.phtml:60 template/front/register-index.phtml:42
 msgid "Login with google"
-msgstr ""
+msgstr "Se connecter avec Google"
 
 #: template/front/login.phtml:68 template/front/register-index.phtml:50
 msgid "Login with twitter"
-msgstr ""
+msgstr "Se connecter avec Twitter"
 
 #: template/front/login.phtml:76 template/front/register-index.phtml:58
 msgid "Login with facebook"
-msgstr ""
+msgstr "Se connecter avec Facebook"
 
 #: template/front/login.phtml:84 template/front/register-index.phtml:66
 msgid "Login with github"
-msgstr ""
+msgstr "Se connecter avec Github"
 
 #: template/front/password-process.phtml:7
 msgid "Reset password"
@@ -1438,26 +1431,30 @@ msgid "An email with activation link has been sent to you."
 msgstr "Un email avec un lien de confirmation-activation vous a été envoyé."
 
 #: template/front/register-index.phtml:130
+msgid "Email used"
+msgstr "Email utilisé"
+
+#: template/front/register-index.phtml:131
 msgid "Please check it to finish the registration."
 msgstr "Merci de vérifier votre boite mail afin de terminer votre inscription."
 
-#: template/front/register-index.phtml:135
+#: template/front/register-index.phtml:136
 msgid "If you do not receive the activation email:"
 msgstr "Si vous ne recevez pas le mail de confirmation :"
 
-#: template/front/register-index.phtml:137
+#: template/front/register-index.phtml:138
 msgid "Wait a few minutes and check again."
 msgstr "Attendez quelques minutes et vérifiez de nouveau."
 
-#: template/front/register-index.phtml:138
+#: template/front/register-index.phtml:139
 msgid "Check your email spam box."
 msgstr "Vérifiez le répertoire spam de votre boite mail."
 
-#: template/front/register-index.phtml:141
+#: template/front/register-index.phtml:142
 msgid "Request to resend activation email"
 msgstr "Demandez le renvoi du mail d'activation"
 
-#: template/front/register-index.phtml:178
+#: template/front/register-index.phtml:179
 msgid "Already sent"
 msgstr "Déja envoyé"
 
