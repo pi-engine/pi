@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2018-09-18 23:04+0200\n"
-"PO-Revision-Date: 2018-09-18 23:08+0200\n"
+"POT-Creation-Date: 2018-09-19 15:39+0200\n"
+"PO-Revision-Date: 2018-09-19 15:39+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -994,7 +994,6 @@ msgid "Role"
 msgstr "Role"
 
 #: template/admin/view-user.phtml:54
-#| msgid "Front role"
 msgid "Front"
 msgstr "Front"
 
@@ -1439,8 +1438,8 @@ msgid "Please check it to finish the registration."
 msgstr "Merci de vérifier votre boite mail afin de terminer votre inscription."
 
 #: template/front/register-index.phtml:136
-msgid "If you do not receive the activation email:"
-msgstr "Si vous ne recevez pas le mail de confirmation :"
+msgid "You did not receive the activation email?"
+msgstr "Vous n'avez pas reçu le mail de confirmation ?"
 
 #: template/front/register-index.phtml:138
 msgid "Wait a few minutes and check again."
