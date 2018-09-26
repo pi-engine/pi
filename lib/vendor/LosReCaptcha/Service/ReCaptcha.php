@@ -153,13 +153,17 @@ HTML;
             $script = <<<JS
 var onloadCallback = function() {
     
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    
+    var size = (w <= 479) ? 'compact':'normal';
+    
     $('.g-recaptcha').each(function(){
         var elementId = $(this).attr('id');
         grecaptcha.render(document.getElementById(elementId), {
-            'sitekey' : '{$this->siteKey}'
+            'sitekey' : '{$this->siteKey}',
+            'size' : size,
         });
     });
-    
 };
 JS;
             Pi::service('view')->getHelper('footScript')->appendScript($script);

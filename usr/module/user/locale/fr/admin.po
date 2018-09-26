@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2018-06-13 19:52+0200\n"
-"PO-Revision-Date: 2018-06-13 19:54+0200\n"
+"POT-Creation-Date: 2018-09-18 23:08+0200\n"
+"PO-Revision-Date: 2018-09-18 23:09+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -46,11 +46,11 @@ msgstr "Avatar"
 
 #: config/config.php:41
 msgid "OAuth"
-msgstr ""
+msgstr "OAuth"
 
 #: config/config.php:44
 msgid "Cron"
-msgstr ""
+msgstr "Cron"
 
 #: config/config.php:52
 msgid "List limit"
@@ -66,7 +66,7 @@ msgstr "Format date de naissance"
 
 #: config/config.php:60
 msgid "Format for birthdate display."
-msgstr "Format de l'affichage de la date de naissance"
+msgstr "Format de l\\'affichage de la date de naissance"
 
 #: config/config.php:65
 msgid "Email expiration"
@@ -478,27 +478,27 @@ msgstr "Longueur maximum du nom compte utilisateur lors de l'inscription"
 
 #: config/config.php:413
 msgid "Display name format"
-msgstr "Format du Nom Affiché"
+msgstr "Format du Nom d\\'Affichage/Pseudo"
 
 #: config/config.php:414
 msgid "Format of display name for registration."
-msgstr "Format du Nom Affiché lors de l'inscription"
+msgstr "Format du Nom d\\'Affichage/Pseudo lors de l'inscription"
 
 #: config/config.php:434
 msgid "Minimum display name"
-msgstr "Nom affiché minimum"
+msgstr "Minimum Nom d\\'Affichage/Pseudo"
 
 #: config/config.php:435
 msgid "Minimum length of display name for user registration"
-msgstr "Longueur minimum du nom affiché lors de l'inscription"
+msgstr "Longueur minimum du nom d\\'affichage/pseudo lors de l'inscription"
 
 #: config/config.php:442
 msgid "Maximum display name"
-msgstr "Nom affiché maximum"
+msgstr "Maximum nom d\\'affichage/pseudo"
 
 #: config/config.php:443
 msgid "Maximum length of display name for user registration"
-msgstr "Longueur maximum du nom affiché lors de l'inscription"
+msgstr "Longueur maximum du nom d\\'affichage/pseudo lors de l'inscription"
 
 #: config/config.php:450
 msgid "Minimum password"
@@ -542,15 +542,15 @@ msgstr ""
 
 #: config/config.php:483
 msgid "Display blacklist"
-msgstr "Liste noire Nom"
+msgstr "Liste noire Nom d\\'Affichage (pseudo)"
 
 #: config/config.php:484
 msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
 msgstr ""
-"Liste des noms affichés réservés / interdits, séparés par `|`, la syntaxe "
-"regexp est autorisée."
+"Liste des noms d\\'affichage/pseudo réservés / interdits, séparés par `|`, "
+"la syntaxe regexp est autorisée."
 
 #: config/config.php:491
 msgid "Email blacklist"
@@ -600,55 +600,55 @@ msgstr "Pour stocker temporairement l'avatar"
 
 #: config/config.php:550
 msgid "oAuth login"
-msgstr ""
+msgstr "oAuth login"
 
 #: config/config.php:559
 msgid "Login by google"
-msgstr ""
+msgstr "Login by google"
 
 #: config/config.php:573
 msgid "Google client id"
-msgstr ""
+msgstr "Google client id"
 
 #: config/config.php:581
 msgid "Google client secret"
-msgstr ""
+msgstr "Google client secret"
 
 #: config/config.php:589
 msgid "Login by twitter"
-msgstr ""
+msgstr "Login by twitter"
 
 #: config/config.php:603
 msgid "Twitter consumer Key (API Key)"
-msgstr ""
+msgstr "Twitter consumer Key (API Key)"
 
 #: config/config.php:611
 msgid "Twitter consumer Secret (API Secret)"
-msgstr ""
+msgstr "Twitter consumer Secret (API Secret)"
 
 #: config/config.php:619
 msgid "Login by facebook"
-msgstr ""
+msgstr "Login by facebook"
 
 #: config/config.php:633
 msgid "Facebook app ID"
-msgstr ""
+msgstr "Facebook app ID"
 
 #: config/config.php:641
 msgid "Facebook app Secret"
-msgstr ""
+msgstr "Facebook app Secret"
 
 #: config/config.php:649
 msgid "Login by github"
-msgstr ""
+msgstr "Login by github"
 
 #: config/config.php:663
 msgid "Github client id"
-msgstr ""
+msgstr "Github client id"
 
 #: config/config.php:671
 msgid "Github client secret"
-msgstr ""
+msgstr "Github client secret"
 
 #: config/config.php:680
 msgid "Active this module cron system"
@@ -660,7 +660,7 @@ msgstr "Timeout session / en jours"
 
 #: config/config.php:696
 msgid "User post-subscription Feedback days"
-msgstr ""
+msgstr "Nb jours pour le feedback post inscriptions"
 
 #: config/module.php:17 config/nav.php:21
 msgid "User"
@@ -806,7 +806,7 @@ msgstr "Mot de passe"
 #: config/user.php:81 template/admin/inquiry.phtml:14
 #: template/admin/role.phtml:32 template/admin/user.phtml:23
 msgid "Display name"
-msgstr "Nom"
+msgstr "Nom d\\'affichage/Pseudo"
 
 #: config/user.php:97
 msgid "Gender"
@@ -917,7 +917,7 @@ msgstr "Code Postal"
 
 #: config/user.php:348
 msgid "Device token"
-msgstr ""
+msgstr "Device token"
 
 #: config/user.php:355
 msgid "Social tools"
@@ -1145,7 +1145,9 @@ msgstr "Valider"
 
 #: template/admin/inquiry.phtml:16
 msgid "Inquire of user via ID, username, display name or email."
-msgstr "Rechercher le compte par numéro, nom compte, nom affiché ou email."
+msgstr ""
+"Rechercher le compte par numéro, nom compte, nom d\\'affichage/pseudo ou "
+"email."
 
 #: template/admin/inquiry.phtml:20 template/admin/maintenance.phtml:44
 #: template/admin/user.phtml:26
@@ -1263,7 +1265,7 @@ msgstr "IP"
 
 #: template/admin/maintenance.phtml:46
 msgid "Displayname"
-msgstr "Nom"
+msgstr "Nom d\\'Affichage/Pseudo"
 
 #: template/admin/maintenance.phtml:47
 msgid "Clear the users"
@@ -1535,7 +1537,7 @@ msgstr "L\\'email est déja pris."
 
 #: template/admin/user.phtml:41
 msgid "Display name is already taken."
-msgstr "Le nom est déja pris"
+msgstr "Le nom d\\'affichage/pseudo est déjà pris"
 
 #: template/admin/user.phtml:42
 msgid "Back to users list"

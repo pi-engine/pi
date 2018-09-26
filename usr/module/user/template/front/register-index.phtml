@@ -127,12 +127,13 @@ if (!empty($description) || !empty($url)) {
             <div class="col-md-8 alert-success">
                 <div>
                     <p><?php _e('An email with activation link has been sent to you.'); ?></p>
+                    <p><?php _e('Email used'); ?> : <?php echo $email ?></p>
                     <p><?php _e('Please check it to finish the registration.'); ?></p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="alert-warning">
-                    <p><?php _e('If you do not receive the activation email:'); ?>?</p>
+                    <p><?php _e('You did not receive the activation email?'); ?></p>
                     <ol>
                         <li><?php _e('Wait a few minutes and check again.'); ?></li>
                         <li><?php _e('Check your email spam box.'); ?></li>
