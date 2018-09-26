@@ -557,11 +557,26 @@ class RegisterController extends ActionController
 
         // Add subscription
         if (Pi::service('module')->isActive('subscription') && isset($values['newsletter']) && $values['newsletter'] == 1) {
-            
+
+            // Set name if not set on register form
+            if (!isset($values['name']) || empty($values['name'])) {
+                if (isset($values['first_name']) || isset($values['last_name'])) {
+                    $values['name'] = $values['first_name'] . ' ' . $values['last_name'];
+                } else {
+                    $values['name'] = $values['identity'];
+                }
+            }
+
             Pi::api('people', 'subscription')->createPeople(
                 array(
                     'uid' => $uid,
-                    'status' => $this->config('register_activation') == 'auto' ? 1 : 0
+                    'status' => $this->config('register_activation') == 'auto' ? 1 : 0,
+                    'campaign' => 0,
+                    'email' => isset($values['email']) ? $values['email'] : null,
+                    'mobile' => isset($values['mobile']) ? $values['mobile'] : null,
+                    'newsletter' => $values['newsletter'],
+                    'first_name' => isset($values['first_name']) ? $values['first_name'] : $values['name'],
+                    'last_name' => isset($values['last_name']) ? $values['last_name'] : $values['name']
                 )
             );
             

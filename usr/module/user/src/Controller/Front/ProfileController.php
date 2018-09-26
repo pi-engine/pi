@@ -186,6 +186,11 @@ class ProfileController extends ActionController
                 // Update user
                 Pi::api('user', 'user')->updateUser($uid, $data);
                 Pi::service('event')->trigger('user_update', $uid);
+
+                if (Pi::service('module')->isActive('subscription')) {
+                    Pi::api('people', 'subscription')->update(array('first_name' => $data['first_name'], 'last_name' => $data['last_name'], 'mobile' => $data['mobile']), $uid);
+                }
+
                 $result['status']  = 1;
                 $result['message'] = __('Profile updated successfully.');
             } else {

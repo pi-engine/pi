@@ -80,7 +80,7 @@ $this->headMeta('noindex', 'robots');
                 this.$submit = this.$('[name=submit]');
                 this.$email = this.$('[name=email]');
                 this.$name = this.$('[name=name]');
-                this.$newsletter = this.$('[name=newsletter]');
+                this.$newsletter = this.$('[name=newsletter]:visible');
                 this.$confirm = $('.user-js-confirm');
                 this.$confirmPassword = $('.user-js-confirm-password');
                 this.$confirmBtn = $('.user-js-confirm-btn');
@@ -121,6 +121,7 @@ $this->headMeta('noindex', 'robots');
                         }, $.proxy(function (result) {
                             this.$email.next().remove();
                             this.$name.next().remove();
+                            this.$newsletter.next().remove();
 
                             if (result.email_error === 0) {
                                 this.emailInitVal = result.email_value;
@@ -142,6 +143,16 @@ $this->headMeta('noindex', 'robots');
                                 this.$name.after("<span class='help-block'>" + result.name_message + "</span>").closest('.control-group').addClass('error');
                             }
 
+                            if (result.newsletter_error === 0) {
+                                this.newsletterInitVal = result.newsletter_value;
+                                this.$newsletter.after("<span class='help-block'>" + result.newsletter_message + "</span>");
+                            }
+
+                            if (result.newsletter_error === 1) {
+                                this.newsletterReset();
+                                this.$newsletter.after("<span class='help-block'>" + result.newsletter_message + "</span>").closest('.control-group').addClass('error');
+                            }
+
                             this.$confirm.modal('hide');
 
                         }, this), 'json');
@@ -159,6 +170,12 @@ $this->headMeta('noindex', 'robots');
 
             emailReset: function () {
                 this.$email.val(this.emailInitVal);
+            },
+
+            newsletterReset: function () {
+                this.$newsletter.prop('checked', this.newsletterInitVal);
+
+
             },
 
             modalHideAction: function () {
