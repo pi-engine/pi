@@ -71,14 +71,6 @@ class SessionConfig extends StandardConfig
      * @return SessionConfig
      * @throws Exception\InvalidArgumentException
      */
-    /**
-     * Set storage option in backend configuration store
-     *
-     * @param  string $storageName
-     * @param  mixed $storageValue
-     * @return SessionConfig
-     * @throws Exception\InvalidArgumentException
-     */
     public function setStorageOption($storageName, $storageValue)
     {
         switch ($storageName) {
@@ -88,28 +80,12 @@ class SessionConfig extends StandardConfig
             case 'url_rewriter_tags':
                 $key = 'url_rewriter.tags';
                 break;
-            case 'save_handler':
-                // Save handlers must be treated differently due to changes
-                // introduced in PHP 7.2. Do not alter running INI setting.
-                return $this;
             default:
                 $key = 'session.' . $storageName;
                 break;
         }
-        $iniGet       = ini_get($key);
-        $storageValue = (string) $storageValue;
-        if (false !== $iniGet && (string) $iniGet === $storageValue) {
-            return $this;
-        }
-        $sessionRequiresRestart = false;
-        if (session_status() == PHP_SESSION_ACTIVE) {
-            session_write_close();
-            $sessionRequiresRestart = true;
-        }
-        $result = ini_set($key, $storageValue);
-        if ($sessionRequiresRestart) {
-            session_start();
-        }
+
+        $result = ini_set($key, (string) $storageValue);
         if (false === $result) {
             throw new Exception\InvalidArgumentException(
                 "'{$key}' is not a valid sessions-related ini setting."
