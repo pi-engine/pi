@@ -1396,4 +1396,16 @@ class User extends AbstractUseApi
             return false;
         }
     }
+
+    public function getUserWithoutPhoto()
+    {
+        $select = Pi::Model('user_account')->select()->columns(array('email', 'name'));
+        $select->where(array(
+            'active' => 1,
+            'avatar' => ''
+        ));
+        $users = Pi::Model('user_account')->selectWith($select);
+        return $users;
+
+    }
 }
