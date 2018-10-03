@@ -54,7 +54,7 @@ class AccountController extends ActionController
                 $values               = [];
                 $values['campaign']   = 0;
                 $values['uid']        = $uid;
-                $values['status']     = 0;
+                $values['status']     = 1;
                 $values['time_join']  = time();
                 $values['newsletter'] = 1;
                 $values['email']      = $data['email'];
@@ -152,6 +152,14 @@ class AccountController extends ActionController
                     Pi::api('people', 'subscription')->update(array('newsletter' => $values['newsletter']), $uid);
                     $result['newsletter_value']   = $values['newsletter'];
                     $result['newsletter_message'] = __('Newsletter has been changed successfully.');
+
+                    $log = [
+                        'uid'    => Pi::user()->getId(),
+                        'action' => $values['newsletter'] ? 'subscribe_newsletter_account' : 'unsubscribe_newsletter_account',
+                    ];
+
+                    Pi::api('log', 'user')->add(null, null, $log);
+
                 }
                 return $result;
 
