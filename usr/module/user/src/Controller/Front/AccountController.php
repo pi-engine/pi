@@ -51,18 +51,11 @@ class AccountController extends ActionController
         if (Pi::service('module')->isActive('subscription')) {
             $people = Pi::api('people', 'subscription')->getCurrentPeople();
             if ($people == null) {
-                $values               = [];
-                $values['campaign']   = 0;
-                $values['uid']        = $uid;
-                $values['status']     = 1;
-                $values['time_join']  = time();
-                $values['newsletter'] = 1;
-                $values['email']      = $data['email'];
-                $values['mobile']     = null;
-
-                Pi::api('people', 'subscription')->createPeople($values);
+                $data['newsletter'] = 0;
+            } else {
+                $data['newsletter_time_update']  = $people['time_update'] ? 1 : 0;
+                $data['newsletter']  = $people['newsletter'] ? 1 : 0;
             }
-            $data['newsletter']  = $people['newsletter'] ? 1 : 0;
         }
 
         $form->setData($data);
@@ -149,9 +142,22 @@ class AccountController extends ActionController
                 }
 
                 if ($values['newsletter'] != $data['newsletter'] && Pi::service('module')->isActive('subscription')) {
+
+                    if ($people == null) {
+                        $values               = [];
+                        $values['campaign']   = 0;
+                        $values['uid']        = $uid;
+                        $values['status']     = 1;
+                        $values['time_join']  = time();
+                        $values['newsletter'] = 0;
+                        $values['email']      = $data['email'];
+                        $values['mobile']     = null;
+                        Pi::api('people', 'subscription')->createPeople($values);
+                    }
                     Pi::api('people', 'subscription')->update(array('newsletter' => $values['newsletter']), $uid);
                     $result['newsletter_value']   = $values['newsletter'];
                     $result['newsletter_message'] = __('Newsletter has been changed successfully.');
+                    $result['newsletter_time_update'] = time();
 
                     $log = [
                         'uid'    => Pi::user()->getId(),

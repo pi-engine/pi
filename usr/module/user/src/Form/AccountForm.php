@@ -54,14 +54,19 @@ class AccountForm extends BaseForm
 
         if (Pi::service('module')->isActive('subscription')) {
             $people = Pi::api('people', 'subscription')->getCurrentPeople();
+            $description = null;
+            if ($people  != null) {
+                $description = sprintf(__('(updated on %s)'),  _date($people['time_update']));
+            }
             $this->add([
                 'name'    => 'newsletter',
                 'type'    => 'checkbox',
                 'options' => [
                     'label' => __('Newsletter subscription'),
-                    
+
                 ],
                 'attributes' => [
+                    'description' => $description,
                     'value' => (bool)$people
                 ]
                 
