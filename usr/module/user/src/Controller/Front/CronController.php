@@ -42,29 +42,4 @@ class CronController extends ActionController
             );
         }
     }
-
-    public function userWithoutPhotoAction()
-    {
-
-        $lauchBy = $this->params('launchby');
-        if ($lauchBy != 'cron') {
-            return;
-        }
-        try {
-            $list = Pi::api('user', 'user')->getUserWithoutPhoto();
-            foreach ($list as $userWithoutPhoto) {
-                if ($userWithoutPhoto['email'] == "news@sta2m.com") {
-                    Pi::api('notification', 'user')->cronUserWithoutPhoto($userWithoutPhoto);
-                }
-            }
-        } catch (Exception $e) {
-            $this->errorAction($e->getMessage());
-        }
-
-        $this->response->setStatusCode(200);
-        return array(
-            'message' => "Ok",
-            'nb_mail' => count($list),
-        );
-    }
 }
