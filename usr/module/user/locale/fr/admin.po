@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2018-06-13 19:52+0200\n"
-"PO-Revision-Date: 2018-09-12 09:30+0200\n"
+"POT-Creation-Date: 2018-09-18 23:08+0200\n"
+"PO-Revision-Date: 2018-09-18 23:09+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -46,11 +46,11 @@ msgstr "Avatar"
 
 #: config/config.php:41
 msgid "OAuth"
-msgstr ""
+msgstr "OAuth"
 
 #: config/config.php:44
 msgid "Cron"
-msgstr ""
+msgstr "Cron"
 
 #: config/config.php:52
 msgid "List limit"
@@ -600,55 +600,55 @@ msgstr "Pour stocker temporairement l'avatar"
 
 #: config/config.php:550
 msgid "oAuth login"
-msgstr ""
+msgstr "oAuth login"
 
 #: config/config.php:559
 msgid "Login by google"
-msgstr ""
+msgstr "Login by google"
 
 #: config/config.php:573
 msgid "Google client id"
-msgstr ""
+msgstr "Google client id"
 
 #: config/config.php:581
 msgid "Google client secret"
-msgstr ""
+msgstr "Google client secret"
 
 #: config/config.php:589
 msgid "Login by twitter"
-msgstr ""
+msgstr "Login by twitter"
 
 #: config/config.php:603
 msgid "Twitter consumer Key (API Key)"
-msgstr ""
+msgstr "Twitter consumer Key (API Key)"
 
 #: config/config.php:611
 msgid "Twitter consumer Secret (API Secret)"
-msgstr ""
+msgstr "Twitter consumer Secret (API Secret)"
 
 #: config/config.php:619
 msgid "Login by facebook"
-msgstr ""
+msgstr "Login by facebook"
 
 #: config/config.php:633
 msgid "Facebook app ID"
-msgstr ""
+msgstr "Facebook app ID"
 
 #: config/config.php:641
 msgid "Facebook app Secret"
-msgstr ""
+msgstr "Facebook app Secret"
 
 #: config/config.php:649
 msgid "Login by github"
-msgstr ""
+msgstr "Login by github"
 
 #: config/config.php:663
 msgid "Github client id"
-msgstr ""
+msgstr "Github client id"
 
 #: config/config.php:671
 msgid "Github client secret"
-msgstr ""
+msgstr "Github client secret"
 
 #: config/config.php:680
 msgid "Active this module cron system"
@@ -660,7 +660,7 @@ msgstr "Timeout session / en jours"
 
 #: config/config.php:696
 msgid "User post-subscription Feedback days"
-msgstr ""
+msgstr "Nb jours pour le feedback post inscriptions"
 
 #: config/module.php:17 config/nav.php:21
 msgid "User"
@@ -917,7 +917,7 @@ msgstr "Code Postal"
 
 #: config/user.php:348
 msgid "Device token"
-msgstr ""
+msgstr "Device token"
 
 #: config/user.php:355
 msgid "Social tools"

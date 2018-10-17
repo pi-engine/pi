@@ -413,6 +413,9 @@ class IndexController extends ActionController
         $count = 0;
         foreach ($uids as $uid) {
             $status = Pi::api('user', 'user')->deleteUser($uid);
+            if (Pi::service('module')->isActive('subscription')) {
+                Pi::api('people', 'subscription')->update(array('status' => 0), $uid);
+            }
             if (!is_array($status) && $status !== false) {
                 $count++;
                 $result['deleted_uids'][] = $uid;

@@ -42,6 +42,51 @@ class Observer extends AbstractService
     }
 
     /**
+     * Start triggering event on updated row
+     * @param $row
+     * @param $oldData
+     */
+    public function triggerUpdatedRow($row, $oldData = array())
+    {
+        // Set module list
+        $moduleList = $this->moduleList();
+        // Check all modules
+        foreach ($moduleList as $module) {
+            if (Pi::service('module')->isActive(strtolower($module))) {
+                $class = sprintf('Module\%s\Api\Observer', ucfirst(strtolower($module)));
+                if (class_exists($class)) {
+                    if (method_exists($class, 'triggerUpdatedRow')) {
+                        Pi::api('observer', strtolower($module))->triggerUpdatedRow($row, $oldData);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Start triggering event on updated table
+     * @param Pi\Db\Table\AbstractTableGateway $table
+     * @param $set
+     * @param $where
+     */
+    public function triggerUpdatedTable($table, $set, $where)
+    {
+        // Set module list
+        $moduleList = $this->moduleList();
+        // Check all modules
+        foreach ($moduleList as $module) {
+            if (Pi::service('module')->isActive(strtolower($module))) {
+                $class = sprintf('Module\%s\Api\Observer', ucfirst(strtolower($module)));
+                if (class_exists($class)) {
+                    if (method_exists($class, 'triggerUpdatedRow')) {
+                        Pi::api('observer', strtolower($module))->triggerUpdatedTable($table, $set, $where);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Get list of active modules
      *
      * @return array
