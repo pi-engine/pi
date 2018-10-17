@@ -48,9 +48,17 @@ class AccountController extends ActionController
         $form->setAttribute('action', '#');
         $data['uid'] = $uid;
         $data['id']  = $uid;
+        if (Pi::service('module')->isActive('subscription')) {
+            $people = Pi::api('people', 'subscription')->getCurrentPeople();
+            if ($people == null) {
+                $data['newsletter'] = 0;
+            } else {
+                $data['newsletter_time_update']  = $people['time_update'] ? 1 : 0;
+                $data['newsletter']  = $people['newsletter'] ? 1 : 0;
+            }
+        }
 
         $form->setData($data);
-
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setInputFilter(new AccountFilter);
@@ -63,6 +71,9 @@ class AccountController extends ActionController
                 'name_value'    => $data['name'],
                 'name_error'    => 0,
                 'name_message'  => ' ',
+                'newsletter_value'    => $data['newsletter'],
+                'newsletter_error'    => 0,
+                'newsletter_message'  => ' ',
             ];
             if ($form->isValid()) {
                 $values = $form->getData();
@@ -89,6 +100,11 @@ class AccountController extends ActionController
                                 'last_modified' => time(),
                             ]
                         );
+
+                        if (Pi::service('module')->isActive('subscription')) {
+                            Pi::api('people', 'subscription')->update(array('email' => $values['email']), $uid);
+                        }
+
                         if ($status) {
                             $result['email_value']   = $values['email'];
                             $result['email_message'] = __('Email has been changed successfully.');
@@ -125,6 +141,32 @@ class AccountController extends ActionController
                     Pi::service('event')->trigger('name_change', $args);
                 }
 
+                if ($values['newsletter'] != $data['newsletter'] && Pi::service('module')->isActive('subscription')) {
+
+                    if ($people == null) {
+                        $values               = [];
+                        $values['campaign']   = 0;
+                        $values['uid']        = $uid;
+                        $values['status']     = 1;
+                        $values['time_join']  = time();
+                        $values['newsletter'] = 0;
+                        $values['email']      = $data['email'];
+                        $values['mobile']     = null;
+                        Pi::api('people', 'subscription')->createPeople($values);
+                    }
+                    Pi::api('people', 'subscription')->update(array('newsletter' => $values['newsletter']), $uid);
+                    $result['newsletter_value']   = $values['newsletter'];
+                    $result['newsletter_message'] = __('Newsletter has been changed successfully.');
+                    $result['newsletter_time_update'] = time();
+
+                    $log = [
+                        'uid'    => Pi::user()->getId(),
+                        'action' => $values['newsletter'] ? 'subscribe_newsletter_account' : 'unsubscribe_newsletter_account',
+                    ];
+
+                    Pi::api('log', 'user')->add(null, null, $log);
+
+                }
                 return $result;
 
             } else {
@@ -208,7 +250,6 @@ class AccountController extends ActionController
             }
         }
 
-        Pi::api('user', 'user')->updateUser($userData['uid'], $dataToUpdate);
         Pi::user()->data()->delete($userData['uid'], 'change-email');
         Pi::user()->data()->delete($userData['uid'], 'email-' . $token);
         $args = [
@@ -225,6 +266,12 @@ class AccountController extends ActionController
 
         // Set log
         Pi::service('event')->trigger('email_change', $args);
+
+        Pi::api('user', 'user')->updateUser($userData['uid'], $dataToUpdate);
+        if (Pi::service('module')->isActive('subscription')) {
+            Pi::api('people', 'subscription')->update(array('email' => $dataToUpdate['email']), $userData['uid']);
+        }
+
         $result['status']  = 1;
         $result['message'] = __('Email changed successfully.');
 

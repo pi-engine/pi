@@ -181,7 +181,9 @@ class PageForm extends BaseForm
                 'label' => _a('SEO Description'),
             ],
             'attributes' => [
-                'type'        => 'text',
+                'rows' => '3',
+                'cols' => '40',
+                'type'        => 'textarea',
                 'description' => _a('To be used for HTML head meta.'),
             ],
         ]);

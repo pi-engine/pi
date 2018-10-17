@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2018-06-13 19:50+0200\n"
-"PO-Revision-Date: 2018-06-13 19:50+0200\n"
+"POT-Creation-Date: 2018-09-18 23:10+0200\n"
+"PO-Revision-Date: 2018-09-18 23:10+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -90,7 +90,7 @@ msgstr "Flux récent module"
 msgid "Resent feeds of %s module"
 msgstr "Renvoyer le flux pour le module %s"
 
-#: src/Controller/Front/LoginController.php:71
+#: src/Controller/Front/LoginController.php:80
 #, php-format
 msgid ""
 "Login with the account is suspended,\n"
@@ -100,17 +100,17 @@ msgstr ""
 "                            merci d'attendre pendant %d minutes pour essayer "
 "de nouveau."
 
-#: src/Controller/Front/LoginController.php:80
+#: src/Controller/Front/LoginController.php:89
 #, php-format
 msgid "You have %d times to try."
 msgstr "Il vous reste %d  essais"
 
-#: src/Controller/Front/LoginController.php:88
+#: src/Controller/Front/LoginController.php:97
 #: template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr "Connexion utilisateur"
 
-#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:119
+#: src/Controller/Front/LoginController.php:102 src/Form/LoginForm.php:119
 #: template/block/partial/login-register-modal.phtml:55
 #: template/block/partial/login-register-modal.phtml:68
 #: template/block/partial/login-register-modal.phtml:99
@@ -119,7 +119,7 @@ msgstr "Connexion utilisateur"
 msgid "Login"
 msgstr "Connexion"
 
-#: src/Controller/Front/LoginController.php:94
+#: src/Controller/Front/LoginController.php:103
 msgid ""
 "Use this page to connect to our website and participate, share contents, use "
 "our features, and interacts with other members"
@@ -127,23 +127,23 @@ msgstr ""
 "Utiliser cette page pour vous connecter sur le site et participer, partager "
 "des contenus, utiliser nos services et intéragir avec les autres membres"
 
-#: src/Controller/Front/LoginController.php:115
+#: src/Controller/Front/LoginController.php:124
 msgid "Invalid request."
 msgstr "Demande non valide."
 
-#: src/Controller/Front/LoginController.php:159
+#: src/Controller/Front/LoginController.php:168
 msgid "You have tried too many times. Please try later."
 msgstr "Vous avez tenté trop de fois. Merci d'essayer plus tard."
 
-#: src/Controller/Front/LoginController.php:183
+#: src/Controller/Front/LoginController.php:192
 msgid "Invalid credentials provided, please try again."
 msgstr "Identifiants fournis non valides, merci d'essayer de nouveau."
 
-#: src/Controller/Front/LoginController.php:225
+#: src/Controller/Front/LoginController.php:234
 msgid "You have logged in successfully."
 msgstr "Vous vous êtes connectés avec succès."
 
-#: src/Controller/Front/LoginController.php:255
+#: src/Controller/Front/LoginController.php:264
 msgid "You logged out successfully."
 msgstr "Vous vous êtes déconnectés avec succès."
 
@@ -217,13 +217,13 @@ msgstr "Mot de passe"
 msgid "User profile"
 msgstr "Profil utilisateur"
 
-#: src/Controller/Front/RegisterController.php:49
-#: src/Controller/Front/RegisterController.php:53
+#: src/Controller/Front/RegisterController.php:58
+#: src/Controller/Front/RegisterController.php:62
 msgid "User account register"
 msgstr "Inscription du compte utilisateur"
 
-#: src/Controller/Front/RegisterController.php:52
-#: src/Controller/Front/RegisterController.php:113
+#: src/Controller/Front/RegisterController.php:61
+#: src/Controller/Front/RegisterController.php:122
 #: template/block/partial/login-register-modal.phtml:57
 #: template/block/partial/login-register-modal.phtml:78
 #: template/block/partial/login-register-modal.phtml:79
@@ -232,11 +232,11 @@ msgstr "Inscription du compte utilisateur"
 msgid "Register"
 msgstr "S'inscrire"
 
-#: src/Controller/Front/RegisterController.php:83
+#: src/Controller/Front/RegisterController.php:92
 msgid "Invalid input, please try again."
 msgstr "Donnée non valide, merci d'essayer de nouveau."
 
-#: src/Controller/Front/RegisterController.php:102
+#: src/Controller/Front/RegisterController.php:111
 msgid "The account is not created in database, please try again."
 msgstr ""
 "Le compte n'a pas été créé dans la base de donnée, merci d'essayer de "
@@ -610,24 +610,24 @@ msgstr "Pas encore inscrit ?"
 msgid "Already registered ?"
 msgstr "Déjà inscrit ?"
 
-#: template/block/user-bar.phtml:19
+#: template/block/user-bar.phtml:25
 msgid "Propose my activity"
 msgstr "Proposer mon activité"
 
-#: template/block/user-bar.phtml:25 template/block/user-bar.phtml:27
-#: template/block/user-bar.phtml:29
+#: template/block/user-bar.phtml:31 template/block/user-bar.phtml:33
+#: template/block/user-bar.phtml:35
 msgid "Publish an event"
 msgstr "Publier un évènement"
 
-#: template/block/user-bar.phtml:34
+#: template/block/user-bar.phtml:40
 msgid "Promote my activity"
 msgstr "Promouvoir mon activité"
 
-#: template/block/user-bar.phtml:65
+#: template/block/user-bar.phtml:71
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: template/block/user-bar.phtml:139 template/block/user-bar.phtml:142
+#: template/block/user-bar.phtml:145 template/block/user-bar.phtml:148
 msgid "My offer"
 msgstr "Mon offre"
 
