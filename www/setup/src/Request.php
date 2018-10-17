@@ -18,33 +18,38 @@ class Request
 {
     /**
      * Scheme for http
+     *
      * @var string
      */
-    const SCHEME_HTTP  = 'http';
+    const SCHEME_HTTP = 'http';
 
     /**
      * Scheme for https
+     *
      * @var string
      */
     const SCHEME_HTTPS = 'https';
 
     /**
      * REQUEST_URI
+     *
      * @var string;
      */
     protected $requestUri;
 
     /**
      * Base URL of request
+     *
      * @var string|null
      */
     protected $baseUrl = null;
 
     /**
      * Request parameters
+     *
      * @var array
      */
-    protected $params = array();
+    protected $params = [];
 
     /**
      * Constructor
@@ -60,8 +65,10 @@ class Request
      * If no $key is passed, returns the entire $_GET array.
      *
      * @todo How to retrieve from nested arrays
+     *
      * @param string $key
-     * @param mixed $default Default value to use if key not found
+     * @param mixed  $default Default value to use if key not found
+     *
      * @return mixed Returns null if key does not exist
      */
     public function getQuery($key = null, $default = null)
@@ -79,8 +86,10 @@ class Request
      * If no $key is passed, returns the entire $_POST array.
      *
      * @todo How to retrieve from nested arrays
+     *
      * @param string $key
-     * @param mixed $default Default value to use if key not found
+     * @param mixed  $default Default value to use if key not found
+     *
      * @return mixed Returns null if key does not exist
      */
     public function getPost($key = null, $default = null)
@@ -98,8 +107,10 @@ class Request
      * If no $key is passed, returns the entire $_COOKIE array.
      *
      * @todo How to retrieve from nested arrays
+     *
      * @param string $key
-     * @param mixed $default Default value to use if key not found
+     * @param mixed  $default Default value to use if key not found
+     *
      * @return mixed Returns null if key does not exist
      */
     public function getCookie($key = null, $default = null)
@@ -117,7 +128,8 @@ class Request
      * If no $key is passed, returns the entire $_SERVER array.
      *
      * @param string $key
-     * @param mixed $default Default value to use if key not found
+     * @param mixed  $default Default value to use if key not found
+     *
      * @return mixed Returns null if key does not exist
      */
     public function getServer($key = null, $default = null)
@@ -135,7 +147,8 @@ class Request
      * If no $key is passed, returns the entire $_ENV array.
      *
      * @param string $key
-     * @param mixed $default Default value to use if key not found
+     * @param mixed  $default Default value to use if key not found
+     *
      * @return mixed Returns null if key does not exist
      */
     public function getEnv($key = null, $default = null)
@@ -155,6 +168,7 @@ class Request
      * or $_SERVER['ORIG_PATH_INFO'] + $_SERVER['QUERY_STRING'].
      *
      * @param string $requestUri
+     *
      * @return self
      */
     public function setRequestUri($requestUri = null)
@@ -177,12 +191,14 @@ class Request
                 // Http proxy reqs setup request uri with scheme
                 // and host [and port] + the url path, only use url path
                 $schemeAndHttpHost = $this->getScheme() . '://'
-                                   . $this->getHttpHost();
+                    . $this->getHttpHost();
                 if (strpos($requestUri, $schemeAndHttpHost) === 0) {
-                    $requestUri = substr($requestUri,
-                                         strlen($schemeAndHttpHost));
+                    $requestUri = substr(
+                        $requestUri,
+                        strlen($schemeAndHttpHost)
+                    );
                 }
-            // IIS 5.0, PHP as CGI
+                // IIS 5.0, PHP as CGI
             } elseif (isset($_SERVER['ORIG_PATH_INFO'])) {
                 $requestUri = $_SERVER['ORIG_PATH_INFO'];
                 if (!empty($_SERVER['QUERY_STRING'])) {
@@ -236,6 +252,7 @@ class Request
      * ORIG_SCRIPT_NAME in its determination.
      *
      * @param mixed $baseUrl
+     *
      * @return self
      */
     public function setBaseUrl($baseUrl = null)
@@ -265,9 +282,9 @@ class Request
                 // Backtrack up script_filename to find the portion matching
                 // php_self
                 $path    = isset($_SERVER['PHP_SELF'])
-                         ? $_SERVER['PHP_SELF'] : '';
+                    ? $_SERVER['PHP_SELF'] : '';
                 $file    = isset($_SERVER['SCRIPT_FILENAME'])
-                         ? $_SERVER['SCRIPT_FILENAME'] : '';
+                    ? $_SERVER['SCRIPT_FILENAME'] : '';
                 $segs    = explode('/', trim($file, '/'));
                 $segs    = array_reverse($segs);
                 $index   = 0;
@@ -278,8 +295,8 @@ class Request
                     $baseUrl = '/' . $seg . $baseUrl;
                     ++$index;
                 } while (($last > $index)
-                    && (false !== ($pos = strpos($path, $baseUrl)))
-                    && (0 != $pos)
+                && (false !== ($pos = strpos($path, $baseUrl)))
+                && (0 != $pos)
                 );
             }
 
@@ -365,6 +382,7 @@ class Request
      *
      * @param mixed $key
      * @param mixed $default Default value to use if key not found
+     *
      * @return mixed
      */
     public function getParam($key, $default = null)
@@ -412,12 +430,13 @@ class Request
      * A $value of null will unset the $key if it exists
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return self
      */
     public function setParam($key, $value)
     {
-        $key = (string) $key;
+        $key = (string)$key;
 
         if ((null === $value) && isset($this->params[$key])) {
             unset($this->params[$key]);
@@ -434,11 +453,12 @@ class Request
      * Null values will unset the associated key.
      *
      * @param array $array
+     *
      * @return self
      */
     public function setParams(array $array)
     {
-        $this->params = $this->params + (array) $array;
+        $this->params = $this->params + (array)$array;
 
         foreach ($this->params as $key => $value) {
             if (null === $value) {
@@ -456,7 +476,7 @@ class Request
      */
     public function clearParams()
     {
-        $this->params = array();
+        $this->params = [];
 
         return $this;
     }
@@ -517,6 +537,7 @@ class Request
      * Accept header, 'Accept-Encoding' to get the Accept-Encoding header.
      *
      * @param string $header HTTP header name
+     *
      * @return string|false HTTP header value, or false if not found
      */
     public function getHeader($header)
@@ -576,7 +597,7 @@ class Request
         $name   = $this->getServer('SERVER_NAME');
         $port   = $this->getServer('SERVER_PORT');
 
-        if(null === $name) {
+        if (null === $name) {
             return '';
         } elseif (($scheme == static::SCHEME_HTTP && $port == 80)
             || ($scheme == static::SCHEME_HTTPS && $port == 443)
@@ -591,6 +612,7 @@ class Request
      * Get the client's IP addres
      *
      * @param  bool $checkProxy
+     *
      * @return string
      */
     public function getClientIp($checkProxy = true)

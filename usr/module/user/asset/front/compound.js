@@ -2,14 +2,14 @@
     var config = $('#user-js-compound').data('config');
 
     function submitTip(form, msg) {
-        form.find('.has-error').removeClass('has-error').find('.help-block').hide();
+        form.find('.has-error').removeClass('has-error').find('.form-text').hide();
         if (!msg) return;
         for (var i in msg) {
             var err = [];
             for (var j in msg[i]) {
                 err.push(msg[i][j]);
             }
-            form.find('[name=' + i + ']').parents('.form-group').addClass('has-error').find('.help-block').show().html(err.join(','));
+            form.find('[name=' + i + ']').parents('.form-group').addClass('has-error').find('.form-text').show().html(err.join(','));
         }
     }
 

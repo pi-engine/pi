@@ -32,7 +32,7 @@ if ($towcols) {
                  = <<<EOT
             <div class="row">
                 <div class="col-sm-7">
-                    <a href="%s" target="%s" title="%s"><img class="img-responsive" src="%s" alt="%s" %s/></a>
+                    <a href="%s" target="%s" title="%s"><img class="img-fluid" src="%s" alt="%s" %s/></a>
                 </div>
                 <div class="col-sm-5">
                     <h4 class="pi-ellipsis"><a href="%s" title="%s" target="%s">%s</a></h4>
@@ -92,7 +92,7 @@ EOT;
         $itemPattern
                  = <<<EOT
             <a href="%s" target="%s" title="%s">
-                <img src="%s" alt="%s" class="img-responsive" %s/>
+                <img src="%s" alt="%s" class="img-fluid d-block w-100" %s/>
             </a>
             <div class="carousel-caption">
                 <h4>%s</h4>
@@ -130,25 +130,24 @@ EOT;
             <?php } ?>
             <!-- Carousel items -->
             <div class="carousel-inner">
-                <div class="item active">
+                <div class="carousel-item active w-100">
                     <?php echo $render(array_shift($items)); ?>
                 </div>
                 <?php if (!empty($items)) { ?>
                     <?php foreach ($items as $item) { ?>
-                        <div class="item">
+                        <div class="carousel-item w-100">
                             <?php echo $render($item); ?>
                         </div>
                     <?php } ?>
                 <?php } ?>
             </div>
             <?php if ($count > 1) { ?>
-                <!-- Carousel nav -->
-                <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'right' : 'left'; ?> carousel-control"
-                   href="#<?php echo $carouselId; ?>" data-slide="prev">
+                <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'carousel-control-next' : 'carousel-control-prev'; ?>"
+                   href="#<?php echo $carouselId; ?>" role="button" data-slide="prev">
                     <i class="icon-prev fa fa-chevron-left"></i>
                 </a>
-                <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'left' : 'right'; ?> carousel-control"
-                   href="#<?php echo $carouselId; ?>" data-slide="next">
+                <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'carousel-control-prev' : 'carousel-control-next'; ?>"
+                   href="#<?php echo $carouselId; ?>" role="button" data-slide="next">
                     <i class="icon-next fa fa-chevron-right"></i>
                 </a>
             <?php } ?>

@@ -557,12 +557,10 @@ $config = [
     'oauth_google' => [
         'category'    => 'oauth',
         'title'       => _a('Login by google'),
-        'description' => sprintf(__('Callback urls is : %s'), Pi::url(Pi::service('url')->assemble('user', [
-            'module'     => 'user',
-            'controller' => 'oauth',
-            'action'     => 'callback',
-            'provider'   => 'google',
-        ]))),
+        'description' => sprintf(
+            __('Callback urls is : %s'),
+            Pi::url('user/oauth/callback/provider-google')
+        ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,
@@ -587,12 +585,10 @@ $config = [
     'oauth_twitter' => [
         'category'    => 'oauth',
         'title'       => _a('Login by twitter'),
-        'description' => sprintf(__('Callback urls is : %s'), Pi::url(Pi::service('url')->assemble('user', [
-            'module'     => 'user',
-            'controller' => 'oauth',
-            'action'     => 'callback',
-            'provider'   => 'twitter',
-        ]))),
+        'description' => sprintf(
+            __('Callback urls is : %s'),
+            Pi::url('user/oauth/callback/provider-twitter')
+        ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,
@@ -617,12 +613,10 @@ $config = [
     'oauth_facebook' => [
         'category'    => 'oauth',
         'title'       => _a('Login by facebook'),
-        'description' => sprintf(__('Callback urls is : %s'), Pi::url(Pi::service('url')->assemble('user', [
-            'module'     => 'user',
-            'controller' => 'oauth',
-            'action'     => 'callback',
-            'provider'   => 'facebook',
-        ]))),
+        'description' => sprintf(
+            __('Callback urls is : %s'),
+            Pi::url('user/oauth/callback/provider-facebook')
+        ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,
@@ -647,12 +641,10 @@ $config = [
     'oauth_github' => [
         'category'    => 'oauth',
         'title'       => _a('Login by github'),
-        'description' => sprintf(__('Callback urls is : %s'), Pi::url(Pi::service('url')->assemble('user', [
-            'module'     => 'user',
-            'controller' => 'oauth',
-            'action'     => 'callback',
-            'provider'   => 'github',
-        ]))),
+        'description' => sprintf(
+            __('Callback urls is : %s'),
+            Pi::url('user/oauth/callback/provider-github')
+        ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,

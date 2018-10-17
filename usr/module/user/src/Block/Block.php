@@ -86,7 +86,7 @@ class Block
             $block['profileUrl'] = Pi::url(Pi::service('user')->getUrl('profile'));
             $block['avatar']     = Pi::service('user')->avatar($uid, 'large', [
                 'alt'   => $block['user']['name'],
-                'class' => 'img-circle',
+                'class' => 'rounded-circle',
             ]);
         } else {
             return false;

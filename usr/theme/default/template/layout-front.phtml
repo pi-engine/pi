@@ -20,8 +20,8 @@ $this->jquery();
 
 // Load Bootstrap css/js and font-awesome
 $this->bootstrap([
-    'js/bootstrap.min.js',
-    'font-awesome/css/font-awesome.min.css',
+    'js/bootstrap.bundle.js',
+    'font-awesome/css/font-awesome.css',
 ]);
 
 // Load front.css
@@ -59,7 +59,7 @@ $this->headLink([
 ]);
 
 // Meta Viewport Tag
-$this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
+$this->headMeta('width=device-width, initial-scale=1, shrink-to-fit=no', 'viewport');
 
 // Explicitly load favicon
 $this->headLink([
@@ -106,57 +106,37 @@ $breadcrumbs = $this->breadcrumb(
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-front">
 <!-- Header: brand, slogan, user bar -->
 <header class="pi-header">
-    <div class="pi-header-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <?php if ($module == 'system') { ?>
-                        <h1>
-                            <a href="<?php echo Pi::url($this->url('home')); ?>"
-                               title="<?php echo _escape($sitename); ?>">
-                                <img src="<?php echo $this->assetTheme('image/logo.png'); ?>"
-                                     alt="<?php echo _escape($sitename); ?>">
-                            </a>
-                        </h1>
-                    <?php } else { ?>
-                        <h2>
-                            <a href="<?php echo Pi::url($this->url('home')); ?>"
-                               title="<?php echo _escape($sitename); ?>">
-                                <img src="<?php echo $this->assetTheme('image/logo.png'); ?>"
-                                     alt="<?php echo _escape($sitename); ?>">
-                            </a>
-                        </h2>
-                    <?php } ?>
-                </div>
-                <div class="col-md-9">
-                    <?php echo $this->widget('system-user-bar'); ?>
-                </div>
-            </div>
-        </div>
-    </div>
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="navbar-header">
-                        <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <?php echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar-nav'); ?>
-                        <div class="navbar-form navbar-right">
-                            <?php echo $this->widget('search-search'); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <?php if ($module == 'system') { ?>
+            <h1 class="navbar-brand">
+                <a href="<?php echo Pi::url($this->url('home')); ?>"
+                   title="<?php echo _escape($sitename); ?>">
+                    <img src="<?php echo $this->assetTheme('image/logo.png'); ?>"
+                         alt="<?php echo _escape($sitename); ?>">
+                </a>
+            </h1>
+        <?php } else { ?>
+            <h2 class="navbar-brand">
+                <a href="<?php echo Pi::url($this->url('home')); ?>"
+                   title="<?php echo _escape($sitename); ?>">
+                    <img src="<?php echo $this->assetTheme('image/logo.png'); ?>"
+                         alt="<?php echo _escape($sitename); ?>">
+                </a>
+            </h2>
+        <?php } ?>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="<?php echo _escape($sitename); ?>">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse">
+            <?php echo $navigation->menu()->setUlClass('navbar-nav mr-auto pi-navbar-nav'); ?>
+            <?php echo $this->widget('system-user-bar'); ?>
+            <?php echo $this->widget('search-search'); ?>
         </div>
     </nav>
 </header>
 <!-- Page main content: breadcrumb, flash-messenger, blocks and module content -->
 <section class="pi-section">
-    <div class="container">
+    <div class="container-fluid">
         <div class="pi-main-container">
             <?php if ($breadcrumbs) {
                 echo $breadcrumbs;
@@ -288,16 +268,16 @@ $breadcrumbs = $this->breadcrumb(
         echo $footer;
     } else {
         ?>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <ul class="pi-footer-links muted list-inline">
-                    <li>
+                    <li class="list-inline-item">
                         <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
                             &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
                         </a>
                     </li>
-                    <li>-</li>
-                    <li>
+                    <li class="list-inline-item">-</li>
+                    <li class="list-inline-item">
                         <a rel="license" href="http://www.piengine.org" title="Pi Engine" target="_blank">
                             Powered by Pi Engine
                         </a>

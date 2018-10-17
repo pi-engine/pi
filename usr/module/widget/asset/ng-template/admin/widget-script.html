@@ -1,8 +1,8 @@
 <div class="row">
     <div ng-repeat="item in available" class="col-sm-6 col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">{{item.title}}</div>
-            <div class="panel-body">
+        <div class="card card-body bg-light mb-3">
+            <div class="card-heading">{{item.title}}</div>
+            <div class="card-text">
                 <p class="widget-desc">{{item.description}}</p>
                 <a data-ng-if="item.installUrl" class="btn btn-link" ng-href="{{item.installUrl}}">
                     {{'INSTALL' | translate}}

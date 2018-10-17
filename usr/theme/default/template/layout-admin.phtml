@@ -23,8 +23,8 @@ $this->jquery();
 
 // Load Bootstrap css/js and font-awesome
 $this->bootstrap([
-    'js/bootstrap.min.js',
-    'font-awesome/css/font-awesome.min.css',
+    'js/bootstrap.bundle.js',
+    'font-awesome/css/font-awesome.css',
 ]);
 
 // Load admin.css
@@ -37,7 +37,7 @@ $this->css($this->assetLocale('locale.css'));
 $this->footScript()->appendFile($this->assetTheme('js/admin.js'));
 
 // Meta Viewport Tag
-$this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
+$this->headMeta('width=device-width, initial-scale=1, shrink-to-fit=no', 'viewport');
 
 // Explicitly load favicon
 $this->headLink([
@@ -65,21 +65,19 @@ $module = Pi::service('module')->current();
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-admin">
 <!-- header: brand, navbar-nav, user link -->
 <header class="pi-header">
-    <div class="navbar navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>">
-                <i class="fa fa-leaf"></i>
-                <strong>Pi</strong>
-            </a>
-        </div>
-        <nav class="navbar-collapse collapse">
-            <?php echo $this->adminNav()->modes('nav navbar-nav'); ?>
-            <ul class="nav navbar-nav navbar-right navbar-go-front">
-                <li>
-                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="<?php echo $this->url('home'); ?>">
+            <i class="fa fa-leaf"></i>
+            <strong>Pi</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="<?php echo _escape($sitename); ?>">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse">
+            <?php echo $this->adminNav()->modes('navbar-nav mr-auto'); ?>
+            <ul class="navbar-nav mr-auto justify-content-end navbar-go-front">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
                         <i class="fa fa-external-link"></i>
                         <?php _e('Front'); ?>
                     </a>
@@ -98,8 +96,8 @@ $module = Pi::service('module')->current();
                     'section' => Pi::engine()->application()->getSection(),
                 ],
             ]); ?>
-        </nav>
-    </div>
+        </div>
+    </nav>
 </header>
 <section class="pi-section clearfix">
     <aside class="pi-sidebar">
@@ -114,7 +112,7 @@ $module = Pi::service('module')->current();
             echo $this->adminNav()->top([
                 'ulClass' => 'nav nav-tabs',
                 'sub'     => [
-                    'ulClass' => 'nav nav-pills well well-sm',
+                    'ulClass' => 'nav nav-pills bg-light border shadow-sm p-1 mb-3',
                 ],
             ]);
             ?>
@@ -129,13 +127,13 @@ $module = Pi::service('module')->current();
 </section>
 <footer class="pi-footer clearfix">
     <ul class="pi-footer-links muted list-inline">
-        <li>
+        <li class="list-inline-item">
             <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
                 &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
             </a>
         </li>
-        <li>-</li>
-        <li>
+        <li class="list-inline-item">-</li>
+        <li class="list-inline-item">
             <a rel="license" href="http://www.piengine.org" title="Pi Engine" target="_blank">
                 Powered by Pi Engine
             </a>

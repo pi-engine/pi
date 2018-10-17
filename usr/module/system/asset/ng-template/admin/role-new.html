@@ -1,12 +1,12 @@
 <form class="form-horizontal" name="roleForm" ng-submit="newAction()">
     <div class="form-group"
          data-ng-class="{'has-error': roleForm.name.$dirty && roleForm.name.$invalid}">
-        <label class="col-md-2 control-label">{{'ROLE_NAME' | translate}}</label>
+        <label class="col-md-2 col-form-label">{{'ROLE_NAME' | translate}}</label>
         <div class="col-md-4">
             <input class="form-control" type="text" data-ng-model="entity.name" name="name" required
                    pi-unique="{{uniqueUrl}}">
         </div>
-        <div class="col-md-4 help-block">
+        <div class="col-md-4 form-text">
       <span class="help-inline" data-ng-show="roleForm.name.$valid">
         <i class="icon-ok text-success"></i>
       </span>
@@ -22,11 +22,11 @@
     </div>
     <div class="form-group"
          data-ng-class="{'has-error': roleForm.title.$dirty && roleForm.title.$invalid}">
-        <label class="col-md-2 control-label">{{'ROLE_TITLE' | translate}}</label>
+        <label class="col-md-2 col-form-label">{{'ROLE_TITLE' | translate}}</label>
         <div class="col-md-4">
             <input class="form-control" type="text" data-ng-model="entity.title" name="title" required>
         </div>
-        <div class="col-md-4 help-block">
+        <div class="col-md-4 form-text">
       <span class="help-inline" data-ng-show="roleForm.title.$valid">
         <i class="icon-ok text-success"></i>
       </span>
@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-md-2 control-label">{{'TYPE' | translate}}</label>
+        <label class="col-md-2 col-form-label">{{'TYPE' | translate}}</label>
         <div class="col-md-2">
             <select class="form-control" data-ng-model="entity.section">
                 <option value="front">{{'FRONT' | translate}}</option>
@@ -46,13 +46,13 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-md-2 control-label">{{'STATUS' | translate}}</label>
+        <label class="col-md-2 col-form-label">{{'STATUS' | translate}}</label>
         <div class="col-md-4">
-            <label class="radio-inline">
+            <label class="form-check">
                 <input type="radio" data-ng-model="entity.active" value="1">
                 {{'ACTIVE' | translate}}
             </label>
-            <label class="radio-inline">
+            <label class="form-check">
                 <input type="radio" data-ng-model="entity.active" value="0">
                 {{'INACTIVE' | translate}}
             </label>

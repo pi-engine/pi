@@ -14,8 +14,8 @@ $category = $block['category'] ?: 0;
             }
             $indent = $val['depth'] ? $val['depth'] * 10 : 10;
             ?>
-            <li class="<?php echo $category == $key ? 'active' : ''; ?>">
-                <a href="<?php echo _escape($val['url']); ?>" target="<?php echo $this->escape($options['target']); ?>"
+            <li class="nav-item">
+                <a class="nav-link <?php echo $category == $key ? 'active' : ''; ?>" href="<?php echo _escape($val['url']); ?>" target="<?php echo $this->escape($options['target']); ?>"
                    style="padding-left: <?php echo $indent; ?>px">
                     <?php echo _escape($val['title']); ?>
                 </a>

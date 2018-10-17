@@ -44,7 +44,7 @@ $userSection = $this->isUserSection(Pi::service('module')->current());
                     ?>
                 <?php } else {
                     echo sprintf(
-                        '<div class="well">%s</div>',
+                        '<div class="card card-body bg-light mb-3">%s</div>',
                         __('No data available.')
                     );
                 }

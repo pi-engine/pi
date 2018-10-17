@@ -1,6 +1,6 @@
 <div class="page">
     <h3 class="page-header"><?php echo _escape($title); ?></h3>
-    <div class="well well-sm">
+    <div class="bg-light mb-3 p-3">
         <span class="text-info" style="margin-right: 10px;"><?php echo _a('Page content type:'); ?></span>
         <a class="btn<?php if ('html' == $markup) echo ' btn-primary'; ?>" rel="tooltip" data-name="html"
            href="<?php echo $this->url('', ['action' => 'add', 'type' => 'html']); ?>"

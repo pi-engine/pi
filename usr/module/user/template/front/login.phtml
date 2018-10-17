@@ -8,7 +8,7 @@ $url = Pi::api('oauth', 'user')->urlList();
 $description = Pi::user()->config('login_description');
 
 if (!empty($description) || !empty($url)) {
-    $class = 'col-md-8 col-sm-7 col-xs-12';
+    $class = 'col-md-8 col-sm-7 col-12';
 } else {
     $class = 'col-md-12';
 }
@@ -37,7 +37,7 @@ if (!empty($description) || !empty($url)) {
                 <div class="col-md-6 col-md-offset-3">
                     <h2><?php _e('Not registered yet ?'); ?></h2>
                     <p>
-                        <a class="btn btn-default" title="<?php _e('Register'); ?>"
+                        <a class="btn btn-secondary" title="<?php _e('Register'); ?>"
                            href="<?php echo Pi::service('user')->getUrl('register'); ?>">
                             <?php _e('Register'); ?>
                         </a>
@@ -46,12 +46,12 @@ if (!empty($description) || !empty($url)) {
             </div>
         </div>
         <?php if (!empty($description)) { ?>
-            <div class="col-md-4 col-sm-5 col-xs-12 ">
+            <div class="col-md-4 col-sm-5 col-12 ">
                 <?php echo $description; ?>
             </div>
         <?php } ?>
         <?php if (!empty($url)) { ?>
-            <div class="col-md-4 col-sm-5 col-xs-12">
+            <div class="col-md-4 col-sm-5 col-12">
                 <div class="clearfix ">
                     <?php if (!empty($url['google'])) { ?>
                         <div class="oauth-login">

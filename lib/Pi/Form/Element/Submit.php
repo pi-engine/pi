@@ -26,7 +26,7 @@ class Submit extends Element
     protected $attributes
         = [
             'type'  => 'submit',
-            'class' => 'btn btn-default',
+            'class' => 'btn btn-secondary',
         ];
 
     /**

@@ -23,7 +23,7 @@ $this->js($this->assetModule('script/system-msg.js'));
                 <div class="input-group">
                     <input type="text" class="form-control js-add-label" placeholder="Label">
                     <span class="input-group-btn">
-                <button class="btn btn-default js-add-to">
+                <button class="btn btn-secondary js-add-to">
                     <?php echo _a('Add to menu'); ?>
                 </button>
               </span>
@@ -41,11 +41,11 @@ $this->js($this->assetModule('script/system-msg.js'));
 <script type="text/template" id="temp-menu">
     <div class="no-select row-fluid tree-item-header">
         <div class="pull-right btn-group">
-            <span class="btn btn-default btn-sm js-toggle" title="<?php echo _a('Click to toggle edit'); ?>">
+            <span class="btn btn-secondary btn-sm js-toggle" title="<?php echo _a('Click to toggle edit'); ?>">
                 <?php echo _a('Custom'); ?>
             </span>
             <?php if (!$navigation['module']) { ?>
-                <button class="btn btn-default btn-sm js-delete">×</button>
+                <button class="btn btn-secondary btn-sm js-delete">×</button>
             <?php } ?>
         </div>
         <div class="ellipsis tree-item-header-label"><%= label %></div>
@@ -53,20 +53,20 @@ $this->js($this->assetModule('script/system-msg.js'));
     <div class="tree-item-body">
         <div class="form-horizontal menu-edit-form">
             <div class="form-group">
-                <label class="col-md-2 control-label"><?php echo _a('Label'); ?></label>
+                <label class="col-md-2 col-form-label"><?php echo _a('Label'); ?></label>
                 <div class="col-md-6">
                     <input class="form-control" type="text" value="<%= label %>" name="label">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label"><?php echo _a('Url'); ?></label>
+                <label class="col-md-2 col-form-label"><?php echo _a('Url'); ?></label>
                 <div class="col-md-6">
                     <input class="form-control" type="text" name="uri" value="<%= uri %>"
                            data-original-title="<?php echo _a('Page link by url or by the after of route'); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label"><?php echo _a('Target'); ?></label>
+                <label class="col-md-2 col-form-label"><?php echo _a('Target'); ?></label>
                 <div class="col-md-6">
                     <select name="target">
                         <option value=""
@@ -77,7 +77,7 @@ $this->js($this->assetModule('script/system-msg.js'));
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label"><?php echo _a('Permission'); ?></label>
+                <label class="col-md-2 col-form-label"><?php echo _a('Permission'); ?></label>
                 <div class="col-md-6">
                     <input class="form-control" type="text" name="uri" value="<%= resource %>">
                 </div>
@@ -96,17 +96,17 @@ $this->js($this->assetModule('script/system-msg.js'));
             <div class="span6">
                 <div class="form-horizontal menu-edit-form">
                     <div class="form-group">
-                        <label class="col-md-2 control-label"><?php echo _a('Route'); ?></label>
+                        <label class="col-md-2 col-form-label"><?php echo _a('Route'); ?></label>
                         <div class="col-md-6">
                             <input class="form-control" type="text" value="<%= route %>" name="route"
-                                   class="input-small">
+                                   class="form-control-small">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label"><?php echo _a('Controller'); ?></label>
+                        <label class="col-md-2 col-form-label"><?php echo _a('Controller'); ?></label>
                         <div class="col-md-6">
                             <input class="form-control" type="text" name="controller" value="<%= controller %>"
-                                   class="input-small">
+                                   class="form-control-small">
                         </div>
                     </div>
                 </div>
@@ -114,17 +114,17 @@ $this->js($this->assetModule('script/system-msg.js'));
             <div class="span6" style="margin-left: 0;">
                 <div class="form-horizontal menu-edit-form">
                     <div class="form-group">
-                        <label class="col-md-2 control-label"><?php echo _a('Module'); ?></label>
+                        <label class="col-md-2 col-form-label"><?php echo _a('Module'); ?></label>
                         <div class="col-md-6">
                             <input class="form-control" type="text" value="<%= module %>" name="module"
-                                   class="input-small">
+                                   class="form-control-small">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label"><?php echo _a('Action'); ?></label>
+                        <label class="col-md-2 col-form-label"><?php echo _a('Action'); ?></label>
                         <div class="col-md-6">
                             <input class="form-control" type="text" name="action" value="<%= action %>"
-                                   class="input-small">
+                                   class="form-control-small">
                         </div>
                     </div>
                 </div>

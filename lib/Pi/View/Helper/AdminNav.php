@@ -52,8 +52,8 @@ class AdminNav extends AbstractHelper
 
         $pattern
                  = <<<'EOT'
-<li class="%s%s">
-    <a href="%s">
+<li class="nav-item %s%s">
+    <a class="nav-link" href="%s">
         <i class="%s"></i>
         <span class="pi-mode-text">%s</span>
     </a>
@@ -91,8 +91,8 @@ EOT;
 
         $patternModule
                  = <<<'EOT'
-<li class="%s">
-    <a href="%s">
+<li class="nav-item w-100">
+    <a class="nav-link %s" href="%s">
         <i class="fa %s"></i>
         <span class="pi-modules-nav-text">%s</span>
     </a>
@@ -100,8 +100,8 @@ EOT;
 EOT;
         $patternCategory
                  = <<<'EOT'
-<li class="category">
-    <a href="">
+<li class="nav-item w-100">
+    <a class="nav-link">
         <i class="fa %s text-muted"></i>
         <span class="pi-modules-nav-category text-muted">%s</span>
     </a>
@@ -139,7 +139,7 @@ EOT;
             return $content;
         };
 
-        $class   = $class ?: 'nav';
+        $class   = $class ?: 'nav flex-column';
         $content = sprintf('<ul class="%s">', $class);
         // Get manage mode navigation
         if (AdminMode::MODE_ADMIN == $mode && 'system' == $module) {

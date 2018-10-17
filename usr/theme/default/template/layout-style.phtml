@@ -36,7 +36,7 @@ $module = Pi::service('module')->current();
     <meta charset="<?php echo $charset; ?>">
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-layout-style">
-<div class="container pi-main-container">
+<div class="container-fluid pi-main-container">
     <!-- Flash messenger -->
     <?php include $this->template('flash-messenger'); ?>
     <?php if (!empty($content)) { ?>

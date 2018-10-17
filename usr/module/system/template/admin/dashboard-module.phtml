@@ -1,11 +1,11 @@
 <div class="page-header">
     <h2><?php echo _escape($title); ?></h2>
 </div>
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="card card-body bg-light mb-3">
+    <div class="card-heading">
         <strong><?php echo _a('About') ?></strong>
     </div>
-    <div class="panel-body">
+    <div class="card-text">
         <div class="media">
             <div class="pull-left" style="margin-right: 20px;">
                 <i class="fa <?php echo $data['icon'] ?: 'fa-th'; ?> fa-5x"></i>
@@ -40,11 +40,11 @@
     </div>
 </div>
 <?php if (!empty($summary)) { ?>
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    <div class="card card-body bg-light mb-3">
+        <div class="card-heading">
             <?php echo _a('Summary'); ?>
         </div>
-        <div class="panel-body">
+        <div class="card-text">
             <?php echo $summary; ?>
         </div>
     </div>
