@@ -153,6 +153,8 @@ class RenderCache extends AbstractResource
             } else {
                 Pi::service('log')->info('Page cached');
                 $content  = $renderCache->cachedContent();
+
+                /** @var \Zend\Http\PhpEnvironment\Response $response */
                 $response = $e->getResponse()->setContent($content);
 
                 // Check ETag for response
@@ -174,6 +176,17 @@ class RenderCache extends AbstractResource
                         }
                     }
                 }
+
+                /**
+                 * Replace cached security key into login form with dynamic security key
+                 */
+                $loginForm   = Pi::api('form', 'user')->loadForm('login');
+                $content = $response->getContent();
+                $content = preg_replace('#(?<=name="security" value=")(.*)(?=")#', $loginForm->get('security')->getValue(), $content);
+                $response->setContent($content);
+                /**
+                 * End
+                 */
 
                 $e->setResult($response);
                 return $response;

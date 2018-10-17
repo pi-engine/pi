@@ -565,6 +565,13 @@ $config['item'] = [
         'category'    => 'mail',
     ],
 
+    'site_mail_footer' => [
+        'title'       => _t('Mail footer'),
+        'description' => _t('Content to be displayed on email footer, HTML tags allowed. Usefull to diplay Android/iOS links, sign with Official Company Address/Name or logo,etc.'),
+        'edit'        => 'textarea',
+        'category'    => 'mail',
+    ],
+
     // Text processing
 
     'editor' => [

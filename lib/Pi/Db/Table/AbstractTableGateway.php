@@ -449,4 +449,33 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
 
         return $result;
     }
+
+    /**
+     * Update
+     *
+     * @param  array $set
+     * @param  string|array|\Closure $where
+     * @return int
+     */
+    public function update($set, $where = null)
+    {
+        if (!$this->isInitialized) {
+            $this->initialize();
+        }
+        $sql = $this->sql;
+        $update = $sql->update();
+        $update->set($set);
+        if ($where !== null) {
+            $update->where($where);
+        }
+
+        $response = $this->executeUpdate($update);
+
+        /**
+         * Trigger events after update
+         */
+        Pi::service('observer')->triggerUpdatedTable($this, $set, $where);
+
+        return $response;
+    }
 }

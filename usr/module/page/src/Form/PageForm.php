@@ -199,18 +199,18 @@ class PageForm extends BaseForm
         );
 
         // seo_description
-        $this->add(
-            [
-                'name'       => 'seo_description',
-                'options'    => [
-                    'label' => _a('SEO Description'),
-                ],
-                'attributes' => [
-                    'type'        => 'text',
-                    'description' => _a('To be used for HTML head meta.'),
-                ],
-            ]
-        );
+        $this->add([
+            'name'       => 'seo_description',
+            'options'    => [
+                'label' => _a('SEO Description'),
+            ],
+            'attributes' => [
+                'rows' => '3',
+                'cols' => '40',
+                'type'        => 'textarea',
+                'description' => _a('To be used for HTML head meta.'),
+            ],
+        ]);
 
         // Enable for online
         $this->add(

@@ -56,6 +56,10 @@ class EditController extends ActionController
                     unset($values['credential']);
                 }
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
+                if (Pi::service('module')->isActive('subscription')) {
+                    Pi::api('people', 'subscription')->update(array('email' => $values['email'], 'first_name' => $values['first_name'], 'last_name' => $values['last_name'], 'mobile' => $values['mobile']), $uid);
+                }
+
                 if ($status == 1) {
                     Pi::service('event')->trigger('user_update', $uid);
                     $result['message'] = _a('User data update successful.');

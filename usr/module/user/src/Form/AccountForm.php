@@ -54,14 +54,19 @@ class AccountForm extends BaseForm
 
         if (Pi::service('module')->isActive('subscription')) {
             $people = Pi::api('people', 'subscription')->getCurrentPeople();
+            $description = null;
+            if ($people  != null) {
+                $description = sprintf(__('(updated on %s)'),  _date($people['time_update']));
+            }
             $this->add([
                 'name'    => 'newsletter',
                 'type'    => 'checkbox',
                 'options' => [
                     'label' => __('Newsletter subscription'),
-                    
+
                 ],
                 'attributes' => [
+                    'description' => $description,
                     'value' => (bool)$people
                 ]
                 
@@ -91,45 +96,4 @@ class AccountForm extends BaseForm
         ]);
     }
 
-    public function isValid()
-    {
-        $isValid = parent::isValid();
-
-        if ($isValid && Pi::service('module')->isActive('subscription')) {
-            $newsletterValue = $this->get('newsletter')->getValue();
-            $people          = Pi::api('people', 'subscription')->getCurrentPeople();
-            if ($newsletterValue == 1 && !$people) {
-                
-                $values               = [];
-                $values['campaign']   = 0;
-                $values['uid']        = Pi::user()->getId();
-                $values['status']     = 1;
-                $values['time_join']  = time();
-                $values['newsletter'] = 1;
-                $values['email']      = null;
-                $values['mobile']     = null;
-                
-                Pi::api('people', 'subscription')->createPeople($values);
-               
-                $log = [
-                    'uid'    => Pi::user()->getId(),
-                    'action' => 'subscribe_newsletter_account',
-                ];
-
-                Pi::api('log', 'user')->add(null, null, $log);
-
-            } elseif ($newsletterValue == 0 && $people) {
-                $people->delete();
-
-                $log = [
-                    'uid'    => Pi::user()->getId(),
-                    'action' => 'unsubscribe_newsletter_account',
-                ];
-
-                Pi::api('log', 'user')->add(null, null, $log);
-            }
-        }
-
-        return $isValid;
-    }
 }

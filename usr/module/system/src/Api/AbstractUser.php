@@ -507,7 +507,7 @@ abstract class AbstractUser extends AbstractApi
         }
 
         if (Pi::service('module')->isActive('subscription')) {
-            Pi::api('people', 'subscription')->activate($uid);   
+            Pi::api('people', 'subscription')->update(array('status' => 1), $uid);
         }
         return true;
     }

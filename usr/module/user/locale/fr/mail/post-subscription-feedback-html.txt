@@ -1,4 +1,4 @@
-﻿[comment]Demande de feedback utilisateur x jours après inscription[/comment]
+[comment]Demande de feedback utilisateur x jours après inscription[/comment]
 
 [format]html[/format]
 
@@ -17,5 +17,6 @@
 	<div style="margin-top: 10px">
     <a href="%site_url%" title="%site_name%">%site_name%</a>
     </div>
+    <div>%site_mail_footer%</div>
 </div>
 [/body]

@@ -39,6 +39,8 @@ class RowGateway extends AbstractRowGateway
      */
     protected $model;
 
+    protected $_oldData = array();
+
     /**
      * Table fields/columns.
      *
@@ -266,7 +268,6 @@ class RowGateway extends AbstractRowGateway
     {
         $this->initialize();
 
-        //$this->data = $rowData;
         if ($rowExistsInDatabase == true) {
             $this->data = $this->decode($rowData);
             $this->processPrimaryKeyData();
@@ -394,6 +395,8 @@ class RowGateway extends AbstractRowGateway
          */
         if (!$wasExisting) {
             Pi::service('observer')->triggerInsertedRow($this);
+        } else {
+            Pi::service('observer')->triggerUpdatedRow($this, $this->_oldData);
         }
 
         /**
@@ -435,6 +438,23 @@ class RowGateway extends AbstractRowGateway
             $this->offsetSet($offset, $value);
         }
 
+        return $this;
+    }
+
+    /**
+     * Offset set
+     *
+     * @param  string $offset
+     * @param  mixed $value
+     * @return RowGateway
+     */
+    public function offsetSet($offset, $value)
+    {
+        if(isset($this->_oldData) && isset($this->data[$offset])){
+            $this->_oldData[$offset] = $this->data[$offset];
+        }
+
+        $this->data[$offset] = $value;
         return $this;
     }
 

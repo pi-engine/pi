@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2018-06-13 19:51+0200\n"
-"PO-Revision-Date: 2018-06-13 19:51+0200\n"
+"POT-Creation-Date: 2018-09-18 23:10+0200\n"
+"PO-Revision-Date: 2018-09-18 23:10+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -654,19 +654,33 @@ msgstr "Encodage mail"
 msgid "Encoding for email contents"
 msgstr "Encodage des contenus de mail"
 
-#: config/config.php:571
+#: config/config.php:569
+msgid "Mail footer"
+msgstr "Pied de page des Mails"
+
+#: config/config.php:570
+msgid ""
+"Content to be displayed on email footer, HTML tags allowed. Usefull to "
+"diplay Android/iOS links, sign with Official Company Address/Name or logo,"
+"etc."
+msgstr ""
+"Contenu à afficher dans le pied de page des mail, les tags HTML sont "
+"autorisés. Utile pour afficher les liens Android/iOS, signer avec l'adresse/"
+"nom de l'entreprise ou son logo, etc."
+
+#: config/config.php:578
 msgid "Text editor"
 msgstr "Editeur de texte"
 
-#: config/config.php:572
+#: config/config.php:579
 msgid "Default editor for text processing"
 msgstr "Editeur par défaut pour la gestion des textes"
 
-#: config/config.php:578
+#: config/config.php:585
 msgid "Enable word censoring"
 msgstr "Activer la censure de mots"
 
-#: config/config.php:579
+#: config/config.php:586
 msgid ""
 "Words will be censored if this option is enabled. This option may be turned "
 "off for enhanced site speed."
@@ -674,11 +688,11 @@ msgstr ""
 "Les mots seront censurés si cette option est activée. Cette option peut être "
 "désactivée pour améliorer la vitesse du site."
 
-#: config/config.php:587
+#: config/config.php:594
 msgid "Words to censor"
 msgstr "Mots à censurer"
 
-#: config/config.php:588
+#: config/config.php:595
 msgid ""
 "Enter words that should be censored in user posts. Separate each with a \"|"
 "\", case insensitive."
@@ -686,70 +700,70 @@ msgstr ""
 "Entrer les mots qui seront censurés dans les saisies utilisateurs. Séparer "
 "chaque mot par un  \"|\" , non sensible à la casse"
 
-#: config/config.php:595
+#: config/config.php:602
 msgid "Word to replace censored words"
 msgstr "Mot de remplacement pour les mots censurés"
 
-#: config/config.php:596
+#: config/config.php:603
 msgid ""
 "Censored words will be replaced with the characters entered in this textbox"
 msgstr ""
 "Les mots censurés seront remplacés par les caractères entrés dans cette zone "
 "de texte."
 
-#: config/config.php:603
+#: config/config.php:610
 msgid "Module themes"
 msgstr "Thèmes du module"
 
-#: config/config.php:604
+#: config/config.php:611
 msgid "Themes for modules."
 msgstr "Thèmes pour les modules."
 
-#: config/config.php:612 config/nav.php:21
+#: config/config.php:619 config/nav.php:21
 msgid "Front navigation"
 msgstr "Navigation côté utilisateur (front)"
 
-#: config/config.php:613
+#: config/config.php:620
 msgid "Global navigation for front end."
 msgstr "Système de navigation global pour le côté utilisateur."
 
-#: config/config.php:620 config/nav.php:27
+#: config/config.php:627 config/nav.php:27
 msgid "Admin navigation"
 msgstr "Navigation Admin"
 
-#: config/config.php:621
+#: config/config.php:628
 msgid "Global navigation for admin."
 msgstr "Navigation globale pour les admins."
 
-#: config/config.php:628
+#: config/config.php:635
 msgid "Meta title type"
 msgstr "Type de Meta Title"
 
-#: config/config.php:629
+#: config/config.php:636
 msgid "Set short or lang meta title type"
 msgstr "Définir le type de meta Title Short ou Lang"
 
-#: config/config.php:634
+#: config/config.php:641
 msgid "Postfix by page - module - website titles"
 msgstr "Postfix Page Title - module - Website"
 
-#: config/config.php:635
+#: config/config.php:642
 msgid "Postfix by page - website titles"
 msgstr "Postfix Page Title - Website"
 
-#: config/config.php:636
+#: config/config.php:643
 msgid "Prefix by website - module - page titles"
 msgstr "Préfix Website - module - Page Title"
 
-#: config/config.php:637
+#: config/config.php:644
 msgid "Prefix by website - page titles"
 msgstr "Préfix WebSite - Page Title"
 
-#: config/config.php:638
+#: config/config.php:645
 msgid "Just page title"
 msgstr "Seulement le Title de la page"
 
-#: config/config.php:649
+#: config/config.php:656
 msgid ""
 "The author meta tag defines the name of the author of the document being "
 "read. Supported data formats include the name, email address of the "
@@ -759,23 +773,23 @@ msgstr ""
 "lecture. Les formats de données supportés sont le nom, l'adresse email du "
 "webmaster, le nom de l'entreprise our l'URL."
 
-#: config/config.php:657
+#: config/config.php:664
 msgid "Generator of the document being read."
 msgstr "Générateur du document qui est lu."
 
-#: config/config.php:664
+#: config/config.php:671
 msgid "Website Open Graph locale"
 msgstr "Langue du site pour l'Open Graph"
 
-#: config/config.php:665
+#: config/config.php:672
 msgid "Set website OG locale, like en_GB"
 msgstr "Définir la langue du site pour l'OG (ex: en_GB)"
 
-#: config/config.php:672
+#: config/config.php:679
 msgid "Twitter account"
 msgstr "Compte Twitter"
 
-#: config/config.php:673
+#: config/config.php:680
 msgid ""
 "Username for the website used in the Twitter card. Add @ before username "
 "like @PiEnable or leave it empty"
@@ -783,11 +797,11 @@ msgstr ""
 "Nom de compte du site utilisé dans les Twitter Cards. Ajouter @ avant le nom "
 "de compte (ex : @PiEnable) ou laisser vide"
 
-#: config/config.php:679
+#: config/config.php:686
 msgid "Facebook app id"
 msgstr "Facebook app id"
 
-#: config/config.php:680
+#: config/config.php:687
 msgid ""
 "Set facebook app id here for use open graph tags on facebook page, its your "
 "website facebook page id"
@@ -795,38 +809,38 @@ msgstr ""
 "Saisir ici le numéro d'app id Facebook pour utiliser les tags OpenGraph sur "
 "la page Facebook, c'est votre numéro page Facebook"
 
-#: config/config.php:686
+#: config/config.php:693
 msgid "Pinterest domain verify"
 msgstr "Vérification de domaine Pinterest"
 
-#: config/config.php:687
+#: config/config.php:694
 msgid ""
 "Set pinterest domain verify code here, if your website have page on pinterest"
 msgstr ""
 "Saisir le code Pinterest de vérification du domaine, si votre site a une "
 "page sur Pinterest"
 
-#: config/config.php:693
+#: config/config.php:700
 msgid "Latitude"
 msgstr "Latitude"
 
-#: config/config.php:700
+#: config/config.php:707
 msgid "Longitude"
 msgstr "Longitude"
 
-#: config/config.php:707
+#: config/config.php:714
 msgid "Placename"
 msgstr "Lieu"
 
-#: config/config.php:714
+#: config/config.php:721
 msgid "Region"
 msgstr "Région"
 
-#: config/config.php:721
+#: config/config.php:728
 msgid "ReCaptcha Site key"
 msgstr "Clef publique Recaptcha"
 
-#: config/config.php:722
+#: config/config.php:729
 msgid ""
 "see https://www.google.com/recaptcha to create your public key dedicated to "
 "your website domain. Both keys are mandatory."
@@ -834,11 +848,11 @@ msgstr ""
 "voir https://www.google.com/recaptcha pour créer votre clef publique dédiée "
 "à votre domaine. Les deux clefs sont obligatoires."
 
-#: config/config.php:730
+#: config/config.php:737
 msgid "ReCaptcha Secret key"
 msgstr "Clef privée Recaptcha"
 
-#: config/config.php:731
+#: config/config.php:738
 msgid ""
 "see https://www.google.com/recaptcha to create your private key dedicated to "
 "your website domain. Both keys are mandatory.."

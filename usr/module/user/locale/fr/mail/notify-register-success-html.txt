@@ -1,4 +1,4 @@
-﻿[comment]Pi Engine - notification de succès création de compte[/comment]
+[comment]Pi Engine - notification de succès création de compte[/comment]
 
 [format]html[/format]
 
