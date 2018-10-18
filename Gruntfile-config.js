@@ -8,5 +8,6 @@ module.exports = {
    * Which themes will be handler by grunt
    * Array list or string 'all'
    */
-  themes: 'all'
-}
+  themes: 'all',
+  exclude: '!**/sym/**'
+};
