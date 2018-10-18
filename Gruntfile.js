@@ -141,13 +141,13 @@ module.exports = function(grunt) {
       options: {
         //banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
-      pi: {
-        cwd: vender('angular'),
-        src: ['pi*.js', 'i18n/*.js'],
-        expand: true,
-        dest: vender('angular'),
-        ext: '.min.js'
-      },
+      // pi: {
+      //   cwd: vender('angular'),
+      //   src: ['pi*.js', 'i18n/*.js'],
+      //   expand: true,
+      //   dest: vender('angular'),
+      //   ext: '.min.js'
+      // },
       modules: {
         files: []
       },
