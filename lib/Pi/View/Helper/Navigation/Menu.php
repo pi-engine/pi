@@ -509,7 +509,7 @@ class Menu extends ZendMenu
     /**
      * {@inheritDoc}
      */
-    public function htmlify($page, $escapeLabel = true, $addClassToListItem = false)
+    public function htmlify(\Zend\Navigation\Page\AbstractPage $page, $escapeLabel = true, $addClassToListItem = false)
     {
         if ($page->active) {
             $page->setClass('nav-link active');
