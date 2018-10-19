@@ -320,7 +320,6 @@ module.exports = function (grunt) {
 
     // execute standard assets publishing (as from pi backend)
     grunt.registerTask('default', ['sync:www']);
-    // grunt.registerTask('default', ['clean:www', 'copy:www']);
 
     //Handler asset files for optimize loading
     grunt.registerTask('optimize', ['clean', 'copy:build', 'uglify', 'cssmin']);
