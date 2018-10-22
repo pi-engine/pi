@@ -2,7 +2,7 @@
     <p>
         <a class="btn btn-primary" title="<?php _e('Add file'); ?>"
            href="<?php echo $this->url('', ['controller' => 'condition', 'action' => 'update']); ?>"><i
-                    class="fa fa-folder-open"></i> <?php _e('Add file'); ?></a>
+                    class="fas fa-folder-open"></i> <?php _e('Add file'); ?></a>
     </p>
     <h3><?php _e('File list'); ?></h3>
     <table class="table table-striped table-bordered table-sm">
@@ -26,12 +26,12 @@
                 <td>
                     <a class="btn btn-primary btn-sm" title="<?php _e('Edit'); ?>"
                        href="<?php echo $this->url('', ['action' => 'update', 'id' => $file['id']]); ?>">
-                        <i class="fa fa-edit"></i> <?php _e('Edit'); ?>
+                        <i class="fas fa-edit"></i> <?php _e('Edit'); ?>
                     </a>
 
                     <a class="btn btn-danger btn-sm" title="<?php _e('Remove'); ?>"
                        href="<?php echo $this->url('', ['action' => 'remove', 'id' => $file['id']]); ?>">
-                        <i class="fa fa-edit"></i> <?php _e('Remove'); ?>
+                        <i class="fas fa-edit"></i> <?php _e('Remove'); ?>
                     </a>
                 </td>
             </tr>

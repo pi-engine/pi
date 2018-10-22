@@ -384,15 +384,15 @@ $uid = Pi::user()->getId();
                             <div class="time-control-item">
                                 <input type="text" class="form-control-small text-hour form-control" maxlength="2">
                                 <div class="text-muted" style="padding: 0 5px; width: 9px; font-size: 12px">
-                                    <span class="fa fa-chevron-up hour-sort" data-action="1"></span>
-                                    <span class="fa fa-chevron-down hour-sort"></span>
+                                    <span class="fas fa-chevron-up hour-sort" data-action="1"></span>
+                                    <span class="fas fa-chevron-down hour-sort"></span>
                                 </div>
                             </div>
                             <div class="time-control-item" style="margin-left: 10px">
                                 <input type="text" class="form-control-small text-minute form-control" maxlength="2">
                                 <div class="text-muted" style="padding: 0 5px; width: 9px; font-size: 12px">
-                                    <span class="fa fa-chevron-up minute-sort" data-action="1"></span>
-                                    <span class="fa fa-chevron-down minute-sort"></span>
+                                    <span class="fas fa-chevron-up minute-sort" data-action="1"></span>
+                                    <span class="fas fa-chevron-down minute-sort"></span>
                                 </div>
                             </div>
                         </div>
@@ -471,8 +471,8 @@ $uid = Pi::user()->getId();
             </div>
             <div class="widget" id="jsGallery">
                 <div class="widget-header" style="cursor: pointer;" title="<?php _e('Click toggle show'); ?>">
-                    <i class="icon-caret-up fa fa-chevron-up"></i>
-                    <i class="icon-caret-down fa fa-chevron-down"></i>
+                    <i class="icon-caret-up fas fa-chevron-up"></i>
+                    <i class="icon-caret-down fas fa-chevron-down"></i>
                     <strong><?php _e('Image gallery'); ?></strong>
                 </div>
                 <div class="widget-body" style="padding-right: 0;">
@@ -511,8 +511,8 @@ $uid = Pi::user()->getId();
         ) { ?>
             <div class="widget" id="jsSeo">
                 <div class="widget-header active" style="cursor: pointer;">
-                    <i class="icon-caret-up fa fa-chevron-up"></i>
-                    <i class="icon-caret-down fa fa-chevron-down"></i>
+                    <i class="icon-caret-up fas fa-chevron-up"></i>
+                    <i class="icon-caret-down fas fa-chevron-down"></i>
                     <strong><?php _e('SEO'); ?></strong>
                 </div>
                 <div class="widget-body" style="overflow: hidden">
@@ -1147,12 +1147,12 @@ $uid = Pi::user()->getId();
                 prev.each(function () {
                     var e = $(this);
                     e.removeClass("icon-arrow-left");
-                    e.addClass("fa fa-chevron-left");
+                    e.addClass("fas fa-chevron-left");
                 });
                 next.each(function () {
                     var e = $(this);
                     e.removeClass("icon-arrow-right");
-                    e.addClass("fa fa-chevron-right");
+                    e.addClass("fas fa-chevron-right");
                 });
             },
             saveTime: function () {

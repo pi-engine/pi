@@ -20,19 +20,19 @@
     <div class="text-center">
         <a class="btn btn-secondary btn-sm" href="<?php echo _escape($block['profileUrl']); ?>"
            title="<?php echo _b('Profile'); ?>">
-            <i class="fa fa-user"></i>
+            <i class="fas fa-user"></i>
             <?php echo _b('Profile'); ?>
         </a>
         <?php if (isset($block['accountUrl'])) { ?>
             <a class="btn btn-secondary btn-sm" href="<?php echo _escape($block['accountUrl']); ?>"
                title="<?php echo _b('Settings'); ?>">
-                <i class="fa fa-cog"></i>
+                <i class="fas fa-cog"></i>
                 <?php echo _b('Settings'); ?>
             </a>
         <?php } ?>
         <a class="btn btn-secondary btn-sm" href="<?php echo Pi::service('authentication')->getUrl('logout'); ?>"
            title="<?php echo _b('Logout'); ?>">
-            <i class="fa fa-power-off"></i>
+            <i class="fas fa-power-off"></i>
             <?php echo _b('Logout'); ?>
         </a>
     </div>

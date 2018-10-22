@@ -35,11 +35,11 @@ if ($block['percent'] < 41) {
                     <li class="list-inline-item">
                         <?php if ($mainFields['status']) { ?>
                             <div class="text-success">
-                                <i class="fa fa-check"></i> <?php echo $this->escape($mainFields['title']); ?>
+                                <i class="fas fa-check"></i> <?php echo $this->escape($mainFields['title']); ?>
                             </div>
                         <?php } else { ?>
                             <div class="text-danger">
-                                <i class="fa fa-times"></i> <?php echo $this->escape($mainFields['title']); ?>
+                                <i class="fas fa-times"></i> <?php echo $this->escape($mainFields['title']); ?>
                                 <?php if ($mainFields['name'] == 'avatar') { ?>
                                     <a title="<?php echo _b('update'); ?>"
                                        href="<?php echo $this->escape($block['avatarUrl']); ?>">( <?php echo _b('update'); ?>

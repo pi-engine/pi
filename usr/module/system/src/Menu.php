@@ -32,17 +32,17 @@ class Menu
             [
                 'name'  => AdminMode::MODE_ACCESS,
                 'label' => _a('Operation', 'system:admin'),
-                'icon'  => 'fa fa-wrench',
+                'icon'  => 'fas fa-wrench',
             ],
             [
                 'name'  => AdminMode::MODE_ADMIN,
                 'label' => _a('Setting', 'system:admin'),
-                'icon'  => 'fa fa-cogs',
+                'icon'  => 'fas fa-cogs',
             ],
             [
                 'name'  => AdminMode::MODE_DEPLOYMENT,
                 'label' => _a('Deployment', 'system:admin'),
-                'icon'  => 'fa fa-cloud-upload',
+                'icon'  => 'fas fa-cloud-upload-alt',
                 'link'  => '',
             ],
         ];

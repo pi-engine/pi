@@ -19,7 +19,7 @@ $this->Backbone();
                     </div>
                     <img src="<?php echo Pi::url($src); ?>">
                 <?php } else { ?>
-                    <span class="fa fa-th-list"></span>
+                    <span class="fas fa-th-list"></span>
                 <?php } ?>
             </div>
             <span class="btn btn-secondary upload fileinput-button" data-toggle="modal" href="#upload-box">
@@ -217,7 +217,7 @@ $this->Backbone();
                         ]
                     ); ?>' + page.id()).done(function () {
                     page.$('[name=image]').val('');
-                    self.$("#category-image").html('<span class="fa fa-th-list"></span>');
+                    self.$("#category-image").html('<span class="fas fa-th-list"></span>');
                 });
             },
             render: function (obj) {

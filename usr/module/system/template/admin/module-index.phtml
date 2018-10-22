@@ -59,11 +59,11 @@
                 </td>
                 <td>
                     <div class="btn-group">
-                        <?php echo sprintf('<a class="btn btn-sm btn-primary" href="%s"><i class="fa fa-wrench"></i> %s</a>', $this->url('', ['action' => 'update', 'id' => $module['id'], 'active' => 1, 'from' => 'installed']), _a('Update')); ?>
+                        <?php echo sprintf('<a class="btn btn-sm btn-primary" href="%s"><i class="fas fa-wrench"></i> %s</a>', $this->url('', ['action' => 'update', 'id' => $module['id'], 'active' => 1, 'from' => 'installed']), _a('Update')); ?>
                     </div>
                     <div class="btn-group">
                         <?php if ('system' == $module['name']) { ?>
-                            <?php echo sprintf('<a class="btn btn-sm btn-success" href="%s" onclick="return confirm(\'%s\')"><i class="fa fa-refresh"></i> %s</a>', $this->url('', ['action' => 'refresh', 'active' => 1, 'from' => 'installed']), _a('Are you sure to update all module? make sure have backup from your website before use this option'), _a('Update all')); ?>
+                            <?php echo sprintf('<a class="btn btn-sm btn-success" href="%s" onclick="return confirm(\'%s\')"><i class="fas fa-sync-alt"></i> %s</a>', $this->url('', ['action' => 'refresh', 'active' => 1, 'from' => 'installed']), _a('Are you sure to update all module? make sure have backup from your website before use this option'), _a('Update all')); ?>
                         <?php } else { ?>
                             <?php $class = ($module['active']) ? 'btn-danger' : 'btn-success'; ?>
                             <button type="button" class="btn btn-sm <?php echo $class; ?> dropdown-toggle"
@@ -72,12 +72,12 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <?php if ($module['active']) {
-                                    echo sprintf('<a class="dropdown-item" href="%s"><i class="fa fa-hourglass-o"></i> %s</a>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 0, 'from' => 'installed']), _a('Disable'));
+                                    echo sprintf('<a class="dropdown-item" href="%s"><i class="far fa-hourglass"></i> %s</a>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 0, 'from' => 'installed']), _a('Disable'));
                                 } else {
-                                    echo sprintf('<a class="dropdown-item" href="%s"><i class="fa fa-hourglass"></i> %s</a>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 1, 'from' => 'installed']), _a('Enable'));
+                                    echo sprintf('<a class="dropdown-item" href="%s"><i class="fas fa-hourglass"></i> %s</a>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 1, 'from' => 'installed']), _a('Enable'));
                                 }
                                 echo ' <div class="dropdown-divider"></div>';
-                                echo sprintf('<a class="dropdown-item" href="%s" onclick="return confirm(\'%s\')"><i class="fa fa-exclamation-triangle text-danger"></i> %s</a>', $this->url('', ['action' => 'uninstall', 'id' => $module['id'], 'from' => 'installed']), _a('Are you sure to uninstall this module?'), _a('Uninstall'));
+                                echo sprintf('<a class="dropdown-item" href="%s" onclick="return confirm(\'%s\')"><i class="fas fa-exclamation-triangle text-danger"></i> %s</a>', $this->url('', ['action' => 'uninstall', 'id' => $module['id'], 'from' => 'installed']), _a('Are you sure to uninstall this module?'), _a('Uninstall'));
                                 ?>
                             </div>
                         <?php } ?>

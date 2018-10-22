@@ -28,7 +28,7 @@ $this->js([
                     </div>
                     <img src="<?php echo Pi::url($src); ?>">
                 <?php } else { ?>
-                    <span class="fa fa-user"></span>
+                    <span class="fas fa-user"></span>
                 <?php } ?>
             </div>
             <span class="btn btn-secondary upload fileinput-button" data-toggle="modal" href="#upload-box">
@@ -65,7 +65,7 @@ $this->js([
                              style="width: <?php echo $this->escape($configs['author_size']); ?>px; height: <?php echo $this->escape($configs['author_size']); ?>px">
                             <img src="<?php echo $src ? Pi::url($src) : ''; ?>"
                                  class="<?php echo $src ? '' : 'hide'; ?>" style="max-width: none">
-                            <span class="fa fa-user<?php echo $src ? ' hide' : ''; ?>"></span>
+                            <span class="fas fa-user<?php echo $src ? ' hide' : ''; ?>"></span>
                         </div>
                         <div class="preview-desc-size muted"><?php echo _a('Size: ') . $this->escape($configs['author_size']) . '×' . $this->escape($configs['author_size']) . 'px'; ?></div>
                     </div>
@@ -291,7 +291,7 @@ $this->js([
                 ); ?>' + page.id()).done(function () {
                 page.$('[name=image]').val('');
                 page.savedPhoto = '';
-                self.$("#author-image").html('<span class="fa fa-user"></span>');
+                self.$("#author-image").html('<span class="fas fa-user"></span>');
                 preImg.attr('style', '');
                 preImg.attr('src', '');
                 preImg.addClass('hide');

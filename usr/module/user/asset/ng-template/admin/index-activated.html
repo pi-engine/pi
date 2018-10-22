@@ -50,7 +50,7 @@
                data-ng-model="filter.email">
     </div>
     <button class="btn btn-info" data-ng-click="filterAction()" style="padding: 4px 20px;">
-        <i class="fa fa-search"></i>
+        <i class="fas fa-search"></i>
     </button>
 </form>
 <div data-ng-show="users.length">
@@ -101,10 +101,10 @@
                     <input type="checkbox" data-ng-model="user.checked" style="margin-top: -2px;">
                 </td>
                 <td>
-                    <i class="fa fa-circle text-success" data-ng-if="user.active"
+                    <i class="fas fa-circle text-success" data-ng-if="user.active"
                        tooltip="{{'ACTIVE' | translate}}">
                     </i>
-                    <i class="fa fa-circle text-muted" data-ng-if="!user.active"
+                    <i class="fas fa-circle text-muted" data-ng-if="!user.active"
                        tooltip="{{'INACTIVE' | translate}}">
                     </i>
                 </td>
@@ -138,10 +138,10 @@
                 <td>
                     <ul class="list-inline">
                         <li data-ng-if="user.front_roles" class="list-inline-item">
-                            <i class="fa fa-user"></i> {{user.front_roles}}
+                            <i class="fas fa-user"></i> {{user.front_roles}}
                         </li>
                         <li data-ng-if="user.admin_roles" class="list-inline-item">
-                            <i class="fa fa-user-md"></i> {{user.admin_roles}}
+                            <i class="fas fa-user-md"></i> {{user.admin_roles}}
                         </li>
                     </ul>
                 </td>

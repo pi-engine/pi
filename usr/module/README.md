@@ -19,7 +19,7 @@ Folder and file skeleton
         // Logo image, for admin, optional
         'logo'          => 'image/logo.png',
         // Logo icon, use font-awesome icons from http://fortawesome.github.io/Font-Awesome/icons/
-        'icon'          => 'fa fa-search',
+        'icon'          => 'fas fa-search',
 
         // Readme file, for admin, optional
         'readme'        => 'docs/readme.txt',

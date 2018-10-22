@@ -21,7 +21,7 @@ $this->Backbone();
                     </div>
                     <img src="<?php echo Pi::url($src); ?>">
                 <?php } else { ?>
-                    <span class="fa fa-book"></span>
+                    <span class="fas fa-book"></span>
                 <?php } ?>
             </div>
             <span class="btn btn-secondary upload fileinput-button" data-toggle="modal" href="#upload-box">
@@ -68,13 +68,13 @@ $this->Backbone();
 
 <script id="template-chevron-left" type="text/template">
     <div class="view-previous" style="text-align: right" data-page="<%= p %>">
-        <a href="javascript:void(0)"><span class="fa fa-chevron-left"></span></a>
+        <a href="javascript:void(0)"><span class="fas fa-chevron-left"></span></a>
     </div>
 </script>
 
 <script id="template-chevron-right" type="text/template">
     <div class="view-next" data-page="<%= p %>">
-        <a href="javascript:void(0)"><span class="fa fa-chevron-right"></span></a>
+        <a href="javascript:void(0)"><span class="fas fa-chevron-right"></span></a>
     </div>
 </script>
 
@@ -272,7 +272,7 @@ $this->Backbone();
                         ]
                     ); ?>' + page.id()).done(function () {
                     page.$("[name=image]").val('');
-                    self.$("#topic-image").html('<span class="fa fa-book"></span>');
+                    self.$("#topic-image").html('<span class="fas fa-book"></span>');
                 });
             },
             render: function (obj) {

@@ -65,7 +65,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                    data-target="#loginRegisterModal" data-action="login"
                    <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
                    title="<?php echo _b('Login'); ?>">
-                    <i class="fa fa-sign-in hidden-lg"></i>
+                    <i class="fas fa-sign-in-alt hidden-lg"></i>
                     <span class="hidden-xs hidden-sm hidden-md"><?php echo _b('Login'); ?></span>
                 </a>
             </li>
@@ -101,7 +101,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                             <?php if (isset($block['user']['dashboard_url'])) { ?>
                                 <a class="dropdown-item item-favorites" title="<?php echo _b('Favourite'); ?>"
                                    href="<?php echo $block['user']['dashboard_url']; ?>">
-                                    <i class="fa fa-dashboard"></i>
+                                    <i class="fas fa-tachometer-alt"></i>
                                     <?php echo _b('Dashboard'); ?>
                                 </a>
                             <?php } ?>
@@ -109,7 +109,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                             <?php if (isset($block['user']['message'])) { ?>
                                 <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>" href="<?php echo $block['user']['message']; ?>"
                                    title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
-                                    <i class="fa fa-envelope-o"></i>
+                                    <i class="far fa-envelope"></i>
                                     <?php echo _b('Message'); ?>
                                     <?php if ($block['user']['count']) { ?>
                                         <span class="badge"><?php echo $block['user']['count']; ?></span>
@@ -120,7 +120,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                     <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>"
                                        href="<?php echo $block['user']['message_url']; ?>"
                                        title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
-                                        <i class="fa fa-envelope-o"></i>
+                                        <i class="far fa-envelope"></i>
                                         <?php echo _b('Message'); ?>
                                         <?php if ($block['user']['message_count']) { ?>
                                             <span class="badge"><?php echo $block['user']['message_count']; ?></span>
@@ -131,7 +131,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                     <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>"
                                        href="<?php echo $block['user']['notification_url']; ?>"
                                        title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
-                                        <i class="fa fa-bell-o"></i>
+                                        <i class="far fa-bell"></i>
                                         <?php echo _b('Notification'); ?>
                                         <?php if ($block['user']['notification_count']) { ?>
                                             <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
@@ -142,7 +142,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                             <?php if (isset($block['user']['support_url'])) { ?>
                                 <a class="dropdown-item <?php echo $module == 'support' ? 'active' : '' ?>" href="<?php echo $block['user']['support_url']; ?>"
                                    title="<?php echo _b('Support'); ?>">
-                                    <i class="fa fa-life-ring"></i>
+                                    <i class="fas fa-life-ring"></i>
                                     <?php echo _b('Support'); ?>
                                     <?php if ($block['user']['support_count']) { ?>
                                         <span class="badge"><?php echo $block['user']['support_count']; ?></span>
@@ -153,7 +153,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                 <a class="dropdown-item <?php echo $module == 'guide' && $controller == 'offer' ? 'active' : '' ?>"
                                    title="<?php _e('My offer'); ?>"
                                    href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'offer', 'action' => 'index'])); ?>">
-                                    <i class="fa fa-cubes"></i>
+                                    <i class="fas fa-cubes"></i>
                                     <?php _e('My offer'); ?>
                                 </a>
                             <?php } ?>
@@ -161,7 +161,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                 <a class="dropdown-item <?php echo $module == "order" && $controller == 'index' ? 'active' : '' ?>"
                                    href="<?php echo $block['user']['order']; ?>"
                                    title="<?php echo _b('Follow up orders'); ?>">
-                                    <i class="fa fa-shopping-basket"></i>
+                                    <i class="fas fa-shopping-basket"></i>
                                     <?php echo _b('Follow up orders'); ?>
                                 </a>
                             <?php } ?>
@@ -169,7 +169,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                 <a class="dropdown-item <?php echo $module == "order" && $controller == 'credit' ? 'active' : '' ?>"
                                    href="<?php echo $block['user']['credit']; ?>"
                                    title="<?php echo _b('Credit'); ?>">
-                                    <i class="fa fa-archive"></i>
+                                    <i class="fas fa-archive"></i>
                                     <?php echo _b('Credit'); ?>
                                     <?php if ($block['user']['amount']) { ?>
                                         <span class="badge"><?php echo $block['user']['amount_view']; ?></span>
@@ -180,13 +180,13 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                 <a class="dropdown-item item-favorites <?php echo $module == 'favourite' ? 'active' : '' ?>"
                                    title="<?php echo _b('Favourite'); ?>"
                                    href="<?php echo $block['user']['favourite_url']; ?>">
-                                    <i class="fa fa-star"></i>
+                                    <i class="fas fa-star"></i>
                                     <?php echo _b('Favourite'); ?>
                                 </a>
                             <?php } ?>
                             <a class="dropdown-item" href="<?php echo $block['user']['logout']; ?>"
                                title="<?php echo _b('Logout'); ?>">
-                                <i class="fa fa-sign-out"></i>
+                                <i class="fas fa-sign-out-alt"></i>
                                 <?php echo _b('Logout'); ?>
                             </a>
                         </div>
@@ -198,7 +198,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                 <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
                     <a class="nav-link" href="<?php echo $block['user']['message']; ?>"
                        title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <i class="far fa-envelope" aria-hidden="true"></i>
                         <span>
                                 <?php echo _b('Message'); ?>
                             <?php if ($block['user']['count']) : ?>
@@ -212,7 +212,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                     <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
                         <a class="nav-link" href="<?php echo $block['user']['message_url']; ?>"
                            title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
-                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <i class="far fa-envelope" aria-hidden="true"></i>
                             <span>
                                     <span class="visible-xs-inline"><?php echo _b('Message'); ?></span>
                                 <?php if ($block['user']['message_count']) : ?>
@@ -226,7 +226,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                     <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
                         <a class="nav-link" href="<?php echo $block['user']['notification_url']; ?>"
                            title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
-                            <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            <i class="far fa-bell" aria-hidden="true"></i>
                             <span>
                                     <span class="visible-xs-inline"><?php echo _b('Notification'); ?></span>
                                 <?php if ($block['user']['notification_count']) : ?>
@@ -240,7 +240,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
             <?php if (isset($block['user']['support_url'])) { ?>
                 <li class="nav-item <?php echo $module == 'support' ?>">
                     <a class="nav-link" href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
-                        <i class="fa fa-life-ring" aria-hidden="true"></i>
+                        <i class="fas fa-life-ring" aria-hidden="true"></i>
                         <span>
                                 <?php echo _b('Support'); ?>
                             <?php if ($block['user']['support_count']) : ?>
@@ -254,7 +254,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
             <?php if (isset($block['user']['offer_url'])) { ?>
                 <li class="nav-item <?php echo $module == 'guide' && $controller == 'offer' ? 'active' : '' ?>">
                     <a class="nav-link" href="<?php echo $block['user']['offer_url']; ?>" title="<?php echo _b('My offer'); ?>">
-                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                        <i class="fas fa-cubes" aria-hidden="true"></i>
                         <span>
                                 <?php echo _b('My offer'); ?>
                             </span>
@@ -264,7 +264,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
             <?php if (isset($block['user']['order'])) { ?>
                 <li class="nav-item <?php echo $module == 'order' && $controller == 'index' ? 'active' : '' ?>">
                     <a class="nav-link" href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
-                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        <i class="fas fa-shopping-basket" aria-hidden="true"></i>
                         <span>
                                 <?php echo _b('Follow up orders'); ?>
                             </span>
@@ -274,7 +274,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
             <?php if (isset($block['user']['credit'])) { ?>
                 <li class="nav-item <?php echo $module == 'order' && $controller == 'credit' ? 'active' : '' ?>">
                     <a class="nav-link" href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
-                        <i class="fa fa-archive" aria-hidden="true"></i>
+                        <i class="fas fa-archive" aria-hidden="true"></i>
                         <span>
                                 <?php echo _b('Credit'); ?>
                             <?php if ($block['user']['amount']) : ?>
@@ -304,7 +304,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                     </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                             <span>
                                         <?php echo _b('Logout'); ?>
                                     </span>
@@ -328,7 +328,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                 <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
                     <a class="nav-link" href="<?php echo $block['user']['message']; ?>"
                        title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
-                        <i class="fa fa-envelope-o"></i>
+                        <i class="far fa-envelope"></i>
                         <?php echo $block['show_title'] ? _b('Message') : ''; ?>
                         <?php if ($block['user']['count']) { ?>
                             <span class="badge"><?php echo $block['user']['count']; ?></span>
@@ -340,7 +340,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                     <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
                         <a class="nav-link" href="<?php echo $block['user']['message_url']; ?>"
                            title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
-                            <i class="fa fa-envelope-o"></i>
+                            <i class="far fa-envelope"></i>
                             <?php echo $block['show_title'] ? _b('Message') : ''; ?>
                             <?php if ($block['user']['message_count']) { ?>
                                 <span class="badge"><?php echo $block['user']['message_count']; ?></span>
@@ -352,7 +352,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                     <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
                         <a class="nav-link" href="<?php echo $block['user']['notification_url']; ?>"
                            title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
-                            <i class="fa fa-bell-o"></i>
+                            <i class="far fa-bell"></i>
                             <?php echo $block['show_title'] ? _b('Notification') : ''; ?>
                             <?php if ($block['user']['notification_count']) { ?>
                                 <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
@@ -364,7 +364,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
             <?php if (isset($block['user']['support_url'])) { ?>
                 <li class="nav-item <?php echo $module == 'support' ? 'active' : '' ?>">
                     <a class="nav-link" href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
-                        <i class="fa fa-life-ring"></i>
+                        <i class="fas fa-life-ring"></i>
                         <?php echo $block['show_title'] ? _b('Support') : ''; ?>
                         <?php if ($block['user']['support_count']) { ?>
                             <span class="badge"><?php echo $block['user']['support_count']; ?></span>
@@ -375,7 +375,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
             <?php if (isset($block['user']['order'])) { ?>
                 <li class="nav-item <?php echo $module == "order" && $controller == 'index' ? 'active' : '' ?>">
                     <a class="nav-link" href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
-                        <i class="fa fa-shopping-basket"></i>
+                        <i class="fas fa-shopping-basket"></i>
                         <?php echo $block['show_title'] ? _b('Follow up orders') : ''; ?>
                     </a>
                 </li>
@@ -383,7 +383,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
             <?php if (isset($block['user']['credit'])) { ?>
                 <li class="nav-item <?php echo $module == "order" && $controller == 'credit' ? 'active' : '' ?>">
                     <a class="nav-link" href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
-                        <i class="fa fa-archive"></i>
+                        <i class="fas fa-archive"></i>
                         <?php echo $block['show_title'] ? _b('Credit') : ''; ?>
                         <?php if ($block['user']['amount']) { ?>
                             <span class="badge"><?php echo $block['user']['amount_view']; ?></span>
@@ -394,14 +394,14 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
             <?php if (isset($block['user']['favourite_url'])) { ?>
                 <li class="nav-item item-favorites <?php echo ($module == 'favourite' || $module == 'guide' && $controller == 'favourite') ? 'active' : '' ?>">
                     <a class="nav-link" title="<?php echo _b('Favourite'); ?>" href="<?php echo $block['user']['favourite_url']; ?>">
-                        <i class="fa fa-star"></i>
+                        <i class="fas fa-star"></i>
                         <?php echo $block['show_title'] ? _b('Favourite') : ''; ?>
                     </a>
                 </li>
             <?php } ?>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
-                    <i class="fa fa-sign-out"></i>
+                    <i class="fas fa-sign-out-alt"></i>
                     <?php echo _b('Logout'); ?>
                 </a>
             </li>

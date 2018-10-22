@@ -50,7 +50,7 @@
                          data-ng-class="{'user-profile-group-editing': display.$isEditing}">
                         <div class="clearfix card-heading">
                             <div class="pull-right user-profile-group-action">
-                                <i class="fa fa-lg pi-icon-cursor" style="padding-right: 4px;"
+                                <i class="fas fa-lg pi-icon-cursor" style="padding-right: 4px;"
                                    data-ng-class="{'fa-angle-up': display.$isEditing, 'fa-angle-down': !display.$isEditing}"
                                    data-ng-click="toggleGroup(display)"></i>
                                 <button class="close" data-ng-click="removeDisplay($index)">
@@ -78,7 +78,7 @@
         <div ng-repeat="field in profile" class="pi-widget">
             <div class="pull-right">
                 <div class="dropdown pi-user-select-disabled">
-                    <i dropdown-toggle class="fa fa-plus fa-lg pi-icon-cursor"></i>
+                    <i dropdown-toggle class="fas fa-plus fa-lg pi-icon-cursor"></i>
                     <div class="pull-right dropdown-menu">
                             <a ng-repeat="item in customGroup" class="dropdown-item" href="javascript:void(0)"
                                data-ng-click="AddGroupField(item, $parent.$index)">{{item}}</a>
@@ -91,7 +91,7 @@
         <div ng-repeat="compound in compounds" class="card card-body bg-light mb-3">
             <div class="card-heading">
         <span class="pull-right" data-ng-click="addDisplayGroup($index)">
-          <i class="fa fa-plus fa-lg pi-icon-cursor"></i>
+          <i class="fas fa-plus fa-lg pi-icon-cursor"></i>
         </span>
                 {{compound.title}}
             </div>

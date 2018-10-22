@@ -21,7 +21,7 @@
                 <button class="btn btn-sm"
                         data-ng-class="{'btn-success': role.value, 'btn-secondary': !role.value}"
                         data-ng-click="assignAction(role, item)">
-                    <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
+                    <i class="fas fa-check" data-ng-class="{'muted': !role.value}"></i>
                 </button>
             <td>
                 <div ng-include src="'allResource.html'"></div>
@@ -33,7 +33,7 @@
                 <button class="btn btn-sm"
                         data-ng-class="{'btn-success': role.value, 'btn-secondary': !role.value}"
                         data-ng-click="assignAction(role, item)">
-                    <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
+                    <i class="fas fa-check" data-ng-class="{'muted': !role.value}"></i>
                 </button>
             <td>
                 <div ng-include src="'allResource.html'"></div>
@@ -45,7 +45,7 @@
                 <button class="btn btn-sm"
                         data-ng-class="{'btn-success': role.value, 'btn-secondary': !role.value}"
                         data-ng-click="assignAction(role, item)">
-                    <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
+                    <i class="fas fa-check" data-ng-class="{'muted': !role.value}"></i>
                 </button>
             <td>
                 <div ng-include src="'allResource.html'"></div>
@@ -60,21 +60,21 @@
     <div class="btn-group" data-toggle="tooltip" title="{{'ALL' | translate}}">
         <button class="btn btn-sm btn-secondary" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
                 data-ng-click="assignAllResource(item, 1)">
-            <i class="fa fa-check"></i>
+            <i class="fas fa-check"></i>
         </button>
         <button class="btn btn-sm btn-secondary" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
                 data-ng-click="assignAllResource(item, 0)">
-            <i class="fa fa-times"></i>
+            <i class="fas fa-times"></i>
         </button>
     </div>
 </script>
 <script type="text/ng-template" id="allResource.html">
     <div class="btn-group" data-toggle="tooltip" title="{{'ALL' | translate}}">
         <button class="btn btn-sm btn-secondary" data-ng-click="assignAllRole(item, 1)">
-            <i class="fa fa-check"></i>
+            <i class="fas fa-check"></i>
         </button>
         <button class="btn btn-sm btn-secondary" data-ng-click="assignAllRole(item, 0)">
-            <i class="fa fa-times"></i>
+            <i class="fas fa-times"></i>
         </button>
     </div>
 </script>

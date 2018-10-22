@@ -15,7 +15,7 @@ include $this->templateComponent('form');
                     <div class="thumbnail widget-item-add-mark" style="cursor: help;"
                          title="<?php echo _a('Select from below available module blocks to add.'); ?>"
                     >
-                        <i class="fa fa-plus fa-3x text-muted"></i>
+                        <i class="fas fa-plus fa-3x text-muted"></i>
                     </div>
                 </div>
             </div>
@@ -29,8 +29,8 @@ include $this->templateComponent('form');
                 <?php foreach ($modules as $module) { ?>
                     <li class="widget-tab-module-item" data-name="<?php echo $module['name']; ?>">
                         <div class="widget-module-block" style="cursor:pointer;">
-                            <i class="fa fa-caret-right"></i>
-                            <i class="fa fa-caret-down"></i>
+                            <i class="fas fa-caret-right"></i>
+                            <i class="fas fa-caret-down"></i>
                             <?php echo $module['title']; ?>
                         </div>
                         <ul>
