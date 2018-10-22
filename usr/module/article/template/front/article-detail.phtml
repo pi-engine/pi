@@ -119,14 +119,14 @@ if (!empty($details['seo'])) {
             <div style="text-align: center">
                 <ul class="pagination">
                     <?php for ($i = 1; $i <= $details['pages']; $i++) { ?>
-                        <li <?php if ($i == $page && !isset($remain)) echo 'class="active"'; ?>>
-                            <a href="<?php echo $this->escape($details['content'][$i - 1]['url']); ?>">
+                        <li class="page-item <?php if ($i == $page && !isset($remain)) echo 'active'; ?>">
+                            <a href="<?php echo $this->escape($details['content'][$i - 1]['url']); ?>" class="page-link">
                                 <?php echo $i; ?>
                             </a>
                         </li>
                     <?php } ?>
-                    <li class="<?php if (isset($remain) and $remain === '0') echo 'active'; ?>">
-                        <a href="<?php echo $this->escape($details['view']); ?>" rel="nofollow">
+                    <li class="page-item <?php if (isset($remain) and $remain === '0') echo 'active'; ?>">
+                        <a href="<?php echo $this->escape($details['view']); ?>" rel="nofollow" class="page-link">
                             <?php _e('Read More'); ?>
                         </a>
                     </li>
