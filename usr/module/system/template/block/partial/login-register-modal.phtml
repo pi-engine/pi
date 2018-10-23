@@ -48,14 +48,14 @@ if (Pi::engine()->application()->getResponse()->getStatusCode() == 404) {
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
                 <div class="modal-title">
                     <span class="modal-action-wrapper"
                           data-action="login"><?php echo $titleLogin ?: __('Login') ?></span>
                     <span class="modal-action-wrapper"
                           data-action="register"><?php echo $titleRegister ?: __('Register') ?></span>
                 </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body user-template">
                 <div id="modal-login-wrapper" class="modal-action-wrapper row clearfix" data-action="login">

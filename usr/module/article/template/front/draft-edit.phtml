@@ -12,7 +12,7 @@ $this->bootstrap(array(
     'datepicker/bootstrap-datepicker.min.js',
     $datepickerLocale,
     'js/bootstrap-typeahead.js',
-]);
+));
 
 $this->css($this->assetModule('script/front.css'));
 $this->Backbone();
@@ -435,8 +435,8 @@ $uid = Pi::user()->getId();
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="modal-title"><?php _e('Reject reason'); ?></h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body" style="height: 100px">
                                 <textarea class="col-md-12 form-control memo"></textarea>
@@ -568,8 +568,8 @@ $uid = Pi::user()->getId();
                         <div class="modal-dialog modal-lg" style="width: 750px">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close icon-remove a-close">&times;</button>
                                     <strong><?php _e('Manage related articles'); ?></strong>
+                                    <button type="button" class="close icon-remove a-close">&times;</button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-inline">
