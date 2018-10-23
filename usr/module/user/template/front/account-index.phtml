@@ -145,12 +145,12 @@ $this->headMeta('noindex', 'robots');
 
                             if (result.newsletter_error === 0) {
                                 this.newsletterInitVal = result.newsletter_value;
-                                this.$newsletter.after("<span class='help-block'>" + result.newsletter_message + "</span>");
+                                this.$newsletter.after("<span class='form-text'>" + result.newsletter_message + "</span>");
                             }
 
                             if (result.newsletter_error === 1) {
                                 this.newsletterReset();
-                                this.$newsletter.after("<span class='help-block'>" + result.newsletter_message + "</span>").closest('.control-group').addClass('error');
+                                this.$newsletter.after("<span class='form-text'>" + result.newsletter_message + "</span>").closest('.control-group').addClass('error');
                             }
 
                             this.$confirm.modal('hide');
