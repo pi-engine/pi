@@ -26,18 +26,18 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
 }
 ?>
 <div class="pi-userbar usertopbar">
-    <ul class="nav navbar-nav<?php echo $floatClass; ?>">
+    <ul class="nav">
 
         <?php if (Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
             <li class="nav-item item-promouvoir hidden-xs hidden-sm dropdown">
                 <div class="btn-group">
-                    <button class="label-yellow dropdown-toggle" data-toggle="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
                         <span class="value"><?php echo __("Propose my activity") ?></span>
                     </button>
                     <div class="dropdown-menu " role="menu">
                         <?php if (Pi::service('module')->isActive('event')) : ?>
                             <?php if (Pi::user()->getId()) { ?>
-                                <a class=dropdown-item" href="<?php echo $this->url('home'); ?>event/manage/update"
+                                <a class="dropdown-item" href="<?php echo $this->url('home'); ?>event/manage/update"
                                    title="<?php echo __("Publish an event") ?>"><?php echo __("Publish an event") ?></a>
                             <?php } else { ?>
                                 <a class="dropdown-item" title="<?php echo __("Publish an event") ?>"
