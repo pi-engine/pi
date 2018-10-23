@@ -34,7 +34,7 @@ $this->jQuery();
 
                     <h2><?php _e('Shortcuts'); ?></h2>
 
-                    <div class="row text-center match-height-list" id="sticky-sidebar">
+                    <div class="row text-center" id="sticky-sidebar">
                         <?php if (Pi::service('module')->isActive('guide')) { ?>
                             <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
                             <?php if ($guideConfig['manage_active']) { ?>

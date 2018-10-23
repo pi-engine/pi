@@ -298,34 +298,6 @@
     width: auto;
 }
 
-/* Match Height */
-.match-height-list {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-}
-
-.match-height-list:before,
-.match-height-list:after {
-    content: "";
-    display: table;
-    width: 100%
-}
-
-.match-height-list > div {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.match-height-list > div .thumbnail {
-    width: 100%;
-}
-
 .my-profile-link {
     color: #525251;
 }

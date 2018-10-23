@@ -38,7 +38,7 @@ $this->Backbone();
                 $form->setAttributes([
                     'action' => $this->url('', ['action' => 'published', 'from' => $from]),
                     'method' => 'get',
-                    'class'  => 'navbar-form navbar-right',
+                    'class'  => 'form-inline navbar-right',
                     'style'  => 'margin: 0; padding-right: 0',
                 ]);
                 echo $this->form()->openTag($form);

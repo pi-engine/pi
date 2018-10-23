@@ -18,7 +18,7 @@
                             </span>
                         </div>
                         <div class="clearfix form-inline pull-right" style="margin-bottom: 20px">
-                            <div class="navbar-form navbar-right" style="margin: 0; padding-right: 0">
+                            <div class="form-inline navbar-right" style="margin: 0; padding-right: 0">
                                 <div class="form-group">
                                     <input type="text" value="" placeholder="<?php _e('Title'); ?>" class="form-control"
                                            name="gallery-title">
@@ -32,17 +32,17 @@
                         <div class="col-md-6 pull-left" style="margin-left: 0px; padding: 0">
                             <div id="gallery-search-result"></div>
                             <div class="media-page hide" style="text-align: center">
-                                <ul class="pager">
-                                    <li>
-                                        <a class="btn btn-small disabled prev-page" data-from="prev" data-url=""
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="btn btn-small disabled prev-page page-link" data-from="prev" data-url=""
                                            href="javascript:void(0)">
-                                            &lt;&lt;&nbsp;<?php _e('Prev'); ?>
+                                            &lt;&lt;&nbsp;<?php echo _a('Prev'); ?>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="btn btn-small next-page" data-from="next" data-url=""
+                                    <li class="page-item">
+                                        <a class="btn btn-small next-page page-link" data-from="next" data-url=""
                                            href="javascript:void(0)">
-                                            <?php _e('Next'); ?>&nbsp;&gt;&gt;
+                                            <?php echo _a('Next'); ?>&nbsp;&gt;&gt;
                                         </a>
                                     </li>
                                 </ul>

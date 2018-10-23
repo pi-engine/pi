@@ -63,7 +63,7 @@ $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
                 $form->setAttributes([
                     'action' => $this->url('', ['action' => 'list', 'type' => $type, 'style' => $style]),
                     'method' => 'get',
-                    'class'  => 'navbar-form navbar-right',
+                    'class'  => 'form-inline navbar-right',
                     'style'  => 'margin: 0; padding-right: 0',
                 ]);
                 echo $this->form()->openTag($form);
