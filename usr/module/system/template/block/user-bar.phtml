@@ -29,7 +29,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
     <ul class="nav">
 
         <?php if (Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
-            <li class="nav-item item-promouvoir hidden-xs hidden-sm dropdown">
+            <li class="nav-item item-promouvoir d-xs-none d-sm-none dropdown">
                 <div class="btn-group">
                     <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
                         <span class="value"><?php echo __("Propose my activity") ?></span>
@@ -65,11 +65,11 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                    data-target="#loginRegisterModal" data-action="login"
                    <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
                    title="<?php echo _b('Login'); ?>">
-                    <i class="fas fa-sign-in-alt hidden-lg"></i>
-                    <span class="hidden-xs hidden-sm hidden-md"><?php echo _b('Login'); ?></span>
+                    <i class="fas fa-sign-in-alt d-lg-none"></i>
+                    <span class="d-xs-none d-sm-none d-md-none"><?php echo _b('Login'); ?></span>
                 </a>
             </li>
-            <li class="nav-item item-register hidden-xs">
+            <li class="nav-item item-register d-xs-none">
                 <a class="nav-link" href="<?php echo $modalEnabled ? '#' : $block['user']['register'] ?>"
                    data-target="#loginRegisterModal" data-action="register"
                    <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
@@ -83,7 +83,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                     <button type="button" class="btn pi-userbar-avatar"
                             onclick="window.location='<?php echo $block['user']['dashboard_url']; ?>'">
                         <?php echo $block['user']['avatar']; ?>
-                        <span class="hidden-xs hidden-sm hidden-md">
+                        <span class="d-xs-none d-sm-none d-md-none">
                             <?php echo __('Welcome') . ' ' . _escape(
                                     (isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name']
                                         : $block['user']['name']
@@ -214,7 +214,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                            title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
                             <i class="far fa-envelope" aria-hidden="true"></i>
                             <span>
-                                    <span class="visible-xs-inline"><?php echo _b('Message'); ?></span>
+                                    <span class="d-xs-inline"><?php echo _b('Message'); ?></span>
                                 <?php if ($block['user']['message_count']) : ?>
                                     <span class="badge"><?php echo $block['user']['message_count']; ?></span>
                                 <?php endif; ?>
@@ -228,7 +228,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                            title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
                             <i class="far fa-bell" aria-hidden="true"></i>
                             <span>
-                                    <span class="visible-xs-inline"><?php echo _b('Notification'); ?></span>
+                                    <span class="d-xs-inline"><?php echo _b('Notification'); ?></span>
                                 <?php if ($block['user']['notification_count']) : ?>
                                     <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
                                 <?php endif; ?>
@@ -286,7 +286,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
             <?php } ?>
 
             <li class="nav-item userbar-avatar-item">
-                <span class="avatar-name-wrapper hidden-sm">
+                <span class="avatar-name-wrapper d-sm-none">
                     <?php if (!preg_match('#\/admin\/#', $this->url('', [], null, true))) : ?>
                         <?php echo _b('Welcome'); ?>
                     <?php endif; ?>

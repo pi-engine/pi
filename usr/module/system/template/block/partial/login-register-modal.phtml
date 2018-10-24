@@ -60,7 +60,7 @@ if (Pi::engine()->application()->getResponse()->getStatusCode() == 404) {
             <div class="modal-body user-template">
                 <div id="modal-login-wrapper" class="modal-action-wrapper row clearfix" data-action="login">
                     <?php if (!empty($descriptionLogin)) { ?>
-                        <div class="hidden-xs hidden-sm col-md-6">
+                        <div class="d-xs-none d-sm-none col-md-6">
                             <?php echo $descriptionLogin; ?>
                         </div>
                     <?php } ?>
@@ -84,7 +84,7 @@ if (Pi::engine()->application()->getResponse()->getStatusCode() == 404) {
                 </div>
                 <div id="modal-register-wrapper" class="modal-action-wrapper row clearfix" data-action="register">
                     <?php if (!empty($descriptionRegister)) { ?>
-                        <div class="hidden-xs hidden-sm col-md-6">
+                        <div class="d-xs-none d-sm-none col-md-6">
                             <?php echo $descriptionRegister; ?>
                         </div>
                     <?php } ?>
