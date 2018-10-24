@@ -442,7 +442,7 @@ EOT;
         padding-left: 5px;
     }
 
-    #pi-logger-output .pi-event .message .label {
+    #pi-logger-output .pi-event .message .badge {
         width: 150px;
         text-align: right;
         float: left;
