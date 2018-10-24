@@ -21,7 +21,7 @@ $imgRight = empty($options['image_right']) ? false : true;
 <div class="widget-list widget-list-media">
     <?php foreach ($items as $item) { ?>
         <div class="media">
-            <a class="<?php echo $imgRight ? 'pull-right' : 'pull-left'; ?>" href="<?php echo $item['link']; ?>"
+            <a class="<?php echo $imgRight ? 'float-right' : 'float-left'; ?>" href="<?php echo $item['link']; ?>"
                target="<?php echo $target; ?>">
                 <img class="media-object img-fluid <?php echo $circle ?>" src="<?php echo $item['image']; ?>"
                      alt="<?php echo _escape($item['caption']); ?>" <?php echo $imgStyle; ?>>

@@ -25,7 +25,7 @@ $this->backbone();
             <div class="col-md-4">
                 <img src="<?php echo $theme['screenshot']; ?>"
                      alt="<?php echo isset($theme['title']) ? _escape($theme['title']) : ''; ?>"
-                     class="img-fluid img-thumbnail pull-left"/>
+                     class="img-fluid img-thumbnail float-left"/>
 
             </div>
             <div class="media-body col-md-8">
@@ -52,7 +52,7 @@ $this->backbone();
         <div class="caption">
             <h5><%- title %></h5>
             <div class="clearfix theme-actions">
-                <span class="pull-right btn btn-secondary theme-apply"><?php echo _a('Apply'); ?></span>
+                <span class="float-right btn btn-secondary theme-apply"><?php echo _a('Apply'); ?></span>
                 <span class="no-select btn btn-link theme-detail"><?php echo _a('Detail'); ?></span>
             </div>
             <dl class="hide">

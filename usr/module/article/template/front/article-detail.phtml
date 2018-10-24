@@ -36,7 +36,7 @@ if (!empty($details['seo'])) {
                 <div>
                     <div class="clearfix article-share">
                         <!-- JiaThis Button BEGIN -->
-                        <div class="pull-right jiathis_style">
+                        <div class="float-right jiathis_style">
                             <span class="jiathis_txt"><?php _e('Share with: '); ?></span>
                             <a class="jiathis_button_tsina"></a>
                             <a class="jiathis_button_tqq"></a>
@@ -105,7 +105,7 @@ if (!empty($details['seo'])) {
         </div>
         <div class="clearfix">
             <?php if (!isset($remain) and (int)$page < $details['pages']) { ?>
-                <div class="pull-right text-muted">
+                <div class="float-right text-muted">
                     <a class="link mr10" href="<?php echo $this->escape($details['content'][$page]['url']); ?>">
                         <?php _e('Next Page'); ?>
                     </a>
@@ -159,7 +159,7 @@ if (!empty($details['seo'])) {
                     <?php _e('Author introduction'); ?>
                 </div>
                 <div class="media">
-                    <a class="pull-left" href="#">
+                    <a class="float-left" href="#">
                         <img class="" src="<?php echo Pi::url($details['author']['photo']); ?>"
                              alt="<?php echo $this->escape($details['author']['name']); ?>"
                              style="width: <?php echo $this->escape($config['author_width']); ?>px; height: <?php echo $this->escape($config['author_height']); ?>px; border-radius: 5px">

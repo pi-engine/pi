@@ -30,7 +30,7 @@ $this->css($this->assetModule('admin/admin.css'));
             <li class="list-group-item">
                 <p>
                     <span><?php echo _escape($item['title']); ?></span>
-                    <span class="pull-right">
+                    <span class="float-right">
                     <select class="form-control"
                             onchange="move('<?php echo $item['name']; ?>', this.options[this.selectedIndex].value);">
                         <option value=""><?php echo _a('Assign to:'); ?></option>
@@ -74,7 +74,7 @@ $this->css($this->assetModule('admin/admin.css'));
                            title="<?php echo _a('Remove'); ?>">
                             &times;
                         </a>
-                        <div class="pull-right col-lg-2">
+                        <div class="float-right col-lg-2">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon"><?php echo _a('Order'); ?></span>
                                 <input type="text" class="form-control" name="sort[<?php echo $item['name']; ?>]"
@@ -87,7 +87,7 @@ $this->css($this->assetModule('admin/admin.css'));
 
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <input type="hidden" name="op" value="sort">
-            <div class="btn-group pull-right">
+            <div class="btn-group float-right">
                 <input
                         type="submit"
                         class="btn btn-primary"

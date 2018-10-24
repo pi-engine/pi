@@ -1,7 +1,7 @@
 <div class="page-header" style="margin: 0 0 20px;">
     <?php if (!empty($moduleTitle)) { ?>
         <a href="<?php echo $this->url('', ['action' => 'list', 'tag' => $tag]); ?>"
-           class="pull-right" style="margin-top: 5px;">
+           class="float-right" style="margin-top: 5px;">
             <?php _e('View all tagged items.'); ?>
         </a>
         <h1>
@@ -19,7 +19,7 @@
     foreach ($list as $item) {
         echo sprintf(
             '<div class="tag-list-item">
-            <span class="pull-right">%s</span>
+            <span class="float-right">%s</span>
             <span class="text-muted">[%s]</span>
             <a href="%s">%s</a>
         </div>

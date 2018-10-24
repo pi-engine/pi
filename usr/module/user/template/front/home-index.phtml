@@ -25,7 +25,7 @@ $userSection = $this->isUserSection(Pi::service('module')->current());
             <?php if ($timeline) { ?>
                 <?php foreach ($timeline as $item) { ?>
                     <div class="timeline user-underline-list">
-                        <div class="pull-left">
+                        <div class="float-left">
                             <?php
                             echo !empty($item['icon']) ? '<i class="fa ' . $item['icon'] . ' fa-4x"></i>' : '<i class="fas fa-comment fa-4x"></i>';
                             ?>

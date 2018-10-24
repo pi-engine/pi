@@ -27,7 +27,7 @@
     <div class="col-md-7">
         <div class="card bg-success p-3">
             <div class="clearfix card-heading">
-                <div class="pull-right">
+                <div class="float-right">
                     <button class="btn btn-link" data-ng-click="cancelAction()">{{'CANCEL' | translate}}</button>
                     <button class="btn btn-success" data-ng-click="saveAction()">{{'SAVE' | translate}}</button>
                 </div>
@@ -47,7 +47,7 @@
                     <div ng-repeat="display in displays" class="card card-body bg-light mb-3"
                          data-ng-class="{'user-profile-group-editing': display.$isEditing}">
                         <div class="clearfix card-heading">
-                            <div class="pull-right user-profile-group-action">
+                            <div class="float-right user-profile-group-action">
                                 <i class="fas fa-lg pi-icon-cursor" style="padding-right: 4px;"
                                    data-ng-class="{'fa-angle-up': display.$isEditing, 'fa-angle-down': !display.$isEditing}"
                                    data-ng-click="toggleGroup(display)"></i>
@@ -74,10 +74,10 @@
     <div class="col-md-5 user-profile-source">
         <legend>{{'BASIC_FIELD' | translate}}</legend>
         <div ng-repeat="field in profile" class="pi-widget">
-            <div class="pull-right">
+            <div class="float-right">
                 <div class="dropdown pi-user-select-disabled">
                     <i dropdown-toggle class="fas fa-plus fa-lg pi-icon-cursor"></i>
-                    <div class="pull-right dropdown-menu">
+                    <div class="float-right dropdown-menu">
                             <a ng-repeat="item in customGroup" class="dropdown-item" href="javascript:void(0)"
                                data-ng-click="AddGroupField(item, $parent.$index)">{{item}}</a>
                     </div>
@@ -88,7 +88,7 @@
         <legend>{{'COMPOUND' | translate}}</legend>
         <div ng-repeat="compound in compounds" class="card card-body bg-light mb-3">
             <div class="card-heading">
-        <span class="pull-right" data-ng-click="addDisplayGroup($index)">
+        <span class="float-right" data-ng-click="addDisplayGroup($index)">
           <i class="fas fa-plus fa-lg pi-icon-cursor"></i>
         </span>
                 {{compound.title}}

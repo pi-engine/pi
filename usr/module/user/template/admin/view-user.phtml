@@ -1,6 +1,6 @@
 <div class="clearfix">
     <h1 class="clearfix">
-        <div class="pull-left">
+        <div class="float-left">
             <?php echo $user['avatar']; ?>
             <?php if (isset($user['first_name']) && !empty($user['first_name'])) { ?>
                 <?php echo $this->escape($user['first_name']); ?>
@@ -9,7 +9,7 @@
                 <?php echo $this->escape($user['name']); ?>
             <?php } ?>
         </div>
-        <div class="pull-right">
+        <div class="float-right">
             <a target="_blank" class="btn btn-primary btn-sm" href="<?php echo $this->escape($user['editUrl']); ?>">
                 <?php _e('Edit user'); ?>
             </a>

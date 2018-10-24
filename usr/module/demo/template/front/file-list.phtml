@@ -3,7 +3,7 @@
 <ul class="list-group">
     <?php foreach ($files as $file) { ?>
         <li class="list-group-item"><?php echo $file['filename']; ?>
-            <span class="pull-right">
+            <span class="float-right">
         <a href="<?php echo $file['url_download']; ?>" class="btn btn-sm"><?php _e('Download'); ?></a>
         <a href="<?php echo $file['url_delete']; ?>" class="btn btn-sm"><?php _e('Delete'); ?></a>
         </span>

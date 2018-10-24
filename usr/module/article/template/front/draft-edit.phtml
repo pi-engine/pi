@@ -362,7 +362,7 @@ $uid = Pi::user()->getId();
             </div>
             <div class="widget-body">
                 <div class="clearfix article-flow">
-                    <span class="pull-right btn btn-secondary preview" data-src=""><?php _e('Preview'); ?></span>
+                    <span class="float-right btn btn-secondary preview" data-src=""><?php _e('Preview'); ?></span>
                     <?php if (!$draft['article']) { ?>
                         <span class="btn btn-info save"><?php _e('Save'); ?></span>
                     <?php } ?>
@@ -380,7 +380,7 @@ $uid = Pi::user()->getId();
                     <span class="link-btn save-time mr10"><?php _e('Save'); ?></span>
                     <span class="link-btn cancel-time"><?php _e('Cancel'); ?></span>
                     <div class="clearfix time-edit-wrap hide">
-                        <div class="pull-right">
+                        <div class="float-right">
                             <div class="time-control-item">
                                 <input type="text" class="form-control-small text-hour form-control" maxlength="2">
                                 <div class="text-muted" style="padding: 0 5px; width: 9px; font-size: 12px">
@@ -410,10 +410,10 @@ $uid = Pi::user()->getId();
                 </div>
                 <div id="article-management-operation" class="clearfix" style="margin-top: 10px;">
                     <?php if ($draft['article']) { ?>
-                        <button class="btn btn-primary pull-right update"><?php _e('Update'); ?></button>
+                        <button class="btn btn-primary float-right update"><?php _e('Update'); ?></button>
                     <?php } elseif ($draft['status'] == 2) { ?>
                         <?php if (isset($currentApprove) and $currentApprove) { ?>
-                            <div class="btn-group pull-right">
+                            <div class="btn-group float-right">
                                 <button class="btn btn-primary approve"><?php _e('Approve'); ?></button>
                                 <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"></button>
                                 <div class="dropdown-menu">
@@ -425,7 +425,7 @@ $uid = Pi::user()->getId();
                             </div>
                         <?php } ?>
                     <?php } else { ?>
-                        <button class="btn btn-primary pull-right pending"><?php _e('Submit'); ?></button>
+                        <button class="btn btn-primary float-right pending"><?php _e('Submit'); ?></button>
                     <?php } ?>
                     <?php if (isset($currentDelete) and $currentDelete) { ?>
                         <span class="link-btn delete"><?php _e('Delete'); ?></span>
@@ -459,7 +459,7 @@ $uid = Pi::user()->getId();
                     <div class="upload-image-wrap"
                          style="cursor: default; width: <?php echo $thumbWidth . 'px'; ?>; height: <?php echo $thumbHeight . 'px'; ?>;">
                     </div>
-                    <div class="pull-left" style="margin-top: 20px;">
+                    <div class="float-left" style="margin-top: 20px;">
                         <button class="btn upload fileinput-button" data-toggle="modal" href="#upload-box">
                             <?php _e('Upload'); ?>
                         </button>
@@ -560,7 +560,7 @@ $uid = Pi::user()->getId();
                 </div>
                 <div class="widget-body">
                     <label class="radio">
-                        <span class="pull-right link-btn"><?php _e('Add'); ?></span>
+                        <span class="float-right link-btn"><?php _e('Add'); ?></span>
                     </label>
                     <ul class="article-related-list">
                     </ul>
@@ -591,7 +591,7 @@ $uid = Pi::user()->getId();
                                         <div class="col-md-7">
                                             <div class="widget-header">
                                                 <img src="<?php echo $this->assetModule('image/wait.gif', 'system'); ?>"
-                                                     class="loadimage pull-right invisible"
+                                                     class="loadimage float-right invisible"
                                                      style="margin: 2px 10px 0 0;">
                                                 <strong><?php _e('Articles to be selected'); ?></strong>
                                                 (<span class="searchlength">0</span>)/(<span
@@ -670,7 +670,7 @@ $uid = Pi::user()->getId();
         <a href="<%= data.download_url %>" class="uploaded-media-name"><%= data.originalName %></a>
         <div class="attachment-action">
             <% if (data.progress) { %>
-            <a href="javascript:void(0)" class="pull-right cancel"><?php _e('Cancel'); ?></a>
+            <a href="javascript:void(0)" class="float-right cancel"><?php _e('Cancel'); ?></a>
             <% } else { %>
             <a href="javascript:void(0)" class="delete visible-hide"
                style="margin-right: 20px;"><?php _e('Delete'); ?></a>
@@ -726,7 +726,7 @@ $uid = Pi::user()->getId();
 <script id="temp-related-search" type="text/template">
     <%_.each(search,function(item) { %>
     <li data-id="<%= item.id %>" style="list-style: none">
-        <span class="pull-right text-muted"><%= item.time_publish_text %></span>
+        <span class="float-right text-muted"><%= item.time_publish_text %></span>
         <input class="search-check" type="checkbox" <% if(_.where(exist,{id:item.id}).length) { %>checked<% } %> ><%=
         item.channel_title %>
         <a href="<%= item.url %>" target="_blank" class="ellipsis" title="<%= item.subject %>"><strong><%= item.subject
@@ -2543,12 +2543,12 @@ $uid = Pi::user()->getId();
         }
         if ((1 == prevStatus || 3 == prevStatus) && 2 == currentStatus) {
             if (allowed) {
-                content = '<button class="btn btn-primary pull-right approve">Approve</button>' + content;
+                content = '<button class="btn btn-primary float-right approve">Approve</button>' + content;
             }
             $('#article-management-operation').html(content);
         } else if (2 == prevStatus) {
             if (allowed) {
-                content = '<div class="btn-group pull-right">'
+                content = '<div class="btn-group float-right">'
                     + '<button class="btn btn-primary approve">'
                     + '<?php _e('Approve'); ?>'
                     + '</button>'

@@ -10,7 +10,7 @@
                 </div>
                 <div id="js-plugin-sortable" ui-sortable data-ng-model="displayList">
                     <div class="pi-widget" ng-repeat="item in displayList">
-            <span class="pull-right">
+            <span class="float-right">
               <span class="muted">{{item.module}}</span>
               <button class="close" data-ng-click="removeDisplay($index)">
                 &times;
@@ -27,7 +27,7 @@
         <legend>{{'QUICKLINK_REPOSITORY' | translate}}</legend>
         <div class="user-quick-select" ng-repeat="item in selectList">
             <div class="pi-widget">
-        <span class="pull-right">
+        <span class="float-right">
           <span class="text-muted">{{item.module}}</span>
           <i class="fas fa-plus pi-icon-cursor" data-ng-click="addDisplay($index)"></i>
         </span>

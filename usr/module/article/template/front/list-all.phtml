@@ -25,7 +25,7 @@ $this->css([
                             <?php
                             if (in_array('feature', $elements)) {
                                 ?>
-                                <div class="pull-left" style="margin-right: 10px;">
+                                <div class="float-left" style="margin-right: 10px;">
                                     <img src="<?php echo Pi::url($row['image']); ?>" style="width: 100px">
                                 </div>
                                 <?php
@@ -36,7 +36,7 @@ $this->css([
                                     <?php
                                     if (in_array('time', $elements)) {
                                         ?>
-                                        <span class="pull-right article-list-desc">
+                                        <span class="float-right article-list-desc">
                                         <?php echo _date($row['time_publish']); ?>
                                     </span>
                                         <?php
