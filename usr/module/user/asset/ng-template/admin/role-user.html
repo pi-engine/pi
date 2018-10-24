@@ -2,20 +2,16 @@
 <div class="row">
     <div class="col-md-5">
         <form class="input-group" ng-submit="submit()" name="addForm" style="margin-bottom: 20px;">
-      <span class="input-group-btn">
-        <select class="form-control" data-ng-model="entity.field" style="width: auto;">
-          <option value="uid">{{'UID' | translate}}
-          <option value="identity">{{'USERNAME' | translate}}
-          <option value="name">{{'DISPLAYNAME' | translate}}
-          <option value="email">{{'EMAIL' | translate}}
-        </select>
-      </span>
+            <select class="form-control" data-ng-model="entity.field" style="width: auto;">
+                <option value="uid">{{'UID' | translate}}
+                <option value="identity">{{'USERNAME' | translate}}
+                <option value="name">{{'DISPLAYNAME' | translate}}
+                <option value="email">{{'EMAIL' | translate}}
+            </select>
             <input class="form-control" type="text" data-ng-model="entity.data" required>
-            <span class="input-group-btn">
-        <button class="btn btn-primary" ng-disabled="addForm.$invalid">
-          {{'ADD_USER' | translate}}
-        </button>
-      </span>
+            <button class="btn btn-primary" ng-disabled="addForm.$invalid">
+                {{'ADD_USER' | translate}}
+            </button>
         </form>
     </div>
 </div>

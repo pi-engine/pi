@@ -38,11 +38,9 @@
                       name="displayForm" style="margin-bottom: 20px;">
                     <input class="form-control" type="text" placeholder="{{'TITLE' | translate}}"
                            data-ng-model="entity" required>
-                    <span class="input-group-btn">
-            <button class="btn btn-secondary" ng-disabled="displayForm.$invalid">
-              {{'ADD_GROUP' | translate}}
-            </button>
-          </span>
+                    <button class="btn btn-secondary" ng-disabled="displayForm.$invalid">
+                        {{'ADD_GROUP' | translate}}
+                    </button>
                 </form>
                 <div pi-alert message="saveAlert.message" type="saveAlert.type"></div>
                 <div class="user-profile-groups" ui-sortable="displaysOpts" data-ng-model="displays">
