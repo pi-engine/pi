@@ -225,8 +225,8 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
             }
             $item = $list[$i];
             ?>
-            <li class="<?php echo $i == $index ? 'active' : ''; ?>">
-                <a href="<?php echo $item['url']; ?>">
+            <li class="<?php echo $i == $index ? 'active' : ''; ?> nav-item">
+                <a class="nav-link" href="<?php echo $item['url']; ?>">
                     <?php
                     if ($item['icon']) {
                         echo '<i class="fa ' . $item['icon'] . '"></i> ';

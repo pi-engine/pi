@@ -3,8 +3,8 @@
     <span style="margin-left: 20px;">{{user.name}}</span>
 </legend>
 <ul class="nav nav-pills bg-light mb-3 p-3">
-    <li ng-repeat="item in nav" data-ng-class="{active: item.name == action}" data-ng-click="navChange(item)" class="nav-item">
-        <a class="nav-link" href="{{item.href}}">{{item.title}}</a>
+    <li ng-repeat="item in nav" data-ng-click="navChange(item)" class="nav-item">
+        <a class="nav-link" data-ng-class="{active: item.name == action}" href="{{item.href}}">{{item.title}}</a>
 </ul>
 <div ng-include="formHtmlUrl">
 </div>

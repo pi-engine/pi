@@ -873,7 +873,7 @@ $uid = Pi::user()->getId();
             },
             navChange: function () {
                 if (this.from == "all") {
-                    $(".nav-tabs:first").find(">").removeClass("active").eq(0).addClass("active");
+                    $(".nav-tabs:first").find(">li>a").removeClass("active").eq(0).addClass("active");
                 }
             }
         };

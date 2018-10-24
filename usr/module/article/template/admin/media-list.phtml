@@ -12,23 +12,23 @@ $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
         <div id="pi-js-list">
             <div>
                 <ul class="nav nav-tabs">
-                    <li class="<?php echo 'image' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', ['action' => 'list', 'type' => 'image']); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'image' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'image']); ?>">
                             <?php echo _a('Images'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'doc' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', ['action' => 'list', 'type' => 'doc']); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'doc' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'doc']); ?>">
                             <?php echo _a('Docs'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'video' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', ['action' => 'list', 'type' => 'video']); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'video' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'video']); ?>">
                             <?php echo _a('Videos'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'zip' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', ['action' => 'list', 'type' => 'zip']); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'zip' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'zip']); ?>">
                             <?php echo _a('Zips'); ?>
                         </a>
                     </li>
