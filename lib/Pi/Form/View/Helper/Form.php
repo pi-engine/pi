@@ -156,6 +156,12 @@ class Form extends FormHelper
                 $element->setAttribute('class', $attrClass);
             }
 
+            if ($type == 'checkbox'){
+                $class     = $element->getAttribute('class');
+                $attrClass = 'form-check-input' . ($class ? ' ' . $class : '');
+                $element->setAttribute('class', $attrClass);
+            }
+
             $renderPattern
                 = <<<EOT
 <div class="form-group%error_class% has-feedback" data-name="%element_name%">
@@ -173,7 +179,7 @@ EOT;
             if ($type == 'checkbox') {
                 $descPattern
                     = <<<EOT
-<span style="display:block;" class="text-muted">%desc_content%</span>
+%desc_content%
 EOT;
             } else {
                 $descPattern
@@ -193,8 +199,8 @@ EOT;
                     $elementPattern
                         = <<<EOT
 <div class="%element_size% js-form-element">
-    <div class="checkbox">
-        <label>
+    <div class="form-check">
+        <label class="form-check-label">
             %element_content%
             %desc_html%
         </label>
@@ -208,7 +214,7 @@ EOT;
                     $elementPattern
                         = <<<EOT
 <div class="%element_size% js-form-element">
-    <div class="checkbox">
+    <div class="form-check">
         %element_content%
         %desc_html%
     </div>
