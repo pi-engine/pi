@@ -16,9 +16,8 @@ array_walk($groups, function (&$group, $gid) {
     ]);
 });
 $userConfig = Pi::service('registry')->config->read('user');
-$this->sticky();
 ?>
-<div class="clearfix" id="sticky-sidebar-manage">
+<div class="clearfix sticky-top">
 
     <div class="list-group">
         <div class="">
@@ -226,33 +225,4 @@ $this->sticky();
             </div>
         </div>
     </div>
-
-
 </div>
-
-<script>
-    $(document).ready(function () {
-        var affixWrapperHeight = 0;
-        var affixWrapper = $('#affixWrapper');
-        if (affixWrapper.length > 0) {
-            affixWrapper.find('.nav').addClass('forceVisible');
-            var affixWrapperHeight = affixWrapper.height();
-            affixWrapper.find('.nav').removeClass('forceVisible');
-        }
-
-        var Sticky = new hcSticky('#sticky-sidebar-manage', {
-            responsive: true,
-            top: $('#pi-header nav').height() + affixWrapperHeight + 20,
-            stickTo: '.pi-module-content',
-            queries: {
-                992: {
-                    disable: true
-                }
-            },
-            bottomEnd: -100
-        });
-
-        $('#sticky-sidebar div.modal').insertAfter('.wrapper-sticky');
-    });
-
-</script>

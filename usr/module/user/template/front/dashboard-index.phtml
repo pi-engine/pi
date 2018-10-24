@@ -3,7 +3,7 @@ $this->css($this->assetModule('front/front.css'));
 $this->headMeta('noindex', 'robots');
 $this->jQuery();
 ?>
-<div class="row" id="sticky-container">
+<div class="row">
     <div class="col-md-3">
         <?php include $this->template('./profile-sidebar.phtml'); ?>
     </div>
@@ -34,7 +34,7 @@ $this->jQuery();
 
                     <h2><?php _e('Shortcuts'); ?></h2>
 
-                    <div class="row text-center" id="sticky-sidebar">
+                    <div class="row text-center sticky-top">
                         <?php if (Pi::service('module')->isActive('guide')) { ?>
                             <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
                             <?php if ($guideConfig['manage_active']) { ?>
