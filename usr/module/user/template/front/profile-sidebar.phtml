@@ -166,20 +166,20 @@ $userConfig = Pi::service('registry')->config->read('user');
     </div>
 
     <div class="card-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="card card-body bg-light mb-3">
+        <div class="card bg-light mb-3">
             <div class="card-heading" role="tab" id="headingOne">
-                <h4 class="card-title">
+                <h4 class="mb-0">
                     <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
                        data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <?php _e('My account / Profile') ?> <span class='caret'></span>
+                        <?php _e('My account / Profile') ?> <i class="fas fa-caret-down"></i>
                     </a>
                 </h4>
             </div>
 
             <div id="collapseOne"
-                 class="card-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
+                 class="card-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'show' ?>"
                  role="tabpanel">
-                 <div class="list-group">
+                 <div>
                     <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>" title="<?php echo _b('Manage account'); ?>" 
                         class="list-group-item<?php if ($controller == 'profile') {
                            echo ' active';

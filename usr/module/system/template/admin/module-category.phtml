@@ -5,7 +5,7 @@ $this->css($this->assetModule('admin/admin.css'));
 <?php if ('_all' == $id) {
     foreach ($categories as $key => $category) {
         ?>
-        <div class="card card-body bg-light mb-3">
+        <div class="card bg-light mb-3">
             <div class="card-heading"><?php echo _escape($category['title']); ?></div>
             <ul class="list-group">
                 <?php foreach ($category['modules'] as $item) { ?>

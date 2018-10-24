@@ -53,7 +53,7 @@ $userSection = $this->isUserSection(Pi::service('module')->current());
                     echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', ['class' => 'pagination-left']);
                 }
             } else { ?>
-                <div class="card card-body bg-light mb-3">
+                <div class="card bg-light mb-3">
                     <?php _e('No data available.'); ?>
                 </div>
             <?php } ?>

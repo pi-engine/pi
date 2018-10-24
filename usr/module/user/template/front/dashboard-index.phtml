@@ -12,12 +12,11 @@ $this->jQuery();
             <h1><?php _e('Your dashboard'); ?></h1>
         </div>
 
-
+        <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>
         <div class="row">
+            <?php $userConfig = Pi::service('registry')->config->read('user'); ?>
 
-            <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>
-
-            <div class="col-md-8">
+            <div class="<?php if($userConfig['shortcuts_enable']) : ?>col-md-8<?php else : ?>col-md-12<?php endif; ?>">
                 <?php if ($bookingBlockOutput) : ?>
                     <h2><?php _e('Your pending requests'); ?></h2>
                     <?php echo $bookingBlockOutput ?>
@@ -26,8 +25,6 @@ $this->jQuery();
                     <?php echo $this->widget('guide-dashboard-items') ?>
                 <?php } ?>
             </div>
-
-            <?php $userConfig = Pi::service('registry')->config->read('user'); ?>
 
             <?php if ($userConfig['shortcuts_enable']) { ?>
                 <div class="col-md-4">

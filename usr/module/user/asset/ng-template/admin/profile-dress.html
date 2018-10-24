@@ -44,7 +44,7 @@
                 </form>
                 <div pi-alert message="saveAlert.message" type="saveAlert.type"></div>
                 <div class="user-profile-groups" ui-sortable="displaysOpts" data-ng-model="displays">
-                    <div ng-repeat="display in displays" class="card card-body bg-light mb-3"
+                    <div ng-repeat="display in displays" class="card bg-light mb-3"
                          data-ng-class="{'user-profile-group-editing': display.$isEditing}">
                         <div class="clearfix card-heading">
                             <div class="float-right user-profile-group-action">
@@ -86,7 +86,7 @@
             {{field.title}}
         </div>
         <legend>{{'COMPOUND' | translate}}</legend>
-        <div ng-repeat="compound in compounds" class="card card-body bg-light mb-3">
+        <div ng-repeat="compound in compounds" class="card bg-light mb-3">
             <div class="card-heading">
         <span class="float-right" data-ng-click="addDisplayGroup($index)">
           <i class="fas fa-plus fa-lg pi-icon-cursor"></i>
