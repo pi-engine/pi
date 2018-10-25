@@ -156,7 +156,7 @@ class Form extends FormHelper
                 $element->setAttribute('class', $attrClass);
             }
 
-            if ($type == 'checkbox'){
+            if ($type == 'checkbox' || $type == 'radio'){
                 $class     = $element->getAttribute('class');
                 $attrClass = 'form-check-input' . ($class ? ' ' . $class : '');
                 $element->setAttribute('class', $attrClass);
@@ -164,7 +164,7 @@ class Form extends FormHelper
 
             $renderPattern
                 = <<<EOT
-<div class="form-group%error_class% has-feedback" data-name="%element_name%">
+<div class="row form-group%error_class% has-feedback" data-name="%element_name%">
     %label_html%
     %element_html%
 </div>
@@ -227,10 +227,8 @@ EOT;
                     $elementPattern
                         = <<<EOT
 <div class="%element_size% js-form-element">
-    <div class="radio">
-        %element_content%
-        %desc_html%
-    </div>
+    %element_content%
+    %desc_html%
 </div>
 <div class="%error_size% form-text with-errors">%error_content%</div>
 EOT;
@@ -295,8 +293,8 @@ EOT;
 
             switch ($style) {
                 case 'modal':
-                    $vars['label_size']     = 'col-sm-3';
-                    $vars['element_size']   = 'col-sm-9';
+                    $vars['label_size']     = 'col-sm-2';
+                    $vars['element_size']   = 'col-sm-10';
                     $vars['error_size']     = 'col-sm-12';
                     break;
                 case 'popup':
@@ -327,8 +325,8 @@ EOT;
                 case 'horizontal':
                 default:
                     if ('single' == $column) {
-                        $vars['label_size']   = 'col-sm-3';
-                        $vars['element_size'] = 'col-sm-5';
+                        $vars['label_size']   = 'col-sm-2';
+                        $vars['element_size'] = 'col-sm-6';
                         $vars['error_size']   = 'col-sm-4';
                     } else {
                         $vars['label_size']   = 'col-md-2';

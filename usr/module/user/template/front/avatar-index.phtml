@@ -46,9 +46,9 @@ $viewPreview
                 <small><?php _e('Customize your avatar anyway you like'); ?></small>
             </h1>
         </div>
-        <div class="user-avatar-box card bg-light mb-3">
-            <div class="clearfix">
-                <div class="col-md-2 col-sm-3"><?php echo Pi::service('user')->avatar()->get($uid, '', ['class' => 'img-polaroid']); ?></div>
+        <div class="user-avatar-box card bg-light mb-3 well">
+            <div class="clearfix row">
+                <div class="col-md-2 col-sm-3"><?php echo Pi::service('user')->avatar()->get($uid, '', ['class' => 'rounded-circle']); ?></div>
                 <div class="col-md-10 col-sm-9 text-warning">
                     <h4><?php _e('Current avatar'); ?></h4>
                     <p><?php _e('Once source type is switched and saved, the old avatar image will be deleted.'); ?></p>

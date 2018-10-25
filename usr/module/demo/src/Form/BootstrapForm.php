@@ -125,7 +125,7 @@ class BootstrapForm extends BaseForm
                     '1' => 'Male',
                 ],
                 'label_attributes' => [
-                    'class' => 'form-check',
+                    'class' => 'form-check-label',
                 ],
             ],
             'type'       => 'radio',
