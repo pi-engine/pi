@@ -69,7 +69,7 @@ $this->jQuery();
                                     <i class="fas fa-envelope fa-3x"></i>
                                     <div class="caption">
                                         <?php _e('My messages'); ?> <?php if ($message) : ?><span
-                                                class="badge"><?php echo $message; ?></span><?php endif; ?>
+                                                class="badge badge-warning"><?php echo $message; ?></span><?php endif; ?>
                                     </div>
                                 </a>
                             </div>
@@ -79,7 +79,7 @@ $this->jQuery();
                                     <i class="fas fa-bell fa-3x"></i>
                                     <div class="caption">
                                         <?php _e('My notifications'); ?> <?php if ($notification) : ?><span
-                                                class="badge"><?php echo $notification; ?></span><?php endif; ?>
+                                                class="badge badge-warning"><?php echo $notification; ?></span><?php endif; ?>
                                     </div>
                                 </a>
                             </div>
@@ -116,7 +116,7 @@ $this->jQuery();
                                         <i class="fas fa-archive fa-3x"></i>
                                         <div class="caption">
                                             <?php _e('My credit'); ?> <?php if ($credit['amount_view'] && intval($credit['amount_view'])) : ?>
-                                            <span class="badge"><?php echo $credit['amount_view']; ?><?php endif; ?></span>
+                                            <span class="badge badge-warning"><?php echo $credit['amount_view']; ?><?php endif; ?></span>
                                         </div>
                                     </a>
                                 </div>
@@ -155,7 +155,7 @@ $this->jQuery();
                                     <i class="fas fa-life-ring fa-3x"></i>
                                     <div class="caption">
                                         <?php _e('My support tickets'); ?> <?php if ($support) : ?><span
-                                                class="badge"><?php echo $support; ?></span><?php endif; ?>
+                                                class="badge badge-warning"><?php echo $support; ?></span><?php endif; ?>
                                     </div>
                                 </a>
                             </div>

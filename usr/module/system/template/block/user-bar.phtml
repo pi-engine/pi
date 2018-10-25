@@ -89,7 +89,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                         : $block['user']['name']
                                 ); ?>
                             <?php if (isset($block['count']) && $block['count']) { ?>
-                                <span class="badge"><?php echo _number($block['count']); ?></span>
+                                <span class="badge badge-pill badge-warning"><?php echo _number($block['count']); ?></span>
                             <?php } ?>
                         </span>
                     </button>
@@ -112,7 +112,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                     <i class="far fa-envelope"></i>
                                     <?php echo _b('Message'); ?>
                                     <?php if ($block['user']['count']) { ?>
-                                        <span class="badge"><?php echo $block['user']['count']; ?></span>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['count']; ?></span>
                                     <?php } ?>
                                 </a>
                             <?php } else { ?>
@@ -123,7 +123,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                         <i class="far fa-envelope"></i>
                                         <?php echo _b('Message'); ?>
                                         <?php if ($block['user']['message_count']) { ?>
-                                            <span class="badge"><?php echo $block['user']['message_count']; ?></span>
+                                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['message_count']; ?></span>
                                         <?php } ?>
                                     </a>
                                 <?php } ?>
@@ -134,7 +134,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                         <i class="far fa-bell"></i>
                                         <?php echo _b('Notification'); ?>
                                         <?php if ($block['user']['notification_count']) { ?>
-                                            <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
+                                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['notification_count']; ?></span>
                                         <?php } ?>
                                     </a>
                                 <?php } ?>
@@ -145,7 +145,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                     <i class="fas fa-life-ring"></i>
                                     <?php echo _b('Support'); ?>
                                     <?php if ($block['user']['support_count']) { ?>
-                                        <span class="badge"><?php echo $block['user']['support_count']; ?></span>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['support_count']; ?></span>
                                     <?php } ?>
                                 </a>
                             <?php } ?>
@@ -172,7 +172,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                                     <i class="fas fa-archive"></i>
                                     <?php echo _b('Credit'); ?>
                                     <?php if ($block['user']['amount']) { ?>
-                                        <span class="badge"><?php echo $block['user']['amount_view']; ?></span>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['amount_view']; ?></span>
                                     <?php } ?>
                                 </a>
                             <?php } ?>
@@ -202,7 +202,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                         <span>
                                 <?php echo _b('Message'); ?>
                             <?php if ($block['user']['count']) : ?>
-                                <span class="badge"><?php echo $block['user']['count']; ?></span>
+                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['count']; ?></span>
                             <?php endif; ?>
                             </span>
                     </a>
@@ -216,7 +216,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                             <span>
                                     <span><?php echo _b('Message'); ?></span>
                                 <?php if ($block['user']['message_count']) : ?>
-                                    <span class="badge"><?php echo $block['user']['message_count']; ?></span>
+                                    <span class="badge badge-pill badge-warning"><?php echo $block['user']['message_count']; ?></span>
                                 <?php endif; ?>
                                 </span>
                         </a>
@@ -230,7 +230,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                             <span>
                                     <span class="d-xs-inline"><?php echo _b('Notification'); ?></span>
                                 <?php if ($block['user']['notification_count']) : ?>
-                                    <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
+                                    <span class="badge badge-pill badge-warning"><?php echo $block['user']['notification_count']; ?></span>
                                 <?php endif; ?>
                                 </span>
                         </a>
@@ -244,7 +244,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                         <span>
                                 <?php echo _b('Support'); ?>
                             <?php if ($block['user']['support_count']) : ?>
-                                <span class="badge"><?php echo $block['user']['support_count']; ?></span>
+                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['support_count']; ?></span>
                             <?php endif; ?>
                             </span>
                     </a>
@@ -278,7 +278,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                         <span>
                                 <?php echo _b('Credit'); ?>
                             <?php if ($block['user']['amount']) : ?>
-                                <span class="badge"><?php echo $block['user']['amount_view']; ?></span>
+                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['amount_view']; ?></span>
                             <?php endif; ?>
                             </span>
                     </a>
@@ -302,7 +302,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                         <?php echo $block['user']['avatar']; ?>
 
                     </button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
                             <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                             <span>
@@ -331,7 +331,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                         <i class="far fa-envelope"></i>
                         <?php echo $block['show_title'] ? _b('Message') : ''; ?>
                         <?php if ($block['user']['count']) { ?>
-                            <span class="badge"><?php echo $block['user']['count']; ?></span>
+                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['count']; ?></span>
                         <?php } ?>
                     </a>
                 </li>
@@ -343,7 +343,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                             <i class="far fa-envelope"></i>
                             <?php echo $block['show_title'] ? _b('Message') : ''; ?>
                             <?php if ($block['user']['message_count']) { ?>
-                                <span class="badge"><?php echo $block['user']['message_count']; ?></span>
+                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['message_count']; ?></span>
                             <?php } ?>
                         </a>
                     </li>
@@ -355,7 +355,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                             <i class="far fa-bell"></i>
                             <?php echo $block['show_title'] ? _b('Notification') : ''; ?>
                             <?php if ($block['user']['notification_count']) { ?>
-                                <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
+                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['notification_count']; ?></span>
                             <?php } ?>
                         </a>
                     </li>
@@ -367,7 +367,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                         <i class="fas fa-life-ring"></i>
                         <?php echo $block['show_title'] ? _b('Support') : ''; ?>
                         <?php if ($block['user']['support_count']) { ?>
-                            <span class="badge"><?php echo $block['user']['support_count']; ?></span>
+                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['support_count']; ?></span>
                         <?php } ?>
                     </a>
                 </li>
@@ -386,7 +386,7 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
                         <i class="fas fa-archive"></i>
                         <?php echo $block['show_title'] ? _b('Credit') : ''; ?>
                         <?php if ($block['user']['amount']) { ?>
-                            <span class="badge"><?php echo $block['user']['amount_view']; ?></span>
+                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['amount_view']; ?></span>
                         <?php } ?>
                     </a>
                 </li>
