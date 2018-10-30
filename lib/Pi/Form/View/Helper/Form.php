@@ -162,9 +162,25 @@ class Form extends FormHelper
                 $element->setAttribute('class', $attrClass);
             }
 
+
+
+            switch ($style) {
+                case 'inline':
+                case 'vertical':
+                    $rowClass = '';
+                    break;
+
+                case 'modal':
+                case 'popup':
+                case 'horizontal':
+                default:
+                    $rowClass = 'row';
+                    break;
+            }
+
             $renderPattern
                 = <<<EOT
-<div class="row form-group%error_class% has-feedback" data-name="%element_name%">
+<div class="$rowClass form-group%error_class% has-feedback" data-name="%element_name%">
     %label_html%
     %element_html%
 </div>
