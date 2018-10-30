@@ -26,7 +26,7 @@ if (!empty($description) || !empty($url)) {
         <div class="<?php echo $class; ?>">
             <?php echo $this->form($form); ?>
             <div class="clearfix">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-6 offset-md-3">
                     <a title="<?php _e('Find password'); ?>"
                        href="<?php echo Pi::service('user')->getUrl('password'); ?>">
                         <?php _e('Find password'); ?>
@@ -34,7 +34,7 @@ if (!empty($description) || !empty($url)) {
                 </div>
             </div>
             <div class="clearfix user-action-bar">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-6 offset-md-3">
                     <h2><?php _e('Not registered yet ?'); ?></h2>
                     <p>
                         <a class="btn btn-secondary" title="<?php _e('Register'); ?>"
