@@ -1,49 +1,8 @@
-<?php
+<script src="<?php echo $this->assetModule('front/jquery-ui.draggable.min.js', 'user') ?>"></script>
+<script src="<?php echo $this->assetModule('front/pwstrength-bootstrap.min.js', 'user') ?>"></script>
+<script src="<?php echo $this->assetModule('front/pwstrength-boostrap.init.js', 'user') ?>"></script>
+<script src="<?php echo $this->assetModule('front/validator.js', 'user') ?>"></script>
 
-$this->jQuery();
-$this->js($this->assetModule('front/jquery-ui.draggable.min.js', 'user'), array('defer' => 'defer'));
-$this->js($this->assetModule('front/pwstrength-bootstrap.min.js', 'user'), array('defer' => 'defer'));
-$this->js($this->assetModule('front/pwstrength-boostrap.init.js', 'user'), array('defer' => 'defer'));
-$this->js($this->assetModule('front/validator.js', 'user'), array('defer' => 'defer'));
-
-if (!empty(Pi::user()->config('login_description'))) {
-    $descriptionLogin = Pi::user()->config('login_description');
-    $titleLogin       = Pi::user()->config('login_modal_title');
-    $classLogin       = 'col-md-6';
-} else {
-    $descriptionLogin = '';
-    $classLogin       = 'col-md-12';
-}
-
-if (!empty(Pi::user()->config('register_description'))) {
-    $descriptionRegister = Pi::user()->config('register_description');
-    $titleRegister       = Pi::user()->config('register_modal_title');
-    $classRegister       = 'col-md-6';
-} else {
-    $descriptionRegister = '';
-    $classRegister       = 'col-md-12';
-}
-
-/* @var \Module\User\Form\LoginForm $loginForm */
-$loginForm    = $block['loginForm'];
-$registerForm = $block['registerForm'];
-
-
-if ($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()) {
-    $redirect = Pi::service('url')->getRequestUri();
-    $registerForm->get('redirect')->setValue($redirect);
-}
-
-if (Pi::engine()->application()->getResponse()->getStatusCode() == 404) {
-    if ($loginForm->has('redirect')) {
-        $loginForm->remove('redirect');
-    }
-    if ($registerForm->has('redirect')) {
-        $registerForm->remove('redirect');
-    }
-}
-
-?>
 <div class="modal fade loginFormWrapper" id="loginRegisterModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

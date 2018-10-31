@@ -88,4 +88,74 @@ class IndexController extends ActionController
 
         return $user;
     }
+
+    public function modalAction()
+    {
+        Pi::service('log')->mute();
+
+
+        if (!empty(Pi::user()->config('login_description'))) {
+            $descriptionLogin = Pi::user()->config('login_description');
+            $titleLogin       = Pi::user()->config('login_modal_title');
+            $classLogin       = 'col-md-6';
+        } else {
+            $descriptionLogin = '';
+            $classLogin       = 'col-md-12';
+        }
+
+        if (!empty(Pi::user()->config('register_description'))) {
+            $descriptionRegister = Pi::user()->config('register_description');
+            $titleRegister       = Pi::user()->config('register_modal_title');
+            $classRegister       = 'col-md-6';
+        } else {
+            $descriptionRegister = '';
+            $classRegister       = 'col-md-12';
+        }
+
+        /*
+         * Login form
+         */
+        $processPath = Pi::service('url')->assemble('user', ['module' => 'user', 'controller' => 'login', 'action' => 'process']);
+        $loginForm   = Pi::api('form', 'user')->loadForm('login');
+        $loginForm->setAttribute('action', Pi::url($processPath));
+
+        /**
+         * Register form
+         */
+        $processPath  = Pi::service('url')->assemble('user', ['module' => 'user', 'controller' => 'register']);
+        $registerForm = Pi::api('form', 'user')->loadForm('register');
+        $registerForm->setAttribute('action', Pi::url($processPath));
+
+//echo 1;
+        if ($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()) {
+            $redirect = Pi::service('url')->getRequestUri();
+            $registerForm->get('redirect')->setValue($redirect);
+        }
+
+        if (Pi::engine()->application()->getResponse()->getStatusCode() == 404) {
+            if ($loginForm->has('redirect')) {
+                $loginForm->remove('redirect');
+            }
+            if ($registerForm->has('redirect')) {
+                $registerForm->remove('redirect');
+            }
+        }
+
+
+        /** @var \Pi\Mvc\Controller\Plugin\View $view */
+        $view = $this->view();
+
+        $this->view()->assign([
+            'registerForm'   => $registerForm,
+            'loginForm' => $loginForm,
+            'titleLogin'    => $titleLogin,
+            'classLogin' => $classLogin,
+            'classRegister' => $classRegister,
+            'descriptionLogin' => $descriptionLogin,
+            'descriptionRegister' => $descriptionRegister,
+        ]);
+
+        $view->setTemplate('login-register-modal-ajax.phtml');
+        $view->setLayout('layout-content');
+    }
 }

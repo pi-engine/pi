@@ -13,17 +13,6 @@ $controller = $this->getHelperPluginManager()->getServiceLocator()->get('applica
 $action     = $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('action', 'index');
 $module     = $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('module', '');
 
-if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid']) {
-
-    $GLOBALS['userbarLoaded'] = 1;
-    ob_start();
-    include(Pi::path('module/system/template/block/partial/login-register-modal.phtml'));
-    $modalContent = ob_get_clean();
-
-    /* @var \Pi\View\Helper\FootScript $footScript */
-    $footScript = $this->plugin('footScript');
-    $footScript->addHtml($modalContent);
-}
 ?>
 <div class="pi-userbar usertopbar">
     <ul class="nav">
@@ -408,3 +397,12 @@ if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid'])
         <?php } ?>
     </ul>
 </div>
+
+<?php if ($modalEnabled && !$block['user']['uid']) : ?>
+    <script>
+        $(function() {
+            $( "body" ).append( '<div id="user-modal-wrapper"></div>' );
+            $('#user-modal-wrapper').load('<?php echo $this->url('') ?>system/index/modal');
+        });
+    </script>
+<?php endif; ?>
