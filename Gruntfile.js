@@ -147,7 +147,8 @@ module.exports = function (grunt) {
                 files: [],
                 verbose: true,
                 // pretend: true,
-                updateAndDelete: true
+                updateAndDelete: true,
+                compareUsing: 'md5'
             }
         };
         modules.forEach(function (item) {
@@ -167,7 +168,7 @@ module.exports = function (grunt) {
             });
         });
 
-        // console.log(ret);
+        console.log(ret.www.files);
         return ret;
     })();
 
