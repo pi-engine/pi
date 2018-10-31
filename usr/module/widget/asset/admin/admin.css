@@ -56,12 +56,12 @@
     cursor: move;
 }
 
-.widget-item .form-horizontal .col-form-label {
+.widget-item form .col-form-label {
     width: 50px;
     font-size: 12px;
 }
 
-.widget-item .form-horizontal .control-group {
+.widget-item form .control-group {
     margin-bottom: 8px;
 }
 

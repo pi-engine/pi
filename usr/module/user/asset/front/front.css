@@ -328,10 +328,6 @@
     cursor: pointer;
 }
 
-.js-form-element {
-    position: relative;
-}
-
 .register-information.row {
     display: table
 }

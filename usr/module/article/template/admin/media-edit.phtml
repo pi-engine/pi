@@ -64,7 +64,7 @@ $error = $this->formElementErrors(
                     ? 'id/' . $form->get('id')->getValue()
                     : 'fake_id/' . $form->get('fake_id')->getValue(); ?>";
             },
-            form: $("form.form-horizontal"),
+            form: $("form"),
             $: function (selector) {
                 return this.form.find(selector);
             }
@@ -83,7 +83,6 @@ $error = $this->formElementErrors(
             initialize: function () {
                 page.$("[name=placeholder]")
                     .parents(".form-group:first")
-                    .find(".js-form-element")
                     .html($("#temp-upload").html());
                 this.$el = $("#jsUpload");
                 this.input = this.$("[name=upload]");

@@ -72,16 +72,16 @@ class Form extends FormHelper
                 break;
             case 'modal':
                 $style = 'modal';
-                $class = 'form-horizontal';
+                $class = '';
                 break;
             case 'popup':
                 $style = 'popup';
-                $class = 'form-horizontal';
+                $class = '';
                 break;
             case 'horizontal':
             case '':
                 $style = 'horizontal';
-                $class = 'form-horizontal';
+                $class = '';
                 break;
             case 'raw':
             default:
@@ -140,30 +140,37 @@ class Form extends FormHelper
         $renderElement = function ($element) use (
             $style,
             $column,
-            $parsePattern
+            $parsePattern,
+            $form
         ) {
             $type = $element->getAttribute('type') ?: 'text';
 
-            if (!in_array($type, [
-                'checkbox',
-                'multi_checkbox',
-                'radio',
-                'file',
-            ])
-            ) {
+            /**
+             * Add specific checkbox / radio class
+             */
+            if ($type == 'checkbox' || $type == 'multi_checkbox' || $type == 'radio'){
+                $class     = $element->getAttribute('class');
+                $attrClass = 'form-check-input' . ($class ? ' ' . $class : '');
+                $element->setAttribute('class', $attrClass);
+            } else {
                 $class     = $element->getAttribute('class');
                 $attrClass = 'form-control' . ($class ? ' ' . $class : '');
                 $element->setAttribute('class', $attrClass);
             }
 
-            if ($type == 'checkbox' || $type == 'radio'){
+            /**
+             * Add invalid class
+             */
+            if ($element->getMessages()){
                 $class     = $element->getAttribute('class');
-                $attrClass = 'form-check-input' . ($class ? ' ' . $class : '');
+                $attrClass = 'is-invalid' . ($class ? ' ' . $class : '');
                 $element->setAttribute('class', $attrClass);
             }
 
 
-
+            /**
+             * Add row if needed
+             */
             switch ($style) {
                 case 'inline':
                 case 'vertical':
@@ -180,7 +187,7 @@ class Form extends FormHelper
 
             $renderPattern
                 = <<<EOT
-<div class="$rowClass form-group%error_class% has-feedback" data-name="%element_name%">
+<div class="$rowClass form-group" data-name="%element_name%">
     %label_html%
     %element_html%
 </div>
@@ -192,17 +199,10 @@ EOT;
 </label>
 EOT;
 
-            if ($type == 'checkbox') {
-                $descPattern
-                    = <<<EOT
-%desc_content%
+            $descPattern
+                = <<<EOT
+<small class="form-text text-muted">%desc_content%</small>
 EOT;
-            } else {
-                $descPattern
-                    = <<<EOT
-<div style="display:block;" class="text-muted">%desc_content%</div>
-EOT;
-            }
 
             $required = __('Required');
             $markRequired
@@ -214,69 +214,60 @@ EOT;
                 case 'checkbox':
                     $elementPattern
                         = <<<EOT
-<div class="%element_size% js-form-element">
+<div class="%element_size%">
     <div class="form-check">
         <label class="form-check-label">
             %element_content%
+            <div class="invalid-feedback">%error_content%</div>
             %desc_html%
         </label>
     </div>
 </div>
-<div class="%error_size% form-text with-errors">%error_content%</div>
+
 EOT;
                     break;
 
                 case 'multi_checkbox':
-                    $elementPattern
-                        = <<<EOT
-<div class="%element_size% js-form-element">
-    <div class="form-check">
-        %element_content%
-        %desc_html%
-    </div>
-</div>
-<div class="%error_size% form-text with-errors">%error_content%</div>
-EOT;
-                    break;
-
                 case 'radio':
                     $elementPattern
                         = <<<EOT
-<div class="%element_size% js-form-element">
+<div class="%element_size%">
     %element_content%
+    <div class="invalid-feedback">%error_content%</div>
     %desc_html%
 </div>
-<div class="%error_size% form-text with-errors">%error_content%</div>
+
 EOT;
                     break;
 
                 case 'description':
                     $elementPattern
                         = <<<EOT
-<div class="%element_size% js-form-element">
+<div class="%element_size%">
     <div class="description">
         %element_content%
+        <div class="invalid-feedback">%error_content%</div>
     </div>
 </div>
-<div class="%error_size% form-text with-errors">%error_content%</div>
 EOT;
                     break;
 
                 case 'button':
                     $labelPattern
                         = <<<EOT
-<div class="%label_size% col-form-label">
+<div class="%label_size%">
     %mark_required%
 </div>
 EOT;
 
                     $elementPattern
                         = <<<EOT
-<div class="%element_size% js-form-element">
+<div class="%element_size%">
     %element_content%
+    <div clas="invalid-feedback">%error_content%</div>
     %desc_html%
 </div>
-<div class="%error_size% form-text with-errors">%error_content%</div>
+
 EOT;
                     break;
                 case 'html-raw':
@@ -294,13 +285,13 @@ EOT;
                 default:
                     $elementPattern
                         = <<<EOT
-<div class="%element_size% js-form-element">
+<div class="%element_size%">
     %element_content%
-    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    <div class="form-text invalid-feedback">%error_content%</div>
     %desc_html%
 </div>
 
-<div class="%error_size% form-text with-errors">%error_content%</div>
+
 EOT;
                     break;
             }
@@ -361,8 +352,7 @@ EOT;
 
             $vars['element_name']    = $element->getName();
             $vars['element_content'] = $this->view->formElement($element);
-            $vars['error_content']   = $this->view->formElementErrors($element);
-            $vars['error_class']     = $element->getMessages() ? ' has-error' : '';
+            $vars['error_content']   = $this->view->formElementErrors($element) ?: __('Required');
             $vars['desc_content']    = $element->getAttribute('description') . ($element->getAttribute('required') && !$element->getLabel() ? $markRequired : '');
             $vars['desc_html']       = $parsePattern($descPattern, $vars);
             $vars['label_content']   = $element->getLabel();
@@ -438,7 +428,7 @@ EOT;
             }
             $htmlAlert
                 = <<<EOT
-<div class="alert alert-danger">
+<div class="alert alert-danger" role="alert">
     {$csrfMessages}
     {$elementMessages}
 </div>
@@ -506,7 +496,7 @@ EOT;
                     }
                     $htmlSubmit
                         = <<<EOT
-        <div class="form-group has-feedback">
+        <div class="form-group">
             <div class="{$submitSize}">
                 {$submit}
                 {$cancel}
@@ -518,7 +508,7 @@ EOT;
                 default:
                     $htmlSubmit
                         = <<<EOT
-        <div class="form-group has-feedback">
+        <div class="form-group">
             {$submit}
             {$cancel}
         </div>
@@ -573,7 +563,7 @@ EOT;
                 var formModule = {},
                     form = $("#{$form->getAttribute('id')}"),
                     imgWait = form.find("img.hide");
-                var items = form.find(".form-group").removeClass("has-error").find(".form-text").html("").end();
+                var items = form.find(".form-group").find(".form-text").html("").end();
                 form.submit(function(e) {
                     imgWait.removeClass("hide");
                     e.preventDefault();
@@ -585,7 +575,7 @@ EOT;
                             var msg = result.message;
                             for (var i in msg) {
                                 if (msg.hasOwnProperty(i)) {
-                                    items.filter("[data-name=" + i + "]").addClass("has-error").find(".form-text").html(msg[i][0]);
+                                    items.filter("[data-name=" + i + "]").find(".form-text").html(msg[i][0]);
                                 }
                             }
                             formModule.fail();

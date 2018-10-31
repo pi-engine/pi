@@ -138,11 +138,6 @@ class FormRadio extends ZendFormElement
             $combinedMarkup[] = $markup;
         }
 
-        $class = "form-check form-check-inline";
-//        if($options['style'] == 'inline'){
-//            $class .= ' form-check-inline';
-//        }
-
-        return '<div class="'.$class.'">' . implode('</div><div class="'.$class.'">', $combinedMarkup) . '</div>';
+        return '<div class="form-check form-check-inline">' . implode('</div><div class="form-check form-check-inline">', $combinedMarkup) . '</div>';
     }
 }

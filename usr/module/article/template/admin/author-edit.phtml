@@ -115,7 +115,6 @@ $this->js([
         init: function () {
             page.$("[name=placeholder]")
                 .parents(".form-group:first")
-                .find(".js-form-element")
                 .html($("#template-upload").html());
 
             $('.js-close').click(this.removePhoto.bind(this));

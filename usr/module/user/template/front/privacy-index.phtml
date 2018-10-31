@@ -17,7 +17,7 @@ $this->headMeta('noindex', 'robots');
                 <?php _e('No available privacy setting'); ?>
             </div>
         <?php } else { ?>
-            <form class="form-horizontal" method="post">
+            <form method="post">
                 <?php foreach ($privacy as $item) { ?>
                     <div class="form-group">
                         <label class="col-md-2 col-form-label"><?php echo $item['title']; ?></label>
