@@ -166,8 +166,18 @@ var onloadCallback = function() {
     });
 };
 JS;
+
+
             Pi::service('view')->getHelper('footScript')->appendScript($script);
-            Pi::service('view')->getHelper('footScript')->appendFile($host . '.js?onload=onloadCallback&render=explicit', 'text/javascript', array('async' => 'async', 'defer' => true));
+
+            $action = Pi::engine()->application()->getRouteMatch()->getParam('action', 'index');
+
+            if($action == 'modal'){
+                $options = array();
+            } else {
+                $options = array('async' => 'async', 'defer' => true);
+            }
+            Pi::service('view')->getHelper('footScript')->appendFile($host . '.js?onload=onloadCallback&render=explicit', 'text/javascript', $options);
 
         }
 
