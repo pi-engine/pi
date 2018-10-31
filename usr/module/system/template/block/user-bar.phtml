@@ -402,7 +402,7 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
     <script>
         $(function() {
             $( "body" ).append( '<div id="user-modal-wrapper"></div>' );
-            $('#user-modal-wrapper').load('<?php echo $this->url('') ?>system/index/modal');
+            $('#user-modal-wrapper').load('<?php echo $this->url('home') ?>system/index/modal');
         });
     </script>
 <?php endif; ?>
