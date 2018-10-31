@@ -398,8 +398,6 @@
 
     // VALIDATOR DATA-API
     // ==================
-
-            console.log('HIT');
     $(window).on('load', function () {
         $('form[data-toggle="validator"]').each(function () {
             var $form = $(this)
