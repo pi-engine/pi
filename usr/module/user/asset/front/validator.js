@@ -302,9 +302,6 @@
     Validator.prototype.toggleSubmit = function () {
         if (!this.options.disable) return
 
-        console.log('toggle submit');
-        console.log(this.hasErrors());
-        console.log( this.isIncomplete());
         this.$btn.attr('disabled', this.isIncomplete() || this.hasErrors() ? 'disabled' : null);
     }
 
