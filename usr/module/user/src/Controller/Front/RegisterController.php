@@ -125,7 +125,8 @@ class RegisterController extends ActionController
 JS;
 
 
-        $this->view()->footScript()->prependScript($js);
+//        $this->view()->footScript()->prependScript($js);
+        $this->view()->footScript()->prependFile($this->view()->assetModule('front/validator.js'));
 
         $this->view()->setTemplate('register-index');
 

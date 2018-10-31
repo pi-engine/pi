@@ -218,8 +218,8 @@ EOT;
     <div class="form-check">
         <label class="form-check-label">
             %element_content%
-            <div class="invalid-feedback">%error_content%</div>
             %desc_html%
+            <div class="invalid-feedback">%error_content%</div>
         </label>
     </div>
 </div>
@@ -289,6 +289,7 @@ EOT;
     %element_content%
     <div class="form-text invalid-feedback">%error_content%</div>
     %desc_html%
+    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 </div>
 
 
@@ -302,12 +303,10 @@ EOT;
                 case 'modal':
                     $vars['label_size']     = 'col-sm-2';
                     $vars['element_size']   = 'col-sm-10';
-                    $vars['error_size']     = 'col-sm-12';
                     break;
                 case 'popup':
                     $vars['label_size']   = 'col-sm-4';
                     $vars['element_size'] = 'col-sm-8';
-                    $vars['error_size']   = 'col-sm-12';
                     break;
 
                 case 'inline':
@@ -326,19 +325,16 @@ EOT;
                 case 'vertical':
                     $vars['label_size']   = '';
                     $vars['element_size'] = '';
-                    $vars['error_size']   = '';
                     break;
 
                 case 'horizontal':
                 default:
                     if ('single' == $column) {
-                        $vars['label_size']   = 'col-sm-2';
+                        $vars['label_size']   = 'col-sm-4';
                         $vars['element_size'] = 'col-sm-6';
-                        $vars['error_size']   = 'col-sm-4';
                     } else {
-                        $vars['label_size']   = 'col-md-2';
-                        $vars['element_size'] = 'col-md-4';
-                        $vars['error_size']   = 'col-md-4';
+                        $vars['label_size']   = 'col-md-4';
+                        $vars['element_size'] = 'col-md-6';
                     }
                     break;
             }
@@ -347,12 +343,11 @@ EOT;
             if ($type == 'editor') {
                 $vars['label_size']   = 'col-md-12 text-left';
                 $vars['element_size'] = 'col-md-12';
-                $vars['error_size']   = 'col-md-12';
             }
 
             $vars['element_name']    = $element->getName();
             $vars['element_content'] = $this->view->formElement($element);
-            $vars['error_content']   = $this->view->formElementErrors($element) ?: __('Required');
+            $vars['error_content']   = $this->view->formElementErrors($element) ?: __('This value is required');
             $vars['desc_content']    = $element->getAttribute('description') . ($element->getAttribute('required') && !$element->getLabel() ? $markRequired : '');
             $vars['desc_html']       = $parsePattern($descPattern, $vars);
             $vars['label_content']   = $element->getLabel();
@@ -490,13 +485,13 @@ EOT;
 
                 case 'horizontal':
                     if ('single' == $column) {
-                        $submitSize = 'col-sm-offset-3 col-sm-9';
+                        $submitSize = 'offset-sm-4 col-sm-8';
                     } else {
-                        $submitSize = 'col-md-offset-2 col-md-10';
+                        $submitSize = 'offset-md-2 col-md-10';
                     }
                     $htmlSubmit
                         = <<<EOT
-        <div class="form-group">
+        <div class="row form-group">
             <div class="{$submitSize}">
                 {$submit}
                 {$cancel}
