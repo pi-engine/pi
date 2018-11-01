@@ -67,18 +67,18 @@ $module = Pi::service('module')->current();
 <header class="pi-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="<?php echo $this->url('home'); ?>">
-            <i class="fa fa-leaf"></i>
+            <i class="fas fa-leaf"></i>
             <strong>Pi</strong>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="<?php echo _escape($sitename); ?>">
-            <i class="fa fa-bars"></i>
+            <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse">
             <?php echo $this->adminNav()->modes('navbar-nav mr-auto'); ?>
             <ul class="navbar-nav mr-auto justify-content-end navbar-go-front">
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
-                        <i class="fa fa-external-link"></i>
+                        <i class="fas fa-external-link-alt"></i>
                         <?php _e('Front'); ?>
                     </a>
                 </li>
