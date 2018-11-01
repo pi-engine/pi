@@ -149,6 +149,7 @@ class IndexController extends ActionController
             'registerForm'   => $registerForm,
             'loginForm' => $loginForm,
             'titleLogin'    => $titleLogin,
+            'titleRegister' => $titleRegister,
             'classLogin' => $classLogin,
             'classRegister' => $classRegister,
             'descriptionLogin' => $descriptionLogin,

@@ -100,6 +100,10 @@ class LoginForm extends BaseForm
                 ) {
                 } else {
                     $redirect = Pi::service('url')->getRequestUri();
+
+                    if(preg_match('#system/index/modal#', $redirect)){
+                        $redirect = Pi::engine()->application()->getRequest()->getServer('HTTP_REFERER');
+                    }
                 }
             }
         }
