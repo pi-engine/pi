@@ -92,7 +92,7 @@ class RegisterForm extends UserForm
                 = <<<HTML
 <label>
     <input
-        onchange="$('input[name=credential], input[name=credential-confirm]').attr('type', function(index, attr){ return attr == 'text' ? 'password' : 'text';})"
+        onchange="$('#$elementId').find('input[name=credential], input[name=credential-confirm]').attr('type', function(index, attr){ return attr == 'text' ? 'password' : 'text';})"
         name="show_password"
         type="checkbox"
     />
@@ -118,7 +118,7 @@ class RegisterForm extends UserForm
     var strong = "{$strong}";
     var veryStrong = "{$veryStrong}";
     
-    jQuery('[name="credential"]').tooltip({'trigger':'focus', 'title': "{$message}", 'placement' : 'top'});
+    $('#$elementId').find('[name="credential"]').tooltip({'trigger':'focus', 'title': "{$message}", 'placement' : 'top'});
 </script>
 HTML;
 
