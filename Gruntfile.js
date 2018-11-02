@@ -168,7 +168,7 @@ module.exports = function (grunt) {
             });
         });
 
-        console.log(ret.www.files);
+        // console.log(ret.www.files);
         return ret;
     })();
 
@@ -320,7 +320,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-sync');
 
     // execute standard assets publishing (as from pi backend)
-    grunt.registerTask('default', ['sync:www']);
+    grunt.registerTask('default', ['sync:www', 'watch']);
 
     //Handler asset files for optimize loading
     grunt.registerTask('optimize', ['clean', 'copy:build', 'uglify', 'cssmin']);
