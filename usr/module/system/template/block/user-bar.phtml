@@ -40,7 +40,9 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                 <div class="btn-group">
                     <button type="button" class="btn pi-userbar-avatar"
                             onclick="window.location='<?php echo $block['user']['dashboard_url']; ?>'">
-                        <?php echo $block['user']['avatar']; ?>
+                        <div class="d-inline-block rounded-circle">
+                            <?php echo $block['user']['avatar']; ?>
+                        </div>
                         <span class="d-none d-lg-inline">
                             <?php echo __('Welcome') . ' ' . _escape(
                                     (isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name']
@@ -55,7 +57,7 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                         </button>
-                        <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
                             <?php if (isset($block['user']['dashboard_url'])) { ?>
                                 <a class="dropdown-item item-favorites" title="<?php echo _b('Favourite'); ?>"
                                    href="<?php echo $block['user']['dashboard_url']; ?>">
