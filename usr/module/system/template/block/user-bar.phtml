@@ -370,7 +370,7 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                 <button class="nav-link btn btn-warning dropdown-toggle btn-sm align-self-center" data-toggle="dropdown">
                     <span class="value"><?php echo __("Propose my activity") ?></span>
                 </button>
-                <div class="dropdown-menu " role="menu">
+                <div class="dropdown-menu dropdown-menu-right" role="menu">
                     <?php if (Pi::service('module')->isActive('event')) : ?>
                         <?php if (Pi::user()->getId()) { ?>
                             <a class="dropdown-item" href="<?php echo $this->url('home'); ?>event/manage/update"
