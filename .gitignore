@@ -30,3 +30,9 @@
 !/usr/module/widget
 !/usr/module/uclient
 
+
+var/config/module.meta.php
+www/robots-https.txt
+www/sitemap.xml
+
+usr/custom/module/portfolio/
