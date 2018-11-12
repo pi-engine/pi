@@ -2,6 +2,9 @@
 /www/upload/
 /www/asset/
 /var/cache/
+/var/log/
+!/var/log/index.html
+/node_modules
 
 /usr/theme/*
 !/usr/theme/default/
