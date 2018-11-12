@@ -38,12 +38,12 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
         <?php } elseif ($block['type'] == 'dropdown') { ?>
             <li class="nav-item dropdown pi-userbar-header">
                 <div class="btn-group">
-                    <button type="button" class="btn pi-userbar-avatar"
+                    <button type="button" class="btn btn-outline-primary pi-userbar-avatar"
                             onclick="window.location='<?php echo $block['user']['dashboard_url']; ?>'">
                         <div class="d-inline-block rounded-circle">
                             <?php echo $block['user']['avatar']; ?>
                         </div>
-                        <span class="d-none d-lg-inline">
+                        <span class="d-none d-xl-inline">
                             <?php echo __('Welcome') . ' ' . _escape(
                                     (isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name']
                                         : $block['user']['name']
