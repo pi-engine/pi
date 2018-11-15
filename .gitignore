@@ -35,6 +35,8 @@
 
 var/config/module.meta.php
 www/robots-https.txt
+www/robots.txt
 www/sitemap.xml
+www/pi.txt
 
 usr/custom/module/portfolio/
