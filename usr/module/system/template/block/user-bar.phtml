@@ -369,30 +369,9 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
 
         <?php if (Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
             <li class="nav-item item-promouvoir d-none dropdown d-md-flex">
-                <button class="nav-link btn btn-warning dropdown-toggle btn-sm align-self-center" data-toggle="dropdown">
+                <a href="<?php echo $this->url('home'); ?>guide/solutions" class="nav-link btn btn-warning btn-sm align-self-center">
                     <span class="value"><?php echo __("Propose my activity") ?></span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" role="menu">
-                    <?php if (Pi::service('module')->isActive('event')) : ?>
-                        <?php if (Pi::user()->getId()) { ?>
-                            <a class="dropdown-item" href="<?php echo $this->url('home'); ?>event/manage/update"
-                               title="<?php echo __("Publish an event") ?>"><?php echo __("Publish an event") ?></a>
-                        <?php } else { ?>
-                            <a class="dropdown-item" title="<?php echo __("Publish an event") ?>"
-                               data-redirect="<?php echo $this->url('home'); ?>event/manage/update"
-                               href="<?php echo (Pi::user()->config('enable_modal'))
-                                   ? '#'
-                                   : Pi::service('authentication')->getUrl(
-                                       'login', $this->url('home') . '/event/manage/update'
-                                   ); ?>" <?php if (Pi::user()->config('enable_modal')) : ?>data-action="login" data-toggle="modal"
-                               data-target="#loginRegisterModal"<?php endif; ?>>
-                                <?php echo __("Publish an event") ?>
-                            </a>
-                        <?php } ?>
-                    <?php endif; ?>
-                    <a class="dropdown-item" href="<?php echo $this->url('home'); ?>guide/solutions"
-                       title="<?php echo __("Promote my activity") ?>"><?php echo __("Promote my activity") ?></a>
-                </div>
+                </a>
             </li>
         <?php endif; ?>
     </ul>
