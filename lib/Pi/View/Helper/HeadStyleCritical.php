@@ -128,7 +128,7 @@ class HeadStyleCritical extends ZendHeadStyle
             $escapeEnd = null;
         }
 
-        $html = '<style type="text/css"' . $attrString . '>' . PHP_EOL
+        $html = '<style ' . $attrString . '>' . PHP_EOL
              . $indent . $item->content . PHP_EOL
             . '</style>';
 

@@ -401,6 +401,7 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
 <?php if ($modalEnabled && !$block['user']['uid']) : ?>
     <script>
         $(function() {
+            $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
             $( "body" ).append( '<div id="user-modal-wrapper"></div>' );
             $('#user-modal-wrapper').load('<?php echo $this->url('home') ?>system/index/modal');
         });

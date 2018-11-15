@@ -75,7 +75,62 @@ class HeadScript extends ZendHeadScript
             unset($item->attributes['defer']);
         }
 
-        return parent::itemToString($item, $indent, $escapeStart, $escapeEnd);
+        $attrString = '';
+        if (!empty($item->attributes)) {
+            foreach ($item->attributes as $key => $value) {
+                if ((!$this->arbitraryAttributesAllowed() && !in_array($key, $this->optionalAttributes))
+                    || in_array($key, array('conditional', 'noescape'))) {
+                    continue;
+                }
+                if ('defer' == $key) {
+                    $value = 'defer';
+                }
+                $attrString .= sprintf(' %s="%s"', $key, ($this->autoEscape) ? $this->escape($value) : $value);
+            }
+        }
+
+        $addScriptEscape = !(isset($item->attributes['noescape'])
+            && filter_var($item->attributes['noescape'], FILTER_VALIDATE_BOOLEAN));
+
+        $type = ($this->autoEscape) ? $this->escape($item->type) : $item->type;
+
+        if($type == 'text/javascript'){
+            $html = '<script ' . $attrString . '>';
+        } else {
+            $html = '<script type="' . $type . '"' . $attrString . '>';
+        }
+
+        if (!empty($item->source)) {
+            $html .= PHP_EOL;
+
+            if ($addScriptEscape) {
+                $html .= $indent . '    ' . $escapeStart . PHP_EOL;
+            }
+
+            $html .= $indent . '    ' . $item->source;
+
+            if ($addScriptEscape) {
+                $html .= PHP_EOL . $indent . '    ' . $escapeEnd;
+            }
+
+            $html .= PHP_EOL . $indent;
+        }
+        $html .= '</script>';
+
+        if (isset($item->attributes['conditional'])
+            && !empty($item->attributes['conditional'])
+            && is_string($item->attributes['conditional'])
+        ) {
+            // inner wrap with comment end and start if !IE
+            if (str_replace(' ', '', $item->attributes['conditional']) === '!IE') {
+                $html = '<!-->' . $html . '<!--';
+            }
+            $html = $indent . '<!--[if ' . $item->attributes['conditional'] . ']>' . $html . '<![endif]-->';
+        } else {
+            $html = $indent . $html;
+        }
+
+        return $html;
     }
 
     /**#@+
