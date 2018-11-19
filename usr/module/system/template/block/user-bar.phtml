@@ -160,11 +160,11 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                        title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
                         <i class="far fa-envelope" aria-hidden="true"></i>
                         <span>
-                                <?php echo _b('Message'); ?>
+                            <?php echo _b('Message'); ?>
                             <?php if ($block['user']['count']) : ?>
                                 <span class="badge badge-pill badge-warning"><?php echo $block['user']['count']; ?></span>
                             <?php endif; ?>
-                            </span>
+                        </span>
                     </a>
                 </li>
             <?php } else { ?>
@@ -174,11 +174,11 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                            title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
                             <i class="far fa-envelope" aria-hidden="true"></i>
                             <span>
-                                    <span><?php echo _b('Message'); ?></span>
+                                <span><?php echo _b('Message'); ?></span>
                                 <?php if ($block['user']['message_count']) : ?>
                                     <span class="badge badge-pill badge-warning"><?php echo $block['user']['message_count']; ?></span>
                                 <?php endif; ?>
-                                </span>
+                            </span>
                         </a>
                     </li>
                 <?php } ?>
@@ -188,11 +188,11 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                            title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
                             <i class="far fa-bell" aria-hidden="true"></i>
                             <span>
-                                    <span class="d-xs-inline"><?php echo _b('Notification'); ?></span>
+                                <span class="d-xs-inline"><?php echo _b('Notification'); ?></span>
                                 <?php if ($block['user']['notification_count']) : ?>
                                     <span class="badge badge-pill badge-warning"><?php echo $block['user']['notification_count']; ?></span>
                                 <?php endif; ?>
-                                </span>
+                            </span>
                         </a>
                     </li>
                 <?php } ?>
@@ -202,11 +202,11 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                     <a class="nav-link" href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
                         <i class="fas fa-life-ring" aria-hidden="true"></i>
                         <span>
-                                <?php echo _b('Support'); ?>
+                            <?php echo _b('Support'); ?>
                             <?php if ($block['user']['support_count']) : ?>
                                 <span class="badge badge-pill badge-warning"><?php echo $block['user']['support_count']; ?></span>
                             <?php endif; ?>
-                            </span>
+                        </span>
                     </a>
                 </li>
             <?php } ?>
@@ -216,8 +216,8 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                     <a class="nav-link" href="<?php echo $block['user']['offer_url']; ?>" title="<?php echo _b('My offer'); ?>">
                         <i class="fas fa-cubes" aria-hidden="true"></i>
                         <span>
-                                <?php echo _b('My offer'); ?>
-                            </span>
+                            <?php echo _b('My offer'); ?>
+                        </span>
                     </a>
                 </li>
             <?php } ?>
@@ -226,8 +226,8 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                     <a class="nav-link" href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
                         <i class="fas fa-shopping-basket" aria-hidden="true"></i>
                         <span>
-                                <?php echo _b('Follow up orders'); ?>
-                            </span>
+                            <?php echo _b('Follow up orders'); ?>
+                        </span>
                     </a>
                 </li>
             <?php } ?>
@@ -236,17 +236,17 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                     <a class="nav-link" href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
                         <i class="fas fa-archive" aria-hidden="true"></i>
                         <span>
-                                <?php echo _b('Credit'); ?>
+                            <?php echo _b('Credit'); ?>
                             <?php if ($block['user']['amount']) : ?>
                                 <span class="badge badge-pill badge-warning"><?php echo $block['user']['amount_view']; ?></span>
                             <?php endif; ?>
-                            </span>
+                        </span>
                     </a>
                 </li>
             <?php } ?>
 
             <li class="nav-item userbar-avatar-item">
-                <span class="avatar-name-wrapper d-none d-md-inline">
+                <span class="avatar-name-wrapper d-none d-xl-inline">
                     <?php if (!preg_match('#\/admin\/#', $this->url('', [], null, true))) : ?>
                         <?php echo _b('Welcome'); ?>
                     <?php endif; ?>
@@ -269,6 +269,94 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                                         <?php echo _b('Logout'); ?>
                                     </span>
                         </a>
+                        <div class="d-lg-none">
+                            <?php if (isset($block['user']['dashboard_url'])) { ?>
+                                <a class="dropdown-item item-favorites" title="<?php echo _b('Favourite'); ?>"
+                                   href="<?php echo $block['user']['dashboard_url']; ?>">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <?php echo _b('Dashboard'); ?>
+                                </a>
+                            <?php } ?>
+
+                            <?php if (isset($block['user']['message'])) { ?>
+                                <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>" href="<?php echo $block['user']['message']; ?>"
+                                   title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
+                                    <i class="far fa-envelope"></i>
+                                    <?php echo _b('Message'); ?>
+                                    <?php if ($block['user']['count']) { ?>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['count']; ?></span>
+                                    <?php } ?>
+                                </a>
+                            <?php } else { ?>
+                                <?php if (isset($block['user']['message_url'])) { ?>
+                                    <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>"
+                                       href="<?php echo $block['user']['message_url']; ?>"
+                                       title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
+                                        <i class="far fa-envelope"></i>
+                                        <?php echo _b('Message'); ?>
+                                        <?php if ($block['user']['message_count']) { ?>
+                                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['message_count']; ?></span>
+                                        <?php } ?>
+                                    </a>
+                                <?php } ?>
+                                <?php if (isset($block['user']['notification_url'])) { ?>
+                                    <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>"
+                                       href="<?php echo $block['user']['notification_url']; ?>"
+                                       title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
+                                        <i class="far fa-bell"></i>
+                                        <?php echo _b('Notification'); ?>
+                                        <?php if ($block['user']['notification_count']) { ?>
+                                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['notification_count']; ?></span>
+                                        <?php } ?>
+                                    </a>
+                                <?php } ?>
+                            <?php } ?>
+                            <?php if (isset($block['user']['support_url'])) { ?>
+                                <a class="dropdown-item <?php echo $module == 'support' ? 'active' : '' ?>" href="<?php echo $block['user']['support_url']; ?>"
+                                   title="<?php echo _b('Support'); ?>">
+                                    <i class="fas fa-life-ring"></i>
+                                    <?php echo _b('Support'); ?>
+                                    <?php if ($block['user']['support_count']) { ?>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['support_count']; ?></span>
+                                    <?php } ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['offer_url'])) { ?>
+                                <a class="dropdown-item <?php echo $module == 'guide' && $controller == 'offer' ? 'active' : '' ?>"
+                                   title="<?php _e('My offer'); ?>"
+                                   href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'offer', 'action' => 'index'])); ?>">
+                                    <i class="fas fa-cubes"></i>
+                                    <?php _e('My offer'); ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['order'])) { ?>
+                                <a class="dropdown-item <?php echo $module == "order" && $controller == 'index' ? 'active' : '' ?>"
+                                   href="<?php echo $block['user']['order']; ?>"
+                                   title="<?php echo _b('Follow up orders'); ?>">
+                                    <i class="fas fa-shopping-basket"></i>
+                                    <?php echo _b('Follow up orders'); ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['credit'])) { ?>
+                                <a class="dropdown-item <?php echo $module == "order" && $controller == 'credit' ? 'active' : '' ?>"
+                                   href="<?php echo $block['user']['credit']; ?>"
+                                   title="<?php echo _b('Credit'); ?>">
+                                    <i class="fas fa-archive"></i>
+                                    <?php echo _b('Credit'); ?>
+                                    <?php if ($block['user']['amount']) { ?>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['amount_view']; ?></span>
+                                    <?php } ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['favourite_url'])) { ?>
+                                <a class="dropdown-item item-favorites <?php echo $module == 'favourite' ? 'active' : '' ?>"
+                                   title="<?php echo _b('Favourite'); ?>"
+                                   href="<?php echo $block['user']['favourite_url']; ?>">
+                                    <i class="fas fa-star"></i>
+                                    <?php echo _b('Favourite'); ?>
+                                </a>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
             </li>
