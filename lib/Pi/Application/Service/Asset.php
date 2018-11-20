@@ -356,11 +356,12 @@ class Asset extends AbstractService
     public function getThemeAssetPath(
         $file,
         $theme          = '',
-        $appendVersion  = null
+        $appendVersion  = null,
+        $searchParent = false
     ) {
         $theme = $theme ?: Pi::service('theme')->current();
 
-        if(Pi::engine()->section() != 'admin'){
+        if(Pi::engine()->section() != 'admin' && $searchParent){
             /**
              * Check if theme has parent
              */
@@ -372,6 +373,7 @@ class Asset extends AbstractService
                 $themeAssetPath = $this->getAssetPath($component, $file, $appendVersion);
 
                 if(!is_file($themeAssetPath)){
+
                     $theme = $parentTheme;
                 }
             }
