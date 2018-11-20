@@ -595,3 +595,7 @@ form .icon-question-sign {
 .userbar-avatar-item a {
     padding: 12px 15px 10px 5px !important;
 }
+
+.pi-admin .usertopbar .nav-link{
+    color:white;
+}
