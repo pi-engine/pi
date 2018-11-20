@@ -100,9 +100,9 @@ EOT;
 EOT;
         $patternCategory
                  = <<<'EOT'
-<li class="nav-item w-100">
+<li class="nav-item w-100 category">
     <a class="nav-link">
-        <i class="fa %s text-muted"></i>
+        <i class="far %s text-muted"></i>
         <span class="pi-modules-nav-category text-muted">%s</span>
     </a>
 </li>
@@ -121,7 +121,7 @@ EOT;
                 if (!empty($category['label'])) {
                     $content .= sprintf(
                         $pattern['category'],
-                        $category['icon'] ?: 'fa-square-o',
+                        $category['icon'] ?: 'far fa-square',
                         $category['label']
                     );
                 }
