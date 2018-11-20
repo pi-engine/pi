@@ -183,6 +183,10 @@ form .icon-question-sign {
     width: 214px;
 }
 
+.navbar-brand {
+    width: 256px;
+}
+
 /* Util */
 
 /* navbar custom */
