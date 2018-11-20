@@ -359,6 +359,24 @@ class Asset extends AbstractService
         $appendVersion  = null
     ) {
         $theme = $theme ?: Pi::service('theme')->current();
+
+        if(Pi::engine()->section() != 'admin'){
+            /**
+             * Check if theme has parent
+             */
+            $parentTheme = Pi::service('theme')->getParent($theme);
+
+            if($parentTheme){
+
+                $component = 'theme/' . $theme;
+                $themeAssetPath = $this->getAssetPath($component, $file, $appendVersion);
+
+                if(!is_file($themeAssetPath)){
+                    $theme = $parentTheme;
+                }
+            }
+        }
+
         $component = 'theme/' . $theme;
 
         return $this->getAssetPath($component, $file, $appendVersion);
