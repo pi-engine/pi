@@ -600,3 +600,8 @@ form .icon-question-sign {
 .pi-admin .usertopbar .nav-link{
     color:white;
 }
+
+.navbar-go-front .nav-link{
+    padding: 0.6rem 1rem 0.9em;
+    color:white!important;
+}
