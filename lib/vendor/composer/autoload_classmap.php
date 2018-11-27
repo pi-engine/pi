@@ -20,4 +20,5 @@ return array(
     'TCPDF_IMPORT' => $vendorDir . '/tecnickcom/tcpdf/tcpdf_import.php',
     'TCPDF_PARSER' => $vendorDir . '/tecnickcom/tcpdf/tcpdf_parser.php',
     'TCPDF_STATIC' => $vendorDir . '/tecnickcom/tcpdf/include/tcpdf_static.php',
+    'geoPHP' => $vendorDir . '/phayes/geophp/geoPHP.inc',
 );
