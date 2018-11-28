@@ -155,4 +155,19 @@ class Theme extends AbstractService
 
         return $list;
     }
+
+    /**
+     * @return array|mixed
+     */
+    public function getThemeVars(){
+        $themeConfig = $this->loadConfig('');
+
+        // First we convert the array to a json string
+        $json = json_encode($themeConfig['vars']);
+
+        // The we convert the json string to a stdClass()
+        $vars = json_decode($json);
+
+        return $vars;
+    }
 }
