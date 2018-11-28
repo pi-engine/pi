@@ -64,7 +64,7 @@ $module = Pi::service('module')->current();
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-admin">
 <!-- header: brand, navbar-nav, user link -->
-<header class="pi-header">
+<header class="pi-header sticky-top">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="<?php echo $this->url('home'); ?>">
             <i class="fas fa-leaf"></i>
