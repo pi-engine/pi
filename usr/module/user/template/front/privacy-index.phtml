@@ -19,7 +19,7 @@ $this->headMeta('noindex', 'robots');
         <?php } else { ?>
             <form method="post">
                 <?php foreach ($privacy as $item) { ?>
-                    <div class="form-group">
+                    <div class="form-group row">
                         <label class="col-md-2 col-form-label"><?php echo $item['title']; ?></label>
                         <div class="col-md-4">
                             <select name="<?php echo $item['field']; ?>" <?php if ($item['is_forced']) echo 'disabled'; ?>
