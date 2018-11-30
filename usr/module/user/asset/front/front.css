@@ -293,7 +293,7 @@
     margin: 0 20px;
 }
 
-#pi-user.userSection .container {
+#pi-user.userSection .pi-section  .container {
     max-width: none;
     width: auto;
 }
