@@ -458,7 +458,7 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
         <?php if (Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
             <li class="nav-item item-promouvoir d-none dropdown d-md-flex">
                 <a href="<?php echo $this->url('home'); ?>guide/solutions" class="nav-link btn btn-warning btn-sm align-self-center">
-                    <span class="value"><?php echo __("Propose my activity") ?></span>
+                    <span class="value"><?php echo __("Add my activity") ?></span>
                 </a>
             </li>
         <?php endif; ?>
