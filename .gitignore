@@ -44,4 +44,6 @@ www/git.php
 www/assets.php
 assets.php
 git.php
+/.htaccess
+/.htpasswd
 
