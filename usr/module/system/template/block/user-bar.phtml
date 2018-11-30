@@ -36,7 +36,7 @@ $module     = $this->getHelperPluginManager()->getServiceLocator()->get('applica
                 </a>
             </li>
         <?php } elseif ($block['type'] == 'dropdown') { ?>
-            <li class="nav-item dropdown pi-userbar-header">
+            <li class="nav-item dropdown pi-userbar-header order-1">
                 <div class="btn-group">
                     <button type="button" class="btn btn-outline-primary pi-userbar-avatar"
                             onclick="window.location='<?php echo $block['user']['dashboard_url']; ?>'">
