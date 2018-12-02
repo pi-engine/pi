@@ -1,23 +1,155 @@
 [
     {
-        "name": "tecnickcom/tcpdf",
-        "version": "6.2.13",
-        "version_normalized": "6.2.13.0",
+        "name": "phpseclib/phpseclib",
+        "version": "2.0.12",
+        "version_normalized": "2.0.12.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/tecnickcom/TCPDF.git",
-            "reference": "95c5938aafe4b20df1454dbddb3e5005c0b26f64"
+            "url": "https://github.com/phpseclib/phpseclib.git",
+            "reference": "8814dc7841db159daed0b32c2b08fb7e03c6afe7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/95c5938aafe4b20df1454dbddb3e5005c0b26f64",
-            "reference": "95c5938aafe4b20df1454dbddb3e5005c0b26f64",
+            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/8814dc7841db159daed0b32c2b08fb7e03c6afe7",
+            "reference": "8814dc7841db159daed0b32c2b08fb7e03c6afe7",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "phing/phing": "~2.7",
+            "phpunit/phpunit": "^4.8.35|^5.7|^6.0",
+            "sami/sami": "~2.0",
+            "squizlabs/php_codesniffer": "~2.0"
+        },
+        "suggest": {
+            "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
+            "ext-libsodium": "SSH2/SFTP can make use of some algorithms provided by the libsodium-php extension.",
+            "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
+            "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
+        },
+        "time": "2018-11-04T05:45:48+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "phpseclib/bootstrap.php"
+            ],
+            "psr-4": {
+                "phpseclib\\": "phpseclib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jim Wigginton",
+                "email": "terrafrost@php.net",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Patrick Monnerat",
+                "email": "pm@datasphere.ch",
+                "role": "Developer"
+            },
+            {
+                "name": "Andreas Fischer",
+                "email": "bantu@phpbb.com",
+                "role": "Developer"
+            },
+            {
+                "name": "Hans-Jürgen Petrich",
+                "email": "petrich@tronic-media.com",
+                "role": "Developer"
+            },
+            {
+                "name": "Graham Campbell",
+                "email": "graham@alt-three.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
+        "homepage": "http://phpseclib.sourceforge.net",
+        "keywords": [
+            "BigInteger",
+            "aes",
+            "asn.1",
+            "asn1",
+            "blowfish",
+            "crypto",
+            "cryptography",
+            "encryption",
+            "rsa",
+            "security",
+            "sftp",
+            "signature",
+            "signing",
+            "ssh",
+            "twofish",
+            "x.509",
+            "x509"
+        ]
+    },
+    {
+        "name": "phayes/geophp",
+        "version": "1.2",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phayes/geoPHP.git",
+            "reference": "015404e85b602e0df1f91441f8db0f9e98f7e567"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phayes/geoPHP/zipball/015404e85b602e0df1f91441f8db0f9e98f7e567",
+            "reference": "015404e85b602e0df1f91441f8db0f9e98f7e567",
+            "shasum": ""
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.1.*"
+        },
+        "time": "2014-12-02T06:11:22+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "geoPHP.inc"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2 or New-BSD"
+        ],
+        "authors": [
+            {
+                "name": "Patrick Hayes"
+            }
+        ],
+        "description": "GeoPHP is a open-source native PHP library for doing geometry operations. It is written entirely in PHP and can therefore run on shared hosts. It can read and write a wide variety of formats: WKT (including EWKT), WKB (including EWKB), GeoJSON, KML, GPX, GeoRSS). It works with all Simple-Feature geometries (Point, LineString, Polygon, GeometryCollection etc.) and can be used to get centroids, bounding-boxes, area, and a wide variety of other useful information.",
+        "homepage": "https://github.com/phayes/geoPHP"
+    },
+    {
+        "name": "tecnickcom/tcpdf",
+        "version": "6.2.26",
+        "version_normalized": "6.2.26.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/tecnickcom/TCPDF.git",
+            "reference": "367241059ca166e3a76490f4448c284e0a161f15"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/367241059ca166e3a76490f4448c284e0a161f15",
+            "reference": "367241059ca166e3a76490f4448c284e0a161f15",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2017-04-26 08:14:48",
+        "time": "2018-10-16T17:24:05+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -42,13 +174,13 @@
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "LGPLv3"
+            "LGPL-3.0"
         ],
         "authors": [
             {
                 "name": "Nicola Asuni",
                 "email": "info@tecnick.com",
-                "homepage": "http://nicolaasuni.tecnick.com"
+                "role": "lead"
             }
         ],
         "description": "TCPDF is a PHP class for generating PDF documents and barcodes.",
@@ -65,33 +197,34 @@
     },
     {
         "name": "spipu/html2pdf",
-        "version": "v5.0.1",
-        "version_normalized": "5.0.1.0",
+        "version": "v5.2.1",
+        "version_normalized": "5.2.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/spipu/html2pdf.git",
-            "reference": "bbfcde715c0458300af8bf7f56b040dcd666a0db"
+            "reference": "7dca57b61fdb2d6920635ff2332dbc82d4be19f3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/spipu/html2pdf/zipball/bbfcde715c0458300af8bf7f56b040dcd666a0db",
-            "reference": "bbfcde715c0458300af8bf7f56b040dcd666a0db",
+            "url": "https://api.github.com/repos/spipu/html2pdf/zipball/7dca57b61fdb2d6920635ff2332dbc82d4be19f3",
+            "reference": "7dca57b61fdb2d6920635ff2332dbc82d4be19f3",
             "shasum": ""
         },
         "require": {
-            "php": "~5.4 || ~7.0",
-            "tecnickcom/tcpdf": "~6.2"
+            "ext-mbstring": "*",
+            "php": "^5.4 || ^7.0",
+            "tecnickcom/tcpdf": "^6.2"
         },
         "require-dev": {
-            "phake/phake": "~2.0",
-            "phpunit/phpunit": "~4.0 || ~5.0",
-            "squizlabs/php_codesniffer": "~2"
+            "phake/phake": "^2.0",
+            "phpunit/phpunit": "^4.0 || ^5.0",
+            "squizlabs/php_codesniffer": "^3.0"
         },
         "suggest": {
             "ext-gd": "Allows to embed images into the PDF",
             "fagundes/zff-html2pdf": "if you need to integrate Html2Pdf with Zend Framework 2 (zf2)"
         },
-        "time": "2017-06-16 13:23:32",
+        "time": "2018-10-26T13:33:18+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

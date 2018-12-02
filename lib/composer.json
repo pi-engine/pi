@@ -1,0 +1,8 @@
+{
+    "require": {
+        "phpseclib/phpseclib": "^2.0.12",
+        "phayes/geophp": "^1.2",
+        "tecnickcom/tcpdf": "^6.2.26",
+        "spipu/html2pdf": "v5.2.1"
+    }
+}
