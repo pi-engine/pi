@@ -37,7 +37,7 @@ $this->headMeta($shearContent, 'twitter:description');
                 /**
                  * Check if theme has parent
                  */
-                $parentTheme = Pi::service('theme')->getParent($theme);
+                $parentTheme = Pi::service('theme')->getParent(Pi::config('theme'));
 
                 if(!is_file($file) && $parentTheme){
 
