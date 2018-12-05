@@ -34,6 +34,19 @@ $this->headMeta($shearContent, 'twitter:description');
                     $content
                 );
 
+                /**
+                 * Check if theme has parent
+                 */
+                $parentTheme = Pi::service('theme')->getParent($theme);
+
+                if(!is_file($file) && $parentTheme){
+
+                    $file = sprintf(
+                        '%s/' . $parentTheme . '/custom/page/%s.phtml',
+                        Pi::path('theme'),
+                        $content
+                    );
+                }
                 ?>
                 <?php if ($file) : ?>
                     <?php include $this->template($file); ?>
