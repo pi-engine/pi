@@ -311,6 +311,8 @@ class Asset extends AbstractService
         $theme     = $theme ?: Pi::service('theme')->current();
 
         if(Pi::engine()->section() != 'admin'){
+
+
             /**
              * Check if theme has parent
              */
@@ -322,6 +324,8 @@ class Asset extends AbstractService
 
                 if(!is_file($themeAssetPath)){
                     $theme = $parentTheme;
+
+                    $themeAssetPath = $this->getThemeAssetPath($file, $theme, $appendVersion);
 
                     /*
                     * Check if theme has grand parent
