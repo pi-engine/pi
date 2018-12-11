@@ -47,3 +47,4 @@ git.php
 /.htaccess
 /.htpasswd
 
+/usr/custom/module/user/config/form.register.php
