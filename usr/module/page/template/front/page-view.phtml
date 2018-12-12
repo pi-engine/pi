@@ -5,6 +5,7 @@ $this->headMeta($title, 'og:title', 'property');
 $this->headMeta($this->escape($url), 'og:url', 'property');
 $this->headMeta($shearContent, 'og:description', 'property');
 // Set twitter for meta
+$this->headMeta($this->escape($url), 'twitter:url');
 $this->headMeta($title, 'twitter:title');
 $this->headMeta($shearContent, 'twitter:description');
 ?>
