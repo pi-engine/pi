@@ -30,11 +30,42 @@ $this->sticky();
             </a>
         </div>
     </div>
+    <?php if (in_array('guide', $userConfig['side_menu']) && Pi::service('module')->isActive('guide')) { ?>
+        <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
+        <?php if ($guideConfig['manage_active'] && isset($navigationItemList)) { ?>
+            <div class="panel-group" id="accordionItem" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab">
+                        <h4 class="panel-title">
+                            <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
+                               data-parent="#accordion" href="#collapseItem" aria-expanded="true" aria-controls="collapseItem">
+                                <span id="accordionItemTitle"><?php echo $currentTitle ?></span> <span class='caret'></span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseItem"
+                         class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
+                         role="tabpanel">
+                        <div class="list-group">
+                            <?php foreach ($navigationItemList as $itemId => $itemTitle) : ?>
 
+                                <a href="<?php echo $this->url(null, array('item' => $itemId), null, true) ?>" title="<?php echo $itemTitle ?>"
+                                   class="list-group-item<?php if ($controller == 'profile') {
+                                       echo ' active';
+                                   } ?>">
+                                    <?php echo $itemTitle ?>
+                                </a>
+
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } ?>
 
     <div class="list-group">
         <?php if (in_array('guide', $userConfig['side_menu']) && Pi::service('module')->isActive('guide')) { ?>
-            <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
             <?php if ($guideConfig['manage_active']) { ?>
                 <a title="<?php _e('My items'); ?>"
                    href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>"
@@ -181,7 +212,7 @@ $this->sticky();
                  class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
                  role="tabpanel">
                  <div class="list-group">
-                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>" title="<?php echo _b('Manage account'); ?>" 
+                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>" title="<?php echo _b('Manage account'); ?>"
                         class="list-group-item<?php if ($controller == 'profile') {
                            echo ' active';
                        } ?>">
