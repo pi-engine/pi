@@ -32,7 +32,7 @@ $this->sticky();
     </div>
     <?php if (in_array('guide', $userConfig['side_menu']) && Pi::service('module')->isActive('guide')) { ?>
         <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
-        <?php if ($guideConfig['manage_active'] && isset($navigationItemList)) { ?>
+        <?php if ($guideConfig['manage_active'] && isset($navigationItemList) && $action != 'add') { ?>
             <div class="panel-group" id="accordionItem" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab">
@@ -60,6 +60,18 @@ $this->sticky();
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="list-group">
+                <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
+                    <a title="<?php _e('Description'); ?>" href="<?php echo $this->url('', array('module' => 'guide', 'controller' => 'manage', 'action' => 'edit', 'item' => $item['id'])); ?>" class="list-group-item <?php echo $action == "add" || $action == "edit" || $action == "additional" || $action == "amenities" || $action == "attach" ? 'active' : '' ?>"><?php _e('Description'); ?></a>
+                    <?php if ($config['manage_service']) { ?>
+                        <a title="<?php _e('Prices'); ?>"  href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'payment', 'item' => $item['id'])); ?>" class="list-group-item <?php echo $action == "payment" || $action == "service" || $action == "pricelist" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><?php _e('Prices'); ?></a>
+                    <?php } ?>
+                    <?php if ($config['manage_service'] || $config['calendar_active']) { ?>
+                        <a title="<?php _e('Management'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'sales', 'item' => $item['id'])); ?>" class="list-group-item <?php echo $action == "sales" || $action == "calendar" || $action == "event-list"  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><?php _e('Management'); ?></a>
+                    <?php } ?>
+                    <a title="<?php _e('Statistics'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => $item['id'])); ?>" class="list-group-item <?php echo $controller == "stats"  ? 'active' : '' ?>"><?php _e('Statistics'); ?></a>
+                <?php } ?>
             </div>
         <?php } ?>
     <?php } ?>
