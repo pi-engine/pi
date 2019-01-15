@@ -474,4 +474,11 @@
 }
 
 /* sidebar */
-.list-group-item.noborder {border:none}
+.list-group-item.noborder {
+    border: none
+}
+
+#sticky-sidebar-manage a span.fa {
+    display: inline-block;
+    width: 18px
+}
