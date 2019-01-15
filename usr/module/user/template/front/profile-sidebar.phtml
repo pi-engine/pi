@@ -65,7 +65,7 @@ $this->sticky();
                  role="tabpanel">
                 <div class="list-group">
 
-                    <a title= href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'request', 'action' => 'index'])); ?>" class="list-group-item noborder <?php if (isset($sideActive) && $sideActive == 'request') { echo ' active'; } ?>"><span class="indent"></span><?php _e('My booking'); ?></a>
+                    <a title="<?php _e('My bookings'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'request', 'action' => 'index'])); ?>" class="list-group-item noborder <?php if (isset($sideActive) && $sideActive == 'request') { echo ' active'; } ?>"><span class="indent"></span><?php _e('My bookings'); ?></a>
 
                     <?php if ($guideConfig['manage_active'] && $guideConfig['manage_contribution'] ) { ?>
                         <a title="<?php _e('My contributions'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'contributions'])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'manage' && $action == 'contributions') { echo ' active'; } ?>"><span class="indent"></span><?php _e('My contributions'); ?></a>
