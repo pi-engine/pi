@@ -472,3 +472,6 @@
     background: #334398;
     color: #fff;
 }
+
+/* sidebar */
+.list-group-item.noborder {border:none}
