@@ -65,22 +65,22 @@ $this->sticky();
                  role="tabpanel">
                 <div class="list-group">
 
-                    <a title="<?php _e('My bookings'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'request', 'action' => 'index'])); ?>" class="list-group-item noborder <?php if (isset($sideActive) && $sideActive == 'request') { echo ' active'; } ?>"><span class="indent"></span><?php _e('My bookings'); ?></a>
+                    <a title="<?php _e('Bookings'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'request', 'action' => 'index'])); ?>" class="list-group-item noborder <?php if (isset($sideActive) && $sideActive == 'request') { echo ' active'; } ?>"><span class="indent"></span><?php _e('Bookings'); ?></a>
 
                     <?php if ($guideConfig['manage_active'] && $guideConfig['manage_contribution'] ) { ?>
-                        <a title="<?php _e('My contributions'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'contributions'])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'manage' && $action == 'contributions') { echo ' active'; } ?>"><span class="indent"></span><?php _e('My contributions'); ?></a>
+                        <a title="<?php _e('Contributions'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'contributions'])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'manage' && $action == 'contributions') { echo ' active'; } ?>"><span class="indent"></span><?php _e('Contributions'); ?></a>
                     <?php } ?>
 
                     <?php if (in_array('event', $userConfig['side_menu']) && Pi::service('module')->isActive('event')) { ?>
-                        <a title="<?php _e('My events'); ?>" href="<?php echo Pi::url($this->url('event', ['module' => 'event', 'controller' => 'manage', 'action' => 'index'])); ?>" class="list-group-item noborder <?php if ($module == 'event') { echo ' active'; } ?>"><span class="indent"></span><?php _e('My events'); ?></a>
+                        <a title="<?php _e('Events'); ?>" href="<?php echo Pi::url($this->url('event', ['module' => 'event', 'controller' => 'manage', 'action' => 'index'])); ?>" class="list-group-item noborder <?php if ($module == 'event') { echo ' active'; } ?>"><span class="indent"></span><?php _e('Events'); ?></a>
                     <?php } ?>
 
                     <?php if (in_array('favourite', $userConfig['side_menu']) && Pi::service('module')->isActive('favourite')) { ?>
-                        <a title="<?php _e('My favorites'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'favourite', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item noborder <?php if ($module == 'favourite') { echo ' active'; } ?>"><span class="indent"></span><?php _e('My favorites'); ?></a>
+                        <a title="<?php _e('Favorites'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'favourite', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item noborder <?php if ($module == 'favourite') { echo ' active'; } ?>"><span class="indent"></span><?php _e('Favorites'); ?></a>
                     <?php } ?>
 
                     <?php if (in_array('comment', $userConfig['side_menu']) && Pi::service('module')->isActive('comment')) { ?>
-                        <a title="<?php _e('My reviews/comments'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'comment', 'controller' => 'my'])); ?>" class="list-group-item<?php if ($module == 'comment') { echo ' active'; } ?>"><span class="indent"></span><?php _e('My reviews/comments'); ?></a>
+                        <a title="<?php _e('Reviews/comments'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'comment', 'controller' => 'my'])); ?>" class="list-group-item<?php if ($module == 'comment') { echo ' active'; } ?>"><span class="indent"></span><?php _e('Reviews/comments'); ?></a>
                     <?php } ?>
 
                 </div>
@@ -117,7 +117,7 @@ $this->sticky();
                 <div id="collapseProArea" class="panel-collapse collapse <?php echo $openProArea ? 'in' : '' ?>" role="tabpanel">
                     <div class="list-group">
                         <?php if ($guideConfig['manage_active']) { ?>
-                            <a title="<?php _e('My items'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'manage' && $action == 'dashboard') { echo ' active'; } ?>"><span class="indent"></span><?php _e('My items'); ?></a>
+                            <a title="<?php _e('Items'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'manage' && $action == 'dashboard') { echo ' active'; } ?>"><span class="indent"></span><?php _e('Items'); ?></a>
                         <?php } ?>
                         <?php if ($guideConfig['manage_active'] && isset($navigationItemList) && $action != 'add') { ?>
                             <div class="" id="accordionItem" role="tablist" aria-multiselectable="true">
@@ -171,33 +171,33 @@ $this->sticky();
         <?php } ?>
 
         <?php if (in_array('media', $userConfig['side_menu']) && Pi::service('module')->isActive('media')) { ?>
-            <a title="<?php _e('My media'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'media', 'controller' => 'list', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'media') { echo ' active'; } ?>"><span class="fa fa-picture-o"></span>&nbsp; <?php _e('My media'); ?></a>
+            <a title="<?php _e('Media'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'media', 'controller' => 'list', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'media') { echo ' active'; } ?>"><span class="fa fa-picture-o"></span>&nbsp; <?php _e('Media'); ?></a>
         <?php } ?>
 
         <?php if (in_array('message', $userConfig['side_menu']) && Pi::service('module')->isActive('message')) { ?>
             <?php $message = _number(Pi::api('api', 'message')->getUnread($uid, 'message')); ?>
-            <a title="<?php _e('My messages'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'message') { echo ' active'; } ?>"><?php _e('My messages'); ?> <span class="badge"><?php echo $message; ?></span></a>
+            <a title="<?php _e('Messages'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'message') { echo ' active'; } ?>"><?php _e('Messages'); ?> <span class="badge"><?php echo $message; ?></span></a>
             <?php $notification = _number(Pi::api('api', 'message')->getUnread($uid, 'notification')); ?>
-            <a title="<?php _e('My notifications'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'message', 'controller' => 'notify', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'notification') { echo ' active'; } ?>"><?php _e('My notifications'); ?> <span class="badge"><?php echo $notification; ?></span></a>
+            <a title="<?php _e('Notifications'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'message', 'controller' => 'notify', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'notification') { echo ' active'; } ?>"><?php _e('Notifications'); ?> <span class="badge"><?php echo $notification; ?></span></a>
         <?php } ?>
 
         <?php if (in_array('support', $userConfig['side_menu']) && Pi::service('module')->isActive('support')) { ?>
             <?php $support = _number(Pi::api('ticket', 'support')->getCount($uid)); ?>
-            <a title="<?php _e('My support tickets'); ?>" href="<?php echo Pi::url($this->url('support', ['module' => 'support', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'support') { echo ' active'; } ?>"><?php _e('My support tickets'); ?> <span class="badge"><?php echo $support; ?></span></a>
+            <a title="<?php _e('Support tickets'); ?>" href="<?php echo Pi::url($this->url('support', ['module' => 'support', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'support') { echo ' active'; } ?>"><?php _e('Support tickets'); ?> <span class="badge"><?php echo $support; ?></span></a>
         <?php } ?>
 
         <?php if (in_array('order', $userConfig['side_menu']) && Pi::service('module')->isActive('order')) { ?>
             <?php $orderConfig = Pi::service('registry')->config->read('order'); ?>
-            <a title="<?php _e('My orders'); ?>" href="<?php echo Pi::url($this->url('order', ['module' => 'order', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'order') { echo ' active'; } ?>"><?php _e('My orders'); ?></a>
+            <a title="<?php _e('Orders'); ?>" href="<?php echo Pi::url($this->url('order', ['module' => 'order', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'order') { echo ' active'; } ?>"><?php _e('Orders'); ?></a>
             <?php if ($orderConfig['credit_active']) { ?>
                 <?php $credit = Pi::api('credit', 'order')->getCredit($uid); ?>
-                <a title="<?php _e('My credit'); ?>" href="<?php echo Pi::url($this->url('order', ['module' => 'order', 'controller' => 'credit', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'credit') { echo ' active'; } ?>"><?php _e('My credit'); ?> <span class="badge"><?php echo $credit['amount_view']; ?></span></a>
+                <a title="<?php _e('Credit'); ?>" href="<?php echo Pi::url($this->url('order', ['module' => 'order', 'controller' => 'credit', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'credit') { echo ' active'; } ?>"><?php _e('Credit'); ?> <span class="badge"><?php echo $credit['amount_view']; ?></span></a>
             <?php } ?>
         <?php } ?>
 
 
         <?php if (in_array('video', $userConfig['side_menu']) && Pi::service('module')->isActive('video')) { ?>
-            <a title="<?php _e('My videos'); ?>" href="<?php echo Pi::url($this->url('video', ['module' => 'video', 'controller' => 'channel', 'action' => 'index'])); ?>" class="list-group-item<?php if ($module == 'video') { echo ' active'; } ?>"><?php _e('My videos'); ?></a>
+            <a title="<?php _e('Videos'); ?>" href="<?php echo Pi::url($this->url('video', ['module' => 'video', 'controller' => 'channel', 'action' => 'index'])); ?>" class="list-group-item<?php if ($module == 'video') { echo ' active'; } ?>"><?php _e('Videos'); ?></a>
         <?php } ?>
     </div>
 
@@ -207,7 +207,7 @@ $this->sticky();
                 <h4 class="card-title">
                     <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
                        data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <?php _e('My account / Profile') ?> <span class='caret'></span>
+                        <?php _e('Account / Profile') ?> <span class='caret'></span>
                     </a>
                 </h4>
             </div>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-01-15 13:26+0100\n"
-"PO-Revision-Date: 2019-01-15 13:26+0100\n"
+"POT-Creation-Date: 2019-01-15 19:00+0100\n"
+"PO-Revision-Date: 2019-01-15 19:00+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -116,25 +116,25 @@ msgstr "Tableau de Bord"
 #: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:182
 #: src/Controller/Front/DashboardController.php:46
 #: template/front/account-index.phtml:11
-#: template/front/profile-sidebar.phtml:219
+#: template/front/profile-sidebar.phtml:230
 msgid "Account settings"
 msgstr "Paramétrages du compte"
 
 #: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:183
 #: template/front/avatar-index.phtml:45
-#: template/front/profile-sidebar.phtml:231
+#: template/front/profile-sidebar.phtml:242
 #: template/front/profile-topbar.phtml:157
 msgid "Change avatar"
 msgstr "Modifier sa photo"
 
 #: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:11
-#: template/front/profile-sidebar.phtml:247
+#: template/front/profile-sidebar.phtml:258
 msgid "Privacy"
 msgstr "Confidentialité"
 
 #: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:192
 #: template/front/password-index.phtml:15
-#: template/front/profile-sidebar.phtml:225
+#: template/front/profile-sidebar.phtml:236
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
@@ -1141,73 +1141,52 @@ msgstr "Raccourcis"
 
 #: template/front/dashboard-index.phtml:42
 #: template/front/dashboard-index.phtml:46
-#: template/front/profile-sidebar.phtml:82
-#: template/front/profile-sidebar.phtml:86
 msgid "My items"
 msgstr "Mes éléments"
 
 #: template/front/dashboard-index.phtml:55
 #: template/front/dashboard-index.phtml:59
-#: template/front/profile-sidebar.phtml:89
-#: template/front/profile-sidebar.phtml:93
+#: template/front/profile-sidebar.phtml:167
 msgid "Sponsorship"
 msgstr "Parrainage"
 
 #: template/front/dashboard-index.phtml:70
 #: template/front/dashboard-index.phtml:74
-#: template/front/profile-sidebar.phtml:114
-#: template/front/profile-sidebar.phtml:118
 msgid "My messages"
 msgstr "Mes messages"
 
 #: template/front/dashboard-index.phtml:80
 #: template/front/dashboard-index.phtml:84
-#: template/front/profile-sidebar.phtml:120
-#: template/front/profile-sidebar.phtml:124
 msgid "My notifications"
 msgstr "Mes notifications"
 
 #: template/front/dashboard-index.phtml:93
 #: template/front/dashboard-index.phtml:97
-#: template/front/profile-sidebar.phtml:137
-#: template/front/profile-sidebar.phtml:141
 msgid "My events"
 msgstr "Mes évènements"
 
 #: template/front/dashboard-index.phtml:106
 #: template/front/dashboard-index.phtml:110
-#: template/front/profile-sidebar.phtml:146
-#: template/front/profile-sidebar.phtml:150
 msgid "My orders"
 msgstr "Mes commandes"
 
 #: template/front/dashboard-index.phtml:117
 #: template/front/dashboard-index.phtml:121
-#: template/front/profile-sidebar.phtml:153
-#: template/front/profile-sidebar.phtml:157
 msgid "My credit"
 msgstr "Mes Crédits"
 
 #: template/front/dashboard-index.phtml:131
 #: template/front/dashboard-index.phtml:135
-#: template/front/profile-sidebar.phtml:162
-#: template/front/profile-sidebar.phtml:166
-#: template/front/profile-sidebar.phtml:177
-#: template/front/profile-sidebar.phtml:181
 msgid "My favorites"
 msgstr "Mes favoris"
 
 #: template/front/dashboard-index.phtml:143
 #: template/front/dashboard-index.phtml:147
-#: template/front/profile-sidebar.phtml:185
-#: template/front/profile-sidebar.phtml:189
 msgid "My videos"
 msgstr "Mes Vidéos"
 
 #: template/front/dashboard-index.phtml:156
 #: template/front/dashboard-index.phtml:160
-#: template/front/profile-sidebar.phtml:129
-#: template/front/profile-sidebar.phtml:133
 msgid "My support tickets"
 msgstr "Mes tickets Assistance"
 
@@ -1317,42 +1296,87 @@ msgstr "Etes-vous sûr de vouloir supprimer cet enregistrement?"
 msgid "Add %s"
 msgstr "Ajouter %s"
 
-#: template/front/profile-sidebar.phtml:66
+#: template/front/profile-sidebar.phtml:57
+msgid "Member area"
+msgstr "Espace Membre"
+
+#: template/front/profile-sidebar.phtml:68
+msgid "Bookings"
+msgstr "Réservations"
+
+#: template/front/profile-sidebar.phtml:71
+msgid "Contributions"
+msgstr "Contributions"
+
+#: template/front/profile-sidebar.phtml:75
+msgid "Events"
+msgstr "Evènements"
+
+#: template/front/profile-sidebar.phtml:79
+msgid "Favorites"
+msgstr "Favoris"
+
+#: template/front/profile-sidebar.phtml:83
+msgid "Reviews/comments"
+msgstr "Avis/commentaires"
+
+#: template/front/profile-sidebar.phtml:111
+msgid "Pro area"
+msgstr "Espace Pro"
+
+#: template/front/profile-sidebar.phtml:120
+msgid "Items"
+msgstr "Eléments"
+
+#: template/front/profile-sidebar.phtml:147
 msgid "Description"
 msgstr "Description"
 
-#: template/front/profile-sidebar.phtml:68
+#: template/front/profile-sidebar.phtml:149
 msgid "Prices"
 msgstr "Tarifs"
 
-#: template/front/profile-sidebar.phtml:71
+#: template/front/profile-sidebar.phtml:152
 msgid "Management"
 msgstr "Gestion"
 
-#: template/front/profile-sidebar.phtml:73
+#: template/front/profile-sidebar.phtml:154
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: template/front/profile-sidebar.phtml:96
-#: template/front/profile-sidebar.phtml:100
-msgid "My requests"
-msgstr "Mes demandes"
+#: template/front/profile-sidebar.phtml:174
+msgid "Media"
+msgstr "Medias"
 
-#: template/front/profile-sidebar.phtml:104
-#: template/front/profile-sidebar.phtml:108
-msgid "My media"
-msgstr "Mes medias"
+#: template/front/profile-sidebar.phtml:179
+msgid "Messages"
+msgstr "Messages"
 
-#: template/front/profile-sidebar.phtml:169
-#: template/front/profile-sidebar.phtml:173
-msgid "My reviews/comments"
-msgstr "Mes avis/commentaires"
+#: template/front/profile-sidebar.phtml:181
+msgid "Notifications"
+msgstr "Notifications"
 
-#: template/front/profile-sidebar.phtml:199
-msgid "My account / Profile"
-msgstr "Mon compte/profil"
+#: template/front/profile-sidebar.phtml:186
+msgid "Support tickets"
+msgstr "Tickets Assistance"
 
-#: template/front/profile-sidebar.phtml:212
+#: template/front/profile-sidebar.phtml:191
+msgid "Orders"
+msgstr "Commandes"
+
+#: template/front/profile-sidebar.phtml:194
+msgid "Credit"
+msgstr "Crédits"
+
+#: template/front/profile-sidebar.phtml:200
+msgid "Videos"
+msgstr "Vidéos"
+
+#: template/front/profile-sidebar.phtml:210
+msgid "Account / Profile"
+msgstr "Compte/profil"
+
+#: template/front/profile-sidebar.phtml:223
 msgid "Manage account"
 msgstr "Gérer mon compte"
 
@@ -1477,17 +1501,14 @@ msgstr "Demandez le renvoi du mail d'activation"
 msgid "Already sent"
 msgstr "Déja envoyé"
 
+#~ msgid "My requests"
+#~ msgstr "Mes demandes"
+
 #~ msgid "My stats"
 #~ msgstr "Mes stats"
 
 #~ msgid "Reviews & Comments"
 #~ msgstr "Commentaires/Avis"
-
-#~ msgid "Items"
-#~ msgstr "Eléments"
-
-#~ msgid "Favorites"
-#~ msgstr "Favoris"
 
 #~ msgid ""
 #~ "Password must contain at lease one uppercase letter, one lowercase letter "
