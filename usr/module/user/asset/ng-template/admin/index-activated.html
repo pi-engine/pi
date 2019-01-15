@@ -59,13 +59,13 @@
         <input type="checkbox" style="margin-right: 6px;"
                data-ng-model="allChecked" ng-change="markAll()">
         <div class="btn-group">
-            <button class="btn btn-default" data-ng-click="enableBatchAction()">
+            <button class="btn btn-secondary" data-ng-click="enableBatchAction()">
                 {{'ENABLE' | translate}}
             </button>
-            <button class="btn btn-default" data-ng-click="disableBatchAction()">
+            <button class="btn btn-secondary" data-ng-click="disableBatchAction()">
                 {{'DISABLE' | translate}}
             </button>
-            <button class="btn btn-default" data-ng-click="deleteBatchAction()">
+            <button class="btn btn-secondary" data-ng-click="deleteBatchAction()">
                 {{'DELETE' | translate}}
             </button>
         </div>
@@ -137,10 +137,10 @@
                 </td>
                 <td>
                     <ul class="list-inline">
-                        <li data-ng-if="user.front_roles">
+                        <li data-ng-if="user.front_roles" class="list-inline-item">
                             <i class="fa fa-user"></i> {{user.front_roles}}
                         </li>
-                        <li data-ng-if="user.admin_roles">
+                        <li data-ng-if="user.admin_roles" class="list-inline-item">
                             <i class="fa fa-user-md"></i> {{user.admin_roles}}
                         </li>
                     </ul>

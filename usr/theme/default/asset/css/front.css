@@ -81,27 +81,27 @@ a:hover {
     margin: 0;
 }
 
-.pi-panel-subline {
+.pi-card-subline {
     float: right;
 }
 
-.pi-panel-tab .panel-heading {
+.pi-card-tab .card-heading {
     padding: 0;
     height: 40px;
 }
 
-.pi-panel-tab-indicators {
+.pi-card-tab-indicators {
     margin: 0 0 -1px 0;
     padding: 0;
     height: 40px;
     line-height: 40px;
 }
 
-.pi-panel-tab-indicators li {
+.pi-card-tab-indicators li {
     display: inline-block;
 }
 
-.pi-panel-tab-indicators a {
+.pi-card-tab-indicators a {
     padding: 0 15px;
     cursor: pointer;
     display: block;
@@ -110,22 +110,22 @@ a:hover {
     border-right: 1px solid transparent;
 }
 
-.pi-panel-tab-indicators li:first-child a {
+.pi-card-tab-indicators li:first-child a {
     border-left: none;
 }
 
-.pi-panel-tab-indicators .active a {
+.pi-card-tab-indicators .active a {
     font-weight: bold;
     border-color: #ddd;
     background: #fff;
 }
 
-.panel-body > :last-child {
+.card-body > :last-child {
     margin-bottom: 0;
 }
 
-.panel-body ul,
-.panel-body ol {
+.card-body ul,
+.card-body ol {
     /* margin-left: -20px; */
 }
 
@@ -327,9 +327,7 @@ form .icon-question-sign {
 /* header */
 .pi-header h1,
 .pi-header h2 {
-    padding: 1px;
-    margin: 1px;
-    font-size: 35px;
+
 }
 
 .pi-header .navbar-default {

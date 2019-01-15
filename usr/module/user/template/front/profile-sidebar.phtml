@@ -258,11 +258,11 @@ $this->sticky();
         <?php } ?>
     </div>
 
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                    <a class="btn btn-block collapsed" role="button" data-toggle="collapse"
+    <div class="card-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="card card-body bg-light mb-3">
+            <div class="card-heading" role="tab" id="headingOne">
+                <h4 class="card-title">
+                    <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
                        data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         <?php _e('My account / Profile') ?> <span class='caret'></span>
                     </a>
@@ -270,7 +270,7 @@ $this->sticky();
             </div>
 
             <div id="collapseOne"
-                 class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
+                 class="card-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
                  role="tabpanel">
                  <div class="list-group">
                     <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>" title="<?php echo _b('Manage account'); ?>"

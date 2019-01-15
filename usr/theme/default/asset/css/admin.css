@@ -3,9 +3,7 @@ html {
     position: relative;
 }
 
-body {
-    padding-top: 50px;
-}
+body {}
 
 a {
     cursor: pointer;
@@ -188,7 +186,7 @@ form .icon-question-sign {
 /* Util */
 
 /* navbar custom */
-.navbar {
+/* .navbar {
     background: #0082bf;
     border-radius: 0;
     padding-right: 20px;
@@ -253,12 +251,12 @@ form .icon-question-sign {
 /* Sidebar */
 .pi-sidebar {
     position: absolute;
-    top: 51px;
+    top: 58px;
     left: 0;
     bottom: 0;
     height: 100%;
     overflow-y: auto;
-    width: 190px;
+    width: 260px;
     background: #f2f2f2;
     border-right: 1px solid #ddd;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
@@ -365,7 +363,7 @@ form .icon-question-sign {
 .pi-content {
     overflow: hidden;
     padding: 20px 20px 0 0;
-    margin-left: 210px;
+    margin-left: 280px;
 }
 
 .page-header {
@@ -390,7 +388,7 @@ form .icon-question-sign {
     padding: 15px 20px;
     position: absolute;
     bottom: 0;
-    left: 210px;
+    left: 280px;
     right: 20px;
 }
 
@@ -553,7 +551,7 @@ form .icon-question-sign {
 }
 
 /* Boostrap custom */
-.panel-body > :last-child {
+.card-body > :last-child {
     margin-bottom: 0;
 }
 
@@ -566,7 +564,7 @@ form .icon-question-sign {
     margin-bottom: 20px;
 }
 
-.help-block {
+.form-text {
     margin-bottom: 9px;
 }
 

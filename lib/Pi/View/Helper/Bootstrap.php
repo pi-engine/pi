@@ -73,7 +73,7 @@ class Bootstrap extends AssetCanonize
     ) {
         $files = $this->canonize($files, $attributes);
 
-        $bootstrap = 'css/bootstrap.min.css';
+        $bootstrap = 'css/bootstrap.css';
 
         if (!static::$rootLoaded && $rootLoaded) {
             $file = static::DIR_ROOT . '/' . $bootstrap;

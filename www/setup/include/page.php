@@ -8,28 +8,28 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
-$pages = array(
-    'presetting'     => array(
+$pages = [
+    'presetting' => [
         'title' => _s('Presettings'),
-        'desc'  => _s('Presettings and server configuration detection')
-    ),
-    'directive'     => array(
+        'desc'  => _s('Presettings and server configuration detection'),
+    ],
+    'directive'  => [
         'title' => _s('Basic'),
-        'desc'  => _s('Basic settings for website')
-    ),
-    'database'      => array(
+        'desc'  => _s('Basic settings for website'),
+    ],
+    'database'   => [
         'title' => _s('Database'),
-        'desc'  => _s('Database settings')
-    ),
-    'admin'         => array(
+        'desc'  => _s('Database settings'),
+    ],
+    'admin'      => [
         'title' => _s('Administrator'),
-        'desc'  => _s('System and administrator account creation')
-    ),
-    'finish'        => array(
+        'desc'  => _s('System and administrator account creation'),
+    ],
+    'finish'     => [
         'title' => _s('Finish'),
         'desc'  => _s('Finishing installation process'),
         'hide'  => true,
-    ),
-);
+    ],
+];
 
 return $pages;

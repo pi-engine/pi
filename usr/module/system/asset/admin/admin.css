@@ -30,7 +30,7 @@ tr:hover .row-actions {
     vertical-align: top;
 }
 
-#popup-form .control-label {
+#popup-form .col-form-label {
     width: 110px;
 }
 
@@ -284,7 +284,7 @@ b.caret-big:hover {
     display: block;
 }
 
-.menu-edit-form .control-label {
+.menu-edit-form .col-form-label {
     width: 90px;
 }
 
