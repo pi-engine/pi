@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-01-15 19:00+0100\n"
-"PO-Revision-Date: 2019-01-15 19:00+0100\n"
+"POT-Creation-Date: 2019-01-15 19:17+0100\n"
+"PO-Revision-Date: 2019-01-15 19:18+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -1325,8 +1325,8 @@ msgid "Pro area"
 msgstr "Espace Pro"
 
 #: template/front/profile-sidebar.phtml:120
-msgid "Items"
-msgstr "Eléments"
+msgid "List"
+msgstr "Liste"
 
 #: template/front/profile-sidebar.phtml:147
 msgid "Description"
@@ -1500,6 +1500,9 @@ msgstr "Demandez le renvoi du mail d'activation"
 #: template/front/register-index.phtml:179
 msgid "Already sent"
 msgstr "Déja envoyé"
+
+#~ msgid "Items"
+#~ msgstr "Eléments"
 
 #~ msgid "My requests"
 #~ msgstr "Mes demandes"

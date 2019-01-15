@@ -117,7 +117,7 @@ $this->sticky();
                 <div id="collapseProArea" class="panel-collapse collapse <?php echo $openProArea ? 'in' : '' ?>" role="tabpanel">
                     <div class="list-group">
                         <?php if ($guideConfig['manage_active']) { ?>
-                            <a title="<?php _e('Items'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'manage' && $action == 'dashboard') { echo ' active'; } ?>"><span class="indent"></span><?php _e('Items'); ?></a>
+                            <a title="<?php _e('List'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'manage' && $action == 'dashboard') { echo ' active'; } ?>"><span class="indent"></span><?php _e('List'); ?></a>
                         <?php } ?>
                         <?php if ($guideConfig['manage_active'] && isset($navigationItemList) && $action != 'add') { ?>
                             <div class="" id="accordionItem" role="tablist" aria-multiselectable="true">
