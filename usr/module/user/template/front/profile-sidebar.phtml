@@ -30,11 +30,54 @@ $this->sticky();
             </a>
         </div>
     </div>
+    <?php if (in_array('guide', $userConfig['side_menu']) && Pi::service('module')->isActive('guide')) { ?>
+        <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
+        <?php if ($guideConfig['manage_active'] && isset($navigationItemList) && $action != 'add') { ?>
+            <div class="panel-group" id="accordionItem" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab">
+                        <h4 class="panel-title">
+                            <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
+                               data-parent="#accordion" href="#collapseItem" aria-expanded="true" aria-controls="collapseItem">
+                                <span id="accordionItemTitle"><?php echo $currentTitle ?></span> <span class='caret'></span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseItem"
+                         class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
+                         role="tabpanel">
+                        <div class="list-group">
+                            <?php foreach ($navigationItemList as $itemId => $itemTitle) : ?>
 
+                                <a href="<?php echo $this->url(null, array('item' => $itemId), null, true) ?>" title="<?php echo $itemTitle ?>"
+                                   class="list-group-item<?php if ($controller == 'profile') {
+                                       echo ' active';
+                                   } ?>">
+                                    <?php echo $itemTitle ?>
+                                </a>
+
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group">
+                <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
+                    <a title="<?php _e('Description'); ?>" href="<?php echo $this->url('', array('module' => 'guide', 'controller' => 'manage', 'action' => 'edit', 'item' => $item['id'])); ?>" class="list-group-item <?php echo $action == "add" || $action == "edit" || $action == "additional" || $action == "amenities" || $action == "attach" ? 'active' : '' ?>"><?php _e('Description'); ?></a>
+                    <?php if ($config['manage_service']) { ?>
+                        <a title="<?php _e('Prices'); ?>"  href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>" class="list-group-item <?php echo $action == "payment" || $action == "service" || $action == "pricelist" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><?php _e('Prices'); ?></a>
+                    <?php } ?>
+                    <?php if ($config['manage_service'] || $config['calendar_active']) { ?>
+                        <a title="<?php _e('Management'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'sales', 'item' => $item['id'])); ?>" class="list-group-item <?php echo $action == "sales" || $action == "calendar" || $action == "boost" || $action == "event-list"  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><?php _e('Management'); ?></a>
+                    <?php } ?>
+                    <a title="<?php _e('Statistics'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => $item['id'])); ?>" class="list-group-item <?php echo $controller == "stats"  ? 'active' : '' ?>"><?php _e('Statistics'); ?></a>
+                <?php } ?>
+            </div>
+        <?php } ?>
+    <?php } ?>
 
     <div class="list-group">
         <?php if (in_array('guide', $userConfig['side_menu']) && Pi::service('module')->isActive('guide')) { ?>
-            <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
             <?php if ($guideConfig['manage_active']) { ?>
                 <a title="<?php _e('My items'); ?>"
                    href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>"
@@ -65,25 +108,6 @@ $this->sticky();
                } ?>"><?php _e('My media'); ?></a>
         <?php } ?>
 
-        <?php if (in_array('stats', $userConfig['side_menu']) && Pi::service('module')->isActive('guide')) { ?>
-
-            <?php
-                // Get uid
-                $uid = Pi::user()->getId();
-                // Check is owner or not
-                $owner = Pi::model('owner', 'guide')->find($uid, 'uid');
-            ?>
-
-            <?php if($owner) : ?>
-
-                <a title="<?php _e('My stats'); ?>"
-                   href="<?php echo Pi::url($this->url('default', ['module' => 'guide', 'controller' => 'stats', 'action' => 'index'])); ?>"
-                   class="list-group-item<?php if (isset($sideActive) && $sideActive == 'stats') {
-                       echo ' active';
-                   } ?>"><?php _e('My stats'); ?>
-                </a>
-            <?php endif; ?>
-        <?php } ?>
 
         <?php if (in_array('message', $userConfig['side_menu']) && Pi::service('module')->isActive('message')) { ?>
             <?php $message = _number(Pi::api('api', 'message')->getUnread($uid, 'message')); ?>
@@ -181,7 +205,7 @@ $this->sticky();
                  class="card-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
                  role="tabpanel">
                  <div class="list-group">
-                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>" title="<?php echo _b('Manage account'); ?>" 
+                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>" title="<?php echo _b('Manage account'); ?>"
                         class="list-group-item<?php if ($controller == 'profile') {
                            echo ' active';
                        } ?>">
