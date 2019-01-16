@@ -98,6 +98,8 @@ $this->sticky();
             $openProArea = true;
         } else if ($module == "guide" && $controller == 'manage' && $action == 'dashboard') {
             $openProArea = true;
+        } else if ($module == "guide" && $controller == 'stock' && $action == 'index') {
+            $openProArea = true;
         }
         ?>
 
@@ -118,9 +120,10 @@ $this->sticky();
                     <div class="list-group">
                         <?php if ($guideConfig['manage_active']) { ?>
                             <a title="<?php _e('List'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'manage' && $action == 'dashboard') { echo ' active'; } ?>"><span class="indent"></span><?php _e('List'); ?></a>
+                            <a title="<?php _e('Stock'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'stock', 'action' => 'index'])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'stock' && $action == 'index') { echo ' active'; } ?>"><span class="indent"></span><?php _e('Stock'); ?></a>
                         <?php } ?>
                         <?php if ($guideConfig['manage_active'] && isset($navigationItemList) && $action != 'add') { ?>
-                            <div class="" id="accordionItem" role="tablist" aria-multiselectable="true">
+                            <div id="accordionItem" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">

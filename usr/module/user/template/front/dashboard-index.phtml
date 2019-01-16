@@ -23,6 +23,7 @@ $this->jQuery();
                     <?php echo $bookingBlockOutput ?>
                 <?php endif; ?>
                 <?php if (Pi::service('module')->isActive('guide')) { ?>
+                    <?php echo $this->widget('guide-stock') ?>
                     <?php echo $this->widget('guide-dashboard-items') ?>
                 <?php } ?>
             </div>
