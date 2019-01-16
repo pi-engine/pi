@@ -482,3 +482,38 @@
     display: inline-block;
     width: 18px
 }
+
+.list-group-item > .badge{
+    float:none;
+    margin-right:1px;
+}
+
+
+.accordionItemTitle {
+    width: calc(100% - 10px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    display: inline-block
+}
+.indent {
+    padding-left: 25px
+}
+
+#accordionItem .panel-heading {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd
+}
+
+#accordionItem h4 {
+    background: #fff;
+    padding: 10px;
+}
+
+#accordionItem h4 a {
+    background: #fff;
+    border: 1px solid #FFBF00;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 20px;
+}
