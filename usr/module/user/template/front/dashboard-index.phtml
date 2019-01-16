@@ -22,12 +22,19 @@ $this->jQuery();
                     <h2><?php _e('Your pending requests'); ?></h2>
                     <?php echo $bookingBlockOutput ?>
                 <?php endif; ?>
+
+            </div>
+            <div class="col-md-12">
                 <?php if (Pi::service('module')->isActive('guide')) { ?>
                     <?php echo $this->widget('guide-stock') ?>
-                    <?php echo $this->widget('guide-dashboard-items') ?>
+                    <?php echo $this->widget('guide-dashboard-items', array('only-contribs' => true)) ?>
                 <?php } ?>
             </div>
-
+            <div class="col-md-8">
+                <?php if (Pi::service('module')->isActive('guide')) { ?>
+                    <?php echo $this->widget('guide-dashboard-contributions') ?>
+                <?php } ?>
+            </div>
             <?php $userConfig = Pi::service('registry')->config->read('user'); ?>
 
             <?php if ($userConfig['shortcuts_enable']) { ?>
