@@ -17,11 +17,15 @@ $this->jQuery();
 
             <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>
 
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <?php if ($bookingBlockOutput) : ?>
                     <h2><?php _e('Your pending requests'); ?></h2>
                     <?php echo $bookingBlockOutput ?>
                 <?php endif; ?>
+
+            </div>
+            <div class="col-md-6">
+                <?php echo $this->widget('guide-required-actions') ?>
 
             </div>
             <div class="col-md-10">
