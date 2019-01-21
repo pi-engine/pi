@@ -483,12 +483,6 @@
     width: 18px
 }
 
-.list-group-item > .badge{
-    float:none;
-    margin-right:1px;
-}
-
-
 .accordionItemTitle {
     width: calc(100% - 10px);
     overflow: hidden;
@@ -517,3 +511,11 @@
     padding: 5px 10px;
     border-radius: 20px;
 }
+
+#accordionItem h4 a:hover {
+    background: #FFBF00
+}
+
+#accordionAccount h4 a {
+    padding:6px 15px!important
+} 

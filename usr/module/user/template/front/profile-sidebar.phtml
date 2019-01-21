@@ -47,12 +47,12 @@ $this->sticky();
     ?>
 
     <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel-group" id="accordionMember" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne">
                 <h4 class="panel-title">
                     <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
-                       data-parent="#accordion" href="#collapseMemberArea" aria-expanded="true" aria-controls="collapseMemberArea">
+                       data-parent="#accordionMember" href="#collapseMemberArea" aria-expanded="true" aria-controls="collapseMemberArea">
                         <span class="accordionItemTitle">
                             <span class="fa fa-refresh"></span>&nbsp; <?php _e('Member area') ?>
                         </span>
@@ -108,7 +108,7 @@ $this->sticky();
                 <div class="panel-heading" role="tab">
                     <h4 class="panel-title">
                         <a class="btn  btn-block collapsed" role="button" data-toggle="collapse"
-                           data-parent="#accordion" href="#collapseProArea" aria-expanded="true" aria-controls="collapseProArea">
+                           data-parent="#accordionPro" href="#collapseProArea" aria-expanded="true" aria-controls="collapseProArea">
                             <span class="accordionItemTitle">
                                 <span class="fa fa-flag-checkered"></span>&nbsp; <?php _e('Pro area') ?>
                             </span>
@@ -128,7 +128,7 @@ $this->sticky();
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
                                             <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
-                                               data-parent="#accordion" href="#collapseItem" aria-expanded="true" aria-controls="collapseItem">
+                                               data-parent="#accordionItem" href="#collapseItem" aria-expanded="true" aria-controls="collapseItem">
                                                 <span class="accordionItemTitle"><?php echo $currentTitle ?></span> <span class='caret'></span>
                                             </a>
                                         </h4>
@@ -179,22 +179,22 @@ $this->sticky();
 
         <?php if (in_array('message', $userConfig['side_menu']) && Pi::service('module')->isActive('message')) { ?>
             <?php $message = _number(Pi::api('api', 'message')->getUnread($uid, 'message')); ?>
-            <a title="<?php _e('Messages'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'message') { echo ' active'; } ?>"><span class="badge"><?php echo $message; ?></span> <?php _e('Messages'); ?></a>
+            <a title="<?php _e('Messages'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'message') { echo ' active'; } ?>"><span class="fa fa-envelope-o"></span> <?php _e('Messages'); ?> <span class="badge"><?php echo $message; ?></span> </a>
             <?php $notification = _number(Pi::api('api', 'message')->getUnread($uid, 'notification')); ?>
-            <a title="<?php _e('Notifications'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'message', 'controller' => 'notify', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'notification') { echo ' active'; } ?>"><span class="badge"><?php echo $notification; ?></span><?php _e('Notifications'); ?></a>
+            <a title="<?php _e('Notifications'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'message', 'controller' => 'notify', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'notification') { echo ' active'; } ?>"><span class="fa fa-bell-o"></span> <?php _e('Notifications'); ?> <span class="badge"><?php echo $notification; ?></span></a>
         <?php } ?>
 
         <?php if (in_array('support', $userConfig['side_menu']) && Pi::service('module')->isActive('support')) { ?>
             <?php $support = _number(Pi::api('ticket', 'support')->getCount($uid)); ?>
-            <a title="<?php _e('Support tickets'); ?>" href="<?php echo Pi::url($this->url('support', ['module' => 'support', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'support') { echo ' active'; } ?>"><span class="badge"><?php echo $support; ?></span> <?php _e('Support tickets'); ?></a>
+            <a title="<?php _e('Support tickets'); ?>" href="<?php echo Pi::url($this->url('support', ['module' => 'support', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'support') { echo ' active'; } ?>"><span class="fa fa-ticket"></span> <?php _e('Support tickets'); ?> <span class="badge"><?php echo $support; ?></span> </a>
         <?php } ?>
 
         <?php if (in_array('order', $userConfig['side_menu']) && Pi::service('module')->isActive('order')) { ?>
             <?php $orderConfig = Pi::service('registry')->config->read('order'); ?>
-            <a title="<?php _e('Orders'); ?>" href="<?php echo Pi::url($this->url('order', ['module' => 'order', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'order') { echo ' active'; } ?>"><span class="fa fa-money"></span>&nbsp; <?php _e('Orders'); ?></a>
+            <a title="<?php _e('Orders'); ?>" href="<?php echo Pi::url($this->url('order', ['module' => 'order', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'order') { echo ' active'; } ?>"><span class="fa fa-money"></span>&nbsp;<?php _e('Orders'); ?></a>
             <?php if ($orderConfig['credit_active']) { ?>
                 <?php $credit = Pi::api('credit', 'order')->getCredit($uid); ?>
-                <a title="<?php _e('Credit'); ?>" href="<?php echo Pi::url($this->url('order', ['module' => 'order', 'controller' => 'credit', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'credit') { echo ' active'; } ?>"><span class="badge"><?php echo $credit['amount_view']; ?></span> <?php _e('Credit'); ?></a>
+                <a title="<?php _e('Credit'); ?>" href="<?php echo Pi::url($this->url('order', ['module' => 'order', 'controller' => 'credit', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'credit') { echo ' active'; } ?>"><span class="fa fa-dollar"></span> <?php _e('Credit'); ?> <span class="badge"><?php echo $credit['amount_view']; ?></span> </a>
             <?php } ?>
         <?php } ?>
 
@@ -204,14 +204,14 @@ $this->sticky();
         <?php } ?>
     </div>
 
-    <div class="card-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="card-group" id="accordionAccount" role="tablist" aria-multiselectable="true">
         <div class="card card-body bg-light mb-3">
             <div class="card-heading" role="tab" id="headingOne">
                 <h4 class="card-title">
                     <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
-                       data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                       data-parent="#accordionAccount" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         <span class="accordionItemTitle text-left">
-                            <span class="fa fa-user"></span> <?php _e('Account / Profile') ?>
+                            <span class="fa fa-user"></span>&nbsp; <?php _e('Account / Profile') ?>
                         </span>
                         <span class='caret'></span>
                     </a>
