@@ -505,7 +505,7 @@
 }
 
 #accordionItem h4 a {
-    background: #fff;
+    background: #FFBF00;
     border: 1px solid #FFBF00;
     margin: 10px 0;
     padding: 5px 10px;
@@ -513,7 +513,7 @@
 }
 
 #accordionItem h4 a:hover {
-    background: #FFBF00
+    background: #fff
 }
 
 #accordionAccount h4 a {
