@@ -14,31 +14,29 @@ $this->jQuery();
 
 
         <div class="row">
+            <?php if (Pi::service('module')->isActive('guide')) { ?>
+                <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>
 
-            <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>
+                <div class="col-md-6">
+                    <?php if ($bookingBlockOutput) : ?>
+                        <h2><?php _e('Your pending requests'); ?></h2>
+                        <?php echo $bookingBlockOutput ?>
+                    <?php endif; ?>
 
-            <div class="col-md-6">
-                <?php if ($bookingBlockOutput) : ?>
-                    <h2><?php _e('Your pending requests'); ?></h2>
-                    <?php echo $bookingBlockOutput ?>
-                <?php endif; ?>
+                </div>
+                <div class="col-md-6">
+                    <?php echo $this->widget('guide-required-actions') ?>
 
-            </div>
-            <div class="col-md-6">
-                <?php echo $this->widget('guide-required-actions') ?>
+                </div>
+                <div class="col-md-10">
 
-            </div>
-            <div class="col-md-10">
-                <?php if (Pi::service('module')->isActive('guide')) { ?>
-                    <?php echo $this->widget('guide-planning') ?>
-                    <?php echo $this->widget('guide-dashboard-items', array('only-contribs' => true)) ?>
-                <?php } ?>
-            </div>
-            <div class="col-md-8">
-                <?php if (Pi::service('module')->isActive('guide')) { ?>
-                    <?php echo $this->widget('guide-dashboard-contributions') ?>
-                <?php } ?>
-            </div>
+                        <?php echo $this->widget('guide-planning') ?>
+                        <?php echo $this->widget('guide-dashboard-items', array('only-contribs' => true)) ?>
+                </div>
+                <div class="col-md-8">
+                        <?php echo $this->widget('guide-dashboard-contributions') ?>
+                </div>
+            <?php } ?>
             <?php $userConfig = Pi::service('registry')->config->read('user'); ?>
 
             <?php if ($userConfig['shortcuts_enable']) { ?>
