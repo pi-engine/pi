@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-01-15 19:17+0100\n"
-"PO-Revision-Date: 2019-01-15 19:18+0100\n"
+"POT-Creation-Date: 2019-01-24 13:19+0100\n"
+"PO-Revision-Date: 2019-01-24 13:20+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -15,8 +15,8 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: config/config.php:561 config/config.php:589 config/config.php:617
-#: config/config.php:645
+#: config/config.php:560 config/config.php:588 config/config.php:616
+#: config/config.php:644
 #, php-format
 msgid "Callback urls is : %s"
 msgstr "Callback urls est : %s"
@@ -116,25 +116,25 @@ msgstr "Tableau de Bord"
 #: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:182
 #: src/Controller/Front/DashboardController.php:46
 #: template/front/account-index.phtml:11
-#: template/front/profile-sidebar.phtml:230
+#: template/front/profile-sidebar.phtml:237
 msgid "Account settings"
 msgstr "Paramétrages du compte"
 
 #: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:183
 #: template/front/avatar-index.phtml:45
-#: template/front/profile-sidebar.phtml:242
+#: template/front/profile-sidebar.phtml:249
 #: template/front/profile-topbar.phtml:157
 msgid "Change avatar"
 msgstr "Modifier sa photo"
 
 #: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:11
-#: template/front/profile-sidebar.phtml:258
+#: template/front/profile-sidebar.phtml:265
 msgid "Privacy"
 msgstr "Confidentialité"
 
 #: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:192
 #: template/front/password-index.phtml:15
-#: template/front/profile-sidebar.phtml:236
+#: template/front/profile-sidebar.phtml:243
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
@@ -1135,58 +1135,58 @@ msgstr "Votre tableau de bord"
 msgid "Your pending requests"
 msgstr "Vos demandes en attente"
 
-#: template/front/dashboard-index.phtml:35
+#: template/front/dashboard-index.phtml:45
 msgid "Shortcuts"
 msgstr "Raccourcis"
 
-#: template/front/dashboard-index.phtml:42
-#: template/front/dashboard-index.phtml:46
+#: template/front/dashboard-index.phtml:52
+#: template/front/dashboard-index.phtml:56
 msgid "My items"
 msgstr "Mes éléments"
 
-#: template/front/dashboard-index.phtml:55
-#: template/front/dashboard-index.phtml:59
-#: template/front/profile-sidebar.phtml:167
+#: template/front/dashboard-index.phtml:65
+#: template/front/dashboard-index.phtml:69
+#: template/front/profile-sidebar.phtml:171
 msgid "Sponsorship"
 msgstr "Parrainage"
 
-#: template/front/dashboard-index.phtml:70
-#: template/front/dashboard-index.phtml:74
+#: template/front/dashboard-index.phtml:80
+#: template/front/dashboard-index.phtml:84
 msgid "My messages"
 msgstr "Mes messages"
 
-#: template/front/dashboard-index.phtml:80
-#: template/front/dashboard-index.phtml:84
+#: template/front/dashboard-index.phtml:90
+#: template/front/dashboard-index.phtml:94
 msgid "My notifications"
 msgstr "Mes notifications"
 
-#: template/front/dashboard-index.phtml:93
-#: template/front/dashboard-index.phtml:97
+#: template/front/dashboard-index.phtml:103
+#: template/front/dashboard-index.phtml:107
 msgid "My events"
 msgstr "Mes évènements"
 
-#: template/front/dashboard-index.phtml:106
-#: template/front/dashboard-index.phtml:110
+#: template/front/dashboard-index.phtml:116
+#: template/front/dashboard-index.phtml:120
 msgid "My orders"
 msgstr "Mes commandes"
 
-#: template/front/dashboard-index.phtml:117
-#: template/front/dashboard-index.phtml:121
+#: template/front/dashboard-index.phtml:127
+#: template/front/dashboard-index.phtml:131
 msgid "My credit"
 msgstr "Mes Crédits"
 
-#: template/front/dashboard-index.phtml:131
-#: template/front/dashboard-index.phtml:135
+#: template/front/dashboard-index.phtml:141
+#: template/front/dashboard-index.phtml:145
 msgid "My favorites"
 msgstr "Mes favoris"
 
-#: template/front/dashboard-index.phtml:143
-#: template/front/dashboard-index.phtml:147
+#: template/front/dashboard-index.phtml:153
+#: template/front/dashboard-index.phtml:157
 msgid "My videos"
 msgstr "Mes Vidéos"
 
-#: template/front/dashboard-index.phtml:156
-#: template/front/dashboard-index.phtml:160
+#: template/front/dashboard-index.phtml:166
+#: template/front/dashboard-index.phtml:170
 msgid "My support tickets"
 msgstr "Mes tickets Assistance"
 
@@ -1320,63 +1320,71 @@ msgstr "Favoris"
 msgid "Reviews/comments"
 msgstr "Avis/commentaires"
 
-#: template/front/profile-sidebar.phtml:111
+#: template/front/profile-sidebar.phtml:113
 msgid "Pro area"
 msgstr "Espace Pro"
 
-#: template/front/profile-sidebar.phtml:120
+#: template/front/profile-sidebar.phtml:122
 msgid "List"
 msgstr "Liste"
 
-#: template/front/profile-sidebar.phtml:147
+#: template/front/profile-sidebar.phtml:123
+msgid "Planning"
+msgstr "Planning"
+
+#: template/front/profile-sidebar.phtml:150
 msgid "Description"
 msgstr "Description"
 
-#: template/front/profile-sidebar.phtml:149
+#: template/front/profile-sidebar.phtml:152
 msgid "Prices"
 msgstr "Tarifs"
 
-#: template/front/profile-sidebar.phtml:152
+#: template/front/profile-sidebar.phtml:155
 msgid "Management"
 msgstr "Gestion"
 
-#: template/front/profile-sidebar.phtml:154
+#: template/front/profile-sidebar.phtml:157
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: template/front/profile-sidebar.phtml:174
+#: template/front/profile-sidebar.phtml:158
+msgid "Share"
+msgstr "Outils"
+
+#: template/front/profile-sidebar.phtml:178
 msgid "Media"
 msgstr "Medias"
 
-#: template/front/profile-sidebar.phtml:179
+#: template/front/profile-sidebar.phtml:183
 msgid "Messages"
 msgstr "Messages"
 
-#: template/front/profile-sidebar.phtml:181
+#: template/front/profile-sidebar.phtml:185
 msgid "Notifications"
 msgstr "Notifications"
 
-#: template/front/profile-sidebar.phtml:186
+#: template/front/profile-sidebar.phtml:190
 msgid "Support tickets"
 msgstr "Tickets Assistance"
 
-#: template/front/profile-sidebar.phtml:191
+#: template/front/profile-sidebar.phtml:195
 msgid "Orders"
 msgstr "Commandes"
 
-#: template/front/profile-sidebar.phtml:194
+#: template/front/profile-sidebar.phtml:198
 msgid "Credit"
 msgstr "Crédits"
 
-#: template/front/profile-sidebar.phtml:200
+#: template/front/profile-sidebar.phtml:204
 msgid "Videos"
 msgstr "Vidéos"
 
-#: template/front/profile-sidebar.phtml:210
+#: template/front/profile-sidebar.phtml:215
 msgid "Account / Profile"
 msgstr "Compte/profil"
 
-#: template/front/profile-sidebar.phtml:223
+#: template/front/profile-sidebar.phtml:230
 msgid "Manage account"
 msgstr "Gérer mon compte"
 
