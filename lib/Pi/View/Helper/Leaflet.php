@@ -235,7 +235,7 @@ EOT;
                     = <<<'EOT'
 let map = L.map('%s');
 L.tileLayer('%s', {attribution: '%s', maxZoom: 18}).addTo(map);
-L.Routing.control({waypoints: [%s],  routeWhileDragging: true, serviceUrl: '%s'}).addTo(map);
+L.Routing.control({waypoints: [%s],  routeWhileDragging: true, serviceUrl: '%s', createMarker: function() { return null; }}).addTo(map);
 EOT;
                 // Set item info on script
                 $script = sprintf(
@@ -246,8 +246,6 @@ EOT;
                     $latLng,
                     $params['routingUrl']
                 );
-
-
 
                 // Load js and css
                 $this->view->css(pi::url('static/vendor/leaflet/leaflet.css'));
@@ -315,7 +313,7 @@ EOT;
                 // Set point script
                 $htmlScript
                     = <<<'EOT'
-let map = L.map('%s', {center: [%s, %s],zoom: %s});
+var map = L.map('%s', {center: [%s, %s],zoom: %s});
 L.tileLayer('%s', {attribution: '%s', maxZoom: 18}).addTo(map);
 %s
 EOT;
@@ -332,9 +330,17 @@ EOT;
                 );
 
                 // Load js and css
-                $this->view->css(pi::url('static/vendor/leaflet/leaflet.css'));
-                $this->view->footScript()->appendFile(pi::url('static/vendor/leaflet/leaflet.js'));
-                $this->view->footScript()->appendScript($script);
+                if (isset($params['supportRouting']) && $params['supportRouting']) {
+                    $this->view->css(pi::url('static/vendor/leaflet/leaflet.css'));
+                    $this->view->css(pi::url('static/vendor/leaflet/plugin/routing/leaflet-routing-machine.css'));
+                    $this->view->footScript()->appendFile(pi::url('static/vendor/leaflet/leaflet.js'));
+                    $this->view->footScript()->appendFile(pi::url('static/vendor/leaflet/plugin/routing/leaflet-routing-machine.js'));
+                    $this->view->footScript()->appendScript($script);
+                } else {
+                    $this->view->css(pi::url('static/vendor/leaflet/leaflet.css'));
+                    $this->view->footScript()->appendFile(pi::url('static/vendor/leaflet/leaflet.js'));
+                    $this->view->footScript()->appendScript($script);
+                }
                 break;
 
             case 'empty':
