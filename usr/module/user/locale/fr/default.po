@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-01-24 13:19+0100\n"
-"PO-Revision-Date: 2019-01-24 13:20+0100\n"
+"POT-Creation-Date: 2019-01-29 13:54+0100\n"
+"PO-Revision-Date: 2019-01-29 13:54+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -116,25 +116,25 @@ msgstr "Tableau de Bord"
 #: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:182
 #: src/Controller/Front/DashboardController.php:46
 #: template/front/account-index.phtml:11
-#: template/front/profile-sidebar.phtml:237
+#: template/front/profile-sidebar.phtml:240
 msgid "Account settings"
 msgstr "Paramétrages du compte"
 
 #: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:183
 #: template/front/avatar-index.phtml:45
-#: template/front/profile-sidebar.phtml:249
+#: template/front/profile-sidebar.phtml:252
 #: template/front/profile-topbar.phtml:157
 msgid "Change avatar"
 msgstr "Modifier sa photo"
 
 #: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:11
-#: template/front/profile-sidebar.phtml:265
+#: template/front/profile-sidebar.phtml:268
 msgid "Privacy"
 msgstr "Confidentialité"
 
 #: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:192
 #: template/front/password-index.phtml:15
-#: template/front/profile-sidebar.phtml:243
+#: template/front/profile-sidebar.phtml:246
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
@@ -1146,7 +1146,7 @@ msgstr "Mes éléments"
 
 #: template/front/dashboard-index.phtml:65
 #: template/front/dashboard-index.phtml:69
-#: template/front/profile-sidebar.phtml:171
+#: template/front/profile-sidebar.phtml:174
 msgid "Sponsorship"
 msgstr "Parrainage"
 
@@ -1337,54 +1337,58 @@ msgid "Description"
 msgstr "Description"
 
 #: template/front/profile-sidebar.phtml:152
-msgid "Prices"
-msgstr "Tarifs"
+msgid "Offers/Prices"
+msgstr "Offres/Tarifs"
 
 #: template/front/profile-sidebar.phtml:155
-msgid "Management"
-msgstr "Gestion"
+msgid "Grid Manager"
+msgstr "Grille Gestion"
 
-#: template/front/profile-sidebar.phtml:157
+#: template/front/profile-sidebar.phtml:158
+msgid "Bookings/Closings"
+msgstr "Résas/Fermetures"
+
+#: template/front/profile-sidebar.phtml:160
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: template/front/profile-sidebar.phtml:158
+#: template/front/profile-sidebar.phtml:161
 msgid "Share"
 msgstr "Outils"
 
-#: template/front/profile-sidebar.phtml:178
+#: template/front/profile-sidebar.phtml:181
 msgid "Media"
 msgstr "Medias"
 
-#: template/front/profile-sidebar.phtml:183
+#: template/front/profile-sidebar.phtml:186
 msgid "Messages"
 msgstr "Messages"
 
-#: template/front/profile-sidebar.phtml:185
+#: template/front/profile-sidebar.phtml:188
 msgid "Notifications"
 msgstr "Notifications"
 
-#: template/front/profile-sidebar.phtml:190
+#: template/front/profile-sidebar.phtml:193
 msgid "Support tickets"
 msgstr "Tickets Assistance"
 
-#: template/front/profile-sidebar.phtml:195
+#: template/front/profile-sidebar.phtml:198
 msgid "Orders"
 msgstr "Commandes"
 
-#: template/front/profile-sidebar.phtml:198
+#: template/front/profile-sidebar.phtml:201
 msgid "Credit"
 msgstr "Crédits"
 
-#: template/front/profile-sidebar.phtml:204
+#: template/front/profile-sidebar.phtml:207
 msgid "Videos"
 msgstr "Vidéos"
 
-#: template/front/profile-sidebar.phtml:215
+#: template/front/profile-sidebar.phtml:218
 msgid "Account / Profile"
 msgstr "Compte/profil"
 
-#: template/front/profile-sidebar.phtml:230
+#: template/front/profile-sidebar.phtml:233
 msgid "Manage account"
 msgstr "Gérer mon compte"
 
@@ -1508,6 +1512,14 @@ msgstr "Demandez le renvoi du mail d'activation"
 #: template/front/register-index.phtml:179
 msgid "Already sent"
 msgstr "Déja envoyé"
+
+#~ msgid "Management"
+#~ msgstr "Gestion"
+
+#, fuzzy
+#~| msgid "Bookings"
+#~ msgid "Openings/Bookings"
+#~ msgstr "Réservations"
 
 #~ msgid "Items"
 #~ msgstr "Eléments"
