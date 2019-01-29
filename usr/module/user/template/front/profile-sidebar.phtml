@@ -92,7 +92,7 @@ $this->sticky();
 
         <?php
         $openProArea = false;
-        if ($module == "guide" && $controller == 'manage' && in_array($action, array ('edit', 'service', 'sales', 'boost', 'additional', 'amenities', 'attach', 'payment', 'service', 'pricelist', 'sales', 'calendar', 'boost', 'event-list', 'share'))) {
+        if ($module == "guide" && $controller == 'manage' && in_array($action, array ('edit', 'service', 'sales', 'boost', 'additional', 'amenities', 'attach', 'payment', 'service', 'pricelist', 'sales', 'calendar', 'boost', 'event-list', 'tools'))) {
             $openProArea = true;
         } else if ($module == "guide" && $controller == 'stats' && $action == 'index') {
             $openProArea = true;
@@ -158,7 +158,7 @@ $this->sticky();
                                 <a title="<?php _e('Openings/Bookings'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'calendar', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "calendar" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="indent"></span><?php _e('Openings/Bookings'); ?></a>
                             <?php } ?>
                             <a title="<?php _e('Statistics'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $controller == "stats"  ? 'active' : '' ?>"><span class="indent"></span><?php _e('Statistics'); ?></a>
-                            <a title="<?php _e('Share'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'share', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "share"  ? 'active' : '' ?>"><span class="indent"></span><?php _e('Share'); ?></a>
+                            <a title="<?php _e('Tools'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'tools', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "tools"  ? 'active' : '' ?>"><span class="indent"></span><?php _e('Tools'); ?></a>
                         <?php } ?>
                     </div>
                 </div>
