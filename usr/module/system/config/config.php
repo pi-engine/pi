@@ -33,6 +33,14 @@ $config['category'] = [
         'title' => _t('Geo tags'),
     ],
     [
+        'name'  => 'google',
+        'title' => _t('Google'),
+    ],
+    [
+        'name'  => 'osm',
+        'title' => _t('Openstreetmap'),
+    ],
+    [
         'name'  => 'intl',
         'title' => _t('Internationalization'),
     ],
@@ -47,10 +55,6 @@ $config['category'] = [
     [
         'name'  => 'text',
         'title' => _t('Text processing'),
-    ],
-    [
-        'name'  => 're_captcha',
-        'title' => _t('ReCaptcha'),
     ],
     [
         'name'  => 'mail',
@@ -145,13 +149,6 @@ $config['item'] = [
         'edit'        => 'checkbox',
         'value'       => 0,
         'filter'      => 'int',
-        'category'    => 'general',
-    ],
-
-
-    'ga_account' => [
-        'title'       => _t('GA account'),
-        'description' => _t('Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to the code `UA-XXXXXXXX-X; XXXX.tld`.'),
         'category'    => 'general',
     ],
 
@@ -724,13 +721,31 @@ $config['item'] = [
         'category'    => 'geo_tag',
     ],
 
+    'ga_account' => [
+        'title'       => _t('GA account'),
+        'description' => _t('Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to the code `UA-XXXXXXXX-X; XXXX.tld`.'),
+        'edit'        => 'text',
+        'value'       => '',
+        'filter'      => 'string',
+        'category'    => 'google',
+    ],
+
+    'google_map_key' => [
+        'title'       => _t('Google map key'),
+        'description' => _t('Key for google map, get it from https://developers.google.com/maps/documentation/javascript/get-api-key'),
+        'edit'        => 'text',
+        'value'       => '',
+        'filter'      => 'string',
+        'category'    => 'google',
+    ],
+
     'captcha_public_key' => [
         'title'       => _t('ReCaptcha Site key'),
         'description' => _t('see https://www.google.com/recaptcha to create your public key dedicated to your website domain. Both keys are mandatory.'),
         'edit'        => 'text',
         'value'       => '',
         'filter'      => 'string',
-        'category'    => 're_captcha',
+        'category'    => 'google',
     ],
 
     'captcha_private_key' => [
@@ -739,7 +754,25 @@ $config['item'] = [
         'edit'        => 'text',
         'value'       => '',
         'filter'      => 'string',
-        'category'    => 're_captcha',
+        'category'    => 'google',
+    ],
+
+    'osm_tile' => [
+        'title'       => _t('Openstreetmap tile url'),
+        'description' => _t('Setup osm tile on your own server or use mapbox or openstreetmap servers'),
+        'edit'        => 'text',
+        'value'       => 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        'filter'      => 'string',
+        'category'    => 'osm',
+    ],
+
+    'osm_route' => [
+        'title'       => _t('Openstreetmap route url'),
+        'description' => _t('Setup osrm route project on your own server or use mapbox'),
+        'edit'        => 'text',
+        'value'       => 'https://router.project-osrm.org/route/v1',
+        'filter'      => 'string',
+        'category'    => 'osm',
     ],
 ];
 
