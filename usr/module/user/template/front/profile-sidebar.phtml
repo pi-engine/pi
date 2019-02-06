@@ -92,7 +92,7 @@ $this->sticky();
 
         <?php
         $openProArea = false;
-        if ($module == "guide" && $controller == 'manage' && in_array($action, array ('edit', 'service', 'sales', 'boost', 'additional', 'amenities', 'attach', 'payment', 'service', 'pricelist', 'sales', 'calendar', 'boost', 'event-list', 'tools'))) {
+        if ($module == "guide" && $controller == 'manage' && in_array($action, array ('edit', 'service', 'sales', 'boost', 'additional', 'amenities', 'attach', 'payment', 'service', 'pricelist', 'sales', 'calendar', 'boost', 'event-list', 'tools', 'children-policy'))) {
             $openProArea = true;
         } else if ($module == "guide" && $controller == 'stats' && $action == 'index') {
             $openProArea = true;
@@ -149,7 +149,7 @@ $this->sticky();
                         <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
                             <a title="<?php _e('Description'); ?>" href="<?php echo $this->url('', array('module' => 'guide', 'controller' => 'manage', 'action' => 'edit', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "add" || $action == "edit" || $action == "additional" || $action == "amenities" || $action == "attach" ? 'active' : '' ?>"><span class="indent"></span><?php _e('Description'); ?></a>
                             <?php if ($config['manage_service']) { ?>
-                                <a title="<?php _e('Offers/Prices'); ?>"  href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "payment" || $action == "service" || $action == "pricelist" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="indent"></span><?php _e('Offers/Prices'); ?></a>
+                                <a title="<?php _e('Offers/Prices'); ?>"  href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "payment" || $action == "service" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="indent"></span><?php _e('Offers/Prices'); ?></a>
                             <?php } ?>
                             <?php if ($config['manage_service']) { ?>
                                 <a title="<?php _e('Grid Manager'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'sales', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "sales" || $action == "boost" || $action == "event-list"  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="indent"></span><?php _e('Grid Manager'); ?></a>
