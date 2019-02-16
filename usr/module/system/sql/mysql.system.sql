@@ -105,7 +105,7 @@ CREATE TABLE `{core.config}` (
   `category`    VARCHAR(64)          NOT NULL    DEFAULT '', # Category name of configs
   `title`       VARCHAR(255)         NOT NULL    DEFAULT '',
   `value`       TEXT,
-  `description` TEXT                 NOT NULL    DEFAULT '',
+  `description` TEXT,
   `edit`        TEXT, # callback options for edit
   `filter`      VARCHAR(64)          NOT NULL    DEFAULT '',
   `order`       SMALLINT(5) UNSIGNED NOT NULL    DEFAULT '0',
