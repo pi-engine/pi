@@ -80,10 +80,11 @@ class FormPersianDatepicker extends FormInput
             $key = lcfirst(str_replace(' ', '', ucwords(str_replace(['_', '-'], ' ', $key))));
             if (is_array($val)) {
                 $dpOptions[] = $key . ': ' . json_encode($val);
+            } elseif (is_numeric($val)) {
+                $dpOptions[] = $key . ': ' . intval($val) . '';
             } else {
                 $dpOptions[] = $key . ': "' . $val . '"';
             }
-
         }
         $datapickerOptions = implode(',' . PHP_EOL, $dpOptions);
 
