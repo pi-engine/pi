@@ -64,9 +64,10 @@ $this->footScript()->appendScript($script);
 <div class="widget-owl-carousel">
     <div id="<?php echo $carouselId; ?>" class="owl-carousel owl-theme text-center clearfix <?php echo $class; ?>">
         <?php foreach ($items as $item) { ?>
+            <?php $caption = _escape($item['caption']); ?>
             <?php $href = !empty($item['link']) ? $item['link'] : 'javascript:void(0)'; ?>
             <a href="<?php echo $href; ?>" target="<?php echo $target; ?>">
-                <img src="<?php echo $item['image']; ?>" <?php echo $imgStyle; ?> />
+                <img src="<?php echo $item['image']; ?>" <?php echo $imgStyle; ?> alt="<?php echo $caption; ?>" />
             </a>
         <?php } ?>
     </div>
