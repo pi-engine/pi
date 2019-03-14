@@ -440,3 +440,50 @@
     background: #334398;
     color: #fff;
 }
+
+/* sidebar */
+.list-group-item.noborder {
+    border: none
+}
+
+#sticky-sidebar-manage a span.fa {
+    display: inline-block;
+    width: 18px
+}
+
+.accordionItemTitle {
+    width: calc(100% - 10px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    display: inline-block
+}
+.indent {
+    padding-left: 25px
+}
+
+#accordionItem .panel-heading {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd
+}
+
+#accordionItem h4 {
+    background: #fff;
+    padding: 10px;
+}
+
+#accordionItem h4 a {
+    background: #FFBF00;
+    border: 1px solid #FFBF00;
+    margin: 10px 0;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+#accordionItem h4 a:hover {
+    background: #fff
+}
+
+#accordionAccount h4 a {
+    padding:6px 15px!important
+} 

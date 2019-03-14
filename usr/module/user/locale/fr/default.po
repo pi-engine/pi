@@ -1,22 +1,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2018-09-19 15:39+0200\n"
-"PO-Revision-Date: 2018-09-19 15:39+0200\n"
+"POT-Creation-Date: 2019-01-29 16:04+0100\n"
+"PO-Revision-Date: 2019-01-29 16:04+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: config/config.php:560 config/config.php:590 config/config.php:620
-#: config/config.php:650
+#: config/config.php:560 config/config.php:588 config/config.php:616
+#: config/config.php:644
 #, php-format
 msgid "Callback urls is : %s"
 msgstr "Callback urls est : %s"
@@ -113,28 +113,28 @@ msgstr "Fil"
 msgid "Dashboard"
 msgstr "Tableau de Bord"
 
-#: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:140
+#: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:182
 #: src/Controller/Front/DashboardController.php:46
 #: template/front/account-index.phtml:11
-#: template/front/profile-sidebar.phtml:195
+#: template/front/profile-sidebar.phtml:240
 msgid "Account settings"
 msgstr "Paramétrages du compte"
 
 #: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:183
 #: template/front/avatar-index.phtml:45
-#: template/front/profile-sidebar.phtml:207
-#: template/front/profile-topbar.phtml:159
+#: template/front/profile-sidebar.phtml:252
+#: template/front/profile-topbar.phtml:157
 msgid "Change avatar"
 msgstr "Modifier sa photo"
 
 #: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:11
-#: template/front/profile-sidebar.phtml:223
+#: template/front/profile-sidebar.phtml:268
 msgid "Privacy"
 msgstr "Confidentialité"
 
 #: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:192
 #: template/front/password-index.phtml:15
-#: template/front/profile-sidebar.phtml:201
+#: template/front/profile-sidebar.phtml:246
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
@@ -150,8 +150,8 @@ msgid "Profile"
 msgstr "Profil"
 
 #: src/Api/Breadcrumbs.php:136 src/Api/Breadcrumbs.php:149
-#: src/Controller/Front/ProfileController.php:212
-#: src/Controller/Front/ProfileController.php:261
+#: src/Controller/Front/ProfileController.php:217
+#: src/Controller/Front/ProfileController.php:266
 msgid "Edit profile"
 msgstr "Editer le profi"
 
@@ -225,7 +225,7 @@ msgstr "Echec de l'ajout de l'activité"
 msgid "Timeline added successfully."
 msgstr "L'activité a été ajoutée avec succès."
 
-#: src/Controller/Front/AccountController.php:79
+#: src/Controller/Front/AccountController.php:90
 msgid ""
 "A confirmation email has been sent to you. Please check your email and "
 "confirm."
@@ -233,54 +233,58 @@ msgstr ""
 "Un mail de confirmation vous a été envoyé. Merci de vérifier vos mails, afin "
 "de confirmer votre inscription."
 
-#: src/Controller/Front/AccountController.php:82
+#: src/Controller/Front/AccountController.php:93
 msgid "It was failed to send you confirmation email. Please try later."
 msgstr "Le mail de confirmation n'est pas parti. Merci d'essayer plus tard."
 
-#: src/Controller/Front/AccountController.php:94
+#: src/Controller/Front/AccountController.php:110
 msgid "Email has been changed successfully."
 msgstr "L'adresse email a été modifiée avec succès."
 
-#: src/Controller/Front/AccountController.php:97
+#: src/Controller/Front/AccountController.php:113
 msgid "It was failed to save new email. Please try later."
 msgstr ""
 "La nouvelle adresse email n'a pas été enregistrée. Merci d'essayer plus tard."
 
-#: src/Controller/Front/AccountController.php:113
+#: src/Controller/Front/AccountController.php:129
 msgid "Name has been changed successfully."
 msgstr "Le nom a été modifié avec succès."
 
-#: src/Controller/Front/AccountController.php:116
+#: src/Controller/Front/AccountController.php:132
 msgid "It was failed to save new name. Please try later."
 msgstr "Le nouveau nom n'a pas été enregistré. Merci d'essayer plus tard."
 
-#: src/Controller/Front/AccountController.php:141
+#: src/Controller/Front/AccountController.php:159
+msgid "Newsletter setting has been changed successfully."
+msgstr "Le paramètre Newslettre a été modifié avec succès."
+
+#: src/Controller/Front/AccountController.php:183
 #: src/Controller/Front/DashboardController.php:47
 #: template/front/account-index.phtml:12
 msgid "Basic settings"
 msgstr "Paramètres Généraux"
 
-#: src/Controller/Front/AccountController.php:156
+#: src/Controller/Front/AccountController.php:198
 msgid "Invalid data provided for email change."
 msgstr "Données fournies pour modifier l'adresse email non valides."
 
-#: src/Controller/Front/AccountController.php:229
+#: src/Controller/Front/AccountController.php:276
 msgid "Email changed successfully."
 msgstr "L'adresse email été modifiée avec succès."
 
-#: src/Controller/Front/AccountController.php:243
+#: src/Controller/Front/AccountController.php:290
 msgid "Incorrect password."
 msgstr "Mot de passe incorrect."
 
-#: src/Controller/Front/AccountController.php:259
+#: src/Controller/Front/AccountController.php:306
 msgid "Password verified."
 msgstr "Mot de passe vérifé."
 
-#: src/Controller/Front/AccountController.php:275
+#: src/Controller/Front/AccountController.php:322
 msgid "Valid input."
 msgstr "Saisie non valide."
 
-#: src/Controller/Front/AccountController.php:323
+#: src/Controller/Front/AccountController.php:370
 #: src/Controller/Front/RegisterController.php:363
 msgid "Invalid input."
 msgstr "Saisie non valide."
@@ -600,34 +604,34 @@ msgstr ""
 "réseaux sociaux, et son activité sur le site"
 
 #: src/Controller/Front/ProfileController.php:156
-#: src/Controller/Front/ProfileController.php:236
-#: src/Controller/Front/ProfileController.php:287
-#: src/Controller/Front/ProfileController.php:426
+#: src/Controller/Front/ProfileController.php:241
+#: src/Controller/Front/ProfileController.php:292
+#: src/Controller/Front/ProfileController.php:431
 msgid "Profile group ID is invalid."
 msgstr "Le numéro de groupe de profil n'est pas valide."
 
-#: src/Controller/Front/ProfileController.php:190
+#: src/Controller/Front/ProfileController.php:195
 msgid "Profile updated successfully."
 msgstr "Profil mis à jour avec succès."
 
-#: src/Controller/Front/ProfileController.php:192
+#: src/Controller/Front/ProfileController.php:197
 msgid "Profile update failed."
 msgstr "Echec de la mise à jour du profil."
 
-#: src/Controller/Front/ProfileController.php:213
-#: src/Controller/Front/ProfileController.php:262
+#: src/Controller/Front/ProfileController.php:218
+#: src/Controller/Front/ProfileController.php:267
 msgid "Edit profile data."
 msgstr "Editer les informations du profil."
 
-#: src/Controller/Front/ProfileController.php:444
+#: src/Controller/Front/ProfileController.php:449
 msgid "Profile compound requires at least one set of data."
 msgstr "L'organisation du profil requiert au moins un jeu de données."
 
-#: src/Controller/Front/ProfileController.php:449
+#: src/Controller/Front/ProfileController.php:454
 msgid "Profile compound data was not deleted."
 msgstr "Les données de l'organisation du profil n'ont pas été supprimées."
 
-#: src/Controller/Front/ProfileController.php:470
+#: src/Controller/Front/ProfileController.php:475
 msgid "User ID or Profile group ID is invalid."
 msgstr ""
 "Le numéro utilisateur ou le numéro de groupe de profil n'est pas valide."
@@ -708,11 +712,16 @@ msgstr "Email"
 msgid "Display name"
 msgstr "Nom Affiché"
 
-#: src/Form/AccountForm.php:61 src/Form/RegisterForm.php:148
+#: src/Form/AccountForm.php:59
+#, php-format
+msgid "(updated on %s)"
+msgstr "Mise à jour le %s"
+
+#: src/Form/AccountForm.php:65 src/Form/RegisterForm.php:148
 msgid "Newsletter subscription"
 msgstr "Inscription Newslettre"
 
-#: src/Form/AccountForm.php:88 src/Form/CompoundForm.php:58
+#: src/Form/AccountForm.php:93 src/Form/CompoundForm.php:58
 #: src/Form/ConditionForm.php:86 src/Form/EditUserForm.php:45
 #: src/Form/EmailForm.php:58 src/Form/MemberForm.php:123
 #: src/Form/PasswordForm.php:87 src/Form/ProfileEditForm.php:42
@@ -1015,15 +1024,15 @@ msgstr ""
 msgid "Password"
 msgstr "Mot de passe"
 
-#: template/front/account-index.phtml:192
+#: template/front/account-index.phtml:209
 msgid "Email is required."
 msgstr "L'adresse email est exigée"
 
-#: template/front/account-index.phtml:235
+#: template/front/account-index.phtml:252
 msgid "Display name is required."
 msgstr "Le Nom Affiché est exigé"
 
-#: template/front/account-index.phtml:289
+#: template/front/account-index.phtml:306
 msgid "No change!"
 msgstr "Aucune modification !"
 
@@ -1126,79 +1135,58 @@ msgstr "Votre tableau de bord"
 msgid "Your pending requests"
 msgstr "Vos demandes en attente"
 
-#: template/front/dashboard-index.phtml:35
+#: template/front/dashboard-index.phtml:45
 msgid "Shortcuts"
 msgstr "Raccourcis"
 
-#: template/front/dashboard-index.phtml:42
-#: template/front/dashboard-index.phtml:46
-#: template/front/profile-sidebar.phtml:39
-#: template/front/profile-sidebar.phtml:43
+#: template/front/dashboard-index.phtml:52
+#: template/front/dashboard-index.phtml:56
 msgid "My items"
 msgstr "Mes éléments"
 
-#: template/front/dashboard-index.phtml:55
-#: template/front/dashboard-index.phtml:59
-#: template/front/profile-sidebar.phtml:46
-#: template/front/profile-sidebar.phtml:50
+#: template/front/dashboard-index.phtml:65
+#: template/front/dashboard-index.phtml:69
+#: template/front/profile-sidebar.phtml:174
 msgid "Sponsorship"
 msgstr "Parrainage"
 
-#: template/front/dashboard-index.phtml:70
-#: template/front/dashboard-index.phtml:74
-#: template/front/profile-sidebar.phtml:90
-#: template/front/profile-sidebar.phtml:94
+#: template/front/dashboard-index.phtml:80
+#: template/front/dashboard-index.phtml:84
 msgid "My messages"
 msgstr "Mes messages"
 
-#: template/front/dashboard-index.phtml:80
-#: template/front/dashboard-index.phtml:84
-#: template/front/profile-sidebar.phtml:96
-#: template/front/profile-sidebar.phtml:100
+#: template/front/dashboard-index.phtml:90
+#: template/front/dashboard-index.phtml:94
 msgid "My notifications"
 msgstr "Mes notifications"
 
-#: template/front/dashboard-index.phtml:93
-#: template/front/dashboard-index.phtml:97
-#: template/front/profile-sidebar.phtml:113
-#: template/front/profile-sidebar.phtml:117
+#: template/front/dashboard-index.phtml:103
+#: template/front/dashboard-index.phtml:107
 msgid "My events"
 msgstr "Mes évènements"
 
-#: template/front/dashboard-index.phtml:106
-#: template/front/dashboard-index.phtml:110
-#: template/front/profile-sidebar.phtml:122
-#: template/front/profile-sidebar.phtml:126
+#: template/front/dashboard-index.phtml:116
+#: template/front/dashboard-index.phtml:120
 msgid "My orders"
 msgstr "Mes commandes"
 
-#: template/front/dashboard-index.phtml:117
-#: template/front/dashboard-index.phtml:121
-#: template/front/profile-sidebar.phtml:129
-#: template/front/profile-sidebar.phtml:133
+#: template/front/dashboard-index.phtml:127
+#: template/front/dashboard-index.phtml:131
 msgid "My credit"
 msgstr "Mes Crédits"
 
-#: template/front/dashboard-index.phtml:131
-#: template/front/dashboard-index.phtml:135
-#: template/front/profile-sidebar.phtml:138
-#: template/front/profile-sidebar.phtml:142
-#: template/front/profile-sidebar.phtml:153
-#: template/front/profile-sidebar.phtml:157
+#: template/front/dashboard-index.phtml:141
+#: template/front/dashboard-index.phtml:145
 msgid "My favorites"
 msgstr "Mes favoris"
 
-#: template/front/dashboard-index.phtml:143
-#: template/front/dashboard-index.phtml:147
-#: template/front/profile-sidebar.phtml:161
-#: template/front/profile-sidebar.phtml:165
+#: template/front/dashboard-index.phtml:153
+#: template/front/dashboard-index.phtml:157
 msgid "My videos"
 msgstr "Mes Vidéos"
 
-#: template/front/dashboard-index.phtml:156
-#: template/front/dashboard-index.phtml:160
-#: template/front/profile-sidebar.phtml:105
-#: template/front/profile-sidebar.phtml:109
+#: template/front/dashboard-index.phtml:166
+#: template/front/dashboard-index.phtml:170
 msgid "My support tickets"
 msgstr "Mes tickets Assistance"
 
@@ -1308,31 +1296,99 @@ msgstr "Etes-vous sûr de vouloir supprimer cet enregistrement?"
 msgid "Add %s"
 msgstr "Ajouter %s"
 
-#: template/front/profile-sidebar.phtml:53
 #: template/front/profile-sidebar.phtml:57
-msgid "My requests"
-msgstr "Mes demandes"
+msgid "Member area"
+msgstr "Espace Membre"
 
-#: template/front/profile-sidebar.phtml:61
-#: template/front/profile-sidebar.phtml:65
-msgid "My media"
-msgstr "Mes medias"
+#: template/front/profile-sidebar.phtml:68
+msgid "Bookings"
+msgstr "Réservations"
+
+#: template/front/profile-sidebar.phtml:71
+msgid "Contributions"
+msgstr "Contributions"
+
+#: template/front/profile-sidebar.phtml:75
+msgid "Events"
+msgstr "Evènements"
 
 #: template/front/profile-sidebar.phtml:79
+msgid "Favorites"
+msgstr "Favoris"
+
 #: template/front/profile-sidebar.phtml:83
-msgid "My stats"
-msgstr "Mes stats"
+msgid "Reviews/comments"
+msgstr "Avis/commentaires"
 
-#: template/front/profile-sidebar.phtml:145
-#: template/front/profile-sidebar.phtml:149
-msgid "My reviews/comments"
-msgstr "Mes avis/commentaires"
+#: template/front/profile-sidebar.phtml:113
+msgid "Pro area"
+msgstr "Espace Pro"
 
-#: template/front/profile-sidebar.phtml:175
-msgid "My account / Profile"
-msgstr "Mon compte/profil"
+#: template/front/profile-sidebar.phtml:122
+msgid "List"
+msgstr "Liste"
+
+#: template/front/profile-sidebar.phtml:123
+msgid "Planning"
+msgstr "Planning"
+
+#: template/front/profile-sidebar.phtml:150
+msgid "Description"
+msgstr "Description"
+
+#: template/front/profile-sidebar.phtml:152
+msgid "Offers/Prices"
+msgstr "Offres/Tarifs"
+
+#: template/front/profile-sidebar.phtml:155
+msgid "Grid Manager"
+msgstr "Grille Gestion"
+
+#: template/front/profile-sidebar.phtml:158
+msgid "Bookings/Closings"
+msgstr "Résas/Fermetures"
+
+#: template/front/profile-sidebar.phtml:160
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: template/front/profile-sidebar.phtml:161
+msgid "Tools"
+msgstr "Outils"
+
+#: template/front/profile-sidebar.phtml:181
+msgid "Media"
+msgstr "Medias"
+
+#: template/front/profile-sidebar.phtml:186
+msgid "Messages"
+msgstr "Messages"
 
 #: template/front/profile-sidebar.phtml:188
+msgid "Notifications"
+msgstr "Notifications"
+
+#: template/front/profile-sidebar.phtml:193
+msgid "Support tickets"
+msgstr "Tickets Assistance"
+
+#: template/front/profile-sidebar.phtml:198
+msgid "Orders"
+msgstr "Commandes"
+
+#: template/front/profile-sidebar.phtml:201
+msgid "Credit"
+msgstr "Crédits"
+
+#: template/front/profile-sidebar.phtml:207
+msgid "Videos"
+msgstr "Vidéos"
+
+#: template/front/profile-sidebar.phtml:218
+msgid "Account / Profile"
+msgstr "Compte/profil"
+
+#: template/front/profile-sidebar.phtml:233
 msgid "Manage account"
 msgstr "Gérer mon compte"
 
@@ -1348,29 +1404,29 @@ msgstr "Paramétrages"
 msgid "Quicklinks"
 msgstr "Liens rapides"
 
-#: template/front/profile-topbar.phtml:122
+#: template/front/profile-topbar.phtml:120
 msgid "Manage my profile"
 msgstr "Gérer mon profil"
 
-#: template/front/profile-topbar.phtml:135
-#: template/front/profile-topbar.phtml:141
-#: template/front/profile-topbar.phtml:147
+#: template/front/profile-topbar.phtml:133
+#: template/front/profile-topbar.phtml:139
+#: template/front/profile-topbar.phtml:145
 msgid "Send message"
 msgstr "Envoyer un message"
 
-#: template/front/profile-topbar.phtml:167
+#: template/front/profile-topbar.phtml:165
 msgid "Member since"
 msgstr "Membre depuis"
 
-#: template/front/profile-topbar.phtml:173
+#: template/front/profile-topbar.phtml:171
 msgid "Gender:"
 msgstr "Genre : "
 
-#: template/front/profile-topbar.phtml:179
+#: template/front/profile-topbar.phtml:177
 msgid "Birthdate:"
 msgstr "Date de naissance :"
 
-#: template/front/profile-topbar.phtml:248
+#: template/front/profile-topbar.phtml:246
 msgid "More"
 msgstr "Plus"
 
@@ -1457,14 +1513,28 @@ msgstr "Demandez le renvoi du mail d'activation"
 msgid "Already sent"
 msgstr "Déja envoyé"
 
-#~ msgid "Reviews & Comments"
-#~ msgstr "Commentaires/Avis"
+#~ msgid "Share"
+#~ msgstr "Outils"
+
+#~ msgid "Management"
+#~ msgstr "Gestion"
+
+#, fuzzy
+#~| msgid "Bookings"
+#~ msgid "Openings/Bookings"
+#~ msgstr "Réservations"
 
 #~ msgid "Items"
 #~ msgstr "Eléments"
 
-#~ msgid "Favorites"
-#~ msgstr "Favoris"
+#~ msgid "My requests"
+#~ msgstr "Mes demandes"
+
+#~ msgid "My stats"
+#~ msgstr "Mes stats"
+
+#~ msgid "Reviews & Comments"
+#~ msgstr "Commentaires/Avis"
 
 #~ msgid ""
 #~ "Password must contain at lease one uppercase letter, one lowercase letter "
