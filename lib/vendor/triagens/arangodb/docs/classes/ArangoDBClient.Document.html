@@ -1,0 +1,904 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>ArangoDB PHP client API » \ArangoDBClient\Document</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">ArangoDB PHP client API</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/ArangoDBClient.html"><i class="icon-folder-open"></i> ArangoDBClient</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">19</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">2</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div xmlns:php="http://php.net/xsl" class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list">
+<li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___clone" title="__clone() :: Clone a document"><span class="description">Clone a document</span><pre>__clone()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct() :: Constructs an empty document"><span class="description">Constructs an empty document</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method___get" title="__get() :: Get a document attribute, magic method"><span class="description">Get a document attribute, magic method</span><pre>__get()</pre></a></li>
+<li class="method public "><a href="#method___isset" title="__isset() :: Is triggered by calling isset() or empty() on inaccessible properties."><span class="description">Is triggered by calling isset() or empty() on inaccessible properties.</span><pre>__isset()</pre></a></li>
+<li class="method public "><a href="#method___set" title="__set() :: Set a document attribute, magic method"><span class="description">Set a document attribute, magic method</span><pre>__set()</pre></a></li>
+<li class="method public "><a href="#method___toString" title="__toString() :: Get a string representation of the document."><span class="description">Get a string representation of the document.</span><pre>__toString()</pre></a></li>
+<li class="method public "><a href="#method___unset" title="__unset() :: Magic method to unset an attribute."><span class="description">Magic method to unset an attribute.</span><pre>__unset()</pre></a></li>
+<li class="method public "><a href="#method_createFromArray" title="createFromArray() :: Factory method to construct a new document using the values passed to populate it"><span class="description">Factory method to construct a new document using the values passed to populate it</span><pre>createFromArray()</pre></a></li>
+<li class="method public "><a href="#method_filterHiddenAttributes" title="filterHiddenAttributes() :: Returns the attributes with the hidden ones removed"><span class="description">Returns the attributes with the hidden ones removed</span><pre>filterHiddenAttributes()</pre></a></li>
+<li class="method public "><a href="#method_get" title="get() :: Get a document attribute"><span class="description">Get a document attribute</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#method_getAll" title="getAll() :: Get all document attributes"><span class="description">Get all document attributes</span><pre>getAll()</pre></a></li>
+<li class="method public "><a href="#method_getAllAsObject" title="getAllAsObject() :: Get all document attributes, and return an empty object if the documentapped into a DocumentWrapper class"><span class="description">Get all document attributes, and return an empty object if the documentapped into a DocumentWrapper class</span><pre>getAllAsObject()</pre></a></li>
+<li class="method public "><a href="#method_getAllForInsertUpdate" title="getAllForInsertUpdate() :: Get all document attributes for insertion/update"><span class="description">Get all document attributes for insertion/update</span><pre>getAllForInsertUpdate()</pre></a></li>
+<li class="method public "><a href="#method_getChanged" title="getChanged() :: Get the changed flag"><span class="description">Get the changed flag</span><pre>getChanged()</pre></a></li>
+<li class="method public "><a href="#method_getCollectionId" title="getCollectionId() :: Get the collection id (if already known)"><span class="description">Get the collection id (if already known)</span><pre>getCollectionId()</pre></a></li>
+<li class="method public "><a href="#method_getHandle" title="getHandle() :: Convenience function to get the document handle (if already known) - is an alias to getInternalId()"><span class="description">Convenience function to get the document handle (if already known) - is an alias to getInternalId()</span><pre>getHandle()</pre></a></li>
+<li class="method public "><a href="#method_getHiddenAttributes" title="getHiddenAttributes() :: Get the hidden attributes"><span class="description">Get the hidden attributes</span><pre>getHiddenAttributes()</pre></a></li>
+<li class="method public "><a href="#method_getId" title="getId() :: Get the document id (or document handle) if already known."><span class="description">Get the document id (or document handle) if already known.</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#method_getInternalId" title="getInternalId() :: Get the internal document id (if already known)"><span class="description">Get the internal document id (if already known)</span><pre>getInternalId()</pre></a></li>
+<li class="method public "><a href="#method_getInternalKey" title="getInternalKey() :: Get the internal document key (if already known)"><span class="description">Get the internal document key (if already known)</span><pre>getInternalKey()</pre></a></li>
+<li class="method public "><a href="#method_getIsNew" title="getIsNew() :: Get the isNew flag"><span class="description">Get the isNew flag</span><pre>getIsNew()</pre></a></li>
+<li class="method public "><a href="#method_getKey" title="getKey() :: Get the document key (if already known)."><span class="description">Get the document key (if already known).</span><pre>getKey()</pre></a></li>
+<li class="method public "><a href="#method_getRevision" title="getRevision() :: Get the document revision (if already known)"><span class="description">Get the document revision (if already known)</span><pre>getRevision()</pre></a></li>
+<li class="method public "><a href="#method_isIgnoreHiddenAttributes" title="isIgnoreHiddenAttributes() :: "><span class="description">isIgnoreHiddenAttributes()
+        </span><pre>isIgnoreHiddenAttributes()</pre></a></li>
+<li class="method public "><a href="#method_jsonSerialize" title="jsonSerialize() :: Get all document attributes
+Alias function for getAll() - it's necessary for implementing JsonSerializable interface"><span class="description">Get all document attributes
+Alias function for getAll() - it's necessary for implementing JsonSerializable interface</span><pre>jsonSerialize()</pre></a></li>
+<li class="method public "><a href="#method_set" title="set() :: Set a document attribute"><span class="description">Set a document attribute</span><pre>set()</pre></a></li>
+<li class="method public "><a href="#method_setChanged" title="setChanged() :: Set the changed flag"><span class="description">Set the changed flag</span><pre>setChanged()</pre></a></li>
+<li class="method public "><a href="#method_setHiddenAttributes" title="setHiddenAttributes() :: Set the hidden attributes
+$cursor"><span class="description">Set the hidden attributes
+$cursor</span><pre>setHiddenAttributes()</pre></a></li>
+<li class="method public "><a href="#method_setIgnoreHiddenAttributes" title="setIgnoreHiddenAttributes() :: "><span class="description">setIgnoreHiddenAttributes()
+        </span><pre>setIgnoreHiddenAttributes()</pre></a></li>
+<li class="method public "><a href="#method_setInternalId" title="setInternalId() :: Set the internal document id"><span class="description">Set the internal document id</span><pre>setInternalId()</pre></a></li>
+<li class="method public "><a href="#method_setInternalKey" title="setInternalKey() :: Set the internal document key"><span class="description">Set the internal document key</span><pre>setInternalKey()</pre></a></li>
+<li class="method public "><a href="#method_setIsNew" title="setIsNew() :: Set the isNew flag"><span class="description">Set the isNew flag</span><pre>setIsNew()</pre></a></li>
+<li class="method public "><a href="#method_setRevision" title="setRevision() :: Set the document revision"><span class="description">Set the document revision</span><pre>setRevision()</pre></a></li>
+<li class="method public "><a href="#method_toJson" title="toJson() :: Returns the document as JSON-encoded string"><span class="description">Returns the document as JSON-encoded string</span><pre>toJson()</pre></a></li>
+<li class="method public "><a href="#method_toSerialized" title="toSerialized() :: Returns the document as a serialized string"><span class="description">Returns the document as a serialized string</span><pre>toSerialized()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected "><a href="#property__changed" title="$_changed() :: Flag to indicate whether document was changed locally"><span class="description"></span><pre>$_changed</pre></a></li>
+<li class="property protected "><a href="#property__doValidate" title="$_doValidate() :: Flag to indicate whether validation of document values should be performed
+This can be turned on, but has a performance penalty"><span class="description"></span><pre>$_doValidate</pre></a></li>
+<li class="property protected "><a href="#property__hiddenAttributes" title="$_hiddenAttributes() :: An array, that defines which attributes should be treated as hidden."><span class="description"></span><pre>$_hiddenAttributes</pre></a></li>
+<li class="property protected "><a href="#property__id" title="$_id() :: The document id (might be NULL for new documents)"><span class="description"></span><pre>$_id</pre></a></li>
+<li class="property protected "><a href="#property__ignoreHiddenAttributes" title="$_ignoreHiddenAttributes() :: Flag to indicate whether hidden attributes should be ignored or included in returned data-sets"><span class="description"></span><pre>$_ignoreHiddenAttributes</pre></a></li>
+<li class="property protected "><a href="#property__isNew" title="$_isNew() :: Flag to indicate whether document is a new document (never been saved to the server)"><span class="description"></span><pre>$_isNew</pre></a></li>
+<li class="property protected "><a href="#property__key" title="$_key() :: The document key (might be NULL for new documents)"><span class="description"></span><pre>$_key</pre></a></li>
+<li class="property protected "><a href="#property__rev" title="$_rev() :: The document revision (might be NULL for new documents)"><span class="description"></span><pre>$_rev</pre></a></li>
+<li class="property protected "><a href="#property__values" title="$_values() :: The document attributes (names/values)"><span class="description"></span><pre>$_values</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Constants" class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_ENTRY_HIDDENATTRIBUTES" title="ENTRY_HIDDENATTRIBUTES() :: hidden attribute index"><span class="description">hidden attribute index</span><pre>ENTRY_HIDDENATTRIBUTES</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_ID" title="ENTRY_ID() :: Document id index"><span class="description">Document id index</span><pre>ENTRY_ID</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_IGNOREHIDDENATTRIBUTES" title="ENTRY_IGNOREHIDDENATTRIBUTES() :: hidden attribute index"><span class="description">hidden attribute index</span><pre>ENTRY_IGNOREHIDDENATTRIBUTES</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_ISNEW" title="ENTRY_ISNEW() :: isNew id index"><span class="description">isNew id index</span><pre>ENTRY_ISNEW</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_KEY" title="ENTRY_KEY() :: Document key index"><span class="description">Document key index</span><pre>ENTRY_KEY</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_REV" title="ENTRY_REV() :: Revision id index"><span class="description">Revision id index</span><pre>ENTRY_REV</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_KEEPNULL" title="OPTION_KEEPNULL() :: keepNull option index"><span class="description">keepNull option index</span><pre>OPTION_KEEPNULL</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_POLICY" title="OPTION_POLICY() :: policy option index"><span class="description">policy option index</span><pre>OPTION_POLICY</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_WAIT_FOR_SYNC" title="OPTION_WAIT_FOR_SYNC() :: waitForSync option index"><span class="description">waitForSync option index</span><pre>OPTION_WAIT_FOR_SYNC</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a xmlns:php="http://php.net/xsl" id="\ArangoDBClient\Document"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/ArangoDBClient.html">ArangoDBClient</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/ArangoDBClient.Document.html">Document</a>
+</li>
+</ul>
+<div xmlns:php="http://php.net/xsl" class="element class">
+<p class="short_description">Value object representing a single collection-based document</p>
+<div class="details">
+<div class="long_description"><p><br></p></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/ArangoDBClient.html">ArangoDBClient</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>0.2</td>
+</tr>
+</table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___clone"></a><div class="element clickable method public method___clone " data-toggle="collapse" data-target=".method___clone .collapse" title="public">
+<h2>Clone a document</h2>
+<pre>__clone() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the clone</p></div>
+<table class="table table-bordered"><tr>
+<th>magic</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
+<h2>Constructs an empty document</h2>
+<pre>__construct(array $options<code> = null</code>) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional, initial $options for document
+<p>Options are :<br>
+                            <li>'_hiddenAttributes' - Set an array of hidden attributes for created documents.
+                            <li>'_ignoreHiddenAttributes' - true to show hidden attributes. Defaults to false</li>
+                            <p></li>
+</ul></div>
+</div></div>
+</div>
+<a id="method___get"></a><div class="element clickable method public method___get " data-toggle="collapse" data-target=".method___get .collapse" title="public">
+<h2>Get a document attribute, magic method</h2>
+<pre>__get(string $key) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This function is mapped to get() internally.</p></div>
+<table class="table table-bordered"><tr>
+<th>magic</th>
+<td></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><ul>
+<li>name of attribute</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- value of attribute, NULL if attribute is not set</div>
+</div></div>
+</div>
+<a id="method___isset"></a><div class="element clickable method public method___isset " data-toggle="collapse" data-target=".method___isset .collapse" title="public">
+<h2>Is triggered by calling isset() or empty() on inaccessible properties.</h2>
+<pre>__isset(string $key) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><ul>
+<li>name of attribute</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>returns true or false (set or not set)</div>
+</div></div>
+</div>
+<a id="method___set"></a><div class="element clickable method public method___set " data-toggle="collapse" data-target=".method___set .collapse" title="public">
+<h2>Set a document attribute, magic method</h2>
+<pre>__set(string $key, mixed $value) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a magic method that allows the object to be used without
+declaring all document attributes first.
+This function is mapped to set() internally.</p></div>
+<table class="table table-bordered"><tr>
+<th>magic</th>
+<td></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><ul>
+<li>attribute name</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><ul>
+<li>value for attribute</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method___toString"></a><div class="element clickable method public method___toString " data-toggle="collapse" data-target=".method___toString .collapse" title="public">
+<h2>Get a string representation of the document.</h2>
+<pre>__toString() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It will not output hidden attributes.</p>
+<p>Returns the document as JSON-encoded string</p></div>
+<table class="table table-bordered"><tr>
+<th>magic</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- JSON-encoded document</div>
+</div></div>
+</div>
+<a id="method___unset"></a><div class="element clickable method public method___unset " data-toggle="collapse" data-target=".method___unset .collapse" title="public">
+<h2>Magic method to unset an attribute.</h2>
+<pre>__unset($key) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Caution!!! This works only on the first array level.
+The preferred method to unset attributes in the database, is to set those to null and do an update() with the option: 'keepNull' =&gt; false.</p></div>
+<table class="table table-bordered"><tr>
+<th>magic</th>
+<td></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$key</h4></div>
+</div></div>
+</div>
+<a id="method_createFromArray"></a><div class="element clickable method public method_createFromArray " data-toggle="collapse" data-target=".method_createFromArray .collapse" title="public">
+<h2>Factory method to construct a new document using the values passed to populate it</h2>
+<pre>createFromArray(array $values, array $options<code> = array()</code>) : \ArangoDBClient\Document | \ArangoDBClient\Edge | \ArangoDBClient\Graph</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$values</h4>
+<code>array</code><ul>
+<li>initial values for document</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional, initial options for document</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Document</code><code>\ArangoDBClient\Edge</code><code>\ArangoDBClient\Graph</code>
+</div>
+</div></div>
+</div>
+<a id="method_filterHiddenAttributes"></a><div class="element clickable method public method_filterHiddenAttributes " data-toggle="collapse" data-target=".method_filterHiddenAttributes .collapse" title="public">
+<h2>Returns the attributes with the hidden ones removed</h2>
+<pre>filterHiddenAttributes(array $attributes, array $_hiddenAttributes<code> = array()</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$attributes</h4>
+<code>array</code><ul>
+<li>attributes array</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$_hiddenAttributes</h4>
+<code>array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- attributes array</div>
+</div></div>
+</div>
+<a id="method_get"></a><div class="element clickable method public method_get " data-toggle="collapse" data-target=".method_get .collapse" title="public">
+<h2>Get a document attribute</h2>
+<pre>get(string $key) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><ul>
+<li>name of attribute</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- value of attribute, NULL if attribute is not set</div>
+</div></div>
+</div>
+<a id="method_getAll"></a><div class="element clickable method public method_getAll " data-toggle="collapse" data-target=".method_getAll .collapse" title="public">
+<h2>Get all document attributes</h2>
+<pre>getAll(mixed $options<code> = array()</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>mixed</code><ul>
+<li>optional, array of options for the getAll function, or the boolean value for $includeInternals
+<p>Options are :
+                  <li>'_includeInternals' - true to include the internal attributes. Defaults to false</li>
+                  <li>'_ignoreHiddenAttributes' - true to show hidden attributes. Defaults to false</li>
+                  </p></li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- array of all document attributes/values</div>
+</div></div>
+</div>
+<a id="method_getAllAsObject"></a><div class="element clickable method public method_getAllAsObject " data-toggle="collapse" data-target=".method_getAllAsObject .collapse" title="public">
+<h2>Get all document attributes, and return an empty object if the documentapped into a DocumentWrapper class</h2>
+<pre>getAllAsObject(mixed $options<code> = array()</code>) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>mixed</code><ul>
+<li>optional, array of options for the getAll function, or the boolean value for $includeInternals
+<p>Options are :
+                  <li>'_includeInternals' - true to include the internal attributes. Defaults to false</li>
+                  <li>'_ignoreHiddenAttributes' - true to show hidden attributes. Defaults to false</li>
+                  </p></li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- associative array of all document attributes/values, or an empty StdClass if the document
+                does not have any</div>
+</div></div>
+</div>
+<a id="method_getAllForInsertUpdate"></a><div class="element clickable method public method_getAllForInsertUpdate " data-toggle="collapse" data-target=".method_getAllForInsertUpdate .collapse" title="public">
+<h2>Get all document attributes for insertion/update</h2>
+<pre>getAllForInsertUpdate() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- associative array of all document attributes/values</div>
+</div></div>
+</div>
+<a id="method_getChanged"></a><div class="element clickable method public method_getChanged " data-toggle="collapse" data-target=".method_getChanged .collapse" title="public">
+<h2>Get the changed flag</h2>
+<pre>getChanged() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- true if document was changed, false otherwise</div>
+</div></div>
+</div>
+<a id="method_getCollectionId"></a><div class="element clickable method public method_getCollectionId " data-toggle="collapse" data-target=".method_getCollectionId .collapse" title="public">
+<h2>Get the collection id (if already known)</h2>
+<pre>getCollectionId() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Collection ids are generated on the server only. Collection ids are numeric but might be
+bigger than PHP_INT_MAX. To reliably store a collection id elsewhere, a PHP string should be used</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- collection id, might be NULL if document does not yet have an id</div>
+</div></div>
+</div>
+<a id="method_getHandle"></a><div class="element clickable method public method_getHandle " data-toggle="collapse" data-target=".method_getHandle .collapse" title="public">
+<h2>Convenience function to get the document handle (if already known) - is an alias to getInternalId()</h2>
+<pre>getHandle() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Document handles are generated on the server only. Document handles consist of collection id and
+document id, in the format collectionId/documentId</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- internal document id, might be NULL if document does not yet have an id</div>
+</div></div>
+</div>
+<a id="method_getHiddenAttributes"></a><div class="element clickable method public method_getHiddenAttributes " data-toggle="collapse" data-target=".method_getHiddenAttributes .collapse" title="public">
+<h2>Get the hidden attributes</h2>
+<pre>getHiddenAttributes() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>$attributes - array of attributes</div>
+</div></div>
+</div>
+<a id="method_getId"></a><div class="element clickable method public method_getId " data-toggle="collapse" data-target=".method_getId .collapse" title="public">
+<h2>Get the document id (or document handle) if already known.</h2>
+<pre>getId() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It is a string and consists of the collection's name and the document key (_key attribute) separated by /.
+Example: (collectionname/documentId)</p>
+<p>The document handle is stored in a document's _id attribute.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- document id, might be NULL if document does not yet have an id.</div>
+</div></div>
+</div>
+<a id="method_getInternalId"></a><div class="element clickable method public method_getInternalId " data-toggle="collapse" data-target=".method_getInternalId .collapse" title="public">
+<h2>Get the internal document id (if already known)</h2>
+<pre>getInternalId() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Document ids are generated on the server only. Document ids consist of collection id and
+document id, in the format collectionId/documentId</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- internal document id, might be NULL if document does not yet have an id</div>
+</div></div>
+</div>
+<a id="method_getInternalKey"></a><div class="element clickable method public method_getInternalKey " data-toggle="collapse" data-target=".method_getInternalKey .collapse" title="public">
+<h2>Get the internal document key (if already known)</h2>
+<pre>getInternalKey() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- internal document key, might be NULL if document does not yet have a key</div>
+</div></div>
+</div>
+<a id="method_getIsNew"></a><div class="element clickable method public method_getIsNew " data-toggle="collapse" data-target=".method_getIsNew .collapse" title="public">
+<h2>Get the isNew flag</h2>
+<pre>getIsNew() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>$isNew - flags if new or existing doc</div>
+</div></div>
+</div>
+<a id="method_getKey"></a><div class="element clickable method public method_getKey " data-toggle="collapse" data-target=".method_getKey .collapse" title="public">
+<h2>Get the document key (if already known).</h2>
+<pre>getKey() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Alias function for getInternalKey()</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- document key, might be NULL if document does not yet have a key</div>
+</div></div>
+</div>
+<a id="method_getRevision"></a><div class="element clickable method public method_getRevision " data-toggle="collapse" data-target=".method_getRevision .collapse" title="public">
+<h2>Get the document revision (if already known)</h2>
+<pre>getRevision() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- revision id, might be NULL if document does not yet have an id</div>
+</div></div>
+</div>
+<a id="method_isIgnoreHiddenAttributes"></a><div class="element clickable method public method_isIgnoreHiddenAttributes " data-toggle="collapse" data-target=".method_isIgnoreHiddenAttributes .collapse" title="public">
+<h2>isIgnoreHiddenAttributes()
+        </h2>
+<pre>isIgnoreHiddenAttributes() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_jsonSerialize"></a><div class="element clickable method public method_jsonSerialize " data-toggle="collapse" data-target=".method_jsonSerialize .collapse" title="public">
+<h2>Get all document attributes
+Alias function for getAll() - it's necessary for implementing JsonSerializable interface</h2>
+<pre>jsonSerialize(mixed $options<code> = array()</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>mixed</code><ul>
+<li>optional, array of options for the getAll function, or the boolean value for $includeInternals
+<p>Options are :
+                  <li>'_includeInternals' - true to include the internal attributes. Defaults to false</li>
+                  <li>'_ignoreHiddenAttributes' - true to show hidden attributes. Defaults to false</li>
+                  </p></li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- array of all document attributes/values</div>
+</div></div>
+</div>
+<a id="method_set"></a><div class="element clickable method public method_set " data-toggle="collapse" data-target=".method_set .collapse" title="public">
+<h2>Set a document attribute</h2>
+<pre>set(string $key, mixed $value) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The key (attribute name) must be a string.
+This will validate the value of the attribute and might throw an
+exception if the value is invalid.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><ul>
+<li>attribute name</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><ul>
+<li>value for attribute</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setChanged"></a><div class="element clickable method public method_setChanged " data-toggle="collapse" data-target=".method_setChanged .collapse" title="public">
+<h2>Set the changed flag</h2>
+<pre>setChanged(boolean $value) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>boolean</code><ul>
+<li>change flag</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_setHiddenAttributes"></a><div class="element clickable method public method_setHiddenAttributes " data-toggle="collapse" data-target=".method_setHiddenAttributes .collapse" title="public">
+<h2>Set the hidden attributes
+$cursor</h2>
+<pre>setHiddenAttributes(array $attributes) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$attributes</h4>
+<code>array</code><ul>
+<li>array of attributes</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_setIgnoreHiddenAttributes"></a><div class="element clickable method public method_setIgnoreHiddenAttributes " data-toggle="collapse" data-target=".method_setIgnoreHiddenAttributes .collapse" title="public">
+<h2>setIgnoreHiddenAttributes()
+        </h2>
+<pre>setIgnoreHiddenAttributes(boolean $ignoreHiddenAttributes) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$ignoreHiddenAttributes</h4>
+<code>boolean</code>
+</div>
+</div></div>
+</div>
+<a id="method_setInternalId"></a><div class="element clickable method public method_setInternalId " data-toggle="collapse" data-target=".method_setInternalId .collapse" title="public">
+<h2>Set the internal document id</h2>
+<pre>setInternalId(string $id) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the id of an existing document gets updated to some other id</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>string</code><ul>
+<li>internal document id</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setInternalKey"></a><div class="element clickable method public method_setInternalKey " data-toggle="collapse" data-target=".method_setInternalKey .collapse" title="public">
+<h2>Set the internal document key</h2>
+<pre>setInternalKey(string $key) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the key of an existing document gets updated to some other key</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><ul>
+<li>internal document key</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setIsNew"></a><div class="element clickable method public method_setIsNew " data-toggle="collapse" data-target=".method_setIsNew .collapse" title="public">
+<h2>Set the isNew flag</h2>
+<pre>setIsNew(boolean $isNew) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$isNew</h4>
+<code>boolean</code><ul>
+<li>flags if new or existing doc</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_setRevision"></a><div class="element clickable method public method_setRevision " data-toggle="collapse" data-target=".method_setRevision .collapse" title="public">
+<h2>Set the document revision</h2>
+<pre>setRevision(mixed $rev) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Revision ids are generated on the server only.</p>
+<p>Document ids are strings, even if they look &quot;numeric&quot;
+To reliably store a document id elsewhere, a PHP string must be used</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rev</h4>
+<code>mixed</code><ul>
+<li>revision id</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_toJson"></a><div class="element clickable method public method_toJson " data-toggle="collapse" data-target=".method_toJson .collapse" title="public">
+<h2>Returns the document as JSON-encoded string</h2>
+<pre>toJson(array $options<code> = array()</code>) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional, array of options that will be passed to the getAll function
+<p>Options are :
+                  <li>'_includeInternals' - true to include the internal attributes. Defaults to false</li>
+                  <li>'_ignoreHiddenAttributes' - true to show hidden attributes. Defaults to false</li>
+                  </p></li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- JSON-encoded document</div>
+</div></div>
+</div>
+<a id="method_toSerialized"></a><div class="element clickable method public method_toSerialized " data-toggle="collapse" data-target=".method_toSerialized .collapse" title="public">
+<h2>Returns the document as a serialized string</h2>
+<pre>toSerialized(array $options<code> = array()</code>) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional, array of options that will be passed to the getAll function
+<p>Options are :
+                  <li>'_includeInternals' - true to include the internal attributes. Defaults to false</li>
+                  <li>'_ignoreHiddenAttributes' - true to show hidden attributes. Defaults to false</li>
+                  </p></li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- PHP serialized document</div>
+</div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__changed"> </a><div class="element clickable property protected property__changed" data-toggle="collapse" data-target=".property__changed .collapse" title="protected">
+<h2>Flag to indicate whether document was changed locally</h2>
+<pre>$_changed : boolean</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>false</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__doValidate"> </a><div class="element clickable property protected property__doValidate" data-toggle="collapse" data-target=".property__doValidate .collapse" title="protected">
+<h2>Flag to indicate whether validation of document values should be performed
+This can be turned on, but has a performance penalty</h2>
+<pre>$_doValidate : boolean</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>false</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__hiddenAttributes"> </a><div class="element clickable property protected property__hiddenAttributes" data-toggle="collapse" data-target=".property__hiddenAttributes .collapse" title="protected">
+<h2>An array, that defines which attributes should be treated as hidden.</h2>
+<pre>$_hiddenAttributes : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>array()</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__id"> </a><div class="element clickable property protected property__id" data-toggle="collapse" data-target=".property__id .collapse" title="protected">
+<h2>The document id (might be NULL for new documents)</h2>
+<pre>$_id : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__ignoreHiddenAttributes"> </a><div class="element clickable property protected property__ignoreHiddenAttributes" data-toggle="collapse" data-target=".property__ignoreHiddenAttributes .collapse" title="protected">
+<h2>Flag to indicate whether hidden attributes should be ignored or included in returned data-sets</h2>
+<pre>$_ignoreHiddenAttributes : boolean</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>false</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__isNew"> </a><div class="element clickable property protected property__isNew" data-toggle="collapse" data-target=".property__isNew .collapse" title="protected">
+<h2>Flag to indicate whether document is a new document (never been saved to the server)</h2>
+<pre>$_isNew : boolean</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>true</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__key"> </a><div class="element clickable property protected property__key" data-toggle="collapse" data-target=".property__key .collapse" title="protected">
+<h2>The document key (might be NULL for new documents)</h2>
+<pre>$_key : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__rev"> </a><div class="element clickable property protected property__rev" data-toggle="collapse" data-target=".property__rev .collapse" title="protected">
+<h2>The document revision (might be NULL for new documents)</h2>
+<pre>$_rev : mixed</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__values"> </a><div class="element clickable property protected property__values" data-toggle="collapse" data-target=".property__values .collapse" title="protected">
+<h2>The document attributes (names/values)</h2>
+<pre>$_values : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>array()</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i title="Constants" class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_ENTRY_HIDDENATTRIBUTES"> </a><div class="element clickable constant  constant_ENTRY_HIDDENATTRIBUTES" data-toggle="collapse" data-target=".constant_ENTRY_HIDDENATTRIBUTES .collapse" title="">
+<h2>hidden attribute index</h2>
+<pre>ENTRY_HIDDENATTRIBUTES = '_hiddenAttributes' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_ID"> </a><div class="element clickable constant  constant_ENTRY_ID" data-toggle="collapse" data-target=".constant_ENTRY_ID .collapse" title="">
+<h2>Document id index</h2>
+<pre>ENTRY_ID = '_id' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_IGNOREHIDDENATTRIBUTES"> </a><div class="element clickable constant  constant_ENTRY_IGNOREHIDDENATTRIBUTES" data-toggle="collapse" data-target=".constant_ENTRY_IGNOREHIDDENATTRIBUTES .collapse" title="">
+<h2>hidden attribute index</h2>
+<pre>ENTRY_IGNOREHIDDENATTRIBUTES = '_ignoreHiddenAttributes' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_ISNEW"> </a><div class="element clickable constant  constant_ENTRY_ISNEW" data-toggle="collapse" data-target=".constant_ENTRY_ISNEW .collapse" title="">
+<h2>isNew id index</h2>
+<pre>ENTRY_ISNEW = '_isNew' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_KEY"> </a><div class="element clickable constant  constant_ENTRY_KEY" data-toggle="collapse" data-target=".constant_ENTRY_KEY .collapse" title="">
+<h2>Document key index</h2>
+<pre>ENTRY_KEY = '_key' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_REV"> </a><div class="element clickable constant  constant_ENTRY_REV" data-toggle="collapse" data-target=".constant_ENTRY_REV .collapse" title="">
+<h2>Revision id index</h2>
+<pre>ENTRY_REV = '_rev' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_KEEPNULL"> </a><div class="element clickable constant  constant_OPTION_KEEPNULL" data-toggle="collapse" data-target=".constant_OPTION_KEEPNULL .collapse" title="">
+<h2>keepNull option index</h2>
+<pre>OPTION_KEEPNULL = 'keepNull' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_POLICY"> </a><div class="element clickable constant  constant_OPTION_POLICY" data-toggle="collapse" data-target=".constant_OPTION_POLICY .collapse" title="">
+<h2>policy option index</h2>
+<pre>OPTION_POLICY = 'policy' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_WAIT_FOR_SYNC"> </a><div class="element clickable constant  constant_OPTION_WAIT_FOR_SYNC" data-toggle="collapse" data-target=".constant_OPTION_WAIT_FOR_SYNC .collapse" title="">
+<h2>waitForSync option index</h2>
+<pre>OPTION_WAIT_FOR_SYNC = 'waitForSync' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2018-07-31T14:00:29+02:00.<br></footer></div>
+</div>
+</body>
+</html>

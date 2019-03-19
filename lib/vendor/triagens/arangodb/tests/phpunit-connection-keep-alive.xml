@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<phpunit bootstrap="bootstrap-connection-keep-alive.php" colors="true" verbose="true" backupGlobals="false">
+    <testsuites>
+        <testsuite name="ArangoDB-PHP-Connection-Keep-Alive">
+            <directory>.</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../lib</directory>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="ArangoDB-PHP-Connection" value="Keep-Alive"/>
+    </php>
+</phpunit>

@@ -1,0 +1,719 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>ArangoDB PHP client API » \ArangoDBClient\UserHandler</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">ArangoDB PHP client API</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/ArangoDBClient.html"><i class="icon-folder-open"></i> ArangoDBClient</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">19</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">2</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div xmlns:php="http://php.net/xsl" class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list">
+<li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public inherited"><a href="#method___construct" title="__construct() :: Construct a new handler"><span class="description">Construct a new handler</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_addUser" title="addUser() :: save a user to the user-collection"><span class="description">save a user to the user-collection</span><pre>addUser()</pre></a></li>
+<li class="method public "><a href="#method_get" title="get() :: Get a single user-document, identified by the username"><span class="description">Get a single user-document, identified by the username</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#method_getCollectionPermissionLevel" title="getCollectionPermissionLevel() :: Gets the list of collections a user has access to"><span class="description">Gets the list of collections a user has access to</span><pre>getCollectionPermissionLevel()</pre></a></li>
+<li class="method public "><a href="#method_getDatabasePermissionLevel" title="getDatabasePermissionLevel() :: Gets the list of collections a user has access to"><span class="description">Gets the list of collections a user has access to</span><pre>getDatabasePermissionLevel()</pre></a></li>
+<li class="method public "><a href="#method_getDatabases" title="getDatabases() :: Gets the list of databases a user has access to"><span class="description">Gets the list of databases a user has access to</span><pre>getDatabases()</pre></a></li>
+<li class="method public "><a href="#method_grantCollectionPermissions" title="grantCollectionPermissions() :: Grant R/W permissions to a user, for a specific collection"><span class="description">Grant R/W permissions to a user, for a specific collection</span><pre>grantCollectionPermissions()</pre></a></li>
+<li class="method public "><a href="#method_grantDatabasePermissions" title="grantDatabasePermissions() :: Grant R/W permissions to a user, for a specific database"><span class="description">Grant R/W permissions to a user, for a specific database</span><pre>grantDatabasePermissions()</pre></a></li>
+<li class="method public "><a href="#method_grantPermissions" title="grantPermissions() :: Grant R/W permissions to a user, for a specific database"><span class="description">Grant R/W permissions to a user, for a specific database</span><pre>grantPermissions()</pre></a></li>
+<li class="method public "><a href="#method_removeUser" title="removeUser() :: Remove a user, identified by the username"><span class="description">Remove a user, identified by the username</span><pre>removeUser()</pre></a></li>
+<li class="method public "><a href="#method_replaceUser" title="replaceUser() :: Replace an existing user, identified by its username"><span class="description">Replace an existing user, identified by its username</span><pre>replaceUser()</pre></a></li>
+<li class="method public "><a href="#method_revokeCollectionPermissions" title="revokeCollectionPermissions() :: Revoke R/W permissions for a user, for a specific database"><span class="description">Revoke R/W permissions for a user, for a specific database</span><pre>revokeCollectionPermissions()</pre></a></li>
+<li class="method public "><a href="#method_revokeDatabasePermissions" title="revokeDatabasePermissions() :: Revoke R/W permissions for a user, for a specific database"><span class="description">Revoke R/W permissions for a user, for a specific database</span><pre>revokeDatabasePermissions()</pre></a></li>
+<li class="method public "><a href="#method_revokePermissions" title="revokePermissions() :: Revoke R/W permissions for a user, for a specific database"><span class="description">Revoke R/W permissions for a user, for a specific database</span><pre>revokePermissions()</pre></a></li>
+<li class="method public inherited"><a href="#method_setDocumentClass" title="setDocumentClass() :: Sets the document class to use"><span class="description">Sets the document class to use</span><pre>setDocumentClass()</pre></a></li>
+<li class="method public "><a href="#method_updateUser" title="updateUser() :: Update an existing user, identified by the username"><span class="description">Update an existing user, identified by the username</span><pre>updateUser()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="method protected inherited"><a href="#method_getConnection" title="getConnection() :: Return the connection object"><span class="description">Return the connection object</span><pre>getConnection()</pre></a></li>
+<li class="method protected inherited"><a href="#method_getConnectionOption" title="getConnectionOption() :: Return a connection option
+This is a convenience function that calls json_encode_wrapper on the connection"><span class="description">Return a connection option
+This is a convenience function that calls json_encode_wrapper on the connection</span><pre>getConnectionOption()</pre></a></li>
+<li class="method protected inherited"><a href="#method_includeOptionsInBody" title="includeOptionsInBody() :: Helper function that runs through the options given and includes them into the parameters array given."><span class="description">Helper function that runs through the options given and includes them into the parameters array given.</span><pre>includeOptionsInBody()</pre></a></li>
+<li class="method protected inherited"><a href="#method_json_encode_wrapper" title="json_encode_wrapper() :: Return a json encoded string for the array passed."><span class="description">Return a json encoded string for the array passed.</span><pre>json_encode_wrapper()</pre></a></li>
+<li class="method protected inherited"><a href="#method_makeCollection" title="makeCollection() :: Turn a value into a collection name"><span class="description">Turn a value into a collection name</span><pre>makeCollection()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="property protected "><a href="#property__documentClass" title="$_documentClass() :: "><span class="description">Document class to use</span><pre>$_documentClass</pre></a></li></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="property private "><a href="#property__connection" title="$_connection() :: Connection object"><span class="description"></span><pre>$_connection</pre></a></li></ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a xmlns:php="http://php.net/xsl" id="\ArangoDBClient\UserHandler"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/ArangoDBClient.html">ArangoDBClient</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/ArangoDBClient.UserHandler.html">UserHandler</a>
+</li>
+</ul>
+<div xmlns:php="http://php.net/xsl" class="element class">
+<p class="short_description">A handler that manages users</p>
+<div class="details">
+<div class="long_description"><p>.
+A user-document handler that fetches vertices from the server and
+persists them on the server. It does so by issuing the
+appropriate HTTP requests to the server.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/ArangoDBClient.html">ArangoDBClient</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>1.2</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ArangoDBClient\Handler</td>
+</tr>
+</table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct inherited" data-toggle="collapse" data-target=".method___construct .collapse" title="public">
+<h2>Construct a new handler</h2>
+<pre>__construct(\ArangoDBClient\Connection $connection) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$connection</h4>
+<code>\ArangoDBClient\Connection</code><ul>
+<li>connection to be used</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_addUser"></a><div class="element clickable method public method_addUser " data-toggle="collapse" data-target=".method_addUser .collapse" title="public">
+<h2>save a user to the user-collection</h2>
+<pre>addUser(string $username, mixed $passwd<code> = null</code>, mixed $active<code> = null</code>, array $extra<code> = null</code>) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will save the user to the users collection. It will additionally grant the user permissions
+for the current database</p>
+<p>This will throw if the user cannot be saved</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>The name of the user as a string. This is mandatory.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$passwd</h4>
+<code>mixed</code><ul>
+<li>The user password as a string. If no password is specified, the empty string will be used.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$active</h4>
+<code>mixed</code><ul>
+<li>an optional flag that specifies whether the user is active. If not specified, this will default to true.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$extra</h4>
+<code>array</code><ul>
+<li>an optional array with arbitrary extra data about the user.</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- true, if user could be saved</div>
+</div></div>
+</div>
+<a id="method_get"></a><div class="element clickable method public method_get " data-toggle="collapse" data-target=".method_get .collapse" title="public">
+<h2>Get a single user-document, identified by the username</h2>
+<pre>get(string $username) : \ArangoDBClient\User</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the document cannot be fetched from the server</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>username as a string</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\User</code>- the user-document fetched from the server</div>
+</div></div>
+</div>
+<a id="method_getCollectionPermissionLevel"></a><div class="element clickable method public method_getCollectionPermissionLevel " data-toggle="collapse" data-target=".method_getCollectionPermissionLevel .collapse" title="public">
+<h2>Gets the list of collections a user has access to</h2>
+<pre>getCollectionPermissionLevel(string $username, string $databaseName, string $collectionName) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>username as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$databaseName</h4>
+<code>string</code><ul>
+<li>name of the database</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$collectionName</h4>
+<code>string</code><ul>
+<li>name of the collection</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getDatabasePermissionLevel"></a><div class="element clickable method public method_getDatabasePermissionLevel " data-toggle="collapse" data-target=".method_getDatabasePermissionLevel .collapse" title="public">
+<h2>Gets the list of collections a user has access to</h2>
+<pre>getDatabasePermissionLevel(string $username, string $databaseName) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>username as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$databaseName</h4>
+<code>string</code><ul>
+<li>name of the database</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getDatabases"></a><div class="element clickable method public method_getDatabases " data-toggle="collapse" data-target=".method_getDatabases .collapse" title="public">
+<h2>Gets the list of databases a user has access to</h2>
+<pre>getDatabases(string $username) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>username as a string</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>of database names for the databases the user has access to</div>
+</div></div>
+</div>
+<a id="method_grantCollectionPermissions"></a><div class="element clickable method public method_grantCollectionPermissions " data-toggle="collapse" data-target=".method_grantCollectionPermissions .collapse" title="public">
+<h2>Grant R/W permissions to a user, for a specific collection</h2>
+<pre>grantCollectionPermissions(string $username, string $databaseName, string $collectionName, string $permissions<code> = 'rw'</code>) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>username as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$databaseName</h4>
+<code>string</code><ul>
+<li>name of database as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$collectionName</h4>
+<code>string</code><ul>
+<li>name of collection as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$permissions</h4>
+<code>string</code><ul>
+<li>permissions string <code>rw</code> for read-write (default), <code>ro</code> for read-only</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_grantDatabasePermissions"></a><div class="element clickable method public method_grantDatabasePermissions " data-toggle="collapse" data-target=".method_grantDatabasePermissions .collapse" title="public">
+<h2>Grant R/W permissions to a user, for a specific database</h2>
+<pre>grantDatabasePermissions(string $username, string $databaseName, string $permissions<code> = 'rw'</code>) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>username as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$databaseName</h4>
+<code>string</code><ul>
+<li>name of database as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$permissions</h4>
+<code>string</code><ul>
+<li>permissions string <code>rw</code> for read-write (default), <code>ro</code> for read-only</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_grantPermissions"></a><div class="element clickable method public method_grantPermissions " data-toggle="collapse" data-target=".method_grantPermissions .collapse" title="public">
+<h2>Grant R/W permissions to a user, for a specific database</h2>
+<pre>grantPermissions(string $username, string $databaseName) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>deprecated</th>
+<td>use UserHandler::grantDatabasePermissions instead</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>username as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$databaseName</h4>
+<code>string</code><ul>
+<li>name of database as a string</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_removeUser"></a><div class="element clickable method public method_removeUser " data-toggle="collapse" data-target=".method_removeUser .collapse" title="public">
+<h2>Remove a user, identified by the username</h2>
+<pre>removeUser(string $username) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>username as a string, of the user that is to be deleted</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_replaceUser"></a><div class="element clickable method public method_replaceUser " data-toggle="collapse" data-target=".method_replaceUser .collapse" title="public">
+<h2>Replace an existing user, identified by its username</h2>
+<pre>replaceUser(string $username, mixed $passwd<code> = null</code>, mixed $active<code> = null</code>, array $extra<code> = null</code>) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will replace the user-document on the server</p>
+<p>This will throw if the document cannot be replaced</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>The name of the user as a string, who's user-data is going to be replaced. This is mandatory.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$passwd</h4>
+<code>mixed</code><ul>
+<li>The user password as a string. If no password is specified, the empty string will be used.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$active</h4>
+<code>mixed</code><ul>
+<li>an optional flag that specifies whether the user is active. If not specified, this will default to true.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$extra</h4>
+<code>array</code><ul>
+<li>an optional array with arbitrary extra data about the user.</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_revokeCollectionPermissions"></a><div class="element clickable method public method_revokeCollectionPermissions " data-toggle="collapse" data-target=".method_revokeCollectionPermissions .collapse" title="public">
+<h2>Revoke R/W permissions for a user, for a specific database</h2>
+<pre>revokeCollectionPermissions(string $username, string $databaseName, string $collectionName) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>username as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$databaseName</h4>
+<code>string</code><ul>
+<li>name of database as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$collectionName</h4>
+<code>string</code><ul>
+<li>name of collection as a string</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_revokeDatabasePermissions"></a><div class="element clickable method public method_revokeDatabasePermissions " data-toggle="collapse" data-target=".method_revokeDatabasePermissions .collapse" title="public">
+<h2>Revoke R/W permissions for a user, for a specific database</h2>
+<pre>revokeDatabasePermissions(string $username, string $databaseName) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>username as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$databaseName</h4>
+<code>string</code><ul>
+<li>name of database as a string</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_revokePermissions"></a><div class="element clickable method public method_revokePermissions " data-toggle="collapse" data-target=".method_revokePermissions .collapse" title="public">
+<h2>Revoke R/W permissions for a user, for a specific database</h2>
+<pre>revokePermissions(string $username, string $databaseName) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>deprecated</th>
+<td>use UserHandler::revokeDatabasePermissions instead</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>username as a string</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$databaseName</h4>
+<code>string</code><ul>
+<li>name of database as a string</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_setDocumentClass"></a><div class="element clickable method public method_setDocumentClass inherited" data-toggle="collapse" data-target=".method_setDocumentClass .collapse" title="public">
+<h2>Sets the document class to use</h2>
+<pre>setDocumentClass(string $class) : \ArangoDBClient\Handler</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$class</h4>
+<code>string</code><p>Document class to use</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\ArangoDBClient\Handler</code></div>
+</div></div>
+</div>
+<a id="method_updateUser"></a><div class="element clickable method public method_updateUser " data-toggle="collapse" data-target=".method_updateUser .collapse" title="public">
+<h2>Update an existing user, identified by the username</h2>
+<pre>updateUser(string $username, mixed $passwd<code> = null</code>, mixed $active<code> = null</code>, array $extra<code> = null</code>) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will update the user-document on the server</p>
+<p>This will throw if the document cannot be updated</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><ul>
+<li>The name of the user as a string, who's user-data is going to be updated. This is mandatory.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$passwd</h4>
+<code>mixed</code><ul>
+<li>The user password as a string. If no password is specified, the empty string will be used.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$active</h4>
+<code>mixed</code><ul>
+<li>an optional flag that specifies whether the user is active. If not specified, this will default to true.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$extra</h4>
+<code>array</code><ul>
+<li>an optional array with arbitrary extra data about the user.</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_getConnection"></a><div class="element clickable method protected method_getConnection inherited" data-toggle="collapse" data-target=".method_getConnection .collapse" title="protected">
+<h2>Return the connection object</h2>
+<pre>getConnection() : \ArangoDBClient\Connection</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Connection</code>- the connection object</div>
+</div></div>
+</div>
+<a id="method_getConnectionOption"></a><div class="element clickable method protected method_getConnectionOption inherited" data-toggle="collapse" data-target=".method_getConnectionOption .collapse" title="protected">
+<h2>Return a connection option
+This is a convenience function that calls json_encode_wrapper on the connection</h2>
+<pre>getConnectionOption($optionName) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$optionName</h4><ul>
+<li>The option to return a value for</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- the option's value</div>
+</div></div>
+</div>
+<a id="method_includeOptionsInBody"></a><div class="element clickable method protected method_includeOptionsInBody inherited" data-toggle="collapse" data-target=".method_includeOptionsInBody .collapse" title="protected">
+<h2>Helper function that runs through the options given and includes them into the parameters array given.</h2>
+<pre>includeOptionsInBody(array $options, array $body, array $includeArray<code> = array()</code>) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only options that are set in $includeArray will be included.
+This is only for options that are to be sent to the ArangoDB server in a json body(like 'limit', 'skip', etc...) .</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>The options array that holds the options to include in the parameters</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$body</h4>
+<code>array</code><ul>
+<li>The array into which the options will be included.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$includeArray</h4>
+<code>array</code><ul>
+<li>The array that defines which options are allowed to be included, and what their default value is. for example: 'waitForSync'=>true</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>$params - array of parameters for use in a url</div>
+</div></div>
+</div>
+<a id="method_json_encode_wrapper"></a><div class="element clickable method protected method_json_encode_wrapper inherited" data-toggle="collapse" data-target=".method_json_encode_wrapper .collapse" title="protected">
+<h2>Return a json encoded string for the array passed.</h2>
+<pre>json_encode_wrapper(array $body) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a convenience function that calls json_encode_wrapper on the connection</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$body</h4>
+<code>array</code><ul>
+<li>The body to encode into json</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- json string of the body that was passed</div>
+</div></div>
+</div>
+<a id="method_makeCollection"></a><div class="element clickable method protected method_makeCollection inherited" data-toggle="collapse" data-target=".method_makeCollection .collapse" title="protected">
+<h2>Turn a value into a collection name</h2>
+<pre>makeCollection(mixed $value) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><ul>
+<li>document, collection or string</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- collection name</div>
+</div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__documentClass"> </a><div class="element clickable property protected property__documentClass" data-toggle="collapse" data-target=".property__documentClass .collapse" title="protected">
+<h2>Document class to use</h2>
+<pre>$_documentClass : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>'\ArangoDBClient\Document'</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__connection"> </a><div class="element clickable property private property__connection" data-toggle="collapse" data-target=".property__connection .collapse" title="private">
+<h2>Connection object</h2>
+<pre>$_connection </pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>param</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2018-07-31T14:00:29+02:00.<br></footer></div>
+</div>
+</body>
+</html>

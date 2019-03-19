@@ -1,0 +1,928 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>ArangoDB PHP client API » \ArangoDBClient\Cursor</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">ArangoDB PHP client API</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/ArangoDBClient.html"><i class="icon-folder-open"></i> ArangoDBClient</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">19</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">2</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div xmlns:php="http://php.net/xsl" class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list">
+<li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct() :: Initialise the cursor with the first results and some metadata"><span class="description">Initialise the cursor with the first results and some metadata</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_current" title="current() :: Return the current result row, necessary for Iterator"><span class="description">Return the current result row, necessary for Iterator</span><pre>current()</pre></a></li>
+<li class="method public "><a href="#method_delete" title="delete() :: Explicitly delete the cursor"><span class="description">Explicitly delete the cursor</span><pre>delete()</pre></a></li>
+<li class="method public "><a href="#method_getAll" title="getAll() :: Get all results as an array"><span class="description">Get all results as an array</span><pre>getAll()</pre></a></li>
+<li class="method public "><a href="#method_getCached" title="getCached() :: Get the cached attribute for the result set"><span class="description">Get the cached attribute for the result set</span><pre>getCached()</pre></a></li>
+<li class="method public "><a href="#method_getCount" title="getCount() :: Get the total number of results in the cursor"><span class="description">Get the total number of results in the cursor</span><pre>getCount()</pre></a></li>
+<li class="method public "><a href="#method_getExtra" title="getExtra() :: Return the extra data of the query (statistics etc.). Contents of the result array
+depend on the type of query executed"><span class="description">Return the extra data of the query (statistics etc.). Contents of the result array
+depend on the type of query executed</span><pre>getExtra()</pre></a></li>
+<li class="method public "><a href="#method_getFetches" title="getFetches() :: Return the number of HTTP calls that were made to build the cursor result"><span class="description">Return the number of HTTP calls that were made to build the cursor result</span><pre>getFetches()</pre></a></li>
+<li class="method public "><a href="#method_getFiltered" title="getFiltered() :: Return the number of documents filtered by the query"><span class="description">Return the number of documents filtered by the query</span><pre>getFiltered()</pre></a></li>
+<li class="method public "><a href="#method_getFullCount" title="getFullCount() :: Get the full count of the cursor (ignoring the outermost LIMIT)"><span class="description">Get the full count of the cursor (ignoring the outermost LIMIT)</span><pre>getFullCount()</pre></a></li>
+<li class="method public "><a href="#method_getId" title="getId() :: Return the cursor id, if any"><span class="description">Return the cursor id, if any</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#method_getMetadata" title="getMetadata() :: Get MetaData of the current cursor"><span class="description">Get MetaData of the current cursor</span><pre>getMetadata()</pre></a></li>
+<li class="method public "><a href="#method_getScannedFull" title="getScannedFull() :: Return the number of documents iterated over in full scans"><span class="description">Return the number of documents iterated over in full scans</span><pre>getScannedFull()</pre></a></li>
+<li class="method public "><a href="#method_getScannedIndex" title="getScannedIndex() :: Return the number of documents iterated over in index scans"><span class="description">Return the number of documents iterated over in index scans</span><pre>getScannedIndex()</pre></a></li>
+<li class="method public "><a href="#method_getWarnings" title="getWarnings() :: Return the warnings issued during query execution"><span class="description">Return the warnings issued during query execution</span><pre>getWarnings()</pre></a></li>
+<li class="method public "><a href="#method_getWritesExecuted" title="getWritesExecuted() :: Return the number of writes executed by the query"><span class="description">Return the number of writes executed by the query</span><pre>getWritesExecuted()</pre></a></li>
+<li class="method public "><a href="#method_getWritesIgnored" title="getWritesIgnored() :: Return the number of ignored write operations from the query"><span class="description">Return the number of ignored write operations from the query</span><pre>getWritesIgnored()</pre></a></li>
+<li class="method public "><a href="#method_key" title="key() :: Return the index of the current result row, necessary for Iterator"><span class="description">Return the index of the current result row, necessary for Iterator</span><pre>key()</pre></a></li>
+<li class="method public "><a href="#method_next" title="next() :: Advance the cursor, necessary for Iterator"><span class="description">Advance the cursor, necessary for Iterator</span><pre>next()</pre></a></li>
+<li class="method public "><a href="#method_rewind" title="rewind() :: Rewind the cursor, necessary for Iterator"><span class="description">Rewind the cursor, necessary for Iterator</span><pre>rewind()</pre></a></li>
+<li class="method public "><a href="#method_setDocumentClass" title="setDocumentClass() :: Sets the document class to use"><span class="description">Sets the document class to use</span><pre>setDocumentClass()</pre></a></li>
+<li class="method public "><a href="#method_valid" title="valid() :: Check if cursor can be advanced further, necessary for Iterator"><span class="description">Check if cursor can be advanced further, necessary for Iterator</span><pre>valid()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="method private "><a href="#method_add" title="add() :: Create an array of results from the input array"><span class="description">Create an array of results from the input array</span><pre>add()</pre></a></li>
+<li class="method private "><a href="#method_addCommonNeighborsFromArray" title="addCommonNeighborsFromArray() :: Create an array of common neighbors from the input array"><span class="description">Create an array of common neighbors from the input array</span><pre>addCommonNeighborsFromArray()</pre></a></li>
+<li class="method private "><a href="#method_addCommonPropertiesFromArray" title="addCommonPropertiesFromArray() :: Create an array of common properties from the input array"><span class="description">Create an array of common properties from the input array</span><pre>addCommonPropertiesFromArray()</pre></a></li>
+<li class="method private "><a href="#method_addDistanceToFromArray" title="addDistanceToFromArray() :: Create an array of distances from the input array"><span class="description">Create an array of distances from the input array</span><pre>addDistanceToFromArray()</pre></a></li>
+<li class="method private "><a href="#method_addDocumentsFromArray" title="addDocumentsFromArray() :: Create an array of documents from the input array"><span class="description">Create an array of documents from the input array</span><pre>addDocumentsFromArray()</pre></a></li>
+<li class="method private "><a href="#method_addEdgesFromArray" title="addEdgesFromArray() :: Create an array of Edges from the input array"><span class="description">Create an array of Edges from the input array</span><pre>addEdgesFromArray()</pre></a></li>
+<li class="method private "><a href="#method_addFigureFromArray" title="addFigureFromArray() :: Create an array of figuresfrom the input array"><span class="description">Create an array of figuresfrom the input array</span><pre>addFigureFromArray()</pre></a></li>
+<li class="method private "><a href="#method_addFlatFromArray" title="addFlatFromArray() :: Create an array of results from the input array"><span class="description">Create an array of results from the input array</span><pre>addFlatFromArray()</pre></a></li>
+<li class="method private "><a href="#method_addPathsFromArray" title="addPathsFromArray() :: Create an array of paths from the input array"><span class="description">Create an array of paths from the input array</span><pre>addPathsFromArray()</pre></a></li>
+<li class="method private "><a href="#method_addShortestPathFromArray" title="addShortestPathFromArray() :: Create an array of shortest paths from the input array"><span class="description">Create an array of shortest paths from the input array</span><pre>addShortestPathFromArray()</pre></a></li>
+<li class="method private "><a href="#method_addVerticesFromArray" title="addVerticesFromArray() :: Create an array of Vertex from the input array"><span class="description">Create an array of Vertex from the input array</span><pre>addVerticesFromArray()</pre></a></li>
+<li class="method private "><a href="#method_fetchOutstanding" title="fetchOutstanding() :: Fetch outstanding results from the server"><span class="description">Fetch outstanding results from the server</span><pre>fetchOutstanding()</pre></a></li>
+<li class="method private "><a href="#method_getStatValue" title="getStatValue() :: Get a statistical figure value from the query result"><span class="description">Get a statistical figure value from the query result</span><pre>getStatValue()</pre></a></li>
+<li class="method private "><a href="#method_sanitize" title="sanitize() :: Sanitize the result set rows"><span class="description">Sanitize the result set rows</span><pre>sanitize()</pre></a></li>
+<li class="method private "><a href="#method_updateLength" title="updateLength() :: Set the length of the (fetched) result set"><span class="description">Set the length of the (fetched) result set</span><pre>updateLength()</pre></a></li>
+<li class="method private "><a href="#method_url" title="url() :: Return the base URL for the cursor"><span class="description">Return the base URL for the cursor</span><pre>url()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="property protected "><a href="#property__documentClass" title="$_documentClass() :: "><span class="description">Document class to use</span><pre>$_documentClass</pre></a></li></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property__cached" title="$_cached() :: whether or not the query result was served from the AQL query result cache"><span class="description"></span><pre>$_cached</pre></a></li>
+<li class="property private "><a href="#property__connection" title="$_connection() :: The connection object"><span class="description"></span><pre>$_connection</pre></a></li>
+<li class="property private "><a href="#property__count" title="$_count() :: precalculated number of documents in the cursor, as returned by the server"><span class="description"></span><pre>$_count</pre></a></li>
+<li class="property private "><a href="#property__extra" title="$_extra() :: extra data (statistics) returned from the statement"><span class="description"></span><pre>$_extra</pre></a></li>
+<li class="property private "><a href="#property__fetches" title="$_fetches() :: number of HTTP calls that were made to build the cursor result"><span class="description"></span><pre>$_fetches</pre></a></li>
+<li class="property private "><a href="#property__fullCount" title="$_fullCount() :: full count of the result set (ignoring the outermost LIMIT)"><span class="description"></span><pre>$_fullCount</pre></a></li>
+<li class="property private "><a href="#property__hasMore" title='$_hasMore() :: "has more" indicator - if true, the server has more results'><span class="description"></span><pre>$_hasMore</pre></a></li>
+<li class="property private "><a href="#property__id" title="$_id() :: cursor id - might be NULL if cursor does not have an id"><span class="description"></span><pre>$_id</pre></a></li>
+<li class="property private "><a href="#property__length" title="$_length() :: total length of result set (in number of documents)"><span class="description"></span><pre>$_length</pre></a></li>
+<li class="property private "><a href="#property__options" title="$_options() :: Cursor options"><span class="description"></span><pre>$_options</pre></a></li>
+<li class="property private "><a href="#property__position" title="$_position() :: current position in result set iteration (zero-based)"><span class="description"></span><pre>$_position</pre></a></li>
+<li class="property private "><a href="#property__result" title="$_result() :: The result set"><span class="description"></span><pre>$_result</pre></a></li>
+<li class="property private "><a href="#property_data" title="$data() :: Result Data"><span class="description"></span><pre>$data</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Constants" class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_ENTRY_BASEURL" title='ENTRY_BASEURL() :: "baseurl" option entry.'><span class="description">"baseurl" option entry.</span><pre>ENTRY_BASEURL</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_CACHE" title="ENTRY_CACHE() :: cache option entry"><span class="description">cache option entry</span><pre>ENTRY_CACHE</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_CACHED" title="ENTRY_CACHED() :: cached result attribute - whether or not the result was served from the AQL query cache"><span class="description">cached result attribute - whether or not the result was served from the AQL query cache</span><pre>ENTRY_CACHED</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_EXTRA" title="ENTRY_EXTRA() :: result entry for extra data"><span class="description">result entry for extra data</span><pre>ENTRY_EXTRA</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_FLAT" title='ENTRY_FLAT() :: "flat" option entry (will treat the results as a simple array, not documents)'><span class="description">"flat" option entry (will treat the results as a simple array, not documents)</span><pre>ENTRY_FLAT</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_HASMORE" title='ENTRY_HASMORE() :: result entry for "hasMore" flag'><span class="description">result entry for "hasMore" flag</span><pre>ENTRY_HASMORE</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_ID" title="ENTRY_ID() :: result entry for cursor id"><span class="description">result entry for cursor id</span><pre>ENTRY_ID</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_RESULT" title="ENTRY_RESULT() :: result entry for result documents"><span class="description">result entry for result documents</span><pre>ENTRY_RESULT</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_SANITIZE" title="ENTRY_SANITIZE() :: sanitize option entry"><span class="description">sanitize option entry</span><pre>ENTRY_SANITIZE</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_STATS" title="ENTRY_STATS() :: result entry for stats"><span class="description">result entry for stats</span><pre>ENTRY_STATS</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_TYPE" title='ENTRY_TYPE() :: "objectType" option entry.'><span class="description">"objectType" option entry.</span><pre>ENTRY_TYPE</pre></a></li>
+<li class="constant  "><a href="#constant_FULL_COUNT" title="FULL_COUNT() :: result entry for the full count (ignoring the outermost LIMIT)"><span class="description">result entry for the full count (ignoring the outermost LIMIT)</span><pre>FULL_COUNT</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a xmlns:php="http://php.net/xsl" id="\ArangoDBClient\Cursor"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/ArangoDBClient.html">ArangoDBClient</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/ArangoDBClient.Cursor.html">Cursor</a>
+</li>
+</ul>
+<div xmlns:php="http://php.net/xsl" class="element class">
+<p class="short_description">Provides access to the results of an AQL query or another statement</p>
+<div class="details">
+<div class="long_description"><p>The cursor might not contain all results in the beginning.<br></p>
+<p>If the result set is too big to be transferred in one go, the
+cursor might issue additional HTTP requests to fetch the
+remaining results from the server.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/ArangoDBClient.html">ArangoDBClient</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>0.2</td>
+</tr>
+</table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
+<h2>Initialise the cursor with the first results and some metadata</h2>
+<pre>__construct(\ArangoDBClient\Connection $connection, array $data, array $options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$connection</h4>
+<code>\ArangoDBClient\Connection</code><ul>
+<li>connection to be used</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>initial result data as returned by the server</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>cursor options</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_current"></a><div class="element clickable method public method_current " data-toggle="collapse" data-target=".method_current .collapse" title="public">
+<h2>Return the current result row, necessary for Iterator</h2>
+<pre>current() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- the current result row as an assoc array</div>
+</div></div>
+</div>
+<a id="method_delete"></a><div class="element clickable method public method_delete " data-toggle="collapse" data-target=".method_delete .collapse" title="public">
+<h2>Explicitly delete the cursor</h2>
+<pre>delete() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This might issue an HTTP DELETE request to inform the server about
+the deletion.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- true if the server acknowledged the deletion request, false otherwise</div>
+</div></div>
+</div>
+<a id="method_getAll"></a><div class="element clickable method public method_getAll " data-toggle="collapse" data-target=".method_getAll .collapse" title="public">
+<h2>Get all results as an array</h2>
+<pre>getAll() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This might issue additional HTTP requests to fetch any outstanding
+results from the server</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- an array of all results</div>
+</div></div>
+</div>
+<a id="method_getCached"></a><div class="element clickable method public method_getCached " data-toggle="collapse" data-target=".method_getCached .collapse" title="public">
+<h2>Get the cached attribute for the result set</h2>
+<pre>getCached() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- whether or not the query result was served from the AQL query cache</div>
+</div></div>
+</div>
+<a id="method_getCount"></a><div class="element clickable method public method_getCount " data-toggle="collapse" data-target=".method_getCount .collapse" title="public">
+<h2>Get the total number of results in the cursor</h2>
+<pre>getCount() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This might issue additional HTTP requests to fetch any outstanding
+results from the server</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>- total number of results</div>
+</div></div>
+</div>
+<a id="method_getExtra"></a><div class="element clickable method public method_getExtra " data-toggle="collapse" data-target=".method_getExtra .collapse" title="public">
+<h2>Return the extra data of the query (statistics etc.). Contents of the result array
+depend on the type of query executed</h2>
+<pre>getExtra() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getFetches"></a><div class="element clickable method public method_getFetches " data-toggle="collapse" data-target=".method_getFetches .collapse" title="public">
+<h2>Return the number of HTTP calls that were made to build the cursor result</h2>
+<pre>getFetches() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method_getFiltered"></a><div class="element clickable method public method_getFiltered " data-toggle="collapse" data-target=".method_getFiltered .collapse" title="public">
+<h2>Return the number of documents filtered by the query</h2>
+<pre>getFiltered() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method_getFullCount"></a><div class="element clickable method public method_getFullCount " data-toggle="collapse" data-target=".method_getFullCount .collapse" title="public">
+<h2>Get the full count of the cursor (ignoring the outermost LIMIT)</h2>
+<pre>getFullCount() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>- total number of results</div>
+</div></div>
+</div>
+<a id="method_getId"></a><div class="element clickable method public method_getId " data-toggle="collapse" data-target=".method_getId .collapse" title="public">
+<h2>Return the cursor id, if any</h2>
+<pre>getId() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getMetadata"></a><div class="element clickable method public method_getMetadata " data-toggle="collapse" data-target=".method_getMetadata .collapse" title="public">
+<h2>Get MetaData of the current cursor</h2>
+<pre>getMetadata() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getScannedFull"></a><div class="element clickable method public method_getScannedFull " data-toggle="collapse" data-target=".method_getScannedFull .collapse" title="public">
+<h2>Return the number of documents iterated over in full scans</h2>
+<pre>getScannedFull() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method_getScannedIndex"></a><div class="element clickable method public method_getScannedIndex " data-toggle="collapse" data-target=".method_getScannedIndex .collapse" title="public">
+<h2>Return the number of documents iterated over in index scans</h2>
+<pre>getScannedIndex() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method_getWarnings"></a><div class="element clickable method public method_getWarnings " data-toggle="collapse" data-target=".method_getWarnings .collapse" title="public">
+<h2>Return the warnings issued during query execution</h2>
+<pre>getWarnings() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getWritesExecuted"></a><div class="element clickable method public method_getWritesExecuted " data-toggle="collapse" data-target=".method_getWritesExecuted .collapse" title="public">
+<h2>Return the number of writes executed by the query</h2>
+<pre>getWritesExecuted() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method_getWritesIgnored"></a><div class="element clickable method public method_getWritesIgnored " data-toggle="collapse" data-target=".method_getWritesIgnored .collapse" title="public">
+<h2>Return the number of ignored write operations from the query</h2>
+<pre>getWritesIgnored() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method_key"></a><div class="element clickable method public method_key " data-toggle="collapse" data-target=".method_key .collapse" title="public">
+<h2>Return the index of the current result row, necessary for Iterator</h2>
+<pre>key() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>- the current result row index</div>
+</div></div>
+</div>
+<a id="method_next"></a><div class="element clickable method public method_next " data-toggle="collapse" data-target=".method_next .collapse" title="public">
+<h2>Advance the cursor, necessary for Iterator</h2>
+<pre>next() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_rewind"></a><div class="element clickable method public method_rewind " data-toggle="collapse" data-target=".method_rewind .collapse" title="public">
+<h2>Rewind the cursor, necessary for Iterator</h2>
+<pre>rewind() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_setDocumentClass"></a><div class="element clickable method public method_setDocumentClass " data-toggle="collapse" data-target=".method_setDocumentClass .collapse" title="public">
+<h2>Sets the document class to use</h2>
+<pre>setDocumentClass(string $class) : \ArangoDBClient\Cursor</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$class</h4>
+<code>string</code><p>Document class to use</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\ArangoDBClient\Cursor</code></div>
+</div></div>
+</div>
+<a id="method_valid"></a><div class="element clickable method public method_valid " data-toggle="collapse" data-target=".method_valid .collapse" title="public">
+<h2>Check if cursor can be advanced further, necessary for Iterator</h2>
+<pre>valid() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This might issue additional HTTP requests to fetch any outstanding
+results from the server</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- true if the cursor can be advanced further, false if cursor is at end</div>
+</div></div>
+</div>
+<a id="method_add"></a><div class="element clickable method private method_add " data-toggle="collapse" data-target=".method_add .collapse" title="private">
+<h2>Create an array of results from the input array</h2>
+<pre>add(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>incoming result</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_addCommonNeighborsFromArray"></a><div class="element clickable method private method_addCommonNeighborsFromArray " data-toggle="collapse" data-target=".method_addCommonNeighborsFromArray .collapse" title="private">
+<h2>Create an array of common neighbors from the input array</h2>
+<pre>addCommonNeighborsFromArray(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>array of incoming "paths" arrays</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_addCommonPropertiesFromArray"></a><div class="element clickable method private method_addCommonPropertiesFromArray " data-toggle="collapse" data-target=".method_addCommonPropertiesFromArray .collapse" title="private">
+<h2>Create an array of common properties from the input array</h2>
+<pre>addCommonPropertiesFromArray(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>array of incoming "paths" arrays</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_addDistanceToFromArray"></a><div class="element clickable method private method_addDistanceToFromArray " data-toggle="collapse" data-target=".method_addDistanceToFromArray .collapse" title="private">
+<h2>Create an array of distances from the input array</h2>
+<pre>addDistanceToFromArray(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>array of incoming "paths" arrays</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_addDocumentsFromArray"></a><div class="element clickable method private method_addDocumentsFromArray " data-toggle="collapse" data-target=".method_addDocumentsFromArray .collapse" title="private">
+<h2>Create an array of documents from the input array</h2>
+<pre>addDocumentsFromArray(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>array of incoming "document" arrays</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_addEdgesFromArray"></a><div class="element clickable method private method_addEdgesFromArray " data-toggle="collapse" data-target=".method_addEdgesFromArray .collapse" title="private">
+<h2>Create an array of Edges from the input array</h2>
+<pre>addEdgesFromArray(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>array of incoming "edge" arrays</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_addFigureFromArray"></a><div class="element clickable method private method_addFigureFromArray " data-toggle="collapse" data-target=".method_addFigureFromArray .collapse" title="private">
+<h2>Create an array of figuresfrom the input array</h2>
+<pre>addFigureFromArray(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>array of incoming "paths" arrays</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_addFlatFromArray"></a><div class="element clickable method private method_addFlatFromArray " data-toggle="collapse" data-target=".method_addFlatFromArray .collapse" title="private">
+<h2>Create an array of results from the input array</h2>
+<pre>addFlatFromArray(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>array of incoming results</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_addPathsFromArray"></a><div class="element clickable method private method_addPathsFromArray " data-toggle="collapse" data-target=".method_addPathsFromArray .collapse" title="private">
+<h2>Create an array of paths from the input array</h2>
+<pre>addPathsFromArray(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>array of incoming "paths" arrays</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_addShortestPathFromArray"></a><div class="element clickable method private method_addShortestPathFromArray " data-toggle="collapse" data-target=".method_addShortestPathFromArray .collapse" title="private">
+<h2>Create an array of shortest paths from the input array</h2>
+<pre>addShortestPathFromArray(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>array of incoming "paths" arrays</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_addVerticesFromArray"></a><div class="element clickable method private method_addVerticesFromArray " data-toggle="collapse" data-target=".method_addVerticesFromArray .collapse" title="private">
+<h2>Create an array of Vertex from the input array</h2>
+<pre>addVerticesFromArray(array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><ul>
+<li>array of incoming "vertex" arrays</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_fetchOutstanding"></a><div class="element clickable method private method_fetchOutstanding " data-toggle="collapse" data-target=".method_fetchOutstanding .collapse" title="private">
+<h2>Fetch outstanding results from the server</h2>
+<pre>fetchOutstanding() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getStatValue"></a><div class="element clickable method private method_getStatValue " data-toggle="collapse" data-target=".method_getStatValue .collapse" title="private">
+<h2>Get a statistical figure value from the query result</h2>
+<pre>getStatValue(string $name) : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><ul>
+<li>name of figure to return</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method_sanitize"></a><div class="element clickable method private method_sanitize " data-toggle="collapse" data-target=".method_sanitize .collapse" title="private">
+<h2>Sanitize the result set rows</h2>
+<pre>sanitize(array $rows) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will remove the _id and _rev attributes from the results if the
+&quot;sanitize&quot; option is set</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rows</h4>
+<code>array</code><ul>
+<li>array of rows to be sanitized</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- sanitized rows</div>
+</div></div>
+</div>
+<a id="method_updateLength"></a><div class="element clickable method private method_updateLength " data-toggle="collapse" data-target=".method_updateLength .collapse" title="private">
+<h2>Set the length of the (fetched) result set</h2>
+<pre>updateLength() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_url"></a><div class="element clickable method private method_url " data-toggle="collapse" data-target=".method_url .collapse" title="private">
+<h2>Return the base URL for the cursor</h2>
+<pre>url() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__documentClass"> </a><div class="element clickable property protected property__documentClass" data-toggle="collapse" data-target=".property__documentClass .collapse" title="protected">
+<h2>Document class to use</h2>
+<pre>$_documentClass : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>'\ArangoDBClient\Document'</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__cached"> </a><div class="element clickable property private property__cached" data-toggle="collapse" data-target=".property__cached .collapse" title="private">
+<h2>whether or not the query result was served from the AQL query result cache</h2>
+<pre>$_cached </pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__connection"> </a><div class="element clickable property private property__connection" data-toggle="collapse" data-target=".property__connection .collapse" title="private">
+<h2>The connection object</h2>
+<pre>$_connection : \ArangoDBClient\Connection</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__count"> </a><div class="element clickable property private property__count" data-toggle="collapse" data-target=".property__count .collapse" title="private">
+<h2>precalculated number of documents in the cursor, as returned by the server</h2>
+<pre>$_count : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__extra"> </a><div class="element clickable property private property__extra" data-toggle="collapse" data-target=".property__extra .collapse" title="private">
+<h2>extra data (statistics) returned from the statement</h2>
+<pre>$_extra : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__fetches"> </a><div class="element clickable property private property__fetches" data-toggle="collapse" data-target=".property__fetches .collapse" title="private">
+<h2>number of HTTP calls that were made to build the cursor result</h2>
+<pre>$_fetches </pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>1</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__fullCount"> </a><div class="element clickable property private property__fullCount" data-toggle="collapse" data-target=".property__fullCount .collapse" title="private">
+<h2>full count of the result set (ignoring the outermost LIMIT)</h2>
+<pre>$_fullCount : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__hasMore"> </a><div class="element clickable property private property__hasMore" data-toggle="collapse" data-target=".property__hasMore .collapse" title="private">
+<h2>"has more" indicator - if true, the server has more results</h2>
+<pre>$_hasMore : boolean</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__id"> </a><div class="element clickable property private property__id" data-toggle="collapse" data-target=".property__id .collapse" title="private">
+<h2>cursor id - might be NULL if cursor does not have an id</h2>
+<pre>$_id : mixed</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__length"> </a><div class="element clickable property private property__length" data-toggle="collapse" data-target=".property__length .collapse" title="private">
+<h2>total length of result set (in number of documents)</h2>
+<pre>$_length : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__options"> </a><div class="element clickable property private property__options" data-toggle="collapse" data-target=".property__options .collapse" title="private">
+<h2>Cursor options</h2>
+<pre>$_options : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__position"> </a><div class="element clickable property private property__position" data-toggle="collapse" data-target=".property__position .collapse" title="private">
+<h2>current position in result set iteration (zero-based)</h2>
+<pre>$_position : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__result"> </a><div class="element clickable property private property__result" data-toggle="collapse" data-target=".property__result .collapse" title="private">
+<h2>The result set</h2>
+<pre>$_result : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_data"> </a><div class="element clickable property private property_data" data-toggle="collapse" data-target=".property_data .collapse" title="private">
+<h2>Result Data</h2>
+<pre>$data : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i title="Constants" class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_ENTRY_BASEURL"> </a><div class="element clickable constant  constant_ENTRY_BASEURL" data-toggle="collapse" data-target=".constant_ENTRY_BASEURL .collapse" title="">
+<h2>"baseurl" option entry.</h2>
+<pre>ENTRY_BASEURL = 'baseurl' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_CACHE"> </a><div class="element clickable constant  constant_ENTRY_CACHE" data-toggle="collapse" data-target=".constant_ENTRY_CACHE .collapse" title="">
+<h2>cache option entry</h2>
+<pre>ENTRY_CACHE = 'cache' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_CACHED"> </a><div class="element clickable constant  constant_ENTRY_CACHED" data-toggle="collapse" data-target=".constant_ENTRY_CACHED .collapse" title="">
+<h2>cached result attribute - whether or not the result was served from the AQL query cache</h2>
+<pre>ENTRY_CACHED = 'cached' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_EXTRA"> </a><div class="element clickable constant  constant_ENTRY_EXTRA" data-toggle="collapse" data-target=".constant_ENTRY_EXTRA .collapse" title="">
+<h2>result entry for extra data</h2>
+<pre>ENTRY_EXTRA = 'extra' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_FLAT"> </a><div class="element clickable constant  constant_ENTRY_FLAT" data-toggle="collapse" data-target=".constant_ENTRY_FLAT .collapse" title="">
+<h2>"flat" option entry (will treat the results as a simple array, not documents)</h2>
+<pre>ENTRY_FLAT = '_flat' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_HASMORE"> </a><div class="element clickable constant  constant_ENTRY_HASMORE" data-toggle="collapse" data-target=".constant_ENTRY_HASMORE .collapse" title="">
+<h2>result entry for "hasMore" flag</h2>
+<pre>ENTRY_HASMORE = 'hasMore' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_ID"> </a><div class="element clickable constant  constant_ENTRY_ID" data-toggle="collapse" data-target=".constant_ENTRY_ID .collapse" title="">
+<h2>result entry for cursor id</h2>
+<pre>ENTRY_ID = 'id' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_RESULT"> </a><div class="element clickable constant  constant_ENTRY_RESULT" data-toggle="collapse" data-target=".constant_ENTRY_RESULT .collapse" title="">
+<h2>result entry for result documents</h2>
+<pre>ENTRY_RESULT = 'result' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_SANITIZE"> </a><div class="element clickable constant  constant_ENTRY_SANITIZE" data-toggle="collapse" data-target=".constant_ENTRY_SANITIZE .collapse" title="">
+<h2>sanitize option entry</h2>
+<pre>ENTRY_SANITIZE = '_sanitize' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_STATS"> </a><div class="element clickable constant  constant_ENTRY_STATS" data-toggle="collapse" data-target=".constant_ENTRY_STATS .collapse" title="">
+<h2>result entry for stats</h2>
+<pre>ENTRY_STATS = 'stats' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_TYPE"> </a><div class="element clickable constant  constant_ENTRY_TYPE" data-toggle="collapse" data-target=".constant_ENTRY_TYPE .collapse" title="">
+<h2>"objectType" option entry.</h2>
+<pre>ENTRY_TYPE = 'objectType' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_FULL_COUNT"> </a><div class="element clickable constant  constant_FULL_COUNT" data-toggle="collapse" data-target=".constant_FULL_COUNT .collapse" title="">
+<h2>result entry for the full count (ignoring the outermost LIMIT)</h2>
+<pre>FULL_COUNT = 'fullCount' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2018-07-31T14:00:29+02:00.<br></footer></div>
+</div>
+</body>
+</html>
