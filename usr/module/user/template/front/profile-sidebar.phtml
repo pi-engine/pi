@@ -134,7 +134,7 @@ $this->sticky();
                                          class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
                                          role="tabpanel">
                                         <div class="list-group">
-                                            <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>" title="<?php _e('List'); ?>" class="list-group-item noborder"><?php _e('List'); ?></a>
+                                            <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>" title="<?php _e('List'); ?>" class="list-group-item noborder"><?php _e('All'); ?></a>
                                             <?php foreach ($navigationItemList as $itemId => $itemTitle) : ?>
                                                 <a href="<?php echo $this->url(null, array('item' => $itemId), null, true) ?>" title="<?php echo $itemTitle ?>" class="noborder list-group-item"><?php echo $itemTitle ?></a>
                                             <?php endforeach; ?>
@@ -181,7 +181,7 @@ $this->sticky();
                                 <hr/>
                             </div>
 
-                            <a title="<?php _e('Tools'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'tools', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "tools"  ? 'active' : '' ?>"><span class="indent"></span><?php _e('Tools'); ?></a>
+                            <a title="<?php _e('Widget'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'tools', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "tools"  ? 'active' : '' ?>"><span class="indent"></span><?php _e('Widget'); ?></a>
                         <?php } ?>
                     </div>
                 </div>
