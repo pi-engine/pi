@@ -27,11 +27,11 @@ use ArangoDBClient\UpdatePolicy as ArangoUpdatePolicy;
  * more information : https://www.arangodb.com
  * php client : https://github.com/arangodb/arangodb-php
  *
- * Pi::service('arangoDb')->write($params, $collection, $forceCreate);
+ * Pi::service('arangoDb')->insert($params, $collection, $forceCreate);
  * Pi::service('arangoDb')->find($id, $collection, $forceCreate);
- * Pi::service('arangoDb')->query($where, $collection, $forceCreate);
+ * Pi::service('arangoDb')->select($where, $collection, $forceCreate);
  * Pi::service('arangoDb')->update($id, $params, $collection, $forceCreate);
- * Pi::service('arangoDb')->remove($id, $collection, $forceCreate);
+ * Pi::service('arangoDb')->delete($id, $collection, $forceCreate);
  * Pi::service('arangoDb')->export($params, $collection, $forceCreate);
  *
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
@@ -103,9 +103,9 @@ class ArangoDb extends AbstractService
         return $result;
     }
 
-    public function write($params, $collection = 'logs', $forceCreate = false)
+    public function insert($params, $collection = 'logs', $forceCreate = false)
     {
-        // Check arango db setup and active or not
+        // Check ArangoDB setup and active or not
         if ($this->options['active'] && !empty($params)) {
 
             // Get connection option
@@ -113,35 +113,43 @@ class ArangoDb extends AbstractService
 
             // Make check
             if (!$this->check($connection, $collection, $forceCreate)) {
-                return __('Error , select collection not exist, please generate collection before make any type of query');
-                exit();
-            }
+                return [
+                    'status'  => 0,
+                    'message' => __('Error , select collection not exist, please generate collection before make any type of query'),
+                ];
+            } else {
+                // Try save log
+                try {
+                    // Set document handler
+                    $handler = new ArangoDocumentHandler($connection);
 
-            // Try save log
-            try {
-                // Set document handler
-                $handler = new ArangoDocumentHandler($connection);
+                    // send the document to the server and git id
+                    $result = $handler->save($collection, $params);
 
-                // send the document to the server
-                $id = $handler->save($collection, $params);
-
-                // Return result
-                return $id;
-            } catch (ArangoConnectException $e) {
-                return 'Connection error: ' . $e->getMessage();
-            } catch (ArangoClientException $e) {
-                return 'Client error: ' . $e->getMessage();
-            } catch (ArangoServerException $e) {
-                return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+                    // Return result
+                    return [
+                        'status' => 1,
+                        'result' => $result,
+                    ];
+                } catch (ArangoConnectException $e) {
+                    return 'Connection error: ' . $e->getMessage();
+                } catch (ArangoClientException $e) {
+                    return 'Client error: ' . $e->getMessage();
+                } catch (ArangoServerException $e) {
+                    return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+                }
             }
         } else {
-
+            return [
+                'status'  => 0,
+                'message' => __('Error, ArangoDB not active, please setup database and update service.arangodb.php config file'),
+            ];
         }
     }
 
     public function find($id, $collection = 'logs', $forceCreate = false)
     {
-        // Check arango db setup and active or not
+        // Check ArangoDB setup and active or not
         if ($this->options['active'] && !empty($id)) {
 
             // Get connection option
@@ -149,33 +157,42 @@ class ArangoDb extends AbstractService
 
             // Make check
             if (!$this->check($connection, $collection, $forceCreate)) {
-                return __('Error , select collection not exist, please generate collection before make any type of query');
-                exit();
-            }
+                return [
+                    'status'  => 0,
+                    'message' => __('Error , select collection not exist, please generate collection before make any type of query'),
+                ];
+            } else {
+                try {
+                    // Set document handler
+                    $handler = new ArangoDocumentHandler($connection);
 
-            try {
-                // Set document handler
-                $handler = new ArangoDocumentHandler($connection);
+                    // get the document back from the server
+                    $result = $handler->get($collection, $id);
 
-                // get the document back from the server
-                $result = $handler->get($collection, $id);
-
-                return $result;
-            } catch (ArangoConnectException $e) {
-                return 'Connection error: ' . $e->getMessage();
-            } catch (ArangoClientException $e) {
-                return 'Client error: ' . $e->getMessage();
-            } catch (ArangoServerException $e) {
-                return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+                    // Return result
+                    return [
+                        'status' => 1,
+                        'result' => $result,
+                    ];
+                } catch (ArangoConnectException $e) {
+                    return 'Connection error: ' . $e->getMessage();
+                } catch (ArangoClientException $e) {
+                    return 'Client error: ' . $e->getMessage();
+                } catch (ArangoServerException $e) {
+                    return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+                }
             }
         } else {
-
+            return [
+                'status'  => 0,
+                'message' => __('Error, ArangoDB not active, please setup database and update service.arangodb.php config file'),
+            ];
         }
     }
 
-    public function query($where = [], $collection = 'logs', $forceCreate = false)
+    public function select($where = [], $collection = 'logs', $forceCreate = false)
     {
-        // Check arango db setup and active or not
+        // Check ArangoDB setup and active or not
         if ($this->options['active'] && !empty($where)) {
 
             // Get connection option
@@ -183,137 +200,179 @@ class ArangoDb extends AbstractService
 
             // Make check
             if (!$this->check($connection, $collection, $forceCreate)) {
-                return __('Error , select collection not exist, please generate collection before make any type of query');
-                exit();
-            }
+                return [
+                    'status'  => 0,
+                    'message' => __('Error , select collection not exist, please generate collection before make any type of query'),
+                ];
+            } else {
+                try {
+                    // Set collection handler
+                    $collectionHandler = new ArangoCollectionHandler($connection);
 
-            try {
-                // Set collection handler
-                $collectionHandler = new ArangoCollectionHandler($connection);
+                    // get a document list back from the server, using a document example
+                    $cursor = $collectionHandler->byExample($collection, $where);
 
-                // get a document list back from the server, using a document example
-                $cursor = $collectionHandler->byExample($collection, $where);
-
-                return $cursor->getAll();
-            } catch (ArangoConnectException $e) {
-                return 'Connection error: ' . $e->getMessage();
-            } catch (ArangoClientException $e) {
-                return 'Client error: ' . $e->getMessage();
-            } catch (ArangoServerException $e) {
-                return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+                    // Return result
+                    return [
+                        'status' => 1,
+                        'result' => $cursor->getAll(),
+                    ];
+                } catch (ArangoConnectException $e) {
+                    return 'Connection error: ' . $e->getMessage();
+                } catch (ArangoClientException $e) {
+                    return 'Client error: ' . $e->getMessage();
+                } catch (ArangoServerException $e) {
+                    return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+                }
             }
         } else {
-
+            return [
+                'status'  => 0,
+                'message' => __('Error, ArangoDB not active, please setup database and update service.arangodb.php config file'),
+            ];
         }
     }
 
     public function update($id, $params = [], $collection = 'logs', $forceCreate = false)
     {
-        // Check arango db setup and active or not
+        // Check ArangoDB setup and active or not
         if ($this->options['active'] && !empty($id) && !empty($params)) {
             // Get connection option
             $connection = $this->connection();
 
             // Make check
             if (!$this->check($connection, $collection, $forceCreate)) {
-                return __('Error , select collection not exist, please generate collection before make any type of query');
-                exit();
-            }
+                return [
+                    'status'  => 0,
+                    'message' => __('Error , select collection not exist, please generate collection before make any type of query'),
+                ];
+            } else {
+                try {
+                    // Set document handler
+                    $handler = new ArangoDocumentHandler($connection);
 
-            try {
-                // Set document handler
-                $handler = new ArangoDocumentHandler($connection);
+                    // get the document back from the server
+                    $object = $handler->get($collection, $id);
 
-                // get the document back from the server
-                $object = $handler->get($collection, $id);
+                    // ToDo : update params
 
-                // ToDo : update params
+                    // Update Document
+                    $handler->update($object);
 
-                // Update Document
-                $handler->update($object);
+                    // Get updated document
+                    $result = $handler->get($collection, $id);
 
-                // Get updated document
-                $result = $handler->get($collection, $id);
-
-                // return result
-                return $result;
-            } catch (ArangoConnectException $e) {
-                return 'Connection error: ' . $e->getMessage();
-            } catch (ArangoClientException $e) {
-                return 'Client error: ' . $e->getMessage();
-            } catch (ArangoServerException $e) {
-                return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+                    // Return result
+                    return [
+                        'status' => 1,
+                        'result' => $result,
+                    ];
+                } catch (ArangoConnectException $e) {
+                    return 'Connection error: ' . $e->getMessage();
+                } catch (ArangoClientException $e) {
+                    return 'Client error: ' . $e->getMessage();
+                } catch (ArangoServerException $e) {
+                    return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+                }
             }
         } else {
-
+            return [
+                'status'  => 0,
+                'message' => __('Error, ArangoDB not active, please setup database and update service.arangodb.php config file'),
+            ];
         }
     }
 
-    public function remove($id, $collection = 'logs', $forceCreate = false)
+    public function delete($id, $collection = 'logs', $forceCreate = false)
     {
-        // Check arango db setup and active or not
+        // Check ArangoDB setup and active or not
         if ($this->options['active'] && !empty($id)) {
             // Get connection option
             $connection = $this->connection();
 
             // Make check
             if (!$this->check($connection, $collection, $forceCreate)) {
-                return __('Error , select collection not exist, please generate collection before make any type of query');
-                exit();
-            }
+                return [
+                    'status'  => 0,
+                    'message' => __('Error , select collection not exist, please generate collection before make any type of query'),
+                ];
+            } else {
+                try {
+                    // Set document handler
+                    $handler = new ArangoDocumentHandler($connection);
 
-            try {
-                // Set document handler
-                $handler = new ArangoDocumentHandler($connection);
+                    // Get the document back from the server
+                    $object = $handler->get($collection, $id);
 
-                // get the document back from the server
-                $object = $handler->get($collection, $id);
+                    // Remove object
+                    $result = $handler->remove($object);
 
-                return $handler->remove($object);
-            } catch (ArangoConnectException $e) {
-                return 'Connection error: ' . $e->getMessage();
-            } catch (ArangoClientException $e) {
-                return 'Client error: ' . $e->getMessage();
-            } catch (ArangoServerException $e) {
-                return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+                    // Return result
+                    return [
+                        'status' => 1,
+                        'result' => $result,
+                    ];
+                } catch (ArangoConnectException $e) {
+                    return 'Connection error: ' . $e->getMessage();
+                } catch (ArangoClientException $e) {
+                    return 'Client error: ' . $e->getMessage();
+                } catch (ArangoServerException $e) {
+                    return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+                }
             }
         } else {
-
+            return [
+                'status'  => 0,
+                'message' => __('Error, ArangoDB not active, please setup database and update service.arangodb.php config file'),
+            ];
         }
     }
 
     public function export($params = [], $collection = 'logs', $forceCreate = false)
     {
-        // Get connection option
-        $connection = $this->connection();
+        // Check ArangoDB setup and active or not
+        if ($this->options['active']) {
+            // Get connection option
+            $connection = $this->connection();
 
-        // Make check
-        if (!$this->check($connection, $collection, $forceCreate)) {
-            return __('Error , select collection not exist, please generate collection before make any type of query');
-            exit();
-        }
+            // Make check
+            if (!$this->check($connection, $collection, $forceCreate)) {
+                return [
+                    'status'  => 0,
+                    'message' => __('Error , select collection not exist, please generate collection before make any type of query'),
+                ];
+            } else {
+                try {
+                    // creates an export object for collection users
+                    $export = new ArangoExport($connection, $collection, $params);
 
-        try {
-            // creates an export object for collection users
-            $export = new ArangoExport($connection, $collection, $params);
+                    // execute the export. this will return a special, forward-only cursor
+                    $cursor = $export->execute();
 
-            // execute the export. this will return a special, forward-only cursor
-            $cursor = $export->execute();
+                    // now we can fetch the documents from the collection in blocks
+                    $result = [];
+                    while ($docs = $cursor->getNextBatch()) {
+                        $result[] = $docs;
+                    }
 
-            // now we can fetch the documents from the collection in blocks
-            $result = [];
-            while ($docs = $cursor->getNextBatch()) {
-                $result[] = $docs;
+                    // Return result
+                    return [
+                        'status' => 1,
+                        'result' => $result,
+                    ];
+                } catch (ArangoConnectException $e) {
+                    return 'Connection error: ' . $e->getMessage();
+                } catch (ArangoClientException $e) {
+                    return 'Client error: ' . $e->getMessage();
+                } catch (ArangoServerException $e) {
+                    return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+                }
             }
-
-            // return result
-            return $result;
-        } catch (ArangoConnectException $e) {
-            return 'Connection error: ' . $e->getMessage();
-        } catch (ArangoClientException $e) {
-            return 'Client error: ' . $e->getMessage();
-        } catch (ArangoServerException $e) {
-            return 'Server error: ' . $e->getServerCode() . ':' . $e->getServerMessage() . ' ' . $e->getMessage();
+        } else {
+            return [
+                'status'  => 0,
+                'message' => __('Error, ArangoDB not active, please setup database and update service.arangodb.php config file'),
+            ];
         }
     }
 }
