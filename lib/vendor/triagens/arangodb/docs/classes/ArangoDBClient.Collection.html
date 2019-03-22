@@ -1,0 +1,848 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>ArangoDB PHP client API » \ArangoDBClient\Collection</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">ArangoDB PHP client API</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/ArangoDBClient.html"><i class="icon-folder-open"></i> ArangoDBClient</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">19</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">2</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div xmlns:php="http://php.net/xsl" class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list">
+<li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___clone" title="__clone() :: Clone a collection"><span class="description">Clone a collection</span><pre>__clone()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct() :: Constructs an empty collection"><span class="description">Constructs an empty collection</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method___toString" title="__toString() :: Get a string representation of the collection"><span class="description">Get a string representation of the collection</span><pre>__toString()</pre></a></li>
+<li class="method public "><a href="#method_createFromArray" title="createFromArray() :: Factory method to construct a new collection"><span class="description">Factory method to construct a new collection</span><pre>createFromArray()</pre></a></li>
+<li class="method public "><a href="#method_getAll" title="getAll() :: Get all collection attributes"><span class="description">Get all collection attributes</span><pre>getAll()</pre></a></li>
+<li class="method public "><a href="#method_getDefaultType" title="getDefaultType() :: Get the default collection type"><span class="description">Get the default collection type</span><pre>getDefaultType()</pre></a></li>
+<li class="method public "><a href="#method_getId" title="getId() :: Get the collection id (if already known)"><span class="description">Get the collection id (if already known)</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#method_getIsSystem" title="getIsSystem() :: Get the isSystem value (if already known)"><span class="description">Get the isSystem value (if already known)</span><pre>getIsSystem()</pre></a></li>
+<li class="method public "><a href="#method_getIsVolatile" title="getIsVolatile() :: Get the isVolatile value (if already known)"><span class="description">Get the isVolatile value (if already known)</span><pre>getIsVolatile()</pre></a></li>
+<li class="method public "><a href="#method_getJournalSize" title="getJournalSize() :: Get the journalSize value (if already known)"><span class="description">Get the journalSize value (if already known)</span><pre>getJournalSize()</pre></a></li>
+<li class="method public "><a href="#method_getKeyOptions" title="getKeyOptions() :: Get the collection key options (if already known)"><span class="description">Get the collection key options (if already known)</span><pre>getKeyOptions()</pre></a></li>
+<li class="method public "><a href="#method_getName" title="getName() :: Get the collection name (if already known)"><span class="description">Get the collection name (if already known)</span><pre>getName()</pre></a></li>
+<li class="method public "><a href="#method_getNumberOfShards" title="getNumberOfShards() :: Get the numberOfShards value (if already known)"><span class="description">Get the numberOfShards value (if already known)</span><pre>getNumberOfShards()</pre></a></li>
+<li class="method public "><a href="#method_getShardKeys" title="getShardKeys() :: Get the shardKeys value (if already known)"><span class="description">Get the shardKeys value (if already known)</span><pre>getShardKeys()</pre></a></li>
+<li class="method public "><a href="#method_getStatus" title="getStatus() :: Get the collection status (if already known)"><span class="description">Get the collection status (if already known)</span><pre>getStatus()</pre></a></li>
+<li class="method public "><a href="#method_getType" title="getType() :: Get the collection type (if already known)"><span class="description">Get the collection type (if already known)</span><pre>getType()</pre></a></li>
+<li class="method public "><a href="#method_getWaitForSync" title="getWaitForSync() :: Get the waitForSync value (if already known)"><span class="description">Get the waitForSync value (if already known)</span><pre>getWaitForSync()</pre></a></li>
+<li class="method public "><a href="#method_set" title="set() :: Set a collection attribute"><span class="description">Set a collection attribute</span><pre>set()</pre></a></li>
+<li class="method public "><a href="#method_setId" title="setId() :: Set the collection id"><span class="description">Set the collection id</span><pre>setId()</pre></a></li>
+<li class="method public "><a href="#method_setIsSystem" title="setIsSystem() :: Set the isSystem value"><span class="description">Set the isSystem value</span><pre>setIsSystem()</pre></a></li>
+<li class="method public "><a href="#method_setIsVolatile" title="setIsVolatile() :: Set the isVolatile value"><span class="description">Set the isVolatile value</span><pre>setIsVolatile()</pre></a></li>
+<li class="method public "><a href="#method_setJournalSize" title="setJournalSize() :: Set the journalSize value"><span class="description">Set the journalSize value</span><pre>setJournalSize()</pre></a></li>
+<li class="method public "><a href="#method_setKeyOptions" title="setKeyOptions() :: Set the collection key options."><span class="description">Set the collection key options.</span><pre>setKeyOptions()</pre></a></li>
+<li class="method public "><a href="#method_setName" title="setName() :: Set the collection name"><span class="description">Set the collection name</span><pre>setName()</pre></a></li>
+<li class="method public "><a href="#method_setNumberOfShards" title="setNumberOfShards() :: Set the numberOfShards value"><span class="description">Set the numberOfShards value</span><pre>setNumberOfShards()</pre></a></li>
+<li class="method public "><a href="#method_setShardKeys" title="setShardKeys() :: Set the shardKeys value"><span class="description">Set the shardKeys value</span><pre>setShardKeys()</pre></a></li>
+<li class="method public "><a href="#method_setStatus" title="setStatus() :: Set the collection status."><span class="description">Set the collection status.</span><pre>setStatus()</pre></a></li>
+<li class="method public "><a href="#method_setType" title="setType() :: Set the collection type."><span class="description">Set the collection type.</span><pre>setType()</pre></a></li>
+<li class="method public "><a href="#method_setWaitForSync" title="setWaitForSync() :: Set the waitForSync value"><span class="description">Set the waitForSync value</span><pre>setWaitForSync()</pre></a></li>
+<li class="method public "><a href="#method_toJson" title="toJson() :: Returns the collection as JSON-encoded string"><span class="description">Returns the collection as JSON-encoded string</span><pre>toJson()</pre></a></li>
+<li class="method public "><a href="#method_toSerialized" title="toSerialized() :: Returns the collection as a serialized string"><span class="description">Returns the collection as a serialized string</span><pre>toSerialized()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property__id" title="$_id() :: The collection id (might be NULL for new collections)"><span class="description"></span><pre>$_id</pre></a></li>
+<li class="property private "><a href="#property__isSystem" title="$_isSystem() :: The collection isSystem value (might be NULL for new collections)"><span class="description"></span><pre>$_isSystem</pre></a></li>
+<li class="property private "><a href="#property__isVolatile" title="$_isVolatile() :: The collection isVolatile value (might be NULL for new collections)"><span class="description"></span><pre>$_isVolatile</pre></a></li>
+<li class="property private "><a href="#property__journalSize" title="$_journalSize() :: The collection journalSize value (might be NULL for new collections)"><span class="description"></span><pre>$_journalSize</pre></a></li>
+<li class="property private "><a href="#property__keyOptions" title="$_keyOptions() :: The collection keyOptions value"><span class="description"></span><pre>$_keyOptions</pre></a></li>
+<li class="property private "><a href="#property__name" title="$_name() :: The collection name (might be NULL for new collections)"><span class="description"></span><pre>$_name</pre></a></li>
+<li class="property private "><a href="#property__numberOfShards" title="$_numberOfShards() :: The collection numberOfShards value (might be NULL for new collections)"><span class="description"></span><pre>$_numberOfShards</pre></a></li>
+<li class="property private "><a href="#property__shardKeys" title="$_shardKeys() :: The collection shardKeys value (might be NULL for new collections)"><span class="description"></span><pre>$_shardKeys</pre></a></li>
+<li class="property private "><a href="#property__status" title="$_status() :: The collection status value"><span class="description"></span><pre>$_status</pre></a></li>
+<li class="property private "><a href="#property__type" title="$_type() :: The collection type (might be NULL for new collections)"><span class="description"></span><pre>$_type</pre></a></li>
+<li class="property private "><a href="#property__waitForSync" title="$_waitForSync() :: The collection waitForSync value (might be NULL for new collections)"><span class="description"></span><pre>$_waitForSync</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Constants" class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_ENTRY_ID" title="ENTRY_ID() :: Collection id index"><span class="description">Collection id index</span><pre>ENTRY_ID</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_IS_SYSTEM" title="ENTRY_IS_SYSTEM() :: Collection 'isSystem' index"><span class="description">Collection 'isSystem' index</span><pre>ENTRY_IS_SYSTEM</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_IS_VOLATILE" title="ENTRY_IS_VOLATILE() :: Collection 'isVolatile' index"><span class="description">Collection 'isVolatile' index</span><pre>ENTRY_IS_VOLATILE</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_JOURNAL_SIZE" title="ENTRY_JOURNAL_SIZE() :: Collection 'journalSize' index"><span class="description">Collection 'journalSize' index</span><pre>ENTRY_JOURNAL_SIZE</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_KEY_OPTIONS" title="ENTRY_KEY_OPTIONS() :: Collection 'keyOptions' index"><span class="description">Collection 'keyOptions' index</span><pre>ENTRY_KEY_OPTIONS</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_NAME" title="ENTRY_NAME() :: Collection name index"><span class="description">Collection name index</span><pre>ENTRY_NAME</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_NUMBER_OF_SHARDS" title="ENTRY_NUMBER_OF_SHARDS() :: Collection 'numberOfShards' index"><span class="description">Collection 'numberOfShards' index</span><pre>ENTRY_NUMBER_OF_SHARDS</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_SHARD_KEYS" title="ENTRY_SHARD_KEYS() :: Collection 'shardKeys' index"><span class="description">Collection 'shardKeys' index</span><pre>ENTRY_SHARD_KEYS</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_STATUS" title="ENTRY_STATUS() :: Collection 'status' index"><span class="description">Collection 'status' index</span><pre>ENTRY_STATUS</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_TYPE" title="ENTRY_TYPE() :: Collection type index"><span class="description">Collection type index</span><pre>ENTRY_TYPE</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_WAIT_SYNC" title="ENTRY_WAIT_SYNC() :: Collection 'waitForSync' index"><span class="description">Collection 'waitForSync' index</span><pre>ENTRY_WAIT_SYNC</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_PROPERTIES" title="OPTION_PROPERTIES() :: properties option"><span class="description">properties option</span><pre>OPTION_PROPERTIES</pre></a></li>
+<li class="constant  "><a href="#constant_STATUS_BEING_UNLOADED" title="STATUS_BEING_UNLOADED() :: Collection being unloaded"><span class="description">Collection being unloaded</span><pre>STATUS_BEING_UNLOADED</pre></a></li>
+<li class="constant  "><a href="#constant_STATUS_DELETED" title="STATUS_DELETED() :: Deleted collection"><span class="description">Deleted collection</span><pre>STATUS_DELETED</pre></a></li>
+<li class="constant  "><a href="#constant_STATUS_LOADED" title="STATUS_LOADED() :: Loaded collection"><span class="description">Loaded collection</span><pre>STATUS_LOADED</pre></a></li>
+<li class="constant  "><a href="#constant_STATUS_NEW_BORN" title="STATUS_NEW_BORN() :: New born collection"><span class="description">New born collection</span><pre>STATUS_NEW_BORN</pre></a></li>
+<li class="constant  "><a href="#constant_STATUS_UNLOADED" title="STATUS_UNLOADED() :: Unloaded collection"><span class="description">Unloaded collection</span><pre>STATUS_UNLOADED</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_DOCUMENT" title="TYPE_DOCUMENT() :: document collection type"><span class="description">document collection type</span><pre>TYPE_DOCUMENT</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_EDGE" title="TYPE_EDGE() :: edge collection type"><span class="description">edge collection type</span><pre>TYPE_EDGE</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a xmlns:php="http://php.net/xsl" id="\ArangoDBClient\Collection"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/ArangoDBClient.html">ArangoDBClient</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/ArangoDBClient.Collection.html">Collection</a>
+</li>
+</ul>
+<div xmlns:php="http://php.net/xsl" class="element class">
+<p class="short_description">Value object representing a collection</p>
+<div class="details">
+<div class="long_description"><p><br></p></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/ArangoDBClient.html">ArangoDBClient</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>0.2</td>
+</tr>
+</table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___clone"></a><div class="element clickable method public method___clone " data-toggle="collapse" data-target=".method___clone .collapse" title="public">
+<h2>Clone a collection</h2>
+<pre>__clone() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the clone</p></div>
+<table class="table table-bordered"><tr>
+<th>magic</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
+<h2>Constructs an empty collection</h2>
+<pre>__construct(string $name<code> = null</code>) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><ul>
+<li>name for the collection</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method___toString"></a><div class="element clickable method public method___toString " data-toggle="collapse" data-target=".method___toString .collapse" title="public">
+<h2>Get a string representation of the collection</h2>
+<pre>__toString() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the collection as JSON-encoded string</p></div>
+<table class="table table-bordered"><tr>
+<th>magic</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- JSON-encoded collection</div>
+</div></div>
+</div>
+<a id="method_createFromArray"></a><div class="element clickable method public method_createFromArray " data-toggle="collapse" data-target=".method_createFromArray .collapse" title="public">
+<h2>Factory method to construct a new collection</h2>
+<pre>createFromArray(array $values) : \ArangoDBClient\Collection</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$values</h4>
+<code>array</code><ul>
+<li>initial values for collection</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>\ArangoDBClient\Collection</code></div>
+</div></div>
+</div>
+<a id="method_getAll"></a><div class="element clickable method public method_getAll " data-toggle="collapse" data-target=".method_getAll .collapse" title="public">
+<h2>Get all collection attributes</h2>
+<pre>getAll() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- array of all collection attributes</div>
+</div></div>
+</div>
+<a id="method_getDefaultType"></a><div class="element clickable method public method_getDefaultType " data-toggle="collapse" data-target=".method_getDefaultType .collapse" title="public">
+<h2>Get the default collection type</h2>
+<pre>getDefaultType() : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- name</div>
+</div></div>
+</div>
+<a id="method_getId"></a><div class="element clickable method public method_getId " data-toggle="collapse" data-target=".method_getId .collapse" title="public">
+<h2>Get the collection id (if already known)</h2>
+<pre>getId() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Collection ids are generated on the server only.</p>
+<p>Collection ids are numeric but might be bigger than PHP_INT_MAX.
+To reliably store a collection id elsewhere, a PHP string should be used</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- collection id, might be NULL if collection does not yet have an id</div>
+</div></div>
+</div>
+<a id="method_getIsSystem"></a><div class="element clickable method public method_getIsSystem " data-toggle="collapse" data-target=".method_getIsSystem .collapse" title="public">
+<h2>Get the isSystem value (if already known)</h2>
+<pre>getIsSystem() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- isSystem value</div>
+</div></div>
+</div>
+<a id="method_getIsVolatile"></a><div class="element clickable method public method_getIsVolatile " data-toggle="collapse" data-target=".method_getIsVolatile .collapse" title="public">
+<h2>Get the isVolatile value (if already known)</h2>
+<pre>getIsVolatile() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- isVolatile value</div>
+</div></div>
+</div>
+<a id="method_getJournalSize"></a><div class="element clickable method public method_getJournalSize " data-toggle="collapse" data-target=".method_getJournalSize .collapse" title="public">
+<h2>Get the journalSize value (if already known)</h2>
+<pre>getJournalSize() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>- journalSize value</div>
+</div></div>
+</div>
+<a id="method_getKeyOptions"></a><div class="element clickable method public method_getKeyOptions " data-toggle="collapse" data-target=".method_getKeyOptions .collapse" title="public">
+<h2>Get the collection key options (if already known)</h2>
+<pre>getKeyOptions() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- keyOptions</div>
+</div></div>
+</div>
+<a id="method_getName"></a><div class="element clickable method public method_getName " data-toggle="collapse" data-target=".method_getName .collapse" title="public">
+<h2>Get the collection name (if already known)</h2>
+<pre>getName() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- name</div>
+</div></div>
+</div>
+<a id="method_getNumberOfShards"></a><div class="element clickable method public method_getNumberOfShards " data-toggle="collapse" data-target=".method_getNumberOfShards .collapse" title="public">
+<h2>Get the numberOfShards value (if already known)</h2>
+<pre>getNumberOfShards() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>- numberOfShards value</div>
+</div></div>
+</div>
+<a id="method_getShardKeys"></a><div class="element clickable method public method_getShardKeys " data-toggle="collapse" data-target=".method_getShardKeys .collapse" title="public">
+<h2>Get the shardKeys value (if already known)</h2>
+<pre>getShardKeys() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- shardKeys value</div>
+</div></div>
+</div>
+<a id="method_getStatus"></a><div class="element clickable method public method_getStatus " data-toggle="collapse" data-target=".method_getStatus .collapse" title="public">
+<h2>Get the collection status (if already known)</h2>
+<pre>getStatus() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>- status</div>
+</div></div>
+</div>
+<a id="method_getType"></a><div class="element clickable method public method_getType " data-toggle="collapse" data-target=".method_getType .collapse" title="public">
+<h2>Get the collection type (if already known)</h2>
+<pre>getType() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- name</div>
+</div></div>
+</div>
+<a id="method_getWaitForSync"></a><div class="element clickable method public method_getWaitForSync " data-toggle="collapse" data-target=".method_getWaitForSync .collapse" title="public">
+<h2>Get the waitForSync value (if already known)</h2>
+<pre>getWaitForSync() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- waitForSync value</div>
+</div></div>
+</div>
+<a id="method_set"></a><div class="element clickable method public method_set " data-toggle="collapse" data-target=".method_set .collapse" title="public">
+<h2>Set a collection attribute</h2>
+<pre>set(string $key, mixed $value) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The key (attribute name) must be a string.</p>
+<p>This will validate the value of the attribute and might throw an
+exception if the value is invalid.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><ul>
+<li>attribute name</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><ul>
+<li>value for attribute</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setId"></a><div class="element clickable method public method_setId " data-toggle="collapse" data-target=".method_setId .collapse" title="public">
+<h2>Set the collection id</h2>
+<pre>setId(mixed $id) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the id of an existing collection gets updated to some other id</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>mixed</code><ul>
+<li>collection id</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_setIsSystem"></a><div class="element clickable method public method_setIsSystem " data-toggle="collapse" data-target=".method_setIsSystem .collapse" title="public">
+<h2>Set the isSystem value</h2>
+<pre>setIsSystem(boolean $value) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>boolean</code><ul>
+<li>isSystem: false->user collection, true->system collection</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_setIsVolatile"></a><div class="element clickable method public method_setIsVolatile " data-toggle="collapse" data-target=".method_setIsVolatile .collapse" title="public">
+<h2>Set the isVolatile value</h2>
+<pre>setIsVolatile(boolean $value) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>boolean</code><ul>
+<li>isVolatile value</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_setJournalSize"></a><div class="element clickable method public method_setJournalSize " data-toggle="collapse" data-target=".method_setJournalSize .collapse" title="public">
+<h2>Set the journalSize value</h2>
+<pre>setJournalSize(integer $value) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>integer</code><ul>
+<li>journalSize value</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_setKeyOptions"></a><div class="element clickable method public method_setKeyOptions " data-toggle="collapse" data-target=".method_setKeyOptions .collapse" title="public">
+<h2>Set the collection key options.</h2>
+<pre>setKeyOptions(array $keyOptions) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$keyOptions</h4>
+<code>array</code><ul>
+<li>An associative array containing optional keys: type, allowUserKeys, increment, offset.</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setName"></a><div class="element clickable method public method_setName " data-toggle="collapse" data-target=".method_setName .collapse" title="public">
+<h2>Set the collection name</h2>
+<pre>setName(string $name) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><ul>
+<li>name</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setNumberOfShards"></a><div class="element clickable method public method_setNumberOfShards " data-toggle="collapse" data-target=".method_setNumberOfShards .collapse" title="public">
+<h2>Set the numberOfShards value</h2>
+<pre>setNumberOfShards(integer $value) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>integer</code><ul>
+<li>numberOfShards value</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_setShardKeys"></a><div class="element clickable method public method_setShardKeys " data-toggle="collapse" data-target=".method_setShardKeys .collapse" title="public">
+<h2>Set the shardKeys value</h2>
+<pre>setShardKeys(array $value) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>array</code><ul>
+<li>shardKeys value</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_setStatus"></a><div class="element clickable method public method_setStatus " data-toggle="collapse" data-target=".method_setStatus .collapse" title="public">
+<h2>Set the collection status.</h2>
+<pre>setStatus(integer $status) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is useful before a collection is create()'ed in order to set a status.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$status</h4>
+<code>integer</code><ul>
+<li>statuses = 1 -> new born, status = 2 -> unloaded, status = 3 -> loaded, status = 4 -> being unloaded, status = 5 -> deleted</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setType"></a><div class="element clickable method public method_setType " data-toggle="collapse" data-target=".method_setType .collapse" title="public">
+<h2>Set the collection type.</h2>
+<pre>setType(integer $type) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is useful before a collection is create() 'ed in order to set a different type than the normal one.
+For example this must be set to 3 in order to create an edge-collection.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>integer</code><ul>
+<li>type = 2 -> normal collection, type = 3 -> edge-collection</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setWaitForSync"></a><div class="element clickable method public method_setWaitForSync " data-toggle="collapse" data-target=".method_setWaitForSync .collapse" title="public">
+<h2>Set the waitForSync value</h2>
+<pre>setWaitForSync(boolean $value) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>boolean</code><ul>
+<li>waitForSync value</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_toJson"></a><div class="element clickable method public method_toJson " data-toggle="collapse" data-target=".method_toJson .collapse" title="public">
+<h2>Returns the collection as JSON-encoded string</h2>
+<pre>toJson() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- JSON-encoded collection</div>
+</div></div>
+</div>
+<a id="method_toSerialized"></a><div class="element clickable method public method_toSerialized " data-toggle="collapse" data-target=".method_toSerialized .collapse" title="public">
+<h2>Returns the collection as a serialized string</h2>
+<pre>toSerialized() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- PHP serialized collection</div>
+</div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__id"> </a><div class="element clickable property private property__id" data-toggle="collapse" data-target=".property__id .collapse" title="private">
+<h2>The collection id (might be NULL for new collections)</h2>
+<pre>$_id : mixed</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__isSystem"> </a><div class="element clickable property private property__isSystem" data-toggle="collapse" data-target=".property__isSystem .collapse" title="private">
+<h2>The collection isSystem value (might be NULL for new collections)</h2>
+<pre>$_isSystem : boolean</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__isVolatile"> </a><div class="element clickable property private property__isVolatile" data-toggle="collapse" data-target=".property__isVolatile .collapse" title="private">
+<h2>The collection isVolatile value (might be NULL for new collections)</h2>
+<pre>$_isVolatile : boolean</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__journalSize"> </a><div class="element clickable property private property__journalSize" data-toggle="collapse" data-target=".property__journalSize .collapse" title="private">
+<h2>The collection journalSize value (might be NULL for new collections)</h2>
+<pre>$_journalSize : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__keyOptions"> </a><div class="element clickable property private property__keyOptions" data-toggle="collapse" data-target=".property__keyOptions .collapse" title="private">
+<h2>The collection keyOptions value</h2>
+<pre>$_keyOptions : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__name"> </a><div class="element clickable property private property__name" data-toggle="collapse" data-target=".property__name .collapse" title="private">
+<h2>The collection name (might be NULL for new collections)</h2>
+<pre>$_name : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__numberOfShards"> </a><div class="element clickable property private property__numberOfShards" data-toggle="collapse" data-target=".property__numberOfShards .collapse" title="private">
+<h2>The collection numberOfShards value (might be NULL for new collections)</h2>
+<pre>$_numberOfShards : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__shardKeys"> </a><div class="element clickable property private property__shardKeys" data-toggle="collapse" data-target=".property__shardKeys .collapse" title="private">
+<h2>The collection shardKeys value (might be NULL for new collections)</h2>
+<pre>$_shardKeys : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__status"> </a><div class="element clickable property private property__status" data-toggle="collapse" data-target=".property__status .collapse" title="private">
+<h2>The collection status value</h2>
+<pre>$_status : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__type"> </a><div class="element clickable property private property__type" data-toggle="collapse" data-target=".property__type .collapse" title="private">
+<h2>The collection type (might be NULL for new collections)</h2>
+<pre>$_type : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__waitForSync"> </a><div class="element clickable property private property__waitForSync" data-toggle="collapse" data-target=".property__waitForSync .collapse" title="private">
+<h2>The collection waitForSync value (might be NULL for new collections)</h2>
+<pre>$_waitForSync : boolean</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i title="Constants" class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_ENTRY_ID"> </a><div class="element clickable constant  constant_ENTRY_ID" data-toggle="collapse" data-target=".constant_ENTRY_ID .collapse" title="">
+<h2>Collection id index</h2>
+<pre>ENTRY_ID = 'id' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_IS_SYSTEM"> </a><div class="element clickable constant  constant_ENTRY_IS_SYSTEM" data-toggle="collapse" data-target=".constant_ENTRY_IS_SYSTEM .collapse" title="">
+<h2>Collection 'isSystem' index</h2>
+<pre>ENTRY_IS_SYSTEM = 'isSystem' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_IS_VOLATILE"> </a><div class="element clickable constant  constant_ENTRY_IS_VOLATILE" data-toggle="collapse" data-target=".constant_ENTRY_IS_VOLATILE .collapse" title="">
+<h2>Collection 'isVolatile' index</h2>
+<pre>ENTRY_IS_VOLATILE = 'isVolatile' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_JOURNAL_SIZE"> </a><div class="element clickable constant  constant_ENTRY_JOURNAL_SIZE" data-toggle="collapse" data-target=".constant_ENTRY_JOURNAL_SIZE .collapse" title="">
+<h2>Collection 'journalSize' index</h2>
+<pre>ENTRY_JOURNAL_SIZE = 'journalSize' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_KEY_OPTIONS"> </a><div class="element clickable constant  constant_ENTRY_KEY_OPTIONS" data-toggle="collapse" data-target=".constant_ENTRY_KEY_OPTIONS .collapse" title="">
+<h2>Collection 'keyOptions' index</h2>
+<pre>ENTRY_KEY_OPTIONS = 'keyOptions' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_NAME"> </a><div class="element clickable constant  constant_ENTRY_NAME" data-toggle="collapse" data-target=".constant_ENTRY_NAME .collapse" title="">
+<h2>Collection name index</h2>
+<pre>ENTRY_NAME = 'name' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_NUMBER_OF_SHARDS"> </a><div class="element clickable constant  constant_ENTRY_NUMBER_OF_SHARDS" data-toggle="collapse" data-target=".constant_ENTRY_NUMBER_OF_SHARDS .collapse" title="">
+<h2>Collection 'numberOfShards' index</h2>
+<pre>ENTRY_NUMBER_OF_SHARDS = 'numberOfShards' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_SHARD_KEYS"> </a><div class="element clickable constant  constant_ENTRY_SHARD_KEYS" data-toggle="collapse" data-target=".constant_ENTRY_SHARD_KEYS .collapse" title="">
+<h2>Collection 'shardKeys' index</h2>
+<pre>ENTRY_SHARD_KEYS = 'shardKeys' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_STATUS"> </a><div class="element clickable constant  constant_ENTRY_STATUS" data-toggle="collapse" data-target=".constant_ENTRY_STATUS .collapse" title="">
+<h2>Collection 'status' index</h2>
+<pre>ENTRY_STATUS = 'status' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_TYPE"> </a><div class="element clickable constant  constant_ENTRY_TYPE" data-toggle="collapse" data-target=".constant_ENTRY_TYPE .collapse" title="">
+<h2>Collection type index</h2>
+<pre>ENTRY_TYPE = 'type' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_WAIT_SYNC"> </a><div class="element clickable constant  constant_ENTRY_WAIT_SYNC" data-toggle="collapse" data-target=".constant_ENTRY_WAIT_SYNC .collapse" title="">
+<h2>Collection 'waitForSync' index</h2>
+<pre>ENTRY_WAIT_SYNC = 'waitForSync' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_PROPERTIES"> </a><div class="element clickable constant  constant_OPTION_PROPERTIES" data-toggle="collapse" data-target=".constant_OPTION_PROPERTIES .collapse" title="">
+<h2>properties option</h2>
+<pre>OPTION_PROPERTIES = 'properties' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STATUS_BEING_UNLOADED"> </a><div class="element clickable constant  constant_STATUS_BEING_UNLOADED" data-toggle="collapse" data-target=".constant_STATUS_BEING_UNLOADED .collapse" title="">
+<h2>Collection being unloaded</h2>
+<pre>STATUS_BEING_UNLOADED = 4 </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STATUS_DELETED"> </a><div class="element clickable constant  constant_STATUS_DELETED" data-toggle="collapse" data-target=".constant_STATUS_DELETED .collapse" title="">
+<h2>Deleted collection</h2>
+<pre>STATUS_DELETED = 5 </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STATUS_LOADED"> </a><div class="element clickable constant  constant_STATUS_LOADED" data-toggle="collapse" data-target=".constant_STATUS_LOADED .collapse" title="">
+<h2>Loaded collection</h2>
+<pre>STATUS_LOADED = 3 </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STATUS_NEW_BORN"> </a><div class="element clickable constant  constant_STATUS_NEW_BORN" data-toggle="collapse" data-target=".constant_STATUS_NEW_BORN .collapse" title="">
+<h2>New born collection</h2>
+<pre>STATUS_NEW_BORN = 1 </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STATUS_UNLOADED"> </a><div class="element clickable constant  constant_STATUS_UNLOADED" data-toggle="collapse" data-target=".constant_STATUS_UNLOADED .collapse" title="">
+<h2>Unloaded collection</h2>
+<pre>STATUS_UNLOADED = 2 </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_DOCUMENT"> </a><div class="element clickable constant  constant_TYPE_DOCUMENT" data-toggle="collapse" data-target=".constant_TYPE_DOCUMENT .collapse" title="">
+<h2>document collection type</h2>
+<pre>TYPE_DOCUMENT = 2 </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_EDGE"> </a><div class="element clickable constant  constant_TYPE_EDGE" data-toggle="collapse" data-target=".constant_TYPE_EDGE .collapse" title="">
+<h2>edge collection type</h2>
+<pre>TYPE_EDGE = 3 </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2018-07-31T14:00:29+02:00.<br></footer></div>
+</div>
+</body>
+</html>

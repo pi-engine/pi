@@ -1,0 +1,424 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>ArangoDB PHP client API » \ArangoDBClient\Urls</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">ArangoDB PHP client API</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/ArangoDBClient.html"><i class="icon-folder-open"></i> ArangoDBClient</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">19</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">2</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div xmlns:php="http://php.net/xsl" class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list"><li class="nav-header">
+<i title="Constants" class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_URLPART_EDGE" title="URLPART_EDGE() :: URL part for edge-related graph REST calls"><span class="description">URL part for edge-related graph REST calls</span><pre>URLPART_EDGE</pre></a></li>
+<li class="constant  "><a href="#constant_URLPART_VERTEX" title="URLPART_VERTEX() :: URL part vertex-related graph REST calls"><span class="description">URL part vertex-related graph REST calls</span><pre>URLPART_VERTEX</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ADMIN_LOG" title="URL_ADMIN_LOG() :: URL for admin log"><span class="description">URL for admin log</span><pre>URL_ADMIN_LOG</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ADMIN_ROUTING_RELOAD" title="URL_ADMIN_ROUTING_RELOAD() :: base URL part for admin routing reload"><span class="description">base URL part for admin routing reload</span><pre>URL_ADMIN_ROUTING_RELOAD</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ADMIN_SERVER_ROLE" title="URL_ADMIN_SERVER_ROLE() :: URL for server role"><span class="description">URL for server role</span><pre>URL_ADMIN_SERVER_ROLE</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ADMIN_STATISTICS" title="URL_ADMIN_STATISTICS() :: base URL part for admin statistics"><span class="description">base URL part for admin statistics</span><pre>URL_ADMIN_STATISTICS</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ADMIN_STATISTICS_DESCRIPTION" title="URL_ADMIN_STATISTICS_DESCRIPTION() :: base URL part for admin statistics-description"><span class="description">base URL part for admin statistics-description</span><pre>URL_ADMIN_STATISTICS_DESCRIPTION</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ADMIN_TIME" title="URL_ADMIN_TIME() :: URL for admin time"><span class="description">URL for admin time</span><pre>URL_ADMIN_TIME</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ADMIN_VERSION" title="URL_ADMIN_VERSION() :: URL for admin version"><span class="description">URL for admin version</span><pre>URL_ADMIN_VERSION</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ALL" title="URL_ALL() :: URL for select-all"><span class="description">URL for select-all</span><pre>URL_ALL</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ALL_KEYS" title="URL_ALL_KEYS() :: URL for select-all-keys"><span class="description">URL for select-all-keys</span><pre>URL_ALL_KEYS</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ANY" title="URL_ANY() :: URL for any"><span class="description">URL for any</span><pre>URL_ANY</pre></a></li>
+<li class="constant  "><a href="#constant_URL_AQL_USER_FUNCTION" title="URL_AQL_USER_FUNCTION() :: base URL part for AQL user functions statistics"><span class="description">base URL part for AQL user functions statistics</span><pre>URL_AQL_USER_FUNCTION</pre></a></li>
+<li class="constant  "><a href="#constant_URL_BATCH" title="URL_BATCH() :: URL for batch processing"><span class="description">URL for batch processing</span><pre>URL_BATCH</pre></a></li>
+<li class="constant  "><a href="#constant_URL_COLLECTION" title="URL_COLLECTION() :: URL base part for all collection-related REST calls"><span class="description">URL base part for all collection-related REST calls</span><pre>URL_COLLECTION</pre></a></li>
+<li class="constant  "><a href="#constant_URL_CURSOR" title="URL_CURSOR() :: base URL part for cursor related operations"><span class="description">base URL part for cursor related operations</span><pre>URL_CURSOR</pre></a></li>
+<li class="constant  "><a href="#constant_URL_DATABASE" title="URL_DATABASE() :: base URL part for database management"><span class="description">base URL part for database management</span><pre>URL_DATABASE</pre></a></li>
+<li class="constant  "><a href="#constant_URL_DOCUMENT" title="URL_DOCUMENT() :: URL base part for document-related CRUD operations REST calls"><span class="description">URL base part for document-related CRUD operations REST calls</span><pre>URL_DOCUMENT</pre></a></li>
+<li class="constant  "><a href="#constant_URL_EDGE" title="URL_EDGE() :: URL base part for edge-related CRUD operations REST calls"><span class="description">URL base part for edge-related CRUD operations REST calls</span><pre>URL_EDGE</pre></a></li>
+<li class="constant  "><a href="#constant_URL_EDGES" title="URL_EDGES() :: URL base part for all retrieving connected edges"><span class="description">URL base part for all retrieving connected edges</span><pre>URL_EDGES</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ENDPOINT" title="URL_ENDPOINT() :: base URL part for endpoint management"><span class="description">base URL part for endpoint management</span><pre>URL_ENDPOINT</pre></a></li>
+<li class="constant  "><a href="#constant_URL_ENGINE" title="URL_ENGINE() :: URL for storage engine"><span class="description">URL for storage engine</span><pre>URL_ENGINE</pre></a></li>
+<li class="constant  "><a href="#constant_URL_EXAMPLE" title="URL_EXAMPLE() :: URL for select-by-example"><span class="description">URL for select-by-example</span><pre>URL_EXAMPLE</pre></a></li>
+<li class="constant  "><a href="#constant_URL_EXPLAIN" title="URL_EXPLAIN() :: URL for AQL explain-related operations"><span class="description">URL for AQL explain-related operations</span><pre>URL_EXPLAIN</pre></a></li>
+<li class="constant  "><a href="#constant_URL_EXPORT" title="URL_EXPORT() :: URL for export related operations"><span class="description">URL for export related operations</span><pre>URL_EXPORT</pre></a></li>
+<li class="constant  "><a href="#constant_URL_FIRST_EXAMPLE" title="URL_FIRST_EXAMPLE() :: URL for first-example"><span class="description">URL for first-example</span><pre>URL_FIRST_EXAMPLE</pre></a></li>
+<li class="constant  "><a href="#constant_URL_FOXX_INSTALL" title="URL_FOXX_INSTALL() :: URL for foxx-app installations"><span class="description">URL for foxx-app installations</span><pre>URL_FOXX_INSTALL</pre></a></li>
+<li class="constant  "><a href="#constant_URL_FOXX_UNINSTALL" title="URL_FOXX_UNINSTALL() :: URL for foxx-app deinstallation"><span class="description">URL for foxx-app deinstallation</span><pre>URL_FOXX_UNINSTALL</pre></a></li>
+<li class="constant  "><a href="#constant_URL_FULLTEXT" title="URL_FULLTEXT() :: URL for fulltext"><span class="description">URL for fulltext</span><pre>URL_FULLTEXT</pre></a></li>
+<li class="constant  "><a href="#constant_URL_GRAPH" title="URL_GRAPH() :: URL base part for all graph-related REST calls"><span class="description">URL base part for all graph-related REST calls</span><pre>URL_GRAPH</pre></a></li>
+<li class="constant  "><a href="#constant_URL_IMPORT" title="URL_IMPORT() :: URL for document import"><span class="description">URL for document import</span><pre>URL_IMPORT</pre></a></li>
+<li class="constant  "><a href="#constant_URL_INDEX" title="URL_INDEX() :: URL base part for all index-related REST calls"><span class="description">URL base part for all index-related REST calls</span><pre>URL_INDEX</pre></a></li>
+<li class="constant  "><a href="#constant_URL_LOOKUP_BY_KEYS" title="URL_LOOKUP_BY_KEYS() :: URL for lookup-by-keys"><span class="description">URL for lookup-by-keys</span><pre>URL_LOOKUP_BY_KEYS</pre></a></li>
+<li class="constant  "><a href="#constant_URL_NEAR" title="URL_NEAR() :: URL for select-range"><span class="description">URL for select-range</span><pre>URL_NEAR</pre></a></li>
+<li class="constant  "><a href="#constant_URL_QUERY" title="URL_QUERY() :: URL for AQL query validation-related operations"><span class="description">URL for AQL query validation-related operations</span><pre>URL_QUERY</pre></a></li>
+<li class="constant  "><a href="#constant_URL_QUERY_CACHE" title="URL_QUERY_CACHE() :: URL for AQL query result cache"><span class="description">URL for AQL query result cache</span><pre>URL_QUERY_CACHE</pre></a></li>
+<li class="constant  "><a href="#constant_URL_RANGE" title="URL_RANGE() :: URL for select-range"><span class="description">URL for select-range</span><pre>URL_RANGE</pre></a></li>
+<li class="constant  "><a href="#constant_URL_REMOVE_BY_EXAMPLE" title="URL_REMOVE_BY_EXAMPLE() :: URL remove-by-example"><span class="description">URL remove-by-example</span><pre>URL_REMOVE_BY_EXAMPLE</pre></a></li>
+<li class="constant  "><a href="#constant_URL_REMOVE_BY_KEYS" title="URL_REMOVE_BY_KEYS() :: URL for remove-by-keys"><span class="description">URL for remove-by-keys</span><pre>URL_REMOVE_BY_KEYS</pre></a></li>
+<li class="constant  "><a href="#constant_URL_REPLACE_BY_EXAMPLE" title="URL_REPLACE_BY_EXAMPLE() :: URL for replace-by-example"><span class="description">URL for replace-by-example</span><pre>URL_REPLACE_BY_EXAMPLE</pre></a></li>
+<li class="constant  "><a href="#constant_URL_TRANSACTION" title="URL_TRANSACTION() :: URL for transactions"><span class="description">URL for transactions</span><pre>URL_TRANSACTION</pre></a></li>
+<li class="constant  "><a href="#constant_URL_TRAVERSAL" title="URL_TRAVERSAL() :: base URL part for user management"><span class="description">base URL part for user management</span><pre>URL_TRAVERSAL</pre></a></li>
+<li class="constant  "><a href="#constant_URL_UPDATE_BY_EXAMPLE" title="URL_UPDATE_BY_EXAMPLE() :: URL for update-by-example"><span class="description">URL for update-by-example</span><pre>URL_UPDATE_BY_EXAMPLE</pre></a></li>
+<li class="constant  "><a href="#constant_URL_UPLOAD" title="URL_UPLOAD() :: URL for file uploads"><span class="description">URL for file uploads</span><pre>URL_UPLOAD</pre></a></li>
+<li class="constant  "><a href="#constant_URL_USER" title="URL_USER() :: base URL part for user management"><span class="description">base URL part for user management</span><pre>URL_USER</pre></a></li>
+<li class="constant  "><a href="#constant_URL_WITHIN" title="URL_WITHIN() :: URL for select-range"><span class="description">URL for select-range</span><pre>URL_WITHIN</pre></a></li>
+</ul>
+</li></ul>
+</div>
+<div class="span8">
+<a xmlns:php="http://php.net/xsl" id="\ArangoDBClient\Urls"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/ArangoDBClient.html">ArangoDBClient</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/ArangoDBClient.Urls.html">Urls</a>
+</li>
+</ul>
+<div xmlns:php="http://php.net/xsl" class="element class">
+<p class="short_description">Some basic URLs</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/ArangoDBClient.html">ArangoDBClient</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>0.2</td>
+</tr>
+</table>
+<h3>
+<i title="Constants" class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_URLPART_EDGE"> </a><div class="element clickable constant  constant_URLPART_EDGE" data-toggle="collapse" data-target=".constant_URLPART_EDGE .collapse" title="">
+<h2>URL part for edge-related graph REST calls</h2>
+<pre>URLPART_EDGE = 'edge' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URLPART_VERTEX"> </a><div class="element clickable constant  constant_URLPART_VERTEX" data-toggle="collapse" data-target=".constant_URLPART_VERTEX .collapse" title="">
+<h2>URL part vertex-related graph REST calls</h2>
+<pre>URLPART_VERTEX = 'vertex' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ADMIN_LOG"> </a><div class="element clickable constant  constant_URL_ADMIN_LOG" data-toggle="collapse" data-target=".constant_URL_ADMIN_LOG .collapse" title="">
+<h2>URL for admin log</h2>
+<pre>URL_ADMIN_LOG = '/_admin/log' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ADMIN_ROUTING_RELOAD"> </a><div class="element clickable constant  constant_URL_ADMIN_ROUTING_RELOAD" data-toggle="collapse" data-target=".constant_URL_ADMIN_ROUTING_RELOAD .collapse" title="">
+<h2>base URL part for admin routing reload</h2>
+<pre>URL_ADMIN_ROUTING_RELOAD = '/_admin/routing/reload' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ADMIN_SERVER_ROLE"> </a><div class="element clickable constant  constant_URL_ADMIN_SERVER_ROLE" data-toggle="collapse" data-target=".constant_URL_ADMIN_SERVER_ROLE .collapse" title="">
+<h2>URL for server role</h2>
+<pre>URL_ADMIN_SERVER_ROLE = '/_admin/server/role' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ADMIN_STATISTICS"> </a><div class="element clickable constant  constant_URL_ADMIN_STATISTICS" data-toggle="collapse" data-target=".constant_URL_ADMIN_STATISTICS .collapse" title="">
+<h2>base URL part for admin statistics</h2>
+<pre>URL_ADMIN_STATISTICS = '/_admin/statistics' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ADMIN_STATISTICS_DESCRIPTION"> </a><div class="element clickable constant  constant_URL_ADMIN_STATISTICS_DESCRIPTION" data-toggle="collapse" data-target=".constant_URL_ADMIN_STATISTICS_DESCRIPTION .collapse" title="">
+<h2>base URL part for admin statistics-description</h2>
+<pre>URL_ADMIN_STATISTICS_DESCRIPTION = '/_admin/statistics-description' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ADMIN_TIME"> </a><div class="element clickable constant  constant_URL_ADMIN_TIME" data-toggle="collapse" data-target=".constant_URL_ADMIN_TIME .collapse" title="">
+<h2>URL for admin time</h2>
+<pre>URL_ADMIN_TIME = '/_admin/time' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ADMIN_VERSION"> </a><div class="element clickable constant  constant_URL_ADMIN_VERSION" data-toggle="collapse" data-target=".constant_URL_ADMIN_VERSION .collapse" title="">
+<h2>URL for admin version</h2>
+<pre>URL_ADMIN_VERSION = '/_api/version' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ALL"> </a><div class="element clickable constant  constant_URL_ALL" data-toggle="collapse" data-target=".constant_URL_ALL .collapse" title="">
+<h2>URL for select-all</h2>
+<pre>URL_ALL = '/_api/simple/all' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ALL_KEYS"> </a><div class="element clickable constant  constant_URL_ALL_KEYS" data-toggle="collapse" data-target=".constant_URL_ALL_KEYS .collapse" title="">
+<h2>URL for select-all-keys</h2>
+<pre>URL_ALL_KEYS = '/_api/simple/all-keys' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ANY"> </a><div class="element clickable constant  constant_URL_ANY" data-toggle="collapse" data-target=".constant_URL_ANY .collapse" title="">
+<h2>URL for any</h2>
+<pre>URL_ANY = '/_api/simple/any' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_AQL_USER_FUNCTION"> </a><div class="element clickable constant  constant_URL_AQL_USER_FUNCTION" data-toggle="collapse" data-target=".constant_URL_AQL_USER_FUNCTION .collapse" title="">
+<h2>base URL part for AQL user functions statistics</h2>
+<pre>URL_AQL_USER_FUNCTION = '/_api/aqlfunction' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_BATCH"> </a><div class="element clickable constant  constant_URL_BATCH" data-toggle="collapse" data-target=".constant_URL_BATCH .collapse" title="">
+<h2>URL for batch processing</h2>
+<pre>URL_BATCH = '/_api/batch' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_COLLECTION"> </a><div class="element clickable constant  constant_URL_COLLECTION" data-toggle="collapse" data-target=".constant_URL_COLLECTION .collapse" title="">
+<h2>URL base part for all collection-related REST calls</h2>
+<pre>URL_COLLECTION = '/_api/collection' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_CURSOR"> </a><div class="element clickable constant  constant_URL_CURSOR" data-toggle="collapse" data-target=".constant_URL_CURSOR .collapse" title="">
+<h2>base URL part for cursor related operations</h2>
+<pre>URL_CURSOR = '/_api/cursor' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_DATABASE"> </a><div class="element clickable constant  constant_URL_DATABASE" data-toggle="collapse" data-target=".constant_URL_DATABASE .collapse" title="">
+<h2>base URL part for database management</h2>
+<pre>URL_DATABASE = '/_api/database' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_DOCUMENT"> </a><div class="element clickable constant  constant_URL_DOCUMENT" data-toggle="collapse" data-target=".constant_URL_DOCUMENT .collapse" title="">
+<h2>URL base part for document-related CRUD operations REST calls</h2>
+<pre>URL_DOCUMENT = '/_api/document' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_EDGE"> </a><div class="element clickable constant  constant_URL_EDGE" data-toggle="collapse" data-target=".constant_URL_EDGE .collapse" title="">
+<h2>URL base part for edge-related CRUD operations REST calls</h2>
+<pre>URL_EDGE = '/_api/document' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_EDGES"> </a><div class="element clickable constant  constant_URL_EDGES" data-toggle="collapse" data-target=".constant_URL_EDGES .collapse" title="">
+<h2>URL base part for all retrieving connected edges</h2>
+<pre>URL_EDGES = '/_api/edges' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ENDPOINT"> </a><div class="element clickable constant  constant_URL_ENDPOINT" data-toggle="collapse" data-target=".constant_URL_ENDPOINT .collapse" title="">
+<h2>base URL part for endpoint management</h2>
+<pre>URL_ENDPOINT = '/_api/endpoint' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_ENGINE"> </a><div class="element clickable constant  constant_URL_ENGINE" data-toggle="collapse" data-target=".constant_URL_ENGINE .collapse" title="">
+<h2>URL for storage engine</h2>
+<pre>URL_ENGINE = '/_api/engine' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_EXAMPLE"> </a><div class="element clickable constant  constant_URL_EXAMPLE" data-toggle="collapse" data-target=".constant_URL_EXAMPLE .collapse" title="">
+<h2>URL for select-by-example</h2>
+<pre>URL_EXAMPLE = '/_api/simple/by-example' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_EXPLAIN"> </a><div class="element clickable constant  constant_URL_EXPLAIN" data-toggle="collapse" data-target=".constant_URL_EXPLAIN .collapse" title="">
+<h2>URL for AQL explain-related operations</h2>
+<pre>URL_EXPLAIN = '/_api/explain' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_EXPORT"> </a><div class="element clickable constant  constant_URL_EXPORT" data-toggle="collapse" data-target=".constant_URL_EXPORT .collapse" title="">
+<h2>URL for export related operations</h2>
+<pre>URL_EXPORT = '/_api/export' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_FIRST_EXAMPLE"> </a><div class="element clickable constant  constant_URL_FIRST_EXAMPLE" data-toggle="collapse" data-target=".constant_URL_FIRST_EXAMPLE .collapse" title="">
+<h2>URL for first-example</h2>
+<pre>URL_FIRST_EXAMPLE = '/_api/simple/first-example' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_FOXX_INSTALL"> </a><div class="element clickable constant  constant_URL_FOXX_INSTALL" data-toggle="collapse" data-target=".constant_URL_FOXX_INSTALL .collapse" title="">
+<h2>URL for foxx-app installations</h2>
+<pre>URL_FOXX_INSTALL = '/_admin/foxx/install' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_FOXX_UNINSTALL"> </a><div class="element clickable constant  constant_URL_FOXX_UNINSTALL" data-toggle="collapse" data-target=".constant_URL_FOXX_UNINSTALL .collapse" title="">
+<h2>URL for foxx-app deinstallation</h2>
+<pre>URL_FOXX_UNINSTALL = '/_admin/foxx/uninstall' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_FULLTEXT"> </a><div class="element clickable constant  constant_URL_FULLTEXT" data-toggle="collapse" data-target=".constant_URL_FULLTEXT .collapse" title="">
+<h2>URL for fulltext</h2>
+<pre>URL_FULLTEXT = '/_api/simple/fulltext' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_GRAPH"> </a><div class="element clickable constant  constant_URL_GRAPH" data-toggle="collapse" data-target=".constant_URL_GRAPH .collapse" title="">
+<h2>URL base part for all graph-related REST calls</h2>
+<pre>URL_GRAPH = '/_api/gharial' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_IMPORT"> </a><div class="element clickable constant  constant_URL_IMPORT" data-toggle="collapse" data-target=".constant_URL_IMPORT .collapse" title="">
+<h2>URL for document import</h2>
+<pre>URL_IMPORT = '/_api/import' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_INDEX"> </a><div class="element clickable constant  constant_URL_INDEX" data-toggle="collapse" data-target=".constant_URL_INDEX .collapse" title="">
+<h2>URL base part for all index-related REST calls</h2>
+<pre>URL_INDEX = '/_api/index' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_LOOKUP_BY_KEYS"> </a><div class="element clickable constant  constant_URL_LOOKUP_BY_KEYS" data-toggle="collapse" data-target=".constant_URL_LOOKUP_BY_KEYS .collapse" title="">
+<h2>URL for lookup-by-keys</h2>
+<pre>URL_LOOKUP_BY_KEYS = '/_api/simple/lookup-by-keys' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_NEAR"> </a><div class="element clickable constant  constant_URL_NEAR" data-toggle="collapse" data-target=".constant_URL_NEAR .collapse" title="">
+<h2>URL for select-range</h2>
+<pre>URL_NEAR = '/_api/simple/near' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_QUERY"> </a><div class="element clickable constant  constant_URL_QUERY" data-toggle="collapse" data-target=".constant_URL_QUERY .collapse" title="">
+<h2>URL for AQL query validation-related operations</h2>
+<pre>URL_QUERY = '/_api/query' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_QUERY_CACHE"> </a><div class="element clickable constant  constant_URL_QUERY_CACHE" data-toggle="collapse" data-target=".constant_URL_QUERY_CACHE .collapse" title="">
+<h2>URL for AQL query result cache</h2>
+<pre>URL_QUERY_CACHE = '/_api/query-cache' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_RANGE"> </a><div class="element clickable constant  constant_URL_RANGE" data-toggle="collapse" data-target=".constant_URL_RANGE .collapse" title="">
+<h2>URL for select-range</h2>
+<pre>URL_RANGE = '/_api/simple/range' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_REMOVE_BY_EXAMPLE"> </a><div class="element clickable constant  constant_URL_REMOVE_BY_EXAMPLE" data-toggle="collapse" data-target=".constant_URL_REMOVE_BY_EXAMPLE .collapse" title="">
+<h2>URL remove-by-example</h2>
+<pre>URL_REMOVE_BY_EXAMPLE = '/_api/simple/remove-by-example' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_REMOVE_BY_KEYS"> </a><div class="element clickable constant  constant_URL_REMOVE_BY_KEYS" data-toggle="collapse" data-target=".constant_URL_REMOVE_BY_KEYS .collapse" title="">
+<h2>URL for remove-by-keys</h2>
+<pre>URL_REMOVE_BY_KEYS = '/_api/simple/remove-by-keys' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_REPLACE_BY_EXAMPLE"> </a><div class="element clickable constant  constant_URL_REPLACE_BY_EXAMPLE" data-toggle="collapse" data-target=".constant_URL_REPLACE_BY_EXAMPLE .collapse" title="">
+<h2>URL for replace-by-example</h2>
+<pre>URL_REPLACE_BY_EXAMPLE = '/_api/simple/replace-by-example' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_TRANSACTION"> </a><div class="element clickable constant  constant_URL_TRANSACTION" data-toggle="collapse" data-target=".constant_URL_TRANSACTION .collapse" title="">
+<h2>URL for transactions</h2>
+<pre>URL_TRANSACTION = '/_api/transaction' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_TRAVERSAL"> </a><div class="element clickable constant  constant_URL_TRAVERSAL" data-toggle="collapse" data-target=".constant_URL_TRAVERSAL .collapse" title="">
+<h2>base URL part for user management</h2>
+<pre>URL_TRAVERSAL = '/_api/traversal' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_UPDATE_BY_EXAMPLE"> </a><div class="element clickable constant  constant_URL_UPDATE_BY_EXAMPLE" data-toggle="collapse" data-target=".constant_URL_UPDATE_BY_EXAMPLE .collapse" title="">
+<h2>URL for update-by-example</h2>
+<pre>URL_UPDATE_BY_EXAMPLE = '/_api/simple/update-by-example' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_UPLOAD"> </a><div class="element clickable constant  constant_URL_UPLOAD" data-toggle="collapse" data-target=".constant_URL_UPLOAD .collapse" title="">
+<h2>URL for file uploads</h2>
+<pre>URL_UPLOAD = '/_api/upload' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_USER"> </a><div class="element clickable constant  constant_URL_USER" data-toggle="collapse" data-target=".constant_URL_USER .collapse" title="">
+<h2>base URL part for user management</h2>
+<pre>URL_USER = '/_api/user' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_URL_WITHIN"> </a><div class="element clickable constant  constant_URL_WITHIN" data-toggle="collapse" data-target=".constant_URL_WITHIN .collapse" title="">
+<h2>URL for select-range</h2>
+<pre>URL_WITHIN = '/_api/simple/within' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2018-07-31T14:00:29+02:00.<br></footer></div>
+</div>
+</body>
+</html>

@@ -32,6 +32,16 @@ class ComposerStaticInitf3630469c2f75aa9ad1ca67d9373992b
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'A' => 
+        array (
+            'ArangoDBClient' => 
+            array (
+                0 => __DIR__ . '/..' . '/triagens/arangodb/lib',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Datamatrix' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/datamatrix.php',
         'PDF417' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/pdf417.php',
@@ -55,6 +65,7 @@ class ComposerStaticInitf3630469c2f75aa9ad1ca67d9373992b
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitf3630469c2f75aa9ad1ca67d9373992b::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitf3630469c2f75aa9ad1ca67d9373992b::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitf3630469c2f75aa9ad1ca67d9373992b::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitf3630469c2f75aa9ad1ca67d9373992b::$classMap;
 
         }, null, ClassLoader::class);
