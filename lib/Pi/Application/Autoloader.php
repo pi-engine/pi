@@ -141,7 +141,7 @@ class Autoloader
      */
     public function __construct($options = [])
     {
-        include Pi::path('lib/Zend/autoload.php');
+        // Include autoload file
         include Pi::path('vendor/autoload.php');
 
         // Include paths, adding vendor path
