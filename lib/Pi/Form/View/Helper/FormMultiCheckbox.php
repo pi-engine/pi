@@ -138,6 +138,6 @@ class FormMultiCheckbox extends ZendFormElement
             $combinedMarkup[] = $markup;
         }
 
-        return '<div class="form-check form-check-inline">' . implode('</div><div class="form-check form-check-inline">', $combinedMarkup) . '</div>';
+        return '<div class="form-check">' . implode('</div><div class="form-check">', $combinedMarkup) . '</div>';
     }
 }

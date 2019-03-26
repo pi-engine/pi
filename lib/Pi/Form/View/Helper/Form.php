@@ -301,8 +301,8 @@ EOT;
 
             switch ($style) {
                 case 'modal':
-                    $vars['label_size']     = 'col-sm-2';
-                    $vars['element_size']   = 'col-sm-10';
+                    $vars['label_size']     = 'col-sm-3';
+                    $vars['element_size']   = 'col-sm-5';
                     break;
                 case 'popup':
                     $vars['label_size']   = 'col-sm-4';
@@ -330,11 +330,11 @@ EOT;
                 case 'horizontal':
                 default:
                     if ('single' == $column) {
-                        $vars['label_size']   = 'col-sm-4';
-                        $vars['element_size'] = 'col-sm-6';
+                        $vars['label_size']   = 'col-sm-3';
+                        $vars['element_size'] = 'col-sm-5';
                     } else {
-                        $vars['label_size']   = 'col-md-4';
-                        $vars['element_size'] = 'col-md-6';
+                        $vars['label_size']   = 'col-md-3';
+                        $vars['element_size'] = 'col-md-5';
                     }
                     break;
             }

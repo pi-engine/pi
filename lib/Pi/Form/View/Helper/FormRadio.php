@@ -25,7 +25,7 @@ class FormRadio extends ZendFormElement
     /** @var array Label attributes */
     protected $labelAttributes
         = [
-            'class' => 'form-check-input',
+            'class' => 'form-check-label',
         ];
 
     /**
@@ -138,6 +138,6 @@ class FormRadio extends ZendFormElement
             $combinedMarkup[] = $markup;
         }
 
-        return '<div class="form-check form-check-inline">' . implode('</div><div class="form-check form-check-inline">', $combinedMarkup) . '</div>';
+        return '<div class="form-check">' . implode('</div><div class="form-check">', $combinedMarkup) . '</div>';
     }
 }
