@@ -300,6 +300,7 @@ form .icon-question-sign {
 }
 
 .pi-modules-nav > .category {
+    padding-left:18px;
     background-color: #ddd;
 }
 
