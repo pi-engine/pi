@@ -13,9 +13,13 @@ $controller = $this->getHelperPluginManager()->getServiceLocator()->get('applica
 $action     = $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('action', 'index');
 $module     = $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('module', '');
 
+$section = Pi::engine()->section();
+if($section == 'admin'){
+    $modalEnabled = 0;
+}
 ?>
 <div class="pi-userbar usertopbar d-flex">
-    <ul class="nav align-self-center">
+    <ul class="nav <?php if($section == 'admin') echo 'navbar-nav float-right' ?> align-self-center">
         <?php if (!$block['user']['uid']) { ?>
             <li class="nav-item item-login">
                 <a class="nav-link" href="<?php echo $modalEnabled ? '#' : $block['user']['login'] ?>"
