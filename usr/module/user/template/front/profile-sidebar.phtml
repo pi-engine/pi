@@ -117,47 +117,74 @@ $userConfig = Pi::service('registry')->config->read('user');
                 </div>
                 <div id="collapseProArea" class="panel-collapse collapse <?php echo $openProArea ? 'in' : '' ?>" role="tabpanel">
                     <div class="list-group">
-                        <?php if ($guideConfig['manage_active']) { ?>
-                            <a title="<?php _e('List'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'manage' && $action == 'dashboard') { echo ' active'; } ?>"><span class="indent"></span><?php _e('List'); ?></a>
-                            <a title="<?php _e('Planning'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'planning'])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'planning' && $action == 'index') { echo ' active'; } ?>"><span class="indent"></span><?php _e('Planning'); ?></a>
-                        <?php } ?>
-                        <?php if ($guideConfig['manage_active'] && isset($navigationItemList) && $action != 'add') { ?>
-                            <div id="accordionItem" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab">
-                                        <h4 class="panel-title">
-                                            <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
-                                               data-parent="#accordionItem" href="#collapseItem" aria-expanded="true" aria-controls="collapseItem">
-                                                <span class="accordionItemTitle"><?php echo $currentTitle ?></span> <span class='caret'></span>
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseItem"
-                                         class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
-                                         role="tabpanel">
-                                        <div class="list-group">
+
+                        <div id="accordionItem" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab">
+                                    <h4 class="panel-title">
+                                        <a class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
+                                           data-parent="#accordionItem" href="#collapseItem" aria-expanded="true" aria-controls="collapseItem">
+                                            <span class="accordionItemTitle"><?php echo $currentTitle ?: __('All') ?></span> <span class='caret'></span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseItem"
+                                     class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'in' ?>"
+                                     role="tabpanel">
+                                    <div class="list-group">
+                                        <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>" title="<?php _e('List'); ?>" class="list-group-item noborder"><?php _e('All'); ?></a>
+                                        <?php if ($guideConfig['manage_active'] && isset($navigationItemList)) { ?>
                                             <?php foreach ($navigationItemList as $itemId => $itemTitle) : ?>
-                                                <a href="<?php echo $this->url(null, array('item' => $itemId), null, true) ?>" title="<?php echo $itemTitle ?>" class="noborder list-group-item"><?php echo $itemTitle ?></a>
+                                                <?php if ($action == 'dashboard') { ?>
+                                                    <a href="<?php echo $this->url(null, ['module' => 'guide', 'controller' => 'manage', 'action' => 'planning', 'item' => $itemId], null, true) ?>" title="<?php echo $itemTitle ?>" class="noborder list-group-item"><?php echo $itemTitle ?></a>
+                                                <?php } else { ?>
+                                                    <a href="<?php echo $this->url(null, array('item' => $itemId), null, true) ?>" title="<?php echo $itemTitle ?>" class="noborder list-group-item"><?php echo $itemTitle ?></a>
+                                                <?php } ?>
                                             <?php endforeach; ?>
-                                        </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial') && $guideConfig['manage_active']) { ?>
+                            <a title="<?php _e('Summary'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'planning', 'item' => $itemId])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'planning' && $action == 'index') { echo ' active'; } ?>"><span></span><?php _e('Summary'); ?></a>
                         <?php } ?>
 
-                       <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
-                            <a title="<?php _e('Description'); ?>" href="<?php echo $this->url('', array('module' => 'guide', 'controller' => 'manage', 'action' => 'edit', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "add" || $action == "edit" || $action == "additional" || $action == "amenities" || $action == "attach" ? 'active' : '' ?>"><span class="indent"></span><?php _e('Description'); ?></a>
-                            <?php if ($config['manage_service']) { ?>
-                                <a title="<?php _e('Offers/Prices'); ?>"  href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "payment" || $action == "service" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="indent"></span><?php _e('Offers/Prices'); ?></a>
-                            <?php } ?>
+                        <div class="list-group-item noborder">
+                            <strong ><?php _e('FAST ACTIONS') ?></strong>
+                            <hr/>
+                        </div>
+                        <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
                             <?php if ($config['manage_service']) { ?>
                                 <a title="<?php _e('Grid Manager'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'sales', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "sales" || $action == "boost" || $action == "event-list"  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="indent"></span><?php _e('Grid Manager'); ?></a>
                             <?php } ?>
                             <?php if ($config['calendar_active']) { ?>
                                 <a title="<?php _e('Bookings/Closings'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'calendar', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "calendar" || $action == "policies" || $action == "openings" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="indent"></span><?php _e('Bookings/Closings'); ?></a>
                             <?php } ?>
-                            <a title="<?php _e('Statistics'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $controller == "stats"  ? 'active' : '' ?>"><span class="indent"></span><?php _e('Statistics'); ?></a>
-                            <a title="<?php _e('Tools'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'tools', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "tools"  ? 'active' : '' ?>"><span class="indent"></span><?php _e('Tools'); ?></a>
+                        <?php } ?>
+                        <a title="<?php _e('Statistics'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $controller == "stats"  ? 'active' : '' ?>"><span class="indent"></span><?php _e('Statistics'); ?></a>
+
+                       <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
+
+                           <div class="list-group-item noborder">
+                               <strong><?php _e('CONFIGURATION') ?></strong>
+                               <hr/>
+                           </div>
+                            <a title="<?php _e('Description'); ?>" href="<?php echo $this->url('', array('module' => 'guide', 'controller' => 'manage', 'action' => 'edit', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "add" || $action == "edit" || $action == "additional" || $action == "amenities" || $action == "attach" ? 'active' : '' ?>"><span class="indent"></span><?php _e('Description'); ?></a>
+                            <?php if ($config['manage_service']) { ?>
+                                <a title="<?php _e('Offers/Prices'); ?>"  href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "payment" || $action == "service" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="indent"></span><?php _e('Offers/Prices'); ?></a>
+                            <?php } ?>
+                           <span class=" list-group-item noborder disabled" style="color:#888!important; background-color:transparent" ><span class="indent"></span><?php _e('Deals (Soon)'); ?></span>
+
+                        <?php } ?>
+                        <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
+                            <div class="list-group-item noborder">
+                                <strong><?php _e('DISTRIBUTION') ?></strong>
+                                <hr/>
+                            </div>
+
+                            <a title="<?php _e('Widget'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'tools', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "tools"  ? 'active' : '' ?>"><span class="indent"></span><?php _e('Widget'); ?></a>
+							 <span class=" list-group-item noborder disabled" style="color:#888!important; background-color:transparent" ><span class="indent"></span><?php _e('Sales Channels (Soon)'); ?></span>
                         <?php } ?>
                     </div>
                 </div>
