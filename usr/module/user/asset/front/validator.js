@@ -66,7 +66,7 @@
         custom: {},
         errors: {
             match: 'Does not match',
-            minlength: 'Not long enough'
+            minlength: (typeof wordLength != 'undefined' && wordLength) ? wordLength : 'Not long enough'
         },
         feedback: {
             success: 'glyphicon-ok',

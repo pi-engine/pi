@@ -184,7 +184,7 @@ $userConfig = Pi::service('registry')->config->read('user');
             <?php $message = _number(Pi::api('api', 'message')->getUnread($uid, 'message')); ?>
             <a title="<?php _e('Messages'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'message') { echo ' active'; } ?>"><span class="fa fa-envelope-o"></span> <?php _e('Messages'); ?> <span class="badge badge-warning"><?php echo $message; ?></span> </a>
             <?php $notification = _number(Pi::api('api', 'message')->getUnread($uid, 'notification')); ?>
-            <a title="<?php _e('Notifications'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'message', 'controller' => 'notify', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'notification') { echo ' active'; } ?>"><span class="fa fa-bell-o"></span> <?php _e('Notifications'); ?> <span class="badge badge-warning"><?php echo $notification; ?></span></a>
+            <a title="<?php _e('Notifications'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'message', 'controller' => 'notify', 'action' => 'index'])); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'notification') { echo ' active'; } ?>"><span class="far fa-bell"></span> <?php _e('Notifications'); ?> <span class="badge badge-warning"><?php echo $notification; ?></span></a>
         <?php } ?>
 
         <?php if (in_array('support', $userConfig['side_menu']) && Pi::service('module')->isActive('support')) { ?>
