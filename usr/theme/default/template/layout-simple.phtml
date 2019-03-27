@@ -86,18 +86,17 @@ $module = Pi::service('module')->current();
 <!-- Header: brand, slogan, user bar -->
 <header class="pi-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <h1 class="navbar-brand">
-                <a href="<?php echo Pi::url($this->url('home')); ?>"
-                   title="<?php echo _escape($sitename); ?>">
-                    <img src="<?php echo $this->assetTheme('image/logo.png'); ?>"
-                         alt="<?php echo _escape($sitename); ?>">
+            <h1 class="navbar-brand m-0">
+                <a class="navbar-brand" href="<?php echo $this->url('home'); ?>">
+                    <i class="fas fa-leaf"></i>
+                    <strong>Pi</strong>
                 </a>
             </h1>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="<?php echo _escape($sitename); ?>">
             <i class="fas fa-bars"></i>
         </button>
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse justify-content-end">
             <?php echo $this->widget('system-user-bar', ['type' => 'js']); ?>
         </div>
     </nav>
