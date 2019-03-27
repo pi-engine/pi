@@ -49,7 +49,7 @@ $viewPreview
         <div class="user-avatar-box card bg-light mb-3 well">
             <div class="clearfix row">
                 <div class="col-md-2 col-sm-3"><?php echo Pi::service('user')->avatar()->get($uid, '', ['class' => 'rounded-circle']); ?></div>
-                <div class="col-md-10 col-sm-9 text-warning">
+                <div class="col-md-10 col-sm-9">
                     <h4><?php _e('Current avatar'); ?></h4>
                     <p><?php _e('Once source type is switched and saved, the old avatar image will be deleted.'); ?></p>
                 </div>
