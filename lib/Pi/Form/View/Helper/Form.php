@@ -78,6 +78,10 @@ class Form extends FormHelper
                 $style = 'popup';
                 $class = '';
                 break;
+            case 'modal-simple' :
+                $style = 'modal-simple';
+                $class = '';
+                break;
             case 'horizontal':
             case '':
                 $style = 'horizontal';
@@ -300,6 +304,10 @@ EOT;
             $vars = [];
 
             switch ($style) {
+                case 'modal-simple':
+                    $vars['label_size']     = 'col-sm-4';
+                    $vars['element_size']   = 'col-sm-8';
+                    break;
                 case 'modal':
                     $vars['label_size']     = 'col-sm-3';
                     $vars['element_size']   = 'col-sm-5';

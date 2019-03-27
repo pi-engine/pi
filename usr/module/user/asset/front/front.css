@@ -486,4 +486,17 @@
 
 #accordionAccount h4 a {
     padding:6px 15px!important
-} 
+}
+
+/* SIDEBAR BS4 */
+.sticky-top-sidebar a.active,
+.sticky-top-sidebar .list-group-item.active:hover,
+.sticky-top-sidebar .list-group-item.active {
+    background: #337ab7
+}
+
+.sticky-top-sidebar a.active,
+.sticky-top-sidebar .list-group-item.active:hover {
+    color: #fff
+}
+/* END SIDEBAR BS4 */
