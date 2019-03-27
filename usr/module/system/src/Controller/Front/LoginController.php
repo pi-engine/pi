@@ -235,7 +235,7 @@ class LoginController extends ActionController
         ];
         Pi::service('event')->trigger('user_login', $args);
 
-        $this->jump($redirect, __('You have logged in successfully.'));
+        $this->jump($redirect);
     }
 
     /**
