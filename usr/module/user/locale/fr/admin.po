@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2018-09-18 23:08+0200\n"
-"PO-Revision-Date: 2018-09-18 23:09+0200\n"
+"POT-Creation-Date: 2019-03-29 17:17+0100\n"
+"PO-Revision-Date: 2019-03-29 17:17+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -40,7 +40,7 @@ msgid "Account"
 msgstr "Compte"
 
 #: config/config.php:37 config/user.php:152
-#: src/Controller/Admin/EditController.php:331
+#: src/Controller/Admin/EditController.php:335
 msgid "Avatar"
 msgstr "Avatar"
 
@@ -606,59 +606,59 @@ msgstr "oAuth login"
 msgid "Login by google"
 msgstr "Login by google"
 
-#: config/config.php:573
+#: config/config.php:571
 msgid "Google client id"
 msgstr "Google client id"
 
-#: config/config.php:581
+#: config/config.php:579
 msgid "Google client secret"
 msgstr "Google client secret"
 
-#: config/config.php:589
+#: config/config.php:587
 msgid "Login by twitter"
 msgstr "Login by twitter"
 
-#: config/config.php:603
+#: config/config.php:599
 msgid "Twitter consumer Key (API Key)"
 msgstr "Twitter consumer Key (API Key)"
 
-#: config/config.php:611
+#: config/config.php:607
 msgid "Twitter consumer Secret (API Secret)"
 msgstr "Twitter consumer Secret (API Secret)"
 
-#: config/config.php:619
+#: config/config.php:615
 msgid "Login by facebook"
 msgstr "Login by facebook"
 
-#: config/config.php:633
+#: config/config.php:627
 msgid "Facebook app ID"
 msgstr "Facebook app ID"
 
-#: config/config.php:641
+#: config/config.php:635
 msgid "Facebook app Secret"
 msgstr "Facebook app Secret"
 
-#: config/config.php:649
+#: config/config.php:643
 msgid "Login by github"
 msgstr "Login by github"
 
-#: config/config.php:663
+#: config/config.php:655
 msgid "Github client id"
 msgstr "Github client id"
 
-#: config/config.php:671
+#: config/config.php:663
 msgid "Github client secret"
 msgstr "Github client secret"
 
-#: config/config.php:680
+#: config/config.php:672
 msgid "Active this module cron system"
 msgstr "Activerr le système de cron pour ce module"
 
-#: config/config.php:688
+#: config/config.php:680
 msgid "Session timeout / in days"
 msgstr "Timeout session / en jours"
 
-#: config/config.php:696
+#: config/config.php:688
 msgid "User post-subscription Feedback days"
 msgstr "Nb jours pour le feedback post inscriptions"
 
@@ -940,32 +940,32 @@ msgid "Logout"
 msgstr "Se déconnecter"
 
 #: src/Controller/Admin/EditController.php:47
-#: src/Controller/Admin/EditController.php:173
+#: src/Controller/Admin/EditController.php:177
 msgid "User data update failed."
 msgstr "La mise à jour des données utilisateur a échoué"
 
-#: src/Controller/Admin/EditController.php:61
-#: src/Controller/Admin/EditController.php:214
+#: src/Controller/Admin/EditController.php:65
+#: src/Controller/Admin/EditController.php:218
 msgid "User data update successful."
 msgstr "La mise à jour des données utilisateurs a réussie"
 
-#: src/Controller/Admin/EditController.php:107
+#: src/Controller/Admin/EditController.php:111
 msgid "User avatar change failed."
 msgstr "Le changement d'avatar de l'utilisateur a échoué"
 
-#: src/Controller/Admin/EditController.php:112
+#: src/Controller/Admin/EditController.php:116
 msgid "User avatar change successful."
 msgstr "Modification de l'avatar utilisateur effectuée avec succès"
 
-#: src/Controller/Admin/EditController.php:264
+#: src/Controller/Admin/EditController.php:268
 msgid "Group deleted successfully."
 msgstr "Groupe supprimé avec succès"
 
-#: src/Controller/Admin/EditController.php:324
+#: src/Controller/Admin/EditController.php:328
 msgid "Base info"
 msgstr "Informations générales"
 
-#: src/Controller/Admin/EditController.php:376
+#: src/Controller/Admin/EditController.php:380
 #: src/Controller/Admin/MaintenanceController.php:54
 #: src/Controller/Admin/MaintenanceController.php:99
 msgid "User was not found."
@@ -1011,41 +1011,41 @@ msgstr ""
 "La suppression de l'utilisateur a échoué : l'uid (numéro utilisateur) n'est "
 "pas valide"
 
-#: src/Controller/Admin/IndexController.php:437
+#: src/Controller/Admin/IndexController.php:440
 #, php-format
 msgid "%d delete user successfully"
 msgstr "%d utilisateurs supprimés avec succès"
 
-#: src/Controller/Admin/IndexController.php:457
-#: src/Controller/Admin/IndexController.php:463
+#: src/Controller/Admin/IndexController.php:460
+#: src/Controller/Admin/IndexController.php:466
 msgid "Activate user failed: invalid uid."
 msgstr ""
 "La confirmation de l'utilisateur a échoué : l'uid (numéro utilisateur) n'est "
 "pas valide."
 
-#: src/Controller/Admin/IndexController.php:484
+#: src/Controller/Admin/IndexController.php:487
 #, php-format
 msgid "%d users activated."
 msgstr "%d utilisateurs confirmés."
 
-#: src/Controller/Admin/IndexController.php:509
+#: src/Controller/Admin/IndexController.php:512
 msgid "Role assignment failed: invalid parameters."
 msgstr "L'affectation du rôle a échoué : paramètres non valides."
 
-#: src/Controller/Admin/IndexController.php:515
+#: src/Controller/Admin/IndexController.php:518
 msgid "Role assignment failed: invalid user ids."
 msgstr "L'affectation du rôle a échoué : uid (numéro utilisateur) non valide."
 
-#: src/Controller/Admin/IndexController.php:520
+#: src/Controller/Admin/IndexController.php:523
 msgid "Role assignment failed: invalid operation."
 msgstr "L'affectation du rôle a échoué : opération non valide."
 
-#: src/Controller/Admin/IndexController.php:530
-#: src/Controller/Admin/IndexController.php:548
+#: src/Controller/Admin/IndexController.php:533
+#: src/Controller/Admin/IndexController.php:551
 msgid "Role assignment failed."
 msgstr "L'affectation du rôle a échoué."
 
-#: src/Controller/Admin/IndexController.php:567
+#: src/Controller/Admin/IndexController.php:570
 msgid "Role assignment succeeded."
 msgstr "Succès de l'affectation du rôle."
 
@@ -1104,7 +1104,7 @@ msgstr "Utilisateur non trouvé."
 msgid "Users of role %s"
 msgstr "Utilisateurs du rôle %s"
 
-#: src/Installer/Action/Install.php:139
+#: src/Installer/Action/Install.php:143
 msgid "Basic profile"
 msgstr "Informations générales"
 

@@ -156,7 +156,7 @@ class AccountController extends ActionController
                     }
                     Pi::api('people', 'subscription')->update(array('newsletter' => $values['newsletter']), $uid);
                     $result['newsletter_value']   = $values['newsletter'];
-                    $result['newsletter_message'] = __('Newsletter has been changed successfully.');
+                    $result['newsletter_message'] = __('Newsletter registration option has been changed successfully.');
                     $result['newsletter_time_update'] = time();
 
                     $log = [
