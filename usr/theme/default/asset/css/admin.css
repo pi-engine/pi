@@ -184,7 +184,7 @@ form .icon-question-sign {
 }
 
 .navbar-brand {
-    width: 256px;
+    width: 196px;
 }
 
 /* Util */
@@ -260,7 +260,7 @@ form .icon-question-sign {
     bottom: 0;
     height: 100%;
     overflow-y: auto;
-    width: 260px;
+    width: 200px;
     background: #f2f2f2;
     border-right: 1px solid #ddd;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
@@ -368,7 +368,7 @@ form .icon-question-sign {
 .pi-content {
     overflow: hidden;
     padding: 20px 20px 0 0;
-    margin-left: 280px;
+    margin-left: 220px;
 }
 
 .page-header {
@@ -610,3 +610,105 @@ form .icon-question-sign {
     padding: 0.6rem 1rem 0.9em;
     color:white!important;
 }
+
+/* BS4 OVERRIDE */
+body{
+    font-size:14px;
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.thumbnail {
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+}
+
+.thumbnail .caption {
+    padding: 9px;
+    color: #333;
+}
+
+.page-header{
+    padding-bottom:9px;
+    margin:40px 0 20px;
+    border-bottom:1px solid #eee;
+}
+
+.list-inline{
+    /*margin-bottom:0;*/
+}
+
+.list-inline>li {
+    display: inline-block;
+    /*padding-right: 5px;*/
+    /*padding-left: 5px;*/
+
+}
+
+label {
+    font-weight: 700;
+}
+
+.sticky-top-0{
+    top:0;
+}
+
+.list-group{
+    margin-bottom:10px;
+}
+
+.btn:focus, .btn.focus {
+    box-shadow: none;
+}
+
+.card-title {
+    font-size: 16px;
+}
+
+ol, ul{
+    margin-bottom: 10px;
+}
+
+.invalid-feedback{
+    font-size:inherit;
+}
+
+.navbar-toggler{
+    border:0;
+}
+
+button:focus,
+button:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.dropdown-item {
+    color: #575e65;
+    padding: 0.25rem 1rem;
+}
+
+.list-group-item.active {
+    background-color: #03A9F4;
+    border-color: #03A9F4;
+}
+
+.datepicker.datepicker-dropdown.dropdown-menu {background:#eee}
+.badge-warning {color:#fff; background:#f0ad4e}
+.dropdown-menu a {color:#525152}
+.row.form-group > .col-form-label {text-align:right}
+.white-space-nowrap {white-space:nowrap}
+legend {border-bottom:1px solid #ddd}
+/* END BS4 OVERRIDE */
+
