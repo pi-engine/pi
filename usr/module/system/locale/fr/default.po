@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2018-09-18 23:10+0200\n"
-"PO-Revision-Date: 2018-09-18 23:10+0200\n"
+"POT-Creation-Date: 2019-04-02 16:52+0200\n"
+"PO-Revision-Date: 2019-04-02 16:52+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -90,7 +90,7 @@ msgstr "Flux récent module"
 msgid "Resent feeds of %s module"
 msgstr "Renvoyer le flux pour le module %s"
 
-#: src/Controller/Front/LoginController.php:80
+#: src/Controller/Front/LoginController.php:84
 #, php-format
 msgid ""
 "Login with the account is suspended,\n"
@@ -100,26 +100,27 @@ msgstr ""
 "                            merci d'attendre pendant %d minutes pour essayer "
 "de nouveau."
 
-#: src/Controller/Front/LoginController.php:89
+#: src/Controller/Front/LoginController.php:93
 #, php-format
 msgid "You have %d times to try."
 msgstr "Il vous reste %d  essais"
 
-#: src/Controller/Front/LoginController.php:97
+#: src/Controller/Front/LoginController.php:101
 #: template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr "Connexion utilisateur"
 
-#: src/Controller/Front/LoginController.php:102 src/Form/LoginForm.php:119
-#: template/block/partial/login-register-modal.phtml:55
-#: template/block/partial/login-register-modal.phtml:68
-#: template/block/partial/login-register-modal.phtml:99
-#: template/block/partial/login-register-modal.phtml:100
-#: template/front/login-logout.phtml:14 template/front/register.phtml:8
+#: src/Controller/Front/LoginController.php:106 src/Form/LoginForm.php:123
+#: template/front/login-logout.phtml:14
+#: template/front/login-register-modal-ajax.phtml:12
+#: template/front/login-register-modal-ajax.phtml:27
+#: template/front/login-register-modal-ajax.phtml:58
+#: template/front/login-register-modal-ajax.phtml:59
+#: template/front/register.phtml:8
 msgid "Login"
 msgstr "Connexion"
 
-#: src/Controller/Front/LoginController.php:103
+#: src/Controller/Front/LoginController.php:107
 msgid ""
 "Use this page to connect to our website and participate, share contents, use "
 "our features, and interacts with other members"
@@ -127,23 +128,19 @@ msgstr ""
 "Utiliser cette page pour vous connecter sur le site et participer, partager "
 "des contenus, utiliser nos services et intéragir avec les autres membres"
 
-#: src/Controller/Front/LoginController.php:124
+#: src/Controller/Front/LoginController.php:128
 msgid "Invalid request."
 msgstr "Demande non valide."
 
-#: src/Controller/Front/LoginController.php:168
+#: src/Controller/Front/LoginController.php:172
 msgid "You have tried too many times. Please try later."
 msgstr "Vous avez tenté trop de fois. Merci d'essayer plus tard."
 
-#: src/Controller/Front/LoginController.php:192
+#: src/Controller/Front/LoginController.php:196
 msgid "Invalid credentials provided, please try again."
 msgstr "Identifiants fournis non valides, merci d'essayer de nouveau."
 
-#: src/Controller/Front/LoginController.php:234
-msgid "You have logged in successfully."
-msgstr "Vous vous êtes connectés avec succès."
-
-#: src/Controller/Front/LoginController.php:264
+#: src/Controller/Front/LoginController.php:268
 msgid "You logged out successfully."
 msgstr "Vous vous êtes déconnectés avec succès."
 
@@ -161,9 +158,9 @@ msgstr ""
 #: src/Controller/Front/PasswordController.php:127
 #: src/Controller/Front/PasswordController.php:128
 #: src/Form/FindPasswordForm.php:49
-#: template/block/partial/login-register-modal.phtml:71
-#: template/block/partial/login-register-modal.phtml:72
-#: template/front/login.phtml:17 template/front/password-find.phtml:2
+#: template/front/login-register-modal-ajax.phtml:30
+#: template/front/login-register-modal-ajax.phtml:31
+#: template/front/login.phtml:20 template/front/password-find.phtml:2
 #: template/front/register.phtml:6
 msgid "Find password"
 msgstr "Rappel mot de passe"
@@ -224,11 +221,12 @@ msgstr "Inscription du compte utilisateur"
 
 #: src/Controller/Front/RegisterController.php:61
 #: src/Controller/Front/RegisterController.php:122
-#: template/block/partial/login-register-modal.phtml:57
-#: template/block/partial/login-register-modal.phtml:78
-#: template/block/partial/login-register-modal.phtml:79
-#: template/block/partial/login-register-modal.phtml:92
-#: template/front/login-logout.phtml:16 template/front/login.phtml:20
+#: template/front/login-logout.phtml:16
+#: template/front/login-register-modal-ajax.phtml:14
+#: template/front/login-register-modal-ajax.phtml:37
+#: template/front/login-register-modal-ajax.phtml:38
+#: template/front/login-register-modal-ajax.phtml:51
+#: template/front/login.phtml:23
 msgid "Register"
 msgstr "S'inscrire"
 
@@ -598,38 +596,22 @@ msgstr "Compiler"
 msgid "Rebuild"
 msgstr "Reconstruire"
 
-#: template/admin/theme-index.phtml:41
+#: template/admin/theme-index.phtml:37
 msgid "Customize"
 msgstr "Personnaliser"
 
-#: template/block/partial/login-register-modal.phtml:75
-msgid "Not already registered ?"
-msgstr "Pas encore inscrit ?"
-
-#: template/block/partial/login-register-modal.phtml:96
-msgid "Already registered ?"
-msgstr "Déjà inscrit ?"
-
-#: template/block/user-bar.phtml:25
-msgid "Propose my activity"
-msgstr "Proposer mon activité"
-
-#: template/block/user-bar.phtml:31 template/block/user-bar.phtml:33
-#: template/block/user-bar.phtml:35
-msgid "Publish an event"
-msgstr "Publier un évènement"
-
-#: template/block/user-bar.phtml:40
-msgid "Promote my activity"
-msgstr "Promouvoir mon activité"
-
-#: template/block/user-bar.phtml:71
+#: template/block/user-bar.phtml:51
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: template/block/user-bar.phtml:145 template/block/user-bar.phtml:148
+#: template/block/user-bar.phtml:118 template/block/user-bar.phtml:121
+#: template/block/user-bar.phtml:330 template/block/user-bar.phtml:333
 msgid "My offer"
 msgstr "Mon offre"
+
+#: template/block/user-bar.phtml:465
+msgid "Add my activity"
+msgstr "Ajouter mon activité"
 
 #: template/front/login-disabled.phtml:5
 msgid "Sorry, login is temporarily disabled. Please come back later."
@@ -667,6 +649,14 @@ msgid ""
 msgstr ""
 "Vous vous êtes connectés avec le compte <strong>%s</strong>, merci %s de "
 "vous reconnecter."
+
+#: template/front/login-register-modal-ajax.phtml:34
+msgid "Not already registered ?"
+msgstr "Pas encore inscrit ?"
+
+#: template/front/login-register-modal-ajax.phtml:55
+msgid "Already registered ?"
+msgstr "Déjà inscrit ?"
 
 #: template/front/login-success.phtml:6
 #, php-format
@@ -711,6 +701,15 @@ msgstr "vous connecter"
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr "Vous vous êtes inscrits avec succès, merci d'aller à %s ou %s."
+
+#~ msgid "You have logged in successfully."
+#~ msgstr "Vous vous êtes connectés avec succès."
+
+#~ msgid "Publish an event"
+#~ msgstr "Publier un évènement"
+
+#~ msgid "Promote my activity"
+#~ msgstr "Promouvoir mon activité"
 
 #~ msgid "Login / register"
 #~ msgstr "Connexion / S'inscrire"
