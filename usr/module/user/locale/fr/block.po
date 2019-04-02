@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-01-24 13:19+0100\n"
-"PO-Revision-Date: 2019-01-24 13:19+0100\n"
+"POT-Creation-Date: 2019-04-02 16:53+0200\n"
+"PO-Revision-Date: 2019-04-02 16:53+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -39,6 +39,6 @@ msgstr "%s%s Finalisation"
 msgid "update"
 msgstr "mettre à jour"
 
-#: template/front/profile-sidebar.phtml:226
+#: template/front/profile-sidebar.phtml:236
 msgid "Manage account"
 msgstr "Gérer mon compte"
