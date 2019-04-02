@@ -156,7 +156,7 @@ class Form extends FormHelper
                 $class     = $element->getAttribute('class');
                 $attrClass = 'form-check-input' . ($class ? ' ' . $class : '');
                 $element->setAttribute('class', $attrClass);
-            } else {
+            } else if ($type != 'file') {
                 $class     = $element->getAttribute('class');
                 $attrClass = 'form-control' . ($class ? ' ' . $class : '');
                 $element->setAttribute('class', $attrClass);
@@ -480,7 +480,7 @@ EOT;
             switch ($style) {
                 case 'modal':
                 case 'popup':
-                    $waiting = '<img src="' . $this->view->assetTheme('image/wait.gif') . '" class="hide">';
+                    $waiting = '<img src="' . $this->view->assetTheme('image/wait.gif') . '" class="d-none">';
                     $htmlSubmit
                              = <<<EOT
         <div class="modal-footer">
@@ -565,10 +565,10 @@ EOT;
             var formModule = (function($) {
                 var formModule = {},
                     form = $("#{$form->getAttribute('id')}"),
-                    imgWait = form.find("img.hide");
+                    imgWait = form.find("img.d-none");
                 var items = form.find(".form-group").find(".form-text").html("").end();
                 form.submit(function(e) {
-                    imgWait.removeClass("hide");
+                    imgWait.removeClass("d-none");
                     e.preventDefault();
                     $.post(form.attr("action"), form.serialize()).done(function(result) {
                         result = $.parseJSON(result);
@@ -583,7 +583,7 @@ EOT;
                             }
                             formModule.fail();
                         }
-                        imgWait.addClass("hide");
+                        imgWait.addClass("d-none");
                     });
                 });
                 /**
