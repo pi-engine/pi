@@ -1,4 +1,6 @@
 <?php
+Pi::service('i18n')->loadModule('block', 'system');
+
 $userSection = $this->isUserSection(Pi::service('module')->current());
 $originalBlockType = $block['type'];
 
@@ -48,7 +50,7 @@ if($section == 'admin'){
                             <?php echo $block['user']['avatar']; ?>
                         </span>
                         <span class="d-none d-xl-inline">
-                            <?php echo __('Welcome') . ' ' . _escape(
+                            <?php echo b('Welcome') . ' ' . _escape(
                                     (isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name']
                                         : $block['user']['name']
                                 ); ?>
@@ -462,7 +464,7 @@ if($section == 'admin'){
         <?php if (Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
             <li class="nav-item item-promouvoir d-none dropdown d-md-flex">
                 <a href="<?php echo $this->url('home'); ?>guide/solutions" class="nav-link btn btn-warning btn-sm align-self-center">
-                    <span class="value"><?php echo __("Add my activity") ?></span>
+                    <span class="value"><?php echo _b("Add my activity") ?></span>
                 </a>
             </li>
         <?php endif; ?>
