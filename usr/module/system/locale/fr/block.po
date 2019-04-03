@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2019-04-02 16:52+0200\n"
-"PO-Revision-Date: 2019-04-02 16:52+0200\n"
+"POT-Creation-Date: 2019-04-03 13:34+0200\n"
+"PO-Revision-Date: 2019-04-03 13:34+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -28,84 +28,88 @@ msgstr "Nom du Site"
 msgid "Slogan"
 msgstr "Slogan"
 
-#: template/block/user-bar.phtml:28 template/block/user-bar.phtml:30
+#: template/block/user-bar.phtml:30 template/block/user-bar.phtml:32
 msgid "Login"
 msgstr "Connexion"
 
-#: template/block/user-bar.phtml:37 template/block/user-bar.phtml:39
+#: template/block/user-bar.phtml:39 template/block/user-bar.phtml:41
 msgid "Register"
 msgstr "S'inscrire"
 
-#: template/block/user-bar.phtml:66 template/block/user-bar.phtml:145
-#: template/block/user-bar.phtml:148 template/block/user-bar.phtml:278
-#: template/block/user-bar.phtml:357 template/block/user-bar.phtml:360
-#: template/block/user-bar.phtml:448 template/block/user-bar.phtml:450
+#: template/block/user-bar.phtml:68 template/block/user-bar.phtml:147
+#: template/block/user-bar.phtml:150 template/block/user-bar.phtml:280
+#: template/block/user-bar.phtml:359 template/block/user-bar.phtml:362
+#: template/block/user-bar.phtml:450 template/block/user-bar.phtml:452
 msgid "Favourite"
 msgstr "Favoris"
 
-#: template/block/user-bar.phtml:69 template/block/user-bar.phtml:281
+#: template/block/user-bar.phtml:71 template/block/user-bar.phtml:283
 msgid "Dashboard"
 msgstr "Tableau de Bord"
 
-#: template/block/user-bar.phtml:75 template/block/user-bar.phtml:86
-#: template/block/user-bar.phtml:164 template/block/user-bar.phtml:178
-#: template/block/user-bar.phtml:287 template/block/user-bar.phtml:298
-#: template/block/user-bar.phtml:382 template/block/user-bar.phtml:394
+#: template/block/user-bar.phtml:77 template/block/user-bar.phtml:88
+#: template/block/user-bar.phtml:166 template/block/user-bar.phtml:180
+#: template/block/user-bar.phtml:289 template/block/user-bar.phtml:300
+#: template/block/user-bar.phtml:384 template/block/user-bar.phtml:396
 msgid "message(s)"
 msgstr "message(s)"
 
-#: template/block/user-bar.phtml:77 template/block/user-bar.phtml:88
-#: template/block/user-bar.phtml:167 template/block/user-bar.phtml:181
-#: template/block/user-bar.phtml:289 template/block/user-bar.phtml:300
-#: template/block/user-bar.phtml:384 template/block/user-bar.phtml:396
+#: template/block/user-bar.phtml:79 template/block/user-bar.phtml:90
+#: template/block/user-bar.phtml:169 template/block/user-bar.phtml:183
+#: template/block/user-bar.phtml:291 template/block/user-bar.phtml:302
+#: template/block/user-bar.phtml:386 template/block/user-bar.phtml:398
 msgid "Message"
 msgstr "Message"
 
-#: template/block/user-bar.phtml:97 template/block/user-bar.phtml:192
-#: template/block/user-bar.phtml:309 template/block/user-bar.phtml:406
+#: template/block/user-bar.phtml:99 template/block/user-bar.phtml:194
+#: template/block/user-bar.phtml:311 template/block/user-bar.phtml:408
 msgid "notification(s)"
 msgstr "notification(s)"
 
-#: template/block/user-bar.phtml:99 template/block/user-bar.phtml:195
-#: template/block/user-bar.phtml:311 template/block/user-bar.phtml:408
+#: template/block/user-bar.phtml:101 template/block/user-bar.phtml:197
+#: template/block/user-bar.phtml:313 template/block/user-bar.phtml:410
 msgid "Notification"
 msgstr "Notification"
 
-#: template/block/user-bar.phtml:108 template/block/user-bar.phtml:110
-#: template/block/user-bar.phtml:206 template/block/user-bar.phtml:209
-#: template/block/user-bar.phtml:320 template/block/user-bar.phtml:322
-#: template/block/user-bar.phtml:418 template/block/user-bar.phtml:420
+#: template/block/user-bar.phtml:110 template/block/user-bar.phtml:112
+#: template/block/user-bar.phtml:208 template/block/user-bar.phtml:211
+#: template/block/user-bar.phtml:322 template/block/user-bar.phtml:324
+#: template/block/user-bar.phtml:420 template/block/user-bar.phtml:422
 msgid "Support"
 msgstr "Support"
 
-#: template/block/user-bar.phtml:127 template/block/user-bar.phtml:129
-#: template/block/user-bar.phtml:230 template/block/user-bar.phtml:233
-#: template/block/user-bar.phtml:339 template/block/user-bar.phtml:341
-#: template/block/user-bar.phtml:429 template/block/user-bar.phtml:431
+#: template/block/user-bar.phtml:129 template/block/user-bar.phtml:131
+#: template/block/user-bar.phtml:232 template/block/user-bar.phtml:235
+#: template/block/user-bar.phtml:341 template/block/user-bar.phtml:343
+#: template/block/user-bar.phtml:431 template/block/user-bar.phtml:433
 msgid "Follow up orders"
 msgstr "Commandes"
 
-#: template/block/user-bar.phtml:135 template/block/user-bar.phtml:137
-#: template/block/user-bar.phtml:240 template/block/user-bar.phtml:243
-#: template/block/user-bar.phtml:347 template/block/user-bar.phtml:349
-#: template/block/user-bar.phtml:437 template/block/user-bar.phtml:439
+#: template/block/user-bar.phtml:137 template/block/user-bar.phtml:139
+#: template/block/user-bar.phtml:242 template/block/user-bar.phtml:245
+#: template/block/user-bar.phtml:349 template/block/user-bar.phtml:351
+#: template/block/user-bar.phtml:439 template/block/user-bar.phtml:441
 msgid "Credit"
 msgstr "Crédit"
 
-#: template/block/user-bar.phtml:152 template/block/user-bar.phtml:154
-#: template/block/user-bar.phtml:270 template/block/user-bar.phtml:273
-#: template/block/user-bar.phtml:455 template/block/user-bar.phtml:457
+#: template/block/user-bar.phtml:154 template/block/user-bar.phtml:156
+#: template/block/user-bar.phtml:272 template/block/user-bar.phtml:275
+#: template/block/user-bar.phtml:457 template/block/user-bar.phtml:459
 #: template/block/user.phtml:34 template/block/user.phtml:36
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: template/block/user-bar.phtml:220 template/block/user-bar.phtml:223
+#: template/block/user-bar.phtml:222 template/block/user-bar.phtml:225
 msgid "My offer"
 msgstr "Mon offre"
 
-#: template/block/user-bar.phtml:255 template/block/user-bar.phtml:372
+#: template/block/user-bar.phtml:257 template/block/user-bar.phtml:374
 msgid "Welcome"
 msgstr "Bienvenue"
+
+#: template/block/user-bar.phtml:467
+msgid "Add my activity"
+msgstr "Ajouter mon activité"
 
 #: template/block/user.phtml:22 template/block/user.phtml:24
 msgid "Profile"
