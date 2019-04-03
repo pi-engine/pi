@@ -140,7 +140,7 @@ $userConfig = Pi::service('registry')->config->read('user');
                             <a title="<?php _e('Grid Manager'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'sales', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "sales" || $action == "boost" || $action == "event-list"  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Grid Manager'); ?></a>
                         <?php } ?>
                         <?php if ($config['calendar_active']) { ?>
-                            <a title="<?php _e('Bookings/Closings'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'calendar', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "calendar" || $action == "policies" || $action == "openings" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Bookings/Closings'); ?></a>
+                            <a title="<?php _e('Bookings/Closings'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'calendar', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "calendar" || $action == "policies" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Bookings/Closings'); ?></a>
                         <?php } ?>
                     <?php } ?>
                     <a title="<?php _e('Statistics'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $controller == "stats"  ? 'active' : '' ?>"><span class="mr-4"></span><?php _e('Statistics'); ?></a>
@@ -154,6 +154,9 @@ $userConfig = Pi::service('registry')->config->read('user');
                         <a title="<?php _e('Description'); ?>" href="<?php echo $this->url('', array('module' => 'guide', 'controller' => 'manage', 'action' => 'edit', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "add" || $action == "edit" || $action == "additional" || $action == "amenities" || $action == "attach" ? 'active' : '' ?>"><span class="mr-4"></span><?php _e('Description'); ?></a>
                         <?php if ($config['manage_service']) { ?>
                             <a title="<?php _e('Offers/Prices'); ?>"  href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "payment" || $action == "service" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Offers/Prices'); ?></a>
+                        <?php } ?>
+                        <?php if ($business['enable_opening'] || $business['enable_opening_meal_service']) { ?>
+                            <a title="<?php _e('Opening hours'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'openings', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "openings" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Opening hours'); ?></a>
                         <?php } ?>
                         <span class=" list-group-item noborder disabled" style="color:#888!important; background-color:transparent" ><span class="mr-4"></span><?php _e('Deals (Soon)'); ?></span>
 
