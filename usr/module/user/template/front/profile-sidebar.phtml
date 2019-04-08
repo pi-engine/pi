@@ -143,8 +143,10 @@ $userConfig = Pi::service('registry')->config->read('user');
                             <a title="<?php _e('Bookings/Closings'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'calendar', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "calendar" || $action == "policies" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Bookings/Closings'); ?></a>
                         <?php } ?>
                     <?php } ?>
-                    <?php if ($config['manage_service']) { ?>
-                        <a title="<?php _e('Boost'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'boost', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "boost" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Boost'); ?></a>
+                    <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
+                        <?php if ($config['manage_service']) { ?>
+                            <a title="<?php _e('Boost'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'boost', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "boost" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Boost'); ?></a>
+                        <?php } ?>
                     <?php } ?>
                     <a title="<?php _e('Statistics'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $controller == "stats"  ? 'active' : '' ?>"><span class="mr-4"></span><?php _e('Statistics'); ?></a>
 
