@@ -268,7 +268,6 @@ EOT;
                         = <<<EOT
 <div class="%element_size%">
     %element_content%
-    <div clas="invalid-feedback">%error_content%</div>
     %desc_html%
 </div>
 
