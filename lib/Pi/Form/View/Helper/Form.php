@@ -177,6 +177,8 @@ class Form extends FormHelper
              */
             switch ($style) {
                 case 'inline':
+                    $rowClass = 'mr-2';
+                    break;
                 case 'vertical':
                     $rowClass = '';
                     break;
