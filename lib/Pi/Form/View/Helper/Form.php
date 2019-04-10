@@ -490,7 +490,18 @@ EOT;
         </div>
 EOT;
                     break;
-
+                case 'modal-simple':
+                    $submitSize = 'offset-sm-4 col-sm-8';
+                    $htmlSubmit
+                        = <<<EOT
+        <div class="row form-group">
+            <div class="{$submitSize}">
+                {$submit}
+                {$cancel}
+            </div>
+        </div>
+EOT;
+                    break;
                 case 'horizontal':
                     if ('single' == $column) {
                         $submitSize = 'offset-sm-3 col-sm-9';
