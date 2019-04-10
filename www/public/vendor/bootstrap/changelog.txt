@@ -2,7 +2,9 @@ Changelog
 
 April 10th, 2019 Marc
 ======================
-1. Upgrade to Fontawesome 5.8.1 (only css mode / not the JS, but will all files)
+1. Upgrade to Fontawesome 5.8.1 (only css mode / not the JS, but will ALL files) // standard distribution is used
+Major change: up to this update, we use standard distro to ease FA release update.
+You have now to adapt your themes with new css file name all.min.css, instead of font-awesome.css
 
 March 13th, 2019 Sta2m
 =======================
