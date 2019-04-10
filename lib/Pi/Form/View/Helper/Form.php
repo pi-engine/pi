@@ -177,6 +177,8 @@ class Form extends FormHelper
              */
             switch ($style) {
                 case 'inline':
+                    $rowClass = 'mr-2';
+                    break;
                 case 'vertical':
                     $rowClass = '';
                     break;
@@ -268,7 +270,6 @@ EOT;
                         = <<<EOT
 <div class="%element_size%">
     %element_content%
-    <div clas="invalid-feedback">%error_content%</div>
     %desc_html%
 </div>
 
@@ -490,7 +491,18 @@ EOT;
         </div>
 EOT;
                     break;
-
+                case 'modal-simple':
+                    $submitSize = 'offset-sm-4 col-sm-8';
+                    $htmlSubmit
+                        = <<<EOT
+        <div class="row form-group">
+            <div class="{$submitSize}">
+                {$submit}
+                {$cancel}
+            </div>
+        </div>
+EOT;
+                    break;
                 case 'horizontal':
                     if ('single' == $column) {
                         $submitSize = 'offset-sm-3 col-sm-9';

@@ -78,7 +78,7 @@ $userConfig = Pi::service('registry')->config->read('user');
 
         <?php
             $openProArea = false;
-            if ($module == "guide" && $controller == 'manage' && in_array($action, array ('edit', 'service', 'sales', 'boost', 'additional', 'amenities', 'attach', 'payment', 'service', 'pricelist', 'sales', 'calendar', 'boost', 'event-list', 'tools', 'children-policy', 'policies', 'openings'))) {
+            if ($module == "guide" && $controller == 'manage' && in_array($action, array ('edit', 'service', 'sales', 'boost', 'additional', 'amenities', 'attach', 'payment', 'manage', 'pricelist', 'sales', 'calendar', 'boost', 'event-list', 'tools', 'children-policy', 'policies', 'openings'))) {
                 $openProArea = true;
             } else if ($module == "guide" && $controller == 'stats' && $action == 'index') {
                 $openProArea = true;
@@ -104,7 +104,7 @@ $userConfig = Pi::service('registry')->config->read('user');
                                 <h4 class="">
                                     <a class="btn btn-primary btn-block collapsed text-dark" role="button" data-toggle="collapse"
                                        data-parent="#accordionItem" href="#collapseItem" aria-expanded="true" aria-controls="collapseItem">
-                                        <span class="accordionItemTitle"><?php echo $currentTitle ?: __('All') ?></span>
+                                        <span class="accordionItemTitle"><?php echo isset($currentTitle) ? $currentTitle : __('All') ?></span>
                                         <span class='fa fa-caret-down float-right mt-1'></span>
                                     </a>
                                 </h4>
@@ -148,7 +148,7 @@ $userConfig = Pi::service('registry')->config->read('user');
                             <a title="<?php _e('Boost'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'boost', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "boost" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Boost'); ?></a>
                         <?php } ?>
                     <?php } ?>
-                    <a title="<?php _e('Statistics'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $controller == "stats"  ? 'active' : '' ?>"><span class="mr-4"></span><?php _e('Statistics'); ?></a>
+                    <a title="<?php _e('Statistics'); ?>" href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => isset($item['id']) ? $item['id'] : null)); ?>" class="list-group-item noborder <?php echo $controller == "stats"  ? 'active' : '' ?>"><span class="mr-4"></span><?php _e('Statistics'); ?></a>
 
                     <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
 
@@ -158,7 +158,7 @@ $userConfig = Pi::service('registry')->config->read('user');
                         </div>
                         <a title="<?php _e('Description'); ?>" href="<?php echo $this->url('', array('module' => 'guide', 'controller' => 'manage', 'action' => 'edit', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "add" || $action == "edit" || $action == "additional" || $action == "amenities" || $action == "attach" ? 'active' : '' ?>"><span class="mr-4"></span><?php _e('Description'); ?></a>
                         <?php if ($config['manage_service']) { ?>
-                            <a title="<?php _e('Offers/Prices'); ?>"  href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "payment" || $action == "service" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Offers/Prices'); ?></a>
+                            <a title="<?php _e('Offers/Prices'); ?>"  href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "payment" || $action == "service"|| $action == "manage" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Offers/Prices'); ?></a>
                         <?php } ?>
                         <?php if ($business['enable_opening'] || $business['enable_opening_meal_service']) { ?>
                             <a title="<?php _e('Opening hours'); ?>" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'openings', 'item' => $item['id'])); ?>" class="list-group-item noborder <?php echo $action == "openings" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>"><span class="mr-4"></span><?php _e('Opening hours'); ?></a>
