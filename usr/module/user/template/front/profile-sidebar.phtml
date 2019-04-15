@@ -128,7 +128,7 @@ $userConfig = Pi::service('registry')->config->read('user');
                         </div>
                     </div>
                     <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial') && $guideConfig['manage_active']) { ?>
-                        <a title="<?php _e('Summary'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'planning', 'item' => $itemId])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'planning' && $action == 'index') { echo ' active'; } ?>"><span></span><?php _e('Summary'); ?></a>
+                        <a title="<?php _e('Summary'); ?>" href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'planning', 'item' => $item['id']])); ?>" class="list-group-item noborder <?php if ($module == "guide" && $controller == 'planning' && $action == 'index') { echo ' active'; } ?>"><span></span><?php _e('Summary'); ?></a>
                     <?php } ?>
 
                     <div class="list-group-item noborder">
