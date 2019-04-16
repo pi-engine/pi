@@ -18,6 +18,22 @@ class CssConverter
 {
     private $htmlColor   = array(); // list of the HTML colors
 
+    /**
+     * fontsize ratios
+     * @var float[]
+     */
+    private $fontSizeRatio = [
+        'smaller'  => 0.8,
+        'larger'   => 1.25,
+        'xx-small' => 0.512,
+        'x-small'  => 0.64,
+        'small'    => 0.8,
+        'medium'   => 1.,
+        'large'    => 1.25,
+        'x-large'  => 1.5625,
+        'xx-large' => 1.953125,
+    ];
+
     public function __construct()
     {
         $this->htmlColor = \TCPDF_COLORS::$webcolor;
@@ -55,6 +71,21 @@ class CssConverter
     }
 
     /**
+     * @param string $css    font size to convert
+     * @param float  $parent parent font size
+     * @return float
+     */
+    public function convertFontSize($css, $parent = 0.)
+    {
+        $css = trim($css);
+        if (array_key_exists($css, $this->fontSizeRatio)) {
+            $css = ($this->fontSizeRatio[$css] * $parent).'mm';
+        }
+
+        return $this->convertToMM($css, $parent);
+    }
+
+    /**
      * convert a css radius
      *
      * @access public
@@ -68,9 +99,9 @@ class CssConverter
 
         foreach ($css as $k => $v) {
             $v = trim($v);
-            if ($v) {
+            if ($v !== '') {
                 $v = $this->convertToMM($v, 0);
-                if ($v!==null) {
+                if ($v !== null) {
                     $css[$k] = $v;
                 } else {
                     unset($css[$k]);
@@ -98,7 +129,7 @@ class CssConverter
         $res = true;
 
         // if transparent => return null
-        if (strtolower($css) == 'transparent') {
+        if (strtolower($css) === 'transparent') {
             return array(null, null, null);
         }
 
@@ -159,7 +190,7 @@ class CssConverter
      */
     protected function convertSubColor($c)
     {
-        if (substr($c, -1) == '%') {
+        if (substr($c, -1) === '%') {
             $c = floatVal(substr($c, 0, -1)) / 100.;
         } else {
             $c = floatVal($c);
@@ -212,7 +243,7 @@ class CssConverter
             if ($ok) {
                 $value['color'] = $color;
                 // else if transparent => no coloàr
-            } elseif ($val=='transparent') {
+            } elseif ($val === 'transparent') {
                 $value['color'] = null;
                 // else
             } else {
@@ -249,7 +280,7 @@ class CssConverter
     public function convertBackgroundColor($css)
     {
         $res = null;
-        if ($css=='transparent') {
+        if ($css === 'transparent') {
             return null;
         }
 
@@ -265,7 +296,7 @@ class CssConverter
      */
     public function convertBackgroundImage($css)
     {
-        if ($css=='none') {
+        if ($css === 'none') {
             return null;
         }
 
@@ -309,15 +340,15 @@ class CssConverter
         $res = true;
 
         // convert the first value
-        if ($css[0]=='left') {
+        if ($css[0] === 'left') {
             $x = '0%';
-        } elseif ($css[0]=='center') {
+        } elseif ($css[0] === 'center') {
             $x = '50%';
-        } elseif ($css[0]=='right') {
+        } elseif ($css[0] === 'right') {
             $x = '100%';
-        } elseif ($css[0]=='top') {
+        } elseif ($css[0] === 'top') {
             $y = '0%';
-        } elseif ($css[0]=='bottom') {
+        } elseif ($css[0] === 'bottom') {
             $y = '100%';
         } elseif (preg_match('/^[-]?[0-9\.]+%$/isU', $css[0])) {
             $x = $css[0];
@@ -328,15 +359,15 @@ class CssConverter
         }
 
         // convert the second value
-        if ($css[1]=='left') {
+        if ($css[1] === 'left') {
             $x = '0%';
-        } elseif ($css[1]=='right') {
+        } elseif ($css[1] === 'right') {
             $x = '100%';
-        } elseif ($css[1]=='top') {
+        } elseif ($css[1] === 'top') {
             $y = '0%';
-        } elseif ($css[1]=='center') {
+        } elseif ($css[1] === 'center') {
             $y = '50%';
-        } elseif ($css[1]=='bottom') {
+        } elseif ($css[1] === 'bottom') {
             $y = '100%';
         } elseif (preg_match('/^[-]?[0-9\.]+%$/isU', $css[1])) {
             $y = $css[1];

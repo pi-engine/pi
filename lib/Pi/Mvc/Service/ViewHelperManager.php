@@ -120,6 +120,7 @@ class ViewHelperManager extends HelperPluginManager
             'formdescription'         => 'Form\View\Helper\FormDescription',
             'formfieldset'            => 'Form\View\Helper\FormFieldset',
             'formeditor'              => 'Form\View\Helper\FormEditor',
+            'formpersiandatepicker'   => 'Form\View\Helper\FormPersianDatepicker',
 
             // i18n helpers
             'currencyformat'          => 'I18n\View\Helper\CurrencyFormat',

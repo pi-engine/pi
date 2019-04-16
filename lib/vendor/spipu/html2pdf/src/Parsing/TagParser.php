@@ -45,21 +45,25 @@ class TagParser
             $e->setInvalidTag($code);
             throw $e;
         }
-        $close     = ($match[1] == '/' ? true : false);
+        $close     = ($match[1] === '/' ? true : false);
         $autoclose = preg_match('/\/>$/isU', $code);
         $name      = strtolower($match[2]);
 
         // required parameters (depends on the tag name)
         $defaultParams = array();
         $defaultParams['style'] = '';
-        if ($name == 'img') {
+        if ($name === 'img') {
             $defaultParams['alt'] = '';
             $defaultParams['src'] = '';
-        } elseif ($name == 'a') {
+        } elseif ($name === 'a') {
             $defaultParams['href'] = '';
         }
 
         $param = array_merge($defaultParams, $this->extractTagAttributes($code));
+        $param['style'] = trim($param['style']);
+        if (strlen($param['style']) > 0 && substr($param['style'], -1) !== ';') {
+            $param['style'].= ';';
+        }
 
         // compliance of each parameter
         $color  = "#000000";
@@ -122,7 +126,7 @@ class TagParser
                     if (!$val) {
                         $val = 1;
                     }
-                    $param[$key] = $val;
+                    $param[$key] = (int) $val;
                     break;
 
                 case 'color':
@@ -136,13 +140,13 @@ class TagParser
 
         // compliance of the border
         if ($border !== null) {
-            if ($border) {
-                $border = 'border: solid '.$border.' '.$color;
+            if ($border && $border !== '0px') {
+                $border = 'solid '.$border.' '.$color;
             } else {
-                $border = 'border: none';
+                $border = 'none';
             }
 
-            $param['style'] .= $border.'; ';
+            $param['style'] .= 'border: '.$border.'; ';
             $param['border'] = $border;
         }
 
@@ -177,7 +181,8 @@ class TagParser
 
         // prepare the parameters
         if (isset($param['value'])) {
-            $param['value']  = $this->textParser->prepareTxt($param['value']);
+            $keepSpaces = in_array($name, array('qrcode', 'barcode'));
+            $param['value']  = $this->textParser->prepareTxt($param['value'], !$keepSpaces);
         }
         if (isset($param['alt'])) {
             $param['alt']    = $this->textParser->prepareTxt($param['alt']);
@@ -211,7 +216,8 @@ class TagParser
 
         foreach ($regexes as $regex) {
             preg_match_all('/'.$regex.'/is', $code, $match);
-            for ($k = 0; $k < count($match[0]); $k++) {
+            $amountMatch = count($match[0]);
+            for ($k = 0; $k < $amountMatch; $k++) {
                 $param[trim(strtolower($match[1][$k]))] = trim($match[2][$k]);
             }
         }
