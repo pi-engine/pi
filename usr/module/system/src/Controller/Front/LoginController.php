@@ -131,6 +131,7 @@ class LoginController extends ActionController
             return;
         }
 
+
         $configs = $this->getConfig();
         $post    = $this->request->getPost();
         $form    = $this->getForm($configs);
@@ -138,6 +139,7 @@ class LoginController extends ActionController
         $form->setInputFilter($this->getInputFilter($configs));
 
         if (!$form->isValid()) {
+//        print_r($form->getMessages()); die();
             $this->renderForm($form);
 
             return;
