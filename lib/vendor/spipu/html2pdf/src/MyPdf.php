@@ -95,19 +95,19 @@ class MyPdf extends \TCPDF
         // prepare the text from the tranlated text
         $txt = '';
         if ($this->_footerParam['form']) {
-            $txt = (Locale::get('pdf05'));
+            $txt = Locale::get('pdf05');
         }
         if ($this->_footerParam['date'] && $this->_footerParam['time']) {
-            $txt.= ($txt ? ' - ' : '').(Locale::get('pdf03'));
+            $txt.= ($txt ? ' - ' : '').Locale::get('pdf03');
         }
         if ($this->_footerParam['date'] && !$this->_footerParam['time']) {
-            $txt.= ($txt ? ' - ' : '').(Locale::get('pdf01'));
+            $txt.= ($txt ? ' - ' : '').Locale::get('pdf01');
         }
         if (!$this->_footerParam['date'] && $this->_footerParam['time']) {
-            $txt.= ($txt ? ' - ' : '').(Locale::get('pdf02'));
+            $txt.= ($txt ? ' - ' : '').Locale::get('pdf02');
         }
         if ($this->_footerParam['page']) {
-            $txt.= ($txt ? ' - ' : '').(Locale::get('pdf04'));
+            $txt.= ($txt ? ' - ' : '').Locale::get('pdf04');
         }
 
         if (strlen($txt)>0) {
@@ -266,7 +266,7 @@ class MyPdf extends \TCPDF
         $path = '';
 
         // if we have the position and the size of the rectangle, we can proceed
-        if ($x!==null && $y!==null && $w!==null && $h!==null) {
+        if ($x !== null && $y !== null && $w !== null && $h !== null) {
             // the positions of the rectangle's corners
             $x1 = $x*$this->k;
             $y1 = ($this->h-$y)*$this->k;
@@ -422,7 +422,7 @@ class MyPdf extends \TCPDF
         // init the curve
         $path = '';
 
-        if ($ext1X-$cenX!=0) {
+        if ($ext1X-$cenX !=0) {
             $xt1 = $cenX+($ext1X-$cenX);
             $yt1 = $cenY+($ext2Y-$cenY)*self::MY_ARC;
             $xt2 = $cenX+($ext1X-$cenX)*self::MY_ARC;
@@ -436,7 +436,7 @@ class MyPdf extends \TCPDF
         $path.= sprintf('%.2F %.2F m ', $ext1X, $ext1Y);
         $path.= sprintf('%.2F %.2F %.2F %.2F %.2F %.2F c ', $xt1, $yt1, $xt2, $yt2, $ext2X, $ext2Y);
 
-        if ($int1X-$cenX!=0) {
+        if ($int1X-$cenX !=0) {
             $xt1 = $cenX+($int1X-$cenX)*self::MY_ARC;
             $yt1 = $cenY+($int2Y-$cenY);
             $xt2 = $cenX+($int1X-$cenX);
@@ -491,7 +491,7 @@ class MyPdf extends \TCPDF
         // init the curve
         $path = '';
 
-        if ($ext1X-$cenX!=0) {
+        if ($ext1X-$cenX !=0) {
             $xt1 = $cenX+($ext1X-$cenX);
             $yt1 = $cenY+($ext2Y-$cenY)*self::MY_ARC;
             $xt2 = $cenX+($ext1X-$cenX)*self::MY_ARC;
@@ -704,7 +704,7 @@ class MyPdf extends \TCPDF
 
         // Style : fill
         if ($styles['fill']) {
-            $this->setFillColorArray($styles['fill']);
+            $this->SetFillColorArray($styles['fill']);
             $style.= 'F';
         }
 
@@ -747,9 +747,9 @@ class MyPdf extends \TCPDF
         $y4=$y+$h;
 
         // get the Closing operator from the PDF Style
-        if ($style=='F') {
+        if ($style === 'F') {
             $op='f';
-        } elseif ($style=='FD' || $style=='DF') {
+        } elseif ($style === 'FD' || $style === 'DF') {
             $op='B';
         } else {
             $op='S';
@@ -797,9 +797,9 @@ class MyPdf extends \TCPDF
     public function svgEllipse($x0, $y0, $rx, $ry, $style)
     {
         // get the Closing operator from the PDF Style
-        if ($style=='F') {
+        if ($style === 'F') {
             $op='f';
-        } elseif ($style=='FD' || $style=='DF') {
+        } elseif ($style === 'FD' || $style === 'DF') {
             $op='B';
         } else {
             $op='S';
@@ -820,9 +820,9 @@ class MyPdf extends \TCPDF
     public function svgPolygone($actions, $style)
     {
         // get the Closing operator from the PDF Style
-        if ($style=='F') {
+        if ($style === 'F') {
             $op='f';
-        } elseif ($style=='FD' || $style=='DF') {
+        } elseif ($style === 'FD' || $style === 'DF') {
             $op='B';
         } else {
             $op='S';
@@ -834,12 +834,21 @@ class MyPdf extends \TCPDF
 
         foreach ($actions as $action) {
             switch ($action[0]) {
-            // Start the Path
+                // Start the Path - move - absolute
                 case 'M':
-                case 'm':
                     $first = $action;
                     $x = $action[1];
                     $y = $action[2];
+                    $xc = $x;
+                    $yc = $y;
+                    $this->_Point($x, $y, true);
+                    break;
+
+                // Start the Path - move - relative
+                case 'm':
+                    $first = $action;
+                    $x = $last[0]+$action[1];
+                    $y = $last[1]+$action[2];
                     $xc = $x;
                     $yc = $y;
                     $this->_Point($x, $y, true);
@@ -1171,7 +1180,7 @@ class MyPdf extends \TCPDF
         $v['D'] = $v['dXr']*$v['dXr'] + $v['dYr']*$v['dYr'];
 
         // if |vector| is Null, or if |vector| > 2 : impossible to make a arc => Line
-        if ($v['D']==0 || $v['D']>4) {
+        if ($v['D'] == 0 || $v['D']>4) {
             $this->_Line($x2, $y2, $trans);
             return false;
         }
@@ -1256,7 +1265,7 @@ class MyPdf extends \TCPDF
         }
 
         // apply the Transformation Matrix
-        list($x,$y) = array(($x*$m[0]+$y*$m[2]+$m[4]),($x*$m[1]+$y*$m[3]+$m[5]));
+        list($x, $y) = array(($x*$m[0]+$y*$m[2]+$m[4]),($x*$m[1]+$y*$m[3]+$m[5]));
 
         // if true => convert into PDF unit
         if ($trans) {
@@ -1334,7 +1343,7 @@ class MyPdf extends \TCPDF
         );
 
         // build the barcode
-        if ($dimension == '2D') {
+        if ($dimension === '2D') {
             // PDF417, DATAMATRIX ...
             $this->write2DBarcode($code, $type, $x, $y, $w, $h, '', $style, 'N');
         } else {
@@ -1343,7 +1352,7 @@ class MyPdf extends \TCPDF
 
         // it Label => add the FontSize to the height
         if ($labelFontsize) {
-            $h+= ($labelFontsize);
+            $h+= $labelFontsize;
         }
 
         // return the size of the barcode
@@ -1445,7 +1454,7 @@ class MyPdf extends \TCPDF
      */
     public function getMyAliasNbPages()
     {
-        if ($this->_myLastPageGroupNb==0) {
+        if ($this->_myLastPageGroupNb == 0) {
             return $this->getAliasNbPages();
         } else {
             $old = $this->currpagegroup;
@@ -1466,11 +1475,11 @@ class MyPdf extends \TCPDF
      */
     public function getMyNumPage($page = null)
     {
-        if ($page===null) {
+        if ($page === null) {
             $page = $this->page;
         }
 
-        if ($this->_myLastPageGroupNb==0) {
+        if ($this->_myLastPageGroupNb == 0) {
             return $page;
         } else {
             return $page-$this->_myLastPageGroup;
