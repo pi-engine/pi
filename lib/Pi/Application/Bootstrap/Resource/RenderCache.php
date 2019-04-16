@@ -177,17 +177,6 @@ class RenderCache extends AbstractResource
                     }
                 }
 
-                /**
-                 * Replace cached security key into login form with dynamic security key
-                 */
-                $loginForm   = Pi::api('form', 'user')->loadForm('login');
-                $content = $response->getContent();
-                $content = preg_replace('#(?<=name="security" value=")(.*)(?=")#', $loginForm->get('security')->getValue(), $content);
-                $response->setContent($content);
-                /**
-                 * End
-                 */
-
                 $e->setResult($response);
                 return $response;
             }
