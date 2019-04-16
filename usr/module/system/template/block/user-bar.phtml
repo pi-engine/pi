@@ -1,5 +1,7 @@
 <?php
-$userSection       = $this->isUserSection(Pi::service('module')->current());
+Pi::service('i18n')->loadModule('block', 'system');
+
+$userSection = $this->isUserSection(Pi::service('module')->current());
 $originalBlockType = $block['type'];
 
 if ($block['type'] == 'mixed' || $block['type'] == 'mixed_light') {
@@ -9,408 +11,472 @@ $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
 
 $modalEnabled = Pi::user()->config('enable_modal');
 
-$controller =  $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('controller', 'index');
-$action =  $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('action', 'index');
-$module =  $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('module', '');
+$controller = $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('controller', 'index');
+$action     = $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('action', 'index');
+$module     = $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('module', '');
 
-
+$section = Pi::engine()->section();
+if($section == 'admin'){
+    $modalEnabled = 0;
+}
 ?>
-    <div class="pi-userbar usertopbar">
-        <ul class="nav navbar-nav<?php echo $floatClass; ?>">
-
-            <?php if(Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
-                <li class="item-promouvoir hidden-xs hidden-sm dropdown">
-                    <div class="btn-group">
-                        <button class="label-yellow dropdown-toggle" data-toggle="dropdown">
-                            <span class="value"><?php echo __("Propose my activity") ?></span>
-                        </button>
-                        <ul class="dropdown-menu " role="menu">
-                            <?php if(Pi::service('module')->isActive('event')) : ?>
-                                <li>
-                                    <?php if(Pi::user()->getId()) { ?>
-                                        <a href="<?php echo $this->url('home'); ?>event/manage/update" title="<?php echo __("Publish an event") ?>"><?php echo __("Publish an event") ?></a>
-                                    <?php } else { ?>
-                                        <a  title="<?php echo __("Publish an event") ?>" data-redirect="<?php echo $this->url('home'); ?>event/manage/update"
-                                            href="<?php echo (Pi::user()->config('enable_modal')) ? '#' : Pi::service('authentication')->getUrl('login', $this->url('home') . '/event/manage/update'); ?>" <?php if(Pi::user()->config('enable_modal')) : ?>data-action="login" data-toggle="modal" data-target="#loginRegisterModal"<?php endif; ?>>
-                                            <?php echo __("Publish an event") ?>
-                                        </a>
-                                    <?php } ?>
-                                </li>
-                            <?php endif; ?>
-                            <li><a href="<?php echo $this->url('home'); ?>guide/solutions" title="<?php echo __("Promote my activity") ?>"><?php echo __("Promote my activity") ?></a></li>
-                        </ul>
-                    </div>
-                </li>
-            <?php endif; ?>
-
-            <?php if (!$block['user']['uid']) { ?>
-                <li class="item-login">
-                    <a href="<?php echo $modalEnabled ? '#' : $block['user']['login'] ?>"
-                       data-target="#loginRegisterModal" data-action="login"
-                       <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
-                       title="<?php echo _b('Login'); ?>">
-                        <i class="fa fa-sign-in hidden-lg"></i>
-                        <span class="hidden-xs hidden-sm hidden-md"><?php echo _b('Login'); ?></span>
-                    </a>
-                </li>
-                <li class="item-register hidden-xs">
-                    <a href="<?php echo $modalEnabled ? '#' : $block['user']['register'] ?>"
-                       data-target="#loginRegisterModal" data-action="register"
-                       <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
-                       title="<?php echo _b('Register'); ?>">
-                        <?php echo _b('Register'); ?>
-                    </a>
-                </li>
-            <?php } elseif ($block['type'] == 'dropdown') { ?>
-                <li class="dropdown pi-userbar-header">
-                    <div class="btn-group">
-                        <button type="button" class="btn pi-userbar-avatar"
-                                onclick="window.location='<?php echo $block['user']['dashboard_url']; ?>'">
+<div class="pi-userbar usertopbar d-flex">
+    <ul class="nav <?php if($section == 'admin') echo 'navbar-nav float-right' ?> align-self-center">
+        <?php if (!$block['user']['uid']) { ?>
+            <li class="nav-item item-login">
+                <a class="nav-link" href="<?php echo $modalEnabled ? '#' : $block['user']['login'] ?>"
+                   data-target="#loginRegisterModal" data-action="login"
+                   <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
+                   title="<?php echo _b('Login'); ?>">
+                    <i class="fas fa-sign-in-alt fa-lg d-sm-none"></i>
+                    <span class="d-none d-sm-inline-block"><?php echo _b('Login'); ?></span>
+                </a>
+            </li>
+            <li class="nav-item item-register">
+                <a class="nav-link" href="<?php echo $modalEnabled ? '#' : $block['user']['register'] ?>"
+                   data-target="#loginRegisterModal" data-action="register"
+                   <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
+                   title="<?php echo _b('Register'); ?>">
+                    <i class="fas fa-user fa-lg d-sm-none"></i>
+                    <span class="d-none d-sm-inline-block"><?php echo _b('Register'); ?></span>
+                </a>
+            </li>
+        <?php } elseif ($block['type'] == 'dropdown') { ?>
+            <li class="nav-item dropdown pi-userbar-header order-1">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-primary pi-userbar-avatar"
+                            onclick="window.location='<?php echo $block['user']['dashboard_url']; ?>'">
+                        <span class="d-inline-block rounded-circle">
                             <?php echo $block['user']['avatar']; ?>
-                            <span class="hidden-xs hidden-sm hidden-md">
-                            <?php echo __('Welcome') . ' ' . _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
-                                <?php if (isset($block['count']) && $block['count']) { ?>
-                                    <span class="badge"><?php echo _number($block['count']); ?></span>
-                                <?php } ?>
                         </span>
+                        <span class="d-none d-xl-inline">
+                            <?php echo b('Welcome') . ' ' . _escape(
+                                    (isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name']
+                                        : $block['user']['name']
+                                ); ?>
+                            <?php if (isset($block['count']) && $block['count']) { ?>
+                                <span class="badge badge-pill badge-warning"><?php echo _number($block['count']); ?></span>
+                            <?php } ?>
+                        </span>
+                    </button>
+                    <?php if (Pi::service('module')->isActive('user')) : ?>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                         </button>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <?php if (isset($block['user']['dashboard_url'])) { ?>
+                                <a class="dropdown-item item-favorites" title="<?php echo _b('Favourite'); ?>"
+                                   href="<?php echo $block['user']['dashboard_url']; ?>">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <?php echo _b('Dashboard'); ?>
+                                </a>
+                            <?php } ?>
 
-                        <?php if (Pi::service('module')->isActive('user')) : ?>
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <?php if (isset($block['user']['dashboard_url'])) { ?>
-                                    <li class="item-favorites">
-                                        <a title="<?php echo _b('Favourite'); ?>"
-                                           href="<?php echo $block['user']['dashboard_url']; ?>">
-                                            <i class="fa fa-dashboard"></i>
-                                            <?php echo _b('Dashboard'); ?>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-
-                                <?php if (isset($block['user']['message'])) { ?>
-                                    <li class="<?php echo $module == "message" ? 'active' : '' ?>">
-                                        <a href="<?php echo $block['user']['message']; ?>"
-                                           title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
-                                            <i class="fa fa-envelope-o"></i>
-                                            <?php echo _b('Message'); ?>
-                                            <?php if ($block['user']['count']) { ?>
-                                                <span class="badge"><?php echo $block['user']['count']; ?></span>
-                                            <?php } ?>
-                                        </a>
-                                    </li>
-                                <?php } else { ?>
-                                    <?php if (isset($block['user']['message_url'])) { ?>
-                                        <li class="<?php echo $module == "message" ? 'active' : '' ?>">
-                                            <a href="<?php echo $block['user']['message_url']; ?>"
-                                               title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
-                                                <i class="fa fa-envelope-o"></i>
-                                                <?php echo _b('Message'); ?>
-                                                <?php if ($block['user']['message_count']) { ?>
-                                                    <span class="badge"><?php echo $block['user']['message_count']; ?></span>
-                                                <?php } ?>
-                                            </a>
-                                        </li>
+                            <?php if (isset($block['user']['message'])) { ?>
+                                <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>" href="<?php echo $block['user']['message']; ?>"
+                                   title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
+                                    <i class="far fa-envelope"></i>
+                                    <?php echo _b('Message'); ?>
+                                    <?php if ($block['user']['count']) { ?>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['count']; ?></span>
                                     <?php } ?>
-                                    <?php if (isset($block['user']['notification_url'])) { ?>
-                                        <li class="<?php echo $module == "message" ? 'active' : '' ?>">
-                                            <a href="<?php echo $block['user']['notification_url']; ?>"
-                                               title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
-                                                <i class="fa fa-bell-o"></i>
-                                                <?php echo _b('Notification'); ?>
-                                                <?php if ($block['user']['notification_count']) { ?>
-                                                    <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
-                                                <?php } ?>
-                                            </a>
-                                        </li>
-                                    <?php } ?>
-                                <?php } ?>
-                                <?php if (isset($block['user']['support_url'])) { ?>
-                                    <li class="<?php echo $module == 'support'?>">
-                                        <a href="<?php echo $block['user']['support_url']; ?>"
-                                           title="<?php echo _b('Support'); ?>">
-                                            <i class="fa fa-life-ring"></i>
-                                            <?php echo _b('Support'); ?>
-                                            <?php if ($block['user']['support_count']) { ?>
-                                                <span class="badge"><?php echo $block['user']['support_count']; ?></span>
-                                            <?php } ?>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <?php if (isset($block['user']['offer_url'])) { ?>
-            		                <li class="<?php echo $module == 'guide' && $controller == 'offer' ? 'active' : '' ?>">
-                                        <a title="<?php _e('My offer'); ?>"
-                                           href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'offer', 'action' => 'index'])); ?>">
-                                            <i class="fa fa-cubes"></i>
-                                            <?php _e('My offer'); ?>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <?php if (isset($block['user']['order'])) { ?>
-                                    <li class="<?php echo $module == "order" && $controller == 'index'? 'active' : '' ?>">
-                                        <a href="<?php echo $block['user']['order']; ?>"
-                                           title="<?php echo _b('Follow up orders'); ?>">
-                                            <i class="fa fa-shopping-basket"></i>
-                                            <?php echo _b('Follow up orders'); ?>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <?php if (isset($block['user']['credit'])) { ?>
-                                    <li class="<?php echo $module == "order" && $controller == 'credit'? 'active' : '' ?>">
-                                        <a href="<?php echo $block['user']['credit']; ?>"
-                                           title="<?php echo _b('Credit'); ?>">
-                                            <i class="fa fa-archive"></i>
-                                            <?php echo _b('Credit'); ?>
-                                            <?php if ($block['user']['amount']) { ?>
-                                                <span class="badge"><?php echo $block['user']['amount_view']; ?></span>
-                                            <?php } ?>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <?php if (isset($block['user']['favourite_url'])) { ?>
-                                    <li class="item-favorites <?php echo $module == 'favourite' ? 'active' : '' ?>">
-                                        <a title="<?php echo _b('Favourite'); ?>"
-                                           href="<?php echo $block['user']['favourite_url']; ?>">
-                                            <i class="fa fa-star"></i>
-                                            <?php echo _b('Favourite'); ?>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <li>
-                                    <a href="<?php echo $block['user']['logout']; ?>"
-                                       title="<?php echo _b('Logout'); ?>">
-                                        <i class="fa fa-sign-out"></i>
-                                        <?php echo _b('Logout'); ?>
+                                </a>
+                            <?php } else { ?>
+                                <?php if (isset($block['user']['message_url'])) { ?>
+                                    <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>"
+                                       href="<?php echo $block['user']['message_url']; ?>"
+                                       title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
+                                        <i class="far fa-envelope"></i>
+                                        <?php echo _b('Message'); ?>
+                                        <?php if ($block['user']['message_count']) { ?>
+                                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['message_count']; ?></span>
+                                        <?php } ?>
                                     </a>
-                                </li>
-                            </ul>
-                        <?php endif; ?>
-                    </div>
+                                <?php } ?>
+                                <?php if (isset($block['user']['notification_url'])) { ?>
+                                    <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>"
+                                       href="<?php echo $block['user']['notification_url']; ?>"
+                                       title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
+                                        <i class="far fa-bell"></i>
+                                        <?php echo _b('Notification'); ?>
+                                        <?php if ($block['user']['notification_count']) { ?>
+                                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['notification_count']; ?></span>
+                                        <?php } ?>
+                                    </a>
+                                <?php } ?>
+                            <?php } ?>
+                            <?php if (isset($block['user']['support_url'])) { ?>
+                                <a class="dropdown-item <?php echo $module == 'support' ? 'active' : '' ?>" href="<?php echo $block['user']['support_url']; ?>"
+                                   title="<?php echo _b('Support'); ?>">
+                                    <i class="fas fa-life-ring"></i>
+                                    <?php echo _b('Support'); ?>
+                                    <?php if ($block['user']['support_count']) { ?>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['support_count']; ?></span>
+                                    <?php } ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['offer_url'])) { ?>
+                                <a class="dropdown-item <?php echo $module == 'guide' && $controller == 'offer' ? 'active' : '' ?>"
+                                   title="<?php _e('My offer'); ?>"
+                                   href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'offer', 'action' => 'index'])); ?>">
+                                    <i class="fas fa-cubes"></i>
+                                    <?php _e('My offer'); ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['order'])) { ?>
+                                <a class="dropdown-item <?php echo $module == "order" && $controller == 'index' ? 'active' : '' ?>"
+                                   href="<?php echo $block['user']['order']; ?>"
+                                   title="<?php echo _b('Follow up orders'); ?>">
+                                    <i class="fas fa-shopping-basket"></i>
+                                    <?php echo _b('Follow up orders'); ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['credit'])) { ?>
+                                <a class="dropdown-item <?php echo $module == "order" && $controller == 'credit' ? 'active' : '' ?>"
+                                   href="<?php echo $block['user']['credit']; ?>"
+                                   title="<?php echo _b('Credit'); ?>">
+                                    <i class="fas fa-archive"></i>
+                                    <?php echo _b('Credit'); ?>
+                                    <?php if ($block['user']['amount']) { ?>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['amount_view']; ?></span>
+                                    <?php } ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['favourite_url'])) { ?>
+                                <a class="dropdown-item item-favorites <?php echo $module == 'favourite' ? 'active' : '' ?>"
+                                   title="<?php echo _b('Favourite'); ?>"
+                                   href="<?php echo $block['user']['favourite_url']; ?>">
+                                    <i class="fas fa-star"></i>
+                                    <?php echo _b('Favourite'); ?>
+                                </a>
+                            <?php } ?>
+                            <a class="dropdown-item" href="<?php echo $block['user']['logout']; ?>"
+                               title="<?php echo _b('Logout'); ?>">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <?php echo _b('Logout'); ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </li>
+        <?php } elseif ($originalBlockType == 'mixed_light') { ?>
+            <?php if (isset($block['user']['message'])) { ?>
+                <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?php echo $block['user']['message']; ?>"
+                       title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
+                        <i class="far fa-envelope" aria-hidden="true"></i>
+                        <span>
+                            <?php echo _b('Message'); ?>
+                            <?php if ($block['user']['count']) : ?>
+                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['count']; ?></span>
+                            <?php endif; ?>
+                        </span>
+                    </a>
                 </li>
-            <?php } elseif ($originalBlockType == 'mixed_light') { ?>
-                <?php if (isset($block['user']['message'])) { ?>
-                    <li class="<?php echo $module == 'message' ? 'active' : '' ?>">
-                        <a href="<?php echo $block['user']['message']; ?>"
-                           title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
-                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <?php } else { ?>
+                <?php if (isset($block['user']['message_url'])) { ?>
+                    <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
+                        <a class="nav-link" href="<?php echo $block['user']['message_url']; ?>"
+                           title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
+                            <i class="far fa-envelope" aria-hidden="true"></i>
                             <span>
-                                <?php echo _b('Message'); ?>
-                                <?php if ($block['user']['count']) : ?>
-                                    <span class="badge"><?php echo $block['user']['count']; ?></span>
-                                <?php endif; ?>
-                            </span>
-                        </a>
-                    </li>
-                <?php } else { ?>
-                    <?php if (isset($block['user']['message_url'])) { ?>
-                        <li class="<?php echo $module == 'message' ? 'active' : '' ?>">
-                            <a href="<?php echo $block['user']['message_url']; ?>"
-                               title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
-                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                <span>
-                                    <span class="visible-xs-inline"><?php echo _b('Message'); ?></span>
-                                    <?php if ($block['user']['message_count']) : ?>
-                                        <span class="badge"><?php echo $block['user']['message_count']; ?></span>
-                                    <?php endif; ?>
-                                </span>
-                            </a>
-                        </li>
-                    <?php } ?>
-                    <?php if (isset($block['user']['notification_url'])) { ?>
-                        <li class="<?php echo $module == 'message' ? 'active' : '' ?>">
-                            <a href="<?php echo $block['user']['notification_url']; ?>"
-                               title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
-                                <i class="fa fa-bell-o" aria-hidden="true"></i>
-                                <span>
-                                    <span class="visible-xs-inline"><?php echo _b('Notification'); ?></span>
-                                    <?php if ($block['user']['notification_count']) : ?>
-                                        <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
-                                    <?php endif; ?>
-                                </span>
-                            </a>
-                        </li>
-                    <?php } ?>
-                <?php } ?>
-                <?php if (isset($block['user']['support_url'])) { ?>
-                    <li class="<?php echo $module == 'support'?>">
-                        <a href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
-                            <i class="fa fa-life-ring" aria-hidden="true"></i>
-                            <span>
-                                <?php echo _b('Support'); ?>
-                                <?php if ($block['user']['support_count']) : ?>
-                                    <span class="badge"><?php echo $block['user']['support_count']; ?></span>
+                                <span><?php echo _b('Message'); ?></span>
+                                <?php if ($block['user']['message_count']) : ?>
+                                    <span class="badge badge-pill badge-warning"><?php echo $block['user']['message_count']; ?></span>
                                 <?php endif; ?>
                             </span>
                         </a>
                     </li>
                 <?php } ?>
+                <?php if (isset($block['user']['notification_url'])) { ?>
+                    <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
+                        <a class="nav-link" href="<?php echo $block['user']['notification_url']; ?>"
+                           title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
+                            <i class="far fa-bell" aria-hidden="true"></i>
+                            <span>
+                                <span class="d-xs-inline"><?php echo _b('Notification'); ?></span>
+                                <?php if ($block['user']['notification_count']) : ?>
+                                    <span class="badge badge-pill badge-warning"><?php echo $block['user']['notification_count']; ?></span>
+                                <?php endif; ?>
+                            </span>
+                        </a>
+                    </li>
+                <?php } ?>
+            <?php } ?>
+            <?php if (isset($block['user']['support_url'])) { ?>
+                <li class="nav-item <?php echo $module == 'support' ?>">
+                    <a class="nav-link" href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
+                        <i class="fas fa-life-ring" aria-hidden="true"></i>
+                        <span>
+                            <?php echo _b('Support'); ?>
+                            <?php if ($block['user']['support_count']) : ?>
+                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['support_count']; ?></span>
+                            <?php endif; ?>
+                        </span>
+                    </a>
+                </li>
+            <?php } ?>
 
-                <?php if (isset($block['user']['offer_url'])) { ?>
-                    <li class="<?php echo $module == 'guide' && $controller == 'offer' ? 'active' : '' ?>">
-                        <a href="<?php echo $block['user']['offer_url']; ?>" title="<?php echo _b('My offer'); ?>">
-                            <i class="fa fa-cubes" aria-hidden="true"></i>
-                            <span>
-                                <?php echo _b('My offer'); ?>
-                            </span>
-                        </a>
-                    </li>
-                <?php } ?>
-                <?php if (isset($block['user']['order'])) { ?>
-                    <li class="<?php echo $module == 'order' && $controller == 'index' ? 'active' : '' ?>">
-                        <a href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
-                            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                            <span>
-                                <?php echo _b('Follow up orders'); ?>
-                            </span>
-                        </a>
-                    </li>
-                <?php } ?>
-                <?php if (isset($block['user']['credit'])) { ?>
-                    <li class="<?php echo $module == 'order' && $controller == 'credit' ? 'active' : '' ?>">
-                        <a href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
-                            <i class="fa fa-archive" aria-hidden="true"></i>
-                            <span>
-                                <?php echo _b('Credit'); ?>
-                                <?php if ($block['user']['amount']) : ?>
-                                    <span class="badge"><?php echo $block['user']['amount_view']; ?></span>
-                                <?php endif; ?>
-                            </span>
-                        </a>
-                    </li>
-                <?php } ?>
+            <?php if (isset($block['user']['offer_url'])) { ?>
+                <li class="nav-item <?php echo $module == 'guide' && $controller == 'offer' ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?php echo $block['user']['offer_url']; ?>" title="<?php echo _b('My offer'); ?>">
+                        <i class="fas fa-cubes" aria-hidden="true"></i>
+                        <span>
+                            <?php echo _b('My offer'); ?>
+                        </span>
+                    </a>
+                </li>
+            <?php } ?>
+            <?php if (isset($block['user']['order'])) { ?>
+                <li class="nav-item <?php echo $module == 'order' && $controller == 'index' ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
+                        <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+                        <span>
+                            <?php echo _b('Follow up orders'); ?>
+                        </span>
+                    </a>
+                </li>
+            <?php } ?>
+            <?php if (isset($block['user']['credit'])) { ?>
+                <li class="nav-item <?php echo $module == 'order' && $controller == 'credit' ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
+                        <i class="fas fa-archive" aria-hidden="true"></i>
+                        <span>
+                            <?php echo _b('Credit'); ?>
+                            <?php if ($block['user']['amount']) : ?>
+                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['amount_view']; ?></span>
+                            <?php endif; ?>
+                        </span>
+                    </a>
+                </li>
+            <?php } ?>
 
-                <li class="userbar-avatar-item">
-                <span class="avatar-name-wrapper hidden-sm">
+            <li class="nav-item userbar-avatar-item">
+                <span class="avatar-name-wrapper d-none d-xl-inline">
                     <?php if (!preg_match('#\/admin\/#', $this->url('', [], null, true))) : ?>
                         <?php echo _b('Welcome'); ?>
                     <?php endif; ?>
                     <span class="avatar-name">
-                        <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
+                        <?php echo _escape(
+                            (isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']
+                        ); ?>
                     </span>
                 </span>
-                    <div class="btn-group">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <?php echo $block['user']['avatar']; ?>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
-                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                    <span>
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        <?php echo $block['user']['avatar']; ?>
+
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
+                            <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                            <span>
                                         <?php echo _b('Logout'); ?>
                                     </span>
+                        </a>
+                        <div class="d-lg-none">
+                            <?php if (isset($block['user']['dashboard_url'])) { ?>
+                                <a class="dropdown-item item-favorites" title="<?php echo _b('Favourite'); ?>"
+                                   href="<?php echo $block['user']['dashboard_url']; ?>">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <?php echo _b('Dashboard'); ?>
                                 </a>
-                            </li>
-                        </ul>
+                            <?php } ?>
+
+                            <?php if (isset($block['user']['message'])) { ?>
+                                <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>" href="<?php echo $block['user']['message']; ?>"
+                                   title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
+                                    <i class="far fa-envelope"></i>
+                                    <?php echo _b('Message'); ?>
+                                    <?php if ($block['user']['count']) { ?>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['count']; ?></span>
+                                    <?php } ?>
+                                </a>
+                            <?php } else { ?>
+                                <?php if (isset($block['user']['message_url'])) { ?>
+                                    <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>"
+                                       href="<?php echo $block['user']['message_url']; ?>"
+                                       title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
+                                        <i class="far fa-envelope"></i>
+                                        <?php echo _b('Message'); ?>
+                                        <?php if ($block['user']['message_count']) { ?>
+                                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['message_count']; ?></span>
+                                        <?php } ?>
+                                    </a>
+                                <?php } ?>
+                                <?php if (isset($block['user']['notification_url'])) { ?>
+                                    <a class="dropdown-item <?php echo $module == "message" ? 'active' : '' ?>"
+                                       href="<?php echo $block['user']['notification_url']; ?>"
+                                       title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
+                                        <i class="far fa-bell"></i>
+                                        <?php echo _b('Notification'); ?>
+                                        <?php if ($block['user']['notification_count']) { ?>
+                                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['notification_count']; ?></span>
+                                        <?php } ?>
+                                    </a>
+                                <?php } ?>
+                            <?php } ?>
+                            <?php if (isset($block['user']['support_url'])) { ?>
+                                <a class="dropdown-item <?php echo $module == 'support' ? 'active' : '' ?>" href="<?php echo $block['user']['support_url']; ?>"
+                                   title="<?php echo _b('Support'); ?>">
+                                    <i class="fas fa-life-ring"></i>
+                                    <?php echo _b('Support'); ?>
+                                    <?php if ($block['user']['support_count']) { ?>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['support_count']; ?></span>
+                                    <?php } ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['offer_url'])) { ?>
+                                <a class="dropdown-item <?php echo $module == 'guide' && $controller == 'offer' ? 'active' : '' ?>"
+                                   title="<?php _e('My offer'); ?>"
+                                   href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'offer', 'action' => 'index'])); ?>">
+                                    <i class="fas fa-cubes"></i>
+                                    <?php _e('My offer'); ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['order'])) { ?>
+                                <a class="dropdown-item <?php echo $module == "order" && $controller == 'index' ? 'active' : '' ?>"
+                                   href="<?php echo $block['user']['order']; ?>"
+                                   title="<?php echo _b('Follow up orders'); ?>">
+                                    <i class="fas fa-shopping-basket"></i>
+                                    <?php echo _b('Follow up orders'); ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['credit'])) { ?>
+                                <a class="dropdown-item <?php echo $module == "order" && $controller == 'credit' ? 'active' : '' ?>"
+                                   href="<?php echo $block['user']['credit']; ?>"
+                                   title="<?php echo _b('Credit'); ?>">
+                                    <i class="fas fa-archive"></i>
+                                    <?php echo _b('Credit'); ?>
+                                    <?php if ($block['user']['amount']) { ?>
+                                        <span class="badge badge-pill badge-warning"><?php echo $block['user']['amount_view']; ?></span>
+                                    <?php } ?>
+                                </a>
+                            <?php } ?>
+                            <?php if (isset($block['user']['favourite_url'])) { ?>
+                                <a class="dropdown-item item-favorites <?php echo $module == 'favourite' ? 'active' : '' ?>"
+                                   title="<?php echo _b('Favourite'); ?>"
+                                   href="<?php echo $block['user']['favourite_url']; ?>">
+                                    <i class="fas fa-star"></i>
+                                    <?php echo _b('Favourite'); ?>
+                                </a>
+                            <?php } ?>
+                        </div>
                     </div>
-                </li>
-            <?php } else { ?>
-                <li class="<?php echo $module == 'user' ? 'active' : '' ?>">
-                    <a href="<?php echo $block['user']['profile']; ?>">
-                        <?php echo $block['user']['avatar']; ?>
-                        <?php if (!preg_match('#\/admin\/#', $this->url('', [], null, true))) { ?>
-                            <?php echo _b('Welcome'); ?>
+                </div>
+            </li>
+        <?php } else { ?>
+            <li class="nav-item <?php echo $module == 'user' ? 'active' : '' ?>">
+                <a class="nav-link" href="<?php echo $block['user']['profile']; ?>">
+                    <?php echo $block['user']['avatar']; ?>
+                    <?php if (!preg_match('#\/admin\/#', $this->url('', [], null, true))) { ?>
+                        <?php echo _b('Welcome'); ?>
+                    <?php } ?>
+                    <?php echo _escape(
+                        (isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']
+                    ); ?>
+                </a>
+            </li>
+            <?php if (isset($block['user']['message'])) { ?>
+                <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?php echo $block['user']['message']; ?>"
+                       title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
+                        <i class="far fa-envelope"></i>
+                        <?php echo $block['show_title'] ? _b('Message') : ''; ?>
+                        <?php if ($block['user']['count']) { ?>
+                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['count']; ?></span>
                         <?php } ?>
-                        <?php echo _escape((isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']); ?>
                     </a>
                 </li>
-                <?php if (isset($block['user']['message'])) { ?>
-                    <li class="<?php echo $module == 'message' ? 'active' : '' ?>">
-                        <a href="<?php echo $block['user']['message']; ?>"
-                           title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
-                            <i class="fa fa-envelope-o"></i>
+            <?php } else { ?>
+                <?php if (isset($block['user']['message_url'])) { ?>
+                    <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
+                        <a class="nav-link" href="<?php echo $block['user']['message_url']; ?>"
+                           title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
+                            <i class="far fa-envelope"></i>
                             <?php echo $block['show_title'] ? _b('Message') : ''; ?>
-                            <?php if ($block['user']['count']) { ?>
-                                <span class="badge"><?php echo $block['user']['count']; ?></span>
-                            <?php } ?>
-                        </a>
-                    </li>
-                <?php } else { ?>
-                    <?php if (isset($block['user']['message_url'])) { ?>
-                        <li class="<?php echo $module == 'message' ? 'active' : '' ?>">
-                            <a href="<?php echo $block['user']['message_url']; ?>"
-                               title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
-                                <i class="fa fa-envelope-o"></i>
-                                <?php echo $block['show_title'] ? _b('Message') : ''; ?>
-                                <?php if ($block['user']['message_count']) { ?>
-                                    <span class="badge"><?php echo $block['user']['message_count']; ?></span>
-                                <?php } ?>
-                            </a>
-                        </li>
-                    <?php } ?>
-                    <?php if (isset($block['user']['notification_url'])) { ?>
-                        <li class="<?php echo $module == 'message' ? 'active' : '' ?>">
-                            <a href="<?php echo $block['user']['notification_url']; ?>"
-                               title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
-                                <i class="fa fa-bell-o"></i>
-                                <?php echo $block['show_title'] ? _b('Notification') : ''; ?>
-                                <?php if ($block['user']['notification_count']) { ?>
-                                    <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
-                                <?php } ?>
-                            </a>
-                        </li>
-                    <?php } ?>
-                <?php } ?>
-                <?php if (isset($block['user']['support_url'])) { ?>
-                    <li class="<?php echo $module == 'support' ? 'active' : '' ?>">
-                        <a href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
-                            <i class="fa fa-life-ring"></i>
-                            <?php echo $block['show_title'] ? _b('Support') : ''; ?>
-                            <?php if ($block['user']['support_count']) { ?>
-                                <span class="badge"><?php echo $block['user']['support_count']; ?></span>
+                            <?php if ($block['user']['message_count']) { ?>
+                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['message_count']; ?></span>
                             <?php } ?>
                         </a>
                     </li>
                 <?php } ?>
-                <?php if (isset($block['user']['order'])) { ?>
-                    <li class="<?php echo $module == "order" && $controller == 'index'? 'active' : '' ?>">
-                        <a href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
-                            <i class="fa fa-shopping-basket"></i>
-                            <?php echo $block['show_title'] ? _b('Follow up orders') : ''; ?>
-                        </a>
-                    </li>
-                <?php } ?>
-                <?php if (isset($block['user']['credit'])) { ?>
-                    <li class="<?php echo $module == "order" && $controller == 'credit'? 'active' : '' ?>">
-                        <a href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
-                            <i class="fa fa-archive"></i>
-                            <?php echo $block['show_title'] ? _b('Credit') : ''; ?>
-                            <?php if ($block['user']['amount']) { ?>
-                                <span class="badge"><?php echo $block['user']['amount_view']; ?></span>
+                <?php if (isset($block['user']['notification_url'])) { ?>
+                    <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
+                        <a class="nav-link" href="<?php echo $block['user']['notification_url']; ?>"
+                           title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
+                            <i class="far fa-bell"></i>
+                            <?php echo $block['show_title'] ? _b('Notification') : ''; ?>
+                            <?php if ($block['user']['notification_count']) { ?>
+                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['notification_count']; ?></span>
                             <?php } ?>
                         </a>
                     </li>
                 <?php } ?>
-                <?php if (isset($block['user']['favourite_url'])) { ?>
-                    <li class="item-favorites <?php echo ($module == 'favourite' || $module == 'guide' && $controller == 'favourite') ? 'active' : '' ?>">
-                        <a title="<?php echo _b('Favourite'); ?>" href="<?php echo $block['user']['favourite_url']; ?>">
-                            <i class="fa fa-star"></i>
-                            <?php echo $block['show_title'] ? _b('Favourite') : ''; ?>
-                        </a>
-                    </li>
-                <?php } ?>
-                <li>
-                    <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
-                        <i class="fa fa-sign-out"></i>
-                        <?php echo _b('Logout'); ?>
+            <?php } ?>
+            <?php if (isset($block['user']['support_url'])) { ?>
+                <li class="nav-item <?php echo $module == 'support' ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
+                        <i class="fas fa-life-ring"></i>
+                        <?php echo $block['show_title'] ? _b('Support') : ''; ?>
+                        <?php if ($block['user']['support_count']) { ?>
+                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['support_count']; ?></span>
+                        <?php } ?>
                     </a>
                 </li>
             <?php } ?>
-        </ul>
-    </div>
-<?php if (empty($GLOBALS['userbarLoaded']) && $modalEnabled && !$block['user']['uid']) {
+            <?php if (isset($block['user']['order'])) { ?>
+                <li class="nav-item <?php echo $module == "order" && $controller == 'index' ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
+                        <i class="fas fa-shopping-basket"></i>
+                        <?php echo $block['show_title'] ? _b('Follow up orders') : ''; ?>
+                    </a>
+                </li>
+            <?php } ?>
+            <?php if (isset($block['user']['credit'])) { ?>
+                <li class="nav-item <?php echo $module == "order" && $controller == 'credit' ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
+                        <i class="fas fa-archive"></i>
+                        <?php echo $block['show_title'] ? _b('Credit') : ''; ?>
+                        <?php if ($block['user']['amount']) { ?>
+                            <span class="badge badge-pill badge-warning"><?php echo $block['user']['amount_view']; ?></span>
+                        <?php } ?>
+                    </a>
+                </li>
+            <?php } ?>
+            <?php if (isset($block['user']['favourite_url'])) { ?>
+                <li class="nav-item item-favorites <?php echo ($module == 'favourite' || $module == 'guide' && $controller == 'favourite') ? 'active' : '' ?>">
+                    <a class="nav-link" title="<?php echo _b('Favourite'); ?>" href="<?php echo $block['user']['favourite_url']; ?>">
+                        <i class="fas fa-star"></i>
+                        <?php echo $block['show_title'] ? _b('Favourite') : ''; ?>
+                    </a>
+                </li>
+            <?php } ?>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <?php echo _b('Logout'); ?>
+                </a>
+            </li>
+        <?php } ?>
 
-    $GLOBALS['userbarLoaded'] = 1;
-    ob_start();
-    include(Pi::path('module/system/template/block/partial/login-register-modal.phtml'));
-    $modalContent = ob_get_clean();
+        <?php if (Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
+            <li class="nav-item item-promouvoir d-none dropdown d-md-flex">
+                <a href="<?php echo $this->url('home'); ?>guide/solutions" class="nav-link btn btn-warning btn-sm align-self-center">
+                    <span class="value"><?php echo _b("Add my activity") ?></span>
+                </a>
+            </li>
+        <?php endif; ?>
+    </ul>
+</div>
 
-    /* @var \Pi\View\Helper\FootScript $footScript */
-    $footScript = $this->plugin('footScript');
-    $footScript->addHtml($modalContent);
-} ?>
+<?php if ($modalEnabled && !$block['user']['uid']) : ?>
+    <script>
+        $(function() {
+            $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
+            $( "body" ).append( '<div id="user-modal-wrapper"></div>' );
+            $('#user-modal-wrapper').load('<?php echo $this->url('home') ?>system/index/modal');
+        });
+    </script>
+<?php endif; ?>

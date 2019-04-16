@@ -242,8 +242,8 @@ class AssetController extends ActionController
         } else {
             $patternPanel
                 = <<<'EOT'
-<div class="panel panel-%s">
-  <div class="panel-heading">%s</div>
+<div class="card card-%s">
+  <div class="card-heading">%s</div>
 
   <ul class="list-group">
     %s

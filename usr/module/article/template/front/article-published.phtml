@@ -7,7 +7,7 @@ $this->Backbone();
     <div class="col-md-12">
         <div id="jsList">
             <div class="clearfix">
-                <div class="pull-left form-inline">
+                <div class="float-left form-inline">
                     <div class="form-group">
                         <select class="bulk-operation form-control hide">
                             <option value=""><?php echo _a('Bulk operation'); ?></option>
@@ -38,7 +38,7 @@ $this->Backbone();
                 $form->setAttributes([
                     'action' => $this->url('', ['action' => 'published', 'from' => $from]),
                     'method' => 'get',
-                    'class'  => 'navbar-form navbar-right',
+                    'class'  => 'form-inline navbar-right',
                     'style'  => 'margin: 0; padding-right: 0',
                 ]);
                 echo $this->form()->openTag($form);

@@ -4,7 +4,7 @@
         <small>{{'BASIC_FIELD_DESC' | translate}}</small>
     </h3>
 </div>
-<table class="table table-condensed">
+<table class="table table-sm">
     <thead>
     <tr>
         <th style="width: 20px;">
@@ -20,11 +20,11 @@
         <td>
             <div pi-hover-input="item" text="item.title"></div>
         <td>
-            <i class="fa fa-check fa-lg text-success" data-ng-if="item.is_display"></i>
+            <i class="fas fa-check fa-lg text-success" data-ng-if="item.is_display"></i>
         <td>
-            <i class="fa fa-check fa-lg text-success" data-ng-if="item.is_search"></i>
+            <i class="fas fa-check fa-lg text-success" data-ng-if="item.is_search"></i>
         <td>
-            <i class="fa fa-check fa-lg text-success" data-ng-if="item.is_edit"></i>
+            <i class="fas fa-check fa-lg text-success" data-ng-if="item.is_edit"></i>
         <td>
             <input type="checkbox" data-ng-if="item.is_edit" ng-change="requiredAction(item)"
                    data-ng-model="item.is_required" ng-true-value="1" ng-false-value="0">
@@ -36,7 +36,7 @@
         <small>{{'COMPOUND_DESC' | translate}}</small>
     </h3>
 </div>
-<table class="table table-condensed" ng-repeat="compound in compounds">
+<table class="table table-sm" ng-repeat="compound in compounds">
     <thead>
     <th width="30%">{{compound.title}}
     <th width="30%">

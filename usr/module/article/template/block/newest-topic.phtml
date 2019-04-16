@@ -6,7 +6,7 @@ $target = $block['target'];
 <div class="article-block-newest-topic">
     <?php foreach ($block['items'] as $item) { ?>
         <div class="media">
-            <img class="pull-left" src="<?php echo $this->escape($item['image']); ?>">
+            <img class="float-left" src="<?php echo $this->escape($item['image']); ?>">
             <div class="media-body">
                 <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($item['url']); ?>"
                    class="article-front-title">

@@ -139,7 +139,7 @@
     color: #000;
 }
 
-.article-statistics .pull-right {
+.article-statistics .float-right {
     border-left: 1px solid #dddddd;
 }
 
@@ -448,7 +448,7 @@ div.modal-footer {
     border: none;
 }
 
-.tag-list .label {
+.tag-list .badge {
     display: inline-block;
     margin: 0 6px 2px 0;
     cursor: default;

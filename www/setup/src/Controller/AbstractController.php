@@ -20,20 +20,20 @@ use Pi\Setup\Wizard;
 abstract class AbstractController
 {
     /** Persistent data groups */
-    const PERSIST_ENGINE    = 'engine';
-    const PERSIST_HOST      = 'host';
-    const PERSIST_DB        = 'db';
-    const PERSIST_SITE      = 'site';
+    const PERSIST_ENGINE = 'engine';
+    const PERSIST_HOST   = 'host';
+    const PERSIST_DB     = 'db';
+    const PERSIST_SITE   = 'site';
 
-    protected $content = '';
-    protected $headContent = '';
-    protected $footContent = '';
+    protected $content      = '';
+    protected $headContent  = '';
+    protected $footContent  = '';
     protected $wizard;
     protected $request;
     protected $page;
     protected $hasBootstrap = false;
-    protected $hasForm = false;
-    protected $status = 0; // 1 - proceed; -1 - pending; 0 - regular
+    protected $hasForm      = false;
+    protected $status       = 0; // 1 - proceed; -1 - pending; 0 - regular
 
     public function __construct(Wizard $wizard)
     {
@@ -50,7 +50,7 @@ abstract class AbstractController
             if (is_readable($pi)) {
                 include $pi;
 
-                $locale = $this->wizard->getLocale();
+                $locale  = $this->wizard->getLocale();
                 $charset = $this->wizard->getCharset();
                 Pi::config()->set('locale', $locale);
                 Pi::config()->set('charset', $charset);
@@ -127,5 +127,7 @@ abstract class AbstractController
         return $this->status;
     }
 
-    public function indexAction() {}
+    public function indexAction()
+    {
+    }
 }

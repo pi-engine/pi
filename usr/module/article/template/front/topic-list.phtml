@@ -22,7 +22,7 @@ $this->css([
             <?php foreach ($articles as $row) { ?>
                 <li class="text-muted">
                     <div class="list-hover">
-                        <span class="pull-right article-size12">
+                        <span class="float-right article-size12">
                             <?php echo _date($row['time_publish']); ?>
                         </span>
                         <a class="article-list-title" target="_blank" href="<?php echo $this->escape($row['url']); ?>"

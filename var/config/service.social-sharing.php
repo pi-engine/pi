@@ -28,11 +28,6 @@ $config = [
             'icon'  => 'fa-linkedin',
             'url'   => 'http://www.linkedin.com/shareArticle?mini=true&amp;url=%url%&amp;title=%title%&amp;summary=%title%',
         ],
-        'googleplus' => [
-            'title' => __('Google+'),
-            'icon'  => 'fa-google-plus',
-            'url'   => 'https://plus.google.com/share?url=%title%%url%',
-        ],
         'pinterest'  => [
             'title' => __('Pinterest'),
             'icon'  => 'fa-pinterest',

@@ -21,10 +21,10 @@ $this->Backbone();
                     </div>
                     <img src="<?php echo Pi::url($src); ?>">
                 <?php } else { ?>
-                    <span class="fa fa-book"></span>
+                    <span class="fas fa-book"></span>
                 <?php } ?>
             </div>
-            <span class="btn btn-default upload fileinput-button" data-toggle="modal" href="#upload-box">
+            <span class="btn btn-secondary upload fileinput-button" data-toggle="modal" href="#upload-box">
                 <?php echo _a('Upload'); ?>
             </span>
             <div class="topic-image-desc muted">
@@ -60,7 +60,7 @@ $this->Backbone();
         <a class="template-apply" href="javascript:void(0)" style="color: #fff"><?php echo _a('Apply'); ?></a>
         <div style="height: 20px; margin-top: 5px">
             <span class="template-title"><%= title %></span>
-            <a class="template-fullsize pull-right" target="_blank"
+            <a class="template-fullsize float-right" target="_blank"
                href="<%= fullsize %>"><?php echo _a('Fullsize'); ?></a>
         </div>
     </div>
@@ -68,13 +68,13 @@ $this->Backbone();
 
 <script id="template-chevron-left" type="text/template">
     <div class="view-previous" style="text-align: right" data-page="<%= p %>">
-        <a href="javascript:void(0)"><span class="fa fa-chevron-left"></span></a>
+        <a href="javascript:void(0)"><span class="fas fa-chevron-left"></span></a>
     </div>
 </script>
 
 <script id="template-chevron-right" type="text/template">
     <div class="view-next" data-page="<%= p %>">
-        <a href="javascript:void(0)"><span class="fa fa-chevron-right"></span></a>
+        <a href="javascript:void(0)"><span class="fas fa-chevron-right"></span></a>
     </div>
 </script>
 
@@ -86,7 +86,7 @@ $this->Backbone();
                     ? 'id/' . $form->get('id')->getValue()
                     : 'fake_id/' . $form->get('fake_id')->getValue(); ?>";
             },
-            form: $("form.form-horizontal"),
+            form: $("form"),
             $: function (selector) {
                 return this.form.find(selector);
             },
@@ -117,11 +117,9 @@ $this->Backbone();
             initialize: function () {
                 page.$("[name=placeholder]")
                     .parents(".form-group:first")
-                    .find(".js-form-element")
                     .html($("#temp-upload").html());
                 page.$("[name=template-placeholder]")
                     .parents(".form-group:first")
-                    .find(".js-form-element")
                     .html($("#template-template").html());
                 this.$el = $("#pi-js-upload");
                 this.$("#media-button").html($("#media-upload-button").html());
@@ -272,7 +270,7 @@ $this->Backbone();
                         ]
                     ); ?>' + page.id()).done(function () {
                     page.$("[name=image]").val('');
-                    self.$("#topic-image").html('<span class="fa fa-book"></span>');
+                    self.$("#topic-image").html('<span class="fas fa-book"></span>');
                 });
             },
             render: function (obj) {

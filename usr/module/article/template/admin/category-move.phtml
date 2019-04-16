@@ -4,7 +4,6 @@
 $form->setAttributes([
     'action' => $this->url('', ['action' => 'move']),
     'method' => 'post',
-    'class'  => 'form-horizontal',
 ]);
 echo $this->form()->openTag($form);
 ?>
@@ -23,13 +22,13 @@ echo $this->form()->openTag($form);
                 $element = $form->get('from');
                 echo $this->formElement($element);
                 ?>
-                <p class="help-block">
+                <p class="form-text">
                 </p>
             </div>
             <div class="col-md-2">
                 <h3>&nbsp;</h3>
                 <br>
-                <p class="help-block">
+                <p class="form-text">
                     <?php echo _a('move into'); ?>
                 </p>
             </div>
@@ -40,7 +39,7 @@ echo $this->form()->openTag($form);
                 $element = $form->get('to');
                 echo $this->formElement($element);
                 ?>
-                <p class="help-block">
+                <p class="form-text">
                 </p>
             </div>
         </div>

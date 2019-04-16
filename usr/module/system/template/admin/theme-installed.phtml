@@ -8,16 +8,16 @@ $this->js($this->assetModule('script/system-msg.js'));
 </div>
 <div class="row" id="js-theme"></div>
 <script id="temp-theme" type="text/template">
-    <div class="thumbnail">
-        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>">
+    <div class="thumbnail card bg-light mb-3">
+        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>" class="img-fluid mb-1">
         <div class="caption">
             <h5 class="clearfix">
-                <span class="pull-right label"><%= type %></span>
+                <span class="float-right label"><%= type %></span>
                 <%- title %>
             </h5>
             <div class="clearfix theme-actions" style="margin-left: -5px;">
                 <% if(name!="default") { %>
-                <span class="pull-right btn btn-default theme-uninstall"><?php echo _a('Uninstall'); ?></span>
+                <span class="float-right btn btn-secondary theme-uninstall"><?php echo _a('Uninstall'); ?></span>
                 <% } %>
                 <span class="btn btn-link theme-detail"><?php echo _a('Detail'); ?></span>
                 <span class="text-muted">|</span>

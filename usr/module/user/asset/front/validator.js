@@ -4,6 +4,8 @@
  * Licensed under http://opensource.org/licenses/MIT
  *
  * https://github.com/1000hz/bootstrap-validator
+ *
+ * HACKED FOR BS4
  */
 
 +function ($) {
@@ -64,7 +66,7 @@
         custom: {},
         errors: {
             match: 'Does not match',
-            minlength: 'Not long enough'
+            minlength: (typeof wordLength != 'undefined' && wordLength) ? wordLength : 'Not long enough'
         },
         feedback: {
             success: 'glyphicon-ok',
@@ -226,7 +228,7 @@
     Validator.prototype.focusError = function () {
         if (!this.options.focus) return
 
-        var $input = this.$element.find(".has-error:first :input")
+        var $input = this.$element.find(".is-invalid:first")
         if ($input.length === 0) return
 
         $('html, body').animate({scrollTop: $input.offset().top - Validator.FOCUS_OFFSET}, 250)
@@ -237,7 +239,7 @@
         var method = this.options.html ? 'html' : 'text'
         var errors = $el.data('bs.validator.errors')
         var $group = $el.closest('.form-group')
-        var $block = $group.find('.help-block.with-errors')
+        var $block = $group.find('.form-text.invalid-feedback')
         var $feedback = $group.find('.form-control-feedback')
 
         if (!errors.length) return
@@ -250,7 +252,8 @@
 
         $block.data('bs.validator.originalContent') === undefined && $block.data('bs.validator.originalContent', $block.html())
         $block.empty().append(errors)
-        $group.addClass('has-error has-danger')
+
+        $group.find('input,select,textarea').addClass('is-invalid').removeClass('is-valid');
 
         $group.hasClass('has-feedback')
         && $feedback.removeClass(this.options.feedback.success)
@@ -260,11 +263,11 @@
 
     Validator.prototype.clearErrors = function ($el) {
         var $group = $el.closest('.form-group')
-        var $block = $group.find('.help-block.with-errors')
+        var $block = $group.find('.form-text.invalid-feedback')
         var $feedback = $group.find('.form-control-feedback')
 
         $block.html($block.data('bs.validator.originalContent'))
-        $group.removeClass('has-error has-danger has-success')
+        $group.find('input,select,textarea').removeClass('is-invalid').addClass('is-valid');
 
         $group.hasClass('has-feedback')
         && $feedback.removeClass(this.options.feedback.error)
@@ -298,7 +301,8 @@
 
     Validator.prototype.toggleSubmit = function () {
         if (!this.options.disable) return
-        this.$btn.toggleClass('disabled', this.isIncomplete() || this.hasErrors())
+
+        this.$btn.attr('disabled', this.isIncomplete() || this.hasErrors() ? 'disabled' : null);
     }
 
     Validator.prototype.defer = function ($el, callback) {
@@ -321,7 +325,7 @@
                 window.clearTimeout(timeout) && $this.removeData('bs.validator.timeout')
             })
 
-        this.$element.find('.help-block.with-errors')
+        this.$element.find('.form-text.with-errors')
             .each(function () {
                 var $this = $(this)
                 var originalContent = $this.data('bs.validator.originalContent')
@@ -391,7 +395,6 @@
 
     // VALIDATOR DATA-API
     // ==================
-
     $(window).on('load', function () {
         $('form[data-toggle="validator"]').each(function () {
             var $form = $(this)

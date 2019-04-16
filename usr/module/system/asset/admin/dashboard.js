@@ -55,7 +55,7 @@
                 server.saveNotice($scope.messageContentCopy).success(function (data) {
                     $scope.message = data;
                     $scope.noticeEditing = 0;
-                    $scope.messageContentCopy = data.message.content;
+                    $scope.messageContentCopy = data.content;
                 });
             }
 

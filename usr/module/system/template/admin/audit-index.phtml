@@ -4,10 +4,14 @@ $this->jQuery();
 //$this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
 
-<ul class="nav nav-tabs">
-    <li class="active"><a href="<?php echo $this->url('', ['controller' => 'audit', 'action' => 'index']); ?>"
-                          title="<?php echo _a('Audit'); ?>"><?php echo _a('Audit'); ?></a></li>
-    <li class="disabled"><a href="#" title="<?php echo _a('Mailing'); ?>"><?php echo _a('Mailing'); ?></a></li>
+<ul class="nav nav-pills bg-light mb-3 p-3">
+    <li class="nav-item">
+        <a class="nav-link active" href="<?php echo $this->url('', ['controller' => 'audit', 'action' => 'index']); ?>"
+                          title="<?php echo _a('Audit'); ?>"><?php echo _a('Audit'); ?></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" href="#" title="<?php echo _a('Mailing'); ?>"><?php echo _a('Mailing'); ?></a>
+    </li>
 </ul>
 
 <h2 class="page-header"><?php echo _a('Audit list') ?></h2>
@@ -50,7 +54,7 @@ $this->jQuery();
 <div style="padding: 10px">
     <form method='GET'>
         <div class="form-group">
-            <label class="col-md-2 control-label text-right"><?php echo _a('Count of items to display: '); ?></label>
+            <label class="col-md-2 col-form-label text-right"><?php echo _a('Count of items to display: '); ?></label>
             <div class="col-md-1">
                 <select id='audit-count' class="form-control"
                         audit-url='<?php echo $this->url('admin', ['controller' => 'audit', 'count' => '__COUNT__']) ?>'>

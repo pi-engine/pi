@@ -16,28 +16,28 @@ $this->Backbone();
     $controller = 'draft';
 } ?>
 
-<ul class="nav nav-pills" style="margin-bottom: 10px">
-    <li class="<?php if ($status == $flags['published']) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', ['action' => 'published', 'controller' => 'article', 'from' => $from]); ?>">
+<ul class="nav nav-pills bg-light mb-3 p-3" style="margin-bottom: 10px">
+    <li class="nav-item">
+        <a class="nav-link <?php if ($status == $flags['published']) echo 'active'; ?>" href="<?php echo $this->url('', ['action' => 'published', 'controller' => 'article', 'from' => $from]); ?>">
             <?php _e('Published'); ?> (<?php echo $summary['published'] ?>)
         </a>
     </li>
-    <li class="<?php if ($status == $flags['pending']) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', array_merge($params, ['status' => $flags['pending']])); ?>">
+    <li class="nav-item">
+        <a class="nav-link <?php if ($status == $flags['pending']) echo 'active'; ?>" href="<?php echo $this->url('', array_merge($params, ['status' => $flags['pending']])); ?>">
             <?php _e('Pending'); ?> (<?php echo $summary['pending'] ?>)
         </a>
     </li>
-    <li class="<?php if ($status == $flags['rejected']) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', array_merge($params, ['status' => $flags['rejected']])); ?>">
+    <li class="nav-item">
+        <a class="nav-link <?php if ($status == $flags['rejected']) echo 'active'; ?>" href="<?php echo $this->url('', array_merge($params, ['status' => $flags['rejected']])); ?>">
             <?php _e('Rejected'); ?> (<?php echo $summary['rejected'] ?>)
         </a>
     </li>
-    <li class="<?php if ($status == $flags['draft']) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', array_merge($params, ['status' => $flags['draft']])); ?>">
+    <li class="nav-item">
+        <a class="nav-link <?php if ($status == $flags['draft']) echo 'active'; ?>" href="<?php echo $this->url('', array_merge($params, ['status' => $flags['draft']])); ?>">
             <?php _e('Draft'); ?> (<?php echo $summary['draft'] ?>)
         </a>
     </li>
-    <li style="margin-left: 20px;">
+    <li class="nav-item" style="margin-left: 20px;">
         <?php $allowCompose = false;
         foreach ($rules as $rule) {
             if ($rule['compose']) {
@@ -47,7 +47,7 @@ $this->Backbone();
         } ?>
         <?php if ($allowCompose) { ?>
             <a href="<?php echo $this->url('', ['controller' => 'draft', 'action' => 'add']); ?>"
-               class="btn btn-default">
+               class="nav-link btn btn-secondary">
                 <?php _e('Compose'); ?>
             </a>
         <?php } ?>

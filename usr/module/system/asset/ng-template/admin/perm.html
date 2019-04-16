@@ -1,8 +1,8 @@
-<ul pi-nav-tabs class="nav nav-pills well well-sm" data-ng-controller="piNavTopCtrl">
-    <li data-ng-class="navClass('/front')">
-        <a href="#!/front">{{'Front' | translate}}</a>
-    <li data-ng-class="navClass('/admin')">
-        <a href="#!/admin">{{'Admin' | translate}}</a>
+<ul pi-nav-tabs class="nav nav-pills bg-light mb-3 p-3" data-ng-controller="piNavTopCtrl">
+    <li data-ng-class="navClass('/front')" class="nav-item">
+        <a href="#!/front" class="nav-link">{{'Front' | translate}}</a>
+    <li data-ng-class="navClass('/admin')" class="nav-item">
+        <a href="#!/admin" class="nav-link">{{'Admin' | translate}}</a>
 </ul>
 <div class="table-responsive">
     <table class="table table-striped">
@@ -19,9 +19,9 @@
             <td class="pi-indent">{{item.title}}
             <td ng-repeat="role in item.roles" class="text-center">
                 <button class="btn btn-sm"
-                        data-ng-class="{'btn-success': role.value, 'btn-default': !role.value}"
+                        data-ng-class="{'btn-success': role.value, 'btn-secondary': !role.value}"
                         data-ng-click="assignAction(role, item)">
-                    <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
+                    <i class="fas fa-check" data-ng-class="{'muted': !role.value}"></i>
                 </button>
             <td>
                 <div ng-include src="'allResource.html'"></div>
@@ -31,9 +31,9 @@
             <td class="pi-indent">{{item.title}}
             <td ng-repeat="role in item.roles" class="text-center">
                 <button class="btn btn-sm"
-                        data-ng-class="{'btn-success': role.value, 'btn-default': !role.value}"
+                        data-ng-class="{'btn-success': role.value, 'btn-secondary': !role.value}"
                         data-ng-click="assignAction(role, item)">
-                    <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
+                    <i class="fas fa-check" data-ng-class="{'muted': !role.value}"></i>
                 </button>
             <td>
                 <div ng-include src="'allResource.html'"></div>
@@ -43,9 +43,9 @@
             <td class="pi-indent">{{item.title}}
             <td ng-repeat="role in item.roles" class="text-center">
                 <button class="btn btn-sm"
-                        data-ng-class="{'btn-success': role.value, 'btn-default': !role.value}"
+                        data-ng-class="{'btn-success': role.value, 'btn-secondary': !role.value}"
                         data-ng-click="assignAction(role, item)">
-                    <i class="fa fa-check" data-ng-class="{'muted': !role.value}"></i>
+                    <i class="fas fa-check" data-ng-class="{'muted': !role.value}"></i>
                 </button>
             <td>
                 <div ng-include src="'allResource.html'"></div>
@@ -58,23 +58,23 @@
 </div>
 <script type="text/ng-template" id="allRole.html">
     <div class="btn-group" data-toggle="tooltip" title="{{'ALL' | translate}}">
-        <button class="btn btn-sm btn-default" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+        <button class="btn btn-sm btn-secondary" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
                 data-ng-click="assignAllResource(item, 1)">
-            <i class="fa fa-check"></i>
+            <i class="fas fa-check"></i>
         </button>
-        <button class="btn btn-sm btn-default" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+        <button class="btn btn-sm btn-secondary" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
                 data-ng-click="assignAllResource(item, 0)">
-            <i class="fa fa-times"></i>
+            <i class="fas fa-times"></i>
         </button>
     </div>
 </script>
 <script type="text/ng-template" id="allResource.html">
     <div class="btn-group" data-toggle="tooltip" title="{{'ALL' | translate}}">
-        <button class="btn btn-sm btn-default" data-ng-click="assignAllRole(item, 1)">
-            <i class="fa fa-check"></i>
+        <button class="btn btn-sm btn-secondary" data-ng-click="assignAllRole(item, 1)">
+            <i class="fas fa-check"></i>
         </button>
-        <button class="btn btn-sm btn-default" data-ng-click="assignAllRole(item, 0)">
-            <i class="fa fa-times"></i>
+        <button class="btn btn-sm btn-secondary" data-ng-click="assignAllRole(item, 0)">
+            <i class="fas fa-times"></i>
         </button>
     </div>
 </script>

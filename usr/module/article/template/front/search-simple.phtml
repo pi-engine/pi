@@ -7,7 +7,7 @@ $this->jQuery();
 
 <div class="pi-article-module">
     <div class="clearfix pi-block-header">
-        <span class="pi-block-title pull-left"><?php echo $this->escape($title) . '"' . $keyword . '"'; ?></span>
+        <span class="pi-block-title float-left"><?php echo $this->escape($title) . '"' . $keyword . '"'; ?></span>
         <span class="text-muted col-md-2" style="margin-top: 5px">
             (<?php echo $this->escape($count) . __(' articles'); ?>)
         </span>
@@ -16,7 +16,7 @@ $this->jQuery();
             $form->setAttributes([
                 'action' => $this->url('', ['action' => 'simple']),
                 'method' => 'get',
-                'class'  => 'navbar-form navbar-right',
+                'class'  => 'form-inline navbar-right',
                 'style'  => 'margin: 1px 10px 0 0; width: auto',
             ]);
             echo $this->form()->openTag($form);
@@ -42,7 +42,7 @@ $this->jQuery();
                 $index++ ?>
                 <li class="text-muted">
                     <div class="list-hover">
-                        <span class="pull-right article-list-desc">
+                        <span class="float-right article-list-desc">
                             <?php echo _date($article['time_publish']); ?>
                         </span>
                         <a class="article-list-title" target="_blank" href="<?php echo $article['url'] ?>"

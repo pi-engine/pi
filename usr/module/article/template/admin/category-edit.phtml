@@ -19,10 +19,10 @@ $this->Backbone();
                     </div>
                     <img src="<?php echo Pi::url($src); ?>">
                 <?php } else { ?>
-                    <span class="fa fa-th-list"></span>
+                    <span class="fas fa-th-list"></span>
                 <?php } ?>
             </div>
-            <span class="btn btn-default upload fileinput-button" data-toggle="modal" href="#upload-box">
+            <span class="btn btn-secondary upload fileinput-button" data-toggle="modal" href="#upload-box">
                 <?php echo _a('Upload'); ?>
             </span>
         </div>
@@ -39,7 +39,7 @@ $this->Backbone();
                     ? 'id/' . $form->get('id')->getValue()
                     : 'fake_id/' . $form->get('fake_id')->getValue(); ?>";
             },
-            form: $("form.form-horizontal"),
+            form: $("form"),
             $: function (selector) {
                 return this.form.find(selector);
             },
@@ -66,7 +66,6 @@ $this->Backbone();
             initialize: function () {
                 page.$("[name=placeholder]")
                     .parents(".form-group:first")
-                    .find(".js-form-element")
                     .html($("#temp-upload").html());
                 this.$el = $("#pi-js-upload");
                 this.$("#media-button").html($("#media-upload-button").html());
@@ -217,7 +216,7 @@ $this->Backbone();
                         ]
                     ); ?>' + page.id()).done(function () {
                     page.$('[name=image]').val('');
-                    self.$("#category-image").html('<span class="fa fa-th-list"></span>');
+                    self.$("#category-image").html('<span class="fas fa-th-list"></span>');
                 });
             },
             render: function (obj) {

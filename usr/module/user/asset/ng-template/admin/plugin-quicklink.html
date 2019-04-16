@@ -1,16 +1,16 @@
 <div class="row">
     <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="card bg-light mb-3">
+            <div class="card-heading">
                 {{'QUICKLINK' | translate}}
             </div>
-            <div class="panel-body">
+            <div class="card-text">
                 <div class="alert alert-info">
                     {{'ACTIVITIES_DESC' | translate}}
                 </div>
                 <div id="js-plugin-sortable" ui-sortable data-ng-model="displayList">
                     <div class="pi-widget" ng-repeat="item in displayList">
-            <span class="pull-right">
+            <span class="float-right">
               <span class="muted">{{item.module}}</span>
               <button class="close" data-ng-click="removeDisplay($index)">
                 &times;
@@ -27,9 +27,9 @@
         <legend>{{'QUICKLINK_REPOSITORY' | translate}}</legend>
         <div class="user-quick-select" ng-repeat="item in selectList">
             <div class="pi-widget">
-        <span class="pull-right">
+        <span class="float-right">
           <span class="text-muted">{{item.module}}</span>
-          <i class="fa fa-plus pi-icon-cursor" data-ng-click="addDisplay($index)"></i>
+          <i class="fas fa-plus pi-icon-cursor" data-ng-click="addDisplay($index)"></i>
         </span>
                 {{item.title}}
                 <span class="muted gutter">{{item.link}}</span>

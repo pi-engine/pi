@@ -1,12 +1,12 @@
 <?php
 if ($block['percent'] < 41) {
-    $class = 'progress-bar-danger';
+    $class = 'bg-danger';
 } elseif ($block['percent'] > 40 && $block['percent'] < 61) {
-    $class = 'progress-bar-warning';
+    $class = 'bg-warning';
 } elseif ($block['percent'] > 60 && $block['percent'] < 81) {
-    $class = 'progress-bar-info';
+    $class = 'bg-info';
 } elseif ($block['percent'] > 80 && $block['percent'] < 101) {
-    $class = 'progress-bar-success';
+    $class = 'bg-success';
 }
 ?>
 <div class="user-block-completeness">
@@ -24,7 +24,7 @@ if ($block['percent'] < 41) {
                    href="<?php echo $this->escape($block['accountUrl']); ?>">( <?php echo _b('update all'); ?> )</a>
             </p>
             <div class="progress">
-                <div class="progress-bar progress-bar-striped <?php echo $class; ?> active" role="progressbar"
+                <div class="progress-bar bg-striped <?php echo $class; ?> active" role="progressbar"
                      aria-valuenow="<?php echo $this->escape($block['percent']); ?>" aria-valuemin="0"
                      aria-valuemax="100" style="width: <?php echo $this->escape($block['percent']); ?>%">
                     <?php echo sprintf(_b('%s%s Complete'), _number($block['percent']), '%'); ?>
@@ -32,14 +32,14 @@ if ($block['percent'] < 41) {
             </div>
             <ul class="list-inline small">
                 <?php foreach ($block['mainFields'] as $mainFields) { ?>
-                    <li>
+                    <li class="list-inline-item">
                         <?php if ($mainFields['status']) { ?>
                             <div class="text-success">
-                                <i class="fa fa-check"></i> <?php echo $this->escape($mainFields['title']); ?>
+                                <i class="fas fa-check"></i> <?php echo $this->escape($mainFields['title']); ?>
                             </div>
                         <?php } else { ?>
                             <div class="text-danger">
-                                <i class="fa fa-times"></i> <?php echo $this->escape($mainFields['title']); ?>
+                                <i class="fas fa-times"></i> <?php echo $this->escape($mainFields['title']); ?>
                                 <?php if ($mainFields['name'] == 'avatar') { ?>
                                     <a title="<?php echo _b('update'); ?>"
                                        href="<?php echo $this->escape($block['avatarUrl']); ?>">( <?php echo _b('update'); ?>

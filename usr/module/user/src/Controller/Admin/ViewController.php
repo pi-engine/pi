@@ -29,7 +29,7 @@ class ViewController extends ActionController
 
         // Get user
         $user                   = Pi::api('user', 'user')->get($uid, array_keys($meta));
-        $user['avatar']         = Pi::user()->avatar()->get($uid, 'large', ['class' => 'img-circle']);
+        $user['avatar']         = Pi::user()->avatar()->get($uid, 'large', ['class' => 'rounded-circle']);
         $user['time_created']   = _date($user['time_created']);
         $user['time_activated'] = $user['time_activated'] ? _date($user['time_activated']) : '';
         $user['time_disabled']  = $user['time_disabled'] ? _date($user['time_disabled']) : '';

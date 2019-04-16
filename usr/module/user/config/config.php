@@ -123,7 +123,6 @@ $config = [
                     'event'           => _t('Event'),
                     'vote'            => _t('Vote'),
                     'favourite'       => _t('Favourite'),
-                    'guide_favourite' => _t('Guide favourite'),
                     'video'           => _t('Video'),
                     'audio'           => _t('Audio'),
                     'gallery'         => _t('Gallery'),
@@ -557,7 +556,10 @@ $config = [
     'oauth_google' => [
         'category'    => 'oauth',
         'title'       => _a('Login by google'),
-        'description' => sprintf(__('Callback urls is : YOUR_URL/user/oauth/callback/provider-%s'), 'google'),
+        'description' => sprintf(
+            __('Callback urls is : %s'),
+            Pi::url('user/oauth/callback/provider-google')
+        ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,
@@ -582,7 +584,10 @@ $config = [
     'oauth_twitter' => [
         'category'    => 'oauth',
         'title'       => _a('Login by twitter'),
-        'description' => sprintf(__('Callback urls is : YOUR_URL/user/oauth/callback/provider-%s'), 'twitter'),
+        'description' => sprintf(
+            __('Callback urls is : %s'),
+            Pi::url('user/oauth/callback/provider-twitter')
+        ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,
@@ -607,7 +612,10 @@ $config = [
     'oauth_facebook' => [
         'category'    => 'oauth',
         'title'       => _a('Login by facebook'),
-        'description' => sprintf(__('Callback urls is : YOUR_URL/user/oauth/callback/provider-%s'), 'facebook'),
+        'description' => sprintf(
+            __('Callback urls is : %s'),
+            Pi::url('user/oauth/callback/provider-facebook')
+        ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,
@@ -632,7 +640,10 @@ $config = [
     'oauth_github' => [
         'category'    => 'oauth',
         'title'       => _a('Login by github'),
-        'description' => sprintf(__('Callback urls is : YOUR_URL/user/oauth/callback/provider-%s'), 'github'),
+        'description' => sprintf(
+            __('Callback urls is : %s'),
+            Pi::url('user/oauth/callback/provider-github')
+        ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
         'value'       => 0,

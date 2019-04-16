@@ -12,30 +12,30 @@ $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
         <div id="pi-js-list">
             <div>
                 <ul class="nav nav-tabs">
-                    <li class="<?php echo 'image' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', ['action' => 'list', 'type' => 'image']); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'image' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'image']); ?>">
                             <?php echo _a('Images'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'doc' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', ['action' => 'list', 'type' => 'doc']); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'doc' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'doc']); ?>">
                             <?php echo _a('Docs'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'video' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', ['action' => 'list', 'type' => 'video']); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'video' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'video']); ?>">
                             <?php echo _a('Videos'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'zip' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', ['action' => 'list', 'type' => 'zip']); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'zip' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'zip']); ?>">
                             <?php echo _a('Zips'); ?>
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="clearfix">
-                <div class="pull-left form-inline">
+                <div class="float-left form-inline">
                     <div class="form-group">
                         <select class="bulk-operation form-control hide">
                             <option value=""><?php echo _a('Bulk operation'); ?></option>
@@ -54,7 +54,7 @@ $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
                         </select>
                     </div>
                     <div class="form-group">
-                        <div class="text-muted pull-right" style="padding-top: 5px">
+                        <div class="text-muted float-right" style="padding-top: 5px">
                             <?php echo $this->escape($count) . ' results'; ?>
                         </div>
                     </div>
@@ -63,7 +63,7 @@ $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
                 $form->setAttributes([
                     'action' => $this->url('', ['action' => 'list', 'type' => $type, 'style' => $style]),
                     'method' => 'get',
-                    'class'  => 'navbar-form navbar-right',
+                    'class'  => 'form-inline navbar-right',
                     'style'  => 'margin: 0; padding-right: 0',
                 ]);
                 echo $this->form()->openTag($form);
@@ -85,12 +85,12 @@ $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
                 <div class="default-header<?php echo 'default' == $style ? '' : ' hide'; ?>"
                      style="margin-bottom: 10px">
                     <input type="checkbox" class="check-all">
-                    <button class="btn btn-default remove-checked"
+                    <button class="btn btn-secondary remove-checked"
                             style="margin-left: 10px"><?php echo _a('Delete'); ?></button>
-                    <div class="pull-right btn-toolbar" style="margin-top: 0">
+                    <div class="float-right btn-toolbar" style="margin-top: 0">
                         <div class="btn-group">
-                            <a class="btn btn-default" href="#"><i class="fa fa-th-large"></i></a>
-                            <a class="btn btn-default" disabled="disabled"><i class="fa fa-th-list"></i></a>
+                            <a class="btn btn-secondary" href="#"><i class="fas fa-th-large"></i></a>
+                            <a class="btn btn-secondary" disabled="disabled"><i class="fas fa-th-list"></i></a>
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@ $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
                                 <?php
                             } else {
                                 ?>
-                                <div class="list-image"><span class="fa fa-file"></span></div>
+                                <div class="list-image"><span class="fas fa-file"></span></div>
                                 <?php
                             }
                             ?>

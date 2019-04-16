@@ -3,18 +3,18 @@
         <div class="modal-content">
             <!-- Header -->
             <div class="modal-header">
-                <button id="media-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 class="modal-title" id="modal-header"><?php echo _a('Choose Image'); ?></h3>
+                <button id="media-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <!-- Body -->
             <div class="modal-body">
                 <div class="tabbable">
                     <ul class="nav nav-tabs">
-                        <li class="active">
-                            <a href="#image-upload" data-toggle="tab"><?php echo _a('Upload Image'); ?></a>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#image-upload" data-toggle="tab"><?php echo _a('Upload Image'); ?></a>
                         </li>
-                        <li>
-                            <a href="#image-choose" data-toggle="tab">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#image-choose" data-toggle="tab">
                                 <?php echo _a('Choose From Media'); ?>
                             </a>
                         </li>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="tab-pane" id="image-choose">
                             <div class="clearfix form-inline" style="margin-bottom: 20px">
-                                <div class="pull-right form-search">
+                                <div class="float-right form-search">
                                     <div class="form-group">
                                         <input type="text" value="" placeholder="<?php echo _a('Title'); ?>"
                                                class="form-control" name="media-title">
@@ -55,15 +55,15 @@
                                 </table>
                             </div>
                             <div class="media-page hide" style="text-align: center">
-                                <ul class="pager">
-                                    <li>
-                                        <a class="btn btn-small disabled prev-page" data-from="prev" data-url=""
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="btn btn-small disabled prev-page page-link" data-from="prev" data-url=""
                                            href="javascript:void(0)">
                                             &lt;&lt;&nbsp;<?php echo _a('Prev'); ?>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="btn btn-small next-page" data-from="next" data-url=""
+                                    <li class="page-item">
+                                        <a class="btn btn-small next-page page-link" data-from="next" data-url=""
                                            href="javascript:void(0)">
                                             <?php echo _a('Next'); ?>&nbsp;&gt;&gt;
                                         </a>
@@ -121,7 +121,7 @@
 
 <!-- Upload button -->
 <script id="media-upload-button" type="text/template">
-    <div class="btn btn-default upload fileinput-button" style="margin: -320px 0 0 120px">
+    <div class="btn btn-secondary upload fileinput-button" style="margin: -320px 0 0 120px">
         <span><?php echo _a('Upload'); ?></span>
         <input type="file" name="upload">
     </div>

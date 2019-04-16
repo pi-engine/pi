@@ -75,7 +75,7 @@ Pi Engine default theme
 1. Bootstrap custom css or [custom bootstrap.css](http://getbootstrap.com/customize/) in theme
 1. Block
    * head
-     * pi-panel-subline
+     * pi-card-subline
      * tab
    * body
 1. ellipsis

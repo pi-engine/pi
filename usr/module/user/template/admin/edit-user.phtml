@@ -7,10 +7,8 @@
     <?php foreach ($nav
 
     as $value) { ?>
-    <li class="<?php if ($value['name'] == $name) {
-        echo 'active';
-    } ?>">
-        <a href="<?php echo $value['link']; ?>"><?php echo $value['title']; ?></a>
+    <li class="nav-item">
+        <a class="nav-link <?php if ($value['name'] == $name) { echo 'active';} ?>" href="<?php echo $value['link']; ?>"><?php echo $value['title']; ?></a>
         <?php } ?>
 </ul>
 <?php

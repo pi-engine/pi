@@ -33,6 +33,9 @@ class RegisterForm extends UserForm
 
         $piConfig = Pi::user()->config();
 
+//        $this->setAttribute('novalidate', 'novalidate');
+//        $this->setAttribute('class', 'needs-validation');
+
         $this->setAttribute('data-toggle', 'validator');
         $this->setAttribute('data-delay', 1000);
         $this->setAttribute('data-html', true);
@@ -89,7 +92,7 @@ class RegisterForm extends UserForm
                 = <<<HTML
 <label>
     <input
-        onchange="$('input[name=credential], input[name=credential-confirm]').attr('type', function(index, attr){ return attr == 'text' ? 'password' : 'text';})"
+        onchange="$('#$elementId').find('input[name=credential], input[name=credential-confirm]').attr('type', function(index, attr){ return attr == 'text' ? 'password' : 'text';})"
         name="show_password"
         type="checkbox"
     />
@@ -115,7 +118,7 @@ class RegisterForm extends UserForm
     var strong = "{$strong}";
     var veryStrong = "{$veryStrong}";
     
-    jQuery('[name="credential"]').tooltip({'trigger':'focus', 'title': "{$message}", 'placement' : 'top'});
+    $('#$elementId').find('[name="credential"]').tooltip({'trigger':'focus', 'title': "{$message}", 'placement' : 'top'});
 </script>
 HTML;
 
@@ -162,7 +165,7 @@ HTML;
             $this->remove('submit');
 
             $button = new \Zend\Form\Element\Button('submit-button');
-            $button->setLabel(__('Submit'))->setAttribute('class', 'btn btn-default');
+            $button->setLabel(__('Submit'))->setAttribute('class', 'btn btn-secondary');
 
             $this->add($button);
         }

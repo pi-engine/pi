@@ -141,7 +141,7 @@ EOT;
 
             $patternLink
                 = <<<'EOT'
-<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
     <a itemprop="item" href="%s">
         <span itemprop="name">%s</span>
     </a>
@@ -151,7 +151,7 @@ EOT;
 
             $patternLabel
                 = <<<'EOT'
-<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
     <span itemprop="name">%s</span>
     <meta itemprop="position" content="%s" />
 </li>

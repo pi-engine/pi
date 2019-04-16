@@ -25,9 +25,9 @@ $userSection = $this->isUserSection(Pi::service('module')->current());
             <?php if ($timeline) { ?>
                 <?php foreach ($timeline as $item) { ?>
                     <div class="timeline user-underline-list">
-                        <div class="pull-left">
+                        <div class="float-left">
                             <?php
-                            echo !empty($item['icon']) ? '<i class="fa ' . $item['icon'] . ' fa-4x"></i>' : '<i class="fa fa-comment fa-4x"></i>';
+                            echo !empty($item['icon']) ? '<i class="fa ' . $item['icon'] . ' fa-4x"></i>' : '<i class="fas fa-comment fa-4x"></i>';
                             ?>
                         </div>
                         <div class="media-body">
@@ -53,7 +53,7 @@ $userSection = $this->isUserSection(Pi::service('module')->current());
                     echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', ['class' => 'pagination-left']);
                 }
             } else { ?>
-                <div class="well">
+                <div class="card bg-light mb-3">
                     <?php _e('No data available.'); ?>
                 </div>
             <?php } ?>

@@ -17,13 +17,13 @@ $this->headMeta('noindex', 'robots');
         ?>
     </div>
     <div class="user-action-bar">
-        <div class="col-md-offset-2 col-md-10">
+        <div class="offset-md-2 col-md-10">
             <ul class="list-inline">
-                <li>
+                <li class="list-inline-item">
                     <a title="<?php _e('Login'); ?>"
                        href="<?php echo Pi::service('authentication')->getUrl('login', ''); ?>"><?php _e('Login'); ?></a>
                 </li>
-                <li>
+                <li class="list-inline-item">
                     <a title="<?php _e('Register'); ?>"
                        href="<?php echo Pi::service('user')->getUrl('register'); ?>"><?php _e('Register'); ?></a>
                 </li>

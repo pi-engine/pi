@@ -6,15 +6,15 @@ $this->Backbone();
     <div class="js-alert"></div>
 </div>
 <script id="temp-theme" type="text/template">
-    <div class="thumbnail">
-        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>"/>
+    <div class="thumbnail card bg-light mb-3">
+        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>" class="img-fluid mb-1" />
         <div class="caption">
             <h5>
-                <span class="pull-right label"><%= type %></span>
+                <span class="float-right label"><%= type %></span>
                 <%- title %>
             </h5>
             <div class="clearfix">
-                <span class="pull-right btn btn-primary theme-install"><?php echo _a('Install'); ?></span>
+                <span class="float-right btn btn-primary theme-install"><?php echo _a('Install'); ?></span>
                 <span class="btn btn-link theme-detail"><?php echo _a('Detail'); ?></span>
                 <span class="text-muted">|</span>
                 <span class="btn btn-link theme-Check"><?php echo _a('Check'); ?></span>

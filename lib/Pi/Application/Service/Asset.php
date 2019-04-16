@@ -309,6 +309,40 @@ class Asset extends AbstractService
     )
     {
         $theme     = $theme ?: Pi::service('theme')->current();
+
+        if(Pi::engine()->section() != 'admin'){
+
+
+            /**
+             * Check if theme has parent
+             */
+            $parentTheme = Pi::service('theme')->getParent($theme);
+
+            if($parentTheme){
+
+                $themeAssetPath = $this->getThemeAssetPath($file, $theme, $appendVersion);
+
+                if(!is_file($themeAssetPath)){
+                    $theme = $parentTheme;
+
+                    $themeAssetPath = $this->getThemeAssetPath($file, $theme, $appendVersion);
+
+                    /*
+                    * Check if theme has grand parent
+                    */
+                    $parentTheme = Pi::service('theme')->getParent($theme);
+
+                    if($parentTheme){
+                        $themeAssetPath = $this->getThemeAssetPath($file, $theme, $appendVersion);
+
+                        if(!is_file($themeAssetPath)){
+                            $theme = $parentTheme;
+                        }
+                    }
+                }
+            }
+        }
+
         $component = 'theme/' . $theme;
 
         return $this->getAssetUrl($component, $file, $appendVersion);
@@ -326,9 +360,29 @@ class Asset extends AbstractService
     public function getThemeAssetPath(
         $file,
         $theme          = '',
-        $appendVersion  = null
+        $appendVersion  = null,
+        $searchParent = false
     ) {
         $theme = $theme ?: Pi::service('theme')->current();
+
+        if(Pi::engine()->section() != 'admin' && $searchParent){
+            /**
+             * Check if theme has parent
+             */
+            $parentTheme = Pi::service('theme')->getParent($theme);
+
+            if($parentTheme){
+
+                $component = 'theme/' . $theme;
+                $themeAssetPath = $this->getAssetPath($component, $file, $appendVersion);
+
+                if(!is_file($themeAssetPath)){
+
+                    $theme = $parentTheme;
+                }
+            }
+        }
+
         $component = 'theme/' . $theme;
 
         return $this->getAssetPath($component, $file, $appendVersion);

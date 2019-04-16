@@ -17,10 +17,10 @@ $this->headMeta('noindex', 'robots');
                 <?php _e('No available privacy setting'); ?>
             </div>
         <?php } else { ?>
-            <form class="form-horizontal" method="post">
+            <form method="post">
                 <?php foreach ($privacy as $item) { ?>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label"><?php echo $item['title']; ?></label>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label"><?php echo $item['title']; ?></label>
                         <div class="col-md-4">
                             <select name="<?php echo $item['field']; ?>" <?php if ($item['is_forced']) echo 'disabled'; ?>
                                     class="form-control">
@@ -38,7 +38,7 @@ $this->headMeta('noindex', 'robots');
                     </div>
                 <?php } ?>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-4">
+                    <div class="offset-md-2 col-md-4">
                         <button type="submit" class="btn btn-primary"><?php _e('Submit'); ?></button>
                     </div>
                 </div>

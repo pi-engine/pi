@@ -46,10 +46,10 @@ $viewPreview
                 <small><?php _e('Customize your avatar anyway you like'); ?></small>
             </h1>
         </div>
-        <div class="user-avatar-box well">
-            <div class="clearfix">
-                <div class="col-md-2 col-sm-3 col-xs-3"><?php echo Pi::service('user')->avatar()->get($uid, '', ['class' => 'img-polaroid']); ?></div>
-                <div class="col-md-10 col-sm-9 col-xs-9 text-warning">
+        <div class="user-avatar-box card bg-light mb-3 well">
+            <div class="clearfix row">
+                <div class="col-md-2 col-sm-3"><?php echo Pi::service('user')->avatar()->get($uid, '', ['class' => 'rounded-circle']); ?></div>
+                <div class="col-md-10 col-sm-9">
                     <h4><?php _e('Current avatar'); ?></h4>
                     <p><?php _e('Once source type is switched and saved, the old avatar image will be deleted.'); ?></p>
                 </div>
@@ -62,7 +62,7 @@ $viewPreview
                     continue;
                 }
                 echo sprintf(
-                    '<li><a data-toggle="tab" data-source="%s" href="%s" class="avatar-source-nav">%s</a></li>',
+                    '<li class="nav-item"><a data-toggle="tab" data-source="%s" href="%s" class="avatar-source-nav nav-link">%s</a></li>',
                     $item['source'],
                     $item['href'],
                     $item['text']
@@ -104,9 +104,9 @@ $viewPreview
             <?php } ?>
             <?php if (in_array('gravatar', $adapters)) { ?>
                 <div class="tab-pane" id="fromGravatar">
-                    <div class="form-horizontal">
+                    <div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">
+                            <label class="col-md-2 col-form-label">
                                 <?php _e('Gravatar email'); ?>
                             </label>
                             <div class="col-md-6">
@@ -118,7 +118,7 @@ $viewPreview
                             <div class="col-md-4 text-right">
                                 <a class="btn btn-success" title="<?php _e('Configure at Gravatar'); ?>"
                                    href="https://gravatar.com" target="_blank"><i
-                                            class="fa fa-picture-o"></i> <?php _e('Configure at Gravatar'); ?></a>
+                                            class="far fa-picture"></i> <?php _e('Configure at Gravatar'); ?></a>
                             </div>
                         </div>
                     </div>
@@ -169,7 +169,7 @@ $viewPreview
             <?php } ?>
             <div class="tab-pane" id="formLocal">
                 <div class="media">
-                    <div class="pull-left">
+                    <div class="float-left">
                         <img src="<?php echo $local['normal']; ?>" alt="">
                     </div>
                     <div class="media-body">

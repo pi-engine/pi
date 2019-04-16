@@ -8,7 +8,7 @@ $this->css([
     <ul>
         <?php foreach ($pages as $page) { ?>
             <li><a href="<?php echo $page['url']; ?>"><?php echo _escape($page['title']); ?></a><span
-                        class="pull-right"><?php echo _date($page['time']); ?></span></li>
+                        class="float-right"><?php echo _date($page['time']); ?></span></li>
         <?php } ?>
     </ul>
 

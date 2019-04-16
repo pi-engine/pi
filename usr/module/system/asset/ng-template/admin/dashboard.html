@@ -34,83 +34,84 @@
 </div>
 <div class="row">
     <div class="col-md-8">
-        <div class="well">
-            <div class="media">
-        <span class="pull-left">
-          <i class="fa fa-bullhorn"></i>
-        </span>
-                <div class="media-body">
-                    <div data-ng-show="!noticeEditing">
-                        <p>
-                            {{message.content}}
-                            <em class="text-muted" style="margin-left: 15px;">{{message.time}}</em>
-                        <div data-ng-show="messagePerm">
-                            <a data-ng-click="noticeEditing = 1">
-                                <i class="fa fa-pencil"></i>
-                                {{'EDIT' | translate}}
-                            </a>
-                        </div>
+        <div class="card bg-light mb-3">
+            <div class="card-body bg-white">
+                <!--<div class="float-left">-->
+                    <!--<i class="fas fa-bullhorn"></i>-->
+                <!--</div>-->
+                <div data-ng-show="!noticeEditing">
+                    <p class="ml-2">
+                        {{message.content}}
+                        <em class="text-muted ml-2">{{message.time}}</em>
+                    </p>
+                    <div data-ng-show="messagePerm">
+                        <a data-ng-click="noticeEditing = 1">
+                            <i class="fas fa-pencil-alt"></i>
+                            {{'EDIT' | translate}}
+                        </a>
                     </div>
-                    <div data-ng-show="noticeEditing">
-                        <p>
+                </div>
+                <div data-ng-show="noticeEditing">
+                    <p>
                             <textarea data-ng-model="messageContentCopy" class="form-control" rows="3"
                                       notice-focus="noticeEditing"></textarea>
-                        <p class="text-muted">
-                            {{'ANNOUNCEMENT' | translate}}
-                        <div>
-                            <button class="btn btn-default" data-ng-click="saveNoticeAction()">
-                                {{'SAVE' | translate}}
-                            </button>
-                            <button class="btn btn-link" data-ng-click="noticeEditing = 0">
-                                {{'CANCEL' | translate}}
-                            </button>
-                        </div>
+                    <p class="text-muted">
+                        {{'ANNOUNCEMENT' | translate}}
+                    <div>
+                        <button class="btn btn-secondary" data-ng-click="saveNoticeAction()">
+                            {{'SAVE' | translate}}
+                        </button>
+                        <button class="btn btn-link" data-ng-click="noticeEditing = 0">
+                            {{'CANCEL' | translate}}
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
-            <div class="clearfix panel-heading">
-                <div class="pull-right">
-                    <button class="btn btn-default btn-sm" data-ng-click="linksEditing = 1"
+        <div class="card bg-light mb-3">
+            <h5 class="card-header">
+                <div class="float-right">
+                    <button class="btn btn-secondary btn-sm" data-ng-click="linksEditing = 1"
                             data-ng-show="!linksEditing">
                         {{'EDIT' | translate}}
                     </button>
-                    <button class="btn btn-default btn-sm" data-ng-click="saveLinksAction()"
+                    <button class="btn btn-secondary btn-sm" data-ng-click="saveLinksAction()"
                             data-ng-show="linksEditing">
                         {{'SAVE' | translate}}
                     </button>
                 </div>
-                <h3 class="panel-title" style="margin-top: 6px">
-                    {{'QUICKLINKS' | translate}}
-                </h3>
-            </div>
-            <div class="panel-body" style="padding-bottom: 5px;">
-                <form class="well form-horizontal" style="padding-bottom: 0;" name="linkForm"
+
+                {{'QUICKLINKS' | translate}}
+            </h5>
+            <div class="card-body bg-white" style="padding-bottom: 5px;">
+                <form class="card bg-light mb-3" style="padding-bottom: 0;" name="linkForm"
                       data-ng-show="linkAddStatus">
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">{{'TITLE' | translate}}</label>
-                        <div class="col-md-5">
-                            <input type="text" class="form-control" data-ng-model="linkEntity.title" required>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="col-md-2 col-form-label">{{'TITLE' | translate}}</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" data-ng-model="linkEntity.title" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 col-form-label">{{'URL' | translate}}</label>
+                            <div class="col-md-5">
+                                <input type="url" class="form-control" data-ng-model="linkEntity.url" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="offset-md-2 col-sm-10">
+                                <button type="submit" class="btn btn-info" ng-disabled="linkForm.$invalid"
+                                        data-ng-click="addLink()">
+                                    {{'SAVE' | translate}}
+                                </button>
+                                <button type="reset" class="btn btn-link" data-ng-click="linkAddStatus = 0">
+                                    {{'CANCEL' | translate}}
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">{{'URL' | translate}}</label>
-                        <div class="col-md-5">
-                            <input type="url" class="form-control" data-ng-model="linkEntity.url" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-info" ng-disabled="linkForm.$invalid"
-                                    data-ng-click="addLink()">
-                                {{'SAVE' | translate}}
-                            </button>
-                            <button type="reset" class="btn btn-link" data-ng-click="linkAddStatus = 0">
-                                {{'CANCEL' | translate}}
-                            </button>
-                        </div>
-                    </div>
+
                 </form>
                 <div class="row" ng-class="{'dashboard-links-editing' : linksEditing}" ui-sortable
                      data-ng-model="links">
@@ -125,39 +126,43 @@
                     </div>
                     <div class="col-md-3">
                         <div class="dashboard-link dashboard-link-add" data-ng-click="linkAddStatus = 1">
-                            <i class="fa fa-plus fa-lg"></i>
+                            <i class="fas fa-plus fa-lg"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="card bg-light mb-3">
+            <div class="card-header">
                 {{'SUMMARY' | translate}}
             </div>
-            <div class="panel-body">
+            <div class="card-body bg-white">
             </div>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="card bg-light mb-3">
+            <h5 class="card-header">
                 {{'POWEREDBY' | translate}}
-            </div>
-            <div class="panel-body">
-                <p>
-                    {{'POWEREDP1' | translate}}
-                <p>
-                    {{'POWEREDP2' | translate}}
-                <div>
-                    <a href="http://www.piengine.org" title="Pi Engine" target="_blank">Find Pi</a> &raquo;
-                    <a href="http://code.piengine.org" title="Pi Code" target="_blank">code</a> &bull;
-                    <a href="http://doc.piengine.org" title="Pi Doc" target="_blank">doc</a> &bull;
-                    <a href="http://bug.piengine.org" title="Pi Bug" target="_blank">talk</a> &bull;
-                    <a href="http://ask.piengine.org" title="Ask Pi" target="_blank">ask</a> &bull;
-                    <a href="http://api.piengine.org" title="Pi API" target="_blank">API</a>
+            </h5>
+            <div class="card-body bg-white">
+
+                <div class="card-text">
+                    <p>
+                        {{'POWEREDP1' | translate}}
+                    <p>
+                        {{'POWEREDP2' | translate}}
+                    <div>
+                        <a href="http://www.piengine.org" title="Pi Engine" target="_blank">Find Pi</a> &raquo;
+                        <a href="http://code.piengine.org" title="Pi Code" target="_blank">code</a> &bull;
+                        <a href="http://doc.piengine.org" title="Pi Doc" target="_blank">doc</a> &bull;
+                        <a href="http://bug.piengine.org" title="Pi Bug" target="_blank">talk</a> &bull;
+                        <a href="http://ask.piengine.org" title="Ask Pi" target="_blank">ask</a> &bull;
+                        <a href="http://api.piengine.org" title="Pi API" target="_blank">API</a>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
