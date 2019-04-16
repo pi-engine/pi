@@ -9,8 +9,8 @@ $this->css($this->assetModule('admin/admin.css'));
 <?php foreach ($result as $name => $data) { ?>
     <div class="card <?php echo $data['status'] ? 'bg-success' : 'bg-danger'; ?> mb-3 p-3 text-white">
         <!-- Default panel contents -->
-        <div class="card-heading"><?php echo _escape($data['title']); ?></div>
-        <div class="card-text">
+        <div class="card-header"><?php echo _escape($data['title']); ?></div>
+        <div class="card-body">
             <p><?php echo $data['status'] ? _a('Update succeeded.') : _a('Update failed.'); ?></p>
 
             <?php
