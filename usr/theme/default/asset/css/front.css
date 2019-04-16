@@ -383,3 +383,6 @@ form .icon-question-sign {
     display: inline-block;
     padding: 15px;
 }
+
+.form-check {margin-top:6px}
+.form-check .form-text.text-muted {min-height:12px}

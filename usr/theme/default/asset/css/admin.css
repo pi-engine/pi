@@ -710,5 +710,8 @@ button:active {
 .row.form-group > .col-form-label {text-align:right}
 .white-space-nowrap {white-space:nowrap}
 legend {border-bottom:1px solid #ddd}
+.form-check {margin-top:6px}
+.form-check .form-text.text-muted {min-height:12px}
+
 /* END BS4 OVERRIDE */
 
