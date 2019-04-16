@@ -18,7 +18,7 @@ function translateThisThing(key) {
     return translations[key];
 };
 
-$(document).ready(function () {
+$(window).on('load', function () {
     if ($('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').not('#credential-verify').length > 0) {
         $('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').not('#credential-verify').addClass('pwstrengthEnabled').pwstrength({
             common: {
