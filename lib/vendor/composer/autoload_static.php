@@ -9,8 +9,8 @@ class ComposerStaticInite47a2128fb03c94e9559012642f8331a
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '9cfd760f6b1bbaef19364c8a30fa9b3f' => __DIR__ . '/..' . '/emcconville/google-map-polyline-encoding-tool/src/Polyline.php',
+        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -82,6 +82,10 @@ class ComposerStaticInite47a2128fb03c94e9559012642f8331a
             'Symfony\\Component\\Yaml\\' => 23,
             'Spipu\\Html2Pdf\\' => 15,
         ),
+        'P' => 
+        array (
+            'Prophecy\\' => 9,
+        ),
         'M' => 
         array (
             'MaxMind\\WebService\\' => 19,
@@ -121,8 +125,8 @@ class ComposerStaticInite47a2128fb03c94e9559012642f8331a
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Zend\\XmlRpc\\' => 
         array (
@@ -340,6 +344,10 @@ class ComposerStaticInite47a2128fb03c94e9559012642f8331a
         array (
             0 => __DIR__ . '/..' . '/spipu/html2pdf/src',
         ),
+        'Prophecy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
+        ),
         'MaxMind\\WebService\\' => 
         array (
             0 => __DIR__ . '/..' . '/maxmind/web-service-common/src/WebService',
@@ -399,13 +407,6 @@ class ComposerStaticInite47a2128fb03c94e9559012642f8331a
             'RandomLib' => 
             array (
                 0 => __DIR__ . '/..' . '/ircmaxell/random-lib/lib',
-            ),
-        ),
-        'P' => 
-        array (
-            'Prophecy\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
             ),
         ),
         'A' => 
