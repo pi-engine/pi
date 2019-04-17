@@ -72,16 +72,20 @@ class Form extends FormHelper
                 break;
             case 'modal':
                 $style = 'modal';
-                $class = 'form-horizontal';
+                $class = '';
                 break;
             case 'popup':
                 $style = 'popup';
-                $class = 'form-horizontal';
+                $class = '';
+                break;
+            case 'modal-simple' :
+                $style = 'modal-simple';
+                $class = '';
                 break;
             case 'horizontal':
             case '':
                 $style = 'horizontal';
-                $class = 'form-horizontal';
+                $class = '';
                 break;
             case 'raw':
             default:
@@ -140,47 +144,71 @@ class Form extends FormHelper
         $renderElement = function ($element) use (
             $style,
             $column,
-            $parsePattern
+            $parsePattern,
+            $form
         ) {
             $type = $element->getAttribute('type') ?: 'text';
 
-            if (!in_array($type, [
-                'checkbox',
-                'multi_checkbox',
-                'radio',
-                'file',
-            ])
-            ) {
+            /**
+             * Add specific checkbox / radio class
+             */
+            if ($type == 'checkbox' || $type == 'multi_checkbox' || $type == 'radio'){
+                $class     = $element->getAttribute('class');
+                $attrClass = 'form-check-input' . ($class ? ' ' . $class : '');
+                $element->setAttribute('class', $attrClass);
+            } else if ($type != 'file') {
                 $class     = $element->getAttribute('class');
                 $attrClass = 'form-control' . ($class ? ' ' . $class : '');
                 $element->setAttribute('class', $attrClass);
             }
 
+            /**
+             * Add invalid class
+             */
+            if ($element->getMessages()){
+                $class     = $element->getAttribute('class');
+                $attrClass = 'is-invalid' . ($class ? ' ' . $class : '');
+                $element->setAttribute('class', $attrClass);
+            }
+
+
+            /**
+             * Add row if needed
+             */
+            switch ($style) {
+                case 'inline':
+                    $rowClass = 'mr-2';
+                    break;
+                case 'vertical':
+                    $rowClass = '';
+                    break;
+
+                case 'modal':
+                case 'popup':
+                case 'horizontal':
+                default:
+                    $rowClass = 'row';
+                    break;
+            }
+
             $renderPattern
                 = <<<EOT
-<div class="form-group%error_class% has-feedback" data-name="%element_name%">
+<div class="$rowClass form-group" data-name="%element_name%">
     %label_html%
     %element_html%
 </div>
 EOT;
             $labelPattern
                 = <<<EOT
-<label class="%label_size% control-label">
+<label class="%label_size% col-form-label">
     %mark_required%%label_content%
 </label>
 EOT;
 
-            if ($type == 'checkbox') {
-                $descPattern
-                    = <<<EOT
-<span style="display:block;" class="text-muted">%desc_content%</span>
+            $descPattern
+                = <<<EOT
+<small class="form-text text-muted">%desc_content%</small>
 EOT;
-            } else {
-                $descPattern
-                    = <<<EOT
-<div style="display:block;" class="text-muted">%desc_content%</div>
-EOT;
-            }
 
             $required = __('Required');
             $markRequired
@@ -192,71 +220,59 @@ EOT;
                 case 'checkbox':
                     $elementPattern
                         = <<<EOT
-<div class="%element_size% js-form-element">
-    <div class="checkbox">
-        <label>
+<div class="%element_size%">
+    <div class="form-check">
+        <label class="form-check-label">
             %element_content%
             %desc_html%
+            <div class="invalid-feedback">%error_content%</div>
         </label>
     </div>
 </div>
-<div class="%error_size% help-block with-errors">%error_content%</div>
+
 EOT;
                     break;
 
                 case 'multi_checkbox':
-                    $elementPattern
-                        = <<<EOT
-<div class="%element_size% js-form-element">
-    <div class="checkbox">
-        %element_content%
-        %desc_html%
-    </div>
-</div>
-<div class="%error_size% help-block with-errors">%error_content%</div>
-EOT;
-                    break;
-
                 case 'radio':
                     $elementPattern
                         = <<<EOT
-<div class="%element_size% js-form-element">
-    <div class="radio">
-        %element_content%
-        %desc_html%
-    </div>
+<div class="%element_size%">
+    %element_content%
+    <div class="invalid-feedback">%error_content%</div>
+    %desc_html%
 </div>
-<div class="%error_size% help-block with-errors">%error_content%</div>
+
 EOT;
                     break;
 
                 case 'description':
                     $elementPattern
                         = <<<EOT
-<div class="%element_size% js-form-element">
+<div class="%element_size%">
     <div class="description">
         %element_content%
+        <div class="invalid-feedback">%error_content%</div>
     </div>
 </div>
-<div class="%error_size% help-block with-errors">%error_content%</div>
 EOT;
                     break;
 
                 case 'button':
                     $labelPattern
                         = <<<EOT
-<div class="%label_size% control-label">
+<div class="%label_size%">
     %mark_required%
 </div>
 EOT;
 
                     $elementPattern
                         = <<<EOT
-<div class="%element_size% js-form-element">
+<div class="%element_size%">
     %element_content%
     %desc_html%
 </div>
-<div class="%error_size% help-block with-errors">%error_content%</div>
+
 EOT;
                     break;
                 case 'html-raw':
@@ -274,13 +290,14 @@ EOT;
                 default:
                     $elementPattern
                         = <<<EOT
-<div class="%element_size% js-form-element">
+<div class="%element_size%">
     %element_content%
-    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    <div class="form-text invalid-feedback">%error_content%</div>
     %desc_html%
+    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 </div>
 
-<div class="%error_size% help-block with-errors">%error_content%</div>
+
 EOT;
                     break;
             }
@@ -288,15 +305,17 @@ EOT;
             $vars = [];
 
             switch ($style) {
+                case 'modal-simple':
+                    $vars['label_size']     = 'col-sm-4';
+                    $vars['element_size']   = 'col-sm-8';
+                    break;
                 case 'modal':
                     $vars['label_size']     = 'col-sm-3';
-                    $vars['element_size']   = 'col-sm-9';
-                    $vars['error_size']     = 'col-sm-12';
+                    $vars['element_size']   = 'col-sm-5';
                     break;
                 case 'popup':
                     $vars['label_size']   = 'col-sm-4';
                     $vars['element_size'] = 'col-sm-8';
-                    $vars['error_size']   = 'col-sm-12';
                     break;
 
                 case 'inline':
@@ -315,7 +334,6 @@ EOT;
                 case 'vertical':
                     $vars['label_size']   = '';
                     $vars['element_size'] = '';
-                    $vars['error_size']   = '';
                     break;
 
                 case 'horizontal':
@@ -323,11 +341,9 @@ EOT;
                     if ('single' == $column) {
                         $vars['label_size']   = 'col-sm-3';
                         $vars['element_size'] = 'col-sm-5';
-                        $vars['error_size']   = 'col-sm-4';
                     } else {
-                        $vars['label_size']   = 'col-md-2';
-                        $vars['element_size'] = 'col-md-4';
-                        $vars['error_size']   = 'col-md-4';
+                        $vars['label_size']   = 'col-md-3';
+                        $vars['element_size'] = 'col-md-5';
                     }
                     break;
             }
@@ -336,13 +352,11 @@ EOT;
             if ($type == 'editor') {
                 $vars['label_size']   = 'col-md-12 text-left';
                 $vars['element_size'] = 'col-md-12';
-                $vars['error_size']   = 'col-md-12';
             }
 
             $vars['element_name']    = $element->getName();
             $vars['element_content'] = $this->view->formElement($element);
-            $vars['error_content']   = $this->view->formElementErrors($element);
-            $vars['error_class']     = $element->getMessages() ? ' has-error' : '';
+            $vars['error_content']   = $this->view->formElementErrors($element) ?: __('This value is required');
             $vars['desc_content']    = $element->getAttribute('description') . ($element->getAttribute('required') && !$element->getLabel() ? $markRequired : '');
             $vars['desc_html']       = $parsePattern($descPattern, $vars);
             $vars['label_content']   = $element->getLabel();
@@ -418,7 +432,7 @@ EOT;
             }
             $htmlAlert
                 = <<<EOT
-<div class="alert alert-danger">
+<div class="alert alert-danger" role="alert">
     {$csrfMessages}
     {$elementMessages}
 </div>
@@ -467,7 +481,7 @@ EOT;
             switch ($style) {
                 case 'modal':
                 case 'popup':
-                    $waiting = '<img src="' . $this->view->assetTheme('image/wait.gif') . '" class="hide">';
+                    $waiting = '<img src="' . $this->view->assetTheme('image/wait.gif') . '" class="d-none">';
                     $htmlSubmit
                              = <<<EOT
         <div class="modal-footer">
@@ -477,16 +491,27 @@ EOT;
         </div>
 EOT;
                     break;
-
+                case 'modal-simple':
+                    $submitSize = 'offset-sm-4 col-sm-8';
+                    $htmlSubmit
+                        = <<<EOT
+        <div class="row form-group">
+            <div class="{$submitSize}">
+                {$submit}
+                {$cancel}
+            </div>
+        </div>
+EOT;
+                    break;
                 case 'horizontal':
                     if ('single' == $column) {
-                        $submitSize = 'col-sm-offset-3 col-sm-9';
+                        $submitSize = 'offset-sm-3 col-sm-9';
                     } else {
-                        $submitSize = 'col-md-offset-2 col-md-10';
+                        $submitSize = 'offset-md-2 col-md-10';
                     }
                     $htmlSubmit
                         = <<<EOT
-        <div class="form-group has-feedback">
+        <div class="row form-group">
             <div class="{$submitSize}">
                 {$submit}
                 {$cancel}
@@ -498,7 +523,7 @@ EOT;
                 default:
                     $htmlSubmit
                         = <<<EOT
-        <div class="form-group has-feedback">
+        <div class="form-group">
             {$submit}
             {$cancel}
         </div>
@@ -552,10 +577,10 @@ EOT;
             var formModule = (function($) {
                 var formModule = {},
                     form = $("#{$form->getAttribute('id')}"),
-                    imgWait = form.find("img.hide");
-                var items = form.find(".form-group").removeClass("has-error").find(".help-block").html("").end();
+                    imgWait = form.find("img.d-none");
+                var items = form.find(".form-group").find(".form-text").html("").end();
                 form.submit(function(e) {
-                    imgWait.removeClass("hide");
+                    imgWait.removeClass("d-none");
                     e.preventDefault();
                     $.post(form.attr("action"), form.serialize()).done(function(result) {
                         result = $.parseJSON(result);
@@ -565,12 +590,12 @@ EOT;
                             var msg = result.message;
                             for (var i in msg) {
                                 if (msg.hasOwnProperty(i)) {
-                                    items.filter("[data-name=" + i + "]").addClass("has-error").find(".help-block").html(msg[i][0]);
+                                    items.filter("[data-name=" + i + "]").find(".form-text").html(msg[i][0]);
                                 }
                             }
                             formModule.fail();
                         }
-                        imgWait.addClass("hide");
+                        imgWait.addClass("d-none");
                     });
                 });
                 /**

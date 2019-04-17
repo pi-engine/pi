@@ -6,9 +6,11 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
+    "grunt-contrib-clean": "*",
     "grunt-contrib-copy": "*",
-    "grunt-contrib-clean": "*", 
+    "grunt-contrib-cssmin": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-cssmin": "*"
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-sync": "^0.8.0"
   }
 }

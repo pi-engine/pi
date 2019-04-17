@@ -17,6 +17,10 @@ use Pi\Mvc\Controller\ActionController;
 use Zend\Stdlib\RequestInterface as Request;
 use Zend\Stdlib\ResponseInterface as Response;
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 /**
  * User login/logout controller
  *
@@ -127,6 +131,7 @@ class LoginController extends ActionController
             return;
         }
 
+
         $configs = $this->getConfig();
         $post    = $this->request->getPost();
         $form    = $this->getForm($configs);
@@ -134,6 +139,7 @@ class LoginController extends ActionController
         $form->setInputFilter($this->getInputFilter($configs));
 
         if (!$form->isValid()) {
+//        print_r($form->getMessages()); die();
             $this->renderForm($form);
 
             return;
@@ -231,7 +237,7 @@ class LoginController extends ActionController
         ];
         Pi::service('event')->trigger('user_login', $args);
 
-        $this->jump($redirect, __('You have logged in successfully.'));
+        $this->jump($redirect);
     }
 
     /**

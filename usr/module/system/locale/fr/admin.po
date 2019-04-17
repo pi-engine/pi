@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2018-09-18 23:10+0200\n"
-"PO-Revision-Date: 2018-09-18 23:10+0200\n"
+"POT-Creation-Date: 2019-04-03 12:59+0200\n"
+"PO-Revision-Date: 2019-04-03 13:01+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -184,7 +184,7 @@ msgid "ReCaptcha"
 msgstr "Recaptcha"
 
 #: config/config.php:57 config/nav.admin.php:300
-#: template/admin/audit-index.phtml:10
+#: template/admin/audit-index.phtml:13
 msgid "Mailing"
 msgstr "Mailing"
 
@@ -952,18 +952,18 @@ msgid "Add role"
 msgstr "Ajouter un rôle"
 
 #: config/nav.admin.php:260
-msgid "Cache flush"
-msgstr "Vider le cache"
-
-#: config/nav.admin.php:270
 msgid "Asset publish"
 msgstr "Publier Assets"
+
+#: config/nav.admin.php:271
+msgid "Cache flush"
+msgstr "Vider le cache"
 
 #: config/nav.admin.php:281
 msgid "Toolkit"
 msgstr "Boite à Outils"
 
-#: config/nav.admin.php:292 template/admin/audit-index.phtml:9
+#: config/nav.admin.php:292 template/admin/audit-index.phtml:10
 msgid "Audit"
 msgstr "Audit"
 
@@ -992,7 +992,7 @@ msgstr "Pages"
 msgid "Cache"
 msgstr "Cache"
 
-#: config/nav.component.php:61 template/admin/nav-data.phtml:80
+#: config/nav.component.php:61 template/admin/nav-data.phtml:78
 msgid "Permission"
 msgstr "Autorisations"
 
@@ -1018,7 +1018,7 @@ msgstr "Mot de passe"
 
 #: config/nav.front.php:52 template/admin/event.phtml:25
 #: template/admin/perm.phtml:16 template/admin/perm.phtml:22
-#: template/admin/role.phtml:36 template/admin/theme-index.phtml:21
+#: template/admin/role.phtml:36 template/admin/theme-index.phtml:17
 msgid "Admin"
 msgstr "Admin"
 
@@ -1261,7 +1261,7 @@ msgstr "Cache de page mis à jour avec succès"
 #: src/Controller/Admin/CacheController.php:94
 #: src/Controller/Admin/PageController.php:65 template/admin/event.phtml:24
 #: template/admin/perm.phtml:15 template/admin/perm.phtml:21
-#: template/admin/role.phtml:35 template/admin/theme-index.phtml:14
+#: template/admin/role.phtml:35 template/admin/theme-index.phtml:12
 msgid "Front"
 msgstr "Front de Page"
 
@@ -1550,7 +1550,7 @@ msgid "Title is required."
 msgstr "Un nom est requis."
 
 #: src/Controller/Admin/NavController.php:66
-#: src/Controller/Admin/NavController.php:93 template/admin/nav-data.phtml:45
+#: src/Controller/Admin/NavController.php:93 template/admin/nav-data.phtml:43
 #: template/admin/nav-index.phtml:42
 msgid "Custom"
 msgstr "Personalisé"
@@ -1797,7 +1797,7 @@ msgstr "Icône Font-awesome"
 msgid "Check http://fortawesome.github.io/Font-Awesome/icons/"
 msgstr "Se référer à http://fortawesome.github.io/Font-Awesome/icons/"
 
-#: src/Form/ModuleCategoryForm.php:50 template/admin/module-category.phtml:83
+#: src/Form/ModuleCategoryForm.php:50 template/admin/module-category.phtml:79
 msgid "Order"
 msgstr "Ordre"
 
@@ -1847,7 +1847,7 @@ msgstr "Déploiement"
 #: template/admin/event.phtml:18 template/admin/flush-index.phtml:11
 #: template/admin/module-available.phtml:12
 #: template/admin/module-index.phtml:11 template/admin/module-index.phtml:71
-#: template/admin/nav-data.phtml:124 template/admin/nav-index.phtml:13
+#: template/admin/nav-data.phtml:122 template/admin/nav-index.phtml:13
 #: template/admin/page-list.phtml:16 template/admin/role.phtml:28
 msgid "Action"
 msgstr "Action"
@@ -1864,49 +1864,49 @@ msgstr "Publier"
 msgid "Asset publish in process"
 msgstr "Publication de la ressource en cours"
 
-#: template/admin/audit-index.phtml:13
+#: template/admin/audit-index.phtml:17
 msgid "Audit list"
 msgstr "Traces d'Audit"
 
-#: template/admin/audit-index.phtml:17
+#: template/admin/audit-index.phtml:21
 msgid "time"
 msgstr "date"
 
-#: template/admin/audit-index.phtml:18
+#: template/admin/audit-index.phtml:22
 msgid "User ID"
 msgstr "N° utilisateur"
 
-#: template/admin/audit-index.phtml:19
+#: template/admin/audit-index.phtml:23
 msgid "IP"
 msgstr "IP"
 
-#: template/admin/audit-index.phtml:25
+#: template/admin/audit-index.phtml:29
 msgid "Message"
 msgstr "Message"
 
-#: template/admin/audit-index.phtml:26
+#: template/admin/audit-index.phtml:30
 msgid "extra"
 msgstr "extra"
 
-#: template/admin/audit-index.phtml:53
+#: template/admin/audit-index.phtml:57
 msgid "Count of items to display: "
 msgstr "Nombre d'éléments à afficher : "
 
-#: template/admin/audit-index.phtml:57
+#: template/admin/audit-index.phtml:61
 msgid "10"
 msgstr "10"
 
-#: template/admin/audit-index.phtml:58
+#: template/admin/audit-index.phtml:62
 msgid "20"
 msgstr "20"
 
-#: template/admin/audit-index.phtml:59
+#: template/admin/audit-index.phtml:63
 msgid "50"
 msgstr "50"
 
 #: template/admin/block-list.phtml:19 template/admin/module-available.phtml:11
 #: template/admin/module-index.phtml:9 template/admin/theme-available.phtml:27
-#: template/admin/theme-index.phtml:65 template/admin/theme-installed.phtml:33
+#: template/admin/theme-index.phtml:61 template/admin/theme-installed.phtml:33
 msgid "Description"
 msgstr "Description"
 
@@ -2008,7 +2008,7 @@ msgstr "Résumé"
 msgid "Announcement"
 msgstr "Annonce"
 
-#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:134
+#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:132
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -2181,14 +2181,14 @@ msgid "Icon"
 msgstr "Icône"
 
 #: template/admin/module-available.phtml:10 template/admin/module-index.phtml:8
-#: template/admin/theme-available.phtml:23 template/admin/theme-index.phtml:63
+#: template/admin/theme-available.phtml:23 template/admin/theme-index.phtml:59
 #: template/admin/theme-installed.phtml:29
 msgid "Version"
 msgstr "Version"
 
 #: template/admin/module-available.phtml:34
 #: template/admin/module-index.phtml:40 template/admin/theme-available.phtml:18
-#: template/admin/theme-index.phtml:60 template/admin/theme-installed.phtml:22
+#: template/admin/theme-index.phtml:56 template/admin/theme-installed.phtml:22
 msgid "Detail"
 msgstr "Détail"
 
@@ -2202,23 +2202,23 @@ msgstr "Répertoire : "
 msgid "Install"
 msgstr "Installer"
 
-#: template/admin/module-category.phtml:39
+#: template/admin/module-category.phtml:36
 msgid "Assign to:"
 msgstr "Allouer à :"
 
-#: template/admin/module-category.phtml:58
+#: template/admin/module-category.phtml:54
 msgid "Edit this category"
 msgstr "Editer cette catégorie"
 
-#: template/admin/module-category.phtml:62
+#: template/admin/module-category.phtml:58
 msgid "Delete this category"
 msgstr "Supprimer cette catégorie"
 
-#: template/admin/module-category.phtml:78
+#: template/admin/module-category.phtml:74
 msgid "Remove"
 msgstr "Retirer"
 
-#: template/admin/module-category.phtml:98
+#: template/admin/module-category.phtml:94
 msgid "Sort modules"
 msgstr "Trier les modules"
 
@@ -2276,12 +2276,12 @@ msgid "Press to continue ..."
 msgstr "Cliquer pour continuer..."
 
 #: template/admin/module-operation.phtml:17
-#: template/admin/module-refresh.phtml:23
+#: template/admin/module-refresh.phtml:21
 msgid "Failed"
 msgstr "Echec"
 
 #: template/admin/module-operation.phtml:19
-#: template/admin/module-refresh.phtml:25
+#: template/admin/module-refresh.phtml:23
 msgid "Succeeded"
 msgstr "Succès"
 
@@ -2289,11 +2289,11 @@ msgstr "Succès"
 msgid "Module updates finished."
 msgstr "Les mises à jour du module sont terminées"
 
-#: template/admin/module-refresh.phtml:16
+#: template/admin/module-refresh.phtml:14
 msgid "Update succeeded."
 msgstr "Succès de la mise à jour."
 
-#: template/admin/module-refresh.phtml:16
+#: template/admin/module-refresh.phtml:14
 msgid "Update failed."
 msgstr "Echec de la mise à jour."
 
@@ -2314,64 +2314,64 @@ msgstr "Cliquer simplement sur ce bouton pour enregistrer les données"
 msgid "Save menu"
 msgstr "Enregistrer le menu"
 
-#: template/admin/nav-data.phtml:27
+#: template/admin/nav-data.phtml:26
 msgid "Add to menu"
 msgstr "Ajouter au menu"
 
-#: template/admin/nav-data.phtml:36
+#: template/admin/nav-data.phtml:34
 msgid "This navgation is only for viewing"
 msgstr "Cette navigation est disponible uniquement pour être visualisée"
 
-#: template/admin/nav-data.phtml:44
+#: template/admin/nav-data.phtml:42
 msgid "Click to toggle edit"
 msgstr "Cliquer pour sélectionner Modifier"
 
-#: template/admin/nav-data.phtml:56
+#: template/admin/nav-data.phtml:54
 msgid "Label"
 msgstr "Label"
 
-#: template/admin/nav-data.phtml:62
+#: template/admin/nav-data.phtml:60
 msgid "Url"
 msgstr "Url"
 
-#: template/admin/nav-data.phtml:65
+#: template/admin/nav-data.phtml:63
 #, fuzzy
 msgid "Page link by url or by the after of route"
 msgstr "Lien de page par l'URL ou par la route"
 
-#: template/admin/nav-data.phtml:69
+#: template/admin/nav-data.phtml:67
 msgid "Target"
 msgstr "Cible (Target)"
 
-#: template/admin/nav-data.phtml:73
+#: template/admin/nav-data.phtml:71
 msgid "None"
 msgstr "Aucun"
 
-#: template/admin/nav-data.phtml:75
+#: template/admin/nav-data.phtml:73
 msgid "_blank"
 msgstr "_blank"
 
-#: template/admin/nav-data.phtml:89
+#: template/admin/nav-data.phtml:87
 msgid "To display in menu."
 msgstr "A afficher dans le menu"
 
-#: template/admin/nav-data.phtml:94
+#: template/admin/nav-data.phtml:92
 msgid "Page link by route"
 msgstr "Lien de page par la route"
 
-#: template/admin/nav-data.phtml:99
+#: template/admin/nav-data.phtml:97
 msgid "Route"
 msgstr "Route"
 
-#: template/admin/nav-data.phtml:106
+#: template/admin/nav-data.phtml:104
 msgid "Controller"
 msgstr "Controller"
 
-#: template/admin/nav-data.phtml:117
+#: template/admin/nav-data.phtml:115
 msgid "Module"
 msgstr "Module"
 
-#: template/admin/nav-data.phtml:440
+#: template/admin/nav-data.phtml:438
 msgid "You have made unsaved changes. Would you still like to leave this page?"
 msgstr ""
 "Vous n\\'avez pas enregistré vos modifications. Souhaitez vous toujours "
@@ -2486,7 +2486,7 @@ msgstr "Ce nom de rôle est déja pris"
 msgid "Are you sure to delete this role?"
 msgstr "Etes-vous certains de vouloir supprimer ce rôle?"
 
-#: template/admin/theme-available.phtml:10 template/admin/theme-index.phtml:53
+#: template/admin/theme-available.phtml:10 template/admin/theme-index.phtml:49
 #: template/admin/theme-installed.phtml:12
 msgid "Click To preview"
 msgstr "Cliquer pour prévisualiser"
@@ -2496,15 +2496,15 @@ msgstr "Cliquer pour prévisualiser"
 msgid "Check"
 msgstr "Vérifier"
 
-#: template/admin/theme-index.phtml:27
+#: template/admin/theme-index.phtml:23
 msgid "Theme in use"
 msgstr "Thème utilisé actuellement"
 
-#: template/admin/theme-index.phtml:46
+#: template/admin/theme-index.phtml:42
 msgid "Themes available to use"
 msgstr "Thèmes disponibles"
 
-#: template/admin/theme-index.phtml:59
+#: template/admin/theme-index.phtml:55
 msgid "Apply"
 msgstr "Appliquer"
 

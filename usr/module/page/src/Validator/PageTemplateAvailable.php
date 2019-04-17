@@ -36,6 +36,20 @@ class PageTemplateAvailable extends AbstractValidator
                 $value
             );
 
+            /**
+             * Check if theme has parent
+             */
+            $parentTheme = Pi::service('theme')->getParent(Pi::config('theme'));
+
+            if(!is_readable($file) && $parentTheme) {
+
+                $file = sprintf(
+                    '%s/' . $parentTheme . '/custom/page/%s.phtml',
+                    Pi::path('theme'),
+                    $value
+                );
+            }
+
             if (!is_readable($file)) {
                 $file = sprintf(
                     '%s/module/page/template/front/%s.phtml',
@@ -49,6 +63,7 @@ class PageTemplateAvailable extends AbstractValidator
                 return false;
             }
         }
+
 
         return true;
     }

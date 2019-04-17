@@ -91,11 +91,11 @@ class NavMenu extends AbstractHtmlElement
                 }
                 $class = '';
                 if (isset($item['active'])) {
-                    $class = $item['active'] ? ' class="active"' : '';
+                    $class = $item['active'] ? ' active' : '';
                     unset($item['active']);
                 }
                 $attr = $this->htmlAttribs($item);
-                $list .= '<li' . $class . '><a' . $attr . '>'
+                $list .= '<li class="nav-item"><a class="nav-link ' . $class . '" ' . $attr . '>'
                     . $escaper($label) . '</a></li>' . PHP_EOL;
             }
         }

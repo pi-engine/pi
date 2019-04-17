@@ -299,6 +299,7 @@ class Menu extends ZendMenu
             /**#@+
              * Added by Taiwen Jiang
              */
+            $subPage->setClass('nav-item');
             if (!$subPage->getLabel()) {
                 $liClass = $subPage->getClass() ?: 'divider';
                 $html    .= $indent . '    <li class="' . $liClass . '" />'
@@ -445,11 +446,12 @@ class Menu extends ZendMenu
                 $liClasses[] = $liActiveClass;
             }
             // Add CSS class from page to <li>
+            $page->setClass('nav-item');
             if ($addClassToListItem && $page->getClass()) {
                 $liClasses[] = $page->getClass();
             }
             $liClass = empty($liClasses) ? '' : ' class="' . $escaper(implode(' ', $liClasses)) . '"';
-
+            $page->setClass('nav-link');
             $html .= $myIndent . '    <li' . $liClass . '>' . PHP_EOL
                 . $myIndent . '        '
                 . $this->htmlify($page, $escapeLabels, $addClassToListItem)
@@ -502,5 +504,19 @@ class Menu extends ZendMenu
         Pi::service('log')->end('menu');
 
         return $content;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function htmlify(\Zend\Navigation\Page\AbstractPage $page, $escapeLabel = true, $addClassToListItem = false)
+    {
+        if ($page->active) {
+            $page->setClass('nav-link active');
+        } else {
+            $page->setClass('nav-link');
+        }
+
+        return parent::htmlify($page, $escapeLabel, false);
     }
 }

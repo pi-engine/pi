@@ -50,29 +50,28 @@
                data-ng-model="filter.email">
     </div>
     <button class="btn btn-info" data-ng-click="filterAction()" style="padding: 4px 20px;">
-        <i class="fa fa-search"></i>
+        <i class="fas fa-search"></i>
     </button>
 </form>
 <div data-ng-show="users.length">
     <div class="clearfix form-inline">
-        <strong class="pull-right">{{paginator.count}} members</strong>
         <input type="checkbox" style="margin-right: 6px;"
                data-ng-model="allChecked" ng-change="markAll()">
         <div class="btn-group">
-            <button class="btn btn-default" data-ng-click="activeBatchAction()">
+            <button class="btn btn-secondary" data-ng-click="activeBatchAction()">
                 {{'ACTIVATE' | translate}}
             </button>
-            <button class="btn btn-default" data-ng-click="enableBatchAction()">
+            <button class="btn btn-secondary" data-ng-click="enableBatchAction()">
                 {{'ENABLE' | translate}}
             </button>
-            <button class="btn btn-default" data-ng-click="disableBatchAction()">
+            <button class="btn btn-secondary" data-ng-click="disableBatchAction()">
                 {{'DISABLE' | translate}}
             </button>
-            <button class="btn btn-default" data-ng-click="deleteBatchAction()">
+            <button class="btn btn-secondary" data-ng-click="deleteBatchAction()">
                 {{'DELETE' | translate}}
             </button>
         </div>
-        <div class="form-group">
+        <div class="form-group mx-sm-3">
             <select class="form-control" ng-change="assignRoleBacthAction()" data-ng-model="assignRole"
                     ng-options="item.title group by item.type for item in assignRoles">
                 <option value="">{{'ASSIGN_ROLE' | translate}}
@@ -84,6 +83,7 @@
                 <option value="">{{'UNASSIGN_ROLE' | translate}}
             </select>
         </div>
+        <strong class="ml-auto p-2">{{paginator.count}} members</strong>
     </div>
     <div class="table-responsive">
         <table class="table table-striped">
@@ -104,9 +104,9 @@
                     <input type="checkbox" data-ng-model="user.checked" style="margin-top: -2px;">
                 </td>
                 <td>
-                    <i class="fa fa-circle text-success" data-ng-if="user.active" tooltip="{{'ACTIVE' | translate}}">
+                    <i class="fas fa-circle text-success" data-ng-if="user.active" tooltip="{{'ACTIVE' | translate}}">
                     </i>
-                    <i class="fa fa-circle text-muted" data-ng-if="!user.active" tooltip="{{'INACTIVE' | translate}}">
+                    <i class="fas fa-circle text-muted" data-ng-if="!user.active" tooltip="{{'INACTIVE' | translate}}">
                     </i>
                 </td>
                 <td> {{user.id}}</td>
@@ -121,10 +121,10 @@
                 </td>
                 <td>
                     <ul class="list-inline">
-                        <li data-ng-show="user.active">
+                        <li data-ng-show="user.active" class="list-inline-item">
                             <a href="{{user.link}}" target="_blank">{{user.name}}</a>
                         </li>
-                        <li data-ng-show="!user.active">
+                        <li data-ng-show="!user.active" class="list-inline-item">
                             {{user.name}}
                         </li>
                     </ul>
@@ -145,11 +145,11 @@
                 </td>
                 <td>
                     <ul class="list-inline">
-                        <li data-ng-if="user.front_roles">
-                            <i class="fa fa-user"></i> {{user.front_roles}}
+                        <li data-ng-if="user.front_roles" class="list-inline-item">
+                            <i class="fas fa-user"></i> {{user.front_roles}}
                         </li>
-                        <li data-ng-if="user.admin_roles">
-                            <i class="fa fa-user-md"></i> {{user.admin_roles}}
+                        <li data-ng-if="user.admin_roles" class="list-inline-item">
+                            <i class="fas fa-user-md"></i> {{user.admin_roles}}
                         </li>
                     </ul>
                 </td>
@@ -162,7 +162,7 @@
             </tr>
         </table>
     </div>
-    <pagination data-ng-if="paginator.count > paginator.limit"
+    <pagination class="pagination" data-btn-class="myCustomClass" data-ng-if="paginator.count > paginator.limit"
                 total-items="paginator.count" page="paginator.page" max-size="10"
                 previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
                 boundary-links="true" items-per-page="paginator.limit">

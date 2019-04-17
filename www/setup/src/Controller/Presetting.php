@@ -37,7 +37,7 @@ class Presetting extends AbstractController
     {
         // Destroy persistent data but keep language and charset
         $language = $this->wizard->getLocale();
-        $charset = $this->wizard->getCharset();
+        $charset  = $this->wizard->getCharset();
         $this->wizard->destroyPersist();
         $this->wizard->setLocale($language);
         $this->wizard->setCharset($charset);
@@ -58,10 +58,11 @@ class Presetting extends AbstractController
 
     protected function loadLanguageForm()
     {
-        $locale = $this->wizard->getLocale();
+        $locale       = $this->wizard->getLocale();
         $languageList = $this->wizard->getLanguages();
 
-        $listPattern =<<<EOT
+        $listPattern
+            = <<<EOT
 <li class="list-group-item language-picker">
     <input type="radio" name="language" value="%s"%s>
     <img src="%s" alt="%s" title="%s" style="padding: 0 5px;" />
@@ -83,16 +84,19 @@ EOT;
         }
         $languageString .= '</ul>';
 
-        $title      = _s('Language Selection');
-        $caption    = _s('Choose the language for the installation and website.');
-        $groupPattern =<<<EOT
+        $title         = _s('Language Selection');
+        $caption       = _s(
+            'Choose the language for the installation and website.'
+        );
+        $groupPattern
+                       = <<<EOT
 <div class="well">
     <h2>%s</h2>
     <p class="caption">%s</p>
     <div class="install-form">%s</div>
 </div>
 EOT;
-        $content = sprintf(
+        $content       = sprintf(
             $groupPattern,
             $title,
             $caption,
@@ -100,7 +104,8 @@ EOT;
         );
         $this->content .= $content;
 
-        $footContent =<<<SCRIPT
+        $footContent
+                           = <<<SCRIPT
 <script>
 $(document).ready(function() {
     $('input[type=radio][name=language]').change(function() {
@@ -123,28 +128,28 @@ SCRIPT;
         $title = _s('Sever setting detection');
         if ($this->status < 0) {
             $content = '<h2><span class="failure">'
-                     . $title
-                     . '</span> <a href="javascript:void(0);"'
-                     . ' id="advanced-label">'
-                     . '<span style="display: none;">[+]</span>'
-                     . '<span>[-]</span></a></h2>';
+                . $title
+                . '</span> <a href="javascript:void(0);"'
+                . ' id="advanced-label">'
+                . '<span style="display: none;">[+]</span>'
+                . '<span>[-]</span></a></h2>';
         } else {
             $content = '<h2><span class="success">'
-                     . $title
-                     . '</span> <a href="javascript:void(0);"'
-                     . ' id="advanced-label">'
-                     . '<span>[+]</span><span style="display: none;">'
-                     . '[-]</span></a></h2>';
+                . $title
+                . '</span> <a href="javascript:void(0);"'
+                . ' id="advanced-label">'
+                . '<span>[+]</span><span style="display: none;">'
+                . '[-]</span></a></h2>';
         }
         $caption = _s('Validate server settings and extensions');
         $content .= '<p class="caption">'
-                  . $caption
-                  . '</p><div class="install-form advanced-form well"'
-                  . ' id="advanced-form"><h3 class="section">'
-                  . _s('System requirements')
-                  . '</h3><p class="caption">'
-                  . _s('Server settings and system extensions required by Pi Engine')
-                  . '</p>';
+            . $caption
+            . '</p><div class="install-form advanced-form well"'
+            . ' id="advanced-form"><h3 class="section">'
+            . _s('System requirements')
+            . '</h3><p class="caption">'
+            . _s('Server settings and system extensions required by Pi Engine')
+            . '</p>';
         foreach ($this->result['system'] as $item => $result) {
             $value = $result['value'];
             switch ($result['status']) {
@@ -163,21 +168,23 @@ SCRIPT;
                     break;
             }
             $content .= '<p><div class="label">' . $result['title'] . '</div>'
-                      . '<div class="text"><span class="' . $style . '">'
-                      . $value . '</span>';
+                . '<div class="text"><span class="' . $style . '">'
+                . $value . '</span>';
 
             if (!empty($result['message'])) {
                 $content .= '<em class="message">' . $result['message']
-                          . '</em>';
+                    . '</em>';
             }
             $content .= '</div></p>';
         }
 
         $content .= '<h3 class="section">'
-                  . _s('System extension recommendations')
-                  . '</h3><p class="caption">'
-                  . _s('Extensions recommended for better functionality or performance')
-                  . '</p>';
+            . _s('System extension recommendations')
+            . '</h3><p class="caption">'
+            . _s(
+                'Extensions recommended for better functionality or performance'
+            )
+            . '</p>';
         foreach ($this->result['extension'] as $item => $result) {
             $value = $result['value'];
             switch ($result['status']) {
@@ -196,27 +203,29 @@ SCRIPT;
                     break;
             }
             $content .= '<p><div class="label">' . $result['title'] . '</div>'
-                      . '<div class="text"><span class="' . $style . '">'
-                      . $value . '</span>';
+                . '<div class="text"><span class="' . $style . '">'
+                . $value . '</span>';
 
             if (!empty($result['message'])) {
                 $content .= '<span class="message">' . $result['message']
-                          . '</span>';
+                    . '</span>';
             }
             $content .= '</div></p>';
         }
 
-        $content .= '</div>';
+        $content       .= '</div>';
         $this->content .= $content;
 
         $this->footContent .= '<script>' . PHP_EOL . '$(function() {';
         if ($this->status < 0) {
-            $this->footContent .= '
+            $this->footContent
+                .= '
                 $("#advanced-form").slideToggle();
                 $("#advanced-label span.toggle-span").toggle();
                 ';
         }
-        $this->footContent .= '
+        $this->footContent
+            .= '
             $("#advanced-label").click(function() {
                 $("#advanced-form").slideToggle();
                     $("#advanced-label span").toggle();
@@ -227,7 +236,7 @@ SCRIPT;
 
     protected function verifyRequirement()
     {
-        $this->result['system'] = $this->checkSystem();
+        $this->result['system']    = $this->checkSystem();
         $this->result['extension'] = $this->checkExtension();
         foreach ($this->result['system'] as $item => $result) {
             $this->status = min($this->status, $result['status']);
@@ -248,18 +257,18 @@ SCRIPT;
     protected function checkExtension($item = null)
     {
         if (empty($item)) {
-            $result = array();
+            $result = [];
             foreach ($this->wizard->getConfig('extension') as $key => $item) {
-                $res = $this->checkExtension($key);
-                $res['title'] = $item['title'];
+                $res            = $this->checkExtension($key);
+                $res['title']   = $item['title'];
                 $res['message'] = $res['status'] ? '' : $item['message'];
-                $result[$key] = $res;
+                $result[$key]   = $res;
             }
 
             return $result;
         }
 
-        $value = '';
+        $value  = '';
         $status = extension_loaded($item) ? 1 : 0;
         switch ($item) {
             case 'apc':
@@ -280,10 +289,10 @@ SCRIPT;
                 break;
         }
 
-        $result = array(
-            'status'    => $status,
-            'value'     => $value,
-        );
+        $result = [
+            'status' => $status,
+            'value'  => $value,
+        ];
 
         return $result;
     }
@@ -291,21 +300,21 @@ SCRIPT;
     protected function checkSystem($item = null)
     {
         if (empty($item)) {
-            $result = array();
+            $result = [];
             foreach ($this->wizard->getConfig('system') as $item => $title) {
-                $res = $this->checkSystem($item);
-                $res['title'] = $title;
+                $res           = $this->checkSystem($item);
+                $res['title']  = $title;
                 $result[$item] = $res;
             }
 
             return $result;
         }
 
-        $result = array(
-            'status'    => 0,
-            'value'     => _s('Unknown'),
-            'message'   => '',
-        );
+        $result = [
+            'status'  => 0,
+            'value'   => _s('Unknown'),
+            'message' => '',
+        ];
         $method = 'checkSystem' . ucfirst($item);
         if (!method_exists($this, $method)) {
             return $result;
@@ -316,15 +325,19 @@ SCRIPT;
 
     protected function checkSystemServer()
     {
-        $status = 1;
+        $status  = 1;
         $message = '';
-        $value = $_SERVER["SERVER_SOFTWARE"];
+        $value   = $_SERVER["SERVER_SOFTWARE"];
         if (stristr($_SERVER["SERVER_SOFTWARE"], 'nginx')) {
-            $status = 1;
-            $message = _s('Make sure that configurations have been set up correctly for nginx. Refer to <a href="http://nginx.net" title="nginx" target="_blank">nginx</a> and <a href="http://dev.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine Dev</a> for instructions.');
+            $status  = 1;
+            $message = _s(
+                'Make sure that configurations have been set up correctly for nginx. Refer to <a href="http://nginx.net" title="nginx" target="_blank">nginx</a> and <a href="http://dev.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine Dev</a> for instructions.'
+            );
         } elseif (stristr($_SERVER['SERVER_SOFTWARE'], 'LiteSpeed')) {
-            $status = 1;
-            $message = _s('LiteSpeed webserver is not have offical support on Pi Engine, you can use it by your risk or use <a href="http://nginx.net" title="nginx" target="_blank">nginx</a> or <a href="http://www.php.net/manual/en/book.apache.php" target="_blank" title="Apache">Apache</a>.');
+            $status  = 1;
+            $message = _s(
+                'LiteSpeed webserver is not have offical support on Pi Engine, you can use it by your risk or use <a href="http://nginx.net" title="nginx" target="_blank">nginx</a> or <a href="http://www.php.net/manual/en/book.apache.php" target="_blank" title="Apache">Apache</a>.'
+            );
         } elseif (stristr($_SERVER['SERVER_SOFTWARE'], 'apache')) {
             // A debug was discovered by voltan that
             // apache_get_modules could be not available
@@ -347,74 +360,80 @@ SCRIPT;
                 }
             }
             if ($status == 0) {
-                $message = _s('Apache "mod_rewrite" module is required, however it is not detected. Check <a href="http://httpd.apache.org/docs/current/mod/mod_rewrite.html" title="mod_rewrite" target="_blank">mod_rewrite</a> for details.');
+                $message = _s(
+                    'Apache "mod_rewrite" module is required, however it is not detected. Check <a href="http://httpd.apache.org/docs/current/mod/mod_rewrite.html" title="mod_rewrite" target="_blank">mod_rewrite</a> for details.'
+                );
             }
         } else {
-            $status = -1;
-            $message = _s('The webserver is currently not supported, please use <a href="http://nginx.net" title="nginx" target="_blank">nginx</a> or <a href="http://www.php.net/manual/en/book.apache.php" target="_blank" title="Apache">Apache</a>.');
+            $status  = -1;
+            $message = _s(
+                'The webserver is currently not supported, please use <a href="http://nginx.net" title="nginx" target="_blank">nginx</a> or <a href="http://www.php.net/manual/en/book.apache.php" target="_blank" title="Apache">Apache</a>.'
+            );
         }
 
-        $result = array(
-            'status'    => $status,
-            'value'     => $value,
-            'message'   => $message,
-        );
+        $result = [
+            'status'  => $status,
+            'value'   => $value,
+            'message' => $message,
+        ];
 
         return $result;
     }
 
     protected function checkSystemPhp()
     {
-        $status = 1;
-        $value = PHP_VERSION;
+        $status  = 1;
+        $value   = PHP_VERSION;
         $message = '';
         if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50400) {
-            $status = -1;
+            $status  = -1;
             $message = _s('Version 5.4.0 or higher is required.');
         }
 
-        $result = array(
-            'status'    => $status,
-            'value'     => $value,
-            'message'   => $message,
-        );
+        $result = [
+            'status'  => $status,
+            'value'   => $value,
+            'message' => $message,
+        ];
 
         return $result;
     }
 
     protected function checkSystemPdo()
     {
-        $status = 1;
+        $status  = 1;
         $message = '';
         if (!extension_loaded('pdo')) {
             $status = 0;
         }
         $drivers = \PDO::getAvailableDrivers();
-        $value = implode(', ', $drivers);
+        $value   = implode(', ', $drivers);
         if (empty($drivers) || !in_array('mysql', $drivers)) {
             $status = 0;
         }
         if (!$status) {
-            $message = _s('PHP Data Objects (PDO) extension with MySQL driver is required for regular Pi Engine instances, check <a href="http://www.php.net/manual/en/book.pdo.php" title="PDO" target="_blank">PDO manual</a> for details.');
+            $message = _s(
+                'PHP Data Objects (PDO) extension with MySQL driver is required for regular Pi Engine instances, check <a href="http://www.php.net/manual/en/book.pdo.php" title="PDO" target="_blank">PDO manual</a> for details.'
+            );
         }
 
-        $result = array(
-            'status'    => $status,
-            'value'     => $value,
-            'message'   => $message,
-        );
+        $result = [
+            'status'  => $status,
+            'value'   => $value,
+            'message' => $message,
+        ];
 
         return $result;
     }
 
     protected function checkSystemPersist()
     {
-        $status = 1;
-        $value = '';
-        $message = '';
-        $items = array();
-        $persistList = array('apc', 'redis', 'memcached', 'memcache');
-        foreach($persistList as $item) {
+        $status      = 1;
+        $value       = '';
+        $message     = '';
+        $items       = [];
+        $persistList = ['apc', 'redis', 'memcached', 'memcache'];
+        foreach ($persistList as $item) {
             if (extension_loaded($item)) {
                 $items[] = $item;
             }
@@ -422,18 +441,20 @@ SCRIPT;
         if (!empty($items)) {
             $value = implode(', ', $items);
         } else {
-            $status = 0;
+            $status  = 0;
             $message = sprintf(
-                _s('There is no recommended persist engine available. One of the following extensions is recommended: %s'),
+                _s(
+                    'There is no recommended persist engine available. One of the following extensions is recommended: %s'
+                ),
                 implode(', ', $persistList)
             );
         }
 
-        $result = array(
-            'status'    => $status,
-            'value'     => $value,
-            'message'   => $message,
-        );
+        $result = [
+            'status'  => $status,
+            'value'   => $value,
+            'message' => $message,
+        ];
 
         return $result;
     }

@@ -16,7 +16,7 @@ $this->jQuery();
     <div class="<?php echo !empty($navs) ? 'col-md-10' : 'col-md-12'; ?>">
         <div class="pi-article-module">
             <div class="clearfix pi-block-header">
-                <span class="pi-block-title pull-left"><?php echo $this->escape($categoryInfo['title']); ?></span>
+                <span class="pi-block-title float-left"><?php echo $this->escape($categoryInfo['title']); ?></span>
                 <span class="text-muted col-md-2" style="margin-top: 5px">
                     (<?php echo array_sum($counts) . __(' articles'); ?>)
                 </span>
@@ -52,7 +52,7 @@ $this->jQuery();
                             <?php
                             if (in_array('feature', $elements)) {
                                 ?>
-                                <div class="pull-left" style="margin-right: 10px;">
+                                <div class="float-left" style="margin-right: 10px;">
                                     <img src="<?php echo Pi::url($article['image']); ?>" style="width: 100px">
                                 </div>
                                 <?php
@@ -63,7 +63,7 @@ $this->jQuery();
                                     <?php
                                     if (in_array('time', $elements)) {
                                         ?>
-                                        <span class="pull-right article-list-desc">
+                                        <span class="float-right article-list-desc">
                                         <?php echo _date($article['time_publish']); ?>
                                     </span>
                                         <?php

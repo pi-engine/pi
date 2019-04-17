@@ -9,38 +9,38 @@
     <div class="alert alert-success clearfix" role="alert">
         <?php _e('You can use this page tools for check some database integrity'); ?>
         <a href="<?php echo $this->url('', ['action' => 'index']); ?>"
-           class="btn btn-success btn-sm text-right pull-right">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+           class="btn btn-success btn-sm text-right float-right">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i>
             <?php echo _a('Back'); ?>
         </a>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card bg-light mb-3">
+                <div class="card-header">
                     <?php echo _a('Results for tables'); ?>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     <pre><?php print_r($tablesError) ?></pre>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card bg-light mb-3">
+                <div class="card-header">
                     <?php echo _a('Results for columns'); ?>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     <pre><?php print_r($columnsError) ?></pre>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card bg-light mb-3">
+                <div class="card-header">
                     <?php echo _a('Results for InnoDB check'); ?>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     <ul>
                         <?php foreach($innodbError as $tableName => $tableType) : ?>
                             <li><?php echo $tableName ?> (<?php echo $tableType ?>) => <a href="<?php echo $this->url('', ['action' => 'migrate']); ?>?table=<?php echo $tableName ?>">InnoDB</a></li>

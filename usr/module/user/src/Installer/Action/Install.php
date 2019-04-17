@@ -128,6 +128,10 @@ class Install extends BasicAction
      */
     public function setupProfile(Event $e)
     {
+        echo '<pre>';
+        print_r(['setupProfile']);
+        echo '</pre>';
+
         $result     = null;
         $modelGroup = Pi::model('display_group', 'user');
         $modelField = Pi::model('display_field', 'user');
@@ -200,6 +204,10 @@ class Install extends BasicAction
         $config['adapter'] = 'local';
         Pi::config()->write('service.user.php', $config, true);
         Pi::service('user')->reload($config);
+
+        echo '<pre>';
+        print_r(['updateConfig']);
+        echo '</pre>';
 
         return true;
     }

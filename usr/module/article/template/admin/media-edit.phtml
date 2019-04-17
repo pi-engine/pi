@@ -50,7 +50,7 @@ $error = $this->formElementErrors(
                 <div class="alert alert-warning col-md-4"><?php echo _a('No item!'); ?></div>
             <?php } ?>
         </div>
-        <span class="btn btn-default upload fileinput-button">
+        <span class="btn btn-secondary upload fileinput-button">
             <span><?php echo _a('Upload'); ?></span>
             <input type="file" name="upload">
         </span>
@@ -64,7 +64,7 @@ $error = $this->formElementErrors(
                     ? 'id/' . $form->get('id')->getValue()
                     : 'fake_id/' . $form->get('fake_id')->getValue(); ?>";
             },
-            form: $("form.form-horizontal"),
+            form: $("form"),
             $: function (selector) {
                 return this.form.find(selector);
             }
@@ -83,7 +83,6 @@ $error = $this->formElementErrors(
             initialize: function () {
                 page.$("[name=placeholder]")
                     .parents(".form-group:first")
-                    .find(".js-form-element")
                     .html($("#temp-upload").html());
                 this.$el = $("#jsUpload");
                 this.input = this.$("[name=upload]");

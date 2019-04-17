@@ -8,7 +8,7 @@
             $eachCount = isset($count[$row['id']]) ? $count[$row['id']] : 0;
             ?>
             <div class="media">
-                <img class="pull-left" src="<?php echo Pi::url($row['image']); ?>">
+                <img class="float-left" src="<?php echo Pi::url($row['image']); ?>">
                 <div class="media-body">
                     <div class="col-md-10">
                         <a target="_blank" href="<?php echo $this->escape($row['url']); ?>"
@@ -28,7 +28,7 @@
                             <p><?php echo $this->escape($row['description']); ?></p>
                         </div>
                     </div>
-                    <span class="pull-right col-md-2" style="text-align: right">
+                    <span class="float-right col-md-2" style="text-align: right">
                     <a href="<?php echo $this->url($route, ['topic' => $row['slug'] ?: $row['id'], 'list' => 'all']); ?>">
                         <?php echo $this->escape($eachCount) . __(' articles'); ?>
                     </a>

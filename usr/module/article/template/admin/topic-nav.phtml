@@ -1,11 +1,11 @@
-<ul class="nav nav-pills">
-    <li class="<?php if ('list-topic' == $action) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', ['action' => 'list-topic']); ?>">
+<ul class="nav nav-pills bg-light mb-3 p-3">
+    <li class="nav-item">
+        <a class="nav-link <?php if ('list-topic' == $action) echo 'active'; ?>" href="<?php echo $this->url('', ['action' => 'list-topic']); ?>">
             <?php echo _a('All Topics'); ?>
         </a>
     </li>
-    <li class="<?php if ('add' == $action) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', ['action' => 'add']); ?>">
+    <li class="nav-item">
+        <a class="nav-link <?php if ('add' == $action) echo 'active'; ?>" href="<?php echo $this->url('', ['action' => 'add']); ?>">
             <?php echo _a('Add Topic'); ?>
         </a>
     </li>

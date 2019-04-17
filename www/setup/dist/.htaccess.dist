@@ -13,8 +13,8 @@ RewriteEngine On
 # Redirect homepage to a specified address inside the site
 #RewriteRule ^$ /%REDIRECT_URL% [R,L]
 
-# If is regular file, with size, OR
-RewriteCond %{REQUEST_FILENAME} -s [OR]
+# If is regular file, OR
+RewriteCond %{REQUEST_FILENAME} -f [OR]
 # Is symbolic link, OR
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 # Is directory, OR

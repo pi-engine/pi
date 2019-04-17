@@ -256,22 +256,22 @@ return [
     ),
     */
 
-    'flush' => [
-        'label'      => _t('Cache flush'),
-        'route'      => 'admin',
-        'module'     => 'system',
-        'controller' => 'flush',
-        'permission' => [
-            'resource' => 'maintenance',
-        ],
-    ],
-
     'asset' => [
         'label'      => _t('Asset publish'),
         'route'      => 'admin',
         'module'     => 'system',
         'controller' => 'asset',
         'action'     => 'index',
+        'permission' => [
+            'resource' => 'maintenance',
+        ],
+    ],
+
+    'flush' => [
+        'label'      => _t('Cache flush'),
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'flush',
         'permission' => [
             'resource' => 'maintenance',
         ],

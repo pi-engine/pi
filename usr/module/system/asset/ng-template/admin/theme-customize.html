@@ -12,7 +12,7 @@
             <div class="col-sm-4" ng-repeat="variable in subsection.variables">
                 <label>{{variable.name}}</label>
                 <input type="text" data-ng-model="variable.defaultValue" class="form-control">
-                <div class="help-block" ng-bind-html="variable.docstring.html"></div>
+                <div class="form-text" ng-bind-html="variable.docstring.html"></div>
             </div>
         </div>
     </div>

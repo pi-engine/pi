@@ -1,11 +1,11 @@
 <ul class="nav nav-tabs">
-    <li>
-        <a href="<?php echo $this->url('', ['controller' => 'form', 'action' => 'register']); ?>">
+    <li class="nav-item">
+        <a class="nav-link" href="<?php echo $this->url('', ['controller' => 'form', 'action' => 'register']); ?>">
             <?php echo _a('Register form'); ?>
         </a>
     </li>
-    <li class="active">
-        <a href="<?php echo $this->url('', ['controller' => 'form', 'action' => 'profile.complete']); ?>">
+    <li class="nav-item">
+        <a class="nav-link active" href="<?php echo $this->url('', ['controller' => 'form', 'action' => 'profile.complete']); ?>">
             <?php echo _a('Profile complete form'); ?>
         </a>
     </li>

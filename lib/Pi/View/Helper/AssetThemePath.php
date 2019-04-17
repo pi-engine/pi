@@ -40,14 +40,16 @@ class AssetThemePath extends AbstractHelper
     public function __invoke(
         $file,
         $theme = '',
-        $appendVersion = null
+        $appendVersion = null,
+        $searchParent = false
     ) {
         //$type = $isPublic ? 'public' : 'asset';
 
         $result = Pi::service('asset')->getThemeAssetPath(
             $file,
             $theme,
-            $appendVersion
+            $appendVersion,
+            $searchParent
         );
 
         return $result;

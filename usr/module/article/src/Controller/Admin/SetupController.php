@@ -102,7 +102,6 @@ class SetupController extends ActionController
         $form   = new DraftCustomForm('custom', $params);
         $form->setAttributes([
             'action' => $this->url('', ['action' => 'form']),
-            'class'  => 'form-horizontal',
         ]);
         $options = self::getFormConfig();
         $data    = [];

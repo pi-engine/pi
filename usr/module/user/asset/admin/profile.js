@@ -132,7 +132,7 @@
             var isSaved = 1;
 
             $scope.displaysOpts = {
-                handle: '.panel-heading'
+                handle: '.card-heading'
             };
 
             $scope.$watch('displays', function (newValue, oldValue) {

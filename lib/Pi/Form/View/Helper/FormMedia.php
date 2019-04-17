@@ -41,14 +41,14 @@ class FormMedia extends FormElement
         };
         $renderPattern
                       = <<<EOT
-<div class="form-group%error_class% has-feedback" data-name="%element_name%">
+<div class="form-group" data-name="%element_name%">
     %label_html%
     %element_html%
 </div>
 EOT;
         $labelPattern
                       = <<<EOT
-<label class="%label_size% control-label">
+<label class="%label_size% col-form-label">
     %mark_required%%label_content%
 </label>
 EOT;
@@ -60,19 +60,19 @@ EOT;
 
         $elementPattern
             = <<<EOT
-<div class="%element_size% js-form-element">
+<div class="%element_size%">
     %element_content%
     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
     %desc_html%
 </div>
 
-<div class="%error_size% help-block with-errors">%error_content%</div>
+<div class="%error_size% form-text invalid-feedback">%error_content%</div>
 EOT;
 
         $vars['element_name']    = $element->getName();
         $vars['element_content'] = $this->view->formElement($element);
         $vars['error_content']   = $this->view->formElementErrors($element);
-        $vars['error_class']     = $element->getMessages() ? ' has-error' : '';
+        $vars['error_class']     = $element->getMessages() ? '' : '';
         $vars['desc_content']    = $element->getAttribute('description') . ($element->getAttribute('required') && !$element->getLabel() ? $markRequired : '');
         $vars['desc_html']       = $parsePattern($descPattern, $vars);
         $vars['label_content']   = $element->getLabel();

@@ -3,9 +3,7 @@ html {
     position: relative;
 }
 
-body {
-    padding-top: 50px;
-}
+body {}
 
 a {
     cursor: pointer;
@@ -185,10 +183,14 @@ form .icon-question-sign {
     width: 214px;
 }
 
+.navbar-brand {
+    width: 196px;
+}
+
 /* Util */
 
 /* navbar custom */
-.navbar {
+/* .navbar {
     background: #0082bf;
     border-radius: 0;
     padding-right: 20px;
@@ -253,12 +255,12 @@ form .icon-question-sign {
 /* Sidebar */
 .pi-sidebar {
     position: absolute;
-    top: 51px;
+    top: 64px;
     left: 0;
     bottom: 0;
     height: 100%;
     overflow-y: auto;
-    width: 190px;
+    width: 200px;
     background: #f2f2f2;
     border-right: 1px solid #ddd;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
@@ -298,6 +300,7 @@ form .icon-question-sign {
 }
 
 .pi-modules-nav > .category {
+    padding-left:18px;
     background-color: #ddd;
 }
 
@@ -365,7 +368,7 @@ form .icon-question-sign {
 .pi-content {
     overflow: hidden;
     padding: 20px 20px 0 0;
-    margin-left: 210px;
+    margin-left: 220px;
 }
 
 .page-header {
@@ -390,7 +393,7 @@ form .icon-question-sign {
     padding: 15px 20px;
     position: absolute;
     bottom: 0;
-    left: 210px;
+    left: 280px;
     right: 20px;
 }
 
@@ -553,7 +556,7 @@ form .icon-question-sign {
 }
 
 /* Boostrap custom */
-.panel-body > :last-child {
+.card-body > :last-child {
     margin-bottom: 0;
 }
 
@@ -566,7 +569,7 @@ form .icon-question-sign {
     margin-bottom: 20px;
 }
 
-.help-block {
+.form-text {
     margin-bottom: 9px;
 }
 
@@ -597,3 +600,118 @@ form .icon-question-sign {
 .userbar-avatar-item a {
     padding: 12px 15px 10px 5px !important;
 }
+
+.navbar-go-front,
+.pi-admin .usertopbar .nav-link{
+    color:white;
+}
+
+.navbar-go-front .nav-link{
+    padding: 0.6rem 1rem 0.9em;
+    color:white!important;
+}
+
+/* BS4 OVERRIDE */
+body{
+    font-size:14px;
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.thumbnail {
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+}
+
+.thumbnail .caption {
+    padding: 9px;
+    color: #333;
+}
+
+.page-header{
+    padding-bottom:9px;
+    margin:40px 0 20px;
+    border-bottom:1px solid #eee;
+}
+
+.list-inline{
+    /*margin-bottom:0;*/
+}
+
+.list-inline>li {
+    display: inline-block;
+    /*padding-right: 5px;*/
+    /*padding-left: 5px;*/
+
+}
+
+label {
+    font-weight: 700;
+}
+
+.sticky-top-0{
+    top:0;
+}
+
+.list-group{
+    margin-bottom:10px;
+}
+
+.btn:focus, .btn.focus {
+    box-shadow: none;
+}
+
+.card-title {
+    font-size: 16px;
+}
+
+ol, ul{
+    margin-bottom: 10px;
+}
+
+.invalid-feedback{
+    font-size:inherit;
+}
+
+.navbar-toggler{
+    border:0;
+}
+
+button:focus,
+button:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.dropdown-item {
+    color: #575e65;
+    padding: 0.25rem 1rem;
+}
+
+.list-group-item.active {
+    background-color: #03A9F4;
+    border-color: #03A9F4;
+}
+
+.datepicker.datepicker-dropdown.dropdown-menu {background:#eee}
+.badge-warning {color:#fff; background:#f0ad4e}
+.dropdown-menu a {color:#525152}
+.row.form-group > .col-form-label {text-align:right}
+.white-space-nowrap {white-space:nowrap}
+legend {border-bottom:1px solid #ddd}
+.form-check {margin-top:6px}
+.form-check .form-text.text-muted {min-height:12px}
+
+/* END BS4 OVERRIDE */
+

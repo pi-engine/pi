@@ -144,19 +144,19 @@ class AccountController extends ActionController
                 if ($values['newsletter'] != $data['newsletter'] && Pi::service('module')->isActive('subscription')) {
 
                     if ($people == null) {
-                        $values               = [];
                         $values['campaign']   = 0;
                         $values['uid']        = $uid;
                         $values['status']     = 1;
                         $values['time_join']  = time();
-                        $values['newsletter'] = 0;
+                        $values['time_update'] = time();
                         $values['email']      = $data['email'];
                         $values['mobile']     = null;
                         Pi::api('people', 'subscription')->createPeople($values);
+                    } else {
+                        Pi::api('people', 'subscription')->update(array('newsletter' => $values['newsletter']), $uid);
                     }
-                    Pi::api('people', 'subscription')->update(array('newsletter' => $values['newsletter']), $uid);
                     $result['newsletter_value']   = $values['newsletter'];
-                    $result['newsletter_message'] = __('Newsletter has been changed successfully.');
+                    $result['newsletter_message'] = __('Newsletter setting has been changed successfully.');
                     $result['newsletter_time_update'] = time();
 
                     $log = [

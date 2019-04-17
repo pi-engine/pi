@@ -23,7 +23,7 @@ return [
         // Demo site link, optional
         'demo'        => 'http://demo.piengine.org/demo',
 
-        'icon' => 'fa-file-text-o',
+        'icon' => ' far fa-file-alt',
 
         'clonable' => true,
     ],

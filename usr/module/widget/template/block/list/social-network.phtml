@@ -6,7 +6,7 @@ $target  = $options['target_new'] ? '_self' : '_blank';
 <div class="widget-list widget-list-social-network">
     <ul class="list-inline">
         <?php foreach ($items as $item) { ?>
-            <li>
+            <li class="list-inline-item">
                 <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>"
                    target="<?php echo $target; ?>">
                     <?php if (!empty($item['icon'])) { ?>

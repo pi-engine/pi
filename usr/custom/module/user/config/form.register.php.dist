@@ -17,7 +17,7 @@ $termUrl = Pi::user()->config('register_term_url');
 if ($termEnable && !empty($termUrl)) {
     $termEnable = true;
     $term = sprintf('<a href="%s" target="_blank">%s</a>', $termUrl, __('Terms & Conditions'));
-    $term = sprintf(__("Accept %s"), $term);
+    $term = sprintf(__("Accept the %s"), $term);
 } else {
     $termEnable = false;
     $term = '';

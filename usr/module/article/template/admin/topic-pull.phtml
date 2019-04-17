@@ -28,7 +28,7 @@ $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
                 </strong>
             </div>
             <div class="clearfix">
-                <div class="pull-left form-inline">
+                <div class="float-left form-inline">
                     <div class="form-group">
                         <a class="btn btn-primary" id="article-pull"
                            data-content="<?php echo $this->url('', ['action' => 'pull-article', 'topic' => $topic['id'], 'id' => 'placeholder']); ?>">
@@ -52,7 +52,7 @@ $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
                 $form->setAttributes([
                     'action' => $this->url('', ['action' => 'pull', 'topic' => $topic['id']]),
                     'method' => 'get',
-                    'class'  => 'navbar-form navbar-right',
+                    'class'  => 'form-inline navbar-right',
                     'style'  => 'margin: 0; padding-right: 0',
                 ]);
                 echo $this->form()->openTag($form);

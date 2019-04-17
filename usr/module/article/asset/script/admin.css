@@ -154,15 +154,6 @@ div .well {
     top: 10px;
 }
 
-.form-horizontal .upload-image-bg {
-    float: left;
-}
-
-.form-horizontal .upload {
-    float: left;
-    margin-left: 20px;
-}
-
 .upload-image-bg i {
     display: block;
     margin-top: 10px;

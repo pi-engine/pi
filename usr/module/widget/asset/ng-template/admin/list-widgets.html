@@ -1,21 +1,21 @@
 <div class="row">
     <div ng-repeat="item in widgets" class="col-sm-6 col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">{{item.block.title}}</div>
-            <div class="panel-body">
+        <div class="card bg-light mb-3">
+            <div class="card-heading">{{item.block.title}}</div>
+            <div class="card-text">
                 <p class="widget-desc">{{item.block.description}}</p>
                 <ul class="list-inline">
-                    <li>
+                    <li class="list-inline-item">
                         <a data-ng-if="item.editUrl" ng-href="{{item.editUrl}}">
                             {{'EDIT' | translate}}
                         </a>
                     </li>
-                    <li>
+                    <li class="list-inline-item">
                         <a data-ng-if="item.editConfigUrl" ng-href="{{item.editConfigUrl}}" target="_blank">
                             {{'EDITCONFIG' | translate}}
                         </a>
                     </li>
-                    <li>
+                    <li class="list-inline-item">
                         <a data-ng-if="item.deleteUrl" ng-href="{{item.deleteUrl}}">
                             {{'DELETE' | translate}}
                         </a>

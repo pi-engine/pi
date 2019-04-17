@@ -26,13 +26,13 @@ $this->Backbone();
 echo $this->form($form);
 ?>
 <div class="form-group" id="widget-items">
-    <label class="col-md-2 control-label"><?php echo _a('Items'); ?></label>
+    <label class="col-md-2 col-form-label"><?php echo _a('Items'); ?></label>
     <div class="col-md-10">
         <div class="row">
             <div class="col-sm-6 col-md-3 widget-item-add">
                 <div class="thumbnail widget-item-add-mark"
                      title="<?php echo _a('Click to upload image then add item contents.'); ?>">
-                    <i class="fa fa-plus fa-3x text-muted widget-file-button">
+                    <i class="fas fa-plus fa-3x text-muted widget-file-button">
                         <input type="file" name="image" multiple style="width: 100%;" class="hide">
                     </i>
                 </div>
@@ -42,8 +42,8 @@ echo $this->form($form);
 </div>
 
 <script id="widget-item-template" type="text/template">
-    <div class="col-sm-6 col-md-3 widget-item">
-        <div class="thumbnail">
+    <div class="col-md-3 widget-item">
+        <div class="card bg-light mb-3">
             <button type="button" class="close" title="<?php echo _a('Click to remove'); ?>">&times;</button>
             <a href="<%= image %>" class="image-popup">
                 <img src="<%= image %>">

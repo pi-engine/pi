@@ -77,30 +77,29 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
         ?>
         <?php if ($owner) { ?>
             <?php if ($module == 'user') { ?>
-                <a class="btn btn-default"
+                <a class="btn btn-secondary"
                    href="<?php echo $this->url('user', ['controller' => 'profile', 'action' => 'view', 'uid' => $uid]); ?>">
-                    <i class="fa fa-eye"></i>
+                    <i class="far fa-eye"></i>
                     <?php _e('View my profile'); ?>
                 </a>
             <?php } ?>
             <?php if ($showSetting) { ?>
-                <a class="btn btn-default"
+                <a class="btn btn-secondary"
                    href="<?php echo $this->url('user', ['controller' => 'account', 'action' => 'index']); ?>">
-                    <i class="fa fa-cog"></i>
+                    <i class="fas fa-cog"></i>
                     <?php _e('Settings'); ?>
                 </a>
             <?php } ?>
             <?php if ($quicklink) { ?>
                 <div class="dropdown inline">
-                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-magic"></i>
+                    <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                        <i class="fas fa-magic"></i>
                         <?php _e('Quicklinks'); ?>
-                        <span class="caret"></span>
+
                     </button>
-                    <ul class="dropdown-menu">
+                    <div class="dropdown-menu">
                         <?php foreach ($quicklink as $item) { ?>
-                            <li>
-                                <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>"
+                                <a class="dropdown-item" href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>"
                                    target="_blank">
                                     <?php
                                     if ($item['icon']) {
@@ -109,48 +108,47 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                                     ?>
                                     <?php echo $item['title']; ?>
                                 </a>
-                            </li>
                         <?php } ?>
-                    </ul>
+                    </div>
                 </div>
             <?php } ?>
         <?php } else { ?>
             <?php if (Pi::user()->getId() == $uid && $module == 'user') { ?>
-                <a class="btn btn-default"
+                <a class="btn btn-secondary"
                    href="<?php echo $this->url('user', ['controller' => 'profile', 'action' => 'index']); ?>">
-                    <i class="fa fa-edit"></i>
+                    <i class="fas fa-edit"></i>
                     <?php _e('Manage my profile'); ?>
                 </a>
             <?php } ?>
             <?php if (Pi::user()->getId() != $uid && Pi::service('module')->isActive('message')) { ?>
 
                 <?php if (!Pi::user()->getId()) { ?>
-                    <button class="btn btn-default"
+                    <button class="btn btn-secondary"
                             data-redirect="<?php echo $this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid]); ?>"
                             href="<?php echo (Pi::user()->config('enable_modal')) ? '#' : $this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid]); ?>"
                             <?php if (Pi::user()->config('enable_modal')) : ?>data-action="login" data-toggle="modal"
                             data-target="#loginRegisterModal"<?php endif; ?>
                     >
-                        <i class="fa fa-envelope"></i>
+                        <i class="fas fa-envelope"></i>
                         <?php _e('Send message'); ?>
                     </button>
                 <?php } else { ?>
-                    <a class="btn btn-default"
+                    <a class="btn btn-secondary"
                        href="<?php echo $this->url('default', ['module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid]); ?>">
-                        <i class="fa fa-envelope"></i>
+                        <i class="fas fa-envelope"></i>
                         <?php _e('Send message'); ?>
                     </a>
                 <?php } ?>
             <?php } else { ?>
-                <a class="btn btn-default disabled">
-                    <i class="fa fa-envelope"></i>
+                <a class="btn btn-secondary disabled">
+                    <i class="fas fa-envelope"></i>
                     <?php _e('Send message'); ?>
                 </a>
             <?php } ?>
         <?php } ?>
     </div>
     <div class="inline user-info-left">
-        <div class="pull-left <?php if (!$owner) { ?>border-radius<?php } ?>">
+        <div class="float-left <?php if (!$owner) { ?>border-radius<?php } ?>">
             <?php echo Pi::avatar()->get($uid, 'xlarge', _escape($user['name'])); ?>
         </div>
         <?php if ($owner) { ?>
@@ -227,8 +225,8 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
             }
             $item = $list[$i];
             ?>
-            <li class="<?php echo $i == $index ? 'active' : ''; ?>">
-                <a href="<?php echo $item['url']; ?>">
+            <li class="<?php echo $i == $index ? 'active' : ''; ?> nav-item">
+                <a class="nav-link" href="<?php echo $item['url']; ?>">
                     <?php
                     if ($item['icon']) {
                         echo '<i class="fa ' . $item['icon'] . '"></i> ';
@@ -246,13 +244,12 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
             <li class="dropdown">
                 <a data-toggle="dropdown" href="#">
                     <?php _e('More'); ?>
-                    <span class="caret"></span>
+
                 </a>
-                <ul class="dropdown-menu">
+                <div class="dropdown-menu">
                     <?php for ($i = $maxItem; $i < $length; $i++) {
                         $item = $list[$i]; ?>
-                        <li>
-                            <a href="<?php echo $item['url']; ?>">
+                            <a class="dropdown-item" href="<?php echo $item['url']; ?>">
                                 <?php
                                 if ($item['icon']) {
                                     echo '<i class="fa ' . $item['icon'] . '"></i> ';
@@ -260,9 +257,8 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                                 echo _escape($item['title']);
                                 ?>
                             </a>
-                        </li>
                     <?php } ?>
-                </ul>
+                </div>
             </li>
         <?php } ?>
     </ul>

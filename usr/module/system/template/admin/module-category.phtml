@@ -2,13 +2,11 @@
 $this->css($this->assetModule('admin/admin.css'));
 ?>
 <?php echo $this->tab($tabs); ?>
-
-<?php
-if ('_all' == $id) {
+<?php if ('_all' == $id) {
     foreach ($categories as $key => $category) {
         ?>
-        <div class="panel panel-default">
-            <div class="panel-heading"><?php echo _escape($category['title']); ?></div>
+        <div class="card bg-light mb-3">
+            <div class="card-header"><?php echo _escape($category['title']); ?></div>
             <ul class="list-group">
                 <?php foreach ($category['modules'] as $item) { ?>
                     <li class="list-group-item">
@@ -19,8 +17,7 @@ if ('_all' == $id) {
         </div>
         <?php
     }
-} elseif ('_none' == $id) {
-    ?>
+} elseif ('_none' == $id) { ?>
     <script>
         var move = function (module, category) {
             var url = "<?php echo $this->url('', ['action' => 'category', 'op' => 'move', 'm' => '__module__', 'id' => '__category__']); ?>";
@@ -33,7 +30,7 @@ if ('_all' == $id) {
             <li class="list-group-item">
                 <p>
                     <span><?php echo _escape($item['title']); ?></span>
-                    <span class="pull-right">
+                    <span class="float-right">
                     <select class="form-control"
                             onchange="move('<?php echo $item['name']; ?>', this.options[this.selectedIndex].value);">
                         <option value=""><?php echo _a('Assign to:'); ?></option>
@@ -51,13 +48,12 @@ if ('_all' == $id) {
     echo $this->form($form);
 } else {
     ?>
-
-    <p class="btn-group pull-right">
-        <a class="btn btn-default"
+    <p class="btn-group">
+        <a class="btn btn-primary"
            href="<?php echo $this->url('', ['action' => 'category', 'op' => 'edit', 'id' => $id]); ?>">
             <?php echo _a('Edit this category'); ?>
         </a>
-        <a class="btn btn-default"
+        <a class="btn btn-primary"
            href="<?php echo $this->url('', ['action' => 'category', 'op' => 'delete', 'id' => $id]); ?>">
             <?php echo _a('Delete this category'); ?>
         </a>
@@ -73,12 +69,12 @@ if ('_all' == $id) {
                     ?>
                     <li class="list-group-item">
                         <?php echo _escape($item['title']); ?>
-                        <a class="btn btn-default btn-xs"
+                        <a class="btn btn-secondary btn-sm"
                            href="<?php echo $this->url('', ['action' => 'category', 'op' => 'move', 'm' => $item['name'], 'from' => $id]); ?>"
                            title="<?php echo _a('Remove'); ?>">
                             &times;
                         </a>
-                        <div class="pull-right col-lg-2">
+                        <div class="float-right col-lg-2">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon"><?php echo _a('Order'); ?></span>
                                 <input type="text" class="form-control" name="sort[<?php echo $item['name']; ?>]"
@@ -91,7 +87,7 @@ if ('_all' == $id) {
 
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <input type="hidden" name="op" value="sort">
-            <div class="btn-group pull-right">
+            <div class="btn-group float-right">
                 <input
                         type="submit"
                         class="btn btn-primary"
@@ -100,7 +96,4 @@ if ('_all' == $id) {
             </div>
         </form>
     <?php } ?>
-
-    <?php
-}
-?>
+<?php } ?>
