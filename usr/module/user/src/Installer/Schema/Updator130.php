@@ -122,8 +122,8 @@ CREATE TABLE %s (
   `id`         INT(11)      NOT NULL AUTO_INCREMENT,
   `version`    VARCHAR(255) NOT NULL,
   `filename`   VARCHAR(255) NOT NULL,
-  `created_at` TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `active_at`  TIMESTAMP    NOT NULL,
+  `created_at` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `active_at`  INT(10) UNSIGNED NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 );
 EOT;
