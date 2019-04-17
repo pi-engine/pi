@@ -30,7 +30,7 @@ $config['category'] = [
     ],
     [
         'name'  => 'geo_tag',
-        'title' => _t('Geo tags'),
+        'title' => _t('Geo tags and setting'),
     ],
     [
         'name'  => 'google',
@@ -129,27 +129,27 @@ $config['item'] = [
     ],
 
     'compile_css' => [
-        'title'       => _t('Compile CSS'),
-        'edit'        => 'checkbox',
-        'value'       => 0,
-        'filter'      => 'int',
-        'category'    => 'general',
+        'title'    => _t('Compile CSS'),
+        'edit'     => 'checkbox',
+        'value'    => 0,
+        'filter'   => 'int',
+        'category' => 'general',
     ],
 
     'compile_js' => [
-        'title'       => _t('Compile JS'),
-        'edit'        => 'checkbox',
-        'value'       => 0,
-        'filter'      => 'int',
-        'category'    => 'general',
+        'title'    => _t('Compile JS'),
+        'edit'     => 'checkbox',
+        'value'    => 0,
+        'filter'   => 'int',
+        'category' => 'general',
     ],
 
     'minify_html_output' => [
-        'title'       => _t('Minify HTML output'),
-        'edit'        => 'checkbox',
-        'value'       => 0,
-        'filter'      => 'int',
-        'category'    => 'general',
+        'title'    => _t('Minify HTML output'),
+        'edit'     => 'checkbox',
+        'value'    => 0,
+        'filter'   => 'int',
+        'category' => 'general',
     ],
 
     'theme' => [
@@ -480,7 +480,9 @@ $config['item'] = [
 
     'date_calendar' => [
         'title'       => _t('Default calendar for the locale'),
-        'description' => _t('"persian" is suggested for Persian language. See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes'),
+        'description' => _t(
+            '"persian" is suggested for Persian language. See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes'
+        ),
         'edit'        => 'text',
         'value'       => '',
         'category'    => 'intl',
@@ -564,7 +566,9 @@ $config['item'] = [
 
     'site_mail_footer' => [
         'title'       => _t('Mail footer'),
-        'description' => _t('Content to be displayed on email footer, HTML tags allowed. Usefull to diplay Android/iOS links, sign with Official Company Address/Name or logo,etc.'),
+        'description' => _t(
+            'Content to be displayed on email footer, HTML tags allowed. Usefull to diplay Android/iOS links, sign with Official Company Address/Name or logo,etc.'
+        ),
         'edit'        => 'textarea',
         'category'    => 'mail',
     ],
@@ -603,7 +607,8 @@ $config['item'] = [
     ],
 
     // Orphan configs, not displayed in preference edit page
-    'theme_module'   => [
+
+    'theme_module' => [
         'title'       => _t('Module themes'),
         'description' => _t('Themes for modules.'),
         'value'       => [],
@@ -650,7 +655,9 @@ $config['item'] = [
 
     'author' => [
         'title'       => '`author`',
-        'description' => _t('The author meta tag defines the name of the author of the document being read. Supported data formats include the name, email address of the webmaster, company name or URL.'),
+        'description' => _t(
+            'The author meta tag defines the name of the author of the document being read. Supported data formats include the name, email address of the webmaster, company name or URL.'
+        ),
         'edit'        => 'text',
         'value'       => 'Pi Engine',
         'category'    => 'head_meta_extra',
@@ -693,33 +700,53 @@ $config['item'] = [
         'category'    => 'head_meta_extra',
     ],
 
+    // Geo tags and setting
+
     'geo_latitude' => [
         'title'       => _t('Latitude'),
-        'description' => '',
+        'description' => _t('Global latitude on system'),
         'edit'        => 'text',
         'category'    => 'geo_tag',
     ],
 
     'geo_longitude' => [
         'title'       => _t('Longitude'),
-        'description' => '',
+        'description' => _t('Global longitude on system'),
         'edit'        => 'text',
         'category'    => 'geo_tag',
     ],
 
     'geo_placename' => [
         'title'       => _t('Placename'),
-        'description' => '',
+        'description' => _t('Global place name and map title on system'),
         'edit'        => 'text',
         'category'    => 'geo_tag',
     ],
 
     'geo_region' => [
         'title'       => _t('Region'),
-        'description' => '',
+        'description' => _t('For example IR-07 for Iran Tehran'),
         'edit'        => 'text',
         'category'    => 'geo_tag',
     ],
+
+    'map_type' => [
+        'title'       => _t('Map type'),
+        'description' => _t('Global setting for use google map or Openstreetmap'),
+        'edit'        => [
+            'type'    => 'select',
+            'options' => [
+                'options' => [
+                    'google' => _t('Google map'),
+                    'osm'    => _t('Openstreetmap'),
+                ],
+            ],
+        ],
+        'value'       => 'google',
+        'category'    => 'geo_tag',
+    ],
+
+    // Google setting
 
     'ga_account' => [
         'title'       => _t('GA account'),
@@ -756,6 +783,8 @@ $config['item'] = [
         'filter'      => 'string',
         'category'    => 'google',
     ],
+
+    // Openstreetmap setting
 
     'osm_tile' => [
         'title'       => _t('Openstreetmap tile url'),

@@ -1,7 +1,7 @@
 {
     "name": "pi/pi",
     "description": "Pi is a multi-tenant application development engine for cloud ready SaaS platform with support for SSO/OAuth.",
-    "type": "project",
+    "license": "BSD-3-Clause",
     "keywords": [
         "Pi",
         "ZendFramework",
@@ -9,7 +9,6 @@
         "SaaS"
     ],
     "homepage": "http://piengine.org",
-    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Taiwen Jiang",
@@ -20,6 +19,9 @@
             "homepage": "https://github.com/pi-engine/pi/graphs/contributors"
         }
     ],
+    "config": {
+        "vendor-dir": "lib/vendor"
+    },
     "require": {
         "php": ">=7.0.0",
         "ext-ctype": "*",
@@ -30,7 +32,19 @@
         "ext-pdo": "*",
         "ext-spl": "*",
         "lib-curl": "*",
-        "spipu/html2pdf": "^5.0"
+        "zendframework/zendframework": "V2.5.2",
+        "hybridauth/hybridauth": "v3.0.0-rc.9",
+        "geoip2/geoip2": "^2.9",
+        "phpseclib/phpseclib": "^2.0",
+        "phayes/geophp": "^1.2",
+        "tecnickcom/tcpdf": "^6.2",
+        "triagens/arangodb": "^3.4",
+        "imagine/imagine": "^1.2",
+        "spipu/html2pdf": "^5.2",
+        "matthiasmullie/minify": "^1.3",
+        "ircmaxell/random-lib": "^1.2",
+        "ircmaxell/security-lib": "^1.1",
+        "emcconville/google-map-polyline-encoding-tool": "^1.3"
     },
     "require-dev": {
     },
