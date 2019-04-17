@@ -103,8 +103,6 @@ class ConditionController extends ActionController
 
                 if ($isValid) {
 
-                    var_dump(isset($values['filename']));
-
                     if (!isset($values['filename']) || (isset($values['filename']) && $values['filename'] == '')) {
                         unset($values['filename']);
                     }
@@ -112,6 +110,9 @@ class ConditionController extends ActionController
                     // Set time
                     if (empty($values['active_at'])) {
                         $values['active_at'] = time();
+                    }
+                    if (!$values['id']) {
+                        $values['created_at'] = time();
                     }
 
                     // Save values
