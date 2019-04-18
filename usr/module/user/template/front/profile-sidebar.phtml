@@ -196,7 +196,7 @@ $userConfig = Pi::service('registry')->config->read('user');
         <?php } ?>
 
         <?php if (in_array('media', $userConfig['side_menu']) && Pi::service('module')->isActive('media')) { ?>
-            <a title="<?php _e('Media'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'media', 'controller' => 'list', 'action' => 'index'])); ?>" class="mt-3 list-group-item<?php if (isset($sideActive) && $sideActive == 'media') { echo ' active'; } ?>"><span class="fa fa-picture-o"></span>&nbsp; <?php _e('Media'); ?></a>
+            <a title="<?php _e('Media'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'media', 'controller' => 'list', 'action' => 'index'])); ?>" class="mt-3 list-group-item<?php if (isset($sideActive) && $sideActive == 'media') { echo ' active'; } ?>"><span class="fas fa-images"></span>&nbsp; <?php _e('Media'); ?></a>
         <?php } ?>
 
         <?php if (in_array('message', $userConfig['side_menu']) && Pi::service('module')->isActive('message')) { ?>
