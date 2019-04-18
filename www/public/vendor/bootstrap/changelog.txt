@@ -1,5 +1,9 @@
 Changelog
 
+April 18th, 2019 Espritdev
+======================
+1. Disable text-decoration-skip-ink directive for better w3c compatibility
+
 April 10th, 2019 Marc
 ======================
 1. Upgrade to Fontawesome 5.8.1 (only css mode / not the JS, but will ALL files) // standard distribution is used
