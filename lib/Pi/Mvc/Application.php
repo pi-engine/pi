@@ -62,13 +62,11 @@ class Application extends ZendApplication
      */
     public static function load($configuration = [])
     {
-        $smConfig       = isset($configuration['service_manager'])
-            ? $configuration['service_manager'] : [];
-        $listeners      = isset($configuration['listeners'])
-            ? $configuration['listeners'] : [];
-        $serviceManager = new ServiceManager(
-            new Service\ServiceManagerConfig($smConfig)
-        );
+        $smConfig       = isset($configuration['service_manager']) ? $configuration['service_manager'] : [];
+        $listeners      = isset($configuration['listeners']) ? $configuration['listeners'] : [];
+
+        $smConfig = new Service\ServiceManagerConfig($smConfig);
+        $serviceManager = new ServiceManager($smConfig);
         //$serviceManager->setService('Configuration', $configuration);
         $serviceManager->get('Configuration')->exchangeArray($configuration);
 

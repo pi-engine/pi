@@ -455,9 +455,10 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      *
      * @param  array $set
      * @param  string|array|\Closure $where
+     * @param  null|array $joins
      * @return int
      */
-    public function update($set, $where = null)
+    public function update($set, $where = null, array $joins = null)
     {
         if (!$this->isInitialized) {
             $this->initialize();
@@ -467,6 +468,13 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         $update->set($set);
         if ($where !== null) {
             $update->where($where);
+        }
+
+        if ($joins) {
+            foreach ($joins as $join) {
+                $type = isset($join['type']) ? $join['type'] : Join::JOIN_INNER;
+                $update->join($join['name'], $join['on'], $type);
+            }
         }
 
         $response = $this->executeUpdate($update);
