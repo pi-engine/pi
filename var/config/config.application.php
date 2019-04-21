@@ -10,9 +10,127 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
+$defaultServiceConfig = [
+    'aliases'            => [
+        'configuration'                              => 'config',
+        'Configuration'                              => 'config',
+        'console'                                    => 'ConsoleAdapter',
+        'Console'                                    => 'ConsoleAdapter',
+        'ConsoleDefaultRenderingStrategy'            => View\Console\DefaultRenderingStrategy::class,
+        'ControllerLoader'                           => 'ControllerManager',
+        'Di'                                         => 'DependencyInjector',
+        'HttpDefaultRenderingStrategy'               => View\Http\DefaultRenderingStrategy::class,
+        //'MiddlewareListener'                       => 'Zend\Mvc\MiddlewareListener',
+        //'RouteListener'                            => 'Zend\Mvc\RouteListener',
+        //'SendResponseListener'                     => 'Zend\Mvc\SendResponseListener',
+        'View'                                       => 'Zend\View\View',
+        'ViewFeedRenderer'                           => 'Zend\View\Renderer\FeedRenderer',
+        'ViewJsonRenderer'                           => 'Zend\View\Renderer\JsonRenderer',
+        'ViewPhpRendererStrategy'                    => 'Zend\View\Strategy\PhpRendererStrategy',
+        'ViewPhpRenderer'                            => 'Zend\View\Renderer\PhpRenderer',
+        'ViewRenderer'                               => 'Zend\View\Renderer\PhpRenderer',
+        'Zend\Di\LocatorInterface'                   => 'DependencyInjector',
+        'Zend\Form\Annotation\FormAnnotationBuilder' => 'FormAnnotationBuilder',
+        'Zend\Mvc\Controller\PluginManager'          => 'ControllerPluginManager',
+        'Zend\Mvc\View\Http\InjectTemplateListener'  => 'InjectTemplateListener',
+        'Zend\View\Renderer\RendererInterface'       => 'Zend\View\Renderer\PhpRenderer',
+        'Zend\View\Resolver\TemplateMapResolver'     => 'ViewTemplateMapResolver',
+        'Zend\View\Resolver\TemplatePathStack'       => 'ViewTemplatePathStack',
+        'Zend\View\Resolver\AggregateResolver'       => 'ViewResolver',
+        'Zend\View\Resolver\ResolverInterface'       => 'ViewResolver',
+    ],
+    'invokables'         => [
+        'SharedEventManager'   => 'Zend\EventManager\SharedEventManager',
+
+        // From ServiceListenerFactory
+        //'DispatchListener'   => 'Zend\Mvc\DispatchListener',
+        'RouteListener'        => 'Zend\Mvc\RouteListener',
+        'MiddlewareListener'   => 'Zend\Mvc\MiddlewareListener',
+        'ViewJsonRenderer'     => 'Zend\View\Renderer\JsonRenderer',
+        'ViewFeedRenderer'     => 'Zend\View\Renderer\FeedRenderer',
+
+        // Pi custom service
+        'SendResponseListener' => 'Pi\Mvc\SendResponseListener',
+        'ViewHelperManager'    => 'Pi\Mvc\Service\ViewHelperManager',
+        'Config'               => 'Pi\Mvc\Service\Config',
+        'ErrorStrategy'        => 'Pi\Mvc\View\Http\ErrorStrategy',
+        'ViewStrategyListener' => 'Pi\Mvc\View\Http\ViewStrategyListener',
+        'FeedStrategyListener' => 'Pi\Mvc\View\Http\FeedStrategyListener',
+        'ApiStrategyListener'  => 'Pi\Mvc\View\Http\ApiStrategyListener',
+    ],
+    'factories'          => [
+        'Application'                                => ApplicationFactory::class,
+        //'config'                                   => 'Zend\Mvc\Service\ConfigFactory',
+        'ControllerManager'                          => 'Zend\Mvc\Service\ControllerManagerFactory',
+        //'ControllerPluginManager'                  => 'Zend\Mvc\Service\ControllerPluginManagerFactory',
+        'ConsoleAdapter'                             => 'Zend\Mvc\Service\ConsoleAdapterFactory',
+        'ConsoleExceptionStrategy'                   => ConsoleExceptionStrategyFactory::class,
+        'ConsoleRouter'                              => ConsoleRouterFactory::class,
+        'ConsoleRouteNotFoundStrategy'               => ConsoleRouteNotFoundStrategyFactory::class,
+        'ConsoleViewManager'                         => 'Zend\Mvc\Service\ConsoleViewManagerFactory',
+        'DependencyInjector'                         => DiFactory::class,
+        'DiAbstractServiceFactory'                   => DiAbstractServiceFactoryFactory::class,
+        'DiServiceInitializer'                       => DiServiceInitializerFactory::class,
+        'DiStrictAbstractServiceFactory'             => DiStrictAbstractServiceFactoryFactory::class,
+        'DispatchListener'                           => 'Zend\Mvc\Service\DispatchListenerFactory',
+        'FilterManager'                              => 'Zend\Mvc\Service\FilterManagerFactory',
+        'FormAnnotationBuilder'                      => 'Zend\Mvc\Service\FormAnnotationBuilderFactory',
+        'FormElementManager'                         => 'Zend\Mvc\Service\FormElementManagerFactory',
+        'HttpExceptionStrategy'                      => HttpExceptionStrategyFactory::class,
+        'HttpMethodListener'                         => 'Zend\Mvc\Service\HttpMethodListenerFactory',
+        'HttpRouteNotFoundStrategy'                  => HttpRouteNotFoundStrategyFactory::class,
+        'HttpRouter'                                 => HttpRouterFactory::class,
+        'HttpViewManager'                            => 'Zend\Mvc\Service\HttpViewManagerFactory',
+        'HydratorManager'                            => 'Zend\Mvc\Service\HydratorManagerFactory',
+        'InjectTemplateListener'                     => 'Zend\Mvc\Service\InjectTemplateListenerFactory',
+        'InputFilterManager'                         => 'Zend\Mvc\Service\InputFilterManagerFactory',
+        'LogProcessorManager'                        => 'Zend\Mvc\Service\LogProcessorManagerFactory',
+        'LogWriterManager'                           => 'Zend\Mvc\Service\LogWriterManagerFactory',
+        //'MvcTranslator'                            => 'Zend\Mvc\Service\TranslatorServiceFactory',
+        'PaginatorPluginManager'                     => 'Zend\Mvc\Service\PaginatorPluginManagerFactory',
+        'Request'                                    => 'Zend\Mvc\Service\RequestFactory',
+        'Response'                                   => 'Zend\Mvc\Service\ResponseFactory',
+        //'Router'                                   => 'Zend\Mvc\Service\RouterFactory',
+        'RoutePluginManager'                         => 'Zend\Mvc\Service\RoutePluginManagerFactory',
+        'SerializerAdapterManager'                   => 'Zend\Mvc\Service\SerializerAdapterPluginManagerFactory',
+        'TranslatorPluginManager'                    => 'Zend\Mvc\Service\TranslatorPluginManagerFactory',
+        'ValidatorManager'                           => 'Zend\Mvc\Service\ValidatorManagerFactory',
+        View\Console\DefaultRenderingStrategy::class => InvokableFactory::class,
+        //'ViewHelperManager'                        => 'Zend\Mvc\Service\ViewHelperManagerFactory',
+        View\Http\DefaultRenderingStrategy::class    => HttpDefaultRenderingStrategyFactory::class,
+        'ViewFeedStrategy'                           => 'Zend\Mvc\Service\ViewFeedStrategyFactory',
+        'ViewJsonStrategy'                           => 'Zend\Mvc\Service\ViewJsonStrategyFactory',
+        'ViewManager'                                => 'Zend\Mvc\Service\ViewManagerFactory',
+        //'ViewResolver'                             => 'Zend\Mvc\Service\ViewResolverFactory',
+        'ViewTemplateMapResolver'                    => 'Zend\Mvc\Service\ViewTemplateMapResolverFactory',
+        'ViewTemplatePathStack'                      => 'Zend\Mvc\Service\ViewTemplatePathStackFactory',
+        'ViewPrefixPathStackResolver'                => 'Zend\Mvc\Service\ViewPrefixPathStackResolverFactory',
+        'Zend\Mvc\MiddlewareListener'                => InvokableFactory::class,
+        'Zend\Mvc\RouteListener'                     => InvokableFactory::class,
+        'Zend\Mvc\SendResponseListener'              => InvokableFactory::class,
+        'Zend\View\Renderer\FeedRenderer'            => InvokableFactory::class,
+        'Zend\View\Renderer\JsonRenderer'            => InvokableFactory::class,
+        'Zend\View\Renderer\PhpRenderer'             => ViewPhpRendererFactory::class,
+        'Zend\View\Strategy\PhpRendererStrategy'     => ViewPhpRendererStrategyFactory::class,
+        'Zend\View\View'                             => ViewFactory::class,
+
+        // Pi custom service
+        'Application'                                => 'Pi\Mvc\Service\ApplicationFactory',
+        'ControllerLoader'                           => 'Pi\Mvc\Service\ControllerLoaderFactory',
+        'ControllerPluginManager'                    => 'Pi\Mvc\Service\ControllerPluginManagerFactory',
+        'MvcTranslator'                              => 'Pi\Mvc\Service\TranslatorServiceFactory',
+        'ViewResolver'                               => 'Pi\Mvc\Service\ViewResolverFactory',
+    ],
+    'abstract_factories' => [
+        'Zend\Form\FormAbstractServiceFactory',
+    ],
+];
+
+
 return [
     // ServiceMananger configuration
-    'service_manager'    => [
+    'service_manager'    => $defaultServiceConfig,
+    /* 'service_manager'    => [
         // Services that can be instantiated without factories
         'invokables' => [
             'SharedEventManager'   => 'Zend\EventManager\SharedEventManager',
@@ -108,7 +226,7 @@ return [
             'ControllerManager'                          => 'ControllerLoader',
         ],
 
-    ],
+    ], */
 
     // Listeners to be registered on Application::bootstrap
     'listeners'          => [
