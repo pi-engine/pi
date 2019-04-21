@@ -1,3 +1,0 @@
-[ "firstName", "lastName", "age", "gender", "_key"]
-[ "Joe", "Public", 42, "male", "test1" ]
-[ "Jane", "Doe", 31, "female", "test2" ]
