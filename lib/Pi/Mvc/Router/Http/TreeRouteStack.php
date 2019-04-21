@@ -15,6 +15,8 @@ use Pi\Mvc\Router\RoutePluginManager;
 use Zend\Mvc\Router\Http\RouteMatch;
 use Zend\Mvc\Router\Http\TreeRouteStack as ZendTreeRouteStack;
 use Zend\Stdlib\RequestInterface as Request;
+use Zend\ServiceManager\ServiceManager;
+use Zend\ServiceManager\Config;
 
 /**
  * Tree RouteStack
@@ -38,7 +40,7 @@ class TreeRouteStack extends ZendTreeRouteStack
         $this->routes = new PriorityList();
 
         if (null === $routePluginManager) {
-            $routePluginManager = new RoutePluginManager();
+            $routePluginManager = new RoutePluginManager(new ServiceManager());
         }
 
         $this->routePluginManager = $routePluginManager;
