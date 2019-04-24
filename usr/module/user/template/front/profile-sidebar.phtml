@@ -21,7 +21,7 @@ $userConfig = Pi::service('registry')->config->read('user');
     <div class="card">
         <div class="p-0">
             <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'dashboard'])); ?>" class="btn btn-block text-left <?php echo $controller == 'dashboard' ? 'active' : '' ?>" role="button">
-                <span class="fas fa-tachometer-alt mr-2"></span>&nbsp; <?php _e('Dashboard') ?>
+                <span class="fas fa-tachometer-alt"></span>&nbsp; <?php _e('Dashboard') ?>
             </a>
         </div>
     </div>
@@ -45,7 +45,7 @@ $userConfig = Pi::service('registry')->config->read('user');
     <div class="card mt-3" id="accordionMember">
         <div class="card-header p-0 border-bottom-0"">
             <a class="btn btn-block collapsed text-left" role="button" data-toggle="collapse" data-parent="#accordionMember" href="#collapseMemberArea" aria-expanded="false" aria-controls="collapseMemberArea">
-                <span class="fa fa-sync-alt mr-2"></span>&nbsp;<?php _e('Member area') ?>
+                <span class="fa fa-sync-alt"></span>&nbsp; <?php _e('Member area') ?>
                 <span class='fa fa-caret-down float-right mt-1'></span>
             </a>
         </div>
@@ -91,7 +91,7 @@ $userConfig = Pi::service('registry')->config->read('user');
         <div class="card mt-3" id="accordionPro">
             <div class="card-header p-0 border-bottom-0"">
                 <a class="btn btn-block collapsed text-left" role="button" data-toggle="collapse" data-parent="#accordionPro" href="#collapseProArea" aria-expanded="false" aria-controls="collapseProArea">
-                    <span class="fa fa-flag-checkered mr-2"></span>&nbsp; <?php _e('Pro area') ?>
+                    <span class="fa fa-flag-checkered"></span>&nbsp; <?php _e('Pro area') ?>
                     <span class='fa fa-caret-down float-right mt-1'></span>
                 </a>
             </div>
@@ -196,7 +196,7 @@ $userConfig = Pi::service('registry')->config->read('user');
         <?php } ?>
 
         <?php if (in_array('media', $userConfig['side_menu']) && Pi::service('module')->isActive('media')) { ?>
-            <a title="<?php _e('Media'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'media', 'controller' => 'list', 'action' => 'index'])); ?>" class="mt-3 list-group-item<?php if (isset($sideActive) && $sideActive == 'media') { echo ' active'; } ?>"><span class="fa fa-picture-o"></span>&nbsp; <?php _e('Media'); ?></a>
+            <a title="<?php _e('Media'); ?>" href="<?php echo Pi::url($this->url('default', ['module' => 'media', 'controller' => 'list', 'action' => 'index'])); ?>" class="mt-3 btn btn-primary text-left <?php if (isset($sideActive) && $sideActive == 'media') { echo ' active'; } ?>"><span class="fas fa-images"></span>&nbsp; <?php _e('Media'); ?></a>
         <?php } ?>
 
         <?php if (in_array('message', $userConfig['side_menu']) && Pi::service('module')->isActive('message')) { ?>
