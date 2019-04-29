@@ -160,49 +160,6 @@ if($section == 'admin'){
                 </div>
             </li>
         <?php } elseif ($originalBlockType == 'mixed_light') { ?>
-            <?php if (isset($block['user']['message'])) { ?>
-                <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
-                    <a class="nav-link" href="<?php echo $block['user']['message']; ?>"
-                       title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
-                        <i class="far fa-envelope" aria-hidden="true"></i>
-                        <span>
-                            <?php echo _b('Message'); ?>
-                            <?php if ($block['user']['count']) : ?>
-                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['count']; ?></span>
-                            <?php endif; ?>
-                        </span>
-                    </a>
-                </li>
-            <?php } else { ?>
-                <?php if (isset($block['user']['message_url'])) { ?>
-                    <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
-                        <a class="nav-link" href="<?php echo $block['user']['message_url']; ?>"
-                           title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
-                            <i class="far fa-envelope" aria-hidden="true"></i>
-                            <span>
-                                <span><?php echo _b('Message'); ?></span>
-                                <?php if ($block['user']['message_count']) : ?>
-                                    <span class="badge badge-pill badge-warning"><?php echo $block['user']['message_count']; ?></span>
-                                <?php endif; ?>
-                            </span>
-                        </a>
-                    </li>
-                <?php } ?>
-                <?php if (isset($block['user']['notification_url'])) { ?>
-                    <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
-                        <a class="nav-link" href="<?php echo $block['user']['notification_url']; ?>"
-                           title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
-                            <i class="far fa-bell" aria-hidden="true"></i>
-                            <span>
-                                <span class="d-xs-inline"><?php echo _b('Notification'); ?></span>
-                                <?php if ($block['user']['notification_count']) : ?>
-                                    <span class="badge badge-pill badge-warning"><?php echo $block['user']['notification_count']; ?></span>
-                                <?php endif; ?>
-                            </span>
-                        </a>
-                    </li>
-                <?php } ?>
-            <?php } ?>
             <?php if (isset($block['user']['support_url'])) { ?>
                 <li class="nav-item <?php echo $module == 'support' ?>">
                     <a class="nav-link" href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
@@ -251,17 +208,67 @@ if($section == 'admin'){
                 </li>
             <?php } ?>
 
+            <?php if (isset($block['user']['message'])) { ?>
+                <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
+                    <a class="nav-link" href="<?php echo $block['user']['message']; ?>"
+                       title="<?php echo $block['user']['count']; ?> <?php echo _b('message(s)'); ?>">
+                        <i class="far fa-envelope" aria-hidden="true"></i>
+                        <span>
+                            <?php echo _b('Message'); ?>
+                            <?php if ($block['user']['count']) : ?>
+                                <span class="badge badge-pill badge-warning"><?php echo $block['user']['count']; ?></span>
+                            <?php endif; ?>
+                        </span>
+                    </a>
+                </li>
+            <?php } else { ?>
+                <?php if (isset($block['user']['message_url'], $block['user']['notification_url'])) : ?>
+                    <li class="nav-item separator"></li>
+                <?php endif; ?>
+
+                <?php if (isset($block['user']['message_url'])) { ?>
+                    <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
+                        <a class="nav-link nav-link-has-counter" href="<?php echo $block['user']['message_url']; ?>"
+                           title="<?php echo $block['user']['message_count']; ?> <?php echo _b('message(s)'); ?>">
+                            <i class="far fa-envelope" aria-hidden="true"></i>
+                            <span>
+<!--                                <span>--><?php //echo _b('Message'); ?><!--</span>-->
+                                <?php if ($block['user']['message_count']) : ?>
+                                    <span class="badge badge-pill badge-warning"><?php echo $block['user']['message_count']; ?></span>
+                                <?php endif; ?>
+                            </span>
+                        </a>
+                    </li>
+                <?php } ?>
+                <?php if (isset($block['user']['notification_url'])) { ?>
+                    <li class="nav-item <?php echo $module == 'message' ? 'active' : '' ?>">
+                        <a class="nav-link nav-link-has-counter" href="<?php echo $block['user']['notification_url']; ?>"
+                           title="<?php echo $block['user']['notification_count']; ?> <?php echo _b('notification(s)'); ?>">
+                            <i class="far fa-bell" aria-hidden="true"></i>
+                            <span>
+<!--                                <span class="d-xs-inline">--><?php //echo _b('Notification'); ?><!--</span>-->
+                                <?php if ($block['user']['notification_count']) : ?>
+                                    <span class="badge badge-pill badge-warning"><?php echo $block['user']['notification_count']; ?></span>
+                                <?php endif; ?>
+                            </span>
+                        </a>
+                    </li>
+                <?php } ?>
+            <?php } ?>
+
             <li class="nav-item userbar-avatar-item">
-                <span class="avatar-name-wrapper d-none d-xl-inline">
-                    <?php if (!preg_match('#\/admin\/#', $this->url('', [], null, true))) : ?>
-                        <?php echo _b('Welcome'); ?>
-                    <?php endif; ?>
-                    <span class="avatar-name">
-                        <?php echo _escape(
-                            (isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']
-                        ); ?>
+                <?php if(!$userSection) : ?>
+                    <span class="avatar-name-wrapper d-none d-xl-inline">
+                        <?php if (!preg_match('#\/admin\/#', $this->url('', [], null, true))) : ?>
+                            <?php echo _b('Welcome'); ?>
+                        <?php endif; ?>
+                        <span class="avatar-name">
+                            <?php echo _escape(
+                                (isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name'] : $block['user']['name']
+                            ); ?>
+                        </span>
                     </span>
-                </span>
+                <?php endif; ?>
                 <div class="btn-group">
                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
