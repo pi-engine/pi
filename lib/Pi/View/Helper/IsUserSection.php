@@ -61,7 +61,7 @@ class IsUserSection extends AbstractHelper
                 $userSection = true;
             }
 
-            if (in_array($a[1]['controller'], ['dashboard', 'account', 'avatar', 'privacy'])) {
+            if (in_array($a[1]['controller'], ['dashboard', 'dashboardPro', 'account', 'avatar', 'privacy'])) {
                 $userSection = true;
             }
 

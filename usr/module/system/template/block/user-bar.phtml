@@ -19,6 +19,7 @@ $section = Pi::engine()->section();
 if($section == 'admin'){
     $modalEnabled = 0;
 }
+
 ?>
 <div class="pi-userbar usertopbar d-flex">
     <ul class="nav <?php if($section == 'admin') echo 'navbar-nav float-right' ?> align-self-center">
@@ -283,7 +284,7 @@ if($section == 'admin'){
                                     </span>
                         </a>
                         <div class="d-lg-none">
-                            <?php if (isset($block['user']['dashboard_url'])) { ?>
+                            <?php if (isset($block['user']['v_url'])) { ?>
                                 <a class="dropdown-item item-favorites" title="<?php echo _b('Favourite'); ?>"
                                    href="<?php echo $block['user']['dashboard_url']; ?>">
                                     <i class="fas fa-tachometer-alt"></i>
