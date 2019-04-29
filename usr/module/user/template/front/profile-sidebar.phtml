@@ -42,24 +42,32 @@ $isPerso = (bool) (
     <div id="nav-perso" class="nav flex-column nav-pills d-none">
         <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'dashboard'])); ?>"
            class="nav-link rounded-0 <?php echo $controller == 'dashboard' ? 'active' : '' ?>">
-            <?php _e('Dashboard') ?> <span class='fas fa-angle-right'></span>
+            <span class="fa-minimized fas fa-tachometer-alt d-none"></span>
+            <span class="label"><?php _e('Personal Dashboard') ?></span>
+            <span class='fas fa-angle-right'></span>
         </a>
         <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'request', 'action' => 'index'])); ?>"
            class="nav-link rounded-0 <?php if (isset($sideActive) && $sideActive == 'request') {echo ' active';} ?>">
-            <?php _e('Bookings'); ?> <span class='fas fa-angle-right'></span>
+            <span class="fa-minimized far fa-calendar-check d-none"></span>
+            <span class="label"><?php _e('Bookings'); ?></span>
+            <span class='fas fa-angle-right'></span>
         </a>
 
         <?php if ($guideConfig['manage_active'] && $guideConfig['manage_contribution']) { ?>
             <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'contributions'])); ?>"
                class="nav-link rounded-0 <?php if ($module == "guide" && $controller == 'manage' && $action == 'contributions') {echo ' active';} ?>">
-                <?php _e('Contributions'); ?> <span class='fas fa-angle-right'></span>
+                <span class="fa-minimized fas fa-puzzle-piece d-none"></span>
+                <span class="label"><?php _e('Contributions'); ?></span>
+                <span class='fas fa-angle-right'></span>
             </a>
         <?php } ?>
 
         <?php if (in_array('favourite', $userConfig['side_menu']) && Pi::service('module')->isActive('favourite')) { ?>
             <a href="<?php echo Pi::url($this->url('default', ['module' => 'favourite', 'controller' => 'index', 'action' => 'index'])); ?>"
                class="nav-link rounded-0 <?php if ($module == 'favourite') {echo ' active';} ?>">
-                <?php _e('Favorites'); ?> <span class='fas fa-angle-right'></span>
+                <span class="fa-minimized fas fa-heart d-none"></span>
+                <span class="label"><?php _e('Favorites'); ?></span>
+                <span class='fas fa-angle-right'></span>
             </a>
         <?php } ?>
 
@@ -73,45 +81,50 @@ $isPerso = (bool) (
         <?php if (in_array('media', $userConfig['side_menu']) && Pi::service('module')->isActive('media')) { ?>
             <a href="<?php echo Pi::url($this->url('default', ['module' => 'media', 'controller' => 'list', 'action' => 'index'])); ?>"
                class="nav-link rounded-0 <?php if (isset($sideActive) && $sideActive == 'media') { echo ' active'; } ?>">
-                <?php _e('Media'); ?> <span class='fas fa-angle-right'></span>
+                <span class="fa-minimized far fa-images d-none"></span>
+                <span class="label"><?php _e('Media'); ?></span>
+                <span class='fas fa-angle-right'></span>
             </a>
         <?php } ?>
 
-        <a class="nav-link rounded-0 collapsed" role="button" data-toggle="collapse"
-           href="#collapseItemPerso">
-            <?php echo __('My account') ?>
-            <span class='fa fa-caret-down float-right mt-1'></span>
-        </a>
-        <div id="collapseItemPerso" class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'show' ?>" role="tabpanel">
-            <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>"
-               class="nav-link rounded-0 pl-5 <?php if ($controller == 'profile') {echo ' active';} ?>">
-                <?php echo _e('Manage account'); ?> <span class='fas fa-angle-right'></span>
+        <div class="position-relative">
+            <a class="nav-link rounded-0 collapsed" role="button" data-toggle="collapse"
+               href="#collapseItemPerso">
+                <span class="fa-minimized fas fa-user d-none"></span>
+                <span class="label"><?php echo __('My account') ?></span>
+                <span class='fa fa-caret-down float-right mt-1'></span>
             </a>
-
-            <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'account'])); ?>"
-               class="nav-link rounded-0 pl-5 <?php if ($controller == 'account') {echo ' active';} ?>">
-                <?php _e('Account settings') ?> <span class='fas fa-angle-right'></span>
-            </a>
-            <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'password'])); ?>"
-               class="nav-link rounded-0 pl-5 <?php if ($controller == 'password') {echo ' active';} ?>">
-                <?php _e('Change password'); ?> <span class='fas fa-angle-right'></span>
-            </a>
-            <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'avatar'])); ?>"
-               class="nav-link rounded-0 pl-5 <?php if ($controller == 'avatar') {echo ' active';} ?>">
-                <?php _e('Change avatar'); ?> <span class='fas fa-angle-right'></span>
-            </a>
-            <?php
-            foreach ($groups as $key => $group) {
-                ?>
-                <a href="<?php echo $group['url']; ?>"
-                   class="nav-link rounded-0 pl-5 <?php if (isset($group_id)) {echo $group_id == $key ? ' active' : '';} ?>">
-                    <?php echo _escape($group['title']); ?> <span class='fas fa-angle-right'></span>
+            <div id="collapseItemPerso" class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'show' ?>" role="tabpanel">
+                <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'profile'])); ?>"
+                   class="nav-link rounded-0 pl-5 <?php if ($controller == 'profile') {echo ' active';} ?>">
+                    <?php echo _e('Manage account'); ?> <span class='fas fa-angle-right'></span>
                 </a>
-            <?php } ?>
-            <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'privacy'])); ?>"
-               class="nav-link rounded-0 pl-5 <?php if ($controller == 'privacy') {echo ' active';} ?>">
-                <?php _e('Privacy'); ?> <span class='fas fa-angle-right'></span>
-            </a>
+
+                <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'account'])); ?>"
+                   class="nav-link rounded-0 pl-5 <?php if ($controller == 'account') {echo ' active';} ?>">
+                    <?php _e('Account settings') ?> <span class='fas fa-angle-right'></span>
+                </a>
+                <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'password'])); ?>"
+                   class="nav-link rounded-0 pl-5 <?php if ($controller == 'password') {echo ' active';} ?>">
+                    <?php _e('Change password'); ?> <span class='fas fa-angle-right'></span>
+                </a>
+                <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'avatar'])); ?>"
+                   class="nav-link rounded-0 pl-5 <?php if ($controller == 'avatar') {echo ' active';} ?>">
+                    <?php _e('Change avatar'); ?> <span class='fas fa-angle-right'></span>
+                </a>
+                <?php
+                foreach ($groups as $key => $group) {
+                    ?>
+                    <a href="<?php echo $group['url']; ?>"
+                       class="nav-link rounded-0 pl-5 <?php if (isset($group_id)) {echo $group_id == $key ? ' active' : '';} ?>">
+                        <?php echo _escape($group['title']); ?> <span class='fas fa-angle-right'></span>
+                    </a>
+                <?php } ?>
+                <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'privacy'])); ?>"
+                   class="nav-link rounded-0 pl-5 <?php if ($controller == 'privacy') {echo ' active';} ?>">
+                    <?php _e('Privacy'); ?> <span class='fas fa-angle-right'></span>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -121,33 +134,42 @@ $isPerso = (bool) (
     <div id="nav-pro" class="nav flex-column nav-pills d-none">
         <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'dashboardPro'])); ?>"
            class="nav-link rounded-0 <?php echo $controller == 'dashboardPro' ? 'active' : '' ?>">
-            <?php _e('Dashboard') ?> <span class='fas fa-angle-right'></span>
+            <span class="fa-minimized fas fa-tachometer-alt d-none"></span>
+            <span class="label"><?php _e('Pro Dashboard') ?></span>
+            <span class='fas fa-angle-right'></span>
         </a>
-        <a class="nav-link rounded-0 collapsed" role="button" data-toggle="collapse"
-           href="#collapseItem">
-            <?php echo (isset($currentTitle) && $currentTitle) ? $currentTitle : __('All') ?>
-            <span class='fa fa-caret-down float-right mt-1'></span>
+
+        <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>"
+           class="nav-link rounded-0">
+            <span class="fa-minimized fas fa-project-diagram d-none"></span>
+            <span class="label"><?php echo (isset($currentTitle) && $currentTitle) ? $currentTitle : __('Activities') ?></span>
+            <span class='fas fa-angle-right'></span>
         </a>
-        <div id="collapseItem" class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'show' ?>" role="tabpanel">
-            <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>"
-               class="nav-link rounded-0">
-                <?php _e('All'); ?>
+
+        <div class="position-relative">
+            <a class="nav-link rounded-0 collapsed" role="button" data-toggle="collapse"
+               href="#collapseItem">
+                <span class="fa-minimized fas fa-project-diagram d-none"></span>
+                <span class="label"><?php echo (isset($currentTitle) && $currentTitle) ? $currentTitle : __('All') ?></span>
+                <span class='fa fa-caret-down float-right mt-1'></span>
             </a>
-            <?php if ($guideConfig['manage_active'] && isset($navigationItemList)) { ?>
-                <?php foreach ($navigationItemList as $itemId => $itemTitle) : ?>
-                    <?php if ($action == 'dashboard') { ?>
-                        <a href="<?php echo $this->url(null, ['module' => 'guide', 'controller' => 'manage', 'action' => 'planning', 'item' => $itemId], null, true) ?>"
-                           class="nav-link rounded-0 pl-5">
-                            <?php echo $itemTitle ?> <span class='fas fa-angle-right'></span>
-                        </a>
-                    <?php } else { ?>
-                        <a href="<?php echo $this->url(null, array('item' => $itemId), null, true) ?>"
-                           class="nav-link rounded-0 pl-5">
-                            <?php echo $itemTitle ?> <span class='fas fa-angle-right'></span>
-                        </a>
-                    <?php } ?>
-                <?php endforeach; ?>
-            <?php } ?>
+            <div id="collapseItem" class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'show' ?>" role="tabpanel">
+                <?php if ($guideConfig['manage_active'] && isset($navigationItemList)) { ?>
+                    <?php foreach ($navigationItemList as $itemId => $itemTitle) : ?>
+                        <?php if ($action == 'dashboard') { ?>
+                            <a href="<?php echo $this->url(null, ['module' => 'guide', 'controller' => 'manage', 'action' => 'planning', 'item' => $itemId], null, true) ?>"
+                               class="nav-link rounded-0 pl-5">
+                                <?php echo $itemTitle ?> <span class='fas fa-angle-right'></span>
+                            </a>
+                        <?php } else { ?>
+                            <a href="<?php echo $this->url(null, array('item' => $itemId), null, true) ?>"
+                               class="nav-link rounded-0 pl-5">
+                                <?php echo $itemTitle ?> <span class='fas fa-angle-right'></span>
+                            </a>
+                        <?php } ?>
+                    <?php endforeach; ?>
+                <?php } ?>
+            </div>
         </div>
 
         <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial') && $guideConfig['manage_active']) { ?>
@@ -157,37 +179,45 @@ $isPerso = (bool) (
             </a>
         <?php } ?>
 
-        <br />
-        <div class="nav-link collapsed">
-            <strong ><?php _e('FAST ACTIONS') ?></strong>
-            <hr/>
-        </div>
-        <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
-            <?php if ($config['manage_service']) { ?>
-                <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'sales', 'item' => $item['id'])); ?>"
-                   class="nav-link rounded-0 <?php echo $action == "sales" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
-                    <?php _e('Grid Manager'); ?> <span class='fas fa-angle-right'></span>
-                </a>
+
+        <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial')
+            || (isset($item_type) && $item_type == 'commercial')
+            || (isset($item['item_type']) && $item['item_type'] == 'commercial')
+            || (isset($item_type) && $item_type == 'commercial')) { ?>
+            <br />
+            <div class="nav-link collapsed">
+                <strong ><?php _e('FAST ACTIONS') ?></strong>
+                <hr/>
+            </div>
+            <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
+                <?php if ($config['manage_service']) { ?>
+                    <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'sales', 'item' => $item['id'])); ?>"
+                       class="nav-link rounded-0 <?php echo $action == "sales" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                        <?php _e('Grid Manager'); ?> <span class='fas fa-angle-right'></span>
+                    </a>
+                <?php } ?>
+                <?php if ($config['calendar_active']) { ?>
+                    <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'calendar', 'item' => $item['id'])); ?>"
+                       class="nav-link rounded-0 <?php echo $action == "calendar" || $action == "policies" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                        <?php _e('Bookings/Closings'); ?> <span class='fas fa-angle-right'></span>
+                    </a>
+                <?php } ?>
             <?php } ?>
-            <?php if ($config['calendar_active']) { ?>
-                <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'calendar', 'item' => $item['id'])); ?>"
-                   class="nav-link rounded-0 <?php echo $action == "calendar" || $action == "policies" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
-                    <?php _e('Bookings/Closings'); ?> <span class='fas fa-angle-right'></span>
-                </a>
-            <?php } ?>
-        <?php } ?>
-        <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
-            <?php if ($config['manage_service']) { ?>
-                <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'boost', 'item' => $item['id'])); ?>"
-                   class="nav-link rounded-0 <?php echo $action == "boost" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
-                    <?php _e('Boost'); ?> <span class='fas fa-angle-right'></span>
-                </a>
+            <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
+                <?php if ($config['manage_service']) { ?>
+                    <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'boost', 'item' => $item['id'])); ?>"
+                       class="nav-link rounded-0 <?php echo $action == "boost" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                        <?php _e('Boost'); ?> <span class='fas fa-angle-right'></span>
+                    </a>
+                <?php } ?>
             <?php } ?>
         <?php } ?>
 
         <a href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => isset($item['id']) ? $item['id'] : null)); ?>"
            class="nav-link rounded-0 <?php echo $controller == "stats"  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
-            <?php _e('Statistics'); ?> <span class='fas fa-angle-right'></span>
+            <span class="fa-minimized fas fa-chart-line d-none"></span>
+            <span class="label"><?php _e('Statistics'); ?></span>
+            <span class='fas fa-angle-right'></span>
         </a>
 
         <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
@@ -306,7 +336,9 @@ $isPerso = (bool) (
         <?php if (in_array('media', $userConfig['side_menu']) && Pi::service('module')->isActive('media')) { ?>
             <a href="<?php echo Pi::url($this->url('default', ['module' => 'media', 'controller' => 'list', 'action' => 'index'])); ?>"
                class="nav-link rounded-0 <?php if (isset($sideActive) && $sideActive == 'media') { echo ' active'; } ?>">
-                <?php _e('Media'); ?> <span class='fas fa-angle-right'></span>
+                <span class="fa-minimized far fa-images d-none"></span>
+                <span class="label"><?php _e('Media'); ?></span>
+                <span class='fas fa-angle-right'></span>
             </a>
         <?php } ?>
     </div>
@@ -329,5 +361,9 @@ $isPerso = (bool) (
                 $('.custom-control-label-pro').removeClass('text-warning').addClass('text-muted');
             }
         }).trigger('change');
+    });
+
+    $(document).on('click', '#minimize-btn', function(){
+        $('body').toggleClass('sidebar-minimized');
     });
 </script>
