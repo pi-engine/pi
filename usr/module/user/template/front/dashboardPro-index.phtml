@@ -32,7 +32,6 @@ $guideConfig = Pi::service('registry')->config->read('guide');
                 <div class="col-md-10">
 
                     <?php echo $this->widget('guide-planning') ?>
-                    <?php echo $this->widget('guide-dashboard-items', array('only-contribs' => true)) ?>
                 </div>
                 <div class="col-md-8">
                     <?php echo $this->widget('guide-dashboard-contributions') ?>
