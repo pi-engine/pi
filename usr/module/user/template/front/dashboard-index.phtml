@@ -3,6 +3,8 @@ $this->css($this->assetModule('front/front.css'));
 $this->headMeta('noindex', 'robots');
 $this->jQuery();
 
+$userConfig = Pi::service('registry')->config->read('user');
+
 $commentCount = 0;
 ?>
 <div class="row <?php echo $commentCount ? 'dashboard dashboard-perso dashboard-perso-with-comments' : 'dashboard dashboard-perso dashboard-perso-without-comments' ?>">
@@ -11,7 +13,7 @@ $commentCount = 0;
     </div>
     <div class="col-md-9">
         <div class="page-header">
-            <h1><?php _e($commentCount ? 'Your dashboard' : 'Welcome to your personal dashboard'); ?></h1>
+            <h1><?php $commentCount ? _e('Your dashboard') : _e(sprintf(__('Welcome to <span>%s</span>'), Pi::config('sitename'))); ?></h1>
         </div>
 
         <?php if($paidItemCount) : ?>
@@ -181,7 +183,7 @@ $commentCount = 0;
                 <?php } ?>
             </div>
         <?php else : ?>
-            NO COMMENT
+            <div class="dashboard-intro"><?php echo $userConfig['default_perso_dashboard_intro'] ?></div>
         <?php endif; ?>
     </div>
 </div>

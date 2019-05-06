@@ -702,3 +702,23 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
     vertical-align: bottom;
     line-height: 1em;
 }
+
+.dashboard-perso .page-header{
+    padding:65px;
+    background:lightskyblue;
+    margin-bottom:50px;
+}
+
+.dashboard-perso h1{
+    color:white;
+}
+
+.dashboard-perso h1 span{
+    display:block;
+}
+
+.dashboard-perso h1{
+    width:400px;
+    margin: 0 auto;
+    color:white;
+}
