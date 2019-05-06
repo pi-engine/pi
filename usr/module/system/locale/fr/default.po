@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2019-04-03 12:59+0200\n"
-"PO-Revision-Date: 2019-04-03 12:59+0200\n"
+"POT-Creation-Date: 2019-05-01 12:14+0200\n"
+"PO-Revision-Date: 2019-05-01 12:14+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -132,15 +132,15 @@ msgstr ""
 msgid "Invalid request."
 msgstr "Demande non valide."
 
-#: src/Controller/Front/LoginController.php:172
+#: src/Controller/Front/LoginController.php:174
 msgid "You have tried too many times. Please try later."
 msgstr "Vous avez tenté trop de fois. Merci d'essayer plus tard."
 
-#: src/Controller/Front/LoginController.php:196
+#: src/Controller/Front/LoginController.php:198
 msgid "Invalid credentials provided, please try again."
 msgstr "Identifiants fournis non valides, merci d'essayer de nouveau."
 
-#: src/Controller/Front/LoginController.php:268
+#: src/Controller/Front/LoginController.php:270
 msgid "You logged out successfully."
 msgstr "Vous vous êtes déconnectés avec succès."
 
@@ -600,18 +600,10 @@ msgstr "Reconstruire"
 msgid "Customize"
 msgstr "Personnaliser"
 
-#: template/block/user-bar.phtml:51
-msgid "Welcome"
-msgstr "Bienvenue"
-
-#: template/block/user-bar.phtml:118 template/block/user-bar.phtml:121
-#: template/block/user-bar.phtml:330 template/block/user-bar.phtml:333
+#: template/block/user-bar.phtml:121 template/block/user-bar.phtml:124
+#: template/block/user-bar.phtml:340 template/block/user-bar.phtml:343
 msgid "My offer"
 msgstr "Mon offre"
-
-#: template/block/user-bar.phtml:465
-msgid "Add my activity"
-msgstr "Ajouter mon activité"
 
 #: template/front/login-disabled.phtml:5
 msgid "Sorry, login is temporarily disabled. Please come back later."
@@ -701,6 +693,12 @@ msgstr "vous connecter"
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr "Vous vous êtes inscrits avec succès, merci d'aller à %s ou %s."
+
+#~ msgid "Welcome"
+#~ msgstr "Bienvenue"
+
+#~ msgid "Add my activity"
+#~ msgstr "Ajouter mon activité"
 
 #~ msgid "You have logged in successfully."
 #~ msgstr "Vous vous êtes connectés avec succès."

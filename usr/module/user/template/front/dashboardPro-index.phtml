@@ -2,18 +2,28 @@
 $this->css($this->assetModule('front/front.css'));
 $this->headMeta('noindex', 'robots');
 $this->jQuery();
-
+$guideConfig = Pi::service('registry')->config->read('guide');
 $userConfig = Pi::service('registry')->config->read('user');
 
-$commentCount = 0;
+// Get uid
+$uid = Pi::user()->getId();
+// Check is owner or not
+$paidItemCount = 0;
+$owner = Pi::model('owner', 'guide')->find($uid, 'uid');
+
+if (isset($owner->id)) {
+    $rowset = Pi::model('item', 'guide')->select(array('owner' => $owner->id, 'item_type' => 'commercial'));
+//    $paidItemCount = $rowset->count();
+}
+
 ?>
-<div class="row <?php echo $commentCount ? 'dashboard dashboard-perso dashboard-perso-with-comments' : 'dashboard dashboard-perso dashboard-perso-without-comments' ?>">
+<div class="row <?php echo $paidItemCount ? 'dashboard dashboard-pro dashboard-pro-with-items' : 'dashboard dashboard-pro dashboard-pro-without-items' ?>">
     <div class="col-md-3">
         <?php include $this->template('./profile-sidebar.phtml'); ?>
     </div>
     <div class="col-md-9">
         <div class="page-header">
-            <h1><?php $commentCount ? _e('Your dashboard') : _e(sprintf(__('Welcome to <span>%s</span>'), Pi::config('sitename'))); ?></h1>
+            <h1><?php _e($paidItemCount ? 'Your dashboard' : 'Welcome to your pro dashboard'); ?></h1>
         </div>
 
         <?php if($paidItemCount) : ?>
@@ -34,7 +44,8 @@ $commentCount = 0;
 
                     </div>
                     <div class="col-md-10">
-                        <?php echo $this->widget('guide-dashboard-items', array('only-contribs' => true)) ?>
+
+                        <?php echo $this->widget('guide-planning') ?>
                     </div>
                     <div class="col-md-8">
                         <?php echo $this->widget('guide-dashboard-contributions') ?>
@@ -183,7 +194,31 @@ $commentCount = 0;
                 <?php } ?>
             </div>
         <?php else : ?>
-            <div class="dashboard-intro"><?php echo $userConfig['default_perso_dashboard_intro'] ?></div>
+            <div class="dashboard-intro"><?php echo $userConfig['default_pro_dashboard_intro'] ?></div>
+            <div><?php echo _t('How it works') ?></div>
+            <div class="steps row d-flex">
+                <div class="col-12 col-sm-4 align-self-stretch step step-1 ">
+                    <div class="content">
+                        <span class="title"><?php echo _t('Add your activity') ?></span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 align-self-stretch step step-2">
+                    <div class="content">
+                        <span class="title"><?php echo _t('Manage your booking in realtime') ?></span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 align-self-stretch step step-3">
+                    <div class="content">
+                        <span class="title"><?php echo _t('Promote yourself to travelers') ?></span>
+                    </div>
+                </div>
+            </div>
+            <div><strong><?php echo _t('To begin, let\'s create your first establishment :)') ?></strong></div>
+            <br>
+
+            <a class="btn btn-success btn-add" title="<?php echo _b('Add commercial'); ?>"
+               href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'add', 'type' => 'commercial')); ?>"><i
+                        class="fas fa-cutlery"></i> <?php echo _b('Add commercial'); ?></a>
         <?php endif; ?>
     </div>
 </div>
