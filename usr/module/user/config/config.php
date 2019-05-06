@@ -244,6 +244,14 @@ $config = [
         'category'    => 'login',
     ],
 
+    'default_dashboard_intro' => [
+        'title'         => _t('Default Dashboard intro'),
+        'edit'          => 'textarea',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'     => 'account',
+    ],
+
     // Register
     'register_disable'  => [
         'title'       => _t('Register disable'),
