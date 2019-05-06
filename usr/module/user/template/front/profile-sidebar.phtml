@@ -176,7 +176,7 @@ $isPerso = (bool) (
 
                 <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial') && $guideConfig['manage_active']) { ?>
                     <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'planning', 'item' => $item['id']])); ?>"
-                       class="nav-link rounded-0 <?php if ($module == "guide" && $controller == 'planning' && $action == 'index') { echo ' active'; } ?>">
+                       class="nav-link nav-link-summary rounded-0 <?php if ($module == "guide" && $controller == 'planning' && $action == 'index') { echo ' active'; } ?>">
                         <?php _e('Summary'); ?> <span class='fas fa-angle-right'></span>
                     </a>
                 <?php } ?>
