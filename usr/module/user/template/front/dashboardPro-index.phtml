@@ -27,7 +27,7 @@ if(isset($_GET['item_count'])){
     </div>
     <div class="col-md-9">
         <div class="page-header">
-            <h1><?php _e($paidItemCount ? 'Your dashboard' : 'Welcome to your pro dashboard') . ', ' . $profile->first_name; ; ?></h1>
+            <h1><?php echo $paidItemCount ? _e('Your dashboard') : _e('Welcome to your pro dashboard') . ', ' . $profile->first_name; ?></h1>
         </div>
 
         <?php if($paidItemCount) : ?>

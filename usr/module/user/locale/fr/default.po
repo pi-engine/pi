@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-05-07 15:29+0200\n"
-"PO-Revision-Date: 2019-05-07 15:30+0200\n"
+"POT-Creation-Date: 2019-05-07 18:59+0200\n"
+"PO-Revision-Date: 2019-05-07 19:00+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -1231,6 +1231,10 @@ msgstr "Ajouter une activité"
 #: template/front/dashboard-index.phtml:217
 msgid "Let's go !"
 msgstr "C'est parti !"
+
+#: template/front/dashboardPro-index.phtml:30
+msgid "Welcome to your pro dashboard"
+msgstr "Bienvenue dans votre espace professionnel"
 
 #: template/front/dashboardPro-index.phtml:221
 msgid "To begin, let's create your first establishment :)"
