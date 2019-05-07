@@ -198,31 +198,33 @@ if(isset($_GET['item_count'])){
                 <?php } ?>
             </div>
         <?php else : ?>
-            <div class="dashboard-intro"><?php echo $userConfig['default_pro_dashboard_intro'] ?></div>
-            <div><?php echo _t('How it works') ?></div>
-            <div class="steps row d-flex">
-                <div class="col-12 col-sm-4 align-self-stretch step step-1 ">
-                    <div class="content">
-                        <span class="title"><?php echo $userConfig['default_pro_dashboard_step_1'] ?></span>
+            <div class="dashboard-default">
+                <div class="dashboard-intro"><?php echo $userConfig['default_pro_dashboard_intro'] ?></div>
+                <div class="dashboard-title"><strong><?php echo _t('How it works') ?></strong></div>
+                <div class="steps row d-flex">
+                    <div class="col-12 col-sm-4 align-self-stretch step step-1 ">
+                        <div class="content">
+                            <span class="title"><?php echo $userConfig['default_pro_dashboard_step_1'] ?></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4 align-self-stretch step step-2">
+                        <div class="content">
+                            <span class="title"><?php echo $userConfig['default_pro_dashboard_step_2'] ?></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4 align-self-stretch step step-3">
+                        <div class="content">
+                            <span class="title"><?php echo $userConfig['default_pro_dashboard_step_3'] ?></span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-4 align-self-stretch step step-2">
-                    <div class="content">
-                        <span class="title"><?php echo $userConfig['default_pro_dashboard_step_2'] ?></span>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-4 align-self-stretch step step-3">
-                    <div class="content">
-                        <span class="title"><?php echo $userConfig['default_pro_dashboard_step_3'] ?></span>
-                    </div>
-                </div>
-            </div>
-            <div><strong><?php echo _t('To begin, let\'s create your first establishment :)') ?></strong></div>
-            <br>
+                <div class="dashboard-title"><strong><?php echo _t("To begin, let's create your first establishment :)") ?></strong></div>
+                <br>
 
-            <a class="btn btn-success btn-add" title="<?php echo _b('Add commercial'); ?>"
-               href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'add', 'type' => 'commercial')); ?>"><i
-                        class="fas fa-cutlery"></i> <?php echo _b('Add commercial'); ?></a>
+                <a class="btn btn-success btn-add" title="<?php echo _b('Add commercial'); ?>"
+                   href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'add', 'type' => 'commercial')); ?>"><i
+                            class="fas fa-cutlery"></i> <?php echo _b('Add commercial'); ?></a>
+            </div>
         <?php endif; ?>
     </div>
 </div>

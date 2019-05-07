@@ -645,16 +645,25 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
     line-height:1.4em;
 }
 
-.dashboard .col-md-9{
+.dashboard .col-md-9 .dashboard-default{
     text-align: center;
 }
 
+.dashboard-intro{
+    margin-bottom:45px;
+}
+
 .dashboard-intro strong{
-    color: #1787E6;
+    color: #03A9F4;
+}
+
+.dashboard-title{
+    font-size:18px;
+    font-weight:bold;
 }
 
 .dashboard .steps{
-    margin:45px auto 100px auto;
+    margin:25px auto 100px auto;
 }
 
 .dashboard .step .content{
@@ -686,7 +695,7 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
     content:'2';
 }
 
-.dashboard-pro .step-3 .content:before{
+.dashboard .step-3 .content:before{
     content:'3';
 }
 
