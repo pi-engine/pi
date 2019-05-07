@@ -578,6 +578,11 @@ body:not(.sidebar-minimized) .fa-expanded{
     right: 12px;
 }
 
+.sticky-top-sidebar .nav-pills .nav-link
+{
+    position:relative;
+}
+
 .sticky-top-sidebar .nav-pills .nav-link.active {
     background-color: transparent;
 }
@@ -596,6 +601,7 @@ body:not(.sidebar-minimized) .fa-expanded{
     color:#ffc107;
     background-color: transparent;
     font-weight:600;
+    position:relative;
 }
 
 .item-section.active .nav-link:not(.nav-link-choose){
