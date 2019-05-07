@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-05-07 15:13+0200\n"
-"PO-Revision-Date: 2019-05-07 15:13+0200\n"
+"POT-Creation-Date: 2019-05-07 15:29+0200\n"
+"PO-Revision-Date: 2019-05-07 15:30+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -1216,6 +1216,25 @@ msgstr "Mes Vidéos"
 #: template/front/dashboardPro-index.phtml:188
 msgid "My support tickets"
 msgstr "Mes tickets Assistance"
+
+#: template/front/dashboard-index.phtml:196
+#: template/front/dashboardPro-index.phtml:203
+msgid "How it works ?"
+msgstr "Comment ça marche ?"
+
+#: template/front/dashboard-index.phtml:215
+#: template/front/dashboardPro-index.phtml:224
+#: template/front/dashboardPro-index.phtml:226
+msgid "Add commercial"
+msgstr "Ajouter une activité"
+
+#: template/front/dashboard-index.phtml:217
+msgid "Let's go !"
+msgstr "C'est parti !"
+
+#: template/front/dashboardPro-index.phtml:221
+msgid "To begin, let's create your first establishment :)"
+msgstr "Pour commencer, créons votre premier établissement ;)"
 
 #: template/front/login-disabled.phtml:3
 msgid "User login"
