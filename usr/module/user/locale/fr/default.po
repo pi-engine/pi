@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-05-07 13:35+0200\n"
-"PO-Revision-Date: 2019-05-07 13:36+0200\n"
+"POT-Creation-Date: 2019-05-07 15:13+0200\n"
+"PO-Revision-Date: 2019-05-07 15:13+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -1127,93 +1127,93 @@ msgstr "Annuler"
 msgid "Uploading"
 msgstr "En téléchargement"
 
-#: template/front/dashboard-index.phtml:21
-#: template/front/dashboardPro-index.phtml:26
+#: template/front/dashboard-index.phtml:24
+#: template/front/dashboardPro-index.phtml:30
 msgid "Your dashboard"
 msgstr "Votre tableau de bord"
 
-#: template/front/dashboard-index.phtml:21
+#: template/front/dashboard-index.phtml:24
 msgid "Welcome to your personal dashboard"
 msgstr "Bienvenue dans votre espace personnel"
 
-#: template/front/dashboard-index.phtml:32
-#: template/front/dashboardPro-index.phtml:37
+#: template/front/dashboard-index.phtml:35
+#: template/front/dashboardPro-index.phtml:41
 msgid "Your pending requests"
 msgstr "Vos demandes en attente"
 
-#: template/front/dashboard-index.phtml:53
-#: template/front/dashboardPro-index.phtml:59
+#: template/front/dashboard-index.phtml:56
+#: template/front/dashboardPro-index.phtml:63
 msgid "Shortcuts"
 msgstr "Raccourcis"
 
-#: template/front/dashboard-index.phtml:60
-#: template/front/dashboard-index.phtml:64
-#: template/front/dashboardPro-index.phtml:66
+#: template/front/dashboard-index.phtml:63
+#: template/front/dashboard-index.phtml:67
 #: template/front/dashboardPro-index.phtml:70
+#: template/front/dashboardPro-index.phtml:74
 msgid "My items"
 msgstr "Mes éléments"
 
-#: template/front/dashboard-index.phtml:73
-#: template/front/dashboard-index.phtml:77
-#: template/front/dashboardPro-index.phtml:79
+#: template/front/dashboard-index.phtml:76
+#: template/front/dashboard-index.phtml:80
 #: template/front/dashboardPro-index.phtml:83
+#: template/front/dashboardPro-index.phtml:87
 #: template/front/profile-sidebar.phtml:308
 msgid "Sponsorship"
 msgstr "Parrainage"
 
-#: template/front/dashboard-index.phtml:88
-#: template/front/dashboard-index.phtml:92
-#: template/front/dashboardPro-index.phtml:94
+#: template/front/dashboard-index.phtml:91
+#: template/front/dashboard-index.phtml:95
 #: template/front/dashboardPro-index.phtml:98
+#: template/front/dashboardPro-index.phtml:102
 msgid "My messages"
 msgstr "Mes messages"
 
-#: template/front/dashboard-index.phtml:98
-#: template/front/dashboard-index.phtml:102
-#: template/front/dashboardPro-index.phtml:104
+#: template/front/dashboard-index.phtml:101
+#: template/front/dashboard-index.phtml:105
 #: template/front/dashboardPro-index.phtml:108
+#: template/front/dashboardPro-index.phtml:112
 msgid "My notifications"
 msgstr "Mes notifications"
 
-#: template/front/dashboard-index.phtml:111
-#: template/front/dashboard-index.phtml:115
-#: template/front/dashboardPro-index.phtml:117
+#: template/front/dashboard-index.phtml:114
+#: template/front/dashboard-index.phtml:118
 #: template/front/dashboardPro-index.phtml:121
+#: template/front/dashboardPro-index.phtml:125
 msgid "My events"
 msgstr "Mes évènements"
 
-#: template/front/dashboard-index.phtml:124
-#: template/front/dashboard-index.phtml:128
-#: template/front/dashboardPro-index.phtml:130
+#: template/front/dashboard-index.phtml:127
+#: template/front/dashboard-index.phtml:131
 #: template/front/dashboardPro-index.phtml:134
+#: template/front/dashboardPro-index.phtml:138
 msgid "My orders"
 msgstr "Mes commandes"
 
-#: template/front/dashboard-index.phtml:135
-#: template/front/dashboard-index.phtml:139
-#: template/front/dashboardPro-index.phtml:141
+#: template/front/dashboard-index.phtml:138
+#: template/front/dashboard-index.phtml:142
 #: template/front/dashboardPro-index.phtml:145
+#: template/front/dashboardPro-index.phtml:149
 msgid "My credit"
 msgstr "Mes Crédits"
 
-#: template/front/dashboard-index.phtml:149
-#: template/front/dashboard-index.phtml:153
-#: template/front/dashboardPro-index.phtml:155
+#: template/front/dashboard-index.phtml:152
+#: template/front/dashboard-index.phtml:156
 #: template/front/dashboardPro-index.phtml:159
+#: template/front/dashboardPro-index.phtml:163
 msgid "My favorites"
 msgstr "Mes favoris"
 
-#: template/front/dashboard-index.phtml:161
-#: template/front/dashboard-index.phtml:165
-#: template/front/dashboardPro-index.phtml:167
+#: template/front/dashboard-index.phtml:164
+#: template/front/dashboard-index.phtml:168
 #: template/front/dashboardPro-index.phtml:171
+#: template/front/dashboardPro-index.phtml:175
 msgid "My videos"
 msgstr "Mes Vidéos"
 
-#: template/front/dashboard-index.phtml:174
-#: template/front/dashboard-index.phtml:178
-#: template/front/dashboardPro-index.phtml:180
+#: template/front/dashboard-index.phtml:177
+#: template/front/dashboard-index.phtml:181
 #: template/front/dashboardPro-index.phtml:184
+#: template/front/dashboardPro-index.phtml:188
 msgid "My support tickets"
 msgstr "Mes tickets Assistance"
 
