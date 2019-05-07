@@ -5,7 +5,12 @@ $this->jQuery();
 
 $userConfig = Pi::service('registry')->config->read('user');
 
-$commentCount = 1;
+$uid = Pi::user()->getId();
+$profile = (object) Pi::user()->get($uid);
+
+$resultComment = Pi::api('api', 'comment')->getComments(1, $uid);
+$commentCount = count($resultComment);
+//$commentCount = 0;
 ?>
 <div class="row <?php echo $commentCount ? 'dashboard dashboard-perso dashboard-perso-with-comments' : 'dashboard dashboard-perso dashboard-perso-without-comments' ?>">
     <div class="col-md-3">
@@ -13,10 +18,10 @@ $commentCount = 1;
     </div>
     <div class="col-md-9">
         <div class="page-header">
-            <h1><?php $commentCount ? _e('Your dashboard') : _e(sprintf(__('Welcome to <span>%s</span>'), Pi::config('sitename'))); ?></h1>
+            <h1><?php echo $commentCount ? __('Your dashboard') : __('Welcome to your personal dashboard') . ' ' . $profile->first_name; ?></h1>
         </div>
 
-        <?php if($paidItemCount) : ?>
+        <?php if($commentCount) : ?>
             <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>
             <div class="row">
                 <?php if (Pi::service('module')->isActive('guide')) { ?>
@@ -184,6 +189,28 @@ $commentCount = 1;
             </div>
         <?php else : ?>
             <div class="dashboard-intro"><?php echo $userConfig['default_perso_dashboard_intro'] ?></div>
+            <div><?php echo _t('How it works') ?></div>
+            <div class="steps row d-flex">
+                <div class="col-12 col-sm-4 align-self-stretch step step-1 ">
+                    <div class="content">
+                        <span class="title"><?php echo $userConfig['default_perso_dashboard_step_1'] ?></span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 align-self-stretch step step-2">
+                    <div class="content">
+                        <span class="title"><?php echo $userConfig['default_perso_dashboard_step_2'] ?></span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 align-self-stretch step step-3">
+                    <div class="content">
+                        <span class="title"><?php echo $userConfig['default_perso_dashboard_step_3'] ?></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <a class="btn btn-success btn-home" title="<?php echo _b('Add commercial'); ?>"
+               href="<?php echo $this->url('home'); ?>"><i
+                        class="fas fa-cutlery"></i> <?php echo _b('Let\'s go !'); ?></a>
         <?php endif; ?>
     </div>
 </div>

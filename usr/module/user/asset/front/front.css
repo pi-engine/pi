@@ -187,9 +187,6 @@
     text-transform: capitalize;
 }
 
-.user-info-title strong {
-}
-
 .user-info-item {
     margin-bottom: 20px;
     border: 1px solid #ccc;
@@ -638,6 +635,9 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
 .dashboard{
     font-size:16px;
     line-height:1.4em;
+}
+
+.dashboard .col-md-9{
     text-align: center;
 }
 
@@ -645,19 +645,19 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
     color: #1787E6;
 }
 
-.dashboard-pro .steps{
-    margin:45px auto 65px auto;
+.dashboard .steps{
+    margin:45px auto 100px auto;
 }
 
-.dashboard-pro .step .content{
+.dashboard .step .content{
     border:1px solid #F8F8F8;
     background:white;
-    padding:15px;
+    padding:40px 15px;
     font-weight: bold;
     height:100%;
 }
 
-.dashboard-pro .step .content:before{
+.dashboard .step .content:before{
     content:'-';
     display:block;
     /*padding:15px;*/
@@ -667,14 +667,14 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
     height:50px;
     line-height:50px;
     color:white;
-    margin:15px auto 20px auto;
+    margin:0 auto 20px auto;
 }
 
-.dashboard-pro .step-1 .content:before{
+.dashboard .step-1 .content:before{
     content:'1';
 }
 
-.dashboard-pro .step-2 .content:before{
+.dashboard .step-2 .content:before{
     content:'2';
 }
 
@@ -682,43 +682,27 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
     content:'3';
 }
 
-.dashboard-pro .step .content .title{
+.dashboard .step .content .title{
     display:inline-block;
     width:200px;
 }
 
-.dashboard-pro .btn-add,
-.dashboard-pro .btn-add:hover{
-    padding:20px;
+.dashboard .btn-home,
+.dashboard .btn-home:hover,
+.dashboard .btn-add,
+.dashboard .btn-add:hover{
+    padding:20px 35px;
     border-radius:0;
     font-size:24px;
     font-weight: 600;
     margin-bottom:45px;
+    min-width:250px;
 }
 
-.dashboard-pro .btn-add:before{
+.dashboard .btn-add:before{
     content:'+';
     font-size:36px;
     vertical-align: bottom;
     line-height: 1em;
-}
-
-.dashboard-perso .page-header{
-    padding:65px;
-    background:lightskyblue;
-    margin-bottom:50px;
-}
-
-.dashboard-perso h1{
-    color:white;
-}
-
-.dashboard-perso h1 span{
-    display:block;
-}
-
-.dashboard-perso h1{
-    width:400px;
-    margin: 0 auto;
-    color:white;
+    margin-right:10px;
 }
