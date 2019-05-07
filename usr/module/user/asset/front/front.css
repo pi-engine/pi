@@ -512,6 +512,13 @@
     margin-right: 22px;
 }
 
+@media screen and (max-width: 767px) {
+    #minimize-btn
+    {
+        display:none;
+    }
+}
+
 .sidebar-minimized #minimize-btn i{
     transform: rotate(180deg);
 }
@@ -588,6 +595,7 @@ body:not(.sidebar-minimized) .fa-expanded{
 .item-section.active .nav-link:not(.nav-link-choose).active{
     color:#ffc107;
     background-color: transparent;
+    font-weight:600;
 }
 
 .item-section.active .nav-link:not(.nav-link-choose){
