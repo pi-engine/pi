@@ -13,7 +13,7 @@ $owner = Pi::model('owner', 'guide')->find($uid, 'uid');
 
 if (isset($owner->id)) {
     $rowset = Pi::model('item', 'guide')->select(array('owner' => $owner->id, 'item_type' => 'commercial'));
-//    $paidItemCount = $rowset->count();
+    $paidItemCount = $rowset->count();
 }
 
 ?>

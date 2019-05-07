@@ -10,7 +10,6 @@ $profile = (object) Pi::user()->get($uid);
 
 $resultComment = Pi::api('api', 'comment')->getComments(1, $uid);
 $commentCount = count($resultComment);
-//$commentCount = 0;
 ?>
 <div class="row <?php echo $commentCount ? 'dashboard dashboard-perso dashboard-perso-with-comments' : 'dashboard dashboard-perso dashboard-perso-without-comments' ?>">
     <div class="col-md-3">
