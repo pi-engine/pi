@@ -16,6 +16,10 @@ if (isset($owner->id)) {
     $paidItemCount = $rowset->count();
 }
 
+if(isset($_GET['item_count'])){
+    $paidItemCount = $_GET['item_count'];
+}
+
 ?>
 <div class="row <?php echo $paidItemCount ? 'dashboard dashboard-pro dashboard-pro-with-items' : 'dashboard dashboard-pro dashboard-pro-without-items' ?>">
     <div class="col-md-3">
