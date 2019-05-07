@@ -640,7 +640,7 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
 }
 
 
-.dashboard{
+.dashboard .dashboard-default{
     font-size:16px;
     line-height:1.4em;
 }
@@ -722,4 +722,8 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
     vertical-align: bottom;
     line-height: 1em;
     margin-right:10px;
+}
+
+.nav-link-all-activities{
+    position:relative;
 }
