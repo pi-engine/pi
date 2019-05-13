@@ -250,7 +250,7 @@ $isPerso = (bool) (
                             <?php if ($config['manage_service']) { ?>
                                 <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>"
                                    class="nav-link rounded-0 <?php echo $action == "payment" || $action == "service"|| $action == "manage" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
-                                    <?php _e('Offers/Prices'); ?> <span class='fas fa-angle-right'></span>
+                                    <?php _e('Products/Prices'); ?> <span class='fas fa-angle-right'></span>
                                 </a>
                             <?php } ?>
 
