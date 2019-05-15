@@ -336,8 +336,12 @@ class Resize extends AbstractHelper
                 . $file
                 . '.' . $targetExtension;
 
+            $placeholderSource = null;
+
             if (!file_exists($source)) {
-                $source          = null;
+                $source = null;
+                $theme = Pi::service('theme')->current();
+                $placeholderSource = Pi::service('asset')->getThemeAssetPath('image/placeholder.jpg', $theme, null, true);
                 $targetExtension = '404.' . $targetExtension;
             }
 
@@ -357,9 +361,8 @@ class Resize extends AbstractHelper
 
                 if ($source) {
                     $imageProcessing->process($source, $target, preg_replace('#^\$#', '', $this->commands), $this->cropping, $options);
-
                 } else {
-                    $imageProcessing->process404($target, preg_replace('#^\$#', '', $this->commands));
+                    $imageProcessing->process($placeholderSource, $target, preg_replace('#^\$#', '', $this->commands));
                 }
             }
         } catch (\Exception $e) {
