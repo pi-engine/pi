@@ -254,7 +254,7 @@ $isPerso = (bool) (
                                 </a>
                             <?php } ?>
 
-                            <?php if ($business['enable_opening'] || $business['enable_opening_meal_service']) { ?>
+                            <?php if ((isset($business['enable_opening']) && $business['enable_opening']) || (isset($business['enable_opening_meal_service']) && $business['enable_opening_meal_service'])) { ?>
                                 <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'openings', 'item' => $item['id'])); ?>"
                                    class="nav-link rounded-0 <?php echo $action == "openings" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
                                     <?php _e('Opening hours'); ?> <span class='fas fa-angle-right'></span>
