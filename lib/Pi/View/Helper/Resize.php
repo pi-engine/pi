@@ -340,11 +340,8 @@ class Resize extends AbstractHelper
                 . $file
                 . '.' . $targetExtension;
 
-            $placeholderSource = null;
-
             if (!file_exists($source)) {
                 $source = null;
-                $targetExtension = '404.' . $targetExtension;
             }
 
             $filenameCommand = str_replace(',','-', $this->commands); // remove separator parameters
@@ -380,10 +377,12 @@ class Resize extends AbstractHelper
 
             $target = 'upload/media/processed/'
                 . $filenameCommand . '/'
-                . $targetExtension;
+                . $filestring
+                . '.' . $targetExtension;
 
             $imagine         = new Imagine();
             $imageProcessing = new ImageProcessing($imagine);
+
             $imageProcessing->process($placeholderSource, $target, preg_replace('#^\$#', '', $this->commands));
         }
 
