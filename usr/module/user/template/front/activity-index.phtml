@@ -4,7 +4,7 @@ $this->headMeta('noindex', 'robots');
 $userSection = $this->isUserSection(Pi::service('module')->current());
 
 ?>
-<div class="row">
+<div class="row user-section-wrapper">
     <?php if ($userSection) : ?>
         <div class="col-md-3">
             <?php include $this->template('./profile-sidebar.phtml'); ?>

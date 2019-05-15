@@ -24,7 +24,7 @@ $uid = Pi::user()->getId();
 $profile = (object) Pi::user()->get($uid);
 
 ?>
-<div class="row <?php echo $paidItemCount ? 'dashboard dashboard-pro dashboard-pro-with-items' : 'dashboard dashboard-pro dashboard-pro-without-items' ?>">
+<div class="row user-section-wrapper <?php echo $paidItemCount ? 'dashboard dashboard-pro dashboard-pro-with-items' : 'dashboard dashboard-pro dashboard-pro-without-items' ?>">
     <div class="col-md-3">
         <?php include $this->template('./profile-sidebar.phtml'); ?>
     </div>
