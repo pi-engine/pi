@@ -149,7 +149,7 @@ $isPerso = (bool) (
         <?php if ($module == 'guide') : ?>
             <div class="item-section <?php if (($module == 'guide' && $action == 'dashboard') || isset($item['id'])) {echo ' active';} ?>">
                 <div class="position-relative">
-                    <a class="nav-link nav-link-choose rounded-0 collapsed" role="button" data-toggle="collapse"
+                    <a class="nav-link nav-link-choose rounded-0 collapsed <?php echo isset($item['id']) ? 'nav-link-choosen' : '' ?>" role="button" data-toggle="collapse"
                        href="#collapseItem">
                         <span class="fa-expanded fas fa-concierge-bell d-none"><span class="ml-3"></span></span>
                         <span class="text-left"><?php echo (isset($currentTitle) && $currentTitle) ? $currentTitle : __('Choose an activity') ?></span>
@@ -250,7 +250,7 @@ $isPerso = (bool) (
                             <?php if ($config['manage_service']) { ?>
                                 <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>"
                                    class="nav-link rounded-0 <?php echo $action == "payment" || $action == "service"|| $action == "manage" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
-                                    <?php _e('Offers/Prices'); ?> <span class='fas fa-angle-right'></span>
+                                    <?php _e('Products/Prices'); ?> <span class='fas fa-angle-right'></span>
                                 </a>
                             <?php } ?>
 

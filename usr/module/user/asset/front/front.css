@@ -609,6 +609,10 @@ body:not(.sidebar-minimized) .fa-expanded{
     font-weight: normal;
 }
 
+.item-section.active .nav-link.nav-link-choosen{
+    font-weight:bold;
+}
+
 .sidebar-minimized .custom-switch-usersection{
     padding-left: 0!important;
     padding-right: 0!important;
@@ -642,6 +646,7 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
 }
 
 .nav-link-summary{
+    margin-top:20px;
     font-weight:600!important;
 }
 

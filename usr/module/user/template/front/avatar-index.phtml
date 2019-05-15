@@ -36,11 +36,13 @@ $viewPreview
                         <img src="%s" class="avatar-preview-img" alt="">
                     </div>';
 ?>
-<div class="row">
+<div class="row user-section-wrapper">
     <div class="col-md-3">
         <?php include $this->template('./profile-sidebar.phtml'); ?>
     </div>
     <div class="col-md-9" id="js-user-avatar">
+        <?php include $this->template('flash-messenger'); ?>
+
         <div class="page-header">
             <h1><?php _e('Change avatar'); ?>
                 <small><?php _e('Customize your avatar anyway you like'); ?></small>
