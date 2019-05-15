@@ -20,6 +20,8 @@ if(isset($_GET['item_count'])){
         <?php include $this->template('./profile-sidebar.phtml'); ?>
     </div>
     <div class="col-md-9">
+        <?php include $this->template('flash-messenger'); ?>
+
         <div class="page-header">
             <h1><?php echo $commentCount ? __('Your dashboard') : __('Welcome to your personal dashboard') . ', ' . $profile->first_name; ?></h1>
         </div>
