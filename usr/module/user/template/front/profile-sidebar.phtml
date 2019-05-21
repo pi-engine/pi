@@ -205,7 +205,7 @@ $isPerso = (bool) (
                                 <?php } ?>
                                 <?php if ($config['calendar_active']) { ?>
                                     <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'calendar', 'item' => $item['id'])); ?>"
-                                       class="nav-link rounded-0 <?php echo $action == "calendar" || $action == "policies" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                                       class="nav-link rounded-0 <?php echo $action == "calendar" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
                                         <?php _e('Bookings/Closings'); ?> <span class='fas fa-angle-right'></span>
                                     </a>
                                 <?php } ?>
@@ -260,6 +260,12 @@ $isPerso = (bool) (
                                     <?php _e('Opening hours'); ?> <span class='fas fa-angle-right'></span>
                                 </a>
                             <?php } ?>
+
+                            <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'policies', 'item' => $item['id'])); ?>"
+                               class="nav-link rounded-0 <?php echo $action == "policies" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                                <?php _e('Policies'); ?> <span class='fas fa-angle-right'></span>
+                            </a>
+
 
                             <?php if ($config['manage_service']) { ?>
                                 <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'event-list', 'item' => $item['id'])); ?>"
