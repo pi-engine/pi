@@ -380,10 +380,12 @@ class Resize extends AbstractHelper
                 . $filestring
                 . '.' . $targetExtension;
 
-            $imagine         = new Imagine();
-            $imageProcessing = new ImageProcessing($imagine);
+            if (!is_file($target)) {
+                $imagine         = new Imagine();
+                $imageProcessing = new ImageProcessing($imagine);
 
-            $imageProcessing->process($placeholderSource, $target, preg_replace('#^\$#', '', $this->commands));
+                $imageProcessing->process($placeholderSource, $target, preg_replace('#^\$#', '', $this->commands));
+            }
         }
 
         $filepath = 'upload/media/processed/' . $filenameCommand . '/' . $filestring . '.' . $targetExtension;
