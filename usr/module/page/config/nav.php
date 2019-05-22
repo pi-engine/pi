@@ -52,6 +52,29 @@ return [
                 'controller' => 'template',
                 'action'     => 'index',
             ],
+            'tools' => array(
+                'label' => _a('Tools'),
+                'permission' => array(
+                    'resource' => 'tools',
+                ),
+                'route' => 'admin',
+                'module' => 'page',
+                'controller' => 'tools',
+                'action' => 'sitemap',
+                'pages' => array(
+                    'sitemap' => array(
+                        'label' => _a('Sitemap'),
+                        'permission' => array(
+                            'resource' => 'tools',
+                        ),
+                        'route' => 'admin',
+                        'module' => 'page',
+                        'controller' => 'tools',
+                        'action' => 'sitemap',
+                    ),
+
+                ),
+            ),
         ],
 
         // Custom navigation
