@@ -577,6 +577,7 @@ form .icon-question-sign {
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
     cursor: pointer;
+    border-color: #e9ecef #e9ecef #dee2e6;
 }
 
 .userbar-avatar-item {
