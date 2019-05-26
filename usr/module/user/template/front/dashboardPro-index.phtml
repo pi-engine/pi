@@ -2,20 +2,29 @@
 $this->css($this->assetModule('front/front.css'));
 $this->headMeta('noindex', 'robots');
 $this->jQuery();
-
+$guideConfig = Pi::service('registry')->config->read('guide');
 $userConfig = Pi::service('registry')->config->read('user');
+
+// Get uid
+$uid = Pi::user()->getId();
+// Check is owner or not
+$paidItemCount = 0;
+$owner = Pi::model('owner', 'guide')->find($uid, 'uid');
+
+if (isset($owner->id)) {
+    $rowset = Pi::model('item', 'guide')->select(array('owner' => $owner->id, 'item_type' => 'commercial'));
+    $paidItemCount = $rowset->count();
+}
+
+if(isset($_GET['item_count'])){
+    $paidItemCount = $_GET['item_count'];
+}
 
 $uid = Pi::user()->getId();
 $profile = (object) Pi::user()->get($uid);
 
-$resultComment = Pi::api('api', 'comment')->getComments(1, $uid);
-$commentCount = count($resultComment);
-
-if(isset($_GET['item_count'])){
-    $commentCount = $_GET['item_count'];
-}
 ?>
-<div class="row user-section-wrapper <?php echo $commentCount ? 'dashboard dashboard-perso dashboard-perso-with-comments' : 'dashboard dashboard-perso dashboard-perso-without-comments' ?>">
+<div class="row user-section-wrapper <?php echo $paidItemCount ? 'dashboard dashboard-pro dashboard-pro-with-items' : 'dashboard dashboard-pro dashboard-pro-without-items' ?>">
     <div class="col-md-3">
         <?php include $this->template('./profile-sidebar.phtml'); ?>
     </div>
@@ -23,10 +32,10 @@ if(isset($_GET['item_count'])){
         <?php include $this->template('flash-messenger'); ?>
 
         <div class="page-header">
-            <h1><?php echo $commentCount ? __('Your dashboard') : __('Welcome to your personal dashboard') . ', ' . $profile->first_name; ?></h1>
+            <h1><?php echo $paidItemCount ? _e('Your dashboard') : _e('Welcome to your pro dashboard') . ', ' . $profile->first_name; ?></h1>
         </div>
 
-        <?php if($commentCount) : ?>
+        <?php if($paidItemCount) : ?>
             <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>
             <div class="row">
                 <?php if (Pi::service('module')->isActive('guide')) { ?>
@@ -41,9 +50,11 @@ if(isset($_GET['item_count'])){
                     </div>
                     <div class="col-md-6">
                         <?php echo $this->widget('guide-required-actions') ?>
+
                     </div>
-                    <div class="col-md-12">
-                        <?php echo $this->widget('guide-dashboard-items', array('only-contribs' => true)) ?>
+                    <div class="col-md-10">
+
+                        <?php echo $this->widget('guide-planning') ?>
                     </div>
                     <div class="col-md-8">
                         <?php echo $this->widget('guide-dashboard-contributions') ?>
@@ -193,30 +204,31 @@ if(isset($_GET['item_count'])){
             </div>
         <?php else : ?>
             <div class="dashboard-default">
-                <div class="dashboard-intro"><?php echo $userConfig['default_perso_dashboard_intro'] ?></div>
-                <div class="dashboard-title"><?php echo __('How it works ?') ?></div>
+                <div class="dashboard-intro"><?php echo $userConfig['default_pro_dashboard_intro'] ?></div>
+                <div class="dashboard-title"><strong><?php echo __('How it works ?') ?></strong></div>
                 <div class="steps row d-flex">
                     <div class="col-12 col-sm-4 align-self-stretch step step-1 ">
                         <div class="content">
-                            <span class="title"><?php echo $userConfig['default_perso_dashboard_step_1'] ?></span>
+                            <span class="title"><?php echo $userConfig['default_pro_dashboard_step_1'] ?></span>
                         </div>
                     </div>
                     <div class="col-12 col-sm-4 align-self-stretch step step-2">
                         <div class="content">
-                            <span class="title"><?php echo $userConfig['default_perso_dashboard_step_2'] ?></span>
+                            <span class="title"><?php echo $userConfig['default_pro_dashboard_step_2'] ?></span>
                         </div>
                     </div>
                     <div class="col-12 col-sm-4 align-self-stretch step step-3">
                         <div class="content">
-                            <span class="title"><?php echo $userConfig['default_perso_dashboard_step_3'] ?></span>
+                            <span class="title"><?php echo $userConfig['default_pro_dashboard_step_3'] ?></span>
                         </div>
                     </div>
                 </div>
-                <div class="lets-go">
-                    <a class="btn btn-success btn-home" title="<?php echo __('Add commercial'); ?>"
-                       href="<?php echo $this->url('home'); ?>"><i
-                                class="fas fa-cutlery"></i> <?php echo __("Let's go !"); ?></a>
-                </div>
+                <div class="dashboard-title"><strong><?php echo __("To begin, let's create your first establishment :)") ?></strong></div>
+                <br>
+
+                <a class="btn btn-success btn-add" title="<?php echo __('Add commercial'); ?>"
+                   href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'add', 'type' => 'commercial')); ?>"><i
+                            class="fas fa-cutlery"></i> <?php echo __('Add commercial'); ?></a>
             </div>
         <?php endif; ?>
     </div>

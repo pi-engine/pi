@@ -244,6 +244,70 @@ $config = [
         'category'    => 'login',
     ],
 
+    'default_pro_dashboard_intro' => [
+        'title'         => _t('Default pro Dashboard intro'),
+        'edit'          => 'textarea',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'     => 'account',
+    ],
+
+    'default_pro_dashboard_step_1' => [
+        'title'         => _t('Default pro Dashboard step 1'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'     => 'account',
+    ],
+
+    'default_pro_dashboard_step_2' => [
+        'title'         => _t('Default pro Dashboard step 2'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'     => 'account',
+    ],
+
+    'default_pro_dashboard_step_3' => [
+        'title'         => _t('Default pro Dashboard step 3'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'     => 'account',
+    ],
+
+    'default_perso_dashboard_intro' => [
+        'title'         => _t('Default perso Dashboard intro'),
+        'edit'          => 'textarea',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'     => 'account',
+    ],
+
+    'default_perso_dashboard_step_1' => [
+        'title'         => _t('Default perso Dashboard step 1'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'     => 'account',
+    ],
+
+    'default_perso_dashboard_step_2' => [
+        'title'         => _t('Default perso Dashboard step 2'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'     => 'account',
+    ],
+
+    'default_perso_dashboard_step_3' => [
+        'title'         => _t('Default perso Dashboard step 3'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'     => 'account',
+    ],
+
     // Register
     'register_disable'  => [
         'title'       => _t('Register disable'),

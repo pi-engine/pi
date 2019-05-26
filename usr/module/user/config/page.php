@@ -74,5 +74,12 @@ return [
             'permission' => 'profile-page',
             'block'      => 1,
         ],
+        [
+            'title'      => _a('Dashboard pro view'),
+            'controller' => 'dashboard-pro',
+            'action'     => 'index',
+            'permission' => 'profile-page',
+            'block'      => 1,
+        ],
     ],
 ];

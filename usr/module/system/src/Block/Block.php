@@ -154,15 +154,39 @@ class Block
             ];
 
             if (Pi::service('module')->isActive('user')) {
+
+                $defaultController = 'dashboard';
+
+
+                if (Pi::service('module')->isActive('user')) {
+                    $uid = Pi::service('user')->getId();
+                    $owner = Pi::model('owner', 'guide')->find($uid, 'uid');
+
+                    if($owner && $owner->id) {
+
+                        // Get list of item
+                        $where = array(
+                            'owner' => $owner->id,
+                            'item_type' => 'commercial',
+                        );
+
+                        $itemModel = Pi::model('item', 'guide');
+                        $rowset = $itemModel->select($where);
+
+                        if ($rowset->count()) {
+                            $defaultController = 'dashboardPro';
+                        }
+                    }
+                }
+
                 $user['dashboard_url'] = Pi::service('url')->assemble(
                     'user',
                     [
                         'module'     => 'user',
-                        'controller' => 'dashboard',
+                        'controller' => $defaultController,
                         'action'     => 'index',
                     ]
                 );
-
             }
 
         }

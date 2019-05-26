@@ -310,6 +310,7 @@ class Resize extends AbstractHelper
      */
     public function __toString()
     {
+
         if ($this->commands == '') {
             return \Pi::url($this->imgPath);
         }
@@ -317,6 +318,9 @@ class Resize extends AbstractHelper
         $options = [];
 
         $options['quality'] = $this->quality;
+
+        $theme = Pi::service('theme')->current();
+        $placeholderSource = Pi::service('asset')->getThemeAssetPath('image/placeholder.jpg', $theme, null, true);
 
         try {
 
@@ -337,16 +341,17 @@ class Resize extends AbstractHelper
                 . '.' . $targetExtension;
 
             if (!file_exists($source)) {
-                $source          = null;
-                $targetExtension = '404.' . $targetExtension;
+                $source = null;
             }
 
             $filenameCommand = str_replace(',','-', $this->commands); // remove separator parameters
             $filenameCommand = str_replace('$','', $filenameCommand); // remove separatir commands
 
+            $filestring = str_replace('upload/media/original', '', $file);
+
             $target = 'upload/media/processed/'
                 . $filenameCommand . '/'
-                . str_replace('upload/media/original', '', $file)
+                . $filestring
                 . '.' . $targetExtension;
 
             if (!is_file($target)) {
@@ -357,16 +362,33 @@ class Resize extends AbstractHelper
 
                 if ($source) {
                     $imageProcessing->process($source, $target, preg_replace('#^\$#', '', $this->commands), $this->cropping, $options);
-
                 } else {
-                    $imageProcessing->process404($target, preg_replace('#^\$#', '', $this->commands));
+                    $imageProcessing->process($placeholderSource, $target, preg_replace('#^\$#', '', $this->commands));
                 }
             }
         } catch (\Exception $e) {
-            return '';
+
+            $source = null;
+            $targetExtension = 'jpg';
+            $filestring = 'placeholder';
+
+            $filenameCommand = str_replace(',','-', $this->commands); // remove separator parameters
+            $filenameCommand = str_replace('$','', $filenameCommand); // remove separatir commands
+
+            $target = 'upload/media/processed/'
+                . $filenameCommand . '/'
+                . $filestring
+                . '.' . $targetExtension;
+
+            if (!is_file($target)) {
+                $imagine         = new Imagine();
+                $imageProcessing = new ImageProcessing($imagine);
+
+                $imageProcessing->process($placeholderSource, $target, preg_replace('#^\$#', '', $this->commands));
+            }
         }
 
-        $filepath = 'upload/media/processed/' . $filenameCommand . '/' . str_replace('upload/media/original/', '', $file) . '.' . $targetExtension;
+        $filepath = 'upload/media/processed/' . $filenameCommand . '/' . $filestring . '.' . $targetExtension;
 
         $finalUrl = \Pi::url($filepath);
 

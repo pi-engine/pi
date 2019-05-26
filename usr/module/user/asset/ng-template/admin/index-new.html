@@ -1,5 +1,5 @@
 <form name="userForm" novalidate ng-submit="submit()">
-    <div class="form-group"
+    <div class="form-group row"
          data-ng-class="{'has-error': userForm.identity.$dirty && userForm.identity.$invalid}">
         <label class="col-md-2 col-form-label">{{'USERNAME' | translate}}</label>
         <div class="col-md-4">
@@ -15,7 +15,7 @@
 			</span>
         </div>
     </div>
-    <div class="form-group"
+    <div class="form-group row"
          data-ng-class="{'has-error': userForm.name.$dirty && userForm.name.$invalid}">
         <label class="col-md-2 col-form-label">{{'DISPLAYNAME' | translate}}</label>
         <div class="col-md-4">
@@ -31,7 +31,7 @@
 			</span>
         </div>
     </div>
-    <div class="form-group"
+    <div class="form-group row"
          data-ng-class="{'has-error': userForm.email.$dirty && userForm.email.$invalid}">
         <label class="col-md-2 col-form-label">{{'EMAIL' | translate}}</label>
         <div class="col-md-4">
@@ -50,7 +50,7 @@
 			</span>
         </div>
     </div>
-    <div class="form-group"
+    <div class="form-group row"
          data-ng-class="{'has-error': userForm.credential.$dirty && userForm.credential.$invalid}">
         <label class="col-md-2 col-form-label">{{'PASSWORD' | translate}}</label>
         <div class="col-md-4">
@@ -63,7 +63,7 @@
 			</span>
         </div>
     </div>
-    <div class="form-group"
+    <div class="form-group row"
          data-ng-class="{'has-error': userForm.credential_confirm.$dirty && userForm.credential_confirm.$invalid}">
         <label class="col-md-2 col-form-label">{{'CONFIRM_PASSWORD' | translate}}</label>
         <div class="col-md-4">
@@ -79,7 +79,7 @@
 			</span>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label class="col-md-2 col-form-label">{{'ACTIVATE' | translate}}</label>
         <div class="col-md-4 form-text">
             <div class="pi-status" data-ng-class="{'active': entity.activated}"
@@ -88,7 +88,7 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label class="col-md-2 col-form-label">{{'ENABLE' | translate}}</label>
         <div class="col-md-4 form-text">
             <div class="pi-status" data-ng-class="{'active': entity.enable}"
@@ -97,23 +97,23 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label class="col-md-2 col-form-label">{{'ASSIGN_FRONT_ROLE' | translate}}</label>
         <div class="col-md-8">
             <label class="checkbox-inline" ng-repeat="item in roles | filter: {type: 'front'}">
-                <input type="checkbox" data-ng-model="item.checked" ng-disabled="item.name == 'member'">{{item.title}}
+                <input type="checkbox" data-ng-model="item.checked" ng-disabled="item.name == 'member'">&nbsp;{{item.title}}&nbsp;&nbsp;
             </label>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label class="col-md-2 col-form-label">{{'ASSIGN_ADMIN_ROLE' | translate}}</label>
         <div class="col-md-8">
             <label class="checkbox-inline" ng-repeat="item in roles | filter: {type: 'admin'}">
-                <input type="checkbox" data-ng-model="item.checked">{{item.title}}
+                <input type="checkbox" data-ng-model="item.checked">&nbsp;{{item.title}}&nbsp;&nbsp;
             </label>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <div class="offset-md-2 col-md-10">
             <input type="submit" value="{{'SUBMIT' | translate}}" class="btn btn-primary"
                    ng-disabled="userForm.$invalid">

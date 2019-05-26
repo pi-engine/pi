@@ -379,6 +379,22 @@ class Asset extends AbstractService
                 if(!is_file($themeAssetPath)){
 
                     $theme = $parentTheme;
+
+                    /**
+                     * Check if theme has super parent
+                     */
+                    $superParentTheme = Pi::service('theme')->getParent($theme);
+
+                    if($superParentTheme){
+
+                        $component = 'theme/' . $theme;
+                        $themeAssetPath = $this->getAssetPath($component, $file, $appendVersion);
+
+                        if(!is_file($themeAssetPath)){
+
+                            $theme = $superParentTheme;
+                        }
+                    }
                 }
             }
         }
