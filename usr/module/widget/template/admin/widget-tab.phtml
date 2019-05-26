@@ -43,9 +43,9 @@ include $this->templateComponent('form');
 </div>
 
 <script id="widget-item-template" type="text/template">
-    <div class="col-sm-6 col-md-3 widget-item">
+    <div class="widget-item">
+        <div class="card bg-light p-2">
         <button type="button" class="close" title="<?php echo _a('Click to remove'); ?>">&times;</button>
-        <div class="thumbnail">
             <p>
                 <input type="text" value="<%= caption %>" name="<%= prefix %>caption" class="form-control">
             </p>
