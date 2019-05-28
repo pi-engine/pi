@@ -1,4 +1,5 @@
 <?php $this->i18nTheme('default', 'default'); ?>
+<div class="clearfix m-5">
     <div class="alert alert-danger">
         <h1 class="page-header"><?php echo !empty($title) ? _escape($title) : __('Error occurred'); ?></h1>
         <p><?php echo $message ?: __('Please verify your request or visit later.'); ?></p>
@@ -8,58 +9,59 @@
             </a>
         </p>
     </div>
-<?php if ('production' == Pi::environment()) return; ?>
-<?php if (isset($this->display_exceptions) && $this->display_exceptions): ?>
-    <?php if (isset($this->exception) && $this->exception instanceof Exception): ?>
-        <h2 class="page-header">Additional information:</h2>
-        <h3><?php echo get_class($this->exception); ?></h3>
-        <dl>
-            <dt>File:</dt>
-            <dd>
+    <?php if ('production' == Pi::environment()) return; ?>
+    <?php if (isset($this->display_exceptions) && $this->display_exceptions): ?>
+        <?php if (isset($this->exception) && $this->exception instanceof Exception): ?>
+            <h2 class="page-header">Additional information:</h2>
+            <h3><?php echo get_class($this->exception); ?></h3>
+            <dl>
+                <dt>File:</dt>
+                <dd>
                 <pre class="prettyprint linenums"><?php echo Pi::service('security')->path($this->exception->getFile()); ?>
                     : <?php echo $this->exception->getLine(); ?></pre>
-            </dd>
-            <dt>Message:</dt>
-            <dd>
-                <pre class="prettyprint linenums"><?php echo Pi::service('security')->db($this->exception->getMessage()); ?></pre>
-            </dd>
-            <dt>Stack trace:</dt>
-            <dd>
-                <pre class="prettyprint linenums"><?php echo Pi::service('security')->path($this->exception->getTraceAsString()); ?></pre>
-            </dd>
-        </dl>
-        <?php
-        $e = $this->exception->getPrevious();
-        if ($e) :
-            ?>
-            <h2 class="page-header">Previous exceptions:</h2>
-            <ul class="unstyled">
-                <?php while ($e): ?>
-                    <li>
-                        <h2><?php echo get_class($e); ?></h2>
-                        <dl>
-                            <dt>File:</dt>
-                            <dd>
+                </dd>
+                <dt>Message:</dt>
+                <dd>
+                    <pre class="prettyprint linenums"><?php echo Pi::service('security')->db($this->exception->getMessage()); ?></pre>
+                </dd>
+                <dt>Stack trace:</dt>
+                <dd>
+                    <pre class="prettyprint linenums"><?php echo Pi::service('security')->path($this->exception->getTraceAsString()); ?></pre>
+                </dd>
+            </dl>
+            <?php
+            $e = $this->exception->getPrevious();
+            if ($e) :
+                ?>
+                <h2 class="page-header">Previous exceptions:</h2>
+                <ul class="unstyled">
+                    <?php while ($e): ?>
+                        <li>
+                            <h2><?php echo get_class($e); ?></h2>
+                            <dl>
+                                <dt>File:</dt>
+                                <dd>
                                 <pre class="prettyprint linenums"><?php echo Pi::service('security')->path($e->getFile()); ?>
                                     : <?php echo $e->getLine(); ?></pre>
-                            </dd>
-                            <dt>Message:</dt>
-                            <dd>
-                                <pre class="prettyprint linenums"><?php echo _escape(Pi::service('security')->db($e->getMessage())); ?></pre>
-                            </dd>
-                            <dt>Stack trace:</dt>
-                            <dd>
-                                <pre class="prettyprint linenums"><?php echo Pi::service('security')->path($e->getTraceAsString()); ?></pre>
-                            </dd>
-                        </dl>
-                    </li>
-                    <?php
-                    $e = $e->getPrevious();
-                endwhile;
-                ?>
-            </ul>
-        <?php endif; ?>
-    <?php else: ?>
-        <h2>No Exception available</h2>
+                                </dd>
+                                <dt>Message:</dt>
+                                <dd>
+                                    <pre class="prettyprint linenums"><?php echo _escape(Pi::service('security')->db($e->getMessage())); ?></pre>
+                                </dd>
+                                <dt>Stack trace:</dt>
+                                <dd>
+                                    <pre class="prettyprint linenums"><?php echo Pi::service('security')->path($e->getTraceAsString()); ?></pre>
+                                </dd>
+                            </dl>
+                        </li>
+                        <?php
+                        $e = $e->getPrevious();
+                    endwhile;
+                    ?>
+                </ul>
+            <?php endif; ?>
+        <?php else: ?>
+            <h2>No Exception available</h2>
+        <?php endif ?>
     <?php endif ?>
-<?php endif ?>
+</div>

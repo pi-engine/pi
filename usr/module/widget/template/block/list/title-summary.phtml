@@ -36,7 +36,7 @@ switch ($options['max_rows']) {
                 <div class="widget-list-text-single text-center">
                     <?php if (!empty($item['icon'])) { ?>
                         <div class="widget-list-text-single-icon">
-                            <i class="fa <?php echo _escape($item['icon']); ?> fa-5x"></i>
+                            <i class="<?php echo _escape($item['icon']); ?>"></i>
                         </div>
                     <?php } ?>
                     <?php if (!empty($item['caption'])) { ?>

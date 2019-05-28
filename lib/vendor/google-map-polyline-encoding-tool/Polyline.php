@@ -61,7 +61,7 @@ class Polyline
      * Apply Google Polyline algorithm to list of points.
      *
      * @param array $points List of points to encode. Can be a list of tuples,
-     *                      or a flat on dimensional array.
+     *                      or a flat, one-dimensional array.
      *
      * @return string encoded string
      */

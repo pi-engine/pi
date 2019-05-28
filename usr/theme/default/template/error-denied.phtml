@@ -1,30 +1,32 @@
 <?php $this->i18nTheme('default', 'default'); ?>
-<div class="alert alert-danger">
-    <h1 class="page-header"><?php _e('Access denied'); ?></h1>
-    <p>
-        <?php
-        // Display custom message
-        if (!empty($message)) {
-            echo $message;
-            // Prompt to login for guests
-        } elseif (401 == (int)$code && $this->controller && 'login' != $this->controller) {
-            $params = ['section' => Pi::engine()->application()->getSection()];
-            $url    = Pi::service('authentication')->getUrl('login', $params);
-            $link   = '<a href="' . $url . '" title="' . __('login') . '">' . __('login') . '</a>';
-            $button = '<a class="btn btn-primary" href="' . $url . '" title="' . __('login') . '">' . __('login') . '</a>';
-            echo sprintf(__('You are not allowed to access the page. Please %s and try again.'), $link);
-            echo '<p>' . $button . '</p>';
+<div class="clearfix m-5">
+    <div class="alert alert-danger">
+        <h1 class="page-header"><?php _e('Access denied'); ?></h1>
+        <p>
+            <?php
+            // Display custom message
+            if (!empty($message)) {
+                echo $message;
+                // Prompt to login for guests
+            } elseif (401 == (int)$code && $this->controller && 'login' != $this->controller) {
+                $params = ['section' => Pi::engine()->application()->getSection()];
+                $url    = Pi::service('authentication')->getUrl('login', $params);
+                $link   = '<a href="' . $url . '" title="' . __('login') . '">' . __('login') . '</a>';
+                $button = '<a class="btn btn-primary" href="' . $url . '" title="' . __('login') . '">' . __('login') . '</a>';
+                echo sprintf(__('You are not allowed to access the page. Please %s and try again.'), $link);
+                echo '<p>' . $button . '</p>';
 
-            Pi::service('url')->redirect($url);
-            // Point to website user guide otherwise
-        } else {
-            _e('You are not allowed to access the page.');
-        }
-        ?>
-    </p>
-    <div class="text-right">
-        <a href="<?php echo Pi::url('www'); ?>" title="<?php _e('Homepage'); ?>">
-            <?php echo _escape(Pi::config('sitename')); ?>
-        </a>
+                Pi::service('url')->redirect($url);
+                // Point to website user guide otherwise
+            } else {
+                _e('You are not allowed to access the page.');
+            }
+            ?>
+        </p>
+        <div class="text-right">
+            <a href="<?php echo Pi::url('www'); ?>" title="<?php _e('Homepage'); ?>">
+                <?php echo _escape(Pi::config('sitename')); ?>
+            </a>
+        </div>
     </div>
 </div>

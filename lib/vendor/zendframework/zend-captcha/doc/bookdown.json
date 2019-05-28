@@ -1,0 +1,9 @@
+{
+    "title": "Zend\\Captcha",
+    "target": "html/",
+    "content": [
+        "book/zend.captcha.intro.md",
+        "book/zend.captcha.operation.md",
+        "book/zend.captcha.adapters.md"
+    ]
+}
