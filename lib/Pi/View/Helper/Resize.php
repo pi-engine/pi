@@ -388,7 +388,7 @@ class Resize extends AbstractHelper
             }
         }
 
-        $filepath = 'upload/media/processed/' . $filenameCommand . '/' . $filestring . '.' . $targetExtension;
+        $filepath = 'upload/media/processed/' . $filenameCommand . '' . $filestring . '.' . $targetExtension;
 
         $finalUrl = \Pi::url($filepath);
 
