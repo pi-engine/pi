@@ -370,7 +370,7 @@ class Resize extends AbstractHelper
 
             $source = null;
             $targetExtension = 'jpg';
-            $filestring = 'placeholder';
+            $filestring = '/placeholder';
 
             $filenameCommand = str_replace(',','-', $this->commands); // remove separator parameters
             $filenameCommand = str_replace('$','', $filenameCommand); // remove separatir commands
