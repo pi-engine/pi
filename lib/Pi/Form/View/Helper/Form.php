@@ -171,7 +171,6 @@ class Form extends FormHelper
                 $element->setAttribute('class', $attrClass);
             }
 
-
             /**
              * Add row if needed
              */
@@ -191,6 +190,19 @@ class Form extends FormHelper
                     break;
             }
 
+            if ($element->getOption('style') == 'form-inline') {
+                if ($element->getLabel()) {
+                    $renderPattern= "%label_html% %element_html%";
+                } else {
+                    $renderPattern= "%element_html%";
+                }
+                $labelPattern
+                    = <<<EOT
+<label class="%label_size% col-form-label d-block">
+    %mark_required%%label_content%
+</label>
+EOT;
+            } else {
             $renderPattern
                 = <<<EOT
 <div class="$rowClass form-group" data-name="%element_name%">
@@ -198,12 +210,15 @@ class Form extends FormHelper
     %element_html%
 </div>
 EOT;
-            $labelPattern
-                = <<<EOT
+                $labelPattern
+                    = <<<EOT
 <label class="%label_size% col-form-label">
     %mark_required%%label_content%
 </label>
 EOT;
+            }
+
+
 
             $descPattern
                 = <<<EOT
@@ -279,7 +294,7 @@ EOT;
                 $labelPattern = '';
                 $elementPattern
                         = <<<EOT
-  &nbsp; %element_content%
+   %element_content%
 EOT;
 $renderPattern
                 = <<<EOT
@@ -346,6 +361,9 @@ EOT;
                         $vars['element_size'] = 'col-md-5';
                     }
                     break;
+            }
+            if ($element->getOption('style') == 'form-inline') {
+                $vars['element_size'] = 'mr-1';
             }
 
             // Style settings for editor
