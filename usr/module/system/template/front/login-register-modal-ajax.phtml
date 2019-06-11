@@ -27,16 +27,16 @@
                         <div class="user-action-bar-title"><?php _e('Login'); ?></div>
                         <?php echo $this->form($loginForm, 'vertical'); ?>
 
-                        <a class="find-password-link" title="<?php _e('Find password'); ?>"
-                           href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
+                        <button type="button" class="btn btn-sm btn-link find-password-link" title="<?php _e('Find password'); ?>"
+                           onclick="location.href='<?php echo Pi::service('user')->getUrl('password'); ?>'"><?php _e('Find password'); ?></button>
 
                         <div class="clearfix user-action-bar">
                             <div class="user-action-bar-title"><?php _e('Not already registered ?'); ?></div>
                             <p>
-                                <a class="btn btn-secondary toggle-modal-action toggle-modal-action-register"
-                                   title="<?php _e('Register'); ?>" href="#">
+                                <button type="button" class="btn btn-secondary toggle-modal-action toggle-modal-action-register"
+                                   title="<?php _e('Register'); ?>">
                                     <?php _e('Register'); ?>
-                                </a>
+                                </button>
                             </p>
                         </div>
                     </div>
@@ -54,10 +54,10 @@
                         <div class="clearfix user-action-bar">
                             <div class="user-action-bar-title"><?php _e('Already registered ?'); ?></div>
                             <p>
-                                <a class="btn btn-secondary toggle-modal-action toggle-modal-action-login"
-                                   title="<?php _e('Login'); ?>" href="#">
+                                <button type="button" class="btn btn-secondary toggle-modal-action toggle-modal-action-login"
+                                   title="<?php _e('Login'); ?>">
                                     <?php _e('Login'); ?>
-                                </a>
+                                </button>
                             </p>
                         </div>
                     </div>
