@@ -471,7 +471,7 @@ if($section == 'admin'){
 
         <?php if (Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
             <li class="nav-item item-promouvoir d-none dropdown d-md-flex">
-                <button tupe="button" onclick="location.href='<?php echo $this->url('home'); ?>guide/solutions'" class="nav-link btn btn-warning btn-sm align-self-center">
+                <button type="button" onclick="location.href='<?php echo $this->url('home'); ?>guide/solutions'" class="nav-link btn btn-warning btn-sm align-self-center">
                     <span class="value"><?php echo _b("Add my activity") ?></span>
                 </button>
             </li>
