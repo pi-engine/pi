@@ -7,8 +7,10 @@ echo $this->form($form);
 ?>
 
 <div class="form-group" id="widget-items">
-    <label class="col-sm-3 col-lg-2 col-form-label"><?php echo _a('Items'); ?></label>
-    <div class="col-md-10">
+    <div class="card mb-5 bg-light">
+        <label class="p-3 col-form-label"><?php echo _a('Items'); ?></label>
+    </div>
+    <div class="col-md-12">
         <div class="row">
             <div class="col-sm-6 col-md-3 widget-item-add">
                 <div class="thumbnail widget-item-add-mark" title="<?php echo _a('Click to add new item.'); ?>">
@@ -20,9 +22,9 @@ echo $this->form($form);
 </div>
 
 <script id="widget-item-template" type="text/template">
-    <div class="col-sm-6 col-md-3 widget-item">
-        <button type="button" class="close" title="<?php echo _a('Click to remove'); ?>">&times;</button>
-        <div class="thumbnail">
+    <div class="widget-item">
+        <div class="card bg-light p-2">
+            <button type="button" class="close" title="<?php echo _a('Click to remove'); ?>">&times;</button>
             <p>
                 <label><?php echo _a('Caption'); ?></label>
                 <input type="text" value="<%= caption %>" name="<%= prefix %>caption" class="form-control">

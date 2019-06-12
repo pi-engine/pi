@@ -187,9 +187,6 @@
     text-transform: capitalize;
 }
 
-.user-info-title strong {
-}
-
 .user-info-item {
     margin-bottom: 20px;
     border: 1px solid #ccc;
@@ -500,3 +497,244 @@
     color: #fff
 }
 /* END SIDEBAR BS4 */
+
+
+
+
+
+.custom-control-label-perso{
+    margin-right:40px;
+    margin-bottom:0;
+}
+
+.sidebar-minimized .custom-control-label-perso{
+    /*display:none;*/
+    margin-right: 22px;
+}
+
+@media screen and (max-width: 767px) {
+    #minimize-btn
+    {
+        display:none;
+    }
+}
+
+.sidebar-minimized #minimize-btn i{
+    transform: rotate(180deg);
+}
+
+.sidebar-minimized .nav-link{
+    padding:0.5rem 0.5rem!important;
+    width: 100%;
+    text-align: center;
+    font-size:11px;
+}
+
+.sidebar-minimized .sticky-top-sidebar-usersection .panel-collapse{
+    width: 100%;
+    position:absolute;
+    top:0;
+    left: 100%;
+    background: #9DC6CB;
+    width: auto;
+}
+
+.sidebar-minimized .sticky-top-sidebar-usersection .panel-collapse .nav-link{
+    white-space: nowrap;
+    text-align: left;
+}
+
+.sidebar-minimized .sticky-top-sidebar-usersection .panel-collapse .nav-link:hover{
+    background:lightgrey;
+    color:grey;
+}
+
+.sidebar-minimized #minimize-btn{
+    position:relative;
+    left:10px;
+}
+
+
+
+.sidebar-minimized .fa-minimized{
+    display:inline-block!important;
+    font-size: 24px;
+}
+
+body:not(.sidebar-minimized) .fa-expanded{
+    display:inline-block!important;
+}
+
+.sidebar-minimized .label{
+    display:none;
+}
+
+.sidebar-minimized #switch-pro{
+    position:relative;
+}
+
+.sidebar-minimized .fa-caret-down{
+    position: absolute;
+    right: 12px;
+}
+
+.sticky-top-sidebar .nav-pills .nav-link
+{
+    position:relative;
+}
+
+.sticky-top-sidebar .nav-pills .nav-link.active {
+    background-color: transparent;
+}
+
+.item-section.active,
+.sticky-top-sidebar .nav-pills .nav-link.active,
+.sticky-top-sidebar .item-section:not(.active) .nav-pills .nav-link.active {
+    background-color: rgba(126, 174, 197, 0.7);
+}
+
+.item-section.active{
+    border-top:1px solid white;
+}
+
+.item-section.active .nav-link:not(.nav-link-choose).active{
+    color:#ffc107;
+    background-color: transparent;
+    font-weight:600;
+    position:relative;
+}
+
+.item-section.active .nav-link:not(.nav-link-choose){
+    padding: 0.2rem 1rem;
+    font-weight: normal;
+}
+
+.item-section.active .nav-link.nav-link-choosen{
+    font-weight:bold;
+}
+
+.sidebar-minimized .custom-switch-usersection{
+    padding-left: 0!important;
+    padding-right: 0!important;
+    font-size: 13px;
+    line-height: 23px;
+}
+
+.sticky-top-sidebar-pro .custom-control-label-perso {
+    color:grey!important;
+}
+
+body:not(.sidebar-minimized) .collapse-minimized-only{
+    display:block!important;
+}
+
+.sidebar-minimized .nav-link-collapse{
+    padding-left:0!important;
+    padding-right:0!important;
+    padding-bottom:0!important;
+    padding-top:15px!important;
+}
+
+.sidebar-minimized .nav-link-collapse hr{
+    margin-top:15px;
+    margin-bottom:0;
+    padding-bottom:0;
+}
+
+.sidebar-minimized .minimized-no-display{
+    display:none;
+}
+
+.nav-link-summary{
+    margin-top:20px;
+    font-weight:600!important;
+}
+
+
+.dashboard .dashboard-default{
+    font-size:16px;
+    line-height:1.4em;
+}
+
+.dashboard .col-md-9 .dashboard-default{
+    text-align: center;
+}
+
+.dashboard-intro{
+    margin-bottom:45px;
+}
+
+.dashboard-intro strong{
+    color: #03A9F4;
+}
+
+.dashboard-title{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.dashboard .steps{
+    margin:25px auto 100px auto;
+}
+
+.dashboard .step .content{
+    border:1px solid #F8F8F8;
+    background:white;
+    padding:40px 15px;
+    font-weight: bold;
+    height:100%;
+}
+
+.dashboard .step .content:before{
+    content:'-';
+    display:block;
+    /*padding:15px;*/
+    border-radius: 100%;
+    background-color:#91A8B9;
+    width:50px;
+    height:50px;
+    line-height:50px;
+    color:white;
+    margin:0 auto 20px auto;
+}
+
+.dashboard .step-1 .content:before{
+    content:'1';
+}
+
+.dashboard .step-2 .content:before{
+    content:'2';
+}
+
+.dashboard .step-3 .content:before{
+    content:'3';
+}
+
+.dashboard .step .content .title{
+    display:inline-block;
+    width:200px;
+}
+
+.dashboard .btn-home,
+.dashboard .btn-home:hover,
+.dashboard .btn-add,
+.dashboard .btn-add:hover{
+    padding:20px 35px;
+    border-radius:0;
+    font-size:24px;
+    font-weight: 600;
+    margin-bottom:45px;
+    min-width:250px;
+}
+
+.dashboard .btn-add:before{
+    content:'+';
+    font-size:36px;
+    vertical-align: bottom;
+    line-height: 1em;
+    margin-right:10px;
+}
+
+.nav-link-all-activities{
+    position:relative;
+}

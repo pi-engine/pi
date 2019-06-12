@@ -74,8 +74,7 @@ $module = Pi::service('module')->current();
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse">
-            <?php echo $this->adminNav()->modes('navbar-nav mr-auto'); ?>
-
+            <?php echo $this->adminNav()->modes('navbar-nav mr-auto pi-navbar-nav'); ?>
             <?php echo $this->widget('system-user-bar', [
                 'type'           => 'flat',
                 'float'          => 'right',
@@ -89,7 +88,6 @@ $module = Pi::service('module')->current();
                     'section' => Pi::engine()->application()->getSection(),
                 ],
             ]); ?>
-
             <ul class="navbar-nav justify-content-end navbar-go-front">
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">

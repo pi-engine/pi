@@ -91,7 +91,7 @@ if (is_array($block['content'])) {
         }
         $body = sprintf('<div class="pi-block-content">%s</div>', $block['content']);
     } else {
-        $class = sprintf('card card-default %s', $block['class']);
+        $class = sprintf('card card-default shadow-sm %s', $block['class']);
         if (!$block['title_hidden']) {
             $heading = sprintf('<div class="card-heading p-3"><h2 class="card-title">%s</h2></div>', $heading);
         }
@@ -99,7 +99,7 @@ if (is_array($block['content'])) {
     }
 }
 ?>
-<div class="<?php echo $class; ?> mb-4 shadow-sm">
+<div class="<?php echo $class; ?> mb-4">
     <?php
     echo $heading;
     echo $body;
