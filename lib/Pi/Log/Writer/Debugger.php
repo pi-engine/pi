@@ -372,7 +372,7 @@ EOT;
         // Use nowdoc for CSS contents
         $scripts_css
             = <<<'EOT'
-<style type="text/css">
+<style>
     #pi-logger-output {
         font-family: monospace;
         font-size: 90%;
