@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-06-27 13:11+0200\n"
-"PO-Revision-Date: 2019-06-27 13:11+0200\n"
+"POT-Creation-Date: 2019-06-27 13:18+0200\n"
+"PO-Revision-Date: 2019-06-27 13:19+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -1230,7 +1230,6 @@ msgid "How it works ?"
 msgstr "Comment ça marche ?"
 
 #: template/front/dashboard-index.phtml:232
-#: template/front/dashboardPro-index.phtml:210
 #: template/front/dashboardPro-index.phtml:249
 #: template/front/dashboardPro-index.phtml:251
 msgid "Add commercial"
@@ -1244,9 +1243,13 @@ msgstr "C'est parti !"
 msgid "Welcome to your pro dashboard"
 msgstr "Bienvenue dans votre espace professionnel"
 
+#: template/front/dashboardPro-index.phtml:210
+msgid "Add<br>commercial"
+msgstr "Ajouter<br>une activité"
+
 #: template/front/dashboardPro-index.phtml:219
-msgid "Promote your businesses"
-msgstr "Promouvoir mes activités"
+msgid "Promote<br>your businesses"
+msgstr "Promouvoir<br>mes activités"
 
 #: template/front/dashboardPro-index.phtml:246
 msgid "To begin, let's create your first establishment :)"
