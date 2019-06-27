@@ -739,6 +739,10 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
     position:relative;
 }
 
+.push-item-actions{
+    margin-top: 25px;
+}
+
 .push-item-actions .push-item-action{
     display:block;
     padding: 15px;
@@ -769,7 +773,7 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
     position: relative;
     display: inline-block;
     background: white;
-    padding: 10px;
+    padding: 10px 15px;;
     transform: translateY(-40%);
     box-sizing: border-box;
     font-size:16px;

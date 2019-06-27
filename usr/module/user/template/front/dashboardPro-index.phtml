@@ -205,20 +205,20 @@ $profile = (object) Pi::user()->get($uid);
             <div class="row push-item-actions">
                 <div class="col-sm-6">
                     <a class="push-item-action push-item-add" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'add', 'type' => 'commercial')); ?>">
+                        <span>
                             <span>
-                                <span>
-                                    <?php _e('Add commercial'); ?>
-                                </span>
+                                <?php _e('Add<br>commercial'); ?>
                             </span>
+                        </span>
                     </a>
                 </div>
                 <div class="col-sm-6">
-                    <a class="push-item-action push-item-promote" href="<?php echo $this->url('', array('controller' => 'solutions')); ?>">
-                            <span>
-                                 <span>
-                                    <?php _e('Promote your activity'); ?>
-                                </span>
+                    <a class="push-item-action push-item-promote" href="<?php echo $this->url('', array('controller' => 'solutions')); ?>" target="_blank">
+                        <span>
+                             <span>
+                                <?php _e('Promote<br>your activity'); ?>
                             </span>
+                        </span>
                     </a>
                 </div>
             </div>
