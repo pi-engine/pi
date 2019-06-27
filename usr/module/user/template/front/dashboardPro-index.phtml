@@ -201,6 +201,27 @@ $profile = (object) Pi::user()->get($uid);
 
                 <?php } ?>
             </div>
+
+            <div class="row push-item-actions">
+                <div class="col-sm-6">
+                    <a class="push-item-action push-item-add" href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'add', 'type' => 'commercial')); ?>">
+                            <span>
+                                <span>
+                                    <?php _e('Add commercial'); ?>
+                                </span>
+                            </span>
+                    </a>
+                </div>
+                <div class="col-sm-6">
+                    <a class="push-item-action push-item-promote" href="<?php echo $this->url('', array('controller' => 'solutions')); ?>">
+                            <span>
+                                 <span>
+                                    <?php _e('Promote your activity'); ?>
+                                </span>
+                            </span>
+                    </a>
+                </div>
+            </div>
         <?php else : ?>
             <div class="dashboard-default">
                 <div class="dashboard-intro"><?php echo $userConfig['default_pro_dashboard_intro'] ?></div>
