@@ -1,10 +1,11 @@
 <?php $this->headMeta('noindex', 'robots'); ?>
+<div class="clearfix user-template">
 <div class="page-header page-header-activate">
-    <h1><?php _e('Activate account'); ?></h1>
+    <h1><?php _e('Congratulations, and welcome !'); ?></h1>
 </div>
 <?php if (!empty($result['status'])) { ?>
-    <p><?php _e('Congratulations!'); ?></p>
-    <p><?php _e('Your account has been activated.'); ?></p>
+    <p><strong><?php _e('Welcome in our community !'); ?></strong></p>
+    <p><?php _e('Your account has been confirmed and is now active : you can log in ... and contribute !'); ?></p>
     <p><a class="btn btn-primary" href="<?php echo Pi::service('authentication')->getUrl('login', $redirect); ?>">
             <?php _e('Login right now.'); ?>
         </a>
@@ -23,3 +24,4 @@
         <a href="<?php echo $this->url('', ['controller' => 'register', 'action' => 'resend.activation']); ?>"><?php _e('Resend activation email.'); ?></a>
     </p>
 <?php } ?>
+</div>
