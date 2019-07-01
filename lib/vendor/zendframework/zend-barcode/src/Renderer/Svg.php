@@ -142,7 +142,7 @@ class Svg extends AbstractRenderer
             $this->resource = new DOMDocument('1.0', 'utf-8');
             $this->resource->formatOutput = true;
             $this->rootElement = $this->resource->createElement('svg');
-            $this->rootElement->setAttribute('xmlns', "https://www.w3.org/2000/svg");
+            $this->rootElement->setAttribute('xmlns', "http://www.w3.org/2000/svg");
             $this->rootElement->setAttribute('version', '1.1');
             $this->rootElement->setAttribute('width', $width);
             $this->rootElement->setAttribute('height', $height);
