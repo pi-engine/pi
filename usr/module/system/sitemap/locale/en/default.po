@@ -1,0 +1,293 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi Sitemap module\n"
+"POT-Creation-Date: 2014-08-11 11:38+0330\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Pi\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.4.0/usr/module/"
+"sitemap\n"
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:47
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:8
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:11
+msgid "URL"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:58
+msgid "Last modification"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:71
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:12
+msgid "Change frequency"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:73
+msgid "Always"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:74
+msgid "Hourly"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:75
+msgid "Daily"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:76
+msgid "Weekly"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:77
+msgid "Monthly"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:78
+msgid "Yearly"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:79
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:44
+msgid "Never"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:91
+msgid "priority (optional)"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:102
+msgid "Status"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:104
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:53
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:44
+msgid "Published"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:105
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:54
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:45
+msgid "Pending review"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:106
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:55
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:46
+msgid "Draft"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:107
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:56
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:47
+msgid "Private"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:108
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:46
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:37
+msgid "Delete"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/TopForm.php:120
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/GenerateForm.php:72
+msgid "Submit"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/GenerateForm.php:40
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:7
+msgid "File"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/GenerateForm.php:44
+msgid "Set file name as filename.xml"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/GenerateForm.php:51
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:10
+msgid "Start"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Form/GenerateForm.php:61
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:11
+msgid "End"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Installer/Action/Install.php:53
+msgid "Default sitemap information added."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:103
+msgid "New XML file generated"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:111
+msgid "You can not delete sitemap.xml build method"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:116
+msgid "This sitemap method deleted"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:118
+msgid "Please select sitemap method"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:138
+msgid "Selected file delete"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:140
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:158
+msgid "Please selete file"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:153
+msgid "Selected file copy to root"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:155
+msgid "Your origin file path is website root"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:239
+msgid "Link saved successfully."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:252
+msgid "Add a link"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:268
+msgid "This link add as top link"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:270
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:329
+msgid "Please select link"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/src/Controller/Admin/IndexController.php:327
+msgid "This link deleted"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:4
+msgid "List of module links"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:7
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:6
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:10
+msgid "ID"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:9
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:12
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:14
+msgid "Action"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:28
+msgid "Loc"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:30
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:13
+msgid "Time"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:32
+msgid "Module"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:35
+msgid "Table"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:38
+msgid "Item"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:44
+msgid "Add as top"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:57
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:48
+msgid "Trash"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:61
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:52
+msgid "Empty list"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_list.phtml:62
+msgid ""
+"Link list table is empty, when you submit new entry on modules that support "
+"sitemap, sitemap information add automatically on this part"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:3
+msgid "List of files"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:8
+msgid "Create"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:9
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:27
+msgid "Update"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:25
+msgid "Copy to root"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:28
+msgid "Delete file"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:30
+msgid "Generate"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:32
+msgid "Delete method"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:34
+msgid "View"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_index.phtml:41
+msgid "Generate new sitemap method"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:4
+msgid "Add Link"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:7
+msgid "List of top links"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:36
+msgid "Edit"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/template/admin/index_top.phtml:53
+msgid ""
+"Link top table is empty, you can add your important website links on this "
+"table manually."
+msgstr ""

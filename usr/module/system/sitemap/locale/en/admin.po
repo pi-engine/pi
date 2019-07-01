@@ -1,0 +1,54 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi Sitemap module\n"
+"POT-Creation-Date: 2014-08-11 11:35+0330\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Pi\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _t;_a\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.4.0/usr/module/"
+"sitemap\n"
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/config/navigation.php:16
+msgid "Generate"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/config/navigation.php:23
+msgid "Top links"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/config/navigation.php:30
+msgid "List links"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/config/module.php:16
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/config/config.php:20
+msgid "Sitemap"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/config/module.php:17
+msgid "For generate sitemap.xml."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/config/config.php:16
+msgid "Admin"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/config/config.php:28
+msgid "Perpage"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/config/config.php:37
+msgid "Sitemap limit"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.4.0/usr/module/sitemap/config/config.php:38
+msgid "Limited link in each file"
+msgstr ""

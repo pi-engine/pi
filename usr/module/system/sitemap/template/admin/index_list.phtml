@@ -1,0 +1,65 @@
+<?php $this->css($this->assetModule('css/admin.css')); ?>
+<div class="sitemap"> 
+	<?php if (!empty($links)) { ?>
+	<h3><?php _e('List of module links'); ?></h3>
+	<table class="table table-striped table-bordered table-condensed">
+		<tr>
+			<th><?php _e('ID'); ?></th>
+			<th><?php _e('URL'); ?></th>
+			<th><?php _e('Action'); ?></th>
+		</tr>
+		<?php foreach($links as $link) { ?>
+		<?php
+		if($link['status'] == 1) {
+			$labelIdClass = 'label-success';	
+		} elseif($link['status'] == 2) {
+			$labelIdClass = 'label-warning';	
+		} elseif($link['status'] == 3) {
+			$labelIdClass = 'label-warning';	
+		} elseif($link['status'] == 4) {
+			$labelIdClass = 'label-warning';	
+		} elseif($link['status'] == 5) {
+			$labelIdClass = 'label-danger';	
+		}	
+		?>
+        <tr>
+			<td><span class="label <?php echo $labelIdClass; ?>"><?php echo $this->escape($link['id']); ?></span></td>
+            <td>
+            	<p><?php _e('Loc'); ?> : <?php echo $this->escape($link['loc']); ?></p>
+            	<p>
+            		<span class="label label-primary"><?php _e('Time'); ?> : <?php echo $this->escape($link['time_create']); ?></span>
+            		<?php if (!empty($link['module'])) { ?>
+            		<span class="label label-primary"><?php _e('Module'); ?> : <?php echo $this->escape($link['module']); ?></span>
+            		<?php } ?>
+            		<?php if (!empty($link['table'])) { ?>
+            		<span class="label label-primary"><?php _e('Table'); ?> : <?php echo $this->escape($link['table']); ?></span>
+            		<?php } ?>
+            		<?php if (!empty($link['item'])) { ?>
+            		<span class="label label-primary"><?php _e('Item'); ?> : <?php echo $this->escape($link['item']); ?></span>
+            		<?php } ?>
+            	</p>
+            </td>
+            <td>
+				<?php if ($link['top'] == 0) { ?>
+				<a class="btn btn-primary" title="<?php _e('Add as top'); ?>" href="<?php echo $this->url('', array('action' => 'topadd', 'id' => $link['id'])); ?>"><i class="fa fa-edit"></i> <?php _e('Add as top'); ?></a>
+				<?php } ?>
+				<a class="btn btn-danger" title="<?php _e('Delete'); ?>" href="<?php echo $this->url('', array('action' => 'deleteLink', 'id' => $link['id'])); ?>"><i class="fa fa-trash-o"></i> <?php _e('Delete'); ?></a>
+            </td>
+		</tr>	
+		<?php } ?>
+	</table>
+	<div class="paginator"><?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?></div>
+	<p>
+		<span class="label label-success"><?php _e('Published'); ?></span>
+		<span class="label label-warning"><?php _e('Pending review'); ?></span>
+		<span class="label label-warning"><?php _e('Draft'); ?></span>
+		<span class="label label-warning"><?php _e('Private'); ?></span>
+		<span class="label label-danger"><?php _e('Trash'); ?></span>
+	</p>
+	<?php } else { ?>
+	<div class="alert alert-danger">
+		<h4><?php _e('Empty list'); ?></h4>
+		<p><?php _e('Link list table is empty, when you submit new entry on modules that support sitemap, sitemap information add automatically on this part'); ?></p>
+	</div>
+	<?php } ?>
+</div>

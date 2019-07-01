@@ -1,0 +1,44 @@
+<?php $this->css($this->assetModule('css/admin.css')); ?>
+<div class="sitemap">
+	<h3><?php _e('List of files'); ?></h3>
+    <table class="table table-striped table-bordered table-condensed">
+        <tr>
+            <!-- <th><?php _e('ID'); ?></th> -->
+            <th><?php _e('File'); ?></th>
+            <th><?php _e('Create'); ?></th>
+            <th><?php _e('Update'); ?></th>
+            <!-- <th><?php _e('Start'); ?></th>
+            <th><?php _e('End'); ?></th> -->
+            <th><?php _e('Action'); ?></th>
+        </tr>
+        <?php foreach($generate as $file) { ?>
+        <tr>
+            <!-- <td><?php echo $this->escape($file['id']); ?></td> -->
+            <td><?php echo $this->escape($file['file']); ?></td>
+            <td><?php echo $this->escape($file['time_create']); ?></td>
+            <td><?php echo $this->escape($file['time_update']); ?></td>
+            <!-- <td><?php echo $this->escape($file['start']); ?></td>
+            <td><?php echo $this->escape($file['end']); ?></td> -->
+            <td>
+                <?php if ($file['file_main_exists']) { ?>
+                <?php if (!$file['file_exists']) { ?>
+                <a class="btn btn-primary" title="<?php _e('Copy to root'); ?>" href="<?php echo $this->url('', array('action' => 'copyfile', 'file' => $this->escape($file['file']))); ?>"><i class="fa fa-copy"></i> <?php _e('Copy to root'); ?></a>
+                <?php } ?>
+                <a class="btn btn-success" title="<?php _e('Update'); ?>" href="<?php echo $this->escape($file['generate_link']); ?>"><i class="fa fa-refresh"></i> <?php _e('Update'); ?></a>
+                <a class="btn btn-warning" title="<?php _e('Delete file'); ?>" href="<?php echo $this->url('', array('action' => 'deletefile', 'file' => $this->escape($file['file']))); ?>"><i class="fa fa-file"></i> <?php _e('Delete file'); ?></a>
+                <?php } else { ?>
+                <a class="btn btn-success" title="<?php _e('Generate'); ?>" href="<?php echo $this->escape($file['generate_link']); ?>"><i class="fa fa-plus"></i> <?php _e('Generate'); ?></a>
+                <?php } ?>
+                <!-- <a class="btn btn-danger" title="<?php _e('Delete method'); ?>" href="<?php echo $this->url('', array('action' => 'delete', 'file' => $this->escape($file['file']))); ?>"><i class="fa fa-trash-o"></i> <?php _e('Delete method'); ?></a> -->
+                <?php if ($file['file_exists']) { ?>
+                <a class="btn btn-info" title="<?php _e('View'); ?>" href="<?php echo $this->escape($file['file_url']); ?>"><i class="fa fa-eye"></i> <?php _e('View'); ?></a>
+                <?php } ?>
+            </td>
+        </tr>   
+        <?php } ?>
+    </table>
+    <!-- <div class="well">
+        <h3><?php _e('Generate new sitemap method'); ?></h3>
+        <?php //include $this->templateComponent('forms'); ?>
+    </div> -->
+</div>

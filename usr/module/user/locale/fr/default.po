@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-06-27 13:18+0200\n"
-"PO-Revision-Date: 2019-06-27 13:19+0200\n"
+"POT-Creation-Date: 2019-07-01 13:16+0200\n"
+"PO-Revision-Date: 2019-07-01 13:16+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -1049,14 +1049,13 @@ msgstr "Modifier l'email"
 
 #: template/front/account-reset-email.phtml:4
 #: template/front/password-process.phtml:18
-#: template/front/register-activate.phtml:6
 #: template/front/register-index.phtml:78
 #: template/front/register-index.phtml:110
 msgid "Congratulations!"
 msgstr "Félicitations !"
 
 #: template/front/account-reset-email.phtml:6
-#: template/front/register-activate.phtml:9
+#: template/front/register-activate.phtml:10
 msgid "Login right now."
 msgstr "Se connecter maintenant."
 
@@ -1547,25 +1546,33 @@ msgstr "Date de naissance :"
 msgid "More"
 msgstr "Plus"
 
-#: template/front/register-activate.phtml:3
-msgid "Activate account"
-msgstr "Confirmer le compte"
+#: template/front/register-activate.phtml:4
+msgid "Congratulations, and welcome !"
+msgstr "Félicitations, et bienvenue !"
 
 #: template/front/register-activate.phtml:7
-msgid "Your account has been activated."
-msgstr "Votre compte a été confirmé."
+msgid "Welcome in our community !"
+msgstr "Bienvenue dans notre communauté !"
 
-#: template/front/register-activate.phtml:15
+#: template/front/register-activate.phtml:8
+msgid ""
+"Your account has been confirmed and is now active : you can log in... and "
+"contribute !"
+msgstr ""
+"Votre compte a été confirmé et est maintenant actif : vous pouvez vous "
+"connecter… et contribuer !"
+
+#: template/front/register-activate.phtml:16
 #: template/front/register-index.phtml:90
 #, php-format
 msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
 msgstr "Ou retourner à <a href=\"%s\">la page demandée </a> directement."
 
-#: template/front/register-activate.phtml:21
+#: template/front/register-activate.phtml:22
 msgid "Sorry, account activation is failed."
 msgstr "Désolé, la confirmation-activation de votre compte a échoué."
 
-#: template/front/register-activate.phtml:23
+#: template/front/register-activate.phtml:24
 #: template/front/register-resend-activation.phtml:3
 msgid "Resend activation email."
 msgstr "Renvoyer le mail de confirmation-activation."
@@ -1629,6 +1636,12 @@ msgstr "Demandez le renvoi du mail d'activation"
 #: template/front/register-index.phtml:179
 msgid "Already sent"
 msgstr "Déja envoyé"
+
+#~ msgid "Activate account"
+#~ msgstr "Confirmer le compte"
+
+#~ msgid "Your account has been activated."
+#~ msgstr "Votre compte a été confirmé."
 
 #~ msgid "Member area"
 #~ msgstr "Espace Membre"
