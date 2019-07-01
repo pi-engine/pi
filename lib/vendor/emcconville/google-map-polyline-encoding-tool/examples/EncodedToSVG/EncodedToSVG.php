@@ -126,7 +126,7 @@ class EncodedToSVG extends Polyline
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
         // Root
-        $root = $dom->createElementNS('http://www.w3.org/2000/svg', 'svg');
+        $root = $dom->createElementNS('https://www.w3.org/2000/svg', 'svg');
         $root->appendChild(new DomAttr('version', '1.2'));
         $root->appendChild(new DomAttr('viewBox', $viewBox));
         $root->appendChild(new DomAttr('viewport-fill', 'lightblue'));

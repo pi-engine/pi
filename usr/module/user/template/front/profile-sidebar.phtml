@@ -148,7 +148,7 @@ $isPerso = (bool) (
 
         <?php if ($module == 'guide') : ?>
             <div class="item-section <?php if (($module == 'guide' && $action == 'dashboard') || isset($item['id'])) {echo ' active';} ?>">
-                <?php if ($guideConfig['manage_active'] && isset($navigationItemList) && count($navigationItemList)) { ?>
+                <?php if ($guideConfig['manage_active'] && isset($navigationItemList) && (count($navigationItemList) || isset($currentTitle))) { ?>
                     <div class="position-relative">
                         <a class="nav-link nav-link-choose rounded-0 collapsed <?php echo isset($item['id']) ? 'nav-link-choosen' : '' ?>" role="button" data-toggle="collapse"
                            href="#collapseItem">
