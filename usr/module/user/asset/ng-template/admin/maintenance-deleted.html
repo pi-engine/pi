@@ -1,10 +1,10 @@
-<form class="mb-3">
+<form class="form-inline">
     <div class="float-right">
-        <button class="btn btn-sm btn-link" data-ng-click="clearAllAction()">{{'CLEAR_ALL' | translate}}</button>
+        <button class="btn btn-link" data-ng-click="clearAllAction()">{{'CLEAR_ALL' | translate}}</button>
         <strong>{{paginator.count}}</strong>
     </div>
     <input type="checkbox" data-ng-model="allChecked">
-    <button class="btn btn-link btn-sm" data-ng-click="clearBatchAction()">{{'CLEAR' | translate}}</button>
+    <button class="btn btn-secondary" data-ng-click="clearBatchAction()">{{'CLEAR' | translate}}</button>
 </form>
 <table class="table table-responsive" data-ng-if="users.length">
     <thead>
