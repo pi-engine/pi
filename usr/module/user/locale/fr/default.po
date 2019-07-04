@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-07-01 13:22+0200\n"
-"PO-Revision-Date: 2019-07-01 13:22+0200\n"
+"POT-Creation-Date: 2019-07-04 22:00+0200\n"
+"PO-Revision-Date: 2019-07-04 22:00+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -1465,8 +1465,8 @@ msgid "Events"
 msgstr "Evènements"
 
 #: template/front/profile-sidebar.phtml:278
-msgid "Deals (Soon)"
-msgstr "Promos/Offres (bientôt)"
+msgid "Deals/Special Offers"
+msgstr "Promos/Offres Spéciales"
 
 #: template/front/profile-sidebar.phtml:290
 msgid "DISTRIBUTION"
@@ -1636,6 +1636,9 @@ msgstr "Demandez le renvoi du mail d'activation"
 #: template/front/register-index.phtml:179
 msgid "Already sent"
 msgstr "Déja envoyé"
+
+#~ msgid "Deals (Soon)"
+#~ msgstr "Promos/Offres (bientôt)"
 
 #~ msgid "Activate account"
 #~ msgstr "Confirmer le compte"
