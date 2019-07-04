@@ -24,6 +24,7 @@ $isPerso = (bool) (
     || (($module == "guide" && $controller == 'manage' && $action == 'contributions'))
     || ($module == 'favourite')
     || ($module == 'comment')
+    || (isset($sideActive) && $sideActive == 'media')
     || ($module == 'user' && $controller != 'dashboardPro')
 );
 
@@ -147,19 +148,15 @@ $isPerso = (bool) (
 
         <?php if ($module == 'guide') : ?>
             <div class="item-section <?php if (($module == 'guide' && $action == 'dashboard') || isset($item['id'])) {echo ' active';} ?>">
-                <?php if ($guideConfig['manage_active'] && isset($navigationItemList) && (count($navigationItemList) || isset($currentTitle))) { ?>
-                    <div class="position-relative">
-                        <a class="d-flex nav-link nav-link-choose rounded-0 collapsed <?php echo isset($item['id']) ? 'nav-link-choosen' : '' ?>" role="button" data-toggle="collapse"
-                           href="#collapseItem">
-                            <div class="align-self-center">
-                                <img class="d-block" width="30" src="<?php echo $this->assetModule('front/img/concierge.svg', 'user') ?>" alt="" />
-                            </div>
-                            <span class="text-left d-block align-self-center ml-2 mr-2">
-                                <?php echo (isset($currentTitle) && $currentTitle) ? $currentTitle : __('Choose an activity') ?>
-                            </span>
-                            <span class='d-block align-self-center fa fa-caret-down'></span>
-                        </a>
-                        <div id="collapseItem" class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'show' ?>" role="tabpanel">
+                <div class="position-relative">
+                    <a class="nav-link nav-link-choose rounded-0 collapsed <?php echo isset($item['id']) ? 'nav-link-choosen' : '' ?>" role="button" data-toggle="collapse"
+                       href="#collapseItem">
+                        <span class="fa-expanded fas fa-concierge-bell d-none"><span class="ml-3"></span></span>
+                        <span class="text-left"><?php echo (isset($currentTitle) && $currentTitle) ? $currentTitle : __('Choose an activity') ?></span>
+                        <span class='fa fa-caret-down float-right mt-1'></span>
+                    </a>
+                    <div id="collapseItem" class="panel-collapse collapse <?php if ($module == 'user' && $controller != 'dashboard') echo 'show' ?>" role="tabpanel">
+                        <?php if ($guideConfig['manage_active'] && isset($navigationItemList)) { ?>
                             <?php foreach ($navigationItemList as $itemId => $itemTitle) : ?>
                                 <?php if ($action == 'dashboard') { ?>
                                     <a href="<?php echo $this->url(null, ['module' => 'guide', 'controller' => 'manage', 'action' => 'planning', 'item' => $itemId], null, true) ?>"
@@ -173,9 +170,9 @@ $isPerso = (bool) (
                                     </a>
                                 <?php } ?>
                             <?php endforeach; ?>
-                        </div>
+                        <?php } ?>
                     </div>
-                <?php } ?>
+                </div>
 
                 <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial') && $guideConfig['manage_active']) { ?>
                     <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'planning', 'item' => $item['id']])); ?>"
