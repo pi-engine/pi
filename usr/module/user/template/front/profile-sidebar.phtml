@@ -273,8 +273,8 @@ $isPerso = (bool) (
                                     <?php _e('Events'); ?> <span class='fas fa-angle-right'></span>
                                 </a>
                             <?php } ?>
-                            <a href="#"
-                               class="nav-link rounded-0 disabled" style="color:lightgrey!important; background-color:transparent" >
+                            <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'promotion', 'item' => $item['id'])); ?>"
+                               class="nav-link rounded-0 <?php echo $action == "promotion" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
                                 <?php _e('Deals (Soon)'); ?> <span class='fas fa-angle-right'></span>
                             </a>
                         </div>
