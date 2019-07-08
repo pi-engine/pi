@@ -160,22 +160,21 @@ class Block
 
                 if (Pi::service('module')->isActive('user')) {
                     $uid = Pi::service('user')->getId();
-                    $owner = Pi::model('owner', 'guide')->find($uid, 'uid');
 
-                    if($owner && $owner->id) {
+                    $orderModel = Pi::model('order', 'order');
+                    $orderTableName = $orderModel->getTable();
+                    $orderDetailModel = Pi::model('detail', 'order');
+                    $orderDetailTableName = $orderDetailModel->getTable();
 
-                        // Get list of item
-                        $where = array(
-                            'owner' => $owner->id,
-                            'item_type' => 'commercial',
-                        );
+                    $select = $orderModel->select();
+                    $select->join($orderDetailTableName, $orderDetailTableName . '.order = ' . $orderTableName . '.id');
+                    $select->where(['uid' => $uid, 'module' => 'guide']);
+                    $select->where(new \Zend\Db\Sql\Predicate\In('product_type', ['package', 'item']));
 
-                        $itemModel = Pi::model('item', 'guide');
-                        $rowset = $itemModel->select($where);
+                    $results = $orderModel->selectWith($select);
 
-                        if ($rowset->count()) {
-                            $defaultController = 'dashboardPro';
-                        }
+                    if ($results->count()) {
+                        $defaultController = 'dashboardPro';
                     }
                 }
 
