@@ -56,7 +56,6 @@
     <div class="clearfix form-inline">
         <input type="checkbox" style="margin-right: 6px;"
                data-ng-model="allChecked" ng-change="markAll()">
-        <strong class="float-right">{{paginator.count}} members</strong>
         &nbsp;&nbsp;&nbsp;
         <div class="btn-group">
             <button class="btn btn-secondary" data-ng-click="activeBatchAction()">
@@ -86,6 +85,8 @@
                 <option value="">{{'UNASSIGN_ROLE' | translate}}
             </select>
         </div>
+
+        <strong class="ml-auto p-2">{{paginator.count}} members</strong>
     </div>
     <table class="table table-striped">
         <tr>
