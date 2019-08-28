@@ -258,7 +258,7 @@ JS;
         Pi::service('event')->trigger('user_activate', $uid);
 
         // Get redirect url
-        $redirect = Pi::url('user/dashboard');
+        $redirect = Pi::user()->data()->get($uid, 'register_redirect') ?: Pi::url('');
 
         $result = [
             'status'  => 1,

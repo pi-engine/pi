@@ -15,7 +15,7 @@ $this->headMeta('noindex', 'robots');
             </h1>
         </div>
         <?php
-        if (isset($result)) {
+        if (isset($result['message'])) {
             echo sprintf('
                 <div class="alert %s">
                     <button data-dismiss="alert" class="close" type="button">&times;</button>

@@ -30,12 +30,17 @@ class Svg extends AbstractHelper
      * 
      * @return  string
      */
-    public function __invoke($path, $title = null)
+    public function __invoke($path, $title = null, $xmlTag = true)
     {
         $svg = new \SimpleXMLElement(file_get_contents($path));
         if ($title) {
             $svg->title[0] = $title;
         }
-        return $svg->asXml(); 
+
+        if($xmlTag == false) {
+            return str_replace('<?xml version="1.0"?>', '', $svg->asXml());
+        }
+
+        return $svg->asXml();
     }
 }

@@ -365,6 +365,9 @@ EOT;
             if ($element->getOption('style') == 'form-inline') {
                 $vars['element_size'] = 'mr-1';
             }
+            if ($element->getOption('label_style') == 'width-auto') {
+                $vars['label_size'] = 'pl-2 pr-2 ';
+            }
 
             // Style settings for editor
             if ($type == 'editor') {
