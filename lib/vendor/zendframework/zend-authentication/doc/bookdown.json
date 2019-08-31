@@ -1,0 +1,12 @@
+{
+    "title": "Zend\\Authentication",
+    "target": "html\/",
+    "content": [
+        "book\/zend.authentication.intro.md",
+        "book\/zend.authentication.adapter.dbtable.md",
+        "book\/zend.authentication.adapter.digest.md",
+        "book\/zend.authentication.adapter.http.md",
+        "book\/zend.authentication.adapter.ldap.md",
+        "book\/zend.authentication.validator.authentication.md"
+    ]
+}
