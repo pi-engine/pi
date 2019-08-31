@@ -45,12 +45,15 @@ $isPerso = (bool) (
             <span class="label"><?php _e('Personal Dashboard') ?></span>
             <span class='fas fa-angle-right'></span>
         </a>
+
+        <?php if (Pi::service('module')->isActive('guide')) { ?>
         <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'request', 'action' => 'index'])); ?>"
            class="nav-link rounded-0 <?php if (isset($sideActive) && $sideActive == 'request') {echo ' active';} ?>">
             <span class="fa-minimized far fa-calendar-check d-none"></span>
             <span class="label"><?php _e('Bookings'); ?></span>
             <span class='fas fa-angle-right'></span>
         </a>
+        <?php } ?>
 
         <?php if ($guideConfig['manage_active'] && $guideConfig['manage_contribution']) { ?>
             <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'contributions'])); ?>"
@@ -138,14 +141,16 @@ $isPerso = (bool) (
             <span class='fas fa-angle-right'></span>
         </a>
 
+        <?php if (Pi::service('module')->isActive('guide')) { ?>
         <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>"
            class="nav-link nav-link-all-activities rounded-0 <?php if (($module == 'guide' && $action == 'dashboard') || isset($item['id'])) {echo ' active';} ?>">
             <span class="fa-minimized fas fa-project-diagram d-none"></span>
             <span class="label"><?php echo __('Manage my activities') ?></span>
             <span class='fas fa-angle-right'></span>
         </a>
+        <?php } ?>
 
-        <?php if ($module == 'guide') : ?>
+        <?php if ($module == 'guide' && Pi::service('module')->isActive('guide')) : ?>
             <div class="item-section <?php if (($module == 'guide' && $action == 'dashboard') || isset($item['id'])) {echo ' active';} ?>">
                 <?php if ($guideConfig['manage_active'] && isset($navigationItemList) && (count($navigationItemList) || isset($currentTitle))) { ?>
                     <div class="position-relative">
@@ -222,11 +227,13 @@ $isPerso = (bool) (
                                 <?php } ?>
                             <?php } ?>
 
-                            <a href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => $item['id'])); ?>"
-                               class="nav-link rounded-0 <?php echo $controller == "stats"  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
-                                <?php _e('Statistics'); ?>
-                                <span class='fas fa-angle-right'></span>
-                            </a>
+                            <?php if (Pi::service('module')->isActive('guide')) { ?>
+                                <a href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index', 'item' => $item['id'])); ?>"
+                                   class="nav-link rounded-0 <?php echo $controller == "stats"  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                                    <?php _e('Statistics'); ?>
+                                    <span class='fas fa-angle-right'></span>
+                                </a>
+                            <?php } ?>
                         </div>
 
                     </div>
@@ -318,12 +325,14 @@ $isPerso = (bool) (
             </a>
         <?php } ?>
 
+        <?php if (Pi::service('module')->isActive('guide')) { ?>
         <a href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index')); ?>"
            class="nav-link rounded-0 <?php echo ($controller == "stats" && empty($item['id']))  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
             <span class="fa-minimized fas fa-chart-line d-none"></span>
             <span class="label"><?php _e('My statistics'); ?></span>
             <span class='fas fa-angle-right'></span>
         </a>
+        <?php } ?>
 
         <?php if (in_array('message', $userConfig['side_menu']) && Pi::service('module')->isActive('message')) { ?>
             <?php $message = _number(Pi::api('api', 'message')->getUnread($uid, 'message')); ?>

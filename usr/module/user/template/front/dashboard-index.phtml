@@ -11,18 +11,30 @@ $profile = (object) Pi::user()->get($uid);
 /**
  * Test commentaires, favoris, contributions (free item), booking
  */
-$resultComment = Pi::api('api', 'comment')->getComments(1, $uid);
-$commentCount = $resultComment['count'];
+$commentCount = 0;
+if (Pi::service('module')->isActive('comment')) {
+    $resultComment = Pi::api('api', 'comment')->getComments(1, $uid);
+    $commentCount  = $resultComment['count'];
+}
 
-$favoriteCount = Pi::api('favourite', 'favourite')->getCount($uid);
+$favoriteCount = 0;
+if (Pi::service('module')->isActive('favourite')) {
+    $favoriteCount = Pi::api('favourite', 'favourite')->getCount($uid);
+}
 
-$guideModel = Pi::model('item', 'guide');
-$select = $guideModel->select();
-$select->where(['uid' => $uid, 'status' => 1]);
-$select->where('item_type != "commercial"');
-$freeItemCount = $guideModel->selectWith($select)->count();
+$freeItemCount = 0;
+if (Pi::service('module')->isActive('guide')) {
+    $guideModel = Pi::model('item', 'guide');
+    $select     = $guideModel->select();
+    $select->where(['uid' => $uid, 'status' => 1]);
+    $select->where('item_type != "commercial"');
+    $freeItemCount = $guideModel->selectWith($select)->count();
+}
 
-$bookingCount = count(Pi::api('booking', 'guide')->getBookingsByUser($uid));
+$bookingCount = 0;
+if (Pi::service('module')->isActive('guide')) {
+    $bookingCount = count(Pi::api('booking', 'guide')->getBookingsByUser($uid));
+}
 
 $totalCount = $commentCount + $favoriteCount + $freeItemCount + $bookingCount;
 
@@ -43,7 +55,6 @@ if(isset($_GET['item_count'])){
         </div>
 
         <?php if($totalCount) : ?>
-            <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>
             <div class="row">
                 <?php if (Pi::service('module')->isActive('guide')) { ?>
                     <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>

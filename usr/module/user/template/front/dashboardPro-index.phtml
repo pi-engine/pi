@@ -9,11 +9,13 @@ $userConfig = Pi::service('registry')->config->read('user');
 $uid = Pi::user()->getId();
 // Check is owner or not
 $paidItemCount = 0;
-$owner = Pi::model('owner', 'guide')->find($uid, 'uid');
 
-if (isset($owner->id)) {
-    $rowset = Pi::model('item', 'guide')->select(array('owner' => $owner->id, 'item_type' => 'commercial'));
-    $paidItemCount = $rowset->count();
+if (Pi::service('module')->isActive('guide')) {
+    $owner = Pi::model('owner', 'guide')->find($uid, 'uid');
+    if (isset($owner->id)) {
+        $rowset        = Pi::model('item', 'guide')->select(['owner' => $owner->id, 'item_type' => 'commercial']);
+        $paidItemCount = $rowset->count();
+    }
 }
 
 if(isset($_GET['item_count'])){
@@ -246,9 +248,11 @@ $profile = (object) Pi::user()->get($uid);
                 <div class="dashboard-title"><strong><?php echo __("To begin, let's create your first establishment :)") ?></strong></div>
                 <br>
 
+                <?php if (Pi::service('module')->isActive('guide')) { ?>
                 <a class="btn btn-success btn-add" title="<?php echo __('Add commercial'); ?>"
                    href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'add', 'type' => 'commercial')); ?>"><i
                             class="fas fa-cutlery"></i> <?php echo __('Add commercial'); ?></a>
+                <?php } ?>
             </div>
         <?php endif; ?>
     </div>
