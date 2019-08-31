@@ -4,12 +4,13 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd3d45cd5a3f91fd6d768ffd060e01cac
+class ComposerStaticInit1d3aeeebba069b80f4df4332df743cc7
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '9cfd760f6b1bbaef19364c8a30fa9b3f' => __DIR__ . '/..' . '/emcconville/google-map-polyline-encoding-tool/src/Polyline.php',
+        '3a37ebac017bc098e9a86b35401e7a68' => __DIR__ . '/..' . '/mongodb/mongodb/src/functions.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
     );
 
@@ -88,6 +89,7 @@ class ComposerStaticInitd3d45cd5a3f91fd6d768ffd060e01cac
         ),
         'M' => 
         array (
+            'MongoDB\\' => 8,
             'MaxMind\\WebService\\' => 19,
             'MaxMind\\Exception\\' => 18,
             'MaxMind\\Db\\' => 11,
@@ -347,6 +349,10 @@ class ComposerStaticInitd3d45cd5a3f91fd6d768ffd060e01cac
         'Prophecy\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
+        ),
+        'MongoDB\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mongodb/mongodb/src',
         ),
         'MaxMind\\WebService\\' => 
         array (
@@ -905,10 +911,10 @@ class ComposerStaticInitd3d45cd5a3f91fd6d768ffd060e01cac
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd3d45cd5a3f91fd6d768ffd060e01cac::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd3d45cd5a3f91fd6d768ffd060e01cac::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitd3d45cd5a3f91fd6d768ffd060e01cac::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitd3d45cd5a3f91fd6d768ffd060e01cac::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1d3aeeebba069b80f4df4332df743cc7::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1d3aeeebba069b80f4df4332df743cc7::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit1d3aeeebba069b80f4df4332df743cc7::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit1d3aeeebba069b80f4df4332df743cc7::$classMap;
 
         }, null, ClassLoader::class);
     }
