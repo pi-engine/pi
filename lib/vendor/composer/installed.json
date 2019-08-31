@@ -6,12 +6,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/composer/ca-bundle.git",
-            "reference": "dd3f738f1b11ccbc2c6aba8e5240fa5d7a5c3fae"
+            "reference": "10bb96592168a0f8e8f6dcde3532d9fa50b0b527"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/ca-bundle/zipball/dd3f738f1b11ccbc2c6aba8e5240fa5d7a5c3fae",
-            "reference": "dd3f738f1b11ccbc2c6aba8e5240fa5d7a5c3fae",
+            "url": "https://api.github.com/repos/composer/ca-bundle/zipball/10bb96592168a0f8e8f6dcde3532d9fa50b0b527",
+            "reference": "10bb96592168a0f8e8f6dcde3532d9fa50b0b527",
             "shasum": ""
         },
         "require": {
@@ -24,7 +24,7 @@
             "psr/log": "^1.0",
             "symfony/process": "^2.5 || ^3.0 || ^4.0"
         },
-        "time": "2019-03-26T10:08:35+00:00",
+        "time": "2019-08-30T08:44:50+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -64,12 +64,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/doctrine/instantiator.git",
-            "reference": "a2c590166b2133a4633738648b6b064edae0814a"
+            "reference": "7c71fc2932158d00f24f10635bf3b3b8b6ee5b68"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/doctrine/instantiator/zipball/a2c590166b2133a4633738648b6b064edae0814a",
-            "reference": "a2c590166b2133a4633738648b6b064edae0814a",
+            "url": "https://api.github.com/repos/doctrine/instantiator/zipball/7c71fc2932158d00f24f10635bf3b3b8b6ee5b68",
+            "reference": "7c71fc2932158d00f24f10635bf3b3b8b6ee5b68",
             "shasum": ""
         },
         "require": {
@@ -84,7 +84,7 @@
             "phpstan/phpstan-shim": "^0.11",
             "phpunit/phpunit": "^7.0"
         },
-        "time": "2019-03-17T17:37:11+00:00",
+        "time": "2019-07-02T13:37:32+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -218,17 +218,17 @@
     },
     {
         "name": "hybridauth/hybridauth",
-        "version": "v3.0.0-rc.9",
-        "version_normalized": "3.0.0.0-RC9",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/hybridauth/hybridauth.git",
-            "reference": "6123c31700bda7acd49cef7f1f0c138b60f39070"
+            "reference": "5347a7784ddbf293bfd179236f2240d67344b009"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/6123c31700bda7acd49cef7f1f0c138b60f39070",
-            "reference": "6123c31700bda7acd49cef7f1f0c138b60f39070",
+            "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/5347a7784ddbf293bfd179236f2240d67344b009",
+            "reference": "5347a7784ddbf293bfd179236f2240d67344b009",
             "shasum": ""
         },
         "require": {
@@ -238,14 +238,14 @@
             "ext-curl": "*",
             "phpunit/phpunit": "~4.8.35"
         },
-        "time": "2019-01-03T11:08:24+00:00",
+        "time": "2019-08-03T05:27:17+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
                 "dev-master": "3.0-dev"
             }
         },
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-4": {
                 "Hybridauth\\": "src/"
@@ -277,17 +277,17 @@
     },
     {
         "name": "imagine/imagine",
-        "version": "1.2.0",
-        "version_normalized": "1.2.0.0",
+        "version": "1.2.2",
+        "version_normalized": "1.2.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/avalanche123/Imagine.git",
-            "reference": "6a84addad63baeda0a25079580a2e369a36ceb29"
+            "reference": "eec39b2092bc8008a92b8d63824476413dbe7511"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/6a84addad63baeda0a25079580a2e369a36ceb29",
-            "reference": "6a84addad63baeda0a25079580a2e369a36ceb29",
+            "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/eec39b2092bc8008a92b8d63824476413dbe7511",
+            "reference": "eec39b2092bc8008a92b8d63824476413dbe7511",
             "shasum": ""
         },
         "require": {
@@ -302,7 +302,7 @@
             "ext-gmagick": "to use the Gmagick implementation",
             "ext-imagick": "to use the Imagick implementation"
         },
-        "time": "2018-12-07T16:51:20+00:00",
+        "time": "2019-07-09T06:55:48+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -487,9 +487,9 @@
         "authors": [
             {
                 "name": "Matthias Mullie",
+                "role": "Developer",
                 "email": "minify@mullie.eu",
-                "homepage": "http://www.mullie.eu",
-                "role": "Developer"
+                "homepage": "http://www.mullie.eu"
             }
         ],
         "description": "CSS & JavaScript minifier, in PHP. Removes whitespace, strips comments, combines files (incl. @import statements and small assets in CSS files), and optimizes/shortens a few common programming patterns.",
@@ -539,9 +539,9 @@
         "authors": [
             {
                 "name": "Matthias Mullie",
+                "role": "Developer",
                 "email": "pathconverter@mullie.eu",
-                "homepage": "http://www.mullie.eu",
-                "role": "Developer"
+                "homepage": "http://www.mullie.eu"
             }
         ],
         "description": "Relative path converter",
@@ -666,12 +666,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/myclabs/DeepCopy.git",
-            "reference": "e6828efaba2c9b79f4499dae1d66ef8bfa7b2b72"
+            "reference": "9012edbd1604a93cee7e7422d07a2c5776c56e0c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/e6828efaba2c9b79f4499dae1d66ef8bfa7b2b72",
-            "reference": "e6828efaba2c9b79f4499dae1d66ef8bfa7b2b72",
+            "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/9012edbd1604a93cee7e7422d07a2c5776c56e0c",
+            "reference": "9012edbd1604a93cee7e7422d07a2c5776c56e0c",
             "shasum": ""
         },
         "require": {
@@ -685,7 +685,7 @@
             "doctrine/common": "^2.6",
             "phpunit/phpunit": "^7.1"
         },
-        "time": "2019-04-07T13:18:21+00:00",
+        "time": "2019-08-26T15:40:39+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -805,17 +805,17 @@
     },
     {
         "name": "phpdocumentor/reflection-docblock",
-        "version": "4.3.0",
-        "version_normalized": "4.3.0.0",
+        "version": "4.3.1",
+        "version_normalized": "4.3.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-            "reference": "94fd0001232e47129dd3504189fa1c7225010d08"
+            "reference": "bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/94fd0001232e47129dd3504189fa1c7225010d08",
-            "reference": "94fd0001232e47129dd3504189fa1c7225010d08",
+            "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c",
+            "reference": "bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c",
             "shasum": ""
         },
         "require": {
@@ -829,7 +829,7 @@
             "mockery/mockery": "^1.0",
             "phpunit/phpunit": "^6.4"
         },
-        "time": "2017-11-30T07:14:17+00:00",
+        "time": "2019-04-30T17:48:53+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -912,12 +912,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/phpseclib/phpseclib.git",
-            "reference": "0ac880fca0c7d92f329f3b326d3414123fdf0db7"
+            "reference": "02efd1dc089e04dfa9a7a553dcedbae2895f1585"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/0ac880fca0c7d92f329f3b326d3414123fdf0db7",
-            "reference": "0ac880fca0c7d92f329f3b326d3414123fdf0db7",
+            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/02efd1dc089e04dfa9a7a553dcedbae2895f1585",
+            "reference": "02efd1dc089e04dfa9a7a553dcedbae2895f1585",
             "shasum": ""
         },
         "require": {
@@ -935,7 +935,7 @@
             "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
             "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
         },
-        "time": "2019-04-12T02:56:17+00:00",
+        "time": "2019-08-03T15:54:53+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -953,28 +953,28 @@
         "authors": [
             {
                 "name": "Jim Wigginton",
-                "email": "terrafrost@php.net",
-                "role": "Lead Developer"
+                "role": "Lead Developer",
+                "email": "terrafrost@php.net"
             },
             {
                 "name": "Patrick Monnerat",
-                "email": "pm@datasphere.ch",
-                "role": "Developer"
+                "role": "Developer",
+                "email": "pm@datasphere.ch"
             },
             {
                 "name": "Andreas Fischer",
-                "email": "bantu@phpbb.com",
-                "role": "Developer"
+                "role": "Developer",
+                "email": "bantu@phpbb.com"
             },
             {
                 "name": "Hans-Jürgen Petrich",
-                "email": "petrich@tronic-media.com",
-                "role": "Developer"
+                "role": "Developer",
+                "email": "petrich@tronic-media.com"
             },
             {
                 "name": "Graham Campbell",
-                "email": "graham@alt-three.com",
-                "role": "Developer"
+                "role": "Developer",
+                "email": "graham@alt-three.com"
             }
         ],
         "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
@@ -1006,12 +1006,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/phpspec/prophecy.git",
-            "reference": "7e272180527c34a97680de85eb5aba0847a664e0"
+            "reference": "93d6a38116e46a885d13f5fb5db8e0a2cd52a62e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpspec/prophecy/zipball/7e272180527c34a97680de85eb5aba0847a664e0",
-            "reference": "7e272180527c34a97680de85eb5aba0847a664e0",
+            "url": "https://api.github.com/repos/phpspec/prophecy/zipball/93d6a38116e46a885d13f5fb5db8e0a2cd52a62e",
+            "reference": "93d6a38116e46a885d13f5fb5db8e0a2cd52a62e",
             "shasum": ""
         },
         "require": {
@@ -1025,7 +1025,7 @@
             "phpspec/phpspec": "^2.5|^3.2",
             "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.5 || ^7.1"
         },
-        "time": "2018-12-18T15:40:51+00:00",
+        "time": "2019-08-28T15:54:17+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1167,8 +1167,8 @@
         "authors": [
             {
                 "name": "Sebastian Bergmann",
-                "email": "sb@sebastian-bergmann.de",
-                "role": "lead"
+                "role": "lead",
+                "email": "sb@sebastian-bergmann.de"
             }
         ],
         "description": "FilterIterator implementation that filters files based on a list of suffixes.",
@@ -1211,8 +1211,8 @@
         "authors": [
             {
                 "name": "Sebastian Bergmann",
-                "email": "sebastian@phpunit.de",
-                "role": "lead"
+                "role": "lead",
+                "email": "sebastian@phpunit.de"
             }
         ],
         "description": "Simple template engine.",
@@ -1262,8 +1262,8 @@
         "authors": [
             {
                 "name": "Sebastian Bergmann",
-                "email": "sb@sebastian-bergmann.de",
-                "role": "lead"
+                "role": "lead",
+                "email": "sb@sebastian-bergmann.de"
             }
         ],
         "description": "Utility class for timing",
@@ -1395,8 +1395,8 @@
         "authors": [
             {
                 "name": "Sebastian Bergmann",
-                "email": "sebastian@phpunit.de",
-                "role": "lead"
+                "role": "lead",
+                "email": "sebastian@phpunit.de"
             }
         ],
         "description": "The PHP Unit Testing framework.",
@@ -1476,12 +1476,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/sebastianbergmann/code-unit-reverse-lookup.git",
-            "reference": "383c44e104c1fd46ecc915f55145bd2831318747"
+            "reference": "5e860800beea5ea4c8590df866338c09c20d3a48"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/sebastianbergmann/code-unit-reverse-lookup/zipball/383c44e104c1fd46ecc915f55145bd2831318747",
-            "reference": "383c44e104c1fd46ecc915f55145bd2831318747",
+            "url": "https://api.github.com/repos/sebastianbergmann/code-unit-reverse-lookup/zipball/5e860800beea5ea4c8590df866338c09c20d3a48",
+            "reference": "5e860800beea5ea4c8590df866338c09c20d3a48",
             "shasum": ""
         },
         "require": {
@@ -1490,7 +1490,7 @@
         "require-dev": {
             "phpunit/phpunit": "^5.7 || ^6.0"
         },
-        "time": "2019-02-11T12:48:46+00:00",
+        "time": "2019-07-02T07:44:03+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1995,8 +1995,8 @@
         "authors": [
             {
                 "name": "Sebastian Bergmann",
-                "email": "sebastian@phpunit.de",
-                "role": "lead"
+                "role": "lead",
+                "email": "sebastian@phpunit.de"
             }
         ],
         "description": "Library that helps with managing the version number of Git-hosted PHP projects",
@@ -2046,8 +2046,8 @@
         "authors": [
             {
                 "name": "Spipu",
-                "homepage": "https://github.com/spipu",
-                "role": "Developer"
+                "role": "Developer",
+                "homepage": "https://github.com/spipu"
             }
         ],
         "description": "Html2Pdf is a HTML to PDF converter written in PHP5 (it uses TCPDF). OFFICIAL PACKAGE",
@@ -2065,12 +2065,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-ctype.git",
-            "reference": "82ebae02209c21113908c229e9883c419720738a"
+            "reference": "550ebaac289296ce228a706d0867afc34687e3f4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/82ebae02209c21113908c229e9883c419720738a",
-            "reference": "82ebae02209c21113908c229e9883c419720738a",
+            "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/550ebaac289296ce228a706d0867afc34687e3f4",
+            "reference": "550ebaac289296ce228a706d0867afc34687e3f4",
             "shasum": ""
         },
         "require": {
@@ -2079,11 +2079,11 @@
         "suggest": {
             "ext-ctype": "For best performance"
         },
-        "time": "2019-02-06T07:57:58+00:00",
+        "time": "2019-08-06T08:03:45+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.11-dev"
+                "dev-master": "1.12-dev"
             }
         },
         "installation-source": "source",
@@ -2101,12 +2101,12 @@
         ],
         "authors": [
             {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
+                "name": "Gert de Pagter",
+                "email": "BackEndTea@gmail.com"
             },
             {
-                "name": "Gert de Pagter",
-                "email": "backendtea@gmail.com"
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
             }
         ],
         "description": "Symfony polyfill for ctype functions",
@@ -2120,17 +2120,17 @@
     },
     {
         "name": "symfony/yaml",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "4.4.x-dev",
+        "version_normalized": "4.4.9999999.9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/yaml.git",
-            "reference": "c60ecf5ba842324433b46f58dc7afc4487dbab99"
+            "reference": "3ef0425e11c1c549a1073f837ce56ffe6fc7222d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/yaml/zipball/c60ecf5ba842324433b46f58dc7afc4487dbab99",
-            "reference": "c60ecf5ba842324433b46f58dc7afc4487dbab99",
+            "url": "https://api.github.com/repos/symfony/yaml/zipball/3ef0425e11c1c549a1073f837ce56ffe6fc7222d",
+            "reference": "3ef0425e11c1c549a1073f837ce56ffe6fc7222d",
             "shasum": ""
         },
         "require": {
@@ -2141,16 +2141,16 @@
             "symfony/console": "<3.4"
         },
         "require-dev": {
-            "symfony/console": "~3.4|~4.0"
+            "symfony/console": "^3.4|^4.0|^5.0"
         },
         "suggest": {
             "symfony/console": "For validating YAML files using the lint command"
         },
-        "time": "2019-04-06T14:04:46+00:00",
+        "time": "2019-08-30T12:49:06+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "4.3-dev"
+                "dev-master": "4.4-dev"
             }
         },
         "installation-source": "source",
@@ -2227,8 +2227,8 @@
         "authors": [
             {
                 "name": "Nicola Asuni",
-                "email": "info@tecnick.com",
-                "role": "lead"
+                "role": "lead",
+                "email": "info@tecnick.com"
             }
         ],
         "description": "TCPDF is a PHP class for generating PDF documents and barcodes.",
@@ -2245,23 +2245,23 @@
     },
     {
         "name": "triagens/arangodb",
-        "version": "3.4.x-dev",
-        "version_normalized": "3.4.9999999.9999999-dev",
+        "version": "3.5.x-dev",
+        "version_normalized": "3.5.9999999.9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/arangodb/arangodb-php.git",
-            "reference": "d707b1a3cbb51f5b898dea0603798b215d2650ff"
+            "reference": "f69175ffbd48457228eabf2a531f1401b4634c7e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/arangodb/arangodb-php/zipball/d707b1a3cbb51f5b898dea0603798b215d2650ff",
-            "reference": "d707b1a3cbb51f5b898dea0603798b215d2650ff",
+            "url": "https://api.github.com/repos/arangodb/arangodb-php/zipball/f69175ffbd48457228eabf2a531f1401b4634c7e",
+            "reference": "f69175ffbd48457228eabf2a531f1401b4634c7e",
             "shasum": ""
         },
         "require": {
             "php": ">=5.6.0"
         },
-        "time": "2019-01-22T09:04:15+00:00",
+        "time": "2019-08-09T15:29:31+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -2276,13 +2276,13 @@
         "authors": [
             {
                 "name": "Jan Steemann",
-                "homepage": "https://github.com/arangodb/arangodb-php",
-                "role": "Developer"
+                "role": "Developer",
+                "homepage": "https://github.com/arangodb/arangodb-php"
             },
             {
                 "name": "Frank Mayer",
-                "homepage": "https://github.com/arangodb/arangodb-php",
-                "role": "Developer"
+                "role": "Developer",
+                "homepage": "https://github.com/arangodb/arangodb-php"
             },
             {
                 "name": "Contributors",
@@ -2304,17 +2304,17 @@
     },
     {
         "name": "webmozart/assert",
-        "version": "1.4.0",
-        "version_normalized": "1.4.0.0",
+        "version": "1.5.0",
+        "version_normalized": "1.5.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/webmozart/assert.git",
-            "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9"
+            "reference": "88e6d84706d09a236046d686bbea96f07b3a34f4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/webmozart/assert/zipball/83e253c8e0be5b0257b881e1827274667c5c17a9",
-            "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9",
+            "url": "https://api.github.com/repos/webmozart/assert/zipball/88e6d84706d09a236046d686bbea96f07b3a34f4",
+            "reference": "88e6d84706d09a236046d686bbea96f07b3a34f4",
             "shasum": ""
         },
         "require": {
@@ -2322,10 +2322,9 @@
             "symfony/polyfill-ctype": "^1.8"
         },
         "require-dev": {
-            "phpunit/phpunit": "^4.6",
-            "sebastian/version": "^1.0.1"
+            "phpunit/phpunit": "^4.8.36 || ^7.5.13"
         },
-        "time": "2018-12-25T11:19:39+00:00",
+        "time": "2019-08-24T08:43:50+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {

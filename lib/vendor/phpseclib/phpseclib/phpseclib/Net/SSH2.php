@@ -146,7 +146,10 @@ class SSH2
      */
     const READ_REGEX = 2;
     /**
-     * Returns when a string matching the regular expression $expect is found
+     * Returns whenever a data packet is received.
+     *
+     * Some data packets may only contain a single character so it may be necessary
+     * to call read() multiple times when using this option
      */
     const READ_NEXT = 3;
     /**#@-*/
@@ -3307,7 +3310,7 @@ class SSH2
             return false;
         }
         foreach ($this->auth as $auth) {
-            $result = call_user_func_array(array(&$this, 'parent::login'), $auth);
+            $result = call_user_func_array(array(&$this, 'login'), $auth);
         }
         return $result;
     }
@@ -3709,6 +3712,9 @@ class SSH2
                     // on windows this returns a "Warning: Invalid CRT parameters detected" error
                     if (!@stream_select($read, $write, $except, $sec, $usec) && !count($read)) {
                         $this->is_timeout = true;
+                        if ($client_channel == self::CHANNEL_EXEC && !$this->request_pty) {
+                            $this->_close_channel($client_channel);
+                        }
                         return true;
                     }
                     $elapsed = microtime(true) - $start;
@@ -3756,7 +3762,7 @@ class SSH2
                 switch ($type) {
                     case NET_SSH2_MSG_CHANNEL_EXTENDED_DATA:
                         /*
-                        if ($client_channel == NET_SSH2_CHANNEL_EXEC) {
+                        if ($client_channel == self::CHANNEL_EXEC) {
                             $this->_send_channel_packet($client_channel, chr(0));
                         }
                         */

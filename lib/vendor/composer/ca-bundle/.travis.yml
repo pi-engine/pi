@@ -1,0 +1,44 @@
+language: php
+sudo: false
+dist: trusty
+
+git:
+  depth: 5
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+env:
+  global:
+    - PATH="$HOME/.composer/vendor/bin:$PATH"
+
+matrix:
+  include:
+    - php: 5.3
+      dist: precise
+    - php: 5.4
+    - php: 5.5
+    - php: 5.6
+    - php: 7.0
+    - php: 7.1
+    - php: 7.2
+    - php: 7.3
+    - php: 7.4snapshot
+    - php: nightly
+  fast_finish: true
+  allow_failures:
+    - php: nightly
+
+install:
+  - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d && echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - mkdir -p build/logs
+  - composer global require satooshi/php-coveralls:@stable --no-update
+  - composer global update --prefer-dist --no-interaction
+  - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
+
+script:
+  - vendor/bin/phpunit
+
+after_script:
+  - coveralls -v

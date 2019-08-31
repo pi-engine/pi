@@ -1,6 +1,16 @@
 CHANGELOG
 =========
 
+4.4.0
+-----
+
+ * Added support to dump `null` as `~` by using the `Yaml::DUMP_NULL_AS_TILDE` flag.
+
+4.3.0
+-----
+
+ * Using a mapping inside a multi-line string is deprecated and will throw a `ParseException` in 5.0.
+
 4.2.0
 -----
 

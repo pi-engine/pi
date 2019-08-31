@@ -1,5 +1,12 @@
 # CHANGELOG
 
+### 1.2.2 (2019-07-09)
+* The GD driver can now load WebP files (#711, #718, @lashus, @ausi)
+* Avoid calling `imageantialias` if it's not available (#713, @ahukkanen)
+
+### 1.2.1 (2019-06-03)
+* Silence call to `\Imagick::setImageOpacity()` in order to prevent deprecation error with Imagick 3.4.4 and ImageMagick 6 (#715, @samdark, @mlocati)
+
 ### 1.2.0 (2018-12-07)
 * `ExifMetadataReader` now returns all the available metadata, not only EXIF and IFD0 (#701, @mlocati)
 
@@ -75,7 +82,7 @@
 * New filters: `BlackWhite`, `BorderDetection`, `Negation`, `Neighborhood` (@rejinka)
 * Minor optimization of filters based on `OnPixelBased` (@rejinka, @mlocati)
 * Add flag to `thumbnail` to allow upscaling images (@vlakoff)  
-  **NOTE** the `$mode` argument has been renamed to `$settings`, and it's now an integer (but old string values are accepted for backward compatibility)
+   **BREAKING CHANGE** the `$mode` argument has been renamed to `$settings`, and it's now an integer (but old string values are accepted for backward compatibility). In this case the `ManipulatorInterface` constants `THUMBNAIL_INSET`, `THUMBNAIL_OUTBOUND` were changed from string values to integers.
 * New filter: `brightness` (@lenybernard, @mlocati)
 * New filter: `colvolve` available for all graphics libraries except gmagick with version prior to 2.0.1RC2 (@armatronic, @mlocati)
 * Fix bug in Imagine\Image\Palette\RGB::blend() (@dmolineus, @mlocati)
