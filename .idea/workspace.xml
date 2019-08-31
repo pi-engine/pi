@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="215e2e2a-74f2-4c73-9d71-ffba6fd04d92" name="Default Changelist" comment="Fix user module templates">
+      <change afterPath="$PROJECT_DIR$/lib/vendor/mongodb/mongodb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/vendor/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/vendor/composer/autoload_files.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/vendor/composer/autoload_real.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/lib/vendor/composer/installed.json" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/composer.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="443">
+              <caret line="39" column="19" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/composer.json" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/lib/vendor/matthiasmullie/path-converter" />
+      <path value="$PROJECT_DIR$/lib/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/lib/vendor/maxmind-db/reader" />
+      <path value="$PROJECT_DIR$/lib/vendor/hybridauth/hybridauth" />
+      <path value="$PROJECT_DIR$/lib/vendor/tecnickcom/tcpdf" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-soap" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-http" />
+      <path value="$PROJECT_DIR$/lib/vendor/imagine/imagine" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zendxml" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-version" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-debug" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-escaper" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-test" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-modulemanager" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-math" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-file" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-uri" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-barcode" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-memory" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-json" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-progressbar" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-server" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-tag" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-paginator" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-inputfilter" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-i18n-resources" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-permissions-acl" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-cache" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-navigation" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-permissions-rbac" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-stdlib" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-code" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-xmlrpc" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-loader" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-eventmanager" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-servicemanager" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-console" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-authentication" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-mail" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-mime" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-view" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-db" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-config" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-dom" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-crypt" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-feed" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-form" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-mvc" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-i18n" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-di" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-validator" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-session" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-serializer" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-filter" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-log" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-text" />
+      <path value="$PROJECT_DIR$/lib/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/lib/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zend-captcha" />
+      <path value="$PROJECT_DIR$/lib/vendor/ircmaxell/security-lib" />
+      <path value="$PROJECT_DIR$/lib/vendor/ircmaxell/random-lib" />
+      <path value="$PROJECT_DIR$/lib/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/lib/vendor/triagens/arangodb" />
+      <path value="$PROJECT_DIR$/lib/vendor/emcconville/google-map-polyline-encoding-tool" />
+      <path value="$PROJECT_DIR$/lib/vendor/geoip2/geoip2" />
+      <path value="$PROJECT_DIR$/lib/vendor/composer" />
+      <path value="$PROJECT_DIR$/lib/vendor/LosReCaptcha/Form" />
+      <path value="$PROJECT_DIR$/lib/vendor/LosReCaptcha/Service" />
+      <path value="$PROJECT_DIR$/lib/vendor/LosReCaptcha/Captcha" />
+      <path value="$PROJECT_DIR$/lib/vendor/maxmind/web-service-common" />
+      <path value="$PROJECT_DIR$/lib/vendor/zendframework/zendframework" />
+      <path value="$PROJECT_DIR$/lib/vendor/spipu/html2pdf" />
+      <path value="$PROJECT_DIR$/lib/vendor/matthiasmullie/minify" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/lib/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/lib/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/lib/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/lib/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/lib/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/lib/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/lib/vendor/phayes/geophp" />
+      <path value="$PROJECT_DIR$/lib/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/lib/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/lib/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpunit/phpunit-mock-objects" />
+      <path value="$PROJECT_DIR$/lib/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/lib/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/lib/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/lib/vendor/mongodb/mongodb" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="87" />
+    <option name="y" value="125" />
+    <option name="width" value="1166" />
+    <option name="height" value="773" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="pi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pi" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pi" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pi" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="tecnickcom" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pi" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="tecnickcom" type="462c0819:PsiDirectoryNode" />
+              <item name="tcpdf" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="215e2e2a-74f2-4c73-9d71-ffba6fd04d92" name="Default Changelist" comment="" />
+      <created>1567253251110</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1567253251110</updated>
+      <workItem from="1567253252140" duration="504000" />
+    </task>
+    <task id="LOCAL-00001" summary="Fix user module templates">
+      <created>1567253273108</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1567253273108</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="504000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-4" y="0" width="1928" height="1048" extended-state="6" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973376" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix user module templates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix user module templates" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="39" column="19" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
