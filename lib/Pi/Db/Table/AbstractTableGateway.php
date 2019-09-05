@@ -488,11 +488,11 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      */
     public function delete($where)
     {
-//        $results = $this->select($where);
-//
-//        foreach($results as $row) {
-//            Pi::service('observer')->triggerDeletedRow($row, $row->toArray());
-//        }
+        $results = $this->select($where);
+
+        foreach($results as $row) {
+            Pi::service('observer')->triggerDeletedRow($row, $row->toArray());
+        }
 
         return parent::delete($where);
     }
