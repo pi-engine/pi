@@ -63,6 +63,23 @@ class Observer extends AbstractService
         }
     }
 
+    public function triggerDeletedRow($row, $oldData = array())
+    {
+        // Set module list
+        $moduleList = $this->moduleList();
+        // Check all modules
+        foreach ($moduleList as $module) {
+            if (Pi::service('module')->isActive(strtolower($module))) {
+                $class = sprintf('Module\%s\Api\Observer', ucfirst(strtolower($module)));
+                if (class_exists($class)) {
+                    if (method_exists($class, 'triggerDeletedRow')) {
+                        Pi::api('observer', strtolower($module))->triggerDeletedRow($row, $oldData);
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * Start triggering event on updated table
      * @param Pi\Db\Table\AbstractTableGateway $table
