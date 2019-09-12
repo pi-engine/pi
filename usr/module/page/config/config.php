@@ -27,5 +27,12 @@ return [
             'filter'      => 'number_int',
             'value'       => 1,
         ],
+        'bypass_uri' => [
+            'title'       => _a('Bypass URI list'),
+            'description' => '',
+            'edit'        => 'textarea',
+            'filter'      => 'string',
+            'value'       => '',
+        ],
     ],
 ];
