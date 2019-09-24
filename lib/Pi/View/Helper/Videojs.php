@@ -79,7 +79,7 @@ EOT;
                     if (Pi::service('file')->exists($image)) {
                         $poster = Pi::url('upload/video-js/video.jpg');
                     } else {
-                        $poster = Pi::url('static/vendor/video-js/image/video.jpg');
+                        $poster = Pi::url('static/vendor/player/video-js/image/video.jpg');
                     }
                 }
 
@@ -101,12 +101,12 @@ EOT;
         }
 
         // Load js file
-        $js = 'vendor/video-js/video.min.js';
+        $js = 'vendor/player/video-js/video.min.js';
         $js = Pi::service('asset')->getStaticUrl($js);
         $this->view->js($js);
 
         // Load css file
-        $css = 'vendor/video-js/video-js.min.css';
+        $css = 'vendor/player/video-js/video-js.min.css';
         $css = Pi::service('asset')->getStaticUrl($css);
         $this->view->css($css);
 

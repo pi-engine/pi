@@ -43,7 +43,7 @@ class DashboardController extends ActionController
             'user' => $user,
         ]);
 
-        $this->view()->headTitle(__('Account settings'));
+        $this->view()->headTitle(__('My Personal Dashboard'));
         $this->view()->headdescription(__('Basic settings'), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }

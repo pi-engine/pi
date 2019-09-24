@@ -124,7 +124,7 @@ class FormMultiCheckbox extends ZendFormElement
             }
 
             $labelOpen = $labelHelper->openTag($labelAttributes);
-            $template  = $labelOpen . '%s%s' . $labelClose;
+            $template  = '%s' . $labelOpen . '%s' . $labelClose;
             switch ($labelPosition) {
                 case self::LABEL_PREPEND:
                     $markup = sprintf($template, $label, $input);
@@ -135,6 +135,9 @@ class FormMultiCheckbox extends ZendFormElement
                     break;
             }
 
+            if ($count == count($options)) {
+                $markup .= '<div class="invalid-feedback">%error_content%</div>';
+            }
             $combinedMarkup[] = $markup;
         }
 
