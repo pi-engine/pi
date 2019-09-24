@@ -4,6 +4,7 @@
         <strong class="float-right">{{paginator.count}} members</strong>
         <input type="checkbox" style="margin-right: 6px;"
                data-ng-model="allChecked" ng-change="markAll()">
+        &nbsp;&nbsp;&nbsp;
         <div class="btn-group">
             <button class="btn btn-secondary" data-ng-click="activeBatchAction()">
                 {{'ACTIVATE' | translate}}
@@ -18,12 +19,14 @@
                 {{'DELETE' | translate}}
             </button>
         </div>
+        &nbsp;
         <div class="form-group">
             <select class="form-control" ng-change="assignRoleBacthAction()" data-ng-model="assignRole"
                     ng-options="item.title group by item.type for item in assignRoles">
                 <option value="">{{'ASSIGN_ROLE' | translate}}
             </select>
         </div>
+        &nbsp;
         <div class="form-group">
             <select class="form-control" ng-change="unassignRoleBacthAction()" data-ng-model="unassignRole"
                     ng-options="item.title group by item.type for item in assignRoles">

@@ -25,22 +25,22 @@ if($section == 'admin'){
     <ul class="nav <?php if($section == 'admin') echo 'navbar-nav float-right' ?> align-self-center">
         <?php if (!$block['user']['uid']) { ?>
             <li class="nav-item item-login">
-                <a class="nav-link" href="<?php echo $modalEnabled ? '#' : $block['user']['login'] ?>"
+                <button type="button" class="btn btn-sm btn-link nav-link border-0" onclick="location.href='<?php echo $modalEnabled ? '#' : $block['user']['login'] ?>'"
                    data-target="#loginRegisterModal" data-action="login"
                    <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
                    title="<?php echo _b('Login'); ?>">
                     <i class="fas fa-sign-in-alt fa-lg d-sm-none"></i>
                     <span class="d-none d-sm-inline-block"><?php echo _b('Login'); ?></span>
-                </a>
+                </button>
             </li>
             <li class="nav-item item-register">
-                <a class="nav-link" href="<?php echo $modalEnabled ? '#' : $block['user']['register'] ?>"
+                <button type="button" class="btn btn-sm btn-link nav-link border-0" onclick="location.href='<?php echo $modalEnabled ? '#' : $block['user']['register'] ?>'"
                    data-target="#loginRegisterModal" data-action="register"
                    <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
                    title="<?php echo _b('Register'); ?>">
                     <i class="fas fa-user fa-lg d-sm-none"></i>
                     <span class="d-none d-sm-inline-block"><?php echo _b('Register'); ?></span>
-                </a>
+                </button>
             </li>
         <?php } elseif ($block['type'] == 'dropdown') { ?>
             <li class="nav-item dropdown pi-userbar-header order-1">
@@ -277,6 +277,12 @@ if($section == 'admin'){
 
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="<?php echo $this->url('user', ['controller' => 'profile']) ?>">
+                            <i class="fas fa-user" aria-hidden="true"></i>
+                            <span>
+                                <?php echo _b('My account'); ?>
+                            </span>
+                        </a>
                         <a class="dropdown-item" href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
                             <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                             <span>
@@ -471,9 +477,9 @@ if($section == 'admin'){
 
         <?php if (Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
             <li class="nav-item item-promouvoir d-none dropdown d-md-flex">
-                <a href="<?php echo $this->url('home'); ?>guide/solutions" class="nav-link btn btn-warning btn-sm align-self-center">
+                <button type="button" onclick="location.href='<?php echo $this->url('home'); ?>guide/solutions'" class="nav-link btn btn-warning btn-sm align-self-center">
                     <span class="value"><?php echo _b("Add my activity") ?></span>
-                </a>
+                </button>
             </li>
         <?php endif; ?>
     </ul>

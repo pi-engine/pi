@@ -126,9 +126,14 @@ class IndexController extends ActionController
         $registerForm = Pi::api('form', 'user')->loadForm('register');
         $registerForm->setAttribute('action', Pi::url($processPath));
 
-//echo 1;
         if ($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()) {
-            $redirect = Pi::service('url')->getRequestUri();
+
+            if($_SERVER['HTTP_REFERER'] && !strpos($_SERVER['HTTP_REFERER'], 'user/register')) {
+                $redirect = $_SERVER['HTTP_REFERER'];
+            } else {
+                $redirect = Pi::url('');
+            }
+
             $registerForm->get('redirect')->setValue($redirect);
         }
 

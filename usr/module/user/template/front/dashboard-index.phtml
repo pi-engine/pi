@@ -8,14 +8,42 @@ $userConfig = Pi::service('registry')->config->read('user');
 $uid = Pi::user()->getId();
 $profile = (object) Pi::user()->get($uid);
 
-$resultComment = Pi::api('api', 'comment')->getComments(1, $uid);
-$commentCount = count($resultComment);
+/**
+ * Test commentaires, favoris, contributions (free item), booking
+ */
+$commentCount = 0;
+if (Pi::service('module')->isActive('comment')) {
+    $resultComment = Pi::api('api', 'comment')->getComments(1, $uid);
+    $commentCount  = $resultComment['count'];
+}
+
+$favoriteCount = 0;
+if (Pi::service('module')->isActive('favourite')) {
+    $favoriteCount = Pi::api('favourite', 'favourite')->getCount($uid);
+}
+
+$freeItemCount = 0;
+if (Pi::service('module')->isActive('guide')) {
+    $guideModel = Pi::model('item', 'guide');
+    $select     = $guideModel->select();
+    $select->where(['uid' => $uid, 'status' => 1]);
+    $select->where('item_type != "commercial"');
+    $freeItemCount = $guideModel->selectWith($select)->count();
+}
+
+$bookingCount = 0;
+if (Pi::service('module')->isActive('guide')) {
+    $bookingCount = count(Pi::api('booking', 'guide')->getBookingsByUser($uid));
+}
+
+$totalCount = $commentCount + $favoriteCount + $freeItemCount + $bookingCount;
 
 if(isset($_GET['item_count'])){
-    $commentCount = $_GET['item_count'];
+    $totalCount = $_GET['item_count'];
 }
+
 ?>
-<div class="row user-section-wrapper <?php echo $commentCount ? 'dashboard dashboard-perso dashboard-perso-with-comments' : 'dashboard dashboard-perso dashboard-perso-without-comments' ?>">
+<div class="row user-section-wrapper <?php echo $totalCount ? 'dashboard dashboard-perso dashboard-perso-with-comments' : 'dashboard dashboard-perso dashboard-perso-without-comments' ?>">
     <div class="col-md-3">
         <?php include $this->template('./profile-sidebar.phtml'); ?>
     </div>
@@ -23,11 +51,10 @@ if(isset($_GET['item_count'])){
         <?php include $this->template('flash-messenger'); ?>
 
         <div class="page-header">
-            <h1><?php echo $commentCount ? __('Your dashboard') : __('Welcome to your personal dashboard') . ', ' . $profile->first_name; ?></h1>
+            <h1><?php echo $totalCount ? __('Your dashboard') : __('Welcome to your personal dashboard') . ', ' . $profile->first_name; ?></h1>
         </div>
 
-        <?php if($commentCount) : ?>
-            <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>
+        <?php if($totalCount) : ?>
             <div class="row">
                 <?php if (Pi::service('module')->isActive('guide')) { ?>
                     <?php $bookingBlockOutput = trim($this->widget('guide-last-booking-requests')); ?>

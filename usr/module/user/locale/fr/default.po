@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-05-13 22:31+0200\n"
-"PO-Revision-Date: 2019-05-13 22:32+0200\n"
+"POT-Creation-Date: 2019-07-04 22:00+0200\n"
+"PO-Revision-Date: 2019-07-04 22:00+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -114,26 +114,25 @@ msgid "Dashboard"
 msgstr "Tableau de Bord"
 
 #: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:182
-#: src/Controller/Front/DashboardController.php:46
-#: template/front/account-index.phtml:11
+#: template/front/account-index.phtml:13
 #: template/front/profile-sidebar.phtml:105
 msgid "Account settings"
 msgstr "Paramétrages du compte"
 
 #: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:183
-#: template/front/avatar-index.phtml:45
+#: template/front/avatar-index.phtml:47
 #: template/front/profile-sidebar.phtml:113
 #: template/front/profile-topbar.phtml:157
 msgid "Change avatar"
 msgstr "Modifier sa photo"
 
-#: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:11
+#: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:13
 #: template/front/profile-sidebar.phtml:125
 msgid "Privacy"
 msgstr "Confidentialité"
 
 #: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:192
-#: template/front/password-index.phtml:15
+#: template/front/password-index.phtml:17
 #: template/front/profile-sidebar.phtml:109
 msgid "Change password"
 msgstr "Modifier le mot de passe"
@@ -201,19 +200,19 @@ msgstr ""
 msgid "Filename already exists. please try again"
 msgstr "Ce nom de fichier existe déjà, merci d'essayer de nouveau"
 
-#: src/Controller/Admin/ConditionController.php:127
+#: src/Controller/Admin/ConditionController.php:128
 msgid "Condition data saved successfully."
 msgstr "Les données de CGU/CGV ont été correctement enregistrées"
 
-#: src/Controller/Admin/ConditionController.php:140
+#: src/Controller/Admin/ConditionController.php:141
 msgid "Add condition"
 msgstr "Ajouter une CGU/CGV"
 
-#: src/Controller/Admin/ConditionController.php:152
+#: src/Controller/Admin/ConditionController.php:153
 msgid "Condition file has been deleted successfully"
 msgstr "Le fichier CGU/CGV a été correctement supprimé"
 
-#: src/Controller/Admin/ConditionController.php:154
+#: src/Controller/Admin/ConditionController.php:155
 msgid "Error occured during condition file removing"
 msgstr "Une erreur est survenue pendant la suppression de la CGU/CGV"
 
@@ -260,7 +259,7 @@ msgstr "Le paramètre Newslettre a été modifié avec succès."
 
 #: src/Controller/Front/AccountController.php:183
 #: src/Controller/Front/DashboardController.php:47
-#: template/front/account-index.phtml:12
+#: template/front/account-index.phtml:14
 msgid "Basic settings"
 msgstr "Paramètres Généraux"
 
@@ -320,7 +319,7 @@ msgid "Avatar Settings"
 msgstr "Paramétrages pour la photo"
 
 #: src/Controller/Front/AvatarController.php:184
-#: template/front/avatar-index.phtml:46
+#: template/front/avatar-index.phtml:48
 msgid "Customize your avatar anyway you like"
 msgstr "Personnalisez votre photo comme vous le souhaitez"
 
@@ -385,6 +384,14 @@ msgstr "L'image a été supprimée avec succès."
 #: src/Controller/Front/ConditionController.php:52
 msgid "No active condition file"
 msgstr "Il n'y a pas encore de fichier CGU/CGV"
+
+#: src/Controller/Front/DashboardController.php:46
+msgid "My Personal Dashboard"
+msgstr "Mon Tableau de Bord Perso"
+
+#: src/Controller/Front/DashboardProController.php:21
+msgid "My Pro Dashboard"
+msgstr "Mon Tableau de Bord Pro"
 
 #: src/Controller/Front/HomeController.php:78
 #: src/Controller/Front/HomeController.php:146
@@ -544,7 +551,7 @@ msgid "Invalid password"
 msgstr "Mot de passe non valide."
 
 #: src/Controller/Front/PasswordController.php:193
-#: template/front/password-index.phtml:16
+#: template/front/password-index.phtml:18
 msgid "To ensure your account security, complex password is required."
 msgstr ""
 "Pour assurer la sécurité de votre compte, un mot de passe complexe est requis"
@@ -583,7 +590,7 @@ msgid "Privacy Settings"
 msgstr "Paramètres de confidentialité"
 
 #: src/Controller/Front/PrivacyController.php:101
-#: template/front/privacy-index.phtml:12
+#: template/front/privacy-index.phtml:14
 msgid "Set profile field privacy."
 msgstr "Paramétrer la confidentialité des champs du profil"
 
@@ -727,7 +734,7 @@ msgstr "Inscription Newslettre"
 #: src/Form/PasswordForm.php:87 src/Form/ProfileEditForm.php:42
 #: src/Form/RegisterForm.php:168 src/Form/ResendActivationForm.php:47
 #: src/Form/ResetPasswordForm.php:73 src/Form/RoleForm.php:99
-#: template/front/account-index.phtml:39 template/front/privacy-index.phtml:42
+#: template/front/account-index.phtml:41 template/front/privacy-index.phtml:44
 msgid "Submit"
 msgstr "Valider"
 
@@ -965,8 +972,8 @@ msgid "Action"
 msgstr "Action"
 
 #: template/admin/condition.phtml:27 template/admin/condition.phtml:29
-#: template/front/profile-edit-compound.phtml:35
-#: template/front/profile-index.phtml:32
+#: template/front/profile-edit-compound.phtml:37
+#: template/front/profile-index.phtml:33
 msgid "Edit"
 msgstr "Editer"
 
@@ -1010,29 +1017,29 @@ msgstr "Front"
 msgid "Admin"
 msgstr "Admin"
 
-#: template/front/account-index.phtml:22
+#: template/front/account-index.phtml:24
 msgid "Verify identity"
 msgstr "Vérifier l'identité"
 
-#: template/front/account-index.phtml:27
+#: template/front/account-index.phtml:29
 msgid "Input password to verify your identity for account changes."
 msgstr ""
 "Saisissez votre mot de passe pour que votre identité soit vérifiée et "
 "pouvoir ainsi valider vos modifications."
 
-#: template/front/account-index.phtml:31
+#: template/front/account-index.phtml:33
 msgid "Password"
 msgstr "Mot de passe"
 
-#: template/front/account-index.phtml:209
+#: template/front/account-index.phtml:211
 msgid "Email is required."
 msgstr "L'adresse email est exigée"
 
-#: template/front/account-index.phtml:252
+#: template/front/account-index.phtml:254
 msgid "Display name is required."
 msgstr "Le Nom Affiché est exigé"
 
-#: template/front/account-index.phtml:306
+#: template/front/account-index.phtml:308
 msgid "No change!"
 msgstr "Aucune modification !"
 
@@ -1042,27 +1049,26 @@ msgstr "Modifier l'email"
 
 #: template/front/account-reset-email.phtml:4
 #: template/front/password-process.phtml:18
-#: template/front/register-activate.phtml:6
 #: template/front/register-index.phtml:78
 #: template/front/register-index.phtml:110
 msgid "Congratulations!"
 msgstr "Félicitations !"
 
 #: template/front/account-reset-email.phtml:6
-#: template/front/register-activate.phtml:9
+#: template/front/register-activate.phtml:10
 msgid "Login right now."
 msgstr "Se connecter maintenant."
 
-#: template/front/activity-index.phtml:17 template/front/home-index.phtml:18
-#: template/front/profile-index.phtml:13
+#: template/front/activity-index.phtml:19 template/front/home-index.phtml:20
+#: template/front/profile-index.phtml:14
 msgid "My profile"
 msgstr "Mon profil"
 
-#: template/front/activity-index.phtml:41
+#: template/front/activity-index.phtml:43
 msgid "View all"
 msgstr "Voir tout"
 
-#: template/front/activity-index.phtml:48 template/front/home-index.phtml:57
+#: template/front/activity-index.phtml:50 template/front/home-index.phtml:59
 #: template/front/profile-view.phtml:30
 msgid "No data available."
 msgstr "Aucune donnée disponible."
@@ -1083,160 +1089,168 @@ msgstr "Selectionner"
 msgid "Default"
 msgstr "Par défaut"
 
-#: template/front/avatar-index.phtml:53
+#: template/front/avatar-index.phtml:55
 msgid "Current avatar"
 msgstr "Photo actuelle"
 
-#: template/front/avatar-index.phtml:54
+#: template/front/avatar-index.phtml:56
 msgid ""
 "Once source type is switched and saved, the old avatar image will be deleted."
 msgstr ""
 "Une fois le fichier source sélectionné et enregistré, l'ancienne photo sera "
 "supprimée."
 
-#: template/front/avatar-index.phtml:78 template/front/avatar-index.phtml:201
+#: template/front/avatar-index.phtml:80 template/front/avatar-index.phtml:203
 msgid "Upload avatar"
 msgstr "Uploader sa photo"
 
-#: template/front/avatar-index.phtml:89 template/front/avatar-index.phtml:126
-#: template/front/avatar-index.phtml:154 template/front/avatar-index.phtml:180
+#: template/front/avatar-index.phtml:91 template/front/avatar-index.phtml:128
+#: template/front/avatar-index.phtml:156 template/front/avatar-index.phtml:182
 msgid "Avatar previews"
 msgstr "Prévisualisation Photo de Profil"
 
-#: template/front/avatar-index.phtml:110
+#: template/front/avatar-index.phtml:112
 msgid "Gravatar email"
 msgstr "Email Gravatar"
 
-#: template/front/avatar-index.phtml:119 template/front/avatar-index.phtml:121
+#: template/front/avatar-index.phtml:121 template/front/avatar-index.phtml:123
 msgid "Configure at Gravatar"
 msgstr "Configuration Gravatar"
 
-#: template/front/avatar-index.phtml:176
+#: template/front/avatar-index.phtml:178
 msgid "Apply system avatar as your avatar"
 msgstr "Appliquer l'icône proposée par défaut"
 
-#: template/front/avatar-index.phtml:190
+#: template/front/avatar-index.phtml:192
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: template/front/avatar-index.phtml:191
+#: template/front/avatar-index.phtml:193
 msgid "Cancel"
 msgstr "Annuler"
 
-#: template/front/avatar-index.phtml:202
+#: template/front/avatar-index.phtml:204
 msgid "Uploading"
 msgstr "En téléchargement"
 
-#: template/front/dashboard-index.phtml:24
-#: template/front/dashboardPro-index.phtml:33
+#: template/front/dashboard-index.phtml:42
+#: template/front/dashboardPro-index.phtml:35
 msgid "Your dashboard"
 msgstr "Votre tableau de bord"
 
-#: template/front/dashboard-index.phtml:24
+#: template/front/dashboard-index.phtml:42
 msgid "Welcome to your personal dashboard"
 msgstr "Bienvenue dans votre espace personnel"
 
-#: template/front/dashboard-index.phtml:35
-#: template/front/dashboardPro-index.phtml:44
+#: template/front/dashboard-index.phtml:53
+#: template/front/dashboardPro-index.phtml:46
 msgid "Your pending requests"
 msgstr "Vos demandes en attente"
 
-#: template/front/dashboard-index.phtml:56
-#: template/front/dashboardPro-index.phtml:66
+#: template/front/dashboard-index.phtml:73
+#: template/front/dashboardPro-index.phtml:67
 msgid "Shortcuts"
 msgstr "Raccourcis"
 
-#: template/front/dashboard-index.phtml:63
-#: template/front/dashboard-index.phtml:67
-#: template/front/dashboardPro-index.phtml:73
-#: template/front/dashboardPro-index.phtml:77
+#: template/front/dashboard-index.phtml:80
+#: template/front/dashboard-index.phtml:84
+#: template/front/dashboardPro-index.phtml:74
+#: template/front/dashboardPro-index.phtml:78
 msgid "My items"
 msgstr "Mes éléments"
 
-#: template/front/dashboard-index.phtml:76
-#: template/front/dashboard-index.phtml:80
-#: template/front/dashboardPro-index.phtml:86
-#: template/front/dashboardPro-index.phtml:90
-#: template/front/profile-sidebar.phtml:308
+#: template/front/dashboard-index.phtml:93
+#: template/front/dashboard-index.phtml:97
+#: template/front/dashboardPro-index.phtml:87
+#: template/front/dashboardPro-index.phtml:91
+#: template/front/profile-sidebar.phtml:314
 msgid "Sponsorship"
 msgstr "Parrainage"
 
-#: template/front/dashboard-index.phtml:91
-#: template/front/dashboard-index.phtml:95
-#: template/front/dashboardPro-index.phtml:101
-#: template/front/dashboardPro-index.phtml:105
+#: template/front/dashboard-index.phtml:108
+#: template/front/dashboard-index.phtml:112
+#: template/front/dashboardPro-index.phtml:102
+#: template/front/dashboardPro-index.phtml:106
 msgid "My messages"
 msgstr "Mes messages"
 
-#: template/front/dashboard-index.phtml:101
-#: template/front/dashboard-index.phtml:105
-#: template/front/dashboardPro-index.phtml:111
-#: template/front/dashboardPro-index.phtml:115
+#: template/front/dashboard-index.phtml:118
+#: template/front/dashboard-index.phtml:122
+#: template/front/dashboardPro-index.phtml:112
+#: template/front/dashboardPro-index.phtml:116
 msgid "My notifications"
 msgstr "Mes notifications"
 
-#: template/front/dashboard-index.phtml:114
-#: template/front/dashboard-index.phtml:118
-#: template/front/dashboardPro-index.phtml:124
-#: template/front/dashboardPro-index.phtml:128
+#: template/front/dashboard-index.phtml:131
+#: template/front/dashboard-index.phtml:135
+#: template/front/dashboardPro-index.phtml:125
+#: template/front/dashboardPro-index.phtml:129
 msgid "My events"
 msgstr "Mes évènements"
 
-#: template/front/dashboard-index.phtml:127
-#: template/front/dashboard-index.phtml:131
-#: template/front/dashboardPro-index.phtml:137
-#: template/front/dashboardPro-index.phtml:141
+#: template/front/dashboard-index.phtml:144
+#: template/front/dashboard-index.phtml:148
+#: template/front/dashboardPro-index.phtml:138
+#: template/front/dashboardPro-index.phtml:142
 msgid "My orders"
 msgstr "Mes commandes"
 
-#: template/front/dashboard-index.phtml:138
-#: template/front/dashboard-index.phtml:142
-#: template/front/dashboardPro-index.phtml:148
-#: template/front/dashboardPro-index.phtml:152
+#: template/front/dashboard-index.phtml:155
+#: template/front/dashboard-index.phtml:159
+#: template/front/dashboardPro-index.phtml:149
+#: template/front/dashboardPro-index.phtml:153
 msgid "My credit"
 msgstr "Mes Crédits"
 
-#: template/front/dashboard-index.phtml:152
-#: template/front/dashboard-index.phtml:156
-#: template/front/dashboardPro-index.phtml:162
-#: template/front/dashboardPro-index.phtml:166
+#: template/front/dashboard-index.phtml:169
+#: template/front/dashboard-index.phtml:173
+#: template/front/dashboardPro-index.phtml:163
+#: template/front/dashboardPro-index.phtml:167
 msgid "My favorites"
 msgstr "Mes favoris"
 
-#: template/front/dashboard-index.phtml:164
-#: template/front/dashboard-index.phtml:168
-#: template/front/dashboardPro-index.phtml:174
-#: template/front/dashboardPro-index.phtml:178
+#: template/front/dashboard-index.phtml:181
+#: template/front/dashboard-index.phtml:185
+#: template/front/dashboardPro-index.phtml:175
+#: template/front/dashboardPro-index.phtml:179
 msgid "My videos"
 msgstr "Mes Vidéos"
 
-#: template/front/dashboard-index.phtml:177
-#: template/front/dashboard-index.phtml:181
-#: template/front/dashboardPro-index.phtml:187
-#: template/front/dashboardPro-index.phtml:191
+#: template/front/dashboard-index.phtml:194
+#: template/front/dashboard-index.phtml:198
+#: template/front/dashboardPro-index.phtml:188
+#: template/front/dashboardPro-index.phtml:192
 msgid "My support tickets"
 msgstr "Mes tickets Assistance"
 
-#: template/front/dashboard-index.phtml:196
-#: template/front/dashboardPro-index.phtml:206
+#: template/front/dashboard-index.phtml:213
+#: template/front/dashboardPro-index.phtml:228
 msgid "How it works ?"
 msgstr "Comment ça marche ?"
 
-#: template/front/dashboard-index.phtml:215
-#: template/front/dashboardPro-index.phtml:227
-#: template/front/dashboardPro-index.phtml:229
+#: template/front/dashboard-index.phtml:232
+#: template/front/dashboardPro-index.phtml:249
+#: template/front/dashboardPro-index.phtml:251
 msgid "Add commercial"
 msgstr "Ajouter une activité"
 
-#: template/front/dashboard-index.phtml:217
+#: template/front/dashboard-index.phtml:234
 msgid "Let's go !"
 msgstr "C'est parti !"
 
-#: template/front/dashboardPro-index.phtml:33
+#: template/front/dashboardPro-index.phtml:35
 msgid "Welcome to your pro dashboard"
 msgstr "Bienvenue dans votre espace professionnel"
 
-#: template/front/dashboardPro-index.phtml:224
+#: template/front/dashboardPro-index.phtml:210
+msgid "Add<br>commercial"
+msgstr "Ajouter<br>une activité"
+
+#: template/front/dashboardPro-index.phtml:219
+msgid "Promote<br>your businesses"
+msgstr "Promouvoir<br>mes activités"
+
+#: template/front/dashboardPro-index.phtml:246
 msgid "To begin, let's create your first establishment :)"
 msgstr "Pour commencer, créons votre premier établissement ;)"
 
@@ -1317,34 +1331,34 @@ msgstr "Votre nouveau mot de passe a fonctionné"
 msgid "Please login"
 msgstr "Merci de vous connecter"
 
-#: template/front/privacy-index.phtml:17
+#: template/front/privacy-index.phtml:19
 msgid "No available privacy setting"
 msgstr "Aucun paramétrage de confidentialité disponible"
 
-#: template/front/profile-edit-compound.phtml:15
+#: template/front/profile-edit-compound.phtml:17
 #, php-format
 msgid "Update %s"
 msgstr "Mettre à jour %s"
 
-#: template/front/profile-edit-compound.phtml:16
-#: template/front/profile-edit-compound.phtml:25
+#: template/front/profile-edit-compound.phtml:18
+#: template/front/profile-edit-compound.phtml:27
 msgid "Add new"
 msgstr "Ajouter un nouveau"
 
-#: template/front/profile-edit-compound.phtml:46
-#: template/front/profile-index.phtml:45 template/front/profile-view.phtml:21
+#: template/front/profile-edit-compound.phtml:48
+#: template/front/profile-index.phtml:46 template/front/profile-view.phtml:21
 msgid "Unfiled"
 msgstr "Non rempli"
 
-#: template/front/profile-edit-compound.phtml:57
+#: template/front/profile-edit-compound.phtml:59
 msgid "Are you sure to delete this record?"
 msgstr "Etes-vous sûr de vouloir supprimer cet enregistrement?"
 
-#: template/front/profile-edit.phtml:12
+#: template/front/profile-edit.phtml:14
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: template/front/profile-index.phtml:54
+#: template/front/profile-index.phtml:55
 #, php-format
 msgid "Add %s"
 msgstr "Ajouter %s"
@@ -1378,7 +1392,7 @@ msgid "Reviews/comments"
 msgstr "Avis/commentaires"
 
 #: template/front/profile-sidebar.phtml:85
-#: template/front/profile-sidebar.phtml:372
+#: template/front/profile-sidebar.phtml:378
 msgid "My Media"
 msgstr "Mes Médias"
 
@@ -1442,51 +1456,55 @@ msgstr "Produits/Tarifs"
 msgid "Opening hours"
 msgstr "Horaires ouverture"
 
-#: template/front/profile-sidebar.phtml:267
+#: template/front/profile-sidebar.phtml:266
+msgid "Policies"
+msgstr "Conditions générales"
+
+#: template/front/profile-sidebar.phtml:273
 msgid "Events"
 msgstr "Evènements"
 
-#: template/front/profile-sidebar.phtml:272
-msgid "Deals (Soon)"
-msgstr "Promos/Offres (bientôt)"
+#: template/front/profile-sidebar.phtml:278
+msgid "Deals/Special Offers"
+msgstr "Promos/Offres Spéciales"
 
-#: template/front/profile-sidebar.phtml:284
+#: template/front/profile-sidebar.phtml:290
 msgid "DISTRIBUTION"
 msgstr "DISTRIBUTION"
 
-#: template/front/profile-sidebar.phtml:291
+#: template/front/profile-sidebar.phtml:297
 msgid "Widget"
 msgstr "Widget"
 
-#: template/front/profile-sidebar.phtml:296
+#: template/front/profile-sidebar.phtml:302
 msgid "Sales Channels (Soon)"
 msgstr "Canaux Vente (bientôt)"
 
-#: template/front/profile-sidebar.phtml:315
+#: template/front/profile-sidebar.phtml:321
 msgid "My statistics"
 msgstr "Mes Statistiques"
 
-#: template/front/profile-sidebar.phtml:323
+#: template/front/profile-sidebar.phtml:329
 msgid "Messages"
 msgstr "Messages"
 
-#: template/front/profile-sidebar.phtml:330
+#: template/front/profile-sidebar.phtml:336
 msgid "Notifications"
 msgstr "Notifications"
 
-#: template/front/profile-sidebar.phtml:339
+#: template/front/profile-sidebar.phtml:345
 msgid "Support tickets"
 msgstr "Tickets Assistance"
 
-#: template/front/profile-sidebar.phtml:347
+#: template/front/profile-sidebar.phtml:353
 msgid "Orders"
 msgstr "Commandes"
 
-#: template/front/profile-sidebar.phtml:355
+#: template/front/profile-sidebar.phtml:361
 msgid "Credit"
 msgstr "Crédits"
 
-#: template/front/profile-sidebar.phtml:364
+#: template/front/profile-sidebar.phtml:370
 msgid "Videos"
 msgstr "Vidéos"
 
@@ -1528,25 +1546,33 @@ msgstr "Date de naissance :"
 msgid "More"
 msgstr "Plus"
 
-#: template/front/register-activate.phtml:3
-msgid "Activate account"
-msgstr "Confirmer le compte"
+#: template/front/register-activate.phtml:4
+msgid "Congratulations, and welcome !"
+msgstr "Félicitations, et bienvenue !"
 
 #: template/front/register-activate.phtml:7
-msgid "Your account has been activated."
-msgstr "Votre compte a été confirmé."
+msgid "Welcome in our community !"
+msgstr "Bienvenue dans notre communauté !"
 
-#: template/front/register-activate.phtml:15
+#: template/front/register-activate.phtml:8
+msgid ""
+"Your account has been confirmed and is now active : you can log in... and "
+"contribute !"
+msgstr ""
+"Votre compte a été confirmé et est maintenant actif : vous pouvez vous "
+"connecter… et contribuer !"
+
+#: template/front/register-activate.phtml:16
 #: template/front/register-index.phtml:90
 #, php-format
 msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
 msgstr "Ou retourner à <a href=\"%s\">la page demandée </a> directement."
 
-#: template/front/register-activate.phtml:21
+#: template/front/register-activate.phtml:22
 msgid "Sorry, account activation is failed."
 msgstr "Désolé, la confirmation-activation de votre compte a échoué."
 
-#: template/front/register-activate.phtml:23
+#: template/front/register-activate.phtml:24
 #: template/front/register-resend-activation.phtml:3
 msgid "Resend activation email."
 msgstr "Renvoyer le mail de confirmation-activation."
@@ -1610,6 +1636,15 @@ msgstr "Demandez le renvoi du mail d'activation"
 #: template/front/register-index.phtml:179
 msgid "Already sent"
 msgstr "Déja envoyé"
+
+#~ msgid "Deals (Soon)"
+#~ msgstr "Promos/Offres (bientôt)"
+
+#~ msgid "Activate account"
+#~ msgstr "Confirmer le compte"
+
+#~ msgid "Your account has been activated."
+#~ msgstr "Votre compte a été confirmé."
 
 #~ msgid "Member area"
 #~ msgstr "Espace Membre"

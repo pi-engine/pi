@@ -17,6 +17,7 @@ use Imagine\Image\Box;
 use Imagine\Image\ImageInterface;
 use Imagine\Image\Palette\RGB;
 use Imagine\Image\Point;
+use Pi;
 
 /**
  * Image Processing
@@ -103,6 +104,23 @@ class ImageProcessing
             }
         }
 
+        // Set watermark on original image
+        if (Pi::config('image_watermark', 'media')) {
+            // Set watermark image
+            $watermarkImage = (empty(Pi::config('image_watermark_source', 'media'))) ? '' : Pi::path(Pi::config('image_watermark_source', 'media'));
+            if (empty($watermarkImage) || !file_exists($watermarkImage)) {
+                $logoFile       = Pi::service('asset')->logo();
+                $watermarkImage = Pi::path($logoFile);
+            }
+
+            // Add watermark
+            Pi::service('image')->watermark(
+                $this->image,
+                '',
+                $watermarkImage,
+                Pi::config('image_watermark_position', 'media')
+            );
+        }
 
         foreach ($this->analyseCommands($commands) as $command) {
             if ($this->runCommand($command)) {
