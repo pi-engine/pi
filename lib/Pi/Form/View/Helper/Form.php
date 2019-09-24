@@ -431,23 +431,32 @@ EOT;
                 unset($hiddenMessages['security']);
             }
             $elementMessages = '';
+            $name = '';
+            $style  = '';
             foreach ($hiddenMessages as $elName => $elMessages) {
                 $element = $form->get($elName);
                 if ($element) {
-                    $elName = $element->getLabel() . ' (' . $elName . ')';
+                    $attr = $element->getAttributes();
+                    if (!isset($attr['error']['noname']) || $attr['error']['noname'] == false) {
+                        $name = $element->getLabel() . ' (' . $elName . ')';
+                    }
+                    if (isset($attr['error']['nocount']) && $attr['error']['nocount'] == true) {
+                        $style = 'style="list-style-type: none;"';
+                    }
+
                 }
-                $elMessages = '';
+                $messages = '';
                 foreach ($elMessages as $elMessage) {
-                    $elMessages
+                    $messages
                         .= <<<EOT
         <li>{$elMessage}</li>
 EOT;
                 }
                 $elementMessages
                     .= <<<EOT
-    <h4>{$elName}</h4>
-    <ol>
-        {$elMessages}
+    <h4>{$name}</h4>
+    <ol {$style}>
+        {$messages}
     </ol>
 EOT;
             }
