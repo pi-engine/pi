@@ -27,5 +27,12 @@ return [
             'filter'      => 'number_int',
             'value'       => 1,
         ],
+        'bypass_uri' => [
+            'title'       => _a('Bypass URI list'),
+            'description' => 'Usefull in case you use module renaming, to permit the page module to skip the /page/ module name prefix in url path',
+            'edit'        => 'textarea',
+            'filter'      => 'string',
+            'value'       => '',
+        ],
     ],
 ];

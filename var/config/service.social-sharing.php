@@ -10,7 +10,7 @@ $config = [
         ],
         'facebook'   => [
             'title' => __('Facebook'),
-            'icon'  => 'fa-facebook',
+            'icon'  => 'fab fa-facebook-f',
             'url'   => 'https://www.facebook.com/sharer/sharer.php?u=%url%',
         ],
         'twitter'    => [

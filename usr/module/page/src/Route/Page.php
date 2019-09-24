@@ -140,6 +140,20 @@ class Page extends Standard
             return null;
         }
 
+        /**
+         * Bypass custom routeur, defined from backend
+         */
+        $bypassUri = Pi::config('bypass_uri', 'page');
+        $bypassUriArray = explode("\n", $bypassUri);
+
+        /** @var \Zend\Http\PhpEnvironment\Request $request */
+
+        foreach($bypassUriArray as $bypassUriRow) {
+            if(preg_match('#' . $bypassUriRow . '#', $request->getRequestUri())) {
+                return null;
+            }
+        }
+
         $uri  = $request->getUri();
         $path = $uri->getPath();
 
