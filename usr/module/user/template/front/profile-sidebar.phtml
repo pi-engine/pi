@@ -252,7 +252,7 @@ $isPerso = (bool) (
 
                             <?php if ($config['manage_service']) { ?>
                                 <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>"
-                                   class="nav-link rounded-0 <?php echo $action == "payment" || $action == "service"|| $action == "manage" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                                   class="nav-link rounded-0 <?php echo $action == "service"|| $action == "manage" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
                                     <?php _e('Products/Prices'); ?> <span class='fas fa-angle-right'></span>
                                 </a>
                             <?php } ?>
@@ -269,13 +269,13 @@ $isPerso = (bool) (
                                 <?php _e('Policies'); ?> <span class='fas fa-angle-right'></span>
                             </a>
 
-
                             <?php if ($config['manage_service']) { ?>
-                                <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'event-list', 'item' => $item['id'])); ?>"
-                                   class="nav-link rounded-0 <?php echo $action == "event-list" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
-                                    <?php _e('Events'); ?> <span class='fas fa-angle-right'></span>
+                                <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'payment-method', 'item' => $item['id'])); ?>"
+                                   class="nav-link rounded-0 <?php echo in_array($action, ['payment-method', 'payment-tax', 'payment-cancel', 'payment-iban', 'stripe-payment']) ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                                    <?php _e('Payment'); ?> <span class='fas fa-angle-right'></span>
                                 </a>
                             <?php } ?>
+
                             <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'promotion', 'item' => $item['id'])); ?>"
                                class="nav-link rounded-0 <?php echo $action == "promotion" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
                                 <?php _e('Deals/Special Offers'); ?> <span class='fas fa-angle-right'></span>
@@ -299,7 +299,12 @@ $isPerso = (bool) (
                                class="nav-link rounded-0 <?php echo $action == "tools"  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
                                 <?php _e('Widget'); ?> <span class='fas fa-angle-right'></span>
                             </a>
-
+                            <?php if ($config['manage_service']) { ?>
+                                <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'event-list', 'item' => $item['id'])); ?>"
+                                   class="nav-link rounded-0 <?php echo $action == "event-list" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                                    <?php _e('Events'); ?> <span class='fas fa-angle-right'></span>
+                                </a>
+                            <?php } ?>
                             <a href="#"
                                class="nav-link rounded-0 disabled" style="color:lightgrey!important; background-color:transparent">
                                 <?php _e('Sales Channels (Soon)'); ?> <span class='fas fa-angle-right'></span>
