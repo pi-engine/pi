@@ -27,12 +27,12 @@ use ArangoDBClient\UpdatePolicy as ArangoUpdatePolicy;
  * more information : https://www.arangodb.com
  * php client : https://github.com/arangodb/arangodb-php
  *
- * Pi::service('arangoDb')->insert($params, $collection, $forceCreate);
- * Pi::service('arangoDb')->find($id, $collection, $forceCreate);
- * Pi::service('arangoDb')->select($where, $collection, $forceCreate);
- * Pi::service('arangoDb')->update($id, $params, $collection, $forceCreate);
- * Pi::service('arangoDb')->delete($id, $collection, $forceCreate);
- * Pi::service('arangoDb')->export($params, $collection, $forceCreate);
+ * Pi::service('arangoDb')->insert($params, $collection);
+ * Pi::service('arangoDb')->find($id, $collection);
+ * Pi::service('arangoDb')->select($params, $collection);
+ * Pi::service('arangoDb')->update($id, $params, $collection);
+ * Pi::service('arangoDb')->delete($id, $collection);
+ * Pi::service('arangoDb')->export($params, $collection);
  *
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
@@ -82,7 +82,7 @@ class ArangoDb extends AbstractService
         return new ArangoConnection($connectionOptions);
     }
 
-    protected function check($connection, $collection = 'logs', $forceCreate = false)
+    protected function check($connection, $collection = 'logs')
     {
         // Set collection handler
         $collectionHandler = new ArangoCollectionHandler($connection);
@@ -91,7 +91,7 @@ class ArangoDb extends AbstractService
         $result = $collectionHandler->has($collection);
 
         // Check collection and Create a new collection if not exist
-        if (!$result && $forceCreate) {
+        if (!$result && $this->options['forceCreate']) {
             $newCollection = new ArangoCollection();
             $newCollection->setName($collection);
             $collectionHandler->create($newCollection);
@@ -103,7 +103,7 @@ class ArangoDb extends AbstractService
         return $result;
     }
 
-    public function insert($params, $collection = 'logs', $forceCreate = false)
+    public function insert($params, $collection = 'logs')
     {
         // Check ArangoDB setup and active or not
         if ($this->options['active'] && !empty($params)) {
@@ -112,7 +112,7 @@ class ArangoDb extends AbstractService
             $connection = $this->connection();
 
             // Make check
-            if (!$this->check($connection, $collection, $forceCreate)) {
+            if (!$this->check($connection, $collection)) {
                 return [
                     'status'  => 0,
                     'message' => __('Error , select collection not exist, please generate collection before make any type of query'),
@@ -147,7 +147,7 @@ class ArangoDb extends AbstractService
         }
     }
 
-    public function find($id, $collection = 'logs', $forceCreate = false)
+    public function find($id, $collection = 'logs')
     {
         // Check ArangoDB setup and active or not
         if ($this->options['active'] && !empty($id)) {
@@ -156,7 +156,7 @@ class ArangoDb extends AbstractService
             $connection = $this->connection();
 
             // Make check
-            if (!$this->check($connection, $collection, $forceCreate)) {
+            if (!$this->check($connection, $collection)) {
                 return [
                     'status'  => 0,
                     'message' => __('Error , select collection not exist, please generate collection before make any type of query'),
@@ -190,16 +190,16 @@ class ArangoDb extends AbstractService
         }
     }
 
-    public function select($where = [], $collection = 'logs', $forceCreate = false)
+    public function select($params, $collection = 'logs')
     {
         // Check ArangoDB setup and active or not
-        if ($this->options['active'] && !empty($where)) {
+        if ($this->options['active'] && !empty($params)) {
 
             // Get connection option
             $connection = $this->connection();
 
             // Make check
-            if (!$this->check($connection, $collection, $forceCreate)) {
+            if (!$this->check($connection, $collection)) {
                 return [
                     'status'  => 0,
                     'message' => __('Error , select collection not exist, please generate collection before make any type of query'),
@@ -210,7 +210,7 @@ class ArangoDb extends AbstractService
                     $collectionHandler = new ArangoCollectionHandler($connection);
 
                     // get a document list back from the server, using a document example
-                    $cursor = $collectionHandler->byExample($collection, $where);
+                    $cursor = $collectionHandler->byExample($collection, $params);
 
                     // Return result
                     return [
@@ -233,7 +233,7 @@ class ArangoDb extends AbstractService
         }
     }
 
-    public function update($id, $params = [], $collection = 'logs', $forceCreate = false)
+    public function update($id, $params, $collection = 'logs')
     {
         // Check ArangoDB setup and active or not
         if ($this->options['active'] && !empty($id) && !empty($params)) {
@@ -241,7 +241,7 @@ class ArangoDb extends AbstractService
             $connection = $this->connection();
 
             // Make check
-            if (!$this->check($connection, $collection, $forceCreate)) {
+            if (!$this->check($connection, $collection)) {
                 return [
                     'status'  => 0,
                     'message' => __('Error , select collection not exist, please generate collection before make any type of query'),
@@ -283,7 +283,7 @@ class ArangoDb extends AbstractService
         }
     }
 
-    public function delete($id, $collection = 'logs', $forceCreate = false)
+    public function delete($id, $collection = 'logs')
     {
         // Check ArangoDB setup and active or not
         if ($this->options['active'] && !empty($id)) {
@@ -291,7 +291,7 @@ class ArangoDb extends AbstractService
             $connection = $this->connection();
 
             // Make check
-            if (!$this->check($connection, $collection, $forceCreate)) {
+            if (!$this->check($connection, $collection)) {
                 return [
                     'status'  => 0,
                     'message' => __('Error , select collection not exist, please generate collection before make any type of query'),
@@ -328,7 +328,7 @@ class ArangoDb extends AbstractService
         }
     }
 
-    public function export($params = [], $collection = 'logs', $forceCreate = false)
+    public function export($params, $collection = 'logs')
     {
         // Check ArangoDB setup and active or not
         if ($this->options['active']) {
@@ -336,7 +336,7 @@ class ArangoDb extends AbstractService
             $connection = $this->connection();
 
             // Make check
-            if (!$this->check($connection, $collection, $forceCreate)) {
+            if (!$this->check($connection, $collection)) {
                 return [
                     'status'  => 0,
                     'message' => __('Error , select collection not exist, please generate collection before make any type of query'),

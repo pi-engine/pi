@@ -18,9 +18,68 @@ use Zend\View\Helper\AbstractHtmlElement;
  *
  * Usage inside a phtml template
  *
+ * // Set player options
+ * $option = [
+ *     'type'     => 'hls',
+ *     'mimetype' => 'application/x-mpegURL',
+ *     'source'   => [
+ *         [
+ *             'url'   => 'https://localhost/stream_hls_low.m3u8',
+ *             'title' => 'Low Quality',
+ *         ],
+ *         [
+ *             'url'   => 'https://localhost/stream_hls_medium.m3u8',
+ *             'title' => 'Medium Quality',
+ *         ],
+ *         [
+ *             'url'   => 'https://localhost/stream_hls_high.m3u8',
+ *             'title' => 'High Quality',
+ *         ],
+ *     ],
+ *     'subtitle' => [
+ *         [
+ *            'label'   => 'English',
+ *             'srclang' => 'en',
+ *             'src'     => 'https://localhost/en.src',
+ *         ],
+ *         [
+ *             'label'   => 'Persian',
+ *             'srclang' => 'fa',
+ *             'src'     => 'https://localhost/fa.src',
+ *         ],
+ *     ],
+ *     'layout'   => [
+ *         'title'             => 'Video title', // title / false
+ *         'posterImage'       => 'https://localhost/poster.jpg', // url / false
+ *         'autoPlay'          => true, // true / false
+ *         'playButtonShowing' => true, // true / false
+ *         'allowDownload'       => false, // true / false
+ *         'allowTheatre'        => false, // true / false
+ *         'playbackRateEnabled' => false, // true / false
+ *         'logo'       => [
+ *            'imageUrl'      => 'https://localhost/logo.png', // url / null
+ *            'imagePosition' => 'top left',
+ *         ],
+ *         'persistent' => [
+ *             'volume'  => true, // true / false
+ *             'quality' => true, // true / false
+ *             'speed'   => true, // true / false
+ *             'theatre' => true, // true / false
+ *         ],
+ *         'captions'   => [
+ *             'play'           => __('Play'),
+ *             'pause'          => __('Pause'),
+ *             'mute'           => __('Mute'),
+ *             'unmute'         => __('Unmute'),
+ *             'fullscreen'     => __('Fullscreen'),
+ *             'exitFullscreen' => __('Exit Fullscreen'),
+ *         ],
+ *     ],
+ * ];
+ *
  * $this->video($option);
  *
- * @author Hossein Azizabadi <djvoltan@gmail.com>
+ * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
 class Video extends AbstractHtmlElement
 {
@@ -79,23 +138,25 @@ EOT;
         // Check type
         $option['type'] = isset($option['type']) && !empty($option['type']) ? $option['type'] : 'mp4';
 
-        // Set mime type
-        switch ($option['type']) {
-            case 'mp4':
-                $option['mimetype'] = 'video/mp4';
-                break;
-
-            case 'hls':
-                $option['mimetype'] = 'application/vnd.apple.mpegurl';
-                break;
-
-            case 'dash':
-                $option['mimetype'] = 'application/dash+xml';
-                break;
-        }
-
         // Set html class
         $option['class'] = isset($option['class']) ? 'pi-player' . $option['class'] : 'pi-player';
+
+        // Set mime type
+        if (!isset($option['mimetype']) || empty($option['mimetype'])) {
+            switch ($option['type']) {
+                case 'mp4':
+                    $option['mimetype'] = 'video/mp4';
+                    break;
+
+                case 'hls':
+                    $option['mimetype'] = 'application/vnd.apple.mpegurl';
+                    break;
+
+                case 'dash':
+                    $option['mimetype'] = 'application/dash+xml';
+                    break;
+            }
+        }
 
         return $option;
     }
@@ -179,8 +240,7 @@ EOT;
                     'mute'           => isset($option['layout']['captions']['mute']) ? $option['layout']['captions']['mute'] : 'Mute',
                     'unmute'         => isset($option['layout']['captions']['unmute']) ? $option['layout']['captions']['unmute'] : 'Unmute',
                     'fullscreen'     => isset($option['layout']['captions']['fullscreen']) ? $option['layout']['captions']['fullscreen'] : 'Fullscreen',
-                    'exitFullscreen' => isset($option['layout']['captions']['exitFullscreen']) ? $option['layout']['captions']['exitFullscreen']
-                        : 'Exit Fullscreen',
+                    'exitFullscreen' => isset($option['layout']['captions']['exitFullscreen']) ? $option['layout']['captions']['exitFullscreen'] : 'Exit',
                 ],
             ],
             'vastOptions'    => [],
