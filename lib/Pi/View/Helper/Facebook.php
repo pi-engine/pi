@@ -21,7 +21,7 @@ use Zend\View\Helper\AbstractHtmlElement;
  *  $this->facebook();
  * ```
  *
- * @author Hossein Azizabadi <djvoltan@gmail.com>
+ * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Facebook extends AbstractHtmlElement

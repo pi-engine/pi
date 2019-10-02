@@ -23,7 +23,7 @@ use Zend\View\Helper\AbstractHtmlElement;
  * $this->videojs($source, $poster, $width, $height);
  *
  * @see http://www.videojs.com/
- * @author Hossein Azizabadi <djvoltan@gmail.com>
+ * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Videojs extends AbstractHtmlElement

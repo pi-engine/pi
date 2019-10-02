@@ -79,7 +79,7 @@ use Zend\View\Helper\AbstractHtmlElement;
  *
  * $this->video($option);
  *
- * @author Hossein Azizabadi <djvoltan@gmail.com>
+ * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
 class Video extends AbstractHtmlElement
 {
