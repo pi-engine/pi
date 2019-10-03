@@ -27,6 +27,9 @@ $isPerso = (bool) (
     || ($module == 'user' && $controller != 'dashboardPro')
 );
 
+if (empty($item)) {
+    $item = ['id' => 0];
+}
 ?>
 
 <div class="clearfix sticky-top sticky-top-sidebar sticky-top-sidebar-usersection <?php echo $isPerso ? 'sticky-top-sidebar-perso' : 'sticky-top-sidebar-pro' ?>">
