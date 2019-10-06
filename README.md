@@ -2,13 +2,13 @@ Pi Engine
 =================
 
 Pi is a multi-tenant application development engine for cloud ready SaaS platform with support for SSO/OAuth.
-Pi Engine is developed in PHP and MySQL upon frameworks including [Zend Framework](https://github.com/zendframework/zf2), [jQuery](https://github.com/jquery/jquery), [AngularJS](https://github.com/angular/angular.js), [Bootstrap](https://github.com/twbs/bootstrap), [CKEditor](https://github.com/ckeditor/ckeditor-dev) as well as icons by [FontAwesome](http://fortawesome.github.io/Font-Awesome/icons/).
+Pi Engine is developed in PHP and MySQL upon PHP frameworks including [Zend Framework](https://github.com/zendframework/zendframework) and many other PHP project supported by psr-4 standard composer like [hybridauth](https://github.com/hybridauth/hybridauth), [phpseclib](https://github.com/phpseclib/phpseclib), [geophp](https://github.com/phayes/geoPHP), [tcpdf](https://github.com/tecnickcom/tcpdf), [imagine](https://github.com/avalanche123/Imagine), [mongodb](https://github.com/mongodb/mongo-php-library), , [arangodb](https://github.com/arangodb/arangodb-php) , [stripe](https://github.com/stripe/stripe-php) and more, Pi use some famous UI frameworks like [jQuery](https://github.com/jquery/jquery), [AngularJS](https://github.com/angular/angular.js), [Bootstrap](https://github.com/twbs/bootstrap), [CKEditor](https://github.com/ckeditor/ckeditor-dev) as well as icons by [FontAwesome](http://fortawesome.github.io/Font-Awesome/icons/).
 
 Pi Engine is an open source project and follows the philosophy of open standard, open design, open development and open management. Pi is born as a complete open source project and intended to build a sustainable ecosystem that benefits all contributors and users.
 
 Pi Engine is developed by [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team) initially as a successor to Xoops Project since 2001.
 
-**Try [Latest Stable Release](https://github.com/pi-engine/pi/releases/latest).**
+**Try [Latest Stable Release](https://github.com/pi-engine/pi/releases/latest) or [development version](https://github.com/pi-engine/pi/archive/develop.zip)**
 
 
 Highlights
