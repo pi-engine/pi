@@ -35,7 +35,7 @@ Quick start
 * Documents at [Pi Wiki](https://github.com/pi-engine/pi/wiki) and [APIs](http://api.piengine.org).
 * Download the [latest stable code](https://github.com/pi-engine/pi/zipball/master) and [latest dev code](https://github.com/pi-engine/pi/zipball/develop).
 * Clone Pi repo `git clone git://github.com/pi-engine/pi.git`.
-* Resources: [Pi modules](https://github.com/pi-module), [Pi themes](https://github.com/pi-theme) and [extensions] (https://github.com/pi-engine/pi/blob/master/README-GIT.md).
+* Resources: [Pi modules](https://github.com/pi-module), [Pi themes](https://github.com/pi-theme) and [extensions](https://github.com/pi-engine/pi/blob/master/README-GIT.md).
 * GIT usage: [README GIT](README-GIT.md)
 
 
