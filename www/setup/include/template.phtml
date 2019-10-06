@@ -2,14 +2,12 @@
 <html lang="<?php echo $data['locale']; ?>">
 <head>
     <meta charset="<?php echo $data['charset']; ?>"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?php echo $data['title']; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name='generator' content='Pi Engine'/>
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico"/>
 
-    <link rel="stylesheet"
-          href="../public/vendor/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../public/vendor/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./asset/css/style.css"/>
     <script src="../static/vendor/jquery/jquery.min.js"></script>
 
@@ -21,115 +19,102 @@
 </head>
 <body id="pi-setup-<?php echo $data['locale']; ?>">
 <!-- header -->
-<header id="header">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <div class="row">
-            <div class="col-3">
-                <h1 class="logo-text">
-                    <a title="<?php echo $data['title']; ?>"
-                       href="<?php echo $data['baseUrl']; ?>"><?php echo $data['title']; ?></a>
-                </h1>
-            </div>
-            <?php
-            $countPages = count($data['navPages']);
-            $no         = 0;
-            foreach ($data['navPages'] as $key => $pageData) {
-                $no++;
-                $classWidth = ($no < $countPages) ? 'col-2' : 'col-2';
-                echo '<div class="' . $classWidth . '">';
-                if ($no > $data['pageIndex'] + 1) {
-                    echo '<span class="nav">' . $no . ' ' . $pageData['title']
-                        . '</span>';
-                } else {
-                    $classCurrent = ($no == $data['pageIndex'] + 1) ? ' current'
-                        : '';
-                    echo '<span class="nav' . $classCurrent . '"><a href="'
-                        . $pageData['url'] . '">' . $no . ' '
-                        . $pageData['title'] . '</a></span>';
-                }
-                echo '</div>';
-            }
-            ?>
-        </div>
-    </div>
-</header>
-
-<!-- content -->
-<section id="main-content">
-    <div class="container">
-        <div class="row">
-            <?php
-            if (!empty($data['pageHasForm'])) {
-                echo '<form action="' . $_SERVER['PHP_SELF']
-                    . '" method="post" autocomplete="off">';
-            }
-            ?>
-            <div class="col-12" id="content">
-                <h2 class="slogan"><?php echo $data['desc']; ?></h2>
+        <a class="navbar-brand" href="<?php echo $data['baseUrl']; ?>" title="<?php echo _s('Pi Engine setup')?>">
+            <img src="./asset/image/logo.png" height="30" alt="<?php echo _s('Pi Engine setup')?>">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
                 <?php
-                echo $data['content'];
-                ?>
-            </div>
+                $countPages = count($data['navPages']);
+                $no         = 0;
+                foreach ($data['navPages'] as $key => $pageData) {
+                    $no++;
 
-            <div lass="col-12" id="buttons">
-                <?php if (!empty($data['previousUrl'])) { ?>
-                    <button class="btn btn-primary" type="button" accesskey="p"
-                            onclick="location.href='<?php echo $data['previousUrl']; ?>'">
-                        <?php echo _s("Previous"); ?>
-                    </button>
-                <?php } ?>
-
-                <button class="btn btn-primary<?php if (empty($data['currentPage']['url'])) {
-                    echo ' disabled';
-                } ?>" type="button" accesskey="r"
-                        onclick="location.href='<?php echo $data['currentPage']['url']; ?>'">
-                    <?php echo _s("Reload"); ?>
-                </button>
-
-                <?php
-                if ($data['status'] > -1) {
-                    if (!empty($data['pageHasForm'])) {
-                        ?>
-
-                        <button class="btn btn-primary"
-                                type="submit"><?php echo _s("Next"); ?></button>
-                        <?php
-                    } elseif (!empty($data['nextUrl'])) { ?>
-                        <button class="btn btn-primary" type="button"
-                                accesskey="n"
-                                onclick="location.href='<?php echo $data['nextUrl']; ?>'">
-                            <?php echo _s("Next"); ?>
-                        </button>
-                        <?php
+                    if ($no > $data['pageIndex'] + 1) {
+                        echo '<a class="nav-item nav-link disabled">' . $no . '.  ' . $pageData['title'] . '</a>';
+                    } else {
+                        $classCurrent = ($no == $data['pageIndex'] + 1) ? ' active' : '';
+                        echo '<a class="nav-item nav-link' . $classCurrent . '" href="' . $pageData['url'] . '">' . $no . '. ' . $pageData['title'] . '</a>';
                     }
                 }
                 ?>
-
-                <?php
-                if (!empty($data['pageHasForm'])) {
-                    echo '<input type="hidden" name="page" value="'
-                        . $data['currentPage']['key'] . '">';
-                    echo '</form>';
-                }
-                ?>
             </div>
         </div>
-</section>
+    </div>
+</nav>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-12">
+            <!-- content -->
+            <section id="main-content">
+                <div class="card">
+                    <div class="card-body">
+                        <?php if (!empty($data['pageHasForm'])) {
+                            echo '<form action="' . $_SERVER['PHP_SELF']
+                                . '" method="post" autocomplete="off">';
+                        } ?>
+                        <div class="p-3 m-3" id="content">
+                            <h2 class="slogan"><?php echo $data['desc']; ?></h2>
+                            <?php echo $data['content']; ?>
+                        </div>
+                        <div class="p-3 m-3" id="buttons">
+                            <?php if (!empty($data['previousUrl'])) { ?>
+                                <button class="btn btn-primary" type="button" accesskey="p"
+                                        onclick="location.href='<?php echo $data['previousUrl']; ?>'">
+                                    <?php echo _s("Previous"); ?>
+                                </button>
+                            <?php } ?>
+                            <button class="btn btn-primary<?php if (empty($data['currentPage']['url'])) {
+                                echo ' disabled';
+                            } ?>" type="button" accesskey="r"
+                                    onclick="location.href='<?php echo $data['currentPage']['url']; ?>'">
+                                <?php echo _s("Reload"); ?>
+                            </button>
+                            <?php if ($data['status'] > -1) {
+                                if (!empty($data['pageHasForm'])) {
+                                    ?>
 
-<!-- footer -->
-<footer id="footer">
-    <div class="container">
-        <div class="row">
-            <p class="col-12 text-center">Powered by <a
-                        href="http://piengine.org" title="Pi Engine">Pi
-                    Engine</a></p>
+                                    <button class="btn btn-primary"
+                                            type="submit"><?php echo _s("Next"); ?></button>
+                                    <?php
+                                } elseif (!empty($data['nextUrl'])) { ?>
+                                    <button class="btn btn-primary" type="button"
+                                            accesskey="n"
+                                            onclick="location.href='<?php echo $data['nextUrl']; ?>'">
+                                        <?php echo _s("Next"); ?>
+                                    </button>
+                                    <?php
+                                }
+                            } ?>
+                            <?php if (!empty($data['pageHasForm'])) {
+                                echo '<input type="hidden" name="page" value="'
+                                    . $data['currentPage']['key'] . '">';
+                                echo '</form>';
+                            } ?>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- footer -->
+            <footer id="footer">
+                <div class="container">
+                    <div class="row">
+                        <p class="p-3 text-center">
+                            Powered by <a href="http://piengine.org" title="Pi Engine">Pi Engine</a> &copy; 2011 - <?php echo date('Y'); ?>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+            <?php if (!empty($data['footContent'])) {
+                echo $data['footContent'];
+            } ?>
         </div>
     </div>
-</footer>
-<?php
-if (!empty($data['footContent'])) {
-    echo $data['footContent'];
-}
-?>
+</div>
 </body>
 </html>
