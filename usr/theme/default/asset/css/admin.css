@@ -3,7 +3,9 @@ html {
     position: relative;
 }
 
-body {}
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 a {
     cursor: pointer;
