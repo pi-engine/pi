@@ -480,8 +480,12 @@ EOT;
             // Render groups
         } else {
             foreach ($groups as $group) {
+                $class = '';
+                if (!empty($group['class'])) {
+                    $class = $group['class'];
+                }
                 if (!empty($group['label'])) {
-                    $htmlForm .= '<fieldset><legend>' . _escape($group['label']) . '</legend>' . PHP_EOL;
+                    $htmlForm .= '<fieldset class="' . $class . '"><legend>' . _escape($group['label']) . '</legend>' . PHP_EOL;
                 }
 
                 foreach ($group['elements'] as $name) {
