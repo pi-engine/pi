@@ -109,7 +109,7 @@ Link fonts from the [RawGit](https://rawgit.com) CDN:
 <link href="https://cdn.rawgit.com/rastikerdar/vazir-font/v[X.Y.Z]/dist/font-face.css" rel="stylesheet" type="text/css" />
 ```
 
-Replace [X.Y.Z] with the latest version (e.g. 20.0.0) and integrate the font into your CSS:
+Replace [X.Y.Z] with the latest version (e.g. 21.0.1) and integrate the font into your CSS:
 
 ```
 font-family: 'Vazir', sans-serif;
@@ -130,10 +130,11 @@ Use your favourite [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers
 ```shell
 pacaur -S vazir-fonts
 ```
-#### Ubuntu
+#### Ubuntu/Debian
 An unofficial PPA is available for installing Vazir and other free Persian fonts. It only works on Ubuntu 18.04 and higher. Open a Terminal and enter these commands:
 ```shell
 sudo add-apt-repository ppa:blacksuited/fonts
+sudo apt update
 sudo apt install fonts-vazir
 ```
 

@@ -4,6 +4,10 @@ html {
     position: relative;
 }
 
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 a {
     color: #0098E3;
 }
