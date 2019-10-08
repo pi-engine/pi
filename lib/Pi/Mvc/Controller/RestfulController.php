@@ -1,15 +1,14 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Mvc\Controller;
 
-use Pi;
 use Zend\Http\Request as HttpRequest;
 use Zend\Mvc\Exception;
 use Zend\Mvc\MvcEvent;
@@ -33,7 +32,8 @@ abstract class RestfulController extends ActionController
      * @return array
      */
     public function getList()
-    {}
+    {
+    }
 
     /**
      * Return single resource
@@ -42,7 +42,8 @@ abstract class RestfulController extends ActionController
      * @return mixed
      */
     public function get($id)
-    {}
+    {
+    }
 
     /**
      * Create a new resource
@@ -51,7 +52,8 @@ abstract class RestfulController extends ActionController
      * @return mixed
      */
     public function create($data)
-    {}
+    {
+    }
 
     /**
      * Update an existing resource
@@ -61,7 +63,8 @@ abstract class RestfulController extends ActionController
      * @return mixed
      */
     public function update($id, $data)
-    {}
+    {
+    }
 
     /**
      * Delete an existing resource
@@ -70,7 +73,8 @@ abstract class RestfulController extends ActionController
      * @return mixed
      */
     public function delete($id)
-    {}
+    {
+    }
 
     /**
      * Basic functionality for when a page is not available
@@ -81,7 +85,7 @@ abstract class RestfulController extends ActionController
     {
         $this->response->setStatusCode(404);
 
-        return array('content' => 'Page not found');
+        return ['content' => 'Page not found'];
     }
 
     /**
@@ -124,10 +128,10 @@ abstract class RestfulController extends ActionController
             $routeMatch = $e->getRouteMatch();
             if (!$routeMatch) {
                 /**
-                * @todo Determine requirements for when route match is missing.
-                *       Potentially allow pulling directly
+                 * @todo Determine requirements for when route match is missing.
+                 *       Potentially allow pulling directly
                  *      from request metadata?
-                */
+                 */
                 throw new Exception\DomainException(
                     'Missing route matches; unsure how to retrieve action'
                 );

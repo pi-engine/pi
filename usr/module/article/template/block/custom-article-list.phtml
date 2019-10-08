@@ -1,14 +1,14 @@
 <?php
-    $elements = $block['elements'];
-    $column   = $block['column'];
-    $target   = $block['target'];
-    $articles = $block['articles'];
+$elements = $block['elements'];
+$column   = $block['column'];
+$target   = $block['target'];
+$articles = $block['articles'];
 
-    $template = sprintf('list-%s.phtml', $column);
+$template = sprintf('list-%s.phtml', $column);
 ?>
-<?php 
-    if ('single' == $column) {
-        $items = $articles;
-    }
-    include $template; 
+<?php
+if ('single' == $column) {
+    $items = $articles;
+}
+include $this->templateModule('block/' . $template, $block['module']);
 ?>

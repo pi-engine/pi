@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Api;
@@ -41,7 +41,7 @@ abstract class AbstractUser extends AbstractApi
      * Get user model
      *
      * @param int|string $uid
-     * @param string    $field
+     * @param string $field
      *
      * @return UserModel|null
      */
@@ -50,62 +50,62 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Get user IDs subject to conditions
      *
-     * @param array|Where   $condition
-     * @param int           $limit
-     * @param int           $offset
-     * @param string|array  $order
+     * @param array|Where $condition
+     * @param int $limit
+     * @param int $offset
+     * @param string|array $order
      * @return int[]
      * @api
      */
     abstract public function getUids(
-        $condition  = array(),
-        $limit      = 0,
-        $offset     = 0,
-        $order      = ''
+        $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = ''
     );
 
     /**
      * Get users subject to conditions
      *
-     * @param array|Where   $condition
-     * @param int           $limit
-     * @param int           $offset
-     * @param string|array  $order
-     * @param array         $field
+     * @param array|Where $condition
+     * @param int $limit
+     * @param int $offset
+     * @param string|array $order
+     * @param array $field
      *
      * @return array
      * @api
      */
     abstract public function getList(
-        $condition  = array(),
-        $limit      = 0,
-        $offset     = 0,
-        $order      = '',
-        $field      = array()
+        $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = '',
+        $field = []
     );
 
     /**
      * Get user count subject to conditions
      *
-     * @param array|Where  $condition
+     * @param array|Where $condition
      *
      * @return int
      * @api
      */
-    abstract public function getCount($condition = array());
+    abstract public function getCount($condition = []);
 
     /**
      * Add a user with full set of data
      *
-     * @param   array   $data
-     * @param   bool    $setRole
+     * @param   array $data
+     * @param   bool $setRole
      *
      * @return  int
      * @api
      */
     public function addUser($data, $setRole = true)
     {
-        $uid = (int) $this->addAccount($data);
+        $uid = (int)$this->addAccount($data);
         if ($uid && $setRole) {
             $this->setRole($uid, 'member', 'front');
         }
@@ -116,15 +116,15 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Update a user
      *
-     * @param   int         $uid
-     * @param   array       $data
+     * @param   int $uid
+     * @param   array $data
      *
      * @return  bool
      * @api
      */
     public function updateUser($uid, array $data)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
@@ -137,13 +137,13 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Delete a user
      *
-     * @param   int         $uid
+     * @param   int $uid
      * @return  bool|null   Null for no-action
      * @api
      */
     public function deleteUser($uid)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
@@ -156,13 +156,13 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Activate a user account
      *
-     * @param   int         $uid
+     * @param   int $uid
      * @return  bool|null   Null for no-action
      * @api
      */
     public function activateUser($uid)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
@@ -175,14 +175,14 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Enable a user
      *
-     * @param   int     $uid
+     * @param   int $uid
      *
      * @return  bool|null   Null for no-action
      * @api
      */
     public function enableUser($uid)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
@@ -195,14 +195,14 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Disable a user
      *
-     * @param   int     $uid
+     * @param   int $uid
      *
      * @return  bool|null   Null for no-action
      * @api
      */
     public function disableUser($uid)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
@@ -215,9 +215,9 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Get field value(s) of a user field(s)
      *
-     * @param int|int[]         $uid
-     * @param string|string[]   $field
-     * @param bool              $filter
+     * @param int|int[] $uid
+     * @param string|string[] $field
+     * @param bool $filter
      * @return mixed|mixed[]
      * @api
      */
@@ -226,9 +226,9 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Set value of a user field
      *
-     * @param int       $uid
-     * @param string    $field
-     * @param mixed     $value
+     * @param int $uid
+     * @param string $field
+     * @param mixed $value
      * @return bool
      * @api
      */
@@ -237,23 +237,23 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Set user role(s)
      *
-     * @param int           $uid
-     * @param string|array  $role
+     * @param int $uid
+     * @param string|array $role
      *
      * @return bool
      */
     public function setRole($uid, $role)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
 
-        $role = (array) $role;
-        $roles = Pi::registry('role')->read();
-        $roleExist = array();
-        $model = Pi::model('user_role');
-        $rowset = $model->select(array('uid' => $uid));
+        $role      = (array)$role;
+        $roles     = Pi::registry('role')->read();
+        $roleExist = [];
+        $model     = Pi::model('user_role');
+        $rowset    = $model->select(['uid' => $uid]);
         foreach ($rowset as $row) {
             $roleExist[] = $row['role'];
         }
@@ -262,11 +262,11 @@ abstract class AbstractUser extends AbstractApi
             array_keys($roles)
         );
         foreach ($roleNew as $roleName) {
-            $row = $model->createRow(array(
-                'uid'       => $uid,
-                'section'   => $roles[$roleName]['section'],
-                'role'      => $roleName,
-            ));
+            $row = $model->createRow([
+                'uid'     => $uid,
+                'section' => $roles[$roleName]['section'],
+                'role'    => $roleName,
+            ]);
             try {
                 $row->save();
             } catch (\Exception $e) {
@@ -280,30 +280,30 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Revoke user role(s)
      *
-     * @param int          $uid
+     * @param int $uid
      * @param string|array $role
      *
      * @return bool
      */
     public function revokeRole($uid, $role)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
 
-        $role = (array) $role;
-        $roles = array();
+        $role  = (array)$role;
+        $roles = [];
         foreach ($role as $roleName) {
             if ('member' != $roleName) {
                 $roles[] = $roleName;
             }
         }
         if ($roles) {
-            Pi::model('user_role')->delete(array(
-                'uid'   => $uid,
-                'role'  => $roles,
-            ));
+            Pi::model('user_role')->delete([
+                'uid'  => $uid,
+                'role' => $roles,
+            ]);
         }
 
         return true;
@@ -312,31 +312,31 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Get user role
      *
-     * @param int       $uid
-     * @param string    $section   Section name: admin, front
+     * @param int $uid
+     * @param string $section Section name: admin, front
      *
      * @return string[]
      */
     public function getRole($uid, $section = '')
     {
-        $uid = (int) $uid;
+        $uid     = (int)$uid;
         $section = $section ?: Pi::engine()->application()->getSection();
         if (!$uid) {
             if ('front' == $section) {
-                $result = array('guest');
+                $result = ['guest'];
             } else {
-                $result = array();
+                $result = [];
             }
 
             return $result;
         }
 
-        $where = array(
-            'uid'       => $uid,
-            'section'   => $section,
-        );
+        $where  = [
+            'uid'     => $uid,
+            'section' => $section,
+        ];
         $rowset = Pi::model('user_role')->select($where);
-        $result = array();
+        $result = [];
         foreach ($rowset as $row) {
             $result[] = $row['role'];
         }
@@ -356,8 +356,8 @@ abstract class AbstractUser extends AbstractApi
     /**
      * Canonize user full set data or for a specific type
      *
-     * @param array     $rawData
-     * @param string    $type
+     * @param array $rawData
+     * @param string $type
      * @return array
      */
     abstract public function canonizeUser(array $rawData, $type = '');
@@ -384,7 +384,7 @@ abstract class AbstractUser extends AbstractApi
             return false;
         }
 
-        return (int) $row['id'];
+        return (int)$row['id'];
     }
 
     /**
@@ -397,14 +397,14 @@ abstract class AbstractUser extends AbstractApi
      */
     public function updateAccount($uid, array $data)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
 
         $type = 'account';
         $data = $this->canonizeUser($data, $type);
-        $row = Pi::model('user_account')->find($uid);
+        $row  = Pi::model('user_account')->find($uid);
         if ($row) {
             $row->assign($data);
             if (isset($data['credential'])) {
@@ -434,7 +434,7 @@ abstract class AbstractUser extends AbstractApi
      */
     public function deleteAccount($uid)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
@@ -443,17 +443,17 @@ abstract class AbstractUser extends AbstractApi
         }
 
         $model = Pi::model('user_account');
-        $row = $model->find($uid);
+        $row   = $model->find($uid);
         if (!$row) {
             return false;
         }
-        if ((int) $row['time_deleted'] > 0) {
+        if ((int)$row['time_deleted'] > 0) {
             return null;
         }
-        $row->assign(array(
-            'active'        => 0,
-            'time_deleted'  => time(),
-        ));
+        $row->assign([
+            'active'       => 0,
+            'time_deleted' => time(),
+        ]);
         try {
             $row->save();
         } catch (\Exception $e) {
@@ -475,37 +475,40 @@ abstract class AbstractUser extends AbstractApi
      */
     public function activateAccount($uid)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
 
         $model = Pi::model('user_account');
-        $row = $model->find($uid);
+        $row   = $model->find($uid);
         // Skip if account not found or deleted
-        if (!$row || (int) $row['time_deleted'] > 0) {
+        if (!$row || (int)$row['time_deleted'] > 0) {
             return false;
         }
         // Skip is already activated
-        if ((int) $row['time_activated'] > 0) {
+        if ((int)$row['time_activated'] > 0) {
             return null;
         }
         // Set active to true if activated and enabled
-        if ((int) $row['time_disabled'] > 0) {
+        if ((int)$row['time_disabled'] > 0) {
             $active = 0;
         } else {
             $active = 1;
         }
-        $row->assign(array(
-            'active'            => $active,
-            'time_activated'    => time(),
-        ));
+        $row->assign([
+            'active'         => $active,
+            'time_activated' => time(),
+        ]);
         try {
             $row->save();
         } catch (\Exception $e) {
             return false;
         }
 
+        if (Pi::service('module')->isActive('subscription')) {
+            Pi::api('people', 'subscription')->update(array('status' => 1), $uid);
+        }
         return true;
     }
 
@@ -518,14 +521,14 @@ abstract class AbstractUser extends AbstractApi
      * and reset `time_disabled`; only enabled account can be disabled,
      * set `active` to false and set `time_disabled`.
      *
-     * @param int   $uid
-     * @param bool  $flag
+     * @param int $uid
+     * @param bool $flag
      *
      * @return bool|null   Null for no-action
      */
     public function enableAccount($uid, $flag = true)
     {
-        $uid = (int) $uid;
+        $uid = (int)$uid;
         if (!$uid) {
             return false;
         }
@@ -534,32 +537,32 @@ abstract class AbstractUser extends AbstractApi
         }
 
         $model = Pi::model('user_account');
-        $row = $model->find($uid);
+        $row   = $model->find($uid);
         // Skip if account not found or deleted
         if (!$row
             //|| (int) $row['time_activated'] < 1
-            || (int) $row['time_deleted'] > 0
+            || (int)$row['time_deleted'] > 0
         ) {
             return false;
         }
         // Skip enabling if already enabled
         // Skip disabling if already disabled
-        if (($flag && (int) $row['time_disabled'] == 0)
-            || (!$flag && (int) $row['time_disabled'] > 0)
+        if (($flag && (int)$row['time_disabled'] == 0)
+            || (!$flag && (int)$row['time_disabled'] > 0)
         ) {
             return null;
         }
         // Set active to true if activated and enabled
-        if ((int) $row['time_activated'] > 0 && $flag) {
+        if ((int)$row['time_activated'] > 0 && $flag) {
             $active = 1;
         } else {
             $active = 0;
         }
         $time = $flag ? 0 : time();
-        $data = array(
-            'active'            => $active,
-            'time_disabled'     => $time,
-        );
+        $data = [
+            'active'        => $active,
+            'time_disabled' => $time,
+        ];
         $row->assign($data);
         try {
             $row->save();
@@ -589,8 +592,8 @@ abstract class AbstractUser extends AbstractApi
      * - logout: URI to user logout page
      * - register: URI to user register page
      *
-     * @param string    $type URL type
-     * @param mixed     $var User id for profile or redirect for login
+     * @param string $type URL type
+     * @param mixed $var User id for profile or redirect for login
      *
      * @return string
      * @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
@@ -598,17 +601,22 @@ abstract class AbstractUser extends AbstractApi
      */
     public function getUrl($type, $var = null)
     {
-        $route      = $this->getRoute();
-        //$redirect   = '';
+        $route = $this->getRoute();
+
+        // Temporary fix for php 7.2 / 7.3
+        if ($route == 'sysuser' && Pi::service('module')->isActive('user')) {
+            $route = 'user';
+        }
+
         switch ($type) {
             case 'profile':
-                $params = array();
+                $params = [];
                 if (is_numeric($var)) {
-                    $params['id'] = (int) $var;
+                    $params['id'] = (int)$var;
                 } elseif (is_string($var)) {
                     $params['name'] = $var;
                 } else {
-                    $params = (array) $var;
+                    $params = (array)$var;
                 }
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'profile';
@@ -621,19 +629,13 @@ abstract class AbstractUser extends AbstractApi
                 break;
 
             case 'login':
-                $options = array();
+                $options = [];
                 if (is_string($var)) {
-                    $params = array(
+                    $params = [
                         'redirect' => $var,
-                    );
+                    ];
                 } else {
-                    $params = (array) $var;
-                }
-                if (isset($params['redirect'])) {
-                    $options['query']['redirect'] = $params['redirect'];
-                    unset($params['redirect']);
-                } else {
-                    $options['query']['redirect'] = Pi::service('url')->getRequestUri();
+                    $params = (array)$var;
                 }
                 if (!isset($params['module'])) {
                     $params['module'] = 'system';
@@ -646,26 +648,38 @@ abstract class AbstractUser extends AbstractApi
                     unset($params['route']);
                 }
                 if (isset($params['section'])) {
-                    $section = $params['section'];
+                    if ('admin' == $params['section']) {
+                        $route = 'admin';
+                    }
                     unset($params['section']);
+                }
+                if (isset($params['redirect'])) {
+                    $options['query']['redirect'] = $params['redirect'];
+                    unset($params['redirect']);
                 } else {
-                    $section = Pi::engine()->application()->getSection();
+                    $routeMatch = Pi::engine()->application()->getRouteMatch();
+                    if ($routeMatch) {
+                        $module     = $routeMatch->getParam('module');
+                        $controller = $routeMatch->getParam('controller');
+                        if (('user' == $module || 'system' == $module)
+                            && ('login' == $controller || 'register' == $controller)
+                        ) {
+                        } else {
+                            $options['query']['redirect'] = Pi::service('url')->getRequestUri();
+                        }
+                    }
                 }
-                if ('admin' == $section) {
-                    $route = 'admin';
-                }
-
                 $url = Pi::service('url')->assemble($route, $params, $options);
                 break;
 
             case 'logout':
-                $options = array();
+                $options = [];
                 if (is_string($var)) {
-                    $params = array(
+                    $params = [
                         'redirect' => $var,
-                    );
+                    ];
                 } else {
-                    $params = (array) $var;
+                    $params = (array)$var;
                 }
                 if (isset($params['redirect'])) {
                     $options['query']['redirect'] = $params['redirect'];
@@ -685,31 +699,22 @@ abstract class AbstractUser extends AbstractApi
                     unset($params['route']);
                 }
                 if (isset($params['section'])) {
-                    $section = $params['section'];
+                    if ('admin' == $params['section']) {
+                        $route = 'admin';
+                    }
                     unset($params['section']);
-                } else {
-                    $section = Pi::engine()->application()->getSection();
-                }
-                if ('admin' == $section) {
-                    $route = 'admin';
                 }
                 $url = Pi::service('url')->assemble($route, $params, $options);
                 break;
 
             case 'register':
-                $options = array();
+                $options = [];
                 if (is_string($var)) {
-                    $params = array(
+                    $params = [
                         'redirect' => $var,
-                    );
+                    ];
                 } else {
-                    $params = (array) $var;
-                }
-                if (isset($params['redirect'])) {
-                    $options['query']['redirect'] = $params['redirect'];
-                    unset($params['redirect']);
-                } else {
-                    $options['query']['redirect'] = Pi::service('url')->getRequestUri();
+                    $params = (array)$var;
                 }
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'register';
@@ -718,11 +723,28 @@ abstract class AbstractUser extends AbstractApi
                     $route = $params['route'];
                     unset($params['route']);
                 }
+                if (isset($params['redirect'])) {
+                    $options['query']['redirect'] = $params['redirect'];
+                    unset($params['redirect']);
+                } else {
+                    $routeMatch = Pi::engine()->application()->getRouteMatch();
+                    if ($routeMatch) {
+                        $module     = $routeMatch->getParam('module');
+                        $controller = $routeMatch->getParam('controller');
+                        if (('user' == $module || 'system' == $module)
+                            && ('login' == $controller || 'register' == $controller)
+                        ) {
+                        } else {
+                            $options['query']['redirect'] = Pi::service('url')->getRequestUri();
+                        }
+                    }
+                }
+
                 $url = Pi::service('url')->assemble($route, $params, $options);
                 break;
 
             case 'password':
-                $params = (array) $var;
+                $params = (array)$var;
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'password';
                 }
@@ -738,13 +760,13 @@ abstract class AbstractUser extends AbstractApi
 
             default:
             case 'home':
-                $params = array();
+                $params = [];
                 if (is_numeric($var)) {
-                    $params['id'] = (int) $var;
+                    $params['id'] = (int)$var;
                 } elseif (is_string($var)) {
                     $params['name'] = $var;
                 } else {
-                    $params = (array) $var;
+                    $params = (array)$var;
                 }
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'home';
@@ -756,18 +778,6 @@ abstract class AbstractUser extends AbstractApi
                 $url = Pi::service('url')->assemble($route, $params);
                 break;
         }
-
-        // Append redirect with query
-        // @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
-        /*
-        if ($redirect) {
-            if (false == strpos($url, '?')) {
-                $url .= '?redirect=' . rawurlencode($redirect);
-            } else {
-                $url .= '&redirect=' . rawurlencode($redirect);
-            }
-        }
-        */
 
         return $url;
     }

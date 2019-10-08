@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link         http://code.pialog.org for the Pi Engine source repository
- * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt BSD 3-Clause License
+ * @link         http://code.piengine.org for the Pi Engine source repository
+ * @copyright    Copyright (c) Pi Engine http://piengine.org
+ * @license      http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article\Controller\Front;
@@ -14,58 +14,58 @@ use Pi\Mvc\Controller\ActionController;
 
 /**
  * Ajax controller
- * 
+ *
  * Feature list:
- * 
+ *
  * 1. Fuzzy search user by name
  * 2. Fuzzy search tag
  * 3. Check whether an article is exists
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class AjaxController extends ActionController
 {
-    const AJAX_RESULT_TRUE = 1;
+    const AJAX_RESULT_TRUE  = 1;
     const AJAX_RESULT_FALSE = 0;
 
     /**
      * Get user name
-     * 
+     *
      * @return array
      */
     public function getFuzzyUserAction()
     {
         Pi::service('log')->mute();
-        $resultset = $result = array();
+        $resultset = $result = [];
 
         $name  = $this->params('name', '');
         $limit = $this->params('limit', 10);
 
-        $where = array();
+        $where = [];
         if ($name) {
             $where = Pi::db()->where();
             $where->like('identity', "{$name}%");
         }
-        $uids  = Pi::user()->getUids($where, $limit, 0, 'identity ASC');
-        $result = Pi::user()->get($uids, array('id', 'identity'));
+        $uids   = Pi::user()->getUids($where, $limit, 0, 'identity ASC');
+        $result = Pi::user()->get($uids, ['id', 'identity']);
 
         foreach ($result as $val) {
-            $resultset[] = array(
+            $resultset[] = [
                 'id'   => $val['id'],
                 'name' => $val['identity'],
-            );
+            ];
         }
 
-        return array(
-            'status'    => self::AJAX_RESULT_TRUE,
-            'message'   => 'ok',
-            'data'      => $resultset,
-        );
+        return [
+            'status'  => self::AJAX_RESULT_TRUE,
+            'message' => 'ok',
+            'data'    => $resultset,
+        ];
     }
 
     /**
      * Get tag
-     * 
+     *
      * @return array
      */
     /*
@@ -90,24 +90,24 @@ class AjaxController extends ActionController
         );
     }
     */
-    
+
     /**
      * Get author name by AJAX
-     *  
+     *
      */
     public function getFuzzyAuthorAction()
     {
         Pi::service('log')->mute();
-        $resultset = $result = array();
+        $resultset = $result = [];
 
-        $name   = $this->params('name', '');
-        $limit  = $this->params('limit', 10);
+        $name  = $this->params('name', '');
+        $limit = $this->params('limit', 10);
 
         $model  = $this->getModel('author');
         $select = $model->select()
-                ->columns(array('id', 'name', 'photo'))
-                ->order('name ASC')
-                ->limit($limit);
+            ->columns(['id', 'name', 'photo'])
+            ->order('name ASC')
+            ->limit($limit);
         if ($name) {
             $name = substr($name, 0, strpos($name, '['));
             $select->where->like('name', "{$name}%");
@@ -116,18 +116,18 @@ class AjaxController extends ActionController
         $result = $model->selectWith($select)->toArray();
 
         foreach ($result as $val) {
-            $resultset[] = array(
+            $resultset[] = [
                 'id'    => $val['id'],
                 'name'  => $val['name'] . '[' . $val['id'] . ']',
                 'photo' => $val['photo'],
-            );
+            ];
         }
 
-        echo json_encode(array(
-            'status'    => true,
-            'message'   => __('OK'),
-            'data'      => $resultset,
-        ));
+        echo json_encode([
+            'status'  => true,
+            'message' => __('OK'),
+            'data'    => $resultset,
+        ]);
         exit;
     }
 }

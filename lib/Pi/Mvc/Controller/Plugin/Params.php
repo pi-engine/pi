@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Mvc\Controller\Plugin;
@@ -41,15 +41,16 @@ class Params extends ZendParams
     protected $postParams;
 
     /** @var array Order to fetch variables */
-    protected $variablesOrder = array(
-        'query', 'request'
-    );
+    protected $variablesOrder
+        = [
+            'query', 'request',
+        ];
 
     /**
      * Grabs a param from route match by default.
      *
-     * @param string|null   $param
-     * @param mixed         $default
+     * @param string|null $param
+     * @param mixed $default
      * @return mixed
      */
     public function __invoke($param = null, $default = null)
@@ -76,9 +77,9 @@ class Params extends ZendParams
     /**
      * Return all post parameters or a single post parameter.
      *
-     * @param string|null   $param
+     * @param string|null $param
      *      Parameter name to retrieve, or null to get all.
-     * @param mixed         $default
+     * @param mixed $default
      *      Default value to use when the parameter is missing.
      * @return mixed
      */
@@ -112,9 +113,9 @@ class Params extends ZendParams
     /**
      * Return all put parameters or a single put parameter.
      *
-     * @param string|null   $param
+     * @param string|null $param
      *      Parameter name to retrieve, or null to get all.
-     * @param mixed         $default
+     * @param mixed $default
      *      Default value to use when the parameter is missing.
      * @return mixed
      */
@@ -149,9 +150,9 @@ class Params extends ZendParams
     /**
      * Return all parameters or a single parameter according to request method
      *
-     * @param string|null   $param
+     * @param string|null $param
      *      Parameter name to retrieve, or null to get all.
-     * @param mixed         $default
+     * @param mixed $default
      *      Default value to use when the parameter is missing.
      * @return mixed
      */
@@ -171,9 +172,9 @@ class Params extends ZendParams
     /**
      * Retrieve a variable from query
      *
-     * @param string        $variable
-     * @param int|string    $filter
-     * @param mixed         $options
+     * @param string $variable
+     * @param int|string $filter
+     * @param mixed $options
      * @return mixed
      */
     public function get($variable, $filter, $options = null)
@@ -192,9 +193,9 @@ class Params extends ZendParams
     /**
      * Retrieve a variable from POST
      *
-     * @param string        $variable
-     * @param int|string    $filter
-     * @param mixed         $options
+     * @param string $variable
+     * @param int|string $filter
+     * @param mixed $options
      * @return mixed
      */
     public function post($variable, $filter, $options = null)
@@ -210,9 +211,9 @@ class Params extends ZendParams
     /**
      * Retrieve a variable from PUT
      *
-     * @param string        $variable
-     * @param int|string    $filter
-     * @param mixed         $options
+     * @param string $variable
+     * @param int|string $filter
+     * @param mixed $options
      * @return mixed
      */
     public function put($variable, $filter, $options = null)
@@ -228,9 +229,9 @@ class Params extends ZendParams
     /**
      * Retrieve a variable from current HTTP method: get, post, put
      *
-     * @param string        $variable
-     * @param int|string    $filter
-     * @param mixed         $options
+     * @param string $variable
+     * @param int|string $filter
+     * @param mixed $options
      * @return mixed
      */
     public function request($variable, $filter, $options = null)
@@ -246,10 +247,10 @@ class Params extends ZendParams
     /**
      * Filter value with filter_var
      *
-     * @param mixed         $value      Value to be filtered
-     * @param int|string    $filter
+     * @param mixed $value Value to be filtered
+     * @param int|string $filter
      *      String for filter name or int for filter_id
-     * @param mixed         $options
+     * @param mixed $options
      * @return mixed
      */
     public function filter($value, $filter, $options = null)

@@ -1,27 +1,26 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Db;
 
 use PDO;
 use Pi;
-use Pi\Db\Sql\Where;
-use Pi\Db\Sql\Select;
 use Pi\Db\Adapter\Adapter;
+use Pi\Db\Sql\Select;
+use Pi\Db\Sql\Where;
 use Pi\Db\Table\AbstractTableGateway;
 use Pi\Log\DbProfiler;
 use Zend\Db\Metadata\Metadata;
-use Zend\Db\Sql\Expression;
-use Zend\Db\Sql\Predicate;
-use Zend\Db\Sql\Sql;
-use Zend\Db\Sql\Insert;
 use Zend\Db\Sql\Delete;
+use Zend\Db\Sql\Expression;
+use Zend\Db\Sql\Insert;
+use Zend\Db\Sql\Sql;
 use Zend\Db\Sql\Update;
 
 /**
@@ -67,10 +66,11 @@ class DbGateway
      *
      * @var array
      */
-    protected $adapterMasterSlave = array(
-        'master'    => null,
-        'slave'     => null
-    );
+    protected $adapterMasterSlave
+        = [
+            'master' => null,
+            'slave'  => null,
+        ];
 
     /**
      * Database metadata adapter
@@ -84,7 +84,7 @@ class DbGateway
      *
      * @var array
      */
-    protected $model = array();
+    protected $model = [];
 
     /**
      * Name prefix for all tables
@@ -142,9 +142,9 @@ class DbGateway
     {
         if (isset($options['master'])) {
             $adapterMaster = $this->createAdapter($options['master']);
-            $adapterSlave = $this->createAdapter($options['slave']);
+            $adapterSlave  = $this->createAdapter($options['slave']);
             $this->setAdapter($adapterMaster, 'master')
-                 ->setAdapter($adapterSlave, 'slave');
+                ->setAdapter($adapterSlave, 'slave');
         } else {
             $adapter = $this->createAdapter($options);
             $this->setAdapter($adapter);
@@ -238,14 +238,14 @@ class DbGateway
      * Configs are canonized to avoid violation of `driver_options`
      * in {@link \Zend\Db\Adapter\Driver\Pdo\Connection::connect()}
      *
-     * @param array                                 $config
-     * @param \Zend\Db\Adapter\AdapterInterface   $platform
+     * @param array $config
+     * @param \Zend\Db\Adapter\AdapterInterface $platform
      * @return Adapter
      */
     public function createAdapter(array $config, $platform = null)
     {
         // Canonize config
-        $options = array();
+        $options = [];
         if (isset($config['options'])) {
             $options = $config['options'];
             unset($config['options']);
@@ -255,10 +255,10 @@ class DbGateway
         // Cannot be used with persistent PDO instances.
         // @see http://www.php.net/manual/en/pdo.setattribute.php
         if (!isset($config['driver_options'][PDO::ATTR_STATEMENT_CLASS])) {
-            $config['driver_options'][PDO::ATTR_STATEMENT_CLASS] = array(
+            $config['driver_options'][PDO::ATTR_STATEMENT_CLASS] = [
                 static::STATEMENT_CLASS,
-                array($this->profiler() ?: null)
-            );
+                [$this->profiler() ?: null],
+            ];
         }
 
         $adapter = new Adapter($config, $platform);
@@ -269,8 +269,8 @@ class DbGateway
     /**
      * Set adapter
      *
-     * @param Adapter       $adapter
-     * @param null|string   $type     `master` or `slave`, default as null
+     * @param Adapter $adapter
+     * @param null|string $type `master` or `slave`, default as null
      * @return self
      */
     public function setAdapter(Adapter $adapter, $type = null)
@@ -320,7 +320,7 @@ class DbGateway
     public function prefix($table = '', $type = '')
     {
         $typePrefix = empty($type) || $type == 'core'
-                      ? $this->corePrefix : $type . '_';
+            ? $this->corePrefix : $type . '_';
         return sprintf('%s%s%s', $this->tablePrefix, $typePrefix, $table);
     }
 
@@ -336,11 +336,11 @@ class DbGateway
      *  - Load a nest model with no defined model class:
      *      `Pi::db()->model(<model-name>, array('type' => 'nest'))`
      *
-     * @param string    $name
-     * @param array     $options
+     * @param string $name
+     * @param array $options
      * @return AbstractTableGateway
      */
-    public function model($name, $options = array())
+    public function model($name, $options = [])
     {
         $name = strtolower($name);
 
@@ -350,7 +350,7 @@ class DbGateway
                 list($module, $key) = explode('/', $name, 2);
             } else {
                 $module = '';
-                $key = $name;
+                $key    = $name;
             }
             $className = str_replace(
                 ' ',
@@ -358,19 +358,19 @@ class DbGateway
                 ucwords(str_replace('_', ' ', $key))
             );
             if ($module) {
-                $directory = Pi::service('module')->directory($module);
-                $className = sprintf(
+                $directory         = Pi::service('module')->directory($module);
+                $className         = sprintf(
                     'Module\\%s\Model\\%s',
                     ucfirst($directory),
                     $className
                 );
                 $options['prefix'] = static::prefix('', $module);
             } else {
-                $className = sprintf('Pi\Application\Model\\%s', $className);
+                $className         = sprintf('Pi\Application\Model\\%s', $className);
                 $options['prefix'] = static::prefix('', 'core');
             }
             if (!class_exists($className)) {
-                if  (isset($options['type'])) {
+                if (isset($options['type'])) {
                     $type = ucfirst($options['type']);
                     unset($options['type']);
                 } else {
@@ -378,10 +378,10 @@ class DbGateway
                 }
                 $className = 'Pi\Application\Model\\' . $type;
             }
-            $options['name'] = $key;
+            $options['name']    = $key;
             $options['adapter'] = empty($options['adapter'])
-                                ? $this->adapter() : $options['adapter'];
-            $model = new $className($options);
+                ? $this->adapter() : $options['adapter'];
+            $model              = new $className($options);
             if (!$model instanceof AbstractTableGateway) {
                 $model = false;
             }
@@ -420,16 +420,17 @@ class DbGateway
     /**
      * Creates a SQL expression
      *
-     * @param string        $expression
-     * @param string|array  $parameters
-     * @param array         $types
+     * @param string $expression
+     * @param string|array $parameters
+     * @param array $types
      * @return Expression
      */
     public function expression(
         $expression = '',
         $parameters = null,
-        array $types = array()
-    ) {
+        array $types = []
+    )
+    {
         $expression = new Expression($expression, $parameters, $types);
 
         return $expression;
@@ -446,7 +447,7 @@ class DbGateway
         if (null === $profiler) {
             if (null === $this->profiler) {
                 $this->profiler = Pi::service()->hasService('log')
-                                ? Pi::service('log')->dbProfiler() : false;
+                    ? Pi::service('log')->dbProfiler() : false;
             }
 
             return $this->profiler;
@@ -460,7 +461,7 @@ class DbGateway
      * Create SQL
      *
      * @param Adapter $adapter
-     * @param string  $table
+     * @param string $table
      *
      * @return Sql
      */
@@ -474,7 +475,7 @@ class DbGateway
     /**
      * Create select SQL
      *
-     * @param string  $table
+     * @param string $table
      *
      * @return Select
      */
@@ -494,7 +495,7 @@ class DbGateway
      */
     public function insert($table = '')
     {
-        $sql = new insert($table);
+        $sql = new Insert($table);
 
         return $sql;
     }
@@ -508,7 +509,7 @@ class DbGateway
      */
     public function update($table = '')
     {
-        $sql = new update($table);
+        $sql = new Update($table);
 
         return $sql;
     }
@@ -522,7 +523,7 @@ class DbGateway
      */
     public function delete($table = '')
     {
-        $sql = new delete($table);
+        $sql = new Delete($table);
 
         return $sql;
     }
@@ -556,7 +557,7 @@ class DbGateway
         try {
             $result = $statement->execute();
         } catch (\Exception $e) {
-            $result =  false;
+            $result = false;
         }
 
         return $result;

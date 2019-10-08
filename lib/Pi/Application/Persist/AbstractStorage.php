@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Persist;
@@ -71,7 +71,7 @@ abstract class AbstractStorage
     /**
      * Test if an item is available for the given id
      *
-     * @param  string  $id Item id
+     * @param  string $id Item id
      * @return mixed|false Cached datas
      */
     public function load($id)
@@ -82,8 +82,8 @@ abstract class AbstractStorage
     /**
      * Save some data in a key
      *
-     * @param  mixed $data      Data to put in cache
-     * @param  string $id       Stored id
+     * @param  mixed $data Data to put in cache
+     * @param  string $id Stored id
      * @param  int $ttl
      * @return bool
      */

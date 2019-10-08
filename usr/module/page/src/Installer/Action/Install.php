@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Page\Installer\Action;
@@ -18,7 +18,7 @@ class Install extends BasicInstall
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('install.post', array($this, 'postInstall'), 1);
+        $events->attach('install.post', [$this, 'postInstall'], 1);
         parent::attachDefaultListeners();
         return $this;
     }
@@ -31,20 +31,41 @@ class Install extends BasicInstall
      */
     public function postInstall(Event $e)
     {
-        $module = $e->getParam('module');
+        $module     = $e->getParam('module');
         $apiHandler = Pi::api('api', 'page')->setModule($module);
 
         // Add demo pages
-        $path = Pi::service('i18n')->getPath(array('module/page', ''))
-              . '/install';
+        $path = Pi::service('i18n')->getPath(['module/page', ''])
+            . '/install';
         if (!is_dir($path)) {
             $path = Pi::service('i18n')->getPath(
-                array('module/page', ''),
-                'en'
-            ) . '/install';
+                    ['module/page', ''],
+                    'en'
+                ) . '/install';
         }
-        $metaFile = $path . '/meta.txt';
+        $metaFile = $path . '/meta.ini';
+        $metaList = parse_ini_file($metaFile, true);
+        foreach ($metaList as $name => $meta) {
+            if (!isset($meta['name'])) {
+                $meta['name'] = $name;
+            }
+            $file = sprintf('%s/%s.txt', $path, $name);
+            if (file_exists($file)) {
+                $content = file_get_contents($file);
+                $content = str_replace(
+                    ['SITE_URL', 'SITE_NAME'],
+                    [Pi::url('www'), Pi::config('sitename')],
+                    $content
+                );
+            } else {
+                $content = '';
+            }
+            $meta['content']  = $content;
+            $meta['template'] = 'page-view-simple';
+            $apiHandler->add($meta);
+        }
 
+        /*
         $meta = array_map('trim', file($metaFile));
         $meta = array_filter($meta);
 
@@ -68,48 +89,49 @@ class Install extends BasicInstall
             $page = compact('name', 'markup', 'title', 'content');
             $apiHandler->add($page);
         }
+        */
 
         // Add pre-defined pages
-        $pages = array(
-            array(
-                'name'      => 'demo',
-                'slug'      => 'phtml-demo',
-                'markup'    => 'phtml',
-                'title'     => _a('Demo for PHTML page'),
-                'content'   => 'page-demo',
-            ),
-            array(
-                'name'      => 'feed',
-                'slug'      => 'feed',
-                'markup'    => 'phtml',
-                'title'     => _a('RSS Feed'),
-                'content'   => 'page-feed',
-            ),
-            array(
-                'name'      => 'sitemap',
-                'slug'      => 'sitemap',
-                'markup'    => 'phtml',
-                'title'     => _a('Sitemap'),
-                'content'   => 'page-sitemap',
-            ),
+        $pages = [
+            [
+                'name'    => 'demo',
+                'slug'    => 'phtml-demo',
+                'markup'  => 'phtml',
+                'title'   => _a('Demo for PHTML page'),
+                'content' => 'page-demo',
+            ],
+            [
+                'name'    => 'feed',
+                'slug'    => 'feed',
+                'markup'  => 'phtml',
+                'title'   => _a('RSS Feed'),
+                'content' => 'page-feed',
+            ],
+            [
+                'name'    => 'sitemap',
+                'slug'    => 'sitemap',
+                'markup'  => 'phtml',
+                'title'   => _a('Sitemap'),
+                'content' => 'page-sitemap',
+            ],
 
-            array(
-                'name'      => 'xml-sitemap',
-                'slug'      => 'xml-sitemap',
-                'markup'    => 'phtml',
-                'title'     => _a('XML Sitemap'),
-                'content'   => 'page-xml-sitemap',
-            ),
+            [
+                'name'    => 'xml-sitemap',
+                'slug'    => 'xml-sitemap',
+                'markup'  => 'phtml',
+                'title'   => _a('XML Sitemap'),
+                'content' => 'page-xml-sitemap',
+            ],
 
-        );
+        ];
         foreach ($pages as $page) {
             $apiHandler->add($page);
         }
 
-        $result = array(
-            'status'    => true,
-            'message'   => _a('Pages added.'),
-        );
+        $result = [
+            'status'  => true,
+            'message' => _a('Pages added.'),
+        ];
         $this->setResult('post-install', $result);
     }
 }

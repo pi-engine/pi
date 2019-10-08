@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -60,7 +60,7 @@ class Breadcrumbs extends ZendBreadcrumbs
         // Try to load from cache
         if ($this->cache) {
             $cacheKey = $this->cache->key . '-bs';
-            $content = $this->cache->storage->getItem($cacheKey);
+            $content  = $this->cache->storage->getItem($cacheKey);
             if (null !== $content) {
                 if (Pi::service()->hasService('log')) {
                     Pi::service('log')->info(

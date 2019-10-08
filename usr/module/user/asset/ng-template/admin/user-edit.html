@@ -1,21 +1,21 @@
 <legend>
-  {{'EDIT_TITLE' | translate}}:
-  <span style="margin-left: 20px;">{{user.name}}</span>
+    {{'EDIT_TITLE' | translate}}:
+    <span style="margin-left: 20px;">{{user.name}}</span>
 </legend>
-<ul class="nav nav-pills">
-  <li ng-repeat="item in nav" ng-class="{active: item.name == action}" ng-click="navChange(item)">
-    <a href="{{item.href}}">{{item.title}}</a>
+<ul class="nav nav-pills bg-light mb-3 p-3">
+    <li ng-repeat="item in nav" data-ng-click="navChange(item)" class="nav-item">
+        <a class="nav-link" data-ng-class="{active: item.name == action}" href="{{item.href}}">{{item.title}}</a>
 </ul>
 <div ng-include="formHtmlUrl">
 </div>
 <script type="text/ng-template" id="avatar-template.html">
-  <p>
-    <img src="{{avatar}}">
-  </p>
-  <div>
-    <button class="btn btn-link" ng-click="defaultAvatarAction()">
-      {{'REPLACE_AVATAR' | translate}}
-    </button>
-  </div>
+    <p>
+        <img src="{{avatar}}">
+    </p>
+    <div>
+        <button class="btn btn-link" data-ng-click="defaultAvatarAction()">
+            {{'REPLACE_AVATAR' | translate}}
+        </button>
+    </div>
 </script>
 

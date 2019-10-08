@@ -18,15 +18,15 @@ Folder and file skeleton
         'license'       => 'New BSD',
         // Logo image, for admin, optional
         'logo'          => 'image/logo.png',
-        // Logo icon, use font-awsome icons from http://fortawesome.github.io/Font-Awesome/icons/
-        'icon'          => 'fa fa-search',
+        // Logo icon, use font-awesome icons from http://fortawesome.github.io/Font-Awesome/icons/
+        'icon'          => 'fas fa-search',
 
         // Readme file, for admin, optional
         'readme'        => 'docs/readme.txt',
         // Direct download link, available for wget, optional
-        //'download'      => 'http://dl.xoopsengine.org/core',
+        //'download'      => 'http://dl.piengine.org/core',
         // Demo site link, optional
-        'demo'          => 'http://demo.xoopsengine.org/demo',
+        'demo'          => 'http://demo.piengine.org/demo',
 
         // Module is ready for clone? Default as false
         'clonable'      => false,
@@ -39,7 +39,7 @@ Folder and file skeleton
         // Email address, optional
         'email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'website'   => 'http://www.xoopsengine.org',
+        'website'   => 'http://www.piengine.org',
         // Credits and acknowledgement, optional
         'credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),
@@ -80,7 +80,7 @@ Folder and file skeleton
 * `config/`: required, configuration files used by a module
   * `module.php`: required, defines module meta data, author information and resources needed
   * `config.php`: optional, defines module configuration
-  * `navigation.php`: optional, defaines front-end and backend navigation of a module
+  * `navigation.php`: optional, defines front-end and backend navigation of a module
 * `locale/`: optional, localization specific assets
   * `en/`
     * `main.csv`: optional, default localization file should be named `main` and its format is `csv`
@@ -120,7 +120,7 @@ Folder and file skeleton
 
 Resources
 ---------
-* [Pi Module Repository](http://pialog.org/module.html)
+* [Pi Module Repository](http://piengine.org/module.html)
 * [Module Development Documentation](https://github.com/pi-engine/pi/wiki/Pi-Documentation-Team)
 * [Coding Standards](https://github.com/pi-engine/pi/wiki/Dev.Coding-Standards)
 * [Database Schema](https://github.com/pi-engine/pi/wiki/Dev.Database-Schema)

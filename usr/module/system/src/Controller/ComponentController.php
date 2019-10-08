@@ -1,16 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+
 //use Zend\Mvc\MvcEvent;
 
 /**
@@ -77,10 +78,10 @@ class ComponentController extends ActionController
 
         $result = Pi::service('permission')->modulePermission($module, 'admin');
         if ($result) {
-            $result = Pi::service('permission')->hasPermission(array(
-                'module'    => 'system',
-                'resource'  => $op
-            ));
+            $result = Pi::service('permission')->hasPermission([
+                'module'   => 'system',
+                'resource' => $op,
+            ]);
         }
         if (!$result) {
             $this->terminate('Access denied.');

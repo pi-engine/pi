@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Validator;
@@ -20,31 +20,22 @@ use Zend\Validator\AbstractValidator;
 class Username extends AbstractValidator
 {
     /** @var string */
-    const INVALID   = 'usernameInvalid';
+    const INVALID = 'usernameInvalid';
 
     /** @var string */
-    const RESERVED  = 'usernameReserved';
+    const RESERVED = 'usernameReserved';
 
     /** @var string */
-    const TAKEN     = 'usernameTaken';
-
-    /**
-     * Message templates
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::INVALID   => 'Invalid username: %formatHint%',
-        self::RESERVED  => 'Username is reserved',
-        self::TAKEN     => 'Username is already taken',
-    );
+    const TAKEN = 'usernameTaken';
 
     /**
      * Message variables
      * @var array
      */
-    protected $messageVariables = array(
-        'formatHint' => 'formatHint',
-    );
+    protected $messageVariables
+        = [
+            'formatHint' => 'formatHint',
+        ];
 
     /**
      * Format hint
@@ -52,35 +43,59 @@ class Username extends AbstractValidator
      */
     protected $formatHint;
 
-    /**
-     * Format messages
-     * @var array
-     */
-    protected $formatMessage = array(
-        'strict'    => 'Only alphabetic and digits are allowed with leading alphabetic',
-        'medium'    => 'Only ASCII characters are allowed',
-        'loose'     => 'Multibyte characters are allowed',
-    );
+    /** @var array */
+    protected $messageTemplates = [];
+
+    /** @var array */
+    protected $formatMessage = [];
 
     /**
      * Format pattern
      * @var array
      */
-    protected $formatPattern = array(
-        'strict'    => '/[^a-zA-Z0-9\_\-]/',
-        'medium'    => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
-        'loose'     => '/[\000-\040]/',
-    );
+    protected $formatPattern
+        = [
+            'strict'       => '/[^a-zA-Z0-9\_\-]/',
+            'strict-space' => '/[^a-zA-Z0-9\_\-\s]/',
+            'medium'       => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
+            'medium-space' => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"\s]/',
+            'loose'        => '/[\000-\040]/',
+            'loose-space'  => '/[\000-\040][\s]/',
+        ];
 
     /**
      * Options
      * @var array
      */
-    protected $options = array(
-        'format'            => 'strict',
-        'backlist'          => array(),
-        'checkDuplication'  => true,
-    );
+    protected $options
+        = [
+            'format'            => 'strict',
+            'blacklist'         => [],
+            'check_duplication' => true,
+        ];
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = $this->messageTemplates + [
+                self::INVALID  => __('Invalid username: %formatHint%'),
+                self::RESERVED => __('Username is reserved'),
+                self::TAKEN    => __('Username is already taken'),
+            ];
+
+        $this->formatMessage = [
+            'strict'       => __('Only alphabetic and digits are allowed'),
+            'strict-space' => __('Only alphabetic, digits and spaces are allowed'),
+            'medium'       => __('Only ASCII characters are allowed'),
+            'medium-space' => __('Only ASCII characters and spaces are allowed'),
+            'loose'        => __('Only multi-byte characters are allowed'),
+            'loose-space'  => __('Only multi-byte characters and spaces are allowed'),
+        ];
+
+        parent::__construct($options);
+    }
 
     /**
      * User name validate
@@ -100,17 +115,17 @@ class Username extends AbstractValidator
             return false;
         }
 
-        if (!empty($this->options['backlist'])) {
-            $pattern = is_array($this->options['backlist'])
-                ? implode('|', $this->options['backlist'])
-                : $this->options['backlist'];
+        if (!empty($this->options['blacklist'])) {
+            $pattern = is_array($this->options['blacklist'])
+                ? implode('|', $this->options['blacklist'])
+                : $this->options['blacklist'];
             if (preg_match('/(' . $pattern . ')/', $value)) {
                 $this->error(static::RESERVED);
                 return false;
             }
         }
 
-        if ($this->options['checkDuplication']) {
+        if ($this->options['check_duplication']) {
             $isDuplicated = $this->isDuplicated($value, $context);
             if ($isDuplicated) {
                 $this->error(static::TAKEN);
@@ -130,7 +145,7 @@ class Username extends AbstractValidator
      */
     protected function isDuplicated($value, $context)
     {
-        $where = array('identity' => $value);
+        $where = ['identity' => $value];
         if (!empty($context['id'])) {
             $where['id <> ?'] = $context['id'];
         }

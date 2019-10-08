@@ -1,27 +1,27 @@
 <?php
-    $left = $right = array();
-    $i = 0;
-    foreach ($articles as $article) {
-        if ($i++ % 2 == 0) {
-            $left[$article['id']] = $article;
-        } else {
-            $right[$article['id']] = $article;
-        }
+$left = $right = [];
+$i    = 0;
+foreach ($articles as $article) {
+    if ($i++ % 2 == 0) {
+        $left[$article['id']] = $article;
+    } else {
+        $right[$article['id']] = $article;
     }
-    $disorder = 1;
+}
+$disorder = 1;
 ?>
 
 <div class="row">
     <div class="col-md-6">
         <?php
-            $items = $left;
-            include 'list-single.phtml';
+        $items = $left;
+        include $this->templateModule('block/list-single.phtml', $block['module']);
         ?>
     </div>
     <div class="col-md-6">
         <?php
-            $items = $right;
-            include 'list-single.phtml';
+        $items = $right;
+        include $this->templateModule('block/list-single.phtml', $block['module']);
         ?>
     </div>
 </div>

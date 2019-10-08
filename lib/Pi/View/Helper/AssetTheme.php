@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -31,9 +31,9 @@ class AssetTheme extends AbstractHelper
     /**
      * Get URI of a theme asset
      *
-     * @param   string      $file
-     * @param   string      $theme
-     * @param   bool|null   $appendVersion
+     * @param   string $file
+     * @param   string $theme
+     * @param   bool|null $appendVersion
      *
      * @return  string
      */
@@ -41,7 +41,8 @@ class AssetTheme extends AbstractHelper
         $file,
         $theme = '',
         $appendVersion = null
-    ) {
+    )
+    {
         //$type = $isPublic ? 'public' : 'asset';
 
         $result = Pi::service('asset')->getThemeAsset(

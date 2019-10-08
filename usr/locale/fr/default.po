@@ -1,0 +1,691 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-Engine\n"
+"POT-Creation-Date: 2018-06-21 17:41+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.8\n"
+"X-Poedit-KeywordsList: __;_t;_e;_a\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: lib\n"
+"X-Poedit-SearchPath-1: www\n"
+"X-Poedit-SearchPath-2: usr/editor\n"
+"X-Poedit-SearchPath-3: usr/module/user/src/Form/RegisterForm.php\n"
+"X-Poedit-SearchPath-4: usr/module/user/src/Form/LoginForm.php\n"
+"X-Poedit-SearchPath-5: usr/module/user/config/form.register.php\n"
+"X-Poedit-SearchPath-6: usr/module/system/template/block/partial/login-"
+"register-modal.phtml\n"
+"X-Poedit-SearchPath-7: usr/custom/module/user/config/form.register.php.dist\n"
+"X-Poedit-SearchPath-8: usr/module/user/config/form.register.php\n"
+"X-Poedit-SearchPath-9: usr/module/system/src/Form/LoginForm.php\n"
+"X-Poedit-SearchPath-10: usr/module/user/src/Controller/Front/"
+"PasswordController.php\n"
+"X-Poedit-SearchPath-11: usr/module/user/src/Form/RegisterForm.php\n"
+"X-Poedit-SearchPath-12: usr/module/system/template/block/user-bar.phtml\n"
+"X-Poedit-SearchPathExcluded-0: www/static/js/bs-lessdoc-parser.js\n"
+
+#: lib/Pi/Application/Bootstrap/Resource/Permission.php:64
+msgid "The website is in maintenance - we are back in a couple of minutes !"
+msgstr ""
+"Le site est en maintenance - nous sommes de retour dans quelques minutes !"
+
+#: lib/Pi/Application/Installer/Theme.php:349
+msgid "Theme updated successfully."
+msgstr "Thème mis à jour avec succès."
+
+#: lib/Pi/Application/Installer/Theme.php:356
+msgid "Theme failed to update."
+msgstr "Le Thème n'a pas réussi à se mettre à jour."
+
+#: lib/Pi/Application/Installer/Theme.php:358
+msgid "Theme upgraded successfully."
+msgstr "Mise à niveau du Thème réussie."
+
+#: lib/Pi/Application/Installer/Theme.php:363
+msgid "Theme asset publish failed."
+msgstr "La publication de la ressource Thème a échoué."
+
+#: lib/Pi/Application/Service/Comment.php:696
+msgid "Posted a new comment."
+msgstr "A publié un nouveau commentaire."
+
+#: lib/Pi/Application/Service/Editor.php:83
+msgid "Pi Default Editor"
+msgstr "Editeur par défaut Pi"
+
+#: lib/Pi/Application/Service/Form.php:37
+msgid "Please type the word."
+msgstr "Merci de saisir le mot."
+
+#: lib/Pi/Application/Service/Notification.php:176
+msgid "Server key not set"
+msgstr "Clef Serveur non définie"
+
+#: lib/Pi/Application/Service/Notification.php:209
+msgid "Registration ids not set"
+msgstr "Les IDs d'inscription ne sont pas définis"
+
+#: lib/Pi/Application/Service/Notification.php:228
+msgid "Notification send successfully"
+msgstr "Notification envoyée avec succès"
+
+#: lib/Pi/Application/Service/Notification.php:233
+msgid "Error to send notification"
+msgstr "Erreur dans l'envoi de la notification"
+
+#: lib/Pi/Application/Service/Theme.php:143
+msgid "Full layout (header/footer and blocks)"
+msgstr "Canevas Complet (header/footer et blocks)"
+
+#: lib/Pi/Application/Service/Theme.php:144
+msgid "Simple layout (header/footer)"
+msgstr "Canevas Simple (header/footer)"
+
+#: lib/Pi/Application/Service/Theme.php:145
+msgid "Content only (with style)"
+msgstr "Contenu seulement (avec style)"
+
+#: lib/Pi/Application/Service/Theme.php:146
+msgid "Raw content (no style)"
+msgstr "Brouillon (pas de style)"
+
+#: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
+#: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:363
+msgid "A table must be supplied for the DbTable authentication adapter."
+msgstr "Une table doit être fournie pour l'adapter d'authentification DbTable."
+
+#: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:162
+#: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:365
+msgid ""
+"An identity column must be supplied for the DbTable authentication adapter."
+msgstr ""
+"Une colonne Identité doit être fournie pour l'adapter d'authentification "
+"DbTable."
+
+#: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:164
+msgid ""
+"A credential column must be supplied for the DbTable authentication adapter."
+msgstr ""
+"Une colonne credential doit être fournie pour l'adapter d'authentification "
+"DbTable."
+
+#: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:166
+#: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:367
+msgid ""
+"A value for the identity was not provided prior to authentication with "
+"DbTable."
+msgstr ""
+"La valeur d'identité n'a pas été fournie avant l'authentification avec "
+"DbTable."
+
+#: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
+msgid ""
+"A credential value was not provided prior to authentication with DbTable."
+msgstr ""
+"La valeur d'identité n'a pas été fournie avant l'authentification avec "
+"DbTable."
+
+#: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
+msgid "A record with the supplied identity could not be found."
+msgstr "Aucun enregistrement n'a pu être trouvé avec l'identité fournie."
+
+#: lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
+msgid "More than one record matches the supplied identity."
+msgstr "Plus d'un enregistrement correspond à l'identité fournie."
+
+#: lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
+#: lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:113
+msgid "Supplied credential is invalid."
+msgstr "Les identifiants founis sont non valides."
+
+#: lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
+#: lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:108
+msgid "Authentication successful."
+msgstr "Authentication réussie."
+
+#: lib/Pi/Feed/Model.php:200
+#, php-format
+msgid "Feed of %s"
+msgstr "Flux de %s"
+
+#: lib/Pi/Filter/Gender.php:38
+msgid "Male"
+msgstr "Homme"
+
+#: lib/Pi/Filter/Gender.php:42
+msgid "Female"
+msgstr "Femme"
+
+#: lib/Pi/Filter/Gender.php:47
+msgid "Unknown gender"
+msgstr "Genre inconnu"
+
+#: lib/Pi/Filter/Linkify.php:60
+msgid "Click to open"
+msgstr "Cliquer pour ouvrir"
+
+#: lib/Pi/Filter/YesNo.php:39
+msgid "No"
+msgstr "Non"
+
+#: lib/Pi/Filter/YesNo.php:42
+msgid "Yes"
+msgstr "Oui"
+
+#: lib/Pi/Form/Element/CacheLevel.php:31
+msgid "As a whole"
+msgstr "En entier"
+
+#: lib/Pi/Form/Element/CacheLevel.php:32
+msgid "Per language"
+msgstr "Par langue"
+
+#: lib/Pi/Form/Element/CacheLevel.php:33
+msgid "Per role"
+msgstr "Par rôle"
+
+#: lib/Pi/Form/Element/CacheLevel.php:34
+msgid "Guest only"
+msgstr "Invité seulement"
+
+#: lib/Pi/Form/Element/CacheLevel.php:49
+msgid "Cache granularity"
+msgstr "Granularité du cache"
+
+#: lib/Pi/Form/Element/CacheTtl.php:31
+msgid "No cache"
+msgstr "Pas de cache"
+
+#: lib/Pi/Form/Element/CacheTtl.php:32
+#, php-format
+msgid "%d seconds"
+msgstr "%d secondes"
+
+#: lib/Pi/Form/Element/CacheTtl.php:33
+msgid "1 minute"
+msgstr "1 minute"
+
+#: lib/Pi/Form/Element/CacheTtl.php:34 lib/Pi/Form/Element/CacheTtl.php:35
+#, php-format
+msgid "%d minutes"
+msgstr "%d minutes"
+
+#: lib/Pi/Form/Element/CacheTtl.php:36
+msgid "1 hour"
+msgstr "1 heure"
+
+#: lib/Pi/Form/Element/CacheTtl.php:37
+#, php-format
+msgid "%d hours"
+msgstr "%d heures"
+
+#: lib/Pi/Form/Element/CacheTtl.php:38
+msgid "1 day"
+msgstr "1 jour"
+
+#: lib/Pi/Form/Element/CacheTtl.php:39
+msgid "1 week"
+msgstr "1 semaine"
+
+#: lib/Pi/Form/Element/CacheTtl.php:40
+msgid "1 month"
+msgstr "1 mois"
+
+#: lib/Pi/Form/Element/CacheTtl.php:53
+msgid "Cache expiration"
+msgstr "Expiration du cache"
+
+#: lib/Pi/Form/Element/Editor.php:36
+msgid "Text editor"
+msgstr "Editeur de Texte"
+
+#: lib/Pi/Form/Element/EditorSelect.php:43
+msgid "Editor select"
+msgstr "Selectionner l'Editeur"
+
+#: lib/Pi/Form/Element/Layout.php:43
+msgid "Layout"
+msgstr "Canevas"
+
+#: lib/Pi/Form/Element/Locale.php:34
+msgid "Auto-detection"
+msgstr "Auto-détection"
+
+#: lib/Pi/Form/Element/Locale.php:69
+msgid "Language"
+msgstr "Langage"
+
+#: lib/Pi/Form/Element/LoginField.php:37 lib/Pi/Form/Element/LoginField.php:79
+msgid "Username"
+msgstr "Nom Compte"
+
+#: lib/Pi/Form/Element/LoginField.php:38 lib/Pi/Form/Element/LoginField.php:82
+msgid "Email"
+msgstr "Email"
+
+#: lib/Pi/Form/Element/LoginField.php:85 lib/Pi/Form/Element/LoginField.php:89
+msgid "Identity"
+msgstr "Identité"
+
+#: lib/Pi/Form/Element/Navigation.php:50
+msgid "Navigation"
+msgstr "Navigation"
+
+#: lib/Pi/Form/Element/Role.php:37 lib/Pi/Form/Element/RoleAdmin.php:35
+#: lib/Pi/Form/Element/RoleUser.php:35
+msgid "None"
+msgstr "Aucun"
+
+#: lib/Pi/Form/Element/Role.php:55
+msgid "Role"
+msgstr "Rôle"
+
+#: lib/Pi/Form/Element/RoleAdmin.php:52
+msgid "Admin role"
+msgstr "Rôle Admin"
+
+#: lib/Pi/Form/Element/RoleCheckbox.php:52
+msgid "Roles"
+msgstr "Rôles"
+
+#: lib/Pi/Form/Element/Submit.php:38
+#: usr/module/user/src/Form/RegisterForm.php:165
+msgid "Submit"
+msgstr "Soumettre"
+
+#: lib/Pi/Form/Element/Tag.php:116
+msgid "Tags"
+msgstr "Tags"
+
+#: lib/Pi/Form/Element/Theme.php:35
+msgid "Use system theme"
+msgstr "Utiliser le thème Système"
+
+#: lib/Pi/Form/Element/Theme.php:47
+msgid "Theme"
+msgstr "Thème"
+
+#: lib/Pi/Form/Element/Timezone.php:78
+msgid "Timezone"
+msgstr "Fuseau Horaire"
+
+#: lib/Pi/Form/View/Helper/Captcha/Image.php:59
+msgid "CAPTCHA image"
+msgstr "Image CAPTCHA"
+
+#: lib/Pi/Form/View/Helper/Captcha/Image.php:60
+msgid "Click to refresh CAPTCHA"
+msgstr "Cliquez pour rafraîchir le CAPTCHA"
+
+#: lib/Pi/Form/View/Helper/Form.php:185
+msgid "Required"
+msgstr "Requis"
+
+#: lib/Pi/Form/View/Helper/Form.php:545
+msgid "Close"
+msgstr "Fermer"
+
+#: lib/Pi/Form/View/Helper/Form.php:546
+msgid "Form"
+msgstr "Formulaire"
+
+#: lib/Pi/Form/View/Helper/FormDateSelect.php:94
+msgid "Day"
+msgstr "Jour"
+
+#: lib/Pi/Form/View/Helper/FormDateSelect.php:95
+msgid "Year"
+msgstr "Année"
+
+#: lib/Pi/Form/View/Helper/FormDateSelect.php:96
+msgid "Month"
+msgstr "Mois"
+
+#: lib/Pi/Mvc/Controller/ActionController.php:98
+msgid "The requested action was not found."
+msgstr "L'action demandée n'a pas été trouvée."
+
+#: lib/Pi/Mvc/Controller/Plugin/Terminate.php:40
+#: usr/module/system/src/Form/LoginForm.php:119
+#: usr/module/system/template/block/partial/login-register-modal.phtml:55
+#: usr/module/system/template/block/partial/login-register-modal.phtml:68
+#: usr/module/system/template/block/partial/login-register-modal.phtml:99
+#: usr/module/system/template/block/partial/login-register-modal.phtml:100
+msgid "Login"
+msgstr "Connexion"
+
+#: lib/Pi/Mvc/Controller/Plugin/Terminate.php:43
+#, php-format
+msgid "Please <a href=\"%s\" title=\"\">login</a> and come again."
+msgstr ""
+"Merci de vous <a href=\"%s\" title=\"\">connecter</a> et de revenir ensuite."
+
+#: lib/Pi/User/Model/AbstractModel.php:239
+msgid "Guest"
+msgstr "Invité"
+
+#: lib/Pi/View/Helper/Conditions.php:39
+msgid "New terms and conditions are available. Please accept them."
+msgstr ""
+"De nouvelles conditions d'utilisation et de vente sont disponibles. Merci de "
+"les accepter avant de continuer."
+
+#: lib/Pi/View/Helper/Conditions.php:40
+msgid "I agree"
+msgstr "J'accepte"
+
+#: lib/Pi/View/Helper/Conditions.php:41
+msgid "Read Term and conditions"
+msgstr "Liste des CGU/CGV"
+
+#: lib/Pi/View/Helper/GoogleMap.php:342
+msgid "Choose a location"
+msgstr "Choisir un lieu"
+
+#: lib/Pi/View/Helper/GoogleMap.php:343
+msgid "View all"
+msgstr "Voir tout"
+
+#: lib/Pi/View/Helper/PaginationControl.php:119
+#: lib/Pi/View/Helper/PaginationControl.php:125
+msgid "Page"
+msgstr "Page"
+
+#: lib/Pi/View/Helper/Tag.php:93
+msgid "Tags: "
+msgstr "Tags :"
+
+#: usr/module/system/src/Form/LoginForm.php:61
+msgid "Password"
+msgstr "Mot de passe"
+
+#: usr/module/system/src/Form/LoginForm.php:82
+msgid "Remember login status"
+msgstr "Se souvenir de moi"
+
+#: usr/module/user/config/form.register.php:19
+msgid "Terms & Conditions"
+msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
+
+#: usr/module/user/config/form.register.php:20
+#, php-format
+msgid "Accept the %s"
+msgstr "Accepter les %s"
+
+#: usr/module/user/config/form.register.php:43
+msgid "Confirm credential"
+msgstr "Confirmer le mot de passe"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:43
+msgid "Reset password failed."
+msgstr "La remise à zéro de votre mot de passe a échoué."
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:59
+#: usr/module/user/src/Controller/Front/PasswordController.php:434
+#: usr/module/user/src/Form/RegisterForm.php:137
+msgid "Whoops, these don't match"
+msgstr "Oups, ils ne correspondent pas"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:100
+msgid "Reset password successfully."
+msgstr "Le mot de passe a été modifié avec succès."
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:115
+#: usr/module/user/src/Controller/Front/PasswordController.php:362
+#: usr/module/user/src/Form/RegisterForm.php:71
+msgid "Show my password"
+msgstr "Afficher le mot de passe"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:117
+#: usr/module/user/src/Controller/Front/PasswordController.php:364
+#: usr/module/user/src/Form/RegisterForm.php:73
+msgid "Your password is too short"
+msgstr "Votre mot de passe est trop court."
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:118
+#: usr/module/user/src/Controller/Front/PasswordController.php:365
+#: usr/module/user/src/Form/RegisterForm.php:74
+msgid "Do not use your email as your password"
+msgstr "Ne pas utiliser votre email comme mot de passe"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:119
+#: usr/module/user/src/Controller/Front/PasswordController.php:366
+#: usr/module/user/src/Form/RegisterForm.php:75
+msgid "Your password cannot contain your username"
+msgstr "Votre mot de passe ne doit pas contenir votre nom de compte"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:120
+#: usr/module/user/src/Controller/Front/PasswordController.php:367
+#: usr/module/user/src/Form/RegisterForm.php:76
+msgid "Use different character classes"
+msgstr "Utilisez différentes chaînes de caractères & caractères spéciaux"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:121
+#: usr/module/user/src/Controller/Front/PasswordController.php:368
+#: usr/module/user/src/Form/RegisterForm.php:77
+msgid "Too many repetitions"
+msgstr "Trop de répétitions"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:122
+#: usr/module/user/src/Controller/Front/PasswordController.php:369
+#: usr/module/user/src/Form/RegisterForm.php:78
+msgid "Your password contains sequences"
+msgstr "Votre mot de passe contient des répétitions/séquences devinables"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:123
+#: usr/module/user/src/Controller/Front/PasswordController.php:370
+#: usr/module/user/src/Form/RegisterForm.php:79
+msgid "Errors:"
+msgstr "Erreurs : "
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:124
+#: usr/module/user/src/Controller/Front/PasswordController.php:371
+#: usr/module/user/src/Form/RegisterForm.php:80
+msgid "Very week"
+msgstr "Trop faible"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:125
+#: usr/module/user/src/Controller/Front/PasswordController.php:372
+#: usr/module/user/src/Form/RegisterForm.php:81
+msgid "Week"
+msgstr "Faible"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:126
+#: usr/module/user/src/Controller/Front/PasswordController.php:373
+#: usr/module/user/src/Form/RegisterForm.php:82
+msgid "Normal"
+msgstr "Normal"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:127
+#: usr/module/user/src/Controller/Front/PasswordController.php:374
+#: usr/module/user/src/Form/RegisterForm.php:83
+msgid "Medium"
+msgstr "Moyen"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:128
+#: usr/module/user/src/Controller/Front/PasswordController.php:375
+#: usr/module/user/src/Form/RegisterForm.php:84
+msgid "Strong"
+msgstr "Fort"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:129
+#: usr/module/user/src/Controller/Front/PasswordController.php:376
+#: usr/module/user/src/Form/RegisterForm.php:85
+msgid "Very Strong"
+msgstr "Robuste"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:131
+#: usr/module/user/src/Controller/Front/PasswordController.php:182
+#: usr/module/user/src/Controller/Front/PasswordController.php:378
+#: usr/module/user/src/Controller/Front/PasswordController.php:431
+#: usr/module/user/src/Form/RegisterForm.php:86
+#: usr/module/user/src/Form/RegisterForm.php:133
+msgid ""
+"Password must contain at least one uppercase letter, one lowercase letter "
+"and one digit character"
+msgstr ""
+"Le mot de passe doit contenir au moins 1 lettre majuscule, 1 lettre "
+"minuscule, et 1 chiffre"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:179
+#: usr/module/user/src/Controller/Front/PasswordController.php:428
+#: usr/module/user/src/Form/RegisterForm.php:130
+#, php-format
+msgid "Must be more than %s characters"
+msgstr "Doit compter plus de %s caractères"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:180
+#: usr/module/user/src/Controller/Front/PasswordController.php:429
+#: usr/module/user/src/Form/RegisterForm.php:131
+msgid "Invalid password"
+msgstr "Mot de passe non valide"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:192
+msgid "Change password"
+msgstr "Modifier le mot de passe"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:193
+msgid "To ensure your account security, complex password is required."
+msgstr ""
+"Pour assurer un bon niveau de sécurité, un mot de passe complexe est requis"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:213
+msgid "Find password failed."
+msgstr "Le rappel mot de passe a échoué."
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:285
+msgid ""
+"Confirmation email sent successfully. Please check email and reset password."
+msgstr ""
+"Le mail de confirmation a été envoyé avec succès. Merci de lire le mail reçu "
+"pour redéfinir votre mot de passe."
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:294
+#: usr/module/user/src/Controller/Front/PasswordController.php:295
+#: usr/module/system/template/block/partial/login-register-modal.phtml:71
+#: usr/module/system/template/block/partial/login-register-modal.phtml:72
+msgid "Find password"
+msgstr "Trouver le mot de passe"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:307
+msgid "Invalid token for password reset."
+msgstr "Token non valide pour la modification mot de passe"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:418
+#: usr/module/user/src/Form/RegisterForm.php:126
+#, php-format
+msgid "Must be less than %s characters"
+msgstr "Doit compter moins de %s caractères"
+
+#: usr/module/user/src/Controller/Front/PasswordController.php:456
+msgid "Password reset successfully."
+msgstr "Le mot de passe a été modifié avec succès."
+
+#: usr/module/user/src/Form/RegisterForm.php:53
+msgid "Invalid email"
+msgstr "L'adresse Email doit avoir une forme valide (ex: xxxx@yyy.com)"
+
+#: usr/module/user/src/Form/RegisterForm.php:55
+#, php-format
+msgid ""
+"Oops. This email address is already taken. Do you want to <a href=\"#\" "
+"onclick=\"%s\">login</a> or <a href=\"%s\">recover your password</a> ?"
+msgstr ""
+"Oups ! Cette adresse email est déjà prise. Voulez-vous vous <a href=\"#\" "
+"\"\"onclick=\"%s\">connecter</a> ou <a href=\"%s\">retrouver votre mot de "
+"passe</\"\"a> ?"
+
+#: usr/module/user/src/Form/RegisterForm.php:60
+msgid "Invalid username"
+msgstr "Nom compte non valide"
+
+#: usr/module/user/src/Form/RegisterForm.php:62
+msgid "Oops. This username is already taken, malformed or forbidden"
+msgstr "Oups. Ce nom de compte est déjà pris, malformé ou interdit"
+
+#: usr/module/user/src/Form/RegisterForm.php:148
+msgid "Newsletter subscription"
+msgstr "Inscription newslettre"
+
+#: usr/module/system/template/block/partial/login-register-modal.phtml:57
+#: usr/module/system/template/block/partial/login-register-modal.phtml:78
+#: usr/module/system/template/block/partial/login-register-modal.phtml:79
+#: usr/module/system/template/block/partial/login-register-modal.phtml:92
+msgid "Register"
+msgstr "S'enregistrer"
+
+#: usr/module/system/template/block/partial/login-register-modal.phtml:75
+msgid "Not already registered ?"
+msgstr "Pas encore inscrit ?"
+
+#: usr/module/system/template/block/partial/login-register-modal.phtml:96
+msgid "Already registered ?"
+msgstr "Déjà inscrit ?"
+
+#: usr/module/system/template/block/user-bar.phtml:19
+msgid "Propose my activity"
+msgstr "Proposer mon activité"
+
+#: usr/module/system/template/block/user-bar.phtml:25
+#: usr/module/system/template/block/user-bar.phtml:27
+#: usr/module/system/template/block/user-bar.phtml:29
+msgid "Publish an event"
+msgstr "Publier un évènement"
+
+#: usr/module/system/template/block/user-bar.phtml:34
+msgid "Promote my activity"
+msgstr "Promouvoir mon activité"
+
+#: usr/module/system/template/block/user-bar.phtml:65
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: usr/module/system/template/block/user-bar.phtml:139
+#: usr/module/system/template/block/user-bar.phtml:142
+msgid "My offer"
+msgstr "Mon offre"
+
+#~ msgid "Token not set"
+#~ msgstr "Token non défini"
+
+#~ msgid "Accept %s"
+#~ msgstr "Accepter les %s"
+
+#~ msgid "Manager"
+#~ msgstr "Manager"
+
+#~ msgid "Moderator"
+#~ msgstr "Modérateur"
+
+#~ msgid "Editor"
+#~ msgstr "Editeur"
+
+#~ msgid "Staff"
+#~ msgstr "Equipe"
+
+#~ msgid "Member"
+#~ msgstr "Membre"
+
+#~ msgid "Oops. This email address is already taken or is forbidden"
+#~ msgstr "Oups. Cette adresse email est déjà prise ou est interdite"
+
+#~ msgid "Must be less than "
+#~ msgstr "Doit contenir moins de "
+
+#~ msgid "Must be more than "
+#~ msgstr "Doit contenir plus de "
+
+#~ msgid "No level"
+#~ msgstr "Aucun niveau"
+
+#~ msgid "Authenticated or not"
+#~ msgstr "Authentifié ou pas"
+
+#~ msgid "Cache level"
+#~ msgstr "Niveau de cache"

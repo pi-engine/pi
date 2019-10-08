@@ -1,0 +1,2104 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>ArangoDB PHP client API » \ArangoDBClient\CollectionHandler</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">ArangoDB PHP client API</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/ArangoDBClient.html"><i class="icon-folder-open"></i> ArangoDBClient</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">19</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">2</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div xmlns:php="http://php.net/xsl" class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list">
+<li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public inherited"><a href="#method___construct" title="__construct() :: Construct a new handler"><span class="description">Construct a new handler</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_all" title="all() :: Returns all documents of a collection"><span class="description">Returns all documents of a collection</span><pre>all()</pre></a></li>
+<li class="method public "><a href="#method_any" title="any() :: Get a random document from the collection."><span class="description">Get a random document from the collection.</span><pre>any()</pre></a></li>
+<li class="method public "><a href="#method_byExample" title="byExample() :: Get document(s) by specifying an example"><span class="description">Get document(s) by specifying an example</span><pre>byExample()</pre></a></li>
+<li class="method public "><a href="#method_count" title="count() :: Get the number of documents in a collection"><span class="description">Get the number of documents in a collection</span><pre>count()</pre></a></li>
+<li class="method public "><a href="#method_create" title="create() :: Creates a new collection on the server"><span class="description">Creates a new collection on the server</span><pre>create()</pre></a></li>
+<li class="method public "><a href="#method_createFulltextIndex" title="createFulltextIndex() :: Create a fulltext index"><span class="description">Create a fulltext index</span><pre>createFulltextIndex()</pre></a></li>
+<li class="method public "><a href="#method_createGeoIndex" title="createGeoIndex() :: Create a geo index"><span class="description">Create a geo index</span><pre>createGeoIndex()</pre></a></li>
+<li class="method public "><a href="#method_createHashIndex" title="createHashIndex() :: Create a hash index"><span class="description">Create a hash index</span><pre>createHashIndex()</pre></a></li>
+<li class="method public "><a href="#method_createPersistentIndex" title="createPersistentIndex() :: Create a persistent index"><span class="description">Create a persistent index</span><pre>createPersistentIndex()</pre></a></li>
+<li class="method public "><a href="#method_createSkipListIndex" title="createSkipListIndex() :: Create a skip-list index"><span class="description">Create a skip-list index</span><pre>createSkipListIndex()</pre></a></li>
+<li class="method public "><a href="#method_drop" title="drop() :: Drop a collection"><span class="description">Drop a collection</span><pre>drop()</pre></a></li>
+<li class="method public "><a href="#method_dropIndex" title="dropIndex() :: Drop an index"><span class="description">Drop an index</span><pre>dropIndex()</pre></a></li>
+<li class="method public "><a href="#method_figures" title="figures() :: Get figures for a collection"><span class="description">Get figures for a collection</span><pre>figures()</pre></a></li>
+<li class="method public "><a href="#method_firstExample" title="firstExample() :: Get the first document matching a given example."><span class="description">Get the first document matching a given example.</span><pre>firstExample()</pre></a></li>
+<li class="method public "><a href="#method_fulltext" title="fulltext() :: Get document(s) by a fulltext query"><span class="description">Get document(s) by a fulltext query</span><pre>fulltext()</pre></a></li>
+<li class="method public "><a href="#method_get" title="get() :: Get information about a collection"><span class="description">Get information about a collection</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#method_getAllCollections" title="getAllCollections() :: Get list of all available collections per default with the collection names as index."><span class="description">Get list of all available collections per default with the collection names as index.</span><pre>getAllCollections()</pre></a></li>
+<li class="method public "><a href="#method_getAllIds" title="getAllIds() :: Get the list of all documents' ids from a collection"><span class="description">Get the list of all documents' ids from a collection</span><pre>getAllIds()</pre></a></li>
+<li class="method public "><a href="#method_getChecksum" title="getChecksum() :: Calculate a checksum of the collection."><span class="description">Calculate a checksum of the collection.</span><pre>getChecksum()</pre></a></li>
+<li class="method public "><a href="#method_getCollectionId" title="getCollectionId() :: Gets the collectionId from the given collectionObject or string/integer"><span class="description">Gets the collectionId from the given collectionObject or string/integer</span><pre>getCollectionId()</pre></a></li>
+<li class="method public "><a href="#method_getCollectionName" title="getCollectionName() :: Gets the collectionId from the given collectionObject or string/integer"><span class="description">Gets the collectionId from the given collectionObject or string/integer</span><pre>getCollectionName()</pre></a></li>
+<li class="method public "><a href="#method_getIndex" title="getIndex() :: Get the information about an index in a collection"><span class="description">Get the information about an index in a collection</span><pre>getIndex()</pre></a></li>
+<li class="method public "><a href="#method_getIndexes" title="getIndexes() :: Get indexes of a collection"><span class="description">Get indexes of a collection</span><pre>getIndexes()</pre></a></li>
+<li class="method public "><a href="#method_getProperties" title="getProperties() :: Get properties of a collection"><span class="description">Get properties of a collection</span><pre>getProperties()</pre></a></li>
+<li class="method public "><a href="#method_getRevision" title="getRevision() :: Returns the Collections revision ID"><span class="description">Returns the Collections revision ID</span><pre>getRevision()</pre></a></li>
+<li class="method public "><a href="#method_has" title="has() :: Check if a collection exists"><span class="description">Check if a collection exists</span><pre>has()</pre></a></li>
+<li class="method public "><a href="#method_import" title="import() :: Import documents into a collection"><span class="description">Import documents into a collection</span><pre>import()</pre></a></li>
+<li class="method public "><a href="#method_importFromFile" title="importFromFile() :: Import documents from a file"><span class="description">Import documents from a file</span><pre>importFromFile()</pre></a></li>
+<li class="method public "><a href="#method_index" title="index() :: Creates an index on a collection on the server"><span class="description">Creates an index on a collection on the server</span><pre>index()</pre></a></li>
+<li class="method public "><a href="#method_isValidCollectionId" title="isValidCollectionId() :: Checks if the collectionId given, is valid. Returns true if it is, or false if it is not."><span class="description">Checks if the collectionId given, is valid. Returns true if it is, or false if it is not.</span><pre>isValidCollectionId()</pre></a></li>
+<li class="method public "><a href="#method_load" title="load() :: Load a collection into the server's memory"><span class="description">Load a collection into the server's memory</span><pre>load()</pre></a></li>
+<li class="method public "><a href="#method_lookupByKeys" title="lookupByKeys() :: Bulk lookup documents by specifying an array of keys"><span class="description">Bulk lookup documents by specifying an array of keys</span><pre>lookupByKeys()</pre></a></li>
+<li class="method public "><a href="#method_near" title="near() :: Get document(s) by specifying near"><span class="description">Get document(s) by specifying near</span><pre>near()</pre></a></li>
+<li class="method public "><a href="#method_range" title="range() :: Get document(s) by specifying range"><span class="description">Get document(s) by specifying range</span><pre>range()</pre></a></li>
+<li class="method public "><a href="#method_removeByExample" title="removeByExample() :: Remove document(s) by specifying an example"><span class="description">Remove document(s) by specifying an example</span><pre>removeByExample()</pre></a></li>
+<li class="method public "><a href="#method_removeByKeys" title="removeByKeys() :: Remove document(s) by specifying an array of keys"><span class="description">Remove document(s) by specifying an array of keys</span><pre>removeByKeys()</pre></a></li>
+<li class="method public "><a href="#method_rename" title="rename() :: Rename a collection"><span class="description">Rename a collection</span><pre>rename()</pre></a></li>
+<li class="method public "><a href="#method_replaceByExample" title="replaceByExample() :: Replace document(s) matching a given example"><span class="description">Replace document(s) matching a given example</span><pre>replaceByExample()</pre></a></li>
+<li class="method public inherited"><a href="#method_setDocumentClass" title="setDocumentClass() :: Sets the document class to use"><span class="description">Sets the document class to use</span><pre>setDocumentClass()</pre></a></li>
+<li class="method public "><a href="#method_truncate" title="truncate() :: Truncate a collection"><span class="description">Truncate a collection</span><pre>truncate()</pre></a></li>
+<li class="method public "><a href="#method_unload" title="unload() :: Unload a collection from the server's memory"><span class="description">Unload a collection from the server's memory</span><pre>unload()</pre></a></li>
+<li class="method public "><a href="#method_updateByExample" title="updateByExample() :: Update document(s) matching a given example"><span class="description">Update document(s) matching a given example</span><pre>updateByExample()</pre></a></li>
+<li class="method public "><a href="#method_within" title="within() :: Get document(s) by specifying within"><span class="description">Get document(s) by specifying within</span><pre>within()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="method protected inherited"><a href="#method_getConnection" title="getConnection() :: Return the connection object"><span class="description">Return the connection object</span><pre>getConnection()</pre></a></li>
+<li class="method protected inherited"><a href="#method_getConnectionOption" title="getConnectionOption() :: Return a connection option
+This is a convenience function that calls json_encode_wrapper on the connection"><span class="description">Return a connection option
+This is a convenience function that calls json_encode_wrapper on the connection</span><pre>getConnectionOption()</pre></a></li>
+<li class="method protected inherited"><a href="#method_includeOptionsInBody" title="includeOptionsInBody() :: Helper function that runs through the options given and includes them into the parameters array given."><span class="description">Helper function that runs through the options given and includes them into the parameters array given.</span><pre>includeOptionsInBody()</pre></a></li>
+<li class="method protected inherited"><a href="#method_json_encode_wrapper" title="json_encode_wrapper() :: Return a json encoded string for the array passed."><span class="description">Return a json encoded string for the array passed.</span><pre>json_encode_wrapper()</pre></a></li>
+<li class="method protected inherited"><a href="#method_makeCollection" title="makeCollection() :: Turn a value into a collection name"><span class="description">Turn a value into a collection name</span><pre>makeCollection()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="method private "><a href="#method_createCollectionIfOptions" title="createCollectionIfOptions() :: "><span class="description">createCollectionIfOptions()
+        </span><pre>createCollectionIfOptions()</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="property protected "><a href="#property__documentClass" title="$_documentClass() :: "><span class="description">Document class to use</span><pre>$_documentClass</pre></a></li></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="property private "><a href="#property__connection" title="$_connection() :: Connection object"><span class="description"></span><pre>$_connection</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i title="Constants" class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_ENTRY_DOCUMENTS" title="ENTRY_DOCUMENTS() :: documents array index"><span class="description">documents array index</span><pre>ENTRY_DOCUMENTS</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_ATTRIBUTE" title="OPTION_ATTRIBUTE() :: attribute parameter"><span class="description">attribute parameter</span><pre>OPTION_ATTRIBUTE</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_CHECKSUM" title="OPTION_CHECKSUM() :: checksum option"><span class="description">checksum option</span><pre>OPTION_CHECKSUM</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_CLOSED" title="OPTION_CLOSED() :: closed parameter"><span class="description">closed parameter</span><pre>OPTION_CLOSED</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_COLLECTION" title="OPTION_COLLECTION() :: collection parameter"><span class="description">collection parameter</span><pre>OPTION_COLLECTION</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_CONSTRAINT" title="OPTION_CONSTRAINT() :: constraint option"><span class="description">constraint option</span><pre>OPTION_CONSTRAINT</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_COUNT" title="OPTION_COUNT() :: count option"><span class="description">count option</span><pre>OPTION_COUNT</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_CREATE_COLLECTION" title="OPTION_CREATE_COLLECTION() :: example parameter"><span class="description">example parameter</span><pre>OPTION_CREATE_COLLECTION</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_DISTANCE" title="OPTION_DISTANCE() :: distance parameter"><span class="description">distance parameter</span><pre>OPTION_DISTANCE</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_EXAMPLE" title="OPTION_EXAMPLE() :: example parameter"><span class="description">example parameter</span><pre>OPTION_EXAMPLE</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_EXCLUDE_SYSTEM" title="OPTION_EXCLUDE_SYSTEM() :: exclude system collections"><span class="description">exclude system collections</span><pre>OPTION_EXCLUDE_SYSTEM</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_FIELDS" title="OPTION_FIELDS() :: fields"><span class="description">fields</span><pre>OPTION_FIELDS</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_FIGURES" title="OPTION_FIGURES() :: figures option"><span class="description">figures option</span><pre>OPTION_FIGURES</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_FULLTEXT_INDEX" title="OPTION_FULLTEXT_INDEX() :: fulltext index option"><span class="description">fulltext index option</span><pre>OPTION_FULLTEXT_INDEX</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_GEOJSON" title="OPTION_GEOJSON() :: geoJson option"><span class="description">geoJson option</span><pre>OPTION_GEOJSON</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_GEO_INDEX" title="OPTION_GEO_INDEX() :: geo index option"><span class="description">geo index option</span><pre>OPTION_GEO_INDEX</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_HASH_INDEX" title="OPTION_HASH_INDEX() :: hash index option"><span class="description">hash index option</span><pre>OPTION_HASH_INDEX</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_IGNORE_NULL" title="OPTION_IGNORE_NULL() :: ignoreNull option"><span class="description">ignoreNull option</span><pre>OPTION_IGNORE_NULL</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_INDEX" title="OPTION_INDEX() :: index parameter"><span class="description">index parameter</span><pre>OPTION_INDEX</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_KEYS" title="OPTION_KEYS() :: keys parameter"><span class="description">keys parameter</span><pre>OPTION_KEYS</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_LATITUDE" title="OPTION_LATITUDE() :: latitude parameter"><span class="description">latitude parameter</span><pre>OPTION_LATITUDE</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_LEFT" title="OPTION_LEFT() :: left parameter"><span class="description">left parameter</span><pre>OPTION_LEFT</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_LIMIT" title="OPTION_LIMIT() :: limit parameter"><span class="description">limit parameter</span><pre>OPTION_LIMIT</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_LOAD" title="OPTION_LOAD() :: load option"><span class="description">load option</span><pre>OPTION_LOAD</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_LONGITUDE" title="OPTION_LONGITUDE() :: longitude parameter"><span class="description">longitude parameter</span><pre>OPTION_LONGITUDE</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_MIN_LENGTH" title="OPTION_MIN_LENGTH() :: minLength option"><span class="description">minLength option</span><pre>OPTION_MIN_LENGTH</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_NEW_VALUE" title="OPTION_NEW_VALUE() :: example parameter"><span class="description">example parameter</span><pre>OPTION_NEW_VALUE</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_PERSISTENT_INDEX" title="OPTION_PERSISTENT_INDEX() :: persistent index option"><span class="description">persistent index option</span><pre>OPTION_PERSISTENT_INDEX</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_PROPERTIES" title="OPTION_PROPERTIES() :: properties option"><span class="description">properties option</span><pre>OPTION_PROPERTIES</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_QUERY" title="OPTION_QUERY() :: query option"><span class="description">query option</span><pre>OPTION_QUERY</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_RADIUS" title="OPTION_RADIUS() :: radius parameter"><span class="description">radius parameter</span><pre>OPTION_RADIUS</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_RENAME" title="OPTION_RENAME() :: rename option"><span class="description">rename option</span><pre>OPTION_RENAME</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_REVISION" title="OPTION_REVISION() :: revision option"><span class="description">revision option</span><pre>OPTION_REVISION</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_RIGHT" title="OPTION_RIGHT() :: right parameter"><span class="description">right parameter</span><pre>OPTION_RIGHT</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_SIZE" title="OPTION_SIZE() :: size option"><span class="description">size option</span><pre>OPTION_SIZE</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_SKIP" title="OPTION_SKIP() :: skip parameter"><span class="description">skip parameter</span><pre>OPTION_SKIP</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_SKIPLIST_INDEX" title="OPTION_SKIPLIST_INDEX() :: skiplist index option"><span class="description">skiplist index option</span><pre>OPTION_SKIPLIST_INDEX</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_SPARSE" title="OPTION_SPARSE() :: sparse index option"><span class="description">sparse index option</span><pre>OPTION_SPARSE</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_TRUNCATE" title="OPTION_TRUNCATE() :: truncate option"><span class="description">truncate option</span><pre>OPTION_TRUNCATE</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_TYPE" title="OPTION_TYPE() :: type"><span class="description">type</span><pre>OPTION_TYPE</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_UNIQUE" title="OPTION_UNIQUE() :: unique"><span class="description">unique</span><pre>OPTION_UNIQUE</pre></a></li>
+<li class="constant  "><a href="#constant_OPTION_UNLOAD" title="OPTION_UNLOAD() :: unload option"><span class="description">unload option</span><pre>OPTION_UNLOAD</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a xmlns:php="http://php.net/xsl" id="\ArangoDBClient\CollectionHandler"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/ArangoDBClient.html">ArangoDBClient</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/ArangoDBClient.CollectionHandler.html">CollectionHandler</a>
+</li>
+</ul>
+<div xmlns:php="http://php.net/xsl" class="element class">
+<p class="short_description">Provides management of collections</p>
+<div class="details">
+<div class="long_description"><p>The collection handler fetches collection data from the server and
+creates collections on the server.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/ArangoDBClient.html">ArangoDBClient</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>0.2</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ArangoDBClient\Handler</td>
+</tr>
+</table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct inherited" data-toggle="collapse" data-target=".method___construct .collapse" title="public">
+<h2>Construct a new handler</h2>
+<pre>__construct(\ArangoDBClient\Connection $connection) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$connection</h4>
+<code>\ArangoDBClient\Connection</code><ul>
+<li>connection to be used</li>
+</ul></div>
+</div></div>
+</div>
+<a id="method_all"></a><div class="element clickable method public method_all " data-toggle="collapse" data-target=".method_all .collapse" title="public">
+<h2>Returns all documents of a collection</h2>
+<pre>all(mixed $collectionId, array $options<code> = array()</code>) : \ArangoDBClient\Cursor</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional array of options.
+<p>Options are :<br>
+                           <li>'_sanitize'         - True to remove _id and _rev attributes from result documents. Defaults to false.</li>
+                           <li>'_hiddenAttributes' - Set an array of hidden attributes for created documents.
+                           <p>
+                           This is actually the same as setting hidden attributes using setHiddenAttributes() on a document.<br>
+                           The difference is, that if you're returning a result set of documents, the getAll() is already called<br>
+                           and the hidden attributes would not be applied to the attributes.<br>
+                           </p></li>
+</ul>
+<li>'batchSize' - can optionally be used to tell the server to limit the number of results to be transferred in one batch</li>
+<li>'skip'      -  Optional, The number of documents to skip in the query.</li>
+<li>'limit'     -  Optional, The maximal amount of documents to return. 'skip' is applied before the limit restriction.</li>
+<p></li>
+</p></p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr>
+<tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Cursor</code>- documents</div>
+</div></div>
+</div>
+<a id="method_any"></a><div class="element clickable method public method_any " data-toggle="collapse" data-target=".method_any .collapse" title="public">
+<h2>Get a random document from the collection.</h2>
+<pre>any(mixed $collectionId) : \ArangoDBClient\Document</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the document cannot be fetched from the server</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Document</code>- the document fetched from the server</div>
+</div></div>
+</div>
+<a id="method_byExample"></a><div class="element clickable method public method_byExample " data-toggle="collapse" data-target=".method_byExample .collapse" title="public">
+<h2>Get document(s) by specifying an example</h2>
+<pre>byExample(mixed $collectionId, mixed $document, array $options<code> = array()</code>) : \ArangoDBClient\cursor</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the list cannot be fetched from the server</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$document</h4>
+<code>mixed</code><ul>
+<li>the example document as a Document object or an array</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional, prior to v1.0.0 this was a boolean value for sanitize, since v1.0.0 it's an array of options.
+<p>Options are :<br>
+                            <li>'_sanitize'         - True to remove _id and _rev attributes from result documents. Defaults to false.</li>
+                            <li>'_hiddenAttributes' - Set an array of hidden attributes for created documents.
+                            <p>
+                            This is actually the same as setting hidden attributes using setHiddenAttributes() on a document. <br>
+                            The difference is, that if you're returning a result set of documents, the getAll() is already called <br>
+                            and the hidden attributes would not be applied to the attributes.<br>
+                            </p>
+                            </li>
+                            <li>'batchSize' - can optionally be used to tell the server to limit the number of results to be transferred in one batch</li>
+                            <li>'skip'      - Optional, The number of documents to skip in the query.</li>
+                            <li>'limit'     - Optional, The maximal amount of documents to return. 'skip' is applied before the limit restriction.</li>
+                            </p></li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\cursor</code>- Returns a cursor containing the result</div>
+</div></div>
+</div>
+<a id="method_count"></a><div class="element clickable method public method_count " data-toggle="collapse" data-target=".method_count .collapse" title="public">
+<h2>Get the number of documents in a collection</h2>
+<pre>count(mixed $collection) : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the collection cannot be fetched from the server</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as a string or number</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>- the number of documents in the collection</div>
+</div></div>
+</div>
+<a id="method_create"></a><div class="element clickable method public method_create " data-toggle="collapse" data-target=".method_create .collapse" title="public">
+<h2>Creates a new collection on the server</h2>
+<pre>create(mixed $collection, array $options<code> = array()</code>) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will add the collection on the server and return its id
+The id is mainly returned for backwards compatibility, but you should use the collection name for any reference to the collection.   *
+This will throw if the collection cannot be created</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection object to be created on the server or a string with the name</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>an array of options.
+<p>Options are :<br>
+                     <li>'type'            - 2 -> normal collection, 3 -> edge-collection</li>
+                     <li>'waitForSync'     -  if set to true, then all removal operations will instantly be synchronised to disk / If this is not specified, then the collection's default sync behavior will be applied.</li>
+                     <li>'journalSize'     -  journalSize value.</li>
+                     <li>'isSystem'        -  false->user collection(default), true->system collection .</li>
+                     <li>'isVolatile'      -  false->persistent collection(default), true->volatile (in-memory) collection .</li>
+                     <li>'numberOfShards'  -  number of shards for the collection.</li>
+                     <li>'shardKeys'       -  list of shard key attributes.</li>
+                     </p></li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- id of collection created</div>
+</div></div>
+</div>
+<a id="method_createFulltextIndex"></a><div class="element clickable method public method_createFulltextIndex " data-toggle="collapse" data-target=".method_createFulltextIndex .collapse" title="public">
+<h2>Create a fulltext index</h2>
+<pre>createFulltextIndex(string $collectionId, array $fields, integer $minLength<code> = null</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>link</th>
+<td><a href="https://docs.arangodb.com/HTTP/Indexes/Fulltext.html">https://docs.arangodb.com/HTTP/Indexes/Fulltext.html</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>string</code><ul>
+<li>the collection id</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$fields</h4>
+<code>array</code><ul>
+<li>an array of fields</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$minLength</h4>
+<code>integer</code><ul>
+<li>the minimum length of words to index</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- server response of the created index</div>
+</div></div>
+</div>
+<a id="method_createGeoIndex"></a><div class="element clickable method public method_createGeoIndex " data-toggle="collapse" data-target=".method_createGeoIndex .collapse" title="public">
+<h2>Create a geo index</h2>
+<pre>createGeoIndex(string $collectionId, array $fields, boolean $geoJson<code> = null</code>, boolean $constraint<code> = null</code>, boolean $ignoreNull<code> = null</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>link</th>
+<td><a href="https://docs.arangodb.com/HTTP/Indexes/Geo.html">https://docs.arangodb.com/HTTP/Indexes/Geo.html</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>string</code><ul>
+<li>the collection id</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$fields</h4>
+<code>array</code><ul>
+<li>an array of fields</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$geoJson</h4>
+<code>boolean</code><ul>
+<li>whether to use geoJson or not</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$constraint</h4>
+<code>boolean</code><ul>
+<li>whether this is a constraint or not</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$ignoreNull</h4>
+<code>boolean</code><ul>
+<li>whether to ignore null</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- server response of the created index</div>
+</div></div>
+</div>
+<a id="method_createHashIndex"></a><div class="element clickable method public method_createHashIndex " data-toggle="collapse" data-target=".method_createHashIndex .collapse" title="public">
+<h2>Create a hash index</h2>
+<pre>createHashIndex(string $collectionId, array $fields, boolean $unique<code> = null</code>, boolean $sparse<code> = null</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>link</th>
+<td><a href="https://docs.arangodb.com/HTTP/Indexes/Hash.html">https://docs.arangodb.com/HTTP/Indexes/Hash.html</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>string</code><ul>
+<li>the collection id</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$fields</h4>
+<code>array</code><ul>
+<li>an array of fields</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$unique</h4>
+<code>boolean</code><ul>
+<li>whether the values in the index should be unique or not</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$sparse</h4>
+<code>boolean</code><ul>
+<li>whether the index should be sparse</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- server response of the created index</div>
+</div></div>
+</div>
+<a id="method_createPersistentIndex"></a><div class="element clickable method public method_createPersistentIndex " data-toggle="collapse" data-target=".method_createPersistentIndex .collapse" title="public">
+<h2>Create a persistent index</h2>
+<pre>createPersistentIndex(string $collectionId, array $fields, boolean $unique<code> = null</code>, boolean $sparse<code> = null</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>link</th>
+<td><a href="https://docs.arangodb.com/HTTP/Indexes/Persistent.html">https://docs.arangodb.com/HTTP/Indexes/Persistent.html</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>string</code><ul>
+<li>the collection id</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$fields</h4>
+<code>array</code><ul>
+<li>an array of fields</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$unique</h4>
+<code>boolean</code><ul>
+<li>whether the index is unique or not</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$sparse</h4>
+<code>boolean</code><ul>
+<li>whether the index should be sparse</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- server response of the created index</div>
+</div></div>
+</div>
+<a id="method_createSkipListIndex"></a><div class="element clickable method public method_createSkipListIndex " data-toggle="collapse" data-target=".method_createSkipListIndex .collapse" title="public">
+<h2>Create a skip-list index</h2>
+<pre>createSkipListIndex(string $collectionId, array $fields, boolean $unique<code> = null</code>, boolean $sparse<code> = null</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>link</th>
+<td><a href="https://docs.arangodb.com/HTTP/Indexes/Skiplist.html">https://docs.arangodb.com/HTTP/Indexes/Skiplist.html</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>string</code><ul>
+<li>the collection id</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$fields</h4>
+<code>array</code><ul>
+<li>an array of fields</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$unique</h4>
+<code>boolean</code><ul>
+<li>whether the index is unique or not</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$sparse</h4>
+<code>boolean</code><ul>
+<li>whether the index should be sparse</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- server response of the created index</div>
+</div></div>
+</div>
+<a id="method_drop"></a><div class="element clickable method public method_drop " data-toggle="collapse" data-target=".method_drop .collapse" title="public">
+<h2>Drop a collection</h2>
+<pre>drop(mixed $collection, array $options<code> = array()</code>) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number or collection object</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>an array of options for the drop operation</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_dropIndex"></a><div class="element clickable method public method_dropIndex " data-toggle="collapse" data-target=".method_dropIndex .collapse" title="public">
+<h2>Drop an index</h2>
+<pre>dropIndex(mixed $indexHandle) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$indexHandle</h4>
+<code>mixed</code><ul>
+<li>index handle (collection name / index id)</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_figures"></a><div class="element clickable method public method_figures " data-toggle="collapse" data-target=".method_figures .collapse" title="public">
+<h2>Get figures for a collection</h2>
+<pre>figures(mixed $collection) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the collection cannot be fetched from the server</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as a string or number</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- the figures for the collection</div>
+</div></div>
+</div>
+<a id="method_firstExample"></a><div class="element clickable method public method_firstExample " data-toggle="collapse" data-target=".method_firstExample .collapse" title="public">
+<h2>Get the first document matching a given example.</h2>
+<pre>firstExample(mixed $collectionId, mixed $document, array $options<code> = array()</code>) : \ArangoDBClient\Document</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the document cannot be fetched from the server</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$document</h4>
+<code>mixed</code><ul>
+<li>the example document as a Document object or an array</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional, an array of options.
+<p>Options are :<br>
+                            <li>'_sanitize'         - True to remove _id and _rev attributes from result documents. Defaults to false.</li>
+                            <li>'_hiddenAttributes' - Set an array of hidden attributes for created documents.
+                            <p>
+                            This is actually the same as setting hidden attributes using setHiddenAttributes() on a document. <br>
+                            The difference is, that if you're returning a result set of documents, the getAll() is already called <br>
+                            and the hidden attributes would not be applied to the attributes.<br>
+                            </p>
+                            </li>
+                            </p></li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Document</code>- the document fetched from the server</div>
+</div></div>
+</div>
+<a id="method_fulltext"></a><div class="element clickable method public method_fulltext " data-toggle="collapse" data-target=".method_fulltext .collapse" title="public">
+<h2>Get document(s) by a fulltext query</h2>
+<pre>fulltext(mixed $collection, mixed $attribute, mixed $query, array $options<code> = array()</code>) : \ArangoDBClient\cursor</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will find all documents from the collection that match the fulltext query specified in query.
+In order to use the fulltext operator, a fulltext index must be defined for the collection and the specified attribute.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$attribute</h4>
+<code>mixed</code><ul>
+<li>The attribute that contains the texts.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$query</h4>
+<code>mixed</code><ul>
+<li>The fulltext query.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional, prior to v1.0.0 this was a boolean value for sanitize, since v1.0.0 it's an array of options.
+<p>Options are :<br>
+                            <li>'_sanitize'         - True to remove _id and _rev attributes from result documents. Defaults to false.</li>
+                            <li>'_hiddenAttributes' - Set an array of hidden attributes for created documents.
+                            <p>
+                            This is actually the same as setting hidden attributes using setHiddenAttributes() on a document. <br>
+                            The difference is, that if you're returning a result set of documents, the getAll() is already called <br>
+                            and the hidden attributes would not be applied to the attributes.<br>
+                            </p>
+                            </li>
+                            <li>'batchSize' - can optionally be used to tell the server to limit the number of results to be transferred in one batch</li>
+                            <li>'skip'      - Optional, The number of documents to skip in the query.</li>
+                            <li>'limit'     - Optional, The maximal amount of documents to return. 'skip' is applied before the limit restriction.</li>
+                            <li>'index'     - If given, the identifier of the fulltext-index to use.</li>
+                            </p></li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\cursor</code>- Returns a cursor containing the result</div>
+</div></div>
+</div>
+<a id="method_get"></a><div class="element clickable method public method_get " data-toggle="collapse" data-target=".method_get .collapse" title="public">
+<h2>Get information about a collection</h2>
+<pre>get(mixed $collection) : \ArangoDBClient\Collection</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the collection cannot be fetched from the server</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as a string or number</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Collection</code>- the collection fetched from the server</div>
+</div></div>
+</div>
+<a id="method_getAllCollections"></a><div class="element clickable method public method_getAllCollections " data-toggle="collapse" data-target=".method_getAllCollections .collapse" title="public">
+<h2>Get list of all available collections per default with the collection names as index.</h2>
+<pre>getAllCollections(array $options<code> = array()</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns empty array if none are available.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional - an array of options.
+<p>Options are :<br>
+                             <li>'excludeSystem' -   With a value of true, all system collections will be excluded from the response.</li>
+                             <li>'keys' -  With a value of "collections", the index of the resulting array is numerical,
+                             With a value of "names", the index of the resulting array are the collection names.</li>
+                             </p></li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr>
+<tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getAllIds"></a><div class="element clickable method public method_getAllIds " data-toggle="collapse" data-target=".method_getAllIds .collapse" title="public">
+<h2>Get the list of all documents' ids from a collection</h2>
+<pre>getAllIds(mixed $collection) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the list cannot be fetched from the server</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- ids of documents in the collection</div>
+</div></div>
+</div>
+<a id="method_getChecksum"></a><div class="element clickable method public method_getChecksum " data-toggle="collapse" data-target=".method_getChecksum .collapse" title="public">
+<h2>Calculate a checksum of the collection.</h2>
+<pre>getChecksum(mixed $collectionId, boolean $withRevisions<code> = false</code>, boolean $withData<code> = false</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Will calculate a checksum of the meta-data (keys and optionally revision ids)
+and optionally the document data in the collection.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as a string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$withRevisions</h4>
+<code>boolean</code><ul>
+<li>optional boolean whether or not to include document revision ids
+in the checksum calculation.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$withData</h4>
+<code>boolean</code><ul>
+<li>optional boolean whether or not to include document body data in the
+checksum calculation.</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- array containing keys "checksum" and "revision"</div>
+</div></div>
+</div>
+<a id="method_getCollectionId"></a><div class="element clickable method public method_getCollectionId " data-toggle="collapse" data-target=".method_getCollectionId .collapse" title="public">
+<h2>Gets the collectionId from the given collectionObject or string/integer</h2>
+<pre>getCollectionId(mixed $collection) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_getCollectionName"></a><div class="element clickable method public method_getCollectionName " data-toggle="collapse" data-target=".method_getCollectionName .collapse" title="public">
+<h2>Gets the collectionId from the given collectionObject or string/integer</h2>
+<pre>getCollectionName(mixed $collection) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_getIndex"></a><div class="element clickable method public method_getIndex " data-toggle="collapse" data-target=".method_getIndex .collapse" title="public">
+<h2>Get the information about an index in a collection</h2>
+<pre>getIndex(string $collection, string $indexId) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>string</code><ul>
+<li>the id of the collection</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$indexId</h4>
+<code>string</code><ul>
+<li>the id of the index</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr>
+<tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getIndexes"></a><div class="element clickable method public method_getIndexes " data-toggle="collapse" data-target=".method_getIndexes .collapse" title="public">
+<h2>Get indexes of a collection</h2>
+<pre>getIndexes(mixed $collectionId) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the collection cannot be fetched from the server</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as a string or number</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>$data - the indexes result-set from the server</div>
+</div></div>
+</div>
+<a id="method_getProperties"></a><div class="element clickable method public method_getProperties " data-toggle="collapse" data-target=".method_getProperties .collapse" title="public">
+<h2>Get properties of a collection</h2>
+<pre>getProperties(mixed $collection) : \ArangoDBClient\Collection</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the collection cannot be fetched from the server</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as a string or number</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Collection</code>- the collection fetched from the server</div>
+</div></div>
+</div>
+<a id="method_getRevision"></a><div class="element clickable method public method_getRevision " data-toggle="collapse" data-target=".method_getRevision .collapse" title="public">
+<h2>Returns the Collections revision ID</h2>
+<pre>getRevision(mixed $collectionId) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The revision id is a server-generated string that clients can use to check whether data in a collection has
+changed since the last revision check.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as a string or number</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- containing a key revision</div>
+</div></div>
+</div>
+<a id="method_has"></a><div class="element clickable method public method_has " data-toggle="collapse" data-target=".method_has .collapse" title="public">
+<h2>Check if a collection exists</h2>
+<pre>has(mixed $collection) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will call self::get() internally and checks if there
+was an exception thrown which represents an 404 request.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as a string or number</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td>When any other error than a 404 occurs</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_import"></a><div class="element clickable method public method_import " data-toggle="collapse" data-target=".method_import .collapse" title="public">
+<h2>Import documents into a collection</h2>
+<pre>import($collection, string|array $importData, array $options<code> = array()</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw on all errors except insertion errors</p></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://docs.arangodb.com/3.1/HTTP/BulkImports/"></a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4><p>mixed $collection - collection id as string or number</p></div>
+<div class="subelement argument">
+<h4>$importData</h4>
+<code>string</code><code>array</code><ul>
+<li>The data to import. This can be a string holding the data according to the type of import, or an array of documents</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>
+<p>optional - an array of options.</p>
+<p>Options are :<br>
+                              <li>
+                              'type' -  if type is not set or it's set to '' or null, the Header-Value format must be provided in the import file.<br>
+                              <p>
+                              <li>                       if set to 'documents', then the file's content must have its documents line by line. Each line will be interpreted as a document.</li>
+                              <li>                       if set to 'array' then the file's content must provide the documents as a list of documents instead of the above line by line.</li>
+                              <br>
+                              More info on how the import functionality works: <a href ="https://github.com/triAGENS/ArangoDB/wiki/HttpImport">https://github.com/triAGENS/ArangoDB/wiki/HttpImport</a>
+                              </p>
+                              <br>
+
+                              </li>
+                              <li>'createCollection' - If true, create the collection if it does not exist. Defaults to false </li>
+                              </p>
+<pre><code>                          Other options as described in API Documentation*</code></pre>
+</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr>
+<tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_importFromFile"></a><div class="element clickable method public method_importFromFile " data-toggle="collapse" data-target=".method_importFromFile .collapse" title="public">
+<h2>Import documents from a file</h2>
+<pre>importFromFile(mixed $collectionId, mixed $importFileName, array $options<code> = array()</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw on all errors except insertion errors</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$importFileName</h4>
+<code>mixed</code><ul>
+<li>The filename that holds the import data.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional - an array of options.
+<p>Options are :<br>
+                         'type' -  if type is not set or it's set to '' or null, the Header-Value format must be provided in the import file.<br>
+                         <p>
+                         <li>                       if set to 'documents', then the file's content must have its documents line by line. Each line will be interpreted as a document.</li>
+                         <li>                       if set to 'array' then the file's content must provide the documents as a list of documents instead of the above line by line.</li>
+                         <br>
+                         More info on how the import functionality works: <a href ="https://github.com/triAGENS/ArangoDB/wiki/HttpImport">https://github.com/triAGENS/ArangoDB/wiki/HttpImport</a>
+                         </p>
+                         <br>
+                         </li>
+                         <li>'createCollection' - If true, create the collection if it does not exist. Defaults to false </li>
+                         </p></li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- returns an array with the server's response data from the import command</div>
+</div></div>
+</div>
+<a id="method_index"></a><div class="element clickable method public method_index " data-toggle="collapse" data-target=".method_index .collapse" title="public">
+<h2>Creates an index on a collection on the server</h2>
+<pre>index(mixed $collectionId, string $type<code> = ''</code>, array $attributes<code> = array()</code>, boolean $unique<code> = false</code>, array $indexOptions<code> = array()</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will create an index on the collection on the server and return its id</p>
+<p>This will throw if the index cannot be created</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>The id of the collection where the index is to be created</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>string</code><ul>
+<li>index type: hash, skiplist, geo, fulltext, or persistent</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$attributes</h4>
+<code>array</code><ul>
+<li>an array of attributes that can be defined like array('a') or array('a', 'b.c')</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$unique</h4>
+<code>boolean</code><ul>
+<li>true/false to create a unique index</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$indexOptions</h4>
+<code>array</code><ul>
+<li>an associative array of options for the index like array('geoJson' => true, 'sparse' => false)</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- server response of the created index</div>
+</div></div>
+</div>
+<a id="method_isValidCollectionId"></a><div class="element clickable method public method_isValidCollectionId " data-toggle="collapse" data-target=".method_isValidCollectionId .collapse" title="public">
+<h2>Checks if the collectionId given, is valid. Returns true if it is, or false if it is not.</h2>
+<pre>isValidCollectionId($collectionId) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$collectionId</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_load"></a><div class="element clickable method public method_load " data-toggle="collapse" data-target=".method_load .collapse" title="public">
+<h2>Load a collection into the server's memory</h2>
+<pre>load(mixed $collection) : \ArangoDBClient\HttpResponse</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will load the given collection into the server's memory.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number or collection object</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\HttpResponse</code>- HTTP response object</div>
+</div></div>
+</div>
+<a id="method_lookupByKeys"></a><div class="element clickable method public method_lookupByKeys " data-toggle="collapse" data-target=".method_lookupByKeys .collapse" title="public">
+<h2>Bulk lookup documents by specifying an array of keys</h2>
+<pre>lookupByKeys(mixed $collectionId, array $keys, array $options<code> = array()</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw on any error</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.6</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$keys</h4>
+<code>array</code><ul>
+<li>array of document keys</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional array of options.
+<p>Options are :<br>
+                              <li>'_sanitize'         - True to remove _id and _rev attributes from result documents. Defaults to false.</li>
+                              <li>'_hiddenAttributes' - Set an array of hidden attributes for created documents.
+                              </p></li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- an array containing all documents found for the keys specified.
+                note that if for a given key not document is found, it will not be returned nor will the document's non-existence be reported.</div>
+</div></div>
+</div>
+<a id="method_near"></a><div class="element clickable method public method_near " data-toggle="collapse" data-target=".method_near .collapse" title="public">
+<h2>Get document(s) by specifying near</h2>
+<pre>near(mixed $collectionId, double $latitude, double $longitude, array $options<code> = array()</code>) : \ArangoDBClient\Cursor</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the list cannot be fetched from the server</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$latitude</h4>
+<code>double</code><ul>
+<li>The latitude of the coordinate.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$longitude</h4>
+<code>double</code><ul>
+<li>The longitude of the coordinate.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>
+<p>optional array of options.</p>
+<p>Options are :<br>
+                           <li>'_sanitize'         - True to remove _id and _rev attributes from result documents. Defaults to false.</li>
+                           <li>'_hiddenAttributes' - Set an array of hidden attributes for created documents.
+                           <p>
+                           This is actually the same as setting hidden attributes using setHiddenAttributes() on a document. <br>
+                           The difference is, that if you're returning a result set of documents, the getAll() is already called <br>
+                           and the hidden attributes would not be applied to the attributes.<br>
+                           </p>
+
+                           <li>'distance'  - If given, the attribute key used to store the distance. (optional)
+                           <li>'batchSize' - can optionally be used to tell the server to limit the number of results to be transferred in one batch</li>
+                           <li>'skip'      -  Optional, The number of documents to skip in the query.</li>
+                           <li>'limit'     -  Optional, The maximal amount of documents to return. 'skip' is applied before the limit restriction.</li>
+                           </li>
+                           </p>
+</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Cursor</code>- documents matching the example [0...n]</div>
+</div></div>
+</div>
+<a id="method_range"></a><div class="element clickable method public method_range " data-toggle="collapse" data-target=".method_range .collapse" title="public">
+<h2>Get document(s) by specifying range</h2>
+<pre>range(mixed $collectionId, string $attribute, mixed $left, mixed $right, array $options<code> = array()</code>) : \ArangoDBClient\Cursor</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the list cannot be fetched from the server</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$attribute</h4>
+<code>string</code><ul>
+<li>the attribute path , like 'a', 'a.b', etc...</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$left</h4>
+<code>mixed</code><ul>
+<li>The lower bound.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$right</h4>
+<code>mixed</code><ul>
+<li>The upper bound.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>
+<p>optional array of options.</p>
+<p>Options are :<br>
+                           <li>'_sanitize'         - True to remove _id and _rev attributes from result documents. Defaults to false.</li>
+                           <li>'_hiddenAttributes' - Set an array of hidden attributes for created documents.
+                           <p>
+                           This is actually the same as setting hidden attributes using setHiddenAttributes() on a document.<br>
+                           The difference is, that if you're returning a result set of documents, the getAll() is already called<br>
+                           and the hidden attributes would not be applied to the attributes.<br>
+                           </p>
+
+                           <li>'closed'    - If true, use interval including left and right, otherwise exclude right, but include left.
+                           <li>'batchSize' - can optionally be used to tell the server to limit the number of results to be transferred in one batch</li>
+                           <li>'skip'      -  Optional, The number of documents to skip in the query.</li>
+                           <li>'limit'     -  Optional, The maximal amount of documents to return. 'skip' is applied before the limit restriction.</li>
+                           </li>
+                           </p>
+</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Cursor</code>- documents matching the example [0...n]</div>
+</div></div>
+</div>
+<a id="method_removeByExample"></a><div class="element clickable method public method_removeByExample " data-toggle="collapse" data-target=".method_removeByExample .collapse" title="public">
+<h2>Remove document(s) by specifying an example</h2>
+<pre>removeByExample(mixed $collectionId, mixed $document, array $options<code> = array()</code>) : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw on any error</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$document</h4>
+<code>mixed</code><ul>
+<li>the example document as a Document object or an array</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional - an array of options.
+<p>Options are :<br>
+                            <li>
+                            'waitForSync' -  if set to true, then all removal operations will instantly be synchronised to disk.<br>
+                            If this is not specified, then the collection's default sync behavior will be applied.
+                            </li>
+                            </p>
+<pre><code>                        <li>'limit' -  Optional, The maximal amount of documents to return. 'skip' is applied before the limit restriction.</li></code></pre></li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>- number of documents that were deleted</div>
+</div></div>
+</div>
+<a id="method_removeByKeys"></a><div class="element clickable method public method_removeByKeys " data-toggle="collapse" data-target=".method_removeByKeys .collapse" title="public">
+<h2>Remove document(s) by specifying an array of keys</h2>
+<pre>removeByKeys(mixed $collectionId, array $keys, array $options<code> = array()</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw on any error</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.6</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$keys</h4>
+<code>array</code><ul>
+<li>array of document keys</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>optional - an array of options.
+<p>Options are :<br>
+                            <li>
+                            'waitForSync' -  if set to true, then all removal operations will instantly be synchronised to disk.<br>
+                            If this is not specified, then the collection's default sync behavior will be applied.
+                            </li>
+                            </p></li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>- an array containing an attribute 'removed' with the number of documents that were deleted, an an array 'ignored' with the number of not removed keys/documents</div>
+</div></div>
+</div>
+<a id="method_rename"></a><div class="element clickable method public method_rename " data-toggle="collapse" data-target=".method_rename .collapse" title="public">
+<h2>Rename a collection</h2>
+<pre>rename(mixed $collection, string $name) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number or collection object</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><ul>
+<li>new name for collection</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_replaceByExample"></a><div class="element clickable method public method_replaceByExample " data-toggle="collapse" data-target=".method_replaceByExample .collapse" title="public">
+<h2>Replace document(s) matching a given example</h2>
+<pre>replaceByExample(mixed $collectionId, mixed $example, mixed $newValue, mixed $options<code> = array()</code>) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will replace the document(s) on the server</p>
+<p>This will throw if the document cannot be replaced</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$example</h4>
+<code>mixed</code><ul>
+<li>the example document as a Document object or an array</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$newValue</h4>
+<code>mixed</code><ul>
+<li>patch document or array which contains the attributes and values to be replaced</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>mixed</code><ul>
+<li>optional, array of options (see below) or the boolean value for $policy (for compatibility prior to version 1.1 of this method)
+<p>Options are :
+                       <li>'keepNull'    - can be used to instruct ArangoDB to delete existing attributes instead setting their values to null. Defaults to true (keep attributes when set to null)</li>
+                       <li>'waitForSync' - can be used to force synchronisation of the document replace operation to disk even in case that the waitForSync flag had been disabled for the entire collection</li>
+                       <li>'limit'       - can be used set a limit on how many documents to replace at most. If limit is specified but is less than the number of documents in the collection, it is undefined which of the documents will be replaced.</li>
+                       </p></li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_setDocumentClass"></a><div class="element clickable method public method_setDocumentClass inherited" data-toggle="collapse" data-target=".method_setDocumentClass .collapse" title="public">
+<h2>Sets the document class to use</h2>
+<pre>setDocumentClass(string $class) : \ArangoDBClient\Handler</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$class</h4>
+<code>string</code><p>Document class to use</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\ArangoDBClient\Handler</code></div>
+</div></div>
+</div>
+<a id="method_truncate"></a><div class="element clickable method public method_truncate " data-toggle="collapse" data-target=".method_truncate .collapse" title="public">
+<h2>Truncate a collection</h2>
+<pre>truncate(mixed $collection) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will remove all documents from the collection but will leave the metadata and indexes intact.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number or collection object</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_unload"></a><div class="element clickable method public method_unload " data-toggle="collapse" data-target=".method_unload .collapse" title="public">
+<h2>Unload a collection from the server's memory</h2>
+<pre>unload(mixed $collection) : \ArangoDBClient\HttpResponse</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will unload the given collection from the server's memory.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collection</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number or collection object</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\HttpResponse</code>- HTTP response object</div>
+</div></div>
+</div>
+<a id="method_updateByExample"></a><div class="element clickable method public method_updateByExample " data-toggle="collapse" data-target=".method_updateByExample .collapse" title="public">
+<h2>Update document(s) matching a given example</h2>
+<pre>updateByExample(mixed $collectionId, mixed $example, mixed $newValue, mixed $options<code> = array()</code>) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will update the document(s) on the server</p>
+<p>This will throw if the document cannot be updated</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$example</h4>
+<code>mixed</code><ul>
+<li>the example document as a Document object or an array</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$newValue</h4>
+<code>mixed</code><ul>
+<li>patch document or array which contains the attributes and values to be updated</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>mixed</code><ul>
+<li>optional, array of options (see below) or the boolean value for $policy (for compatibility prior to version 1.1 of this method)
+<p>Options are :
+                       <li>'keepNull'    - can be used to instruct ArangoDB to delete existing attributes instead setting their values to null. Defaults to true (keep attributes when set to null)</li>
+                       <li>'waitForSync' - can be used to force synchronisation of the document update operation to disk even in case that the waitForSync flag had been disabled for the entire collection</li>
+                       <li>'limit'       - can be used set a limit on how many documents to update at most. If limit is specified but is less than the number of documents in the collection, it is undefined which of the documents will be updated.</li>
+                       </p></li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>- always true, will throw if there is an error</div>
+</div></div>
+</div>
+<a id="method_within"></a><div class="element clickable method public method_within " data-toggle="collapse" data-target=".method_within .collapse" title="public">
+<h2>Get document(s) by specifying within</h2>
+<pre>within(mixed $collectionId, double $latitude, double $longitude, integer $radius, array $options<code> = array()</code>) : \ArangoDBClient\Cursor</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will throw if the list cannot be fetched from the server</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$collectionId</h4>
+<code>mixed</code><ul>
+<li>collection id as string or number</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$latitude</h4>
+<code>double</code><ul>
+<li>The latitude of the coordinate.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$longitude</h4>
+<code>double</code><ul>
+<li>The longitude of the coordinate.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$radius</h4>
+<code>integer</code><ul>
+<li>The maximal radius (in meters).</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>
+<p>optional array of options.</p>
+<p>Options are :<br>
+                           <li>'_sanitize'         - True to remove _id and _rev attributes from result documents. Defaults to false.</li>
+                           <li>'_hiddenAttributes' - Set an array of hidden attributes for created documents.
+                           <p>
+                           This is actually the same as setting hidden attributes using setHiddenAttributes() on a document.<br>
+                           The difference is, that if you're returning a result set of documents, the getAll() is already called <br>
+                           and the hidden attributes would not be applied to the attributes.<br>
+                           </p>
+
+                           <li>'distance'  - If given, the attribute key used to store the distance. (optional)
+                           <li>'batchSize' - can optionally be used to tell the server to limit the number of results to be transferred in one batch</li>
+                           <li>'skip'      -  Optional, The number of documents to skip in the query.</li>
+                           <li>'limit'     -  Optional, The maximal amount of documents to return. 'skip' is applied before the limit restriction.</li>
+                           </li>
+                           </p>
+</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Cursor</code>- documents matching the example [0...n]</div>
+</div></div>
+</div>
+<a id="method_getConnection"></a><div class="element clickable method protected method_getConnection inherited" data-toggle="collapse" data-target=".method_getConnection .collapse" title="protected">
+<h2>Return the connection object</h2>
+<pre>getConnection() : \ArangoDBClient\Connection</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Connection</code>- the connection object</div>
+</div></div>
+</div>
+<a id="method_getConnectionOption"></a><div class="element clickable method protected method_getConnectionOption inherited" data-toggle="collapse" data-target=".method_getConnectionOption .collapse" title="protected">
+<h2>Return a connection option
+This is a convenience function that calls json_encode_wrapper on the connection</h2>
+<pre>getConnectionOption($optionName) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$optionName</h4><ul>
+<li>The option to return a value for</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- the option's value</div>
+</div></div>
+</div>
+<a id="method_includeOptionsInBody"></a><div class="element clickable method protected method_includeOptionsInBody inherited" data-toggle="collapse" data-target=".method_includeOptionsInBody .collapse" title="protected">
+<h2>Helper function that runs through the options given and includes them into the parameters array given.</h2>
+<pre>includeOptionsInBody(array $options, array $body, array $includeArray<code> = array()</code>) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only options that are set in $includeArray will be included.
+This is only for options that are to be sent to the ArangoDB server in a json body(like 'limit', 'skip', etc...) .</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><ul>
+<li>The options array that holds the options to include in the parameters</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$body</h4>
+<code>array</code><ul>
+<li>The array into which the options will be included.</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$includeArray</h4>
+<code>array</code><ul>
+<li>The array that defines which options are allowed to be included, and what their default value is. for example: 'waitForSync'=>true</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>$params - array of parameters for use in a url</div>
+</div></div>
+</div>
+<a id="method_json_encode_wrapper"></a><div class="element clickable method protected method_json_encode_wrapper inherited" data-toggle="collapse" data-target=".method_json_encode_wrapper .collapse" title="protected">
+<h2>Return a json encoded string for the array passed.</h2>
+<pre>json_encode_wrapper(array $body) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a convenience function that calls json_encode_wrapper on the connection</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$body</h4>
+<code>array</code><ul>
+<li>The body to encode into json</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- json string of the body that was passed</div>
+</div></div>
+</div>
+<a id="method_makeCollection"></a><div class="element clickable method protected method_makeCollection inherited" data-toggle="collapse" data-target=".method_makeCollection .collapse" title="protected">
+<h2>Turn a value into a collection name</h2>
+<pre>makeCollection(mixed $value) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><ul>
+<li>document, collection or string</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- collection name</div>
+</div></div>
+</div>
+<a id="method_createCollectionIfOptions"></a><div class="element clickable method private method_createCollectionIfOptions " data-toggle="collapse" data-target=".method_createCollectionIfOptions .collapse" title="private">
+<h2>createCollectionIfOptions()
+        </h2>
+<pre>createCollectionIfOptions($collection, $options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$collection</h4></div>
+<div class="subelement argument"><h4>$options</h4></div>
+</div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__documentClass"> </a><div class="element clickable property protected property__documentClass" data-toggle="collapse" data-target=".property__documentClass .collapse" title="protected">
+<h2>Document class to use</h2>
+<pre>$_documentClass : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>'\ArangoDBClient\Document'</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__connection"> </a><div class="element clickable property private property__connection" data-toggle="collapse" data-target=".property__connection .collapse" title="private">
+<h2>Connection object</h2>
+<pre>$_connection </pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>param</th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<h3>
+<i title="Constants" class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_ENTRY_DOCUMENTS"> </a><div class="element clickable constant  constant_ENTRY_DOCUMENTS" data-toggle="collapse" data-target=".constant_ENTRY_DOCUMENTS .collapse" title="">
+<h2>documents array index</h2>
+<pre>ENTRY_DOCUMENTS = 'documents' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_ATTRIBUTE"> </a><div class="element clickable constant  constant_OPTION_ATTRIBUTE" data-toggle="collapse" data-target=".constant_OPTION_ATTRIBUTE .collapse" title="">
+<h2>attribute parameter</h2>
+<pre>OPTION_ATTRIBUTE = 'attribute' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_CHECKSUM"> </a><div class="element clickable constant  constant_OPTION_CHECKSUM" data-toggle="collapse" data-target=".constant_OPTION_CHECKSUM .collapse" title="">
+<h2>checksum option</h2>
+<pre>OPTION_CHECKSUM = 'checksum' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_CLOSED"> </a><div class="element clickable constant  constant_OPTION_CLOSED" data-toggle="collapse" data-target=".constant_OPTION_CLOSED .collapse" title="">
+<h2>closed parameter</h2>
+<pre>OPTION_CLOSED = 'closed' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_COLLECTION"> </a><div class="element clickable constant  constant_OPTION_COLLECTION" data-toggle="collapse" data-target=".constant_OPTION_COLLECTION .collapse" title="">
+<h2>collection parameter</h2>
+<pre>OPTION_COLLECTION = 'collection' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_CONSTRAINT"> </a><div class="element clickable constant  constant_OPTION_CONSTRAINT" data-toggle="collapse" data-target=".constant_OPTION_CONSTRAINT .collapse" title="">
+<h2>constraint option</h2>
+<pre>OPTION_CONSTRAINT = 'constraint' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_COUNT"> </a><div class="element clickable constant  constant_OPTION_COUNT" data-toggle="collapse" data-target=".constant_OPTION_COUNT .collapse" title="">
+<h2>count option</h2>
+<pre>OPTION_COUNT = 'count' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_CREATE_COLLECTION"> </a><div class="element clickable constant  constant_OPTION_CREATE_COLLECTION" data-toggle="collapse" data-target=".constant_OPTION_CREATE_COLLECTION .collapse" title="">
+<h2>example parameter</h2>
+<pre>OPTION_CREATE_COLLECTION = 'createCollection' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_DISTANCE"> </a><div class="element clickable constant  constant_OPTION_DISTANCE" data-toggle="collapse" data-target=".constant_OPTION_DISTANCE .collapse" title="">
+<h2>distance parameter</h2>
+<pre>OPTION_DISTANCE = 'distance' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_EXAMPLE"> </a><div class="element clickable constant  constant_OPTION_EXAMPLE" data-toggle="collapse" data-target=".constant_OPTION_EXAMPLE .collapse" title="">
+<h2>example parameter</h2>
+<pre>OPTION_EXAMPLE = 'example' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_EXCLUDE_SYSTEM"> </a><div class="element clickable constant  constant_OPTION_EXCLUDE_SYSTEM" data-toggle="collapse" data-target=".constant_OPTION_EXCLUDE_SYSTEM .collapse" title="">
+<h2>exclude system collections</h2>
+<pre>OPTION_EXCLUDE_SYSTEM = 'excludeSystem' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_FIELDS"> </a><div class="element clickable constant  constant_OPTION_FIELDS" data-toggle="collapse" data-target=".constant_OPTION_FIELDS .collapse" title="">
+<h2>fields</h2>
+<pre>OPTION_FIELDS = 'fields' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_FIGURES"> </a><div class="element clickable constant  constant_OPTION_FIGURES" data-toggle="collapse" data-target=".constant_OPTION_FIGURES .collapse" title="">
+<h2>figures option</h2>
+<pre>OPTION_FIGURES = 'figures' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_FULLTEXT_INDEX"> </a><div class="element clickable constant  constant_OPTION_FULLTEXT_INDEX" data-toggle="collapse" data-target=".constant_OPTION_FULLTEXT_INDEX .collapse" title="">
+<h2>fulltext index option</h2>
+<pre>OPTION_FULLTEXT_INDEX = 'fulltext' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_GEOJSON"> </a><div class="element clickable constant  constant_OPTION_GEOJSON" data-toggle="collapse" data-target=".constant_OPTION_GEOJSON .collapse" title="">
+<h2>geoJson option</h2>
+<pre>OPTION_GEOJSON = 'geoJson' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_GEO_INDEX"> </a><div class="element clickable constant  constant_OPTION_GEO_INDEX" data-toggle="collapse" data-target=".constant_OPTION_GEO_INDEX .collapse" title="">
+<h2>geo index option</h2>
+<pre>OPTION_GEO_INDEX = 'geo' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_HASH_INDEX"> </a><div class="element clickable constant  constant_OPTION_HASH_INDEX" data-toggle="collapse" data-target=".constant_OPTION_HASH_INDEX .collapse" title="">
+<h2>hash index option</h2>
+<pre>OPTION_HASH_INDEX = 'hash' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_IGNORE_NULL"> </a><div class="element clickable constant  constant_OPTION_IGNORE_NULL" data-toggle="collapse" data-target=".constant_OPTION_IGNORE_NULL .collapse" title="">
+<h2>ignoreNull option</h2>
+<pre>OPTION_IGNORE_NULL = 'ignoreNull' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_INDEX"> </a><div class="element clickable constant  constant_OPTION_INDEX" data-toggle="collapse" data-target=".constant_OPTION_INDEX .collapse" title="">
+<h2>index parameter</h2>
+<pre>OPTION_INDEX = 'index' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_KEYS"> </a><div class="element clickable constant  constant_OPTION_KEYS" data-toggle="collapse" data-target=".constant_OPTION_KEYS .collapse" title="">
+<h2>keys parameter</h2>
+<pre>OPTION_KEYS = 'keys' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_LATITUDE"> </a><div class="element clickable constant  constant_OPTION_LATITUDE" data-toggle="collapse" data-target=".constant_OPTION_LATITUDE .collapse" title="">
+<h2>latitude parameter</h2>
+<pre>OPTION_LATITUDE = 'latitude' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_LEFT"> </a><div class="element clickable constant  constant_OPTION_LEFT" data-toggle="collapse" data-target=".constant_OPTION_LEFT .collapse" title="">
+<h2>left parameter</h2>
+<pre>OPTION_LEFT = 'left' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_LIMIT"> </a><div class="element clickable constant  constant_OPTION_LIMIT" data-toggle="collapse" data-target=".constant_OPTION_LIMIT .collapse" title="">
+<h2>limit parameter</h2>
+<pre>OPTION_LIMIT = 'limit' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_LOAD"> </a><div class="element clickable constant  constant_OPTION_LOAD" data-toggle="collapse" data-target=".constant_OPTION_LOAD .collapse" title="">
+<h2>load option</h2>
+<pre>OPTION_LOAD = 'load' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_LONGITUDE"> </a><div class="element clickable constant  constant_OPTION_LONGITUDE" data-toggle="collapse" data-target=".constant_OPTION_LONGITUDE .collapse" title="">
+<h2>longitude parameter</h2>
+<pre>OPTION_LONGITUDE = 'longitude' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_MIN_LENGTH"> </a><div class="element clickable constant  constant_OPTION_MIN_LENGTH" data-toggle="collapse" data-target=".constant_OPTION_MIN_LENGTH .collapse" title="">
+<h2>minLength option</h2>
+<pre>OPTION_MIN_LENGTH = 'minLength' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_NEW_VALUE"> </a><div class="element clickable constant  constant_OPTION_NEW_VALUE" data-toggle="collapse" data-target=".constant_OPTION_NEW_VALUE .collapse" title="">
+<h2>example parameter</h2>
+<pre>OPTION_NEW_VALUE = 'newValue' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_PERSISTENT_INDEX"> </a><div class="element clickable constant  constant_OPTION_PERSISTENT_INDEX" data-toggle="collapse" data-target=".constant_OPTION_PERSISTENT_INDEX .collapse" title="">
+<h2>persistent index option</h2>
+<pre>OPTION_PERSISTENT_INDEX = 'persistent' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_PROPERTIES"> </a><div class="element clickable constant  constant_OPTION_PROPERTIES" data-toggle="collapse" data-target=".constant_OPTION_PROPERTIES .collapse" title="">
+<h2>properties option</h2>
+<pre>OPTION_PROPERTIES = 'properties' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_QUERY"> </a><div class="element clickable constant  constant_OPTION_QUERY" data-toggle="collapse" data-target=".constant_OPTION_QUERY .collapse" title="">
+<h2>query option</h2>
+<pre>OPTION_QUERY = 'query' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_RADIUS"> </a><div class="element clickable constant  constant_OPTION_RADIUS" data-toggle="collapse" data-target=".constant_OPTION_RADIUS .collapse" title="">
+<h2>radius parameter</h2>
+<pre>OPTION_RADIUS = 'radius' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_RENAME"> </a><div class="element clickable constant  constant_OPTION_RENAME" data-toggle="collapse" data-target=".constant_OPTION_RENAME .collapse" title="">
+<h2>rename option</h2>
+<pre>OPTION_RENAME = 'rename' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_REVISION"> </a><div class="element clickable constant  constant_OPTION_REVISION" data-toggle="collapse" data-target=".constant_OPTION_REVISION .collapse" title="">
+<h2>revision option</h2>
+<pre>OPTION_REVISION = 'revision' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_RIGHT"> </a><div class="element clickable constant  constant_OPTION_RIGHT" data-toggle="collapse" data-target=".constant_OPTION_RIGHT .collapse" title="">
+<h2>right parameter</h2>
+<pre>OPTION_RIGHT = 'right' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_SIZE"> </a><div class="element clickable constant  constant_OPTION_SIZE" data-toggle="collapse" data-target=".constant_OPTION_SIZE .collapse" title="">
+<h2>size option</h2>
+<pre>OPTION_SIZE = 'size' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_SKIP"> </a><div class="element clickable constant  constant_OPTION_SKIP" data-toggle="collapse" data-target=".constant_OPTION_SKIP .collapse" title="">
+<h2>skip parameter</h2>
+<pre>OPTION_SKIP = 'skip' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_SKIPLIST_INDEX"> </a><div class="element clickable constant  constant_OPTION_SKIPLIST_INDEX" data-toggle="collapse" data-target=".constant_OPTION_SKIPLIST_INDEX .collapse" title="">
+<h2>skiplist index option</h2>
+<pre>OPTION_SKIPLIST_INDEX = 'skiplist' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_SPARSE"> </a><div class="element clickable constant  constant_OPTION_SPARSE" data-toggle="collapse" data-target=".constant_OPTION_SPARSE .collapse" title="">
+<h2>sparse index option</h2>
+<pre>OPTION_SPARSE = 'sparse' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_TRUNCATE"> </a><div class="element clickable constant  constant_OPTION_TRUNCATE" data-toggle="collapse" data-target=".constant_OPTION_TRUNCATE .collapse" title="">
+<h2>truncate option</h2>
+<pre>OPTION_TRUNCATE = 'truncate' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_TYPE"> </a><div class="element clickable constant  constant_OPTION_TYPE" data-toggle="collapse" data-target=".constant_OPTION_TYPE .collapse" title="">
+<h2>type</h2>
+<pre>OPTION_TYPE = 'type' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_UNIQUE"> </a><div class="element clickable constant  constant_OPTION_UNIQUE" data-toggle="collapse" data-target=".constant_OPTION_UNIQUE .collapse" title="">
+<h2>unique</h2>
+<pre>OPTION_UNIQUE = 'unique' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_OPTION_UNLOAD"> </a><div class="element clickable constant  constant_OPTION_UNLOAD" data-toggle="collapse" data-target=".constant_OPTION_UNLOAD .collapse" title="">
+<h2>unload option</h2>
+<pre>OPTION_UNLOAD = 'unload' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2018-07-31T14:00:29+02:00.<br></footer></div>
+</div>
+</body>
+</html>

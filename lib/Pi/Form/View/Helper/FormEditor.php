@@ -1,19 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Form
  */
 
 namespace Pi\Form\View\Helper;
 
-use Pi\Editor\Factory as EditorFactory;
+use Pi;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
-use Zend\Form\View\Helper\AbstractHelper;
 
 /**
  * Editor element helper
@@ -23,31 +22,9 @@ use Zend\Form\View\Helper\AbstractHelper;
 class FormEditor extends AbstractHelper
 {
     /**
-     * Invoke helper as function
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  ElementInterface|null $element
-     * @return string|self
+     * {@inheritDoc}
      */
-    public function __invoke(ElementInterface $element = null)
-    {
-        if (!$element) {
-            return $this;
-        }
-
-        return $this->render($element);
-    }
-
-    /**
-     * Render editor
-     *
-     * @param  ElementInterface $element
-     *
-     * @throws \Zend\Form\Exception\DomainException
-     * @return string
-     */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element, $options = [])
     {
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
@@ -55,7 +32,7 @@ class FormEditor extends AbstractHelper
             return '';
         }
 
-        $name   = $element->getName();
+        $name = $element->getName();
         if (empty($name) && $name !== 0) {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the element has an assigned name;'
@@ -64,20 +41,14 @@ class FormEditor extends AbstractHelper
             ));
         }
 
-        $options = $element->getOptions();
-        /*
-        $attributes = $element->getAttributes();
-        $attributes['value'] = $element->getValue();
-        $options['attributes'] = $attributes;
-        */
+        $options    = array_replace($element->getOptions(), $options);
         $editorType = $element->getOption('editor') ?: 'textarea';
-        $editor = EditorFactory::load($editorType, $options);
+        $editor     = Pi::service('editor')->load($editorType, $options);
 
         $html = '';
         if ($editor) {
             $html = $editor->setView($renderer)->render($element);
         }
-
         if (!$html) {
             $html = $renderer->formTextarea($element);
         }

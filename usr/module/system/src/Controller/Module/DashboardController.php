@@ -1,17 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Module;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
 use Pi\Application\Bootstrap\Resource\AdminMode;
+use Pi\Mvc\Controller\ActionController;
 
 /**
  * Module dashboard action controller
@@ -22,7 +22,7 @@ class DashboardController extends ActionController
 {
     public function permissionException()
     {
-        return array('nav');
+        return ['nav'];
     }
 
     /**
@@ -46,10 +46,10 @@ class DashboardController extends ActionController
         $mode = $this->params('mode', AdminMode::MODE_ACCESS);
         // Set run mode
         if (!empty($mode)) {
-            $_SESSION['PI_BACKOFFICE'] = array(
-                'mode'      => $mode,
-                'changed'   => 1,
-            );
+            $_SESSION['PI_BACKOFFICE'] = [
+                'mode'    => $mode,
+                'changed' => 1,
+            ];
         }
 
         $module = $this->params('name');
@@ -63,7 +63,7 @@ class DashboardController extends ActionController
                 $allowed = array_intersect($moduleList, $allowed);
             }
             if (!$allowed) {
-                $this->redirect('', array('action' => 'system'));
+                $this->redirect('', ['action' => 'system']);
 
                 return;
             }
@@ -73,17 +73,17 @@ class DashboardController extends ActionController
         $link = '';
         switch ($mode) {
             case AdminMode::MODE_ACCESS:
-                $link = $this->url('admin', array(
-                    'module'        => $module,
-                    'controller'    => 'index',
-                ));
+                $link = $this->url('admin', [
+                    'module'     => $module,
+                    'controller' => 'index',
+                ]);
                 break;
             case AdminMode::MODE_ADMIN:
-                $link = $this->url('admin', array(
-                    'module'        => 'system',
-                    'controller'    => 'component',
-                    'name'          => $module,
-                ));
+                $link = $this->url('admin', [
+                    'module'     => 'system',
+                    'controller' => 'component',
+                    'name'       => $module,
+                ]);
                 break;
             case AdminMode::MODE_DEPLOYMENT:
             default:
@@ -92,7 +92,7 @@ class DashboardController extends ActionController
 
         if (!$link) {
             $this->jump(
-                array('action' => 'system'),
+                ['action' => 'system'],
                 _a('No permitted operation available.', 'system:admin'),
                 'error'
             );
@@ -112,12 +112,12 @@ class DashboardController extends ActionController
      */
     public function systemAction()
     {
-        $_SESSION['PI_BACKOFFICE'] = array(
+        $_SESSION['PI_BACKOFFICE'] = [
             'mode'      => '',
             'changed'   => 1,
             'component' => '',
             'module'    => '',
-        );
+        ];
 
         $this->loadDashboard();
 
@@ -159,7 +159,7 @@ class DashboardController extends ActionController
         $name = $this->params()->fromPost('name');
 
         $directory = Pi::service('module')->directory($name);
-        $callback = sprintf(
+        $callback  = sprintf(
             'Module\\%s\Dashboard::summary',
             ucfirst($directory)
         );
@@ -181,7 +181,7 @@ class DashboardController extends ActionController
     {
         $this->saveAjax('admin-link');
 
-        return array();
+        return [];
     }
 
     /**
@@ -199,21 +199,21 @@ class DashboardController extends ActionController
         }
 
         if ($content) {
-            $data = array(
+            $data = [
                 'value' => $content,
                 'time'  => time(),
-            );
+            ];
         } else {
             $data = Pi::user()->data->get(0, 'admin-welcome', true);
         }
 
-        $message = array(
-            'time'      => _date($data['time']),
-            'content'   => Pi::service('markup')->render(
+        $message = [
+            'time'    => _date($data['time']),
+            'content' => Pi::service('markup')->render(
                 $data['value'],
                 'text'
             ),
-        );
+        ];
 
         return $message;
     }
@@ -229,16 +229,16 @@ class DashboardController extends ActionController
         $uid  = Pi::service('user')->getId();
 
         $content = $this->params()->fromPost('content');
-        $data = array(
+        $data    = [
             'value' => $content,
-            'time'   => time(),
-        );
+            'time'  => time(),
+        ];
         Pi::user()->data->set($uid, $type, $content);
 
-        $memo = array(
-            'time'      => _date($data['time']),
-            'content'   => $data['value'],
-        );
+        $memo = [
+            'time'    => _date($data['time']),
+            'content' => $data['value'],
+        ];
 
         return $memo;
     }
@@ -251,7 +251,7 @@ class DashboardController extends ActionController
      */
     protected function saveAjax($type)
     {
-        $uid  = Pi::service('user')->getId();
+        $uid     = Pi::service('user')->getId();
         $content = _post('content');
 
         Pi::user()->data->set($uid, $type, $content);
@@ -266,10 +266,10 @@ class DashboardController extends ActionController
      */
     protected function loadDashboard()
     {
-        $uid  = Pi::service('user')->getId();
+        $uid = Pi::service('user')->getId();
 
         // Fetch all permitted modules
-        $modules = Pi::registry('modulelist')->read('active');
+        $modules          = Pi::registry('modulelist')->read('active');
         $modulesPermitted = Pi::service('permission')->moduleList('admin');
         foreach (array_keys($modules) as $name) {
             if (null !== $modulesPermitted
@@ -281,15 +281,15 @@ class DashboardController extends ActionController
 
         // Get module summary callbacks
         // Get hidden modules
-        $summaryList = array();
-        $list = (array) Pi::user()->data->get($uid, 'module-summary');
+        $summaryList = [];
+        $list        = (array)Pi::user()->data->get($uid, 'module-summary');
 
-        $summaryEnabled = array();
-        $summaryHidden = array();
+        $summaryEnabled = [];
+        $summaryHidden  = [];
         // Enabled explicitly
         if (isset($list['active'])) {
             $summaryEnabled = array_intersect(
-                (array) $list['active'],
+                (array)$list['active'],
                 array_keys($modules)
             );
             $summaryEnabled = array_unique($summaryEnabled);
@@ -297,12 +297,12 @@ class DashboardController extends ActionController
         // Disabled explicitly
         if (isset($list['inactive'])) {
             $summaryHidden = array_intersect(
-                (array) $list['inactive'],
+                (array)$list['inactive'],
                 array_keys($modules)
             );
             $summaryHidden = array_unique($summaryHidden);
         }
-        $new = $list
+        $new  = $list
             ? array_diff(array_keys($modules), $summaryEnabled, $summaryHidden)
             : array_keys($modules);
         $keys = array_unique($summaryEnabled + $new);
@@ -313,13 +313,13 @@ class DashboardController extends ActionController
                 ucfirst($modules[$name]['directory'])
             );
             if (is_callable($callback)) {
-                $summaryList[] = array(
-                    'name'      => $name,
-                    'content'   => call_user_func($callback, $name),
-                    'title'     => $modules[$name]['title'],
-                    'logo'      => $modules[$name]['logo'],
-                    'active'    => 1
-                );
+                $summaryList[] = [
+                    'name'    => $name,
+                    'content' => call_user_func($callback, $name),
+                    'title'   => $modules[$name]['title'],
+                    'logo'    => $modules[$name]['logo'],
+                    'active'  => 1,
+                ];
             }
         }
         foreach ($summaryHidden as $name) {
@@ -328,16 +328,16 @@ class DashboardController extends ActionController
                 ucfirst($modules[$name]['directory'])
             );
             if (is_callable($callback)) {
-                $summaryList['inactive'][] = array(
-                    'name'      => $name,
-                    'title'     => $modules[$name]['title'],
-                    'active'    => 0
-                );
+                $summaryList['inactive'][] = [
+                    'name'   => $name,
+                    'title'  => $modules[$name]['title'],
+                    'active' => 0,
+                ];
             }
         }
 
         // Get user quick links
-        $links = (array) Pi::user()->data->get($uid, 'admin-link');
+        $links = (array)Pi::user()->data->get($uid, 'admin-link');
 
         // Get system message, only admins have access
         $content = Pi::user()->data(0, 'admin-message', true);
@@ -356,10 +356,10 @@ class DashboardController extends ActionController
         */
         // Temporary solution for Issue #446: https://github.com/pi-engine/pi/issues/446
         // Angular imposes sanitizing on rendering, which is duplicated with PHP rendering
-        $message = array(
-            'time'      => _date($content['time']),
-            'content'   => $content['value'],
-        );
+        $message = [
+            'time'    => _date($content['time']),
+            'content' => $content['value'],
+        ];
 
         $messagePerm = false;
         if (Pi::service('user')->getUser()->isAdmin()) {

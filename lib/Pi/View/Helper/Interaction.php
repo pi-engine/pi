@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -14,7 +14,7 @@ use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 /**
- Helper for interaction (between user and page) bar
+ * Helper for interaction (between user and page) bar
  *
  * Usage inside a phtml template
  *
@@ -69,7 +69,6 @@ class Interaction extends AbstractHtmlElement
      *
      * @param string|array $locator Locator params: module, type, id
      * @param array|null $actions
-
      * @return $this
      */
     public function __invoke($locator = '', $actions = null)
@@ -79,7 +78,7 @@ class Interaction extends AbstractHtmlElement
             return $this;
         }
 
-        $this->render((array) $actions);
+        $this->render((array)$actions);
 
         return $this;
     }
@@ -102,19 +101,19 @@ class Interaction extends AbstractHtmlElement
      * @throws \Exception
      * @return string
      */
-    public function render(array $actions = array())
+    public function render(array $actions = [])
     {
         // Canonize locator against module, id, type
         if (is_string($this->locator)) {
             $routeMatch = Pi::service('url')->match($this->locator);
-            $params = array(
-                'module'    => $routeMatch->getModule(),
-                'id'        => $routeMatch->getParam('id'),
-                'type'      => $routeMatch->getParam('type'),
-            );
+            $params     = [
+                'module' => $routeMatch->getModule(),
+                'id'     => $routeMatch->getParam('id'),
+                'type'   => $routeMatch->getParam('type'),
+            ];
         } else {
             $routeMatch = Pi::engine()->application()->getRouteMatch();
-            $params = (array) $this->locator;
+            $params     = (array)$this->locator;
             if (empty($params['module'])) {
                 $params['module'] = $routeMatch->getModule();
             }

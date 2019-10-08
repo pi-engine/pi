@@ -1,15 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
+
 //use Pi\Application\Bootstrap\Resource\AdminMode;
 
 /**
@@ -45,17 +46,16 @@ use Pi;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-
 class Permission extends AbstractResource
 {
     protected function canonize(array $config)
     {
-        $adminMap = array(
+        $adminMap = [
             'front' => 'webmaster',
             'admin' => 'admin',
-        );
+        ];
 
-        $result = array();
+        $result = [];
         //$module = $this->getModule();
         /*
         if (isset($config['custom'])) {
@@ -72,28 +72,28 @@ class Permission extends AbstractResource
         foreach ($config as $section => &$resourceList) {
             foreach ($resourceList as $key => &$resource) {
                 if ('custom' == $key && is_string($resource)) {
-                    $resource= array(
-                        'name'  => $resource,
-                        'type'  => 'custom',
-                    );
+                    $resource = [
+                        'name' => $resource,
+                        'type' => 'custom',
+                    ];
                 }
                 if (!isset($resource['name'])) {
-                    $name = preg_replace('/[^a-z0-9_]/i', '_', $key);
+                    $name             = preg_replace('/[^a-z0-9_]/i', '-', $key);
                     $resource['name'] = $name;
                 } else {
                     $name = $resource['name'];
                 }
                 $resource['section'] = $section;
-                $access = empty($resource['access'])
-                    ? array() : (array) $resource['access'];
+                $access              = empty($resource['access'])
+                    ? [] : (array)$resource['access'];
                 if (isset($adminMap[$section])) {
                     $access[] = $adminMap[$section];
                 }
-                $resource = $this->canonizeResource($resource);
-                $result[$section][$name] = array(
-                    'resource'  => $resource,
-                    'access'    => array_unique($access),
-                );
+                $resource                = $this->canonizeResource($resource);
+                $result[$section][$name] = [
+                    'resource' => $resource,
+                    'access'   => array_unique($access),
+                ];
             }
         }
 
@@ -108,9 +108,9 @@ class Permission extends AbstractResource
      */
     protected function canonizeResource(array $resource)
     {
-        $columns = array(
-            'section', 'name', 'item', 'title', 'module', 'type'
-        );
+        $columns = [
+            'section', 'name', 'item', 'title', 'module', 'type',
+        ];
 
         if (!isset($resource['module'])) {
             $resource['module'] = $this->getModule();
@@ -118,7 +118,7 @@ class Permission extends AbstractResource
         if (!isset($resource['type'])) {
             $resource['type'] = 'system';
         }
-        $data = array();
+        $data = [];
         foreach ($columns as $col) {
             if (isset($resource[$col])) {
                 $data[$col] = $resource[$col];
@@ -135,34 +135,34 @@ class Permission extends AbstractResource
     {
         $module = $this->getModule();
         // Create module access permissions
-        $modulePerms = array(
-            'front' => array(
-                'access' => array(
+        $modulePerms = [
+            'front' => [
+                'access' => [
                     'guest',
                     'member',
-                ),
-                'admin' => array(
+                ],
+                'admin'  => [
                     'webmaster',
-                ),
-            ),
-            'admin' => array(
-                'access'   => array(
+                ],
+            ],
+            'admin' => [
+                'access' => [
                     'admin',
-                ),
-                'admin'   => array(
+                ],
+                'admin'  => [
                     'admin',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
         // Add module permission rules
         foreach ($modulePerms as $section => $list) {
             foreach ($list as $access => $roles) {
                 foreach ($roles as $role) {
-                    $resource = array(
-                        'section'   => $section,
-                        'module'    => $module,
-                        'resource'  => 'module-' . $access,
-                    );
+                    $resource = [
+                        'section'  => $section,
+                        'module'   => $module,
+                        'resource' => 'module-' . $access,
+                    ];
                     Pi::service('permission')->grantPermission($role, $resource);
                 }
             }
@@ -179,24 +179,24 @@ class Permission extends AbstractResource
         foreach ($config as $section => $resourceList) {
             foreach ($resourceList as $key => $data) {
                 $resource = $data['resource'];
-                $row = $model->createRow($resource);
-                $status = $row->save();
+                $row      = $model->createRow($resource);
+                $status   = $row->save();
                 if (!$status) {
                     $message[] = sprintf(
                         'Resource "%s" is not created.',
                         $resource['name']
                     );
-                    return array(
-                        'status'    => false,
-                        'message'   => $message,
-                    );
+                    return [
+                        'status'  => false,
+                        'message' => $message,
+                    ];
                 } elseif ($data['access']) {
                     foreach ($data['access'] as $role) {
-                        $spec = array(
-                            'section'   => $section,
-                            'module'    => $module,
-                            'resource'  => $resource['name'],
-                        );
+                        $spec = [
+                            'section'  => $section,
+                            'module'   => $module,
+                            'resource' => $resource['name'],
+                        ];
                         Pi::service('permission')->grantPermission($role, $spec);
                     }
                 }
@@ -220,13 +220,13 @@ class Permission extends AbstractResource
 
         // Update resources
         $config = $this->canonize($this->config);
-        $model = Pi::model('permission_resource');
-        $rowset = $model->select(array(
-            'module'    => $module,
+        $model  = Pi::model('permission_resource');
+        $rowset = $model->select([
+            'module' => $module,
             //'type'      => array('system', 'custom'),
-        ));
+        ]);
         // Find existent resources
-        $resourcesExist = array();
+        $resourcesExist = [];
         foreach ($rowset as $row) {
             $resourcesExist[$row->section][$row->name] = $row;
         }
@@ -234,7 +234,7 @@ class Permission extends AbstractResource
         foreach ($config as $section => $resourceList) {
             foreach ($resourceList as $key => $data) {
                 $resource = $data['resource'];
-                $name = $resource['name'];
+                $name     = $resource['name'];
                 // Update existent resource
                 if (isset($resourcesExist[$section][$name])) {
                     $row = $resourcesExist[$section][$name];
@@ -246,34 +246,34 @@ class Permission extends AbstractResource
                             'Resource "%s" is not updated.',
                             $resource['name']
                         );
-                        return array(
-                            'status'    => false,
-                            'message'   => $message,
-                        );
+                        return [
+                            'status'  => false,
+                            'message' => $message,
+                        ];
                     }
                     unset($resourcesExist[$section][$name]);
                     continue;
                 }
-                $message = array();
+                $message = [];
                 // Add new resource
-                $row = $model->createRow($resource);
+                $row    = $model->createRow($resource);
                 $status = $row->save();
                 if (!$status) {
                     $message[] = sprintf(
                         'Resource "%s" is not created.',
                         $resource['name']
                     );
-                    return array(
-                        'status'    => false,
-                        'message'   => $message,
-                    );
+                    return [
+                        'status'  => false,
+                        'message' => $message,
+                    ];
                 } elseif ($data['access']) {
                     foreach ($data['access'] as $role) {
-                        $spec = array(
-                            'section'   => $section,
-                            'module'    => $module,
-                            'resource'  => $resource['name'],
-                        );
+                        $spec = [
+                            'section'  => $section,
+                            'module'   => $module,
+                            'resource' => $resource['name'],
+                        ];
                         Pi::service('permission')->grantPermission($role, $spec);
                     }
                 }
@@ -283,23 +283,23 @@ class Permission extends AbstractResource
         // Remove not deprecated resources
         foreach ($resourcesExist as $section => $resourceList) {
             foreach ($resourceList as $name => $row) {
-                $message = array();
-                $status = $row->delete();
+                $message = [];
+                $status  = $row->delete();
                 if (!$status) {
                     $message[] = sprintf(
                         'Resource "%s" is not deleted.',
                         $name
                     );
-                    return array(
-                        'status'    => false,
-                        'message'   => $message,
-                    );
+                    return [
+                        'status'  => false,
+                        'message' => $message,
+                    ];
                 } else {
-                    $spec = array(
-                        'section'   => $section,
-                        'module'    => $module,
-                        'resource'  => $row['name'],
-                    );
+                    $spec = [
+                        'section'  => $section,
+                        'module'   => $module,
+                        'resource' => $row['name'],
+                    ];
                     Pi::service('permission')->revokePermission($spec);
                 }
             }
@@ -317,11 +317,11 @@ class Permission extends AbstractResource
     {
         $module = $this->event->getParam('module');
 
-        Pi::model('permission_resource')->delete(array(
-            'module'    => $module,
+        Pi::model('permission_resource')->delete([
+            'module' => $module,
             //'type'      => array('system', 'custom')
-        ));
-        Pi::model('permission_rule')->delete(array('module' => $module));
+        ]);
+        Pi::model('permission_rule')->delete(['module' => $module]);
 
         Pi::registry('permission_resource')->flush();
 

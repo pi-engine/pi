@@ -1,0 +1,198 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-tag\n"
+"POT-Creation-Date: 2014-05-20 17:59+0100\n"
+"PO-Revision-Date: 2014-05-20 17:59+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\module\\tag\n"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:13
+msgid "Top tag list"
+msgstr "List Top Tags"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:14
+msgid "Top 10 tag block"
+msgstr "Bloc Top 10 Tags"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:19
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:35
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:80
+msgid "Limit"
+msgstr "Limite"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:20
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:36
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:81
+msgid "Block display item count"
+msgstr "Nombre d'éléments affichés dans le bloc"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:29
+msgid "Tag Cloud"
+msgstr "Nuage de tags"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:30
+msgid "Top tag cloud block"
+msgstr "Bloc Nuage top Tag"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:42
+msgid "Color"
+msgstr "Couleur"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:43
+msgid "Set tag cloud color"
+msgstr "Définir la couleur du nuage de tags"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:57
+msgid "Max font size"
+msgstr "Taille maximale de la police"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:58
+msgid "Set max font size"
+msgstr "Définir la taille maximale de la police"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:64
+msgid "Min font size"
+msgstr "Taille minimale de la police"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:65
+msgid "Set min font size"
+msgstr "Définir la taille minimale de la police"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:74
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/block.php:75
+msgid "The latest tag"
+msgstr "Le dernier tag"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:13
+msgid "Tag delimiter"
+msgstr "Délimiteur de tags"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:14
+msgid ""
+"Delimiter(s) to separate tag terms, use `s` for space and separate "
+"delimiters with `|`."
+msgstr ""
+"Délimiteur(s) pour séparer les différents tags, utiliser `s` pour espace et "
+"séparer les délimiteurs par `|`."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:19
+msgid "Enable quote"
+msgstr "Activer les guillemets"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:20
+msgid "Use double quotes to identify multi-term tag."
+msgstr ""
+"Utiliser un guillemet double pour identifier un tag comprenant plusieurs mots"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:27
+msgid "Minimum length"
+msgstr "Longueur minimale"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:28
+msgid "Minimum length for valid tag terms."
+msgstr "Longueur minimum pour accepter les mots tags"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:35
+msgid "Item per page"
+msgstr "Eléments par page"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:36
+msgid "Number of items on tag list page."
+msgstr "Nombre d'éléments sur la page de list de tags"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:53
+msgid "Detail per page"
+msgstr "Détail par page"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:54
+msgid "Number of items on tag detail page."
+msgstr "Nombre d'éléments sur la page de détail de tags"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:71
+msgid "Link per page"
+msgstr "Lien par page"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/config.php:72
+msgid "Number of items on one relationships page."
+msgstr "Nombre d'éléments sur la page associée"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/module.php:18
+msgid "Tags"
+msgstr "Tags"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/module.php:20
+msgid "Tag"
+msgstr "Tag"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/navigation.php:14
+msgid "Top tags"
+msgstr "Top tags"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/navigation.php:20
+msgid "New tags"
+msgstr "Nouveaux tags"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/config/navigation.php:26
+msgid "Tagged items"
+msgstr "Eléments tagués"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/template/admin/list-new.phtml:7
+#: MARC\Documents\GitHub\pi\usr\module\tag/template/admin/list-top.phtml:7
+msgid "All"
+msgstr "Tout"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/template/admin/list-new.phtml:31
+#: MARC\Documents\GitHub\pi\usr\module\tag/template/admin/list-top.phtml:31
+msgid "Tag name"
+msgstr "Nom du tag"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/template/admin/list-new.phtml:32
+msgid "Time"
+msgstr "Date"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/template/admin/list-new.phtml:33
+#: MARC\Documents\GitHub\pi\usr\module\tag/template/admin/list-top.phtml:33
+msgid "Action"
+msgstr "Action"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/template/admin/list-new.phtml:38
+#: MARC\Documents\GitHub\pi\usr\module\tag/template/admin/list-top.phtml:38
+msgid "Delete"
+msgstr "Suppression"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\tag/template/admin/list-top.phtml:32
+msgid "Count"
+msgstr "Nombre"

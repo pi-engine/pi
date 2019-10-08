@@ -1,20 +1,20 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Admin;
 
-use Pi;
 use Module\System\Controller\ComponentController;
-use Module\System\Form\PageAddForm as AddForm;
 use Module\System\Form\PageAddFilter as AddFilter;
-use Module\System\Form\PageEditForm as EditForm;
+use Module\System\Form\PageAddForm as AddForm;
 use Module\System\Form\PageEditFilter as EditFilter;
+use Module\System\Form\PageEditForm as EditForm;
+use Pi;
 use Zend\Db\Sql\Expression;
 
 /**
@@ -36,11 +36,12 @@ class PageController extends ComponentController
      * Columns for page model
      * @var string[]
      */
-    protected $pageColumns = array(
-        'id', 'section', 'module', 'controller', 'action', 'block', 'custom',
-        //'cache_type', 'cache_ttl', 'cache_level',
-        'title'
-    );
+    protected $pageColumns
+        = [
+            'id', 'section', 'module', 'controller', 'action', 'block', 'custom',
+            //'cache_type', 'cache_ttl', 'cache_level',
+            'title',
+        ];
 
     /**
      * List of pages sorted by module and section
@@ -55,15 +56,15 @@ class PageController extends ComponentController
         }
 
         // Pages of the module
-        $select = Pi::model('page')->select()
-            ->where(array('module' => $name, 'section' => 'front'))
-            ->order(array('custom', 'controller', 'action', 'id'));
-        $rowset = Pi::model('page')->selectWith($select);
-        $sections = array(
-            'front' => array(
+        $select   = Pi::model('page')->select()
+            ->where(['module' => $name, 'section' => 'front'])
+            ->order(['custom', 'controller', 'action', 'id']);
+        $rowset   = Pi::model('page')->selectWith($select);
+        $sections = [
+            'front' => [
                 'title' => _a('Front'),
-                'pages' => array(),
-            ),
+                'pages' => [],
+            ],
             /*
             'admin' => array(
                 'title' => _a('Admin'),
@@ -74,46 +75,46 @@ class PageController extends ComponentController
                 'pages' => array(),
             ),
             */
-        );
+        ];
 
         // Organized pages by section
-        $pageModule = array();
-        $pageHome   = array();
+        $pageModule = [];
+        $pageHome   = [];
         foreach ($rowset as $row) {
             //$sections[$row->section]['pages'][] = $row->toArray();
             if (!$row->controller) {
-                $pageModule = array(
-                    'id'        => $row->id,
-                    'title'     => _a('Module wide'),
-                    'key'       => $row->module,
-                    'section'   => $row->section,
-                    'custom'    => $row->custom,
-                    'block'     => 1, //$row->block,
-                );
+                $pageModule = [
+                    'id'      => $row->id,
+                    'title'   => _a('Module wide'),
+                    'key'     => $row->module,
+                    'section' => $row->section,
+                    'custom'  => $row->custom,
+                    'block'   => 1, //$row->block,
+                ];
                 continue;
             } elseif ('index' == $row->controller && 'index' == $row->action) {
-                $pageHome = array(
-                    'id'        => $row->id,
-                    'title'     => _a('Module home'),
-                    'key'       => $row->module . 'index-index',
-                    'section'   => $row->section,
-                    'custom'    => $row->custom,
-                    'block'     => $row->block,
-                );
+                $pageHome = [
+                    'id'      => $row->id,
+                    'title'   => _a('Module home'),
+                    'key'     => $row->module . 'index-index',
+                    'section' => $row->section,
+                    'custom'  => $row->custom,
+                    'block'   => $row->block,
+                ];
                 continue;
             }
 
-            $key = $row->module . '-' . $row->controller;
-            $key .= $row->action ? '-' . $row->action : '';
-            $sections[$row->section]['pages'][] = array(
-                'id'        => $row->id,
-                'title'     => $row->title ?: $key,
-                'key'       => $key,
-                'section'   => $row->section,
-                'custom'    => $row->custom,
-                'block'     => $row->block,
+            $key                                = $row->module . '-' . $row->controller;
+            $key                                .= $row->action ? '-' . $row->action : '';
+            $sections[$row->section]['pages'][] = [
+                'id'      => $row->id,
+                'title'   => $row->title ?: $key,
+                'key'     => $key,
+                'section' => $row->section,
+                'custom'  => $row->custom,
+                'block'   => $row->block,
                 //'link'      => '',
-            );
+            ];
         }
         if ($pageHome) {
             array_unshift($sections['front']['pages'], $pageHome);
@@ -148,7 +149,7 @@ class PageController extends ComponentController
                     }
                 }
                 $values['custom'] = 1;
-                $row = Pi::model('page')->createRow($values);
+                $row              = Pi::model('page')->createRow($values);
                 $row->save();
                 if ($row->id) {
                     $message = _a('Page data saved successfully.');
@@ -156,10 +157,10 @@ class PageController extends ComponentController
                     Pi::registry('page')->clear($row->module);
                     $this->redirect()->toRoute(
                         '',
-                        array(
+                        [
                             'action' => 'index',
-                            'name' => $values['module']
-                        )
+                            'name'   => $values['module'],
+                        ]
                     );
                     $this->view()->setTemplate(false);
                 } else {
@@ -172,7 +173,7 @@ class PageController extends ComponentController
             $form = new AddForm('page-edit', $this->params('name'));
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'addsave'))
+                $this->url('', ['action' => 'addsave'])
             );
             $message = '';
         }
@@ -191,9 +192,9 @@ class PageController extends ComponentController
      */
     public function addsaveAction()
     {
-        $status     = 1;
+        $status = 1;
         //$message    = '';
-        $page       = array();
+        $page = [];
 
         $data = $this->request->getPost();
         $form = new AddForm('page-edit', $data['module']);
@@ -207,49 +208,49 @@ class PageController extends ComponentController
                 }
             }
             $values['custom'] = 1;
-            $values['block'] = 1;
-            $row = Pi::model('page')->createRow($values);
+            $values['block']  = 1;
+            $row              = Pi::model('page')->createRow($values);
             $row->save();
             if ($row->id) {
                 $message = _a('Page data saved successfully.');
 
-                $id = $row->id;
-                $page = array(
-                    'id'        => $row->id,
-                    'title'     => $row->title,
-                    'edit'      => $this->url(
+                $id   = $row->id;
+                $page = [
+                    'id'     => $row->id,
+                    'title'  => $row->title,
+                    'edit'   => $this->url(
                         '',
-                        array('action' => 'edit', 'id' => $row->id)
+                        ['action' => 'edit', 'id' => $row->id]
                     ),
-                    'delete'    => $this->url(
+                    'delete' => $this->url(
                         '',
-                        array('action' => 'delete', 'id' => $row->id)
+                        ['action' => 'delete', 'id' => $row->id]
                     ),
-                    'dress'     => $this->url(
+                    'dress'  => $this->url(
                         '',
-                        array('action' => 'block', 'page' => $row->id)
+                        ['action' => 'block', 'page' => $row->id]
                     ),
-                );
+                ];
                 Pi::registry('page')->clear($row->module);
 
             } else {
                 $message = _a('Page data not saved.');
-                $status = 1;
+                $status  = 1;
             }
         } else {
             $messages = $form->getMessages();
-            $message = array();
+            $message  = [];
             foreach ($messages as $key => $msg) {
                 $message[$key] = array_values($msg);
             }
             $status = -1;
         }
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-            'data'      => $page,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+            'data'    => $page,
+        ];
     }
 
     /**
@@ -264,7 +265,7 @@ class PageController extends ComponentController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $id = $values['id'];
+                $id     = $values['id'];
                 unset($values['id']);
                 foreach (array_keys($values) as $key) {
                     if (!in_array($key, $this->pageColumns)) {
@@ -280,12 +281,12 @@ class PageController extends ComponentController
                 $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
-            $id = $this->params('id');
+            $id     = $this->params('id');
             $values = Pi::model('page')->find($id)->toArray();
             $form->setData($values);
             $form->setAttribute(
                 'action',
-                $this->url('', array('action' => 'editsave'))
+                $this->url('', ['action' => 'editsave'])
             );
             $message = '';
         }
@@ -303,9 +304,9 @@ class PageController extends ComponentController
      */
     public function editsaveAction()
     {
-        $status     = 1;
+        $status = 1;
         //$message    = '';
-        $page       = array();
+        $page = [];
 
         $form = new EditForm('page-edit');
         $data = $this->request->getPost();
@@ -313,7 +314,7 @@ class PageController extends ComponentController
         $form->setData($data);
         if ($form->isValid()) {
             $values = $form->getData();
-            $id = $values['id'];
+            $id     = $values['id'];
             unset($values['id']);
             foreach (array_keys($values) as $key) {
                 if (!in_array($key, $this->pageColumns)) {
@@ -325,26 +326,26 @@ class PageController extends ComponentController
             $row->save();
             $message = _a('Page data saved successfully.');
 
-            $page = array(
+            $page = [
                 'id'    => $row->id,
                 'title' => $row->title,
-            );
+            ];
             Pi::registry('page')->clear($row->module);
 
         } else {
             $messages = $form->getMessages();
-            $message = array();
+            $message  = [];
             foreach ($messages as $key => $msg) {
                 $message[$key] = array_values($msg);
             }
             $status = -1;
         }
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-            'data'      => $page,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+            'data'    => $page,
+        ];
     }
 
     /**
@@ -354,26 +355,26 @@ class PageController extends ComponentController
      */
     public function deleteAction()
     {
-        $id = $this->params('id');
+        $id  = $this->params('id');
         $row = Pi::model('page')->find($id);
         // Only custom pages are allowed to delete
         if ($row && $row->custom) {
 
             // Remove page-block links
-            Pi::model('page_block')->delete(array('page' => $row->id));
+            Pi::model('page_block')->delete(['page' => $row->id]);
 
             // Remove page
             $row->delete();
             Pi::registry('page')->clear($row->module);
-            $result = array(
-                'status'    => 1,
-                'message'   => _a('Page is deleted.'),
-            );
+            $result = [
+                'status'  => 1,
+                'message' => _a('Page is deleted.'),
+            ];
         } else {
-            $result = array(
-                'status'    => 0,
-                'message'   => _a('Page is not found.'),
-            );
+            $result = [
+                'status'  => 0,
+                'message' => _a('Page is not found.'),
+            ];
         }
 
         return $result;
@@ -391,7 +392,7 @@ class PageController extends ComponentController
 
         $fallback = function () {
             $this->view()->setTemplate(false);
-            $this->redirect()->toRoute('', array('action' => 'index'));
+            $this->redirect()->toRoute('', ['action' => 'index']);
         };
 
         // Get the page
@@ -416,37 +417,37 @@ class PageController extends ComponentController
         } else {
             $title = _a('Module wide');
         }
-        $pageData = array(
+        $pageData = [
             'id'    => $row->id,
             'title' => $title,
             'name'  => $pageName,
-        );
+        ];
 
         // Fetch all blocks on the page
         $select = Pi::model('page_block')->select()->order('order')
-            ->where(array('page' => $page));
+            ->where(['page' => $page]);
         $rowset = Pi::model('page_block')->selectWith($select);
 
         // Get block IDs and block holder with block zone and order as
-        $blockIds = array();
-        $blockHolder = array();
+        $blockIds    = [];
+        $blockHolder = [];
         foreach ($rowset as $row) {
-            $blockIds[] = $row->block;
-            $blockHolder[$row->block] = array(
-                'zone'      => $row->zone,
-            );
+            $blockIds[]               = $row->block;
+            $blockHolder[$row->block] = [
+                'zone' => $row->zone,
+            ];
         }
 
         // Build block list sorted by zone
-        $blocks = array();
+        $blocks = [];
         if ($blockIds) {
-            $rowset = Pi::model('block')->select(array('id' => $blockIds));
+            $rowset = Pi::model('block')->select(['id' => $blockIds]);
             foreach ($rowset as $row) {
-                $blockHolder[$row->id]['block'] = array(
-                    'id'            => $row->id,
-                    'title'         => $row->title,
-                    'description'   => $row->description,
-                );
+                $blockHolder[$row->id]['block'] = [
+                    'id'          => $row->id,
+                    'title'       => $row->title,
+                    'description' => $row->description,
+                ];
             }
         }
 
@@ -457,25 +458,25 @@ class PageController extends ComponentController
             $blocks[$data['zone']][] = $data['block'];
         }
 
-        $model = Pi::model('block');
-        $select = $model->select()->group('module')
-            ->columns(array('count' => new Expression('count(*)'), 'module'));
-        $rowset = $model->selectWith($select);
-        $blockCounts = array();
+        $model       = Pi::model('block');
+        $select      = $model->select()->group('module')
+            ->columns(['count' => new Expression('count(*)'), 'module']);
+        $rowset      = $model->selectWith($select);
+        $blockCounts = [];
         foreach ($rowset as $row) {
             $blockCounts[$row->module] = $row->count;
         }
 
         // Get module list
-        $modules = array();
-        $moduleSet = Pi::model('module')->select(array('active' => 1));
+        $modules   = [];
+        $moduleSet = Pi::model('module')->select(['active' => 1]);
         foreach ($moduleSet as $row) {
             if (!empty($blockCounts[$row->name])) {
-                $modules[] = array(
+                $modules[] = [
                     'name'  => $row->name,
                     'title' => $row->title
-                               . ' (' . $blockCounts[$row->name] . ')',
-                );
+                        . ' (' . $blockCounts[$row->name] . ')',
+                ];
             }
         }
 
@@ -503,20 +504,20 @@ class PageController extends ComponentController
         // Module name
         $name = $this->params('name', $this->moduleName('system'));
 
-        $rowset = Pi::model('block')->select(array('module' => $name));
-        $blocks = array();
+        $rowset = Pi::model('block')->select(['module' => $name]);
+        $blocks = [];
         foreach ($rowset as $row) {
-            $blocks[] = array(
-                'id'            => $row->id,
-                'title'         => $row->title,
-                'description'   => $row->description,
-            );
+            $blocks[] = [
+                'id'          => $row->id,
+                'title'       => $row->title,
+                'description' => $row->description,
+            ];
         }
 
-        return array(
-            'status'    => 1,
-            'data'      => $blocks,
-        );
+        return [
+            'status' => 1,
+            'data'   => $blocks,
+        ];
     }
 
     /**
@@ -535,45 +536,46 @@ class PageController extends ComponentController
      */
     public function saveAction()
     {
-        $result = array(
-            'status'    => 1,
-            'message'   => '',
-            'data'      => array(),
-        );
+        $result = [
+            'status'  => 1,
+            'message' => '',
+            'data'    => [],
+        ];
         $page   = $this->params()->fromPost('page');
         $blocks = $this->params()->fromPost('blocks');
 
         $row = Pi::model('page')->find($page);
         if (!$row) {
-            $result = array(
-                'status'    => 0,
-                'message'   => _a('Page is not found.'),
-            );
+            $result = [
+                'status'  => 0,
+                'message' => _a('Page is not found.'),
+            ];
 
             return $result;
         }
 
         // Remove all existent block links
-        Pi::model('page_block')->delete(array('page' => $page));
+        Pi::model('page_block')->delete(['page' => $page]);
         // Add new block links
         foreach ($blocks as $zone => $list) {
             $order = 0;
             foreach ($list as $block) {
-                Pi::model('page_block')->insert(array(
+                Pi::model('page_block')->insert([
                     'page'  => $page,
                     'zone'  => $zone,
                     'block' => $block,
                     'order' => $order++,
-                ));
+                ]);
             }
         }
 
-        // Clear cache of the page module
+        // Clear cache of the module
         Pi::registry('block')->clear($row->module);
-        $result = array(
-            'status'    => 1,
-            'message'   => _a('Page block links are updated.'),
-        );
+        Pi::service('cache')->flush('module', $row->module);
+        $result = [
+            'status'  => 1,
+            'message' => _a('Page block links are updated.'),
+        ];
 
         return $result;
     }
@@ -586,13 +588,13 @@ class PageController extends ComponentController
     public function themelistAction()
     {
         $themeList = Pi::registry('themelist')->read('front');
-        $themes = array();
+        $themes    = [];
 
         foreach ($themeList as $dirname => $theme) {
-            $data = array(
+            $data             = [
                 'name'  => $dirname,
                 'title' => $theme['title'],
-            );
+            ];
             $themes[$dirname] = $data;
         }
 
@@ -606,18 +608,18 @@ class PageController extends ComponentController
      */
     public function actionlistAction()
     {
-        $name = $this->params('name', $this->moduleName('system'));
+        $name       = $this->params('name', $this->moduleName('system'));
         $controller = $this->params('ctrl');
-        $class = sprintf(
+        $class      = sprintf(
             'Module\\%s\Controller\Front\\%sController',
             ucfirst(Pi::service('module')->directory($name)),
             ucfirst($controller)
         );
-        $methods = get_class_methods($class);
-        $actions = array();
+        $methods    = get_class_methods($class);
+        $actions    = [];
         foreach ($methods as $method) {
             if ('Action' == substr($method, -6)) {
-                $actionName = substr($method, 0, -6);
+                $actionName           = substr($method, 0, -6);
                 $actions[$actionName] = $actionName;
             }
         }
@@ -632,7 +634,7 @@ class PageController extends ComponentController
      */
     public function zonetemplateAction()
     {
-        $theme = $this->params('theme', null);
+        $theme    = $this->params('theme', null);
         $template = $this->getZoneTemplate($theme);
 
         return $template;
@@ -653,7 +655,7 @@ class PageController extends ComponentController
          * is there any configurable way?
          */
         $templatePath = Pi::path('theme') . '/%s/template/page-zone.phtml';
-        $path = sprintf($templatePath, $theme);
+        $path         = sprintf($templatePath, $theme);
 
         if (!file_exists($path)) {
             $path = sprintf($templatePath, 'default');
@@ -674,5 +676,15 @@ class PageController extends ComponentController
         );
 
         return $template;
+    }
+
+    public function homepageAction()
+    {
+        return $this->redirect()->toRoute('', [
+            'controller' => 'page',
+            'action'     => 'block',
+            'page'       => '3',
+            'name'       => 'system',
+        ]);
     }
 }

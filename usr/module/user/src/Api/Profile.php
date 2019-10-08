@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Api;
@@ -36,8 +36,8 @@ class Profile extends AbstractApi
         $result = true;
         $config = Pi::user()->config('require_profile_complete');
         if ($config) {
-            $uid = $uid ?: Pi::service('user')->getId();
-            $level = Pi::api('user', $this->module)->get($uid, 'level');
+            $uid    = $uid ?: Pi::service('user')->getId();
+            $level  = Pi::api('user', $this->module)->get($uid, 'level');
             $result = $level ? true : false;
         }
 
@@ -47,8 +47,8 @@ class Profile extends AbstractApi
     /**
      * Require user to complete profile to access a resource
      *
-     * @param int           $uid
-     * @param string|bool   $redirect
+     * @param int $uid
+     * @param string|bool $redirect
      *
      * @return void
      */
@@ -66,10 +66,10 @@ class Profile extends AbstractApi
         Pi::service('url')->redirect(
             Pi::service('url')->assemble(
                 'user',
-                array(
+                [
                     'controller' => 'register',
-                    'action' => 'profile.complete',
-                )
+                    'action'     => 'profile.complete',
+                ]
             ),
             $redirect
         );

@@ -1,0 +1,10 @@
+{
+    "title": "Zend\\Barcode",
+    "target": "html\/",
+    "content": [
+        "book\/zend.barcode.intro.md",
+        "book\/zend.barcode.creation.md",
+        "book\/zend.barcode.objects.md",
+        "book\/zend.barcode.renderers.md"
+    ]
+}

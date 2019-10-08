@@ -1,18 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Form
  */
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\View\Helper\AbstractHelper;
-use Zend\Form\ElementInterface;
+//use Zend\Form\View\Helper\AbstractHelper;
 use Zend\Captcha\AdapterInterface as CaptchaAdapter;
+use Zend\Form\ElementInterface;
 
 /**
  * CAPTCHA element helper
@@ -22,29 +22,9 @@ use Zend\Captcha\AdapterInterface as CaptchaAdapter;
 class FormCaptcha extends AbstractHelper
 {
     /**
-     * Invoke helper as functor
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  null|ElementInterface $element
-     * @param  array $options
-     * @return string|self
-     */
-    public function __invoke(
-        ElementInterface $element = null,
-        $options = array()
-    ) {
-        if (null === $element) {
-            return $this;
-        }
-
-        return $this->render($element, $options);
-    }
-
-    /**
      * {@inheritDoc}
      */
-    public function render(ElementInterface $element, $options = array())
+    public function render(ElementInterface $element, $options = [])
     {
         $captcha = $element->getCaptcha();
 
@@ -56,8 +36,8 @@ class FormCaptcha extends AbstractHelper
             ));
         }
 
-        $helper     = $captcha->getHelperName();
-        $renderer   = $this->getView();
+        $helper   = $captcha->getHelperName();
+        $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
             throw new \DomainException(sprintf(
                 '%s requires that the renderer implements plugin();'

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -12,6 +12,7 @@ namespace Pi\View\Helper;
 
 use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
+
 /**
  * Helper for rendering tags
  *
@@ -49,7 +50,7 @@ class Tag extends AbstractHtmlElement
      *
      * @return string
      */
-    public function __invoke($data = array(), $attribs = array())
+    public function __invoke($data = [], $attribs = [])
     {
         if (!Pi::service('tag')->active()) {
             return '';
@@ -81,9 +82,9 @@ class Tag extends AbstractHtmlElement
         array_walk($tags, function (&$tag) use ($module, $type) {
             $tag = Pi::service('tag')->render($tag, $module, $type);
         });
-        
+
         if ($attribs && is_string($attribs)) {
-            $html = $this->getView()->render($attribs, array('tags' => $tags));
+            $html = $this->getView()->render($attribs, ['tags' => $tags]);
         } else {
             $html = '<div class="tag-terms"';
             if ($attribs) {

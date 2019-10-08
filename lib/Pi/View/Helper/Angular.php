@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -74,41 +74,42 @@ class Angular extends AssetCanonize
      */
     public function __invoke(
         $files = null,
-        $attributes = array(),
+        $attributes = [],
         $appendVersion = null
-    ) {
+    )
+    {
         $files = $this->canonize($files, $attributes);
-        $dev = 'development' == Pi::environment();
+        $dev   = 'development' == Pi::environment();
         if (isset($files['i18n'])) {
             unset($files['i18n']);
             if (!static::$i18nLoaded) {
                 $locale = Pi::config('locale');
                 if ('en' != $locale) {
-                    $file = 'i18n/angular-locale_' . $locale . '.js';
+                    $file         = 'i18n/angular-locale_' . $locale . '.js';
                     $files[$file] = $this->canonizeFile($file);
                 }
                 static::$i18nLoaded = true;
             }
         }
         if (!static::$rootLoaded) {
-            $autoLoad = array();
+            $autoLoad = [];
             // Required primary js
             $primaryFile = 'angular.js';
             if (!isset($files[$primaryFile])) {
-                $autoLoad += array(
-                    $primaryFile => $this->canonizeFile($primaryFile)
-                );
+                $autoLoad += [
+                    $primaryFile => $this->canonizeFile($primaryFile),
+                ];
             }
-            $files = $autoLoad + $files;
+            $files              = $autoLoad + $files;
             static::$rootLoaded = true;
         }
         foreach ($files as $file => $attrs) {
             if (!$dev) {
-                $file = preg_replace('/\.js$/', '.min.js', $file); 
+                $file = preg_replace('/\.js$/', '.min.js', $file);
             }
 
-            $file = static::DIR_ROOT . '/' . $file;
-            $url = Pi::service('asset')->getStaticUrl($file, $appendVersion);
+            $file     = static::DIR_ROOT . '/' . $file;
+            $url      = Pi::service('asset')->getStaticUrl($file, $appendVersion);
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
             if ($attrs['ext'] == 'css') {

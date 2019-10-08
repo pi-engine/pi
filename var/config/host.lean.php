@@ -1,12 +1,12 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
  * Pi Engine host specifications
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
@@ -20,23 +20,23 @@
  * - URIs with a leading slash are considered semi-relative
  *      requires proper rewriting rules in server conf
  */
-return array(
+return [
     // URIs to resources
     // If URI is a relative one then www root URI will be prepended
-    'uri'       => array(
+    'uri'  => [
         // WWW root URI
-        'www'       => 'http://pi.tld',
-    ),
+        'www' => 'http://pi.tld',
+    ],
 
     // Paths to resources
     // If path is a relative one then www root path will be prepended
-    'path'      => array(
+    'path' => [
         // Sharable paths
         // WWW root path, dependent sub folders: `script`, `public`
-        'www'       => '/path/to/pi-framework/www',
+        'www' => '/path/to/pi-framework/www',
         // Library directory
-        'lib'       => '/path/to/pi-framework/lib',
+        'lib' => '/path/to/pi-framework/lib',
         // User extension directory
-        'usr'       => '/path/to/pi-framework/usr',
-    ),
-);
+        'usr' => '/path/to/pi-framework/usr',
+    ],
+];

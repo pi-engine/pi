@@ -1,17 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Admin;
 
+use Module\System\Controller\ComponentController;
 use Pi;
 use Pi\Form\Factory as FormFactory;
-use Module\System\Controller\ComponentController;
 
 /**
  * Cache controller
@@ -39,20 +39,20 @@ class CacheController extends ComponentController
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             if (!empty($post['force'])) {
-                $id = $post['page'];
-                $data = array(
-                    'cache_type'    => $post['cache_type'][$id],
-                    'cache_ttl'     => $post['cache_ttl'][$id],
-                    'cache_level'   => $post['cache_level'][$id],
-                );
-                Pi::model('page')->update($data, array(
-                    'module'    => $name,
-                    'section'   => array('front', 'feed')
-                ));
+                $id   = $post['page'];
+                $data = [
+                    'cache_type'  => $post['cache_type'][$id],
+                    'cache_ttl'   => $post['cache_ttl'][$id],
+                    'cache_level' => $post['cache_level'][$id],
+                ];
+                Pi::model('page')->update($data, [
+                    'module'  => $name,
+                    'section' => ['front', 'feed'],
+                ]);
             } else {
-                $data = array();
+                $data = [];
                 foreach ($post['cache_type'] as $id => $value) {
-                    $data[$id] = array('cache_type' => $value);
+                    $data[$id] = ['cache_type' => $value];
                 }
                 foreach ($post['cache_ttl'] as $id => $value) {
                     $data[$id]['cache_ttl'] = $value;
@@ -73,7 +73,7 @@ class CacheController extends ComponentController
             Pi::registry('page_cache')->flush($name);
 
             $this->jump(
-                array('action' => 'index', 'name' => $name),
+                ['action' => 'index', 'name' => $name],
                 _a('Page cache updated successfully.'),
                 'success'
             );
@@ -82,116 +82,112 @@ class CacheController extends ComponentController
         }
 
         // Pages of the module
-        $select = Pi::model('page')->select()
-            ->where(array(
-                'module'    => $name,
-                'section'   => array('front', 'feed')
-            ))
-            ->order(array('custom', 'controller', 'action', 'id'));
-        $rowset = Pi::model('page')->selectWith($select);
-        $sections = array(
-            'front' => array(
+        $select   = Pi::model('page')->select()
+            ->where([
+                'module'  => $name,
+                'section' => ['front', 'feed'],
+            ])
+            ->order(['custom', 'controller', 'action', 'id']);
+        $rowset   = Pi::model('page')->selectWith($select);
+        $sections = [
+            'front' => [
                 'title' => _a('Front'),
-                'pages' => array(),
-            ),
-            'feed'  => array(
+                'pages' => [],
+            ],
+            'feed'  => [
                 'title' => _a('Feed'),
-                'pages' => array(),
-            ),
-        );
+                'pages' => [],
+            ],
+        ];
 
-        $factory = new FormFactory;
-        $helper = $this->view()->helper('form_select');
-        $cacheType = function ($id, $value) use ($factory, $helper) {
-            $element = $factory->create(array(
-                'name'          => sprintf('cache_type[%s]', $id),
-                'type'          => 'select',
-                'attributes'    => array(
-                    'options'   => array(
-                        'page'      => _a('Page wide'),
-                        'action'    => _a('Action data'),
-                    ),
-                    'value'     => $value ?: 'page',
-                    'class'     => 'form-control',
-                ),
-            ));
+        $factory    = new FormFactory;
+        $helper     = $this->view()->helper('form_select');
+        $cacheType  = function ($id, $value, $section) use ($factory, $helper) {
+            $spec = [
+                'name'       => sprintf('cache_type[%s]', $id),
+                'type'       => 'select',
+                'attributes' => [
+                    'options' => [
+                        'page'   => _a('Page wide'),
+                        'action' => _a('Action data'),
+                    ],
+                    'value'   => $value ?: 'page',
+                    'class'   => 'form-control',
+                ],
+            ];
+            if ('feed' == $section) {
+                $spec['attributes']['value'] = 'page';
+                unset($spec['attributes']['options']['action']);
+            }
+            $element = $factory->create($spec);
             $content = $helper->render($element);
             return $content;
         };
-        $cacheTtl = function ($id, $value) use ($factory, $helper) {
-            $element = $factory->create(array(
-                'name'          => sprintf('cache_ttl[%s]', $id),
-                'type'          => 'cache_ttl',
-                'attributes'    => array(
-                    'value'     => $value,
-                    'class'     => 'form-control',
-                ),
-            ));
+        $cacheTtl   = function ($id, $value) use ($factory, $helper) {
+            $element = $factory->create([
+                'name'       => sprintf('cache_ttl[%s]', $id),
+                'type'       => 'cache_ttl',
+                'attributes' => [
+                    'value' => $value,
+                    'class' => 'form-control',
+                ],
+            ]);
             $content = $helper->render($element);
             return $content;
         };
         $cacheLevel = function ($id, $value) use ($factory, $helper) {
-            $element = $factory->create(array(
-                'name'          => sprintf('cache_level[%s]', $id),
-                'type'          => 'cache_level',
-                'attributes'    => array(
-                    'value'     => $value,
-                    'class'     => 'form-control',
-                ),
-            ));
+            $element = $factory->create([
+                'name'       => sprintf('cache_level[%s]', $id),
+                'type'       => 'cache_level',
+                'attributes' => [
+                    'value' => $value,
+                    'class' => 'form-control',
+                ],
+            ]);
             $content = $helper->render($element);
             return $content;
         };
 
         // Organized pages by section
-        $pageModule = array();
-        $pageHome   = array();
+        $pageModule = [];
+        $pageHome   = [];
         foreach ($rowset as $row) {
-            $id         = $row->id;
-            //$isModule   = false;
+            $id      = $row->id;
+            $section = $row->section ?: 'front';
 
             if (!$row->controller) {
-                $pageModule = array(
+                $pageModule[$section] = [
                     'id'        => $row->id,
                     'title'     => _a('Module wide'),
-                    'type'      => $cacheType($id, $row['cache_type']),
+                    'type'      => $cacheType($id, $row['cache_type'], $section),
                     'ttl'       => $cacheTtl($id, $row['cache_ttl']),
                     'level'     => $cacheLevel($id, $row['cache_level']),
                     'is_module' => true,
-                );
+                ];
                 continue;
             } elseif ('index' == $row->controller && 'index' == $row->action) {
-                $pageHome = array(
-                    'id'        => $row->id,
-                    'title'     => _a('Module home'),
-                    'type'      => $cacheType($id, $row['cache_type']),
-                    'ttl'       => $cacheTtl($id, $row['cache_ttl']),
-                    'level'     => $cacheLevel($id, $row['cache_level']),
-                );
+                $pageHome[$section] = [
+                    'id'    => $row->id,
+                    'title' => _a('Module home'),
+                    'type'  => $cacheType($id, $row['cache_type'], $section),
+                    'ttl'   => $cacheTtl($id, $row['cache_ttl']),
+                    'level' => $cacheLevel($id, $row['cache_level']),
+                ];
                 continue;
             }
-            /*
-            if (!$row->controller) {
-                $title      = _a('Module wide');
-                $isModule   = true;
-            } else {
-                $title      = $row->title;
-            }
-            */
-            $sections[$row->section]['pages'][] = array(
-                'id'        => $row->id,
-                'title'     => $row->title,
-                'type'      => $cacheType($id, $row['cache_type']),
-                'ttl'       => $cacheTtl($id, $row['cache_ttl']),
-                'level'     => $cacheLevel($id, $row['cache_level']),
-                //'is_module' => $isModule,
-            );
+            $sections[$section]['pages'][] = [
+                'id'    => $row->id,
+                'title' => $row->title,
+                'type'  => $cacheType($id, $row['cache_type'], $section),
+                'ttl'   => $cacheTtl($id, $row['cache_ttl']),
+                'level' => $cacheLevel($id, $row['cache_level']),
+            ];
         }
-        if ($pageHome) {
-            array_unshift($sections['front']['pages'], $pageHome);
+        foreach ($pageHome as $section => $page) {
+            array_unshift($sections[$section]['pages'], $page);
         }
-        if ($pageModule) {
-            array_unshift($sections['front']['pages'], $pageModule);
+        foreach ($pageModule as $section => $page) {
+            array_unshift($sections[$section]['pages'], $page);
         }
 
         $this->view()->assign('pagesBySection', $sections);

@@ -1,160 +1,183 @@
 <style>
-.form-inline {
-  margin-bottom: 20px;
-}
+    .form-inline {
+        margin-bottom: 20px;
+    }
 </style>
 <form class="form-inline" ng-submit="filterAction()">
-  <div class="form-group">
-    <select ng-model="filter.active" class="form-control">
-      <option value="">{{'ACTIVE_STATUS' | translate}}
-      <option value="active">{{'ACTIVE' | translate}}
-      <option value="inactive">{{'INACTIVE' | translate}}
-    </select>
-  </div>
-  <div class="form-group">
-    <select ng-model="filter.enable" class="form-control">
-      <option value="">{{'ENABLE_STATUS' | translate}}
-      <option value="enable">{{'ENABLE' | translate}}
-      <option value="disable">{{'DISABLE' | translate}}
-    </select>
-   </div>
-  <div class="form-group">
-    <select class="form-control" ng-model="filter.front_role"
-            ng-options="item.name as item.title for item in frontRoles">
-      <option value="">{{'FRONT_ROLE' | translate}}
-    </select>
-  </div>
-  <div class="form-group">
-    <select class="form-control" ng-model="filter.admin_role"
-            ng-options="item.name as item.title for item in adminRoles">
-        <option value="">{{'ADMIN_ROLE' | translate}}
-    </select>
-  </div>
-  <div class="form-group">
-    <select class="form-control" ng-model="filter.register_date">
-      <option value="">{{'REGISTER_TIME' | translate}}
-      <option value="today">{{'TODAY' | translate}}
-      <option value="last_week">{{'LAST_WEEK' | translate}}
-      <option value="last_month">{{'LAST_MONTH' | translate}}
-      <option value="last_3_month">{{'LAST_3_MONTH' | translate}}
-      <option value="last_6_month">{{'LAST_6_MONTH' | translate}}
-      <option value="last_year">{{'LAST_YEAR' | translate}}
-    </select>
-  </div>
-  <div class="form-group">
-    <input type="text" placeholder="{{'DISPLAYNAME' | translate}}" class="form-control" 
-           ng-model="filter.name">
-  </div>
-   <div class="form-group">
-    <input type="text" placeholder="{{'EMAIL' | translate}}" class="form-control" 
-           ng-model="filter.email">
-  </div>
-  <button class="btn btn-info" ng-click="filterAction()" style="padding: 4px 20px;">
-    <i class="fa fa-search"></i>
-  </button>
+    <div class="form-group">
+        <select data-ng-model="filter.active" class="form-control">
+            <option value="">{{'ACTIVE_STATUS' | translate}}
+            <option value="active">{{'ACTIVE' | translate}}
+            <option value="inactive">{{'INACTIVE' | translate}}
+        </select>
+    </div>
+    &nbsp;
+    <div class="form-group">
+        <select data-ng-model="filter.enable" class="form-control">
+            <option value="">{{'ENABLE_STATUS' | translate}}
+            <option value="enable">{{'ENABLE' | translate}}
+            <option value="disable">{{'DISABLE' | translate}}
+        </select>
+    </div>
+    &nbsp;
+    <div class="form-group">
+        <select class="form-control" data-ng-model="filter.front_role"
+                ng-options="item.name as item.title for item in frontRoles">
+            <option value="">{{'FRONT_ROLE' | translate}}
+        </select>
+    </div>
+    &nbsp;
+    <div class="form-group">
+        <select class="form-control" data-ng-model="filter.admin_role"
+                ng-options="item.name as item.title for item in adminRoles">
+            <option value="">{{'ADMIN_ROLE' | translate}}
+        </select>
+    </div>
+    &nbsp;
+    <div class="form-group">
+        <select class="form-control" data-ng-model="filter.register_date">
+            <option value="">{{'REGISTER_TIME' | translate}}
+            <option value="today">{{'TODAY' | translate}}
+            <option value="last_week">{{'LAST_WEEK' | translate}}
+            <option value="last_month">{{'LAST_MONTH' | translate}}
+            <option value="last_3_month">{{'LAST_3_MONTH' | translate}}
+            <option value="last_6_month">{{'LAST_6_MONTH' | translate}}
+            <option value="last_year">{{'LAST_YEAR' | translate}}
+        </select>
+    </div>
+    &nbsp;
+    <div class="form-group">
+        <input type="text" placeholder="{{'DISPLAYNAME' | translate}}" class="form-control"
+               data-ng-model="filter.name">
+    </div>
+    &nbsp;
+    <div class="form-group">
+        <input type="text" placeholder="{{'EMAIL' | translate}}" class="form-control"
+               data-ng-model="filter.email">
+    </div>
+    &nbsp;
+    <button class="btn btn-info" data-ng-click="filterAction()" style="padding: 4px 20px;">
+        <i class="fas fa-search"></i>
+    </button>
 </form>
-<div ng-show="users.length">
-  <div class="clearfix form-inline">
-    <strong class="pull-right">{{paginator.count}} members</strong>
-    <input type="checkbox" style="margin-right: 6px;"
-           ng-model="allChecked" ng-change="markAll()">
-    <div class="btn-group">
-      <button class="btn btn-default" ng-click="activeBatchAction()">
-        {{'ACTIVATE' | translate}}
-      </button>
-      <button class="btn btn-default" ng-click="enableBatchAction()">
-        {{'ENABLE' | translate}}
-      </button>
-      <button class="btn btn-default" ng-click="disableBatchAction()">
-        {{'DISABLE' | translate}}
-      </button>
-      <button class="btn btn-default" ng-click="deleteBatchAction()">
-        {{'DELETE' | translate}}
-      </button>
+<div data-ng-show="users.length">
+    <div class="clearfix form-inline">
+        <input type="checkbox" style="margin-right: 6px;"
+               data-ng-model="allChecked" ng-change="markAll()">
+        &nbsp;&nbsp;&nbsp;
+        <div class="btn-group">
+            <button class="btn btn-secondary" data-ng-click="activeBatchAction()">
+                {{'ACTIVATE' | translate}}
+            </button>
+            <button class="btn btn-secondary" data-ng-click="enableBatchAction()">
+                {{'ENABLE' | translate}}
+            </button>
+            <button class="btn btn-secondary" data-ng-click="disableBatchAction()">
+                {{'DISABLE' | translate}}
+            </button>
+            <button class="btn btn-secondary" data-ng-click="deleteBatchAction()">
+                {{'DELETE' | translate}}
+            </button>
+        </div>
+        &nbsp;
+        <div class="form-group mx-sm-3">
+            <select class="form-control" ng-change="assignRoleBacthAction()" data-ng-model="assignRole"
+                    ng-options="item.title group by item.type for item in assignRoles">
+                <option value="">{{'ASSIGN_ROLE' | translate}}
+            </select>
+        </div>
+        &nbsp;
+        <div class="form-group">
+            <select class="form-control" ng-change="unassignRoleBacthAction()" data-ng-model="unassignRole"
+                    ng-options="item.title group by item.type for item in assignRoles">
+                <option value="">{{'UNASSIGN_ROLE' | translate}}
+            </select>
+        </div>
+        <strong class="ml-auto p-2">{{paginator.count}} members</strong>
     </div>
-    <div class="form-group">
-      <select class="form-control" ng-change="assignRoleBacthAction()" ng-model="assignRole"
-              ng-options="item.title group by item.type for item in assignRoles">
-        <option value="">{{'ASSIGN_ROLE' | translate}}
-      </select>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th style="width: 14px;"></th>
+                <th style="width: 14px;"></th>
+                <th width="5%">{{'ID' | translate}}</th>
+                <th>{{'USERNAME' | translate}}</th>
+                <th>{{'DISPLAYNAME' | translate}}</th>
+                <th width="10%">{{'EMAIL' | translate}}</th>
+                <th width="8%" class="text-center">{{'ENABLED' | translate}}</th>
+                <th width="8%" class="text-center">{{'ACTIVATED' | translate}}</th>
+                <th>{{'ROLE' | translate}}</th>
+                <th width="10%" class="text-center">{{'REGISTER_TIME' | translate}}</th>
+            </tr>
+            <tr ng-repeat="user in users">
+                <td>
+                    <input type="checkbox" data-ng-model="user.checked" style="margin-top: -2px;">
+                </td>
+                <td>
+                    <i class="fas fa-circle text-success" data-ng-if="user.active" tooltip="{{'ACTIVE' | translate}}">
+                    </i>
+                    <i class="fas fa-circle text-muted" data-ng-if="!user.active" tooltip="{{'INACTIVE' | translate}}">
+                    </i>
+                </td>
+                <td> {{user.id}}</td>
+                <td>
+                    {{user.identity}}
+                    <div class="pi-row-action">
+                        <a href="{{user.viewUrl}}">{{'VIEW' | translate}}</a>
+                        <a href="{{user.editUrl}}">{{'EDIT' | translate}}</a>
+                        <a href="javascript:void(0)" data-ng-click="deleteAction($index)">{{'DELETE' | translate}}</a>
+                        <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
+                    </div>
+                </td>
+                <td>
+                    <ul class="list-inline">
+                        <li data-ng-show="user.active" class="list-inline-item">
+                            <a href="{{user.link}}" target="_blank">{{user.name}}</a>
+                        </li>
+                        <li data-ng-show="!user.active" class="list-inline-item">
+                            {{user.name}}
+                        </li>
+                    </ul>
+                </td>
+                <td>{{user.email}}</td>
+                <td class="text-center">
+                    <div class="pi-status" data-ng-class="{'active': !user.time_disabled}"
+                         data-ng-click="enableAction(user)">
+                        <div class="pi-status-director"></div>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <div class="pi-status"
+                         data-ng-class="{'active': user.time_activated, 'disabled': user.time_activated}"
+                         data-ng-click="activeAction(user)">
+                        <div class="pi-status-director"></div>
+                    </div>
+                </td>
+                <td>
+                    <ul class="list-inline">
+                        <li data-ng-if="user.front_roles" class="list-inline-item">
+                            <i class="fas fa-user"></i> {{user.front_roles}}
+                        </li>
+                        <li data-ng-if="user.admin_roles" class="list-inline-item">
+                            <i class="fas fa-user-md"></i> {{user.admin_roles}}
+                        </li>
+                    </ul>
+                </td>
+                <td class="text-center">
+                    {{user.time_created}}
+                    <div data-ng-if="user.register_source">
+                        ({{user.register_source}})
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
-    <div class="form-group">
-      <select class="form-control" ng-change="unassignRoleBacthAction()" ng-model="unassignRole"
-              ng-options="item.title group by item.type for item in assignRoles">
-        <option value="">{{'UNASSIGN_ROLE' | translate}}
-      </select>
-    </div>
-  </div>
-  <div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th style="width: 14px;">
-            <th style="width: 14px;">
-            <th width="5%">{{'ID' | translate}}
-            <th>{{'USERNAME' | translate}}
-            <th>{{'DISPLAYNAME' | translate}}
-            <th width="15%">{{'EMAIL' | translate}}
-            <th width="8%" class="text-center">{{'ENABLED' | translate}}
-            <th width="8%" class="text-center">{{'ACTIVATED' | translate}}
-            <th width="8%">{{'ROLE' | translate}}
-            <th width="10%" class="text-center">{{'REGISTER_TIME' | translate}}
-        <tbody>
-          <tr ng-repeat="user in users">
-            <td>
-              <input type="checkbox" ng-model="user.checked" style="margin-top: -2px;">
-            <td>
-              <i class="fa fa-circle text-success" ng-if="user.active" tooltip="{{'ACTIVE' | translate}}">
-              </i>
-              <i class="fa fa-circle text-muted" ng-if="!user.active" tooltip="{{'INACTIVE' | translate}}">
-              </i>
-            <td>
-                  {{user.id}}
-            <td>
-              {{user.identity}}
-              <div class="pi-row-action">
-                <a href="{{user.editUrl}}">{{'EDIT' | translate}}</a>
-                <a href="javascript:void(0)" ng-click="deleteAction($index)">{{'DELETE' | translate}}</a>
-                <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
-              </div>
-            <td>
-              <span ng-show="user.active">
-                  <a href="{{user.link}}" target="_blank">{{user.name}}</a>
-              </span>
-              <span ng-show="!user.active">
-                  {{user.name}}
-              </span>
-            <td>{{user.email}}
-            <td class="text-center">
-              <div class="pi-status" ng-class="{'active': !user.time_disabled}"
-                   ng-click="enableAction(user)">
-                <div class="pi-status-director"></div>
-              </div>
-            <td class="text-center">
-              <div class="pi-status" ng-class="{'active': user.time_activated, 'disabled': user.time_activated}"
-                   ng-click="activeAction(user)">
-                <div class="pi-status-director"></div>
-              </div>
-            <td>
-              <span ng-if="user.front_roles" tooltip="{{user.front_roles}}"
-                    style="padding-right: 5px;">
-                <i class="fa fa-user fa-2x"></i>
-              </span>
-              <span ng-if="user.admin_roles" tooltip="{{user.admin_roles}}"
-                    style="padding-left: 5px;">
-                <i class="fa fa-user-md fa-2x"></i>
-              </span>
-            <td class="text-center">
-              {{user.time_created}}
-    </table>
-  </div>
-  <pagination ng-if="paginator.count > paginator.limit" 
-              total-items="paginator.count" page="paginator.page" max-size="10"
-              previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
-              boundary-links="true" items-per-page="paginator.limit">
-  </pagination>
+    <pagination class="pagination" data-btn-class="myCustomClass" data-ng-if="paginator.count > paginator.limit"
+                total-items="paginator.count" page="paginator.page" max-size="10"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                boundary-links="true" items-per-page="paginator.limit">
+    </pagination>
 </div>
-<div class="alert alert-info" ng-if="!users.length">
-  {{'NONE_USER' | translate}}
+<div class="alert alert-info" data-ng-if="!users.length">
+    {{'NONE_USER' | translate}}
 </div>
-

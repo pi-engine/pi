@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Field;
@@ -23,16 +23,16 @@ class Social extends CustomCompoundHandler
     /**
      * {@inheritDoc}
      */
-    protected function displayFields($fields, array $meta = array())
+    protected function displayFields($fields, array $meta = [])
     {
-        $record = array();
+        $record = [];
         foreach ($fields as $item) {
-            $record[$item['id']] = array(
+            $record[$item['id']] = [
                 'title' => $item['title'],
                 'value' => $item['identifier'],
-            );
+            ];
         }
-        $result = array($record);
+        $result = [$record];
 
         return $result;
     }

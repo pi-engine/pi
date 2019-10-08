@@ -1,28 +1,28 @@
 <div class="row">
     <div class="col-md-3">
         <?php
-        $items = array();
-        $item = array(
-            'href'  => $this->url('admin', array('action' => 'new')),
+        $items = [];
+        $item  = [
+            'href'  => $this->url('admin', ['action' => 'new']),
             'label' => _a('All'),
-        );
+        ];
         if (!$m) {
             $item['active'] = 1;
         }
         $items[] = $item;
         foreach ($modules as $name => $mTitle) {
-            $item = array(
-                'href'    => $this->url('admin', array('action' => 'new', 'm' => $name)),
-                'label'   => _escape($mTitle),
-            );
+            $item = [
+                'href'  => $this->url('admin', ['action' => 'new', 'm' => $name]),
+                'label' => _escape($mTitle),
+            ];
             if ($name == $m) {
                 $item['active'] = 1;
             }
             $items[] = $item;
         }
-        echo $this->navMenu($items, array(
-            'class' => 'nav nav-pills nav-stacked'
-        ));
+        echo $this->navMenu($items, [
+            'class' => 'nav nav-pills nav-stacked',
+        ]);
         ?>
     </div>
     <div class="col-md-9">
@@ -33,15 +33,15 @@
                 <th class="span1"><?php echo _a('Action') ?></th>
             </tr>
             <?php foreach ($tags as $tag) {
-                $tagFront = sprintf('<a href="%s">%s</a>', $tag['url'], _escape($tag['term']));
-                $deleteUrl = $this->url('admin', array('from' => 'new', 'action' => 'delete', 'tag' => $tag['term'], 'm' => $m));
+                $tagFront  = sprintf('<a href="%s">%s</a>', $tag['url'], _escape($tag['term']));
+                $deleteUrl = $this->url('admin', ['from' => 'new', 'action' => 'delete', 'tag' => $tag['term'], 'm' => $m]);
                 $tagDelete = sprintf('<a href="%s">%s</a>', $deleteUrl, _a('Delete'));
-            ?>
-            <tr>
-                <td><?php echo $tagFront; ?></td>
-                <td><?php echo $tag['time']; ?></td>
-                <td><?php echo $tagDelete; ?></td>
-            </tr>
+                ?>
+                <tr>
+                    <td><?php echo $tagFront; ?></td>
+                    <td><?php echo $tag['time']; ?></td>
+                    <td><?php echo $tagDelete; ?></td>
+                </tr>
             <?php } ?>
         </table>
         <div class="pagination-right">
@@ -51,7 +51,7 @@
 </div>
 
 
-<div class="pull-right">
-    <a href="<?php echo $this->url('', array('controller' => 'build', 'action' => 'import')); ?>">Build</a>
-    <a href="<?php echo $this->url('', array('controller' => 'build', 'action' => 'flush')); ?>">Flush</a>
+<div class="float-right">
+    <a href="<?php echo $this->url('', ['controller' => 'build', 'action' => 'import']); ?>">Build</a>
+    <a href="<?php echo $this->url('', ['controller' => 'build', 'action' => 'flush']); ?>">Flush</a>
 </div>

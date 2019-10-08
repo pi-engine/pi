@@ -1,41 +1,41 @@
 <form class="form-inline">
-  {{'SORT_BY' | translate}}
-  <div class="form-group">
-    <select class="form-control" ng-model="sort">
-      <option value="time_created">{{'REGISTER_TIME' | translate}}
-      <option value="last_login">{{'LAST_LOGIN_TIME' | translate}}
-      <option value="time_activated">{{'ACTIVATE_TIME' | translate}}
-    </select>
-  </div>
+    {{'SORT_BY' | translate}}
+    <div class="form-group">
+        <select class="form-control" data-ng-model="sort">
+            <option value="time_created">{{'REGISTER_TIME' | translate}}
+            <option value="last_login">{{'LAST_LOGIN_TIME' | translate}}
+            <option value="time_activated">{{'ACTIVATE_TIME' | translate}}
+        </select>
+    </div>
 </form>
 <table class="table table-striped">
-  <thead>
+    <thead>
     <tr>
-      <th>{{'ID' | translate}}
-      <th>{{'USERNAME' | translate}}
-      <th>{{'REGISTER_TIME' | translate}}
-      <th>{{'REGISTER_IP' | translate}}
-      <th>{{'ACTIVATE_TIME' | translate}}
-      <th>{{'LAST_LOGIN_TIME' | translate}}
-      <th>{{'LAST_LOGIN_IP' | translate}}
-      <th>{{'COUNT_LOGIN' | translate}}
-  <tbody>
+        <th>{{'ID' | translate}}
+        <th>{{'USERNAME' | translate}}
+        <th>{{'REGISTER_TIME' | translate}}
+        <th>{{'REGISTER_IP' | translate}}
+        <th>{{'ACTIVATE_TIME' | translate}}
+        <th>{{'LAST_LOGIN_TIME' | translate}}
+        <th>{{'LAST_LOGIN_IP' | translate}}
+        <th>{{'COUNT_LOGIN' | translate}}
+    <tbody>
     <tr ng-repeat="user in users">
-      <td>{{user.id}}
-      <td>
-          {{user.identity}}
-          <div class="pi-row-action">
-            <a href="{{user.editUrl}}">{{'EDIT' | translate}}</a>
-            <a href="#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
-          </div>
-      <td>{{user.time_created}}
-      <td>{{user.ip_register}}
-      <td>{{user.time_activated}}
-      <td>{{user.last_login}}
-      <td>{{user.last_login_ip}}
-      <td>{{user.count_login}}
+        <td>{{user.id}}
+        <td>
+            {{user.identity}}
+            <div class="pi-row-action">
+                <a href="{{user.editUrl}}">{{'EDIT' | translate}}</a>
+                <a href="#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
+            </div>
+        <td>{{user.time_created}}
+        <td>{{user.ip_register}}
+        <td>{{user.time_activated}}
+        <td>{{user.last_login}}
+        <td>{{user.last_login_ip}}
+        <td>{{user.count_login}}
 </table>
-<pagination ng-if="paginator.count > paginator.limit" 
+<pagination data-ng-if="paginator.count > paginator.limit"
             total-items="paginator.count" page="paginator.page" max-size="10"
             previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
             boundary-links="true" items-per-page="paginator.limit">

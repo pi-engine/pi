@@ -1,17 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\View\Resolver;
 
 use Pi;
-use Zend\View\Resolver\ResolverInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
+use Zend\View\Resolver\ResolverInterface;
 
 /**
  * Component template resolver
@@ -52,7 +52,7 @@ class ComponentTemplate implements ResolverInterface
      */
     public function setSuffix($suffix)
     {
-        $this->suffix = (string) $suffix;
+        $this->suffix = (string)$suffix;
 
         return $this;
     }
@@ -80,7 +80,7 @@ class ComponentTemplate implements ResolverInterface
         }
         list($component, $template) = explode(':', $name, 2);
 
-        return array($component, $template);
+        return [$component, $template];
     }
 
     /**
@@ -89,12 +89,13 @@ class ComponentTemplate implements ResolverInterface
      * @param  string $name
      * @param  null|Renderer $renderer
      * @return string|false
-      */
+     */
     public function resolve($name, Renderer $renderer = null)
     {
         if (false === strpos($name, ':')) {
             return false;
         }
+        $renderer->context('component');
         list($component, $template) = $this->canonizeTemplate($name);
         // Check custom template in theme
         $path = sprintf(
@@ -120,6 +121,7 @@ class ComponentTemplate implements ResolverInterface
         if (file_exists($path)) {
             return $path;
         }
+        $renderer->context('');
 
         return false;
     }

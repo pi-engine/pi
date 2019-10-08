@@ -1,25 +1,25 @@
 <div class="page-header text-info">
-  {{'PRIVACY_DESC' | translate}}
+    {{'PRIVACY_DESC' | translate}}
 </div>
 <div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>{{'FIELD' | translate}}
-        <th>{{'SETTING_DEFAULT' | translate}}
-        <th>{{'SETTING_FORCED' | translate}}
-    <tbody>
-      <tr ng-repeat="item in fields">
-        <td width="20%">{{item.title}}
-        <td width="20%" style="padding-right: 20px;">
-          <select ng-model="item.value" class="form-control"
-                  ng-options="limit.value as limit.text for limit in limits"
-                  ng-change="setPrivacyAction(item)">
-          </select>
-        <td>
-          <div class="pi-status" ng-class="{'active': item.is_forced}"
-               ng-click="forcePrivacyAction(item)">
-            <div class="pi-status-director"></div>
-          </div>
-  </table>
+    <table class="table table-responsive">
+        <thead>
+        <tr>
+            <th>{{'FIELD' | translate}}
+            <th>{{'SETTING_DEFAULT' | translate}}
+            <th>{{'SETTING_FORCED' | translate}}
+        <tbody>
+        <tr ng-repeat="item in fields">
+            <td width="20%">{{item.title}}
+            <td width="20%" style="padding-right: 20px;">
+                <select data-ng-model="item.value" class="form-control"
+                        ng-options="limit.value as limit.text for limit in limits"
+                        ng-change="setPrivacyAction(item)">
+                </select>
+            <td>
+                <div class="pi-status" data-ng-class="{'active': item.is_forced}"
+                     data-ng-click="forcePrivacyAction(item)">
+                    <div class="pi-status-director"></div>
+                </div>
+    </table>
 </div>

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Form
  */
 
@@ -12,8 +12,8 @@ namespace Pi\Form;
 
 use Pi;
 use Traversable;
-use Zend\Form\Form as ZendForm;
 use Zend\Form\Exception;
+use Zend\Form\Form as ZendForm;
 
 /**
  * Form class
@@ -51,7 +51,7 @@ class Form extends ZendForm
      *
      * {@inheritDoc}
      */
-    public function __construct($name = null, $options = array())
+    public function __construct($name = null, $options = [])
     {
         parent::__construct($name, $options);
         $this->init();
@@ -82,7 +82,21 @@ class Form extends ZendForm
 
         Pi::service('i18n')->load('validator');
 
-        return parent::isValid();
+        $isValid = parent::isValid();
+
+        /** @var \Pi\I18n\Translator\Translator $translator */
+        $translator = \Pi::service('i18n')->getTranslator();
+
+        $messages = $this->getMessages();
+        foreach($this->getMessages() as $name => $messageGroup){
+            foreach($messageGroup as $keyMessage => $message){
+                $messages[$name][$keyMessage] = $translator->translate($message);
+            }
+        }
+
+        $this->setMessages($messages);
+
+        return $isValid;
     }
 
     /**
@@ -90,7 +104,9 @@ class Form extends ZendForm
      *
      * @return void
      */
-    public function init() {}
+    public function init()
+    {
+    }
 
     /**
      * Get list of elements
@@ -105,16 +121,16 @@ class Form extends ZendForm
      */
     public function elementList()
     {
-        $elements = array(
-            'active'    => array(),
-            'hidden'    => array(),
-            'submit'    => '',
-        );
+        $elements = [
+            'active' => [],
+            'hidden' => [],
+            'submit' => [],
+        ];
 
-        foreach ($this->byName as $key => $value) {
+        foreach ($this->elements as $key => $value) {
             $type = $value->getAttribute('type');
             if ('submit' == $type) {
-                $elements['submit'] = $value;
+                $elements['submit'][] = $value;
             } elseif ('hidden' == $type) {
                 $elements['hidden'][] = $value;
             } else {
@@ -159,18 +175,19 @@ class Form extends ZendForm
     public function getHiddenMessages($elementName = null)
     {
         if (null === $elementName) {
-            $messages = array();
-            foreach ($this->byName as $name => $element) {
+            $messages = [];
+            foreach ($this->elements as $name => $element) {
                 if ('hidden' != $element->getAttribute('type')) {
                     continue;
                 }
                 $messageSet = $element->getMessages();
                 if (!is_array($messageSet)
                     && !$messageSet instanceof Traversable
-                    || empty($messageSet)) {
+                    || empty($messageSet)
+                ) {
                     continue;
                 }
-                $messages[$name] = (array) $messageSet;
+                $messages[$name] = (array)$messageSet;
             }
             return $messages;
         }
@@ -190,14 +207,14 @@ class Form extends ZendForm
     /**
      * Get assembled message
      *
-     * @param bool      $OnlyHidden  Return only hidden field messages
-     * @param string    $delimiter
+     * @param bool $OnlyHidden Return only hidden field messages
+     * @param string $delimiter
      * @return string
      */
     public function getMessage($OnlyHidden = true, $delimiter = '; ')
     {
         $messages = $this->getMessages();
-        $list = array();
+        $list     = [];
         foreach ($messages as $name => $msgs) {
             if (!$msgs) {
                 continue;

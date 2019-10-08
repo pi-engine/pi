@@ -1,32 +1,86 @@
-<div class="page">
+<?php
+// Set Open Graph tags for meta
+$this->doctype('HTML5');
+$this->headMeta($title, 'og:title', 'property');
+$this->headMeta($this->escape($url), 'og:url', 'property');
+$this->headMeta($shearContent, 'og:description', 'property');
+// Set twitter for meta
+$this->headMeta($this->escape($url), 'twitter:url');
+$this->headMeta($title, 'twitter:title');
+$this->headMeta($shearContent, 'twitter:description');
+?>
+<div class="clearfix">
     <?php if (!empty($nav)) { ?>
     <div class="col-md-2">
-        <ul class="nav nav-pills">
-        <?php foreach ($nav as $id => $item) { ?>
-            <li<?php if (!empty($item['active'])) { echo ' class="active"'; } ?>>
-                <a href="<?php echo $item['url']; ?>"><?php echo _escape($item['title']); ?></a>
-            </li>
-        <?php } ?>
+        <ul class="nav nav-pills bg-light mb-3 p-3">
+            <?php foreach ($nav as $id => $item) { ?>
+                <li class="nav-item">
+                    <a class="nav-link <?php if (!empty($item['active'])) { echo 'active'; } ?>" href="<?php echo $item['url']; ?>"><?php echo _escape($item['title']); ?></a>
+                </li>
+            <?php } ?>
         </ul>
     </div>
     <div class="col-md-10">
-    <?php } else { ?>
-        <div class="col-md-12">
-    <?php } ?>
-    <h2 class="article-header headline"><?php echo $this->escape($title); ?></h2>
-    <div class="article-body">
-        <?php
-        if ('phtml' == $markup && $content) {
-            include $this->template('front/' . $content);
-        } else {
-            echo $content;
-        }
-        ?>
+        <?php } ?>
+        <?php if ('phtml' == $markup && $content) { ?>
+            <h1 class="article-header headline"><?php echo $this->escape($title); ?></h1>
+            <div class="article-body">
+                <?php
+
+                $file = sprintf(
+                    '%s/' . Pi::config('theme') . '/custom/page/%s.phtml',
+                    Pi::path('theme'),
+                    $content
+                );
+
+                /**
+                 * Check if theme has parent
+                 */
+                $parentTheme = Pi::service('theme')->getParent(Pi::config('theme'));
+
+                if(!is_file($file) && $parentTheme){
+
+                    $file = sprintf(
+                        '%s/' . $parentTheme . '/custom/page/%s.phtml',
+                        Pi::path('theme'),
+                        $content
+                    );
+                }
+
+                ?>
+                <?php if ($file) : ?>
+                    <?php include $this->template($file); ?>
+                <?php else : ?>
+                    <?php include $this->template('./' . $content); ?>
+                <?php endif; ?>
+            </div>
+            <?php if ($config['social_sharing']) { ?>
+                <div class="article-footer clearfix">
+                    <div class="col-md-5 col-sm-10 col-12">
+                        <?php echo $this->socialSharing($config['social_sharing'], $title, $url); ?>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } else { ?>
+            <div class="card bg-light mb-3">
+                <div class="card-header">
+                    <h2 class="p-0 m-0"><?php echo $this->escape($title); ?></h2>
+                </div>
+                <div class="card-body clearfix">
+                    <div class="clearfix">
+                        <?php echo $content; ?>
+                    </div>
+                    <?php if ($config['social_sharing']) { ?>
+                        <div class="clearfix">
+                            <div class="col-md-5 col-sm-10 col-12">
+                                <?php echo $this->socialSharing($config['social_sharing'], $title, $url); ?>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        <?php } ?>
+        <?php if (!empty($nav)) { ?>
     </div>
-    <div class="article-footer">
-        <?php if ($config['social_facebook']) { echo $this->facebook(); } ?>
-        <?php if ($config['social_twitter']) { echo $this->twitter(); } ?>
-        <?php if ($config['social_gplus']) { echo $this->plusone(); } ?>
-    </div>
-    </div>
+<?php } ?>
 </div>

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Avatar;
@@ -27,12 +27,12 @@ class Gravatar extends AbstractAvatar
         if ($uid) {
             if ($this->force) {
                 if ($uid == $this->user->get('id')) {
-                    $data = array(
-                        'avatar'    => $this->user->get('avatar'),
-                        'email'     => $this->user->get('email'),
-                    );
+                    $data = [
+                        'avatar' => $this->user->get('avatar'),
+                        'email'  => $this->user->get('email'),
+                    ];
                 } else {
-                    $data = Pi::user()->get($uid, array('avatar', 'email'));
+                    $data = Pi::user()->get($uid, ['avatar', 'email']);
                 }
                 if ($data) {
                     if ($data['avatar']) {
@@ -45,7 +45,7 @@ class Gravatar extends AbstractAvatar
                 if ($uid == $this->user->get('id')) {
                     $avatar = $this->user->get('avatar');
                 } else {
-                    $avatar = Pi::user()->get($uid,'avatar');
+                    $avatar = Pi::user()->get($uid, 'avatar');
                 }
                 if ($avatar
                     && 'gravatar' == Pi::service('avatar')->getType($avatar)
@@ -65,9 +65,9 @@ class Gravatar extends AbstractAvatar
      */
     public function getSourceList($uids, $size = 80)
     {
-        $result = array();
+        $result = [];
         if ($this->force) {
-            $list = Pi::user()->get($uids, array('avatar', 'email'));
+            $list = Pi::user()->get($uids, ['avatar', 'email']);
             foreach ($list as $uid => $data) {
                 if ($data) {
                     if ($data['avatar']) {
@@ -96,7 +96,7 @@ class Gravatar extends AbstractAvatar
     public function build($source, $size = '', $uid = null)
     {
         $size = $this->canonizeSize($size);
-        $src = $this->getUrl($source, $size);
+        $src  = $this->getUrl($source, $size);
 
         return $src;
     }
@@ -106,10 +106,10 @@ class Gravatar extends AbstractAvatar
      */
     public function getUrl($email, $size = 80)
     {
-        $src = '%s://www.gravatar.com/avatar/%s%s?s=%d&d=%s&r=%s';
-        $hash = md5(strtolower($email));
+        $src     = '%s://www.gravatar.com/avatar/%s%s?s=%d&amp;d=%s&amp;r=%s';
+        $hash    = md5(strtolower($email));
         $options = $this->options;
-        $src = sprintf(
+        $src     = sprintf(
             $src,
             !empty($options['secure']) ? 'https' : 'http',
             $hash,

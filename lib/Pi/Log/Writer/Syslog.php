@@ -1,19 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Log\Writer;
 
-use Pi;
 use Pi\Log\Logger;
-use Pi\Log\Formatter\Syslog as SyslogFormatter;
-use Zend\Log\Writer\AbstractWriter;
 use Zend\Log\Formatter\FormatterInterface;
+use Zend\Log\Writer\AbstractWriter;
 
 /**
  * Syslog writer
@@ -26,16 +24,17 @@ class Syslog extends AbstractWriter
      * Maps Pi\Log\Logger priorities to PHP's Syslog priorities
      * @var array
      */
-    protected $priorities = array(
-        Logger::EMERG  => LOG_EMERG,
-        Logger::ALERT  => LOG_ALERT,
-        Logger::CRIT   => LOG_CRIT,
-        Logger::ERR    => LOG_ERR,
-        Logger::WARN   => LOG_WARNING,
-        Logger::NOTICE => LOG_NOTICE,
-        Logger::INFO   => LOG_INFO,
-        Logger::DEBUG  => LOG_DEBUG,
-    );
+    protected $priorities
+        = [
+            Logger::EMERG  => LOG_EMERG,
+            Logger::ALERT  => LOG_ALERT,
+            Logger::CRIT   => LOG_CRIT,
+            Logger::ERR    => LOG_ERR,
+            Logger::WARN   => LOG_WARNING,
+            Logger::NOTICE => LOG_NOTICE,
+            Logger::INFO   => LOG_INFO,
+            Logger::DEBUG  => LOG_DEBUG,
+        ];
 
     /**
      * The default log priority - for unmapped custom priorities
@@ -71,7 +70,7 @@ class Syslog extends AbstractWriter
      * Types of program available to logging of message
      * @var array
      */
-    protected $validFacilities = array();
+    protected $validFacilities = [];
 
     /**
      * Constructor
@@ -79,7 +78,7 @@ class Syslog extends AbstractWriter
      * @param array $params
      *      Array of options; may include "application" and "facility" keys
      */
-    public function __construct(array $params = array())
+    public function __construct(array $params = [])
     {
         if (isset($params['application'])) {
             $this->application = $params['application'];
@@ -103,7 +102,7 @@ class Syslog extends AbstractWriter
      */
     protected function initializeValidFacilities()
     {
-        $constants = array(
+        $constants = [
             'LOG_AUTH',
             'LOG_AUTHPRIV',
             'LOG_CRON',
@@ -122,8 +121,8 @@ class Syslog extends AbstractWriter
             'LOG_NEWS',
             'LOG_SYSLOG',
             'LOG_USER',
-            'LOG_UUCP'
-        );
+            'LOG_UUCP',
+        ];
 
         foreach ($constants as $constant) {
             if (defined($constant)) {

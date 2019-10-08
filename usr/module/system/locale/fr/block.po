@@ -1,0 +1,138 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-block\n"
+"POT-Creation-Date: 2019-04-03 13:34+0200\n"
+"PO-Revision-Date: 2019-04-03 13:34+0200\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-KeywordsList: _b\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/Block/Block.php:32
+#, php-format
+msgid "About %s"
+msgstr "A propos de %s"
+
+#: src/Block/Block.php:34
+msgid "Site name"
+msgstr "Nom du Site"
+
+#: src/Block/Block.php:35
+msgid "Slogan"
+msgstr "Slogan"
+
+#: template/block/user-bar.phtml:30 template/block/user-bar.phtml:32
+msgid "Login"
+msgstr "Connexion"
+
+#: template/block/user-bar.phtml:39 template/block/user-bar.phtml:41
+msgid "Register"
+msgstr "S'inscrire"
+
+#: template/block/user-bar.phtml:68 template/block/user-bar.phtml:147
+#: template/block/user-bar.phtml:150 template/block/user-bar.phtml:280
+#: template/block/user-bar.phtml:359 template/block/user-bar.phtml:362
+#: template/block/user-bar.phtml:450 template/block/user-bar.phtml:452
+msgid "Favourite"
+msgstr "Favoris"
+
+#: template/block/user-bar.phtml:71 template/block/user-bar.phtml:283
+msgid "Dashboard"
+msgstr "Tableau de Bord"
+
+#: template/block/user-bar.phtml:77 template/block/user-bar.phtml:88
+#: template/block/user-bar.phtml:166 template/block/user-bar.phtml:180
+#: template/block/user-bar.phtml:289 template/block/user-bar.phtml:300
+#: template/block/user-bar.phtml:384 template/block/user-bar.phtml:396
+msgid "message(s)"
+msgstr "message(s)"
+
+#: template/block/user-bar.phtml:79 template/block/user-bar.phtml:90
+#: template/block/user-bar.phtml:169 template/block/user-bar.phtml:183
+#: template/block/user-bar.phtml:291 template/block/user-bar.phtml:302
+#: template/block/user-bar.phtml:386 template/block/user-bar.phtml:398
+msgid "Message"
+msgstr "Message"
+
+#: template/block/user-bar.phtml:99 template/block/user-bar.phtml:194
+#: template/block/user-bar.phtml:311 template/block/user-bar.phtml:408
+msgid "notification(s)"
+msgstr "notification(s)"
+
+#: template/block/user-bar.phtml:101 template/block/user-bar.phtml:197
+#: template/block/user-bar.phtml:313 template/block/user-bar.phtml:410
+msgid "Notification"
+msgstr "Notification"
+
+#: template/block/user-bar.phtml:110 template/block/user-bar.phtml:112
+#: template/block/user-bar.phtml:208 template/block/user-bar.phtml:211
+#: template/block/user-bar.phtml:322 template/block/user-bar.phtml:324
+#: template/block/user-bar.phtml:420 template/block/user-bar.phtml:422
+msgid "Support"
+msgstr "Support"
+
+#: template/block/user-bar.phtml:129 template/block/user-bar.phtml:131
+#: template/block/user-bar.phtml:232 template/block/user-bar.phtml:235
+#: template/block/user-bar.phtml:341 template/block/user-bar.phtml:343
+#: template/block/user-bar.phtml:431 template/block/user-bar.phtml:433
+msgid "Follow up orders"
+msgstr "Commandes"
+
+#: template/block/user-bar.phtml:137 template/block/user-bar.phtml:139
+#: template/block/user-bar.phtml:242 template/block/user-bar.phtml:245
+#: template/block/user-bar.phtml:349 template/block/user-bar.phtml:351
+#: template/block/user-bar.phtml:439 template/block/user-bar.phtml:441
+msgid "Credit"
+msgstr "Crédit"
+
+#: template/block/user-bar.phtml:154 template/block/user-bar.phtml:156
+#: template/block/user-bar.phtml:272 template/block/user-bar.phtml:275
+#: template/block/user-bar.phtml:457 template/block/user-bar.phtml:459
+#: template/block/user.phtml:34 template/block/user.phtml:36
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: template/block/user-bar.phtml:222 template/block/user-bar.phtml:225
+msgid "My offer"
+msgstr "Mon offre"
+
+#: template/block/user-bar.phtml:257 template/block/user-bar.phtml:374
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: template/block/user-bar.phtml:467
+msgid "Add my activity"
+msgstr "Ajouter mon activité"
+
+#: template/block/user.phtml:22 template/block/user.phtml:24
+msgid "Profile"
+msgstr "Profil"
+
+#: template/block/user.phtml:28 template/block/user.phtml:30
+msgid "Settings"
+msgstr "Paramètres"
+
+#~ msgid "Manage account"
+#~ msgstr "Gérer compte"
+
+#~ msgid "Avatar"
+#~ msgstr "Avatar"
+
+#~ msgid "Please complete your profile information, to can use all website features"
+#~ msgstr "Merci de finaliser la saisie de ton profil, afin de pouvoir utiliser toutes les fonctionnalités du site"
+
+#~ msgid "update all"
+#~ msgstr "tout mettre à jour"
+
+#~ msgid "%s%s Complete"
+#~ msgstr "%s%s Finalisation"
+
+#~ msgid "update"
+#~ msgstr "mettre à jour"

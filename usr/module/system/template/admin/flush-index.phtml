@@ -1,72 +1,76 @@
 <?php
-    $this->css($this->assetModule('admin/admin.css'));
-    $this->jQuery();
-    $this->js($this->assetModule('script/system-msg.js', 'system'));
+$this->css($this->assetModule('admin/admin.css'));
+$this->jQuery();
+$this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
 <h2 class="page-header"><?php echo _escape($title); ?></h2>
-<table class="table table-hover table-condensed" id="cache-list">
+<table class="table table-hover table-sm" id="cache-list">
     <thead>
-        <tr>
-            <th style="width: 250px;"><?php echo _a('Title'); ?></th>
-            <th><?php echo _a('Action'); ?></th>
+    <tr>
+        <th style="width: 250px;"><?php echo _a('Title'); ?></th>
+        <th><?php echo _a('Action'); ?></th>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td>
-                <span class="btn btn-sm btn-primary" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'all')); ?>"><?php echo _a('Flush all'); ?></span>
-            </td>
-        </tr>
-        <?php foreach ($list as $name => $label) { ?>
+    <tr>
+        <td></td>
+        <td>
+            <span class="btn btn-sm btn-primary"
+                  data-link="<?php echo $this->url('', ['action' => 'flush', 'type' => 'all']); ?>"><?php echo _a('Flush all'); ?></span>
+        </td>
+    </tr>
+    <?php foreach ($list as $name => $label) { ?>
         <tr>
             <td><?php echo _escape($label); ?></td>
             <td>
-                <span class="btn btn-default btn-sm" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => $name)); ?>"><?php echo _a('Flush'); ?></span>
+                <span class="btn btn-secondary btn-sm"
+                      data-link="<?php echo $this->url('', ['action' => 'flush', 'type' => $name]); ?>"><?php echo _a('Flush'); ?></span>
             </td>
         </tr>
-        <?php } ?>
-        <?php if (!empty($page)) { ?>
+    <?php } ?>
+    <?php if (!empty($page)) { ?>
         <?php foreach ($page['modules'] as $name) { ?>
-        <tr>
-            <td><?php echo $name; ?></td>
-            <td>
-                <span class="btn btn-default btn-sm" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'page', 'item' => $name)); ?>"><?php echo _a('Flush'); ?></span>
-            </td>
-        </tr>
+            <tr>
+                <td><?php echo $name; ?></td>
+                <td>
+                    <span class="btn btn-secondary btn-sm"
+                          data-link="<?php echo $this->url('', ['action' => 'flush', 'type' => 'page', 'item' => $name]); ?>"><?php echo _a('Flush'); ?></span>
+                </td>
+            </tr>
         <?php } ?>
-        <?php } ?>
-        <tr>
-            <td><?php echo _a('Registry'); ?></td>
-            <td>
-                <span class="btn btn-default btn-sm" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry')); ?>"><?php echo _a('Flush'); ?></span>
-            </td>
-        </tr>
-        <?php foreach ($registry as $name) { ?>
+    <?php } ?>
+    <tr>
+        <td><?php echo _a('Registry'); ?></td>
+        <td>
+            <span class="btn btn-secondary btn-sm"
+                  data-link="<?php echo $this->url('', ['action' => 'flush', 'type' => 'registry']); ?>"><?php echo _a('Flush'); ?></span>
+        </td>
+    </tr>
+    <?php foreach ($registry as $name) { ?>
         <tr>
             <td>
                 <span class="gutter-large"><?php echo $name; ?></span>
             </td>
             <td>
-                <span class="btn btn-default btn-sm" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry', 'item' => $name)); ?>"><?php echo _a('Flush'); ?></span>
+                <span class="btn btn-secondary btn-sm"
+                      data-link="<?php echo $this->url('', ['action' => 'flush', 'type' => 'registry', 'item' => $name]); ?>"><?php echo _a('Flush'); ?></span>
             </td>
         </tr>
-        <?php } ?>
+    <?php } ?>
     </tbody>
 </table>
 
 
-
 <script>
-(function($) {
-    $("#cache-list").on("click", ".btn", function() {
-       systemMessage.wait("<?php echo _a('Cache flush in process'); ?>");
-       $.getJSON($(this).attr("data-link")).done(function(result) {
-          if (result.status == 1) {
-             systemMessage.succ(result.message);
-          } else {
-             systemMessage.fail(result.message);
-          }
-       });
-    });
-})(jQuery)
+    (function ($) {
+        $("#cache-list").on("click", ".btn", function () {
+            systemMessage.wait("<?php echo _a('Cache flush in process'); ?>");
+            $.getJSON($(this).attr("data-link")).done(function (result) {
+                if (result.status == 1) {
+                    systemMessage.succ(result.message);
+                } else {
+                    systemMessage.fail(result.message);
+                }
+            });
+        });
+    })(jQuery)
 </script>

@@ -1,51 +1,51 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link         http://code.pialog.org for the Pi Engine source repository
- * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt BSD 3-Clause License
+ * @link         http://code.piengine.org for the Pi Engine source repository
+ * @copyright    Copyright (c) Pi Engine http://piengine.org
+ * @license      http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article\Form;
 
+use Module\Article\Controller\Admin\SetupController as Config;
 use Pi;
 use Pi\Form\Form as BaseForm;
-use Module\Article\Controller\Admin\SetupController as Config;
 
 /**
  * Draft edit form class
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class DraftEditForm extends BaseForm
 {
     /**
      * The mode of displaying for elements
-     * @var string 
+     * @var string
      */
     protected $mode = Config::FORM_MODE_EXTENDED;
-    
+
     /**
      * Elements to display
-     * @var array 
+     * @var array
      */
-    protected $items = array();
-    
+    protected $items = [];
+
     /**
      * Initialize object
-     * 
-     * @param string  $name     Form name
-     * @param array   $options  Optional parameters
+     *
+     * @param string $name Form name
+     * @param array $options Optional parameters
      */
-    public function __construct($name, $options = array())
+    public function __construct($name, $options = [])
     {
         if (isset($options['mode'])) {
             $this->mode = $options['mode'];
         }
         if (Config::FORM_MODE_CUSTOM == $this->mode) {
-            $this->items = isset($options['elements']) 
-                ? $options['elements'] : array();
+            $this->items = isset($options['elements'])
+                ? $options['elements'] : [];
         } elseif (!empty($options['elements'])) {
             $this->items = $options['elements'];
         } else {
@@ -53,16 +53,16 @@ class DraftEditForm extends BaseForm
         }
         parent::__construct($name);
     }
-    
+
     /**
      * Get defined form element
      * !!! The value of each field must be the name of each form
-     * 
-     * @return array 
+     *
+     * @return array
      */
     public static function getExistsFormElements()
     {
-        return array(
+        return [
             'subject'         => __('Subject'),
             'subtitle'        => __('Subtitle'),
             'summary'         => __('Summary'),
@@ -77,12 +77,12 @@ class DraftEditForm extends BaseForm
             'seo_title'       => __('SEO Title'),
             'seo_keywords'    => __('SEO Keywords'),
             'seo_description' => __('SEO Description'),
-        );
+        ];
     }
-    
+
     public static function getNeededElements()
     {
-        return array('subject', 'content', 'category');
+        return ['subject', 'content', 'category'];
     }
 
     /**
@@ -94,8 +94,9 @@ class DraftEditForm extends BaseForm
      */
     public static function getDefaultElements(
         $mode = Config::FORM_MODE_EXTENDED
-    ) {
-        $normal = array(
+    )
+    {
+        $normal = [
             'subject',
             'subtitle',
             'summary',
@@ -105,27 +106,27 @@ class DraftEditForm extends BaseForm
             'source',
             'category',
             'tag',
-        );
-        
-        $extended = array_merge($normal, array(
+        ];
+
+        $extended = array_merge($normal, [
             'related',
             'slug',
             'seo_title',
             'seo_keywords',
             'seo_description',
-        ));
-        
+        ]);
+
         return (Config::FORM_MODE_NORMAL == $mode) ? $normal : $extended;
     }
-    
+
     /**
-     * Initialize form element 
+     * Initialize form element
      */
     public function init()
     {
         $module     = Pi::service('module')->current();
         $formParams = $this->getFormParameters();
-        
+
         // Initializing form defined by user
         foreach (array_keys($formParams) as $name) {
             if (in_array($name, $this->items)) {
@@ -150,31 +151,31 @@ class DraftEditForm extends BaseForm
         $this->add($formParams['time_submit']);
         $this->add($formParams['article']);
         $this->add($formParams['jump']);
-        
-        $this->add(array(
-            'name'       => 'security',
-            'type'       => 'csrf',
-        ));
 
-        $this->add(array(
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
+
+        $this->add([
             'name'       => 'do_submit',
-            'attributes' => array(               
-                'value'     => __('Save draft'),
-            ),
+            'attributes' => [
+                'value' => __('Save draft'),
+            ],
             'type'       => 'submit',
-        ));
+        ]);
     }
-    
+
     /**
      * Get form parameters
-     * 
-     * @return array 
+     *
+     * @return array
      */
     protected function getFormParameters()
     {
         $module = Pi::service('module')->current();
         $config = Pi::config('', $module);
-        
+
         switch ($config['markup']) {
             case 'html':
                 $editor = 'html';
@@ -193,242 +194,242 @@ class DraftEditForm extends BaseForm
                 $set    = '';
         }
 
-        $parameters = array(
-            'subject'    => array(
+        $parameters = [
+            'subject' => [
                 'name'       => 'subject',
-                'options'    => array(
-                    'label'     => __('Subject'),
-                ),
-                'attributes' => array(
+                'options'    => [
+                    'label' => __('Subject'),
+                ],
+                'attributes' => [
                     'id'        => 'subject',
                     'type'      => 'text',
                     'data-size' => $config['max_subject_length'],
-                ),
-            ),
-            
-            'subtitle'   => array(
+                ],
+            ],
+
+            'subtitle' => [
                 'name'       => 'subtitle',
-                'options'    => array(
-                    'label'     => __('Subtitle'),
-                ),
-                'attributes' => array(
+                'options'    => [
+                    'label' => __('Subtitle'),
+                ],
+                'attributes' => [
                     'id'        => 'subtitle',
                     'type'      => 'text',
                     'data-size' => $config['max_subtitle_length'],
-                ),
-            ),
-            
-            'image'      => array(
+                ],
+            ],
+
+            'image' => [
                 'name'       => 'image',
-                'options'    => array(
-                    'label'     => __('Image'),
-                ),
-                'attributes' => array(
-                    'id'        => 'image',
-                    'type'      => 'hidden',
-                ),
-            ),
-            
-            'uid'        => array(
+                'options'    => [
+                    'label' => __('Image'),
+                ],
+                'attributes' => [
+                    'id'   => 'image',
+                    'type' => 'hidden',
+                ],
+            ],
+
+            'uid' => [
                 'name'       => 'uid',
-                'options'    => array(
-                    'label'     => __('Submitter'),
-                ),
-                'attributes' => array(
-                    'id'        => 'user',
-                    'type'      => 'hidden',
-                ),
-            ),
+                'options'    => [
+                    'label' => __('Submitter'),
+                ],
+                'attributes' => [
+                    'id'   => 'user',
+                    'type' => 'hidden',
+                ],
+            ],
 
-            'author'     => array(
+            'author' => [
                 'name'       => 'author',
-                'options'    => array(
-                    'label'     => __('Author'),
-                ),
-                'attributes' => array(
-                    'id'        => 'author',
-                    'type'      => 'hidden',
-                ),
-            ),
+                'options'    => [
+                    'label' => __('Author'),
+                ],
+                'attributes' => [
+                    'id'   => 'author',
+                    'type' => 'hidden',
+                ],
+            ],
 
-            'source'     => array(
+            'source' => [
                 'name'       => 'source',
-                'options'    => array(
-                    'label'     => __('Source'),
-                ),
-                'attributes' => array(
-                    'id'        => 'source',
-                    'type'      => 'text',
-                ),
-            ),
+                'options'    => [
+                    'label' => __('Source'),
+                ],
+                'attributes' => [
+                    'id'   => 'source',
+                    'type' => 'text',
+                ],
+            ],
 
-            'category'   => array(
-                'name'       => 'category',
-                'options'    => array(
-                    'label'     => __('Category'),
-                ),
-                'type'       => 'Module\Article\Form\Element\Category',
-            ),
-            
-            'related'    => array(
+            'category' => [
+                'name'    => 'category',
+                'options' => [
+                    'label' => __('Category'),
+                ],
+                'type'    => 'Module\Article\Form\Element\Category',
+            ],
+
+            'related' => [
                 'name'       => 'related',
-                'options'    => array(
-                    'label'     => __('Related article'),
-                ),
-                'attributes' => array(
-                    'id'        => 'related',
-                    'type'      => 'hidden',
-                ),
-            ),
+                'options'    => [
+                    'label' => __('Related article'),
+                ],
+                'attributes' => [
+                    'id'   => 'related',
+                    'type' => 'hidden',
+                ],
+            ],
 
-            'slug'       => array(
+            'slug' => [
                 'name'       => 'slug',
-                'options'    => array(
-                    'label'     => __('Slug'),
-                ),
-                'attributes' => array(
+                'options'    => [
+                    'label' => __('Slug'),
+                ],
+                'attributes' => [
                     'id'        => 'slug',
                     'type'      => 'text',
                     'data-size' => $config['max_subject_length'],
-                ),
-            ),
+                ],
+            ],
 
-            'seo_title'  => array(
+            'seo_title' => [
                 'name'       => 'seo_title',
-                'options'    => array(
-                    'label'     => __('SEO title'),
-                ),
-                'attributes' => array(
-                    'id'        => 'seo_title',
-                    'type'      => 'text',
-                ),
-            ),
+                'options'    => [
+                    'label' => __('SEO title'),
+                ],
+                'attributes' => [
+                    'id'   => 'seo_title',
+                    'type' => 'text',
+                ],
+            ],
 
-            'seo_keywords' => array(
+            'seo_keywords' => [
                 'name'       => 'seo_keywords',
-                'options'    => array(
-                    'label'     => __('SEO keywords'),
-                ),
-                'attributes' => array(
-                    'id'        => 'seo_keywords',
-                    'type'      => 'text',
-                ),
-            ),
+                'options'    => [
+                    'label' => __('SEO keywords'),
+                ],
+                'attributes' => [
+                    'id'   => 'seo_keywords',
+                    'type' => 'text',
+                ],
+            ],
 
-            'seo_description' => array(
+            'seo_description' => [
                 'name'       => 'seo_description',
-                'options'    => array(
-                    'label'     => __('SEO description'),
-                ),
-                'attributes' => array(
-                    'id'        => 'seo_description',
-                    'type'      => 'textarea',
-                ),
-            ),
+                'options'    => [
+                    'label' => __('SEO description'),
+                ],
+                'attributes' => [
+                    'id'   => 'seo_description',
+                    'type' => 'textarea',
+                ],
+            ],
 
-            'time_publish' => array(
+            'time_publish' => [
                 'name'       => 'time_publish',
-                'options'    => array(
-                    'label'      => __('Publish time'),
-                ),
-                'attributes' => array(
-                    'type'       => 'hidden',
-                ),
-            ),
+                'options'    => [
+                    'label' => __('Publish time'),
+                ],
+                'attributes' => [
+                    'type' => 'hidden',
+                ],
+            ],
 
-            'time_update' => array(
+            'time_update' => [
                 'name'       => 'time_update',
-                'options'    => array(
-                    'label'     => __('Update time'),
-                ),
-                'attributes' => array(
+                'options'    => [
+                    'label' => __('Update time'),
+                ],
+                'attributes' => [
                     'type' => 'hidden',
-                ),
-            ),
+                ],
+            ],
 
-            'time_submit' => array(
+            'time_submit' => [
                 'name'       => 'time_submit',
-                'options'    => array(
-                    'label'     => __('Submit time'),
-                ),
-                'attributes' => array(
+                'options'    => [
+                    'label' => __('Submit time'),
+                ],
+                'attributes' => [
                     'type' => 'hidden',
-                ),
-            ),
-            
-            'content'    => array(
+                ],
+            ],
+
+            'content' => [
                 'name'       => 'content',
-                'options'    => array(
-                    'label'     => __('Content'),
-                    'editor'    => $editor,
-                    'set'       => $set,
-                ),
-                'attributes' => array(
-                    'id'        => 'content',
-                    'type'      => 'editor',
-                ),
-            ),
-        
-            'id'         => array(
+                'options'    => [
+                    'label'  => __('Content'),
+                    'editor' => $editor,
+                    'set'    => $set,
+                ],
+                'attributes' => [
+                    'id'   => 'content',
+                    'type' => 'editor',
+                ],
+            ],
+
+            'id' => [
                 'name'       => 'id',
-                'attributes' => array(
-                    'id'        => 'id',
-                    'type'      => 'hidden',
-                ),
-            ),
+                'attributes' => [
+                    'id'   => 'id',
+                    'type' => 'hidden',
+                ],
+            ],
 
-            'fake_id'    => array(
+            'fake_id' => [
                 'name'       => 'fake_id',
-                'attributes' => array(
-                    'id'        => 'fake_id',
-                    'type'      => 'hidden',
-                ),
-            ),
+                'attributes' => [
+                    'id'   => 'fake_id',
+                    'type' => 'hidden',
+                ],
+            ],
 
-            'article'    => array(
+            'article' => [
                 'name'       => 'article',
-                'attributes' => array(
-                    'id'        => 'article',
-                    'type'      => 'hidden',
-                ),
-            ),
+                'attributes' => [
+                    'id'   => 'article',
+                    'type' => 'hidden',
+                ],
+            ],
 
-            'jump'       => array(
+            'jump' => [
                 'name'       => 'jump',
-                'attributes' => array(
-                    'id'        => 'jump',
-                    'type'      => 'hidden',
-                    'value'     => '',
-                ),
-            ),
-        );
-        
+                'attributes' => [
+                    'id'    => 'jump',
+                    'type'  => 'hidden',
+                    'value' => '',
+                ],
+            ],
+        ];
+
         if (!empty($config['enable_summary'])) {
-            $parameters['summary'] = array(
+            $parameters['summary'] = [
                 'name'       => 'summary',
-                'options'    => array(
-                    'label'     => __('Summary'),
-                ),
-                'attributes' => array(
+                'options'    => [
+                    'label' => __('Summary'),
+                ],
+                'attributes' => [
                     'type'      => 'textarea',
                     'data-size' => $config['max_summary_length'],
-                ),
-            );
+                ],
+            ];
         }
-        
+
         if ($config['enable_tag']) {
-            $parameters['tag'] = array(
+            $parameters['tag'] = [
                 'name'       => 'tag',
                 'type'       => 'tag',
-                'options'    => array(
-                    'label'     => __('Tags'),
-                ),
-                'attributes' => array(
-                    'id'        => 'tag',
-                ),
-            );
+                'options'    => [
+                    'label' => __('Tags'),
+                ],
+                'attributes' => [
+                    'id' => 'tag',
+                ],
+            ];
         }
-        
+
         return $parameters;
     }
 }

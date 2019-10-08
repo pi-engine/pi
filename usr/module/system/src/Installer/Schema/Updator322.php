@@ -1,13 +1,13 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\System\Installer\Schema;
+namespace Module\System\Installer\Schema;
 
 use Pi;
 use Pi\Application\Installer\Schema\AbstractUpdator;
@@ -60,7 +60,8 @@ class Updator322 extends AbstractUpdator
         if (version_compare($version, '3.0.0-beta.3', '<')) {
 
             // Add table of navigation data
-            $sql =<<<'EOD'
+            $sql
+                    = <<<'EOD'
 CREATE TABLE IF NOT EXISTS `{core.navigation_node}` (
   `id`              int(10)         unsigned    NOT NULL auto_increment,
   `navigation`      varchar(64)     NOT NULL    default '',
@@ -76,10 +77,10 @@ EOD;
             }
 
             // Drop not used table
-            $tables = array('monitor', 'navigation_page');
+            $tables = ['monitor', 'navigation_page'];
             foreach ($tables as $name) {
-                $table = Pi::db()->prefix($name);
-                $sql = sprintf('DROP TABLE IF EXISTS %s', $table);
+                $table  = Pi::db()->prefix($name);
+                $sql    = sprintf('DROP TABLE IF EXISTS %s', $table);
                 $status = $this->queryTable($sql);
                 if (false === $status) {
                     return $status;
@@ -103,10 +104,10 @@ EOD;
 
         if (version_compare($version, '3.0.1', '<')) {
             // Add table field `section` to table acl_role
-            $table = Pi::db()->prefix('acl_role');
-            $sql = sprintf(
+            $table  = Pi::db()->prefix('acl_role');
+            $sql    = sprintf(
                 'ALTER TABLE %s ADD `section` varchar(64) NOT NULL'
-                    . ' default \'front\' AFTER `module`',
+                . ' default \'front\' AFTER `module`',
                 $table
             );
             $status = $this->queryTable($sql);
@@ -115,18 +116,18 @@ EOD;
             }
 
             // Update table acl_resource
-            $table = Pi::db()->prefix('acl_resource');
-            $sql = sprintf('ALTER TABLE %s DROP `item`', $table);
+            $table  = Pi::db()->prefix('acl_resource');
+            $sql    = sprintf('ALTER TABLE %s DROP `item`', $table);
             $status = $this->queryTable($sql);
             if (false === $status) {
                 return $status;
             }
-            $sql = sprintf('ALTER TABLE %s DROP KEY `pair`', $table);
+            $sql    = sprintf('ALTER TABLE %s DROP KEY `pair`', $table);
             $status = $this->queryTable($sql);
             if (false === $status) {
                 return $status;
             }
-            $sql = sprintf(
+            $sql    = sprintf(
                 'ALTER TABLE %s '
                 . 'ADD KEY `pair` UNIQUE KEY (`section`, `module`, `name`)',
                 $table
@@ -137,14 +138,15 @@ EOD;
             }
 
             // Update table for audit
-            $table = Pi::db()->prefix('audit');
-            $sql = sprintf('DROP TABLE IF EXISTS %s', $table);
+            $table  = Pi::db()->prefix('audit');
+            $sql    = sprintf('DROP TABLE IF EXISTS %s', $table);
             $status = $this->queryTable($sql);
             if (false === $status) {
                 return $status;
             }
 
-            $sql =<<<'EOD'
+            $sql
+                    = <<<'EOD'
 CREATE TABLE IF NOT EXISTS `{core.audit}` (
   `id`              int(10)         unsigned NOT NULL auto_increment,
   `user`            int(10)         unsigned NOT NULL    default '0',
@@ -174,15 +176,15 @@ EOD;
                 return $status;
             }
 
-            $rowset = Pi::model('user_role')->select(
-                array('role <> ?' => 'member')
+            $rowset     = Pi::model('user_role')->select(
+                ['role <> ?' => 'member']
             );
             $modelStaff = Pi::model('user_staff');
             foreach ($rowset as $row) {
-                $modelStaff->insert(array(
-                    'user'  => $row->user,
-                    'role'  => $row->role,
-                ));
+                $modelStaff->insert([
+                    'user' => $row->user,
+                    'role' => $row->role,
+                ]);
                 $row->delete();
             }
         }
@@ -202,16 +204,16 @@ EOD;
         $status = true;
 
         if (version_compare($version, '3.1.0', '<')) {
-            $table = Pi::model('config')->getTable();
-            $sql = sprintf('ALTER TABLE %s MODIFY `edit` text', $table);
+            $table  = Pi::model('config')->getTable();
+            $sql    = sprintf('ALTER TABLE %s MODIFY `edit` text', $table);
             $status = $this->queryTable($sql);
             if (false === $status) {
                 return $status;
             }
 
             $table = Pi::model('user_meta')->getTable();
-            foreach (array('edit', 'admin', 'search', 'options') as $field) {
-                $sql = sprintf('ALTER TABLE %s MODIFY `%s` text', $table, $field);
+            foreach (['edit', 'admin', 'search', 'options'] as $field) {
+                $sql    = sprintf('ALTER TABLE %s MODIFY `%s` text', $table, $field);
                 $status = $this->queryTable($sql);
                 if (false === $status) {
                     return $status;
@@ -234,7 +236,8 @@ EOD;
         $status = true;
         if (version_compare($version, '3.1.1', '<')) {
             // Add table of navigation data
-            $sql =<<<'EOD'
+            $sql
+                    = <<<'EOD'
 CREATE TABLE IF NOT EXISTS `{core.module_dependency}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `dependent`       varchar(64)     NOT NULL,

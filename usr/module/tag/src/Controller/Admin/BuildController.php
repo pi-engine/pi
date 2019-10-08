@@ -1,21 +1,10 @@
 <?php
 /**
- * Tag index controller
+ * Pi Engine (http://piengine.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Chuang Liu <liuchuang@eefocus.com>
- * @since           3.0
- * @package         Module\Tag
- * @subpackage      Controller
- * @version         $Id$
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Tag\Controller\Admin;
@@ -28,11 +17,11 @@ class BuildController extends ActionController
 {
     public function flushAction()
     {
-        $this->getModel('tag')->delete(array());
-        $this->getModel('link')->delete(array());
-        $this->getModel('stats')->delete(array());
+        $this->getModel('tag')->delete([]);
+        $this->getModel('link')->delete([]);
+        $this->getModel('stats')->delete([]);
 
-        $this->jump(array('controller' => 'index', 'action' => 'index'));
+        $this->jump(['controller' => 'index', 'action' => 'index']);
     }
 
     public function importAction()
@@ -41,7 +30,7 @@ class BuildController extends ActionController
 
         $generateTags = function () {
             $count = rand(1, 10);
-            $tags = array();
+            $tags  = [];
             for ($i = 0; $i < $count; $i++) {
                 $tags[] = 'tag-' . rand(1, 50);
             }
@@ -54,12 +43,12 @@ class BuildController extends ActionController
         };
 
         $module = 'demo';
-        $type = '';
+        $type   = '';
         for ($i = 1; $i <= 1000; $i++) {
             $item = $i;
             Pi::service('tag')->add($module, $item, $type, $generateTags());
         }
 
-        $this->jump(array('controller' => 'index', 'action' => 'index'));
+        $this->jump(['controller' => 'index', 'action' => 'index']);
     }
 }

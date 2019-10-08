@@ -1,28 +1,30 @@
 <?php
-    $this->css(array(
-        $this->assetModule('script/admin.css'),
-    ));
-    $this->jQuery('extension/fileupload-min.js');
-    $this->Backbone();
+$this->css([
+    $this->assetModule('script/admin.css'),
+]);
+$this->jQuery('extension/fileupload-min.js');
+$this->Backbone();
 ?>
 
-<?php include 'message-box.phtml'; ?>
+<?php include $this->template('./message-box.phtml'); ?>
 
 <div id="pi-js-upload">
     <?php include $this->templateComponent('form'); ?>
-    
+
     <script id="temp-upload" type="text/template">
         <div>
             <div id="topic-image" class="upload-image-bg">
                 <?php $src = $form->get('image')->getValue(); ?>
                 <?php if ($src) { ?>
-                    <div class="black-bg"><button type="button" class="close js-topic-close">&times;</button></div>    
+                    <div class="black-bg">
+                        <button type="button" class="close js-topic-close">&times;</button>
+                    </div>
                     <img src="<?php echo Pi::url($src); ?>">
-                    <?php } else { ?>    
-                    <span class="fa fa-book"></span>
+                <?php } else { ?>
+                    <span class="fas fa-book"></span>
                 <?php } ?>
             </div>
-            <span class="btn btn-default upload fileinput-button" data-toggle="modal" href="#upload-box">
+            <span class="btn btn-secondary upload fileinput-button" data-toggle="modal" href="#upload-box">
                 <?php echo _a('Upload'); ?>
             </span>
             <div class="topic-image-desc muted">
@@ -31,16 +33,16 @@
             </div>
         </div>
     </script>
-    
-    <?php include 'media-image-box.phtml'; ?>
+
+    <?php include $this->template('./media-image-box.phtml'); ?>
 </div>
 
 <script id="template-template" type="text/template">
     <div id="topic-template">
-        <?php 
-            $template = $form->get('template')->getValue();
+        <?php
+        $template = $form->get('template')->getValue();
         ?>
-        <div class="topic-template-title"><?php echo ucfirst($template)  ?></div>
+        <div class="topic-template-title"><?php echo ucfirst($template) ?></div>
         <div class="topic-template-desc"><?php echo _a('This is screenshot'); ?></div>
         <a class="topic-template-change" href="javascript:void(0)" value="0" style="color: #0082bf">
             <?php echo _a('Change'); ?>
@@ -58,465 +60,464 @@
         <a class="template-apply" href="javascript:void(0)" style="color: #fff"><?php echo _a('Apply'); ?></a>
         <div style="height: 20px; margin-top: 5px">
             <span class="template-title"><%= title %></span>
-            <a class="template-fullsize pull-right" target="_blank" href="<%= fullsize %>"><?php echo _a('Fullsize'); ?></a>
+            <a class="template-fullsize float-right" target="_blank"
+               href="<%= fullsize %>"><?php echo _a('Fullsize'); ?></a>
         </div>
     </div>
 </script>
 
 <script id="template-chevron-left" type="text/template">
     <div class="view-previous" style="text-align: right" data-page="<%= p %>">
-        <a href="javascript:void(0)"><span class="fa fa-chevron-left"></span></a>
+        <a href="javascript:void(0)"><span class="fas fa-chevron-left"></span></a>
     </div>
 </script>
 
 <script id="template-chevron-right" type="text/template">
     <div class="view-next" data-page="<%= p %>">
-        <a href="javascript:void(0)"><span class="fa fa-chevron-right"></span></a>
+        <a href="javascript:void(0)"><span class="fas fa-chevron-right"></span></a>
     </div>
 </script>
 
 <script>
-(function($) {
-var page = {
-    id      : function() {
-        return "<?php echo $form->get('id')->getValue() 
-            ? 'id/' . $form->get('id')->getValue() 
-            : 'fake_id/' . $form->get('fake_id')->getValue(); ?>";
-    },
-    form    : $("form.form-horizontal"),
-    $       : function(selector) {
-       return this.form.find(selector);
-    },
-    mediaFakeId : '<?php echo uniqid(); ?>'
-};
+    (function ($) {
+        var page = {
+            id: function () {
+                return "<?php echo $form->get('id')->getValue()
+                    ? 'id/' . $form->get('id')->getValue()
+                    : 'fake_id/' . $form->get('fake_id')->getValue(); ?>";
+            },
+            form: $("form"),
+            $: function (selector) {
+                return this.form.find(selector);
+            },
+            mediaFakeId: '<?php echo uniqid(); ?>'
+        };
 
-var UploadView = Backbone.View.extend({
-    template        : _.template('<div class="black-bg"><button type="button" class="close js-topic-close">&times;</button></span></div>'
-                    + '<img src="<%=preview_url %>">'),
-    events          : {
-        "click .js-topic-close"         :"remove",
-        "click .js-media-close"         : "removeUpload",
-        "click #media-search"           : "searchMedia",
-        "click .media-insert a"         : "insertMedia",
-        "click .media-remove.close"     : "removeMedia",
-        "click #media-close"            : "cancel",
-        "click #media-cancel"           : "cancel",
-        "click #media-process"          : "processImage",
-        "click .prev-page"              : "searchMedia",
-        "click .next-page"              : "searchMedia",
-        
-        // Change template
-        "click .topic-template-change"  : "displayTemplates",
-        "click .view-previous a"        : "fetchPrevious",
-        "click .view-next a"            : "fetchNext",
-        "click .template-apply"         : "apply"
-    },
-    initialize      : function() {
-        page.$("[name=placeholder]")
-            .parents(".form-group:first")
-            .find(".js-form-element")
-            .html($("#temp-upload").html());
-        page.$("[name=template-placeholder]")
-            .parents(".form-group:first")
-            .find(".js-form-element")
-            .html($("#template-template").html());
-        this.$el   = $("#pi-js-upload");
-        this.$("#media-button").html($("#media-upload-button").html());
-        this.input = $('input[name="upload"]');
-        this.fileupload();
-        
-        // Init searched media
-        var url = '<?php echo $this->url(
-            'admin', 
-            array(
-                'controller' => 'media',
-                'action'     => 'search',
-                'type'       => 'image',
-            )
-        ); ?>';
-        this.getSearchedMedia(url);
-    },
-    // Fetching image by upload
-    fileupload      : function() {
-        var self = this;
-        var url  = '<?php echo $this->url('', array(
-            'controller' => 'media',
-            'action'     => 'upload',
-            'type'       => 'image',
-        )); ?>/fake_id/' + page.mediaFakeId;
-        this.input.fileupload({
-            formData    : function() {
-                return [];
+        var UploadView = Backbone.View.extend({
+            template: _.template('<div class="black-bg"><button type="button" class="close js-topic-close">&times;</button></span></div>'
+                + '<img src="<%=preview_url %>">'),
+            events: {
+                "click .js-topic-close": "remove",
+                "click .js-media-close": "removeUpload",
+                "click #media-search": "searchMedia",
+                "click .media-insert a": "insertMedia",
+                "click .media-remove.close": "removeMedia",
+                "click #media-close": "cancel",
+                "click #media-cancel": "cancel",
+                "click #media-process": "processImage",
+                "click .prev-page": "searchMedia",
+                "click .next-page": "searchMedia",
+
+                // Change template
+                "click .topic-template-change": "displayTemplates",
+                "click .view-previous a": "fetchPrevious",
+                "click .view-next a": "fetchNext",
+                "click .template-apply": "apply"
             },
-            url         : url,
-            start       : function(e) {
-                self.$(".fileinput-button").find("span").html("<?php echo __("In processing ..."); ?>");
-                self.$(".fileinput-button").attr("disabled", "disabled");
+            initialize: function () {
+                page.$("[name=placeholder]")
+                    .parents(".form-group:first")
+                    .html($("#temp-upload").html());
+                page.$("[name=template-placeholder]")
+                    .parents(".form-group:first")
+                    .html($("#template-template").html());
+                this.$el = $("#pi-js-upload");
+                this.$("#media-button").html($("#media-upload-button").html());
+                this.input = $('input[name="upload"]');
+                this.fileupload();
+
+                // Init searched media
+                var url = '<?php echo $this->url(
+                    'admin',
+                    [
+                        'controller' => 'media',
+                        'action'     => 'search',
+                        'type'       => 'image',
+                    ]
+                ); ?>';
+                this.getSearchedMedia(url);
             },
-            done        : function(e, data) {
-                var d = $.parseJSON(data.result);
-                if (d.status == 1) {
-                    self.renderUpload(d.data);
-                    // Clear hidden input value and select image of media
-                    self.setMediaData('fake_id/' + page.mediaFakeId, 'upload');
-                    $('#media-select-result').html('');
-                } else {
-                    alert(d.message);
-                }
-                self.$(".fileinput-button").find("span").html("<?php echo __("Upload"); ?>");
-                self.$(".fileinput-button").removeAttr("disabled");
-            }
-        }).bind('fileuploadsend', function(e, data) {
-            data.url = '<?php echo $this->url('', array(
-                'controller' => 'media',
-                'action'     => 'upload',
-                'type'       => 'image',
-            )); ?>/fake_id/' + page.mediaFakeId;
-        });  
-    },
-    removeUpload    : function(clearData) {
-        // Setting initial value of parameter
-        if (clearData != false) {
-            clearData = true;
-        }
-        
-        var self = this;
-        $.getJSON('<?php echo $this->url(
-            '',
-            array(
-                'controller' => 'media',
-                'action'     => 'remove'
-            )
-        ); ?>fake_id/'+ page.mediaFakeId).done(function() {
-            $("#media-image").html('');
-            if (clearData == true) {
-                self.clearMediaData();
-            }
-            if (!self.$('input[name="image-id"]').val()) {
-                self.disableButton(true);
-            }
-            self.$("#media-button").removeClass("hide");
-        });
-    },
-    renderUpload    : function(obj) {
-        obj.preview_url = obj.preview_url + '?' + new Date().getTime();
-        $('#media-image').html(_.template($('#media-uploaded-image').html(), obj));
-        $("#media-button").addClass("hide");
-        this.disableButton(false);
-    },
-    saveUploadToMedia : function(id) {
-        var url = '<?php echo $this->url('', array(
-            'controller' => 'media',
-            'action'     => 'save',
-            'source'     => 'topic',
-        )); ?>/' + id;
-        var self = this;
-        $.ajax({
-            cache:    false,
-            async:    false,
-            dataType: 'json',
-            type:     'get',
-            url:      url,
-            success:  function(result) {
-                if (result.status) {
-                    $("#media-image").html(page.mediaDefaultTemplate);
-                    self.renderMessage('success', result.data.message);
-                    self.setMediaData('media_id/' + result.data.id, 'media');
-                    page.mediaFakeId = result.data.newid;
-                } else {
-                    self.renderMessage('error', result.data.message);
-                }
-            },
-            error:    function() {
-                self.renderMessage(
-                    'error',
-                    '<?php echo _a('Error ocurred when request saving image!'); ?>'
-                );
-            }
-        })
-    },
-    // Processing topic image
-    saveTopic        : function() {
-        var self    = this;
-        var mediaId = $('input[name="image-id"]').val();
-        $.get('<?php echo $this->url(
-            '',
-            array(
-                'controller' => 'topic',
-                'action'     => 'save-image',
-            )
-        ); ?>' + page.id() + '/' + mediaId, function(result) {
-            result = $.parseJSON(result);
-            if (result.status) {
-                page.$("[name=image]").val(result.data.filename);
-                self.render(result.data);
-                // Remove all generated data
-                self.removeMedia();
-                $("#media-image").html('');
-                $("#media-button").removeClass("hide");
-            } else {
-                alert(result.message);
-            }
-        });
-    },
-    remove          : function() {
-        var self = this;
-        $.getJSON('<?php echo $this->url(
-            '',
-            array(
-                'controller' => 'topic',
-                'action'     => 'remove-image'
-            )
-        ); ?>' + page.id()).done(function() {
-            page.$("[name=image]").val('');
-            self.$("#topic-image").html('<span class="fa fa-book"></span>');
-        });  
-    },
-    render          : function(obj) {
-        obj.preview_url = obj.preview_url + '?' + new Date().getTime();
-        this.$("#topic-image").html(this.template(obj));
-    },
-    // Fetching image from media
-    searchMedia     : function(e) {
-        var el   = $(e.target);
-        var from = el.data('from');
-        var url  = '';
-        if ('search' == from) {
-            var title = $('input[name="media-title"]').val();
-            url = '<?php echo $this->url(
-                'admin', 
-                array(
-                    'controller' => 'media',
-                    'action'     => 'search',
-                    'type'       => 'image',
-                    'title'      => 'placeholder',
-                )
-            ); ?>'.replace(/placeholder$/, title);
-        } else {
-            url = el.attr('data-url');
-        }
-        this.getSearchedMedia(url);
-    },
-    getSearchedMedia    : function(url) {
-        if (url.length) {
-            $.get(url, function(result) {
-                var result = $.parseJSON(result);
-                if (!(result.data instanceof Array) && result.data) {
-                    var tableHeader = '<tr>'
-                                    + '<th><?php echo _a('Image'); ?></th>'
-                                    + '<th><?php echo _a('Title'); ?></th>'
-                                    + '<th><?php echo _a('Size'); ?></th>'
-                                    + '<th><?php echo _a('Select'); ?></th>'
-                                    + '</tr>';
-                    $('#media-lists').find('tbody').html(tableHeader);
-                    var lists  = result.data;
-                    for (i in lists) {
-                        $('#media-lists')
-                        .find('tbody')
-                        .append(_.template($('#media-searched-item').html(), lists[i]));
-                    }
-                    if (result.prev_url.length || result.next_url.length) {
-                        $('.media-page').removeClass('hide');
-                        $('.prev-page').removeClass('disabled');
-                        $('.next-page').removeClass('disabled');
-                        if (0 == result.prev_url.length) {
-                            $('.prev-page').addClass('disabled');
+            // Fetching image by upload
+            fileupload: function () {
+                var self = this;
+                var url = '<?php echo $this->url('', [
+                        'controller' => 'media',
+                        'action'     => 'upload',
+                        'type'       => 'image',
+                    ]); ?>/fake_id/' + page.mediaFakeId;
+                this.input.fileupload({
+                    formData: function () {
+                        return [];
+                    },
+                    url: url,
+                    start: function (e) {
+                        self.$(".fileinput-button").find("span").html("<?php echo __("In processing ..."); ?>");
+                        self.$(".fileinput-button").attr("disabled", "disabled");
+                    },
+                    done: function (e, data) {
+                        var d = $.parseJSON(data.result);
+                        if (d.status == 1) {
+                            self.renderUpload(d.data);
+                            // Clear hidden input value and select image of media
+                            self.setMediaData('fake_id/' + page.mediaFakeId, 'upload');
+                            $('#media-select-result').html('');
+                        } else {
+                            alert(d.message);
                         }
-                        if (0 == result.next_url.length) {
-                            $('.next-page').addClass('disabled');
-                        }
-                        $('.prev-page').attr('data-url', result.prev_url);
-                        $('.next-page').attr('data-url', result.next_url);
+                        self.$(".fileinput-button").find("span").html("<?php echo __("Upload"); ?>");
+                        self.$(".fileinput-button").removeAttr("disabled");
                     }
+                }).bind('fileuploadsend', function (e, data) {
+                    data.url = '<?php echo $this->url('', [
+                            'controller' => 'media',
+                            'action'     => 'upload',
+                            'type'       => 'image',
+                        ]); ?>/fake_id/' + page.mediaFakeId;
+                });
+            },
+            removeUpload: function (clearData) {
+                // Setting initial value of parameter
+                if (clearData != false) {
+                    clearData = true;
+                }
+
+                var self = this;
+                $.getJSON('<?php echo $this->url(
+                        '',
+                        [
+                            'controller' => 'media',
+                            'action'     => 'remove',
+                        ]
+                    ); ?>fake_id/' + page.mediaFakeId).done(function () {
+                    $("#media-image").html('');
+                    if (clearData == true) {
+                        self.clearMediaData();
+                    }
+                    if (!self.$('input[name="image-id"]').val()) {
+                        self.disableButton(true);
+                    }
+                    self.$("#media-button").removeClass("hide");
+                });
+            },
+            renderUpload: function (obj) {
+                obj.preview_url = obj.preview_url + '?' + new Date().getTime();
+                $('#media-image').html(_.template($('#media-uploaded-image').html(), obj));
+                $("#media-button").addClass("hide");
+                this.disableButton(false);
+            },
+            saveUploadToMedia: function (id) {
+                var url = '<?php echo $this->url('', [
+                        'controller' => 'media',
+                        'action'     => 'save',
+                        'source'     => 'topic',
+                    ]); ?>/' + id;
+                var self = this;
+                $.ajax({
+                    cache: false,
+                    async: false,
+                    dataType: 'json',
+                    type: 'get',
+                    url: url,
+                    success: function (result) {
+                        if (result.status) {
+                            $("#media-image").html(page.mediaDefaultTemplate);
+                            self.renderMessage('success', result.data.message);
+                            self.setMediaData('media_id/' + result.data.id, 'media');
+                            page.mediaFakeId = result.data.newid;
+                        } else {
+                            self.renderMessage('error', result.data.message);
+                        }
+                    },
+                    error: function () {
+                        self.renderMessage(
+                            'error',
+                            '<?php echo _a('Error ocurred when request saving image!'); ?>'
+                        );
+                    }
+                })
+            },
+            // Processing topic image
+            saveTopic: function () {
+                var self = this;
+                var mediaId = $('input[name="image-id"]').val();
+                $.get('<?php echo $this->url(
+                        '',
+                        [
+                            'controller' => 'topic',
+                            'action'     => 'save-image',
+                        ]
+                    ); ?>' + page.id() + '/' + mediaId, function (result) {
+                    result = $.parseJSON(result);
+                    if (result.status) {
+                        page.$("[name=image]").val(result.data.filename);
+                        self.render(result.data);
+                        // Remove all generated data
+                        self.removeMedia();
+                        $("#media-image").html('');
+                        $("#media-button").removeClass("hide");
+                    } else {
+                        alert(result.message);
+                    }
+                });
+            },
+            remove: function () {
+                var self = this;
+                $.getJSON('<?php echo $this->url(
+                        '',
+                        [
+                            'controller' => 'topic',
+                            'action'     => 'remove-image',
+                        ]
+                    ); ?>' + page.id()).done(function () {
+                    page.$("[name=image]").val('');
+                    self.$("#topic-image").html('<span class="fas fa-book"></span>');
+                });
+            },
+            render: function (obj) {
+                obj.preview_url = obj.preview_url + '?' + new Date().getTime();
+                this.$("#topic-image").html(this.template(obj));
+            },
+            // Fetching image from media
+            searchMedia: function (e) {
+                var el = $(e.target);
+                var from = el.data('from');
+                var url = '';
+                if ('search' == from) {
+                    var title = $('input[name="media-title"]').val();
+                    url = '<?php echo $this->url(
+                        'admin',
+                        [
+                            'controller' => 'media',
+                            'action'     => 'search',
+                            'type'       => 'image',
+                            'title'      => 'placeholder',
+                        ]
+                    ); ?>'.replace(/placeholder$/, title);
                 } else {
-                    var content = '<div class="alert alert-info">'
+                    url = el.attr('data-url');
+                }
+                this.getSearchedMedia(url);
+            },
+            getSearchedMedia: function (url) {
+                if (url.length) {
+                    $.get(url, function (result) {
+                        var result = $.parseJSON(result);
+                        if (!(result.data instanceof Array) && result.data) {
+                            var tableHeader = '<tr>'
+                                + '<th><?php echo _a('Image'); ?></th>'
+                                + '<th><?php echo _a('Title'); ?></th>'
+                                + '<th><?php echo _a('Size'); ?></th>'
+                                + '<th><?php echo _a('Select'); ?></th>'
+                                + '</tr>';
+                            $('#media-lists').find('tbody').html(tableHeader);
+                            var lists = result.data;
+                            for (i in lists) {
+                                $('#media-lists')
+                                    .find('tbody')
+                                    .append(_.template($('#media-searched-item').html(), lists[i]));
+                            }
+                            if (result.prev_url.length || result.next_url.length) {
+                                $('.media-page').removeClass('hide');
+                                $('.prev-page').removeClass('disabled');
+                                $('.next-page').removeClass('disabled');
+                                if (0 == result.prev_url.length) {
+                                    $('.prev-page').addClass('disabled');
+                                }
+                                if (0 == result.next_url.length) {
+                                    $('.next-page').addClass('disabled');
+                                }
+                                $('.prev-page').attr('data-url', result.prev_url);
+                                $('.next-page').attr('data-url', result.next_url);
+                            }
+                        } else {
+                            var content = '<div class="alert alert-info">'
                                 + '<?php echo __('No media available yet.'); ?>'
                                 + '</div>';
-                    $('#media-lists').find('tbody').html(content);
-                    $('.media-page').addClass('hide');
+                            $('#media-lists').find('tbody').html(content);
+                            $('.media-page').addClass('hide');
+                        }
+                    });
                 }
-            });
-        }
-    },
-    insertMedia : function(e) {
-        var id    = $(e.target).attr('data-id');
-        var url   = $(e.target).attr('data-url');
-        var title = $(e.target).attr('data-title');
-        var content = _.template($('#media-selected-item').html(), {
-            url     : url,
-            title   : title
-        });
-        // Clearing data from upload
-        if ('upload' == this.$('input[name="image-source"]').val()) {
-            this.removeUpload(false);
-        }
-        
-        // Setting data
-        $('#media-select-result').html(content);
-        this.setMediaData('media_id/' + id, 'media');
-        
-        this.disableButton(false);
-    },
-    removeMedia : function() {
-        $('#media-select-result').html('');
-        this.clearMediaData();
-        this.disableButton(true);
-    },
-    clearMediaData : function() {
-        $('input[name="image-id"]').val('');
-        $('input[name="image-source"]').val('');
-    },
-    setMediaData : function(value, source) {
-        $('input[name="image-id"]').val(value);
-        $('input[name="image-source"]').val(source);
-    },
-    // Processing data from uploading and media
-    cancel : function() {
-        var source = $('input[name="image-source"]').val();
-        
-        if ('upload' == source) {
-            this.removeUpload();
-        } else if ('media' == source) {
-            this.removeMedia();
-        }
-    },
-    processImage : function() {
-        var self   = this;
-        var source = $('input[name="image-source"]').val();
-        var id     = $('input[name="image-id"]').val();
-        
-        if (source.length && id.length) {
-            // Saving uploaded image into media section
-            if ('upload' == source) {
-                self.saveUploadToMedia(id);
-            }
-
-            // Creating temporary image for topic
-            self.saveTopic();
-        }
-    },
-    renderMessage : function(status, message) {
-        $('#message-box').html(
-            _.template($('#template-message').html(), {
-                status      : status,
-                message     : message
-            })
-        );
-    },
-    disableButton   : function(status) {
-        if (status) {
-            this.$("#media-cancel").addClass("disabled");
-            this.$("#media-process").addClass("disabled");
-        } else {
-            this.$("#media-cancel").removeClass("disabled");
-            this.$("#media-process").removeClass("disabled");
-        }
-    },
-    
-    // PROCESS TEMPLATE
-    disableScreenshot   : function(e) {
-        e.find('.template-apply').addClass('hide');
-        e.find('.template-bar').addClass('hide');
-        e.find('.template-screenshot').addClass('diable-image');
-    },
-    renderTemplates     : function(page) {
-        var self = this;
-        var templateObj = $('#topic-templates');
-        var url = '<?php echo $this->url('', array('action' => 'get-template')); ?>';
-        if (page > 0) {
-            url += 'page/' + page;
-        }
-        $.ajax({
-            cache       : false,
-            async       : false,
-            dataType    : 'json',
-            type        : 'get',
-            url         : url,
-            success     : function(result) {
-                if (!result.status) {
-                    alert(result.message);
-                }
-                templateObj.html('');
-                templateObj.append(_.template($('#template-chevron-left').html(), {'p' : result.previous}));
-                if ($('.view-previous').data('page') == 0) {
-                    $('.view-previous').find('span').addClass('hide');
-                }
-                for (var i in result.data) {
-                    var item = result.data[i];
-                    templateObj.append(_.template($('#template-item').html(), {
-                        'url'       : item.url,
-                        'name'      : item.name,
-                        'title'     : item.title,
-                        'fullsize'  : item.fullsize
-                    }));
-                    if ($('input[name="template"]').val() == item.name) {
-                        self.disableScreenshot($("#" + item.name));
-                    }
-                }
-
-                templateObj.append(_.template($('#template-chevron-right').html(), {'p' : result.next}));
-                if ($('.view-next').data('page') == 0) {
-                    $('.view-next').find('span').addClass('hide');
-                }
-                var prevWidth = $("#topic-templates").find(".view-previous").css("width");
-                var nextWidth = $("#topic-templates").find(".view-next").css("width");
-                var imageWidth = $("#topic-templates").find(".template").css("width");
-                prevWidth = parseInt(prevWidth.replace('px', ''));
-                nextWidth = parseInt(nextWidth.replace('px', ''));
-                imageWidth = parseInt(imageWidth.replace('px', ''));
-                var width = result.count * imageWidth + prevWidth + nextWidth + 4;
-                $("#topic-templates").css("width", width);
             },
-            error       : function() {
-                alert('<?php echo _a('Error occured when required url!'); ?>');
+            insertMedia: function (e) {
+                var id = $(e.target).attr('data-id');
+                var url = $(e.target).attr('data-url');
+                var title = $(e.target).attr('data-title');
+                var content = _.template($('#media-selected-item').html(), {
+                    url: url,
+                    title: title
+                });
+                // Clearing data from upload
+                if ('upload' == this.$('input[name="image-source"]').val()) {
+                    this.removeUpload(false);
+                }
+
+                // Setting data
+                $('#media-select-result').html(content);
+                this.setMediaData('media_id/' + id, 'media');
+
+                this.disableButton(false);
+            },
+            removeMedia: function () {
+                $('#media-select-result').html('');
+                this.clearMediaData();
+                this.disableButton(true);
+            },
+            clearMediaData: function () {
+                $('input[name="image-id"]').val('');
+                $('input[name="image-source"]').val('');
+            },
+            setMediaData: function (value, source) {
+                $('input[name="image-id"]').val(value);
+                $('input[name="image-source"]').val(source);
+            },
+            // Processing data from uploading and media
+            cancel: function () {
+                var source = $('input[name="image-source"]').val();
+
+                if ('upload' == source) {
+                    this.removeUpload();
+                } else if ('media' == source) {
+                    this.removeMedia();
+                }
+            },
+            processImage: function () {
+                var self = this;
+                var source = $('input[name="image-source"]').val();
+                var id = $('input[name="image-id"]').val();
+
+                if (source.length && id.length) {
+                    // Saving uploaded image into media section
+                    if ('upload' == source) {
+                        self.saveUploadToMedia(id);
+                    }
+
+                    // Creating temporary image for topic
+                    self.saveTopic();
+                }
+            },
+            renderMessage: function (status, message) {
+                $('#message-box').html(
+                    _.template($('#template-message').html(), {
+                        status: status,
+                        message: message
+                    })
+                );
+            },
+            disableButton: function (status) {
+                if (status) {
+                    this.$("#media-cancel").addClass("disabled");
+                    this.$("#media-process").addClass("disabled");
+                } else {
+                    this.$("#media-cancel").removeClass("disabled");
+                    this.$("#media-process").removeClass("disabled");
+                }
+            },
+
+            // PROCESS TEMPLATE
+            disableScreenshot: function (e) {
+                e.find('.template-apply').addClass('hide');
+                e.find('.template-bar').addClass('hide');
+                e.find('.template-screenshot').addClass('diable-image');
+            },
+            renderTemplates: function (page) {
+                var self = this;
+                var templateObj = $('#topic-templates');
+                var url = '<?php echo $this->url('', ['action' => 'get-template']); ?>';
+                if (page > 0) {
+                    url += 'page/' + page;
+                }
+                $.ajax({
+                    cache: false,
+                    async: false,
+                    dataType: 'json',
+                    type: 'get',
+                    url: url,
+                    success: function (result) {
+                        if (!result.status) {
+                            alert(result.message);
+                        }
+                        templateObj.html('');
+                        templateObj.append(_.template($('#template-chevron-left').html(), {'p': result.previous}));
+                        if ($('.view-previous').data('page') == 0) {
+                            $('.view-previous').find('span').addClass('hide');
+                        }
+                        for (var i in result.data) {
+                            var item = result.data[i];
+                            templateObj.append(_.template($('#template-item').html(), {
+                                'url': item.url,
+                                'name': item.name,
+                                'title': item.title,
+                                'fullsize': item.fullsize
+                            }));
+                            if ($('input[name="template"]').val() == item.name) {
+                                self.disableScreenshot($("#" + item.name));
+                            }
+                        }
+
+                        templateObj.append(_.template($('#template-chevron-right').html(), {'p': result.next}));
+                        if ($('.view-next').data('page') == 0) {
+                            $('.view-next').find('span').addClass('hide');
+                        }
+                        var prevWidth = $("#topic-templates").find(".view-previous").css("width");
+                        var nextWidth = $("#topic-templates").find(".view-next").css("width");
+                        var imageWidth = $("#topic-templates").find(".template").css("width");
+                        prevWidth = parseInt(prevWidth.replace('px', ''));
+                        nextWidth = parseInt(nextWidth.replace('px', ''));
+                        imageWidth = parseInt(imageWidth.replace('px', ''));
+                        var width = result.count * imageWidth + prevWidth + nextWidth + 4;
+                        $("#topic-templates").css("width", width);
+                    },
+                    error: function () {
+                        alert('<?php echo _a('Error occured when required url!'); ?>');
+                    }
+                });
+            },
+            displayTemplates: function (e) {
+                // Check whether templates are hide
+                var el = $(e.target);
+                var status = el.attr('value') == 1 ? true : false;
+                var haveTemplate = '' == $('#topic-templates').html() ? false : true;
+
+                if (!status && !haveTemplate) {
+                    this.renderTemplates(1);
+                }
+
+                if (status) {
+                    this.$('#topic-templates').addClass('hide');
+                } else {
+                    this.$('#topic-templates').removeClass('hide');
+                }
+                el.attr('value', status ? '0' : '1');
+            },
+            fetchPrevious: function () {
+                var page = $('.view-previous').data('page');
+                this.renderTemplates(page);
+            },
+            fetchNext: function () {
+                var page = $('.view-next').data('page');
+                this.renderTemplates(page);
+            },
+            apply: function (e) {
+                var el = $(e.target).parent();
+                var name = el.attr("id");
+                var title = el.find('.template-title').html();
+                var url = el.find('.template-screenshot').attr('src');
+
+                // Hide the apply link
+                $('.template-apply').removeClass('hide');
+                $('.template-bar').removeClass('hide');
+                $('.template-screenshot').removeClass('diable-image');
+                this.disableScreenshot(el);
+
+                // Change the topic template screenshot
+                $('#topic-template').find('.topic-template-title').html(title);
+                $('#topic-template').find('.topic-template-screenshot').attr('src', url);
+
+                $('input[name="template"]').val(name);
+
             }
         });
-    },
-    displayTemplates  : function(e) {
-        // Check whether templates are hide 
-        var el = $(e.target);
-        var status = el.attr('value') == 1 ? true : false;
-        var haveTemplate = '' == $('#topic-templates').html() ? false : true;
-        
-        if (!status && !haveTemplate) {
-            this.renderTemplates(1);
-        }
-        
-        if (status) {
-            this.$('#topic-templates').addClass('hide');
-        } else {
-            this.$('#topic-templates').removeClass('hide');
-        }
-        el.attr('value', status ? '0' : '1');
-    },
-    fetchPrevious   : function() {
-        var page = $('.view-previous').data('page');
-        this.renderTemplates(page);
-    },
-    fetchNext       : function() {
-        var page = $('.view-next').data('page');
-        this.renderTemplates(page);
-    },
-    apply           : function(e) {
-        var el    = $(e.target).parent();
-        var name  = el.attr("id");
-        var title = el.find('.template-title').html();
-        var url   = el.find('.template-screenshot').attr('src');
-        
-        // Hide the apply link
-        $('.template-apply').removeClass('hide');
-        $('.template-bar').removeClass('hide');
-        $('.template-screenshot').removeClass('diable-image');
-        this.disableScreenshot(el);
-        
-        // Change the topic template screenshot
-        $('#topic-template').find('.topic-template-title').html(title);
-        $('#topic-template').find('.topic-template-screenshot').attr('src', url);
-        
-        $('input[name="template"]').val(name);
-        
-    }
-});
-new UploadView;
-})(jQuery)
+        new UploadView;
+    })(jQuery)
 </script>

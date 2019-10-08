@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Setup\Controller;
@@ -18,13 +18,13 @@ use Pi\Setup\Host;
  */
 class Directive extends AbstractController
 {
-    const DIR_MODULE    = 'module';
-    const DIR_THEME     = 'theme';
-    const DIR_CONFIG    = 'config';
-    const DIR_CUSTOM    = 'custom';
-    const DIR_CACHE     = 'cache';
-    const DIR_LOG       = 'log';
-    const DIR_VENDOR    = 'vendor';
+    const DIR_MODULE = 'module';
+    const DIR_THEME  = 'theme';
+    const DIR_CONFIG = 'config';
+    const DIR_CUSTOM = 'custom';
+    const DIR_CACHE  = 'cache';
+    const DIR_LOG    = 'log';
+    const DIR_VENDOR = 'vendor';
 
     protected $host;
 
@@ -41,9 +41,9 @@ class Directive extends AbstractController
      */
     public function engineAction()
     {
-        $var = $this->request->getParam('var');
-        $val = $this->request->getParam('val');
-        $vars = $this->getPersist(static::PERSIST_ENGINE);
+        $var        = $this->request->getParam('var');
+        $val        = $this->request->getParam('val');
+        $vars       = $this->getPersist(static::PERSIST_ENGINE);
         $vars[$var] = $val;
         $this->setPersist(static::PERSIST_ENGINE, $vars);
 
@@ -59,7 +59,7 @@ class Directive extends AbstractController
         $this->host->init();
 
         $path = $this->request->getParam('var');
-        $val = htmlspecialchars(trim($this->request->getParam('path')));
+        $val  = htmlspecialchars(trim($this->request->getParam('path')));
         $this->host->setPath($path, $val);
         list($type, $key) = explode('_', $path, 2);
         if ($type == 'url') {
@@ -81,7 +81,7 @@ class Directive extends AbstractController
         $this->host->init();
 
         $path = $this->request->getParam('var');
-        $val = htmlspecialchars(trim($this->request->getParam('path')));
+        $val  = htmlspecialchars(trim($this->request->getParam('path')));
         $this->host->setPath($path, $val);
         list($type, $key) = explode('_', $path, 2);
         if ($type == 'path') {
@@ -93,9 +93,9 @@ class Directive extends AbstractController
             $messageString = '<ul>';
             foreach (array_keys($messages) as $key) {
                 $messageString .= '<li>' . sprintf(
-                    _s('%s is NOT writable.'),
-                    $key
-                ) . '</li>';
+                        _s('%s is NOT writable.'),
+                        $key
+                    ) . '</li>';
             }
             $messageString .= '</ul>';
         }
@@ -108,38 +108,42 @@ class Directive extends AbstractController
      */
     public function submitAction()
     {
-        $wizard = $this->wizard;
+        $wizard     = $this->wizard;
         $this->host = new Host($wizard, static::PERSIST_HOST);
         $this->host->init();
-        $errorsSave = array();
-        $errorsConfig = array();
-        $configs = array();
+        $errorsSave   = [];
+        $errorsConfig = [];
+        $configs      = [];
 
         $vars = $wizard->getPersist(static::PERSIST_HOST);
         $this->normalizeHost($vars);
         $wizard->setPersist(static::PERSIST_HOST, $vars);
 
         // List of engine configs
-        $configEngine = (array) $wizard->getPersist(static::PERSIST_ENGINE);
-        $configEngine = array_merge(array(
-            'identifier'    => 'pi' . substr(md5($vars['www']['url']), 0, 4),
-            'salt'          => md5(uniqid(mt_rand(), true)),
-            'environment'   => '',
-            'storage'       => 'filesystem',
-            'namespace'     => substr(md5($vars['www']['url']), 0, 4),
-        ), $configEngine);
-        $configMap = array();
-        array_walk($configEngine, function ($val, $var) use (&$configMap) {
+        $configEngine = (array)$wizard->getPersist(static::PERSIST_ENGINE);
+        $configEngine = array_merge(
+            [
+                'identifier'  => 'pi' . substr(md5($vars['www']['url']), 0, 4),
+                'salt'        => md5(uniqid(mt_rand(), true)),
+                'environment' => '',
+                'storage'     => 'filesystem',
+                'namespace'   => substr(md5($vars['www']['url']), 0, 4),
+            ], $configEngine
+        );
+        $configMap    = [];
+        array_walk(
+            $configEngine, function ($val, $var) use (&$configMap) {
             if (null !== $val) {
                 $configMap['var'][] = '%' . $var . '%';
                 $configMap['val'][] = $val;
             }
-        });
+        }
+        );
 
         // config/host.php
-        $file = $vars['config']['path'] . '/host.php';
+        $file      = $vars['config']['path'] . '/host.php';
         $file_dist = $wizard->getRoot() . '/dist/host.php.dist';
-        $content = file_get_contents($file_dist);
+        $content   = file_get_contents($file_dist);
         foreach ($vars as $var => $val) {
             if (!empty($val['path'])) {
                 $content = str_replace(
@@ -162,19 +166,21 @@ class Directive extends AbstractController
             $content = str_replace('%' . $var . '%', $val, $content);
         }
         */
-        $configs[] = array('file' => $file, 'content' => $content);
+        $configs[] = ['file' => $file, 'content' => $content];
 
         // config/engine.php
-        $file = $vars['config']['path'] . '/engine.php';
+        $file      = $vars['config']['path'] . '/engine.php';
         $file_dist = $wizard->getRoot() . '/dist/engine.php.dist';
-        $content = file_get_contents($file_dist);
+        $content   = file_get_contents($file_dist);
         /*
         foreach ($configEngine as $var => $val) {
             $content = str_replace('%' . $var . '%', $val, $content);
         }
         */
-        $content = str_replace($configMap['var'], $configMap['val'], $content);
-        $configs[] = array('file' => $file, 'content' => $content);
+        $content   = str_replace(
+            $configMap['var'], $configMap['val'], $content
+        );
+        $configs[] = ['file' => $file, 'content' => $content];
 
         // Write content to files and record errors in case occurred
         foreach ($configs as $config) {
@@ -201,7 +207,7 @@ class Directive extends AbstractController
                     continue;
                 }
                 $filename = $fileinfo->getPathname();
-                $suffix = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                $suffix   = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
                 // Skip the file if its suffix is not '.dist'
                 if ('dist' !== $suffix) {
                     continue;
@@ -225,26 +231,30 @@ class Directive extends AbstractController
         // Display saving error messages
         if (!empty($errorsSave)) {
             $content .= '<h3>' . _s('Configuration file write error')
-                      . '</h3>';
+                . '</h3>';
             foreach ($errorsSave as $error) {
                 $content .= '<p class="caption" style="margin-top: 10px;">'
-                          . sprintf(
-                              _s('The configuration file "%s" is not written correctly.'),
-                              $error['file']
-                            )
-                          . '</p>'
-                          . '<textarea cols="80" rows="10" class="span12">'
-                          . $error['content']
-                          . '</textarea>';
+                    . sprintf(
+                        _s(
+                            'The configuration file "%s" is not written correctly.'
+                        ),
+                        $error['file']
+                    )
+                    . '</p>'
+                    . '<textarea cols="80" rows="10" class="span12">'
+                    . $error['content']
+                    . '</textarea>';
             }
-        // Display config file error messages
+            // Display config file error messages
         } elseif (!empty($errorsConfig)) {
             $content .= '<h3>' . _s('Configuration file copy error') . '</h3>'
-                      . '<p class="caption">'
-                      . _s('The configuration files are not copied correctly or not readable, please create and/or set read permissions for the files manually.')
-                      . '</p>'
-                      . '<div class="message alert alert-danger">'
-                      . '<ul>';
+                . '<p class="caption">'
+                . _s(
+                    'The configuration files are not copied correctly or not readable, please create and/or set read permissions for the files manually.'
+                )
+                . '</p>'
+                . '<div class="message alert alert-danger">'
+                . '<ul>';
             foreach ($errorsConfig as $file) {
                 $content .= '<li>' . $file . '</li>';
             }
@@ -255,6 +265,7 @@ class Directive extends AbstractController
 
     /**
      * Normalize specified paths
+     *
      * @param array $vars
      */
     protected function normalizeHost(&$vars)
@@ -287,35 +298,40 @@ class Directive extends AbstractController
      */
     protected function loadEngineForm()
     {
-        $vars = (array) $this->getPersist(static::PERSIST_ENGINE);
-        $vars = array_merge(array(
-            'identifier'    => 'pi' . substr(md5(mt_rand()), 0, 4),
-            'sitename'      => 'Pi Engine',
-            'slogan'        => _s('Power your web and mobile applications.'),
-        ), $vars);
+        $vars = (array)$this->getPersist(static::PERSIST_ENGINE);
+        $vars = array_merge(
+            [
+                'identifier' => 'pi' . substr(md5(mt_rand()), 0, 4),
+                'sitename'   => 'Pi Engine',
+                'slogan'     => _s('Power your web and mobile applications.'),
+            ], $vars
+        );
 
         $this->setPersist(static::PERSIST_ENGINE, $vars);
         $vars = $this->getPersist(static::PERSIST_ENGINE);
 
         // Title and description for each item
-        $engineInfo = array(
-            'identifier'  => array(
+        $engineInfo = [
+            'identifier' => [
                 _s('Identifier'),
-                _s('Unique identifier to distinguish this website. If there are multiple sites installed, make sure the identifier is unique.'),
-            ),
-            'sitename'  => array(
+                _s(
+                    'Unique identifier to distinguish this website. If there are multiple sites installed, make sure the identifier is unique.'
+                ),
+            ],
+            'sitename'   => [
                 _s('Name'),
                 _s('Name for the website.'),
-            ),
-            'slogan'  => array(
+            ],
+            'slogan'     => [
                 _s('Slogan'),
                 _s('Website slogan.'),
-            ),
-        );
+            ],
+        ];
 
         // Anonymous function to create form elements for an item
         $displayItem = function ($item) use ($vars, $engineInfo) {
-            $content =<<<HTML
+            $content
+                = <<<HTML
 <div class='item'>
     <label for='$item'>{$engineInfo[$item][0]}</label>
     <p class='caption'>{$engineInfo[$item][1]}</p>
@@ -325,7 +341,7 @@ HTML;
 
             return $content;
         };
-        $content = '';
+        $content     = '';
         foreach (array_keys($engineInfo) as $item) {
             $content .= $displayItem($item);
         }
@@ -341,7 +357,8 @@ HTML;
         $this->content .= $content;
 
         // Add cascade style sheet and JavaScript to HTML head
-        $this->headContent .=<<<SCRIPT
+        $this->headContent
+            .= <<<SCRIPT
 <style type='text/css' media='screen'>
     #advanced-engine .item {
         margin-top: 20px;
@@ -352,7 +369,8 @@ HTML;
 </style>
 SCRIPT;
         // Add JavaScript to bottom of HTML content
-        $this->footContent .=<<<SCRIPT
+        $this->footContent
+            .= <<<SCRIPT
 <script>
 $(document).ready(function(){
     // Check if path available, URI accessible
@@ -381,9 +399,9 @@ SCRIPT;
      */
     protected function loadPersistForm()
     {
-        $vars = (array) $this->getPersist(static::PERSIST_ENGINE);
+        $vars    = (array)$this->getPersist(static::PERSIST_ENGINE);
         $persist = empty($vars['storage']) ? '' : $vars['storage'];
-        $config = $this->wizard->getConfig('extension');
+        $config  = $this->wizard->getConfig('extension');
         $content = '';
 
         //$valid = false;
@@ -395,68 +413,71 @@ SCRIPT;
             $checkedString = 'disabled';
         }
         $content .= '<label class="radio"><input type="radio" name="storage"'
-                  . ' value="apc" ' . $checkedString . ' />'
-                  . $config['apc']['title'] . '</label>'
-                  . '<p class="caption">' . $config['apc']['message']
-                  . '</p>';
+            . ' value="apc" ' . $checkedString . ' />'
+            . $config['apc']['title'] . '</label>'
+            . '<p class="caption">' . $config['apc']['message']
+            . '</p>';
 
         if (extension_loaded('redis')) {
             $persist = $persist ?: 'redis';
             //$valid = true;
             $checkedString = ($persist == 'redis') ? 'checked' : '';
-            $content .= '<label class="radio"><input type="radio" name="storage"'
-                      . ' value="redis" ' . $checkedString . ' />'
-                      . $config['redis']['title'] . '</label>'
-                      . '<p class="caption">' . $config['redis']['message']
-                      . '</p>';
+            $content       .= '<label class="radio"><input type="radio" name="storage"'
+                . ' value="redis" ' . $checkedString . ' />'
+                . $config['redis']['title'] . '</label>'
+                . '<p class="caption">' . $config['redis']['message']
+                . '</p>';
         }
 
         if (extension_loaded('memcached')) {
-            $persist = $persist ?: 'memcached';
+            $persist       = $persist ?: 'memcached';
             $checkedString = ($persist == 'memcached') ? 'checked' : '';
             //$valid = true;
         } else {
             $checkedString = ' disabled';
         }
         $content .= '<label class="radio"><input type="radio" name="storage"'
-                  . ' value="memcached" ' . $checkedString . ' />'
-                  . $config['memcached']['title'] . '</label>'
-                  . '<p class="caption">' . $config['memcached']['message']
-                  . '</p>';
+            . ' value="memcached" ' . $checkedString . ' />'
+            . $config['memcached']['title'] . '</label>'
+            . '<p class="caption">' . $config['memcached']['message']
+            . '</p>';
 
         if (extension_loaded('memcache')) {
-            $persist = $persist ?: 'memcache';
+            $persist       = $persist ?: 'memcache';
             $checkedString = ($persist == 'memcache') ? 'checked' : '';
             //$valid = true;
         } else {
             $checkedString = ' disabled';
         }
         $content .= '<label class="radio"><input type="radio" name="storage"'
-                  . ' value="memcache" ' . $checkedString . ' />'
-                  . $config['memcache']['title'] . '</label>'
-                  . '<p class="caption">' . $config['memcache']['message']
-                  . '</p>';
+            . ' value="memcache" ' . $checkedString . ' />'
+            . $config['memcache']['title'] . '</label>'
+            . '<p class="caption">' . $config['memcache']['message']
+            . '</p>';
 
         $checkedString = ($persist == 'filesystem') ? 'checked' : '';
-        $content .= '<label class="radio"><input type="radio" name="storage"'
-                  . ' value="filesystem" ' . $checkedString . ' />'
-                  . _s('File system') . '</label>'
-                  . '<p class="caption">'
-                  . _s('Caching storage with files on disks specified in following steps.')
-                  . '</p></div>';
+        $content       .= '<label class="radio"><input type="radio" name="storage"'
+            . ' value="filesystem" ' . $checkedString . ' />'
+            . _s('File system') . '</label>'
+            . '<p class="caption">'
+            . _s(
+                'Caching storage with files on disks specified in following steps.'
+            )
+            . '</p></div>';
 
         $content = '<h2> <span class="success">'
-                 . _s('Persistent data container')
-                 . '</span> <a href="javascript:void(0);" id="persist-label">'
-                 . '<span>[+]</span><span style="display: none;">[-]</span></a>'
-                 . '</h2><p class="caption">'
-                 . _s('Choose the proper backend container for persistent data')
-                 . '</p><div class="install-form advanced-form well"'
-                 . ' id="advanced-persist">' . $content . '</div>';
+            . _s('Persistent data container')
+            . '</span> <a href="javascript:void(0);" id="persist-label">'
+            . '<span>[+]</span><span style="display: none;">[-]</span></a>'
+            . '</h2><p class="caption">'
+            . _s('Choose the proper backend container for persistent data')
+            . '</p><div class="install-form advanced-form well"'
+            . ' id="advanced-persist">' . $content . '</div>';
 
         $this->content .= $content;
 
-        $this->footContent .=<<<SCRIPT
+        $this->footContent
+            .= <<<SCRIPT
 <script>
 $('input[name=storage]').click(function() {
     $.ajax({
@@ -490,49 +511,66 @@ SCRIPT;
         $this->host->init(true);
 
         // Title and description for each item
-        $pathInfo = array(
-            'path_www'  => array(
+        $pathInfo = [
+            'path_www'    => [
                 _s('Documents root physical path'),
-                _s('Physical path to the documents (served) directory without trailing slash.'),
-            ),
-            'url_www'   => array(
+                _s(
+                    'Physical path to the documents (served) directory without trailing slash.'
+                ),
+            ],
+            'url_www'     => [
                 _s('Website location (URL)'),
                 _s('Main URL that will be used to access your Pi Engine'),
-            ),
-            'path_upload'   => array(
+            ],
+            'path_upload' => [
                 _s('Upload directory'),
-                _s('Physical path to upload directory without trailing slash. A relative path will be allocated in PI root directory; PHP disabled.'),
-            ),
-            'url_upload'    => array(
+                _s(
+                    'Physical path to upload directory without trailing slash. A relative path will be allocated in PI root directory; PHP disabled.'
+                ),
+            ],
+            'url_upload'  => [
                 _s('URL of upload root'),
-                _s('URL that will be used to access upload directory. PI root URL will be prepended if relative URL is used.'),
-            ),
-            'path_static'   => array(
+                _s(
+                    'URL that will be used to access upload directory. PI root URL will be prepended if relative URL is used.'
+                ),
+            ],
+            'path_static' => [
                 _s('Static file directory'),
-                _s('Physical path to static file directory without trailing slash; PHP disabled.'),
-            ),
-            'url_static'    => array(
+                _s(
+                    'Physical path to static file directory without trailing slash; PHP disabled.'
+                ),
+            ],
+            'url_static'  => [
                 _s('URL of static file root directory'),
-                _s('URL that will be used to access static files. Upload URL will be used if static directory is not set explicitly.'),
-            ),
-            'path_lib'      => array(
+                _s(
+                    'URL that will be used to access static files. Upload URL will be used if static directory is not set explicitly.'
+                ),
+            ],
+            'path_lib'    => [
                 _s('Library directory'),
-                _s('Physical path to library directory without trailing slash. Locate the folder out of web directory to make it secure; PHP executable'),
-            ),
-            'path_var'      => array(
+                _s(
+                    'Physical path to library directory without trailing slash. Locate the folder out of web directory to make it secure; PHP executable'
+                ),
+            ],
+            'path_var'    => [
                 _s('Data file directory'),
-                _s('Physical path to the data files (writable) directory WITHOUT trailing slash. Locate the folder out of web directory to make it secure; PHP executable'),
-            ),
-            'path_usr'      => array(
+                _s(
+                    'Physical path to the data files (writable) directory WITHOUT trailing slash. Locate the folder out of web directory to make it secure; PHP executable'
+                ),
+            ],
+            'path_usr'    => [
                 _s('Root directory for user applications'),
-                _s('Physical path to user contributed directory WITHOUT trailing slash.. Locate the folder out of web directory to make it secure; PHP executable'),
-            ),
-        );
+                _s(
+                    'Physical path to user contributed directory WITHOUT trailing slash.. Locate the folder out of web directory to make it secure; PHP executable'
+                ),
+            ],
+        ];
 
         $controller = $this->host;
         // Anonymous function to create form elements for an item
         $displayItem = function ($item) use ($controller, $pathInfo) {
-            $content =<<<HTML
+            $content
+                = <<<HTML
 <div class='item'>
     <label for='$item'>{$pathInfo[$item][0]}</label>
     <p class='caption'>{$pathInfo[$item][1]}</p>
@@ -546,17 +584,18 @@ HTML;
             return $content;
         };
 
-        $status = $statusBasic = $statusAdvanced = 'loading';
+        $status  = $statusBasic = $statusAdvanced = 'loading';
         $content = '';
 
         // pth of www
-        $itemList = array('path_www');
+        $itemList = ['path_www'];
         foreach ($itemList as $item) {
             $content .= $displayItem($item);
         }
         // URI of www
         $item = 'url_www';
-        $content .=<<<HTML
+        $content
+              .= <<<HTML
 <div class='item'>
     <label for='$item'>{$pathInfo[$item][0]}</label>
     <p class='caption'>{$pathInfo[$item][1]}</p>
@@ -566,57 +605,65 @@ HTML;
 HTML;
 
         // Assemble basic section which is composed of www path and URI
-        $contentBasic = '<h3 class="section"><span id="path-basic-label" class="' . $statusBasic . '">'
-                     . _s('Basic settings')
-                     . '</span>'
-                     . '<a href="javascript:void(0);"'
-                     . ' id="path-basic-toggle"><span>[+]</span>'
-                     . '<span style="display: none;">[-]</span></a></h3>'
-                     . '<p class="caption">'
-                     . _s('Settings required by system')
-                     . '</p>'
-                     . '<div class="install-form advanced-form item-container'
-                     . ' well" id="path-basic">' . $content . '</div>';
+        $contentBasic
+            = '<h3 class="section"><span id="path-basic-label" class="'
+            . $statusBasic . '">'
+            . _s('Basic settings')
+            . '</span>'
+            . '<a href="javascript:void(0);"'
+            . ' id="path-basic-toggle"><span>[+]</span>'
+            . '<span style="display: none;">[-]</span></a></h3>'
+            . '<p class="caption">'
+            . _s('Settings required by system')
+            . '</p>'
+            . '<div class="install-form advanced-form item-container'
+            . ' well" id="path-basic">' . $content . '</div>';
 
         $content = '';
         // Advanced item elements
-        $itemList = array(
+        $itemList = [
             'path_lib', 'path_var', 'path_usr',
-            'path_upload', 'url_upload', 'path_static', 'url_static'
-        );
+            'path_upload', 'url_upload', 'path_static', 'url_static',
+        ];
         foreach ($itemList as $item) {
             $content .= $displayItem($item);
         }
 
         // Assemble advanced section by including the advanced items
         $contentAdvanced = '<h3 class="section">'
-                         . '<span id="path-advanced-label" class="' . $statusAdvanced . '">' . _s('Advanced settings') . '</span>'
-                         . '<a href="javascript:void(0);"'
-                         . ' id="path-advanced-toggle">'
-                         . '<span>[+]</span><span style="display: none;">[-]'
-                         . '</span></a></h3><p class="caption">'
-                         . _s('Settings that can help improve security, deployment flexibility, etc. If you are unsure about it, leave as it is.')
-                         . '</p>'
-                         . '<div class="install-form advanced-form'
-                         . ' item-container well" id="path-advanced">'
-                         . $content . '</div>';
+            . '<span id="path-advanced-label" class="' . $statusAdvanced . '">'
+            . _s('Advanced settings') . '</span>'
+            . '<a href="javascript:void(0);"'
+            . ' id="path-advanced-toggle">'
+            . '<span>[+]</span><span style="display: none;">[-]'
+            . '</span></a></h3><p class="caption">'
+            . _s(
+                'Settings that can help improve security, deployment flexibility, etc. If you are unsure about it, leave as it is.'
+            )
+            . '</p>'
+            . '<div class="install-form advanced-form'
+            . ' item-container well" id="path-advanced">'
+            . $content . '</div>';
 
         // Assemble content by combining basic and advanced sections
         $content = '<h2>'
-                 . '<span id="paths-label" class="' . $status . '">' . _s('Path settings') . '</span>'
-                 . '<a href="javascript:void(0);" id="paths-toggle">'
-                 . '<span>[+]</span><span style="display: none;">[-]</span>'
-                 . '</a>'
-                 . '</h2>'
-                 . '<p class="caption">' . _s('Path and URL settings') . '</p>'
-                 . '<div class="install-form advanced-form item-container"'
-                 . ' id="paths">' . $contentBasic . $contentAdvanced
-                 . '</div>';
+            . '<span id="paths-label" class="' . $status . '">' . _s(
+                'Path settings'
+            ) . '</span>'
+            . '<a href="javascript:void(0);" id="paths-toggle">'
+            . '<span>[+]</span><span style="display: none;">[-]</span>'
+            . '</a>'
+            . '</h2>'
+            . '<p class="caption">' . _s('Path and URL settings') . '</p>'
+            . '<div class="install-form advanced-form item-container"'
+            . ' id="paths">' . $contentBasic . $contentAdvanced
+            . '</div>';
 
         $this->content .= $content;
 
         // Add cascade style sheet and JavaScript to HTML head
-        $this->headContent .=<<<SCRIPT
+        $this->headContent
+            .= <<<SCRIPT
 <style type='text/css' media='screen'>
     #paths .item {
         margin-top: 20px;
@@ -745,7 +792,8 @@ function urlIsAbsolute(path) {
 SCRIPT;
 
         // Add JavaScript to bottom of HTML content
-        $this->footContent .=<<<SCRIPT
+        $this->footContent
+            .= <<<SCRIPT
 <script>
 $(document).ready(function(){
     // Check if path available, URI accessible

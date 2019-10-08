@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Model;
@@ -26,18 +26,19 @@ class Dag extends AbstractDag
     /**
      * {@inheritDoc}
      */
-    protected $column = array(
-        // Start vertex column name
-        'start'     => 'start',
-        // End vertex column name
-        'end'       => 'end',
-        // Entry edge column name
-        'entry'     => 'entry',
-        // Direct edge column name
-        'direct'    => 'direct',
-        // Exit edge column name
-        'exit'      => 'exit',
-        // Number of hops from start to end
-        'hops'      => 'hops',
-    );
+    protected $column
+        = [
+            // Start vertex column name
+            'start'  => 'start',
+            // End vertex column name
+            'end'    => 'end',
+            // Entry edge column name
+            'entry'  => 'entry',
+            // Direct edge column name
+            'direct' => 'direct',
+            // Exit edge column name
+            'exit'   => 'exit',
+            // Number of hops from start to end
+            'hops'   => 'hops',
+        ];
 }

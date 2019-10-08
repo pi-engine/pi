@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -37,13 +37,13 @@ class Registry extends AbstractService
      * Handler container
      * @var AbstractRegistry[]
      */
-    protected $handler = array();
+    protected $handler = [];
 
     /**
      * Get registry handler
      *
-     * @param string        $name
-     * @param sting|null    $module
+     * @param string $name
+     * @param sting|null $module
      * @return AbstractRegistry
      */
     public function handler($name, $module = null)
@@ -61,8 +61,8 @@ class Registry extends AbstractService
     /**
      * Load registry handler
      *
-     * @param string        $name
-     * @param string|null   $module
+     * @param string $name
+     * @param string|null $module
      * @return AbstractRegistry
      */
     protected function loadHandler($name, $module = null)
@@ -71,9 +71,10 @@ class Registry extends AbstractService
         if (empty($module)) {
             $class = sprintf('Pi\Application\Registry\\%s', $name);
         } else {
-            $class = sprintf(
+            $directory = Pi::service('module')->directory($module);
+            $class     = sprintf(
                 'Module\\%s\Registry\\%s',
-                ucfirst($module),
+                ucfirst($directory),
                 $name
             );
         }
@@ -126,16 +127,16 @@ class Registry extends AbstractService
      * `Pi::service('registry')-><registry-method>(<registry-name>, $args);`
      *
      * @param string $handlerName
-     * @param array  $args
+     * @param array $args
      *
      * @return mixed
      */
     public function __call($handlerName, $args)
     {
-        $method = array_shift($args);
+        $method  = array_shift($args);
         $handler = $this->handler($handlerName);
-        if (is_callable(array($handler, $method))) {
-            return call_user_func_array(array($handler, $method), $args);
+        if (is_callable([$handler, $method])) {
+            return call_user_func_array([$handler, $method], $args);
         }
     }
 
@@ -185,25 +186,26 @@ class Registry extends AbstractService
      */
     public function getList()
     {
-        $registryList = array();
-        $iterator = new \DirectoryIterator(
-            Pi::path('lib/Pi/Application/Registry')
-        );
-        foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isFile() || $fileinfo->isDot()) {
-                continue;
+        $filter       = function ($fileinfo) {
+            if (!$fileinfo->isFile()) {
+                return false;
             }
             $directory = $fileinfo->getFilename();
             if ('AbstractRegistry.php' == $directory
                 || !preg_match('/^[a-z0-9]+\.php/i', $directory)
             ) {
-                continue;
+                return false;
             }
-            $name = basename($directory, '.php');
-            $words = preg_split('/(?=[A-Z])/', $name, -1, PREG_SPLIT_NO_EMPTY);
+            $name     = basename($directory, '.php');
+            $words    = preg_split('/(?=[A-Z])/', $name, -1, PREG_SPLIT_NO_EMPTY);
             $registry = strtolower(implode('_', $words));
-            $registryList[] = $registry;
-        }
+
+            return $registry;
+        };
+        $registryList = Pi::service('file')->getList(
+            'lib/Pi/Application/Registry',
+            $filter
+        );
 
         return $registryList;
     }

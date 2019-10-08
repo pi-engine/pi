@@ -1,0 +1,7 @@
+{
+    "title": "Zend\\File",
+    "target": "html/",
+    "content": [
+        "book/zend.file.class-file-locator.md"
+    ]
+}

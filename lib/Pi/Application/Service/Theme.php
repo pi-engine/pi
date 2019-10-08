@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -45,8 +45,18 @@ class Theme extends AbstractService
     public function current()
     {
         if (!$this->currentTheme) {
-            $this->currentTheme = ('front' == Pi::engine()->section())
-                    ? Pi::config('theme') : Pi::config('theme_admin');
+            switch (Pi::engine()->section()) {
+                case 'front':
+                case 'feed':
+                    $this->currentTheme = Pi::config('theme');
+                    break;
+
+                case 'admin':
+                    $this->currentTheme = Pi::config('theme_admin');
+                    break;
+            }
+            /* $this->currentTheme = ('front' == Pi::engine()->section())
+                    ? Pi::config('theme') : Pi::config('theme_admin'); */
             $this->currentTheme = $this->currentTheme ?: 'default';
         }
 
@@ -65,7 +75,7 @@ class Theme extends AbstractService
         if (file_exists($configFile)) {
             $config = include $configFile;
         } else {
-            $config = array();
+            $config = [];
         }
 
         return $config;
@@ -80,7 +90,7 @@ class Theme extends AbstractService
     public function path($theme = '')
     {
         $theme = $theme ?: $this->current();
-        $path = Pi::path('theme') . '/' . $theme;
+        $path  = Pi::path('theme') . '/' . $theme;
 
         return $path;
     }
@@ -93,12 +103,71 @@ class Theme extends AbstractService
      */
     public function getParent($theme = null)
     {
-        $theme = $theme ?: $this->current();
+        $theme  = $theme ?: $this->current();
         $config = $this->loadConfig($theme);
         $parent = !empty($config['parent'])
             ? $config['parent']
             : ($theme == static::DEFAULT_THEME ? '' : static::DEFAULT_THEME);
 
         return $parent;
+    }
+
+    /**
+     * Get list of themes
+     *
+     * @param string $type
+     *
+     * @return array
+     */
+    public function getThemes($type = 'front')
+    {
+        $list   = [];
+        $themes = Pi::registry('theme')->read($type);
+        foreach ($themes as $name => $theme) {
+            $list[$name] = $theme['title'];
+        }
+
+        return $list;
+    }
+
+    /**
+     * Get layout list of a theme
+     *
+     * @param string $theme
+     *
+     * @return array
+     */
+    public function getLayouts($theme = '')
+    {
+        $list = [
+            'layout-front'   => __('Full layout (header/footer and blocks)'),
+            'layout-simple'  => __('Simple layout (header/footer)'),
+            'layout-style'   => __('Content only (with style)'),
+            'layout-content' => __('Raw content (no style)'),
+        ];
+        if ($theme) {
+            Pi::service('i18n')->loadTheme('default', $theme);
+            $config = $this->loadConfig($theme);
+            if (!empty($config['layout'])) {
+                $list += $config['layout'];
+            }
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function getThemeVars(){
+        $themeConfig = $this->loadConfig('');
+
+        // First we convert the array to a json string
+        $json = json_encode($themeConfig['vars']);
+
+        // The we convert the json string to a stdClass()
+        $vars = json_decode($json);
+
+        return $vars;
     }
 }

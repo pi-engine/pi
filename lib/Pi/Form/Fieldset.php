@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Form
  */
 
@@ -17,6 +17,8 @@ use Zend\Form\Fieldset as ZendFieldset;
  *
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ *
+ * ToDo : fix for zend version 2.4.9
  */
 class Fieldset extends ZendFieldset
 {
@@ -44,12 +46,12 @@ class Fieldset extends ZendFieldset
      */
     public function elementList()
     {
-        $elements = array(
-            'active'    => array(),
-            'hidden'    => array(),
-        );
+        $elements = [
+            'active' => [],
+            'hidden' => [],
+        ];
 
-        foreach ($this->byName as $key => $value) {
+        foreach ($this->elements as $key => $value) {
             $type = $value->getAttribute('type');
             if ('hidden' == $type) {
                 $elements['hidden'][] = $value;

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Validator;
@@ -20,15 +20,18 @@ use Zend\Validator\AbstractValidator;
 class ModuleTitle extends AbstractValidator
 {
     /** @var string */
-    const TAKEN     = 'moduleTitleTaken';
+    const TAKEN = 'moduleTitleTaken';
 
     /**
-     * Message templates
-     * @var array
+     * {@inheritDoc}
      */
-    protected $messageTemplates = array(
-        self::TAKEN     => 'Module title is already taken',
-    );
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = [
+            static::TAKEN => __('Module title is already taken'),
+        ];
+        parent::__construct($options);
+    }
 
     /**
      * User name validate
@@ -41,7 +44,7 @@ class ModuleTitle extends AbstractValidator
     {
         $this->setValue($value);
 
-        $where = array('title' => $value);
+        $where = ['title' => $value];
         if (!empty($context['id'])) {
             $where['id <> ?'] = $where['id'];
         }

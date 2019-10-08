@@ -1,25 +1,27 @@
-<?php
-$this->css($this->assetModule('admin/admin.css'));
-?>
+<?php $this->css($this->assetModule('admin/admin.css')); ?>
 <div id="js-module" class="table-responsive">
-    <table class="table">
+    <table class="table table-responsive">
         <thead>
-            <tr>
-                <th><?php echo _a('Icon'); ?></th>
-                <th style="width: 15%;"><?php echo _a('Title'); ?></th>
-                <th style="width: 10%;"><?php echo _a('Version'); ?></th>
-                <th style="width: 30%;"><?php echo _a('Description'); ?></th>
-                <th style="width: 15%;"><?php echo _a('Last Update'); ?></th>
-                <th><?php echo _a('Action'); ?></th>
-            </tr>
+        <tr>
+            <th><?php echo _a('Icon'); ?></th>
+            <th style="width: 15%;"><?php echo _a('Title'); ?></th>
+            <th style="width: 10%;"><?php echo _a('Version'); ?></th>
+            <th style="width: 30%;"><?php echo _a('Description'); ?></th>
+            <th style="width: 15%;"><?php echo _a('Last Update'); ?></th>
+            <th><?php echo _a('Action'); ?></th>
+        </tr>
         </thead>
         <tbody>
-            <?php foreach ($modules as $module) { ?>
-            <tr class="<?php if (!$module['active']) { echo 'muted system-module-disable'; } else { echo 'system-module-item'; } ?>">
+        <?php foreach ($modules as $module) { ?>
+            <tr class="<?php if (!$module['active']) {
+                echo 'muted system-module-disable';
+            } else {
+                echo 'system-module-item';
+            } ?>">
                 <td>
-                   <?php
-                   echo sprintf('<i class="fa %s fa-3x"></i>', $module['icon'] ?: 'fa-th');
-                   ?>    
+                    <?php
+                    echo sprintf('<i class="fa %s fa-3x"></i>', $module['icon'] ?: 'fa-th');
+                    ?>
                 </td>
                 <td>
                     <div class="module-item-title">
@@ -36,18 +38,18 @@ $this->css($this->assetModule('admin/admin.css'));
                 <td>
                     <p><?php echo $module['description']; ?></p>
                     <a href="javascript:void(0)" class="invisible detail-action"><?php echo _a('Detail'); ?></a>
-                        <dl class="pi-hide well well-small dl-horizontal">
-                            <dt><?php echo _a('Name:'); ?></dt>
-                            <dd><?php echo $module['name']; ?></dd>
-                            <dt><?php echo _a('Directory:'); ?></dt>
-                            <dd><?php echo $module['directory']; ?></dd>
-                            <dt><?php echo _a('Author'); ?></dt>
-                            <dd>&nbsp;</dd>
-                            <?php foreach ($module['author'] as $key => $value) {
-                                echo '<dt>' . _escape($key) . ':</dt>';
-                                echo '<dd>' . _escape($value) . '</dd>';
-                            }?>
-                        </dl>
+                    <dl class="pi-hide card bg-light mb-3 dl-horizontal">
+                        <dt><?php echo _a('Name:'); ?></dt>
+                        <dd><?php echo $module['name']; ?></dd>
+                        <dt><?php echo _a('Directory:'); ?></dt>
+                        <dd><?php echo $module['directory']; ?></dd>
+                        <dt><?php echo _a('Author'); ?></dt>
+                        <dd>&nbsp;</dd>
+                        <?php foreach ($module['author'] as $key => $value) {
+                            echo '<dt>' . _escape($key) . ':</dt>';
+                            echo '<dd>' . _escape($value) . '</dd>';
+                        } ?>
+                    </dl>
                 </td>
                 <td>
                     <p><?php echo $module['update']; ?></p>
@@ -57,70 +59,80 @@ $this->css($this->assetModule('admin/admin.css'));
                 </td>
                 <td>
                     <div class="btn-group">
-                        <?php
-                        echo sprintf('<a class="btn btn-sm btn-primary" href="%s">%s</a>', $this->url('', array('action' => 'update', 'id' => $module['id'], 'active' => 1, 'from' => 'installed')), _a('Update'));
-                        if('system' == $module['name']) {
-                            echo sprintf('<a class="btn btn-sm btn-danger" href="%s">%s</a>', $this->url('', array('action' => 'refresh', 'active' => 1, 'from' => 'installed')), _a('Update all'));
-                        } else {
-                            echo sprintf('<a class="btn btn-sm btn-primary" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'], 'from' => 'installed')), _a('Are you sure to uninstall this module?'), _a('Uninstall'));
-                            if ($module['active']) {
-                                echo sprintf('<a class="btn btn-sm btn-primary" href="%s">%s</a>', $this->url('', array('action' => 'enable', 'id' => $module['id'], 'active' => 0, 'from' => 'installed')), _a('Disable'));
-                            } else {
-                                echo sprintf('<a class="btn btn-sm btn-danger" href="%s">%s</a>', $this->url('', array('action' => 'enable', 'id' => $module['id'], 'active' => 1, 'from' => 'installed')), _a('Enable'));
-                            }
-                        } ?>
+                        <?php echo sprintf('<a class="btn btn-sm btn-primary" href="%s"><i class="fas fa-wrench"></i> %s</a>', $this->url('', ['action' => 'update', 'id' => $module['id'], 'active' => 1, 'from' => 'installed']), _a('Update')); ?>
+                    </div>
+                    <div class="btn-group">
+                        <?php if ('system' == $module['name']) { ?>
+                            <?php echo sprintf('<a class="btn btn-sm btn-success" href="%s" onclick="return confirm(\'%s\')"><i class="fas fa-sync-alt"></i> %s</a>', $this->url('', ['action' => 'refresh', 'active' => 1, 'from' => 'installed']), _a('Are you sure to update all module? make sure have backup from your website before use this option'), _a('Update all')); ?>
+                        <?php } else { ?>
+                            <?php $class = ($module['active']) ? 'btn-danger' : 'btn-success'; ?>
+                            <button type="button" class="btn btn-sm <?php echo $class; ?> dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php echo _a('Action'); ?>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <?php if ($module['active']) {
+                                    echo sprintf('<a class="dropdown-item" href="%s"><i class="far fa-hourglass"></i> %s</a>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 0, 'from' => 'installed']), _a('Disable'));
+                                } else {
+                                    echo sprintf('<a class="dropdown-item" href="%s"><i class="fas fa-hourglass"></i> %s</a>', $this->url('', ['action' => 'enable', 'id' => $module['id'], 'active' => 1, 'from' => 'installed']), _a('Enable'));
+                                }
+                                echo ' <div class="dropdown-divider"></div>';
+                                echo sprintf('<a class="dropdown-item" href="%s" onclick="return confirm(\'%s\')"><i class="fas fa-exclamation-triangle text-danger"></i> %s</a>', $this->url('', ['action' => 'uninstall', 'id' => $module['id'], 'from' => 'installed']), _a('Are you sure to uninstall this module?'), _a('Uninstall'));
+                                ?>
+                            </div>
+                        <?php } ?>
                     </div>
                 </td>
             </tr>
-            <?php } ?>
+        <?php } ?>
         </tbody>
     </table>
 </div>
 <script>
-(function($){
-    var page = {
-        el: $('#js-module'),
-        $: function(selector) {
-            return this.el.find(selector);
-        },
-        init: function() {
-            this.$('.detail-action').click($.proxy(this.toggleDetail, this));
-            this.$('.rename-action').click($.proxy(this.rename));
-            this.$('input[type=text]').blur(this.renameAction).keyup(function(e) {
-                if (e.keyCode == 13) {
-                    self.renameAction(e);
-                }
-            });
-        },
-        toggleDetail: function(e) {
-            $(e.target).siblings('.well').toggle();
-        },
-        rename: function(e) {
-            var $this = $(e.target);
-            var p = $this.parent();
-            p.addClass('module-item-title-edit');
-            p.find('input').focus().val($.trim(p.find('strong').html()));
-        },
-        renameAction: function(e) {
-            var $this = $(e.target);
-            var val = $.trim($this.val());
-            var p = $this.parents('.module-item-title');
-            if (val) {
-                $.post("<?php echo $this->url('', array('action' => 'rename')); ?>", {
-                    id: $this.attr('data-id'),
-                    title: val
-                }).done(function(res) {
-                    res = $.parseJSON(res);
-                    if (res.status) {
-                        p.removeClass('module-item-title-edit');
-                        p.find('strong').html(res.data.title);
+    (function ($) {
+        var page = {
+            el: $('#js-module'),
+            $: function (selector) {
+                return this.el.find(selector);
+            },
+            init: function () {
+                this.$('.detail-action').click($.proxy(this.toggleDetail, this));
+                this.$('.rename-action').click($.proxy(this.rename));
+                this.$('input[type=text]').blur(this.renameAction).keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        self.renameAction(e);
                     }
                 });
-            } else {
-                p.removeClass('module-item-title-edit');
+            },
+            toggleDetail: function (e) {
+                $(e.target).siblings('.card').toggle();
+            },
+            rename: function (e) {
+                var $this = $(e.target);
+                var p = $this.parent();
+                p.addClass('module-item-title-edit');
+                p.find('input').focus().val($.trim(p.find('strong').html()));
+            },
+            renameAction: function (e) {
+                var $this = $(e.target);
+                var val = $.trim($this.val());
+                var p = $this.parents('.module-item-title');
+                if (val) {
+                    $.post("<?php echo $this->url('', ['action' => 'rename']); ?>", {
+                        id: $this.attr('data-id'),
+                        title: val
+                    }).done(function (res) {
+                        res = $.parseJSON(res);
+                        if (res.status) {
+                            p.removeClass('module-item-title-edit');
+                            p.find('strong').html(res.data.title);
+                        }
+                    });
+                } else {
+                    p.removeClass('module-item-title-edit');
+                }
             }
         }
-    }
-    page.init();
-})(jQuery)
+        page.init();
+    })(jQuery)
 </script>

@@ -1,171 +1,200 @@
 <?php
-    $this->css($this->assetModule('admin/admin.css'));
-    $this->jQuery('ui/jquery-ui.custom.min.js');
-    $this->backbone();
-    $this->js($this->assetModule('script/system-msg.js', 'system'));
+$this->css($this->assetModule('admin/admin.css'));
+$this->jQuery('ui/jquery-ui.min.js');
+$this->backbone();
+$this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
 <style>
-table {
-    width: 100%;
-}
-table td {
-    vertical-align: top;
-}
-.dressup-page .well,
-.submit-theme {
-    margin-bottom: 10px;
-}
-.well ul {
-    margin: 0;
-}
-.module-header,
-.load-theme {
-    cursor: pointer;
-}
-#drag-main td {
-   background: #fcfcfc;
-   border: 1px solid #DFDFDF;
-   box-shadow: 0 1px 0 #fff inset;
-   min-width: 180px;
-}
+    table {
+        width: 100%;
+    }
 
-[id*='pi-zone-'] {
-   min-height: 180px;
-}
-#pi-content-fixed {
-    clear: both;
-    border: 1px solid #ccc;
-    opacity: .8;
-    cursor: no-drop;
-    filter: alpha(opacity=80);
-    background: #EEEEEE;
-    height: 100px;
-    font:bold 16px/100px sans-serif;
-    text-align: center;
-    *width: 572px;
-    min-height: 180px;
-}
-.module-block-title,
-.pi-zone-num {
-    background-color: #F1F1F1;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9,endColorstr=#ECECEC);
-    background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
-    background-image: -webkit-linear-gradient(top , #F9F9F9, #ECECEC);
-}
-.module-block,
-.widget-clone {
-    color: #222;
-    margin-top: 10px;
-    border-radius: 2px;
-    position: relative;
-}
-.module-block:first-child,
-.widget-clone:first-child {
-    margin-top: 0;
-}
-.module-block-title {
-    box-shadow: 0 1px 0 #fff;
-    border: 1px solid #DFDFDF;
-    font-size: 14px;
-    padding: 0 5px 0 10px;
-    cursor: move;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    user-select: none;
-}
-.module-block-desc {
-    display: none;
-    color: #333;
-    text-indent: 11px;
-    position: absolute;
-    width:100%;
-    z-index: 100;
-    background: #F5F5F5;
-    border: 1px solid #DFDFDF;
-    word-wrap: break-word;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.module-block:hover .module-block-desc,
-.widget-clone:hover .module-block-desc {
-    display: block;
-}
-.drag-btn-wrap {
-    clear: both;
-    float: right;
-    margin-bottom: 10px;
-}
-.pi-zone-num {
-    text-align: center;
-    font: bold 24px sans-serif;
-    margin: 0 0 10px 0;
-    color: #888;
-    border-bottom: 1px solid #ccc;
-    padding-top: 10px;
-}
-/*jquery ui*/
-.ui-draggable-dragging {
-    z-index: 1001;
-}
-.ui-draggable-disabled {
-   background: rgba(240, 240, 240, .6);
-}
-.ui-draggable-disabled .module-block-title {
-    cursor: no-drop;
-}
-.widget-clone {
-    margin: 0 10px 10px;
-}
-.clone-drag {
-    cursor: move;
-}
-.widget-placeholder {
-    border: 1px dashed #333;
-    margin: 0 auto 10px;
-}
-.main-left .widget,
-.main-right .widget,
-.main-center .widget {
-    margin: 0 auto 10px;
-}
-.ui-state-highlight,
-.ui-placeholder {
-    border: 1px dashed #111;
-    height: 21px;
-    margin: 0 10px 10px;
-}
-.ui-placeholder {
-    display: none;
-}
-.ui-state-hover .ui-placeholder {
-    display: block;
-}
-.ui-resizable {
-    position: relative;
-}
-.ui-resizable-handle {
-    position: absolute;
-    font-size: 0.1px;
-    display: block;
-}
-.ui-draggable-dragging {
-    width: 180px;
-}
+    table td {
+        vertical-align: top;
+    }
+
+    .dressup-page .well,
+    .submit-theme {
+        margin-bottom: 10px;
+    }
+
+    .well ul {
+        margin: 0;
+    }
+
+    .module-header,
+    .load-theme {
+        cursor: pointer;
+    }
+
+    #drag-main td {
+        background: #fcfcfc;
+        border: 1px solid #DFDFDF;
+        box-shadow: 0 1px 0 #fff inset;
+        min-width: 180px;
+    }
+
+    [id*='pi-zone-'] {
+        min-height: 180px;
+    }
+
+    #pi-content-fixed {
+        clear: both;
+        border: 1px solid #ccc;
+        opacity: .8;
+        cursor: no-drop;
+        filter: alpha(opacity=80);
+        background: #EEEEEE;
+        height: 100px;
+        font: bold 16px/100px sans-serif;
+        text-align: center;
+        *width: 572px;
+        min-height: 180px;
+    }
+
+    .module-block-title,
+    .pi-zone-num {
+        background-color: #F1F1F1;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9, endColorstr=#ECECEC);
+        background-image: -moz-linear-gradient(center top, #F9F9F9, #ECECEC);
+        background-image: -webkit-linear-gradient(top, #F9F9F9, #ECECEC);
+    }
+
+    .module-block,
+    .widget-clone {
+        color: #222;
+        margin-top: 10px;
+        border-radius: 2px;
+        position: relative;
+    }
+
+    .module-block:first-child,
+    .widget-clone:first-child {
+        margin-top: 0;
+    }
+
+    .module-block-title {
+        box-shadow: 0 1px 0 #fff;
+        border: 1px solid #DFDFDF;
+        font-size: 14px;
+        padding: 0 5px 0 10px;
+        cursor: move;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+    }
+
+    .module-block-desc {
+        display: none;
+        color: #333;
+        text-indent: 11px;
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+        background: #F5F5F5;
+        border: 1px solid #DFDFDF;
+        word-wrap: break-word;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .module-block:hover .module-block-desc,
+    .widget-clone:hover .module-block-desc {
+        display: block;
+    }
+
+    .drag-btn-wrap {
+        clear: both;
+        float: right;
+        margin-bottom: 10px;
+    }
+
+    .pi-zone-num {
+        text-align: center;
+        font: bold 24px sans-serif;
+        margin: 0 0 10px 0;
+        color: #888;
+        border-bottom: 1px solid #ccc;
+        padding-top: 10px;
+    }
+
+    /*jquery ui*/
+    .ui-draggable-dragging {
+        z-index: 1001;
+    }
+
+    .ui-draggable-disabled {
+        background: rgba(240, 240, 240, .6);
+    }
+
+    .ui-draggable-disabled .module-block-title {
+        cursor: no-drop;
+    }
+
+    .widget-clone {
+        margin: 0 10px 10px;
+    }
+
+    .clone-drag {
+        cursor: move;
+    }
+
+    .widget-placeholder {
+        border: 1px dashed #333;
+        margin: 0 auto 10px;
+    }
+
+    .main-left .widget,
+    .main-right .widget,
+    .main-center .widget {
+        margin: 0 auto 10px;
+    }
+
+    .ui-state-highlight,
+    .ui-placeholder {
+        border: 1px dashed #111;
+        height: 21px;
+        margin: 0 10px 10px;
+    }
+
+    .ui-placeholder {
+        display: none;
+    }
+
+    .ui-state-hover .ui-placeholder {
+        display: block;
+    }
+
+    .ui-resizable {
+        position: relative;
+    }
+
+    .ui-resizable-handle {
+        position: absolute;
+        font-size: 0.1px;
+        display: block;
+    }
+
+    .ui-draggable-dragging {
+        width: 180px;
+    }
 </style>
 <div class="row dressup-page">
-    <div class="col-md-2">
+    <div class="col-md-12">
         <h4 class="ellipsis pi-legend" title="<?php echo _escape($title); ?>">
-             <?php echo _escape($title); ?>
+            <?php echo _escape($title); ?>
         </h4>
+    </div>
+    <div class="col-md-2">
         <button class="btn btn-block btn-primary submit-theme"><?php echo _a('Submit'); ?></button>
-        <div id="widget-wrap" unselectable="on" onselectstart="return false;" class="well well-small">
+        <div id="widget-wrap" unselectable="on" onselectstart="return false;" class="card bg-light mb-3">
         </div>
-        <div id="js-theme" class="well well-small">
+        <div id="js-theme" class="card bg-light mb-3">
             <div class="clearfix nav-header load-theme">
-                <b class="pull-right caret caret-big"></b>
+                <b class="float-right caret caret-big"></b>
                 <div class="ellipsis" title="<?php echo _a('Available Themes'); ?>">
                     <?php echo _a('Available Themes'); ?>
                 </div>
@@ -184,7 +213,7 @@ table td {
 </div>
 <script id="module-temp" type="text/template">
     <div class="nav-header module-header" title="<%- title %>">
-        <b class="pull-right caret caret-big"></b>
+        <b class="float-right caret caret-big"></b>
         <div class="ellipsis"><%- title %></div>
     </div>
     <ul class="list-unstyled module-blocks">
@@ -200,28 +229,29 @@ table td {
 </script>
 <script id="page-area-temp" type="text/template">
     <div class="widget-clone" id="module-block<%= id %>-clone" data-id="<%= id %>">
-    <div class="module-block-title" title="<%= title %>"><span class="close">×</span><%= title %></div>
-    <% if (description) { %>
+        <div class="module-block-title" title="<%= title %>"><span class="close">×</span><%= title %></div>
+        <% if (description) { %>
         <div class="module-block-desc"><%= description %></div>
-    <% } %>
+        <% } %>
     </div>
 </script>
 <script id="temp-theme" type="text/template">
     <% _.each(data, function(item) { %>
-        <li data-name="<%= item.name %>" class="set-theme-item<% if (item.name == '<?php echo $currentTheme; ?>') { %> active<% } %>">
-            <a href="javascript:void(0)"><%= item.title %></a>
-        </li>
+    <li data-name="<%= item.name %>"
+        class="set-theme-item<% if (item.name == '<?php echo $currentTheme; ?>') { %> active<% } %>">
+        <a href="javascript:void(0)"><%= item.title %></a>
+    </li>
     <% }) %>
 </script>
 <script src="<?php echo $this->assetModule('script/page-block.js'); ?>"></script>
 <script>
-pageBlcokAction({
-    modules: <?php echo json_encode($modules); ?>,
-    blocks: <?php echo json_encode($blocks); ?>,
-    page: <?php echo $page['id']; ?>,
-    pageSaveUrl: '<?php echo $this->url('admin', array('module' => 'system', 'controller' => 'page', 'action' => 'save')); ?>',
-    getThemeUrl: '<?php echo $this->url('', array('action' => 'themelist')); ?>',
-    getZoneUrl: '<?php echo $this->url('', array('action' => 'zonetemplate', 'theme' => '__NAME__'))?>',
-    blockListUrl: '<?php echo $this->url('', array('module' => 'system', 'controller' => 'page', 'action' => 'blocklist', 'name' => '__NAME__')); ?>'
-});
+    pageBlcokAction({
+        modules: <?php echo json_encode($modules); ?>,
+        blocks: <?php echo json_encode($blocks); ?>,
+        page: <?php echo $page['id']; ?>,
+        pageSaveUrl: '<?php echo $this->url('admin', ['module' => 'system', 'controller' => 'page', 'action' => 'save']); ?>',
+        getThemeUrl: '<?php echo $this->url('', ['action' => 'themelist']); ?>',
+        getZoneUrl: '<?php echo $this->url('', ['action' => 'zonetemplate', 'theme' => '__NAME__'])?>',
+        blockListUrl: '<?php echo $this->url('', ['module' => 'system', 'controller' => 'page', 'action' => 'blocklist', 'name' => '__NAME__']); ?>'
+    });
 </script>

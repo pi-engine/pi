@@ -4,10 +4,10 @@ angular.module('piTabs', [])
       template:
         '<div>' + 
           '<div class="clearfix">' +
-            '<h4 class="pi-nav-tabs-title" ng-if="title">{{title}}</h3>' +
+            '<h4 ng-if="title">{{title}}</h3>' +
             '<ul class="nav nav-tabs" ng-class="{\'pull-right\': title}">' +
-              '<li ng-repeat="tab in tabs" ng-class="{active:tab.active}" ng-click="select(tab)">' +
-                '<a href="javascript:void(0)">{{tab.title}}</a>' +
+              '<li class="nav-item" ng-repeat="tab in tabs" ng-class="{active:tab.active}" ng-click="select(tab)">' +
+                '<a class="nav-link" href="javascript:void(0)">{{tab.title}}</a>' +
             '</ul>' +
           '</div>' +
           '<div class="tab-content" ng-click="test()" ng-transclude>' +

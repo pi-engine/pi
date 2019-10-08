@@ -4,6 +4,9 @@
     <?php } elseif (empty($form)) { ?>
         <div class="alert alert-info"><?php echo _a('No configuration available.'); ?></div>
     <?php } else { ?>
-    <?php include $this->templateComponent('forms'); ?>
-    <?php } ?>     
+        <?php
+        //include $this->templateComponent('forms');
+        echo $this->form($form);
+        ?>
+    <?php } ?>
 </div>

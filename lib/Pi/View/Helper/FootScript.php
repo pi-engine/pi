@@ -1,16 +1,14 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
 namespace Pi\View\Helper;
-
-use Pi;
 
 /**
  * Helper for setting and retrieving script elements for HTML foot section
@@ -37,12 +35,18 @@ class FootScript extends HeadScript
     protected $regKey = 'Pi_View_Helper_FootScript';
 
     /**
+     * Pure html
+     * @var string
+     */
+    protected $html;
+
+    /**
      * Create script HTML
      *
-     * @param  mixed  $item        Item to convert
-     * @param  string $indent      String to add before the item
+     * @param  mixed $item Item to convert
+     * @param  string $indent String to add before the item
      * @param  string $escapeStart Starting sequence
-     * @param  string $escapeEnd   Ending sequence
+     * @param  string $escapeEnd Ending sequence
      * @return string
      */
     public function itemToString($item, $indent, $escapeStart, $escapeEnd)
@@ -52,5 +56,19 @@ class FootScript extends HeadScript
         }
 
         return parent::itemToString($item, $indent, $escapeStart, $escapeEnd);
+    }
+
+    public function addHtml($content)
+    {
+
+        $this->html .= $content;
+    }
+
+    public function toString($indent = null)
+    {
+        $content = parent::toString($indent);
+        $content .= $this->html;
+
+        return $content;
     }
 }

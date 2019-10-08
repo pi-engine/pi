@@ -1,0 +1,1793 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-user\n"
+"POT-Creation-Date: 2019-07-04 22:00+0200\n"
+"PO-Revision-Date: 2019-07-04 22:00+0200\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc / Pi-Team\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.3\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: config/config.php:624 config/config.php:652 config/config.php:680
+#: config/config.php:708
+#, php-format
+msgid "Callback urls is : %s"
+msgstr "Callback urls est : %s"
+
+#: config/event.php:21
+msgid "User logged in"
+msgstr "L'utilisateur est connecté"
+
+#: config/event.php:27
+msgid "User logged out"
+msgstr "L'utilisateur est déconnecté"
+
+#: config/event.php:33
+msgid "User registered"
+msgstr "L'utilisateur est inscrit"
+
+#: config/event.php:39
+msgid "User activated"
+msgstr "L'utilisateur est confirmé"
+
+#: config/event.php:45
+msgid "User enabled"
+msgstr "L'utilisateur est activé"
+
+#: config/event.php:51
+msgid "User disabled"
+msgstr "L'utilisateur est désactivé"
+
+#: config/event.php:57
+msgid "User deleted"
+msgstr "L'utilisateur est supprimé"
+
+#: config/event.php:63
+msgid "User profile updated"
+msgstr "Profil utilisateur mis à jour"
+
+#: config/event.php:69
+msgid "Display name changed"
+msgstr "Le Nom Affiché a été modifié"
+
+#: config/event.php:75
+msgid "Email changed"
+msgstr "Email modifié"
+
+#: config/event.php:81
+msgid "Avatar changed"
+msgstr "Photo modifiée"
+
+#: config/event.php:87
+msgid "Password changed"
+msgstr "Mot de passe modifié"
+
+#: config/event.php:93
+msgid "Role assigned"
+msgstr "Rôle affecté"
+
+#: config/event.php:99
+msgid "Role removed"
+msgstr "Rôle supprimé"
+
+#: config/form.register.php:19
+msgid "Terms & Conditions"
+msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
+
+#: config/form.register.php:20
+#, php-format
+msgid "Accept the %s"
+msgstr "Accepter les %s"
+
+#: config/form.register.php:43
+msgid "Confirm credential"
+msgstr "Confirmer le mot de passe"
+
+#: src/Api/Breadcrumbs.php:39 template/front/login-logout.phtml:23
+#: template/front/login-logout.phtml:24
+msgid "Login"
+msgstr "Se connecter"
+
+#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:133
+#: template/front/login-logout.phtml:27 template/front/login-logout.phtml:28
+#: template/front/login.phtml:40 template/front/login.phtml:42
+#: template/front/register-disabled.phtml:3
+msgid "Register"
+msgstr "S'inscrire"
+
+#: src/Api/Breadcrumbs.php:51 src/Api/Nav.php:64
+msgid "Feed"
+msgstr "Fil"
+
+#: src/Api/Breadcrumbs.php:57 src/Api/Breadcrumbs.php:70
+#: src/Api/Breadcrumbs.php:83 src/Api/Breadcrumbs.php:96
+#: src/Api/Breadcrumbs.php:129 src/Api/Breadcrumbs.php:142
+#: src/Api/Breadcrumbs.php:157
+msgid "Dashboard"
+msgstr "Tableau de Bord"
+
+#: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:182
+#: template/front/account-index.phtml:13
+#: template/front/profile-sidebar.phtml:105
+msgid "Account settings"
+msgstr "Paramétrages du compte"
+
+#: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:183
+#: template/front/avatar-index.phtml:47
+#: template/front/profile-sidebar.phtml:113
+#: template/front/profile-topbar.phtml:157
+msgid "Change avatar"
+msgstr "Modifier sa photo"
+
+#: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:13
+#: template/front/profile-sidebar.phtml:125
+msgid "Privacy"
+msgstr "Confidentialité"
+
+#: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:192
+#: template/front/password-index.phtml:17
+#: template/front/profile-sidebar.phtml:109
+msgid "Change password"
+msgstr "Modifier le mot de passe"
+
+#: src/Api/Breadcrumbs.php:112 src/Controller/Front/PasswordController.php:294
+#: src/Controller/Front/PasswordController.php:295
+#: src/Form/FindPasswordForm.php:48 template/front/login.phtml:30
+#: template/front/login.phtml:32 template/front/password-find.phtml:3
+msgid "Find password"
+msgstr "Trouver le mot de passe."
+
+#: src/Api/Breadcrumbs.php:123 src/Api/Nav.php:46
+msgid "Profile"
+msgstr "Profil"
+
+#: src/Api/Breadcrumbs.php:136 src/Api/Breadcrumbs.php:149
+#: src/Controller/Front/ProfileController.php:217
+#: src/Controller/Front/ProfileController.php:266
+msgid "Edit profile"
+msgstr "Editer le profi"
+
+#: src/Api/Privacy.php:94
+msgid "Everyone"
+msgstr "Tout le monde"
+
+#: src/Api/Privacy.php:95
+msgid "Logged-in user"
+msgstr "Utilisateur connecté"
+
+#: src/Api/Privacy.php:96 src/Api/Relation.php:63
+msgid "Follower"
+msgstr "Abonné"
+
+#: src/Api/Privacy.php:97
+msgid "Followed"
+msgstr "Suivi"
+
+#: src/Api/Privacy.php:98 src/Api/Relation.php:71
+msgid "Owner"
+msgstr "Propriétaire"
+
+#: src/Api/Relation.php:55
+msgid "Public"
+msgstr "Public"
+
+#: src/Api/Relation.php:59
+msgid "Member"
+msgstr "Membre"
+
+#: src/Api/Relation.php:67
+msgid "Following"
+msgstr "Suis"
+
+#: src/Controller/Admin/ConditionController.php:44
+msgid "Please install user module !"
+msgstr "Merci d'installer le module user !"
+
+#: src/Controller/Admin/ConditionController.php:95
+msgid "Problem in upload file. please try again"
+msgstr ""
+"Un problème a été rencontré lors de l'upload du fichier, merci d'essayer de "
+"nouveau"
+
+#: src/Controller/Admin/ConditionController.php:99
+msgid "Filename already exists. please try again"
+msgstr "Ce nom de fichier existe déjà, merci d'essayer de nouveau"
+
+#: src/Controller/Admin/ConditionController.php:128
+msgid "Condition data saved successfully."
+msgstr "Les données de CGU/CGV ont été correctement enregistrées"
+
+#: src/Controller/Admin/ConditionController.php:141
+msgid "Add condition"
+msgstr "Ajouter une CGU/CGV"
+
+#: src/Controller/Admin/ConditionController.php:153
+msgid "Condition file has been deleted successfully"
+msgstr "Le fichier CGU/CGV a été correctement supprimé"
+
+#: src/Controller/Admin/ConditionController.php:155
+msgid "Error occured during condition file removing"
+msgstr "Une erreur est survenue pendant la suppression de la CGU/CGV"
+
+#: src/Controller/Api/TimelineController.php:46
+msgid "Timeline post failed."
+msgstr "Echec de l'ajout de l'activité"
+
+#: src/Controller/Api/TimelineController.php:89
+msgid "Timeline added successfully."
+msgstr "L'activité a été ajoutée avec succès."
+
+#: src/Controller/Front/AccountController.php:90
+msgid ""
+"A confirmation email has been sent to you. Please check your email and "
+"confirm."
+msgstr ""
+"Un mail de confirmation vous a été envoyé. Merci de vérifier vos mails, afin "
+"de confirmer votre inscription."
+
+#: src/Controller/Front/AccountController.php:93
+msgid "It was failed to send you confirmation email. Please try later."
+msgstr "Le mail de confirmation n'est pas parti. Merci d'essayer plus tard."
+
+#: src/Controller/Front/AccountController.php:110
+msgid "Email has been changed successfully."
+msgstr "L'adresse email a été modifiée avec succès."
+
+#: src/Controller/Front/AccountController.php:113
+msgid "It was failed to save new email. Please try later."
+msgstr ""
+"La nouvelle adresse email n'a pas été enregistrée. Merci d'essayer plus tard."
+
+#: src/Controller/Front/AccountController.php:129
+msgid "Name has been changed successfully."
+msgstr "Le nom a été modifié avec succès."
+
+#: src/Controller/Front/AccountController.php:132
+msgid "It was failed to save new name. Please try later."
+msgstr "Le nouveau nom n'a pas été enregistré. Merci d'essayer plus tard."
+
+#: src/Controller/Front/AccountController.php:159
+msgid "Newsletter setting has been changed successfully."
+msgstr "Le paramètre Newslettre a été modifié avec succès."
+
+#: src/Controller/Front/AccountController.php:183
+#: src/Controller/Front/DashboardController.php:47
+#: template/front/account-index.phtml:14
+msgid "Basic settings"
+msgstr "Paramètres Généraux"
+
+#: src/Controller/Front/AccountController.php:198
+msgid "Invalid data provided for email change."
+msgstr "Données fournies pour modifier l'adresse email non valides."
+
+#: src/Controller/Front/AccountController.php:276
+msgid "Email changed successfully."
+msgstr "L'adresse email été modifiée avec succès."
+
+#: src/Controller/Front/AccountController.php:290
+msgid "Incorrect password."
+msgstr "Mot de passe incorrect."
+
+#: src/Controller/Front/AccountController.php:306
+msgid "Password verified."
+msgstr "Mot de passe vérifé."
+
+#: src/Controller/Front/AccountController.php:322
+msgid "Valid input."
+msgstr "Saisie non valide."
+
+#: src/Controller/Front/AccountController.php:370
+#: src/Controller/Front/RegisterController.php:386
+msgid "Invalid input."
+msgstr "Saisie non valide."
+
+#: src/Controller/Front/ActivityController.php:31
+#: src/Controller/Front/HomeController.php:90
+#: src/Controller/Front/ProfileController.php:83
+msgid "View information is disable"
+msgstr "La visualisation des informations est désactivée"
+
+#: src/Controller/Front/ActivityController.php:45
+msgid "User was not found."
+msgstr "L'utilisateur n'a pas été trouvé."
+
+#: src/Controller/Front/ActivityController.php:64
+msgid "An error occurred."
+msgstr "Une erreur est survenue."
+
+#: src/Controller/Front/AvatarController.php:83
+msgid "Allowed extensions:"
+msgstr "Extensions autorisées : "
+
+#: src/Controller/Front/AvatarController.php:88
+msgid "Max file size:"
+msgstr "Poids maximal des fichiers :"
+
+#: src/Controller/Front/AvatarController.php:94
+msgid "Max image size:"
+msgstr "Taille maximale de l'image :"
+
+#: src/Controller/Front/AvatarController.php:169
+msgid "Avatar Settings"
+msgstr "Paramétrages pour la photo"
+
+#: src/Controller/Front/AvatarController.php:184
+#: template/front/avatar-index.phtml:48
+msgid "Customize your avatar anyway you like"
+msgstr "Personnalisez votre photo comme vous le souhaitez"
+
+#: src/Controller/Front/AvatarController.php:202
+msgid "Invalid token!"
+msgstr "Token non valide !"
+
+#: src/Controller/Front/AvatarController.php:306
+msgid "Invalid email for gravatar."
+msgstr "Email invalide pour gravatar."
+
+#: src/Controller/Front/AvatarController.php:317
+#: src/Controller/Front/AvatarController.php:350
+msgid "Successful."
+msgstr "Succès."
+
+#: src/Controller/Front/AvatarController.php:334
+msgid "No image selected!"
+msgstr "Aucune image sélectionnée !"
+
+#: src/Controller/Front/AvatarController.php:368
+#, php-format
+msgid "Invalid source %s."
+msgstr "Source non valide %s."
+
+#: src/Controller/Front/AvatarController.php:379
+msgid "Not image selected."
+msgstr "Aucune image sélectionnée."
+
+#: src/Controller/Front/AvatarController.php:388
+msgid "Image is missing."
+msgstr "L'image est manquante."
+
+#: src/Controller/Front/AvatarController.php:394
+msgid "Image does not exist."
+msgstr "L'image n'existe pas."
+
+#: src/Controller/Front/AvatarController.php:404
+msgid "Image width or height is missing."
+msgstr "La largeur ou la hauteur de l'image est manquante."
+
+#: src/Controller/Front/AvatarController.php:431
+msgid "Email address is missing."
+msgstr "L'adresse email est manquante."
+
+#: src/Controller/Front/AvatarController.php:440
+msgid "Image name is missing."
+msgstr "Le nom de l'image est manquant."
+
+#: src/Controller/Front/AvatarController.php:475
+msgid "Avatar set successfully."
+msgstr "La photo de profil a été paramétrée avec succès."
+
+#: src/Controller/Front/AvatarController.php:490
+msgid "Image is not removed."
+msgstr "L'image n'a pas été supprimée."
+
+#: src/Controller/Front/AvatarController.php:505
+msgid "Image removed successfully."
+msgstr "L'image a été supprimée avec succès."
+
+#: src/Controller/Front/ConditionController.php:52
+msgid "No active condition file"
+msgstr "Il n'y a pas encore de fichier CGU/CGV"
+
+#: src/Controller/Front/DashboardController.php:46
+msgid "My Personal Dashboard"
+msgstr "Mon Tableau de Bord Perso"
+
+#: src/Controller/Front/DashboardProController.php:21
+msgid "My Pro Dashboard"
+msgstr "Mon Tableau de Bord Pro"
+
+#: src/Controller/Front/HomeController.php:78
+#: src/Controller/Front/HomeController.php:146
+#, php-format
+msgid "%s activities"
+msgstr "Activités de %s"
+
+#: src/Controller/Front/HomeController.php:79
+#: src/Controller/Front/HomeController.php:147
+#, php-format
+msgid "View %s activities"
+msgstr "Voir les activités de %s"
+
+#: src/Controller/Front/OauthController.php:32
+msgid "You logged in before."
+msgstr "Vous vous êtes déjà connecté auparavant."
+
+#: src/Controller/Front/OauthController.php:80
+msgid "Google login not active"
+msgstr "Login Google non actif"
+
+#: src/Controller/Front/OauthController.php:117
+msgid "Twitter login not active"
+msgstr "Login Twitter non actif"
+
+#: src/Controller/Front/OauthController.php:154
+msgid "Facebook login not active"
+msgstr "Login Facebook non actif"
+
+#: src/Controller/Front/OauthController.php:191
+msgid "Github login not active"
+msgstr "Login GitHub non actif"
+
+#: src/Controller/Front/OauthController.php:198
+msgid "Provider not set"
+msgstr "Provider non défini"
+
+#: src/Controller/Front/OauthController.php:248
+msgid "Error on login"
+msgstr "Erreur à la connexion"
+
+#: src/Controller/Front/OauthController.php:279
+msgid "You have logged in successfully."
+msgstr "Vous vous êtes connecté avec succès."
+
+#: src/Controller/Front/OauthController.php:283
+msgid "Information not true"
+msgstr "Information erronnée"
+
+#: src/Controller/Front/PasswordController.php:43
+msgid "Reset password failed."
+msgstr "La reinitialisation du mot de passe a échoué."
+
+#: src/Controller/Front/PasswordController.php:59
+#: src/Controller/Front/PasswordController.php:434
+#: src/Form/RegisterForm.php:140
+msgid "Whoops, these don't match"
+msgstr "Oups, ils ne coïncident pas"
+
+#: src/Controller/Front/PasswordController.php:100
+msgid "Reset password successfully."
+msgstr "La réinitialisation du mot de passe a réussi."
+
+#: src/Controller/Front/PasswordController.php:115
+#: src/Controller/Front/PasswordController.php:362 src/Form/RegisterForm.php:74
+msgid "Show my password"
+msgstr "Voir le mot de passe"
+
+#: src/Controller/Front/PasswordController.php:117
+#: src/Controller/Front/PasswordController.php:364 src/Form/RegisterForm.php:76
+msgid "Your password is too short"
+msgstr "Votre mot de passe est trop court"
+
+#: src/Controller/Front/PasswordController.php:118
+#: src/Controller/Front/PasswordController.php:365 src/Form/RegisterForm.php:77
+msgid "Do not use your email as your password"
+msgstr "N'utilisez pas votre email comme mot de passe"
+
+#: src/Controller/Front/PasswordController.php:119
+#: src/Controller/Front/PasswordController.php:366 src/Form/RegisterForm.php:78
+msgid "Your password cannot contain your username"
+msgstr "Votre mot de passe ne peut contenir votre nom de compte"
+
+#: src/Controller/Front/PasswordController.php:120
+#: src/Controller/Front/PasswordController.php:367 src/Form/RegisterForm.php:79
+msgid "Use different character classes"
+msgstr "Utiliser des caractères spéciaux"
+
+#: src/Controller/Front/PasswordController.php:121
+#: src/Controller/Front/PasswordController.php:368 src/Form/RegisterForm.php:80
+msgid "Too many repetitions"
+msgstr "Trop de répétitions"
+
+#: src/Controller/Front/PasswordController.php:122
+#: src/Controller/Front/PasswordController.php:369 src/Form/RegisterForm.php:81
+msgid "Your password contains sequences"
+msgstr "Le mot de passe contient de séquences répétées"
+
+#: src/Controller/Front/PasswordController.php:123
+#: src/Controller/Front/PasswordController.php:370 src/Form/RegisterForm.php:82
+msgid "Errors:"
+msgstr "Erreurs : "
+
+#: src/Controller/Front/PasswordController.php:124
+#: src/Controller/Front/PasswordController.php:371 src/Form/RegisterForm.php:83
+msgid "Very week"
+msgstr "Trop faible"
+
+#: src/Controller/Front/PasswordController.php:125
+#: src/Controller/Front/PasswordController.php:372 src/Form/RegisterForm.php:84
+msgid "Week"
+msgstr "Faible"
+
+#: src/Controller/Front/PasswordController.php:126
+#: src/Controller/Front/PasswordController.php:373 src/Form/RegisterForm.php:85
+msgid "Normal"
+msgstr "Normal"
+
+#: src/Controller/Front/PasswordController.php:127
+#: src/Controller/Front/PasswordController.php:374 src/Form/RegisterForm.php:86
+msgid "Medium"
+msgstr "Moyen"
+
+#: src/Controller/Front/PasswordController.php:128
+#: src/Controller/Front/PasswordController.php:375 src/Form/RegisterForm.php:87
+msgid "Strong"
+msgstr "Fort"
+
+#: src/Controller/Front/PasswordController.php:129
+#: src/Controller/Front/PasswordController.php:376 src/Form/RegisterForm.php:88
+msgid "Very Strong"
+msgstr "Robuste"
+
+#: src/Controller/Front/PasswordController.php:131
+#: src/Controller/Front/PasswordController.php:182
+#: src/Controller/Front/PasswordController.php:378
+#: src/Controller/Front/PasswordController.php:431 src/Form/RegisterForm.php:89
+#: src/Form/RegisterForm.php:136
+msgid ""
+"Password must contain at least one uppercase letter, one lowercase letter "
+"and one digit character"
+msgstr ""
+"Le mot de passe doit contenir au moins 1 lettre majuscule, 1 lettre en "
+"minuscule et au moins 1 chiffre"
+
+#: src/Controller/Front/PasswordController.php:179
+#: src/Controller/Front/PasswordController.php:428
+#: src/Form/RegisterForm.php:133
+#, php-format
+msgid "Must be more than %s characters"
+msgstr "Doit compter plus de %s caractères"
+
+#: src/Controller/Front/PasswordController.php:180
+#: src/Controller/Front/PasswordController.php:429
+#: src/Form/RegisterForm.php:134
+msgid "Invalid password"
+msgstr "Mot de passe non valide."
+
+#: src/Controller/Front/PasswordController.php:193
+#: template/front/password-index.phtml:18
+msgid "To ensure your account security, complex password is required."
+msgstr ""
+"Pour assurer la sécurité de votre compte, un mot de passe complexe est requis"
+
+#: src/Controller/Front/PasswordController.php:213
+msgid "Find password failed."
+msgstr "Le mot de passe n'a pas été trouvé."
+
+#: src/Controller/Front/PasswordController.php:285
+msgid ""
+"Confirmation email sent successfully. Please check email and reset password."
+msgstr ""
+"Le mail de confirmation vous été envoyé avec succès. Merci de regarder votre "
+"boite mail pour réinitialiser le mot de passe."
+
+#: src/Controller/Front/PasswordController.php:307
+msgid "Invalid token for password reset."
+msgstr "Token pour réinitialiser le mot de passe non valide."
+
+#: src/Controller/Front/PasswordController.php:418
+#: src/Form/RegisterForm.php:129
+#, php-format
+msgid "Must be less than %s characters"
+msgstr "Doit compter moins de %s caractères"
+
+#: src/Controller/Front/PasswordController.php:456
+msgid "Password reset successfully."
+msgstr "Mot de passe réinitialisé avec succès."
+
+#: src/Controller/Front/PrivacyController.php:61
+msgid "Privacy settings saved successfully."
+msgstr "Paramètres de confidentialité enregistrés avec succès."
+
+#: src/Controller/Front/PrivacyController.php:100
+msgid "Privacy Settings"
+msgstr "Paramètres de confidentialité"
+
+#: src/Controller/Front/PrivacyController.php:101
+#: template/front/privacy-index.phtml:14
+msgid "Set profile field privacy."
+msgstr "Paramétrer la confidentialité des champs du profil"
+
+#: src/Controller/Front/ProfileController.php:70
+#: src/Controller/Front/ProfileController.php:128
+#, php-format
+msgid "%s profile"
+msgstr "Profil de %s"
+
+#: src/Controller/Front/ProfileController.php:71
+#: src/Controller/Front/ProfileController.php:129
+#, php-format
+msgid ""
+"To know more about %s profile : his bio, websites and social networks, and "
+"his activity on the website"
+msgstr ""
+"Pour en savoir plus à propos du profil de %s : sa bio, ses sites web et "
+"réseaux sociaux, et son activité sur le site"
+
+#: src/Controller/Front/ProfileController.php:156
+#: src/Controller/Front/ProfileController.php:241
+#: src/Controller/Front/ProfileController.php:292
+#: src/Controller/Front/ProfileController.php:431
+msgid "Profile group ID is invalid."
+msgstr "Le numéro de groupe de profil n'est pas valide."
+
+#: src/Controller/Front/ProfileController.php:195
+msgid "Profile updated successfully."
+msgstr "Profil mis à jour avec succès."
+
+#: src/Controller/Front/ProfileController.php:197
+msgid "Profile update failed."
+msgstr "Echec de la mise à jour du profil."
+
+#: src/Controller/Front/ProfileController.php:218
+#: src/Controller/Front/ProfileController.php:267
+msgid "Edit profile data."
+msgstr "Editer les informations du profil."
+
+#: src/Controller/Front/ProfileController.php:449
+msgid "Profile compound requires at least one set of data."
+msgstr "L'organisation du profil requiert au moins un jeu de données."
+
+#: src/Controller/Front/ProfileController.php:454
+msgid "Profile compound data was not deleted."
+msgstr "Les données de l'organisation du profil n'ont pas été supprimées."
+
+#: src/Controller/Front/ProfileController.php:475
+msgid "User ID or Profile group ID is invalid."
+msgstr ""
+"Le numéro utilisateur ou le numéro de groupe de profil n'est pas valide."
+
+#: src/Controller/Front/RegisterController.php:134
+#: template/front/register-index.phtml:18
+msgid "Account registration"
+msgstr "Création de compte"
+
+#: src/Controller/Front/RegisterController.php:199
+msgid "Activation token is invalid."
+msgstr "Le token de confirmation n'est pas valide."
+
+#: src/Controller/Front/RegisterController.php:265
+msgid "Account Activated successfully."
+msgstr "Le compte a été confirmé avec succès."
+
+#: src/Controller/Front/RegisterController.php:295
+msgid "Activation email sent failed."
+msgstr "L'envoi de l'email de confirmation-activation a échoué."
+
+#: src/Controller/Front/RegisterController.php:329
+msgid "Resend activation mail successfully."
+msgstr "Le mail de confirmation-activation a été renvoyé avec succès."
+
+#: src/Controller/Front/RegisterController.php:357
+msgid "Email was not found."
+msgstr "L'email n'a pas été trouvé."
+
+#: src/Controller/Front/RegisterController.php:362
+msgid "Account already activated."
+msgstr "Le compte est déjà confirmé."
+
+#: src/Controller/Front/RegisterController.php:373
+msgid "Activation mail sent successfully."
+msgstr "Le mail de confirmation-activation a été envoyé avec succès."
+
+#: src/Controller/Front/RegisterController.php:378
+msgid "Activation mail was not sent."
+msgstr "Le mail de confirmation-activation n'a pas été envoyé."
+
+#: src/Controller/Front/RegisterController.php:487
+msgid "User information was not completed and user account was not saved."
+msgstr ""
+"Toutes les informations utilisateurs n'ont pas été saisies, le compte n'a "
+"pas été crée."
+
+#: src/Controller/Front/RegisterController.php:513
+msgid "User account was not saved."
+msgstr "Le compte utilisateur n'a pas été enregistré."
+
+#: src/Controller/Front/RegisterController.php:536
+msgid ""
+"User account is registered successfully but activation was failed, please "
+"contact admin."
+msgstr ""
+"Le compte utilisateur a été crée avec succès mais la confirmation a échoué, "
+"merci de contacter l'administrateur."
+
+#: src/Controller/Front/RegisterController.php:568
+msgid "Account activation email was not able to send, please contact admin."
+msgstr ""
+"Le mail de confirmation-activation du compte n'a pu être envoyé, merci de "
+"contacter l'administrateur."
+
+#: src/Form/AccountForm.php:27 src/Form/MemberForm.php:31
+#: src/Form/SearchForm.php:90
+msgid "Username"
+msgstr "Nom de Compte"
+
+#: src/Form/AccountForm.php:38 src/Form/FindPasswordForm.php:27
+#: src/Form/MemberForm.php:49 src/Form/SearchForm.php:108
+msgid "Email"
+msgstr "Email"
+
+#: src/Form/AccountForm.php:48 src/Form/MemberForm.php:40
+#: src/Form/SearchForm.php:99
+msgid "Display name"
+msgstr "Nom Affiché"
+
+#: src/Form/AccountForm.php:59
+#, php-format
+msgid "(updated on %s)"
+msgstr "(mis à jour le %s)"
+
+#: src/Form/AccountForm.php:65 src/Form/RegisterForm.php:151
+msgid "Newsletter subscription"
+msgstr "Inscription Newslettre"
+
+#: src/Form/AccountForm.php:93 src/Form/CompoundForm.php:58
+#: src/Form/ConditionForm.php:86 src/Form/EditUserForm.php:45
+#: src/Form/EmailForm.php:58 src/Form/MemberForm.php:123
+#: src/Form/PasswordForm.php:87 src/Form/ProfileEditForm.php:42
+#: src/Form/RegisterForm.php:168 src/Form/ResendActivationForm.php:47
+#: src/Form/ResetPasswordForm.php:73 src/Form/RoleForm.php:99
+#: template/front/account-index.phtml:41 template/front/privacy-index.phtml:44
+msgid "Submit"
+msgstr "Valider"
+
+#: src/Form/ConditionForm.php:41 template/admin/condition.phtml:11
+msgid "Version"
+msgstr "Version"
+
+#: src/Form/ConditionForm.php:53
+msgid "File"
+msgstr "Fichier"
+
+#: src/Form/ConditionForm.php:66 template/admin/condition.phtml:14
+msgid "Active at"
+msgstr "Actif à compter du"
+
+#: src/Form/Element/Gender.php:36
+msgid "Male"
+msgstr "Masculin"
+
+#: src/Form/Element/Gender.php:37
+msgid "Female"
+msgstr "Féminin"
+
+#: src/Form/EmailForm.php:27
+msgid "New email"
+msgstr "Nouvel email"
+
+#: src/Form/EmailForm.php:37 src/Form/PasswordForm.php:42
+msgid "Current password"
+msgstr "Mot de passe actuel"
+
+#: src/Form/MemberForm.php:58 src/Form/PasswordForm.php:53
+#: src/Form/ResetPasswordForm.php:42
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: src/Form/MemberForm.php:67 src/Form/PasswordForm.php:63
+#: src/Form/ResetPasswordForm.php:52
+msgid "Confirm password"
+msgstr "Confirmer le mot de passe"
+
+#: src/Form/MemberForm.php:76 src/Form/SearchForm.php:71
+msgid "Front role"
+msgstr "Rôle côté utilisateur"
+
+#: src/Form/MemberForm.php:85 src/Form/SearchForm.php:80
+msgid "Admin role"
+msgstr "Rôle côté admin"
+
+#: src/Form/MemberForm.php:95
+msgid "Activate"
+msgstr "Confirmer"
+
+#: src/Form/MemberForm.php:107 src/Form/SearchForm.php:46
+msgid "Enable"
+msgstr "Activer"
+
+#: src/Form/RegisterForm.php:56
+msgid "Invalid email"
+msgstr "L'adresse Email doit avoir une forme valide (ex: xxxx@yyy.com)"
+
+#: src/Form/RegisterForm.php:58
+#, php-format
+msgid ""
+"Oops. This email address is already taken. Do you want to <a href=\"#\" "
+"onclick=\"%s\">login</a> or <a href=\"%s\">recover your password</a> ?"
+msgstr ""
+"Oups ! Cette adresse email est déjà prise. Voulez-vous vous <a href=\"#\" "
+"onclick=\"%s\">connecter</a> ou <a href=\"%s\">retrouver votre mot de passe</"
+"a> ?"
+
+#: src/Form/RegisterForm.php:63
+msgid "Invalid username"
+msgstr "Nom de Compte non valide"
+
+#: src/Form/RegisterForm.php:65
+msgid "Oops. This username is already taken, malformed or forbidden"
+msgstr "Oups. Ce nom de compte est déjà pris, malformé ou interdit"
+
+#: src/Form/ResendActivationForm.php:27
+msgid "Email address"
+msgstr "Adresse email"
+
+#: src/Form/ResendActivationForm.php:38
+msgid "Please type the word."
+msgstr "Merci de saisir le mot affiché"
+
+#: src/Form/RoleForm.php:44
+msgid "Name"
+msgstr "Nom"
+
+#: src/Form/RoleForm.php:54 template/admin/view-user.phtml:25
+msgid "Title"
+msgstr "Titre"
+
+#: src/Form/SearchForm.php:29
+msgid "Active state"
+msgstr "Statut"
+
+#: src/Form/SearchForm.php:31 src/Form/SearchForm.php:45
+#: src/Form/SearchForm.php:59
+msgid "Any"
+msgstr "Tout"
+
+#: src/Form/SearchForm.php:32
+msgid "Active"
+msgstr "Activer"
+
+#: src/Form/SearchForm.php:33
+msgid "Inactive"
+msgstr "Non confirmé"
+
+#: src/Form/SearchForm.php:43
+msgid "Enable state"
+msgstr "Activer le statut"
+
+#: src/Form/SearchForm.php:47
+msgid "Disable"
+msgstr "Désactiver"
+
+#: src/Form/SearchForm.php:57
+msgid "Activated state"
+msgstr "Confirmation"
+
+#: src/Form/SearchForm.php:60
+msgid "Pending"
+msgstr "En attente"
+
+#: src/Form/SearchForm.php:61
+msgid "Activated"
+msgstr "Confirmé"
+
+#: src/Form/SearchForm.php:117
+msgid "Register date from"
+msgstr "Date d'inscription depuis le"
+
+#: src/Form/SearchForm.php:126
+msgid "Register date end"
+msgstr "Date d'inscription avant le"
+
+#: src/Form/SearchForm.php:135
+msgid "Register ip from"
+msgstr "Adresse IP enregistrée depuis"
+
+#: src/Form/SearchForm.php:143
+msgid "Search"
+msgstr "Rechercher"
+
+#: src/Validator/CredentialVerify.php:34
+msgid "Invalid password."
+msgstr "Mot de passe non valide."
+
+#: src/Validator/Name.php:26
+msgid "Invalid name: %formatHint%"
+msgstr "Nom invalide : %formatHint%"
+
+#: src/Validator/Name.php:27
+msgid "User name is reserved"
+msgstr "Le nom utilisateur est réservé"
+
+#: src/Validator/Name.php:28
+msgid "User name is already taken"
+msgstr "Le nom utilisateur est déjà pris"
+
+#: src/Validator/Name.php:29
+msgid "User name is less than %min% characters long"
+msgstr "Le nom utilisateur a moins de %min% caractères"
+
+#: src/Validator/Name.php:30
+msgid "User name is more than %max% characters long"
+msgstr "Le nom utilisateur a plus de %max% caractères"
+
+#: src/Validator/Password.php:45
+msgid "Password can't be an email address"
+msgstr "Le mot de passe ne peut être une adresse mail"
+
+#: src/Validator/Password.php:46
+msgid "Password is less than %min% characters long"
+msgstr "Le mot de passe a moins de %min% caractères"
+
+#: src/Validator/Password.php:47
+msgid "Password is more than %max% characters long"
+msgstr "Le mot de passe a plus de %max% caractères"
+
+#: src/Validator/Password.php:48
+msgid "Password must contain at least one uppercase letter"
+msgstr "Le mot de passe doit contenir au moins 1 lettre en majuscule"
+
+#: src/Validator/Password.php:49
+msgid "Password must contain at least one lowercase letter"
+msgstr "Le mot de passe doit contenir au moins 1 lettre en minuscule"
+
+#: src/Validator/Password.php:50
+msgid "Password must contain at least one digit character"
+msgstr "Le mot de passe doit contenir au moins 1 chiffre"
+
+#: src/Validator/UserEmail.php:36
+msgid "User email is reserved"
+msgstr "Cette adresse mail utilisateur est réservée"
+
+#: src/Validator/UserEmail.php:37
+msgid "User email is already used"
+msgstr "Cette adresse email utilisateur est déjà utilisée"
+
+#: src/Validator/Username.php:50
+msgid "Username is less than %min% characters long"
+msgstr "Le nom de compte utilisateur a moins de %min% caractères"
+
+#: src/Validator/Username.php:51
+msgid "Username is more than %max% characters long"
+msgstr "Le nom de compte utilisateur a plus de %max% caractères"
+
+#: template/admin/condition.phtml:3 template/admin/condition.phtml:5
+msgid "Add file"
+msgstr "Ajouter fichier"
+
+#: template/admin/condition.phtml:7
+msgid "File list"
+msgstr "Liste fichiers"
+
+#: template/admin/condition.phtml:10
+msgid "ID"
+msgstr "ID"
+
+#: template/admin/condition.phtml:12
+msgid "Filename"
+msgstr "Nom fichier"
+
+#: template/admin/condition.phtml:13
+msgid "Created at"
+msgstr "Crée le "
+
+#: template/admin/condition.phtml:15
+msgid "Action"
+msgstr "Action"
+
+#: template/admin/condition.phtml:27 template/admin/condition.phtml:29
+#: template/front/profile-edit-compound.phtml:37
+#: template/front/profile-index.phtml:33
+msgid "Edit"
+msgstr "Editer"
+
+#: template/admin/condition.phtml:32 template/admin/condition.phtml:34
+msgid "Remove"
+msgstr "Supprimer"
+
+#: template/admin/condition.phtml:44
+msgid "Shortcut : latest version of term and condition is available from"
+msgstr "Shortcut : la dernière version des CGU/CGV se trouve à cette adresse"
+
+#: template/admin/view-user.phtml:14
+msgid "Edit user"
+msgstr "Editer l'utilisateur"
+
+#: template/admin/view-user.phtml:21
+msgid "Main information"
+msgstr "Information principale"
+
+#: template/admin/view-user.phtml:26
+msgid "Value"
+msgstr "Valeur"
+
+#: template/admin/view-user.phtml:46
+msgid "Roles"
+msgstr "Roles"
+
+#: template/admin/view-user.phtml:50
+msgid "Section"
+msgstr "Section"
+
+#: template/admin/view-user.phtml:51
+msgid "Role"
+msgstr "Role"
+
+#: template/admin/view-user.phtml:54
+msgid "Front"
+msgstr "Front"
+
+#: template/admin/view-user.phtml:65
+msgid "Admin"
+msgstr "Admin"
+
+#: template/front/account-index.phtml:24
+msgid "Verify identity"
+msgstr "Vérifier l'identité"
+
+#: template/front/account-index.phtml:29
+msgid "Input password to verify your identity for account changes."
+msgstr ""
+"Saisissez votre mot de passe pour que votre identité soit vérifiée et "
+"pouvoir ainsi valider vos modifications."
+
+#: template/front/account-index.phtml:33
+msgid "Password"
+msgstr "Mot de passe"
+
+#: template/front/account-index.phtml:211
+msgid "Email is required."
+msgstr "L'adresse email est exigée"
+
+#: template/front/account-index.phtml:254
+msgid "Display name is required."
+msgstr "Le Nom Affiché est exigé"
+
+#: template/front/account-index.phtml:308
+msgid "No change!"
+msgstr "Aucune modification !"
+
+#: template/front/account-reset-email.phtml:2
+msgid "Change email"
+msgstr "Modifier l'email"
+
+#: template/front/account-reset-email.phtml:4
+#: template/front/password-process.phtml:18
+#: template/front/register-index.phtml:78
+#: template/front/register-index.phtml:110
+msgid "Congratulations!"
+msgstr "Félicitations !"
+
+#: template/front/account-reset-email.phtml:6
+#: template/front/register-activate.phtml:10
+msgid "Login right now."
+msgstr "Se connecter maintenant."
+
+#: template/front/activity-index.phtml:19 template/front/home-index.phtml:20
+#: template/front/profile-index.phtml:14
+msgid "My profile"
+msgstr "Mon profil"
+
+#: template/front/activity-index.phtml:43
+msgid "View all"
+msgstr "Voir tout"
+
+#: template/front/activity-index.phtml:50 template/front/home-index.phtml:59
+#: template/front/profile-view.phtml:30
+msgid "No data available."
+msgstr "Aucune donnée disponible."
+
+#: template/front/avatar-index.phtml:14
+msgid "Upload"
+msgstr "Uploader"
+
+#: template/front/avatar-index.phtml:19
+msgid "Gravatar"
+msgstr "Gravatar"
+
+#: template/front/avatar-index.phtml:24
+msgid "Select"
+msgstr "Selectionner"
+
+#: template/front/avatar-index.phtml:29
+msgid "Default"
+msgstr "Par défaut"
+
+#: template/front/avatar-index.phtml:55
+msgid "Current avatar"
+msgstr "Photo actuelle"
+
+#: template/front/avatar-index.phtml:56
+msgid ""
+"Once source type is switched and saved, the old avatar image will be deleted."
+msgstr ""
+"Une fois le fichier source sélectionné et enregistré, l'ancienne photo sera "
+"supprimée."
+
+#: template/front/avatar-index.phtml:80 template/front/avatar-index.phtml:203
+msgid "Upload avatar"
+msgstr "Uploader sa photo"
+
+#: template/front/avatar-index.phtml:91 template/front/avatar-index.phtml:128
+#: template/front/avatar-index.phtml:156 template/front/avatar-index.phtml:182
+msgid "Avatar previews"
+msgstr "Prévisualisation Photo de Profil"
+
+#: template/front/avatar-index.phtml:112
+msgid "Gravatar email"
+msgstr "Email Gravatar"
+
+#: template/front/avatar-index.phtml:121 template/front/avatar-index.phtml:123
+msgid "Configure at Gravatar"
+msgstr "Configuration Gravatar"
+
+#: template/front/avatar-index.phtml:178
+msgid "Apply system avatar as your avatar"
+msgstr "Appliquer l'icône proposée par défaut"
+
+#: template/front/avatar-index.phtml:192
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: template/front/avatar-index.phtml:193
+msgid "Cancel"
+msgstr "Annuler"
+
+#: template/front/avatar-index.phtml:204
+msgid "Uploading"
+msgstr "En téléchargement"
+
+#: template/front/dashboard-index.phtml:42
+#: template/front/dashboardPro-index.phtml:35
+msgid "Your dashboard"
+msgstr "Votre tableau de bord"
+
+#: template/front/dashboard-index.phtml:42
+msgid "Welcome to your personal dashboard"
+msgstr "Bienvenue dans votre espace personnel"
+
+#: template/front/dashboard-index.phtml:53
+#: template/front/dashboardPro-index.phtml:46
+msgid "Your pending requests"
+msgstr "Vos demandes en attente"
+
+#: template/front/dashboard-index.phtml:73
+#: template/front/dashboardPro-index.phtml:67
+msgid "Shortcuts"
+msgstr "Raccourcis"
+
+#: template/front/dashboard-index.phtml:80
+#: template/front/dashboard-index.phtml:84
+#: template/front/dashboardPro-index.phtml:74
+#: template/front/dashboardPro-index.phtml:78
+msgid "My items"
+msgstr "Mes éléments"
+
+#: template/front/dashboard-index.phtml:93
+#: template/front/dashboard-index.phtml:97
+#: template/front/dashboardPro-index.phtml:87
+#: template/front/dashboardPro-index.phtml:91
+#: template/front/profile-sidebar.phtml:314
+msgid "Sponsorship"
+msgstr "Parrainage"
+
+#: template/front/dashboard-index.phtml:108
+#: template/front/dashboard-index.phtml:112
+#: template/front/dashboardPro-index.phtml:102
+#: template/front/dashboardPro-index.phtml:106
+msgid "My messages"
+msgstr "Mes messages"
+
+#: template/front/dashboard-index.phtml:118
+#: template/front/dashboard-index.phtml:122
+#: template/front/dashboardPro-index.phtml:112
+#: template/front/dashboardPro-index.phtml:116
+msgid "My notifications"
+msgstr "Mes notifications"
+
+#: template/front/dashboard-index.phtml:131
+#: template/front/dashboard-index.phtml:135
+#: template/front/dashboardPro-index.phtml:125
+#: template/front/dashboardPro-index.phtml:129
+msgid "My events"
+msgstr "Mes évènements"
+
+#: template/front/dashboard-index.phtml:144
+#: template/front/dashboard-index.phtml:148
+#: template/front/dashboardPro-index.phtml:138
+#: template/front/dashboardPro-index.phtml:142
+msgid "My orders"
+msgstr "Mes commandes"
+
+#: template/front/dashboard-index.phtml:155
+#: template/front/dashboard-index.phtml:159
+#: template/front/dashboardPro-index.phtml:149
+#: template/front/dashboardPro-index.phtml:153
+msgid "My credit"
+msgstr "Mes Crédits"
+
+#: template/front/dashboard-index.phtml:169
+#: template/front/dashboard-index.phtml:173
+#: template/front/dashboardPro-index.phtml:163
+#: template/front/dashboardPro-index.phtml:167
+msgid "My favorites"
+msgstr "Mes favoris"
+
+#: template/front/dashboard-index.phtml:181
+#: template/front/dashboard-index.phtml:185
+#: template/front/dashboardPro-index.phtml:175
+#: template/front/dashboardPro-index.phtml:179
+msgid "My videos"
+msgstr "Mes Vidéos"
+
+#: template/front/dashboard-index.phtml:194
+#: template/front/dashboard-index.phtml:198
+#: template/front/dashboardPro-index.phtml:188
+#: template/front/dashboardPro-index.phtml:192
+msgid "My support tickets"
+msgstr "Mes tickets Assistance"
+
+#: template/front/dashboard-index.phtml:213
+#: template/front/dashboardPro-index.phtml:228
+msgid "How it works ?"
+msgstr "Comment ça marche ?"
+
+#: template/front/dashboard-index.phtml:232
+#: template/front/dashboardPro-index.phtml:249
+#: template/front/dashboardPro-index.phtml:251
+msgid "Add commercial"
+msgstr "Ajouter une activité"
+
+#: template/front/dashboard-index.phtml:234
+msgid "Let's go !"
+msgstr "C'est parti !"
+
+#: template/front/dashboardPro-index.phtml:35
+msgid "Welcome to your pro dashboard"
+msgstr "Bienvenue dans votre espace professionnel"
+
+#: template/front/dashboardPro-index.phtml:210
+msgid "Add<br>commercial"
+msgstr "Ajouter<br>une activité"
+
+#: template/front/dashboardPro-index.phtml:219
+msgid "Promote<br>your businesses"
+msgstr "Promouvoir<br>mes activités"
+
+#: template/front/dashboardPro-index.phtml:246
+msgid "To begin, let's create your first establishment :)"
+msgstr "Pour commencer, créons votre premier établissement ;)"
+
+#: template/front/login-disabled.phtml:3
+msgid "User login"
+msgstr "Connexion utilisateur"
+
+#: template/front/login-disabled.phtml:6
+msgid "Sorry, login is temporarily disabled. Please come back later."
+msgstr ""
+"Désolé, la connexion est temporairement désactivée. Merci de revenir plus "
+"tard."
+
+#: template/front/login-logout.phtml:12 template/front/login-success.phtml:8
+msgid "homepage"
+msgstr "Accueil"
+
+#: template/front/login-logout.phtml:15
+msgid "re-login"
+msgstr "Se Re-connecter"
+
+#: template/front/login-logout.phtml:16
+#, php-format
+msgid "You have logged out successfully, please go to %s or to %s."
+msgstr "Vous vous ête déconnectés avec succès, merci d'aller à %s ou %s."
+
+#: template/front/login-message.phtml:8
+msgid "logout"
+msgstr "vous déconnecter"
+
+#: template/front/login-message.phtml:9
+#, php-format
+msgid ""
+"You have been logged on with account <strong>%s</strong>, please %s to re-"
+"login."
+msgstr ""
+"Vous êtes connecté avec le compte <strong>%s</strong>, merci de %s pour vous "
+"re-connecter."
+
+#: template/front/login-success.phtml:9
+#, php-format
+msgid "You have logged in successfully, please go to %s."
+msgstr "Vous vous êtes connecté avec succès, merci d'aller à %s."
+
+#: template/front/login.phtml:38
+msgid "Not registered yet ?"
+msgstr "Pas encore inscrit ?"
+
+#: template/front/login.phtml:60 template/front/register-index.phtml:42
+msgid "Login with google"
+msgstr "Se connecter avec Google"
+
+#: template/front/login.phtml:68 template/front/register-index.phtml:50
+msgid "Login with twitter"
+msgstr "Se connecter avec Twitter"
+
+#: template/front/login.phtml:76 template/front/register-index.phtml:58
+msgid "Login with facebook"
+msgstr "Se connecter avec Facebook"
+
+#: template/front/login.phtml:84 template/front/register-index.phtml:66
+msgid "Login with github"
+msgstr "Se connecter avec Github"
+
+#: template/front/password-process.phtml:7
+msgid "Reset password"
+msgstr "Réinitialiser le mot de passe"
+
+#: template/front/password-process.phtml:13
+msgid "Try to find password again"
+msgstr "Essayer de trouver le mot de passe de nouveau"
+
+#: template/front/password-process.phtml:19
+msgid "Your new password has worked"
+msgstr "Votre nouveau mot de passe a fonctionné"
+
+#: template/front/password-process.phtml:22
+msgid "Please login"
+msgstr "Merci de vous connecter"
+
+#: template/front/privacy-index.phtml:19
+msgid "No available privacy setting"
+msgstr "Aucun paramétrage de confidentialité disponible"
+
+#: template/front/profile-edit-compound.phtml:17
+#, php-format
+msgid "Update %s"
+msgstr "Mettre à jour %s"
+
+#: template/front/profile-edit-compound.phtml:18
+#: template/front/profile-edit-compound.phtml:27
+msgid "Add new"
+msgstr "Ajouter un nouveau"
+
+#: template/front/profile-edit-compound.phtml:48
+#: template/front/profile-index.phtml:46 template/front/profile-view.phtml:21
+msgid "Unfiled"
+msgstr "Non rempli"
+
+#: template/front/profile-edit-compound.phtml:59
+msgid "Are you sure to delete this record?"
+msgstr "Etes-vous sûr de vouloir supprimer cet enregistrement?"
+
+#: template/front/profile-edit.phtml:14
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: template/front/profile-index.phtml:55
+#, php-format
+msgid "Add %s"
+msgstr "Ajouter %s"
+
+#: template/front/profile-sidebar.phtml:35
+msgid "Perso"
+msgstr "Perso"
+
+#: template/front/profile-sidebar.phtml:37
+msgid "Pro"
+msgstr "Pro"
+
+#: template/front/profile-sidebar.phtml:46
+msgid "Personal Dashboard"
+msgstr "Tableau de Bord Perso"
+
+#: template/front/profile-sidebar.phtml:52
+msgid "Bookings"
+msgstr "Réservations"
+
+#: template/front/profile-sidebar.phtml:60
+msgid "Contributions"
+msgstr "Contributions"
+
+#: template/front/profile-sidebar.phtml:69
+msgid "Favorites"
+msgstr "Favoris"
+
+#: template/front/profile-sidebar.phtml:77
+msgid "Reviews/comments"
+msgstr "Avis/commentaires"
+
+#: template/front/profile-sidebar.phtml:85
+#: template/front/profile-sidebar.phtml:378
+msgid "My Media"
+msgstr "Mes Médias"
+
+#: template/front/profile-sidebar.phtml:94
+msgid "My account"
+msgstr "Mon compte"
+
+#: template/front/profile-sidebar.phtml:100
+msgid "Manage account"
+msgstr "Gérer mon compte"
+
+#: template/front/profile-sidebar.phtml:138
+msgid "Pro Dashboard"
+msgstr "Tableau de Bord Pro"
+
+#: template/front/profile-sidebar.phtml:145
+msgid "Manage my activities"
+msgstr "Gérer mes activités"
+
+#: template/front/profile-sidebar.phtml:155
+msgid "Choose an activity"
+msgstr "Choisir une activité"
+
+#: template/front/profile-sidebar.phtml:180
+msgid "Summary"
+msgstr "Résumé"
+
+#: template/front/profile-sidebar.phtml:195
+msgid "FAST ACTIONS"
+msgstr "ACTIONS RAPIDES"
+
+#: template/front/profile-sidebar.phtml:203
+msgid "Grid Manager"
+msgstr "Grille Gestion"
+
+#: template/front/profile-sidebar.phtml:209
+msgid "Bookings/Closings"
+msgstr "Résas/Fermetures"
+
+#: template/front/profile-sidebar.phtml:217
+msgid "Boost"
+msgstr "Boost"
+
+#: template/front/profile-sidebar.phtml:224
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: template/front/profile-sidebar.phtml:240
+msgid "CONFIGURATION"
+msgstr "CONFIGURATION"
+
+#: template/front/profile-sidebar.phtml:247
+msgid "Description"
+msgstr "Description"
+
+#: template/front/profile-sidebar.phtml:253
+msgid "Products/Prices"
+msgstr "Produits/Tarifs"
+
+#: template/front/profile-sidebar.phtml:260
+msgid "Opening hours"
+msgstr "Horaires ouverture"
+
+#: template/front/profile-sidebar.phtml:266
+msgid "Policies"
+msgstr "Conditions générales"
+
+#: template/front/profile-sidebar.phtml:273
+msgid "Events"
+msgstr "Evènements"
+
+#: template/front/profile-sidebar.phtml:278
+msgid "Deals/Special Offers"
+msgstr "Promos/Offres Spéciales"
+
+#: template/front/profile-sidebar.phtml:290
+msgid "DISTRIBUTION"
+msgstr "DISTRIBUTION"
+
+#: template/front/profile-sidebar.phtml:297
+msgid "Widget"
+msgstr "Widget"
+
+#: template/front/profile-sidebar.phtml:302
+msgid "Sales Channels (Soon)"
+msgstr "Canaux Vente (bientôt)"
+
+#: template/front/profile-sidebar.phtml:321
+msgid "My statistics"
+msgstr "Mes Statistiques"
+
+#: template/front/profile-sidebar.phtml:329
+msgid "Messages"
+msgstr "Messages"
+
+#: template/front/profile-sidebar.phtml:336
+msgid "Notifications"
+msgstr "Notifications"
+
+#: template/front/profile-sidebar.phtml:345
+msgid "Support tickets"
+msgstr "Tickets Assistance"
+
+#: template/front/profile-sidebar.phtml:353
+msgid "Orders"
+msgstr "Commandes"
+
+#: template/front/profile-sidebar.phtml:361
+msgid "Credit"
+msgstr "Crédits"
+
+#: template/front/profile-sidebar.phtml:370
+msgid "Videos"
+msgstr "Vidéos"
+
+#: template/front/profile-topbar.phtml:83
+msgid "View my profile"
+msgstr "Voir mon profil"
+
+#: template/front/profile-topbar.phtml:90
+msgid "Settings"
+msgstr "Paramétrages"
+
+#: template/front/profile-topbar.phtml:97
+msgid "Quicklinks"
+msgstr "Liens rapides"
+
+#: template/front/profile-topbar.phtml:120
+msgid "Manage my profile"
+msgstr "Gérer mon profil"
+
+#: template/front/profile-topbar.phtml:133
+#: template/front/profile-topbar.phtml:139
+#: template/front/profile-topbar.phtml:145
+msgid "Send message"
+msgstr "Envoyer un message"
+
+#: template/front/profile-topbar.phtml:165
+msgid "Member since"
+msgstr "Membre depuis"
+
+#: template/front/profile-topbar.phtml:171
+msgid "Gender:"
+msgstr "Genre : "
+
+#: template/front/profile-topbar.phtml:177
+msgid "Birthdate:"
+msgstr "Date de naissance :"
+
+#: template/front/profile-topbar.phtml:246
+msgid "More"
+msgstr "Plus"
+
+#: template/front/register-activate.phtml:4
+msgid "Congratulations, and welcome !"
+msgstr "Félicitations, et bienvenue !"
+
+#: template/front/register-activate.phtml:7
+msgid "Welcome in our community !"
+msgstr "Bienvenue dans notre communauté !"
+
+#: template/front/register-activate.phtml:8
+msgid ""
+"Your account has been confirmed and is now active : you can log in... and "
+"contribute !"
+msgstr ""
+"Votre compte a été confirmé et est maintenant actif : vous pouvez vous "
+"connecter… et contribuer !"
+
+#: template/front/register-activate.phtml:16
+#: template/front/register-index.phtml:90
+#, php-format
+msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
+msgstr "Ou retourner à <a href=\"%s\">la page demandée </a> directement."
+
+#: template/front/register-activate.phtml:22
+msgid "Sorry, account activation is failed."
+msgstr "Désolé, la confirmation-activation de votre compte a échoué."
+
+#: template/front/register-activate.phtml:24
+#: template/front/register-resend-activation.phtml:3
+msgid "Resend activation email."
+msgstr "Renvoyer le mail de confirmation-activation."
+
+#: template/front/register-disabled.phtml:6
+msgid "Sorry, register is temporarily disabled. Please come back later."
+msgstr ""
+"Désolé, l'inscription est temporairement désactivée. Merci de revenir plus "
+"tard."
+
+#: template/front/register-index.phtml:83
+#, php-format
+msgid ""
+"Your account has been registered successfully. Please <a href=\"%s\">login</"
+"a> with your account."
+msgstr ""
+"Votre compte a été crée avec succès. Vous pouvez maintenant vous <a href=\"%s"
+"\">connecter</a> avec votre compte."
+
+#: template/front/register-index.phtml:100
+#: template/front/register-index.phtml:119
+msgid "Registration was not completed."
+msgstr "L'inscription n'est pas été menée à son terme."
+
+#: template/front/register-index.phtml:113
+msgid ""
+"You account has been registered successfully. However it needs to be "
+"approved by our admins before you can use it."
+msgstr ""
+"Votre compte a été crée avec succès. Cependant il doit être approuvé par les "
+"administrateurs du site avant de pouvoir être utilisé."
+
+#: template/front/register-index.phtml:129
+msgid "An email with activation link has been sent to you."
+msgstr "Un email avec un lien de confirmation-activation vous a été envoyé."
+
+#: template/front/register-index.phtml:130
+msgid "Email used"
+msgstr "Email utilisé"
+
+#: template/front/register-index.phtml:131
+msgid "Please check it to finish the registration."
+msgstr "Merci de vérifier votre boite mail afin de terminer votre inscription."
+
+#: template/front/register-index.phtml:136
+msgid "You did not receive the activation email?"
+msgstr "Vous n'avez pas reçu le mail de confirmation ?"
+
+#: template/front/register-index.phtml:138
+msgid "Wait a few minutes and check again."
+msgstr "Attendez quelques minutes et vérifiez de nouveau."
+
+#: template/front/register-index.phtml:139
+msgid "Check your email spam box."
+msgstr "Vérifiez le répertoire spam de votre boite mail."
+
+#: template/front/register-index.phtml:142
+msgid "Request to resend activation email"
+msgstr "Demandez le renvoi du mail d'activation"
+
+#: template/front/register-index.phtml:179
+msgid "Already sent"
+msgstr "Déja envoyé"
+
+#~ msgid "Deals (Soon)"
+#~ msgstr "Promos/Offres (bientôt)"
+
+#~ msgid "Activate account"
+#~ msgstr "Confirmer le compte"
+
+#~ msgid "Your account has been activated."
+#~ msgstr "Votre compte a été confirmé."
+
+#~ msgid "Member area"
+#~ msgstr "Espace Membre"
+
+#~ msgid "Pro area"
+#~ msgstr "Espace Pro"
+
+#~ msgid "All"
+#~ msgstr "Toutes mes activités"
+
+#~ msgid "List"
+#~ msgstr "Liste"
+
+#~ msgid "Account / Profile"
+#~ msgstr "Compte/profil"
+
+#~ msgid "Planning"
+#~ msgstr "Planning"
+
+#~ msgid "Tools"
+#~ msgstr "Outils"
+
+#~ msgid "Share"
+#~ msgstr "Outils"
+
+#~ msgid "Management"
+#~ msgstr "Gestion"
+
+#~ msgid "Items"
+#~ msgstr "Eléments"
+
+#~ msgid "My requests"
+#~ msgstr "Mes demandes"
+
+#~ msgid "My stats"
+#~ msgstr "Mes stats"
+
+#~ msgid "Reviews & Comments"
+#~ msgstr "Commentaires/Avis"
+
+#~ msgid ""
+#~ "Password must contain at lease one uppercase letter, one lowercase letter "
+#~ "and one digit character"
+#~ msgstr ""
+#~ "Le mot de passe doit contenir au moins 1 lettre majuscule, 1 lettre en "
+#~ "minuscule et au moins 1 chiffre"
+
+#~ msgid "Switch to public"
+#~ msgstr "Basculer côté utilisateur"
+
+#~ msgid "Switch to own"
+#~ msgstr "Basculer côté admin"
+
+#~ msgid "Oops. This email address is already taken or is forbidden"
+#~ msgstr "Oups. Cette adresse e-mail est déjà prise ou est interdite"
+
+#~ msgid "Accept %s"
+#~ msgstr "Accepter %s"
+
+#~ msgid ""
+#~ "User has read and accept current terms and conditions on checkout. "
+#~ "Version : "
+#~ msgstr ""
+#~ "L'utilisateur a lu et accepté les CGU/CGV courantes depuis la page "
+#~ "checkhout. Version : "
+
+#~ msgid "User has subscribed to the newsletter"
+#~ msgstr "L'utilisateur s'est inscrit à la newslettre"
+
+#~ msgid "User has read and accept current terms and conditions. Version : "
+#~ msgstr "L'utilisateur a lu et accepté les CGU/CGV courantes. Version : "
+
+#~ msgid "User has unsubscribed to the newsletter"
+#~ msgstr "L'utilisateur s'est désinscrit de la newslettre"
+
+#~ msgid "Not already registered ?"
+#~ msgstr "Pas encore inscrit ?"
+
+#~ msgid "Already registered ?"
+#~ msgstr "Déjà inscrit ?"
+
+#~ msgid "Please type the word"
+#~ msgstr "Merci de saisir le mot"
+
+#~ msgid "Invalid user name: %formatHint%"
+#~ msgstr "Non utilisateur non valide : %formatHint%"
+
+#~ msgid "Username is reserved"
+#~ msgstr "Le nom utilisateur est réservé"
+
+#~ msgid "Username is already taken"
+#~ msgstr "Le nom utilisateur est déja pris"
+
+#, fuzzy
+#~ msgid "Only alphabetic and digits are allowed with leading alphabetic"
+#~ msgstr ""
+#~ "Seuls des caractères alphanumériques sont autorisés avec les premières "
+#~ "caractères alphabétiques"
+
+#~ msgid "Only ASCII characters are allowed"
+#~ msgstr "Seuls des caractères ASCII sont autorisés"
+
+#~ msgid "Multibyte characters are allowed"
+#~ msgstr "Les caractères multibytes non autorisés"
+
+#~ msgid "User profile"
+#~ msgstr "Profil utilisateur"
+
+#~ msgid "view profile"
+#~ msgstr "Voir le profil"
+
+#, fuzzy
+#~ msgid "1. wait a few minutes"
+#~ msgstr "Attendez quelques minutes et vérifier de nouveau."
+
+#, fuzzy
+#~ msgid "2. Check your email rubbish"
+#~ msgstr "Vérifier le répertoire spam de votre boite mail."
+
+#~ msgid "Invalid email."
+#~ msgstr "Email invalide."
+
+#~ msgid "Email has been used."
+#~ msgstr "L'email est déja utilisé."
+
+#~ msgid "Invalid display name."
+#~ msgstr "Pseudo invalide."
+
+#~ msgid "Display name has been used."
+#~ msgstr "Le pseudo est déja utilisé."
+
+#~ msgid ""
+#~ "account,social,tools,privacy,settings,profile,user,login,register,"
+#~ "password,avatar"
+#~ msgstr ""
+#~ "compte, réseaux sociaux, outils, confidentialité, paramétrages, profil, "
+#~ "utilisateur, connextion, inscription, mot de passe, avatar"
+
+#~ msgid "Recovered from Gravatar"
+#~ msgstr "Récupéré depuis Gravatar"
+
+#~ msgid "Choose: "
+#~ msgstr "Choisir :"
+
+#~ msgid "Resend activation email"
+#~ msgstr "Renvoyer le mail d'activation"

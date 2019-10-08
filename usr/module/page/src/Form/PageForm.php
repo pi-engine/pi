@@ -1,15 +1,14 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Page\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 class PageForm extends BaseForm
@@ -19,8 +18,8 @@ class PageForm extends BaseForm
     /**
      * Constructor
      *
-     * @param null|string|int $name Optional name for the element
-     * @param string $markup Page type: text, html, markdown
+     * @param null|string|int $name   Optional name for the element
+     * @param string          $markup Page type: text, html, markdown
      */
     public function __construct($name = null, $markup = null)
     {
@@ -39,157 +38,222 @@ class PageForm extends BaseForm
 
     public function init()
     {
-        $this->add(array(
-            'name'          => 'title',
-            'options'       => array(
-                'label' => _a('Page title'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
-        ));
+        $this->add(
+            [
+                'name'       => 'title',
+                'options'    => [
+                    'label' => _a('Page title'),
+                ],
+                'attributes' => [
+                    'type' => 'text',
+                ],
+            ]
+        );
 
-        $this->add(array(
-            'name'          => 'name',
-            'options'       => array(
-                'label' => _a('Unique name'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-                'description'   => _a('Only alphabet, number and underscore allowed.'),
-            ),
-        ));
+        $this->add(
+            [
+                'name'       => 'name',
+                'options'    => [
+                    'label' => _a('Unique name'),
+                ],
+                'attributes' => [
+                    'type'        => 'text',
+                    'description' => _a('Only alphabet, number and underscore allowed.'),
+                ],
+            ]
+        );
 
-        $this->add(array(
-            'name'          => 'slug',
-            'options'       => array(
-                'label' => _a('SEO slug'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-                'description'   => _a('Unique slug for SEO URL.'),
-            )
-        ));
+        $this->add(
+            [
+                'name'       => 'slug',
+                'options'    => [
+                    'label' => _a('SEO slug'),
+                ],
+                'attributes' => [
+                    'type'        => 'text',
+                    'description' => _a('Unique slug for SEO URL, space is not allowed.'),
+                ],
+            ]
+        );
+
+        $this->add(
+            [
+                'name'       => 'theme',
+                'type'       => 'theme',
+                'options'    => [
+                    'allow_auto' => true,
+                ],
+                'attributes' => [
+                    'description' => _a('The eligible theme layouts are not visible in the select list until this form is saved once with the selected theme'),
+                ],
+            ]
+        );
+
+        $this->add(
+            [
+                'name'    => 'layout',
+                'type'    => 'layout',
+                'options' => [
+                    'theme' => '', // Specify theme name here
+                ],
+            ]
+        );
+
+        $this->add(
+            [
+                'name'    => 'template',
+                'type'    => 'select',
+                'options' => [
+                    'label'         => __('Template'),
+                    'value_options' => [
+                        'page-view-simple' => __('Simple'),
+                        'page-view'        => __('Default ( By panel )'),
+                    ],
+                ],
+            ]
+        );
 
         if ('phtml' == $this->markup) {
-            $this->add(array(
-                'name'          => 'content',
-                'options'       => array(
-                    'label' => _a('Template name'),
-                ),
-                'attributes'    => array(
-                    'description'   => _a('Select a template from `usr/custom/module/page/template/front/` w/o extension.'),
-                ),
-            ));
+            $this->add(
+                [
+                    'name'       => 'content',
+                    'options'    => [
+                        'label' => _a('Template name'),
+                    ],
+                    'attributes' => [
+                        'description' => _a(
+                            'Select a template from `usr/custom/module/page/template/front/` w/o extension. You can also locate it in `usr/themes/yourtheme/custom/page/`'
+                        ),
+                    ],
+                ]
+            );
         } else {
             $set = '';
             switch ($this->markup) {
                 case 'html':
-                    $editor         = 'html';
+                    $editor = 'html';
                     break;
                 case 'markdown':
-                    $editor         = 'markitup';
-                    $set            = 'markdown';
+                    $editor = 'markitup';
+                    $set    = 'markdown';
                     break;
                 case 'text':
                 default:
-                    $editor         = 'textarea';
+                    $editor = 'textarea';
                     break;
             }
 
-            $this->add(array(
-                'name'          => 'content',
-                'type'          => 'editor',
-                'options'       => array(
-                    'label'     => _a('Content'),
-                    'editor'    => $editor,
-                    'set'       => $set,
-                ),
-                'attributes'    => array(
-                    'rows'         => 5,
-                ),
-            ));
+            $this->add(
+                [
+                    'name'       => 'content',
+                    'type'       => 'editor',
+                    'options'    => [
+                        'label'  => _a('Content'),
+                        'editor' => $editor,
+                        'set'    => $set,
+                    ],
+                    'attributes' => [
+                        'rows' => 5,
+                    ],
+                ]
+            );
         }
 
         // extra_seo
-        $this->add(array(
-            'name' => 'extra_seo',
-            'type' => 'fieldset',
-            'options' => array(
-                'label' => _a('SEO settings'),
-            ),
-        ));
+        $this->add(
+            [
+                'name'    => 'extra_seo',
+                'type'    => 'fieldset',
+                'options' => [
+                    'label' => _a('SEO settings'),
+                ],
+            ]
+        );
 
         // seo_title
-        $this->add(array(
-            'name' => 'seo_title',
-            'options' => array(
-                'label' => _a('SEO Title'),
-            ),
-            'attributes' => array(
-                'type'          => 'text',
-                'description'   => _a('To be used for HTML head meta.'),
-            )
-        ));
+        $this->add(
+            [
+                'name'       => 'seo_title',
+                'options'    => [
+                    'label' => _a('SEO Title'),
+                ],
+                'attributes' => [
+                    'type'        => 'text',
+                    'description' => _a('To be used for HTML head meta.'),
+                ],
+            ]
+        );
 
         // seo_keywords
-        $this->add(array(
-            'name' => 'seo_keywords',
-            'options' => array(
-                'label' => _a('SEO Keywords'),
-            ),
-            'attributes' => array(
-                'type'          => 'text',
-                'description'   => _a('To be used for HTML head meta.'),
-            )
-        ));
+        $this->add(
+            [
+                'name'       => 'seo_keywords',
+                'options'    => [
+                    'label' => _a('SEO Keywords'),
+                ],
+                'attributes' => [
+                    'type'        => 'text',
+                    'description' => _a('To be used for HTML head meta.'),
+                ],
+            ]
+        );
 
         // seo_description
-        $this->add(array(
-            'name' => 'seo_description',
-            'options' => array(
+        $this->add([
+            'name'       => 'seo_description',
+            'options'    => [
                 'label' => _a('SEO Description'),
-            ),
-            'attributes' => array(
-                'type'          => 'text',
-                'description'   => _a('To be used for HTML head meta.'),
-            )
-        ));
+            ],
+            'attributes' => [
+                'rows' => '3',
+                'cols' => '40',
+                'type'        => 'textarea',
+                'description' => _a('To be used for HTML head meta.'),
+            ],
+        ]);
 
         // Enable for online
-        $this->add(array(
-            'name'          => 'active',
-            'type'          => 'checkbox',
-            'options'       => array(
-                'label' => _a('Active'),
-            ),
-            'attributes'    => array(
-                'value'     => '1',
-            )
-        ));
+        $this->add(
+            [
+                'name'       => 'active',
+                'type'       => 'checkbox',
+                'options'    => [
+                    'label' => _a('Active'),
+                ],
+                'attributes' => [
+                    'value' => '1',
+                ],
+            ]
+        );
 
-        $this->add(array(
-            'name'          => 'id',
-            'attributes'    => array(
-                'type'  => 'hidden',
-                'value' => 0,
-            )
-        ));
+        $this->add(
+            [
+                'name'       => 'id',
+                'attributes' => [
+                    'type'  => 'hidden',
+                    'value' => 0,
+                ],
+            ]
+        );
 
-        $this->add(array(
-            'name'          => 'markup',
-            'attributes'    => array(
-                'type'  => 'hidden',
-                'value' => $this->markup,
-            )
-        ));
+        $this->add(
+            [
+                'name'       => 'markup',
+                'attributes' => [
+                    'type'  => 'hidden',
+                    'value' => $this->markup,
+                ],
+            ]
+        );
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
-                'value' => __('Submit'),
-            )
-        ));
+        $this->add(
+            [
+                'name'       => 'submit',
+                'type'       => 'submit',
+                'attributes' => [
+                    'value' => __('Submit'),
+                ],
+            ]
+        );
     }
 }

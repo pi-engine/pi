@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Bootstrap\Resource;
@@ -35,7 +35,7 @@ class RenderCache extends AbstractResource
     protected $renderCache;
 
     /**
-     * Namespace for cacheing
+     * Namespace for caching
      * @var string
      */
     protected $namespace = 'render';
@@ -49,38 +49,42 @@ class RenderCache extends AbstractResource
 
         // Setup page cache strategy
         //if ('page' == $type) {
-            // Page cache check,
-            // must go after access check whose priority is 9999
-            $events->attach(
-                MvcEvent::EVENT_DISPATCH,
-                array($this, 'checkPage'),
-                1000
-            );
-            // Page cache check,
-            // must go after access check whose priority is 9999
-            $events->attach(
-                MvcEvent::EVENT_FINISH,
-                array($this, 'savePage'),
-                -9000
-            );
+        // Page cache check,
+        // must go after access check whose priority is 9999
+        $events->attach(
+            MvcEvent::EVENT_DISPATCH,
+            [$this, 'checkPage'],
+            1000
+        );
+        // Page cache check,
+        // must go after access check whose priority is 9999
+        $events->attach(
+            MvcEvent::EVENT_FINISH,
+            [$this, 'savePage'],
+            -9000
+        );
         //} else {
-            // Setup action cache strategy
-            $sharedEvents = $events->getSharedManager();
-            // Attach listeners to controller
-            $sharedEvents->attach(
-                'PI_CONTROLLER',
-                MvcEvent::EVENT_DISPATCH,
-                array($this, 'checkAction'),
-                999
-            );
-            // Collect cachable content
-            // Go after Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()
-            $sharedEvents->attach(
-                'PI_CONTROLLER',
-                MvcEvent::EVENT_DISPATCH,
-                array($this, 'saveAction'),
-                -91
-            );
+        // Setup action cache strategy
+        $sharedEvents = $events->getSharedManager();
+        // Attach listeners to controller
+
+        /*
+         * Make listener callable from another script
+         */
+        $GLOBALS['cacheCheckActionCallback'] = $sharedEvents->attach(
+            'PI_CONTROLLER',
+            MvcEvent::EVENT_DISPATCH,
+            [$this, 'checkAction'],
+            999
+        );
+        // Collect cachable content
+        // Go after Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()
+        $sharedEvents->attach(
+            'PI_CONTROLLER',
+            MvcEvent::EVENT_DISPATCH,
+            [$this, 'saveAction'],
+            -91
+        );
         //}
     }
 
@@ -132,12 +136,13 @@ class RenderCache extends AbstractResource
             return;
         }
 
-        $renderCache    = $this->renderCache('page');
-        $cacheKey       = md5($e->getRequest()->getRequestUri());
-        $namespace      = $e->getRouteMatch()->getParam('module');
+        $renderCache = $this->renderCache('page');
+        $cacheKey    = md5($e->getRequest()->getRequestUri());
+        $namespace   = $e->getRouteMatch()->getParam('module');
         $renderCache->meta('key', $cacheKey)
-                    ->meta('namespace', $namespace)
-                    ->meta('ttl', $cacheMeta['ttl']);
+            ->meta('namespace', $namespace)
+            ->meta('level', $cacheMeta['level'])
+            ->meta('ttl', $cacheMeta['ttl']);
         // Skip following dispatch events and render dispatch
         // and set cached content directly if content is cached
         if ($renderCache->isCached()) {
@@ -147,9 +152,32 @@ class RenderCache extends AbstractResource
                 $renderCache->isOpened(true);
             } else {
                 Pi::service('log')->info('Page cached');
-                $response = $e->getResponse()->setContent(
-                    $renderCache->cachedContent()
-                );
+                $content  = $renderCache->cachedContent();
+
+                /** @var \Zend\Http\PhpEnvironment\Response $response */
+                $response = $e->getResponse()->setContent($content);
+
+                // Check ETag for response
+                if (!empty($this->options['enable_etag'])
+                    && '1.1' == $response->getVersion()
+                ) {
+                    $etag     = md5($content);
+                    $datetime = new \DateTime();
+                    $response->getHeaders()->addHeaders([
+                        'etag'          => $etag,
+                        'cache-control' => 'must-revalidate, post-check=0, pre-check=0',
+                        'expires'       => $datetime->modify('+1 month')->format('D, d M Y H:i:s \G\M\T'),
+                    ]);
+                    $ifNoneMatch = $e->getRequest()->getHeader('if_none_match');
+                    if ($ifNoneMatch) {
+                        $ifNoneMatch = $ifNoneMatch->getFieldValue();
+                        if ($ifNoneMatch && $ifNoneMatch == $etag) {
+                            $response->setStatusCode(304);
+                        }
+                    }
+                }
+
+                $e->setResult($response);
                 return $response;
             }
         } else {
@@ -187,6 +215,16 @@ class RenderCache extends AbstractResource
         $content = $response->getContent();
         $this->renderCache()->saveCache($content);
 
+        // Set Etag for response header
+        if (!empty($this->options['enable_etag'])
+            && '1.1' == $response->getVersion()
+        ) {
+            $response->getHeaders()->addHeaders([
+                'etag'          => md5($content),
+                'cache-control' => 'must-revalidate, post-check=0, pre-check=0',
+            ]);
+        }
+
         return;
     }
 
@@ -222,14 +260,15 @@ class RenderCache extends AbstractResource
             return;
         }
 
-        $renderCache    = $this->renderCache('action');
-        $viewModel      = $e->getTarget()->view()->getViewModel();
+        $renderCache = $this->renderCache('action');
+        $viewModel   = $e->getTarget()->view()->getViewModel();
 
-        $cacheKey       = md5($e->getRequest()->getRequestUri());
-        $namespace      = $e->getRouteMatch()->getParam('module');
+        $cacheKey  = md5($e->getRequest()->getRequestUri());
+        $namespace = $e->getRouteMatch()->getParam('module');
         $renderCache->meta('key', $cacheKey)
-                    ->meta('namespace', $namespace)
-                    ->meta('ttl', $cacheMeta['ttl']);
+            ->meta('namespace', $namespace)
+            ->meta('level', $cacheMeta['level'])
+            ->meta('ttl', $cacheMeta['ttl']);
         // Skip following dispatch events and render dispatch
         // and set cached content directly if content is cached
         if ($renderCache->isCached()) {
@@ -240,7 +279,7 @@ class RenderCache extends AbstractResource
                 $renderCache->isOpened(true);
             } else {
                 $actionData = $renderCache->cachedContent();
-                $data = json_decode($actionData, true);
+                $data       = json_decode($actionData, true);
                 if (!empty($data['template'])) {
                     $viewModel->setTemplate($data['template']);
                 }
@@ -284,13 +323,13 @@ class RenderCache extends AbstractResource
         }
 
         $response = $e->getResult();
-        $data = array(
-            'variables' => array(),
+        $data     = [
+            'variables' => [],
             'template'  => '',
-            'options'   => array(),
-        );
+            'options'   => [],
+        ];
         if ($response instanceof ViewModel) {
-            $variables = (array) $response->getVariables();
+            $variables = (array)$response->getVariables();
             if (!$this->isCachable($variables)) {
                 trigger_error(
                     'Action content is not cachable.',
@@ -298,11 +337,11 @@ class RenderCache extends AbstractResource
                 );
                 return;
             }
-            $data = array(
+            $data = [
                 'variables' => $variables,
                 'template'  => $response->getTemplate(),
                 'options'   => $response->getOptions(),
-            );
+            ];
             //$content = Pi::service('view')->render($response);
         } elseif (is_scalar($response)) {
             $data['variables']['content'] = $response;
@@ -322,7 +361,7 @@ class RenderCache extends AbstractResource
      * Read cache meta: TTL and level
      *
      * @param MvcEvent $e
-     * @param string   $type
+     * @param string $type
      * @return bool|array
      */
     protected function cacheMeta(MvcEvent $e, $type = 'page')
@@ -332,12 +371,12 @@ class RenderCache extends AbstractResource
         $controller = $route->getParam('controller');
         $action     = $route->getparam('action');
 
-        $cacheInfo = array(
+        $cacheInfo = [
             'type'  => 'page',
             'ttl'   => 0,
-            'level' => ''
-        );
-        $info = Pi::registry('page_cache')->read(
+            'level' => '',
+        ];
+        $info      = Pi::registry('page_cache')->read(
             $module,
             $this->application->getSection(),
             $type

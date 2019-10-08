@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Api;
@@ -29,21 +29,21 @@ class Log extends AbstractApi
      *
      * Log array: time, data
      *
-     * @param int       $uid
-     * @param string    $action
-     * @param int       $limit
-     * @param int       $offset
+     * @param int $uid
+     * @param string $action
+     * @param int $limit
+     * @param int $offset
      *
      * @return array
      */
     public function get($uid, $action, $limit, $offset = 0)
     {
-        $result = array();
+        $result = [];
 
-        $model = Pi::model('log', 'user');
+        $model  = Pi::model('log', 'user');
         $select = $model->select();
-        $select->where(array('uid' => $uid, 'action' => $action))
-            ->columns(array('time', 'data'))
+        $select->where(['uid' => $uid, 'action' => $action])
+            ->columns(['time', 'data'])
             ->limit($limit)
             ->offset($offset)
             ->order('id DESC');
@@ -56,12 +56,43 @@ class Log extends AbstractApi
     }
 
     /**
+     * Get timeline collection
+     * @param $uid
+     * @param $action
+     * @param $module
+     * @return null|\Zend\Db\ResultSet\ResultSetInterface
+     */
+    public function getLogCollectionByUserId($uid, $action, $module = null, $data = null)
+    {
+        $model  = Pi::model('log', 'user');
+        $select = $model->select();
+        $select->where(['uid' => $uid])
+            ->order('time DESC');
+
+        $select->where->addPredicate(
+            new \Zend\Db\Sql\Predicate\Like('action', $action . '%')
+        );
+
+        if ($module) {
+            $select->where(['module' => $module]);
+        }
+
+        if ($data) {
+            $select->where(['data' => $data]);
+        }
+
+        $rowset = $model->selectWith($select);
+
+        return $rowset;
+    }
+
+    /**
      * Write a log
      *
-     * @param int       $uid
-     * @param string    $action
-     * @param array     $log
-     * @param int       $time
+     * @param int $uid
+     * @param string $action
+     * @param array $log
+     * @param int $time
      *
      * @return bool
      */
@@ -70,7 +101,7 @@ class Log extends AbstractApi
         if (!isset($log['time'])) {
             $log['time'] = time();
         }
-        $row = Pi::model('timeline_log', 'user')->createRow($log);
+        $row = Pi::model('log', 'user')->createRow($log);
         $row->save();
 
         return true;

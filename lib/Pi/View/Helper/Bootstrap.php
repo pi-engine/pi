@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -66,27 +66,34 @@ class Bootstrap extends AssetCanonize
      */
     public function __invoke(
         $files = null,
-        $attributes = array(),
-        $appendVersion = null
+        $attributes = [],
+        $appendVersion = null,
+        $rootLoaded = true,
+        $deferBootstrapCss = false
     ) {
         $files = $this->canonize($files, $attributes);
 
-        $bootstrap = 'css/bootstrap.min.css';
+        $bootstrap = 'css/bootstrap.css';
 
-        if (!static::$rootLoaded) {
+        if (!static::$rootLoaded && $rootLoaded) {
             $file = static::DIR_ROOT . '/' . $bootstrap;
 
             // Lookup in theme custom bootstrap
             $theme  = Pi::service('theme')->current();
             $custom = Pi::service('asset')->getAssetPath('theme/' . $theme, $file);
             if (is_readable($custom)) {
-                $url = Pi::service('asset')->getThemeAsset($file, $theme,  $appendVersion);
-            // Load original bootstrap
+                $url = Pi::service('asset')->getThemeAsset($file, $theme, $appendVersion);
+                // Load original bootstrap
             } else {
                 $url = Pi::service('asset')->getPublicUrl($file, $appendVersion);
             }
-            $attrs = $this->canonizeFile($bootstrap);
+            $attrs         = $this->canonizeFile($bootstrap);
             $attrs['href'] = $url;
+
+            if($deferBootstrapCss){
+                $attrs['defer'] = 'defer';
+            }
+
             $position = isset($attrs['position']) ? $attrs['position'] : 'append';
             if ('prepend' == $position) {
                 $this->view->headLink()->prependStylesheet($attrs);
@@ -100,8 +107,8 @@ class Bootstrap extends AssetCanonize
         }
 
         foreach ($files as $file => $attrs) {
-            $file = static::DIR_ROOT . '/' . $file;
-            $url = Pi::service('asset')->getPublicUrl($file, $appendVersion);
+            $file     = static::DIR_ROOT . '/' . $file;
+            $url      = Pi::service('asset')->getPublicUrl($file, $appendVersion);
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
             if ('css' == $attrs['ext']) {

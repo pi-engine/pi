@@ -1,18 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
 namespace Pi\Application\Service;
 
 use Pi;
-use Pi\User\Model\AbstractModel;
 use Pi\Avatar\AbstractAvatar;
+use Pi\User\Model\AbstractModel;
 
 
 /**
@@ -62,8 +62,8 @@ class Avatar extends AbstractService
     /**
      * Get user avatar img element
      *
-     * @param int               $uid
-     * @param string            $size
+     * @param int $uid
+     * @param string $size
      *      Size of image to display, integer for width, string for named size:
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
      * @param array|string|bool $attributes
@@ -73,7 +73,7 @@ class Avatar extends AbstractService
      *
      * @return string
      */
-    public function get($uid, $size = '', $attributes = array())
+    public function get($uid, $size = '', $attributes = [])
     {
         $avatar = $this->getAdapter()->get($uid, $size, $attributes);
         if (!$avatar) {
@@ -86,23 +86,23 @@ class Avatar extends AbstractService
     /**
      * Get avatars of a list of users
      *
-     * @param int[]  $uids
+     * @param int[] $uids
      * @param string $size
-     * @param array|bool|string  $attributes
+     * @param array|bool|string $attributes
      *
      * @return array
      */
-    public function getList(array $uids, $size = '', $attributes = array())
+    public function getList(array $uids, $size = '', $attributes = [])
     {
-        $avatars = $this->getAdapter()->getList($uids, $size, $attributes);
-        $missingUids = array();
+        $avatars     = $this->getAdapter()->getList($uids, $size, $attributes);
+        $missingUids = [];
         foreach ($uids as $uid) {
             if (empty($avatars[$uid])) {
                 $missingUids[] = $uid;
             }
         }
         if ($missingUids) {
-            $list = $this->getAdapter('local')->getList(
+            $list    = $this->getAdapter('local')->getList(
                 $missingUids,
                 $size,
                 $attributes
@@ -124,7 +124,7 @@ class Avatar extends AbstractService
     {
         $adapter = $adapter ?: $this->getOption('adapter');
         if (is_array($adapter)) {
-            $adapterName = 'auto';
+            $adapterName                              = 'auto';
             $this->options['auto']['adapter_allowed'] = $adapter;
         } else {
             $adapterName = $adapter;
@@ -139,7 +139,7 @@ class Avatar extends AbstractService
             if (class_exists($class)) {
                 $adapter = new $class;
                 if (isset($this->options[$adapterName])) {
-                    $adapter->setOptions((array) $this->options[$adapterName]);
+                    $adapter->setOptions((array)$this->options[$adapterName]);
                 }
                 $adapter->setUser($this->getUser());
             } else {
@@ -188,12 +188,12 @@ class Avatar extends AbstractService
      * Convert named size to numeric size or convert from number to named size
      *
      * @param string|int $size
-     * @param bool       $toInt
-     * @param array      $sizeMap
+     * @param bool $toInt
+     * @param array $sizeMap
      *
      * @return int|string
      */
-    public function canonizeSize($size, $toInt = true, $sizeMap = array())
+    public function canonizeSize($size, $toInt = true, $sizeMap = [])
     {
         $sizeMap = $sizeMap ?: $this->getOption('size_map');
 
@@ -211,7 +211,7 @@ class Avatar extends AbstractService
             // From named to numeric
             if (!is_numeric($size)) {
                 $size = $findSize($size);
-            // Canonize numeric to defined numeric
+                // Canonize numeric to defined numeric
             } else {
                 foreach ($sizeMap as $name => $number) {
                     if ($number >= $size) {
@@ -220,7 +220,7 @@ class Avatar extends AbstractService
                 }
                 $size = $number;
             }
-        // Get named size
+            // Get named size
         } else {
             // From numeric to named size
             if (!is_numeric($size)) {
@@ -248,15 +248,15 @@ class Avatar extends AbstractService
      */
     public function getType($source)
     {
-        if (false !== strpos($source, '@')) {
+        if (is_string($source) && false !== strpos($source, '@')) {
             $type = 'gravatar';
         } else {
-            $uploadConfig = $this->getOption('upload');
+            $uploadConfig      = $this->getOption('upload');
             $allowedExtensions = $uploadConfig['extension'];
-            $ext = strtolower(pathinfo($source, PATHINFO_EXTENSION));
+            $ext               = is_string($source) ? strtolower(pathinfo($source, PATHINFO_EXTENSION)) : null;
             if ($ext && in_array($ext, $allowedExtensions)) {
                 $type = 'upload';
-            } elseif (preg_match('/[a-z0-9\-\_]/i', $source)) {
+            } elseif (is_string($source) && preg_match('/[a-z0-9\-\_]/i', $source)) {
                 $type = 'select';
             } else {
                 $type = '';

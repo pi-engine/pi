@@ -1,15 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\User\Adapter;
 
 use Pi;
+
 //use Pi\User\Model\Local as UserModel;
 
 /**
@@ -46,11 +47,12 @@ class Local extends System
      * {@inheritDoc}
      */
     public function getUids(
-        $condition  = array(),
-        $limit      = 0,
-        $offset     = 0,
-        $order      = ''
-    ) {
+        $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = ''
+    )
+    {
         $result = Pi::api('user', 'user')->getUids(
             $condition,
             $limit,
@@ -65,12 +67,13 @@ class Local extends System
      * {@inheritDoc}
      */
     public function getList(
-        array $condition  = array(),
-        $limit      = 0,
-        $offset     = 0,
-        $order      = '',
-        array $field  = array()
-    ) {
+        array $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = '',
+        array $field = []
+    )
+    {
         $result = Pi::api('user', 'user')->getList(
             $condition,
             $limit,
@@ -85,7 +88,7 @@ class Local extends System
     /**
      * {@inheritDoc}
      */
-    public function getCount($condition = array())
+    public function getCount($condition = [])
     {
         $result = Pi::api('user', 'user')->getCount($condition);
 
@@ -155,10 +158,11 @@ class Local extends System
      */
     public function get(
         $uid,
-        $field = array(),
+        $field = [],
         $filter = false,
         $activeOnly = false
-    ) {
+    )
+    {
         return Pi::api('user', 'user')->get(
             $uid,
             $field,
@@ -172,10 +176,11 @@ class Local extends System
      */
     public function mget(
         array $uids,
-        $field = array(),
+        $field = [],
         $filter = false,
         $activeOnly = false
-    ) {
+    )
+    {
         return Pi::api('user', 'user')->mget(
             $uids,
             $field,

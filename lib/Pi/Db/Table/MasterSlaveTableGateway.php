@@ -1,20 +1,15 @@
 <?PHP
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Db\Table;
 
-use Pi;
 use Pi\Application\Db;
-use Zend\Db\TableGateway\TableGateway;
-use Zend\Db\Sql\Sql;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\Metadata\Metadata;
 
 /**
  *  Pi Master-Slave Table Gateway
@@ -105,7 +100,7 @@ class MasterSlaveTableGateway extends AbstractTableGateway
     public function delete($where)
     {
         $this->adapter = $this->masterAdapter;
-        
+
         return parent::delete($where);
     }
 }

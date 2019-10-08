@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link         http://code.pialog.org for the Pi Engine source repository
- * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt BSD 3-Clause License
+ * @link         http://code.piengine.org for the Pi Engine source repository
+ * @copyright    Copyright (c) Pi Engine http://piengine.org
+ * @license      http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article\Form\Element;
@@ -14,36 +14,36 @@ use Zend\Form\Element\Select;
 
 /**
  * Template element class
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class Template extends Select
 {
     /**
-     * Custom template path 
+     * Custom template path
      */
     const TEMPLATE_PATH = 'article/template/front';
-    
+
     /**
-     * Custom template format 
+     * Custom template format
      */
     const TEMPLATE_FORMAT = '/^topic-custom-(.+)/';
-    
+
     /**
      * Resolving select options
-     * 
-     * @return array 
+     *
+     * @return array
      */
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
             $path      = sprintf(
-                '%s/%s', 
-                rtrim(Pi::path('module'), '/'), 
+                '%s/%s',
+                rtrim(Pi::path('module'), '/'),
                 self::TEMPLATE_PATH
             );
             $iterator  = new \DirectoryIterator($path);
-            $templates = array('default' => __('Default'));
+            $templates = ['default' => __('Default')];
             foreach ($iterator as $fileinfo) {
                 if (!$fileinfo->isFile()) {
                     continue;
@@ -53,7 +53,7 @@ class Template extends Select
                 if (!preg_match(self::TEMPLATE_FORMAT, $name, $matches)) {
                     continue;
                 }
-                $displayName = preg_replace('/[-_]/', ' ', $matches[1]);
+                $displayName      = preg_replace('/[-_]/', ' ', $matches[1]);
                 $templates[$name] = ucfirst($displayName);
             }
             $this->valueOptions = $templates;

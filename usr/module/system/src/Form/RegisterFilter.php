@@ -1,14 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Form;
 
+use Module\System\Validator\UserEmail as UserEmailValidator;
+use Module\System\Validator\Username as UsernameValidator;
 use Pi;
 use Zend\InputFilter\InputFilter;
 
@@ -26,103 +28,103 @@ class RegisterFilter extends InputFilter
     {
         $config = Pi::user()->config();
 
-        $this->add(array(
-            'name'          => 'identity',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'StringLength',
-                    'options'   => array(
-                        'encoding'  => 'UTF-8',
-                        'min'       => $config['uname_min'],
-                        'max'       => $config['uname_max'],
-                    ),
-                ),
-                new \Module\System\Validator\Username(array(
+        $this->add([
+            'name'       => 'identity',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'StringLength',
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min'      => $config['uname_min'],
+                        'max'      => $config['uname_max'],
+                    ],
+                ],
+                new UsernameValidator([
                     'format'            => $config['uname_format'],
-                    'backlist'          => $config['uname_backlist'],
-                    'checkDuplication'  => true,
-                )),
-            ),
-        ));
+                    'blacklist'         => $config['uname_blacklist'],
+                    'check_duplication' => true,
+                ]),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'name',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
+        $this->add([
+            'name'     => 'name',
+            'required' => false,
+            'filters'  => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'email',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'EmailAddress',
-                    'options'   => array(
-                        'useMxCheck'        => false,
-                        'useDeepMxCheck'    => false,
-                        'useDomainCheck'    => false,
-                    ),
-                ),
-                new \Module\System\Validator\UserEmail(array(
-                    'backlist'          => $config['email_backlist'],
-                    'checkDuplication'  => true,
-                )),
-            ),
-        ));
+        $this->add([
+            'name'       => 'email',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'EmailAddress',
+                    'options' => [
+                        'useMxCheck'     => false,
+                        'useDeepMxCheck' => false,
+                        'useDomainCheck' => false,
+                    ],
+                ],
+                new UserEmailValidator([
+                    'blacklist'         => $config['email_blacklist'],
+                    'check_duplication' => true,
+                ]),
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'credential',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'StringLength',
-                    'options'   => array(
-                        'encoding'  => 'UTF-8',
-                        'min'       => $config['password_min'],
-                        'max'       => $config['password_max'],
-                    ),
-                ),
-            ),
-        ));
+        $this->add([
+            'name'       => 'credential',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'StringLength',
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min'      => $config['password_min'],
+                        'max'      => $config['password_max'],
+                    ],
+                ],
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'credential-confirm',
-            'required'      => true,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                array(
-                    'name'      => 'Identical',
-                    'options'   => array(
-                        'token'     => 'credential',
-                        'strict'    => true,
-                    ),
-                ),
-            ),
-        ));
+        $this->add([
+            'name'       => 'credential-confirm',
+            'required'   => true,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'Identical',
+                    'options' => [
+                        'token'  => 'credential',
+                        'strict' => true,
+                    ],
+                ],
+            ],
+        ]);
 
     }
 }

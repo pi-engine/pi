@@ -1,29 +1,29 @@
 <?php
-$this->angular(array(
+$this->angular([
     'angular-route.js',
-    'pi.js'
-));
+    'pi.js',
+]);
 ?>
 <script>
-angular
-    .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
-    .constant('config', {
-        urlRoot: '<?php echo $this->url('', array('controller' => 'event')); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
-        name: '<?php echo $name ?>',
-        events: <?php echo json_encode($events); ?>,
-        listeners: <?php echo json_encode(array_values($listeners)); ?>,
-        t: {
-            Title: '<?php echo _a('Title'); ?>',
-            Action: '<?php echo _a('Action'); ?>',
-            Events: '<?php echo _a('Events'); ?>',
-            Listeners: '<?php echo _a('Listeners'); ?>',
-            NoneListeners: '<?php echo _a('No listeners available'); ?>',
-            NoneEvents: '<?php echo _a('No events available'); ?>',
-            ERROR: '<?php echo _a('Error, please try again later.'); ?>',
-            FRONT: '<?php echo _a('Front'); ?>',
-            ADMIN: '<?php echo _a('Admin'); ?>'
-        }
-   });
+    angular
+        .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
+        .constant('config', {
+            urlRoot: '<?php echo $this->url('', ['controller' => 'event']); ?>',
+            assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+            name: '<?php echo $name ?>',
+            events: <?php echo json_encode($events); ?>,
+            listeners: <?php echo json_encode(array_values($listeners)); ?>,
+            t: {
+                Title: '<?php echo _a('Title'); ?>',
+                Action: '<?php echo _a('Action'); ?>',
+                Events: '<?php echo _a('Events'); ?>',
+                Listeners: '<?php echo _a('Listeners'); ?>',
+                NoneListeners: '<?php echo _a('No listeners available'); ?>',
+                NoneEvents: '<?php echo _a('No events available'); ?>',
+                ERROR: '<?php echo _a('Error, please try again later.'); ?>',
+                FRONT: '<?php echo _a('Front'); ?>',
+                ADMIN: '<?php echo _a('Admin'); ?>'
+            }
+        });
 </script>
 <script src="<?php echo $this->assetModule('admin/event.js'); ?>"></script>

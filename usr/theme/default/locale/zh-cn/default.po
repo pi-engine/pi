@@ -1,100 +1,111 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-theme-default\n"
-"POT-Creation-Date: 2014-02-15 15:20+0800\n"
-"PO-Revision-Date: 2014-02-15 15:27+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2014-11-14 16:43+0330\n"
+"PO-Revision-Date: 2014-11-14 16:43+0330\n"
+"Last-Translator: \n"
 "Language-Team: Pi Engine\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
-"X-Poedit-KeywordsList: __;_e\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: __;_e;_a\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\theme\\default\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/"
+"default\n"
 
-#: C:\code\pi\usr\theme\default/module/demo/template/front/index-simple.phtml:6
-msgid "Paginator"
-msgstr "分页"
-
-#: C:\code\pi\usr\theme\default/template/error-404.phtml:3
-msgid "A 404 error occurred"
-msgstr "发生404错误。"
-
-#: C:\code\pi\usr\theme\default/template/error-404.phtml:4
-msgid "The page request is not found."
-msgstr "请求的页面未找到。"
-
-#: C:\code\pi\usr\theme\default/template/error-404.phtml:21
-msgid "The requested controller was unable to dispatch the request."
-msgstr "请求的控制器无法解析该请求。"
-
-#: C:\code\pi\usr\theme\default/template/error-404.phtml:24
-msgid ""
-"The requested controller could not be mapped to an existing controller class."
-msgstr "请求的控制器无法匹配。"
-
-#: C:\code\pi\usr\theme\default/template/error-404.phtml:27
-msgid "The requested controller was not dispatchable."
-msgstr "请求的控制器无法解析。"
-
-#: C:\code\pi\usr\theme\default/template/error-404.phtml:30
-msgid "The requested URL could not be matched by routing."
-msgstr "请求的地址无法解析。"
-
-#: C:\code\pi\usr\theme\default/template/error-404.phtml:33
-msgid "We cannot determine at this time why a 404 was generated."
-msgstr "无法确定404错误产生的原因。"
-
-#: C:\code\pi\usr\theme\default/template/error-denied.phtml:2
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:3
 msgid "Access denied"
 msgstr "访问禁止"
 
-#: C:\code\pi\usr\theme\default/template/error-denied.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:13
 msgid "login"
 msgstr "登录"
 
-#: C:\code\pi\usr\theme\default/template/error-denied.phtml:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:14
 #, php-format
 msgid "You are not allowed to access the page. Please %s and try again."
 msgstr "无权限访问该页面，请%s再试。"
 
-#: C:\code\pi\usr\theme\default/template/error-denied.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:25
 msgid "homepage"
 msgstr "主页"
 
-#: C:\code\pi\usr\theme\default/template/error-denied.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:27
 msgid "logout"
 msgstr "退出"
 
-#: C:\code\pi\usr\theme\default/template/error-denied.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:29
 #, php-format
 msgid ""
 "You are not allowed to access the page. Please go to %s or %s and try other "
 "account."
 msgstr "无权限访问该页面，请访问%s或%s尝试其他帐号。"
 
-#: C:\code\pi\usr\theme\default/template/error.phtml:3
-msgid "Error occurred"
-msgstr "发生错误"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-admin.phtml:9
+msgid "Admin - "
+msgstr ""
 
-#: C:\code\pi\usr\theme\default/template/error.phtml:4
-msgid "Please verify your request or visit later."
-msgstr "请确认网址或稍后再试。"
-
-#: C:\code\pi\usr\theme\default/template/layout-admin.phtml:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-admin.phtml:72
 msgid "Front"
 msgstr "前台"
 
-#: C:\code\pi\usr\theme\default/template/layout-admin.phtml:99
-#: C:\code\pi\usr\theme\default/template/layout-front.phtml:248
-#: C:\code\pi\usr\theme\default/template/layout-simple.phtml:78
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-admin.phtml:125
 msgid "Execution time"
 msgstr "执行时间"
 
-#: C:\code\pi\usr\theme\default/template/layout-front.phtml:111
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-front.phtml:130
 msgid "Home"
 msgstr "首页"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-front.phtml:283
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-simple.phtml:143
+#, php-format
+msgid "Execution time: %.4f s"
+msgstr "执行时间：%.4f秒"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:3
+msgid "A 404 error occurred"
+msgstr "发生404错误。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:4
+msgid "The page request is not found."
+msgstr "请求的页面未找到。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:18
+msgid "The requested controller was unable to dispatch the request."
+msgstr "请求的控制器无法解析该请求。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:21
+msgid ""
+"The requested controller could not be mapped to an existing controller class."
+msgstr "请求的控制器无法匹配。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:24
+msgid "The requested controller was not dispatchable."
+msgstr "请求的控制器无法解析。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:27
+msgid "The requested URL could not be matched by routing."
+msgstr "请求的地址无法解析。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:30
+msgid "We cannot determine at this time why a 404 was generated."
+msgstr "无法确定404错误产生的原因。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error.phtml:3
+msgid "Error occurred"
+msgstr "发生错误"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error.phtml:4
+msgid "Please verify your request or visit later."
+msgstr "请确认网址或稍后再试。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/module/demo/template/front/index-simple.phtml:6
+msgid "Paginator"
+msgstr "分页"
 
 #~ msgid "First"
 #~ msgstr "«"

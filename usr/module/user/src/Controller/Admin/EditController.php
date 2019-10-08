@@ -1,20 +1,20 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Controller\Admin;
 
+use Module\User\Form\CompoundFilter;
+use Module\User\Form\CompoundForm;
+use Module\User\Form\EditUserFilter;
+use Module\User\Form\EditUserForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\User\Form\EditUserForm;
-use Module\User\Form\EditUserFilter;
-use Module\User\Form\CompoundForm;
-use Module\User\Form\CompoundFilter;
 
 /**
  * Edit user controller
@@ -33,22 +33,22 @@ class EditController extends ActionController
         // Get available edit fields
         list($fields, $formFields, $formFilters) = $this->getEditField();
         // Add other elements
-        $formFields[] = array(
-            'name'  => 'uid',
-            'type'  => 'hidden',
-            'attributes' => array(
+        $formFields[] = [
+            'name'       => 'uid',
+            'type'       => 'hidden',
+            'attributes' => [
                 'value' => $uid,
-            ),
-        );
-        $form = new EditUserForm('info', $formFields);
+            ],
+        ];
+        $form         = new EditUserForm('info', $formFields);
         if ($this->request->isPost()) {
             $form->setData($this->request->getPost());
             $form->setInputFilter(new EditUserFilter($formFilters));
-            $result['message'] = _a('Edit user info failed');
+            $result['message'] = _a('User data update failed.');
             $result['status']  = 0;
             if ($form->isValid()) {
                 // Update user
-                $values = $form->getData();
+                $values                  = $form->getData();
                 $values['last_modified'] = time();
                 if (isset($values['credential']) &&
                     !$values['credential']
@@ -56,9 +56,13 @@ class EditController extends ActionController
                     unset($values['credential']);
                 }
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
+                if (Pi::service('module')->isActive('subscription')) {
+                    Pi::api('people', 'subscription')->update(array('email' => $values['email'], 'first_name' => $values['first_name'], 'last_name' => $values['last_name'], 'mobile' => $values['mobile']), $uid);
+                }
+
                 if ($status == 1) {
                     Pi::service('event')->trigger('user_update', $uid);
-                    $result['message'] = _a('Edit user info successfully');
+                    $result['message'] = _a('User data update successful.');
                     $result['status']  = 1;
                 }
             }
@@ -71,12 +75,12 @@ class EditController extends ActionController
             $form->setData($fieldsData);
         }
 
-        $this->view()->assign(array(
-            'user'   => $user,
-            'nav'    => $this->getNav($uid),
-            'name'   => 'info',
-            'form'   => $form
-        ));
+        $this->view()->assign([
+            'user' => $user,
+            'nav'  => $this->getNav($uid),
+            'name' => 'info',
+            'form' => $form,
+        ]);
         $this->view()->setTemplate('edit-user');
     }
 
@@ -85,7 +89,7 @@ class EditController extends ActionController
      */
     public function avatarAction()
     {
-        $uid  = _get('uid');
+        $uid = _get('uid');
 
         // Get user basic information and user data
         $user = $this->getUser($uid);
@@ -102,27 +106,27 @@ class EditController extends ActionController
             }
             // Delete user avatar
             $status = Pi::user()->set($uid, 'avatar', '');
-            $result = array(
+            $result = [
                 'status'  => 0,
-                'message' => _a('Replace user avater failed')
-            );
+                'message' => _a('User avatar change failed.'),
+            ];
             if ($status) {
-                $result = array(
+                $result = [
                     'status'  => 1,
-                    'message' => _a('Replace user avater successfully')
-                );
+                    'message' => _a('User avatar change successful.'),
+                ];
                 Pi::service('event')->trigger('user_update', $uid);
             }
             $this->view()->assign('result', $result);
         }
-        
 
-        $this->view()->assign(array(
+
+        $this->view()->assign([
             'user'   => $user,
             'nav'    => $this->getNav($uid),
             'name'   => 'avatar',
-            'avatar' => Pi::user()->avatar()->get($uid, 'large')
-        ));
+            'avatar' => Pi::user()->avatar()->get($uid, 'large'),
+        ]);
         $this->view()->setTemplate('edit-user');
     }
 
@@ -133,8 +137,8 @@ class EditController extends ActionController
      */
     public function compoundAction()
     {
-        
-        $uid = _get('uid');
+
+        $uid      = _get('uid');
         $compound = _get('name');
 
         // Get user basic information and user data
@@ -149,15 +153,15 @@ class EditController extends ActionController
         $userCompound = Pi::api('user', 'user')->get($uid, $compound);
 
         // Compound edit form
-        $forms = array();
+        $forms = [];
         foreach ($userCompound as $set => $row) {
             $formName    = 'compound' . $set;
             $forms[$set] = new CompoundForm($formName, $compoundElements);
             // Set form data
-            $row += array(
-                'set'   => $set,
-                'uid'   => $uid,
-            );
+            $row += [
+                'set' => $set,
+                'uid' => $uid,
+            ];
 
             $forms[$set]->setData($row);
         }
@@ -165,13 +169,13 @@ class EditController extends ActionController
         // Update compound
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
-            $set  = (int) $post['set'];
+            $set  = (int)$post['set'];
             $forms[$set]->setInputFilter(new CompoundFilter($compoundFilters));
             $forms[$set]->setData($post);
-            $result = array(
+            $result = [
                 'status'  => 0,
-                'message' => _a('Edit user info failed')
-            );
+                'message' => _a('User data update failed.'),
+            ];
             if ($forms[$set]->isValid()) {
                 $values        = $forms[$set]->getData();
                 $values['uid'] = $uid;
@@ -180,7 +184,7 @@ class EditController extends ActionController
 
                 // Canonize column function
                 $canonizeColumn = function ($data, $meta) {
-                    $result = array();
+                    $result = [];
                     foreach ($data as $col => $val) {
                         if (in_array($col, $meta)) {
                             $result[$col] = $val;
@@ -208,23 +212,23 @@ class EditController extends ActionController
                     $compound,
                     $userNewCompound
                 );
-                Pi::api('user', 'user')->updateUser($uid, array('last_modified' => time()));
+                Pi::api('user', 'user')->updateUser($uid, ['last_modified' => time()]);
                 if ($status) {
                     Pi::service('event')->trigger('user_update', $uid);
-                    $result['message'] = _a('Edit user info successfully');
+                    $result['message'] = _a('User data update successful.');
                     $result['status']  = 1;
                 }
-                
+
             }
             $this->view()->assign('result', $result);
         }
 
-        $this->view()->assign(array(
-            'user'   => $user,
+        $this->view()->assign([
+            'user'  => $user,
             'forms' => $forms,
             'nav'   => $this->getNav($uid),
-            'name'  => $compound
-        ));
+            'name'  => $compound,
+        ]);
         $this->view()->setTemplate('edit-user');
 
     }
@@ -236,14 +240,14 @@ class EditController extends ActionController
      */
     public function deleteCompoundAction()
     {
-        $uid      = _get('uid');
-        $name     = _get('name', '');
-        $set      = _get('set');
+        $uid  = _get('uid');
+        $name = _get('name', '');
+        $set  = _get('set');
 
         $oldCompound = Pi::api('user', 'user')->get($uid, $name);
-        $newCompound = array();
+        $newCompound = [];
         foreach ($oldCompound as $key => $value) {
-            if ($set != $key ) {
+            if ($set != $key) {
                 $newCompound[] = $value;
             }
         }
@@ -252,17 +256,17 @@ class EditController extends ActionController
         Pi::api('user', 'user')->set($uid, $name, $newCompound);
         Pi::api('user', 'user')->updateUser(
             $uid,
-            array('last_modified' => time())
+            ['last_modified' => time()]
         );
         Pi::service('event')->trigger('user_update', $uid);
 
-        return $this->jump(array(
-            'controller'  => 'edit',
-            'action'      => 'compound',
-            'uid'         => $uid,
-            'name'        => $name
-        ), _a('Delete this group successfully'));
-        
+        return $this->jump([
+            'controller' => 'edit',
+            'action'     => 'compound',
+            'uid'        => $uid,
+            'name'       => $name,
+        ], _a('Group deleted successfully.'));
+
     }
 
     /**
@@ -272,12 +276,12 @@ class EditController extends ActionController
      */
     protected function getEditField()
     {
-        $fields   = array();
-        $elements = array();
-        $filters  = array();
+        $fields   = [];
+        $elements = [];
+        $filters  = [];
 
-        $meta = Pi::registry('field', 'user')->read();
-        $editFields = array();
+        $meta       = Pi::registry('field', 'user')->read();
+        $editFields = [];
         foreach ($meta as $row) {
             if ($row['edit'] && $row['type'] != 'compound') {
                 $editFields[] = $row;
@@ -285,16 +289,16 @@ class EditController extends ActionController
         }
 
         foreach ($editFields as $row) {
-            $fields[]   = $row['name'];
-            $element    = Pi::api('form', 'user')->getElement($row['name']);
+            $fields[] = $row['name'];
+            $element  = Pi::api('form', 'user')->getElement($row['name']);
             /*
             $filter     = Pi::api('form', 'user')->getFilter($row['name']);
             */
             if ($row['name'] !== 'birthdate') {
-                $filters[] = array(
+                $filters[] = [
                     'name'     => $row['name'],
                     'required' => false,
-                );
+                ];
             }
             if ($element) {
                 $elements[] = $element;
@@ -307,7 +311,7 @@ class EditController extends ActionController
             */
         }
 
-        return array($fields, $elements, $filters);
+        return [$fields, $elements, $filters];
 
     }
 
@@ -319,39 +323,43 @@ class EditController extends ActionController
      */
     protected function getNav($uid)
     {
-        $result[] = array(
+        $result[] = [
             'name'  => 'info',
             'title' => _a('Base info'),
-            'link'  => $this->url('', array('controller' => 'edit', 'uid' => $uid)),
-        );
+            'link'  => $this->url('', ['controller' => 'edit', 'uid' => $uid]),
+        ];
 
         // Avatar
-        $result[] = array(
+        $result[] = [
             'name'  => 'avatar',
             'title' => _a('Avatar'),
-            'link'  => $this->url('', array('controller' => 'edit', 
-                                            'action' => 'avatar', 
-                                            'uid' => $uid)),
-        );
+            'link'  => $this->url('', [
+                'controller' => 'edit',
+                'action'     => 'avatar',
+                'uid'        => $uid,
+            ]),
+        ];
 
         $rowset = $this->getModel('field')->select(
-            array(
+            [
                 'type'       => 'compound',
                 'is_display' => 1,
                 'is_edit'    => 1,
                 'active'     => 1,
-            )
+            ]
         );
 
         foreach ($rowset as $row) {
-            $result[] = array(
+            $result[] = [
                 'name'  => $row['name'],
                 'title' => $row['title'],
-                'link'  => $this->url('', array('controller' => 'edit', 
-                                                'action' => 'compound', 
-                                                'uid' => $uid,
-                                                'name' => $row['name'])),
-            );
+                'link'  => $this->url('', [
+                    'controller' => 'edit',
+                    'action'     => 'compound',
+                    'uid'        => $uid,
+                    'name'       => $row['name'],
+                ]),
+            ];
         }
 
         return $result;
@@ -362,9 +370,9 @@ class EditController extends ActionController
     {
         $user = Pi::api('user', 'user')->get(
             $uid,
-            array(
+            [
                 'name',
-            ),
+            ],
             true
         );
 

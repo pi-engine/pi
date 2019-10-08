@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Api;
@@ -184,9 +184,9 @@ class Event extends AbstractApi
     /**
      * Update user persistent data
      *
-     * @param int           $uid
-     * @param string|null   $field
-     * @param mixed         $value
+     * @param int $uid
+     * @param string|null $field
+     * @param mixed $value
      *
      * @return void
      */

@@ -1,0 +1,22 @@
+<?php
+/**
+ * User profile page side-bar for pages outside of user module
+ *
+ * To load the template for a module other than `user`
+ * load user module css by:
+ * `$this->css($this->assetModule('front/front.css', 'user'));`
+ * load user module default language file by:
+ * `Pi::service('i18n')->load(array('module/user', 'default'));`
+ */
+
+// Load css
+$this->css($this->assetModule('front/front.css', 'user'));
+
+// Load language
+Pi::service('i18n')->load(['module/user', 'default']);
+
+// Get module
+$module = Pi::service('module')->current();
+
+// load template
+include $this->templateModule('front/profile-sidebar.phtml', 'user');

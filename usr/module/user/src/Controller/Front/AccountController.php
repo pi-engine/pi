@@ -1,18 +1,21 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Controller\Front;
 
+use Module\User\Form\AccountFilter;
+use Module\User\Form\AccountForm;
+use Module\User\Validator\Name as NameValidator;
+use Module\User\Validator\UserEmail as UserEmailValidator;
+use Module\User\Validator\Username as UsernameValidator;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\User\Form\AccountForm;
-use Module\User\Form\AccountFilter;
 
 /**
  * Account controller
@@ -37,26 +40,41 @@ class AccountController extends ActionController
         // Get identity, email, name
         $data = Pi::api('user', 'user')->get(
             $uid,
-            array('identity', 'email', 'name')
+            ['identity', 'email', 'name']
         );
 
         // Generate form
-        $form           = new AccountForm('account');
-        $data['uid']    = $uid;
+        $form = new AccountForm('account');
+        $form->setAttribute('action', '#');
+        $data['uid'] = $uid;
+        $data['id']  = $uid;
+        if (Pi::service('module')->isActive('subscription')) {
+            $people = Pi::api('people', 'subscription')->getCurrentPeople();
+            if ($people == null) {
+                $data['newsletter'] = 0;
+            } else {
+                $data['newsletter_time_update']  = $people['time_update'] ? 1 : 0;
+                $data['newsletter']  = $people['newsletter'] ? 1 : 0;
+            }
+        }
+
         $form->setData($data);
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setInputFilter(new AccountFilter);
             $form->setData($post);
 
-            $result = array(
-                'email_value'       => $data['email'],
-                'email_error'       => 0,
-                'email_message'    => ' ',
-                'name_value'        => $data['name'],
-                'name_error'        => 0,
-                'name_message'      => ' ',
-            );
+            $result = [
+                'email_value'   => $data['email'],
+                'email_error'   => 0,
+                'email_message' => ' ',
+                'name_value'    => $data['name'],
+                'name_error'    => 0,
+                'name_message'  => ' ',
+                'newsletter_value'    => $data['newsletter'],
+                'newsletter_error'    => 0,
+                'newsletter_message'  => ' ',
+            ];
             if ($form->isValid()) {
                 $values = $form->getData();
                 // Reset email
@@ -69,25 +87,30 @@ class AccountController extends ActionController
                             $values['email']
                         );
                         if ($status) {
-                            $result['email_message']    = __('A confirmation email has been sent to you. Please check your email and confirm.');
+                            $result['email_message'] = __('A confirmation email has been sent to you. Please check your email and confirm.');
                         } else {
-                            $result['email_error']      = 1;
-                            $result['email_message']    = __('It was failed to send you confirmation email. Please try later.');
+                            $result['email_error']   = 1;
+                            $result['email_message'] = __('It was failed to send you confirmation email. Please try later.');
                         }
                     } else {
                         $status = Pi::api('user', 'user')->updateUser(
                             $uid,
-                            array(
+                            [
                                 'email'         => $values['email'],
                                 'last_modified' => time(),
-                            )
+                            ]
                         );
+
+                        if (Pi::service('module')->isActive('subscription')) {
+                            Pi::api('people', 'subscription')->update(array('email' => $values['email']), $uid);
+                        }
+
                         if ($status) {
-                            $result['email_value']      = $values['email'];
-                            $result['email_message']    = __('Email has been changed successfully.');
+                            $result['email_value']   = $values['email'];
+                            $result['email_message'] = __('Email has been changed successfully.');
                         } else {
-                            $result['email_error']      = 1;
-                            $result['email_message']    = __('It was failed to save new email. Please try later.');
+                            $result['email_error']   = 1;
+                            $result['email_message'] = __('It was failed to save new email. Please try later.');
                         }
                     }
                 }
@@ -96,28 +119,54 @@ class AccountController extends ActionController
                 if ($values['name'] != $data['name']) {
                     $status = Pi::api('user', 'user')->updateUser(
                         $uid,
-                        array(
-                            'name' => $values['name'],
+                        [
+                            'name'          => $values['name'],
                             'last_modified' => time(),
-                        )
+                        ]
                     );
                     if ($status) {
-                        $result['name_value']      = $values['name'];
-                        $result['name_message']    = __('Name has been changed successfully.');
+                        $result['name_value']   = $values['name'];
+                        $result['name_message'] = __('Name has been changed successfully.');
                     } else {
-                        $result['name_error']      = 1;
-                        $result['name_message']    = __('It was failed to save new name. Please try later.');
+                        $result['name_error']   = 1;
+                        $result['name_message'] = __('It was failed to save new name. Please try later.');
                     }
 
-                    $args = array(
-                        'uid'       => $uid,
-                        'new_name'  => $values['name'],
-                        'old_name'  => $data['name'],
-                    );
+                    $args = [
+                        'uid'      => $uid,
+                        'new_name' => $values['name'],
+                        'old_name' => $data['name'],
+                    ];
 
                     Pi::service('event')->trigger('name_change', $args);
                 }
 
+                if ($values['newsletter'] != $data['newsletter'] && Pi::service('module')->isActive('subscription')) {
+
+                    if ($people == null) {
+                        $values['campaign']   = 0;
+                        $values['uid']        = $uid;
+                        $values['status']     = 1;
+                        $values['time_join']  = time();
+                        $values['time_update'] = time();
+                        $values['email']      = $data['email'];
+                        $values['mobile']     = null;
+                        Pi::api('people', 'subscription')->createPeople($values);
+                    } else {
+                        Pi::api('people', 'subscription')->update(array('newsletter' => $values['newsletter']), $uid);
+                    }
+                    $result['newsletter_value']   = $values['newsletter'];
+                    $result['newsletter_message'] = __('Newsletter setting has been changed successfully.');
+                    $result['newsletter_time_update'] = time();
+
+                    $log = [
+                        'uid'    => Pi::user()->getId(),
+                        'action' => $values['newsletter'] ? 'subscribe_newsletter_account' : 'unsubscribe_newsletter_account',
+                    ];
+
+                    Pi::api('log', 'user')->add(null, null, $log);
+
+                }
                 return $result;
 
             } else {
@@ -126,16 +175,13 @@ class AccountController extends ActionController
             }
         }
 
-        $this->view()->assign(array(
-            'form'      => $form,
-        ));
+        $this->view()->assign([
+            'form' => $form,
+        ]);
 
         $this->view()->headTitle(__('Account settings'));
         $this->view()->headdescription(__('Basic settings'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**
@@ -147,14 +193,13 @@ class AccountController extends ActionController
     {
         $this->view()->setTemplate('account-reset-email');
 
-        $result = array(
+        $result = [
             'status'  => 0,
             'message' => __('Invalid data provided for email change.'),
-        );
-        $token   = _get('token');
-        //$email   = _get('email');
+        ];
+        $token  = _get('token');
 
-        $view = $this->view();
+        $view     = $this->view();
         $fallback = function () use ($view, $result) {
             $view->assign('result', $result);
         };
@@ -165,10 +210,10 @@ class AccountController extends ActionController
         }
 
         // Get user data
-        $userData = Pi::user()->data()->find(array(
-            'name'      => 'change-email',
-            'value'     => $token,
-        ));
+        $userData = Pi::user()->data()->find([
+            'name'  => 'change-email',
+            'value' => $token,
+        ]);
         if (!$userData) {
             return $fallback();
         }
@@ -187,20 +232,31 @@ class AccountController extends ActionController
 
         // Reset email
         $oldEmail = $userRow->email;
-        Pi::api('user', 'user')->updateUser(
-            $userData['uid'],
-            array(
-                'email'         => $email,
-                'last_modified' => time(),
-            )
-        );
+        $dataToUpdate = [
+            'email'         => $email,
+            'last_modified' => time(),
+        ];
+
+        /**
+         * If email connection type, then replicate email to identity field
+         */
+        if (Pi::service('module')->isActive('user')) {
+            $config = Pi::service('registry')->config->read('user');
+            $field = $config['login_field'];
+            $field = array_shift($field);
+
+            if($field == 'email'){
+                $dataToUpdate['identity'] = $dataToUpdate['email'];
+            }
+        }
+
         Pi::user()->data()->delete($userData['uid'], 'change-email');
         Pi::user()->data()->delete($userData['uid'], 'email-' . $token);
-        $args = array(
+        $args = [
             'uid'       => $userData['uid'],
             'old_email' => $oldEmail,
             'new_email' => $email,
-        );
+        ];
 
         $this->sendSuccessMail(
             $userRow['identity'],
@@ -210,7 +266,13 @@ class AccountController extends ActionController
 
         // Set log
         Pi::service('event')->trigger('email_change', $args);
-        $result['status'] = 1;
+
+        Pi::api('user', 'user')->updateUser($userData['uid'], $dataToUpdate);
+        if (Pi::service('module')->isActive('subscription')) {
+            Pi::api('people', 'subscription')->update(array('email' => $dataToUpdate['email']), $userData['uid']);
+        }
+
+        $result['status']  = 1;
         $result['message'] = __('Email changed successfully.');
 
         $this->view()->assign('result', $result);
@@ -223,10 +285,10 @@ class AccountController extends ActionController
      */
     public function verifyCredentialAction()
     {
-        $result = array(
-            'status' => 0,
+        $result     = [
+            'status'  => 0,
             'message' => __('Incorrect password.'),
-        );
+        ];
         $uid        = Pi::service('user')->getId();
         $credential = _get('credential');
 
@@ -249,18 +311,82 @@ class AccountController extends ActionController
     }
 
     /**
+     * Validate user username, email and display name /nickname
+     *
+     * @return array
+     */
+    public function validateAction()
+    {
+        $result = [
+            'status'  => 1,
+            'message' => __('Valid input.'),
+        ];
+        $uid    = Pi::service('user')->getId();
+        $key    = $this->params('key');
+        $value  = $this->params('value');
+
+        // Check params
+        if (!$uid || !$key || !$value) {
+            return $result;
+        }
+
+        // Check user
+        $user = Pi::model('user_account')->find($uid, 'id');
+        if (!$user) {
+            return $result;
+        }
+
+        switch ($key) {
+            // Username
+            case 'username':
+                $validator = new UsernameValidator;
+                break;
+            // Nickname / display name
+            case 'name':
+                $validator = new NameValidator;
+                break;
+            // Email
+            case 'email':
+                $validator = new UserEmailValidator;
+                break;
+            // Invalid
+            default:
+                $validator = null;
+                break;
+        }
+        if ($validator) {
+            $isValid = $validator->isValid($value, ['id' => $uid]);
+            if (!$isValid) {
+                //d($validator->getMessages()); exit;
+                $messages = array_values($validator->getMessages());
+                $result   = [
+                    'status'  => 0,
+                    'message' => implode(PHP_EOL, $messages),
+                ];
+            }
+        } else {
+            $result = [
+                'status'  => 0,
+                'message' => __('Invalid input.'),
+            ];
+        }
+
+        return $result;
+    }
+
+    /**
      * Check if email or display name exists
      *
      * @return int
      */
     public function checkExistAction()
     {
-        $result = array(
+        $result = [
             'status' => 1,
-        );
+        ];
 
-        $query = array();
-        foreach (array('email', 'name', 'identity') as $param) {
+        $query = [];
+        foreach (['email', 'name', 'identity'] as $param) {
             $val = $this->params($param);
             if ($val) {
                 $query[$param] = $val;
@@ -275,10 +401,10 @@ class AccountController extends ActionController
             $where->equalTo($key, $val)->or;
         }
 
-        $count = Pi::model('user_account')->count($where);
-        $result = array(
-            'status'    => $count ? 1 : 0,
-        );
+        $count  = Pi::model('user_account')->count($where);
+        $result = [
+            'status' => $count ? 1 : 0,
+        ];
 
         return $result;
     }
@@ -325,22 +451,22 @@ class AccountController extends ActionController
         }
 
         // Send verify email
-        $url = $this->url('', array(
-            'action'    => 'reset.email',
-            'token'     => $token,
-            'email'     => $newEmail,
-        ));
+        $url  = $this->url('', [
+            'action' => 'reset.email',
+            'token'  => $token,
+            'email'  => $newEmail,
+        ]);
         $link = Pi::url($url, true);
 
-        $params = array(
-            'username'          => $username,
-            'change_email_url'  => $link,
-            'new_email'         => $newEmail,
-            'old_email'         => $curEmail,
-            'expiration'        => $this->config('email_expiration'),
-        );
+        $params = [
+            'username'         => $username,
+            'change_email_url' => $link,
+            'new_email'        => $newEmail,
+            'old_email'        => $curEmail,
+            'expiration'       => $this->config('email_expiration'),
+        ];
         // Load from HTML template
-        $data   = Pi::service('mail')->template('reset-email-html', $params);
+        $data = Pi::service('mail')->template('reset-email-html', $params);
 
         // Set subject and body
         $subject = $data['subject'];
@@ -379,11 +505,11 @@ class AccountController extends ActionController
     protected function sendSuccessMail($username, $oldEmail, $newEmail)
     {
         // Set mail params
-        $params = array(
+        $params = [
             'old_email' => $oldEmail,
             'new_email' => $newEmail,
             'username'  => $username,
-        );
+        ];
         // Load from HTML template
         $data = Pi::service('mail')->template('reset-email-confirm-html', $params);
 
@@ -392,7 +518,7 @@ class AccountController extends ActionController
         $body    = $data['body'];
         $type    = $data['format'];
         $message = Pi::service('mail')->message($subject, $body, $type);
-        $message->addTo($oldEmail);
+        $message->addTo($newEmail);
         $transport = Pi::service('mail')->transport();
         $transport->send($message);
     }

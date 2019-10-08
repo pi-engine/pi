@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -65,7 +65,7 @@ class Database extends AbstractResource
     protected function canonizeConfig($config)
     {
         if (is_string($config)) {
-            $config = array('sqlfile' => $config);
+            $config = ['sqlfile' => $config];
         }
 
         return $config;
@@ -84,7 +84,7 @@ class Database extends AbstractResource
         if (empty($config['sqlfile'])) {
             return;
         }
-        $module = $this->event->getParam('module');
+        $module  = $this->event->getParam('module');
         $sqlFile = sprintf(
             '%s/%s/%s',
             Pi::path('module'),
@@ -92,19 +92,19 @@ class Database extends AbstractResource
             $config['sqlfile']
         );
         if (!file_exists($sqlFile)) {
-            return array(
-                'status'    => false,
-                'message'   => sprintf('SQL file "%s" is not found.', $sqlFile)
-            );
+            return [
+                'status'  => false,
+                'message' => sprintf('SQL file "%s" is not found.', $sqlFile),
+            ];
         }
 
         try {
             $status = SqlSchema::query($sqlFile, $module);
         } catch (\Exception $e) {
-            return array(
-                'status'    => false,
-                'message'   => 'SQL schema query failed: ' . $e->getMessage()
-            );
+            return [
+                'status'  => false,
+                'message' => 'SQL schema query failed: ' . $e->getMessage(),
+            ];
         }
 
         if (isset($config['schema'])) {
@@ -113,17 +113,17 @@ class Database extends AbstractResource
             $schemaList = SqlSchema::fetchSchema($sqlFile);
         }
         $modelSchema = Pi::model('module_schema');
-        foreach($schemaList as $name => $type) {
-            $status = $modelSchema->insert(array(
-                'name'      => $name,
-                'type'      => $type,
-                'module'    => $module
-            ));
+        foreach ($schemaList as $name => $type) {
+            $status = $modelSchema->insert([
+                'name'   => $name,
+                'type'   => $type,
+                'module' => $module,
+            ]);
             if (!$status) {
-                return array(
-                    'status'    => false,
-                    'message'   => 'Module schema is not saved.'
-                );
+                return [
+                    'status'  => false,
+                    'message' => 'Module schema is not saved.',
+                ];
             }
         }
 
@@ -148,7 +148,7 @@ class Database extends AbstractResource
         if (isset($config['schema'])) {
             $schemaList = $config['schema'];
         } elseif (empty($config['sqlfile'])) {
-            $schemaList = array();
+            $schemaList = [];
         } else {
             $sqlFile = sprintf(
                 '%s/%s/%s',
@@ -157,14 +157,14 @@ class Database extends AbstractResource
                 $config['sqlfile']
             );
             if (!file_exists($sqlFile)) {
-                $schemaList = array();
+                $schemaList = [];
             } else {
                 $schemaList = SqlSchema::fetchSchema($sqlFile);
             }
         }
 
         $modelSchema = Pi::model('module_schema');
-        $rowset = $modelSchema->select(array('module' => $module));
+        $rowset      = $modelSchema->select(['module' => $module]);
         foreach ($rowset as $row) {
             $name = $row->name;
             if (!isset($schemaList[$name])) {
@@ -172,26 +172,26 @@ class Database extends AbstractResource
                 $status = true;
                 if (!$status) {
                     $msg = 'Deprecated schema "%s" is not removed.';
-                    return array(
-                        'status'    => false,
-                        'message'   => sprintf($msg, $name),
-                    );
+                    return [
+                        'status'  => false,
+                        'message' => sprintf($msg, $name),
+                    ];
                 }
             } else {
                 unset($schemaList[$row->name]);
             }
         }
-        foreach($schemaList as $name => $type) {
-            $status = $modelSchema->insert(array(
-                'name'      => $name,
-                'type'      => $type,
-                'module'    => $module
-            ));
+        foreach ($schemaList as $name => $type) {
+            $status = $modelSchema->insert([
+                'name'   => $name,
+                'type'   => $type,
+                'module' => $module,
+            ]);
             if (!$status) {
-                return array(
-                    'status'    => false,
-                    'message'   => 'Module schema is not saved.'
-                );
+                return [
+                    'status'  => false,
+                    'message' => 'Module schema is not saved.',
+                ];
             }
         }
 
@@ -203,9 +203,9 @@ class Database extends AbstractResource
      */
     public function uninstallAction()
     {
-        $module = $this->event->getParam('module');
+        $module      = $this->event->getParam('module');
         $modelSchema = Pi::model('module_schema');
-        $rowset = $modelSchema->select(array('module' => $module));
+        $rowset      = $modelSchema->select(['module' => $module]);
         foreach ($rowset as $table) {
             $sql = sprintf(
                 'DROP %s IF EXISTS %s',
@@ -217,7 +217,7 @@ class Database extends AbstractResource
             } catch (\Exception $e) {
             }
         }
-        $modelSchema->delete(array('module' => $module));
+        $modelSchema->delete(['module' => $module]);
 
         return true;
     }

@@ -1,18 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Navigation\Page;
 
-use Pi;
 use Traversable;
-use Zend\Navigation\Page\AbstractPage as ZendAbstractPage;
 use Zend\Navigation\Exception;
+use Zend\Navigation\Page\AbstractPage as ZendAbstractPage;
 use Zend\Stdlib\ArrayUtils;
 
 /**
@@ -89,7 +88,7 @@ abstract class AbstractPage extends ZendAbstractPage
         */
         $hasUri = true;
         $hasMvc = !empty($options['action']) || !empty($options['controller'])
-                || !empty($options['route']);
+            || !empty($options['route']);
         /**#@-*/
 
         if ($hasMvc) {

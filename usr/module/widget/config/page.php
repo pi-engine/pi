@@ -1,34 +1,46 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
+return [
     // Admin section
-    'admin' => array(
-        array(
-            'controller'    => 'script',
-            'permission'    => 'script',
-        ),
-        array(
-            'controller'    => 'static',
-            'permission'    => 'static',
-        ),
-        array(
-            'controller'    => 'carousel',
-            'permission'    => 'carousel',
-        ),
-        array(
-            'controller'    => 'list',
-            'permission'    => 'list',
-        ),
-        array(
-            'controller'    => 'tab',
-            'permission'    => 'tab',
-        ),
-    ),
-);
+    'admin' => [
+        [
+            'controller' => 'script',
+            'permission' => 'script',
+        ],
+        [
+            'controller' => 'static',
+            'permission' => 'static',
+        ],
+        [
+            'controller' => 'list',
+            'permission' => 'list',
+        ],
+        [
+            'controller' => 'media',
+            'permission' => 'media',
+        ],
+        [
+            'controller' => 'carousel',
+            'permission' => 'carousel',
+        ],
+        [
+            'controller' => 'spotlight',
+            'permission' => 'spotlight',
+        ],
+        [
+            'controller' => 'tab',
+            'permission' => 'tab',
+        ],
+        [
+            'controller' => 'video',
+            'permission' => 'video',
+        ],
+    ],
+];

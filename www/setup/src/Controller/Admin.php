@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Setup\Controller;
@@ -94,6 +94,7 @@ class Admin extends AbstractController
         $this->setPersist(static::PERSIST_SITE, $this->vars);
 
         echo 1;
+        exit;
     }
 
     public function checkAction()
@@ -128,12 +129,14 @@ class Admin extends AbstractController
                 break;
         }
         echo $error;
+        exit;
     }
 
     public function submitAction()
     {
         $installer = new ModuleInstaller;
         $ret = $installer->install('system');
+
         if (!$ret) {
             $this->hasForm = true;
             $this->content = '<p class="alert alert-danger">'
@@ -244,7 +247,7 @@ class Admin extends AbstractController
             ));
 
             // Create system accounts
-            $accounts = array(
+            /* $accounts = array(
                 'manager'   => array(
                     'name'  => __('Manager'),
                     'role'  => array(
@@ -281,7 +284,7 @@ class Admin extends AbstractController
             foreach ($accounts as $identity => $data) {
                 $userData = array(
                     'identity'      => $identity,
-                    'email'         => $identity . '@pialog.org',
+                    'email'         => $identity . '@piengine.org',
                     'credential'    => $adminData['credential'],
                     'name'          => $data['name'],
                 );
@@ -290,7 +293,7 @@ class Admin extends AbstractController
                 if (!empty($data['role'])) {
                     Pi::api('user', 'system')->setRole($uid, $data['role']);
                 }
-            }
+            } */
         }
 
         if ($this->status < 1) {

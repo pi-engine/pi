@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Log;
@@ -23,7 +23,7 @@ class Profiler
      * List logs
      * @var array
      */
-    protected $timers = array();
+    protected $timers = [];
 
     /**
      * Writers
@@ -36,7 +36,7 @@ class Profiler
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->writers = new SplPriorityQueue();
     }
@@ -48,7 +48,7 @@ class Profiler
      */
     public function shutdown()
     {
-        foreach (array_keys((array) $this->timers) as $name) {
+        foreach (array_keys((array)$this->timers) as $name) {
             if ($name) {
                 $this->write($name);
             }
@@ -56,7 +56,8 @@ class Profiler
         foreach ($this->writers as $writer) {
             try {
                 $writer->shutdown();
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         }
     }
 
@@ -77,7 +78,7 @@ class Profiler
     /**
      * Starts a timer
      *
-     * @param string  $name Name of the timer
+     * @param string $name Name of the timer
      * @return self
      */
     public function start($name = 'PI')
@@ -85,15 +86,15 @@ class Profiler
         if (!empty($this->timers[$name])) {
             $this->end($name);
         }
-        $this->timers[$name] = array(
+        $this->timers[$name] = [
             'name'      => $name,
             'timestamp' => microtime(true),
             'stopped'   => false,
 
-            'timer'     => microtime(true),
-            'realmem'   => memory_get_usage(true),
-            'emalloc'   => memory_get_usage(),
-        );
+            'timer'   => microtime(true),
+            'realmem' => memory_get_usage(true),
+            'emalloc' => memory_get_usage(),
+        ];
 
         return $this;
     }
@@ -114,7 +115,7 @@ class Profiler
         }
         $this->timers[$name]['stopped'] = true;
 
-        $this->timers[$name]['timer'] = microtime(true)
+        $this->timers[$name]['timer']   = microtime(true)
             - $this->timers[$name]['timer'];
         $this->timers[$name]['realmem'] = memory_get_usage(true)
             - $this->timers[$name]['realmem'];

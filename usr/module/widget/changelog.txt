@@ -1,5 +1,14 @@
 Widget module changelog
 
+
+v2.0.0
+May 12nd, 2014
+===============
+1. Added block preview
+2. Formulated widgets of: script, static, list, media, carousel, tab and partially finished spotlight
+
+
+
 July 16th, 2013
 ===============
 1. Add parallax slider

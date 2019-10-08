@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -19,7 +19,7 @@ use Zend\View\Helper\AbstractHelper;
  * Usage inside a phtml template
  *
  * ```
- *  $this->i18n('theme/default', 'main');
+ *  $this->i18n('theme/default', 'default');
  *  $this->i18n('module/demo', 'block');
  * ```
  *
@@ -32,8 +32,8 @@ class I18n extends AbstractHelper
     /**
      * Load an i18n resource
      *
-     * @param   string  $component
-     * @param   string  $file
+     * @param   string $component
+     * @param   string $file
      * @return  self
      */
     public function __invoke($component, $file)

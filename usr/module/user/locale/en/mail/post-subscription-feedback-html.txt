@@ -1,0 +1,20 @@
+﻿[comment]Ask feedback from user x days after subscription[/comment]
+
+[format]html[/format]
+
+[subject]We need your feedback ![/subject]
+
+[body]
+<div style="padding: 1px; direction: ltr;">
+	<h3 style="font-size: 1.1em;">Dear %username%</h3>
+	<div style="padding: 3px 0; margin: 1px 0;">You joined our website few days ago. We hope you enjoyed our contents & services, and want to get your feedback about them.</div>
+	<div style="padding: 3px 0; margin: 1px 0;">As we plan for new features in our website, we always like to reach out to our customers to gather some thoughts.</div>
+	<div style="padding: 3px 0; margin: 1px 0;">Simply put, we'de like to understand more about what's important to you when it comes to use our platform.</div>
+	<div style="padding: 3px 0; margin: 1px 0;">Please let us know what you think about our services and what is lacking or need to be improved on our platform %site_name%.</div>
+	<div style="padding: 3px 0; margin: 1px 0;">Regards,</div>
+	<div style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+    </div>
+    <div>%site_mail_footer%</div>
+</div>
+[/body]

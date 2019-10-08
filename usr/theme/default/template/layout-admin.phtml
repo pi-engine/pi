@@ -1,128 +1,145 @@
 <?php
+// Set doctype explicitly if it is not `HTML4_LOOSE`, i.e. 'HTML 4.01 Transitional'
+$this->doctype('HTML5');
+
 // Load translation data
 $this->i18nTheme();
 
+// Set prefix for head title
+$this->headTitle()->setPrefix(_a('Admin - '));
+
 //HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-$this->js(array(
-    pi::url('static/js/html5shiv.js') => array(
-        'conditional' => 'lt IE 9'
-    ),
-    pi::url('static/js/respond.min.js') => array(
-        'conditional' => 'lt IE 9'
-    ),
-));
+$this->js([
+    pi::url('static/js/html5shiv.js')   => [
+        'conditional' => 'lt IE 9',
+    ],
+    pi::url('static/js/respond.min.js') => [
+        'conditional' => 'lt IE 9',
+    ],
+]);
 
 // Load jQuery
 $this->jquery();
 
 // Load Bootstrap css/js and font-awesome
-$this->bootstrap(array(
-    'js/bootstrap.min.js',
-    'font-awesome/css/font-awesome.min.css'
-));
+$this->bootstrap([
+    'js/bootstrap.bundle.js',
+    'font-awesome/css/all.min.css',
+]);
 
 // Load admin.css
 $this->css($this->assetTheme('css/admin.css'));
 
-// Explicitly load favicon
-// @see http://en.wikipedia.org/wiki/Favicon
-$this->headLink(array(
-    'rel'   => 'shortcut icon',
-    'href'  => $this->favicon()
-));
+// Load localization css
+$this->css($this->assetLocale('locale.css'));
 
+// Load admin.js on footer
+$this->footScript()->appendFile($this->assetTheme('js/admin.js'));
+
+// Meta Viewport Tag
+$this->headMeta('width=device-width, initial-scale=1', 'viewport');
+
+// Explicitly load favicon
+$this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/x-icon',
+    'href' => $this->favicon(),
+]);
+$this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/png',
+    'href' => $this->favicon('favicon.png'),
+]);
+
+// Get module name
 $module = Pi::service('module')->current();
+
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
 <head>
     <meta charset="<?php echo $charset; ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 </head>
-<body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
-    <!-- header: brand, navbar-nav, user link -->
-    <header class="navbar navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>">
-                <i class="fa fa-leaf"></i>
-                <strong>Pi</strong>
-            </a>
-        </div>
-        <nav class="navbar-collapse collapse">
-            <?php echo $this->adminNav()->modes('nav navbar-nav'); ?>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" 
-                       target="_blank">
-                        <i class="fa fa-external-link"></i>
+<body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-admin">
+<!-- header: brand, navbar-nav, user link -->
+<header class="pi-header sticky-top">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="<?php echo $this->url('home'); ?>">
+            <i class="fas fa-leaf"></i>
+            <strong>Pi</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="<?php echo _escape($sitename); ?>">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse">
+            <?php $class = in_array($locale, ['fa', 'ar']) ? 'navbar-nav ml-auto pi-navbar-nav' : 'navbar-nav mr-auto pi-navbar-nav'; ?>
+            <?php echo $this->adminNav()->modes($class); ?>
+            <?php echo $this->widget('system-user-bar', [
+                'type'           => 'flat',
+                'float'          => 'right',
+                'show_title'     => 1,
+                'show_message'   => 'merge',
+                'show_support'   => 0,
+                'show_order'     => 0,
+                'show_credit'    => 0,
+                'show_favourite' => 0,
+                'params'         => [
+                    'section' => Pi::engine()->application()->getSection(),
+                ],
+            ]); ?>
+            <ul class="navbar-nav justify-content-end navbar-go-front">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
                         <?php _e('Front'); ?>
                     </a>
+                </li>
             </ul>
-            <?php
-            echo $this->widget('system-user-bar', 
-                    array(
-                        //'params' => array('route' => 'sysuser'),
-                        'type' => 'flat'
-                    )
-                 ); 
-            ?>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
+<section class="pi-section clearfix">
     <aside class="pi-sidebar">
         <div id="js-modules-nav">
             <?php echo $this->adminNav()->main('nav pi-modules-nav'); ?>
         </div>
     </aside>
-    <section class="pi-content" ng-app="<?php echo $module; ?>">
+    <div class="pi-content" data-ng-app="<?php echo $module; ?>">
         <div pi-message="alert"></div>
-        <nav class="pi-nav-top" id="pi-nav-top" ng-controller="piNavTopCtrl">
-            <?php 
-            echo $this->adminNav()->top(array(
-                'ulClass'  => 'nav nav-tabs',
-                'sub'      => array(
-                    'ulClass' => 'nav nav-pills well well-sm'
-                )
-            ));
+        <nav class="pi-nav-top" id="pi-nav-top" data-ng-controller="piNavTopCtrl">
+            <?php
+            echo $this->adminNav()->top([
+                'ulClass' => 'nav nav-tabs',
+                'sub'     => [
+                    'ulClass' => 'nav nav-pills bg-light border shadow-sm p-1 mb-3',
+                ],
+            ]);
             ?>
         </nav>
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
         <article class="pi-module-content">
             <div ng-view></div>
-            <?php echo $content; ?>
+            <div class="<?php echo $module; ?>"><?php echo $content; ?></div>
         </article>
-
-        <footer class="pi-footer">
-            <ul class="pi-footer-links muted">
-                <li>
-                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                        &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
-                    </a>
-                </li>
-                <li>·</li>
-                <li>
-                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                        Powered by Pi Engine
-                    </a>
-                </li>
-                <li>·</li>
-                <li>
-                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                        Design of Pi Engine
-                    </a>
-                </li>
-                <li>·</li>
-
-                <span title="<?php _e('Execution time'); ?>">
-                    <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
-                </span>
-            </ul>
-        </footer>
-    </section>
-    <?php $this->footScript()->appendFile($this->assetTheme('js/admin.js')); ?>
+    </div>
+</section>
+<footer class="pi-footer clearfix">
+    <ul class="pi-footer-links muted list-inline">
+        <li class="list-inline-item">
+            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
+            </a>
+        </li>
+        <li class="list-inline-item">-</li>
+        <li class="list-inline-item">
+            <a rel="license" href="http://www.piengine.org" title="Pi Engine" target="_blank">
+                Powered by Pi Engine
+            </a>
+        </li>
+    </ul>
+</footer>
 </body>
 </html>

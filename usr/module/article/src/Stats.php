@@ -1,35 +1,35 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link         http://code.pialog.org for the Pi Engine source repository
- * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt BSD 3-Clause License
+ * @link         http://code.piengine.org for the Pi Engine source repository
+ * @copyright    Copyright (c) Pi Engine http://piengine.org
+ * @license      http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article;
 
-use Pi;
-use Zend\Mvc\MvcEvent;
-use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
 use Module\Article\Service;
+use Pi;
+use Zend\Db\Sql\Expression;
+use Zend\Mvc\MvcEvent;
 
 /**
  * Stats service API
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class Stats
 {
     protected static $module = 'article';
-    
+
     /**
      * Event listener to run before page cache, so some operation will also work
      * if the page is cached.
      * If this code is added in action, it will be ignored if page is cached.
-     * 
-     * @param MvcEvent $e 
+     *
+     * @param MvcEvent $e
      */
     public function runBeforePageCache(MvcEvent $e)
     {
@@ -38,65 +38,65 @@ class Stats
             $name = $e->getRouteMatch()->getParam('slug');
         }
         $module = $e->getRouteMatch()->getParam('module');
-        
+
         self::addVisit($name, $module);
     }
 
     /**
      * Add visit count and visit record.
-     * 
-     * @param int|string $name    Article ID or slug
-     * @param string     $module  Module name
+     *
+     * @param int|string $name Article ID or slug
+     * @param string $module Module name
      */
     public static function addVisit($name, $module = null)
     {
         $module = $module ?: Pi::service('module')->current();
-        
+
         if (!is_numeric($name)) {
             $model = Pi::model('extended', $module);
             $name  = $model->slugToId($name);
         }
-        
+
         Pi::model('stats', $module)->increaseVisits($name);
         Pi::model('visit', $module)->addRow($name);
     }
-    
+
     /**
      * Get articles which are mostly visit.
-     * 
-     * @param int     $limit   Article limitation
-     * @param string  $module
-     * @return array 
+     *
+     * @param int $limit Article limitation
+     * @param string $module
+     * @return array
      */
     public static function getTopVisits($limit, $module = null)
     {
         $module = $module ?: Pi::service('module')->current();
         $model  = Pi::model('stats', $module);
         $select = $model->select()
-                        ->limit($limit)
-                        ->order('visits DESC');
+            ->limit($limit)
+            ->order('visits DESC');
         $rowset = $model->selectWith($select);
-        
-        $result = array();
+
+        $result = [];
         foreach ($rowset as $row) {
             unset($row->id);
             $result[$row->article] = $row->toArray();
         }
-        
+
         return $result;
     }
-    
+
     /**
      * Get article total count in period.
-     * 
-     * @param int     $dateFrom  
-     * @param int     $dateTo
-     * @param string  $module
-     * @return int 
+     *
+     * @param int $dateFrom
+     * @param int $dateTo
+     * @param string $module
+     * @return int
      */
     public static function getTotalInPeriod($dateFrom, $dateTo, $module = null)
     {
-        $where  = array();
+        $where  = [];
         $module = $module ?: Pi::service('module')->current();
 
         if (!empty($dateFrom)) {
@@ -108,11 +108,11 @@ class Stats
         $where['status'] = Article::FIELD_STATUS_PUBLISHED;
         $where['active'] = 1;
 
-        $modelArticle   = Pi::model('article', $module);
-        $select         = $modelArticle->select()
-            ->columns(array('total' => new Expression('count(id)')))
+        $modelArticle = Pi::model('article', $module);
+        $select       = $modelArticle->select()
+            ->columns(['total' => new Expression('count(id)')])
             ->where($where);
-        $resultset = $modelArticle->selectWith($select);
+        $resultset    = $modelArticle->selectWith($select);
 
         $result = $resultset->current()->total;
 
@@ -121,10 +121,10 @@ class Stats
 
     /**
      * Get article total count in period.
-     * 
-     * @param int     $days
-     * @param string  $module
-     * @return int 
+     *
+     * @param int $days
+     * @param string $module
+     * @return int
      */
     public static function getTotalRecently($days = null, $module = null)
     {
@@ -136,18 +136,19 @@ class Stats
 
     /**
      * Get total article counts group by category.
-     * 
-     * @param int     $dateFrom
-     * @param int     $dateTo
-     * @param string  $module
-     * @return int 
+     *
+     * @param int $dateFrom
+     * @param int $dateTo
+     * @param string $module
+     * @return int
      */
     public static function getTotalInPeriodByCategory(
-        $dateFrom, 
-        $dateTo, 
+        $dateFrom,
+        $dateTo,
         $module
-    ) {
-        $where  = array();
+    )
+    {
+        $where  = [];
         $module = $module ?: Pi::service('module')->current();
 
         if (!empty($dateFrom)) {
@@ -163,12 +164,12 @@ class Stats
             $val['total'] = 0;
         }
 
-        $modelArticle = Pi::model('article', $module);
-        $select = $modelArticle->select()
-            ->columns(array(
-                'category', 
-                'total' => new Expression('count(category)')
-            ))
+        $modelArticle   = Pi::model('article', $module);
+        $select         = $modelArticle->select()
+            ->columns([
+                'category',
+                'total' => new Expression('count(category)'),
+            ])
             ->where($where)
             ->group('category');
         $groupResultset = $modelArticle->selectWith($select)->toArray();
@@ -182,15 +183,16 @@ class Stats
 
     /**
      * Get total article counts group by category
-     * 
-     * @param int     $days
-     * @param string  $module
-     * @return int 
+     *
+     * @param int $days
+     * @param string $module
+     * @return int
      */
     public static function getTotalRecentlyByCategory(
-        $days = null, 
+        $days = null,
         $module = null
-    ) {
+    )
+    {
         $dateFrom = !is_null($days) ? strtotime(sprintf('-%d day', $days)) : 0;
         $dateTo   = time();
 
@@ -199,20 +201,21 @@ class Stats
 
     /**
      * Get submitter count in period.
-     * 
-     * @param int     $dateFrom
-     * @param int     $dateTo
-     * @param int     $limit
-     * @param string  $module
-     * @return int 
+     *
+     * @param int $dateFrom
+     * @param int $dateTo
+     * @param int $limit
+     * @param string $module
+     * @return int
      */
     public static function getSubmittersInPeriod(
-        $dateFrom, 
-        $dateTo, 
-        $limit = null, 
+        $dateFrom,
+        $dateTo,
+        $limit = null,
         $module = null
-    ) {
-        $users = $where = array();
+    )
+    {
+        $users  = $where = [];
         $module = $module ?: Pi::service('module')->current();
 
         if (!empty($dateFrom)) {
@@ -227,7 +230,7 @@ class Stats
         $modelArticle = Pi::model('article', $module);
 
         $select = $modelArticle->select()
-            ->columns(array('uid', 'total' => new Expression('count(uid)')))
+            ->columns(['uid', 'total' => new Expression('count(uid)')])
             ->where($where)
             ->group('uid')
             ->order('total DESC');
@@ -238,7 +241,7 @@ class Stats
 
         $result = $modelArticle->selectWith($select)->toArray();
 
-        $userIds = array();
+        $userIds = [];
         foreach ($result as $row) {
             if (!empty($row['uid'])) {
                 $userIds[] = $row['uid'];
@@ -247,11 +250,11 @@ class Stats
         $userIds = array_unique($userIds);
 
         if (!empty($userIds)) {
-            $resultsetUser = Pi::user()->get($userIds, array('id', 'name'));
+            $resultsetUser = Pi::user()->get($userIds, ['id', 'name']);
             foreach ($resultsetUser as $row) {
-                $users[$row['id']] = array(
+                $users[$row['id']] = [
                     'name' => $row['name'],
-                );
+                ];
             }
             unset($resultsetUser);
         }
@@ -267,17 +270,18 @@ class Stats
 
     /**
      * Get submitter count in period
-     * 
-     * @param int     $days
-     * @param int     $limit
-     * @param string  $module
-     * @return int 
+     *
+     * @param int $days
+     * @param int $limit
+     * @param string $module
+     * @return int
      */
     public static function getSubmittersRecently(
-        $days = null, 
-        $limit = null, 
+        $days = null,
+        $limit = null,
         $module = null
-    ) {
+    )
+    {
         $dateFrom = !is_null($days) ? strtotime(sprintf('-%d day', $days)) : 0;
         $dateTo   = time();
 

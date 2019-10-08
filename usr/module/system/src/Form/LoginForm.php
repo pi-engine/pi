@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Form;
@@ -19,7 +19,7 @@ use Pi\Form\Form as BaseForm;
  */
 class LoginForm extends BaseForm
 {
-    protected $config = array();
+    protected $config = [];
 
     /**
      * Constructor
@@ -27,12 +27,12 @@ class LoginForm extends BaseForm
      * @param string $name
      * @param array $config
      */
-    public function __construct($name, array $config = array())
+    public function __construct($name, array $config = [])
     {
         if (!$config) {
             $config = Pi::user()->config();
         }
-        $this->config  = $config;
+        $this->config = $config;
         parent::__construct($name);
     }
 
@@ -44,71 +44,85 @@ class LoginForm extends BaseForm
         $config = $this->config;
 
         // Get config data.
-        $this->add(array(
-            'name'          => 'identity',
-            'type'          => 'Pi\Form\Element\LoginField',
-            'options'       => array(
-                'fields'    => $config['login_field'],
-            ),
-        ));
+        $this->add([
+            'name'       => 'identity',
+            'type'       => 'Pi\Form\Element\LoginField',
+            'options'    => [
+                'fields' => $config['login_field'],
+            ],
+            'attributes' => [
+                'autocomplete' => in_array('email', $config['login_field']) ? 'email' : 'username',
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'credential',
-            'options'       => array(
+        $this->add([
+            'name'       => 'credential',
+            'options'    => [
                 'label' => __('Password'),
-            ),
-            'attributes'    => array(
-                'type'  => 'password',
-            )
-        ));
+            ],
+            'attributes' => [
+                'type' => 'password',
+            ],
+        ]);
 
-        if (!empty($config['login_captcha'])) {
-            $this->add(array(
-                'name'          => 'captcha',
-                'type'          => 'captcha',
-                'options'       => array(
-                    'label'     => __('Please type the word.'),
-                    'separator'         => '<br />',
-                )
-            ));
+        $captchaMode = $config['login_captcha'];
+        if ($captchaElement = Pi::service('form')->getReCaptcha($captchaMode)) {
+            $this->add($captchaElement);
         }
 
         if (!empty($config['rememberme'])) {
-            $this->add(array(
-                'name'          => 'rememberme',
-                'type'          => 'checkbox',
-                'options'       => array(
-                    'label' => __('Remember me'),
-                ),
-                'attributes'    => array(
-                    'value'         => '1',
-                    'description'   => __('Remember me')
-                )
-            ));
+            $this->add([
+                'name'       => 'rememberme',
+                'type'       => 'checkbox',
+                'options'    => [
+//                    'label' => __('Remember me'),
+                ],
+                'attributes' => [
+                    'value'       => '1',
+                    'description' => __('Remember login status'),
+                ],
+            ]);
         }
 
-        $this->add(array(
-            'name'  => 'security',
-            'type'  => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
-        $redirect = _get('redirect') ?: Pi::service('url')->getRequestUri();
+        $redirect = _get('redirect');
+        if (!$redirect) {
+            $routeMatch = Pi::engine()->application()->getRouteMatch();
+            if ($routeMatch) {
+                $module     = $routeMatch->getParam('module');
+                $controller = $routeMatch->getParam('controller');
+                if (('user' == $module || 'system' == $module)
+                    && ('login' == $controller || 'register' == $controller)
+                ) {
+                } else {
+                    $redirect = Pi::service('url')->getRequestUri();
+
+                    if(preg_match('#system/index/modal#', $redirect)){
+                        $redirect = Pi::engine()->application()->getRequest()->getServer('HTTP_REFERER');
+                    }
+                }
+            }
+        }
         $redirect = $redirect ? rawurlencode($redirect) : '';
-        $this->add(array(
-            'name'  => 'redirect',
-            'type'  => 'hidden',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'redirect',
+            'type'       => 'hidden',
+            'attributes' => [
                 'value' => $redirect,
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'attributes' => [
                 'type'  => 'submit',
                 'value' => __('Login'),
                 'class' => 'btn btn-primary',
-            )
-        ));
+            ],
+        ]);
     }
 }

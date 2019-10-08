@@ -1,14 +1,14 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
-namespace   Pi\View\Helper;
+namespace Pi\View\Helper;
 
 use Pi;
 use Zend\View\Helper\AbstractHelper;
@@ -58,18 +58,19 @@ class Blocks extends AbstractHelper
      * zone in layout; 0 for head zone and 99 for foot zone
      * @var array
      */
-    protected $zoneMap = array(
-        0   => '0',
-        1   => '1',
-        2   => '2',
-        3   => '3',
-        4   => '4',
-        5   => '5',
-        6   => '6',
-        7   => '7',
-        8   => '8',
-        99  => '99',
-    );
+    protected $zoneMap
+        = [
+            0  => '0',
+            1  => '1',
+            2  => '2',
+            3  => '3',
+            4  => '4',
+            5  => '5',
+            6  => '6',
+            7  => '7',
+            8  => '8',
+            99 => '99',
+        ];
 
     /**
      * Loaded blocks
@@ -110,10 +111,10 @@ class Blocks extends AbstractHelper
             $module     = $route->getParam('module');
             $controller = $route->getParam('controller');
             $action     = $route->getparam('action');
-            $info = Pi::registry('block')->read($module);
+            $info       = Pi::registry('block')->read($module);
 
-            $blocks = array();
-            $key = sprintf('%s-%s-%s', $module, $controller, $action);
+            $blocks = [];
+            $key    = sprintf('%s-%s-%s', $module, $controller, $action);
             if (isset($info[$key])) {
                 $blocks = $info[$key];
             } elseif (isset($info[sprintf('%s-%s', $module, $controller)])) {
@@ -122,21 +123,21 @@ class Blocks extends AbstractHelper
                 $blocks = $info[$module];
             }
 
-            $blockIds = array();
+            $blockIds = [];
             foreach ($blocks as $zoneKey => $zoneBlockIds) {
                 $blockIds = array_merge($blockIds, $zoneBlockIds);
             }
 
-            $layoutBlocks = array();
+            $layoutBlocks = [];
             // Load blocks from database
             if (!empty($blockIds)) {
-                $blockIds = array_unique($blockIds);
+                $blockIds   = array_unique($blockIds);
                 $modelBlock = Pi::model('block');
-                $select = $modelBlock->select()->where(
-                    array('id' => $blockIds)
+                $select     = $modelBlock->select()->where(
+                    ['id' => $blockIds]
                 );
-                $result = $modelBlock->selectWith($select);
-                $blockRows = array();
+                $result     = $modelBlock->selectWith($select);
+                $blockRows  = [];
                 foreach ($result as $row) {
                     $blockRows[$row->id] = $row;
                 }
@@ -147,11 +148,11 @@ class Blocks extends AbstractHelper
                         $widget = $blockHelper->render($blockRows[$id]);
                         if ($widget) {
                             if (isset($this->zoneMap[$zoneKey])) {
-                                $layoutBlocks[$this->zoneMap[$zoneKey]][] =
-                                    $widget;
+                                $layoutBlocks[$this->zoneMap[$zoneKey]][]
+                                    = $widget;
                             } else {
-                                $layoutBlocks[$zoneKey][] =
-                                    $widget;
+                                $layoutBlocks[$zoneKey][]
+                                    = $widget;
                             }
                         }
                     }
@@ -165,8 +166,37 @@ class Blocks extends AbstractHelper
 
         $blocks = (null === $zone)
             ? $this->blocks
-            : (isset($this->blocks[$zone]) ? $this->blocks[$zone] : array());
+            : (isset($this->blocks[$zone]) ? $this->blocks[$zone] : []);
 
         return $blocks;
+    }
+
+    /**
+     * Get zone list
+     *
+     * @return array
+     */
+    public function getZones()
+    {
+        return $this->zoneMap;
+    }
+
+    /**
+     * Assign blocks
+     *
+     * @param array $blocks
+     * @param null|int $zone
+     *
+     * @return $this
+     */
+    public function assign($blocks, $zone = null)
+    {
+        if (null === $zone) {
+            $this->blocks = $blocks;
+        } else {
+            $this->blocks[(int)$zone] = $blocks;
+        }
+
+        return $this;
     }
 }

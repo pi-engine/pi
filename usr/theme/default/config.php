@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -48,34 +48,39 @@
  *  2 It is highly recommended to use module identity as prefix for module id
  *      and class names used in templates to avoid conflicts.
  */
-return array(
+return [
     /**#@+
      * To be stored in DB
      */
     // Version
-    'version'       => '1.1.0',
+    'version'     => '1.4.0',
     // Type of layouts available in the theme
     // Potential value: 'both', 'admin', 'front', default as 'both'
-    'type'          => 'both',
+    'type'        => 'both',
     /**#@-**/
 
     // Title of the theme
-    'title'         => 'Pi Default Theme',
+    'title'       => 'Pi Default Theme',
     // Author information: name, email, website
-    'author'        => 'Architecture:'
-                     . ' Taiwen Jiang <taiwenjiang@tsinghua.org.cn>;'
-                     . ' Front-end: @sexnothing; Resources: @loidco',
+    'author'      => 'Architecture:'
+        . ' Taiwen Jiang <taiwenjiang@tsinghua.org.cn>;'
+        . ' Front-end: @sexnothing; Resources: @loidco',
     // Screenshot image, relative path in asset.
     // If no screenshot is available, static/image/screenshot.png will be used
-    'screenshot'    => 'image/screenshot.png',
+    'screenshot'  => 'image/screenshot.png',
     // License or theme images and scripts
-    'license'       => 'Creative Common License'
-                     . ' http://creativecommons.org/licenses/by/3.0/',
+    'license'     => 'Creative Common License'
+        . ' http://creativecommons.org/licenses/by/3.0/',
     // Optional description
-    'description'   => 'Default theme for Pi Engine, usability oriented.',
+    'description' => 'Default theme for Pi Engine, usability oriented.',
     // Parent theme from which templates can be inherited, default as 'default'
-    'parent'        => '',
+    'parent'      => '',
     // Supported browsers
-    'browser'       => 'Internet Explorer: 6+; Chrome: 17+; Firefox: 10+;'
-                     . ' Safari: 5.1+; Opera: 9.8+;',
-);
+    'browser'     => 'Internet Explorer: 6+; Chrome: 17+; Firefox: 10+;'
+        . ' Safari: 5.1+; Opera: 9.8+;',
+
+    // List of custom front layouts, optional
+    'layout'      => [
+        //'file-name'   => __('Layout name'),
+    ],
+];

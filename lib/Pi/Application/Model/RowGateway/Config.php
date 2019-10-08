@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Model\RowGateway;
@@ -23,9 +23,10 @@ class Config extends RowGateway
      *
      * @var array
      */
-    protected $encodeColumns = array(
-        //'edit'  => true,
-    );
+    protected $encodeColumns
+        = [
+            //'edit'  => true,
+        ];
 
     /**
      * Encode non-scalar columns
@@ -65,13 +66,13 @@ class Config extends RowGateway
     /**
      * Decode value column
      *
-     * @param mixed     $value
-     * @param string    $filter
+     * @param mixed $value
+     * @param string $filter
      * @return mixed
      */
     protected function decodeValueColumn($value, $filter)
     {
-        $options = null;
+        $options  = null;
         $filterId = null;
         switch ($filter) {
             case 'int':
@@ -84,7 +85,7 @@ class Config extends RowGateway
                 break;
             case 'array':
             case 'decode':
-                $options = array($this, 'decodeValue');
+                $options  = [$this, 'decodeValue'];
                 $filterId = FILTER_CALLBACK;
                 break;
             case 'textarea':
@@ -103,13 +104,13 @@ class Config extends RowGateway
     /**
      * Encode value column
      *
-     * @param mixed     $value
-     * @param string    $filter
+     * @param mixed $value
+     * @param string $filter
      * @return mixed
      */
     protected function encodeValueColumn($value, $filter)
     {
-        $options = null;
+        $options  = null;
         $filterId = null;
         switch ($filter) {
             case 'int':
@@ -122,7 +123,7 @@ class Config extends RowGateway
                 break;
             case 'array':
             case 'encode':
-                $filter = array($this, 'encodeValue');
+                $filter = [$this, 'encodeValue'];
                 break;
             case 'textarea':
             case 'special_chars':
@@ -140,10 +141,10 @@ class Config extends RowGateway
     /**
      * Filters a value according to filter, filter_id and options
      *
-     * @param mixed     $value
-     * @param mixed     $filter
-     * @param int       $filterId
-     * @param mixed     $options
+     * @param mixed $value
+     * @param mixed $filter
+     * @param int $filterId
+     * @param mixed $options
      * @return mixed
      */
     protected function filterValue($value, $filter, $filterId, $options)
@@ -159,7 +160,7 @@ class Config extends RowGateway
                 $value = filter_var($value, $filterId);
             } else {
                 $value = filter_var($value, $filterId,
-                    array('options' => $options));
+                    ['options' => $options]);
             }
         } elseif (is_callable($filter)) {
             $value = call_user_func($filter, $value);

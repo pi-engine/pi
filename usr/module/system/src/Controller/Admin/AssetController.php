@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Admin;
@@ -32,15 +32,15 @@ class AssetController extends ActionController
     public function indexAction()
     {
         // Get module list
-        $modules = array();
-        $rowset = Pi::model('module')->select(array('active' => 1));
+        $modules = [];
+        $rowset  = Pi::model('module')->select(['active' => 1]);
         foreach ($rowset as $row) {
             $modules[$row->name] = $row->title;
         }
 
         // Get theme list
-        $themes = array();
-        $rowset = Pi::model('theme')->select(array());
+        $themes = [];
+        $rowset = Pi::model('theme')->select([]);
         foreach ($rowset as $row) {
             $themes[$row->name] = $row->name;
         }
@@ -58,17 +58,17 @@ class AssetController extends ActionController
      */
     public function publishAction()
     {
-        $type   = $this->params('type', 'module');
-        $name   = $this->params('name');
-        $result = true;
-        $errors = array(
-            'remove'    => array(),
-            'publish'   => array(),
-        );
+        $type           = $this->params('type', 'module');
+        $name           = $this->params('name');
+        $result         = true;
+        $errors         = [
+            'remove'  => [],
+            'publish' => [],
+        ];
         $canonizeResult = function ($type, $status) use (&$errors, &$result) {
             if (!$status) {
                 $errors[$type] = Pi::service('asset')->getErrors();
-                $result = $status;
+                $result        = $status;
             }
         };
         switch ($type) {
@@ -86,13 +86,17 @@ class AssetController extends ActionController
                 break;
             default:
                 $component = sprintf('%s/%s', $type, $name);
-                $status = Pi::service('asset')->remove($component);
+                $status    = Pi::service('asset')->remove($component);
                 $canonizeResult('remove', $status);
                 $status = Pi::service('asset')->publish($component);
                 $canonizeResult('publish', $status);
                 break;
         }
         clearstatcache();
+
+        $compiledFilesPath = Pi::host()->path('asset/compiled');
+
+
 
         if (!$result) {
             if (!empty($errors['publish']) && !empty($errors['remove'])) {
@@ -118,7 +122,7 @@ class AssetController extends ActionController
         } else {
             $message = $this->renderMessage(
                 _a('Asset files are published correctly.'),
-                array(),
+                [],
                 'success'
             );
         }
@@ -126,10 +130,10 @@ class AssetController extends ActionController
         //$this->redirect()->toRoute('', array('action' => 'index'));
         //return;
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-        );
+        return [
+            'status'  => $status,
+            'message' => $message,
+        ];
     }
 
     /**
@@ -140,22 +144,22 @@ class AssetController extends ActionController
     public function refreshAction()
     {
         $modules = Pi::registry('module')->read();
-        $themes = Pi::registry('theme')->read();
+        $themes  = Pi::registry('theme')->read();
 
-        $result = true;
-        $errors = array(
-            'remove'    => array(),
-            'publish'   => array(),
-        );
+        $result         = true;
+        $errors         = [
+            'remove'  => [],
+            'publish' => [],
+        ];
         $canonizeResult = function ($type, $status) use (&$errors, &$result) {
             if (!$status) {
                 $errors[$type] = Pi::service('asset')->getErrors();
-                $result = $status;
+                $result        = $status;
             }
         };
 
         // Republish all module/theme components
-        $erroneous = array();
+        $erroneous = [];
         foreach (array_keys($modules) as $name) {
             $status = Pi::service('asset')->remove('module/' . $name);
             if (!$status) {
@@ -182,6 +186,17 @@ class AssetController extends ActionController
         }
         clearstatcache();
 
+        /**
+         * Remove compiled files
+         */
+        $compiledDir = Pi::host()->path('asset/compiled');
+        $files = glob($compiledDir . '/**/*'); // get all file names
+        foreach($files as $file){ // iterate files
+            if(is_file($file)){
+                unlink($file); // delete file
+            }
+        }
+
         if (!$result) {
             $message = $this->renderMessage(
                 _a('Publish is not completed, please check and re-publish one by one.'),
@@ -190,28 +205,28 @@ class AssetController extends ActionController
         } else {
             $message = $this->renderMessage(
                 _a('All assets published successfully.'),
-                array(),
+                [],
                 'success'
             );
         }
 
-        return array(
-            'status'    => $result,
-            'message'   => $message,
-        );
+        return [
+            'status'  => $result,
+            'message' => $message,
+        ];
     }
 
     /**
      * Renders errors
      *
      * @param string $title
-     * @param array  $errors
+     * @param array $errors
      *
      * @param string $type
      *
      * @return string
      */
-    protected function renderMessage($title, $errors = array(), $type = 'error')
+    protected function renderMessage($title, $errors = [], $type = 'error')
     {
         switch ($type) {
             case 'error':
@@ -225,16 +240,18 @@ class AssetController extends ActionController
         if (!$errors) {
             $message = _escape($title);
         } else {
-            $patternPanel =<<<'EOT'
-<div class="panel panel-%s">
-  <div class="panel-heading">%s</div>
+            $patternPanel
+                = <<<'EOT'
+<div class="card card-%s">
+  <div class="card-heading">%s</div>
 
   <ul class="list-group">
     %s
   </ul>
 </div>
 EOT;
-            $patternList =<<<'EOT'
+            $patternList
+                = <<<'EOT'
     <li class="list-group-item">%s</li>
 EOT;
 

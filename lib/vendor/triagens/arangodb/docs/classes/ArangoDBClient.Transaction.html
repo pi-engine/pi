@@ -1,0 +1,791 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>ArangoDB PHP client API » \ArangoDBClient\Transaction</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">ArangoDB PHP client API</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/ArangoDBClient.html"><i class="icon-folder-open"></i> ArangoDBClient</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">19</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">2</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div xmlns:php="http://php.net/xsl" class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list">
+<li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct() :: Initialise the transaction object"><span class="description">Initialise the transaction object</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method___get" title="__get() :: Get an attribute, magic method"><span class="description">Get an attribute, magic method</span><pre>__get()</pre></a></li>
+<li class="method public "><a href="#method___isset" title="__isset() :: Is triggered by calling isset() or empty() on inaccessible properties."><span class="description">Is triggered by calling isset() or empty() on inaccessible properties.</span><pre>__isset()</pre></a></li>
+<li class="method public "><a href="#method___set" title="__set() :: Set an attribute, magic method"><span class="description">Set an attribute, magic method</span><pre>__set()</pre></a></li>
+<li class="method public "><a href="#method___toString" title="__toString() :: Returns the action string"><span class="description">Returns the action string</span><pre>__toString()</pre></a></li>
+<li class="method public "><a href="#method_buildTransactionAttributesFromArray" title="buildTransactionAttributesFromArray() :: Build the object's attributes from a given array"><span class="description">Build the object's attributes from a given array</span><pre>buildTransactionAttributesFromArray()</pre></a></li>
+<li class="method public "><a href="#method_execute" title="execute() :: Execute the transaction"><span class="description">Execute the transaction</span><pre>execute()</pre></a></li>
+<li class="method public "><a href="#method_get" title="get() :: Get an attribute"><span class="description">Get an attribute</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#method_getAction" title="getAction() :: get action value"><span class="description">get action value</span><pre>getAction()</pre></a></li>
+<li class="method public "><a href="#method_getCollections" title="getCollections() :: Get collections array"><span class="description">Get collections array</span><pre>getCollections()</pre></a></li>
+<li class="method public "><a href="#method_getLockTimeout" title="getLockTimeout() :: Get lockTimeout value"><span class="description">Get lockTimeout value</span><pre>getLockTimeout()</pre></a></li>
+<li class="method public "><a href="#method_getParams" title="getParams() :: Get params value"><span class="description">Get params value</span><pre>getParams()</pre></a></li>
+<li class="method public "><a href="#method_getReadCollections" title="getReadCollections() :: Convenience function to directly get read-collections without having to access
+them from the collections attribute."><span class="description">Convenience function to directly get read-collections without having to access
+them from the collections attribute.</span><pre>getReadCollections()</pre></a></li>
+<li class="method public "><a href="#method_getWaitForSync" title="getWaitForSync() :: get waitForSync value"><span class="description">get waitForSync value</span><pre>getWaitForSync()</pre></a></li>
+<li class="method public "><a href="#method_getWriteCollections" title="getWriteCollections() :: Convenience function to directly get write-collections without having to access
+them from the collections attribute."><span class="description">Convenience function to directly get write-collections without having to access
+them from the collections attribute.</span><pre>getWriteCollections()</pre></a></li>
+<li class="method public "><a href="#method_set" title="set() :: Sets an attribute"><span class="description">Sets an attribute</span><pre>set()</pre></a></li>
+<li class="method public "><a href="#method_setAction" title="setAction() :: set action value"><span class="description">set action value</span><pre>setAction()</pre></a></li>
+<li class="method public "><a href="#method_setCollections" title="setCollections() :: Set the collections array."><span class="description">Set the collections array.</span><pre>setCollections()</pre></a></li>
+<li class="method public "><a href="#method_setLockTimeout" title="setLockTimeout() :: Set lockTimeout value"><span class="description">Set lockTimeout value</span><pre>setLockTimeout()</pre></a></li>
+<li class="method public "><a href="#method_setParams" title="setParams() :: Set params value"><span class="description">Set params value</span><pre>setParams()</pre></a></li>
+<li class="method public "><a href="#method_setReadCollections" title="setReadCollections() :: Convenience function to directly set read-collections without having to access
+them from the collections attribute."><span class="description">Convenience function to directly set read-collections without having to access
+them from the collections attribute.</span><pre>setReadCollections()</pre></a></li>
+<li class="method public "><a href="#method_setWaitForSync" title="setWaitForSync() :: set waitForSync value"><span class="description">set waitForSync value</span><pre>setWaitForSync()</pre></a></li>
+<li class="method public "><a href="#method_setWriteCollections" title="setWriteCollections() :: Convenience function to directly set write-collections without having to access
+them from the collections attribute."><span class="description">Convenience function to directly set write-collections without having to access
+them from the collections attribute.</span><pre>setWriteCollections()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="method protected "><a href="#method_getConnection" title="getConnection() :: Return the connection object"><span class="description">Return the connection object</span><pre>getConnection()</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul>
+<li class="property public "><a href="#property_action" title="$action() :: - The action to pass to the server"><span class="description"></span><pre>$action</pre></a></li>
+<li class="property public "><a href="#property_collection" title="$collection() :: - The collections array that includes both read and write collection definitions"><span class="description"></span><pre>$collection</pre></a></li>
+<li class="property public "><a href="#property_lockTimeout" title="$lockTimeout() :: - LockTimeout on the transaction"><span class="description"></span><pre>$lockTimeout</pre></a></li>
+<li class="property public "><a href="#property_readCollection" title="$readCollection() :: - The read-collections array or string (if only one)"><span class="description"></span><pre>$readCollection</pre></a></li>
+<li class="property public "><a href="#property_waitForSync" title="$waitForSync() :: - WaitForSync on the transaction"><span class="description"></span><pre>$waitForSync</pre></a></li>
+<li class="property public "><a href="#property_writeCollection" title="$writeCollection() :: - The write-collections array or string (if only one)"><span class="description"></span><pre>$writeCollection</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected "><a href="#property__action" title="$_action() :: "><span class="description">string The action property of the transaction.</span><pre>$_action</pre></a></li>
+<li class="property protected "><a href="#property_attributes" title="$attributes() :: The transaction's attributes."><span class="description"></span><pre>$attributes</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="property private "><a href="#property__connection" title="$_connection() :: The connection object"><span class="description"></span><pre>$_connection</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i title="Constants" class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_ENTRY_ACTION" title="ENTRY_ACTION() :: Action index"><span class="description">Action index</span><pre>ENTRY_ACTION</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_COLLECTIONS" title="ENTRY_COLLECTIONS() :: Collections index"><span class="description">Collections index</span><pre>ENTRY_COLLECTIONS</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_LOCK_TIMEOUT" title="ENTRY_LOCK_TIMEOUT() :: Lock timeout index"><span class="description">Lock timeout index</span><pre>ENTRY_LOCK_TIMEOUT</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_PARAMS" title="ENTRY_PARAMS() :: Params index"><span class="description">Params index</span><pre>ENTRY_PARAMS</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_READ" title="ENTRY_READ() :: Read index"><span class="description">Read index</span><pre>ENTRY_READ</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_WAIT_FOR_SYNC" title="ENTRY_WAIT_FOR_SYNC() :: WaitForSync index"><span class="description">WaitForSync index</span><pre>ENTRY_WAIT_FOR_SYNC</pre></a></li>
+<li class="constant  "><a href="#constant_ENTRY_WRITE" title="ENTRY_WRITE() :: WRITE index"><span class="description">WRITE index</span><pre>ENTRY_WRITE</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a xmlns:php="http://php.net/xsl" id="\ArangoDBClient\Transaction"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/ArangoDBClient.html">ArangoDBClient</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/ArangoDBClient.Transaction.html">Transaction</a>
+</li>
+</ul>
+<div xmlns:php="http://php.net/xsl" class="element class">
+<p class="short_description">Transaction object</p>
+<div class="details">
+<div class="long_description"><p>A transaction is an object that is used to prepare and send a transaction
+to the server.</p>
+<p>The object encapsulates:<br /></p>
+<ul>
+<li> the collections definitions for locking
+<li> the actual javascript function
+<li> additional options like waitForSync, lockTimeout and params
+</ul>
+<p>The transaction object requires the connection object and can be initialized
+with or without initial transaction configuration.
+Any configuration can be set and retrieved by the object's methods like this:<br /></p>
+<pre>
+$this->setAction('function (){your code};');
+$this->setCollections(array('read' => 'my_read_collection, 'write' => array('col_1', 'col2')));
+</pre>
+<p><br />
+or like this:</p>
+<pre>
+$this->action('function (){your code};');
+$this->collections(array('read' => 'my_read_collection, 'write' => array('col_1', 'col2')));
+</pre>
+<p><br />
+There are also helper functions to set collections directly, based on their locking:</p>
+<pre>
+$this->setWriteCollections($array or $string if single collection)
+$this->setReadCollections($array or $string if single collection)
+</pre>
+<p><br /></p></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/ArangoDBClient.html">ArangoDBClient</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>1.3</td>
+</tr>
+</table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
+<h2>Initialise the transaction object</h2>
+<pre>__construct(\ArangoDBClient\Connection $connection, array $transactionArray<code> = null</code>) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The $transaction array can be used to specify the collections, action and further
+options for the transaction in form of an array.</p>
+<p>Example:
+array(
+'collections' =&gt; array(
+'write' =&gt; array(
+'my_collection'
+)
+),
+'action' =&gt; 'function (){}',
+'waitForSync' =&gt; true
+)</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$connection</h4>
+<code>\ArangoDBClient\Connection</code><ul>
+<li>the connection to be used</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$transactionArray</h4>
+<code>array</code><ul>
+<li>transaction initialization data</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method___get"></a><div class="element clickable method public method___get " data-toggle="collapse" data-target=".method___get .collapse" title="public">
+<h2>Get an attribute, magic method</h2>
+<pre>__get(string $key) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This function is mapped to get() internally.</p></div>
+<table class="table table-bordered"><tr>
+<th>magic</th>
+<td></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><ul>
+<li>name of attribute</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- value of attribute, NULL if attribute is not set</div>
+</div></div>
+</div>
+<a id="method___isset"></a><div class="element clickable method public method___isset " data-toggle="collapse" data-target=".method___isset .collapse" title="public">
+<h2>Is triggered by calling isset() or empty() on inaccessible properties.</h2>
+<pre>__isset(string $key) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><ul>
+<li>name of attribute</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>returns true or false (set or not set)</div>
+</div></div>
+</div>
+<a id="method___set"></a><div class="element clickable method public method___set " data-toggle="collapse" data-target=".method___set .collapse" title="public">
+<h2>Set an attribute, magic method</h2>
+<pre>__set(string $key, mixed $value) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a magic method that allows the object to be used without
+declaring all document attributes first.</p></div>
+<table class="table table-bordered"><tr>
+<th>magic</th>
+<td></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><ul>
+<li>attribute name</li>
+</ul></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><ul>
+<li>value for attribute</li>
+</ul></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method___toString"></a><div class="element clickable method public method___toString " data-toggle="collapse" data-target=".method___toString .collapse" title="public">
+<h2>Returns the action string</h2>
+<pre>__toString() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>magic</th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>- the current action string</div>
+</div></div>
+</div>
+<a id="method_buildTransactionAttributesFromArray"></a><div class="element clickable method public method_buildTransactionAttributesFromArray " data-toggle="collapse" data-target=".method_buildTransactionAttributesFromArray .collapse" title="public">
+<h2>Build the object's attributes from a given array</h2>
+<pre>buildTransactionAttributesFromArray($options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$options</h4></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_execute"></a><div class="element clickable method public method_execute " data-toggle="collapse" data-target=".method_execute .collapse" title="public">
+<h2>Execute the transaction</h2>
+<pre>execute() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will post the query to the server and return the results as
+a Cursor. The cursor can then be used to iterate the results.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\Exception</code></th>
+<td>throw exception if transaction failed</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>true if successful without a return value or the return value if one was set in the action</div>
+</div></div>
+</div>
+<a id="method_get"></a><div class="element clickable method public method_get " data-toggle="collapse" data-target=".method_get .collapse" title="public">
+<h2>Get an attribute</h2>
+<pre>get(string $key) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><ul>
+<li>name of attribute</li>
+</ul></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- value of attribute, NULL if attribute is not set</div>
+</div></div>
+</div>
+<a id="method_getAction"></a><div class="element clickable method public method_getAction " data-toggle="collapse" data-target=".method_getAction .collapse" title="public">
+<h2>get action value</h2>
+<pre>getAction() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>action</div>
+</div></div>
+</div>
+<a id="method_getCollections"></a><div class="element clickable method public method_getCollections " data-toggle="collapse" data-target=".method_getCollections .collapse" title="public">
+<h2>Get collections array</h2>
+<pre>getCollections() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This holds the read and write collections of the transaction</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>$value</div>
+</div></div>
+</div>
+<a id="method_getLockTimeout"></a><div class="element clickable method public method_getLockTimeout " data-toggle="collapse" data-target=".method_getLockTimeout .collapse" title="public">
+<h2>Get lockTimeout value</h2>
+<pre>getLockTimeout() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>lockTimeout</div>
+</div></div>
+</div>
+<a id="method_getParams"></a><div class="element clickable method public method_getParams " data-toggle="collapse" data-target=".method_getParams .collapse" title="public">
+<h2>Get params value</h2>
+<pre>getParams() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>params</div>
+</div></div>
+</div>
+<a id="method_getReadCollections"></a><div class="element clickable method public method_getReadCollections " data-toggle="collapse" data-target=".method_getReadCollections .collapse" title="public">
+<h2>Convenience function to directly get read-collections without having to access
+them from the collections attribute.</h2>
+<pre>getReadCollections() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>params</div>
+</div></div>
+</div>
+<a id="method_getWaitForSync"></a><div class="element clickable method public method_getWaitForSync " data-toggle="collapse" data-target=".method_getWaitForSync .collapse" title="public">
+<h2>get waitForSync value</h2>
+<pre>getWaitForSync() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>waitForSync</div>
+</div></div>
+</div>
+<a id="method_getWriteCollections"></a><div class="element clickable method public method_getWriteCollections " data-toggle="collapse" data-target=".method_getWriteCollections .collapse" title="public">
+<h2>Convenience function to directly get write-collections without having to access
+them from the collections attribute.</h2>
+<pre>getWriteCollections() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>params</div>
+</div></div>
+</div>
+<a id="method_set"></a><div class="element clickable method public method_set " data-toggle="collapse" data-target=".method_set .collapse" title="public">
+<h2>Sets an attribute</h2>
+<pre>set($key, $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$key</h4></div>
+<div class="subelement argument"><h4>$value</h4></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setAction"></a><div class="element clickable method public method_setAction " data-toggle="collapse" data-target=".method_setAction .collapse" title="public">
+<h2>set action value</h2>
+<pre>setAction(string $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setCollections"></a><div class="element clickable method public method_setCollections " data-toggle="collapse" data-target=".method_setCollections .collapse" title="public">
+<h2>Set the collections array.</h2>
+<pre>setCollections(array $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The array should have 2 sub-arrays, namely 'read' and 'write' which should hold the respective collections
+for the transaction</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>array</code>
+</div>
+</div></div>
+</div>
+<a id="method_setLockTimeout"></a><div class="element clickable method public method_setLockTimeout " data-toggle="collapse" data-target=".method_setLockTimeout .collapse" title="public">
+<h2>Set lockTimeout value</h2>
+<pre>setLockTimeout(integer $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>integer</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setParams"></a><div class="element clickable method public method_setParams " data-toggle="collapse" data-target=".method_setParams .collapse" title="public">
+<h2>Set params value</h2>
+<pre>setParams(array $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>array</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setReadCollections"></a><div class="element clickable method public method_setReadCollections " data-toggle="collapse" data-target=".method_setReadCollections .collapse" title="public">
+<h2>Convenience function to directly set read-collections without having to access
+them from the collections attribute.</h2>
+<pre>setReadCollections(array $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>array</code>
+</div>
+</div></div>
+</div>
+<a id="method_setWaitForSync"></a><div class="element clickable method public method_setWaitForSync " data-toggle="collapse" data-target=".method_setWaitForSync .collapse" title="public">
+<h2>set waitForSync value</h2>
+<pre>setWaitForSync(boolean $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>boolean</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code>\ArangoDBClient\ClientException</code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setWriteCollections"></a><div class="element clickable method public method_setWriteCollections " data-toggle="collapse" data-target=".method_setWriteCollections .collapse" title="public">
+<h2>Convenience function to directly set write-collections without having to access
+them from the collections attribute.</h2>
+<pre>setWriteCollections(array $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>array</code>
+</div>
+</div></div>
+</div>
+<a id="method_getConnection"></a><div class="element clickable method protected method_getConnection " data-toggle="collapse" data-target=".method_getConnection .collapse" title="protected">
+<h2>Return the connection object</h2>
+<pre>getConnection() : \ArangoDBClient\Connection</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\ArangoDBClient\Connection</code>- the connection object</div>
+</div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_action"> </a><div class="element clickable property public property_action" data-toggle="collapse" data-target=".property_action .collapse" title="public">
+<h2>- The action to pass to the server</h2>
+<pre>$action : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>magic</th>
+<td></td>
+</tr>
+<tr>
+<th>property</th>
+<td>- The action to pass to the server</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_collection"> </a><div class="element clickable property public property_collection" data-toggle="collapse" data-target=".property_collection .collapse" title="public">
+<h2>- The collections array that includes both read and write collection definitions</h2>
+<pre>$collection : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>magic</th>
+<td></td>
+</tr>
+<tr>
+<th>property</th>
+<td>- The collections array that includes both read and write collection definitions</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_lockTimeout"> </a><div class="element clickable property public property_lockTimeout" data-toggle="collapse" data-target=".property_lockTimeout .collapse" title="public">
+<h2>- LockTimeout on the transaction</h2>
+<pre>$lockTimeout : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>magic</th>
+<td></td>
+</tr>
+<tr>
+<th>property</th>
+<td>- LockTimeout on the transaction</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_readCollection"> </a><div class="element clickable property public property_readCollection" data-toggle="collapse" data-target=".property_readCollection .collapse" title="public">
+<h2>- The read-collections array or string (if only one)</h2>
+<pre>$readCollection : mixed</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>magic</th>
+<td></td>
+</tr>
+<tr>
+<th>property</th>
+<td>- The read-collections array or string (if only one)</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_waitForSync"> </a><div class="element clickable property public property_waitForSync" data-toggle="collapse" data-target=".property_waitForSync .collapse" title="public">
+<h2>- WaitForSync on the transaction</h2>
+<pre>$waitForSync : boolean</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>magic</th>
+<td></td>
+</tr>
+<tr>
+<th>property</th>
+<td>- WaitForSync on the transaction</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_writeCollection"> </a><div class="element clickable property public property_writeCollection" data-toggle="collapse" data-target=".property_writeCollection .collapse" title="public">
+<h2>- The write-collections array or string (if only one)</h2>
+<pre>$writeCollection : mixed</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>magic</th>
+<td></td>
+</tr>
+<tr>
+<th>property</th>
+<td>- The write-collections array or string (if only one)</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property__action"> </a><div class="element clickable property protected property__action" data-toggle="collapse" data-target=".property__action .collapse" title="protected">
+<h2>string The action property of the transaction.</h2>
+<pre>$_action : </pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_attributes"> </a><div class="element clickable property protected property_attributes" data-toggle="collapse" data-target=".property_attributes .collapse" title="protected">
+<h2>The transaction's attributes.</h2>
+<pre>$attributes : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>array()</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__connection"> </a><div class="element clickable property private property__connection" data-toggle="collapse" data-target=".property__connection .collapse" title="private">
+<h2>The connection object</h2>
+<pre>$_connection : \ArangoDBClient\Connection</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i title="Constants" class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_ENTRY_ACTION"> </a><div class="element clickable constant  constant_ENTRY_ACTION" data-toggle="collapse" data-target=".constant_ENTRY_ACTION .collapse" title="">
+<h2>Action index</h2>
+<pre>ENTRY_ACTION = 'action' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_COLLECTIONS"> </a><div class="element clickable constant  constant_ENTRY_COLLECTIONS" data-toggle="collapse" data-target=".constant_ENTRY_COLLECTIONS .collapse" title="">
+<h2>Collections index</h2>
+<pre>ENTRY_COLLECTIONS = 'collections' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_LOCK_TIMEOUT"> </a><div class="element clickable constant  constant_ENTRY_LOCK_TIMEOUT" data-toggle="collapse" data-target=".constant_ENTRY_LOCK_TIMEOUT .collapse" title="">
+<h2>Lock timeout index</h2>
+<pre>ENTRY_LOCK_TIMEOUT = 'lockTimeout' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_PARAMS"> </a><div class="element clickable constant  constant_ENTRY_PARAMS" data-toggle="collapse" data-target=".constant_ENTRY_PARAMS .collapse" title="">
+<h2>Params index</h2>
+<pre>ENTRY_PARAMS = 'params' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_READ"> </a><div class="element clickable constant  constant_ENTRY_READ" data-toggle="collapse" data-target=".constant_ENTRY_READ .collapse" title="">
+<h2>Read index</h2>
+<pre>ENTRY_READ = 'read' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_WAIT_FOR_SYNC"> </a><div class="element clickable constant  constant_ENTRY_WAIT_FOR_SYNC" data-toggle="collapse" data-target=".constant_ENTRY_WAIT_FOR_SYNC .collapse" title="">
+<h2>WaitForSync index</h2>
+<pre>ENTRY_WAIT_FOR_SYNC = 'waitForSync' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ENTRY_WRITE"> </a><div class="element clickable constant  constant_ENTRY_WRITE" data-toggle="collapse" data-target=".constant_ENTRY_WRITE .collapse" title="">
+<h2>WRITE index</h2>
+<pre>ENTRY_WRITE = 'write' </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2018-07-31T14:00:29+02:00.<br></footer></div>
+</div>
+</body>
+</html>

@@ -1,40 +1,40 @@
 <div class="page-header" style="margin: 0 0 20px;">
-    <?php if(!empty($moduleTitle)) { ?>
-        <a href="<?php echo $this->url('', array('action' => 'list', 'tag' => $tag)); ?>"
-           class="pull-right" style="margin-top: 5px;">
+    <?php if (!empty($moduleTitle)) { ?>
+        <a href="<?php echo $this->url('', ['action' => 'list', 'tag' => $tag]); ?>"
+           class="float-right" style="margin-top: 5px;">
             <?php _e('View all tagged items.'); ?>
         </a>
-        <h3>
+        <h1>
             <?php echo sprintf(__('Items in <em>%s</em> tagged by: <strong>%s</strong>'), _escape($moduleTitle), _escape($tag)); ?>
-        </h3>
+        </h1>
     <?php } else { ?>
-        <h3>
+        <h1>
             <?php echo sprintf(__('Items tagged by: <strong>%s</strong>'), _escape($tag)); ?>
-        </h3>
+        </h1>
     <?php } ?>
 </div>
 <div class="tag-list">
-<?php
-$i = 1; 
-foreach ($list as $item) { 
-    echo sprintf(
-        '<div class="tag-list-item">
-            <span class="pull-right">%s</span>
+    <?php
+    $i = 1;
+    foreach ($list as $item) {
+        echo sprintf(
+            '<div class="tag-list-item">
+            <span class="float-right">%s</span>
             <span class="text-muted">[%s]</span>
             <a href="%s">%s</a>
         </div>
         ',
-        _date($item['time']),
-        _escape($item['module']),
-        $item['url'],
-        _escape($item['title'])
-    );
-    if ($i % 5 == 0) {
-        echo '<hr class="pi-dashed">';
+            _date($item['time']),
+            _escape($item['module']),
+            $item['url'],
+            _escape($item['title'])
+        );
+        if ($i % 5 == 0) {
+            echo '<hr class="pi-dashed">';
+        }
+        $i++;
     }
-    $i++;
-}
-?>
+    ?>
 </div>
 <?php
 if (!empty($paginator)) {

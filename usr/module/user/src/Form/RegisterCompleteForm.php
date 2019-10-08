@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Form;
@@ -43,10 +43,10 @@ class RegisterCompleteForm extends UserForm
             }
             $name = $element->getName();
             if (!$this->has($name)) {
-                $this->add(array(
-                    'name'  => $name,
-                    'type'  => 'hidden',
-                ));
+                $this->add([
+                    'name' => $name,
+                    'type' => 'hidden',
+                ]);
             }
         }
 
@@ -58,10 +58,10 @@ class RegisterCompleteForm extends UserForm
      *
      * Load RegisterForm InputFilter
      */
-    public function loadInputFilter(array $filters = array())
+    public function loadInputFilter(array $filters = [])
     {
         parent::loadInputFilter($filters);
-        $inputFilter = $this->getInputFilter();
+        $inputFilter    = $this->getInputFilter();
         $registerFilter = $this->registerForm->getInputFilter();
         foreach ($this->registerForm->getElements() as $element) {
             if ($element instanceof Captcha

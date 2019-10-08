@@ -1,0 +1,350 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-demo\n"
+"POT-Creation-Date: 2015-02-20 12:13+0330\n"
+"PO-Revision-Date: 2015-02-20 12:15+0330\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"demo\n"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:13
+msgid "First Block"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:14
+msgid "Block with options and tempalte"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:20
+msgid "Your input"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:21
+msgid "The first option for first block"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:24
+msgid "Demo option 1"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:28
+msgid "Yes or No"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:29
+msgid "Demo for Yes-No"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:36
+msgid "Input some figure"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:37
+msgid "Demo for number"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:50
+msgid "Second Block"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:51
+msgid "Block with custom options and tempalte"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:57
+msgid "Select it"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:63
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:57
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:77
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:95
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:112
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:130
+msgid "One"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:64
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:78
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:96
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:113
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:131
+msgid "Two"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:65
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:79
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:97
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:114
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:132
+msgid "Three"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:75
+msgid "Check applicable"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:81
+msgid "Check A"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:82
+msgid "Check B"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:83
+msgid "Check C"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:93
+msgid "Choose it"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:104
+msgid "Third Block"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/block.php:105
+msgid "Block w/o options, no template"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/comment.php:18
+msgid "Demo comments"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:14
+msgid "General"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:18
+msgid "Test"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:26
+msgid "Item per page"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:27
+msgid "Number of items on one page."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:44
+msgid "Test Config"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:45
+msgid "An example for configuration."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:68
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:89
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:106
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:124
+msgid "Add Item"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:52
+msgid "Example for single select."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:69
+msgid "Example for multiple select."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:90
+msgid "Example for checkbox."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:107
+msgid "Example for multiple checkbox."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/config.php:125
+msgid "Example for radio."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/event.php:16
+msgid "Event hook demo"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/module.php:14
+msgid "DEMO Sandbox"
+msgstr "دمو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/module.php:16
+msgid "Examples and tests for developers."
+msgstr "مثال ها و تست ها برای توسعه دهندگان."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:14
+msgid "Homepage"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:21
+msgid "Full Paginator"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:27
+msgid "Lean Paginator"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:33
+msgid "Subpage one"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:39
+msgid "Subpage two"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:49
+msgid "Leaf one"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:63
+msgid "Pages"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:68
+msgid "Files"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:73
+msgid "Images"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:78
+msgid "Forms"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:83
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:103
+msgid "Routes"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:88
+msgid "Test User Call"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:96
+msgid "Sample"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/nav.php:110
+msgid "Form"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/page.php:16
+msgid "Module homepage"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/page.php:23
+msgid "Module"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/page.php:32
+msgid "Module feeds"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/page.php:37
+msgid "Test feeds"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/page.php:44
+msgid "Try feeds"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/permission.php:14
+msgid "Test resource"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/permission.php:21
+msgid "Write privilege"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/permission.php:25
+msgid "Management privilege"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/user.php:15
+msgid "Sample field"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/user.php:23
+msgid "Activity by callback"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/user.php:29
+msgid "Activity with template"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/config/user.php:46
+msgid "Activity to external"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/FormController.php:31
+msgid "Form submitted successfully."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/FormController.php:46
+#, php-format
+msgid "File uploaded and saved as %s"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/RouteController.php:52
+msgid "Route list"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/RouteController.php:86
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/RouteController.php:208
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/RouteController.php:265
+msgid "Route data saved successfully."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/RouteController.php:93
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/RouteController.php:163
+msgid "Route data not saved."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/RouteController.php:96
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/RouteController.php:212
+msgid "Invalid data, please check and re-submit."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/RouteController.php:113
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/admin/route-list.phtml:16
+msgid "Add a route"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/RouteController.php:148
+msgid "Route added successfully."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Admin/RouteController.php:230
+msgid "Route edit"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/admin/route-list.phtml:9
+msgid "Class: "
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/admin/route-list.phtml:10
+msgid "Edit"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/admin/route-list.phtml:11
+msgid "Delete"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Time"
+#~ msgstr "Application Execution Time"

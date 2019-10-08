@@ -1,14 +1,15 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Form;
 
+use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -18,38 +19,38 @@ use Pi\Form\Form as BaseForm;
  */
 class FindPasswordForm extends BaseForm
 {
+
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name'       => 'email',
-            'options'    => array(
+            'options'    => [
                 'label' => __('Email'),
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'text',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'    => 'captcha',
-            'options' => array(
-                'label'     => __('Please type the word'),
-                'separator' => '<br />',
-            ),
-            'type'    => 'captcha',
-        ));
+        $captchaMode = Pi::user()->config('register_captcha');
+        if ($captchaElement = Pi::service('form')->getReCaptcha($captchaMode)) {
+            $this->add($captchaElement);
+        }
 
-        $this->add(array(
+        $this->add([
             'name' => 'security',
             'type' => 'csrf',
-        ));
+        ]);
 
-        $this->add(array(
-            'name'  => 'submit',
-            'type'  => 'submit',
-            'attributes'    => array(
-                'value' => __('Find password'),
-            ),
-        ));
+        $this->add([
+            'name'       => 'submit-button',
+            'type'       => 'button',
+            'options'    => [
+                'label' => __('Find password'),
+            ],
+            'attributes' => [
+                'class' => 'btn-primary',
+            ],
+        ]);
     }
 }

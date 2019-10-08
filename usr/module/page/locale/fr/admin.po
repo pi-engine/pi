@@ -1,0 +1,328 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-page\n"
+"POT-Creation-Date: 2017-02-07 20:06+0100\n"
+"PO-Revision-Date: 2017-02-07 20:08+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: config/comment.php:18
+msgid "Page comments"
+msgstr ""
+
+#: config/config.php:13
+msgid "Social sharing items"
+msgstr ""
+
+#: config/config.php:24
+msgid "Show breadcrumbs"
+msgstr ""
+
+#: config/module.php:14
+msgid "Page"
+msgstr ""
+
+#: config/module.php:16
+msgid "Single page for direct content display."
+msgstr ""
+
+#: config/nav.php:13
+msgid "Custom site navigation"
+msgstr ""
+
+#: config/nav.php:21 src/Controller/Admin/IndexController.php:45
+msgid "Page list"
+msgstr ""
+
+#: config/nav.php:28
+msgid "Edit page"
+msgstr ""
+
+#: config/nav.php:35
+msgid "Delete page"
+msgstr ""
+
+#: config/nav.php:44 src/Controller/Admin/IndexController.php:130
+msgid "Add a page"
+msgstr ""
+
+#: config/nav.php:50 src/Controller/Admin/TemplateController.php:48
+msgid "Template list"
+msgstr ""
+
+#: config/nav.php:60
+msgid "Home"
+msgstr ""
+
+#: config/nav.php:64
+msgid "About us"
+msgstr ""
+
+#: config/nav.php:69
+msgid "Contact us"
+msgstr ""
+
+#: config/nav.php:74
+msgid "Terms of use"
+msgstr ""
+
+#: config/nav.php:79
+msgid "Privacy guidelines"
+msgstr ""
+
+#: config/nav.php:84
+msgid "Join us"
+msgstr ""
+
+#: config/nav.php:88
+msgid "Applications"
+msgstr ""
+
+#: config/nav.php:93
+msgid "Pi Engine"
+msgstr ""
+
+#: src/Controller/Admin/IndexController.php:102
+#: src/Controller/Admin/IndexController.php:192
+msgid "Page data saved successfully."
+msgstr ""
+
+#: src/Controller/Admin/IndexController.php:105
+msgid "Page data not saved."
+msgstr ""
+
+#: src/Controller/Admin/IndexController.php:108
+#: src/Controller/Admin/IndexController.php:195
+msgid "Invalid data, please check and re-submit."
+msgstr ""
+
+#: src/Controller/Admin/IndexController.php:211
+msgid "Page edit"
+msgstr ""
+
+#: src/Controller/Admin/IndexController.php:242
+#, fuzzy
+msgid "Page deleted successfully."
+msgstr "主题更新成功。"
+
+#: src/Controller/Admin/IndexController.php:279
+#, fuzzy
+msgid "Page updated successfully."
+msgstr "主题更新成功。"
+
+#: src/Controller/Admin/IndexController.php:301
+#, fuzzy
+msgid "Page navigation menu updated successfully."
+msgstr "主题更新成功。"
+
+#: src/Form/PageForm.php:45 template/admin/page-list.phtml:9
+msgid "Page title"
+msgstr ""
+
+#: src/Form/PageForm.php:55
+msgid "Unique name"
+msgstr ""
+
+#: src/Form/PageForm.php:59
+msgid "Only alphabet, number and underscore allowed."
+msgstr ""
+
+#: src/Form/PageForm.php:66
+msgid "SEO slug"
+msgstr ""
+
+#: src/Form/PageForm.php:70
+msgid "Unique slug for SEO URL, space is not allowed."
+msgstr ""
+
+#: src/Form/PageForm.php:106 template/admin/template-list.phtml:8
+msgid "Template name"
+msgstr ""
+
+#: src/Form/PageForm.php:109
+msgid ""
+"Select a template from `usr/custom/module/page/template/front/` w/o "
+"extension."
+msgstr ""
+
+#: src/Form/PageForm.php:132
+msgid "Content"
+msgstr ""
+
+#: src/Form/PageForm.php:147
+msgid "SEO settings"
+msgstr ""
+
+#: src/Form/PageForm.php:155
+msgid "SEO Title"
+msgstr ""
+
+#: src/Form/PageForm.php:159 src/Form/PageForm.php:171
+#: src/Form/PageForm.php:183
+msgid "To be used for HTML head meta."
+msgstr ""
+
+#: src/Form/PageForm.php:167
+msgid "SEO Keywords"
+msgstr ""
+
+#: src/Form/PageForm.php:179
+msgid "SEO Description"
+msgstr ""
+
+#: src/Form/PageForm.php:192
+msgid "Active"
+msgstr ""
+
+#: src/Installer/Action/Install.php:100
+msgid "Demo for PHTML page"
+msgstr ""
+
+#: src/Installer/Action/Install.php:107
+msgid "RSS Feed"
+msgstr ""
+
+#: src/Installer/Action/Install.php:114
+msgid "Sitemap"
+msgstr ""
+
+#: src/Installer/Action/Install.php:122
+msgid "XML Sitemap"
+msgstr ""
+
+#: src/Installer/Action/Install.php:133
+msgid "Pages added."
+msgstr ""
+
+#: src/Validator/PageNameDuplicate.php:14
+msgid "Page name already exists."
+msgstr ""
+
+#: src/Validator/PageSlugDuplicate.php:14
+msgid "Page slug already exists."
+msgstr ""
+
+#: src/Validator/PageTemplateAvailable.php:14
+msgid "Template file is not available."
+msgstr ""
+
+#: template/admin/page-add.phtml:4
+msgid "Page content type:"
+msgstr ""
+
+#: template/admin/page-add.phtml:5
+msgid "HTML tags allowed in content."
+msgstr ""
+
+#: template/admin/page-add.phtml:5
+msgid "HTML"
+msgstr ""
+
+#: template/admin/page-add.phtml:6
+msgid "Only plaintext content is allowed."
+msgstr ""
+
+#: template/admin/page-add.phtml:6
+msgid "Text"
+msgstr ""
+
+#: template/admin/page-add.phtml:7
+msgid "Markdown syntax allowed in content."
+msgstr ""
+
+#: template/admin/page-add.phtml:7
+msgid "Markdown"
+msgstr ""
+
+#: template/admin/page-add.phtml:8
+msgid "PHTML template."
+msgstr ""
+
+#: template/admin/page-add.phtml:8
+msgid "PHTML"
+msgstr ""
+
+#: template/admin/page-list.phtml:10
+msgid "Name"
+msgstr ""
+
+#: template/admin/page-list.phtml:11
+msgid "Slug"
+msgstr ""
+
+#: template/admin/page-list.phtml:12
+msgid "Type"
+msgstr ""
+
+#: template/admin/page-list.phtml:13
+#, fuzzy
+msgid "Time published"
+msgstr "Application Execution Time"
+
+#: template/admin/page-list.phtml:14
+#, fuzzy
+msgid "Last Update"
+msgstr "主题更新失败。"
+
+#: template/admin/page-list.phtml:15 template/admin/template-list.phtml:11
+msgid "Action"
+msgstr ""
+
+#: template/admin/page-list.phtml:47
+msgid "Edit"
+msgstr ""
+
+#: template/admin/page-list.phtml:49
+msgid "Are you sure to disable this page?"
+msgstr ""
+
+#: template/admin/page-list.phtml:49
+msgid "Disable"
+msgstr ""
+
+#: template/admin/page-list.phtml:51
+msgid "Are you sure to dnable this page?"
+msgstr ""
+
+#: template/admin/page-list.phtml:51
+msgid "Enable"
+msgstr ""
+
+#: template/admin/page-list.phtml:53
+msgid "Are you sure to delete this page?"
+msgstr ""
+
+#: template/admin/page-list.phtml:53
+msgid "Delete"
+msgstr ""
+
+#: template/admin/page-list.phtml:63
+#, fuzzy
+msgid "Add to menu"
+msgstr "主题更新失败。"
+
+#: template/admin/template-list.phtml:9
+#, fuzzy
+msgid "Time modified"
+msgstr "Application Execution Time"
+
+#: template/admin/template-list.phtml:10
+msgid "Filesize"
+msgstr ""
+
+#: template/admin/template-list.phtml:28
+msgid "View"
+msgstr ""
+
+#: template/admin/template-list.phtml:29
+#, fuzzy
+msgid "Add to page"
+msgstr "主题更新失败。"

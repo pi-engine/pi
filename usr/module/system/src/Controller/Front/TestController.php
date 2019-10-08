@@ -1,17 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Debug\Debug;
 
 /**
  * Test cases controller
@@ -27,25 +26,29 @@ class TestController extends ActionController
      */
     public function indexAction()
     {
-        //$this->view()->setTemplate(false);
-        $content = array();
+        $this->redirect()->toRoute('home');
+        return;
 
-        $url = Pi::service('url')->assemble('', array('action' => 'index'), array('fragment' => '!/test'));
+        //$this->view()->setTemplate(false);
+        $content = [];
+
+        $url = Pi::service('url')->assemble('', ['action' => 'index'], ['fragment' => '!/test']);
         echo $url;
 
-        $text = <<<EOT
+        $text
+                                 = <<<EOT
         Test for user and tag:
             @admin tested tag #good# ok?
 EOT;
         $content['User and tag'] = Pi::service('markup')->render($text);
 
-        $url = '/user/profile';
-        $routeMatch = Pi::service('url')->route($url);
+        $url            = '/user/profile';
+        $routeMatch     = Pi::service('url')->route($url);
         $content['URL'] = $routeMatch;
 
         $content['site name'] = __('site name');
-        $content['locale'] = Pi::service('i18n')->locale
-                           . ' ' . Pi::service('i18n')->charset;
+        $content['locale']    = Pi::service('i18n')->locale
+            . ' ' . Pi::service('i18n')->charset;
 
         //Pi::service('user')->test('ss');
 
@@ -53,7 +56,7 @@ EOT;
         foreach ($content as $title => $data) {
             $string = $title && is_string($title)
                 ? '<dt style="margin-top: 1em;text-decoration: underline;">'
-                    . '<strong>' . $title . '</strong></dt>'
+                . '<strong>' . $title . '</strong></dt>'
                 : '';
             if (is_scalar($data)) {
                 $string .= $data;
@@ -75,21 +78,24 @@ EOT;
      */
     public function auditAction()
     {
-        $args = array(rand(), 'var1', 'var, val and exp');
+        $this->redirect()->toRoute('home');
+        return;
+
+        $args = [rand(), 'var1', 'var, val and exp'];
         Pi::service('audit')->log('full', $args);
         Pi::service('audit')->log('csv', $args);
         Pi::service('audit')->log('lean', $args);
         Pi::service('audit')->log('test', $args);
 
-        $args = array(rand(), 'var2', 'var, val and exp');
+        $args = [rand(), 'var2', 'var, val and exp'];
         Pi::service('audit')->log('full', $args);
         Pi::service('audit')->log('csv', $args);
         Pi::service('audit')->log('lean', $args);
         Pi::service('audit')->log('test', $args);
 
-        Pi::service('audit')->attach('custom', array(
-            'file'  => Pi::path('log') . '/custom.csv'
-        ));
+        Pi::service('audit')->attach('custom', [
+            'file' => Pi::path('log') . '/custom.csv',
+        ]);
         Pi::service('audit')->log('custom', $args);
 
         $this->view()->setTemplate(false);
@@ -102,25 +108,28 @@ EOT;
      */
     public function mailAction()
     {
+        $this->redirect()->toRoute('home');
+        return;
+
         $this->view()->setTemplate(false);
 
-        $to = array(
-            Pi::config('adminmail') => Pi::config('adminname'),
-            'infomax@gmail.com'             => 'Pi GMail',
-            'taiwenjiang@tsinghua.org.cn'   => 'Pi THU',
-        );
-        $vars = array(
-            'username'      => 'Pier',
-            'sn'            => _date(),
-        );
+        $to   = [
+            Pi::config('adminmail')       => Pi::config('adminname'),
+            'infomax@gmail.com'           => 'Pi GMail',
+            'taiwenjiang@tsinghua.org.cn' => 'Pi THU',
+        ];
+        $vars = [
+            'username' => 'Pier',
+            'sn'       => _date(),
+        ];
 
         // Load from text template
         $data = Pi::service('mail')->template('mail-text', $vars);
 
         // Set subject and body
         $subject = $data['subject'];
-        $body = $data['body'];
-        $type = $data['format'];
+        $body    = $data['body'];
+        $type    = $data['format'];
         // Set message
         $message = Pi::service('mail')->message($subject, $body, $type);
         $message->addTo($to);
@@ -151,8 +160,8 @@ EOT;
         $data = Pi::service('mail')->template('mail-html', $vars);
         // Set subject and body
         $subject = $data['subject'];
-        $body = $data['body'];
-        $type = $data['format'];
+        $body    = $data['body'];
+        $type    = $data['format'];
         // Set message
         $message = Pi::service('mail')->message();
         $message->addTo($to);
@@ -168,8 +177,8 @@ EOT;
         $data = Pi::service('mail')->template('mail-body', $vars);
         // Set subject and body
         $subject = sprintf(__('Greetings in raw body %d'), time());
-        $body = $data['body'];
-        $type = '';
+        $body    = $data['body'];
+        $type    = '';
         // Set message
         $message = Pi::service('mail')->message();
         $message->addTo($to);

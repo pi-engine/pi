@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Mvc;
@@ -42,7 +42,7 @@ class Application extends ZendApplication
      * @param string[] $listeners
      * @return $this
      */
-    public function setListeners(array $listeners = array())
+    public function setListeners(array $listeners = [])
     {
         if ($listeners) {
             $this->defaultListeners = array_merge(
@@ -55,17 +55,17 @@ class Application extends ZendApplication
     }
 
     /**
-     * Load application hander
+     * Load application handler
      *
      * @param array $configuration
      * @return $this
      */
-    public static function load($configuration = array())
+    public static function load($configuration = [])
     {
-        $smConfig = isset($configuration['service_manager'])
-            ? $configuration['service_manager'] : array();
-        $listeners = isset($configuration['listeners'])
-            ? $configuration['listeners'] : array();
+        $smConfig       = isset($configuration['service_manager'])
+            ? $configuration['service_manager'] : [];
+        $listeners      = isset($configuration['listeners'])
+            ? $configuration['listeners'] : [];
         $serviceManager = new ServiceManager(
             new Service\ServiceManagerConfig($smConfig)
         );
@@ -122,7 +122,7 @@ class Application extends ZendApplication
     }
 
     /**#@+
-     * Syntatic sugar
+     * Syntactic sugar
      */
     /**
      * Get RouteMatch of MvcEvent

@@ -1,17 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\View\Resolver;
 
 use Pi;
-use Zend\View\Resolver\ResolverInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
+use Zend\View\Resolver\ResolverInterface;
 
 /**
  * Module template resolver
@@ -53,7 +53,7 @@ use Zend\View\Renderer\RendererInterface as Renderer;
 class ModuleTemplate implements ResolverInterface
 {
     /**
-     * Theme template diretory
+     * Theme template directory
      * @var string
      */
     protected $templateDirectory = 'template';
@@ -73,7 +73,7 @@ class ModuleTemplate implements ResolverInterface
      */
     public function setSuffix($suffix)
     {
-        $this->suffix = (string) $suffix;
+        $this->suffix = (string)$suffix;
 
         return $this;
     }
@@ -99,7 +99,7 @@ class ModuleTemplate implements ResolverInterface
     {
         // Empty template
         if ('__NULL__' == $name) {
-            return array('system', 'dummy');
+            return ['system', 'dummy'];
         }
         // With suffix
         if (substr($name, -6) == '.' . $this->suffix) {
@@ -119,11 +119,11 @@ class ModuleTemplate implements ResolverInterface
             }
             */
         } else {
-            $module = Pi::service('module')->current();
+            $module   = Pi::service('module')->current();
             $template = $name;
         }
 
-        return array($module, $template);
+        return [$module, $template];
     }
 
     /**
@@ -134,10 +134,13 @@ class ModuleTemplate implements ResolverInterface
      * @param  string $name Relative or full path to template,
      *      it is highly recommended to remove suffix from relative template
      * @param  null|Renderer $renderer
+     * @param  bool $forcefront force to find template in the front theme
      * @return string|false
-      */
-    public function resolve($name, Renderer $renderer = null)
+     */
+    public function resolve($name, Renderer $renderer = null, $forcefront = false)
     {
+        // Set template context
+        $renderer->context('module');
         $return = $this->canonizeTemplate($name);
         if (!is_array($return)) {
             return $return;
@@ -147,7 +150,7 @@ class ModuleTemplate implements ResolverInterface
         $path = sprintf(
             '%s/%s/module/%s/%s/%s.%s',
             Pi::path('theme'),
-            Pi::service('theme')->current(),
+            $forcefront ? Pi::config('theme') : Pi::service('theme')->current(),
             $module,
             $this->templateDirectory,
             $template,
@@ -180,6 +183,9 @@ class ModuleTemplate implements ResolverInterface
         if (file_exists($path)) {
             return $path;
         }
+
+        // Reset template context
+        $renderer->context('');
 
         return false;
     }

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -26,11 +26,11 @@ class Bootstrap extends AbstractResource
      */
     protected function canonize($data)
     {
-        $config = array(
-            'module'    => $this->event->getParam('module'),
-            'priority'  => 1,
-            'active'    => 1,
-        );
+        $config = [
+            'module'   => $this->event->getParam('module'),
+            'priority' => 1,
+            'active'   => 1,
+        ];
         if (is_scalar($data)) {
             $config['priority'] = intval($data);
         } elseif (is_array($data) && isset($data['priority'])) {
@@ -52,7 +52,7 @@ class Bootstrap extends AbstractResource
         Pi::registry('bootstrap')->clear($module);
 
         $model = Pi::model('bootstrap');
-        $data = $this->canonize($this->config);
+        $data  = $this->canonize($this->config);
         $model->insert($data);
 
         return true;
@@ -70,7 +70,7 @@ class Bootstrap extends AbstractResource
         }
 
         $model = Pi::model('bootstrap');
-        $row = $model->select(array('module' => $module))->current();
+        $row   = $model->select(['module' => $module])->current();
         if (empty($this->config)) {
             if ($row) {
                 $row->delete();
@@ -79,7 +79,7 @@ class Bootstrap extends AbstractResource
         }
         $data = $this->canonize($this->config);
         if ($row) {
-            $status = $model->update($data, array('id' => $row->id));
+            $status = $model->update($data, ['id' => $row->id]);
         } else {
             $status = $model->insert($data);
         }
@@ -96,7 +96,7 @@ class Bootstrap extends AbstractResource
         Pi::registry('bootstrap')->clear($module);
 
         $model = Pi::model('bootstrap');
-        $model->delete(array('module' => $module));
+        $model->delete(['module' => $module]);
 
         return true;
     }

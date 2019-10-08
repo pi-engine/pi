@@ -1,15 +1,14 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Admin;
 
-use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Zend\Rest\Client\RestClient;
 
@@ -27,10 +26,10 @@ class RepoController extends ActionController
     protected $repoClient;
 
     /** @var string URL to module repos */
-    protected $repoUrl = 'http://repo.pialog.org/module';
+    protected $repoUrl = 'http://repo.piengine.org/module';
 
     /** @var string URL to module repo API */
-    protected $repoApi = 'http://api.pialog.org/module';
+    protected $repoApi = 'http://api.piengine.org/module';
 
     /**
      * AJAX: Check update availability
@@ -52,7 +51,7 @@ class RepoController extends ActionController
         }
         if (is_scalar($name)) {
             // 1 - update available; 0 - no update; -1 - error occurred
-            $status = rand(-1, 1);
+            $status  = rand(-1, 1);
             $version = '1.2.3';
             switch ($status) {
                 case 1:
@@ -69,14 +68,14 @@ class RepoController extends ActionController
                     $message = _a('Error occurred, check later.');
                     break;
             }
-            $result = array(
-                'status'    => $status,
-                'message'   => $message,
-            );
+            $result = [
+                'status'  => $status,
+                'message' => $message,
+            ];
         } else {
             foreach ($name as $key) {
                 // 1 - update available; 0 - no update; -1 - error occurred
-                $status = rand(-1, 1);
+                $status  = rand(-1, 1);
                 $version = '1.2.3';
                 switch ($status) {
                     case 1:
@@ -93,10 +92,10 @@ class RepoController extends ActionController
                         $message = _a('Error occurred, check later.');
                         break;
                 }
-                $result[$key] = array(
-                    'status'    => $status,
-                    'message'   => $message,
-                );
+                $result[$key] = [
+                    'status'  => $status,
+                    'message' => $message,
+                ];
             }
         }
 

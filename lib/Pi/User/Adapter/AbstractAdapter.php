@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\User\Adapter;
@@ -83,19 +83,20 @@ use Pi\User\Resource\AbstractResource;
 abstract class AbstractAdapter implements BindInterface
 {
     /** @var array Options */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Resource handlers
      *
      * @var array
      */
-    protected $resource = array(
-        'avatar'    => null,
-        'message'   => null,
-        'timeline'  => null,
-        'relation'  => null,
-    );
+    protected $resource
+        = [
+            'avatar'   => null,
+            'message'  => null,
+            'timeline' => null,
+            'relation' => null,
+        ];
 
     /**
      * Bound user account
@@ -113,7 +114,7 @@ abstract class AbstractAdapter implements BindInterface
      *
      * @return \Pi\User\Adapter\AbstractAdapter
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setOptions($options);
     }
@@ -124,7 +125,7 @@ abstract class AbstractAdapter implements BindInterface
      * @param array $options
      * @return self
      */
-    public function setOptions($options = array())
+    public function setOptions($options = [])
     {
         $this->options = $options;
 
@@ -138,7 +139,7 @@ abstract class AbstractAdapter implements BindInterface
      */
     public function getOption()
     {
-        $args = func_get_args();
+        $args   = func_get_args();
         $result = $this->options;
         foreach ($args as $name) {
             if (!is_array($result)) {
@@ -160,15 +161,15 @@ abstract class AbstractAdapter implements BindInterface
      * Get resource handler or result from handler if args specified
      *
      * @param string $name
-     * @param array  $args
+     * @param array $args
      *
      * @return AbstractResource|mixed
      */
-    public function getResource($name, $args = array())
+    public function getResource($name, $args = [])
     {
         if (!isset($this->resource[$name])) {
-            $options = array();
-            $class = '';
+            $options  = [];
+            $class    = '';
             $resource = $this->getOption('resource', $name);
             if ($resource) {
                 if (is_string($resource)) {
@@ -192,7 +193,7 @@ abstract class AbstractAdapter implements BindInterface
         }
         if ($args) {
             $result = call_user_func_array(
-                array($this->resource[$name], 'get'),
+                [$this->resource[$name], 'get'],
                 $args
             );
         } else {
@@ -233,11 +234,11 @@ abstract class AbstractAdapter implements BindInterface
         switch ($var) {
             // User activity
             case 'activity':
-            // User data
+                // User data
             case 'data':
-            // User message
+                // User message
             case 'message':
-            // User timeline
+                // User timeline
             case 'timeline':
                 $result = $this->getResource($var);
                 break;
@@ -261,8 +262,8 @@ abstract class AbstractAdapter implements BindInterface
      *
      * Call APIs defined in {@link Pi\User\Adapter\AbstractAdapter}
      *
-     * @param  string  $method
-     * @param  array  $args
+     * @param  string $method
+     * @param  array $args
      * @return mixed
      */
     public function __call($method, $args)
@@ -271,11 +272,11 @@ abstract class AbstractAdapter implements BindInterface
         switch ($method) {
             // User activity
             case 'activity':
-            // User data
+                // User data
             case 'data':
-            // User message
+                // User message
             case 'message':
-            // User timeline
+                // User timeline
             case 'timeline':
                 $result = $this->getResource($method, $args);
                 break;
@@ -283,7 +284,7 @@ abstract class AbstractAdapter implements BindInterface
             case 'avatar':
                 $result = Pi::service('avatar')->setUser($this->getUser());
                 if ($args) {
-                    $result = call_user_func_array(array($result,'get'), $args);
+                    $result = call_user_func_array([$result, 'get'], $args);
                 }
                 break;
             // User profile adapter methods
@@ -302,7 +303,7 @@ abstract class AbstractAdapter implements BindInterface
      */
     protected function verifyUid($uid)
     {
-        $uid = $uid ? intval($uid) : (int) $this->__get('id');
+        $uid = $uid ? intval($uid) : (int)$this->__get('id');
 
         return $uid;
     }
@@ -338,7 +339,7 @@ abstract class AbstractAdapter implements BindInterface
     public function isRoot($uid = null)
     {
         if ($this->rootUid) {
-            $uid = $this->verifyUid($uid);
+            $uid    = $this->verifyUid($uid);
             $result = $this->rootUid === $uid ? true : false;
         } else {
             $result = false;
@@ -350,8 +351,8 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Get user data model
      *
-     * @param int|string|null   $uid    User id, identity
-     * @param string            $field  Field of the identity
+     * @param int|string|null $uid User id, identity
+     * @param string $field Field of the identity
      * @return UserModel|null
      * @api
      */
@@ -360,54 +361,54 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Get user IDs subject to conditions
      *
-     * @param array         $condition
-     * @param int           $limit
-     * @param int           $offset
-     * @param string        $order
+     * @param array $condition
+     * @param int $limit
+     * @param int $offset
+     * @param string $order
      * @return int[]
      * @api
      */
     abstract public function getUids(
-        $condition  = array(),
-        $limit      = 0,
-        $offset     = 0,
-        $order      = ''
+        $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = ''
     );
 
     /**
      * Get users subject to conditions
      *
-     * @param array         $condition
-     * @param int           $limit
-     * @param int           $offset
-     * @param string|array  $order
-     * @param array         $field
+     * @param array $condition
+     * @param int $limit
+     * @param int $offset
+     * @param string|array $order
+     * @param array $field
      *
      * @return array
      * @api
      */
     abstract public function getList(
-        array $condition    = array(),
-        $limit              = 0,
-        $offset             = 0,
-        $order              = '',
-        array $field        = array()
+        array $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = '',
+        array $field = []
     );
 
     /**
      * Get user count subject to conditions
      *
-     * @param array  $condition
+     * @param array $condition
      * @return int
      * @api
      */
-    abstract public function getCount($condition = array());
+    abstract public function getCount($condition = []);
 
     /**
      * Add a user
      *
-     * @param   array   $fields
-     * @param   bool    $setRole
+     * @param   array $fields
+     * @param   bool $setRole
      *
      * @return  int|bool
      * @api
@@ -417,8 +418,8 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Update a user
      *
-     * @param   int         $uid
-     * @param   array       $fields
+     * @param   int $uid
+     * @param   array $fields
      * @return  int|bool
      * @api
      */
@@ -427,7 +428,7 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Delete a user
      *
-     * @param   int         $uid
+     * @param   int $uid
      * @return  bool|null   Null for no-action
      * @api
      */
@@ -436,7 +437,7 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Activate a user
      *
-     * @param   int         $uid
+     * @param   int $uid
      * @return  bool|null   Null for no-action
      * @api
      */
@@ -445,7 +446,7 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Enable a user
      *
-     * @param   int         $uid
+     * @param   int $uid
      * @return  bool|null   Null for no-action
      * @api
      */
@@ -454,7 +455,7 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Disable a user
      *
-     * @param   int         $uid
+     * @param   int $uid
      * @return  bool|null   Null for no-action
      * @api
      */
@@ -507,17 +508,17 @@ abstract class AbstractAdapter implements BindInterface
      *  );
      * ```
      *
-     * @param int|int[]         $uid
-     * @param string|string[]   $field
-     * @param bool              $filter
-     * @param bool              $activeOnly
+     * @param int|int[] $uid
+     * @param string|string[] $field
+     * @param bool $filter
+     * @param bool $activeOnly
      *
      * @return mixed|mixed[]
      * @api
      */
     abstract public function get(
         $uid,
-        $field = array(),
+        $field = [],
         $filter = false,
         $activeOnly = false
     );
@@ -573,17 +574,17 @@ abstract class AbstractAdapter implements BindInterface
      *  );
      * ```
      *
-     * @param int[]         $uids
-     * @param string|string[]   $field
-     * @param bool              $filter
-     * @param bool              $activeOnly
+     * @param int[] $uids
+     * @param string|string[] $field
+     * @param bool $filter
+     * @param bool $activeOnly
      *
      * @return mixed[]
      * @api
      */
     abstract public function mget(
         array $uids,
-        $field = array(),
+        $field = [],
         $filter = false,
         $activeOnly = false
     );
@@ -591,9 +592,9 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Set value of a user field
      *
-     * @param int       $uid
-     * @param string    $field
-     * @param mixed     $value
+     * @param int $uid
+     * @param string $field
+     * @param mixed $value
      * @return bool
      * @api
      */
@@ -603,8 +604,8 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Set user role(s)
      *
-     * @param int           $uid
-     * @param string|array  $role
+     * @param int $uid
+     * @param string|array $role
      *
      * @return bool
      */
@@ -613,8 +614,8 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Revoke user role(s)
      *
-     * @param int           $uid
-     * @param string|array  $role
+     * @param int $uid
+     * @param string|array $role
      *
      * @return bool
      */
@@ -627,8 +628,8 @@ abstract class AbstractAdapter implements BindInterface
      * If section is specified, returns the role;
      * if not, return associative array of roles.
      *
-     * @param int       $uid
-     * @param string    $section   Section name: admin, front
+     * @param int $uid
+     * @param string $section Section name: admin, front
      *
      * @return string|array
      */
@@ -653,8 +654,8 @@ abstract class AbstractAdapter implements BindInterface
      * - (logout: URI to user logout page)
      * - register: URI to user register page
      *
-     * @param string    $type URL type
-     * @param mixed     $options User id for profile or redirect for login
+     * @param string $type URL type
+     * @param mixed $options User id for profile or redirect for login
      *
      * @return string
      * @api
@@ -666,8 +667,8 @@ abstract class AbstractAdapter implements BindInterface
      *
      * Alias to `Pi::service('authentication')->authenticate()`, discouraged.
      *
-     * @param string        $identity
-     * @param string        $credential
+     * @param string $identity
+     * @param string $credential
      *
      * @return Pi\Authentication\Result
      * @deprecated
@@ -698,8 +699,8 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Get a user model
      *
-     * @param int|string|array  $uid
-     * @param string            $field
+     * @param int|string|array $uid
+     * @param string $field
      *
      * @return UserModel
      */

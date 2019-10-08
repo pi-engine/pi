@@ -1,18 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Installer;
 
 use Pi;
+use Zend\EventManager\Event;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
-use Zend\EventManager\Event;
 
 /**
  * Module installer resource handler
@@ -47,7 +47,7 @@ class Resource implements ListenerAggregateInterface
     {
         $this->listener = $events->attach(
             'process',
-            array($this, 'processResources')
+            [$this, 'processResources']
         );
     }
 
@@ -81,8 +81,8 @@ class Resource implements ListenerAggregateInterface
      */
     public function processResources(Event $e)
     {
-        $this->event = $e;
-        $result = $this->event->getParam('result');
+        $this->event  = $e;
+        $result       = $this->event->getParam('result');
         $resourceList = $this->resourceList();
         foreach ($resourceList as $resource) {
             $ret = $this->loadResource($resource);
@@ -111,31 +111,31 @@ class Resource implements ListenerAggregateInterface
      */
     protected function resourceList()
     {
-        $resourceList = array();
-        $iterator = new \DirectoryIterator(__DIR__ . '/Resource');
-        foreach ($iterator as $fileinfo) {
+        $filter         = function ($fileinfo) {
             if (!$fileinfo->isFile()) {
-                continue;
+                return false;
             }
             $fileName = $fileinfo->getFilename();
             if (!preg_match('/^([^\.]+)\.php$/', $fileName, $matches)) {
-                continue;
+                return false;
             }
             $resource = $matches[1];
             if ($resource == 'Config' || $resource == 'AbstractResource') {
-                continue;
+                return false;
             }
             $resourceName = strtolower(implode(
                 '_',
                 array_filter(preg_split('/(?=[A-Z])/', $resource))
             ));
-            $resourceList[] = $resourceName;
-        }
+
+            return $resourceName;
+        };
+        $resourceList   = Pi::service('file')->getList(__DIR__ . '/Resource', $filter);
         $resourceList[] = 'config';
 
         $config = $this->event->getParam('config');
         if (!empty($config['resource'])) {
-            $resources = array_keys($config['resource']);
+            $resources    = array_keys($config['resource']);
             $resourceList = array_unique(
                 array_merge($resources, $resourceList)
             );
@@ -161,9 +161,9 @@ class Resource implements ListenerAggregateInterface
      */
     protected function loadResource($resource)
     {
-        $e                  = $this->event;
-        $config             = $e->getParam('config');
-        $moduleDirectory    = $e->getParam('directory');
+        $e               = $this->event;
+        $config          = $e->getParam('config');
+        $moduleDirectory = $e->getParam('directory');
 
         $resourceName = str_replace(
             ' ',
@@ -172,7 +172,7 @@ class Resource implements ListenerAggregateInterface
         );
 
         //$resourceName = ucfirst($resource);
-        $resourceClass      = sprintf(
+        $resourceClass = sprintf(
             'Module\\%s\Installer\Resource\\%s',
             ucfirst($moduleDirectory),
             $resourceName
@@ -192,7 +192,7 @@ class Resource implements ListenerAggregateInterface
             return;
         }
         $options = isset($config['resource'][$resource])
-            ? $config['resource'][$resource] : array();
+            ? $config['resource'][$resource] : [];
         /*
         if (is_string($options)) {
             $optionsFile = sprintf(
@@ -211,16 +211,16 @@ class Resource implements ListenerAggregateInterface
         $resourceHandler->setEvent($this->event);
         $ret = $resourceHandler->$methodAction();
 
-       if (is_bool($ret)) {
-            $ret = array(
-                'status'    => $ret,
-                'message'   => array(),
-            );
+        if (is_bool($ret)) {
+            $ret = [
+                'status'  => $ret,
+                'message' => [],
+            ];
         } elseif (is_array($ret)) {
             if (!isset($ret['message'])) {
-                $ret['message'] = array();
+                $ret['message'] = [];
             } else {
-                $ret['message'] = (array) $ret['message'];
+                $ret['message'] = (array)$ret['message'];
             }
         } else {
             $ret = null;

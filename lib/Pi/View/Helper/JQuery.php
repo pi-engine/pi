@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -62,22 +62,34 @@ class JQuery extends AssetCanonize
      */
     public function __invoke(
         $files = null,
-        $attributes = array(),
+        $attributes = [],
         $appendVersion = null
-    ) {
+    )
+    {
         $files = $this->canonize($files, $attributes);
         if (empty(static::$rootLoaded)) {
-            if (!isset($files['jquery.min.js'])) {
-                $files = array('jquery.min.js' =>
-                        $this->canonizeFile('jquery.min.js'))
-                    + $files;
+            if (isset($files['jquery.min.js'])) {
+                $baseAttrs = $files['jquery.min.js'];
+            } else {
+                $baseAttrs = $this->canonizeFile('jquery.min.js');
             }
+            if (!is_array($baseAttrs)) {
+                $baseAttrs = [
+                    'file' => $baseAttrs,
+                ];
+            }
+            /*
+            if (!isset($baseAttrs['defer'])) {
+                $baseAttrs['defer'] = false;
+            }
+            */
+            $files              = ['jquery.min.js' => $baseAttrs] + $files;
             static::$rootLoaded = true;
         }
 
         foreach ($files as $file => $attrs) {
-            $file = static::DIR_ROOT . '/' . $file;
-            $url = Pi::service('asset')->getStaticUrl($file, $appendVersion);
+            $file     = static::DIR_ROOT . '/' . $file;
+            $url      = Pi::service('asset')->getStaticUrl($file, $appendVersion);
             $position = isset($file['position'])
                 ? $file['position'] : 'append';
             if ('css' == $attrs['ext']) {

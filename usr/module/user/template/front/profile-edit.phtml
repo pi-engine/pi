@@ -1,17 +1,21 @@
 <?php
-    $this->css($this->assetModule('front/front.css'));
+$this->css($this->assetModule('front/front.css'));
+$this->headMeta('noindex', 'robots');
 ?>
-<div class="row">
-    <?php include $this->template('./profile-sidebar.phtml'); ?>
+<div class="row user-section-wrapper">
+    <div class="col-md-3">
+        <?php include $this->template('./profile-sidebar.phtml'); ?>
+    </div>
     <div class="col-md-9">
-        <div class="user-page-header">
-            <h3><?php echo $title; ?></h3>
-            <div class="text-muted">
-                <?php echo sprintf(__('Update %s'), $title); ?>
-            </div>
+        <?php include $this->template('flash-messenger'); ?>
+
+        <div class="page-header">
+            <h1><?php echo $title; ?>
+                <small><?php echo __('Update'); ?></small>
+            </h1>
         </div>
         <?php
-        if (isset($result)) {
+        if (isset($result['message'])) {
             echo sprintf('
                 <div class="alert %s">
                     <button data-dismiss="alert" class="close" type="button">&times;</button>
@@ -21,6 +25,6 @@
                 $result['message']);
         }
         ?>
-        <?php include $this->templateComponent('form'); ?>
+        <?php echo $this->form($form); ?>
     </div>
 </div>

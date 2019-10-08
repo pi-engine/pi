@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Persist;
@@ -30,7 +30,7 @@ class FilesystemStorage extends AbstractStorage
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->cacheDir = isset($options['cache_dir'])
             ? $options['cache_dir'] : Pi::path('cache');
@@ -107,7 +107,7 @@ class FilesystemStorage extends AbstractStorage
     public function flush()
     {
         $cacheFiles = sprintf('%s/%s.php', $this->cacheDir, $this->prefix(''));
-        $list = glob($cacheFiles);
+        $list       = glob($cacheFiles);
         if ($list) {
             foreach ($list as $file) {
                 unlink($file);

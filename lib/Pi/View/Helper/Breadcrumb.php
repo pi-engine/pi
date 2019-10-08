@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -12,6 +12,7 @@ namespace Pi\View\Helper;
 
 use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
+
 /**
  * Helper for rendering module breadcrumbs
  *
@@ -65,14 +66,14 @@ class Breadcrumb extends AbstractHtmlElement
      *
      * @var array
      */
-    protected $attributes = array();
+    protected $attributes = [];
 
     /**
      * Items to prepend
      *
      * @var array
      */
-    protected $prefix = array();
+    protected $prefix = [];
 
     /**
      * Renders module breadcrumbs
@@ -99,10 +100,10 @@ class Breadcrumb extends AbstractHtmlElement
      *
      * @return string
      */
-    public function render(array $options = array())
+    public function render(array $options = [])
     {
         $result = '';
-        $data   = array();
+        $data   = [];
 
         $module = isset($options['module'])
             ? $options['module']
@@ -112,39 +113,60 @@ class Breadcrumb extends AbstractHtmlElement
         $class = sprintf('Custom\%s\Api\Breadcrumbs', ucfirst($module));
         if (!class_exists($class)) {
             $directory = Pi::service('module')->directory($module);
-            $class = sprintf('Module\%s\Api\Breadcrumbs', ucfirst($directory));
+            $class     = sprintf('Module\%s\Api\Breadcrumbs', ucfirst($directory));
         }
         if (class_exists($class)) {
             $bcHandler = new $class($module);
-            $data = $bcHandler->load();
+            $data      = $bcHandler->load();
         }
         if ($data) {
             $prefix = isset($options['prefix'])
                 ? $options['prefix']
                 : $this->prefix;
 
-            $data = array_merge($prefix, $data);
+            $data      = array_merge($prefix, $data);
             $separator = isset($options['separator'])
                 ? $options['separator']
                 : $this->separator;
-            $attribs = isset($options['attributes'])
+            $attribs   = isset($options['attributes'])
                 ? $options['attributes']
                 : $this->attributes;
 
-            $pattern = '<ol class="breadcrumb"%s>' . PHP_EOL . '%s' . PHP_EOL . '</ol>';
-            $patternLink = '<li><a href="%s">%s</a></li>' . PHP_EOL;
-            $patternLabel = '<li>%s</li>' . PHP_EOL;
+            $pattern
+                = <<<'EOT'
+<ol itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb"%s>
+    %s
+</ol>
+EOT;
+
+            $patternLink
+                = <<<'EOT'
+<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="%s">
+        <span itemprop="name">%s</span>
+    </a>
+    <meta itemprop="position" content="%s" />
+</li>
+EOT;
+
+            $patternLabel
+                = <<<'EOT'
+<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span itemprop="name">%s</span>
+    <meta itemprop="position" content="%s" />
+</li>
+EOT;
 
             $elements = '';
             foreach ($data as $item) {
                 if (empty($item['href'])) {
-                    $elements .= sprintf($patternLabel, _escape($item['label']));
+                    $elements .= sprintf($patternLink, Pi::engine()->application()->getRequest()->getUriString(), _escape($item['label']), _escape($item['label']));
                 } else {
-                    $elements .= sprintf($patternLink,$item['href'],  _escape($item['label']));
+                    $elements .= sprintf($patternLink, $item['href'], _escape($item['label']), _escape($item['label']));
                 }
             }
             $attributes = $attribs ? $this->htmlAttribs($attribs) : '';
-            $result = sprintf($pattern, $attributes, $elements);
+            $result     = sprintf($pattern, $attributes, $elements);
         }
 
         return $result;

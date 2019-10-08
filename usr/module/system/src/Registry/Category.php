@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Registry
  */
 
@@ -26,21 +26,21 @@ class Category extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $list = array();
+        $list = [];
 
         $model  = Pi::model('category', $this->module);
         $select = $model->select()->order('order ASC');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $id = (int) $row['id'];
-            $item = array(
-                'id'        => $id,
-                'title'     => $row['title'],
-                'icon'      => $row['icon'],
-                'modules'   => $row['modules'],
-            );
+            $id        = (int)$row['id'];
+            $item      = [
+                'id'      => $id,
+                'title'   => $row['title'],
+                'icon'    => $row['icon'],
+                'modules' => $row['modules'],
+            ];
             $list[$id] = $item;
         }
 
@@ -53,8 +53,8 @@ class Category extends AbstractRegistry
      */
     public function read()
     {
-        $options = array();
-        $result = $this->loadData($options);
+        $options = [];
+        $result  = $this->loadData($options);
 
         return $result;
     }

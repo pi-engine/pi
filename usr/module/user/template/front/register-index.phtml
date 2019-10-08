@@ -1,129 +1,202 @@
-<h2 class="page-header"><?php _e('Account registration'); ?></h2>
-
 <?php
-if (!empty($form)) {
-    if (empty($result['status']) && !empty($result['message'])) {
+$this->css($this->assetModule('front/front.css'));
+
+// oauth
+$url = Pi::api('oauth', 'user')->urlList();
+
+// Description
+$description = Pi::user()->config('register_description');
+
+if (!empty($description) || !empty($url)) {
+    $class = 'col-md-8 col-sm-7 col-12';
+} else {
+    $class = 'col-md-12';
+}
 ?>
+<div class="clearfix user-template">
+    <div class="page-header">
+        <h1><?php _e('Account registration'); ?></h1>
+    </div>
+    <?php if (!empty($form)) { ?>
+        <?php if (empty($result['status']) && !empty($result['message'])) { ?>
         <div class="alert alert-danger">
             <?php echo _escape($result['message']); ?>
         </div>
-<?php
-    }
-
-    include $this->templateComponent('form');
-
-} elseif ('auto' == $activation) {
-    if (!empty($result['status'])) {
-?>
-    <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title"><?php _e('Congratulations!'); ?></h3></div>
-        <div class="panel-body">
-            <?php
-            echo '<p>' . sprintf(
-                __('Your account has been registered successfully. Please <a href="%s">login</a> with your account.'),
-                Pi::service('authentication')->getUrl('login', $redirect)
-            ) . '</p>';
-            if ($redirect) {
-                echo '<p>' . sprintf(
-                        __('Or go back to <a href="%s">the requested page</a> directly.'),
-                        $redirect
-                    ) . '</p>';
-            }
-            ?>
+    <?php } ?>
+        <div class="row clearfix loginFormWrapper">
+            <div class="<?php echo $class; ?>">
+                <?php echo $this->form($form); ?>
+            </div>
+            <?php if (!empty($description)) { ?>
+                <div class="col-md-4 col-sm-5 col-12">
+                    <?php echo $description; ?>
+                </div>
+            <?php } ?>
+            <?php if (!empty($url)) { ?>
+                <div class="col-md-4 col-sm-5 col-12">
+                    <div class="clearfix ">
+                        <?php if (!empty($url['google'])) { ?>
+                            <div class="oauth-login">
+                                <a class="btn btn-socail btn-google btn-block"
+                                   href="<?php echo $this->escape($url['google']); ?>">
+                                    <i class="fab fa-google"></i> <?php _e('Login with google'); ?>
+                                </a>
+                            </div>
+                        <?php } ?>
+                        <?php if (!empty($url['twitter'])) { ?>
+                            <div class="oauth-login">
+                                <a class="btn btn-socail btn-twitter btn-block"
+                                   href="<?php echo $this->escape($url['twitter']); ?>">
+                                    <i class="fab fa-twitter"></i> <?php _e('Login with twitter'); ?>
+                                </a>
+                            </div>
+                        <?php } ?>
+                        <?php if (!empty($url['facebook'])) { ?>
+                            <div class="oauth-login">
+                                <a class="btn btn-socail btn-facebook btn-block"
+                                   href="<?php echo $this->escape($url['facebook']); ?>">
+                                    <i class="fab fa-facebook-f"></i> <?php _e('Login with facebook'); ?>
+                                </a>
+                            </div>
+                        <?php } ?>
+                        <?php if (!empty($url['github'])) { ?>
+                            <div class="oauth-login">
+                                <a class="btn btn-socail btn-github btn-block"
+                                   href="<?php echo $this->escape($url['github']); ?>">
+                                    <i class="fab fa-github"></i> <?php _e('Login with github'); ?>
+                                </a>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
-    </div>
-<?php
-    } else {
-        ?>
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3></div>
-            <div class="panel-body"><?php echo _escape($result['message']); ?>
+    <?php } elseif ('auto' == $activation) { ?>
+    <?php if (!empty($result['status'])) { ?>
+        <div class="card bg-light mb-3">
+            <div class="card-heading">
+                <h3 class="card-title"><?php _e('Congratulations!'); ?></h3>
+            </div>
+            <div class="card-text">
+                <p>
+                    <?php echo sprintf(
+                        __('Your account has been registered successfully. Please <a href="%s">login</a> with your account.'),
+                        Pi::service('authentication')->getUrl('login', $redirect)
+                    ); ?>
+                </p>
+                <?php if ($redirect) { ?>
+                    <p>
+                        <?php echo sprintf(
+                            __('Or go back to <a href="%s">the requested page</a> directly.'),
+                            $redirect
+                        ) ?>
+                    </p>
+                <?php } ?>
             </div>
         </div>
-    <?php
-    }
-} elseif ('email' != $activation) {
-?>
-    <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title"><?php _e('Congratulations!'); ?></h3></div>
-        <div class="panel-body"><?php _e('You account has been registered successfully. However it needs to be approved by our admins before you can use it.'); ?></div>
-    </div>
-<?php
-} elseif (empty($result['status'])) {
-?>
-    <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3></div>
-        <div class="panel-body"><?php echo _escape($result['message']); ?>
+    <?php } else { ?>
+        <div class="card bg-light mb-3">
+            <div class="card-heading">
+                <h3 class="card-title"><?php _e('Registration was not completed.'); ?></h3>
+            </div>
+            <div class="card-text">
+                <?php echo _escape($result['message']); ?>
+            </div>
         </div>
-    </div>
-<?php
-} else {
-?>
-    <div class="row">
-        <div class="col-md-8">
-            <p><?php _e('An email with activation link has been sent to your.'); ?></p>
-            <p><?php _e('Please check it to finish the registration.'); ?></p>
+    <?php } ?>
+    <?php } elseif ('email' != $activation) { ?>
+        <div class="card bg-light mb-3">
+            <div class="card-heading">
+                <h3 class="card-title"><?php _e('Congratulations!'); ?></h3>
+            </div>
+            <div class="card-text">
+                <?php _e('You account has been registered successfully. However it needs to be approved by our admins before you can use it.'); ?>
+            </div>
         </div>
-        <div class="col-md-4">
-            <p><?php _e('If you do not receive the activation email:'); ?>?</p>
-            <ol>
-                <li><?php _e('Wait a few minutes and check again.'); ?></li>
-                <li><?php _e('Check your email spam box.'); ?></li>
-                <li class="user-js-reactivate"><a class="user-js-reactivate-link" href="javascript:;"><?php _e('Request to resend activation email'); ?></a><span style="margin-left: 20px;" class="user-js-reactivate-message"></span></li>
-            </ol>
+    <?php } elseif (empty($result['status'])) { ?>
+        <div class="card bg-light mb-3">
+            <div class="card-heading">
+                <h3 class="card-title"><?php _e('Registration was not completed.'); ?></h3>
+            </div>
+            <div class="card-text">
+                <?php echo _escape($result['message']); ?>
+            </div>
         </div>
-    </div>
+    <?php } else { ?>
+        <div class="register-information row">
+            <div class="col-md-8 alert-success">
+                <div>
+                    <p><?php _e('An email with activation link has been sent to you.'); ?></p>
+                    <p><?php _e('Email used'); ?> : <?php echo $email ?></p>
+                    <p><?php _e('Please check it to finish the registration.'); ?></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="alert-warning">
+                    <p><?php _e('You did not receive the activation email?'); ?></p>
+                    <ol>
+                        <li><?php _e('Wait a few minutes and check again.'); ?></li>
+                        <li><?php _e('Check your email spam box.'); ?></li>
+                        <li class="user-js-reactivate">
+                            <a class="user-js-reactivate-link"
+                               href="javascript:;"><?php _e('Request to resend activation email'); ?></a>
+                            <span style="margin-left: 20px;" class="user-js-reactivate-message"></span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <script>
+            (function ($) {
+                var app = {
+                    options: {},
 
-    <script>
-        (function($) {
-            var app = {
-                options: {},
+                    $: function (selector) {
+                        return this.$el.find(selector);
+                    },
 
-                $: function(selector) {
-                    return this.$el.find(selector);
-                },
+                    init: function (opts) {
+                        $.extend(this.options, opts);
+                        this.cacheElements();
+                        this.bindEvents();
+                    },
 
-                init: function(opts) {
-                    $.extend(this.options, opts);
-                    this.cacheElements();
-                    this.bindEvents();
-                },
+                    cacheElements: function () {
+                        this.$el = $('.user-js-reactivate');
+                        this.$reactivateLink = this.$('.user-js-reactivate-link');
+                        this.$reactivateMessage = this.$('.user-js-reactivate-message');
+                    },
 
-                cacheElements: function() {
-                    this.$el = $('.user-js-reactivate');
-                    this.$reactivateLink = this.$('.user-js-reactivate-link');
-                    this.$reactivateMessage = this.$('.user-js-reactivate-message');
-                },
+                    bindEvents: function () {
+                        this.$reactivateLink.on('click', $.proxy(this.reactivateAction, this));
+                    },
 
-                bindEvents: function() {
-                    this.$reactivateLink.on('click', $.proxy(this.reactivateAction, this));
-                },
+                    reactivateAction: function (e) {
+                        e.preventDefault();
 
-                reactivateAction: function(e) {
-                    e.preventDefault();
+                        $.getJSON(this.options.reactivateUrl, $.proxy(function (result) {
+                            if (result.status) {
+                                this.renderReactivateMessage('<?php _e('Already sent'); ?>');
+                            } else {
+                                this.renderReactivateMessage(result.message);
+                            }
 
-                    $.getJSON(this.options.reactivateUrl, $.proxy(function(result) {
-                        if (result.status) {
-                            this.renderReactivateMessage('<?php _e('Already sent'); ?>');
-                        } else {
-                            this.renderReactivateMessage(result.message);
-                        }
-                        
-                    }, this));
-                },
+                        }, this));
+                    },
 
-                renderReactivateMessage: function(message) {
-                    this.$reactivateMessage.text('( ' + message + ' )').hide().fadeIn();
+                    renderReactivateMessage: function (message) {
+                        this.$reactivateMessage.text('( ' + message + ' )').hide().fadeIn();
+                    }
+                };
+
+                this.userRegisterReactivate = function (opts) {
+                    app.init(opts);
                 }
-            };
+            })(jQuery);
 
-            this.userRegisterReactivate = function(opts) {
-                app.init(opts);
-            }
-       })(jQuery);
-
-        userRegisterReactivate({
-            reactivateUrl: '<?php echo $this->url('', array('controller' => 'register', 'action' => 'reactivate', 'uid' => $result['uid']));?>'
-        });
-    </script>
-<?php } ?>
+            userRegisterReactivate({
+                reactivateUrl: '<?php echo $this->url('', ['controller' => 'register', 'action' => 'reactivate', 'uid' => $result['uid']]);?>'
+            });
+        </script>
+    <?php } ?>
+</div>

@@ -1,24 +1,24 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Log\Writer;
 
+use PDO;
 use Pi;
-use Pi\Log\Logger;
-use Pi\Log\Formatter\Debugger as DebuggerFormatter;
 use Pi\Log\Formatter\DbProfiler as DbFormatter;
+use Pi\Log\Formatter\Debugger as DebuggerFormatter;
 use Pi\Log\Formatter\Profiler as ProfilerFormatter;
 use Pi\Log\Formatter\SystemInfo as SystemInfoFormatter;
+use Pi\Log\Logger;
 use Pi\Version\Version as PiVersion;
 use Zend\Log\Formatter\FormatterInterface;
 use Zend\Log\Writer\AbstractWriter;
-use PDO;
 
 /**
  * Debugger writer
@@ -46,13 +46,14 @@ class Debugger extends AbstractWriter
      *
      * @var array
      */
-    protected $logger = array(
-        'log'       => array(),
-        'debug'     => array(),
-        'profiler'  => array(),
-        'db'        => array(),
-        'system'    => array(),
-    );
+    protected $logger
+        = [
+            'log'      => [],
+            'debug'    => [],
+            'profiler' => [],
+            'db'       => [],
+            'system'   => [],
+        ];
 
     /**
      * The Debugger is muted
@@ -71,7 +72,7 @@ class Debugger extends AbstractWriter
     {
         $muted = $this->muted;
         if (null !== $flag) {
-            $this->muted = (bool) $flag;
+            $this->muted = (bool)$flag;
         }
 
         return $muted;
@@ -186,7 +187,7 @@ class Debugger extends AbstractWriter
         if ($this->muted) {
             return;
         }
-        $message = $this->dbProfilerFormatter()->format($event);
+        $message              = $this->dbProfilerFormatter()->format($event);
         $this->logger['db'][] = $message;
     }
 
@@ -197,17 +198,17 @@ class Debugger extends AbstractWriter
      */
     public function systemInfo()
     {
-        $system = array();
+        $system = [];
 
         // Execution time
         $system['Execution time'] = sprintf(
-            '%.4f',
-            microtime(true) - Pi::startTime()
-        ) . ' s';
+                '%.4f',
+                microtime(true) - Pi::startTime()
+            ) . ' s';
 
         // Included file count
-        $files_included = get_included_files();
-        $system['Included files'] = count ($files_included) . ' files';
+        $files_included           = get_included_files();
+        $system['Included files'] = count($files_included) . ' files';
 
         // Memory usage
         $memory = 0;
@@ -220,7 +221,7 @@ class Debugger extends AbstractWriter
         } else {
             // Windows system
             if (strpos(strtolower(PHP_OS), 'win') !== false) {
-                $out = array();
+                $out = [];
                 exec(
                     'tasklist /FI "PID eq ' . getmypid() . '" /FO LIST',
                     $out
@@ -233,15 +234,15 @@ class Debugger extends AbstractWriter
         // Sstem environments
         $system['OS'] = PHP_OS ?: 'Not detected';
         // PHP_SAPI ?: 'Not detected';
-        $system['Web Server'] = $_SERVER['SERVER_SOFTWARE'];
+        $system['Web Server']  = $_SERVER['SERVER_SOFTWARE'];
         $system['PHP Version'] = PHP_VERSION;
 
         // MySQL version
         if (Pi::hasService('database')) {
-            $pdo = Pi::hasService('database')->db()->getAdapter()->getDriver()
+            $pdo                     = Pi::hasService('database')->db()->getAdapter()->getDriver()
                 ->getConnection()->connect()->getResource();
-            $server_version = $pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
-            $client_version = $pdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
+            $server_version          = $pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
+            $client_version          = $pdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
             $system['MySQL Version'] = sprintf(
                 'Server: %s; Client: %s',
                 $server_version,
@@ -251,11 +252,11 @@ class Debugger extends AbstractWriter
 
         // Application versions
         $system['Pi Environment'] = PiVersion::version()
-                                  . ' ' . Pi::environment();
-        $system['Zend Version'] = PiVersion::version('zend');
+            . ' ' . Pi::environment();
+        $system['Zend Version']   = PiVersion::version('zend');
         $system['Persist Engine'] = Pi::persist()->getType();
         if (Pi::service()->hasService('cache')) {
-            $class = get_class(Pi::service('cache')->storage());
+            $class                   = get_class(Pi::service('cache')->storage());
             $system['Cache Storage'] = $class;
         }
         if (Pi::service()->hasService('module')) {
@@ -267,11 +268,11 @@ class Debugger extends AbstractWriter
 
         // Affecting PHP's Behaviour
         // See: http://www.php.net/manual/en/refs.basic.php.php
-        $extensions = array();
+        $extensions = [];
         // APC
         $APCEnabled = ini_get('apc.enabled');
         if (PHP_SAPI == 'cli') {
-            $APCEnabled = $APCEnabled && (bool) ini_get('apc.enable_cli');
+            $APCEnabled = $APCEnabled && (bool)ini_get('apc.enable_cli');
         }
         if ($APCEnabled) {
             $extensions[] = 'APC: ' . phpversion('apc');
@@ -302,12 +303,12 @@ class Debugger extends AbstractWriter
         }
 
         foreach ($system as $key => $value) {
-            $event = array(
+            $event = [
                 'name'  => $key,
                 'value' => $value,
-            );
-            $this->logger['system'][] =
-                $this->systemInfoFormatter()->format($event);
+            ];
+            $this->logger['system'][]
+                   = $this->systemInfoFormatter()->format($event);
         }
     }
 
@@ -324,16 +325,16 @@ class Debugger extends AbstractWriter
         $this->systemInfo();
 
         // Use heredoc for log contents
-        $log =
-<<<'EOT'
+        $log
+            = <<<'EOT'
 <div id="pi-logger-output">
     <div id="pi-logger-tabs">
 EOT;
         foreach (array_keys($this->logger) as $category) {
             $count = count($this->logger[$category]);
-            $log .= PHP_EOL .
-<<<"EOT"
-        <span id="pi-logger-tab-{$category}">
+            $log   .= PHP_EOL .
+                <<<"EOT"
+                        <span id="pi-logger-tab-{$category}">
             <a href="javascript:piLoggerToggleCategoryDisplay('{$category}')">
                 {$category}({$count})
             </a>
@@ -342,8 +343,8 @@ EOT;
         }
 
         $log .= PHP_EOL .
-<<<'EOT'
-        <span id="pi-logger-tab-all">
+            <<<'EOT'
+                    <span id="pi-logger-tab-all">
             <a href="javascript:piLoggerToggleCategoryDisplay('all')">all</a>
         </span>
     </div>
@@ -352,9 +353,9 @@ EOT;
 
         foreach ($this->logger as $category => $events) {
             $eventString = implode(PHP_EOL, $events);
-            $log .= PHP_EOL .
-<<<"EOT"
-        <div id="pi-logger-category-{$category}" class="pi-events">
+            $log         .= PHP_EOL .
+                <<<"EOT"
+                        <div id="pi-logger-category-{$category}" class="pi-events">
             <div class="pi-category">{$category}</div>
             <!-- Event list starts -->
             {$eventString}
@@ -363,15 +364,15 @@ EOT;
 EOT;
         }
         $log .= PHP_EOL .
-<<<'EOT'
-    </div>
+            <<<'EOT'
+                </div>
 </div>
 EOT;
 
         // Use nowdoc for CSS contents
-        $scripts_css =
-<<<'EOT'
-<style type="text/css">
+        $scripts_css
+            = <<<'EOT'
+<style>
     #pi-logger-output {
         font-family: monospace;
         font-size: 90%;
@@ -441,7 +442,7 @@ EOT;
         padding-left: 5px;
     }
 
-    #pi-logger-output .pi-event .message .label {
+    #pi-logger-output .pi-event .message .badge {
         width: 150px;
         text-align: right;
         float: left;
@@ -458,11 +459,11 @@ EOT;
 EOT;
 
         $cookiePath = ($baseUrl = Pi::host()->get('baseUrl'))
-                        ? rtrim($baseUrl, '/') . '/' : '/';
+            ? rtrim($baseUrl, '/') . '/' : '/';
         // Use heredoc for JavaScript contents
-        $scripts_js =
-<<<"EOT"
-<script type="text/javascript">
+        $scripts_js
+            = <<<"EOT"
+<script>
     var cookiePath = "{$cookiePath}";
     var cookieName = "pi-logger";
     function piLoggerCreateCookie(name,value) {
@@ -545,6 +546,6 @@ EOT;
 </script>
 EOT;
 
-        echo PHP_EOL . $scripts_css . PHP_EOL. $log . PHP_EOL . $scripts_js;
+        echo PHP_EOL . $scripts_css . PHP_EOL . $log . PHP_EOL . $scripts_js;
     }
 }

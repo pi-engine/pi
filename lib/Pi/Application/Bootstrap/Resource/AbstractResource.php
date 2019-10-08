@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Bootstrap\Resource;
@@ -22,7 +22,7 @@ abstract class AbstractResource
      * Bootstrap options
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Pi Engine handler
@@ -39,14 +39,14 @@ abstract class AbstractResource
     /**
      * Constructor
      *
-     * @param AbstractEngine    $engine
-     * @param array             $options
+     * @param AbstractEngine $engine
+     * @param array $options
      */
-    public function __construct(AbstractEngine $engine, $options = array())
+    public function __construct(AbstractEngine $engine, $options = [])
     {
-        $this->options      = $options;
-        $this->engine       = $engine;
-        $this->application  = $engine->application();
+        $this->options     = $options;
+        $this->engine      = $engine;
+        $this->application = $engine->application();
     }
 
     /**

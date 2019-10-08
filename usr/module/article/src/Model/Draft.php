@@ -1,23 +1,23 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link         http://code.pialog.org for the Pi Engine source repository
- * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt BSD 3-Clause License
+ * @link         http://code.piengine.org for the Pi Engine source repository
+ * @copyright    Copyright (c) Pi Engine http://piengine.org
+ * @license      http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article\Model;
 
+use Module\Article\Controller\Admin\SetupController as Setup;
 use Pi;
 use Pi\Application\Model\Model;
 use Zend\Db\Sql\Expression;
 use Zend\Stdlib\ArrayObject;
-use Module\Article\Controller\Admin\SetupController as Setup;
 
 /**
  * Draft model
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class Draft extends Model
@@ -26,56 +26,57 @@ class Draft extends Model
     const FIELD_STATUS_PENDING  = 2;
     const FIELD_STATUS_REJECTED = 3;
 
-    protected $encodeColumns = array(
-        'related'      => true,
-        //'tag'          => true,
-    );
-    
+    protected $encodeColumns
+        = [
+            'related' => true,
+            //'tag'          => true,
+        ];
+
     /**
      * Get table fields exclude id field.
-     * 
-     * @return array 
+     *
+     * @return array
      */
     public function getValidColumns()
     {
         $table    = $this->getTable();
         $database = Pi::config()->load('service.database.php');
         $schema   = $database['schema'];
-        $sql = 'select COLUMN_NAME as name from information_schema.columns '
-             . 'where table_name=\'' 
-             . $table . '\' and table_schema=\'' 
-             . $schema . '\'';
+        $sql      = 'select COLUMN_NAME as name from information_schema.columns '
+            . 'where table_name=\''
+            . $table . '\' and table_schema=\''
+            . $schema . '\'';
         try {
             $rowset = Pi::db()->getAdapter()->query($sql, 'prepare')->execute();
         } catch (\Exception $exception) {
             return false;
         }
-        
-        $fields = array();
+
+        $fields = [];
         foreach ($rowset as $row) {
             if ($row['name'] == 'id') {
                 continue;
             }
             $fields[] = $row['name'];
         }
-        
+
         return $fields;
     }
 
     /**
      * Get available fields
-     * 
-     * @param string  $module
+     *
+     * @param string $module
      * @return array
      */
     public static function getAvailableFields($module = null)
     {
-        $result = array(
-            'id', 'article', 'subject', 'subtitle', 'image', 'author', 
-            'uid', 'source', 'content', 'category', 'related', 'time_publish', 
+        $result = [
+            'id', 'article', 'subject', 'subtitle', 'image', 'author',
+            'uid', 'source', 'content', 'category', 'related', 'time_publish',
             'time_update', 'time_submit', 'time_save', 'slug', 'seo_title',
             'seo_keywords', 'seo_description', 'status',
-        );
+        ];
 
         $module = $module ?: Pi::service('module')->current();
 
@@ -89,53 +90,53 @@ class Draft extends Model
 
         return $result;
     }
-    
+
     /**
      * Get the fields needed defines by user
-     * 
-     * @param string  $module  Module name
-     * @return array 
+     *
+     * @param string $module Module name
+     * @return array
      */
     public static function getValidFields($module = null)
     {
         $options         = Setup::getFormConfig();
         $availableFields = self::getAvailableFields($module);
-        $remainFields    = array(
-            'id', 'article', 'uid', 'time_publish', 'time_update', 'time_submit'
-        );
+        $remainFields    = [
+            'id', 'article', 'uid', 'time_publish', 'time_update', 'time_submit',
+        ];
         $validFields     = array_merge(
             $remainFields,
             array_intersect($availableFields, $options['elements'])
         );
-        
+
         return $validFields;
     }
 
     /**
      * Get default column
-     * 
+     *
      * @return array
      */
     public static function getDefaultColumns()
     {
-        return array(
-            'id', 'subject', 'subtitle', 'category', 'image', 'uid', 
+        return [
+            'id', 'subject', 'subtitle', 'category', 'image', 'uid',
             'author', 'slug', 'source', 'time_save', 'time_update', 'tag',
-        );
+        ];
     }
 
     /**
      * Create a draft
-     * 
+     *
      * @return bool|int
      */
     public function createOne()
     {
-        $data = array(
+        $data = [
             'user'   => Pi::user()->getId(),
             'status' => self::FIELD_STATUS_DRAFT,
-        );
-        $row = $this->createRow($data);
+        ];
+        $row  = $this->createRow($data);
         $row->save();
 
         return $row->id ?: false;
@@ -143,22 +144,23 @@ class Draft extends Model
 
     /**
      * Get draft articles by condition
-     * 
-     * @param array   $where
-     * @param int     $limit
-     * @param int     $offset
-     * @param array   $columns
-     * @param string  $order
-     * @return array 
+     *
+     * @param array $where
+     * @param int $limit
+     * @param int $offset
+     * @param array $columns
+     * @param string $order
+     * @return array
      */
     public function getSearchRows(
-        $where = array(),
+        $where = [],
         $limit = null,
         $offset = null,
         $columns = null,
         $order = null
-    ) {
-        $result = $rows = array();
+    )
+    {
+        $result = $rows = [];
 
         $fields        = $this->getValidColumns();
         $neededColumns = empty($columns) ? self::getDefaultColumns() : $columns;
@@ -193,7 +195,7 @@ class Draft extends Model
         $rows = $this->selectWith($select)->toArray();
 
         foreach ($rows as $row) {
-            $details = json_decode($row['detail'], true);
+            $details            = json_decode($row['detail'], true);
             $result[$row['id']] = array_merge($row, $details);
             foreach (array_keys($result[$row['id']]) as $key) {
                 if (!in_array($key, $neededColumns)) {
@@ -207,14 +209,14 @@ class Draft extends Model
 
     /**
      * Get searched row count
-     * 
-     * @param array  $where
+     *
+     * @param array $where
      * @return int
      */
-    public function getSearchRowsCount($where = array())
+    public function getSearchRowsCount($where = [])
     {
         $select = $this->select()
-            ->columns(array('total' => new Expression('count(id)')));
+            ->columns(['total' => new Expression('count(id)')]);
 
         if ($where) {
             $select->where($where);
@@ -225,17 +227,17 @@ class Draft extends Model
 
         return $result;
     }
-    
+
     /**
      * Save a row
-     * 
-     * @param array  $data
-     * @return ArrayObject 
+     *
+     * @param array $data
+     * @return ArrayObject
      */
     public function saveRow($data)
     {
         $columns = $this->getValidColumns();
-        $details = array();
+        $details = [];
         foreach ($data as $key => $value) {
             if (in_array($key, $columns)) {
                 continue;
@@ -244,18 +246,18 @@ class Draft extends Model
             unset($data[$key]);
         }
         $data['detail'] = json_encode($details);
-        
+
         $row = $this->createRow($data);
         $row->save();
-        
+
         return $row;
     }
-    
+
     /**
      * Update draft row.
-     * 
-     * @param array  $data
-     * @param array  $where 
+     *
+     * @param array $data
+     * @param array $where
      * @return bool
      */
     public function updateRow($data, $where)
@@ -263,9 +265,9 @@ class Draft extends Model
         foreach (array_keys($where) as $key) {
             unset($data[$key]);
         }
-        
+
         $columns = $this->getValidColumns();
-        $details = array();
+        $details = [];
         foreach ($data as $key => $value) {
             if (in_array($key, $columns)) {
                 continue;
@@ -274,19 +276,19 @@ class Draft extends Model
             unset($data[$key]);
         }
         $data['detail'] = json_encode($details);
-        
+
         $result = $this->update($data, $where);
-        
+
         return $result;
     }
-    
+
     /**
      * Find a article
-     * 
-     * @param string  $value
-     * @param string  $key
-     * @param bool    $arrayOrObject
-     * @return array|object 
+     *
+     * @param string $value
+     * @param string $key
+     * @param bool $arrayOrObject
+     * @return array|object
      */
     public function findRow($value, $key = 'id', $arrayOrObject = true)
     {
@@ -294,10 +296,10 @@ class Draft extends Model
         if (!$row->id) {
             return $row;
         }
-        $details = json_decode($row->detail, true) ?: array();
+        $details = json_decode($row->detail, true) ?: [];
         $row     = array_merge($row->toArray(), $details);
         unset($row['detail']);
-        
-        return $arrayOrObject ? $row : (object) $row;
+
+        return $arrayOrObject ? $row : (object)$row;
     }
 }

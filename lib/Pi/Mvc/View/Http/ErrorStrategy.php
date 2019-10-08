@@ -1,21 +1,20 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Mvc\View\Http;
 
-use Zend\View\Model\ViewModel;
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
-use Zend\Http\Response as HttpResponse;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface as Response;
 use Zend\View\Model\ClearableModelInterface;
+use Zend\View\Model\ViewModel;
 
 /**
  * Erroneous strategy listener
@@ -51,19 +50,19 @@ class ErrorStrategy extends AbstractListenerAggregate
         $sharedEvents->attach(
             'PI_CONTROLLER',
             MvcEvent::EVENT_DISPATCH,
-            array($this, 'prepareErrorViewModel'),
+            [$this, 'prepareErrorViewModel'],
             -85
         );
 
 
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_DISPATCH,
-            array($this, 'prepareErrorViewModel'),
+            [$this, 'prepareErrorViewModel'],
             -85
         );
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_RENDER,
-            array($this, 'prepareErrorViewModel'),
+            [$this, 'prepareErrorViewModel'],
             100
         );
     }
@@ -92,7 +91,7 @@ class ErrorStrategy extends AbstractListenerAggregate
             return;
         }
 
-        $response = $e->getResponse();
+        $response   = $e->getResponse();
         $statusCode = $response->getStatusCode();
 
         $templateName = '';
@@ -124,18 +123,28 @@ class ErrorStrategy extends AbstractListenerAggregate
         }
 
         //if (!$viewModel->getTemplate()) {
-        $config = $e->getApplication()->getServiceManager()->get('Config');
+        $config     = $e->getApplication()->getServiceManager()->get('Config');
         $viewConfig = $config['view_manager'];
-        $template = isset($viewConfig[$templateName])
+        $template   = isset($viewConfig[$templateName])
             ? $viewConfig[$templateName] : 'error';
         $viewModel->setTemplate($template);
         //}
 
         if (!$viewModel->getVariable('message') && is_string($error)) {
-        //if (is_string($error)) {
+            //if (is_string($error)) {
             $viewModel->setVariable('message', $error);
         }
         $viewModel->setVariable('code', $statusCode);
+
+        $routeMatch = $e->getRouteMatch();
+        if ($routeMatch) {
+            $module     = $routeMatch->getParam('module');
+            $controller = $routeMatch->getParam('controller');
+            $action     = $routeMatch->getParam('action');
+            $viewModel->setVariable('module', $module);
+            $viewModel->setVariable('controller', $controller);
+            $viewModel->setVariable('action', $action);
+        }
 
         $e->setResult($viewModel);
 

@@ -1,54 +1,58 @@
-<div ng-if="blocks.length">
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-sm-3">
-      <input type="text" placeholder="{{'Search' | translate}}" class="form-control" ng-model="searchTitle">
+<div data-ng-if="blocks.length">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-3">
+            <input type="text" placeholder="{{'Search' | translate}}" class="form-control" data-ng-model="searchTitle">
+        </div>
     </div>
-  </div>
-  <div class="table-responsive">
-  	<table class="table table-striped">
-    	<thead>
-        <tr>
-        	<th>{{'Title' | translate}}
-        	<th>{{'Description' | translate}}
-        	<th>{{'Related' | translate}}
-        	<th>{{'Action' | translate}}
-    	<tbody>
-    		<tr ng-repeat="block in blocks | filter:{title:searchTitle}">
-    			<td>{{block.title}}
-    			<td>{{block.description}}
-    			<td>
-            <div class="dropdown">
-              <button type="button" class="btn btn-default dropdown-toggle"
-                      ng-click="pageAction(block)">
-                {{'Pages' | translate}}
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li class="dropdown-header" ng-repeat="page in block.pages">
-                  {{page.title}}
-                  <ul class="nav">
-                    <li ng-repeat="item in page.pages">
-                      <a ng-href="{{item.url}}">
-                        {{item.title}}
-                      </a>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-    			<td>
-    				<a class="btn btn-link" ng-href="{{block.editUrl}}">
-              {{'Edit' | translate}}
-    				</a>
-            <a ng-if="block.cloned" class="btn btn-link" ng-href="{{block.deleteUrl}}">
-              {{'Delete' | translate}}
-            </a>
-            <a class="btn btn-link" ng-if="block.clonable" 
-               ng-href="{{block.cloneUrl}}">
-              {{'Clone' | translate}}
-            </a>
-  	</table>
-  </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{'Title' | translate}}
+                <th>{{'Description' | translate}}
+                <th>{{'Related' | translate}}
+                <th>{{'Action' | translate}}
+            <tbody>
+            <tr ng-repeat="block in blocks | filter:{title:searchTitle}">
+                <td>{{block.title}}</td>
+                <td>{{block.description}}</td>
+                <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-secondary dropdown-toggle"
+                                data-ng-click="pageAction(block)">
+                            {{'Pages' | translate}}
+
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header dropdown-item" ng-repeat="page in block.pages">
+                                {{page.title}}
+                                <ul class="nav">
+                                    <li ng-repeat="item in page.pages">
+                                        <a ng-href="{{item.url}}">
+                                            {{item.title}}
+                                        </a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    <a class="btn btn-link" ng-href="{{block.previewUrl}}" target="_blank">
+                        {{'Preview' | translate}}
+                    </a>
+                    <a class="btn btn-link" ng-href="{{block.editUrl}}">
+                        {{'Edit' | translate}}
+                    </a>
+                    <a class="btn btn-link" data-ng-if="block.clonable" ng-href="{{block.cloneUrl}}">
+                        {{'Clone' | translate}}
+                    </a>
+                    <a data-ng-if="block.cloned" class="btn btn-link" ng-href="{{block.deleteUrl}}">
+                        {{'Delete' | translate}}
+                    </a>
+                </td>
+        </table>
+    </div>
 </div>
-<div ng-if="!blocks.length" class="alert alert-info">
-  {{'None' | translate}}
+<div data-ng-if="!blocks.length" class="alert alert-info">
+    {{'None' | translate}}
 </div>

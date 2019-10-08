@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Registry
  */
 
@@ -15,14 +15,14 @@ use Pi;
 /**
  * Config cache
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Config extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
         $module = '';
         if (!empty($options['module'])) {
@@ -37,15 +37,15 @@ class Config extends AbstractRegistry
         }
 
         $modelConfig = Pi::model('config');
-        $where = array('module' => $module);
+        $where       = ['module' => $module];
         if (isset($category)) {
             $where['category'] = $category;
         }
-        $select = $modelConfig->select()
-            ->columns(array('name', 'value', 'filter'))
+        $select  = $modelConfig->select()
+            ->columns(['name', 'value', 'filter'])
             ->where($where);
-        $rowset = $modelConfig->selectWith($select);
-        $configs = array();
+        $rowset  = $modelConfig->selectWith($select);
+        $configs = [];
         foreach ($rowset as $row) {
             $configs[$row->name] = $row->value;
         }
@@ -55,12 +55,12 @@ class Config extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string     $module
-     * @param string    $category
+     * @param string $module
+     * @param string $category
      */
     public function read($module = '', $category = '')
     {
-        $module = $module ?: 'system';
+        $module  = $module ?: 'system';
         $options = compact('module', 'category');
 
         return $this->loadData($options);
@@ -68,8 +68,8 @@ class Config extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string        $module
-     * @param string|null   $category
+     * @param string $module
+     * @param string|null $category
      */
     public function create($module = '', $category = '')
     {

@@ -1,42 +1,61 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-03-05 20:33+0800\n"
-"PO-Revision-Date: 2014-03-05 20:33+0800\n"
+"POT-Creation-Date: 2014-08-24 14:55+0800\n"
+"PO-Revision-Date: 2017-02-28 17:01+0100\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-KeywordsList: __;_t;_e\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: c:\\Code\\pi\\lib\n"
-"X-Poedit-SearchPath-1: c:\\Code\\pi\\www\n"
-"X-Poedit-SearchPath-2: c:\\Code\\pi\\usr\\editor\n"
+"X-Poedit-Basepath: ../../../../../../../..\n"
+"X-Poedit-SearchPath-0: Code/pi/lib\n"
+"X-Poedit-SearchPath-1: Code/pi/www\n"
+"X-Poedit-SearchPath-2: Code/pi/usr/editor\n"
+"X-Poedit-SearchPath-3: Users/marc/Documents/GitHub/pi/usr/module/user/src/"
+"Form/RegisterForm.php\n"
+"X-Poedit-SearchPath-4: Users/marc/Documents/GitHub/pi/usr/module/user/"
+"config/form.register.php\n"
+"X-Poedit-SearchPathExcluded-0: Users/marc/Documents/GitHub/pi/www/static/js/"
+"bs-lessdoc-parser.js\n"
 
 #: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:348
-#, fuzzy
 msgid "Theme updated successfully."
-msgstr "主题更新成功。"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:355
-#, fuzzy
 msgid "Theme failed to update."
-msgstr "主题更新失败。"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:357
-#, fuzzy
 msgid "Theme upgraded successfully."
-msgstr "主题升级成功。"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:362
-#, fuzzy
 msgid "Theme asset publish failed."
-msgstr "主题更新失败。"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Application/Service/Comment.php:548
 msgid "Posted a new comment."
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Application/Service/Theme.php:133
+msgid "Full layout (header/footer and blocks)"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Application/Service/Theme.php:134
+msgid "Simple layout (header/footer)"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Application/Service/Theme.php:135
+msgid "Content only (with style)"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Application/Service/Theme.php:136
+msgid "Raw content (no style)"
 msgstr ""
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
@@ -77,9 +96,8 @@ msgid "Supplied credential is invalid."
 msgstr ""
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
-#, fuzzy
 msgid "Authentication successful."
-msgstr "身份验证成功。"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Editor/Factory.php:77
 msgid "Pi Default Editor"
@@ -91,115 +109,104 @@ msgid "Feed of %s"
 msgstr ""
 
 #: c:\Code\pi\lib/Pi/Filter/Gender.php:39
-#, fuzzy
 msgid "Male"
-msgstr "男"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Filter/Gender.php:43
-#, fuzzy
 msgid "Female"
-msgstr "女"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Filter/Gender.php:48
-#, fuzzy
 msgid "Unknown gender"
-msgstr "未知"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Filter/YesNo.php:40
-#, fuzzy
 msgid "No"
-msgstr "否"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Filter/YesNo.php:43
-#, fuzzy
 msgid "Yes"
-msgstr "是"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:32
-#, fuzzy
-msgid "No level"
-msgstr "无缓存"
+msgid "As a whole"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:33
-#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:68
-#, fuzzy
-msgid "Language"
-msgstr "语言选择"
+msgid "Per language"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:34
-msgid "Authenticated or not"
+msgid "Per role"
 msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:35
-#: c:\Code\pi\lib/Pi/Form/Element/Role.php:55
-#, fuzzy
-msgid "Role"
-msgstr "角色"
+msgid "Guest only"
+msgstr ""
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:49
-#, fuzzy
-msgid "Cache level"
-msgstr "无缓存"
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:50
+msgid "Cache granularity"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:32
-#, fuzzy
 msgid "No cache"
-msgstr "无缓存"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:33
-#, fuzzy, php-format
+#, php-format
 msgid "%d seconds"
-msgstr "%d 秒"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:34
-#, fuzzy
 msgid "1 minute"
-msgstr "1分钟"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:35
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:36
-#, fuzzy, php-format
+#, php-format
 msgid "%d minutes"
-msgstr "%d 分钟"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:37
-#, fuzzy
 msgid "1 hour"
-msgstr "1小时"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:38
-#, fuzzy, php-format
+#, php-format
 msgid "%d hours"
-msgstr "%d 小时"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:39
-#, fuzzy
 msgid "1 day"
-msgstr "1天"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:40
-#, fuzzy
 msgid "1 week"
-msgstr "1 周"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:41
-#, fuzzy
 msgid "1 month"
-msgstr "1月"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:54
-#, fuzzy
 msgid "Cache expiration"
-msgstr "无缓存"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/Editor.php:35
 msgid "Text editor"
 msgstr ""
 
-#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:33
-#, fuzzy
+#: c:\Code\pi\lib/Pi/Form/Element/Layout.php:43
+msgid "Layout"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:34
 msgid "Auto-detection"
-msgstr "自动检测"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:69
+msgid "Language"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:36
 #: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:78
@@ -223,9 +230,12 @@ msgstr ""
 #: c:\Code\pi\lib/Pi/Form/Element/Role.php:37
 #: c:\Code\pi\lib/Pi/Form/Element/RoleAdmin.php:35
 #: c:\Code\pi\lib/Pi/Form/Element/RoleUser.php:35
-#, fuzzy
 msgid "None"
-msgstr "无"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Role.php:55
+msgid "Role"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/RoleAdmin.php:52
 msgid "Admin role"
@@ -243,35 +253,36 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: c:\Code\pi\lib/Pi/Form/Element/Theme.php:48
-#, fuzzy
+#: c:\Code\pi\lib/Pi/Form/Element/Theme.php:35
+msgid "Use system theme"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Theme.php:47
 msgid "Theme"
-msgstr "主题更新成功。"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/Timezone.php:78
 msgid "Timezone"
 msgstr ""
 
+#: c:\Code\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:59
+msgid "CAPTCHA image"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:60
+msgid "Click to refresh CAPTCHA"
+msgstr ""
+
 #: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:91
-#, fuzzy
 msgid "Day"
-msgstr "1天"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:92
 msgid "Year"
 msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:93
-#, fuzzy
 msgid "Month"
-msgstr "1月"
-
-#: c:\Code\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:60
-msgid "CAPTCHA image"
-msgstr ""
-
-#: c:\Code\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:61
-msgid "Click to refresh CAPTCHA"
 msgstr ""
 
 #: c:\Code\pi\lib/Pi/Mvc/Controller/ActionController.php:98
@@ -279,14 +290,13 @@ msgid "The requested action was not found."
 msgstr ""
 
 #: c:\Code\pi\lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
-#, fuzzy
 msgid "Login"
-msgstr "登录"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Mvc/Controller/Plugin/Terminate.php:42
-#, fuzzy, php-format
+#, php-format
 msgid "Please <a href=\"%s\" title=\"\">login</a> and come again."
-msgstr "请重新 <a href=\"%s\" title=\"\">登录</a> 。"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/User/Model/AbstractModel.php:239
 msgid "Guest"
@@ -296,24 +306,30 @@ msgstr ""
 msgid "Tags: "
 msgstr ""
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:242
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:249
 msgid "Manager"
 msgstr ""
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:249
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:256
 msgid "Moderator"
 msgstr ""
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:256
-#, fuzzy
-msgid "Editor"
-msgstr "编辑"
-
 #: c:\Code\pi\www/setup/src/Controller/Admin.php:263
-msgid "Staff"
+msgid "Editor"
 msgstr ""
 
 #: c:\Code\pi\www/setup/src/Controller/Admin.php:270
-#, fuzzy
+msgid "Staff"
+msgstr ""
+
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:277
 msgid "Member"
-msgstr "成员"
+msgstr ""
+
+#, fuzzy
+#~ msgid "No level"
+#~ msgstr "无缓存"
+
+#, fuzzy
+#~ msgid "Cache level"
+#~ msgstr "无缓存"

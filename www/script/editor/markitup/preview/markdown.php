@@ -1,23 +1,19 @@
 <?PHP
 /**
- * Preview script for MarkItUp markdown
+ * Pi Engine (http://piengine.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @package         Editor\Markitup
- * @since           3.0
- * @version         $Id$
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
+// Pi boot with no engine bootup: current file is located in www/script/...
+$boot = dirname(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))))) . '/boot.php';
+include $boot;
+
 $content = $_POST['preview'];
+$content = Pi::service('security')->filter($content);
+$content = _escape($content);
 
 if (class_exists('MarkdownDocument')) {
     $markdown = MarkdownDocument::createFromString($content);

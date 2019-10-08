@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -25,7 +25,7 @@ class Config
      *
      * @var array
      */
-    protected $container = array();
+    protected $container = [];
 
     public function __construct($root = null)
     {
@@ -35,8 +35,8 @@ class Config
     /**
      * Set configuration data
      *
-     * @param string    $name       Configuration name
-     * @param array     $configs    Associative array of config data
+     * @param string $name    Configuration name
+     * @param array  $configs Associative array of config data
      *
      * @return $this
      */
@@ -50,9 +50,10 @@ class Config
     /**
      * Set configuration data
      *
-     * @param string    $name   Configuration name
-     * @param string    $key
-     * @param mixed     $value
+     * @param string $name Configuration name
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return $this
      */
     public function set($name, $key, $value)
@@ -65,8 +66,8 @@ class Config
     /**
      * Get configuration data
      *
-     * @param string    $name   Configuration name
-     * @param string    $key
+     * @param string $name Configuration name
+     * @param string $key
      *
      * @return mixed
      */
@@ -86,8 +87,8 @@ class Config
     /**
      * Load configuration data from custom or config directory
      *
-     * @param string    $file
-     * @param string    $name
+     * @param string $file
+     * @param string $name
      *
      * @return array
      */
@@ -109,8 +110,8 @@ class Config
     /**
      * Write config data into config file
      *
-     * @param string        $file   Full path to file
-     * @param array|string  $data
+     * @param string       $file Full path to file
+     * @param array|string $data
      *
      * @return bool
      */
@@ -121,7 +122,7 @@ class Config
                 . '// Generated on ' . date('Y-m-d H:i:s') . PHP_EOL
                 . 'return ' . var_export($data, true) . ';';
         }
-        $result = (bool) file_put_contents($file, $data);
+        $result = (bool)file_put_contents($file, $data);
 
         return $result;
     }

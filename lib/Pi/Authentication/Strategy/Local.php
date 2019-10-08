@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -47,9 +47,9 @@ class Local extends AbstractStrategy
             case 'login':
             case 'logout':
                 if ($params && is_string($params)) {
-                    $params = array(
+                    $params = [
                         'redirect' => $params,
-                    );
+                    ];
                 }
                 $url = Pi::service('user')->getUrl($type, $params);
                 break;
@@ -129,11 +129,11 @@ class Local extends AbstractStrategy
      * @param array $config
      * @return AdapterInterface
      */
-    public function loadAdapter($config = array())
+    public function loadAdapter($config = [])
     {
-        $class      = $config['class'];
-        $options    = isset($config['options']) ? $config['options'] : array();
-        $adapter    = new $class;
+        $class   = $config['class'];
+        $options = isset($config['options']) ? $config['options'] : [];
+        $adapter = new $class;
         if ($options) {
             $adapter->setOptions($options);
         }
@@ -147,10 +147,10 @@ class Local extends AbstractStrategy
      * @param array $config
      * @return StorageInterface
      */
-    public function loadStorage($config = array())
+    public function loadStorage($config = [])
     {
-        $class      = $config['class'];
-        $options    = isset($config['options']) ? $config['options'] : array();
+        $class   = $config['class'];
+        $options = isset($config['options']) ? $config['options'] : [];
         $storage = new $class($options);
 
         return $storage;
@@ -201,7 +201,7 @@ class Local extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    public function requireLogin(array $params = array())
+    public function requireLogin(array $params = [])
     {
         if ($this->hasIdentity()) {
             return;
@@ -213,16 +213,18 @@ class Local extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    public function login(array $params = array())
+    public function login(array $params = [])
     {
         $url = Pi::service('user')->getUrl('login', $params);
-        Pi::service('url')->redirect($url);
+        $url = strtok($url, '?');
+
+        Pi::service('url')->redirect($url, false, 301);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function logout(array $params = array())
+    public function logout(array $params = [])
     {
         $url = Pi::service('user')->getUrl('logout', $params);
         Pi::service('url')->redirect($url, true);
@@ -231,7 +233,7 @@ class Local extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    public function getData(array $fields = array())
+    public function getData(array $fields = [])
     {
         return Pi::service('user')->get(null, $fields);
     }

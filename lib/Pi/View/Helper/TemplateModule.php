@@ -1,16 +1,15 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Pi\View\Resolver\ModuleTemplate as ModuleTemplateResolver;
 use Zend\View\Helper\AbstractHelper;
 
@@ -32,7 +31,7 @@ class TemplateModule extends AbstractHelper
     /**
      * Get full path to a module template
      *
-     * @param   string  $template
+     * @param   string $template
      * @param   string|null $module
      * @return  string|false
      */
@@ -41,7 +40,7 @@ class TemplateModule extends AbstractHelper
         $template = $module ? $module . ':' . $template : $template;
 
         $resolver = new ModuleTemplateResolver;
-        $template = $resolver->resolve($template);
+        $template = $resolver->resolve($template, $this->view);
 
         return $template;
     }

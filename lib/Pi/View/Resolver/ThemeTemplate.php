@@ -1,17 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\View\Resolver;
 
 use Pi;
-use Zend\View\Resolver\ResolverInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
+use Zend\View\Resolver\ResolverInterface;
 
 /**
  * Theme template resolver
@@ -47,7 +47,7 @@ class ThemeTemplate implements ResolverInterface
      */
     public function setSuffix($suffix)
     {
-        $this->suffix = (string) $suffix;
+        $this->suffix = (string)$suffix;
 
         return $this;
     }
@@ -75,7 +75,7 @@ class ThemeTemplate implements ResolverInterface
         if (substr($name, -6) == '.' . $this->suffix) {
             $name = substr($name, 0, -6);
         }
-        $theme = $theme ?: Pi::service('theme')->current();
+        $theme    = $theme ?: Pi::service('theme')->current();
         $template = sprintf(
             '%s/%s/%s/%s.%s',
             Pi::path('theme'),
@@ -101,6 +101,7 @@ class ThemeTemplate implements ResolverInterface
         if (false !== strpos($name, ':')) {
             return false;
         }
+        $renderer->context('layout');
         // Get template path from template name
         $path = $this->canonizeTemplate($name);
         // Return the path if valid
@@ -116,6 +117,7 @@ class ThemeTemplate implements ResolverInterface
                 return $path;
             }
         }
+        $renderer->context('');
 
         return false;
     }

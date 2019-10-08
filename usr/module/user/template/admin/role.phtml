@@ -1,39 +1,40 @@
 <?php
-$this->angular(array(
+$this->angular([
     'angular-route.js',
     'ui-bootstrap-custom-tpls-0.7.0.js',
-    'pi.js'
-));
+    'ui-bootstrap-custom-tpls-0.7.0.bs4.js',
+    'pi.js',
+]);
 ?>
 <script>
-angular
-    .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi'])
-    .constant('config', {
-        urlRoot: '<?php echo $this->url('', array('controller' => 'role')); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
-        t: {
-            ADMIN_TITLE: '<?php echo _a('Admin roles'); ?>',
-            FRONT_TITLE: '<?php echo _a('Front roles'); ?>',
-            NAME: '<?php echo _a('Name'); ?>',
-            TITLE: '<?php echo _a('Title'); ?>',
-            USER_COUNT: '<?php echo _a('Users in role'); ?>',
-            ACTION: '<?php echo _a('Action'); ?>',
-            ROLE_TITLE: '<?php echo _a('Title'); ?>',
-            SUBMIT: '<?php echo _a('Submit'); ?>',
-            REQUIRED: '<?php echo _a('Required'); ?>',
-            TYPE: '<?php echo _a('Type'); ?>',
-            FRONT: '<?php echo _a('Front'); ?>',
-            ADMIN: '<?php echo _a('Admin'); ?>',
-            EDIT_TITLE: '<?php echo _a('Users in role'); ?>',
-            UID_OR_IDENTITY: '<?php echo _a('User id or name'); ?>',
-            USERS: '<?php echo _a('Users'); ?>',
-            UID: '<?php echo _a('User id'); ?>',
-            USERNAME: '<?php echo _a('Username'); ?>',
-            DISPLAYNAME: '<?php echo _a('Display name'); ?>',
-            EMAIL: '<?php echo _a('Email'); ?>',
-            ADD_USER: '<?php echo _a('Add user'); ?>',
-            NONE_USER: '<?php echo _a('None user in this role.'); ?>'
-        }
-    });
+    angular
+        .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi'])
+        .constant('config', {
+            urlRoot: '<?php echo $this->url('', ['controller' => 'role']); ?>',
+            assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+            t: {
+                ADMIN_TITLE: '<?php echo _a('Admin roles'); ?>',
+                FRONT_TITLE: '<?php echo _a('Front roles'); ?>',
+                NAME: '<?php echo _a('Name'); ?>',
+                TITLE: '<?php echo _a('Title'); ?>',
+                USER_COUNT: '<?php echo _a('Users in role'); ?>',
+                ACTION: '<?php echo _a('Action'); ?>',
+                ROLE_TITLE: '<?php echo _a('Title'); ?>',
+                SUBMIT: '<?php echo _a('Submit'); ?>',
+                REQUIRED: '<?php echo _a('Required'); ?>',
+                TYPE: '<?php echo _a('Type'); ?>',
+                FRONT: '<?php echo _a('Front'); ?>',
+                ADMIN: '<?php echo _a('Admin'); ?>',
+                EDIT_TITLE: '<?php echo _a('Users in role'); ?>',
+                UID_OR_IDENTITY: '<?php echo _a('User id or name'); ?>',
+                USERS: '<?php echo _a('Users'); ?>',
+                UID: '<?php echo _a('User id'); ?>',
+                USERNAME: '<?php echo _a('Username'); ?>',
+                DISPLAYNAME: '<?php echo _a('Display name'); ?>',
+                EMAIL: '<?php echo _a('Email'); ?>',
+                ADD_USER: '<?php echo _a('Add user'); ?>',
+                NONE_USER: '<?php echo _a('None user in this role.'); ?>'
+            }
+        });
 </script>
 <script src="<?php echo $this->assetModule('admin/role.js'); ?>"></script>

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\User\Resource;
@@ -23,7 +23,7 @@ class AbstractResource
     protected $adapter;
 
     /** @var array Options */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * If user module available for time handling
@@ -61,7 +61,7 @@ class AbstractResource
      * @param array $options
      * @return self
      */
-    public function setOptions($options = array())
+    public function setOptions($options = [])
     {
         $this->options = $options;
 

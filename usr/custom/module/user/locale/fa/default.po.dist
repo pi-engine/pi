@@ -1,0 +1,24 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi user custom\n"
+"POT-Creation-Date: 2016-03-01 11:39+0330\n"
+"PO-Revision-Date: 2016-03-01 11:39+0330\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-KeywordsList: __;_e;_b\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: config/form.register.php:20
+msgid "Terms & Conditions"
+msgstr "شرایط و مقررات"
+
+#: config/form.register.php:21
+#, php-format
+msgid "Accept %s"
+msgstr "پذیرش %s"

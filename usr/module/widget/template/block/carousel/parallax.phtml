@@ -1,40 +1,45 @@
-<?php 
-// Load jQuerty
-$this->jQuery();
+<?php
 // Load css
-$this->css(array(
+$this->css([
     $this->assetModule('script/parallax/style.css', 'widget'),
-));
+]);
 // Load js
-$this->js(array(
+$this->js([
     $this->assetModule('script/parallax/modernizr.js', 'widget'),
     $this->assetModule('script/parallax/jquery.cslider.js', 'widget'),
-));
+]);
 // Setting as footscript
-$script = "$(function() {
+$script
+    = "$(function() {
         $('#da-slider').cslider({
             autoplay: true,
         });
     });";
 $this->footScript()->appendScript($script);
 // Load Google font
-$this->HeadLink(array(
+$this->HeadLink([
     'href' => 'http://fonts.googleapis.com/css?family=Economica:700,400italic',
-    'rel' => 'stylesheet',
+    'rel'  => 'stylesheet',
     'type' => 'text/css',
-));
+]);
 
 // Options: interval, pause, height
-$options = (array) $block['options'];
+$options  = (array)$block['options'];
+$target   = $options['target_new'] ? '_self' : '_blank';
+$ellipsis = empty($options['max_rows'])
+    ? 'pi-ellipsis'
+    : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
 ?>
 <div id="da-slider" class="da-slider">
     <?php foreach ($block['items'] as $item) { ?>
-    <div class="da-slide">
-        <h2><?php echo _escape($item['caption']); ?></h2>
-        <p><?php echo _escape($item['desc']); ?></p>
-        <a title="<?php echo _escape($item['caption']); ?>" href="<?php echo _escape($item['link']); ?>" class="da-link"><?php echo _b('More'); ?></a>
-        <div class="da-img"><img src="<?php echo _escape($item['image']); ?>" alt="<?php echo _escape($item['caption']); ?>" /></div>
-    </div>
+        <div class="da-slide">
+            <h2><?php echo _escape($item['caption']); ?></h2>
+            <p class="<?php echo $ellipsis; ?>"><?php echo $item['summary']; ?></p>
+            <a title="<?php echo _escape($item['caption']); ?>" href="<?php echo $item['link']; ?>" class="da-link"
+               target="<?php echo $target; ?>"><?php echo _b('More'); ?></a>
+            <div class="da-img"><img src="<?php echo _escape($item['image']); ?>"
+                                     alt="<?php echo _escape($item['caption']); ?>"/></div>
+        </div>
     <?php } ?>
     <nav class="da-arrows">
         <span class="da-arrows-prev"></span>

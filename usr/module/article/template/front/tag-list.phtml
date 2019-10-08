@@ -1,12 +1,12 @@
 <?php
-    $this->css(array(
-        $this->assetModule('script/block.css'),
-    ));
-    $this->jQuery();
+$this->css([
+    $this->assetModule('script/block.css'),
+]);
+$this->jQuery();
 ?>
 <div class="pi-article-module">
     <div class="clearfix pi-block-header">
-        <span class="pi-block-title pull-left"><?php echo $this->escape($title) . '"'; ?>
+        <span class="pi-block-title float-left"><?php echo $this->escape($title) . '"'; ?>
             <span class="text-important divider">
                 <?php echo $this->escape($tag); ?>
             </span><?php echo '"'; ?>
@@ -18,20 +18,22 @@
     <div class="article-list-content">
         <ul class="list list14">
             <?php $index = 0 ?>
-            <?php foreach ($articles as $article) { $index++ ?>
-                <li class="text-muted">
-                    <div class="list-hover">
-                        <span class="pull-right article-list-desc">
+            <?php foreach ($articles as $article) {
+            $index++ ?>
+            <li class="text-muted">
+                <div class="list-hover">
+                        <span class="float-right article-list-desc">
                             <?php echo _date($article['time_publish']); ?>
                         </span>
-                        <a class="article-list-title" target="_blank" href="<?php echo $article['url']; ?>" title="<?php echo $this->escape($article['subject']); ?>">
-                            <?php echo $this->escape($article['subject']); ?>
-                        </a>
-                    </div>               
+                    <a class="article-list-title" target="_blank" href="<?php echo $article['url']; ?>"
+                       title="<?php echo $this->escape($article['subject']); ?>">
+                        <?php echo $this->escape($article['subject']); ?>
+                    </a>
+                </div>
                 <?php if ($index % 5 == 0) { ?>
-                    <li class="dashed">
+            <li class="dashed">
                 <?php } ?>
-            <?php } ?>   
+                <?php } ?>
         </ul>
         <div style="text-align: center">
             <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>

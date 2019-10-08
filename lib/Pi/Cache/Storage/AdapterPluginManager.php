@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Cache\Storage;
@@ -23,16 +23,19 @@ class AdapterPluginManager extends ZendAdapterPluginManager
      *
      * @var array
      */
-    protected $invokableClasses = array(
-        'filesystem'     => 'Pi\Cache\Storage\Adapter\Filesystem',
+    protected $invokableClasses
+        = [
+            'filesystem' => 'Pi\Cache\Storage\Adapter\Filesystem',
+            'memcached'  => 'Pi\Cache\Storage\Adapter\Memcached',
+            'redis'      => 'Pi\Cache\Storage\Adapter\Redis',
 
-        'apc'            => 'Zend\Cache\Storage\Adapter\Apc',
-        'memcached'      => 'Zend\Cache\Storage\Adapter\Memcached',
-        'memory'         => 'Zend\Cache\Storage\Adapter\Memory',
-        'redis'          => 'Zend\Cache\Storage\Adapter\Redis',
-        'dba'            => 'Zend\Cache\Storage\Adapter\Dba',
-        'wincache'       => 'Zend\Cache\Storage\Adapter\WinCache',
-        'zendserverdisk' => 'Zend\Cache\Storage\Adapter\ZendServerDisk',
-        'zendservershm'  => 'Zend\Cache\Storage\Adapter\ZendServerShm',
-    );
+            'apc'            => 'Zend\Cache\Storage\Adapter\Apc',
+            //'memcached'      => 'Zend\Cache\Storage\Adapter\Memcached',
+            'memory'         => 'Zend\Cache\Storage\Adapter\Memory',
+            //'redis'          => 'Zend\Cache\Storage\Adapter\Redis',
+            'dba'            => 'Zend\Cache\Storage\Adapter\Dba',
+            'wincache'       => 'Zend\Cache\Storage\Adapter\WinCache',
+            'zendserverdisk' => 'Zend\Cache\Storage\Adapter\ZendServerDisk',
+            'zendservershm'  => 'Zend\Cache\Storage\Adapter\ZendServerShm',
+        ];
 }

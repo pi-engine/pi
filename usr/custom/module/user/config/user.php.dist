@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -18,6 +18,15 @@ $customConfig = array(
     'field'     => array(
 
         // Profile fields
+
+        // Profile: register source, could be used for register invitation
+        'register_source' => array(
+            'name'          => 'register_source',
+            'title'         => _a('Register source'),
+            'is_edit'       => false,
+            'is_display'    => false,
+            'is_search'     => false,
+        ),
 
         // Profile: first_name
         'first_name'  => array(
@@ -42,36 +51,12 @@ $customConfig = array(
         'mobile'      => array(
             'name'      => 'mobile',
             'title'     => _a('Mobile phone'),
-            // Edit element specs
-            'edit'      => array(
-                'validators'    => array(
-                    array(
-                        'name'      => 'Zend\I18n\Validator\PhoneNumber',
-                        'options'   => array(
-                            'country'       => 'cn',
-                            'allowed_types' => array('mobile'),
-                        ),
-                    ),
-                ),
-            ),
         ),
 
         // Profile: phone
         'phone'  => array(
             'name'  => 'phone',
             'title' => _a('Telephone'),
-            // Edit element specs
-            'edit'      => array(
-                'validators'    => array(
-                    array(
-                        'name'      => 'Zend\I18n\Validator\PhoneNumber',
-                        'options'   => array(
-                            'country'       => 'cn',
-                            'allowed_types' => array('general'),
-                        ),
-                    ),
-                ),
-            ),
         ),
 
 

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Front;
@@ -31,50 +31,53 @@ class ProfileController extends ActionController
         }
         Pi::service('authentication')->requireLogin();
 
-        $userRow    = Pi::user()->getUser();
-        $roles      = $userRow->role();
-        $roleList   = Pi::registry('role')->read();
-        $userRole   = array();
+        $userRow  = Pi::user()->getUser();
+        $roles    = $userRow->role();
+        $roleList = Pi::registry('role')->read();
+        $userRole = [];
         foreach ($roles as $role) {
             $userRole[] = $roleList[$role]['title'];
         }
         $roleString = implode(' | ', $userRole);
 
-        $pwUrl = $this->url('', array('controller' => 'password'));
+        $pwUrl    = $this->url('', ['controller' => 'password']);
         $pwString = sprintf(
             '<a href="%s" title="">%s</a>',
             $pwUrl,
             __('Change password')
         );
 
-        $loUrl = Pi::service('authentication')->getUrl('logout');
+        $loUrl    = Pi::service('authentication')->getUrl('logout');
         $loString = sprintf(
             '<a href="%s" title="">%s</a>',
             $loUrl,
             __('Logout')
         );
-        $user = array(
-            __('ID')        => $userRow->id,
-            __('Username')  => $userRow->identity,
-            __('Email')     => $userRow->email,
-            __('Name')      => $userRow->name,
-            __('Role')      => $roleString,
-            __('Password')  => $pwString,
-            __('Logout')    => $loString,
-        );
+        $user     = [
+            __('ID')       => $userRow->id,
+            __('Username') => $userRow->identity,
+            __('Email')    => $userRow->email,
+            __('Name')     => $userRow->name,
+            __('Role')     => $roleString,
+            __('Password') => $pwString,
+            __('Logout')   => $loString,
+        ];
 
         $avatar = Pi::service('avatar')->get($userRow->id);
-        $title = __('User profile');
-        $this->view()->assign(array(
-            'title'     => $title,
-            'user'      => $user,
-            'avatar'    => $avatar,
-        ));
+        $title  = __('User profile');
+        $this->view()->assign([
+            'title'  => $title,
+            'user'   => $user,
+            'avatar' => $avatar,
+        ]);
         $this->view()->setTemplate('profile');
 
         $this->view()->headTitle(__('User profile'));
         $this->view()->headdescription(__('User profile'), 'set');
-        $this->view()->headkeywords(__('login,register,find,password,user,account'), 'set');
+        $headKeywords = Pi::user()->config('head_keywords');
+        if ($headKeywords) {
+            $this->view()->headkeywords($headKeywords, 'set');
+        }
     }
 
     /**
@@ -86,7 +89,7 @@ class ProfileController extends ActionController
      */
     public function viewAction()
     {
-        $this->redirect('', array('action' => 'index'));
+        $this->redirect('', ['action' => 'index']);
     }
 
     /**

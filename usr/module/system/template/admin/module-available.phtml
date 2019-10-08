@@ -2,23 +2,23 @@
 $this->css($this->assetModule('admin/admin.css'));
 ?>
 <div class="table-responsive" id="js-module">
-    <table class="table">
+    <table class="table table-responsive">
         <thead>
-            <tr>
-                <th><?php echo _a('Icon'); ?></th>
-                <th style="width: 15%;"><?php echo _a('Title'); ?></th>
-                <th style="width: 15%;"><?php echo _a('Version'); ?></th>
-                <th style="width: 30%;"><?php echo _a('Description'); ?></th>
-                <th><?php echo _a('Action'); ?></th>
-            </tr>
+        <tr>
+            <th><?php echo _a('Icon'); ?></th>
+            <th style="width: 15%;"><?php echo _a('Title'); ?></th>
+            <th style="width: 15%;"><?php echo _a('Version'); ?></th>
+            <th style="width: 30%;"><?php echo _a('Description'); ?></th>
+            <th><?php echo _a('Action'); ?></th>
+        </tr>
         </thead>
         <tbody>
-            <?php foreach ($modules as $directory => $module) { ?>
+        <?php foreach ($modules as $directory => $module) { ?>
             <tr class="system-module-item"
                 data-name="<?php echo $directory; ?>">
                 <td>
                     <?php
-                    echo sprintf('<i class="fa %s fa-3x"></i>', $module['meta']['icon'] ? : 'fa-th');
+                    echo sprintf('<i class="fa %s fa-3x"></i>', $module['meta']['icon'] ?: 'fa-th');
                     ?>
                 </td>
                 <td>
@@ -32,100 +32,105 @@ $this->css($this->assetModule('admin/admin.css'));
                 <td>
                     <div class="module-p"><?php echo _escape($module['meta']['description']); ?></div>
                     <a href="javascript:void(0)" class="invisible detail-action"><?php echo _a('Detail'); ?></a>
-                    <div class="pi-hide well well-small">
+                    <div class="pi-hide card bg-light mb-3">
                         <dl class="dl-horizontal">
                             <dt><?php echo _a('Directory:'); ?></dt>
                             <dd><?php echo $directory; ?></dd>
+                            <?php if (!empty($module['author'])) { ?>
                             <dd>&nbsp;
-                            <?php foreach ($module['author'] as $key => $value) {
-                                echo '<dt>' . _escape($key) . ':</dt>';
-                                echo '<dd>' . _escape($value) . '</dd>';
-                            }?>
+                                <?php
+                                foreach ($module['author'] as $key => $value) {
+                                    echo '<dt>' . _escape($key) . ':</dt>';
+                                    echo '<dd>' . _escape($value) . '</dd>';
+                                }
+                                ?>
+                                <?php } ?>
                         </dl>
                     </div>
                 </td>
                 <td>
                     <div class="btn-group">
-                    <?php
+                        <?php
                         if (empty($module['meta']['installed'])) {
                             $buttonClass = '';
-                            $installUrl = $this->url('', array('action' => 'install', 'directory' => $directory, 'from' => 'available'));
+                            $installUrl  = $this->url('', ['action' => 'install', 'directory' => $directory, 'from' => 'available']);
                         } else {
                             $buttonClass = ' disabled';
-                            $installUrl = 'javascript:void(0)';
+                            $installUrl  = 'javascript:void(0)';
                         }
                         echo sprintf('<a class="btn btn-sm btn-primary%s" href="%s">%s</a>', $buttonClass, $installUrl, _a('Install'));
-                    ?>
-                    <?php if (!empty($module['meta']['clonable'])) { ?>
-                    <span class="btn btn-sm btn-primary module-clone" data-toggle="modal" data-target="#js-module-form"
-                          href="<?php echo $this->url('', array('action' => 'clone', 'directory' => $directory, 'from' => 'available')); ?>">
+                        ?>
+                        <?php if (!empty($module['meta']['clonable'])) { ?>
+                            <span class="btn btn-sm btn-primary module-clone" data-toggle="modal"
+                                  data-target="#js-module-form"
+                                  href="<?php echo $this->url('', ['action' => 'clone', 'directory' => $directory, 'from' => 'available']); ?>">
                         <?php echo _a('Clone'); ?>
                     </span>
-                    <?php } ?>
+                        <?php } ?>
                     </div>
                 </td>
             </tr>
-            <?php } ?>
+        <?php } ?>
         </tbody>
     </table>
 </div>
 <div class="modal fade" id="js-module-form">
 </div>
 <script>
-(function($) {
-    var page = {
-        el: $('#js-module'),
-        installUrl: '<?php echo $this->url('', array(
+    (function ($) {
+        var page = {
+            el: $('#js-module'),
+            installUrl: '<?php echo $this->url('', [
                 'action'    => 'install',
                 'from'      => 'available',
                 'name'      => '__NAME__',
                 'directory' => '__DIRECTORY__',
                 'title'     => '__TITLE__',
-            )); ?>',
-        $: function(selector) {
-            return this.el.find(selector);
-        },
-        init: function() {
-            this.$('.detail-action').click($.proxy(this.toggleDetail, this));
-        },
-        toggleDetail: function(e) {
-            $(e.target).siblings('.well').toggle();
-        }
-    }
-    page.init();
-
-    var checked;
-
-    $('#js-module-form').on('show.bs.modal', function(e) {
-        var btn = $(e.relatedTarget);
-        var modal = $(this);
-
-        $.get(btn.attr('href')).done(function(res) {
-            modal.html(res);
-
-            var fn = function(res) {
-                var d = res.data;
-                /*
-                location.href = page.installUrl + '/name/' + d.name + '/directory/' 
-                    + d.directory + '/title/' + d.title;
-                */
-                location.href = page.installUrl
-                    .replace('__NAME__', d.name)
-                    .replace('__DIRECTORY__', d.directory)
-                    .replace('__TITLE__', d.title);
-            };
-
-            if (typeof formModule != 'undefined') {
-                formModule.success = fn;
-            } else {
-                checked = setInterval(function() {
-                    if (typeof formModule != 'undefined') {
-                        formModule.success = fn;
-                        clearInterval(checked);
-                    }
-                }, 10);
+            ]); ?>',
+            $: function (selector) {
+                return this.el.find(selector);
+            },
+            init: function () {
+                this.$('.detail-action').click($.proxy(this.toggleDetail, this));
+            },
+            toggleDetail: function (e) {
+                $(e.target).siblings('.card').toggle();
             }
+        }
+        page.init();
+
+        var checked;
+
+        $('#js-module-form').on('show.bs.modal', function (e) {
+            var btn = $(e.relatedTarget);
+            var modal = $(this);
+
+            $.get(btn.attr('href')).done(function (res) {
+                modal.html(res);
+
+                var fn = function (res) {
+                    var d = res.data;
+                    /*
+                     location.href = page.installUrl + '/name/' + d.name + '/directory/'
+                     + d.directory + '/title/' + d.title;
+                     */
+                    location.href = page.installUrl
+                        .replace('__NAME__', d.name)
+                        .replace('__DIRECTORY__', d.directory)
+                        .replace('__TITLE__', d.title);
+                };
+
+                if (typeof formModule != 'undefined') {
+                    formModule.success = fn;
+                } else {
+                    checked = setInterval(function () {
+                        if (typeof formModule != 'undefined') {
+                            formModule.success = fn;
+                            clearInterval(checked);
+                        }
+                    }, 10);
+                }
+            });
         });
-    });
-})(jQuery)
+    })(jQuery)
 </script>

@@ -1,56 +1,56 @@
 <div class="page-header">
-  <h3>
-    {{'BASIC_FIELD' | translate}}
-    <small>{{'BASIC_FIELD_DESC' | translate}}</small>
-  </h3>
+    <h3>
+        {{'BASIC_FIELD' | translate}}
+        <small>{{'BASIC_FIELD_DESC' | translate}}</small>
+    </h3>
 </div>
-<table class="table table-condensed">
-  <thead>
+<table class="table table-sm">
+    <thead>
     <tr>
-      <th style="width: 20px;">
-      <th style="width: 200px;">{{'FIELD_TITLE' | translate}}
-      <th width="8%">{{'DISPLAY' | translate}}
-      <th width="8%">{{'SEARCH' | translate}}
-      <th width="8%">{{'EDITABLE' | translate}}
-      <th width="8%">{{'REQUIRED' | translate}}
-      <th>{{'FORM_MODULE' | translate}}
-  <tbody>
+        <th style="width: 20px;">
+        <th style="width: 200px;">{{'FIELD_TITLE' | translate}}
+        <th width="8%">{{'DISPLAY' | translate}}
+        <th width="8%">{{'SEARCH' | translate}}
+        <th width="8%">{{'EDITABLE' | translate}}
+        <th width="8%">{{'REQUIRED' | translate}}
+        <th>{{'FORM_MODULE' | translate}}
+    <tbody>
     <tr ng-repeat="item in profile">
-      <td>
-      <td>
-        <div pi-hover-input="item" text="item.title"></div>
-      <td>
-        <i class="fa fa-check fa-lg text-success" ng-if="item.is_display"></i>
-      <td>
-        <i class="fa fa-check fa-lg text-success" ng-if="item.is_search"></i>
-      <td>
-        <i class="fa fa-check fa-lg text-success" ng-if="item.is_edit"></i>
-      <td>
-        <input type="checkbox" ng-if="item.is_edit" ng-change="requiredAction(item)"
-               ng-model="item.is_required" ng-true-value="1" ng-false-value="0">
-      <td>{{item.module}}
+        <td>
+        <td>
+            <div pi-hover-input="item" text="item.title"></div>
+        <td>
+            <i class="fas fa-check fa-lg text-success" data-ng-if="item.is_display"></i>
+        <td>
+            <i class="fas fa-check fa-lg text-success" data-ng-if="item.is_search"></i>
+        <td>
+            <i class="fas fa-check fa-lg text-success" data-ng-if="item.is_edit"></i>
+        <td>
+            <input type="checkbox" data-ng-if="item.is_edit" ng-change="requiredAction(item)"
+                   data-ng-model="item.is_required" ng-true-value="1" ng-false-value="0">
+        <td>{{item.module}}
 </table>
 <div class="page-header">
-  <h3>
-    {{'COMPOUND' | translate}}
-    <small>{{'COMPOUND_DESC' | translate}}</small>
-  </h3>
+    <h3>
+        {{'COMPOUND' | translate}}
+        <small>{{'COMPOUND_DESC' | translate}}</small>
+    </h3>
 </div>
-<table class="table table-condensed" ng-repeat="compound in compounds">
-  <thead>
+<table class="table table-sm" ng-repeat="compound in compounds">
+    <thead>
     <th width="30%">{{compound.title}}
     <th width="30%">
-      <input type="checkbox" ng-change="requiredAction(compound)" 
-             ng-model="compound.is_required" ng-true-value="1" ng-false-value="0">
-      {{'REQUIRED' | translate}}
+        <input type="checkbox" ng-change="requiredAction(compound)"
+               data-ng-model="compound.is_required" ng-true-value="1" ng-false-value="0">
+        {{'REQUIRED' | translate}}
     <th>{{compound.module}}
-  <tbody>
+    <tbody>
     <tr ng-repeat="item in compound.fields">
-      <td style="padding-left: 20px;">
-        <div pi-hover-input="item" text="item.title"></div>
-      <td>
-        <input type="checkbox" ng-change="requiredAction(item)" 
-               ng-model="item.is_required" ng-true-value="1" ng-false-value="0">
-      <td>
+        <td style="padding-left: 20px;">
+            <div pi-hover-input="item" text="item.title"></div>
+        <td>
+            <input type="checkbox" ng-change="requiredAction(item)"
+                   data-ng-model="item.is_required" ng-true-value="1" ng-false-value="0">
+        <td>
     </tr>
 </table>

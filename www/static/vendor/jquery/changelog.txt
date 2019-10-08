@@ -1,0 +1,75 @@
+
+jQuery/jQueryUI changelog
+
+May 10th, 2019
+===============
+1. Upgrade jQuery to 3.4.1
+
+April 15th, 2019
+==================
+1. Upgrade jQuery to 3.4.0
+
+March 20th, 2018
+=================
+1. Upgrade jQuery to 3.3.1
+
+September 6th, 2017
+================
+1. Upgrade jQuery to 3.2.1
+2. Upgrade jQueryUI to 1.11.4, then 1.12.1
+3. Upgrade Owl carousel to 2.2.1
+4. Upgrade Modernizr to 3.5.0
+
+June 22th, 2016
+================
+1. Upgrade jQuery to 1.12.4 (last version of 1.x branch, 3x is out !)
+
+April 16th, 2016
+=================
+1. Upgrade jQuery to 1.12.3
+
+February 26th, 2016
+=================
+1. Upgrade jQuery to 1.12.1
+
+
+January 22th, 2016
+=================
+1. Upgrade jQuery to 1.12.0
+
+May 10th, 2015
+=============
+1. Upgraded jQuery to 1.11.3
+
+
+April 21th, 2015
+=============
+1. Upgraded jQueryUI to 1.11.4
+
+
+December 28th, 2014
+=============
+1. Upgraded jQuery to 1.11.2
+
+
+November 3rd, 2014
+=============
+1. Upgraded jQueryUI to 1.11.2
+
+
+September 8th, 2014
+=============
+1. Upgraded jQueryUI to 1.11.1
+2. Upgraded jquery.Jcrop to 0.9.12
+3. Upgraded modernizr to 2.8.3 from http://modernizr.com/download/
+
+
+July 9th, 2014
+=============
+Upgraded jQueryUI to 1.11.0
+Note: `jquery-ui.custom.min.js` is identical to `jquery-ui.min.js`, and solely kept for BC support.
+
+
+May 31st, 2014
+=============
+Upgraded jQuery to 1.11.1

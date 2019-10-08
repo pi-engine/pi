@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Form
  * @package         Form
  */
@@ -28,12 +28,11 @@ class Theme extends Select
      */
     public function getValueOptions()
     {
-        if (empty($this->valueOptions)) {
-            $type = $this->getOption('section');
-            $themes = Pi::registry('theme')->read($type);
-            foreach($themes as $name => $theme) {
-                $this->valueOptions[$name] = $theme['title'];
-            }
+        $type               = $this->getOption('section');
+        $this->valueOptions = Pi::service('theme')->getThemes($type);
+        $allowAuto          = $this->getOption('allow_auto');
+        if ($allowAuto) {
+            $this->valueOptions = ['' => __('Use system theme')] + $this->valueOptions;
         }
 
         return $this->valueOptions;

@@ -1,17 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Api;
 
+use Module\User\Form\UserForm;
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Module\User\Form\UserForm;
 
 /**
  * User profile form manipulation APIs
@@ -29,16 +29,16 @@ class Form extends AbstractApi
      * Load form from with fields, supporting custom form
      *
      * @param string $name
-     * @param bool $withFilter  To set InputFilter
+     * @param bool $withFilter To set InputFilter
      *
      * @return UserForm
      */
     public function loadForm($name, $withFilter = false)
     {
-        $class = str_replace(' ', '', ucwords(
-            str_replace(array('-', '_', '.', '\\', '/'), ' ', $name)
+        $class         = str_replace(' ', '', ucwords(
+            str_replace(['-', '_', '.', '\\', '/'], ' ', $name)
         ));
-        $formClass = $class . 'Form';
+        $formClass     = $class . 'Form';
         $formClassName = 'Custom\User\Form\\' . $formClass;
         if (!class_exists($formClassName)) {
             $formClassName = 'Module\User\Form\\' . $formClass;
@@ -50,8 +50,8 @@ class Form extends AbstractApi
         if ($withFilter) {
             list($elements, $filters) = $this->loadFields($name, $withFilter);
         } else {
-            $elements   = $this->loadFields($name, $withFilter);
-            $filters    = array();
+            $elements = $this->loadFields($name, $withFilter);
+            $filters  = [];
         }
 
         $form = new $formClassName($name, $elements);
@@ -66,16 +66,16 @@ class Form extends AbstractApi
      * Load form elements from field config, supporting custom configs
      *
      * @param string $name
-     * @param bool $withFilter  To return filters
+     * @param bool $withFilter To return filters
      *
      * @return array
      */
     public function loadFields($name, $withFilter = false)
     {
-        $elements   = array();
-        $filters    = array();
-        $config     = $this->loadConfig($name);
-        $meta       = Pi::registry('field', $this->module)->read();
+        $elements = [];
+        $filters  = [];
+        $config   = $this->loadConfig($name);
+        $meta     = Pi::registry('field', $this->module)->read();
         foreach ($config as $name => $value) {
             if (!$value || empty($value['element'])) {
                 if (isset($meta[$name]) &&
@@ -88,7 +88,7 @@ class Form extends AbstractApi
                     foreach ($compoundElements as $element) {
                         if ($element) {
                             $element['name'] = $this->assembleCompoundFieldName($name, $element['name']);
-                            $elements[] = $element;
+                            $elements[]      = $element;
                         }
                     }
                     if ($withFilter) {
@@ -96,7 +96,7 @@ class Form extends AbstractApi
                         foreach ($compoundFilters as $filter) {
                             if ($filter) {
                                 $filter['name'] = $this->assembleCompoundFieldName($name, $filter['name']);
-                                $filters[] = $filter;
+                                $filters[]      = $filter;
                             }
                         }
                     }
@@ -131,7 +131,7 @@ class Form extends AbstractApi
         }
 
         if ($withFilter) {
-            $result = array($elements, $filters);
+            $result = [$elements, $filters];
         } else {
             $result = $elements;
         }
@@ -148,9 +148,9 @@ class Form extends AbstractApi
      */
     public function loadFilters($name)
     {
-        $filters    = array();
-        $config     = $this->loadConfig($name);
-        $meta       = Pi::registry('field', $this->module)->read();
+        $filters = [];
+        $config  = $this->loadConfig($name);
+        $meta    = Pi::registry('field', $this->module)->read();
         foreach ($config as $name => $value) {
             if (!$value || empty($value['element'])) {
                 if (isset($meta[$name]) &&
@@ -163,7 +163,7 @@ class Form extends AbstractApi
                         }
                         if ($filter) {
                             $filter['name'] = $this->assembleCompoundFieldName($name, $filter['name']);
-                            $filters[] = $filter;
+                            $filters[]      = $filter;
                         }
                     }
                 } else {
@@ -194,27 +194,30 @@ class Form extends AbstractApi
      */
     protected function loadConfig($name)
     {
-        $filePath   = sprintf('user/config/form.%s.php', $name);
-        $file       = Pi::path('custom/module') . '/' . $filePath;
+        $filePath = sprintf('user/config/form.%s.php', $name);
+        $file     = Pi::path('custom/module') . '/' . $filePath;
         if (!file_exists($file)) {
             $file = Pi::path('module') . '/' . $filePath;
         }
-        $config     = include $file;
-        $result     = array();
-        foreach ($config as $key => $value) {
-            if (false === $value) {
-                continue;
-            }
-            if (!is_string($key)) {
-                if (!$value) {
+        $result = [];
+
+        if (is_file($file)) {
+            $config = include $file;
+            foreach ($config as $key => $value) {
+                if (false === $value) {
                     continue;
                 }
-                if (is_string($value)) {
-                    $key    = $value;
-                    $value  = array();
+                if (!is_string($key)) {
+                    if (!$value) {
+                        continue;
+                    }
+                    if (is_string($value)) {
+                        $key   = $value;
+                        $value = [];
+                    }
                 }
+                $result[$key] = (array)$value;
             }
-            $result[$key] = (array) $value;
         }
 
         return $result;
@@ -228,14 +231,14 @@ class Form extends AbstractApi
      */
     protected function canonizeElement($data)
     {
-        $element = $data['edit']['element'];
+        $element         = $data['edit']['element'];
         $element['name'] = $data['name'];
         if (isset($data['edit']['options']) &&
             $data['edit']['options']
         ) {
             $element['options'] = $data['edit']['options'];
         } else {
-            $element['options'] = array();
+            $element['options'] = [];
         }
         $element['options']['label'] = $data['title'];
         if (isset($data['edit']['attributes'])) {
@@ -243,10 +246,10 @@ class Form extends AbstractApi
         }
 
         if (isset($data['is_required'])) {
-            $element['attributes']['required']= $data['is_required'];
+            $element['attributes']['required'] = $data['is_required'];
         }
         if (!empty($element['type']) && 'multi_checkbox' == $element['type']) {
-            $element['attributes']['required']= 0;
+            $element['attributes']['required'] = 0;
         }
 
         return $element;
@@ -260,7 +263,7 @@ class Form extends AbstractApi
      */
     protected function canonizeFilter($data)
     {
-        $result = array();
+        $result = [];
         if (!empty($data['name'])) {
             $result['name'] = $data['name'];
         }
@@ -274,9 +277,9 @@ class Form extends AbstractApi
             $result['allow_empty'] = $data['allow_empty'];
         }
         if (!empty($data['is_required'])) {
-            $result['required']= $data['is_required'];
+            $result['required'] = $data['is_required'];
         } else {
-            $result['required']= 0;
+            $result['required'] = 0;
         }
         /*
         if (!empty($data['edit']['element']['type'])
@@ -297,7 +300,7 @@ class Form extends AbstractApi
      */
     public function getElement($name)
     {
-        $element = array();
+        $element  = [];
         $elements = Pi::registry('field', $this->module)->read();
         if (isset($elements[$name]) && isset($elements[$name]['edit'])) {
             $element = $this->canonizeElement($elements[$name]);
@@ -314,9 +317,9 @@ class Form extends AbstractApi
      */
     public function getFilter($name)
     {
-        $result = array(
-            'name'  => $name,
-        );
+        $result   = [
+            'name' => $name,
+        ];
         $elements = Pi::registry('field', $this->module)->read();
         if (isset($elements[$name]) && isset($elements[$name]['edit'])) {
             $result = $this->canonizeFilter($elements[$name]);
@@ -335,10 +338,10 @@ class Form extends AbstractApi
      */
     public function getCompoundElement($compound, $field = '')
     {
-        $result = array();
+        $result   = [];
         $elements = Pi::registry('compound_field', $this->module)->read($compound);
         if ($field) {
-            $fields = (array) $field;
+            $fields = (array)$field;
             foreach ($fields as $name) {
                 if (isset($elements[$name])) {
                     $element = $this->canonizeElement($elements[$name]);
@@ -370,10 +373,10 @@ class Form extends AbstractApi
      */
     public function getCompoundFilter($compound, $field = '')
     {
-        $result = array();
+        $result   = [];
         $elements = Pi::registry('compound_field', $this->module)->read($compound);
         if ($field) {
-            $fields = (array) $field;
+            $fields = (array)$field;
             foreach ($fields as $name) {
                 if (isset($elements[$name])) {
                     $filter = $this->canonizeFilter($elements[$name]);
@@ -418,7 +421,7 @@ class Form extends AbstractApi
     public function parseCompoundFieldName($name)
     {
         $compounds = array_keys(Pi::registry('field', 'user')->read('compound'));
-        $lookup = function ($name, $compounds) {
+        $lookup    = function ($name, $compounds) {
             $result = false;
             foreach ($compounds as $cName) {
                 if (0 === strpos($name, $cName . '-')) {

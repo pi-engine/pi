@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -112,7 +112,7 @@ $mimetypes = array(
 
 $suffix = strtolower(pathinfo($path, PATHINFO_EXTENSION));
 $contentType = isset($mimetypes[$suffix]) ? $mimetypes[$suffix] : 'text/plain';
-if (in_array($suffix, $allowedExtension)) {
+if ($suffix && in_array($suffix, $allowedExtension)) {
 } else {
     $contentTypeCategory = substr($contentType, 0, strpos($contentType, '/'));
     if (!in_array($contentTypeCategory, array('image', 'text'))) {

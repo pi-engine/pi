@@ -1,16 +1,15 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 /**
@@ -44,9 +43,9 @@ class Page extends AbstractHtmlElement
      *
      * @return string
      */
-    public function __invoke($name, $title, $attributes = array())
+    public function __invoke($name, $title, $attributes = [])
     {
-        $pattern    = '<a href="%s"%s>%s</a>';
+        $pattern = '<a href="%s"%s>%s</a>';
         if (!isset($attributes['title'])) {
             $attributes['title'] = $title;
         }
@@ -55,15 +54,15 @@ class Page extends AbstractHtmlElement
             $type = $attributes['type'];
             unset($attributes['type']);
         }
-        $attribs    = $this->htmlAttribs($attributes);
+        $attribs = $this->htmlAttribs($attributes);
         try {
-            $params = array('name' => $name);
+            $params = ['name' => $name];
             if ($type) {
                 $params['type'] = $type;
             }
-            $href   = $this->view->url('page-page', $params);
+            $href = $this->view->url('page', $params);
         } catch (\Exception $e) {
-            $href   = '#';
+            $href = '#';
         }
 
         $html = sprintf(

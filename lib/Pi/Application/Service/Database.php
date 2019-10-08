@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -37,18 +37,18 @@ class Database extends AbstractService
      *
      * @return DbGateway
      */
-    public function db($options = array())
+    public function db($options = [])
     {
         $result = null;
         // Set DbGateway for Pi
         if ($options instanceof DbGateway) {
             $this->db = $options;
-            $result = $this->db;
-        // Load DbGateway
+            $result   = $this->db;
+            // Load DbGateway
         } elseif ($options && is_array($options)) {
-            $db = $this->loadDb($options);
+            $db     = $this->loadDb($options);
             $result = $db;
-        // Default DbGateway
+            // Default DbGateway
         } elseif (!$options) {
             if (!$this->db) {
                 $this->db = $this->loadDb();
@@ -66,11 +66,11 @@ class Database extends AbstractService
      *
      * @return DbGateway
      */
-    public function loadDb(array $options = array())
+    public function loadDb(array $options = [])
     {
         // Use system default options if no custom options
         $options = $options ?: $this->options;
-        $db = new DbGateway($options);
+        $db      = new DbGateway($options);
 
         return $db;
     }
@@ -78,14 +78,14 @@ class Database extends AbstractService
     /**
      * Build database connection of current DB instance
      *
-     * @param DbGateway        $db
+     * @param DbGateway $db
      *
      * @throws \Exception
      * @return PDO
      */
     public function connect(DbGateway $db = null)
     {
-        $db = $db ?: $this->db();
+        $db         = $db ?: $this->db();
         $connection = $db->getAdapter()->getDriver()->getConnection();
         if (!$connection->isConnected()) {
             try {

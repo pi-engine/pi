@@ -1,16 +1,15 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Form
  */
 
 namespace Pi\Form\Element;
 
-use Pi;
 use Zend\Form\Element\Select;
 
 /**
@@ -28,7 +27,7 @@ class CacheTtl extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $this->valueOptions = array(
+            $this->valueOptions = [
                 0       => __('No cache'),
                 30      => sprintf(__('%d seconds'), 30),
                 60      => __('1 minute'),
@@ -39,7 +38,7 @@ class CacheTtl extends Select
                 86400   => __('1 day'),
                 604800  => __('1 week'),
                 2592000 => __('1 month'),
-            );
+            ];
         }
 
         return $this->valueOptions;

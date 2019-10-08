@@ -1,17 +1,15 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Authentication\Adapter;
 
-use Pi;
-use Zend\Authentication\Adapter\ValidatableAdapterInterface
-    as ZendAdapterInterface;
+use Zend\Authentication\Adapter\ValidatableAdapterInterface as ZendAdapterInterface;
 
 /**
  * Pi authentication adapter interface
@@ -26,7 +24,7 @@ interface AdapterInterface extends ZendAdapterInterface
      * @param array $options
      * @return void
      */
-    public function setOptions($options = array());
+    public function setOptions($options = []);
 
     /**
      * Set result data
@@ -34,7 +32,7 @@ interface AdapterInterface extends ZendAdapterInterface
      * @param array|object $resultRow
      * @return self
      */
-    public function setResultRow($resultRow = array());
+    public function setResultRow($resultRow = []);
 
     /**
      * Returns the result row

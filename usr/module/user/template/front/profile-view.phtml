@@ -1,11 +1,12 @@
 <?php
 $this->css($this->assetModule('front/front.css'));
+$this->headMeta('noindex', 'robots');
 ?>
 <?php include $this->template('./profile-topbar.phtml'); ?>
 <div class="user-min-body">
-    <?php foreach ($groups as $group) {?>
+    <?php foreach ($groups as $group) { ?>
         <div class="clearfix user-legend">
-            <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
+            <h4><?php echo _escape($group['title']); ?></h4>
             <div class="user-legend-linea"></div>
         </div>
         <?php if ($group['fields']) { ?>
@@ -25,9 +26,9 @@ $this->css($this->assetModule('front/front.css'));
                 ?>
             </div>
         <?php } else { ?>
-        <div class="well text-center">
-            <?php _e('No data available.'); ?>
-        </div>
+            <div class="card bg-light mb-3 text-center">
+                <?php _e('No data available.'); ?>
+            </div>
         <?php } ?>
     <?php } ?>
 </div>

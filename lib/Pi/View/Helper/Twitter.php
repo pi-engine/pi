@@ -1,16 +1,15 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 /**
@@ -22,7 +21,7 @@ use Zend\View\Helper\AbstractHtmlElement;
  *  $this->twitter();
  * ```
  *
- * @author Hossein Azizabadi <djvoltan@gmail.com>
+ * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Twitter extends AbstractHtmlElement
@@ -34,10 +33,11 @@ class Twitter extends AbstractHtmlElement
      */
     public function __invoke()
     {
-        $content = <<<'EOT'
+        $content
+            = <<<'EOT'
 <a href="https://twitter.com/share" class="twitter-share-button"
     data-lang="en">Tweet</a>
-<script type="text/javascript">
+<script>
    !function(d,s,id){
       var js,fjs=d.getElementsByTagName(s)[0];
       if(!d.getElementById(id)){

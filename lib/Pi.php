@@ -1,23 +1,23 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-use Pi\Application\Host;
-use Pi\Application\Persist;
+use Pi\Application\Api\AbstractApi;
 use Pi\Application\Autoloader;
+use Pi\Application\Config;
 use Pi\Application\Engine\AbstractEngine;
+use Pi\Application\Host;
+use Pi\Application\Model\Model;
+use Pi\Application\Persist;
+use Pi\Application\Registry\AbstractRegistry;
 use Pi\Application\Service;
 use Pi\Application\Service\AbstractService;
-use Pi\Application\Config;
 use Pi\Application\Service\User;
-use Pi\Application\Model\Model;
-use Pi\Application\Registry\AbstractRegistry;
-use Pi\Application\Api\AbstractApi;
 use Pi\Db\DbGateway;
 use Pi\Debug\Debug;
 use Pi\Utility\Filter;
@@ -129,13 +129,13 @@ class Pi
      * Entity container
      * @var array
      */
-    protected static $entity = array();
+    protected static $entity = [];
 
     /**
      * Shutdown callback container
      * @var array
      */
-    protected static $shutdown = array();
+    protected static $shutdown = [];
 
     /**
      * Start time
@@ -166,43 +166,47 @@ class Pi
         static::$start = microtime(true);
 
         // Initialize Host
-        $config = array(
-            'host'  => array(
-                'path'  => array(
-                    'lib'   => constant('PI_PATH_LIB'),
-                ),
-            ),
-        );
+        $config = [
+            'host' => [
+                'path' => [
+                    'lib' => constant('PI_PATH_LIB'),
+                ],
+            ],
+        ];
         if (constant('PI_PATH_HOST')) {
             $config['file'] = constant('PI_PATH_HOST');
         }
         static::host($config);
 
         // Register autoloader, host, persist and autoloader
-        $paths = static::host()->get('path');
-        $options = array(
+        $paths   = static::host()->get('path');
+        $options = [
             // Top namespaces
-            'top'           => array(
-                'Pi'        => static::path('lib') . '/Pi',
-                'Zend'      => static::path('lib') . '/Zend',
-            ),
+            'top'          => [
+                'Pi'   => static::path('lib') . '/Pi',
+                'Zend' => static::path('lib') . '/Zend',
+            ],
             // Regular namespaces
-            'namespace'     => array(
-            ),
+            'namespace'    => [
+            ],
             // Class map
-            'class_map'     => array(
-            ),
+            'class_map'    => [
+            ],
             // Directory of modules
-            'module_path'   => static::path('module'),
+            'module_path'  => static::path('module'),
             // Directory of module custom classes
-            'custom_path'   => !empty($paths['custom'])
-                               ? $paths['custom'] . '/module'
-                               : static::path('usr') . '/custom/module',
+            'custom_path'  => !empty($paths['custom'])
+                ? $paths['custom'] . '/module'
+                : static::path('usr') . '/custom/module',
+            // Directory of editor classes
+            'editor_path'  => !empty($paths['editor'])
+                ? $paths['editor']
+                : static::path('usr') . '/editor',
             // Vendor directory
-            'include_path'  => !empty($paths['vendor'])
-                               ? $paths['vendor']
-                               : static::path('lib') . '/vendor',
-        );
+            'include_path' => !empty($paths['vendor'])
+                ? $paths['vendor']
+                : static::path('lib') . '/vendor',
+        ];
         static::autoloader($options);
 
         // Load debugger and filter
@@ -217,7 +221,7 @@ class Pi
 
         // Initialize Persist handler
         $persistConfig = empty($engineConfig['persist'])
-                         ? array() : $engineConfig['persist'];
+            ? [] : $engineConfig['persist'];
         static::persist($persistConfig);
         // Set persist handler for class/file map
         if (static::persist()->isValid()) {
@@ -336,7 +340,7 @@ class Pi
      * @return Persist
      * @api
      */
-    public static function persist($config = array())
+    public static function persist($config = [])
     {
         if (!isset(static::$persist)) {
             static::$persist = new Persist($config);
@@ -352,7 +356,7 @@ class Pi
      *
      * @return  Autoloader
      */
-    public static function autoloader($options = array())
+    public static function autoloader($options = [])
     {
         if (!isset(static::$autoloader)) {
             if (!class_exists('Pi\Application\Autoloader', false)) {
@@ -367,12 +371,12 @@ class Pi
     /**
      * Loads application engine
      *
-     * @param string    $type       Application type
-     * @param array     $config     Config data for the application
+     * @param string $type Application type
+     * @param array $config Config data for the application
      * @return AbstractEngine
      * @api
      */
-    public static function engine($type = '', $config = array())
+    public static function engine($type = '', $config = [])
     {
         if (!isset(static::$engine)) {
             if (!$type) {
@@ -387,16 +391,15 @@ class Pi
     }
 
     /**
-     * Load a service or service handler
+     * Load a service provider, or service handler if name is not specified
      *
-     * If service name is not specified, a service placeholder will be returned
+     * @param string $name
+     * @param array $options
      *
-     * @param string    $name
-     * @param array     $options
      * @return Service|AbstractService
      * @api
      */
-    public static function service($name = null, $options = array())
+    public static function service($name = null, $options = [])
     {
         // service handler
         if (!isset(static::$service)) {
@@ -464,8 +467,8 @@ class Pi
      *  Pi::api(<service_name>, <options>);
      * ```
      *
-     * @param string        $api    API name
-     * @param string|array  $module Module name or options for system service
+     * @param string $api API name
+     * @param string|array $module Module name or options for system service
      *
      * @return AbstractApi
      * @api
@@ -483,17 +486,17 @@ class Pi
      * @return DbGateway
      * @api
      */
-    public static function db($db = array())
+    public static function db($db = [])
     {
         $result = null;
         // Set DbGateway for Pi
         if ($db instanceof DbGateway) {
             static::$db = $db;
-            $result = $db;
-        // Create a DbGateway
+            $result     = $db;
+            // Create a DbGateway
         } elseif ($db && is_array($db)) {
             $result = static::service('database')->db($db);
-        // Load Pi DbGateway, create if not instantiated yet
+            // Load Pi DbGateway, create if not instantiated yet
         } elseif (!$db) {
             if (!isset(static::$db)) {
                 static::$db = static::service('database')->db();
@@ -507,13 +510,13 @@ class Pi
     /**
      * Load a core model by name
      *
-     * @param string    $name
-     * @param string    $module
-     * @param array     $options
+     * @param string $name
+     * @param string $module
+     * @param array $options
      * @return Model
      * @api
      */
-    public static function model($name, $module = '', $options = array())
+    public static function model($name, $module = '', $options = [])
     {
         if ($module) {
             $name = $module . '/' . $name;
@@ -524,9 +527,9 @@ class Pi
     /**
      * Load a config by name or return config handler if name is not specified
      *
-     * @param string    $name       Name of the config element
-     * @param string    $module     Module name, default as `system`
-     * @param string    $domain     Configuration domain(category)
+     * @param string $name Name of the config element
+     * @param string $module Module name, default as `system`
+     * @param string $domain Configuration domain(category)
      *
      * @return Config|mixed    config value or config handler if $name not specified
      * @api
@@ -549,8 +552,8 @@ class Pi
      * Register a variable to global container, or fetch a glbal entity if
      * variable value is not provided
      *
-     * @param string    $index  Name of the entity
-     * @param mixed     $value  The value to store.
+     * @param string $index Name of the entity
+     * @param mixed $value The value to store.
      * @return void|mixed
      * @api
      */
@@ -568,9 +571,9 @@ class Pi
     /**
      * Register a shutdown callback with FILO
      *
-     * @param string|array  $callback
+     * @param string|array $callback
      *  Callback method to be called in shutdown
-     * @param bool          $toAppend
+     * @param bool $toAppend
      *  To append current callback to registered shutdown list, false to prepend
      * @return void
      */
@@ -592,7 +595,7 @@ class Pi
      *  - Otherwise, first part as section, map to `www` if no section matched
      *
      * @see Host::path()
-     * @param string $path  Path to be converted
+     * @param string $path Path to be converted
      *
      * @return string
      * @api
@@ -612,26 +615,28 @@ class Pi
      *  - If section URI is relative, `www` URI will be appended.
      *
      * @see Host::url()
-     * @param string    $url        URL to be converted
-     * @param bool      $absolute
+     * @param string $url URL to be converted
+     * @param bool $absolute
      *  Convert to full URI; Default as relative URI with no hostname
      * @return string
      * @api
      */
-    public static function url($url, $absolute = false)
+    public static function url($url = '', $absolute = false)
     {
-        return static::$host->url($url, $absolute);
+        $finalUrl = rtrim(static::$host->url($url, $absolute), '/');
+
+        return $finalUrl;
     }
 
     /**
      * Logs audit information
      *
-     * @param string            $message
+     * @param string $message
      * @param array|Traversable $extra
      * @return void
      * @api
      */
-    public static function log($message, $extra = array())
+    public static function log($message, $extra = [])
     {
         static::service('log')->audit($message, $extra);
     }
@@ -639,8 +644,8 @@ class Pi
     /**
      * Magic method to load service
      *
-     * @param string    $method
-     * @param array     $args
+     * @param string $method
+     * @param array $args
      *
      * @return AbstractService|bool
      */
@@ -649,7 +654,7 @@ class Pi
         if (count($args) > 1 || ($args && !is_array($args[0]))) {
             return false;
         }
-        $options = $args ? $args[0] : array();
+        $options = $args ? $args[0] : [];
         $service = static::service($method, $options);
 
         return $service;

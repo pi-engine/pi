@@ -1,69 +1,68 @@
-<?php
+<div class="user-login">
+    <?php
     $form = $block['form'];
     echo $this->form()->openTag($form);
-?>
-<?php
-    $identity   = $form->get('identity');
-    $label      = $identity->getLabel();
-    $identity->setOptions(array(
-        'template'  => '%s',
-    ))->setAttributes(array(
-        'placeholder'   => $label,
-        'class'         => 'form-control'
-    ));
-?>
-<div class="form-group">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-user" title="<?php echo _escape($label); ?>"></i></span>
-        <?php echo $this->formElement($identity); ?>
+    ?>
+    <?php
+    $identity = $form->get('identity');
+    $label    = $identity->getLabel();
+    $identity->setOptions([
+        'template' => '%s',
+    ])->setAttributes([
+        'placeholder' => $label,
+        'class'       => 'form-control',
+    ]);
+    ?>
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-user" title="<?php echo _escape($label); ?>"></i></span>
+            <?php echo $this->formElement($identity); ?>
+        </div>
     </div>
-</div>
-<?php
+    <?php
     $credential = $form->get('credential');
     $label      = $credential->getLabel();
-    $credential->setAttributes(array(
-        'placeholder'   => $label,
-        'class'         => 'form-control'
-    ));
-?>
-<div class="form-group">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-lock" title="<?php echo _escape($label); ?>"></i></span>
-        <?php echo $this->formElement($credential); ?>
-    </div>
-</div>
-
-<?php
-if ($form->has('captcha')) {
+    $credential->setAttributes([
+        'placeholder' => $label,
+        'class'       => 'form-control',
+    ]);
     ?>
     <div class="form-group">
-        <?php
-        $captcha    = $form->get('captcha');
-        $label      = $captcha->getLabel();
-        $captcha->setAttributes(array(
-            'placeholder'   => $label,
-            'class'         => 'form-control'
-        ));
-        echo $this->formCaptcha($captcha);
-        ?>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-lock" title="<?php echo _escape($label); ?>"></i></span>
+            <?php echo $this->formElement($credential); ?>
+        </div>
     </div>
-<?php } ?>
-
-<?php
-if ($form->has('rememberme')) {
-    ?>
-    <div class="form-group">
-        <?php
-        $rememberme = $form->get('rememberme');
-        echo $this->formElement($rememberme);
-        ?>
-    </div>
-<?php } ?>
-
-<?php
+    <?php
+    if ($form->has('captcha')) { ?>
+        <div class="form-group">
+            <?php
+            $captcha = $form->get('captcha');
+            $label   = $captcha->getLabel();
+            $captcha->setAttributes([
+                'placeholder' => $label,
+                'class'       => 'form-control',
+            ]);
+            echo $this->formCaptcha($captcha);
+            ?>
+        </div>
+    <?php } ?>
+    <?php
+    if ($form->has('rememberme')) { ?>
+        <div class="form-group checkbox">
+            <label>
+                <?php
+                $rememberme = $form->get('rememberme');
+                echo $this->formElement($rememberme) . $rememberme->getLabel();
+                ?>
+            </label>
+        </div>
+    <?php } ?>
+    <?php
     echo $this->formElement($form->get('security'));
-    $submit =  $form->get('submit');
+    $submit = $form->get('submit');
     $submit->setAttribute('class', 'btn btn-primary');
     echo $this->formElement($submit);
     echo $this->form()->closeTag();
-?>
+    ?>
+</div>

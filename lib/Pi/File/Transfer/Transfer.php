@@ -1,17 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\File\Transfer;
 
-use Pi;
-use Zend\File\Transfer\Transfer as TransferHandler;
 use Zend\File\Exception;
+use Zend\File\Transfer\Transfer as TransferHandler;
 
 /**
  * File transfer
@@ -28,8 +27,9 @@ class Transfer extends TransferHandler
     public function setAdapter(
         $adapter,
         $direction = false,
-        $options = array()
-    ) {
+        $options = []
+    )
+    {
         if (!is_string($adapter)) {
             throw new Exception\InvalidArgumentException(
                 'Adapter must be a string'

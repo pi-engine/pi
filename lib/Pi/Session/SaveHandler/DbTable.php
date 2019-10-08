@@ -1,18 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Session\SaveHandler;
 
 use Pi;
 use Pi\Application\Model\Model;
-use Zend\Session\SaveHandler\SaveHandlerInterface;
 use Pi\Db\RowGateway\RowGateway;
+use Zend\Session\SaveHandler\SaveHandlerInterface;
 
 /**
  * DB Table session save handler
@@ -65,7 +65,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      *
      * @param array $config User-provided configuration
      */
-    public function __construct($config = array())
+    public function __construct($config = [])
     {
         if (empty($config['model'])) {
             $this->model = Pi::model('session');
@@ -87,7 +87,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      *
      * $lifetime === false resets lifetime to session.gc_maxlifetime
      *
-     * @param int       $lifetime
+     * @param int $lifetime
      * @param bool|null $overrideLifetime (optional)
      *
      * @throws \InvalidArgumentException
@@ -100,9 +100,9 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
                 'Lifetime must be greater than 0'
             );
         } elseif (empty($lifetime)) {
-            $this->lifetime = (int) ini_get('session.gc_maxlifetime');
+            $this->lifetime = (int)ini_get('session.gc_maxlifetime');
         } else {
-            $this->lifetime = (int) $lifetime;
+            $this->lifetime = (int)$lifetime;
         }
 
         if ($overrideLifetime != null) {
@@ -131,7 +131,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      */
     public function setOverrideLifetime($overrideLifetime)
     {
-        $this->overrideLifetime = (boolean) $overrideLifetime;
+        $this->overrideLifetime = (boolean)$overrideLifetime;
 
         return $this;
     }
@@ -189,7 +189,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
             $lifetime = $this->overrideLifetime
                 ? $this->lifetime : $row->lifetime;
             if ($row->modified + $lifetime > time()) {
-                $return = $row->data;
+                $return    = $row->data;
                 $this->row = $row;
             } else {
                 $this->destroy($id);
@@ -204,7 +204,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      *
      * @param string $id
      * @param string $data
-     * @return bool|int
+     * @return bool
      */
     public function write($id, $data)
     {
@@ -212,14 +212,14 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
         if (!$id) {
             return $return;
         }
-        $row = ($this->row && $id == $this->row->id)
+        $row  = ($this->row && $id == $this->row->id)
             ? $this->row : $this->model->find($id);
-        $data = array(
-            'modified'  => time(),
-            'data'      => (string) $data,
-        );
+        $data = [
+            'modified' => time(),
+            'data'     => (string)$data,
+        ];
         if (null !== $this->uid) {
-            $data['uid'] = (int) $this->uid;
+            $data['uid'] = (int)$this->uid;
         }
 
         try {
@@ -227,10 +227,10 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
                 $row->assign($data);
                 $return = $row->save(false);
             } else {
-                $data['id']         = $id;
-                $data['lifetime']   = $this->lifetime;
-                $row = $this->model->createRow($data);
-                $return = $row->save(false);
+                $data['id']       = $id;
+                $data['lifetime'] = $this->lifetime;
+                $row              = $this->model->createRow($data);
+                $return           = $row->save(false);
             }
         } catch (\Exception $e) {
             trigger_error(
@@ -239,7 +239,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
             );
         }
 
-        return $return;
+        return (bool)$return;
     }
 
     /**
@@ -252,7 +252,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
     {
         $return = false;
 
-        if ($this->model->delete(array('id' => $id))) {
+        if ($this->model->delete(['id' => $id])) {
             $return = true;
         }
 
@@ -279,7 +279,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      */
     public function setUser($uid)
     {
-        $this->uid = (int) $uid;
+        $this->uid = (int)$uid;
 
         return true;
     }
@@ -321,7 +321,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
         $return = $this->lifetime;
 
         if (!$this->overrideLifetime) {
-            $return = (int) $row->lifetime;
+            $return = (int)$row->lifetime;
         }
 
         return $return;
@@ -335,6 +335,6 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      */
     protected function getExpirationTime(RowGateway $row)
     {
-        return (int) $row->modified + $this->retrieveLifetime($row);
+        return (int)$row->modified + $this->retrieveLifetime($row);
     }
 }

@@ -1,1678 +1,1680 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Timezone\n"
-"POT-Creation-Date: 2014-02-06 14:29+0800\n"
-"PO-Revision-Date: 2014-02-06 14:30+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2015-02-20 11:44+0330\n"
+"PO-Revision-Date: 2015-02-20 11:44+0330\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: c:\\Code\\pi\\\\usr\\locale\\_source\\Timezone\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/"
+"_source/Timezone\n"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:16
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:16
 msgid "Africa"
-msgstr ""
+msgstr "افریقا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:17
 msgid "Africa/Abidjan"
-msgstr ""
+msgstr "آفریقا / آبیجان"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:18
 msgid "Africa/Accra"
-msgstr ""
+msgstr "آفریقا / آکرا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:19
 msgid "Africa/Addis_Ababa"
-msgstr ""
+msgstr "آفریقا / Addis_Ababa"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:20
 msgid "Africa/Algiers"
-msgstr ""
+msgstr "آفریقا / الجزیره"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:21
 msgid "Africa/Asmara"
-msgstr ""
+msgstr "آفریقا / اسمره"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:22
 msgid "Africa/Bamako"
-msgstr ""
+msgstr "آفریقا / باماکو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:23
 msgid "Africa/Bangui"
-msgstr ""
+msgstr "آفریقا / بانگوئی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:24
 msgid "Africa/Banjul"
-msgstr ""
+msgstr "آفریقا / بانجول"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:25
 msgid "Africa/Bissau"
-msgstr ""
+msgstr "آفریقا / بیسائو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:26
 msgid "Africa/Blantyre"
-msgstr ""
+msgstr "آفریقا / بلانتیر"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:27
 msgid "Africa/Brazzaville"
-msgstr ""
+msgstr "آفریقا / برازاویل"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:28
 msgid "Africa/Bujumbura"
-msgstr ""
+msgstr "آفریقا / بوجومبورا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:29
 msgid "Africa/Cairo"
-msgstr ""
+msgstr "آفریقا / قاهره"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:30
 msgid "Africa/Casablanca"
-msgstr ""
+msgstr "آفریقا / کازابلانکا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:31
 msgid "Africa/Ceuta"
-msgstr ""
+msgstr "آفریقا / سئوتا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:32
 msgid "Africa/Conakry"
-msgstr ""
+msgstr "آفریقا / کوناکری"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:33
 msgid "Africa/Dakar"
-msgstr ""
+msgstr "آفریقا / داکار"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:34
 msgid "Africa/Dar_es_Salaam"
-msgstr ""
+msgstr "آفریقا / Dar_es_Salaam"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:35
 msgid "Africa/Djibouti"
-msgstr ""
+msgstr "آفریقا / جیبوتی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:36
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:36
 msgid "Africa/Douala"
-msgstr ""
+msgstr "آفریقا / دوالا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:37
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:37
 msgid "Africa/El_Aaiun"
-msgstr ""
+msgstr "آفریقا / El_Aaiun"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:38
 msgid "Africa/Freetown"
-msgstr ""
+msgstr "آفریقا / فریتاون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:39
 msgid "Africa/Gaborone"
-msgstr ""
+msgstr "آفریقا / گابورون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:40
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:40
 msgid "Africa/Harare"
-msgstr ""
+msgstr "آفریقا / هراره"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:41
 msgid "Africa/Johannesburg"
-msgstr ""
+msgstr "آفریقا / ژوهانسبورگ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:42
 msgid "Africa/Kampala"
-msgstr ""
+msgstr "آفریقا / کامپالا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:43
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:43
 msgid "Africa/Khartoum"
-msgstr ""
+msgstr "آفریقا / خارطوم"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:44
 msgid "Africa/Kigali"
-msgstr ""
+msgstr "آفریقا / کیگالی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:45
 msgid "Africa/Kinshasa"
-msgstr ""
+msgstr "آفریقا / کینشاسا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:46
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:46
 msgid "Africa/Lagos"
-msgstr ""
+msgstr "آفریقا / لاگوس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:47
 msgid "Africa/Libreville"
-msgstr ""
+msgstr "آفریقا / لیبرویل"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:48
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:48
 msgid "Africa/Lome"
-msgstr ""
+msgstr "آفریقا / لومه"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:49
 msgid "Africa/Luanda"
-msgstr ""
+msgstr "آفریقا / لواندا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:50
 msgid "Africa/Lubumbashi"
-msgstr ""
+msgstr "آفریقا / لوبومباشی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:51
 msgid "Africa/Lusaka"
-msgstr ""
+msgstr "آفریقا / لوزاکا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:52
 msgid "Africa/Malabo"
-msgstr ""
+msgstr "آفریقا / مالابو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:53
 msgid "Africa/Maputo"
-msgstr ""
+msgstr "آفریقا / ماپوتو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:54
 msgid "Africa/Maseru"
-msgstr ""
+msgstr "آفریقا / ماسرو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:55
 msgid "Africa/Mbabane"
-msgstr ""
+msgstr "آفریقا / مبابانه"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:56
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:56
 msgid "Africa/Mogadishu"
-msgstr ""
+msgstr "آفریقا / موگادیشو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:57
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:57
 msgid "Africa/Monrovia"
-msgstr ""
+msgstr "آفریقا / مونرویا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:58
 msgid "Africa/Nairobi"
-msgstr ""
+msgstr "آفریقا / نایروبی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:59
 msgid "Africa/Ndjamena"
-msgstr ""
+msgstr "آفریقا / انجامنا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:60
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:60
 msgid "Africa/Niamey"
-msgstr ""
+msgstr "آفریقا / نیامی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:61
 msgid "Africa/Nouakchott"
-msgstr ""
+msgstr "آفریقا / نواکشوت"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:62
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:62
 msgid "Africa/Ouagadougou"
-msgstr ""
+msgstr "آفریقا / واگادوگو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:63
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:63
 msgid "Africa/Porto-Novo-Novo"
-msgstr ""
+msgstr "آفریقا / پورتو نووو نوو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:64
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:64
 msgid "Africa/Sao_Tome"
-msgstr ""
+msgstr "آفریقا / Sao_Tome"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:65
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:65
 msgid "Africa/Tripoli"
-msgstr ""
+msgstr "آفریقا / طرابلس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:66
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:66
 msgid "Africa/Tunis"
-msgstr ""
+msgstr "آفریقا / تونس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:67
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:67
 msgid "Africa/Windhoek"
-msgstr ""
+msgstr "آفریقا / ویندهوک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:69
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:69
 msgid "America"
-msgstr ""
+msgstr "امریکا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:70
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:70
 msgid "America/Adak"
-msgstr ""
+msgstr "امریکا / آداک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:71
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:71
 msgid "America/Anchorage"
-msgstr ""
+msgstr "امریکا / انکوریج"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:72
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:72
 msgid "America/Anguilla"
-msgstr ""
+msgstr "امریکا / آنگویلا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:73
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:73
 msgid "America/Antigua"
-msgstr ""
+msgstr "امریکا / آنتیگوا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:74
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:74
 msgid "America/Araguaina"
-msgstr ""
+msgstr "امریکا / آراگواینا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:75
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:75
 msgid "America/Argentina/Buenos_Aires"
-msgstr ""
+msgstr "امریکا / آرژانتین / Buenos_Aires"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:76
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:76
 msgid "America/Argentina/Catamarca"
-msgstr ""
+msgstr "امریکا / آرژانتین / کاتامارکا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:77
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:77
 msgid "America/Argentina/Cordoba"
-msgstr ""
+msgstr "امریکا / آرژانتین / قرطبه"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:78
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:78
 msgid "America/Argentina/Jujuy"
-msgstr ""
+msgstr "امریکا / آرژانتین / خوخوئی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:79
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:79
 msgid "America/Argentina/La_Rioja"
-msgstr ""
+msgstr "امریکا / آرژانتین / La_Rioja"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:80
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:80
 msgid "America/Argentina/Mendoza"
-msgstr ""
+msgstr "امریکا / آرژانتین / مندوزا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:81
 msgid "America/Argentina/Rio_Gallegos"
-msgstr ""
+msgstr "امریکا / آرژانتین / Rio_Gallegos"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:82
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:82
 msgid "America/Argentina/Salta"
-msgstr ""
+msgstr "امریکا / آرژانتین / سالتا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:83
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:83
 msgid "America/Argentina/San_Juan"
-msgstr ""
+msgstr "امریکا / آرژانتین / San_Juan"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:84
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:84
 msgid "America/Argentina/San_Luis"
-msgstr ""
+msgstr "امریکا / آرژانتین / San_Luis"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:85
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:85
 msgid "America/Argentina/Tucuman"
-msgstr ""
+msgstr "امریکا / آرژانتین / Tucuman"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:86
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:86
 msgid "America/Argentina/Ushuaia"
-msgstr ""
+msgstr "امریکا / آرژانتین / USHUAIA"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:87
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:87
 msgid "America/Aruba"
-msgstr ""
+msgstr "امریکا / آروبا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:88
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:88
 msgid "America/Asuncion"
-msgstr ""
+msgstr "امریکا / آسونسیون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:89
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:89
 msgid "America/Atikokan"
-msgstr ""
+msgstr "امریکا / Atikokan"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:90
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:90
 msgid "America/Bahia"
-msgstr ""
+msgstr "امریکا / باهیا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:91
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:91
 msgid "America/Bahia_Banderas"
-msgstr ""
+msgstr "امریکا / Bahia_Banderas"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:92
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:92
 msgid "America/Barbados"
-msgstr ""
+msgstr "امریکا / باربادوس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:93
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:93
 msgid "America/Belem"
-msgstr ""
+msgstr "امریکا / بلم"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:94
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:94
 msgid "America/Belize"
-msgstr ""
+msgstr "امریکا / بلیز"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:95
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:95
 msgid "America/Blanc-Sablon-Sablon"
-msgstr ""
+msgstr "امریکا / بلان-Sablon-Sablon"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:96
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:96
 msgid "America/Boa_Vista"
-msgstr ""
+msgstr "امریکا / Boa_Vista"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:97
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:97
 msgid "America/Bogota"
-msgstr ""
+msgstr "امریکا / بوگوتا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:98
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:98
 msgid "America/Boise"
-msgstr ""
+msgstr "امریکا / بویز"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:99
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:99
 msgid "America/Cambridge_Bay"
-msgstr ""
+msgstr "امریکا / Cambridge_Bay"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:100
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:100
 msgid "America/Campo_Grande"
-msgstr ""
+msgstr "امریکا / Campo_Grande"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:101
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:101
 msgid "America/Cancun"
-msgstr ""
+msgstr "امریکا / کانکون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:102
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:102
 msgid "America/Caracas"
-msgstr ""
+msgstr "امریکا / کاراکاس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:103
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:103
 msgid "America/Cayenne"
-msgstr ""
+msgstr "امریکا / کاین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:104
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:104
 msgid "America/Cayman"
-msgstr ""
+msgstr "امریکا / کیمن"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:105
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:105
 msgid "America/Chicago"
-msgstr ""
+msgstr "امریکا / شیکاگو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:106
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:106
 msgid "America/Chihuahua"
-msgstr ""
+msgstr "امریکا / چیهواهوا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:107
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:107
 msgid "America/Costa_Rica"
-msgstr ""
+msgstr "امریکا / Costa_Rica"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:108
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:108
 msgid "America/Cuiaba"
-msgstr ""
+msgstr "امریکا / کویابا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:109
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:109
 msgid "America/Curacao"
-msgstr ""
+msgstr "امریکا / کوراسائو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:110
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:110
 msgid "America/Danmarkshavn"
-msgstr ""
+msgstr "امریکا / دانمارک شاون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:111
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:111
 msgid "America/Dawson"
-msgstr ""
+msgstr "امریکا / داوسون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:112
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:112
 msgid "America/Dawson_Creek"
-msgstr ""
+msgstr "امریکا / Dawson_Creek"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:113
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:113
 msgid "America/Denver"
-msgstr ""
+msgstr "امریکا / دنور"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:114
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:114
 msgid "America/Detroit"
-msgstr ""
+msgstr "امریکا / دیترویت"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:115
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:115
 msgid "America/Dominica"
-msgstr ""
+msgstr "امریکا / دومینیکا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:116
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:116
 msgid "America/Edmonton"
-msgstr ""
+msgstr "امریکا / ادمونتون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:117
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:117
 msgid "America/Eirunepe"
-msgstr ""
+msgstr "امریکا / Eirunepe"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:118
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:118
 msgid "America/El_Salvador"
-msgstr ""
+msgstr "امریکا / El_Salvador"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:119
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:119
 msgid "America/Fortaleza"
-msgstr ""
+msgstr "امریکا / فورتالزا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:120
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:120
 msgid "America/Glace_Bay"
-msgstr ""
+msgstr "امریکا / Glace_Bay"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:121
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:121
 msgid "America/Godthab"
-msgstr ""
+msgstr "امریکا / گودتاب"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:122
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:122
 msgid "America/Goose_Bay"
-msgstr ""
+msgstr "امریکا / Goose_Bay"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:123
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:123
 msgid "America/Grand_Turk"
-msgstr ""
+msgstr "امریکا / Grand_Turk"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:124
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:124
 msgid "America/Grenada"
-msgstr ""
+msgstr "امریکا / گرانادا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:125
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:125
 msgid "America/Guadeloupe"
-msgstr ""
+msgstr "امریکا / جزیره گوادلوپ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:126
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:126
 msgid "America/Guatemala"
-msgstr ""
+msgstr "امریکا / گواتمالا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:127
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:127
 msgid "America/Guayaquil"
-msgstr ""
+msgstr "امریکا / گوایاکیل"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:128
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:128
 msgid "America/Guyana"
-msgstr ""
+msgstr "امریکا / گویان"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:129
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:129
 msgid "America/Halifax"
-msgstr ""
+msgstr "امریکا / هالیفاکس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:130
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:130
 msgid "America/Havana"
-msgstr ""
+msgstr "امریکا / هاوانا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:131
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:131
 msgid "America/Hermosillo"
-msgstr ""
+msgstr "امریکا / هرموسیو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:132
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:132
 msgid "America/Indiana/Indianapolis"
-msgstr ""
+msgstr "امریکا / ایندیانا / ایندیاناپولیس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:133
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:133
 msgid "America/Indiana/Knox"
-msgstr ""
+msgstr "امریکا / ایندیانا / ناکس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:134
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:134
 msgid "America/Indiana/Marengo"
-msgstr ""
+msgstr "امریکا / ایندیانا / مارنگو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:135
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:135
 msgid "America/Indiana/Petersburg"
-msgstr ""
+msgstr "امریکا / ایندیانا / پترزبورگ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:136
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:136
 msgid "America/Indiana/Tell_City"
-msgstr ""
+msgstr "امریکا / ایندیانا / Tell_City"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:137
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:137
 msgid "America/Indiana/Vevay"
-msgstr ""
+msgstr "امریکا / ایندیانا / Vevay"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:138
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:138
 msgid "America/Indiana/Vincennes"
-msgstr ""
+msgstr "امریکا / ایندیانا / وینسنس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:139
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:139
 msgid "America/Indiana/Winamac"
-msgstr ""
+msgstr "امریکا / ایندیانا / Winamac"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:140
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:140
 msgid "America/Inuvik"
-msgstr ""
+msgstr "امریکا / Inuvik"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:141
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:141
 msgid "America/Iqaluit"
-msgstr ""
+msgstr "امریکا / ایکالوئیت"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:142
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:142
 msgid "America/Jamaica"
-msgstr ""
+msgstr "امریکا / جامائیکا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:143
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:143
 msgid "America/Juneau"
-msgstr ""
+msgstr "امریکا / جونو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:144
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:144
 msgid "America/Kentucky/Louisville"
-msgstr ""
+msgstr "امریکا / کنتاکی / لوئیزویل"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:145
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:145
 msgid "America/Kentucky/Monticello"
-msgstr ""
+msgstr "امریکا / کنتاکی / مانتیسلو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:146
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:146
 msgid "America/La_Paz"
-msgstr ""
+msgstr "امریکا / La_Paz"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:147
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:147
 msgid "America/Lima"
-msgstr ""
+msgstr "امریکا / لیما"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:148
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:148
 msgid "America/Los_Angeles"
-msgstr ""
+msgstr "امریکا / Los_Angeles"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:149
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:149
 msgid "America/Maceio"
-msgstr ""
+msgstr "امریکا / ماسیو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:150
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:150
 msgid "America/Managua"
-msgstr ""
+msgstr "امریکا / ماناگوا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:151
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:151
 msgid "America/Manaus"
-msgstr ""
+msgstr "امریکا / مانائوس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:152
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:152
 msgid "America/Marigot"
-msgstr ""
+msgstr "امریکا / Marigot"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:153
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:153
 msgid "America/Martinique"
-msgstr ""
+msgstr "امریکا / مارتینیک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:154
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:154
 msgid "America/Matamoros"
-msgstr ""
+msgstr "امریکا / Matamoros"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:155
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:155
 msgid "America/Mazatlan"
-msgstr ""
+msgstr "امریکا / مازاتلان"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:156
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:156
 msgid "America/Menominee"
-msgstr ""
+msgstr "امریکا / Menominee"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:157
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:157
 msgid "America/Merida"
-msgstr ""
+msgstr "امریکا / مریدا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:158
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:158
 msgid "America/Mexico_City"
-msgstr ""
+msgstr "امریکا / Mexico_City"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:159
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:159
 msgid "America/Miquelon"
-msgstr ""
+msgstr "امریکا / میکلون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:160
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:160
 msgid "America/Moncton"
-msgstr ""
+msgstr "امریکا / مانکتون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:161
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:161
 msgid "America/Monterrey"
-msgstr ""
+msgstr "امریکا / مونتری"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:162
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:162
 msgid "America/Montevideo"
-msgstr ""
+msgstr "امریکا / مونته ویدئو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:163
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:163
 msgid "America/Montreal"
-msgstr ""
+msgstr "امریکا / مونترال"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:164
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:164
 msgid "America/Montserrat"
-msgstr ""
+msgstr "امریکا / مونتسرات"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:165
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:165
 msgid "America/Nassau"
-msgstr ""
+msgstr "امریکا / ناسائو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:166
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:166
 msgid "America/New_York"
-msgstr ""
+msgstr "امریکا / New_York"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:167
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:167
 msgid "America/Nipigon"
-msgstr ""
+msgstr "امریکا / نیپیگون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:168
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:168
 msgid "America/Nome"
-msgstr ""
+msgstr "امریکا / نوم"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:169
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:169
 msgid "America/Noronha"
-msgstr ""
+msgstr "امریکا / نورونینا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:170
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:170
 msgid "America/North_Dakota/Center"
-msgstr ""
+msgstr "امریکا / داکوتایشمالی / مرکز"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:171
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:171
 msgid "America/North_Dakota/New_Salem"
-msgstr ""
+msgstr "امریکا / داکوتایشمالی / New_Salem"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:172
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:172
 msgid "America/Ojinaga"
-msgstr ""
+msgstr "امریکا / Ojinaga"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:173
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:173
 msgid "America/Panama"
-msgstr ""
+msgstr "امریکا / پاناما"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:174
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:174
 msgid "America/Pangnirtung"
-msgstr ""
+msgstr "امریکا / Pangnirtung"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:175
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:175
 msgid "America/Paramaribo"
-msgstr ""
+msgstr "امریکا / پاراماریبو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:176
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:176
 msgid "America/Phoenix"
-msgstr ""
+msgstr "امریکا / ققنوس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:177
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:177
 msgid "America/Port-au-Prince-au-Prince"
-msgstr ""
+msgstr "امریکا / پورت ا پرنس پرنس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:178
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:178
 msgid "America/Port_of_Spain"
-msgstr ""
+msgstr "امریکا / Port_of_Spain"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:179
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:179
 msgid "America/Porto_Velho"
-msgstr ""
+msgstr "امریکا / Porto_Velho"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:180
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:180
 msgid "America/Puerto_Rico"
-msgstr ""
+msgstr "امریکا / Puerto_Rico"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:181
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:181
 msgid "America/Rainy_River"
-msgstr ""
+msgstr "امریکا / Rainy_River"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:182
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:182
 msgid "America/Rankin_Inlet"
-msgstr ""
+msgstr "امریکا / Rankin_Inlet"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:183
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:183
 msgid "America/Recife"
-msgstr ""
+msgstr "امریکا / رسیف"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:184
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:184
 msgid "America/Regina"
-msgstr ""
+msgstr "امریکا / رجینا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:185
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:185
 msgid "America/Resolute"
-msgstr ""
+msgstr "امریکا / مصمم"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:186
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:186
 msgid "America/Rio_Branco"
-msgstr ""
+msgstr "امریکا / Rio_Branco"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:187
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:187
 msgid "America/Santa_Isabel"
-msgstr ""
+msgstr "امریکا / Santa_Isabel"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:188
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:188
 msgid "America/Santarem"
-msgstr ""
+msgstr "امریکا / سانتارم"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:189
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:189
 msgid "America/Santiago"
-msgstr ""
+msgstr "امریکا / سانتیاگو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:190
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:190
 msgid "America/Santo_Domingo"
-msgstr ""
+msgstr "امریکا / Santo_Domingo"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:191
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:191
 msgid "America/Sao_Paulo"
-msgstr ""
+msgstr "امریکا / Sao_Paulo"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:192
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:192
 msgid "America/Scoresbysund"
-msgstr ""
+msgstr "امریکا / اسکورزبیسوند"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:193
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:193
 msgid "America/Shiprock"
-msgstr ""
+msgstr "امریکا / Shiprock"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:194
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:194
 msgid "America/St_Barthelemy"
-msgstr ""
+msgstr "امریکا / St_Barthelemy"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:195
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:195
 msgid "America/St_Johns"
-msgstr ""
+msgstr "امریکا / St_Johns"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:196
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:196
 msgid "America/St_Kitts"
-msgstr ""
+msgstr "امریکا / St_Kitts"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:197
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:197
 msgid "America/St_Lucia"
-msgstr ""
+msgstr "امریکا / St_Lucia"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:198
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:198
 msgid "America/St_Thomas"
-msgstr ""
+msgstr "امریکا / St_Thomas"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:199
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:199
 msgid "America/St_Vincent"
-msgstr ""
+msgstr "امریکا / St_Vincent"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:200
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:200
 msgid "America/Swift_Current"
-msgstr ""
+msgstr "امریکا / Swift_Current"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:201
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:201
 msgid "America/Tegucigalpa"
-msgstr ""
+msgstr "امریکا / تگوسیگالپا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:202
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:202
 msgid "America/Thule"
-msgstr ""
+msgstr "امریکا / تول"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:203
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:203
 msgid "America/Thunder_Bay"
-msgstr ""
+msgstr "امریکا / Thunder_Bay"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:204
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:204
 msgid "America/Tijuana"
-msgstr ""
+msgstr "امریکا / تیجوانا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:205
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:205
 msgid "America/Toronto"
-msgstr ""
+msgstr "امریکا / تورنتو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:206
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:206
 msgid "America/Tortola"
-msgstr ""
+msgstr "امریکا / تورتولا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:207
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:207
 msgid "America/Vancouver"
-msgstr ""
+msgstr "امریکا / ونکوور"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:208
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:208
 msgid "America/Whitehorse"
-msgstr ""
+msgstr "امریکا / وایت هورس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:209
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:209
 msgid "America/Winnipeg"
-msgstr ""
+msgstr "امریکا / وینیپگ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:210
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:210
 msgid "America/Yakutat"
-msgstr ""
+msgstr "امریکا / یاکوتات"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:211
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:211
 msgid "America/Yellowknife"
-msgstr ""
+msgstr "امریکا / یلونایف"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:213
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:213
 msgid "Antarctica"
-msgstr ""
+msgstr "قطب جنوب"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:214
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:214
 msgid "Antarctica/Casey"
-msgstr ""
+msgstr "قطب جنوب / کیسی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:215
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:215
 msgid "Antarctica/Davis"
-msgstr ""
+msgstr "قطب جنوب / دیویس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:216
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:216
 msgid "Antarctica/DumontDUrville"
-msgstr ""
+msgstr "قطب جنوب / DumontDUrville"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:217
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:217
 msgid "Antarctica/Macquarie"
-msgstr ""
+msgstr "قطب جنوب / مکواری"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:218
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:218
 msgid "Antarctica/Mawson"
-msgstr ""
+msgstr "قطب جنوب / ماسون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:219
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:219
 msgid "Antarctica/McMurdo"
-msgstr ""
+msgstr "قطب جنوب / مک موردو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:220
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:220
 msgid "Antarctica/Palmer"
-msgstr ""
+msgstr "قطب جنوب / پالمر"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:221
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:221
 msgid "Antarctica/Rothera"
-msgstr ""
+msgstr "قطب جنوب / روترا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:222
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:222
 msgid "Antarctica/South_Pole"
-msgstr ""
+msgstr "قطب جنوب / South_Pole"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:223
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:223
 msgid "Antarctica/Syowa"
-msgstr ""
+msgstr "قطب جنوب / سیووا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:224
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:224
 msgid "Antarctica/Vostok"
-msgstr ""
+msgstr "قطب جنوب / وستوک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:225
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:225
 msgid "Arctic/Longyearbyen"
-msgstr ""
+msgstr "قطب شمال / لونجییربین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:227
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:227
 msgid "Asia"
-msgstr ""
+msgstr "آسیا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:228
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:228
 msgid "Asia/Aden"
-msgstr ""
+msgstr "آسیا / عدن"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:229
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:229
 msgid "Asia/Almaty"
-msgstr ""
+msgstr "آسیا / آلماتی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:230
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:230
 msgid "Asia/Amman"
-msgstr ""
+msgstr "آسیا / امان"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:231
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:231
 msgid "Asia/Anadyr"
-msgstr ""
+msgstr "آسیا / آنادیر"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:232
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:232
 msgid "Asia/Aqtau"
-msgstr ""
+msgstr "آسیا / آکتاو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:233
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:233
 msgid "Asia/Aqtobe"
-msgstr ""
+msgstr "آسیا / آکتوب"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:234
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:234
 msgid "Asia/Ashgabat"
-msgstr ""
+msgstr "آسیا / عشق آباد"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:235
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:235
 msgid "Asia/Baghdad"
-msgstr ""
+msgstr "آسیا / بغداد"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:236
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:236
 msgid "Asia/Bahrain"
-msgstr ""
+msgstr "آسیا / بحرین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:237
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:237
 msgid "Asia/Baku"
-msgstr ""
+msgstr "آسیا / باکو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:238
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:238
 msgid "Asia/Bangkok"
-msgstr ""
+msgstr "آسیا / بانکوک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:239
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:239
 msgid "Asia/Beirut"
-msgstr ""
+msgstr "آسیا / بیروت"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:240
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:240
 msgid "Asia/Bishkek"
-msgstr ""
+msgstr "آسیا / بیشکک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:241
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:241
 msgid "Asia/Brunei"
-msgstr ""
+msgstr "آسیا / برونئی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:242
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:242
 msgid "Asia/Choibalsan"
-msgstr ""
+msgstr "آسیا / چویبالسان"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:243
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:243
 msgid "Asia/Chongqing"
-msgstr ""
+msgstr "آسیا / چونگکینگ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:244
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:244
 msgid "Asia/Colombo"
-msgstr ""
+msgstr "آسیا / کلمبو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:245
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:245
 msgid "Asia/Damascus"
-msgstr ""
+msgstr "آسیا / دمشق"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:246
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:246
 msgid "Asia/Dhaka"
-msgstr ""
+msgstr "آسیا / داکا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:247
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:247
 msgid "Asia/Dili"
-msgstr ""
+msgstr "آسیا / دیلی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:248
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:248
 msgid "Asia/Dubai"
-msgstr ""
+msgstr "آسیا / دبی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:249
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:249
 msgid "Asia/Dushanbe"
-msgstr ""
+msgstr "آسیا / دوشنبه"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:250
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:250
 msgid "Asia/Gaza"
-msgstr ""
+msgstr "آسیا / غزه"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:251
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:251
 msgid "Asia/Harbin"
-msgstr ""
+msgstr "آسیا / هاربین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:252
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:252
 msgid "Asia/Ho_Chi_Minh"
-msgstr ""
+msgstr "آسیا / Ho_Chi_Minh"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:253
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:253
 msgid "Asia/Hong_Kong"
-msgstr ""
+msgstr "آسیا / Hong_Kong"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:254
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:254
 msgid "Asia/Hovd"
-msgstr ""
+msgstr "آسیا / هوود"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:255
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:255
 msgid "Asia/Irkutsk"
-msgstr ""
+msgstr "آسیا / ایرکوتسک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:256
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:256
 msgid "Asia/Jakarta"
-msgstr ""
+msgstr "آسیا / جاکارتا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:257
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:257
 msgid "Asia/Jayapura"
-msgstr ""
+msgstr "آسیا / جایاپور"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:258
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:258
 msgid "Asia/Jerusalem"
-msgstr ""
+msgstr "آسیا / بیت المقدس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:259
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:259
 msgid "Asia/Kabul"
-msgstr ""
+msgstr "آسیا / کابل"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:260
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:260
 msgid "Asia/Kamchatka"
-msgstr ""
+msgstr "آسیا / کامچاتکا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:261
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:261
 msgid "Asia/Karachi"
-msgstr ""
+msgstr "آسیا / کراچی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:262
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:262
 msgid "Asia/Kashgar"
-msgstr ""
+msgstr "آسیا / کاشغر"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:263
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:263
 msgid "Asia/Kathmandu"
-msgstr ""
+msgstr "آسیا / کاتماندو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:264
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:264
 msgid "Asia/Kolkata"
-msgstr ""
+msgstr "آسیا / کلکته"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:265
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:265
 msgid "Asia/Krasnoyarsk"
-msgstr ""
+msgstr "آسیا / کراسنویارسک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:266
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:266
 msgid "Asia/Kuala_Lumpur"
-msgstr ""
+msgstr "آسیا / Kuala_Lumpur"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:267
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:267
 msgid "Asia/Kuching"
-msgstr ""
+msgstr "آسیا / کوچینگ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:268
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:268
 msgid "Asia/Kuwait"
-msgstr ""
+msgstr "آسیا / کویت"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:269
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:269
 msgid "Asia/Macau"
-msgstr ""
+msgstr "آسیا / ماکائو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:270
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:270
 msgid "Asia/Magadan"
-msgstr ""
+msgstr "آسیا / ماگادان"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:271
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:271
 msgid "Asia/Makassar"
-msgstr ""
+msgstr "آسیا / ماکاسار"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:272
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:272
 msgid "Asia/Manila"
-msgstr ""
+msgstr "آسیا / مانیل"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:273
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:273
 msgid "Asia/Muscat"
-msgstr ""
+msgstr "آسیا / مسقط"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:274
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:274
 msgid "Asia/Nicosia"
-msgstr ""
+msgstr "آسیا / نیکوزیا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:275
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:275
 msgid "Asia/Novokuznetsk"
-msgstr ""
+msgstr "آسیا / نووکوزنتسک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:276
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:276
 msgid "Asia/Novosibirsk"
-msgstr ""
+msgstr "آسیا / نووسیبیرسک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:277
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:277
 msgid "Asia/Omsk"
-msgstr ""
+msgstr "آسیا / اومسک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:278
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:278
 msgid "Asia/Oral"
-msgstr ""
+msgstr "آسیا / دهان و دندان"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:279
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:279
 msgid "Asia/Phnom_Penh"
-msgstr ""
+msgstr "آسیا / Phnom_Penh"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:280
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:280
 msgid "Asia/Pontianak"
-msgstr ""
+msgstr "آسیا / Pontianak"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:281
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:281
 msgid "Asia/Pyongyang"
-msgstr ""
+msgstr "آسیا / پیونگ یانگ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:282
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:282
 msgid "Asia/Qatar"
-msgstr ""
+msgstr "آسیا / قطر"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:283
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:283
 msgid "Asia/Qyzylorda"
-msgstr ""
+msgstr "آسیا / Qyzylorda"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:284
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:284
 msgid "Asia/Rangoon"
-msgstr ""
+msgstr "آسیا / رانگون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:285
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:285
 msgid "Asia/Riyadh"
-msgstr ""
+msgstr "آسیا / ریاض"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:286
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:286
 msgid "Asia/Sakhalin"
-msgstr ""
+msgstr "آسیا / ساخالین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:287
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:287
 msgid "Asia/Samarkand"
-msgstr ""
+msgstr "آسیا / سمرقند"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:288
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:288
 msgid "Asia/Seoul"
-msgstr ""
+msgstr "آسیا / سئول"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:289
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:289
 msgid "Asia/Shanghai"
-msgstr ""
+msgstr "آسیا / شانگهای"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:290
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:290
 msgid "Asia/Singapore"
-msgstr ""
+msgstr "آسیا / سنگاپور"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:291
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:291
 msgid "Asia/Taipei"
-msgstr ""
+msgstr "آسیا / تایپه"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:292
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:292
 msgid "Asia/Tashkent"
-msgstr ""
+msgstr "آسیا / تاشکند"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:293
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:293
 msgid "Asia/Tbilisi"
-msgstr ""
+msgstr "آسیا / تفلیس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:294
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:294
 msgid "Asia/Tehran"
-msgstr ""
+msgstr "آسیا / تهران"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:295
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:295
 msgid "Asia/Thimphu"
-msgstr ""
+msgstr "آسیا / تیمفو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:296
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:296
 msgid "Asia/Tokyo"
-msgstr ""
+msgstr "آسیا / توکیو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:297
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:297
 msgid "Asia/Ulaanbaatar"
-msgstr ""
+msgstr "آسیا / اولانباتور"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:298
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:298
 msgid "Asia/Urumqi"
-msgstr ""
+msgstr "آسیا / ارومچی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:299
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:299
 msgid "Asia/Vientiane"
-msgstr ""
+msgstr "آسیا / وینتیان"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:300
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:300
 msgid "Asia/Vladivostok"
-msgstr ""
+msgstr "آسیا / شهر ولادی وستک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:301
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:301
 msgid "Asia/Yakutsk"
-msgstr ""
+msgstr "آسیا / یاکوتسک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:302
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:302
 msgid "Asia/Yekaterinburg"
-msgstr ""
+msgstr "آسیا / یکاترینبورگ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:303
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:303
 msgid "Asia/Yerevan"
-msgstr ""
+msgstr "آسیا / ایروان"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:305
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:305
 msgid "Atlantic"
-msgstr ""
+msgstr "اطلس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:306
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:306
 msgid "Atlantic/Azores"
-msgstr ""
+msgstr "اقیانوس اطلس / آزور"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:307
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:307
 msgid "Atlantic/Bermuda"
-msgstr ""
+msgstr "اقیانوس اطلس / برمودا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:308
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:308
 msgid "Atlantic/Canary"
-msgstr ""
+msgstr "اقیانوس اطلس / قناری"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:309
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:309
 msgid "Atlantic/Cape_Verde"
-msgstr ""
+msgstr "اقیانوس اطلس / Cape_Verde"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:310
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:310
 msgid "Atlantic/Faroe"
-msgstr ""
+msgstr "اقیانوس اطلس / فارو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:311
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:311
 msgid "Atlantic/Madeira"
-msgstr ""
+msgstr "اقیانوس اطلس / مادیرا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:312
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:312
 msgid "Atlantic/Reykjavik"
-msgstr ""
+msgstr "اقیانوس اطلس / ریکیاویک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:313
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:313
 msgid "Atlantic/South_Georgia"
-msgstr ""
+msgstr "اقیانوس اطلس / South_Georgia"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:314
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:314
 msgid "Atlantic/St_Helena"
-msgstr ""
+msgstr "اقیانوس اطلس / St_Helena"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:315
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:315
 msgid "Atlantic/Stanley"
-msgstr ""
+msgstr "اقیانوس اطلس / استنلی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:316
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:316
 msgid "Australia/Adelaide"
-msgstr ""
+msgstr "استرالیا / آدلاید"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:317
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:317
 msgid "Australia/Brisbane"
-msgstr ""
+msgstr "استرالیا / بریزبن"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:318
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:318
 msgid "Australia/Broken_Hill"
-msgstr ""
+msgstr "استرالیا / Broken_Hill"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:319
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:319
 msgid "Australia/Currie"
-msgstr ""
+msgstr "استرالیا / کری"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:320
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:320
 msgid "Australia/Darwin"
-msgstr ""
+msgstr "استرالیا / داروین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:321
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:321
 msgid "Australia/Eucla"
-msgstr ""
+msgstr "استرالیا / Eucla"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:322
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:322
 msgid "Australia/Hobart"
-msgstr ""
+msgstr "استرالیا / هوبارت"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:323
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:323
 msgid "Australia/Lindeman"
-msgstr ""
+msgstr "استرالیا / لیندمن"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:324
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:324
 msgid "Australia/Lord_Howe"
-msgstr ""
+msgstr "استرالیا / Lord_Howe"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:325
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:325
 msgid "Australia/Melbourne"
-msgstr ""
+msgstr "استرالیا / ملبورن"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:326
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:326
 msgid "Australia/Perth"
-msgstr ""
+msgstr "استرالیا / پرت"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:327
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:327
 msgid "Australia/Sydney"
-msgstr ""
+msgstr "استرالیا / سیدنی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:329
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:329
 msgid "Europe"
-msgstr ""
+msgstr "اروپا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:330
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:330
 msgid "Europe/Amsterdam"
-msgstr ""
+msgstr "اروپا / آمستردام"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:331
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:331
 msgid "Europe/Andorra"
-msgstr ""
+msgstr "اروپا / آندورا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:332
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:332
 msgid "Europe/Athens"
-msgstr ""
+msgstr "اروپا / آتن"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:333
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:333
 msgid "Europe/Belgrade"
-msgstr ""
+msgstr "اروپا / بلگراد"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:334
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:334
 msgid "Europe/Berlin"
-msgstr ""
+msgstr "اروپا / برلین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:335
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:335
 msgid "Europe/Bratislava"
-msgstr ""
+msgstr "اروپا / براتیسلاوا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:336
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:336
 msgid "Europe/Brussels"
-msgstr ""
+msgstr "اروپا / بروکسل"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:337
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:337
 msgid "Europe/Bucharest"
-msgstr ""
+msgstr "اروپا / بخارست"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:338
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:338
 msgid "Europe/Budapest"
-msgstr ""
+msgstr "اروپا / بوداپست"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:339
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:339
 msgid "Europe/Chisinau"
-msgstr ""
+msgstr "اروپا / کیشینف"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:340
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:340
 msgid "Europe/Copenhagen"
-msgstr ""
+msgstr "اروپا / کپنهاگ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:341
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:341
 msgid "Europe/Dublin"
-msgstr ""
+msgstr "اروپا / دوبلین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:342
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:342
 msgid "Europe/Gibraltar"
-msgstr ""
+msgstr "اروپا / جبل الطارق"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:343
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:343
 msgid "Europe/Guernsey"
-msgstr ""
+msgstr "اروپا / لباس بافته پشمی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:344
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:344
 msgid "Europe/Helsinki"
-msgstr ""
+msgstr "اروپا / هلسینکی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:345
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:345
 msgid "Europe/Isle_of_Man"
-msgstr ""
+msgstr "اروپا / Isle_of_Man"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:346
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:346
 msgid "Europe/Istanbul"
-msgstr ""
+msgstr "اروپا / استانبول"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:347
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:347
 msgid "Europe/Jersey"
-msgstr ""
+msgstr "اروپا / نیوجرسی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:348
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:348
 msgid "Europe/Kaliningrad"
-msgstr ""
+msgstr "اروپا / کالینینگراد"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:349
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:349
 msgid "Europe/Kiev"
-msgstr ""
+msgstr "اروپا / کیف"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:350
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:350
 msgid "Europe/Lisbon"
-msgstr ""
+msgstr "اروپا / لیسبون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:351
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:351
 msgid "Europe/Ljubljana"
-msgstr ""
+msgstr "اروپا / لیوبلیانا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:352
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:352
 msgid "Europe/London"
-msgstr ""
+msgstr "اروپا / لندن"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:353
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:353
 msgid "Europe/Luxembourg"
-msgstr ""
+msgstr "اروپا / لوکزامبورگ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:354
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:354
 msgid "Europe/Madrid"
-msgstr ""
+msgstr "اروپا / مادرید"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:355
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:355
 msgid "Europe/Malta"
-msgstr ""
+msgstr "اروپا / مالت"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:356
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:356
 msgid "Europe/Mariehamn"
-msgstr ""
+msgstr "اروپا / MARIEHAMN"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:357
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:357
 msgid "Europe/Minsk"
-msgstr ""
+msgstr "اروپا / مینسک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:358
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:358
 msgid "Europe/Monaco"
-msgstr ""
+msgstr "اروپا / موناکو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:359
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:359
 msgid "Europe/Moscow"
-msgstr ""
+msgstr "اروپا / مسکو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:360
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:360
 msgid "Europe/Oslo"
-msgstr ""
+msgstr "اروپا / اسلو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:361
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:361
 msgid "Europe/Paris"
-msgstr ""
+msgstr "اروپا / پاریس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:362
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:362
 msgid "Europe/Podgorica"
-msgstr ""
+msgstr "اروپا / پودگوریتسا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:363
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:363
 msgid "Europe/Prague"
-msgstr ""
+msgstr "اروپا / پراگ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:364
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:364
 msgid "Europe/Riga"
-msgstr ""
+msgstr "اروپا / ریگا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:365
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:365
 msgid "Europe/Rome"
-msgstr ""
+msgstr "اروپا / رم"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:366
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:366
 msgid "Europe/Samara"
-msgstr ""
+msgstr "اروپا / سامارا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:367
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:367
 msgid "Europe/San_Marino"
-msgstr ""
+msgstr "اروپا / San_Marino"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:368
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:368
 msgid "Europe/Sarajevo"
-msgstr ""
+msgstr "اروپا / سارایوو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:369
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:369
 msgid "Europe/Simferopol"
-msgstr ""
+msgstr "اروپا / سیمفروپل"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:370
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:370
 msgid "Europe/Skopje"
-msgstr ""
+msgstr "اروپا / اسکوپیه"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:371
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:371
 msgid "Europe/Sofia"
-msgstr ""
+msgstr "اروپا / صوفیه"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:372
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:372
 msgid "Europe/Stockholm"
-msgstr ""
+msgstr "اروپا / استکهلم"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:373
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:373
 msgid "Europe/Tallinn"
-msgstr ""
+msgstr "اروپا / تالین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:374
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:374
 msgid "Europe/Tirane"
-msgstr ""
+msgstr "اروپا / تیرانا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:375
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:375
 msgid "Europe/Uzhgorod"
-msgstr ""
+msgstr "اروپا / Uzhgorod ارسال"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:376
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:376
 msgid "Europe/Vaduz"
-msgstr ""
+msgstr "اروپا / فادوتس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:377
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:377
 msgid "Europe/Vatican"
-msgstr ""
+msgstr "اروپا / واتیکان"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:378
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:378
 msgid "Europe/Vienna"
-msgstr ""
+msgstr "اروپا / وین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:379
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:379
 msgid "Europe/Vilnius"
-msgstr ""
+msgstr "اروپا / ویلنیوس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:380
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:380
 msgid "Europe/Volgograd"
-msgstr ""
+msgstr "اروپا / ولگوگراد"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:381
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:381
 msgid "Europe/Warsaw"
-msgstr ""
+msgstr "اروپا / ورشو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:382
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:382
 msgid "Europe/Zagreb"
-msgstr ""
+msgstr "اروپا / زاگرب"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:383
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:383
 msgid "Europe/Zaporozhye"
-msgstr ""
+msgstr "اروپا / Zaporozhye را"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:384
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:384
 msgid "Europe/Zurich"
-msgstr ""
+msgstr "اروپا / زوریخ"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:386
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:386
 msgid "Indian"
-msgstr ""
+msgstr "هند"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:387
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:387
 msgid "Indian/Antananarivo"
-msgstr ""
+msgstr "هند / آنتاناناریوو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:388
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:388
 msgid "Indian/Chagos"
-msgstr ""
+msgstr "هند / شاگوس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:389
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:389
 msgid "Indian/Christmas"
-msgstr ""
+msgstr "هند / کریسمس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:390
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:390
 msgid "Indian/Cocos"
-msgstr ""
+msgstr "هند / ترینیداد و"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:391
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:391
 msgid "Indian/Comoro"
-msgstr ""
+msgstr "هند / کومورو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:392
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:392
 msgid "Indian/Kerguelen"
-msgstr ""
+msgstr "هند / کرگلن"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:393
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:393
 msgid "Indian/Mahe"
-msgstr ""
+msgstr "هند / ماه"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:394
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:394
 msgid "Indian/Maldives"
-msgstr ""
+msgstr "هند / مالدیو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:395
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:395
 msgid "Indian/Mauritius"
-msgstr ""
+msgstr "هند / موریس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:396
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:396
 msgid "Indian/Mayotte"
-msgstr ""
+msgstr "هند / مایوت"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:397
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:397
 msgid "Indian/Reunion"
-msgstr ""
+msgstr "هند / ریونیون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:399
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:399
 msgid "Pacific"
-msgstr ""
+msgstr "اقیانوس آرام"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:400
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:400
 msgid "Pacific/Apia"
-msgstr ""
+msgstr "اقیانوس آرام / آپیا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:401
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:401
 msgid "Pacific/Auckland"
-msgstr ""
+msgstr "اقیانوس آرام / اوکلند"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:402
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:402
 msgid "Pacific/Chatham"
-msgstr ""
+msgstr "اقیانوس آرام / چتم"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:403
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:403
 msgid "Pacific/Chuuk"
-msgstr ""
+msgstr "اقیانوس آرام / Chuuk"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:404
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:404
 msgid "Pacific/Easter"
-msgstr ""
+msgstr "اقیانوس آرام / عید پاک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:405
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:405
 msgid "Pacific/Efate"
-msgstr ""
+msgstr "اقیانوس آرام / افات"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:406
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:406
 msgid "Pacific/Enderbury"
-msgstr ""
+msgstr "اقیانوس آرام / اندربوری"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:407
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:407
 msgid "Pacific/Fakaofo"
-msgstr ""
+msgstr "اقیانوس آرام / فاکائوفو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:408
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:408
 msgid "Pacific/Fiji"
-msgstr ""
+msgstr "اقیانوس آرام / فیجی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:409
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:409
 msgid "Pacific/Funafuti"
-msgstr ""
+msgstr "اقیانوس آرام / فونافوتی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:410
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:410
 msgid "Pacific/Galapagos"
-msgstr ""
+msgstr "اقیانوس آرام / گالاپاگوس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:411
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:411
 msgid "Pacific/Gambier"
-msgstr ""
+msgstr "اقیانوس آرام / گمبیر"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:412
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:412
 msgid "Pacific/Guadalcanal"
-msgstr ""
+msgstr "اقیانوس آرام / گوادال کانال"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:413
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:413
 msgid "Pacific/Guam"
-msgstr ""
+msgstr "اقیانوس آرام / گوام"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:414
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:414
 msgid "Pacific/Honolulu"
-msgstr ""
+msgstr "اقیانوس آرام / هونولولو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:415
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:415
 msgid "Pacific/Johnston"
-msgstr ""
+msgstr "اقیانوس آرام / جانستون"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:416
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:416
 msgid "Pacific/Kiritimati"
-msgstr ""
+msgstr "اقیانوس آرام / کریتیماتی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:417
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:417
 msgid "Pacific/Kosrae"
-msgstr ""
+msgstr "اقیانوس آرام / کوسرای"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:418
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:418
 msgid "Pacific/Kwajalein"
-msgstr ""
+msgstr "اقیانوس آرام / کواجالین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:419
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:419
 msgid "Pacific/Majuro"
-msgstr ""
+msgstr "اقیانوس آرام / ماجورو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:420
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:420
 msgid "Pacific/Marquesas"
-msgstr ""
+msgstr "اقیانوس آرام / مارکاز"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:421
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:421
 msgid "Pacific/Midway"
-msgstr ""
+msgstr "اقیانوس آرام / میدوی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:422
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:422
 msgid "Pacific/Nauru"
-msgstr ""
+msgstr "اقیانوس آرام / نائورو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:423
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:423
 msgid "Pacific/Niue"
-msgstr ""
+msgstr "اقیانوس آرام / نیوئه"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:424
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:424
 msgid "Pacific/Norfolk"
-msgstr ""
+msgstr "اقیانوس آرام / نورفولک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:425
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:425
 msgid "Pacific/Noumea"
-msgstr ""
+msgstr "اقیانوس آرام / نومیا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:426
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:426
 msgid "Pacific/Pago_Pago"
-msgstr ""
+msgstr "اقیانوس آرام / Pago_Pago"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:427
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:427
 msgid "Pacific/Palau"
-msgstr ""
+msgstr "اقیانوس آرام / پالائو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:428
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:428
 msgid "Pacific/Pitcairn"
-msgstr ""
+msgstr "اقیانوس آرام / پیتکارین"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:429
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:429
 msgid "Pacific/Pohnpei"
-msgstr ""
+msgstr "اقیانوس آرام / Pohnpei"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:430
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:430
 msgid "Pacific/Port_Moresby"
-msgstr ""
+msgstr "اقیانوس آرام / Port_Moresby"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:431
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:431
 msgid "Pacific/Rarotonga"
-msgstr ""
+msgstr "اقیانوس آرام / راروتونگا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:432
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:432
 msgid "Pacific/Saipan"
-msgstr ""
+msgstr "اقیانوس آرام / سایپان"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:433
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:433
 msgid "Pacific/Tahiti"
-msgstr ""
+msgstr "اقیانوس آرام / تاهیتی"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:434
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:434
 msgid "Pacific/Tarawa"
-msgstr ""
+msgstr "اقیانوس آرام / تاراوا"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:435
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:435
 msgid "Pacific/Tongatapu"
-msgstr ""
+msgstr "اقیانوس آرام / تونگاتاپو"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:436
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:436
 msgid "Pacific/Wake"
-msgstr ""
+msgstr "اقیانوس آرام / ویک"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:437
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:437
 msgid "Pacific/Wallis"
-msgstr ""
+msgstr "اقیانوس آرام / والیس"
 
-#: c:\Code\pi\\usr\locale\_source\Timezone/Timezone.php:439
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/locale/_source/Timezone/Timezone.php:439
 msgid "UTC"
-msgstr ""
+msgstr "UTC"

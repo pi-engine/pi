@@ -1,14 +1,14 @@
 <?php
-    $this->css($this->assetModule('script/front.css'));
-    $this->jQuery();
-    $this->Backbone();
+$this->css($this->assetModule('script/front.css'));
+$this->jQuery();
+$this->Backbone();
 ?>
 
-<?php $params = array(
+<?php $params = [
     'controller' => 'draft',
     'action'     => 'list',
     'from'       => $from,
-); ?>
+]; ?>
 
 <?php if ($status == $flags['published']) {
     $controller = 'article';
@@ -16,28 +16,28 @@
     $controller = 'draft';
 } ?>
 
-<ul class="nav nav-pills" style="margin-bottom: 10px">
-    <li class="<?php if ($status == $flags['published']) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', array('action' => 'published', 'controller' => 'article', 'from' => $from)); ?>">
+<ul class="nav nav-pills bg-light mb-3 p-3" style="margin-bottom: 10px">
+    <li class="nav-item">
+        <a class="nav-link <?php if ($status == $flags['published']) echo 'active'; ?>" href="<?php echo $this->url('', ['action' => 'published', 'controller' => 'article', 'from' => $from]); ?>">
             <?php _e('Published'); ?> (<?php echo $summary['published'] ?>)
         </a>
     </li>
-    <li class="<?php if ($status == $flags['pending']) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', array_merge($params, array('status' => $flags['pending']))); ?>">
+    <li class="nav-item">
+        <a class="nav-link <?php if ($status == $flags['pending']) echo 'active'; ?>" href="<?php echo $this->url('', array_merge($params, ['status' => $flags['pending']])); ?>">
             <?php _e('Pending'); ?> (<?php echo $summary['pending'] ?>)
         </a>
     </li>
-    <li class="<?php if ($status == $flags['rejected']) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', array_merge($params, array('status' => $flags['rejected']))); ?>">
+    <li class="nav-item">
+        <a class="nav-link <?php if ($status == $flags['rejected']) echo 'active'; ?>" href="<?php echo $this->url('', array_merge($params, ['status' => $flags['rejected']])); ?>">
             <?php _e('Rejected'); ?> (<?php echo $summary['rejected'] ?>)
         </a>
     </li>
-    <li class="<?php if ($status == $flags['draft']) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', array_merge($params, array('status' => $flags['draft']))); ?>">
+    <li class="nav-item">
+        <a class="nav-link <?php if ($status == $flags['draft']) echo 'active'; ?>" href="<?php echo $this->url('', array_merge($params, ['status' => $flags['draft']])); ?>">
             <?php _e('Draft'); ?> (<?php echo $summary['draft'] ?>)
         </a>
     </li>
-    <li style="margin-left: 20px;">
+    <li class="nav-item" style="margin-left: 20px;">
         <?php $allowCompose = false;
         foreach ($rules as $rule) {
             if ($rule['compose']) {
@@ -46,76 +46,77 @@
             }
         } ?>
         <?php if ($allowCompose) { ?>
-            <a href="<?php echo $this->url('', array('controller' => 'draft' ,'action'=>'add')); ?>" class="btn btn-default">
+            <a href="<?php echo $this->url('', ['controller' => 'draft', 'action' => 'add']); ?>"
+               class="nav-link btn btn-secondary">
                 <?php _e('Compose'); ?>
             </a>
         <?php } ?>
     </li>
 </ul>
 <script>
-$(function() {
-    var page = { 
-        el  : $("#jsList"),
-        url : "<?php echo $this->url(
-            '',
-            array(
-                'action'     => 'delete',
-                'controller' => $controller,
-                'status'     => $status,
-                'source'     => $from,
-            )
-        ); ?>",
-        $   : function(selector) {
-            return this.el.find(selector);
-        },
-        init : function() {
-            _.bindAll(this);
-            this.$(".check-all").click(this.checkAll);
-            this.$(".btn-delete").click(this.deleteMore);
-            this.$(".delete").click(this.deleteOne);
-            this.$(".check-one").click(this.clickOne);
-        },
-        checkAll : function() {
-           var flag = this.$(".check-all").prop("checked");
-           this.$(".check-one").prop("checked",flag).each(function() {
-               var tr = $(this).parents("tr:first");
-                if (flag) {
+    $(function () {
+        var page = {
+            el: $("#jsList"),
+            url: "<?php echo $this->url(
+                '',
+                [
+                    'action'     => 'delete',
+                    'controller' => $controller,
+                    'status'     => $status,
+                    'source'     => $from,
+                ]
+            ); ?>",
+            $: function (selector) {
+                return this.el.find(selector);
+            },
+            init: function () {
+                _.bindAll(this);
+                this.$(".check-all").click(this.checkAll);
+                this.$(".btn-delete").click(this.deleteMore);
+                this.$(".delete").click(this.deleteOne);
+                this.$(".check-one").click(this.clickOne);
+            },
+            checkAll: function () {
+                var flag = this.$(".check-all").prop("checked");
+                this.$(".check-one").prop("checked", flag).each(function () {
+                    var tr = $(this).parents("tr:first");
+                    if (flag) {
+                        tr.addClass("info");
+                    } else {
+                        tr.removeClass("info");
+                    }
+                });
+            },
+            clickOne: function (e) {
+                var el = $(e.target),
+                    tr = el.parents("tr:first");
+                if (el.prop("checked")) {
                     tr.addClass("info");
                 } else {
                     tr.removeClass("info");
                 }
-           });
-        },
-        clickOne : function(e) {
-           var el = $(e.target),
-               tr = el.parents("tr:first");
-           if (el.prop("checked")) {
-               tr.addClass("info");
-           } else {
-               tr.removeClass("info");
-           }
-       },
-        deleteMore : function() {
-            var id = [];
-            this.$(".check-one:checked").each(function() {
-                id.push($(this).val()); 
-            });
-            if (id.length) {
-                if (confirm("<?php _e('Are you sure delete checked article?'); ?>")) {
-                    location.href = this.url + "?id=" + id.join(",") + "&from=" + this.encodeUrl();
+            },
+            deleteMore: function () {
+                var id = [];
+                this.$(".check-one:checked").each(function () {
+                    id.push($(this).val());
+                });
+                if (id.length) {
+                    if (confirm("<?php _e('Are you sure delete checked article?'); ?>")) {
+                        location.href = this.url + "?id=" + id.join(",") + "&from=" + this.encodeUrl();
+                    }
                 }
+            },
+            deleteOne: function (e) {
+                var id = $(e.target).parents("tr").attr("data-id");
+                if (confirm("<?php _e('Are you sure delete this article?'); ?>")) {
+                    location.href = this.url + "?id=" + id + "&from=" + this.encodeUrl();
+                }
+            },
+            encodeUrl: function () {
+                return encodeURIComponent(location.href);
             }
-        },
-        deleteOne : function(e) {
-            var id = $(e.target).parents("tr").attr("data-id");
-            if (confirm("<?php _e('Are you sure delete this article?'); ?>")) {
-                location.href = this.url + "?id=" + id + "&from=" + this.encodeUrl();
-            }
-        },
-        encodeUrl : function() {
-           return encodeURIComponent(location.href);
-        }
-    };
-    page.init();
-})
+        };
+        page.init();
+    })
 </script>

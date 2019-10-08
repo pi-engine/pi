@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Model\User\RowGateway;
@@ -38,7 +38,7 @@ class Account extends AbstractFieldRowGateway
      */
     protected function getMetaList()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -80,7 +80,7 @@ class Account extends AbstractFieldRowGateway
     /**
      * Transform credential upon raw data
      *
-     * @param string    $credential     Credential
+     * @param string $credential Credential
      * @return string Encrypted credential value
      */
     public function transformCredential($credential)
@@ -111,7 +111,7 @@ class Account extends AbstractFieldRowGateway
     /**
      * {@inheritDoc}
      */
-    public function save($rePopulate = true)
+    public function save($rePopulate = true, $filter = true)
     {
         /*
         if (isset($this['credential'])) {
@@ -119,6 +119,6 @@ class Account extends AbstractFieldRowGateway
         }
         */
 
-        return parent::save($rePopulate);
+        return parent::save($rePopulate, $filter);
     }
 }

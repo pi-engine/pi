@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -12,8 +12,8 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Pi\Cache\Storage\AdapterPluginManager;
-use Zend\Cache\StorageFactory;
 use Zend\Cache\Storage\Adapter\AbstractAdapter;
+use Zend\Cache\StorageFactory;
 
 /**
  * Cache handler service
@@ -60,11 +60,11 @@ class Cache extends AbstractService
      *                  'adapter' - storage adapter; 'plugins'; 'options'
      * @return AbstractAdapter
      */
-    public function loadStorage($config = array())
+    public function loadStorage($config = [])
     {
         if (is_string($config)) {
             $configFile = sprintf('cache.%s.php', $config);
-            $config = Pi::config()->load($configFile);
+            $config     = Pi::config()->load($configFile);
         }
         if (!isset($config['adapter']['options']['namespace'])) {
             $config['adapter']['options']['namespace'] = '';
@@ -81,7 +81,7 @@ class Cache extends AbstractService
     /**
      * Set namespace to current cache storage adapter
      *
-     * @param string                                      $namespace
+     * @param string $namespace
      * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
@@ -90,9 +90,10 @@ class Cache extends AbstractService
     public function setNamespace(
         $namespace = '',
         AbstractAdapter $storage = null
-    ) {
+    )
+    {
         $namespace = $this->getNamespace($namespace);
-        $storage = $storage ?: $this->storage();
+        $storage   = $storage ?: $this->storage();
         $storage->getOptions()->setNamespace($namespace);
 
         return $this;
@@ -113,7 +114,7 @@ class Cache extends AbstractService
     /**
      * Clear cache by namespace to current cache storage adapter
      *
-     * @param string                                      $namespace
+     * @param string $namespace
      * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
@@ -122,9 +123,10 @@ class Cache extends AbstractService
     public function clearByNamespace(
         $namespace = '',
         AbstractAdapter $storage = null
-    ) {
+    )
+    {
         $namespace = $this->getNamespace($namespace);
-        $storage = $storage ?: $this->storage();
+        $storage   = $storage ?: $this->storage();
         if (method_exists($storage, 'clearByNamespace')) {
             $storage->clearByNamespace($namespace);
         }
@@ -135,8 +137,8 @@ class Cache extends AbstractService
     /**
      * Canonize cache key
      *
-     * @param string $key           Raw key
-     * @param string $cacheLevel    Cache level
+     * @param string $key Raw key
+     * @param string $cacheLevel Cache granularity
      * @return string
      */
     public function canonizeKey($key, $cacheLevel = '')
@@ -158,7 +160,7 @@ class Cache extends AbstractService
         if ($prefix) {
             $key = $key ? $prefix . $this->nsDelimiter . $key : $prefix;
         }
-        $key = str_replace(array(':', '-', '.', '/'), '_', $key);
+        $key = str_replace([':', '-', '.', '/'], '_', $key);
 
         return $key;
     }
@@ -166,9 +168,9 @@ class Cache extends AbstractService
     /**
      * Set item with namespace
      *
-     * @param  string                                     $key
-     * @param  mixed                                      $value
-     * @param  string|array                               $options
+     * @param  string $key
+     * @param  mixed $value
+     * @param  string|array $options
      * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
@@ -177,19 +179,20 @@ class Cache extends AbstractService
     public function setItem(
         $key,
         $value,
-        $options = array(),
+        $options = [],
         AbstractAdapter $storage = null
-    ) {
-        $storage = $storage ?: $this->storage();
+    )
+    {
+        $storage        = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
 
-        $namespace      = null;
-        $ttl            = null;
-        $namespaceOld   = null;
-        $ttlOld         = null;
+        $namespace    = null;
+        $ttl          = null;
+        $namespaceOld = null;
+        $ttlOld       = null;
         if (is_string($options)) {
             $namespace = $options;
-            $options = array();
+            $options   = [];
         } else {
             if (isset($options['ttl'])) {
                 $ttl = $options['ttl'];
@@ -199,11 +202,11 @@ class Cache extends AbstractService
             }
         }
         if (null !== $namespace) {
-            $namespaceOld = $storageOptions->namespace;
+            $namespaceOld              = $storageOptions->namespace;
             $storageOptions->namespace = $this->getNamespace($namespace);
         }
         if (null !== $ttl) {
-            $ttlOld = $storageOptions->ttl;
+            $ttlOld              = $storageOptions->ttl;
             $storageOptions->ttl = $ttl;
         }
 
@@ -221,8 +224,8 @@ class Cache extends AbstractService
     /**
      * Get item with namespace
      *
-     * @param  string                                     $key
-     * @param  string|array                               $options
+     * @param  string $key
+     * @param  string|array $options
      * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
@@ -230,16 +233,17 @@ class Cache extends AbstractService
      */
     public function getItem(
         $key,
-        $options = array(),
+        $options = [],
         AbstractAdapter $storage = null
-    ) {
-        $storage = $storage ?: $this->storage();
+    )
+    {
+        $storage        = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
 
-        $namespace      = null;
-        $ttl            = null;
-        $namespaceOld   = null;
-        $ttlOld         = null;
+        $namespace    = null;
+        $ttl          = null;
+        $namespaceOld = null;
+        $ttlOld       = null;
         if (is_string($options)) {
             $namespace = $options;
         } else {
@@ -251,11 +255,11 @@ class Cache extends AbstractService
             }
         }
         if (null !== $namespace) {
-            $namespaceOld = $storageOptions->namespace;
+            $namespaceOld              = $storageOptions->namespace;
             $storageOptions->namespace = $this->getNamespace($namespace);
         }
         if (null !== $ttl) {
-            $ttlOld = $storageOptions->ttl;
+            $ttlOld              = $storageOptions->ttl;
             $storageOptions->ttl = $ttl;
         }
 
@@ -273,8 +277,8 @@ class Cache extends AbstractService
     /**
      * Remove item with namespace
      *
-     * @param  string                                     $key
-     * @param  string|array                               $options
+     * @param  string $key
+     * @param  string|array $options
      * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
@@ -282,14 +286,15 @@ class Cache extends AbstractService
      */
     public function removeItem(
         $key,
-        $options = array(),
+        $options = [],
         AbstractAdapter $storage = null
-    ) {
-        $storage = $storage ?: $this->storage();
+    )
+    {
+        $storage        = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
 
-        $namespace      = null;
-        $namespaceOld   = null;
+        $namespace    = null;
+        $namespaceOld = null;
         if (is_array($options)) {
             if (isset($options['namespace'])) {
                 $namespace = $options['namespace'];
@@ -298,7 +303,7 @@ class Cache extends AbstractService
             $namespace = $options;
         }
         if ($namespace) {
-            $namespaceOld = $storageOptions->namespace;
+            $namespaceOld              = $storageOptions->namespace;
             $storageOptions->namespace = $this->getNamespace($namespace);
         }
         $data = $storage->removeItem($key);
@@ -354,8 +359,8 @@ class Cache extends AbstractService
             $this->clearByNamespace();
         }
         if ('module' == $type || 'all' == $type) {
-            $modules = Pi::service('module')->meta();
-            foreach (array_keys($modules) as $module) {
+            $modules = $item ? (array)$item : array_keys(Pi::service('module')->meta());
+            foreach ($modules as $module) {
                 $this->clearByNamespace($module);
             }
         }
@@ -375,5 +380,23 @@ class Cache extends AbstractService
         if ('stat' == $type || 'all' == $type) {
             clearstatcache(true);
         }
+    }
+
+
+    /**
+     * Flush cache from url and namespace
+     * Url without domain
+     * @param $url
+     * @param $namespace
+     */
+    public function flushCacheByUrl($url, $namespace)
+    {
+        $url = parse_url($url, PHP_URL_PATH);
+        $key = md5($url);
+
+        $this->removeItem(
+            Pi::config('theme') . '_page_' . $key,
+            array('namespace' => $namespace)
+        );
     }
 }

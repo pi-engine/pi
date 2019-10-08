@@ -1,81 +1,159 @@
 <?php
-// Options: interval, pause, height
-$options = (array) $block['options'];
-$items = $block['items'];
-$activeItem = array_shift($items);
-$count = count($items);
-$width = empty($options['width']) ? 0 : $options['width'];
-$height = empty($options['height']) ? 0 : $options['height'];
+$options  = (array)$block['options'];
+$items    = $block['items'] ?: [];
+$count    = count($items);
+$imgStyle = '';
+$locale   = Pi::service('i18n')->getLocale();
+$target   = $options['target_new'] ? '_self' : '_blank';
+$ellipsis = empty($options['max_rows'])
+    ? 'pi-ellipsis'
+    : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
 
-$render = function ($item) use ($width, $height) {
-    $caption = $this->escape($item['caption']);
-    $description = $this->escape($item['desc']);
-    
-    $width = $width ? 'width: '  . $width  . 'px;' : '';
-    $height = $height ? 'height: '  . $height . 'px;' : '';
+if (!empty($options['width'])) {
+    $imgStyle .= 'width: ' . $options['width'] . 'px;';
+}
+if (!empty($options['height'])) {
+    $imgStyle .= 'height: ' . $options['height'] . 'px;';
+}
+if (!empty($imgStyle)) {
+    $imgStyle = sprintf('style="%s" ', $imgStyle);
+}
 
-    if (empty($width) && empty($height)) {
-        $image = sprintf(
-            '<img src="%s" alt="%s" />',
-            $item['image'],
-            $caption
-        );
-    } else {
-        $image = sprintf(
-            '<img src="%s" alt="%s" style="%s%s" />',
+$towcols    = empty($options['two_col']) ? false : true;
+$carouselId = uniqid('carousel');
+unset($options['width'], $options['height'], $options['two_col']);
+?>
+
+<?php
+if ($towcols) {
+
+    $render = function ($item) use ($imgStyle, $ellipsis, $target) {
+        $itemPattern
+                 = <<<EOT
+            <div class="row">
+                <div class="col-sm-7">
+                    <a href="%s" target="%s" title="%s"><img class="img-fluid" src="%s" alt="%s" %s/></a>
+                </div>
+                <div class="col-sm-5">
+                    <h4 class="pi-ellipsis"><a href="%s" title="%s" target="%s">%s</a></h4>
+                    <p class="%s">%s</p>
+                </div>
+            </div>
+EOT;
+        $link    = $item['link'] ?: '#';
+        $caption = _escape($item['caption']);
+        $content = sprintf(
+            $itemPattern,
+            $link,
+            $target,
+            $caption,
             $item['image'],
             $caption,
-            $width,
-            $height
+            $imgStyle,
+            $link,
+            $caption,
+            $target,
+            $caption,
+            $ellipsis,
+            $item['summary']
         );
-    }
 
+        return $content;
+    };
 
-    $content = '';
-    if (!empty($item['link'])) {
-        $content .= '<a target="_blank" href="' . $item['link'] . '" title="' . $caption . '">' . $image . '</a>';
-    } else {
-        $content .= $image;
-    }
-    if ($caption || $description) {
-        $content .= '<div class="carousel-caption"><h4>' . $caption . '</h4><p>' . $description . '</p></div>';
-    }
-    return $content;
-};
-$carouselId = uniqid('carousel');
-?>
-<div id="<?php echo $carouselId; ?>" class="carousel slide">
-    <ol class="carousel-indicators">
-        <li data-target="#<?php echo $carouselId; ?>" data-slide-to="0" class="active"></li>
-        <?php for ($i = 1; $i <= $count; $i++) { ?>
-        <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
-        <?php } ?>
-    </ol>
+    // Add head style
+    $style
+        = <<<'EOT'
+        .widget-carousel-bootstrap .carousel-indicators {
+            text-align: right;
+            margin: 0;
+            left: auto;
+            top: auto;
+            right: 15px;
+            bottom: 5px;
+        }
+        .widget-carousel-bootstrap .carousel-indicators .active {
+            background: #428bca;
+        }
+        .widget-carousel-bootstrap .carousel-indicators li {
+            background: #ccc;
+            border-radius: 0;
+            margin: 0 3px 0 0 !important;
+            width: 14px !important;
+            height: 14px !important;
+        }
+EOT;
 
-    <!-- Carousel items -->
-    <div class="carousel-inner">
-        <div class="active item">
-            <?php echo $render($activeItem); ?>
+    $this->headStyle()->appendStyle($style);
+
+} else {
+
+    $render = function ($item) use ($imgStyle, $ellipsis, $target) {
+        $itemPattern
+                 = <<<EOT
+            <a href="%s" target="%s" title="%s">
+                <img src="%s" alt="%s" class="img-fluid d-block w-100" %s/>
+            </a>
+            <div class="carousel-caption">
+                <h4>%s</h4>
+                <p class="%s">%s</p>
+            </div>
+EOT;
+        $link    = $item['link'] ?: '#';
+        $caption = _escape($item['caption']);
+        $content = sprintf(
+            $itemPattern,
+            $link,
+            $target,
+            $caption,
+            $item['image'],
+            $caption,
+            $imgStyle,
+            $caption,
+            $ellipsis,
+            $item['summary']
+        );
+
+        return $content;
+    };
+
+} ?>
+    <div class="widget-carousel-bootstrap">
+        <div id="<?php echo $carouselId; ?>" class="carousel slide">
+            <?php if ($count > 1) { ?>
+                <ol class="carousel-indicators">
+                    <li data-target="#<?php echo $carouselId; ?>" data-slide-to="0" class="active"></li>
+                    <?php for ($i = 1; $i < $count; $i++) { ?>
+                        <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
+                    <?php } ?>
+                </ol>
+            <?php } ?>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+                <div class="carousel-item active w-100">
+                    <?php echo $render(array_shift($items)); ?>
+                </div>
+                <?php if (!empty($items)) { ?>
+                    <?php foreach ($items as $item) { ?>
+                        <div class="carousel-item w-100">
+                            <?php echo $render($item); ?>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+            </div>
+            <?php if ($count > 1) { ?>
+                <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'carousel-control-next' : 'carousel-control-prev'; ?>"
+                   href="#<?php echo $carouselId; ?>" role="button" data-slide="prev">
+                    <i class="icon-prev fas fa-chevron-left"></i>
+                </a>
+                <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'carousel-control-prev' : 'carousel-control-next'; ?>"
+                   href="#<?php echo $carouselId; ?>" role="button" data-slide="next">
+                    <i class="icon-next fas fa-chevron-right"></i>
+                </a>
+            <?php } ?>
         </div>
-        <?php foreach ($items as $item) { ?>
-        <div class="item">
-            <?php echo $render($item); ?>
-        </div>
-        <?php } ?>
     </div>
-
-    <!-- Carousel nav -->
-    <a class="left carousel-control" href="#<?php echo $carouselId; ?>" data-slide="prev">
-        <span class="icon-prev fa fa-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#<?php echo $carouselId; ?>" data-slide="next">
-        <span class="icon-next fa fa-chevron-right"></span>
-    </a>
-</div>
 <?php
-$script = sprintf('$("#%s").carousel(%s);',
-        $carouselId,
-        json_encode($block['options'])
-    );
+$script = sprintf('$("#%s").carousel(%s);', $carouselId, json_encode($options));
 $this->footScript()->appendScript($script);
 ?>

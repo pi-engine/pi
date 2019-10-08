@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -12,32 +12,42 @@
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
-return array(
-    'admin' => array(
-        'account'       => array(
-            'title'         => _a('User account'),
-            'access'        => array(
+return [
+    // Front section
+    'front' => [
+        'profile-page' => [
+            'title'  => _a('Profile pages'),
+            'access' => [
+                'member',
+            ],
+        ],
+    ],
+    // Admin section
+    'admin' => [
+        'account' => [
+            'title'  => _a('User account'),
+            'access' => [
                 //'admin',
-            ),
-        ),
-        'user'          => array(
-            'title'         => _a('User profile'),
-            'access'        => array(
+            ],
+        ],
+        'user'    => [
+            'title'  => _a('User profile'),
+            'access' => [
                 //'admin',
-            ),
-        ),
-        'role'          => array(
-            'title'         => _a('Roles'),
-            'access'        => array(
+            ],
+        ],
+        'role'    => [
+            'title'  => _a('Roles'),
+            'access' => [
                 //'admin',
-            ),
-        ),
-        'profile'      => array(
-            'title'         => _a('Profile fields'),
-            'access'        => array(
+            ],
+        ],
+        'profile' => [
+            'title'  => _a('Profile fields'),
+            'access' => [
                 //'admin',
-            ),
-        ),
+            ],
+        ],
         /*
         'import'      => array(
             'title'         => _a('Import'),
@@ -47,35 +57,41 @@ return array(
         ),
         */
 
-        'avatar'       => array(
-            'title'         => _a('Avatars'),
-            'access'        => array(
+        'avatar'      => [
+            'title'  => _a('Avatars'),
+            'access' => [
                 //'admin',
-            ),
-        ),
-        'form'         => array(
-            'title'         => _a('Forms'),
-            'access'        => array(
+            ],
+        ],
+        'form'        => [
+            'title'  => _a('Forms'),
+            'access' => [
                 //'admin',
-            ),
-        ),
-        'plugin'       => array(
-            'title'         => _a('Plugin management'),
-            'access'        => array(
+            ],
+        ],
+        'plugin'      => [
+            'title'  => _a('Plugin management'),
+            'access' => [
                 //'admin',
-            ),
-        ),
-        'maintenance'  => array(
-            'title'         => _a('Maintenance'),
-            'access'        => array(
+            ],
+        ],
+        'maintenance' => [
+            'title'  => _a('Maintenance'),
+            'access' => [
                 //'admin',
-            ),
-        ),
-        'inquiry'  => array(
-            'title'         => _a('Inquiry'),
-            'access'        => array(
+            ],
+        ],
+        'inquiry'     => [
+            'title'  => _a('Inquiry'),
+            'access' => [
                 //'admin',
-            ),
-        ),
-    ),
-);
+            ],
+        ],
+        'condition'   => [
+            'title'  => _a('Terms and conditions'),
+            'access' => [
+                //'admin',
+            ],
+        ],
+    ],
+];

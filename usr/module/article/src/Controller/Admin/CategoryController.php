@@ -1,36 +1,36 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link         http://code.pialog.org for the Pi Engine source repository
- * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt BSD 3-Clause License
+ * @link         http://code.piengine.org for the Pi Engine source repository
+ * @copyright    Copyright (c) Pi Engine http://piengine.org
+ * @license      http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article\Controller\Admin;
 
+use Module\Article\Form\CategoryEditFilter;
+use Module\Article\Form\CategoryEditForm;
+use Module\Article\Form\CategoryMergeFilter;
+use Module\Article\Form\CategoryMergeForm;
+use Module\Article\Form\CategoryMoveFilter;
+use Module\Article\Form\CategoryMoveForm;
+use Module\Article\Media;
+use Module\Article\Model\Category;
 use Pi;
 use Pi\Form\Form;
 use Pi\Mvc\Controller\ActionController;
-use Module\Article\Form\CategoryEditForm;
-use Module\Article\Form\CategoryEditFilter;
-use Module\Article\Form\CategoryMergeForm;
-use Module\Article\Form\CategoryMergeFilter;
-use Module\Article\Form\CategoryMoveForm;
-use Module\Article\Form\CategoryMoveFilter;
-use Module\Article\Model\Category;
-use Module\Article\Media;
 
 /**
  * Category controller
- * 
+ *
  * Feature list:
- * 
+ *
  * 1. List/add/edit/delete category
  * 2. Merge/move a category to another category
  * 3. AJAX action for saving category image
  * 4. AJAX action for deleting category image
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class CategoryController extends ActionController
@@ -42,37 +42,37 @@ class CategoryController extends ActionController
     {
         return $this->redirect()->toRoute(
             '',
-            array('action' => 'list')
+            ['action' => 'list']
         );
     }
-    
+
     /**
      * Add category information
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function addAction()
     {
         $parent = $this->params('parent', 0);
 
-        $form   = $this->getCategoryForm('add');
+        $form = $this->getCategoryForm('add');
         if ($parent) {
             $form->get('parent')->setAttribute('value', $parent);
         }
-        $form->setData(array('fake_id' => uniqid()));
+        $form->setData(['fake_id' => uniqid()]);
 
-        $module  = $this->getModule();
-        $configs = Pi::config('', $module);
+        $module                    = $this->getModule();
+        $configs                   = Pi::config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
-        
-        $this->view()->assign(array(
+
+        $this->view()->assign([
             'title'   => _a('Add Category Info'),
             'configs' => $configs,
             'form'    => $form,
-        ));
+        ]);
         $this->view()->setTemplate('category-edit');
-        
+
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
@@ -85,7 +85,7 @@ class CategoryController extends ActionController
                 );
                 return;
             }
-            
+
             $data = $form->getData();
             $id   = $this->saveCategory($data);
             if (!$id) {
@@ -95,41 +95,41 @@ class CategoryController extends ActionController
                 );
                 return;
             }
-            
+
             // Clear cache
             Pi::registry('category', $module)->clear($module);
-            
-            return $this->redirect()->toRoute('',array(
-                'action' => 'list'
-            ));
+
+            return $this->redirect()->toRoute('', [
+                'action' => 'list',
+            ]);
         }
     }
 
     /**
      * Edit category information
-     * 
+     *
      * @return ViewModel
      */
     public function editAction()
     {
-        $module  = $this->getModule();
-        $configs = Pi::config('', $module);
+        $module                    = $this->getModule();
+        $configs                   = Pi::config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
-        
+
         $form = $this->getCategoryForm('edit');
-        
-        $this->view()->assign(array(
+
+        $this->view()->assign([
             'title'   => _a('Edit Category Info'),
             'configs' => $configs,
-        ));
-        
+        ]);
+
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
-            $options = array(
+            $options = [
                 'id' => $post['id'],
-            );
+            ];
             $form->setInputFilter(new CategoryEditFilter($options));
             $form->setValidationGroup(Category::getAvailableFields());
             if (!$form->isValid()) {
@@ -142,17 +142,17 @@ class CategoryController extends ActionController
             $data = $form->getData();
             $id   = $this->saveCategory($data);
             if (empty($id)) {
-                return ;
+                return;
             }
-            
+
             // Clear cache
             Pi::registry('category', $module)->clear($module);
 
-            return $this->redirect()->toRoute('', array(
-                'action' => 'list'
-            ));
+            return $this->redirect()->toRoute('', [
+                'action' => 'list',
+            ]);
         }
-        
+
         $id = $this->params('id', 0);
         if (empty($id)) {
             $this->jumpto404(_a('Invalid category ID!'));
@@ -163,7 +163,7 @@ class CategoryController extends ActionController
         if (!$row->id) {
             return $this->jumpTo404(_a('Can not find category!'));
         }
-        
+
         $form->setData($row->toArray());
 
         $parent = $model->getParentNode($row->id);
@@ -173,13 +173,13 @@ class CategoryController extends ActionController
 
         $this->view()->assign('form', $form);
     }
-    
+
     /**
      * Delete a category
      */
     public function deleteAction()
     {
-        $id     = $this->params('id');
+        $id = $this->params('id');
 
         if ($id == 1) {
             return $this->jumpTo404(_a('Root node cannot be deleted.'));
@@ -200,7 +200,7 @@ class CategoryController extends ActionController
 
             // Check related article
             $linkedArticles = $this->getModel('article')
-                ->select(array('category' => $id));
+                ->select(['category' => $id]);
             if ($linkedArticles->count()) {
                 return $this->jumpTo404(_a('Cannot remove category in used'));
             }
@@ -213,13 +213,13 @@ class CategoryController extends ActionController
 
             // Remove node
             $model->remove($id);
-            
+
             // Clear cache
             $module = $this->getModule();
             Pi::registry('category', $module)->clear($module);
 
             // Go to list page
-            return $this->redirect()->toRoute('', array('action' => 'list'));
+            return $this->redirect()->toRoute('', ['action' => 'list']);
         } else {
             return $this->jumpTo404(_a('Invalid category ID!'));
         }
@@ -232,30 +232,30 @@ class CategoryController extends ActionController
     {
         $rowset = $this->getModel('category')->enumerate(null, null, true);
 
-        $this->view()->assign(array(
+        $this->view()->assign([
             'title'      => _a('Category List'),
             'categories' => $rowset,
-        ));
+        ]);
     }
 
     /**
      * Merge source category to target category
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function mergeAction()
     {
         $form = new CategoryMergeForm();
-        $this->view()->assign(array(
+        $this->view()->assign([
             'title' => _a('Merge Category'),
             'form'  => $form,
-        ));
+        ]);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
             $form->setInputFilter(new CategoryMergeFilter);
-        
+
             if (!$form->isValid()) {
                 $this->renderForm(
                     $form,
@@ -301,23 +301,23 @@ class CategoryController extends ActionController
 
             // Change relation between article and category
             $this->getModel('article')->update(
-                array('category' => $data['to']),
-                array('category' => $data['from'])
+                ['category' => $data['to']],
+                ['category' => $data['from']]
             );
 
             // remove category
             $model->remove($data['from']);
-            
+
             // Clear cache
             $module = $this->getModule();
             Pi::registry('category', $module)->clear($module);
 
             // Go to list page
-            return $this->redirect()->toRoute('', array(
-                'action' => 'list'
-            ));
+            return $this->redirect()->toRoute('', [
+                'action' => 'list',
+            ]);
         }
-        
+
         $from = $this->params('from', 0);
         $to   = $this->params('to', 0);
 
@@ -331,17 +331,17 @@ class CategoryController extends ActionController
 
     /**
      * Move source category as a child of target category
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function moveAction()
     {
         $form = new CategoryMoveForm();
-        $this->view()->assign(array(
+        $this->view()->assign([
             'title' => _a('Move Category'),
             'form'  => $form,
-        ));
-        
+        ]);
+
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
@@ -354,8 +354,8 @@ class CategoryController extends ActionController
                 );
                 return;
             }
-                
-            $data = $form->getData();
+
+            $data  = $form->getData();
             $model = $this->getModel('category');
 
             // Deny to be moved to self or a child
@@ -370,17 +370,17 @@ class CategoryController extends ActionController
 
             // Move category
             $model->move($data['from'], $data['to']);
-            
+
             // Clear cache
             $module = $this->getModule();
             Pi::registry('category', $module)->clear($module);
 
             // Go to list page
-            return $this->redirect()->toRoute('', array(
-                'action' => 'list'
-            ));
+            return $this->redirect()->toRoute('', [
+                'action' => 'list',
+            ]);
         }
-        
+
         $from = $this->params('from', 0);
         $to   = $this->params('to', 0);
 
@@ -391,33 +391,33 @@ class CategoryController extends ActionController
             $form->get('to')->setAttribute('value', $to);
         }
     }
-    
+
     /**
      * Sort category
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function sortAction()
     {
         $from = $this->params('from', 0);
         if (empty($from)) {
-            return $this->redirect()->toRoute('', array('action' => 'list'));
+            return $this->redirect()->toRoute('', ['action' => 'list']);
         }
-        
-        $model  = $this->getModel('category');
-        $parent = $model->getParentNode($from);
-        $rowset = $model->getChildren($parent['id']);
-        $children = array();
+
+        $model    = $this->getModel('category');
+        $parent   = $model->getParentNode($from);
+        $rowset   = $model->getChildren($parent['id']);
+        $children = [];
         foreach ($rowset as $row) {
             $children[$row->id] = $row->title;
         }
         unset($children[$parent['id']]);
         $form = $this->getSortForm($from, $children);
-        $this->view()->assign(array(
+        $this->view()->assign([
             'title' => _a('Sort Category'),
             'form'  => $form,
-        ));
-        
+        ]);
+
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
@@ -428,12 +428,12 @@ class CategoryController extends ActionController
                 );
                 return;
             }
-                
-            $data = $form->getData();
+
+            $data  = $form->getData();
             $model = $this->getModel('category');
 
             // Deny to move item to other category
-            if (!empty($data['to']) 
+            if (!empty($data['to'])
                 && !in_array($data['to'], array_keys($children))
             ) {
                 $this->renderForm(
@@ -449,36 +449,36 @@ class CategoryController extends ActionController
             } else {
                 $model->move($data['from'], $data['to'], 'nextTo');
             }
-            
+
             // Clear cache
             $module = $this->getModule();
             Pi::registry('category', $module)->clear($module);
 
             // Go to list page
-            return $this->redirect()->toRoute('', array(
-                'action' => 'list'
-            ));
+            return $this->redirect()->toRoute('', [
+                'action' => 'list',
+            ]);
         }
-        
-        $to   = $this->params('to', 0);
+
+        $to = $this->params('to', 0);
         if ($to) {
             $form->get('to')->setAttribute('value', $to);
         }
     }
-    
+
     /**
      * Save image by AJAX, but do not save data into database.
      * If the image is fetched by upload, try to receive image by Upload class,
      * if the it comes from media, copy the image from media to category path.
      * Finally the image data will be saved into session.
-     * 
+     *
      */
     public function saveImageAction()
     {
         Pi::service('log')->mute();
-        $module  = $this->getModule();
+        $module = $this->getModule();
 
-        $return  = array('status' => false);
+        $return  = ['status' => false];
         $mediaId = $this->params('media_id', 0);
         $id      = $this->params('id', 0);
         if (empty($id)) {
@@ -490,17 +490,17 @@ class CategoryController extends ActionController
             echo json_encode($return);
             exit;
         }
-        
+
         $extensions = array_filter(
             explode(',', $this->config('image_extension'))
         );
         foreach ($extensions as &$ext) {
             $ext = strtolower(trim($ext));
         }
-        
+
         // Get destination path
         $destination = Media::getTargetDir('category', $module, true, false);
-        
+
         $rowMedia = $this->getModel('media')->find($mediaId);
         // Check is media exists
         if (!$rowMedia->id or !$rowMedia->url) {
@@ -515,8 +515,8 @@ class CategoryController extends ActionController
             exit;
         }
 
-        $ext    = strtolower(pathinfo($rowMedia->url, PATHINFO_EXTENSION));
-        $rename = $id . '.' . $ext;
+        $ext      = strtolower(pathinfo($rowMedia->url, PATHINFO_EXTENSION));
+        $rename   = $id . '.' . $ext;
         $fileName = rtrim($destination, '/') . '/' . $rename;
         if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
             $return['message'] = _a('Can not create image file!');
@@ -542,33 +542,33 @@ class CategoryController extends ActionController
             $row->save();
         } else {
             // Or save info to session
-            $session = Media::getUploadSession($module, 'category');
+            $session      = Media::getUploadSession($module, 'category');
             $session->$id = $uploadInfo;
         }
 
-        $imageSize = getimagesize(Pi::path($fileName));
+        $imageSize   = getimagesize(Pi::path($fileName));
         $orginalName = isset($rawInfo['name']) ? $rawInfo['name'] : $rename;
 
         // Prepare return data
-        $return['data'] = array(
+        $return['data'] = [
             'originalName' => $orginalName,
             'size'         => filesize(Pi::path($fileName)),
             'w'            => $imageSize['0'],
             'h'            => $imageSize['1'],
             'preview_url'  => Pi::url($fileName),
             'filename'     => $fileName,
-        );
+        ];
 
         $return['status'] = true;
         echo json_encode($return);
         exit();
     }
-    
+
     /**
      * Removing image by AJAX.
      * This operation will also remove image data in database.
-     * 
-     * @return ViewModel 
+     *
+     * @return ViewModel
      */
     public function removeImageAction()
     {
@@ -586,7 +586,7 @@ class CategoryController extends ActionController
                 @unlink(Pi::path($row->image));
 
                 // Update db
-                $row->image = '';
+                $row->image   = '';
                 $affectedRows = $row->save();
             }
         } else if ($fakeId) {
@@ -603,33 +603,33 @@ class CategoryController extends ActionController
             }
         }
 
-        echo json_encode(array(
-            'status'    => $affectedRows ? true : false,
-            'message'   => 'ok',
-        ));
+        echo json_encode([
+            'status'  => $affectedRows ? true : false,
+            'message' => 'ok',
+        ]);
         exit;
     }
-    
+
     /**
      * Get category form object
-     * 
-     * @param string $action  Form name
+     *
+     * @param string $action Form name
      * @return CategoryEditForm
      */
     protected function getCategoryForm($action = 'add')
     {
         $form = new CategoryEditForm();
-        $form->setAttribute('action', $this->url('', array('action' => $action)));
+        $form->setAttribute('action', $this->url('', ['action' => $action]));
 
         return $form;
     }
-    
+
     /**
      * Render form
-     * 
-     * @param Form      $form     Form instance
-     * @param string    $message  Message assign to template
-     * @param bool      $error    Whether is error message
+     *
+     * @param Form $form Form instance
+     * @param string $message Message assign to template
+     * @param bool $error Whether is error message
      */
     public function renderForm(Form $form, $message = null, $error = true)
     {
@@ -639,10 +639,10 @@ class CategoryController extends ActionController
 
     /**
      * Save category information
-     * 
-     * @param  array    $data  Category information
+     *
+     * @param  array $data Category information
      * @return boolean
-     * @throws \Exception 
+     * @throws \Exception
      */
     protected function saveCategory($data)
     {
@@ -656,7 +656,7 @@ class CategoryController extends ActionController
         }
 
         $fakeId = $this->params('fake_id', 0);
-        
+
         $parent = $data['parent'];
         unset($data['parent']);
         unset($data['image']);
@@ -666,7 +666,7 @@ class CategoryController extends ActionController
         }
 
         if (empty($id)) {
-            $id = $model->add($data, $parent);
+            $id  = $model->add($data, $parent);
             $row = $model->find($id);
         } else {
             $row = $model->find($id);
@@ -694,7 +694,7 @@ class CategoryController extends ActionController
         }
 
         // Save image
-        $session    = Media::getUploadSession($module, 'category');
+        $session = Media::getUploadSession($module, 'category');
         if (isset($session->$id)
             || ($fakeId && isset($session->$fakeId))
         ) {
@@ -723,10 +723,10 @@ class CategoryController extends ActionController
 
         return $id;
     }
-    
+
     /**
      * Get sort form instance
-     * 
+     *
      * @param int $from
      * @param array $sibling
      *
@@ -736,48 +736,48 @@ class CategoryController extends ActionController
     {
         $name = $sibling[$from];
         unset($sibling[$from]);
-        $form = new Form;
-        $elements = array(
-            array(
+        $form     = new Form;
+        $elements = [
+            [
                 'name'       => 'from',
-                'options'    => array(
-                    'label'     => __('From'),
-                ),
-                'attributes' => array(
-                    'class'     => 'form-control',
-                    'options'   => array(
-                        $from         => $name,
-                    ),
-                ),
+                'options'    => [
+                    'label' => __('From'),
+                ],
+                'attributes' => [
+                    'class'   => 'form-control',
+                    'options' => [
+                        $from => $name,
+                    ],
+                ],
                 'type'       => 'select',
-            ),
-            array(
+            ],
+            [
                 'name'       => 'to',
-                'options'    => array(
-                    'label'     => __('To'),
-                ),
-                'attributes' => array(
-                    'class'     => 'form-control',
-                    'options'   => array(0 => __('First of')) + $sibling,
-                ),
+                'options'    => [
+                    'label' => __('To'),
+                ],
+                'attributes' => [
+                    'class'   => 'form-control',
+                    'options' => [0 => __('First of')] + $sibling,
+                ],
                 'type'       => 'select',
-            ),
-            array(
-                'name'       => 'security',
-                'type'       => 'csrf',
-            ),
-            array(
+            ],
+            [
+                'name' => 'security',
+                'type' => 'csrf',
+            ],
+            [
                 'name'       => 'submit',
-                'attributes' => array(              
-                    'value'     => __('Submit'),
-                ),
+                'attributes' => [
+                    'value' => __('Submit'),
+                ],
                 'type'       => 'submit',
-            ),
-        );
+            ],
+        ];
         foreach ($elements as $element) {
             $form->add($element);
         }
-        
+
         return $form;
     }
 }

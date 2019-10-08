@@ -1,14 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-03-03 13:18+0800\n"
-"PO-Revision-Date: 2014-04-24 15:54+0800\n"
+"POT-Creation-Date: 2014-08-08 17:36+0800\n"
+"PO-Revision-Date: 2014-08-08 17:36+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\module\\page\n"
@@ -47,7 +48,7 @@ msgid "Delete page"
 msgstr "删除页面"
 
 #: C:\code\pi\usr\module\page/config/nav.php:44
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:134
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:143
 msgid "Add a page"
 msgstr "添加页面"
 
@@ -88,33 +89,33 @@ msgstr "应用"
 msgid "Pi Engine"
 msgstr "Pi Engine"
 
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:106
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:209
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:115
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:212
 msgid "Page data saved successfully."
 msgstr "页面数据保存成功。"
 
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:109
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:118
 msgid "Page data not saved."
 msgstr "页面数据未保存。"
 
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:112
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:212
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:121
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:215
 msgid "Invalid data, please check and re-submit."
 msgstr "无效数据，请检查后重新提交。"
 
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:228
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:231
 msgid "Page edit"
 msgstr "页面编辑"
 
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:249
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:256
 msgid "Page deleted successfully."
 msgstr "页面删除成功。"
 
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:270
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:278
 msgid "Page updated successfully."
 msgstr "页面更新成功。"
 
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:292
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:300
 msgid "Page navigation menu updated successfully."
 msgstr "页面导航菜单成功。"
 
@@ -139,45 +140,45 @@ msgstr "SEO 短词"
 msgid "Unique slug for SEO URL."
 msgstr "用于URL的SEO，唯一字符串。"
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:78
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:94
 #: C:\code\pi\usr\module\page/template/admin/template-list.phtml:8
 msgid "Template name"
 msgstr "模板名称"
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:81
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:97
 msgid ""
 "Select a template from `usr/custom/module/page/template/front/` w/o "
 "extension."
 msgstr ""
 "模板文件需要已存在`usr/custom/module/page/template/front/`，不加文件扩展名。"
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:104
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:120
 msgid "Content"
 msgstr "内容"
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:119
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:135
 msgid "SEO settings"
 msgstr "SEO 设置"
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:127
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:143
 msgid "SEO Title"
 msgstr "SEO 标题"
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:131
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:143
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:155
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:147
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:159
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:171
 msgid "To be used for HTML head meta."
 msgstr "将被添加到HTML的meta数据中。"
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:139
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:155
 msgid "SEO Keywords"
 msgstr "SEO 关键词"
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:151
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:167
 msgid "SEO Description"
 msgstr "SEO 描述"
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:164
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:180
 msgid "Active"
 msgstr "启用"
 

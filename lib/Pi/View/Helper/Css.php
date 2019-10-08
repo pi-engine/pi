@@ -1,16 +1,14 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
 namespace Pi\View\Helper;
-
-use Pi;
 
 /**
  * Helper for loading CSS files
@@ -26,7 +24,8 @@ use Pi;
  *
  *  // Load specific file with attributes
  *  $this->css('some.css',
- *             array('conditional' => '...', 'postion' => 'prepend'));
+ *      array('conditional' => '...', 'position' => 'prepend')
+ *  );
  *
  *  // Load a list of files
  *  $this->css(array(
@@ -46,7 +45,7 @@ use Pi;
 class Css extends AssetCanonize
 {
     /** @var array Container for loaded files */
-    static protected $loaded = array();
+    static protected $loaded = [];
 
     /**
      * Load CSS files
@@ -56,7 +55,7 @@ class Css extends AssetCanonize
      *      Only applicable when $files is scalar,
      *      default as string for position,
      *      append or prepend, default as 'append'
-     * @return  self
+     * @return  this
      */
     public function __invoke($files = null, $attributes = 'append')
     {
@@ -81,7 +80,7 @@ class Css extends AssetCanonize
      */
     public function load($files = null, $attributes = 'append')
     {
-        $files = $this->canonize($files, $attributes);
+        $files  = $this->canonize($files, $attributes);
         $helper = $this->view->headLink();
         foreach ($files as $file => $attrs) {
             if (isset(static::$loaded[$file])) {
@@ -91,7 +90,8 @@ class Css extends AssetCanonize
             }
 
             $position = isset($attrs['position'])
-                ? $attrs['position'] : 'append';
+                ? $attrs['position']
+                : 'append';
             if (!isset($attrs['href'])) {
                 $attrs['href'] = $file;
             }

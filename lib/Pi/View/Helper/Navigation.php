@@ -1,19 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
 namespace Pi\View\Helper;
 
 use Pi;
-use Pi\Navigation\Page\Mvc as MvcPage;
 use Pi\Navigation\Navigation as Container;
-use Zend\View\Helper\AbstractHelper;
+use Pi\Navigation\Page\Mvc as MvcPage;
 use Zend\View\Helper\Navigation as NavigationHelper;
 use Zend\View\Helper\Navigation\AbstractHelper as AbstractNavigationHelper;
 
@@ -40,11 +39,11 @@ class Navigation extends NavigationHelper
     /**
      * Load a navigation
      *
-     * @param string|array  $name       Navigation name or config
-     * @param array         $options    Options for navigation and caching
+     * @param string|array $name Navigation name or config
+     * @param array $options Options for navigation and caching
      * @return  self
      */
-    public function __invoke($name = null, $options = array())
+    public function __invoke($name = null, $options = [])
     {
         if (0 == func_num_args()) {
             return $this;
@@ -58,40 +57,40 @@ class Navigation extends NavigationHelper
                     $cacheKey = $options['cache_id'];
                 } else {
                     $routeMatch = Pi::engine()->application()->getRouteMatch();
-                    $cacheKey = implode(
+                    $cacheKey   = implode(
                         '-',
-                        array(
+                        [
                             $name,
                             $routeMatch->getParam('module'),
                             $routeMatch->getParam('controller'),
-                            $routeMatch->getParam('action')
-                        )
+                            $routeMatch->getParam('action'),
+                        ]
                     );
                     $cacheLevel = isset($options['cache_level'])
                         ? $options['cache_level'] : '';
-                    $cacheKey = Pi::service('cache')->canonizeKey(
+                    $cacheKey   = Pi::service('cache')->canonizeKey(
                         $cacheKey,
                         $cacheLevel
                     );
                 }
                 $cache = clone Pi::service('cache')->storage();
                 Pi::service('cache')->setNamespace($cacheNamespace, $cache);
-                $this->cache = (object) array(
-                    'storage'   => $cache,
-                    'key'       => $cacheKey,
-                    'ttl'       => $cacheTtl,
-                );
+                $this->cache = (object)[
+                    'storage' => $cache,
+                    'key'     => $cacheKey,
+                    'ttl'     => $cacheTtl,
+                ];
             } else {
                 $this->cache = null;
             }
-            $module = Pi::service('module')->current();
-            $section = isset($options['section'])
+            $module    = Pi::service('module')->current();
+            $section   = isset($options['section'])
                 ? $options['section'] : null;
             $navConfig = Pi::registry('navigation')->read(
                 $name,
                 $module,
                 $section
-            ) ?: array();
+            ) ?: [];
         } else {
             $navConfig = $name;
         }
@@ -117,11 +116,11 @@ class Navigation extends NavigationHelper
      * $blogPages = $this->navigation()->findAllByRoute('blog');
      * ```
      *
-     * @param  string $method       helper name or method name in container
-     * @param  array  $arguments    [optional] arguments to pass
+     * @param  string $method helper name or method name in container
+     * @param  array $arguments [optional] arguments to pass
      * @return mixed                returns what the proxied call returns
      */
-    public function __call($method, array $arguments = array())
+    public function __call($method, array $arguments = [])
     {
         // check if call should proxy to another helper
         $helper = $this->findHelper($method, false);
@@ -139,8 +138,8 @@ class Navigation extends NavigationHelper
     /**
      * Returns the helper matching $proxy
      *
-     * @param string $proxy     helper name
-     * @param bool   $strict
+     * @param string $proxy helper name
+     * @param bool $strict
      *      [optional] whether exceptions should be thrown
      *      if something goes wrong. Default is true.
      * @return AbstractNavigationHelper
@@ -172,9 +171,9 @@ class Navigation extends NavigationHelper
         if (!$helper instanceof AbstractNavigationHelper) {
             if ($strict) {
                 throw new \InvalidArgumentException(sprintf(
-                        'Proxy helper "%s" is not an instance of ' .
-                        'Zend\View\Helper\Navigation\Helper',
-                        get_class($helper)
+                    'Proxy helper "%s" is not an instance of ' .
+                    'Zend\View\Helper\Navigation\Helper',
+                    get_class($helper)
                 ));
             }
 
@@ -198,7 +197,7 @@ class Navigation extends NavigationHelper
      *
      * Register default router and RouteMatch to MvcPage
      *
-     * @param Container $container
+     * @param Container|array $container
      * @return self
      */
     public function setContainer($container = null)

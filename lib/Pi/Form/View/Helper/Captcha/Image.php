@@ -1,19 +1,19 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Form
  */
 
 namespace Pi\Form\View\Helper\Captcha;
 
-use Zend\Form\View\Helper\Captcha\Image as ZendHelperCaptchaImage;
 use Zend\Captcha\Image as CaptchaAdapter;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
+use Zend\Form\View\Helper\Captcha\Image as ZendHelperCaptchaImage;
 
 /**
  * CAPTCHA image helper
@@ -44,21 +44,21 @@ class Image extends ZendHelperCaptchaImage
         // Generates URL to access image, and image won't be generated until the URL is accessed
         $imgSrc = $captcha->getImgUrl() . '?id=' . $captcha->getId();
 
-        $imgAttributes = array(
+        $imgAttributes = [
             'width'  => $captcha->getWidth(),
             'height' => $captcha->getHeight(),
             //'alt'    => $captcha->getImgAlt(),
             //'src'    => $captcha->getImgUrl() . $captcha->getId() . $captcha->getSuffix(),
 
-            'src'       => $imgSrc,
-            'onclick'   => sprintf(
+            'src'     => $imgSrc,
+            'onclick' => sprintf(
                 'this.src=\'%s&refresh=\'+Math.random()',
                 $imgSrc
             ),
-            'style'     => 'cursor: pointer; vertical-align: middle;',
-            'alt'       => __('CAPTCHA image'),
-            'title'     => __('Click to refresh CAPTCHA'),
-        );
+            'style'   => 'cursor: pointer; vertical-align: middle;',
+            'alt'     => __('CAPTCHA image'),
+            'title'   => __('Click to refresh CAPTCHA'),
+        ];
 
         if ($element->hasAttribute('id')) {
             $imgAttributes['id'] = $element->getAttribute('id') . '-image';
@@ -67,7 +67,7 @@ class Image extends ZendHelperCaptchaImage
         }
 
         $closingBracket = $this->getInlineClosingBracket();
-        $img = sprintf(
+        $img            = sprintf(
             '<img %s%s',
             $this->createAttributesString($imgAttributes),
             $closingBracket

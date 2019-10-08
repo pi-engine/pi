@@ -1,28 +1,28 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link         http://code.pialog.org for the Pi Engine source repository
- * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt BSD 3-Clause License
+ * @link         http://code.piengine.org for the Pi Engine source repository
+ * @copyright    Copyright (c) Pi Engine http://piengine.org
+ * @license      http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article\Controller\Admin;
 
+use Module\Article\Entity;
+use Module\Article\Stats;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\Article\Stats;
-use Module\Article\Entity;
 
 /**
  * Stats controller
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class StatsController extends ActionController
 {
     /**
-     * Default page 
+     * Default page
      */
     public function indexAction()
     {
@@ -47,24 +47,24 @@ class StatsController extends ActionController
             $this->view()->assign('topTags', $topTags);
         }
 
-        $this->view()->assign(array(
-            'title'               => _a('Statistic'),
+        $this->view()->assign([
+            'title' => _a('Statistic'),
 
-            'topVisitsEver'       => $topVisitsEver,
-            'topVisits7'          => $topVisits7,
-            'topVisits30'         => $topVisits30,
+            'topVisitsEver' => $topVisitsEver,
+            'topVisits7'    => $topVisits7,
+            'topVisits30'   => $topVisits30,
 
-            'totalEver'           => $totalEver,
-            'total7'              => $total7,
-            'total30'             => $total30,
+            'totalEver' => $totalEver,
+            'total7'    => $total7,
+            'total30'   => $total30,
 
             'totalEverByCategory' => $totalEverByCategory,
             'total7ByCategory'    => $total7ByCategory,
             'total30ByCategory'   => $total30ByCategory,
 
-            'topSubmittersEver'   => $topSubmittersEver,
-            'topSubmitters7'      => $topSubmitters7,
-            'topSubmitters30'     => $topSubmitters30,
-        ));
+            'topSubmittersEver' => $topSubmittersEver,
+            'topSubmitters7'    => $topSubmitters7,
+            'topSubmitters30'   => $topSubmitters30,
+        ]);
     }
 }

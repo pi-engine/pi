@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -21,12 +21,15 @@ use Zend\Cache\Storage\Adapter\AbstractAdapter;
  */
 class RenderCache extends AbstractService
 {
+    /** {@inheritDoc} */
+    protected $fileIdentifier = 'render-cache';
+
     /**
      * Cache Storage
      *
      * @var AbstractAdapter|string
      */
-    protected $storage = 'filesystem';
+    protected $storage;
 
     /**
      * Rendering type, potential values: page, action, block
@@ -54,19 +57,20 @@ class RenderCache extends AbstractService
      *
      * @var array
      */
-    protected $meta = array(
-        'key'       => '',
-        'ttl'       => 0,
-        'namespace' => '',
-        'level'     => ''
-    );
+    protected $meta
+        = [
+            'key'       => '',
+            'ttl'       => 0,
+            'namespace' => '',
+            'level'     => '',
+        ];
 
     /**
      * Cached contents
      *
      * @var array
      */
-    protected $cachedContent = array();
+    protected $cachedContent = [];
 
     /**
      * Generated content
@@ -121,8 +125,10 @@ class RenderCache extends AbstractService
     public function getStorage()
     {
         if (!$this->storage instanceof AbstractAdapter) {
-            $storage = !empty($this->options['storage'])
-                ? $this->options['storage'] : ($this->storage ?: '');
+            $storage = $this->storage;
+            if (!$storage && !empty($this->options['storage'])) {
+                $storage = $this->options['storage'];
+            }
             if ($storage) {
                 $storage = Pi::service('cache')->loadStorage($storage);
             } else {
@@ -166,7 +172,7 @@ class RenderCache extends AbstractService
     public function isCachable($flag = null)
     {
         if (null !== $flag) {
-            $this->cachable = (bool) $flag;
+            $this->cachable = (bool)$flag;
         }
 
         return $this->cachable;
@@ -181,7 +187,7 @@ class RenderCache extends AbstractService
     public function isOpened($flag = null)
     {
         if (null !== $flag) {
-            $this->opened = (bool) $flag;
+            $this->opened = (bool)$flag;
         }
 
         return $this->opened;
@@ -205,8 +211,8 @@ class RenderCache extends AbstractService
     /**
      * Get/set meta
      *
-     * @param string        $meta
-     * @param mixed|null    $value
+     * @param string $meta
+     * @param mixed|null $value
      * @return self|mixed
      */
     public function meta($meta, $value = null)
@@ -256,12 +262,16 @@ class RenderCache extends AbstractService
     public function cachedContent()
     {
         $key = $this->meta['key'];
-        if (!isset($this->cachedContent[$key])) {
-            $this->cachedContent[$key] = Pi::service('cache')->getItem(
-                $this->meta['key'],
-                $this->meta,
-                $this->getStorage()
-            );
+        if (!array_key_exists($key, $this->cachedContent)) {
+            if ('guest' == $this->meta('level') && Pi::user()->hasIdentity()) {
+                $this->cachedContent[$key] = null;
+            } else {
+                $this->cachedContent[$key] = Pi::service('cache')->getItem(
+                    $this->meta['key'],
+                    $this->meta,
+                    $this->getStorage()
+                );
+            }
         }
 
         return $this->cachedContent[$key];
@@ -276,7 +286,9 @@ class RenderCache extends AbstractService
     public function saveCache($content = null)
     {
         $content = (null !== $content) ? $content : $this->content;
-        if (null !== $content) {
+        if (null !== $content
+            && ('guest' != $this->meta('level') || !Pi::user()->hasIdentity())
+        ) {
             Pi::service('cache')->setItem(
                 $this->meta['key'],
                 $content,

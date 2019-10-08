@@ -1,18 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Controller\Front;
 
-use Pi;
 use Module\System\Controller\Front\LoginController as ActionController;
-use Module\User\Form\LoginForm;
 use Module\User\Form\LoginFilter;
+use Module\User\Form\LoginForm;
+use Pi;
 
 /**
  * User login/logout controller
@@ -38,10 +38,10 @@ class LoginController extends ActionController
      */
     protected function getForm(array $config)
     {
-        $form = new LoginForm('login', $config);
+        $form = new LoginForm('login_page', $config);
         $form->setAttribute(
             'action',
-            $this->url('', array('controller' => 'login', 'action' => 'process'))
+            $this->url('', ['controller' => 'login', 'action' => 'process'])
         );
 
         return $form;

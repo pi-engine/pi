@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Mvc\Controller;
@@ -23,26 +23,27 @@ class PluginManager extends ZendPluginManager
      * Default set of plugins
      * @var array
      */
-    protected $invokableClasses = array(
-        'acceptableviewmodelselector' => 'Zend\Mvc\Controller\Plugin\AcceptableViewModelSelector',
-        'filepostredirectget'         => 'Zend\Mvc\Controller\Plugin\FilePostRedirectGet',
-        'flashmessenger'              => 'Zend\Mvc\Controller\Plugin\FlashMessenger',
-        'layout'                      => 'Zend\Mvc\Controller\Plugin\Layout',
-        'params'                      => 'Zend\Mvc\Controller\Plugin\Params',
-        'postredirectget'             => 'Zend\Mvc\Controller\Plugin\PostRedirectGet',
-        'redirect'                    => 'Zend\Mvc\Controller\Plugin\Redirect',
-        'url'                         => 'Zend\Mvc\Controller\Plugin\Url',
+    protected $invokableClasses
+        = [
+            'acceptableviewmodelselector' => 'Zend\Mvc\Controller\Plugin\AcceptableViewModelSelector',
+            'filepostredirectget'         => 'Zend\Mvc\Controller\Plugin\FilePostRedirectGet',
+            'flashmessenger'              => 'Zend\Mvc\Controller\Plugin\FlashMessenger',
+            'layout'                      => 'Zend\Mvc\Controller\Plugin\Layout',
+            'params'                      => 'Zend\Mvc\Controller\Plugin\Params',
+            'postredirectget'             => 'Zend\Mvc\Controller\Plugin\PostRedirectGet',
+            'redirect'                    => 'Zend\Mvc\Controller\Plugin\Redirect',
+            'url'                         => 'Zend\Mvc\Controller\Plugin\Url',
 
-        // Pi custom plugins
-        'flashmessenger'            => 'Pi\Mvc\Controller\Plugin\FlashMessenger',
-        'params'                    => 'Pi\Mvc\Controller\Plugin\Params',
-        'redirect'                  => 'Pi\Mvc\Controller\Plugin\Redirect',
-        'url'                       => 'Pi\Mvc\Controller\Plugin\Url',
-        'cache'                     => 'Pi\Mvc\Controller\Plugin\Cache',
-        'config'                    => 'Pi\Mvc\Controller\Plugin\Config',
-        'jump'                      => 'Pi\Mvc\Controller\Plugin\Jump',
-        'view'                      => 'Pi\Mvc\Controller\Plugin\View',
-    );
+            // Pi custom plugins
+            'flashmessenger'              => 'Pi\Mvc\Controller\Plugin\FlashMessenger',
+            'params'                      => 'Pi\Mvc\Controller\Plugin\Params',
+            'redirect'                    => 'Pi\Mvc\Controller\Plugin\Redirect',
+            'url'                         => 'Pi\Mvc\Controller\Plugin\Url',
+            'cache'                       => 'Pi\Mvc\Controller\Plugin\Cache',
+            'config'                      => 'Pi\Mvc\Controller\Plugin\Config',
+            'jump'                        => 'Pi\Mvc\Controller\Plugin\Jump',
+            'view'                        => 'Pi\Mvc\Controller\Plugin\View',
+        ];
 
     /**
      * {@inheritDoc}

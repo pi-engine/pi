@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -31,9 +31,9 @@ class AssetModule extends AbstractHelper
     /**
      * Get URI of a module asset
      *
-     * @param   string      $file
-     * @param   string      $module
-     * @param   bool|null   $appendVersion
+     * @param   string $file
+     * @param   string $module
+     * @param   bool|null $appendVersion
      *
      * @return  string
      */
@@ -41,7 +41,8 @@ class AssetModule extends AbstractHelper
         $file,
         $module = '',
         $appendVersion = null
-    ) {
+    )
+    {
         //$type = $isPublic ? 'public' : 'asset';
         $module = $module ?: Pi::service('module')->current();
 
@@ -49,7 +50,7 @@ class AssetModule extends AbstractHelper
         $customAssets = Pi::registry('theme_module_asset')->read($module);
         if (!empty($customAssets[$file])) {
             $result = $customAssets[$file];
-        // Load original module asset
+            // Load original module asset
         } else {
             $result = Pi::service('asset')->getModuleAsset(
                 $file,

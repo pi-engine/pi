@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Form;
@@ -22,126 +22,126 @@ class SearchForm extends BaseForm
     public function init()
     {
         // Add state select
-        $this->add(array(
-            'name'          => 'active',
-            'type'          => 'select',
-            'options'       => array(
-                'label' => __('Active state'),
-                'value_options' => array(
-                    'any'         => __('Any'),
+        $this->add([
+            'name'    => 'active',
+            'type'    => 'select',
+            'options' => [
+                'label'         => __('Active state'),
+                'value_options' => [
+                    'any'      => __('Any'),
                     'active'   => __('Active'),
                     'inactive' => __('Inactive'),
-                ),
-            )
-        ));
+                ],
+            ],
+        ]);
 
         // Add able select
-        $this->add(array(
-            'name'          => 'enable',
-            'type'          => 'select',
-            'options'       => array(
-                'label' => __('Enable state'),
-                'value_options' => array(
-                    'any'        => __('Any'),
+        $this->add([
+            'name'    => 'enable',
+            'type'    => 'select',
+            'options' => [
+                'label'         => __('Enable state'),
+                'value_options' => [
+                    'any'     => __('Any'),
                     'enable'  => __('Enable'),
                     'disable' => __('Disable'),
-                ),
-            )
-        ));
+                ],
+            ],
+        ]);
 
         // Add able select
-        $this->add(array(
-            'name'          => 'activated',
-            'type'          => 'select',
-            'options'       => array(
-                'label' => __('Activated state'),
-                'value_options' => array(
-                    'any'          => __('Any'),
+        $this->add([
+            'name'    => 'activated',
+            'type'    => 'select',
+            'options' => [
+                'label'         => __('Activated state'),
+                'value_options' => [
+                    'any'       => __('Any'),
                     'pending'   => __('Pending'),
                     'activated' => __('Activated'),
-                ),
-            )
-        ));
+                ],
+            ],
+        ]);
 
         // Add front role
-        $this->add(array(
-            'name'          => 'front-role',
-            'type'          => 'role',
-            'options'       => array(
-                'label'     => __('Front role'),
-            ),
-        ));
+        $this->add([
+            'name'    => 'front-role',
+            'type'    => 'role',
+            'options' => [
+                'label' => __('Front role'),
+            ],
+        ]);
 
         // Add admin role
-        $this->add(array(
-            'name'          => 'admin-role',
-            'type'          => 'role',
-            'options'       => array(
-                'label'     => __('Admin role'),
-                'section'   => 'admin',
-            ),
-        ));
+        $this->add([
+            'name'    => 'admin-role',
+            'type'    => 'role',
+            'options' => [
+                'label'   => __('Admin role'),
+                'section' => 'admin',
+            ],
+        ]);
 
         // Add username
-        $this->add(array(
-            'name'          => 'identity',
-            'type'          => 'text',
-            'options'       => array(
+        $this->add([
+            'name'    => 'identity',
+            'type'    => 'text',
+            'options' => [
                 'label' => __('Username'),
-            )
-        ));
+            ],
+        ]);
 
         // Add name
-        $this->add(array(
-            'name'          => 'name',
-            'type'          => 'text',
-            'options'       => array(
+        $this->add([
+            'name'    => 'name',
+            'type'    => 'text',
+            'options' => [
                 'label' => __('Display name'),
-            )
-        ));
+            ],
+        ]);
 
         // Add email
-        $this->add(array(
-            'name'          => 'email',
-            'type'          => 'text',
-            'options'       => array(
+        $this->add([
+            'name'    => 'email',
+            'type'    => 'text',
+            'options' => [
                 'label' => __('Email'),
-            )
-        ));
+            ],
+        ]);
 
         // Add time created from
-        $this->add(array(
-            'type'          => 'date_select',
-            'name'          => 'time-created-from',
-            'options'       => array(
+        $this->add([
+            'type'    => 'date_select',
+            'name'    => 'time-created-from',
+            'options' => [
                 'label' => __('Register date from'),
-            ),
-        ));
+            ],
+        ]);
 
         // Add time created to
-        $this->add(array(
-            'type'          => 'date_select',
-            'name'          => 'time-created-end',
-            'options'       => array(
+        $this->add([
+            'type'    => 'date_select',
+            'name'    => 'time-created-end',
+            'options' => [
                 'label' => __('Register date end'),
-            ),
-        ));
+            ],
+        ]);
 
         // Add register ip from
-        $this->add(array(
-            'name'          => 'ip-register',
-            'type'          => 'text',
-            'options'       => array(
+        $this->add([
+            'name'    => 'ip-register',
+            'type'    => 'text',
+            'options' => [
                 'label' => __('Register ip from'),
-            )
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'search',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'search',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Search'),
-            ),
-        ));
+            ],
+        ]);
     }
 }

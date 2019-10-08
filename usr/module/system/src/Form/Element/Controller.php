@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Form\Element;
@@ -27,28 +27,29 @@ class Controller extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $module = $this->getOption('module');
+            $module         = $this->getOption('module');
             $controllerPath = sprintf(
                 '%s/src/Controller/Front',
                 Pi::service('module')->path($module)
             );
-            $controllerList = array();
+            $controllerList = [];
             if (is_dir($controllerPath)) {
-                $iterator = new \DirectoryIterator($controllerPath);
-                foreach ($iterator as $fileinfo) {
-                    if (!$fileinfo->isFile() || $fileinfo->isDot()) {
-                        continue;
+                $filter = function ($fileinfo) use (&$controllerList) {
+                    if (!$fileinfo->isFile()) {
+                        return false;
                     }
                     $fileName = $fileinfo->getFilename();
                     if (!preg_match(
                         '/^[A-Z][a-z0-9_]+Controller\.php$/',
                         $fileName
-                    )) {
-                        continue;
+                    )
+                    ) {
+                        return false;
                     }
-                    $controllerName = strtolower(substr($fileName, 0, -14));
+                    $controllerName                  = strtolower(substr($fileName, 0, -14));
                     $controllerList[$controllerName] = $controllerName;
-                }
+                };
+                Pi::service('file')->getList($controllerPath, $filter);
             } else {
                 $controllerList[''] = __('None');
             }

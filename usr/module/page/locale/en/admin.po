@@ -1,318 +1,328 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-03-03 13:32+0800\n"
-"PO-Revision-Date: 2014-03-03 13:32+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2014-12-26 09:40+0330\n"
+"PO-Revision-Date: 2014-12-26 09:40+0330\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\module\\page\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"page\n"
 
-#: C:\code\pi\usr\module\page/config/config.php:21
-msgid "Enable Google Plus"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/config.php:29
-msgid "Enable Facebook"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/module.php:14
-msgid "Page"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/module.php:16
-msgid "Single page for direct content display."
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:13
-msgid "Custom site navigation"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:21
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:44
-msgid "Page list"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:28
-msgid "Edit page"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:35
-msgid "Delete page"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:44
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:134
-msgid "Add a page"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:50
-#: C:\code\pi\usr\module\page/src/Controller/Admin/TemplateController.php:48
-msgid "Template list"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:60
-msgid "Home"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:64
-msgid "About us"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:69
-msgid "Contact us"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:74
-msgid "Terms of use"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:79
-msgid "Privacy guidelines"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:84
-msgid "Join us"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:88
-msgid "Applications"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/config/nav.php:93
-msgid "Pi Engine"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:106
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:209
-msgid "Page data saved successfully."
-msgstr ""
-
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:109
-msgid "Page data not saved."
-msgstr ""
-
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:112
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:212
-msgid "Invalid data, please check and re-submit."
-msgstr ""
-
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:228
-msgid "Page edit"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:249
-#, fuzzy
-msgid "Page deleted successfully."
-msgstr "主题更新成功。"
-
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:270
-#, fuzzy
-msgid "Page updated successfully."
-msgstr "主题更新成功。"
-
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:292
-#, fuzzy
-msgid "Page navigation menu updated successfully."
-msgstr "主题更新成功。"
-
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:45
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:9
 msgid "Page title"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:55
 msgid "Unique name"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:59
 msgid "Only alphabet, number and underscore allowed."
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:66
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:66
 msgid "SEO slug"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:70
-msgid "Unique slug for SEO URL."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:70
+msgid "Unique slug for SEO URL, space is not allowed."
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:78
-#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:106
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:8
 msgid "Template name"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:109
 msgid ""
 "Select a template from `usr/custom/module/page/template/front/` w/o "
 "extension."
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:104
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:132
 msgid "Content"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:119
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:147
 msgid "SEO settings"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:127
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:155
 msgid "SEO Title"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:131
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:143
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:155
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:159
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:171
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:183
 msgid "To be used for HTML head meta."
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:139
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:167
 msgid "SEO Keywords"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:151
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:179
 msgid "SEO Description"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Form/PageForm.php:164
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:192
 msgid "Active"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:78
-msgid "Demo for PHTML page"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:85
-msgid "RSS Feed"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:92
-msgid "Sitemap"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:100
-msgid "XML Sitemap"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:111
-msgid "Pages added."
-msgstr ""
-
-#: C:\code\pi\usr\module\page/src/Validator/PageNameDuplicate.php:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Validator/PageNameDuplicate.php:14
 msgid "Page name already exists."
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Validator/PageSlugDuplicate.php:14
-msgid "Page slug already exists."
-msgstr ""
-
-#: C:\code\pi\usr\module\page/src/Validator/PageTemplateAvailable.php:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Validator/PageTemplateAvailable.php:14
 msgid "Template file is not available."
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:4
-msgid "Page content type:"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Validator/PageSlugDuplicate.php:14
+msgid "Page slug already exists."
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:5
-msgid "Only plaintext content is allowed."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:21
+msgid "Page list"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:5
-msgid "Text"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:96
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:181
+msgid "Page data saved successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:6
-msgid "HTML tags allowed in content."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:99
+msgid "Page data not saved."
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:6
-msgid "HTML"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:102
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:184
+msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:7
-msgid "Markdown syntax allowed in content."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:124
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:44
+msgid "Add a page"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:7
-msgid "Markdown"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:200
+msgid "Page edit"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:8
-msgid "PHTML template."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:225
+#, fuzzy
+msgid "Page deleted successfully."
+msgstr "主题更新成功。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:247
+#, fuzzy
+msgid "Page updated successfully."
+msgstr "主题更新成功。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:269
+#, fuzzy
+msgid "Page navigation menu updated successfully."
+msgstr "主题更新成功。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/TemplateController.php:48
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:50
+msgid "Template list"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:8
-msgid "PHTML"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Installer/Action/Install.php:78
+msgid "Demo for PHTML page"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Installer/Action/Install.php:85
+msgid "RSS Feed"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Installer/Action/Install.php:92
+msgid "Sitemap"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Installer/Action/Install.php:100
+msgid "XML Sitemap"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Installer/Action/Install.php:111
+msgid "Pages added."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/module.php:14
+msgid "Page"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/module.php:16
+msgid "Single page for direct content display."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/comment.php:18
+msgid "Page comments"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:13
+msgid "Custom site navigation"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:28
+msgid "Edit page"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:35
+msgid "Delete page"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:60
+msgid "Home"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:64
+msgid "About us"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:69
+msgid "Contact us"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:74
+msgid "Terms of use"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:79
+msgid "Privacy guidelines"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:84
+msgid "Join us"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:88
+msgid "Applications"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:93
+msgid "Pi Engine"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:13
+msgid "Social sharing items"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:24
+msgid "Show breadcrumbs"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:10
 msgid "Name"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:11
 msgid "Slug"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:12
 msgid "Type"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:13
 #, fuzzy
 msgid "Time published"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:14
 #, fuzzy
 msgid "Last Update"
 msgstr "主题更新失败。"
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:15
-#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:15
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:11
 msgid "Action"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:47
 msgid "Edit"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:45
-msgid "Delete"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:49
 msgid "Disable"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:51
 msgid "Enable"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
+msgid "Are you sure to delete this page?"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
+msgid "Delete"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:64
 #, fuzzy
 msgid "Add to menu"
 msgstr "主题更新失败。"
 
-#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:9
 #, fuzzy
 msgid "Time modified"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:10
 msgid "Filesize"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:28
 msgid "View"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:29
 #, fuzzy
 msgid "Add to page"
 msgstr "主题更新失败。"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:4
+msgid "Page content type:"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:5
+msgid "Only plaintext content is allowed."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:5
+msgid "Text"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:6
+msgid "HTML tags allowed in content."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:6
+msgid "HTML"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:7
+msgid "Markdown syntax allowed in content."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:7
+msgid "Markdown"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:8
+msgid "PHTML template."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:8
+msgid "PHTML"
+msgstr ""

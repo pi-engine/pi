@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Api;
@@ -25,7 +25,7 @@ class Relation extends AbstractApi
     protected $module = 'user';
 
     /** @var array Relationship meta */
-    protected $meta = array();
+    protected $meta = [];
 
     /**
      * Set relationship meta
@@ -49,28 +49,28 @@ class Relation extends AbstractApi
     public function getMeta()
     {
         if (!$this->meta) {
-            $this->meta = array(
-                'public'    => array(
+            $this->meta = [
+                'public'    => [
                     'level' => 0,
                     'title' => __('Public'),
-                ),
-                'member'    => array(
+                ],
+                'member'    => [
                     'level' => 1,
                     'title' => __('Member'),
-                ),
-                'follower'  => array(
+                ],
+                'follower'  => [
                     'level' => 2,
                     'title' => __('Follower'),
-                ),
-                'following' => array(
+                ],
+                'following' => [
                     'level' => 4,
                     'title' => __('Following'),
-                ),
-                'owner'     => array(
+                ],
+                'owner'     => [
                     'level' => 255,
                     'title' => __('Owner'),
-                ),
-            );
+                ],
+            ];
         }
 
         return $this->meta;
@@ -108,7 +108,7 @@ class Relation extends AbstractApi
     public function getLevel($uid, $target)
     {
         $relation = $this->getRelation($uid, $target);
-        $level = isset($this->meta[$relation])
+        $level    = isset($this->meta[$relation])
             ? $this->meta[$relation]['level'] : null;
 
         return $level;
@@ -117,24 +117,24 @@ class Relation extends AbstractApi
     /**
      * Get allowed/denied fields of a user
      *
-     * @param int           $uid
-     * @param int|string    $level
-     * @param bool          $allowed
+     * @param int $uid
+     * @param int|string $level
+     * @param bool $allowed
      *
      * @return string[]
      */
     public function getFields($uid, $level, $allowed = false)
     {
         $level = is_numeric($level)
-            ? (int) $level : $this->meta[$level]['level'];
-        $where = array('uid' => $uid);
+            ? (int)$level : $this->meta[$level]['level'];
+        $where = ['uid' => $uid];
         if ($allowed) {
             $where['level <= ?'] = $level;
         } else {
             $where['level > ?'] = $level;
         }
         $rowset = Pi::model('privacy_user')->select($where);
-        $fields = array();
+        $fields = [];
         foreach ($rowset as $row) {
             $fields[] = $row['field'];
         }

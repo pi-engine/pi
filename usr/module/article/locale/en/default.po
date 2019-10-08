@@ -1,89 +1,75 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-article\n"
-"POT-Creation-Date: 2014-04-04 10:51+0800\n"
-"PO-Revision-Date: 2014-04-04 10:51+0800\n"
+"POT-Creation-Date: 2014-08-08 17:41+0800\n"
+"PO-Revision-Date: 2014-08-08 17:41+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\article\n"
 
-#: c:\code\pi\usr\module\article/src/Rule.php:41
-msgid "article"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Rule.php:42
-#: c:\code\pi\usr\module\article/src/Rule.php:43
-#: c:\code\pi\usr\module\article/src/Rule.php:44
-msgid "publish"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Rule.php:42
-msgid "active"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Rule.php:43
-#: c:\code\pi\usr\module\article/src/Rule.php:50
-#: c:\code\pi\usr\module\article/src/Rule.php:52
-msgid "edit"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Rule.php:44
-#: c:\code\pi\usr\module\article/src/Rule.php:51
-#: c:\code\pi\usr\module\article/src/Rule.php:53
-msgid "delete"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Rule.php:48
-#: c:\code\pi\usr\module\article/src/Rule.php:49
-msgid "draft"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Rule.php:49
-msgid "compose"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Rule.php:50
-#: c:\code\pi\usr\module\article/src/Rule.php:51
-msgid "rejected"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Rule.php:52
-#: c:\code\pi\usr\module\article/src/Rule.php:53
-#: c:\code\pi\usr\module\article/src/Rule.php:54
-msgid "pending"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Rule.php:54
-msgid "approve"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:70
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:71
 #: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:69
 #: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:362
 #: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:82
 msgid "Content"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:76
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:77
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:119
 #: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:55
-#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:135
-#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:284
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:136
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:287
 #, fuzzy
 msgid "All"
 msgstr "All Categories"
 
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:94
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:100
+#, fuzzy
+msgid "Topic"
+msgstr "All Categories"
+
 #: c:\code\pi\usr\module\article/src/Block/Block.php:93
 #: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:68
-#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:148
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:149
 #, fuzzy
 msgid "All articles"
 msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:744
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:30
+msgid "From"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:757
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:42
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:42
+msgid "To"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:761
+msgid "First of"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:772
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:89
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:126
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:59
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:59
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:81
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:108
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:162
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:404
+msgid "Submit"
+msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Controller/Feed/IndexController.php:36
 #: c:\code\pi\usr\module\article/src/Controller/Feed/IndexController.php:37
@@ -92,53 +78,53 @@ msgid "All Articles of %s"
 msgstr "All Categories"
 
 #: c:\code\pi\usr\module\article/src/Controller/Front/AjaxController.php:128
-#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:597
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:604
 msgid "OK"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:80
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1444
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:79
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1449
 msgid "Page not found"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:84
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:83
 msgid "The article requested is not active"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:168
-#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:428
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:171
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:434
 msgid "Invalid article ID"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:194
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:197
 msgid "Can not create draft"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:389
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:395
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:298
 #: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:22
 msgid "Published"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:630
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:637
 #: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:148
 msgid "Subject is used by another article."
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:631
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:638
 msgid "ok"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:650
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:657
 msgid "success"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:99
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:101
 #: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:49
 msgid "Invalid category id"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:175
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:178
 msgid "Article List in Category"
 msgstr ""
 
@@ -153,14 +139,14 @@ msgstr ""
 #: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:215
 #: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:262
 #: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:400
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1286
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1287
 msgid "Not enough parameter."
 msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:227
 #: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:268
 #: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:407
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1292
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1293
 msgid "Invalid draft."
 msgstr ""
 
@@ -174,7 +160,7 @@ msgid "Draft submitted successfully."
 msgstr "主题更新成功。"
 
 #: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:243
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:821
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:822
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:304
 #: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:27
 msgid "Pending"
@@ -192,94 +178,94 @@ msgid "Article update successfully."
 msgstr "主题更新成功。"
 
 #: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:757
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1256
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1349
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1539
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1257
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1350
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1543
 #, fuzzy
 msgid "Failed to save draft."
 msgstr "主题更新失败。"
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:775
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:776
 #, fuzzy
 msgid "Draft saved successfully."
 msgstr "主题更新成功。"
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:804
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:805
 msgid "Invalid source"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:817
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:818
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:302
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:330
 #: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:37
 msgid "Draft"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:825
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:826
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:306
 #: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:32
 msgid "Rejected"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:901
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:902
 msgid "Create Article"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1128
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1129
 msgid "Edit Article"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1169
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1170
 msgid "Invalid draft ID"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1362
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1363
 #, fuzzy
 msgid "approve successfully."
 msgstr "主题更新成功。"
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1565
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1779
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1569
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1783
 msgid "Invalid ID!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1582
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1586
 msgid "Media is not exists!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1588
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1592
 msgid "Invalid file extension!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1597
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1601
 msgid "Can not create image file!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1713
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1717
 msgid "Invalid draft ID!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1721
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1725
 msgid "Invalid media!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1742
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1746
 msgid "Can not save data!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1764
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1768
 msgid "Save asset successful!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1786
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1790
 msgid "Delete item sucessful!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1789
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1793
 msgid "Can not delete item!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:179
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:182
 #, fuzzy
 msgid "All Articles"
 msgstr "All Categories"
@@ -292,12 +278,12 @@ msgstr ""
 msgid "Cannot find this page"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/TagController.php:97
+#: c:\code\pi\usr\module\article/src/Controller/Front/TagController.php:98
 msgid "Articles on Tag "
 msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:43
-#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:212
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:214
 msgid "Invalid topic ID!"
 msgstr ""
 
@@ -306,11 +292,11 @@ msgid "Topic is not exists!"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:56
-#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:223
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:225
 msgid "The topic requested is not active"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:195
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:197
 #, fuzzy
 msgid "All Topics"
 msgstr "All Categories"
@@ -328,17 +314,6 @@ msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:50
 msgid "Biography"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:89
-#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:126
-#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:59
-#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:59
-#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:81
-#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:108
-#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:162
-#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:404
-msgid "Submit"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:30
@@ -405,16 +380,6 @@ msgstr ""
 #: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:55
 #: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:47
 msgid "Image"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:30
-#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:30
-msgid "From"
-msgstr ""
-
-#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:42
-#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:42
-msgid "To"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:52
@@ -533,6 +498,16 @@ msgstr "Application Execution Time"
 msgid "Tags"
 msgstr ""
 
+#: c:\code\pi\usr\module\article/src/Form/Element/Account.php:50
+#: c:\code\pi\usr\module\article/src/Form/Element/CategoryWithRoot.php:35
+#: c:\code\pi\usr\module\article/src/Form/Element/Topic.php:38
+msgid "Null"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Form/Element/Template.php:46
+msgid "Default"
+msgstr ""
+
 #: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:34
 msgid "The unique identifier of media."
 msgstr ""
@@ -574,26 +549,66 @@ msgstr ""
 msgid "Choose a template for topic."
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Form/Element/Account.php:50
-#: c:\code\pi\usr\module\article/src/Form/Element/CategoryWithRoot.php:35
-#: c:\code\pi\usr\module\article/src/Form/Element/Topic.php:38
-msgid "Null"
+#: c:\code\pi\usr\module\article/src/Rule.php:41
+msgid "article"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Form/Element/Template.php:46
-msgid "Default"
+#: c:\code\pi\usr\module\article/src/Rule.php:42
+#: c:\code\pi\usr\module\article/src/Rule.php:43
+#: c:\code\pi\usr\module\article/src/Rule.php:44
+msgid "publish"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Rule.php:42
+msgid "active"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Rule.php:43
+#: c:\code\pi\usr\module\article/src/Rule.php:50
+#: c:\code\pi\usr\module\article/src/Rule.php:52
+msgid "edit"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Rule.php:44
+#: c:\code\pi\usr\module\article/src/Rule.php:51
+#: c:\code\pi\usr\module\article/src/Rule.php:53
+msgid "delete"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Rule.php:48
+#: c:\code\pi\usr\module\article/src/Rule.php:49
+msgid "draft"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Rule.php:49
+msgid "compose"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Rule.php:50
+#: c:\code\pi\usr\module\article/src/Rule.php:51
+msgid "rejected"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Rule.php:52
+#: c:\code\pi\usr\module\article/src/Rule.php:53
+#: c:\code\pi\usr\module\article/src/Rule.php:54
+msgid "pending"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Rule.php:54
+msgid "approve"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:101
 #: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:108
-#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:152
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:153
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1595
 msgid "In processing ..."
 msgstr ""
 
 #: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:114
 #: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:136
-#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:165
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:166
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:438
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:454
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1608
@@ -605,7 +620,7 @@ msgid "Upload"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:281
-#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:332
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:333
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1427
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1774
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:2027
@@ -651,8 +666,8 @@ msgstr ""
 
 #: c:\code\pi\usr\module\article/template/front/category-list.phtml:21
 #: c:\code\pi\usr\module\article/template/front/search-simple.phtml:12
-#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:33
-#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:12
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:32
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:11
 msgid " articles"
 msgstr ""
 
@@ -940,23 +955,30 @@ msgstr ""
 msgid "title"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:20
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:19
 #: c:\code\pi\usr\module\article/template/front/topic-index.phtml:27
-#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:54
-#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:16
 #, php-format
 msgid "Created at %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:23
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:22
 #: c:\code\pi\usr\module\article/template/front/topic-index.phtml:31
-#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:56
-#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:19
 #, php-format
 msgid "Last added at %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:69
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:54
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:12
+msgid "Created at "
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:56
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:14
+#, fuzzy
+msgid "Last added at "
+msgstr "主题更新失败。"
+
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:70
 #, fuzzy
 msgid "View All"
 msgstr "All Categories"

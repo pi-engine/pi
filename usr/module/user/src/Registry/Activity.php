@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Registry
  */
 
@@ -26,23 +26,23 @@ class Activity extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $list = array();
+        $list = [];
 
         $model  = Pi::model('activity', $this->module);
-        $where  = array('active' => 1, 'display > 0');
+        $where  = ['active' => 1, 'display > 0'];
         $select = $model->select()->where($where)->order('display');
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $list[$row['name']] =  array(
-                'title'         => $row['title'],
-                'description'   => $row['description'],
-                //'module'        => $row['module'],
-                'icon'          => $row['icon'],
-                'callback'      => $row['callback'],
-                'template'      => $row['template']
-            );
+            $list[$row['name']] = [
+                'title'       => $row['title'],
+                'description' => $row['description'],
+                'module'      => $row['module'],
+                'icon'        => $row['icon'],
+                'callback'    => $row['callback'],
+                'template'    => $row['template'],
+            ];
         }
 
         return $list;
@@ -55,10 +55,10 @@ class Activity extends AbstractRegistry
      */
     public function read($name = '')
     {
-        $options = array();
-        $data = $this->loadData($options);
+        $options = [];
+        $data    = $this->loadData($options);
         if ($name) {
-            $result = isset($data[$name]) ? $data[$name] : array();
+            $result = isset($data[$name]) ? $data[$name] : [];
         } else {
             $result = $data;
         }

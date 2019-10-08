@@ -1,49 +1,40 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Validator;
 
-use Pi;
 use Module\System\Validator\UserEmail as SystemUserEmail;
+use Pi;
 
 /**
- * Validator user email
+ * Validate user email
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class UserEmail extends SystemUserEmail
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->messageTemplates = array(
-            self::RESERVED  => __('User email is reserved'),
-            self::USED      => __('User email is already used'),
-        );
-
-        $this->setConfigOption();
-    }
-
     /**
-     * Set email validator according to config
-     *
-     * @return $this
+     * {@inheritDoc}
      */
-    public function setConfigOption()
+    public function __construct($options = null)
     {
-        $this->options = array(
-            'backlist'         => Pi::user()->config('email_backlist'),
-            'checkDuplication' => true,
-        );
+        $options = $options ?: [];
+        $options = array_merge([
+            'blacklist'         => Pi::user()->config('email_blacklist'),
+            'check_duplication' => true,
+        ], $options);
 
-        return $this;
+        parent::__construct($options);
+        $this->abstractOptions['messageTemplates'] = [
+                static::RESERVED => __('User email is reserved'),
+                static::USED     => __('User email is already used'),
+            ] + $this->abstractOptions['messageTemplates'];
     }
 }

@@ -1,16 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Validator;
 
-use Pi;
 use Module\System\Validator\Username as SystemUsername;
+use Pi;
 
 /**
  * Validator for username
@@ -20,36 +20,37 @@ use Module\System\Validator\Username as SystemUsername;
  */
 class Username extends SystemUsername
 {
+    /** Constants for username length restrict */
     const TOO_SHORT = 'stringLengthTooShort';
     const TOO_LONG  = 'stringLengthTooLong';
 
-    protected $messageVariables = array(
-        'formatHint' => 'formatHint',
-        'max'        => 'max',
-        'min'        => 'min',
-    );
-
+    /**
+     * Maximum/minimum length of username
+     * @var string
+     */
     protected $max;
     protected $min;
 
+    /**
+     * {@inheritDoc}
+     */
+    protected $messageVariables
+        = [
+            'formatHint' => 'formatHint',
+            'max'        => 'max',
+            'min'        => 'min',
+        ];
+
+    /**
+     * {@inheritDoc}
+     */
     public function __construct()
     {
+        $this->messageTemplates = $this->messageTemplates + [
+                static::TOO_SHORT => __('Username is less than %min% characters long'),
+                static::TOO_LONG  => __('Username is more than %max% characters long'),
+            ];
         parent::__construct();
-
-        $this->messageTemplates = array(
-            self::INVALID   => __('Invalid user name: %formatHint%'),
-            self::RESERVED  => __('Username is reserved'),
-            self::TAKEN     => __('Username is already taken'),
-            self::TOO_SHORT => __('Username is less than %min% characters long'),
-            self::TOO_LONG  => __('Username is more than %max% characters long')
-        );
-
-        $this->formatMessage = array(
-            'strict'    => __('Only alphabetic and digits are allowed with leading alphabetic'),
-            'medium'    => __('Only ASCII characters are allowed'),
-            'loose'     => __('Multibyte characters are allowed'),
-        );
-
         $this->setConfigOption();
     }
 
@@ -87,13 +88,13 @@ class Username extends SystemUsername
      */
     public function setConfigOption()
     {
-        $this->options = array(
-            'min'       => Pi::user()->config('uname_min'),
-            'max'       => Pi::user()->config('uname_max'),
-            'backlist'  => Pi::user()->config('uname_backlist'),
-            'format'    => Pi::user()->config('uname_format'),
-            'checkDuplication' => true,
-        );
+        $this->options = [
+            'min'               => Pi::user()->config('uname_min'),
+            'max'               => Pi::user()->config('uname_max'),
+            'blacklist'         => Pi::user()->config('uname_blacklist'),
+            'format'            => Pi::user()->config('uname_format'),
+            'check_duplication' => true,
+        ];
 
         return $this;
     }

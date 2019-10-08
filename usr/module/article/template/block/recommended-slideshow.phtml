@@ -1,9 +1,9 @@
-<?php 
-    $elements = $block['elements'];
-    $target   = $block['target'];
-    $articles = $block['articles'];
-    $width    = $block['width'];
-    $height   = $block['height'];
+<?php
+$elements = $block['elements'];
+$target   = $block['target'];
+$articles = $block['articles'];
+$width    = $block['width'];
+$height   = $block['height'];
 ?>
 
 <div class="article-block-recommended-slide row">
@@ -11,35 +11,38 @@
         <ol class="carousel-indicators">
             <?php $i = 0; ?>
             <?php for ($i = 0; $i < count($block['images']); $i++) { ?>
-            <li data-target="#article-recommended-slide" data-slide-to="<?php echo $i ?>" <?php if ($i == 0) echo 'class="active"'; ?>></li>
+                <li data-target="#article-recommended-slide"
+                    data-slide-to="<?php echo $i ?>" <?php if ($i == 0) echo 'class="active"'; ?>></li>
             <?php } ?>
         </ol>
         <div class="carousel-inner">
             <?php $j = 0 ?>
             <?php foreach ($block['images'] as $image) { ?>
-            <div class="item <?php if ($j++ == 0) echo 'active'; ?>">
-                <a href="<?php echo $this->escape($image['link']); ?>">
-                    <img style="width: <?php echo $width ?>px; height: <?php echo $height; ?>px" src="<?php echo $this->escape($image['url']); ?>">
-                </a>
-                <div class="carousel-caption">
-                    <p class="article-size12">
-                        <?php echo $this->escape(mb_substr($image['description'], 0, 60, 'UTF-8')); ?>
-                    </p>
+                <div class="item <?php if ($j++ == 0) echo 'active'; ?>">
+                    <a href="<?php echo $this->escape($image['link']); ?>">
+                        <img style="width: <?php echo $width ?>px; height: <?php echo $height; ?>px"
+                             src="<?php echo $this->escape($image['url']); ?>">
+                    </a>
+                    <div class="carousel-caption">
+                        <p class="article-size12">
+                            <?php echo $this->escape(mb_substr($image['description'], 0, 60, 'UTF-8')); ?>
+                        </p>
+                    </div>
                 </div>
-            </div>
             <?php } ?>
         </div>
         <a class="carousel-control left" href="#article-recommended-slide" data-slide="prev" style="margin: 0 15px">
-            <span class="fa fa-chevron-left"></span>
+            <span class="fas fa-chevron-left"></span>
         </a>
         <a class="carousel-control right" href="#article-recommended-slide" data-slide="next" style="margin: 0 15px">
-            <span class="fa fa-chevron-right"></span>
+            <span class="fas fa-chevron-right"></span>
         </a>
     </div>
     <div class="col-md-5" style="padding: 10px 15px 10px 10px">
-        <?php $template = 'list-single.phtml';
-            $items = $articles;
-            include $template;
+        <?php
+        $template = 'list-single.phtml';
+        $items    = $articles;
+        include $this->templateModule('block/' . $template, $block['module']);
         ?>
     </div>
 </div>

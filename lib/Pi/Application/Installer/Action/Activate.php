@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Installer\Action;
@@ -24,8 +24,8 @@ class Activate extends AbstractAction
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('activate.pre', array($this, 'checkIndependent'));
-        $events->attach('activate.post', array($this, 'createDependency'));
+        $events->attach('activate.pre', [$this, 'checkIndependent']);
+        $events->attach('activate.post', [$this, 'createDependency']);
 
         return $this;
     }
@@ -35,17 +35,17 @@ class Activate extends AbstractAction
      */
     public function process()
     {
-        $model = Pi::model('module');
-        $row = $model->select(array('name' => $this->module))->current();
+        $model       = Pi::model('module');
+        $row         = $model->select(['name' => $this->module])->current();
         $row->active = 1;
         // save module entry into database
         try {
             $row->save();
         } catch (\Exception $e) {
-            $this->setResult('module', array(
-                'status'    => false,
-                'message'   => array('Module activate failed')
-            ));
+            $this->setResult('module', [
+                'status'  => false,
+                'message' => ['Module activate failed'],
+            ]);
             return false;
         }
 
@@ -59,9 +59,9 @@ class Activate extends AbstractAction
      */
     public function rollback()
     {
-        $row = $this->event->getParam('row');
+        $row         = $this->event->getParam('row');
         $row->active = 0;
-        
+
         return $row->save();
     }
 }

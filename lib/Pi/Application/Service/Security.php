@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -55,8 +55,8 @@ class Security extends AbstractService
     {
         if (!isset($this->paths)) {
             // Loads all path settings from host data
-            $paths = Pi::host()->get('path');
-            $lengths = array();
+            $paths   = Pi::host()->get('path');
+            $lengths = [];
             foreach ($paths as $root => $v) {
                 $lengths[] = strlen($v);
             }
@@ -72,8 +72,8 @@ class Security extends AbstractService
                 continue;
             }
             // Replace full path with relative path to prevent path disclosure
-            $str  = str_replace(
-                array($v . '/', realpath($v) . '/'),
+            $str = str_replace(
+                [$v . '/', realpath($v) . '/'],
                 $root . '/',
                 $str
             );
@@ -91,7 +91,7 @@ class Security extends AbstractService
     public function db($str)
     {
         $pattern = '/\b' . preg_quote(Pi::db()->getTablePrefix()) . '/i';
-        $return = preg_replace($pattern, '', $str);
+        $return  = preg_replace($pattern, '', $str);
 
         return $return;
     }
@@ -154,10 +154,10 @@ class Security extends AbstractService
      * Magic method to access custom security settings
      *
      * @param string $method The security setting to be checked
-     * @param array  $args  arguments for the setting
+     * @param array $args arguments for the setting
      * @return bool|null
      */
-    public function __call($method, $args = array())
+    public function __call($method, $args = [])
     {
         $options = $args ? $args[0] : null;
         if (!is_array($options) && isset($this->options[$method])) {

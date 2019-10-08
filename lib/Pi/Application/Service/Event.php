@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -58,9 +58,9 @@ class Event extends AbstractService
     /**
      * Trigger (or notify) callbacks registered to an event
      *
-     * @param string|array  $event          Event name or module event pair
-     * @param mixed|null    $object         Object or array
-     * @param Callback|null $shortcircuit   Callback to stop the event trigger
+     * @param string|array $event Event name or module event pair
+     * @param mixed|null $object Object or array
+     * @param Callback|null $shortcircuit Callback to stop the event trigger
      * @return bool
      */
     public function trigger($event, $object = null, $shortcircuit = null)
@@ -81,7 +81,7 @@ class Event extends AbstractService
         $callListener = function (array $specs, $data) {
             list($class, $method, $module) = $specs;
             $listener = new $class($module);
-            $result = $listener->{$method}($data);
+            $result   = $listener->{$method}($data);
 
             return $result;
         };
@@ -117,8 +117,8 @@ class Event extends AbstractService
     /**
      * Load observers of an event
      *
-     * @param string    $module
-     * @param string    $event
+     * @param string $module
+     * @param string $event
      *
      * @return array|bool
      */
@@ -155,9 +155,9 @@ class Event extends AbstractService
     /**
      * Attach a predefined observer to an event in run-time
      *
-     * @param string        $module     Event module
-     * @param string        $event      Event name
-     * @param array         $listener   Listener callback:
+     * @param string $module Event module
+     * @param string $event Event name
+     * @param array $listener Listener callback:
      *      <class>, <method>[, <module>]
      *
      * @return $this
@@ -167,7 +167,7 @@ class Event extends AbstractService
         if (!isset($listener[2])) {
             $listener[] = '';
         }
-        $key = implode('-', $listener);
+        $key                                    = implode('-', $listener);
         $this->container[$module][$event][$key] = $listener;
 
         return $this;
@@ -176,9 +176,9 @@ class Event extends AbstractService
     /**
      * Detach an observer from an event
      *
-     * @param string        $module     Event module
-     * @param string        $event      Event name
-     * @param array|null    $listener   Listener callback:
+     * @param string $module Event module
+     * @param string $event Event name
+     * @param array|null $listener Listener callback:
      *      <class>, <method>, <module>
      *
      * @return $this
@@ -189,7 +189,7 @@ class Event extends AbstractService
             if (!isset($listener[2])) {
                 $listener[] = '';
             }
-            $key = implode('-', $listener);
+            $key                                    = implode('-', $listener);
             $this->container[$module][$event][$key] = null;
         } else {
             $this->container[$module][$event] = null;

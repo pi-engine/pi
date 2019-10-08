@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\File\Transfer;
@@ -135,18 +135,21 @@ class Upload extends Transfer
      */
     protected $destination;
 
+    /** @var  bool|null Is upload valid */
+    protected $isValid;
+
     /**
      * Creates a file upload handler
      *
-     * @param  array   $options   OPTIONAL Options to set for this adapter
-     * @param  string  $adapter   Adapter to use
+     * @param  array $options OPTIONAL Options to set for this adapter
+     * @param  string $adapter Adapter to use
      */
-    public function __construct($options = array(), $adapter = 'Http')
+    public function __construct($options = [], $adapter = 'Http')
     {
-        $direction = false;
-        $rename = !empty($options['rename']) ? $options['rename'] : '%random%';
+        $direction   = false;
+        $rename      = isset($options['rename']) ? $options['rename'] : '%random%';
         $destination = !empty($options['destination'])
-            ? $options['destination'] 
+            ? $options['destination']
             : 'upload/' . Pi::service('module')->current();
         $this->setAdapter($adapter, $direction, $options);
         $this->setDestination($destination);
@@ -170,9 +173,9 @@ class Upload extends Transfer
     /**
      * Set upload destination
      *
-     * @param string    $value      Absolute path to store files,
+     * @param string $value Absolute path to store files,
      *      or path relative to Pi::path('upload')
-     * @param bool      $verify     To very destination path availability
+     * @param bool $verify To very destination path availability
      * @return $this
      */
     public function setDestination($value, $verify = true)
@@ -295,8 +298,8 @@ class Upload extends Transfer
     /**
      * Get uploaded file name(s)
      *
-     * @param string    $name  Variable name in upload form
-     * @param bool      $path  To include full path
+     * @param string $name Variable name in upload form
+     * @param bool $path To include full path
      *
      * @return string|string[]
      */
@@ -336,5 +339,20 @@ class Upload extends Transfer
         */
 
         return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isValid($files = null)
+    {
+        $translator = Pi::service('i18n')->getTranslator();
+        $translator->load('validator');
+
+        if (null === $this->isValid) {
+            $this->isValid = parent::isValid($files);
+        }
+
+        return $this->isValid;
     }
 }

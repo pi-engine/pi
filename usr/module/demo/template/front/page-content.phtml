@@ -1,0 +1,12 @@
+<h2 class="page-header"><?php echo _escape($page['title']); ?></h2>
+
+<div><?php echo _date($page['time_created']); ?></div>
+<?php echo $this->tag(['module' => $page['module'], 'item' => $page['id']], []); ?>
+<?php /*echo $this->tag();*/ ?>
+<p><?php echo $page['content']; ?></p>
+
+<h3>Test for tag input helper</h3>
+<?php
+//include $this->templateComponent('form');
+echo $this->form($form);
+?>

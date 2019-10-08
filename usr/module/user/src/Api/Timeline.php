@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Api;
@@ -31,13 +31,13 @@ class Timeline extends AbstractApi
      */
     public function getList()
     {
-        $result = array();
-        $list = Pi::registry('timeline', 'user')->read();
+        $result = [];
+        $list   = Pi::registry('timeline', 'user')->read();
         foreach ($list as $name => $meta) {
-            $result[$name] = array(
+            $result[$name] = [
                 'title' => $meta['title'],
                 'icon'  => $meta['icon'],
-            );
+            ];
         }
 
         return $result;
@@ -48,20 +48,20 @@ class Timeline extends AbstractApi
      *
      * Log array: time, message
      *
-     * @param int       $uid
-     * @param int       $limit
-     * @param int       $offset
+     * @param int $uid
+     * @param int $limit
+     * @param int $offset
      *
      * @return array
      */
     public function get($uid, $limit, $offset = 0)
     {
-        $result = array();
+        $result = [];
 
-        $model = Pi::model('timeline_log', 'user');
+        $model  = Pi::model('timeline_log', 'user');
         $select = $model->select();
-        $select->where(array('uid' => $uid))
-            ->columns(array('time', 'message', 'link', 'timeline', 'module'))
+        $select->where(['uid' => $uid])
+            ->columns(['time', 'message', 'link', 'timeline', 'module'])
             ->limit($limit)
             ->offset($offset)
             ->order('time DESC');
@@ -91,7 +91,7 @@ class Timeline extends AbstractApi
         $row = $model->selectWith($select)->current();
         $count = (int) $row['count'];
         */
-        $count = $model->count(array('uid' => $uid));
+        $count = $model->count(['uid' => $uid]);
 
         return $count;
     }
@@ -119,4 +119,22 @@ class Timeline extends AbstractApi
 
         return true;
     }
+
+    /**
+     * delete a timeline log
+     *
+     * Log array:
+     *  - module
+     *  - data
+     *
+     * @param array $log
+     * @return bool
+     */
+    public function delete(array $log)
+    {
+        $id  = $log['data'];
+        $row = Pi::model('timeline_log', 'user')->delete(['module' => $log['module'], 'data' => "{\"comment\":$id}"]);
+        return true;
+    }
+
 }

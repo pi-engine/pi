@@ -1,18 +1,20 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Mvc\Controller\Plugin;
 
-use Zend\View\Model\ViewModel;
+use Pi;
+use Pi\Filter;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
-use Zend\Mvc\MvcEvent;
 use Zend\Mvc\InjectApplicationEventInterface;
+use Zend\Mvc\MvcEvent;
+use Zend\View\Model\ViewModel;
 
 /**
  * View plugin for controller
@@ -70,9 +72,9 @@ use Zend\Mvc\InjectApplicationEventInterface;
  * Set head description, default as set by overwriting
  *
  * ```
- *  $this->view()->headKeywords('Custom description of the page.'[, 'set']);
- *  $this->view()->headKeywords('Custom description of the page.', 'append');
- *  $this->view()->headKeywords('Custom description of the page.', 'prepend');
+ *  $this->view()->headDescription('Custom description of the page.'[, 'set']);
+ *  $this->view()->headDescription('Custom description of the page.', 'append');
+ *  $this->view()->headDescription('Custom description of the page.', 'prepend');
  * ```
  *
  * Load a view helper
@@ -114,8 +116,8 @@ class View extends AbstractPlugin
      * If no arguments are given, return the view plugin
      * Otherwise, attempts to set variables for that view model.
      *
-     * @param  null|array|Traversable   $variables
-     * @param  array|Traversable        $options
+     * @param  null|array|Traversable $variables
+     * @param  array|Traversable $options
      * @return ViewModel|$this
      */
     public function __invoke($variables = null, $options = null)
@@ -174,15 +176,14 @@ class View extends AbstractPlugin
     /**
      * Create ViewModel
      *
-     * @param  null|array|Traversable   $variables
-     * @param  array|Traversable        $options
+     * @param  null|array|Traversable $variables
+     * @param  array|Traversable $options
      * @return ViewModel
      */
-    public function getViewModel($variables = null, $options = array())
+    public function getViewModel($variables = null, $options = [])
     {
         if (!$this->viewModel) {
             $this->viewModel = new ViewModel($variables, $options);
-            $this->viewModel->setCaptureTo('content');
         } elseif ($variables || $options) {
             if ($variables) {
                 $this->viewModel->setVariables($variables);
@@ -193,6 +194,19 @@ class View extends AbstractPlugin
         }
 
         return $this->viewModel;
+    }
+
+    /**
+     * Set theme
+     *
+     * @param string $theme
+     * @return $this
+     */
+    public function setTheme($theme)
+    {
+        Pi::service('theme')->setTheme($theme);
+
+        return $this;
     }
 
     /**
@@ -223,11 +237,11 @@ class View extends AbstractPlugin
     {
         if (!$template) {
             $template = static::NULL_TEMPLATE;
-        // Set module prefix and section folder
+            // Set module prefix and section folder
         } elseif (false !== $module) {
             if (false === strpos($template, ':')) {
-                $module = $module ?: $this->getController()->getModule();
-                $section = $section
+                $module   = $module ?: $this->getController()->getModule();
+                $section  = $section
                     ?: $this->getEvent()->getApplication()->getSection();
                 $template = $module . ':' . $section . '/' . $template;
             }
@@ -240,8 +254,8 @@ class View extends AbstractPlugin
     /**
      * Assign variables to view model
      *
-     * @param string|array  $variable   Variable name or array of variables
-     * @param mixed         $value      Value to assign
+     * @param string|array $variable Variable name or array of variables
+     * @param mixed $value Value to assign
      * @return $this
      */
     public function assign($variable, $value = null)
@@ -268,8 +282,8 @@ class View extends AbstractPlugin
     /**
      * Set head title
      *
-     * @param string $title     Head title
-     * @param string $setType   Position, default as append
+     * @param string $title Head title
+     * @param string $setType Position, default as append
      * @return $this|AbstractPlugin
      */
     public function headTitle($title = null, $setType = null)
@@ -277,7 +291,8 @@ class View extends AbstractPlugin
         if (func_num_args() == 0) {
             return $this->helper('headTitle');
         }
-        $title = strip_tags($title);
+        $filter = new Filter\HeadTitle;
+        $title  = $filter($title);
         $this->helper('headTitle')->__invoke($title, $setType);
 
         return $this;
@@ -286,18 +301,19 @@ class View extends AbstractPlugin
     /**
      * Set head description
      *
-     * @param string        $description   Head description
-     * @param string|null   $placement     Position, default as set
+     * @param string $description Head description
+     * @param string|null $placement Position, default as set
      * @return $this
      */
     public function headDescription($description, $placement = null)
     {
-        $description = strip_tags($description);
+        $filter      = new Filter\HeadDescription;
+        $description = $filter($description);
         $this->helper('headMeta')->__invoke(
             $description,
             'description',
             'name',
-            array(),
+            [],
             $placement
         );
 
@@ -307,21 +323,22 @@ class View extends AbstractPlugin
     /**
      * Set head keywords
      *
-     * @param string|array  $keywords  Head keywords
-     * @param string|null   $placement Position, default as set
+     * @param string|array $keywords Head keywords
+     * @param string|null $placement Position, default as set
      * @return $this
      */
     public function headKeywords($keywords, $placement = null)
     {
         if (is_array($keywords)) {
-            $keywords = implode(', ', $keywords);
+            $keywords = implode(',', $keywords);
         }
-        $keywords = strip_tags($keywords);
+        $filter   = new Filter\HeadKeywords;
+        $keywords = $filter($keywords);
         $this->helper('headMeta')->__invoke(
             $keywords,
             'keywords',
             'name',
-            array(),
+            [],
             $placement
         );
 
@@ -337,8 +354,8 @@ class View extends AbstractPlugin
      * - If the helper does not define __invoke, it will be returned
      * - If the helper does define __invoke, it will be called as a functor
      *
-     * @param string    $method
-     * @param array     $argv
+     * @param string $method
+     * @param array $argv
      * @return mixed|AbstractPlugin
      */
     public function __call($method, $argv)

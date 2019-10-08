@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Controller\Front;
@@ -29,29 +29,11 @@ class HomeController extends ActionController
     {
         $page   = $this->params('page', 1);
         $limit  = Pi::config('list_limit', 'user');
-        $offset = (int) ($page -1) * $limit;
+        $offset = (int)($page - 1) * $limit;
 
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
-        /*
-        // Check profile complete
-        if ($this->config('profile_complete_form')) {
-            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
-            if (!$completeProfile) {
-                $this->redirect()->toRoute(
-                    'user',
-                    array(
-                        'controller' => 'register',
-                        'action' => 'profile.complete',
-                    )
-                );
-                return;
-            }
-        }
-        */
-        // Get user information
-        //$user = $this->getUser($uid);
 
         // Get timeline
         $count    = Pi::api('timeline', 'user')->getCount($uid);
@@ -66,33 +48,36 @@ class HomeController extends ActionController
             $item['title'] = $timelineMetaList[$item['timeline']]['title'];
         }
 
-        // Get activity meta for nav display
-        //$nav = Pi::api('nav', 'user')->getList('homepage');
-
-        // Get quick link
-        //$quicklink = Pi::api('quicklink', 'user')->getList();
-
+        // Get user base info
+        $user = Pi::api('user', 'user')->get(
+            $uid,
+            ['name', 'country', 'city', 'time_activated'],
+            true,
+            true
+        );
 
         // Set paginator
-        $paginatorOption = array(
+        $paginatorOption = [
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
             'controller' => 'home',
             'action'     => 'index',
-        );
-        $paginator = $this->setPaginator($paginatorOption);
+        ];
+        $paginator       = $this->setPaginator($paginatorOption);
 
-        $this->view()->assign(array(
-            'uid'           => $uid,
-            //'user'          => $user,
-            'timeline'      => $timeline,
-            'paginator'     => $paginator,
-            'name'          => 'homepage',
-            //'quicklink'    => $quicklink,
-            //'owner'     => true,
-            //'nav'          => $nav,
-        ));
+        $this->view()->assign([
+            'uid'       => $uid,
+            'timeline'  => $timeline,
+            'paginator' => $paginator,
+            'name'      => 'homepage',
+            'user'      => $user,
+        ]);
+
+        $this->view()->assign('view', false);
+        $this->view()->headTitle(sprintf(__('%s activities'), $user['name']));
+        $this->view()->headdescription(sprintf(__('View %s activities'), $user['name']), 'set');
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**
@@ -100,35 +85,17 @@ class HomeController extends ActionController
      */
     public function viewAction()
     {
-        $page   = $this->params('page', 1);
-        $limit  = Pi::config('list_limit', 'user');
-        $offset = (int) ($page -1) * $limit;
-
-        $uid = $this->params('uid', '');
-
-        /*
-        // Get user information
-        $user = $this->getUser($uid);
-        if (!$user) {
-            $this->jump(
-                array(
-                    'controller' => 'profile',
-                    'action'     => 'index'
-                ),
-                __('User was not found.'),
-                'error'
-            );
+        // Check front disable
+        if ($this->config('disable_front')) {
+            return $this->jumpToDenied(__('View information is disable'));
         }
 
-        // Get viewer role: public member follower following owner
-        $role = Pi::user()->hasIdentity() ? 'member' : 'public';
-        $user = Pi::api('privacy', 'user')->filterProfile(
-            $uid,
-            $role,
-            $user,
-            'user'
-        );
-        */
+        $page   = $this->params('page', 1);
+        $limit  = Pi::config('list_limit', 'user');
+        $offset = (int)($page - 1) * $limit;
+        $uid    = _get('uid');
+
+        Pi::service('authentication')->requireLogin();
 
         // Get timeline
         $count    = Pi::api('timeline', 'user')->getCount($uid);
@@ -139,39 +106,46 @@ class HomeController extends ActionController
 
         // Set timeline meta
         foreach ($timeline as &$item) {
+            if (!isset($timelineMetaList[$item['timeline']])) {
+                continue;
+            }
             $item['icon']  = $timelineMetaList[$item['timeline']]['icon'];
             $item['title'] = $timelineMetaList[$item['timeline']]['title'];
         }
 
-        // Get activity meta for nav display
-        //$nav = Pi::api('nav', 'user')->getList('homepage', $uid);
-
-        // Get quick link
-        //$quicklink = Pi::api('quicklink', 'user')->getList();
+        // Get user base info
+        $user         = Pi::api('user', 'user')->get(
+            $uid,
+            ['name', 'country', 'city', 'time_activated'],
+            true,
+            true
+        );
+        $user['name'] = isset($user['name']) ? $user['name'] : null;
 
         // Set paginator
-        $paginatorOption = array(
+        $paginatorOption = [
             'count'      => $count,
             'limit'      => $limit,
             'page'       => $page,
             'controller' => 'home',
             'action'     => 'view',
             'uid'        => $uid,
-        );
-        $paginator = $this->setPaginator($paginatorOption);
+        ];
+        $paginator       = $this->setPaginator($paginatorOption);
 
-        $this->view()->assign(array(
-            'uid'           => $uid,
-            //'user'          => $user,
-            'name'          => 'homepage',
-            'timeline'      => $timeline,
-            'paginator'     => $paginator,
-            //'quicklink'    => $quicklink,
-            //'owner'         => false,
-            //'nav'          => $nav,
-        ));
+        $this->view()->assign([
+            'uid'       => $uid,
+            'name'      => 'homepage',
+            'timeline'  => $timeline,
+            'paginator' => $paginator,
+            'user'      => $user,
+        ]);
 
         $this->view()->setTemplate('home-index');
+        $this->view()->assign('view', true);
+        $this->view()->headTitle(sprintf(__('%s activities'), $user['name']));
+        $this->view()->headdescription(sprintf(__('View %s activities'), $user['name']), 'set');
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**
@@ -182,23 +156,23 @@ class HomeController extends ActionController
      */
     protected function setPaginator($option)
     {
-        $params = array(
-            'module'        => $this->getModule(),
-            'controller'    => $option['controller'],
-            'action'        => $option['action'],
-        );
+        $params = [
+            'module'     => $this->getModule(),
+            'controller' => $option['controller'],
+            'action'     => $option['action'],
+        ];
 
         if (isset($option['uid'])) {
             $params['uid'] = $option['uid'];
         }
 
-        $paginator = Paginator::factory(intval($option['count']), array(
-            'limit' => $option['limit'],
-            'page'  => $option['page'],
-            'url_options'   => array(
-                'params'    => $params
-            ),
-        ));
+        $paginator = Paginator::factory(intval($option['count']), [
+            'limit'       => $option['limit'],
+            'page'        => $option['page'],
+            'url_options' => [
+                'params' => $params,
+            ],
+        ]);
 
         return $paginator;
 

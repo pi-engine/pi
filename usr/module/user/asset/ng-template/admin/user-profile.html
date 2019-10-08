@@ -1,71 +1,67 @@
 <legend>{{'SEARCH_TEXT' | translate}}</legend>
 <div class="row">
-  <div class="col-md-6">
-    <form class="input-group" ng-submit="submit()" name="searchForm" style="margin-bottom: 20px;">
-      <span class="input-group-btn">
-        <select class="form-control" ng-model="entity.field" style="width: auto;">
-          <option value="id">{{'UID' | translate}}
-          <option value="identity">{{'USERNAME' | translate}}
-          <option value="name">{{'DISPLAYNAME' | translate}}
-          <option value="email">{{'EMAIL' | translate}}
-        </select>
-      </span>
-      <input class="form-control" type="text" ng-model="entity.data" required>
-      <span class="input-group-btn">
-        <button class="btn btn-primary" ng-disabled="searchForm.$invalid">
-          {{'SEARCH' | translate}}
-        </button>
-      </span>
-    </form>
-  </div>
+    <div class="col-md-6">
+        <form class="input-group" ng-submit="submit()" name="searchForm" style="margin-bottom: 20px;">
+            <select class="form-control" data-ng-model="entity.field" style="width: auto;">
+                <option value="id">{{'UID' | translate}}
+                <option value="identity">{{'USERNAME' | translate}}
+                <option value="name">{{'DISPLAYNAME' | translate}}
+                <option value="email">{{'EMAIL' | translate}}
+            </select>
+            <input class="form-control" type="text" data-ng-model="entity.data" required>
+            <button class="btn btn-primary" ng-disabled="searchForm.$invalid">
+                {{'SEARCH' | translate}}
+            </button>
+        </form>
+    </div>
 </div>
-<div ng-if="user">
-  <div class="media" style="margin-bottom: 10px;">
-    <div class="pull-left">
-      <img src="{{user.avatar}}">
+<div data-ng-if="user">
+    <div class="media" style="margin-bottom: 10px;">
+        <div class="float-left">
+            <img src="{{user.avatar}}">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="{{user.link}}" target="_blank">{{user.name}}</a>
+            </h4>
+        </div>
     </div>
-    <div class="media-body">
-      <h4 class="media-heading">
-        <a href="{{user.link}}" target="_blank">{{user.name}}</a>
-      </h4>
-    </div>
-  </div>
-  <legend>{{'ACCOUNT' | translate}}</legend>
-  <dl class="dl-horizontal user-field-dl">
-    <dt>{{'USERNAME' | translate}}
-    <dd>{{user.identity}}
-    <dt>{{'DISPLAYNAME' | translate}}
-    <dd>{{user.name}}
-    <dt>{{'EMAIL' | translate}}
-    <dd>{{user.email}}
-    <dt>{{'ACTIVATION' | translate}}
-    <dd>
-      <span ng-show="!user.time_activated">
+    <legend>{{'ACCOUNT' | translate}}</legend>
+    <dl class="dl-horizontal user-field-dl">
+        <dt>{{'USERNAME' | translate}}
+        <dd>{{user.identity}}
+        <dt>{{'DISPLAYNAME' | translate}}
+        <dd>{{user.name}}
+        <dt>{{'EMAIL' | translate}}
+        <dd>{{user.email}}
+        <dt>{{'ACTIVATION' | translate}}
+        <dd>
+      <span data-ng-show="!user.time_activated">
         {{'NOTACTIVATED' | translate}}
       </span>
-      <span ng-show="user.time_activated">
+            <span data-ng-show="user.time_activated">
         {{user.time_activated}}
       </span>
-    <dt>{{'ENABLED' | translate}}
-    <dd>
-      <span ng-show="!user.time_disabled">
+        <dt>{{'ENABLED' | translate}}
+        <dd>
+      <span data-ng-show="!user.time_disabled">
         {{'YES' | translate}}
       </span>
-      <span ng-show="user.time_disabled">
+            <span data-ng-show="user.time_disabled">
         {{user.time_disabled}}
       </span>
-  </dl>
-  <legend>{{'PROFILE' | translate}}</legend>
-  <div ng-repeat="group in groups">
-    <h4>{{group.title}}</h4>
-    <dl class="dl-horizontal user-field-dl" ng-repeat="field in group.fields">
-      <dt ng-repeat-start="item in field">{{item.title}}
-      <dd ng-repeat-end>
-        <em ng-show="!item.value" class="muted">{{'EMPTY' | translate}}</em>
-        {{item.value}}
     </dl>
-  </div>
+    <legend>{{'PROFILE' | translate}}</legend>
+    <div ng-repeat="group in groups">
+        <h4>{{group.title}}</h4>
+        <dl class="dl-horizontal user-field-dl" ng-repeat="field in group.fields">
+            <dt ng-repeat-start="item in field">{{item.title}}
+            <dd ng-repeat-end>
+                <em data-ng-show="!item.value" class="muted">{{'EMPTY' | translate}}</em>
+                {{item.value}}
+        </dl>
+    </div>
 </div>
-<div class="alert alert-info" ng-if="userNone">
-  {{userNone}}
+<div class="alert alert-info" data-ng-if="userNone">
+    {{userNone}}
 </div>

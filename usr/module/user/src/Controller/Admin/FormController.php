@@ -1,20 +1,20 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Controller\Admin;
 
+use Module\User\Form\ProfileCompleteFilter;
+use Module\User\Form\ProfileCompleteForm;
+use Module\User\Form\RegisterFilter;
+use Module\User\Form\RegisterForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\User\Form\RegisterForm;
-use Module\User\Form\RegisterFilter;
-use Module\User\Form\ProfileCompleteForm;
-use Module\User\Form\ProfileCompleteFilter;
 
 /**
  * Form preview controller
@@ -25,7 +25,7 @@ class FormController extends ActionController
 {
     public function indexAction()
     {
-        return $this->redirect('', array('action' => 'register'));
+        return $this->redirect('', ['action' => 'register']);
     }
 
     /**
@@ -47,10 +47,10 @@ class FormController extends ActionController
         }
 
 
-        $this->view()->assign(array(
+        $this->view()->assign([
             'form' => $form,
             'data' => $data,
-        ));
+        ]);
     }
 
     /**
@@ -71,10 +71,10 @@ class FormController extends ActionController
         }
 
 
-        $this->view()->assign(array(
+        $this->view()->assign([
             'form' => $form,
             'data' => $data,
-        ));
+        ]);
 
         $this->view()->setTemplate('form-profile-complete');
     }
@@ -87,10 +87,10 @@ class FormController extends ActionController
      */
     protected function canonizeForm($file)
     {
-        $elements = array();
-        $filters  = array();
+        $elements = [];
+        $filters  = [];
 
-        $file = strtolower($file);
+        $file       = strtolower($file);
         $configFile = sprintf(
             '%s/extra/%s/config/%s.php',
             Pi::path('usr'),
@@ -128,7 +128,7 @@ class FormController extends ActionController
             }
         }
 
-        return array($elements, $filters);
+        return [$elements, $filters];
 
     }
 }

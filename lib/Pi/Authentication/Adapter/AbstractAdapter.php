@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Authentication\Adapter;
@@ -20,19 +20,19 @@ abstract class AbstractAdapter extends ZendAbstractAdapter implements
     AdapterInterface
 {
     /** @var array Options */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Results of database authentication query
      *
      * @var array
      */
-    protected $resultRow = array();
+    protected $resultRow = [];
 
     /**
      * {@inheritDoc}
      */
-    public function setOptions($options = array())
+    public function setOptions($options = [])
     {
         foreach ($options as $key => $val) {
             $method = 'set' . str_replace('_', '', $key);
@@ -47,9 +47,9 @@ abstract class AbstractAdapter extends ZendAbstractAdapter implements
     /**
      * {@inheritDoc}
      */
-    public function setResultRow($resultRow = array())
+    public function setResultRow($resultRow = [])
     {
-        $this->resultRow = (array) $resultRow;
+        $this->resultRow = (array)$resultRow;
 
         return $this;
     }
@@ -62,16 +62,16 @@ abstract class AbstractAdapter extends ZendAbstractAdapter implements
         if (null === $returnColumns
             && isset($this->options['return_columns'])
         ) {
-            $returnColumns = (array) $this->options['return_columns'];
+            $returnColumns = (array)$this->options['return_columns'];
         } elseif (null === $omitColumns && isset($this->options['omit_columns'])) {
-            $omitColumns = (array) $this->options['omit_columns'];
+            $omitColumns = (array)$this->options['omit_columns'];
         }
-        $omitColumns = $omitColumns ?: array();
+        $omitColumns = $omitColumns ?: [];
 
-        $return = array();
-        $data = $this->resultRow;
+        $return = [];
+        $data   = $this->resultRow;
         if ($returnColumns) {
-            foreach ((array) $returnColumns as $returnColumn) {
+            foreach ((array)$returnColumns as $returnColumn) {
                 if (isset($data[$returnColumn])) {
                     $return[$returnColumn] = $data[$returnColumn];
                 }
@@ -79,7 +79,7 @@ abstract class AbstractAdapter extends ZendAbstractAdapter implements
             return $return;
         }
 
-        $omitColumns = (array) $omitColumns;
+        $omitColumns = (array)$omitColumns;
         foreach ($data as $resultColumn => $resultValue) {
             if (!in_array($resultColumn, $omitColumns)) {
                 $return[$resultColumn] = $resultValue;

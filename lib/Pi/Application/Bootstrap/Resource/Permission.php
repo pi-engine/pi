@@ -1,17 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
-use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Controller\AbstractController;
+use Zend\Mvc\MvcEvent;
 
 /**
  * ACL bootstrap resource
@@ -36,7 +36,7 @@ class Permission extends AbstractResource
         $sharedEvents->attach(
             'PI_CONTROLLER',
             MvcEvent::EVENT_DISPATCH,
-            array($this, 'checkAction'),
+            [$this, 'checkAction'],
             99999
         );
     }
@@ -58,8 +58,11 @@ class Permission extends AbstractResource
         if (!isset($this->options['check_close'])
             || false !== $this->options['check_close']
         ) {
-            if (Pi::config('site_close')) {
-                $this->denyAccess($e);
+            if (Pi::config('site_close')
+                && !Pi::service('permission')->isAdmin()
+            ) {
+                $message = __('The website is in maintenance - we are back in a couple of minutes !');
+                $this->denyAccess($e, $message);
                 return;
             }
         }
@@ -69,26 +72,27 @@ class Permission extends AbstractResource
             return;
         }
 
-        $section = $this->engine->section();
+        $section    = $this->engine->section();
         $routeMatch = $e->getRouteMatch();
-        $route = array(
-            'section'       => $section,
-            'module'        => $routeMatch->getParam('module'),
-            'controller'    => $routeMatch->getParam('controller'),
-            'action'        => $routeMatch->getparam('action')
-        );
+        $route      = [
+            'section'    => $section,
+            'module'     => $routeMatch->getParam('module'),
+            'controller' => $routeMatch->getParam('controller'),
+            'action'     => $routeMatch->getparam('action'),
+        ];
 
         // Skip module access check for system front section and admin login
         if ('system' == $route['module']
             && ('front' == $section
-                || in_array($route['controller'], array('login')))
+                || in_array($route['controller'], ['login'])
+            )
         ) {
-        // Grant access permission to system home page and dashboard for all admins
+            // Grant access permission to system home page and dashboard for all admins
         } elseif ('system' == $route['module']
-            && in_array($route['controller'], array('index', 'dashboard'))
+            && in_array($route['controller'], ['index', 'dashboard'])
             && Pi::service('user')->hasIdentity()
         ) {
-        // Check against module access
+            // Check against module access
         } else {
             $moduleAccess = Pi::service('permission')->modulePermission($route['module']);
             if (!$moduleAccess) {
@@ -113,7 +117,7 @@ class Permission extends AbstractResource
                     return;
                 }
                 // Skip check against action
-                if (in_array($route['action'], (array) $exceptions)) {
+                if (in_array($route['action'], (array)$exceptions)) {
                     return;
                 }
             }
@@ -158,13 +162,14 @@ class Permission extends AbstractResource
      * Set denied error
      *
      * @param MvcEvent $e
+     * @param $message
      * @return void
      */
-    protected function denyAccess(MvcEvent $e)
+    protected function denyAccess(MvcEvent $e, $message = true)
     {
         $statusCode = Pi::service('user')->getUser()->isGuest()
             ? 401 : 403;
         $e->getResponse()->setStatusCode($statusCode);
-        $e->setError(true);
+        $e->setError($message);
     }
 }

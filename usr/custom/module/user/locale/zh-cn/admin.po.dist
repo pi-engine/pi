@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-04-27 18:51+0800\n"
-"PO-Revision-Date: 2014-04-27 22:19+0800\n"
+"POT-Creation-Date: 2014-06-01 18:01+0800\n"
+"PO-Revision-Date: 2014-06-01 18:02+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13,85 +13,96 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\custom\\module\\user\n"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:25
+#: c:\Code\pi\usr\custom\module\user/config/form.register.php:27
+msgid "Confirm credential"
+msgstr "确认密码"
+
+#: c:\Code\pi\usr\custom\module\user/config/form.register.php:58
+msgid "Please type the word."
+msgstr "输入验证码"
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:25
+msgid "Register source"
+msgstr "注册来源"
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:34
 msgid "First Name"
 msgstr "名"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:31
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:40
 msgid "Last Name"
 msgstr "姓"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:37
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:46
 msgid "Language"
 msgstr "语言"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:44
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:53
 msgid "Mobile phone"
 msgstr "手机号码"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:62
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:71
 msgid "Telephone"
 msgstr "电话号码"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:83
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:92
 msgid "Education"
 msgstr "教育经历"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:91
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:100
 msgid "School name"
 msgstr "学校"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:97
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:106
 msgid "Department"
 msgstr "院系"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:103
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:112
 msgid "Major"
 msgstr "专业"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:109
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:118
 msgid "Degree"
 msgstr "学历"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:115
-#: c:\Code\pi\usr\custom\module\user/config/user.php:187
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:124
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:193
 msgid "Start time"
 msgstr "开始时间"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:121
-#: c:\Code\pi\usr\custom\module\user/config/user.php:193
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:130
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:199
 msgid "End time"
 msgstr "结束时间"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:124
-#: c:\Code\pi\usr\custom\module\user/config/user.php:177
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:133
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:183
 msgid "Description"
 msgstr "简介"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:139
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:148
 msgid "Work"
 msgstr "工作经历"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:147
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:156
 msgid "Company name"
 msgstr "公司"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:153
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:162
 msgid "Work Department"
 msgstr "部门"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:159
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:168
 msgid "Industry"
 msgstr "行业"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:165
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:174
 msgid "Sector"
 msgstr "领域"
 
-#: c:\Code\pi\usr\custom\module\user/config/user.php:168
-msgid "Job position"
-msgstr "工作职位"
-
-#: c:\Code\pi\usr\custom\module\user/config/user.php:171
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:177
 msgid "Job title"
 msgstr "职务职称"
+
+#~ msgid "Job position"
+#~ msgstr "工作职位"

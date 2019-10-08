@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Avatar;
@@ -23,13 +23,13 @@ class Client extends AbstractAvatar
      */
     public function getSource($uid, $size = 80)
     {
-        $uri = Pi::service('user')->getUrl('avatar', 'get');
-        $result = Pi::service('remote')->get($uri, array(
-            'id'    => $uid,
-            'size'  => $size,
-            'html'  => 0,
-        ));
-        $src = $result['data'];
+        $uri    = Pi::service('user')->getUrl('avatar', 'get');
+        $result = Pi::service('remote')->get($uri, [
+            'id'   => $uid,
+            'size' => $size,
+            'html' => 0,
+        ]);
+        $src    = $result['data'];
 
         return $src;
     }
@@ -39,12 +39,12 @@ class Client extends AbstractAvatar
      */
     public function getSourceList($uids, $size = 80)
     {
-        $uri = Pi::service('user')->getUrl('avatar', 'mget');
-        $result = Pi::service('remote')->get($uri, array(
-            'id'    => $uids,
-            'size'  => $size,
-            'html'  => 0,
-        ));
+        $uri    = Pi::service('user')->getUrl('avatar', 'mget');
+        $result = Pi::service('remote')->get($uri, [
+            'id'   => $uids,
+            'size' => $size,
+            'html' => 0,
+        ]);
 
         return $result;
     }

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -14,6 +14,18 @@ use Pi;
 
 /**
  * Module handling service
+ *
+ * Usage:
+ *
+ * - Get meta of a module
+ * ```
+ *  $title = Pi::module()->meta(<module_name>, 'title');
+ *  $version = Pi::module()->meta(<module_name>, 'version');
+ *  $active = Pi::module()->meta(<module_name>, 'active');
+ *
+ *  $directory = Pi::module()->meta(<module_name>, 'directory');
+ *  $directory = Pi::module()->directory(<module_name>);
+ * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -29,22 +41,23 @@ class Module extends AbstractService
     protected $currentModule;
 
     /** @var array Container of module meta */
-    protected $container = array(
-        // Meta of modules: directory, active, path
-        'meta'  => array(),
-        // module models
-        //'model'     => array(),
-        // module configs
-        //'config'    => array()
-    );
+    protected $container
+        = [
+            // Meta of modules: directory, active, path
+            'meta' => [],
+            // module models
+            //'model'     => array(),
+            // module configs
+            //'config'    => array()
+        ];
 
     /**
      * Constructor
      *
      * @param array $options
-     *      Parameters to send to the service during instanciation
+     *      Parameters to send to the service during instantiation
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         parent::__construct($options);
         $this->init();
@@ -86,35 +99,22 @@ class Module extends AbstractService
     /**
      * Create module meta data fetching from DB and write to meta data
      *
-     * @return array
+     * @return array Array of `directory`, `title`, `version`, `active`
      */
     public function createMeta()
     {
-        $meta = array();
-        $rowset = Pi::model('module')->select(array());
+        $meta   = [];
+        $rowset = Pi::model('module')->select([]);
         foreach ($rowset as $row) {
-            $meta[$row->name] = array(
+            $meta[$row->name] = [
                 'directory' => $row->directory,
-                'active'    => (int) $row->active,
-            );
+                'title'     => $row->title,
+                'version'   => $row->version,
+                'active'    => (int)$row->active,
+            ];
         }
 
         $status = Pi::service('config')->write($this->fileMeta, $meta);
-        /*
-        $configFile = Pi::path('config') . '/' . $this->fileMeta;
-        clearstatcache();
-        if (!file_exists($configFile)) {
-            touch($configFile);
-        } elseif (!is_writable($configFile)) {
-            @chmod($configFile, intval('0777', 8));
-        }
-        $content = '<?php' . PHP_EOL
-                 . 'return ' . var_export($meta, true) . ';' . PHP_EOL;
-        file_put_contents($configFile, $content);
-        @chmod($configFile, intval('0444', 8));
-        clearstatcache();
-        */
-
         $this->init(true);
 
         return $meta;
@@ -129,12 +129,7 @@ class Module extends AbstractService
     public function init($force = false)
     {
         if ($force || empty($this->container['meta'])) {
-            $list = Pi::config()->load($this->fileMeta);
-            /*
-            if (!$list) {
-                $list = $this->createMeta();
-            }
-            */
+            $list                    = Pi::config()->load($this->fileMeta);
             $this->container['meta'] = $list;
         }
 
@@ -145,20 +140,25 @@ class Module extends AbstractService
      * Get module meta data
      *
      * @param string $module
+     * @param string $key Valid keys: `directory`, `title`, `version`, `active`
+     *
      * @return array|bool
      */
-    public function meta($module = null)
+    public function meta($module = '', $key = '')
     {
-        //$this->init();
-        if (null === $module) {
-            $return = $this->container['meta'];
-        } elseif (isset($this->container['meta'][$module])) {
-            $return = $this->container['meta'][$module];
+        if (!$module) {
+            $result = $this->container['meta'];
+        } elseif (!isset($this->container['meta'][$module])) {
+            $result = false;
+        } elseif ($key) {
+            $result = isset($this->container['meta'][$module][$key])
+                ? $this->container['meta'][$module][$key]
+                : false;
         } else {
-            $return = false;
+            $result = $this->container['meta'][$module];
         }
 
-        return $return;
+        return $result;
     }
 
     /**
@@ -190,21 +190,26 @@ class Module extends AbstractService
     /**
      * Load meta data of a module and category
      *
-     * @param string    $module
-     * @param string    $type
-     * @param bool      $fetch  Fetch resource meta from config file
+     * @param string $module
+     * @param string $type
+     * @param bool $fetch Fetch resource meta from config file
      *
      * @return array
      */
     public function loadMeta($module, $type = null, $fetch = false)
     {
-        Pi::service('i18n')->load(array('module/' . $module, 'admin'));
+        $result = [];
 
         // Load module meta data
         $configFile = sprintf('%s/config/module.php', $this->path($module));
+        if (!file_exists($configFile)) {
+            return $result;
+        }
+
+        Pi::service('i18n')->load(['module/' . $module, 'admin']);
         $config = include $configFile;
 
-        // For backward compat
+        // For backward compatibility
         if (isset($config['maintenance'])) {
             if (isset($config['maintenance']['resource'])) {
                 $config['resource'] = $config['maintenance']['resource'];
@@ -217,13 +222,13 @@ class Module extends AbstractService
             $resource = $config['resource'];
             unset($config['resource']);
         } else {
-            $resource = array();
+            $resource = [];
         }
 
         // Load module custom meta if available
-        $resourceCustom     = array();
-        $directory          = $this->directory($module);
-        $configFileCustom   = sprintf('%s/module/%s/config/module.php', Pi::path('custom'), $directory);
+        $resourceCustom   = [];
+        $directory        = $this->directory($module);
+        $configFileCustom = sprintf('%s/module/%s/config/module.php', Pi::path('custom'), $directory);
         if (file_exists($configFileCustom)) {
             $configCustom = include $configFileCustom;
             if (!empty($configCustom['meta']['build'])) {
@@ -259,11 +264,11 @@ class Module extends AbstractService
                 if (isset($resourceCustom[$name])) {
                     if (is_string($resourceCustom[$name]) && $fetch) {
                         $file = Pi::path('custom') . '/module/' . $directory . '/config/'
-                              . $resourceCustom[$name];
+                            . $resourceCustom[$name];
                         if (file_exists($file)) {
                             $result = include $file;
                             if (!is_array($result)) {
-                                $result = array();
+                                $result = [];
                             }
                         }
                     } else {
@@ -277,7 +282,7 @@ class Module extends AbstractService
                         if (file_exists($file)) {
                             $result = include $file;
                             if (!is_array($result)) {
-                                $result = array();
+                                $result = [];
                             }
                         }
                     } else {
@@ -300,7 +305,7 @@ class Module extends AbstractService
                 $result = $getResource($type);
             }
         } else {
-            $result = $config;
+            $result             = $config;
             $result['resource'] = $getResource();
         }
 
@@ -350,13 +355,13 @@ class Module extends AbstractService
      * Fetch content of an item from a type of module content by calling
      * `Module\<ModuleName>\Api\Content::getList()`
      *
-     * @param array $variables  array of variables to be returned:
+     * @param array $variables array of variables to be returned:
      *                          title, summary, uid, time, etc.
      * @param array $conditions associative array of conditions:
      *                          item - item ID or ID list, module, type - optional, user, Where
-     * @param int           $limit
-     * @param int           $offset
-     * @param string|array  $order
+     * @param int $limit
+     * @param int $offset
+     * @param string|array $order
      *
      * @throws \Exception
      * @return  array Associative array of returned content,
@@ -365,10 +370,11 @@ class Module extends AbstractService
     public function content(
         array $variables,
         array $conditions,
-        $limit  = 0,
+        $limit = 0,
         $offset = 0,
-        $order  = array()
-    ) {
+        $order = []
+    )
+    {
         if (!isset($conditions['module'])) {
             throw new \Exception('module is required.');
         }
@@ -382,7 +388,7 @@ class Module extends AbstractService
                 $order
             );
         } else {
-            $result = array();
+            $result = [];
         }
 
         return $result;

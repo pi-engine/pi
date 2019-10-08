@@ -1,21 +1,20 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Filter;
 
-use Pi;
 use Zend\Filter\AbstractFilter;
 
 /**
  * Tag filter
  *
- * Transiliate specified format of text into tag links:
+ * Transliterate specified format of text into tag links:
  * From `#term#` to `<a href="<tag-link>/tag/term" title="term">#term#</a>`
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -26,19 +25,20 @@ class Tag extends AbstractFilter
      * Filter options
      * @var array
      */
-    protected $options = array(
-        'tag'           => '%tag%',
-        'pattern'       => '#([^\s\,]{3,32})#',
-        'replacement'   =>
-            '<a href="pi.url/tag/%tag%" title="%tag%">#%tag%#</a>',
-    );
+    protected $options
+        = [
+            'tag'         => '%tag%',
+            'pattern'     => '#([^\s\,\;]{3,32})#',
+            'replacement' => '<a href="pi.url/tag/%tag%" title="%tag%">#%tag%#</a>',
+            'callback'    => null,
+        ];
 
     /**
      * Constructor
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setOptions($options);
     }
@@ -51,15 +51,19 @@ class Tag extends AbstractFilter
      */
     public function filter($value)
     {
-        $tag = $this->options['tag'];
-        $replacement = $this->options['replacement'];
-        $value = preg_replace_callback(
-            '`' . $this->options['pattern'] . '`',
-            function ($m) use ($replacement, $tag) {
-                return str_replace($tag, $m[1], $replacement);
-            },
-            $value
-        );
+        if (!empty($this->options['callback'])) {
+            $value = $this->options['callback']($value);
+        } else {
+            $tag         = $this->options['tag'];
+            $replacement = $this->options['replacement'];
+            $value       = preg_replace_callback(
+                '`' . $this->options['pattern'] . '`',
+                function ($m) use ($replacement, $tag) {
+                    return str_replace($tag, $m[1], $replacement);
+                },
+                $value
+            );
+        }
 
         return $value;
     }

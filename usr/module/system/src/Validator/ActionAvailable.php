@@ -1,15 +1,14 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Validator;
 
-use Pi;
 use Zend\Validator\AbstractValidator;
 
 /**
@@ -23,12 +22,15 @@ class ActionAvailable extends AbstractValidator
     const ACTION_UNAVAILABLE = 'actionUnavailable';
 
     /**
-     * Message templates
-     * @var array
+     * {@inheritDoc}
      */
-    protected $messageTemplates = array(
-        self::ACTION_UNAVAILABLE => 'The action is not available.',
-    );
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = [
+            static::ACTION_UNAVAILABLE => __('The action is not available.'),
+        ];
+        parent::__construct($options);
+    }
 
     /**
      * Page validate
@@ -41,16 +43,16 @@ class ActionAvailable extends AbstractValidator
     {
         $this->setValue($value);
 
-        $module = $context['module'];
+        $module     = $context['module'];
         $controller = $context['controller'];
-        $action = $value;
+        $action     = $value;
 
         $controllerClass = sprintf(
             'Module\\%s\Controller\Front\\%sController',
             ucfirst($module),
             ucfirst($controller)
         );
-        $actionMethod = $action . 'Action';
+        $actionMethod    = $action . 'Action';
         if (!method_exists($controllerClass, $actionMethod)) {
             $this->error(static::ACTION_UNAVAILABLE);
             return false;

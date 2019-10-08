@@ -1,28 +1,28 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link         http://code.pialog.org for the Pi Engine source repository
- * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt BSD 3-Clause License
+ * @link         http://code.piengine.org for the Pi Engine source repository
+ * @copyright    Copyright (c) Pi Engine http://piengine.org
+ * @license      http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article\Controller\Front;
 
-use Pi\Mvc\Controller\ActionController;
+use Module\Article\Entity;
+use Module\Article\Model\Article;
 use Pi;
+use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Zend\Db\Sql\Expression;
-use Module\Article\Model\Article;
-use Module\Article\Entity;
 
 /**
  * Category controller
- * 
+ *
  * Feature list:
- * 
+ *
  * 1. List article of a category
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class CategoryController extends ActionController
@@ -36,63 +36,65 @@ class CategoryController extends ActionController
 
         $category   = $this->params('category', '');
         $categoryId = is_numeric($category)
-            ? (int) $category : $modelCategory->slugToId($category);
+            ? (int)$category : $modelCategory->slugToId($category);
         $page       = $this->params('p', 1);
         $page       = $page > 0 ? $page : 1;
 
         $module = $this->getModule();
         $config = Pi::config('', $module);
-        $limit  = (int) $config['page_limit_all'] ?: 40;
-        $where  = array();
-        
-        $route  = Pi::api('api', $module)->getRouteName();
+        $limit  = (int)$config['page_limit_all'] ?: 40;
+        $where  = [];
+
+        $route = 'article';
 
         // Get category nav
-        $rowset = Pi::model('category', $module)->enumerate(null, null);
-        $rowset = array_shift($rowset);
-        $navs   = $this->canonizeCategory($rowset['child'], $route);
-        $allNav['all'] = array(
+        $rowset        = Pi::model('category', $module)->enumerate(null, null);
+        $rowset        = array_shift($rowset);
+        $navs          = $this->canonizeCategory($rowset['child'], $route);
+        $allNav['all'] = [
             'label'      => __('All'),
             'route'      => $route,
             'controller' => 'list',
-            'params'     => array(
-                'category'   => 'all',
-            ),
-        );
-        $navs = $allNav + $navs;
-        
+            'params'     => [
+                'category' => 'all',
+            ],
+        ];
+        $navs          = $allNav + $navs;
+
         // Get all categories
-        $categories = array(
-            'all' => array(
+        $categories = [
+            'all' => [
                 'id'    => 0,
                 'title' => __('All articles'),
                 'image' => '',
                 'url'   => Pi::service('url')->assemble(
-                    Pi::api('api', $module)->getRouteName($module),
-                    array(
+                    'article',
+                    [
+                        'module'     => $module,
                         'controller' => 'list',
                         'action'     => 'all',
                         'list'       => 'all',
-                    )
+                    ]
                 ),
-            ),
-        );
-        $rowset = Pi::model('category', $module)->enumerate(null, null, true);
+            ],
+        ];
+        $rowset     = Pi::model('category', $module)->enumerate(null, null, true);
         foreach ($rowset as $row) {
             if ('root' == $row['name']) {
                 continue;
             }
-            $url = Pi::service('url')->assemble('', array(
+            $url                    = Pi::service('url')->assemble('', [
+                'module'     => $module,
                 'controller' => 'category',
                 'action'     => 'list',
                 'category'   => $row['id'],
-            ));
-            $categories[$row['id']] = array(
+            ]);
+            $categories[$row['id']] = [
                 'id'    => $row['id'],
                 'title' => $row['title'],
                 'image' => $row['image'],
                 'url'   => $url,
-            );
+            ];
         }
         $categoryIds = $modelCategory->getDescendantIds($categoryId);
         if (empty($categoryIds)) {
@@ -100,29 +102,29 @@ class CategoryController extends ActionController
         }
         $where['category'] = $categoryIds;
         $categoryInfo      = $categories[$categoryId];
-        
+
         // Get subcategories article count
         $modelArticle = $this->getModel('article');
         $select       = $modelArticle->select()
-            ->where(array(
-                'category' => $categoryIds,
-                'active'   => 1,
+            ->where([
+                'category'         => $categoryIds,
+                'active'           => 1,
                 'time_publish < ?' => time(),
-            ))
-            ->columns(array('category', 'count' => new Expression('count(*)')))
-            ->group(array('category'));
+            ])
+            ->columns(['category', 'count' => new Expression('count(*)')])
+            ->group(['category']);
         $resultCount  = $modelArticle->selectWith($select);
-        $counts       = array();
+        $counts       = [];
         foreach ($resultCount as $row) {
             $counts[$row['category']] = $row['count'];
         }
 
         // Get articles
-        $columns = array(
+        $columns          = [
             'id', 'subject', 'time_publish', 'category', 'summary', 'author',
-            'image', 
-        );
-        $resultsetArticle  = Entity::getAvailableArticlePage(
+            'image',
+        ];
+        $resultsetArticle = Entity::getAvailableArticlePage(
             $where,
             $page,
             $limit,
@@ -130,48 +132,49 @@ class CategoryController extends ActionController
             null,
             $module
         );
-        
-        $articleCategoryIds = $authorIds = array();
+
+        $articleCategoryIds = $authorIds = [];
         foreach ($resultsetArticle as $row) {
-            $authorIds[]   = $row['author'];
+            $authorIds[]          = $row['author'];
             $articleCategoryIds[] = $row['category'];
         }
-        
+
         // Get author
-        $authors = array();
+        $authors = [];
         if (!empty($authorIds)) {
             $rowAuthor = $this->getModel('author')
-                ->select(array('id' => $authorIds));
+                ->select(['id' => $authorIds]);
             foreach ($rowAuthor as $row) {
                 $authors[$row->id] = $row->toArray();
             }
         }
-        
+
         // Total count
-        $where = array_merge($where, array(
+        $where        = array_merge($where, [
             'time_publish <= ?' => time(),
             'status'            => Article::FIELD_STATUS_PUBLISHED,
             'active'            => 1,
-        ));
-        $modelArticle   = $this->getModel('article');
-        $totalCount     = $modelArticle->getSearchRowsCount($where);
+        ]);
+        $modelArticle = $this->getModel('article');
+        $totalCount   = $modelArticle->getSearchRowsCount($where);
 
         // Pagination
-        $paginator = Paginator::factory($totalCount, array(
+        $paginator = Paginator::factory($totalCount, [
             'limit'       => $limit,
             'page'        => $page,
-            'url_options' => array(
-                'page_param'    => 'p',
-                'params'        => array(
-                    'category'      => $category,
-                ),
-            ),
-        ));
+            'url_options' => [
+                'page_param' => 'p',
+                'params'     => [
+                    'module'   => $module,
+                    'category' => $category,
+                ],
+            ],
+        ]);
 
         $module = $this->getModule();
         $config = Pi::config('', $module);
 
-        $this->view()->assign(array(
+        $this->view()->assign([
             'title'         => __('Article List in Category'),
             'articles'      => $resultsetArticle,
             'paginator'     => $paginator,
@@ -189,17 +192,17 @@ class CategoryController extends ActionController
             'length'        => $config['list_summary_length'],
             'navs'          => $this->config('enable_list_nav') ? $navs : '',
             //'seo'           => $this->setupSeo($categoryId),
-        ));
+        ]);
 
-        $this->view()->viewModel()->getRoot()->setVariables(array(
+        $this->view()->viewModel()->getRoot()->setVariables([
             'breadCrumbs' => true,
             'Tag'         => $categoryInfo['title'],
-        ));
+        ]);
     }
-    
+
     /**
      * Canonize category structure
-     * 
+     *
      * @params array  $categories
      * @params string $route
      */
@@ -209,9 +212,9 @@ class CategoryController extends ActionController
             $row['label']      = $row['title'];
             $row['controller'] = 'category';
             $row['action']     = 'list';
-            $row['params']     = array(
+            $row['params']     = [
                 'category' => $row['slug'] ?: $row['id'],
-            );
+            ];
             $row['route']      = $route;
             if (isset($row['child'])) {
                 $row['pages'] = $row['child'];
@@ -219,7 +222,7 @@ class CategoryController extends ActionController
                 $this->canonizeCategory($row['pages'], $route);
             }
         }
-        
+
         return $categories;
     }
 }

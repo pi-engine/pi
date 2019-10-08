@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -57,26 +57,26 @@ class View extends AbstractService
     /**
      * Render a template or a view model
      *
-     * @param string|array|ViewModel  $template
-     * @param array         $variables
+     * @param string|array|ViewModel $template
+     * @param array $variables
      *
      * @return string
      */
-    public function render($template, array $variables = array())
+    public function render($template, array $variables = [])
     {
         if ($template instanceof ViewModel) {
             $template->setVariables($variables);
         } elseif (is_array($template)) {
-            $section = isset($template['section'])
+            $section  = isset($template['section'])
                 ? $template['section']
                 : Pi::engine()->application()->getSection();
-            $module = !empty($template['module'])
+            $module   = !empty($template['module'])
                 ? $template['module']
                 : Pi::service('module')->current();
-            $file = $template['file'];
+            $file     = $template['file'];
             $template = $module . ':'
-                      . ($section ? $section . '/' : '')
-                      . $file;
+                . ($section ? $section . '/' : '')
+                . $file;
         }
         $content = $this->getViewManager()->getRenderer()
             ->render($template, $variables);
@@ -87,19 +87,19 @@ class View extends AbstractService
     /**
      * Magic methods to ViewManager
      *
-     * @param string    $method
-     * @param array     $args
+     * @param string $method
+     * @param array $args
      *
      * @return mixed
      * @throws \Exception
      */
-    public function __call($method, array $args = array())
+    public function __call($method, array $args = [])
     {
-        if (!is_callable(array($this->getViewManager(), $method))) {
+        if (!is_callable([$this->getViewManager(), $method])) {
             throw new \Exception(sprintf('Method %s is not defined.', $method));
         }
         $result = call_user_func_array(
-            array($this->getViewManager(), $method),
+            [$this->getViewManager(), $method],
             $args
         );
 

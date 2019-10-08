@@ -1,13 +1,13 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\System\Installer\Schema;
+namespace Module\System\Installer\Schema;
 
 use Pi;
 use Pi\Application\Installer\Schema\AbstractUpdator;
@@ -30,7 +30,7 @@ class Updator325 extends AbstractUpdator
     {
         if (version_compare($version, '3.2.2', '<')) {
             $updator = new Updator322($this->handler);
-            $result = $updator->upgrade($version);
+            $result  = $updator->upgrade($version);
             if (false === $result) {
                 return $result;
             }
@@ -52,61 +52,63 @@ class Updator325 extends AbstractUpdator
         $status = true;
         if (version_compare($version, '3.2.4', '<')) {
 
-            Pi::model('route')->update(array('name' => 'sysuser'), array('name' => 'user'));
+            Pi::model('route')->update(['name' => 'sysuser'], ['name' => 'user']);
             Pi::registry('route')->flush();
 
-            $tablesDrop = array(
+            $tablesDrop = [
                 'acl_edge',
                 'acl_inherit',
                 'acl_privilege',
                 'acl_resource',
                 'acl_rule',
                 'user_meta',
-                'user_profile'
-            );
+                'user_profile',
+            ];
             foreach ($tablesDrop as $model) {
-                $table = Pi::db()->prefix($model);
-                $sql = sprintf('DROP TABLE IF EXISTS %s', $table);
+                $table  = Pi::db()->prefix($model);
+                $sql    = sprintf('DROP TABLE IF EXISTS %s', $table);
                 $status = $this->queryTable($sql);
             }
 
-            $tablesRename = array(
+            $tablesRename = [
                 'acl_role'  => 'role',
                 'user_repo' => 'user_data',
-            );
+            ];
             foreach ($tablesRename as $old => $new) {
                 $tableOld = Pi::db()->prefix($old);
                 $tableNew = Pi::db()->prefix($new);
-                $sql = sprintf('RENAME TABLE %s TO %s', $tableOld, $tableNew);
-                $status = $this->queryTable($sql);
+                $sql      = sprintf('RENAME TABLE %s TO %s', $tableOld, $tableNew);
+                $status   = $this->queryTable($sql);
             }
 
-            $table = Pi::db()->prefix('navigation_node');
-            $sql = sprintf(
+            $table  = Pi::db()->prefix('navigation_node');
+            $sql    = sprintf(
                 'ALTER TABLE %s ADD KEY `nav_name` UNIQUE KEY (`navigation`)',
                 $table
             );
             $status = $this->queryTable($sql);
 
-            $table = Pi::db()->prefix('page');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('page');
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s
 ADD `permission` varchar(64) NOT NULL default '' AFTER `action`,
 ADD `cache_type` enum('page', 'action') NOT NULL AFTER `permission`;
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
-            $table = Pi::db()->prefix('session');
-            $sql = sprintf(
+            $table  = Pi::db()->prefix('session');
+            $sql    = sprintf(
                 'ALTER TABLE %s '
                 . 'ADD `uid` int(10) unsigned NOT NULL default \'0\' AFTER `lifetime`',
                 $table
             );
             $status = $this->queryTable($sql);
 
-            $table = Pi::db()->prefix('user_account');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('user_account');
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s
 MODIFY `email` varchar(64) default NULL,
 MODIFY `name` varchar(255) default NULL,
@@ -121,11 +123,12 @@ ADD `time_deleted` int(10) unsigned NOT NULL default '0' AFTER `time_disabled`,
 ADD KEY `name` UNIQUE KEY (`name`),
 ADD KEY `status` KEY (`active`);
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
-            $table = Pi::db()->prefix('user_data');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('user_data');
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s
 CHANGE `user` `uid` int(10) unsigned NOT NULL default '0',
 CHANGE `type` `name` varchar(64) NOT NULL,
@@ -136,11 +139,12 @@ ADD `value_multi` text default NULL AFTER `value_int`,
 ADD KEY `user_data_name` UNIQUE KEY (`uid`, `module`, `name`),
 DROP KEY `key`;
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
-            $table = Pi::db()->prefix('user_role');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('user_role');
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s
 CHANGE `user` `uid` int(10) unsigned NOT NULL default '0',
 MODIFY `role` varchar(64) NOT NULL,
@@ -148,22 +152,23 @@ ADD `section` enum('front', 'admin') NOT NULL AFTER `role`,
 ADD KEY `section_user` UNIQUE KEY (`section`, `uid`, `role`),
 DROP KEY `user`;
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
-            Pi::model('user_role')->update(array('section' => 'front'));
+            Pi::model('user_role')->update(['section' => 'front']);
             $tableStaff = Pi::db()->prefix('user_staff');
-            $sql = sprintf(
+            $sql        = sprintf(
                 'INSERT INTO %s (`uid`, `role`, `section`) '
                 . 'SELECT (`user`, `role`, \'admin\') FROM `%s`',
                 $table,
                 $tableStaff
             );
-            $status = $this->queryTable($sql);
-            $sql = sprintf('DROP TABLE IF EXISTS %s', $tableStaff);
-            $status = $this->queryTable($sql);
+            $status     = $this->queryTable($sql);
+            $sql        = sprintf('DROP TABLE IF EXISTS %s', $tableStaff);
+            $status     = $this->queryTable($sql);
 
 
-            $sql =<<<'EOD'
+            $sql
+                    = <<<'EOD'
 # Permission resources
 CREATE TABLE IF NOT EXISTS `{core.permission_resource}` (
   `id`              int(10)         unsigned    NOT NULL auto_increment,

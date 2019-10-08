@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -33,9 +33,9 @@ class Client extends Local
             case 'login':
             case 'logout':
                 if ($params && is_string($params)) {
-                    $params = array(
+                    $params = [
                         'redirect' => $params,
-                    );
+                    ];
                 }
                 $url = Pi::api('user', 'system')->getUrl($type, $params);
                 //$url = Pi::service('user')->getUrl($type, $params);
@@ -50,7 +50,7 @@ class Client extends Local
     /**
      * {@inheritDoc}
      */
-    public function login(array $params = array())
+    public function login(array $params = [])
     {
         $url = $this->getUrl('login', $params);
         Pi::service('url')->redirect($url);
@@ -59,7 +59,7 @@ class Client extends Local
     /**
      * {@inheritDoc}
      */
-    public function logout(array $params = array())
+    public function logout(array $params = [])
     {
         $url = $this->getUrl('logout', $params);
         Pi::service('url')->redirect($url, true);

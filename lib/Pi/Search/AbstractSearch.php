@@ -1,18 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Search;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Pi\Db\Sql\Where;
 use Pi\Application\Model\Model;
+use Pi\Db\Sql\Where;
 
 /**
  * Abstract class for module search
@@ -25,67 +25,99 @@ abstract class AbstractSearch extends AbstractApi
     protected $table;
 
     /** @var array columns to search */
-    protected $searchIn = array(
-        'title',
-        'content'
-    );
+    protected $searchIn
+        = [
+            'title',
+            'content',
+        ];
 
     /** @var array Columns to fetch: table column => meta key */
-    protected $meta = array(
-        'id'        => 'id',
-        'title'     => 'title',
-        'content'   => 'content',
-        'time'      => 'time',
-        'uid'       => 'uid',
-    );
+    protected $meta
+        = [
+            'id'      => 'id',
+            'title'   => 'title',
+            'content' => 'content',
+            'time'    => 'time',
+            'uid'     => 'uid',
+        ];
 
     /** @var array Extra conditions */
-    protected $condition = array(
-        'active'    => 1,
-    );
+    protected $condition
+        = [
+            'active' => 1,
+        ];
 
     /** @var array Search order */
-    protected $order = array(
-        'id DESC'
-    );
+    protected $order
+        = [
+            'id DESC',
+        ];
 
     /**
      * Search query
      *
-     * @param array|string  $terms
-     * @param int           $limit
-     * @param int           $offset
-     * @param array         $condition
+     * @param array|string $terms
+     * @param int $limit
+     * @param int $offset
+     * @param array $condition
+     * @param array $columns
      *
      * @return ResultSet
      */
     public function query(
         $terms,
-        $limit  = 0,
+        $limit = 0,
         $offset = 0,
-        array $condition = array()
-    ) {
-        $terms = (array) $terms;
-        $model = $this->getModel();
-        $where = $this->buildCondition($terms, $condition);
-        $count = $model->count($where);
-        $data = array();
-        if ($count) {
-            $data = $this->fetchResult($model, $where, $limit, $offset);
+        array $condition = [],
+        array $columns = []
+    )
+    {
+        $dataAll  = [];
+        $countAll = 0;
+        $terms    = (array)$terms;
+        $tables   = $this->getTables();
+        foreach ($tables as $table) {
+            $model = $this->getModel($table);
+            $where = $this->buildCondition($terms, $condition, $columns, $table);
+            $count = $model->count($where);
+            if ($count) {
+                $data     = $this->fetchResult($model, $where, $limit, $offset, $table);
+                $dataAll  = array_merge($dataAll, $data);
+                $countAll = $countAll + $count;
+            }
         }
-        $result = $this->buildResult($count, $data);
-
+        $result = $this->buildResult($countAll, $dataAll);
         return $result;
+    }
+
+    /**
+     * Get table list
+     *
+     * @return array
+     */
+    protected function getTables()
+    {
+        if (is_array($this->table)) {
+            $tables = $this->table;
+        } else {
+            $tables   = [];
+            $tables[] = $this->table;
+        }
+
+        return $tables;
     }
 
     /**
      * Get table model
      *
+     * @param string $table
+     *
      * @return Model
      */
-    protected function getModel()
+    protected function getModel($table = '')
     {
-        $model = Pi::model($this->table, $this->module);
+        $table = empty($table) ? $this->table : $table;
+        $model = Pi::model($table, $this->module);
 
         return $model;
     }
@@ -95,18 +127,36 @@ abstract class AbstractSearch extends AbstractApi
      *
      * @param array $terms
      * @param array $condition
+     * @param array $columns
+     * @param string $table
      *
      * @return Where
      */
-    protected function buildCondition(array $terms, array $condition = array())
+    protected function buildCondition(array $terms, array $condition = [], array $columns = [], $table = '')
     {
+        // Set columns
+        if (empty($columns)) {
+            $columns = $this->searchIn;
+        } else {
+            $columns = array_intersect($columns, $this->searchIn);
+            $columns = empty($columns) ? $this->searchIn : $columns;
+        }
+
         $where = Pi::db()->where()->or;
         // Create search term clause
-        foreach ($terms as $term) {
-            foreach ($this->searchIn as $column) {
+        /* foreach ($terms as $term) {
+            foreach ($columns as $column) {
                 $where->like($column, '%' . $term . '%')->or;
             }
+        } */
+
+        foreach ($columns as $column) {
+            foreach ($terms as $term) {
+                $where->like($column, '%' . $term . '%')->and;
+            }
+            $where->or;
         }
+
         // Canonize conditions
         if ($condition) {
             $meta = array_flip($this->meta);
@@ -149,8 +199,9 @@ abstract class AbstractSearch extends AbstractApi
      *
      * @param Model $model
      * @param Where $where
-     * @param int   $limit
-     * @param int   $offset
+     * @param int $limit
+     * @param int $offset
+     * @param string $table
      *
      * @return array
      */
@@ -158,27 +209,38 @@ abstract class AbstractSearch extends AbstractApi
         Model $model,
         Where $where,
         $limit = 0,
-        $offset = 0
-    ) {
-        $data = array();
+        $offset = 0,
+        $table = ''
+    )
+    {
+        $data = [];
+
         $select = $model->select();
         $select->where($where);
-        $select->columns(array_keys($this->meta));
+
+        $finalMeta = $this->meta;
+
+        if (isset($this->customMeta[get_class($model)])) {
+            $finalMeta = $this->customMeta[get_class($model)];
+        }
+
+        $select->columns(array_keys($finalMeta));
         $select->limit($limit)->offset($offset);
         if ($this->order) {
             $select->order($this->order);
         }
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $item = array();
-            foreach ($this->meta as $column => $field) {
+            $item = [];
+            foreach ($finalMeta as $column => $field) {
                 $item[$field] = $row[$column];
                 if ('content' == $field) {
                     $item[$field] = $this->buildContent($item[$field]);
                 }
             }
-            $item['url'] = $this->buildUrl($item);
-            $data[] = $item;
+            $item['url']   = $this->buildUrl($item, $table);
+            $item['image'] = $this->buildImage($item, $table);
+            $data[]        = $item;
         }
 
         return $data;
@@ -202,18 +264,32 @@ abstract class AbstractSearch extends AbstractApi
      * Build item link URL
      *
      * @param array $item
+     * @param string $table
      *
      * @return string
      */
-    protected function buildUrl(array $item)
+    protected function buildUrl(array $item, $table = '')
     {
         return Pi::url('www');
     }
 
     /**
+     * Build item image URL
+     *
+     * @param array $item
+     * @param string $table
+     *
+     * @return string
+     */
+    protected function buildImage(array $item, $table = '')
+    {
+        return '';
+    }
+
+    /**
      * Build search result set
      *
-     * @param int   $total
+     * @param int $total
      * @param array $data
      *
      * @return ResultSet

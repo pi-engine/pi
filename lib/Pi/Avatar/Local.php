@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Avatar;
@@ -33,7 +33,7 @@ class Local extends AbstractAvatar
      */
     public function getSourceList($uids, $size = '')
     {
-        $src = $this->build('', $size);
+        $src    = $this->build('', $size);
         $result = array_fill_keys($uids, $src);
 
         return $result;
@@ -45,12 +45,12 @@ class Local extends AbstractAvatar
     public function build($source, $size = '', $uid = null)
     {
         $identifier = $this->canonizeSize($size, false);
-        $root = Pi::path('public/custom/avatar/local');
+        $root       = Pi::path('public/custom/avatar/local');
         if (!is_dir($root)) {
             $root = 'static/avatar/local';
         }
         $path = sprintf('%s/%s.png', $root, $identifier);
-        $src = Pi::url($path);
+        $src  = Pi::url($path);
 
         return $src;
     }

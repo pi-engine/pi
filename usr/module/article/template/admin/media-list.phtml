@@ -1,10 +1,10 @@
 <?php
-    $this->css(array(
-        $this->assetModule('script/admin.css'),
-    ));
-    $this->jQuery();
-    $this->Backbone();
-    $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
+$this->css([
+    $this->assetModule('script/admin.css'),
+]);
+$this->jQuery();
+$this->Backbone();
+$this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
 ?>
 
 <div class="row">
@@ -12,30 +12,30 @@
         <div id="pi-js-list">
             <div>
                 <ul class="nav nav-tabs">
-                    <li class="<?php echo 'image' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'image')); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'image' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'image']); ?>">
                             <?php echo _a('Images'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'doc' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'doc')); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'doc' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'doc']); ?>">
                             <?php echo _a('Docs'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'video' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'video')); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'video' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'video']); ?>">
                             <?php echo _a('Videos'); ?>
                         </a>
                     </li>
-                    <li class="<?php echo 'zip' == $type ? 'active' : ''; ?>">
-                        <a href="<?php echo $this->url('', array('action' => 'list', 'type' => 'zip')); ?>">
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo 'zip' == $type ? 'active' : ''; ?>" href="<?php echo $this->url('', ['action' => 'list', 'type' => 'zip']); ?>">
                             <?php echo _a('Zips'); ?>
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="clearfix">
-                <div class="pull-left form-inline">
+                <div class="float-left form-inline">
                     <div class="form-group">
                         <select class="bulk-operation form-control hide">
                             <option value=""><?php echo _a('Bulk operation'); ?></option>
@@ -44,60 +44,64 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <select class="search-type form-control form-group" data-url="<?php echo $this->url('', array('action' => 'list', 'type' => $type, 'style' => $style)); ?>" style="margin-right: 20px">
+                        <select class="search-type form-control form-group"
+                                data-url="<?php echo $this->url('', ['action' => 'list', 'type' => $type, 'style' => $style]); ?>"
+                                style="margin-right: 20px">
                             <option value=""><?php echo _a('All'); ?></option>
                             <?php foreach ($types as $key => $val) { ?>
-                            <option value="<?php echo $this->escape($key); ?>" <?php if ($miniType == $key) echo "selected"; ?>><?php echo $this->escape($val); ?></option>
+                                <option value="<?php echo $this->escape($key); ?>" <?php if ($miniType == $key) echo "selected"; ?>><?php echo $this->escape($val); ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <div class="text-muted pull-right" style="padding-top: 5px">
+                        <div class="text-muted float-right" style="padding-top: 5px">
                             <?php echo $this->escape($count) . ' results'; ?>
                         </div>
                     </div>
                 </div>
                 <?php
-                $form->setAttributes(array(
-                    'action' => $this->url('', array('action' => 'list', 'type' => $type, 'style' => $style)),
+                $form->setAttributes([
+                    'action' => $this->url('', ['action' => 'list', 'type' => $type, 'style' => $style]),
                     'method' => 'get',
-                    'class'  => 'navbar-form navbar-right',
+                    'class'  => 'form-inline navbar-right',
                     'style'  => 'margin: 0; padding-right: 0',
-                ));
+                ]);
                 echo $this->form()->openTag($form);
                 ?>
-                    <div class="form-group">
-                        <?php
-                        $element = $form->get('keyword');
-                        $element->setAttributes(array(
-                            'class'       => 'form-control',
-                            'placeholder' => $element->getOption('label') ?: _a('Title'),
-                        ));
-                        echo $this->formElement($element);
-                        ?>
-                    </div>
-                    <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
+                <div class="form-group">
+                    <?php
+                    $element = $form->get('keyword');
+                    $element->setAttributes([
+                        'class'       => 'form-control',
+                        'placeholder' => $element->getOption('label') ?: _a('Title'),
+                    ]);
+                    echo $this->formElement($element);
+                    ?>
+                </div>
+                <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
                 <?php echo $this->form()->closeTag(); ?>
             </div>
             <?php if ('image' == $type) { ?>
-            <div class="default-header<?php echo 'default' == $style ? '' : ' hide'; ?>" style="margin-bottom: 10px">
-                <input type="checkbox" class="check-all">
-                <button class="btn btn-default remove-checked" style="margin-left: 10px"><?php echo _a('Delete'); ?></button>
-                <div class="pull-right btn-toolbar" style="margin-top: 0">
-                    <div class="btn-group">
-                        <a class="btn btn-default" href="#"><i class="fa fa-th-large"></i></a>
-                        <a class="btn btn-default" disabled="disabled"><i class="fa fa-th-list"></i></a>
+                <div class="default-header<?php echo 'default' == $style ? '' : ' hide'; ?>"
+                     style="margin-bottom: 10px">
+                    <input type="checkbox" class="check-all">
+                    <button class="btn btn-secondary remove-checked"
+                            style="margin-left: 10px"><?php echo _a('Delete'); ?></button>
+                    <div class="float-right btn-toolbar" style="margin-top: 0">
+                        <div class="btn-group">
+                            <a class="btn btn-secondary" href="#"><i class="fas fa-th-large"></i></a>
+                            <a class="btn btn-secondary" disabled="disabled"><i class="fas fa-th-list"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php } ?>
             <table class="table table-striped<?php echo 'default' == $style ? '' : ' hide'; ?>">
                 <tbody>
                 <tr>
                     <th style="width:2.2em;">
-                    <?php if ('image' != $type) { ?>
-                        <input type="checkbox" class="check-all">
-                    <?php } ?>
+                        <?php if ('image' != $type) { ?>
+                            <input type="checkbox" class="check-all">
+                        <?php } ?>
                     </th>
                     <th style="width: 40px"><?php echo _a('ID'); ?></th>
                     <th style="width: 50px"><?php echo _a('Image'); ?></th>
@@ -111,60 +115,63 @@
                     <th style="width: 80px;"><?php echo _a('Uploaded date'); ?></th>
                 </tr>
                 <?php foreach ($medias as $media) { ?>
-                <tr data-id="<?php echo $this->escape($media['id']); ?>">
-                    <td>
-                        <input type="checkbox" value="<?php echo $this->escape($media['id']); ?>" class="check-one">
-                    </td>
-                    <td><?php echo $this->escape($media['id']); ?></td>
-                    <td><?php 
-                        if ('image' == $type) {
-                            $image = Pi::url($media['url']);
-                    ?>
-                        <img src="<?php echo $this->escape($image); ?>" style="width: 40px;">
-                    <?php
-                        } else {
-                    ?>
-                        <div class="list-image"><span class="fa fa-file"></span></div>
-                    <?php
-                        }
-                    ?>
-                    </td>
-                    <td>
-                        <a class="media-list-title" href="#" data-placement="bottom" data-toggle="tooltip" data-original-title="<?php echo $this->escape($media['title']); ?>"><?php echo mb_substr($media['title'], 0, 18, 'UTF-8'); ?></a>
-                        <div class="row-actions">
-                            <a href="<?php echo $this->url('', array('action' => 'edit', 'id' => $media['id'])); ?>"><?php echo _a('Edit'); ?></a>
-                            <span class="divider">|</span>
-                            <a href="javascript:void(0)" class="one-action" data-value="delete"><?php echo _a('Delete'); ?></a>
-                            <span class="divider">|</span>
-                            <a class="one-action" data-value="download" href="javascript:void(0)"><?php echo _a('Download'); ?></a>
-                        </div>
-                    </td>
-                    <td><?php echo $this->escape($media['type']); ?></td>
-                    <td><?php echo $this->escape($media['size']); ?></td>
-                    <td><?php if ('image' == $type) { ?>
-                        <?php echo $this->escape($media['w']) . ' * ' . $this->escape($media['h']); ?>
-                    <?php } else {
-                        echo '<span class="text-muted">' . _a('None') . '</span>';
-                    } ?>
-                    </td>
-                    <td><?php 
-                        echo $media['description'] 
-                            ? mb_substr($media['description'], 0, 20, 'UTF-8')
-                            : '<span class="text-muted">' . _a('No description') . '</span>'
-                        ?>
-                    </td>
-                    <td><?php echo isset($media['download']) ? $this->escape($media['download']) : 0 ?></td>
-                    <td><?php echo $this->escape($media['submitter']); ?></td>
-                    <td><?php echo _date($media['time_upload']); ?></td>
-                </tr>
+                    <tr data-id="<?php echo $this->escape($media['id']); ?>">
+                        <td>
+                            <input type="checkbox" value="<?php echo $this->escape($media['id']); ?>" class="check-one">
+                        </td>
+                        <td><?php echo $this->escape($media['id']); ?></td>
+                        <td><?php
+                            if ('image' == $type) {
+                                $image = Pi::url($media['url']);
+                                ?>
+                                <img alt="" src="<?php echo $this->escape($image); ?>" style="width: 40px;">
+                                <?php
+                            } else {
+                                ?>
+                                <div class="list-image"><span class="fas fa-file"></span></div>
+                                <?php
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <a class="media-list-title" href="#" data-placement="bottom" data-toggle="tooltip"
+                               data-original-title="<?php echo $this->escape($media['title']); ?>"><?php echo mb_substr($media['title'], 0, 18, 'UTF-8'); ?></a>
+                            <div class="row-actions">
+                                <a href="<?php echo $this->url('', ['action' => 'edit', 'id' => $media['id']]); ?>"><?php echo _a('Edit'); ?></a>
+                                <span class="divider">|</span>
+                                <a href="javascript:void(0)" class="one-action"
+                                   data-value="delete"><?php echo _a('Delete'); ?></a>
+                                <span class="divider">|</span>
+                                <a class="one-action" data-value="download"
+                                   href="javascript:void(0)"><?php echo _a('Download'); ?></a>
+                            </div>
+                        </td>
+                        <td><?php echo $this->escape($media['type']); ?></td>
+                        <td><?php echo $this->escape($media['size']); ?></td>
+                        <td><?php if ('image' == $type) { ?>
+                                <?php echo $this->escape($media['w']) . ' * ' . $this->escape($media['h']); ?>
+                            <?php } else {
+                                echo '<span class="text-muted">' . _a('None') . '</span>';
+                            } ?>
+                        </td>
+                        <td><?php
+                            echo $media['description']
+                                ? mb_substr($media['description'], 0, 20, 'UTF-8')
+                                : '<span class="text-muted">' . _a('No description') . '</span>'
+                            ?>
+                        </td>
+                        <td><?php echo isset($media['download']) ? $this->escape($media['download']) : 0 ?></td>
+                        <td><?php echo $this->escape($media['submitter']); ?></td>
+                        <td><?php echo _date($media['time_upload']); ?></td>
+                    </tr>
                 <?php } ?>
                 </tbody>
             </table>
         </div>
         <?php
-            if ('image' == $type) {
-                include 'media-list-normal.phtml';
-            }
+        if ('image' == $type) {
+            include $this->template('./media-list-normal.phtml');
+        }
         ?>
         <div style="text-align: center">
             <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
@@ -172,202 +179,202 @@
     </div>
 </div>
 <script>
-(function($){
-    var page = {
-        url     : "<?php echo $this->url('', array('controller' => 'media','action' => '')); ?>" . replace(/list\/$/,""),
-        type    : '<?php echo $this->escape($type); ?>',
-        el      : $("#pi-js-list"),
-        $       : function(selector) {
-            return this.el.find(selector);
-        },
-        init    : function() {
-            this.$(".media-list-title").tooltip();
-            _.bindAll(this);
-            this.$(".check-all").click(this.checkAll);
-            this.$(".search-type").change(this.search);
-            this.$(".bulk-operation").change(this.bulk);
-            this.$(".check-one").click(this.clickOne);
-            this.$(".one-action").click(this.oneAction);
-            this.$(".fa-th-large").click(this.toggleList);
-            this.$(".remove-checked").click(this.removeChecked);
-        },
-        toggleList      : function() {
-            $("table").addClass('hide');
-            $(".default-header").addClass('hide');
-            $(".article-media-normal").removeClass('hide');
-            $(".icon-th-list").attr("disabled", "disabled");
-            $(".icon-th-large").removeAttr("disabled");
-            
-            // Change action url of search form
-            var url = '';
-            url = $("form").attr('action');
-            url = url.replace('style/default', 'style/normal');
-            $("form").attr('action', url);
-            
-            // Change url of paginator
-            $('.pagination').find('a').each(function() {
-                url = $(this).attr("href");
+    (function ($) {
+        var page = {
+            url: "<?php echo $this->url('', ['controller' => 'media', 'action' => '']); ?>".replace(/list\/$/, ""),
+            type: '<?php echo $this->escape($type); ?>',
+            el: $("#pi-js-list"),
+            $: function (selector) {
+                return this.el.find(selector);
+            },
+            init: function () {
+                this.$(".media-list-title").tooltip();
+                _.bindAll(this);
+                this.$(".check-all").click(this.checkAll);
+                this.$(".search-type").change(this.search);
+                this.$(".bulk-operation").change(this.bulk);
+                this.$(".check-one").click(this.clickOne);
+                this.$(".one-action").click(this.oneAction);
+                this.$(".fa-th-large").click(this.toggleList);
+                this.$(".remove-checked").click(this.removeChecked);
+            },
+            toggleList: function () {
+                $("table").addClass('hide');
+                $(".default-header").addClass('hide');
+                $(".article-media-normal").removeClass('hide');
+                $(".icon-th-list").attr("disabled", "disabled");
+                $(".icon-th-large").removeAttr("disabled");
+
+                // Change action url of search form
+                var url = '';
+                url = $("form").attr('action');
                 url = url.replace('style/default', 'style/normal');
-                $(this).attr('href', url);
-            });
-            
-            // Change url of section
-            url = $('.search-type').attr('data-url');
-            url = url.replace('style/default', 'style/normal');
-            $(".search-type").attr('data-url', url);
-        },
-        removeChecked   : function() {
-            var id = [];
-            var count = 0;
-            this.$(".check-one:checked").each(function() {
-                id.push($(this).val());
-                count++;
-            });
-            if (count) {
-                if (confirm("<?php echo _a('Are you sure want to delete selected images?'); ?>")) {
-                    location.href = this.url + "delete?id=" + id.join(",") + "&from=" + this.encodeUrl();
+                $("form").attr('action', url);
+
+                // Change url of paginator
+                $('.pagination').find('a').each(function () {
+                    url = $(this).attr("href");
+                    url = url.replace('style/default', 'style/normal');
+                    $(this).attr('href', url);
+                });
+
+                // Change url of section
+                url = $('.search-type').attr('data-url');
+                url = url.replace('style/default', 'style/normal');
+                $(".search-type").attr('data-url', url);
+            },
+            removeChecked: function () {
+                var id = [];
+                var count = 0;
+                this.$(".check-one:checked").each(function () {
+                    id.push($(this).val());
+                    count++;
+                });
+                if (count) {
+                    if (confirm("<?php echo _a('Are you sure want to delete selected images?'); ?>")) {
+                        location.href = this.url + "delete?id=" + id.join(",") + "&from=" + this.encodeUrl();
+                    }
                 }
-            }
-        },
-        checkAll : function() {
-            var flag = this.$(".check-all").prop("checked");
-            this.$(".check-one").prop("checked",flag).each(function() {
-                var tr = $(this).parents("tr:first");
-                if (flag) {
+            },
+            checkAll: function () {
+                var flag = this.$(".check-all").prop("checked");
+                this.$(".check-one").prop("checked", flag).each(function () {
+                    var tr = $(this).parents("tr:first");
+                    if (flag) {
+                        tr.addClass("info");
+                    } else {
+                        tr.removeClass("info");
+                    }
+                });
+                this.toggleBulk();
+
+                // Check all items in normal style
+                var self = this;
+                $('.normal-header').find('.check-all').prop("checked", flag);
+                $('.normal-list input[type="checkbox"]').prop("checked", flag).each(function () {
+                    var el = $(this).parents(".one-item");
+                    if (flag) {
+                        self.displayElement(el);
+                        self.toggleBackground(el);
+                    } else {
+                        self.hideElement(el);
+                    }
+                });
+            },
+            search: function (e) {
+                var url = $(e.target).data('url');
+                location.href = url + "?mini_type=" + this.$(".search-type").val();
+            },
+            bulk: function () {
+                var id = [],
+                    val = this.$(".bulk-operation").val(),
+                    fn = function () {
+                        this.$(".check-one:checked").each(function () {
+                            id.push($(this).val());
+                        });
+                        location.href = this.url + val + "?id=" + id.join(",") + "&from=" + this.encodeUrl();
+                    };
+                if (val) {
+                    if (val == "delete") {
+                        if (confirm("<?php echo _a('Are you sure delete selected media?'); ?>")) {
+                            fn.call(this);
+                        } else {
+                            this.$(".bulk-operation").val("");
+                        }
+                    } else if (val == 'download') {
+                        this.$(".check-one:checked").each(function () {
+                            id.push($(this).val());
+                        });
+                        this.removeAttr();
+                        location.href = this.url + val + "?id=" + id.join(",") + "&from=" + this.encodeUrl();
+                    } else {
+                        fn.call(this);
+                    }
+                }
+            },
+            clickOne: function (e) {
+                var el = $(e.target),
+                    tr = el.parents("tr:first");
+                if (el.prop("checked")) {
                     tr.addClass("info");
                 } else {
                     tr.removeClass("info");
                 }
-            });
-            this.toggleBulk();
-            
-            // Check all items in normal style
-            var self = this;
-            $('.normal-header').find('.check-all').prop("checked", flag);
-            $('.normal-list input[type="checkbox"]').prop("checked", flag).each(function() {
-                var el = $(this).parents(".one-item");
-                if (flag) {
-                    self.displayElement(el);
-                    self.toggleBackground(el);
+                this.toggleBulk();
+
+                // Check the same item in normal
+                var id = el.val();
+                var status = el.prop("checked");
+                var boxObj = $('.normal-list').find('input[value="' + id + '"]');
+                var itemObj = boxObj.parents('.one-item');
+                boxObj.prop("checked", status);
+                if (status) {
+                    this.displayElement(itemObj);
+                    itemObj.find('.list-item').css('background-color', '#c0eaff');
                 } else {
-                    self.hideElement(el);
+                    this.hideElement(itemObj);
+                    itemObj.find('.list-item').css('background-color', '#fff');
                 }
-            });
-        },
-        search : function(e) {
-            var url = $(e.target).data('url');
-            location.href = url + "?mini_type=" + this.$(".search-type").val();
-        },
-        bulk : function() {
-            var id  = [],
-                val = this.$(".bulk-operation").val(),
-                fn  = function() {
-                    this.$(".check-one:checked").each(function() {
-                        id.push($(this).val()); 
-                    });
-                    location.href = this.url + val + "?id=" + id.join(",") + "&from=" + this.encodeUrl();
-                };
-            if (val) {
-                if (val == "delete") {
-                    if (confirm("<?php echo _a('Are you sure delete selected media?'); ?>")) {
-                        fn.call(this);
+            },
+            toggleBulk: function () {
+                if ('image' != page.type) {
+                    if (this.$(".check-one:checked").length) {
+                        this.$(".bulk-operation").show();
                     } else {
-                        this.$(".bulk-operation").val("");
+                        this.$(".bulk-operation").hide();
                     }
-                } else if (val == 'download') {
-                    this.$(".check-one:checked").each(function() {
-                        id.push($(this).val()); 
-                    });
-                    this.removeAttr();
-                    location.href = this.url + val + "?id=" + id.join(",") + "&from=" + this.encodeUrl();
+                }
+            },
+            oneAction: function (e) {
+                var el = $(e.target),
+                    id = el.parents("tr:first").attr("data-id"),
+                    val = el.attr("data-value");
+                if (val == "delete") {
+                    if (confirm("<?php echo _a('Are you sure delete this article'); ?>")) {
+                        location.href = this.url + "delete?id=" + id + "&from=" + this.encodeUrl();
+                    }
                 } else {
-                    fn.call(this);
+                    location.href = this.url + val + "?id=" + id + "&from=" + this.encodeUrl();
                 }
-            }    
-        },
-        clickOne: function(e) {
-            var el = $(e.target),
-                tr = el.parents("tr:first");
-            if (el.prop("checked")) {
-                tr.addClass("info");
-            } else {
-                tr.removeClass("info");
-            }
-            this.toggleBulk();
-            
-            // Check the same item in normal
-            var id     = el.val();
-            var status = el.prop("checked");
-            var boxObj = $('.normal-list').find('input[value="' + id + '"]');
-            var itemObj = boxObj.parents('.one-item');
-            boxObj.prop("checked", status);
-            if (status) {
-                this.displayElement(itemObj);
-                itemObj.find('.list-item').css('background-color', '#c0eaff');
-            } else {
-                this.hideElement(itemObj);
-                itemObj.find('.list-item').css('background-color', '#fff');
-            }
-        },
-        toggleBulk : function() {
-            if ('image' != page.type) {
-                if (this.$(".check-one:checked").length) {
-                    this.$(".bulk-operation").show();
+            },
+            encodeUrl: function () {
+                return encodeURIComponent(location.href);
+            },
+            removeAttr: function () {
+                $('.check-one').removeAttr('checked');
+                this.$(".bulk-operation").val("");
+                this.$(".bulk-operation").hide();
+                $('tr').removeClass('info');
+            },
+            displayElement: function (el) {
+                el.find('input[type="checkbox"]').removeClass('hide');
+                el.find('i.item-delete').removeClass('hide');
+                el.find('.list-operation').removeClass('hide');
+                el.find('button.btn-small').removeClass('hide');
+                el.find('.item-detail').removeClass('hide');
+
+                el.find('.list-item').css('border', 'solid 1px #0082be');
+            },
+            hideElement: function (el) {
+                el.find('input[type="checkbox"]').addClass('hide');
+                el.find('i.item-delete').addClass('hide');
+                el.find('.list-operation').addClass('hide');
+                el.find('button.btn-small').addClass('hide');
+                el.find('.item-detail').addClass('hide');
+
+                el.find('.list-item').css({
+                    'background-color': '#fff',
+                    'border': 'solid 1px #fff'
+                });
+            },
+            toggleBackground: function (el) {
+                if (el.find('input[type="checkbox"]').prop("checked")) {
+                    el.find('.list-item').css('background-color', '#c0eaff');
                 } else {
-                    this.$(".bulk-operation").hide();
+                    el.find('.list-item').css('background-color', '#e8f6ff');
                 }
-            }
-        },
-        oneAction : function(e) {
-            var el = $(e.target),
-                id = el.parents("tr:first").attr("data-id"),
-                val = el.attr("data-value");
-            if (val == "delete") {
-                if (confirm("<?php echo _a('Are you sure delete this article'); ?>")) {
-                    location.href = this.url + "delete?id=" + id + "&from=" + this.encodeUrl(); 
-                }
-            } else {
-                location.href = this.url + val + "?id=" + id + "&from=" + this.encodeUrl();
-            }
-        },
-        encodeUrl : function() {
-            return encodeURIComponent(location.href);
-        },
-        removeAttr : function() {
-            $('.check-one').removeAttr('checked');
-            this.$(".bulk-operation").val("");
-            this.$(".bulk-operation").hide();
-            $('tr').removeClass('info');
-        },
-        displayElement  : function(el) {
-            el.find('input[type="checkbox"]').removeClass('hide');
-            el.find('i.item-delete').removeClass('hide');
-            el.find('.list-operation').removeClass('hide');
-            el.find('button.btn-small').removeClass('hide');
-            el.find('.item-detail').removeClass('hide');
-
-            el.find('.list-item').css('border', 'solid 1px #0082be');
-        },
-        hideElement     : function(el) {
-            el.find('input[type="checkbox"]').addClass('hide');
-            el.find('i.item-delete').addClass('hide');
-            el.find('.list-operation').addClass('hide');
-            el.find('button.btn-small').addClass('hide');
-            el.find('.item-detail').addClass('hide');
-
-            el.find('.list-item').css({
-                'background-color'  : '#fff',
-                'border'            : 'solid 1px #fff'
-            });
-        },
-        toggleBackground    : function(el) {
-            if (el.find('input[type="checkbox"]').prop("checked")) {
-                el.find('.list-item').css('background-color', '#c0eaff');
-            } else {
-                el.find('.list-item').css('background-color', '#e8f6ff');
             }
         }
-    }
-    page.init();
-})(jQuery)
+        page.init();
+    })(jQuery)
 </script>

@@ -1,0 +1,22 @@
+<?php
+$options  = (array)$block['options'];
+$items    = (array)$block['items'];
+$ellipsis = empty($options['max_rows'])
+    ? 'pi-ellipsis'
+    : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
+?>
+<div class="widget-video-list">
+    <?php foreach ($items as $item) { ?>
+        <?php if (!empty($item['link'])) { ?>
+            <div class="widget-video-single clearfix">
+                <h3><?php echo _escape($item['caption']); ?></h3>
+                <div class="pi-player">
+                    <?php echo $this->videojs($item['link'], $item['image']); ?>
+                </div>
+                <div class="<?php echo $ellipsis; ?>">
+                    <?php echo $item['summary']; ?>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } ?>
+</div>

@@ -1,42 +1,42 @@
 <?php
-$this->angular(array(
+$this->angular([
     'angular-route.js',
-    'pi.js'
-));
+    'pi.js',
+]);
 ?>
 <script>
-angular
-    .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
-    .constant('config', {
-        urlRoot: '<?php echo $this->url('', array('controller' => 'role')); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
-        t: {
-            ADMIN_TITLE: '<?php echo _a('Admin roles'); ?>',
-            ADMIN_ADD: '<?php echo _a('Add admin role'); ?>',
-            FRONT_TITLE: '<?php echo _a('Front roles'); ?>',
-            FRONT_ADD: '<?php echo _a('Add front role'); ?>',
-            ROLE_ADD: '<?php echo _a('Add role'); ?>',
-            DELETE: '<?php echo _a('Delete'); ?>',
-            EDIT: '<?php echo _a('Edit permission'); ?>',
-            NAME: '<?php echo _a('Name'); ?>',
-            TITLE: '<?php echo _a('Title'); ?>',
-            //USER_COUNT: '<?php echo _a('Users in role'); ?>',
-            STATUS: '<?php echo _a('Status'); ?>',
-            ACTIVE: '<?php echo _a('Active'); ?>',
-            ACTIVATED: '<?php echo _a('Activated'); ?>',
-            INACTIVE: '<?php echo _a('Inactive'); ?>',
-            ACTION: '<?php echo _a('Action'); ?>',
-            ROLE_NAME: '<?php echo _a('Unique name'); ?>',
-            ROLE_TITLE: '<?php echo _a('Title'); ?>',
-            SUBMIT: '<?php echo _a('Submit'); ?>',
-            CANCEL: '<?php echo _a('Cancel'); ?>',
-            REQUIRED: '<?php echo _a('Required'); ?>',
-            TYPE: '<?php echo _a('Type'); ?>',
-            FRONT: '<?php echo _a('Front'); ?>',
-            ADMIN: '<?php echo _a('Admin'); ?>',
-            ROLE_NAME_TOKEN: '<?php echo _a('Role name is already token'); ?>',
-            DELETE_CONFIRM: '<?php echo _a('Are you sure to delete this role?'); ?>'
-        }
-    });
+    angular
+        .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
+        .constant('config', {
+            urlRoot: '<?php echo $this->url('', ['controller' => 'role']); ?>',
+            assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+            t: {
+                ADMIN_TITLE: '<?php echo _a('Admin roles'); ?>',
+                ADMIN_ADD: '<?php echo _a('Add admin role'); ?>',
+                FRONT_TITLE: '<?php echo _a('Front roles'); ?>',
+                FRONT_ADD: '<?php echo _a('Add front role'); ?>',
+                ROLE_ADD: '<?php echo _a('Add role'); ?>',
+                DELETE: '<?php echo _a('Delete'); ?>',
+                EDIT: '<?php echo _a('Edit permission'); ?>',
+                NAME: '<?php echo _a('Name'); ?>',
+                TITLE: '<?php echo _a('Title'); ?>',
+                //USER_COUNT: '<?php echo _a('Users in role'); ?>',
+                STATUS: '<?php echo _a('Status'); ?>',
+                ACTIVE: '<?php echo _a('Active'); ?>',
+                ACTIVATED: '<?php echo _a('Activated'); ?>',
+                INACTIVE: '<?php echo _a('Inactive'); ?>',
+                ACTION: '<?php echo _a('Action'); ?>',
+                ROLE_NAME: '<?php echo _a('Unique name'); ?>',
+                ROLE_TITLE: '<?php echo _a('Title'); ?>',
+                SUBMIT: '<?php echo _a('Submit'); ?>',
+                CANCEL: '<?php echo _a('Cancel'); ?>',
+                REQUIRED: '<?php echo _a('Required'); ?>',
+                TYPE: '<?php echo _a('Type'); ?>',
+                FRONT: '<?php echo _a('Front'); ?>',
+                ADMIN: '<?php echo _a('Admin'); ?>',
+                ROLE_NAME_TOKEN: '<?php echo _a('Role name is already taken'); ?>',
+                DELETE_CONFIRM: '<?php echo _a('Are you sure to delete this role?'); ?>'
+            }
+        });
 </script>
 <script src="<?php echo $this->assetModule('admin/role.js'); ?>"></script>

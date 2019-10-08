@@ -1,17 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Mvc\Controller\Plugin;
 
 use Pi;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
-use Zend\Http\Response;
 
 /**
  * Jump to a page going through a transition page
@@ -43,10 +42,11 @@ class Jump extends AbstractPlugin
      */
     public function __invoke(
         $params,
-        $message        = '',
-        $namespace      = '',
-        $allowExternal  = false
-    ) {
+        $message = '',
+        $namespace = '',
+        $allowExternal = false
+    )
+    {
         if (is_array($params)) {
             if (!isset($params['route'])) {
                 $route = '';

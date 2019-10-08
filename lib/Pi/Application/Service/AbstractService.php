@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -13,7 +13,7 @@ namespace Pi\Application\Service;
 use Pi;
 
 /**
- * Pi Engine sevice abstract class
+ * Abstract class for Pi Engine service provider interface
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -23,19 +23,19 @@ abstract class AbstractService
     protected $fileIdentifier = '';
 
     /** @var array Options */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Constructor
      *
      * @param array $options Parameters to send to the service
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         // Set specified options
         if ($options) {
             $this->setOptions($options);
-        // Load default options from config file
+            // Load default options from config file
         } elseif ($this->fileIdentifier) {
             $this->setOptions('service.' . $this->fileIdentifier . '.php');
         }
@@ -47,10 +47,10 @@ abstract class AbstractService
      * @param array|string $options Array of options or config file name
      * @return void
      */
-    public function setOptions($options = array())
+    public function setOptions($options = [])
     {
         if (is_string($options)) {
-            $options = Pi::config()->load($options) ?: array();
+            $options = Pi::config()->load($options) ?: [];
         }
         $this->options = $options;
     }
@@ -87,7 +87,7 @@ abstract class AbstractService
      */
     public function getOption()
     {
-        $args = func_get_args();
+        $args   = func_get_args();
         $result = $this->options;
         foreach ($args as $name) {
             if (!is_array($result)) {

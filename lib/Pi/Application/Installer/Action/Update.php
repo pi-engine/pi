@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Installer\Action;
@@ -25,8 +25,8 @@ class Update extends AbstractAction
     {
         $events = $this->events;
         if ($this->event->getParam('upgrade')) {
-            $events->attach('update.post', array($this, 'removeDependency'));
-            $events->attach('update.post', array($this, 'createDependency'));
+            $events->attach('update.post', [$this, 'removeDependency']);
+            $events->attach('update.post', [$this, 'createDependency']);
         }
 
         return $this;
@@ -38,11 +38,11 @@ class Update extends AbstractAction
     public function process()
     {
         $model = Pi::model('module');
-        $row = $model->select(array(
-            'name' => $this->event->getParam('module')
-        ))->current();
+        $row   = $model->select([
+            'name' => $this->event->getParam('module'),
+        ])->current();
 
-        $config = $this->event->getParam('config');
+        $config        = $this->event->getParam('config');
         $configVersion = $config['meta']['version'];
         if (version_compare($row->version, $configVersion, '>=')) {
             $row->update = time();
@@ -52,11 +52,10 @@ class Update extends AbstractAction
             $this->event->setParam('upgrade', true);
         }
 
-        $originalRow = clone $row;
-        $config = $this->event->getParam('config');
-        $meta = array('update' => time());
-        $moduleColumns = array('id', 'name', 'title', 'directory',
-                               'version', 'update', 'active');
+        $originalRow   = clone $row;
+        $config        = $this->event->getParam('config');
+        $meta          = ['update' => time()];
+        $moduleColumns = ['directory', 'version'];
         foreach ($config['meta'] as $key => $value) {
             if (in_array($key, $moduleColumns)) {
                 $meta[$key] = $value;
@@ -69,10 +68,10 @@ class Update extends AbstractAction
         try {
             $row->save();
         } catch (\Exception $e) {
-            $this->setResult('module', array(
-                'status'    => false,
-                'message'   => array('Module upgrade failed')
-            ));
+            $this->setResult('module', [
+                'status'  => false,
+                'message' => ['Module upgrade failed'],
+            ]);
             return false;
         }
 
@@ -90,7 +89,7 @@ class Update extends AbstractAction
         if ($row) {
             $row->save();
         }
-        
+
         return;
     }
 }

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Engine;
@@ -20,22 +20,22 @@ use Pi\Mvc\Application;
 abstract class AbstractEngine
 {
     /** @var string Front section */
-    const FRONT     = 'front';
+    const FRONT = 'front';
 
     /** @var string Admin section */
-    const ADMIN     = 'admin';
+    const ADMIN = 'admin';
 
     /** @var string Feed section */
-    const FEED      = 'feed';
+    const FEED = 'feed';
 
     /** @var string API section */
-    const API       = 'api';
+    const API = 'api';
 
-    /** @var string Cront section */
-    const CRON      = 'cron';
+    /** @var string Cron section */
+    const CRON = 'cron';
 
     /** @var string Widget section */
-    const WIDGET    = 'widget';
+    const WIDGET = 'widget';
 
     /**
      * Section name
@@ -53,7 +53,7 @@ abstract class AbstractEngine
      * Options for application
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Application handler
@@ -66,7 +66,7 @@ abstract class AbstractEngine
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->setOption($options);
     }

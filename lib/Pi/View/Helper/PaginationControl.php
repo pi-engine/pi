@@ -1,18 +1,19 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
 namespace Pi\View\Helper;
 
+use pi;
 use Zend\Paginator\Paginator;
-use Zend\View\Helper\PaginationControl as ZendPaginationControl;
 use Zend\View\Exception;
+use Zend\View\Helper\PaginationControl as ZendPaginationControl;
 
 /**
  * Pagination creation helper
@@ -55,7 +56,8 @@ class PaginationControl extends ZendPaginationControl
         $scrollingStyle = null,
         $partial = null,
         $params = null
-    ) {
+    )
+    {
         if ($paginator === null) {
             if (isset($this->view->paginator)
                 && $this->view->paginator !== null
@@ -86,7 +88,7 @@ class PaginationControl extends ZendPaginationControl
         $pages = get_object_vars($paginator->getPages($scrollingStyle));
 
         if ($params !== null) {
-            $pages = array_merge($pages, (array) $params);
+            $pages = array_merge($pages, (array)$params);
         }
 
         if (is_array($partial)) {
@@ -106,6 +108,44 @@ class PaginationControl extends ZendPaginationControl
         }
 
         $partialHelper = $this->view->plugin('partial');
+
+        if ($pages['current'] > 1) {
+            $headTitle = $this->view->headTitle();
+            $separator = $headTitle->getSeparator();
+            $sitename  = Pi::config('sitename');
+
+            $postfix = sprintf(' %s %s %s %s %s',
+                $separator,
+                __('Page'),
+                _number($pages['current']),
+                $separator,
+                $sitename
+            );
+            $prefix  = sprintf('%s %s %s',
+                __('Page'),
+                _number($pages['current']),
+                trim($separator)
+            );
+
+            $headTitle->setPostfix($postfix);
+            $this->view->headMeta()->prependName('description', $prefix);
+        }
+
+        if (isset($pages['previous'])) {
+            $previous = get_object_vars($pages['previous']);
+            $this->view->headLink([
+                'rel'  => 'prev',
+                'href' => Pi::url($previous['url']),
+            ]);
+        }
+
+        if (isset($pages['next'])) {
+            $next = get_object_vars($pages['next']);
+            $this->view->headLink([
+                'rel'  => 'next',
+                'href' => Pi::url($next['url']),
+            ]);
+        }
 
         return $partialHelper($partial, $pages);
     }

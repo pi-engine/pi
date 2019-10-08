@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\User\Resource;
@@ -34,15 +34,15 @@ class Timeline extends AbstractResource
     /**
      * Get timeline log list
      *
-     * @param int          $uid
-     * @param int          $limit
-     * @param int          $offset
+     * @param int $uid
+     * @param int $limit
+     * @param int $offset
      *
      * @return array
      */
     public function get($uid, $limit, $offset = 0)
     {
-        $result = array();
+        $result = [];
 
         if (!$this->isAvailable()) {
             return $result;
@@ -55,7 +55,7 @@ class Timeline extends AbstractResource
     /**
      * Get timeline log count subject to type(s)
      *
-     * @param int           $uid
+     * @param int $uid
      *
      * @return int
      */
@@ -94,4 +94,15 @@ class Timeline extends AbstractResource
 
         return $result;
     }
+
+    public function delete(array $log)
+    {
+        if (!$this->isAvailable()) {
+            return false;
+        }
+        $result = Pi::api('timeline', 'user')->delete($log);
+
+        return $result;
+    }
+
 }

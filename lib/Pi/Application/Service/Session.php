@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -56,19 +56,19 @@ class Session extends AbstractService
     public function manager()
     {
         if (!$this->manager) {
-            $options = $this->options;
+            $options       = $this->options;
             $sessionConfig = null;
             if (!empty($options['config'])
                 && !empty($options['config']['class'])
             ) {
-                $class  = $options['config']['class'];
+                $class         = $options['config']['class'];
                 $sessionConfig = new $class;
                 if (isset($options['config']['options'])) {
                     if (!isset($options['config']['options']['cookie_path'])
                         && $baseUrl = Pi::host()->get('baseUrl')
                     ) {
-                        $options['config']['options']['cookie_path'] =
-                            rtrim($baseUrl, '/') . '/';
+                        $options['config']['options']['cookie_path']
+                            = rtrim($baseUrl, '/') . '/';
                     }
                     $sessionConfig->setOptions($options['config']['options']);
                 }
@@ -77,8 +77,8 @@ class Session extends AbstractService
             if (!empty($options['storage'])
                 && !empty($options['storage']['class'])
             ) {
-                $class  = $options['storage']['class'];
-                $input  = isset($options['storage']['input'])
+                $class          = $options['storage']['class'];
+                $input          = isset($options['storage']['input'])
                     ? $options['storage']['input'] : null;
                 $sessionStorage = new $class($input);
             }
@@ -86,9 +86,9 @@ class Session extends AbstractService
             if (!empty($options['save_handler'])
                 && !empty($options['save_handler']['class'])
             ) {
-                $class  = $options['save_handler']['class'];
-                $opts = isset($options['save_handler']['options'])
-                    ? $options['save_handler']['options'] : array();
+                $class       = $options['save_handler']['class'];
+                $opts        = isset($options['save_handler']['options'])
+                    ? $options['save_handler']['options'] : [];
                 $saveHandler = new $class($opts);
             }
             $this->manager = new SessionManager(
@@ -136,18 +136,18 @@ class Session extends AbstractService
         if ($storage->isImmutable()) {
             return;
         }
-        $ts = $storage->getRequestAccessTime();
-        $meta = (array) $storage->getMetadata();
+        $ts   = $storage->getRequestAccessTime();
+        $meta = (array)$storage->getMetadata();
         foreach ($meta as $name => $metadata) {
             if (!is_array($metadata)) {
                 continue;
             }
             if ((isset($metadata['EXPIRE'])
-                && $_SERVER['REQUEST_TIME'] > $metadata['EXPIRE'])
+                    && $_SERVER['REQUEST_TIME'] > $metadata['EXPIRE'])
                 || (isset($metadata['EXPIRE_HOPS'])
                     && $ts > $metadata['EXPIRE_HOPS']['ts']
                     && 0 >= $metadata['EXPIRE_HOPS']['hops']
-                   )
+                )
             ) {
                 $storage->clear($name);
             }
@@ -174,6 +174,6 @@ class Session extends AbstractService
      */
     public function __call($method, $args)
     {
-        return call_user_func_array(array($this->manager(), $method), $args);
+        return call_user_func_array([$this->manager(), $method], $args);
     }
 }

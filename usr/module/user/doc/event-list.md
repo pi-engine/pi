@@ -18,22 +18,22 @@ event name:
       function: activateUser
       params:   $uid
       code:     Pi::service('event')->trigger('activate', $uid)
-disable
+ disable
       class:    Module\User\Api\User
       function: disableUser
       params:   $uid
       code:     Pi::service('event')->trigger('disable', $uid)
-enable
+ enable
       class:    Module\User\Api\User
       function: enableUser
       params:   $uid
       code:     Pi::service('event')->trigger('enable', $uid)
-delete
+ delete
       class:    Module\User\Api\User
       function: deleteUser
       params:   $uid
       code:     Pi::service('event')->trigger('delete', $uid)
-update
+ update
       class:    Module\User\Api\User
       function: updateAccount
       params:   $uid, $data

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Controller\Front;
@@ -19,7 +19,7 @@ class DetailController extends ActionController
 {
     // Rule file name
     const RULE_FILE = 'profile-complete-rule';
-    
+
     /**
      * Detail complete action
      *
@@ -29,10 +29,10 @@ class DetailController extends ActionController
      */
     public function completeAction()
     {
-        $result = array('status' => 0);
+        $result = ['status' => 0];
 
         $redirect = $this->params('redirect', $_SERVER['HTTP_REFERER']);
-        
+
         Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
 
@@ -42,13 +42,13 @@ class DetailController extends ActionController
         if (!$file) {
             return $this->redirect($redirect);
         }
-        $form = Pi::api('form', 'user')->loadForm($file);
-        $values = $this->getValues($file, $uid);
+        $form               = Pi::api('form', 'user')->loadForm($file);
+        $values             = $this->getValues($file, $uid);
         $values['redirect'] = $redirect;
-        $form->setAttribute('action', $this->url('', array(
+        $form->setAttribute('action', $this->url('', [
             'action' => 'complete',
             'rule'   => $rule,
-        )));
+        ]));
         $form->setData($values);
 
         if ($this->request->isPost()) {
@@ -72,13 +72,13 @@ class DetailController extends ActionController
         $this->view()->assign('form', $form);
         $this->view()->setTemplate('register-profile-complete');
     }
-    
+
     /**
      * Get file name include form elements require user to complete according to rule.
      * If rule file not exist or rule is valid, return false to skip
-     * 
-     * @param string $rule  key value of rule list
-     * @param int    $uid
+     *
+     * @param string $rule key value of rule list
+     * @param int $uid
      * @return string|false
      */
     protected function getFormFile($rule, $uid = 0)
@@ -102,7 +102,7 @@ class DetailController extends ActionController
             }
         }
         $data = include $file;
-        
+
         // Check if condition field is exists or rule is valid
         if (empty($data)
             || !isset($data['rule_field'])
@@ -110,7 +110,7 @@ class DetailController extends ActionController
         ) {
             return false;
         }
-        
+
         // Get key of the rule list
         if (!empty($rule)) {
             $key = preg_replace('/:/', '&', $rule);
@@ -128,7 +128,7 @@ class DetailController extends ActionController
             }
             $key = implode('&', $values);
         }
-        
+
         // Use default rule if it is not found
         if (
             !isset($data['items'])
@@ -137,19 +137,19 @@ class DetailController extends ActionController
         ) {
             $key = 'default';
         }
-        
+
         $item = $data['items'][$key];
         if (!isset($item['active']) || !$item['active']) {
             return false;
         }
-        
+
         if (isset($item['form_file']) && !empty($item['form_file'])) {
             $result = $data['items'][$key]['form_file'];
         }
-        
+
         return $result;
     }
-    
+
     /**
      * Load form specs from field config, supporting custom configs
      *
@@ -159,13 +159,13 @@ class DetailController extends ActionController
      */
     protected function loadConfig($name)
     {
-        $filePath   = sprintf('user/config/form.%s.php', $name);
-        $file       = Pi::path('custom/module') . '/' . $filePath;
+        $filePath = sprintf('user/config/form.%s.php', $name);
+        $file     = Pi::path('custom/module') . '/' . $filePath;
         if (!file_exists($file)) {
             $file = Pi::path('module') . '/' . $filePath;
         }
-        $config     = include $file;
-        $result     = array();
+        $config = include $file;
+        $result = [];
         foreach ($config as $key => $value) {
             if (false === $value) {
                 continue;
@@ -175,8 +175,8 @@ class DetailController extends ActionController
                     continue;
                 }
                 if (is_string($value)) {
-                    $key    = $value;
-                    $value  = array();
+                    $key   = $value;
+                    $value = [];
                 }
             }
             $result[] = $key;
@@ -184,25 +184,25 @@ class DetailController extends ActionController
 
         return $result;
     }
-    
+
     /**
      * Get user data from database
-     * 
-     * @param string $name  Name of file define custom form elements
-     * @param int    $uid
+     *
+     * @param string $name Name of file define custom form elements
+     * @param int $uid
      * @return array
      */
     protected function getValues($name, $uid = 0)
     {
         $fields = $this->loadConfig($name);
-        
+
         $uid    = $uid ?: Pi::user()->getId();
         $rowset = Pi::api('user', 'user')->get($uid, $fields);
-        
+
         $module = $this->getModule();
         $meta   = Pi::registry('field', $module)->read();
-        
-        $result = array();
+
+        $result = [];
         foreach ($rowset as $key => $value) {
             if ('compound' == $meta[$key]['type']) {
                 $rows = array_shift($value);
@@ -215,7 +215,7 @@ class DetailController extends ActionController
                 $result[$key] = $value;
             }
         }
-        
+
         return $result;
     }
 }

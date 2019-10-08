@@ -1,27 +1,16 @@
 <?php
 /**
- * Xoops module installer action
+ * Pi Engine (http://piengine.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Chuang Liu <liuchuang@eefocus.com>
- * @since           3.0
- * @package         Module\Tag
- * @subpackage      Installer
- * @version         $Id$
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Tag\Installer\Action;
 
-use Pi\Application\Installer\Action\Update as BasicUpdate;
 use Module\Tag\Installer\Schema;
+use Pi\Application\Installer\Action\Update as BasicUpdate;
 use Zend\EventManager\Event;
 
 class Update extends BasicUpdate
@@ -32,7 +21,7 @@ class Update extends BasicUpdate
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('update.pre', array($this, 'updateSchema'));
+        $events->attach('update.pre', [$this, 'updateSchema']);
         parent::attachDefaultListeners();
 
         return $this;
@@ -48,8 +37,8 @@ class Update extends BasicUpdate
     public function updateSchema(Event $e)
     {
         $moduleVersion = $e->getParam('version');
-        $updator = new Schema\Updator110($this);
-        $result = $updator->upgrade($moduleVersion);
+        $updator       = new Schema\Updator110($this);
+        $result        = $updator->upgrade($moduleVersion);
 
         return $result;
     }

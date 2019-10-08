@@ -1,32 +1,32 @@
 # Pi Engine schema
-# http://pialog.org
+# http://piengine.org
 # Author: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
 # --------------------------------------------------------
 
 -- Module categorization
 CREATE TABLE `{category}` (
-  `id`          int(10)         unsigned NOT NULL auto_increment,
-  `title`       varchar(255)    default NULL,
-  `icon`        varchar(255)    default '',
-  `order`       int(5)          unsigned NOT NULL default '0',
+  `id`      INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title`   VARCHAR(255)              DEFAULT NULL,
+  `icon`    VARCHAR(255)              DEFAULT '',
+  `order`   INT(5) UNSIGNED  NOT NULL DEFAULT '0',
   -- Json-encoded module list
-  `modules`     text,
+  `modules` TEXT,
 
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY (`id`)
 );
 
 -- Module update records
 CREATE TABLE `{update}` (
-  `id`          int(10)         unsigned NOT NULL auto_increment,
-  `title`       varchar(255)    default NULL,
-  `content`     text,
-  `module`      varchar(64)     default NULL,
-  `controller`  varchar(64)     default NULL,
-  `action`      varchar(64)     default NULL,
-  `route`       varchar(64)     default NULL,
-  `params`      varchar(255)    default NULL,
-  `uri`         varchar(255)    default NULL,
-  `time`        int(10)         unsigned NOT NULL default '0',
+  `id`         INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title`      VARCHAR(255)              DEFAULT NULL,
+  `content`    TEXT,
+  `module`     VARCHAR(64)               DEFAULT NULL,
+  `controller` VARCHAR(64)               DEFAULT NULL,
+  `action`     VARCHAR(64)               DEFAULT NULL,
+  `route`      VARCHAR(64)               DEFAULT NULL,
+  `params`     VARCHAR(255)              DEFAULT NULL,
+  `uri`        VARCHAR(255)              DEFAULT NULL,
+  `time`       INT(10) UNSIGNED NOT NULL DEFAULT '0',
 
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY (`id`)
 );

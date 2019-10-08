@@ -1,15 +1,15 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Form;
 
-//use Pi;
+use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -21,50 +21,79 @@ class AccountForm extends BaseForm
 {
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name'       => 'identity',
-            'options'    => array(
+            'options'    => [
                 'label' => __('Username'),
-            ),
-            'type' => 'text',
-            'attributes' => array(
-                'disabled' => 'disabled'
-            ),
-        ));
+            ],
+            'type'       => 'text',
+            'attributes' => [
+                'disabled' => 'disabled',
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'email',
-            'options'    => array(
+            'options'    => [
                 'label' => __('Email'),
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'text',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name'       => 'name',
-            'options'    => array(
+            'options'    => [
                 'label' => __('Display name'),
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'text',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        if (Pi::service('module')->isActive('subscription')) {
+            $people = Pi::api('people', 'subscription')->getCurrentPeople();
+            $description = null;
+            if ($people  != null) {
+                $description = sprintf(__('(updated on %s)'),  _date($people['time_update']));
+            }
+            $this->add([
+                'name'    => 'newsletter',
+                'type'    => 'checkbox',
+                'options' => [
+                    'label' => __('Newsletter subscription'),
+
+                ],
+                'attributes' => [
+                    'description' => $description,
+                    'value' => (bool)$people
+                ]
+                
+            ]);
+        }
+
+        $this->add([
             'name'       => 'uid',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'hidden',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
+            'name'       => 'id',
+            'attributes' => [
+                'type' => 'hidden',
+            ],
+        ]);
+
+        $this->add([
             'name'       => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'value' => __('Submit'),
-            ),
+            ],
             'type'       => 'submit',
-        ));
+        ]);
     }
+
 }

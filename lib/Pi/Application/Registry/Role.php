@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Registry
  */
 
@@ -15,31 +15,31 @@ use Pi;
 /**
  * Role list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Role extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $result = array();
-        $model = Pi::model('role');
-        $where = array('active' => 1);
+        $result = [];
+        $model  = Pi::model('role');
+        $where  = ['active' => 1];
         if (!empty($options['section'])) {
             $where['section'] = $options['section'];
         }
         $select = $model->select();
-        $select->order(array('section', 'title ASC'));
+        $select->order(['section', 'title ASC']);
         $select->where($where);
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $result[$row['name']] = array(
-                'section'   => $row['section'],
-                'title'     => $row['title'],
-                'id'        => (int) $row['id'],
-            );
+            $result[$row['name']] = [
+                'section' => $row['section'],
+                'title'   => $row['title'],
+                'id'      => (int)$row['id'],
+            ];
         }
 
         return $result;
@@ -52,7 +52,7 @@ class Role extends AbstractRegistry
     public function read($section = '')
     {
         $options = compact('section');
-        $data = $this->loadData($options);
+        $data    = $this->loadData($options);
         /*
         if ($section) {
             $data = $data[$section];

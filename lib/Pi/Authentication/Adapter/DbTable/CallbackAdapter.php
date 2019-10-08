@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Authentication\Adapter\DbTable;
@@ -47,7 +47,7 @@ class CallbackAdapter extends AbstractAdapter
     protected function getCallback()
     {
         if (!$this->callback || !is_callable($this->callback)) {
-            $this->callback = function($a, $b, $identity) {
+            $this->callback = function ($a, $b, $identity) {
                 return $a === md5($b);
             };
         }
@@ -92,4 +92,27 @@ class CallbackAdapter extends AbstractAdapter
         return $this->authenticateCreateAuthResult();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    protected function oAuthAuthenticateValidateResult($resultIdentity)
+    {
+        $this->setResultRow($resultIdentity);
+
+        $userInfo = $this->getResultRow();
+
+        if (isset($userInfo['id']) && $userInfo['id'] > 0 && isset($userInfo['identity']) && !empty($userInfo['identity'])) {
+            $this->authenticateResultInfo['code']
+                = AuthenticationResult::SUCCESS;
+            $this->authenticateResultInfo['messages'][]
+                = __('Authentication successful.');
+        } else {
+            $this->authenticateResultInfo['code']
+                = AuthenticationResult::FAILURE_CREDENTIAL_INVALID;
+            $this->authenticateResultInfo['messages'][]
+                = __('Supplied credential is invalid.');
+        }
+
+        return $this->authenticateCreateAuthResult();
+    }
 }

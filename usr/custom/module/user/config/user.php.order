@@ -1,0 +1,123 @@
+<?php
+/**
+ * Pi Engine (http://piengine.org)
+ *
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
+ */
+
+/**
+ * User profile and resource specs
+ *
+ * @see Pi\Application\Installer\Resource\User
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
+$customConfig = array(
+    // Fields
+    'field'     => array(
+        // Profile fields
+
+        // Profile: credit
+        'credit' => array(
+            'name'          => 'credit',
+            'title'         => _a('Credit'),
+            'is_edit'       => false,
+            'is_display'    => false,
+            'is_search'     => false,
+        ),
+
+        // Profile: identification_number
+        // See : https://en.wikipedia.org/wiki/National_identification_number
+        'id_number'  => array(
+            'name'  => 'id_number',
+            'title' => _a('Identification number'),
+        ),
+
+        // Profile: first_name
+        'first_name'  => array(
+            'name'  => 'first_name',
+            'title' => _a('First Name'),
+        ),
+
+        // Profile: last_name
+        'last_name'  => array(
+            'name'  => 'last_name',
+            'title' => _a('Last Name'),
+        ),
+
+        // Profile: mobile number
+        'mobile'      => array(
+            'name'      => 'mobile',
+            'title'     => _a('Mobile phone'),
+        ),
+
+        // Profile: phone number
+        'phone'  => array(
+            'name'  => 'phone',
+            'title' => _a('Telephone'),
+        ),
+
+        // Profile: address1
+        'address1'  => array(
+            'name'  => 'address1',
+            'title' => _a('Address 1'),
+        ),
+
+        // Profile: address2
+        'address2'  => array(
+            'name'  => 'address2',
+            'title' => _a('Address 2'),
+        ),
+
+        // Profile: country
+        'country'  => array(
+            'name'  => 'country',
+            'title' => _a('Country'),
+        ),
+
+        // Profile: state
+        'state'  => array(
+            'name'  => 'state',
+            'title' => _a('State'),
+        ),
+
+        // Profile: city
+        'city'  => array(
+            'name'  => 'city',
+            'title' => _a('City'),
+        ),
+
+        // Profile: zip_code
+        'zip_code'  => array(
+            'name'  => 'zip_code',
+            'title' => _a('Zip code'),
+        ),
+
+        // Profile: company
+        'company'  => array(
+            'name'  => 'company',
+            'title' => _a('Company'),
+        ),
+
+        // Profile: company_id
+        'company_id'  => array(
+            'name'  => 'company_id',
+            'title' => _a('Company ID'),
+        ),
+
+        // Profile: company_vat
+        'company_vat'  => array(
+            'name'  => 'company_vat',
+            'title' => _a('Company VAT'),
+        ),
+    ),
+);
+
+
+$config = include Pi::path('module/user/config/user.php');
+foreach ($customConfig as $key => $cfg) {
+    $config[$key] = array_merge($config[$key], $cfg);
+}
+
+return $config;

@@ -1,16 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Page\Api;
 
 use Pi;
-use Pi\Search\AbstractSearch;
+use Pi\Application\Api\AbstractSearch;
 
 /**
  * Class for module search
@@ -27,24 +27,22 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
-    protected $meta = array(
-        'id'            => 'id',
-        'title'         => 'title',
-        'content'       => 'content',
-        'time_created'  => 'time',
-        'user'          => 'uid',
-    );
+    protected $meta
+        = [
+            'id'           => 'id',
+            'title'        => 'title',
+            'content'      => 'content',
+            'time_created' => 'time',
+            'user'         => 'uid',
+        ];
 
     /**
      * {@inheritDoc}
      */
-    protected function buildLink(array $item)
+    protected function buildUrl(array $item, $table = '')
     {
-        $link = Pi::service('url')->assemble(
-            'page-page',
-            array('id' => $item['id'])
-        );
+        $url = Pi::api('api', $this->module)->url($item['id']);
 
-        return $link;
+        return $url;
     }
 }

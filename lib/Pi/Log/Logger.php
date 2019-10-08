@@ -1,18 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Log;
 
-use Zend\Stdlib\SplPriorityQueue;
 use Traversable;
 use Zend\Log\Writer;
 use Zend\Stdlib\ArrayUtils;
+use Zend\Stdlib\SplPriorityQueue;
 
 /**
  * Logger
@@ -40,20 +40,20 @@ class Logger
      * @const int defined from the BSD Syslog message severities
      * @link http://tools.ietf.org/html/rfc3164
      */
-    const EMERG     = 0;
-    const ALERT     = 1;
-    const CRIT      = 2;
-    const ERR       = 3;
-    const WARN      = 4;
-    const NOTICE    = 5;
-    const INFO      = 6;
-    const DEBUG     = 7;
+    const EMERG  = 0;
+    const ALERT  = 1;
+    const CRIT   = 2;
+    const ERR    = 3;
+    const WARN   = 4;
+    const NOTICE = 5;
+    const INFO   = 6;
+    const DEBUG  = 7;
 
     /**
      * For application data audit
      * @var int
      */
-    const AUDIT     = 16;
+    const AUDIT = 16;
 
     /**
      * The format of the date used for a log entry (ISO 8601 date)
@@ -68,19 +68,20 @@ class Logger
      *
      * @var array
      */
-    protected $priorities = array(
-        self::EMERG     => 'EMERG',
-        self::ALERT     => 'ALERT',
-        self::CRIT      => 'CRIT',
-        self::ERR       => 'ERR',
-        self::WARN      => 'WARN',
-        self::NOTICE    => 'NOTICE',
-        self::INFO      => 'INFO',
-        self::DEBUG     => 'DEBUG',
+    protected $priorities
+        = [
+            self::EMERG  => 'EMERG',
+            self::ALERT  => 'ALERT',
+            self::CRIT   => 'CRIT',
+            self::ERR    => 'ERR',
+            self::WARN   => 'WARN',
+            self::NOTICE => 'NOTICE',
+            self::INFO   => 'INFO',
+            self::DEBUG  => 'DEBUG',
 
-        // Application audit
-        self::AUDIT     => 'AUDIT',
-    );
+            // Application audit
+            self::AUDIT  => 'AUDIT',
+        ];
 
     /**
      * Writers
@@ -94,12 +95,13 @@ class Logger
      *
      * @param array
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->writers = new SplPriorityQueue();
         if (!empty($options['writer'])) {
+            $i = 0;
             foreach ($options['writer'] as $writer => $opt) {
-                $this->addWriter($writer, $opt);
+                $this->addWriter($writer, $i++, $opt);
             }
         }
     }
@@ -150,7 +152,7 @@ class Logger
      */
     public function setDateTimeFormat($format)
     {
-        $this->dateTimeFormat = (string) $format;
+        $this->dateTimeFormat = (string)$format;
 
         return $this;
     }
@@ -158,8 +160,8 @@ class Logger
     /**
      * Get writer instance
      *
-     * @param string        $name
-     * @param array|null    $options
+     * @param string $name
+     * @param array|null $options
      * @return Writer
      */
     public function writerPlugin($name, array $options = null)
@@ -176,14 +178,16 @@ class Logger
      * Add a writer to a logger
      *
      * @param string|Writer $writer
-     * @param int           $priority
-     * @param array         $options
+     * @param int $priority
+     * @param array $options
      *
      * @throws \InvalidArgumentException
      * @return self
      */
-    public function addWriter($writer, $priority = 1,
-        array $options = array())
+    public function addWriter(
+        $writer,
+        $priority = 1,
+        array $options = [])
     {
         if (is_string($writer)) {
             $writer = $this->writerPlugin($writer, $options);
@@ -193,9 +197,6 @@ class Logger
                 is_object($writer) ? get_class($writer) : gettype($writer)
             ));
         }
-        $priority = is_int($options)
-            ? $options
-            : (isset($options['priority']) ? $options['priority'] : 1);
         $this->writers->insert($writer, $priority);
 
         return $this;
@@ -240,16 +241,20 @@ class Logger
     /**
      * Add a message as a log entry
      *
-     * @param  int                   $priority
-     * @param  mixed                 $message
+     * @param  int $priority
+     * @param  mixed $message
      * @param  array|Traversable|int $extra
      *
      * @throws \RuntimeException
      * @throws \InvalidArgumentException if extra can't be iterated over
      * @return self
      */
-    public function log($priority, $message, $extra = array())
+    public function log($priority, $message, $extra = [])
     {
+        if ($this->writers->count() === 0) {
+            return $this;
+        }
+
         if (!is_int($priority) || !isset($this->priorities[$priority])) {
             throw new \InvalidArgumentException('Invalid priority');
         }
@@ -260,8 +265,8 @@ class Logger
         }
 
         if (is_int($extra)) {
-            $time = $extra;
-            $extra = array();
+            $time  = $extra;
+            $extra = [];
         } elseif (isset($extra['time'])) {
             $time = $extra['time'];
             unset($extra['time']);
@@ -277,10 +282,6 @@ class Logger
             $extra = ArrayUtils::iteratorToArray($extra);
         }
 
-        if ($this->writers->count() === 0) {
-            throw new \RuntimeException('No log writer specified');
-        }
-
         if ($this->dateTimeFormat) {
             $time = time($time, $this->dateTimeFormat);
         }
@@ -290,13 +291,13 @@ class Logger
         }
 
         foreach ($this->writers->toArray() as $writer) {
-            $writer->write(array(
+            $writer->write([
                 'timestamp'    => $time,
-                'priority'     => (int) $priority,
+                'priority'     => (int)$priority,
                 'priorityName' => $this->priorities[$priority],
-                'message'      => (string) $message,
-                'extra'        => $extra
-            ));
+                'message'      => (string)$message,
+                'extra'        => $extra,
+            ]);
         }
 
         return $this;
@@ -309,7 +310,7 @@ class Logger
      * @param array|Traversable $extra
      * @return self
      */
-    public function emerg($message, $extra = array())
+    public function emerg($message, $extra = [])
     {
         return $this->log(static::EMERG, $message, $extra);
     }
@@ -321,7 +322,7 @@ class Logger
      * @param array|Traversable $extra
      * @return self
      */
-    public function alert($message, $extra = array())
+    public function alert($message, $extra = [])
     {
         return $this->log(static::ALERT, $message, $extra);
     }
@@ -333,7 +334,7 @@ class Logger
      * @param array|Traversable $extra
      * @return self
      */
-    public function crit($message, $extra = array())
+    public function crit($message, $extra = [])
     {
         return $this->log(static::CRIT, $message, $extra);
     }
@@ -345,7 +346,7 @@ class Logger
      * @param array|Traversable $extra
      * @return self
      */
-    public function err($message, $extra = array())
+    public function err($message, $extra = [])
     {
         return $this->log(static::ERR, $message, $extra);
     }
@@ -357,7 +358,7 @@ class Logger
      * @param array|Traversable $extra
      * @return self
      */
-    public function warn($message, $extra = array())
+    public function warn($message, $extra = [])
     {
         return $this->log(static::WARN, $message, $extra);
     }
@@ -369,7 +370,7 @@ class Logger
      * @param array|Traversable $extra
      * @return self
      */
-    public function notice($message, $extra = array())
+    public function notice($message, $extra = [])
     {
         return $this->log(static::NOTICE, $message, $extra);
     }
@@ -381,7 +382,7 @@ class Logger
      * @param array|Traversable $extra
      * @return self
      */
-    public function info($message, $extra = array())
+    public function info($message, $extra = [])
     {
         return $this->log(static::INFO, $message, $extra);
     }
@@ -393,7 +394,7 @@ class Logger
      * @param array|Traversable $extra
      * @return self
      */
-    public function debug($message, $extra = array())
+    public function debug($message, $extra = [])
     {
         return $this->log(static::DEBUG, $message, $extra);
     }
@@ -405,7 +406,7 @@ class Logger
      * @param array|Traversable $extra
      * @return self
      */
-    public function audit($message, $extra = array())
+    public function audit($message, $extra = [])
     {
         return $this->log(static::AUDIT, $message, $extra);
     }

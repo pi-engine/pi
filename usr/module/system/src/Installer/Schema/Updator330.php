@@ -1,13 +1,13 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-namespace   Module\System\Installer\Schema;
+namespace Module\System\Installer\Schema;
 
 use Pi;
 use Pi\Application\Installer\Schema\AbstractUpdator;
@@ -30,7 +30,7 @@ class Updator330 extends AbstractUpdator
     {
         if (version_compare($version, '3.2.5', '<')) {
             $updator = new Updator325($this->handler);
-            $result = $updator->upgrade($version);
+            $result  = $updator->upgrade($version);
             if (false === $result) {
                 return $result;
             }
@@ -52,12 +52,13 @@ class Updator330 extends AbstractUpdator
         $status = true;
         if (version_compare($version, '3.3.0', '<')) {
 
-            $table = Pi::db()->prefix('block');
-            $sql =<<<'EOT'
+            $table  = Pi::db()->prefix('block');
+            $sql
+                    = <<<'EOT'
 ALTER TABLE %s
 ADD `body_fullsize` tinyint(1) unsigned NOT NULL default '0' AFTER `title_hidden`;
 EOT;
-            $sql = sprintf($sql, $table);
+            $sql    = sprintf($sql, $table);
             $status = $this->queryTable($sql);
 
             if (false === $status) {

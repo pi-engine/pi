@@ -1,16 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Form
  */
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\View\Helper\AbstractHelper;
+//use Zend\Form\View\Helper\AbstractHelper;
 use Zend\Form\ElementInterface;
 
 /**
@@ -23,7 +23,7 @@ class FormDescription extends AbstractHelper
     /**
      * @var array Default attributes for the open format tag
      */
-    protected $attributes = array();
+    protected $attributes = [];
 
     /**
      * Generate an opening text tag
@@ -54,34 +54,13 @@ class FormDescription extends AbstractHelper
     }
 
     /**
-     * Generate a form element description
-     *
-     * @param  ElementInterface $element
-     * @param  array $attributes
-     * @return string|self
-     */
-    public function __invoke(
-        ElementInterface $element = null,
-        array $attributes = array()
-    ) {
-        if (!$element) {
-            return $this;
-        }
-
-        return $this->render($element, $attributes);
-    }
-
-    /**
-     * Utility form helper that renders a description
-     *
-     * @param  ElementInterface $element
-     * @param  array $attributes
-     * @return string
+     * {@inheritDoc}
      */
     public function render(
         ElementInterface $element,
-        array $attributes = array()
-     ) {
+        $attributes = []
+    )
+    {
         $message = $element->getAttribute('description');
         if (!$message) {
             return '';

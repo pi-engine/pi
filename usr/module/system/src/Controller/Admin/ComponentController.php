@@ -1,16 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Admin;
 
-use Pi;
 use Module\System\Controller\ComponentController as BasicController;
+use Pi;
 
 /**
  * Component controller placeholder
@@ -36,30 +36,30 @@ class ComponentController extends BasicController
                 $page = $config;
                 break;
             }
-            $this->redirect($page['route'], array(
-                'module' => $page['module'],
-                'controller'    => $page['controller'],
-                'name'          => $module,
-            ));
+            $this->redirect($page['route'], [
+                'module'     => $page['module'],
+                'controller' => $page['controller'],
+                'name'       => $module,
+            ]);
         }
 
         // Display module dashboard
         $directory = Pi::service('module')->directory($module);
-        $callback = sprintf(
+        $callback  = sprintf(
             'Module\\%s\Dashboard::summary',
             ucfirst($directory)
         );
-        $summary = '';
+        $summary   = '';
         if (is_callable($callback)) {
             $summary = call_user_func($callback, $module);
         }
 
-        $modules = Pi::registry('modulelist')->read();
-        $data = $modules[$module];
-        $meta = Pi::service('module')->loadMeta($directory, 'meta');
-        $author = Pi::service('module')->loadMeta($directory, 'author');
+        $modules             = Pi::registry('modulelist')->read();
+        $data                = $modules[$module];
+        $meta                = Pi::service('module')->loadMeta($directory, 'meta');
+        $author              = Pi::service('module')->loadMeta($directory, 'author');
         $data['description'] = $meta['description'];
-        $data['author'] = $author;
+        $data['author']      = $author;
         /*
         if (empty($meta['logo'])) {
             $data['logo'] = Pi::url('static/image/module.png');

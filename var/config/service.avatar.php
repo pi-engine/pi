@@ -1,69 +1,69 @@
 <?php
 // User avatar service configuration
 
-return array(
+return [
     // Gravatar.com
-    'adapter'       => 'gravatar',
+    'adapter'  => 'gravatar',
     // System local avatars
-    'adapter'       => 'local',
+    'adapter'  => 'local',
     // System select avatars
-    'adapter'       => 'select',
+    'adapter'  => 'select',
     // User uploaded avatars
     //'adapter'       => 'upload',
     // Auto detected
-    'adapter'       => array('upload', 'select', 'gravatar'),
+    'adapter'  => ['upload', 'select', 'gravatar', 'local'],
 
     // Options for named size
-    'size_map'  => array(
-        'mini'      => 16,
-        'xmall'     => 24,
-        'small'     => 28,
-        'medium'    => 46,
-        'normal'    => 80,
-        'large'     => 96,
-        'xlarge'    => 120,
-        'xxlarge'   => 214,
-        'origin'    => 300,
-    ),
+    'size_map' => [
+        'mini'    => 16,
+        'xmall'   => 24,
+        'small'   => 28,
+        'medium'  => 46,
+        'normal'  => 80,
+        'large'   => 96,
+        'xlarge'  => 120,
+        'xxlarge' => 214,
+        'origin'  => 300,
+    ],
 
-    'local' => array(
+    'local'    => [
         // Options for available size
-        'size_list'  => array(
+        'size_list' => [
             'mini',
             'small',
             'medium',
             'normal',
             'xlarge',
-        ),
-    ),
+        ],
+    ],
 
     // Options for gravatar
-    'gravatar'  => array(
-        //'default'   => 'http://pialog.org/static/avatar/normal.png',
+    'gravatar' => [
+        //'default'   => 'http://piengine.org/static/avatar/normal.png',
         'extension' => 'png',
         'rate'      => 'g',
-        //'secure'    => true,
+        'secure'    => true,
 
         // Options for available size
-        'size_list'  => array(
+        'size_list' => [
             'mini',
             'small',
             'medium',
             'normal',
             'xlarge',
             //'origin',
-        ),
-    ),
+        ],
+    ],
 
     // Options for selective avatars
-    'select'    => array(
+    'select'   => [
         // Path to avatar root
         //'root_path' => Pi::path('static/avatar/select'),
         // URL to avatar root
         //'root_url'  => Pi::url('static/avatar/select', true),
         'extension' => 'png',
         // Callback for path with parameters: source file name, size
-        'path'      => function($data) {
+        'path'      => function ($data) {
             $path = sprintf(
                 '%s/%s' . '.png',
                 $data['source'],
@@ -74,30 +74,30 @@ return array(
         },
 
         // Options for available size
-        'size_list'     => array(
+        'size_list' => [
             'mini',
             'normal',
             'xlarge',
             'xxlarge',
             //'origin',
-        ),
-    ),
+        ],
+    ],
 
     // Options for upload avatars
-    'upload'    => array(
+    'upload'   => [
         // Allowed image extensions
-        'extension' => array('jpg', 'gif', 'png', 'bmp'),
+        'extension'   => ['jpg', 'gif', 'png', 'bmp'],
         // Path to avatar root
-        'root_path' => Pi::path('upload/avatar'),
+        'root_path'   => Pi::path('upload/avatar'),
         // URL to avatar root
-        'root_url'  => Pi::url('upload/avatar', true),
+        'root_url'    => Pi::url('upload/avatar', true),
         // Callback for path with parameters: uid, source file name, size
         // File number limit in a folder as 10000 (defined by `$fileLimit`)
-        'path'  => function($data) {
+        'path'        => function ($data) {
             $fileLimit = 10000;
-            $uid = $data['uid'];
-            $sn = str_pad(round($uid / $fileLimit) + 1, 4, '0', STR_PAD_LEFT);
-            $path = sprintf(
+            $uid       = $data['uid'];
+            $sn        = str_pad(round($uid / $fileLimit) + 1, 4, '0', STR_PAD_LEFT);
+            $path      = sprintf(
                 '%s/%s/%s',
                 $sn,
                 $data['size'],
@@ -107,32 +107,32 @@ return array(
             return $path;
         },
         // Callback to generate source file name using uid, source, extension
-        'source_hash'   => function ($data) {
+        'source_hash' => function ($data) {
             // Return $data['source'] will skip hash
-            $result = md5($data['uid']) .  '.' . $data['extension'];
+            $result = md5($data['uid']) . '.' . $data['extension'];
             return $result;
         },
 
         // Options for available size
-        'size_list'  => array(
+        'size_list'   => [
             'mini',
             'small',
             'medium',
             'normal',
             'xlarge',
             'origin',
-        ),
-    ),
+        ],
+    ],
 
     // Options for QQ avatar
     // Not implemented yet, placeholder
-    'qq'    => array(
+    'qq'       => [
         'api'       => '',
-        'size_list'  => array(
+        'size_list' => [
             'small',
             'normal',
             'large',
-        ),
-    ),
+        ],
+    ],
 
-);
+];

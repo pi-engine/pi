@@ -1,18 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Installer\Action;
 
 use Pi;
-use Pi\Application\Installer\Module;
-use Zend\EventManager\EventManager;
 use Zend\EventManager\Event;
+use Zend\EventManager\EventManager;
 
 /**
  * Module installer action abstract class
@@ -97,13 +96,23 @@ abstract class AbstractAction
      */
     public function setEvent(Event $event)
     {
-        $this->event        = $event;
-        $this->config       = $event->getParam('config');
-        $this->module       = $event->getParam('module');
-        $this->directory    = $event->getParam('directory');
-        $this->title        = $event->getParam('title')
-                                ?: $this->config['meta']['title'];
+        $this->event     = $event;
+        $this->config    = $event->getParam('config');
+        $this->module    = $event->getParam('module');
+        $this->directory = $event->getParam('directory');
+        $this->title     = $event->getParam('title')
+            ?: $this->config['meta']['title'];
         return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 
     /**
@@ -118,19 +127,19 @@ abstract class AbstractAction
      *  );
      * </code>
      *
-     * @param string    $name   Operation name
-     * @param array     $data   Result or message of the operation
+     * @param string $name Operation name
+     * @param array $data Result or message of the operation
      * @return $this
      */
     public function setResult($name, $data)
     {
         if (!isset($data['message'])) {
-            $data['message'] = array();
+            $data['message'] = [];
         } else {
-            $data['message'] = (array) $data['message'];
+            $data['message'] = (array)$data['message'];
         }
 
-        $result = $this->event->getParam('result');
+        $result        = $this->event->getParam('result');
         $result[$name] = $data;
         $this->event->setParam('result', $result);
 
@@ -154,14 +163,14 @@ abstract class AbstractAction
      */
     public function checkDependent(Event $e)
     {
-        $count = Pi::model('module_dependency')->count(array(
-            'independent' => $e->getParam('module')
-        ));
+        $count = Pi::model('module_dependency')->count([
+            'independent' => $e->getParam('module'),
+        ]);
         if ($count > 0) {
-            $this->setResult('dependent', array(
-                'status'    => false,
-                'message'   => 'The module has dependants on it.'
-            ));
+            $this->setResult('dependent', [
+                'status'  => false,
+                'message' => 'The module has dependants on it.',
+            ]);
             return false;
         }
 
@@ -181,19 +190,19 @@ abstract class AbstractAction
             return true;
         }
         $independents = $config['dependency'];
-        $modules = Pi::registry('modulelist')->read();
-        $missing = array();
+        $modules      = Pi::registry('modulelist')->read();
+        $missing      = [];
         foreach ($independents as $independent) {
             if (!isset($modules[$independent])) {
                 $missing[] = $independent;
             }
         }
         if ($missing) {
-            $this->setResult('Independent', array(
-                'status'    => false,
-                'message'   => 'Modules required by this module: '
-                               . implode(', ', $missing)
-            ));
+            $this->setResult('Independent', [
+                'status'  => false,
+                'message' => 'Modules required by this module: '
+                    . implode(', ', $missing),
+            ]);
             return false;
         }
 
@@ -213,18 +222,18 @@ abstract class AbstractAction
             return true;
         }
         $module = $e->getParam('module');
-        $model = Pi::model('module_dependency');
+        $model  = Pi::model('module_dependency');
         foreach ($config['dependency'] as $independent) {
-            $row = $model->createRow(array(
-                'dependent'     => $module,
-                'independent'   => $independent
-            ));
+            $row = $model->createRow([
+                'dependent'   => $module,
+                'independent' => $independent,
+            ]);
             if (!$row->save()) {
-                $model->delete(array('dependent' => $module));
-                $this->setResult('dependency', array(
-                    'status'    => false,
-                    'message'   => 'Module dependency is not built.'
-                ));
+                $model->delete(['dependent' => $module]);
+                $this->setResult('dependency', [
+                    'status'  => false,
+                    'message' => 'Module dependency is not built.',
+                ]);
                 return false;
             }
         }
@@ -242,7 +251,7 @@ abstract class AbstractAction
     {
         //$config = $this->event->getParam('config');
         $model = Pi::model('module_dependency');
-        $ret = $model->delete(array('dependent' => $e->getParam('module')));
+        $ret   = $model->delete(['dependent' => $e->getParam('module')]);
         /*
         if ($ret < count($config['dependency'])) {
             $result = $e->getParam('result');

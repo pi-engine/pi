@@ -1,47 +1,70 @@
 <?php
+// Set doctype explicitly if it is not `HTML4_LOOSE`, i.e. 'HTML 4.01 Transitional'
+// $this->doctype('HTML4_LOOSE');
+
+// Load translation data
 $this->i18nTheme('default');
 
-// IE conditional
-$this->js(array(
-    pi::url('static/js/html5shiv.js') => array(
-        'conditional' => 'lt IE 9'
-    ),
-    pi::url('static/js/respond.min.js') => array(
-        'conditional' => 'lt IE 9'
-    ),
-));
+//HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+$this->js([
+    pi::url('static/js/html5shiv.js')   => [
+        'conditional' => 'lt IE 9',
+    ],
+    pi::url('static/js/respond.min.js') => [
+        'conditional' => 'lt IE 9',
+    ],
+]);
 
+// Load jQuery
 $this->jquery();
 
-$this->bootstrap(array(
+// Load Bootstrap css/js and font-awesome
+$this->bootstrap([
     'js/bootstrap.min.js',
-    'font-awesome/css/font-awesome.min.css'
-));
+    'font-awesome/css/all.min.css',
+]);
+
+// Load front.css
 $this->css($this->assetTheme('css/front.css'));
-$this->headLink(array(
-    'rel'   => 'apple-touch-icon',
-    'href'  => $this->assetTheme('image/touch-icon-iphone.png')
-));
-$this->headLink(array(
+
+// Load localization css
+$this->css($this->assetLocale('locale.css'));
+
+// Apple icons
+// Apple icon for iphone
+$this->headLink([
+    'rel'  => 'apple-touch-icon',
+    'href' => $this->assetTheme('image/touch-icon-iphone.png'),
+]);
+// Apple icon for ipad
+$this->headLink([
     'rel'   => 'apple-touch-icon',
     'sizes' => '72x72',
-    'href'  => $this->assetTheme('image/touch-icon-ipad.png')
-));
-$this->headLink(array(
+    'href'  => $this->assetTheme('image/touch-icon-ipad.png'),
+]);
+// Apple icon for iphone retina
+$this->headLink([
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
-    'href'  => $this->assetTheme('image/touch-icon-iphone-retina.png')
-));
-$this->headLink(array(
+    'href'  => $this->assetTheme('image/touch-icon-iphone-retina.png'),
+]);
+// Apple icon for ipad retina
+$this->headLink([
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
-    'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png')
-));
+    'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png'),
+]);
+
+// Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
-$this->headLink(array(
-    'rel'   => 'shortcut icon',
-    'href'  => $this->favicon(),
-));
+
+// Explicitly load favicon
+$this->headLink([
+    'rel'  => 'shortcut icon',
+    'href' => $this->favicon(),
+]);
+
+// Load google analytics code
 $this->ga();
 
 $module = Pi::service('module')->current();
@@ -50,7 +73,8 @@ $module = Pi::service('module')->current();
 <html lang="<?php echo $locale; ?>">
 <head>
     <meta charset="<?php echo $charset; ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
 <!-- Header: brand, slogan, user bar -->
@@ -70,7 +94,7 @@ $module = Pi::service('module')->current();
             <?php echo _escape($sitename); ?>
         </a>
         <?php
-        echo $this->widget('system-user-bar', array('type' => 'js'));
+        echo $this->widget('system-user-bar', ['type' => 'js']);
         ?>
     </div>
 </div>
@@ -78,7 +102,7 @@ $module = Pi::service('module')->current();
     <div class="container">
         <div class="navbar-header">
             <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <i class="fa fa-bars"></i>
+                <i class="fas fa-bars"></i>
             </button>
         </div>
         <div class="navbar-collapse collapse">
@@ -94,12 +118,12 @@ $module = Pi::service('module')->current();
 </div>
 <!-- Page main content: breadcrumb, flash-messenger, blocks and module content -->
 <?php
-$blocks         = $this->blocks();
-$blockTemplate  = $this->template('block');
+$blocks        = $this->blocks();
+$blockTemplate = $this->template('block');
 ?>
 <div class="container pi-main-container">
     <?php
-    $breadcrumbs = $this->breadcrumb(array('prefix' => array(array('label' => __('Home')))));
+    $breadcrumbs = $this->breadcrumb(['prefix' => [['label' => __('Home')]]]);
     if ($breadcrumbs) {
         echo $breadcrumbs;
     }
@@ -165,10 +189,12 @@ $blockTemplate  = $this->template('block');
 
             <!-- Module content starts -->
             <?php if (!empty($content)) { ?>
-                <div class="pi-module-content" ng-app="<?php echo $module; ?>">
-                    <?php echo $content; ?>
+                <div class="<?php echo $module; ?>">
+                    <div class="pi-module-content" data-ng-app="<?php echo $module; ?>">
+                        <?php echo $content; ?>
+                    </div>
+                    <?php echo Pi::service('comment')->load(['options' => ['type' => 'js']]); ?>
                 </div>
-                <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
             <?php } ?>
             <!-- Module content ends -->
 
@@ -231,41 +257,42 @@ $blockTemplate  = $this->template('block');
         if ($footer) {
             echo $footer;
         } else {
-        ?>
+            ?>
 
-        <ul class="pi-footer-links muted">
-            <li>
-                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                    &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
-                </a>
-            </li>
-            <li>·</li>
-            <li>
-                <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                    Powered by Pi Engine
-                </a>
-            </li>
-            <li>·</li>
+            <ul class="pi-footer-links muted">
+                <li>
+                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                        &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
+                    </a>
+                </li>
+                <li>·</li>
+                <li>
+                    <a href="http://www.piengine.org" title="Pi Engine" target="_blank">
+                        Powered by Pi Engine
+                    </a>
+                </li>
+                <li>·</li>
 
-            <li>
-                <?php echo $this->page('about-us', __('About us'), array('target' => '_blank')); ?>
-            </li>
-            <li>·</li>
-            <li>
-                <?php echo $this->page('contact-us', __('Contact us'), array('target' => '_blank')); ?>
-            </li>
-            <li>·</li>
-            <li>
-                <?php echo $this->page('sitemap', __('Sitemap'), array('target' => '_blank', 'title' => __('Direct links to site elements'))); ?>
-            </li>
-            <li>·</li>
-            <li>
-                <?php echo $this->page('help', __('Get help')); ?>
-            </li>
-            <li>·</li>
+                <li>
+                    <?php echo $this->page('about-us', __('About us'), ['target' => '_blank']); ?>
+                </li>
+                <li>·</li>
+                <li>
+                    <?php echo $this->page('contact-us', __('Contact us'), ['target' => '_blank']); ?>
+                </li>
+                <li>·</li>
+                <li>
+                    <?php echo $this->page('sitemap', __('Sitemap'), ['target' => '_blank', 'title' => __('Direct links to site elements')]); ?>
+                </li>
+                <li>·</li>
+                <li>
+                    <?php echo $this->page('help', __('Get help')); ?>
+                </li>
+                <li>·</li>
 
-            <i class="fa fa-sm fa-spinner fa-spin" title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"></i>
-        </ul>
+                <i class="fas fa-sm fa-spinner fa-spin"
+                   title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"></i>
+            </ul>
         <?php } ?>
     </div>
 </div>

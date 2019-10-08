@@ -1,17 +1,17 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Session;
 
 use Pi\Session\SaveHandler\UserAwarenessInterface;
-use Zend\Session\SessionManager as ZendSessionManager;
 use Zend\Session\Container;
+use Zend\Session\SessionManager as ZendSessionManager;
 
 /**
  * Session manager
@@ -31,19 +31,35 @@ class SessionManager extends ZendSessionManager implements
      *      any stored values.
      * @var array
      */
-    protected $defaultDestroyOptions = array(
-        'send_expire_cookie' => true,
-        'clear_storage'      => true,
-    );
+    protected $defaultDestroyOptions
+        = [
+            'send_expire_cookie' => true,
+            'clear_storage'      => true,
+        ];
 
     /** @var array Session containers */
-    protected $containers = array();
-
-    /** @var array Validator */
-    protected $validators = array();
+    protected $containers = [];
 
     /** @var bool Session is valid */
     protected $isValid;
+
+    /**
+     * {@inheritDoc}
+     * Start with specified session ID
+     * @param string $sessionId
+     */
+    public function start($preserveStorage = false, $sessionId = '')
+    {
+        if ($this->sessionExists()) {
+            return;
+        }
+
+        if ($sessionId) {
+            session_id($sessionId);
+        }
+
+        parent::start($preserveStorage);
+    }
 
     /**
      * Is this session valid?
@@ -62,24 +78,13 @@ class SessionManager extends ZendSessionManager implements
     }
 
     /**
-     * Write session to save handler and close
-     *
-     * Once done, the Storage object will be marked as isImmutable.
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function writeClose()
     {
         // Skip storage writing if validation is failed
         if (!$this->isValid()) {
-            //$this->destroy();
             return;
-        }
-
-        // Set metadata for validators
-        $storage = $this->getStorage();
-        if (!$storage->isImmutable() && $this->validators) {
-            $storage->setMetaData('_VALID', $this->validators);
         }
 
         parent::writeClose();
@@ -91,9 +96,13 @@ class SessionManager extends ZendSessionManager implements
      * @param array $validators
      * @return self
      */
-    public function setValidators($validators = array())
+    public function setValidators($validators = [])
     {
-        $this->validators = $validators;
+        $chain = $this->getValidatorChain();
+        foreach ($validators as $validator) {
+            $validator = new $validator();
+            $chain->attach('session.validate', [$validator, 'isValid']);
+        }
 
         return $this;
     }
@@ -152,7 +161,7 @@ class SessionManager extends ZendSessionManager implements
      */
     public function killUser($uid)
     {
-        $result = null;
+        $result      = null;
         $saveHandler = $this->getSaveHandler();
         if ($saveHandler instanceof UserAwarenessInterface) {
             $result = $saveHandler->killUser($uid);

@@ -1,0 +1,19 @@
+[comment]Pi account register notification to admin[/comment]
+
+[format]html[/format]
+
+[subject]ثبت نام کاربر جدید در وب سایت %site_name%[/subject]
+
+[body]
+<div style="direction: rtl;">
+<p style="margin-bottom: 5px">مدیر عزیز وب سایت <strong>%site_name%</strong></p>
+
+<p style="margin-top: 5px">یک حساب کاربری جدید با آدرس ایمیل <strong>%email%</strong> و نام کاربری <strong>%identity%</strong> و نام نمایشی <strong>%name%</strong> در وب سایت ثبت شده است</p>
+<p style="margin-top: 5px">این حساب کاربری به صورت خودکار فعال شده است</p>
+
+<p style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+</p>
+    <div>%site_mail_footer%</div>
+</div>
+[/body]

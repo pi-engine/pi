@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -23,7 +23,7 @@ class AbstractResource
     protected $event;
 
     /** @var array Meta config data */
-    protected $config;
+    protected $config = [];
 
     /**
      * Constructor
@@ -32,7 +32,7 @@ class AbstractResource
      */
     public function __construct($config)
     {
-        $this->config = $config;
+        $this->config = (array)$config;
     }
 
     /**
@@ -51,7 +51,7 @@ class AbstractResource
     /**
      * Determine whether to skip upgrade for current resource
      *
-     * Performe upgrade in anyway if system is in development mode;
+     * Perform upgrade in anyway if system is in development mode;
      * Skip upgrade if module version is already greater than configuration
      *
      * @return bool
@@ -70,7 +70,7 @@ class AbstractResource
      */
     protected function versionCompare($operator = '>=')
     {
-        $config = $this->event->getParam('config');
+        $config        = $this->event->getParam('config');
         $configVersion = $config['meta']['version'];
         $moduleVersion = $this->event->getParam('version');
         if (version_compare($moduleVersion, $configVersion, $operator)) {
@@ -164,7 +164,7 @@ class AbstractResource
     protected function getModule()
     {
         $module = $this->event ? $this->event->getParam('module') : '';
-        
+
         return $module;
     }
 }

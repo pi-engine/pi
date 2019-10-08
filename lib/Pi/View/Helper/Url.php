@@ -1,19 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
 namespace Pi\View\Helper;
 
 use Pi;
-//use Zend\View\Helper\AbstractHelper;
+use Pi\Mvc\Router\RouteMatch;
 use Zend\Mvc\Router\RouteStackInterface;
-use Pi\Mvc\Router\RouteMatch as RouteMatchHandler;
 use Zend\View\Helper\Url as ZendUrl;
 
 /**
@@ -47,7 +46,7 @@ class Url extends ZendUrl
     /**
      * RouteInterface match returned by the router.
      *
-     * @var RouteMatchHandler.
+     * @var RouteMatch.
      */
     protected $routeMatch;
 
@@ -58,10 +57,11 @@ class Url extends ZendUrl
      */
     public function __invoke(
         $name = null,
-        $params = array(),
-        $options = array(),
+        $params = [],
+        $options = [],
         $reuseMatchedParams = false
-    ) {
+    )
+    {
         if (!func_num_args()) {
             return $this;
         }
@@ -91,7 +91,7 @@ class Url extends ZendUrl
     /**
      * Get route match returned by the router.
      *
-     * @return RouteMatchHandler
+     * @return RouteMatch
      */
     public function routeMatch()
     {

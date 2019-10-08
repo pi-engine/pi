@@ -1,70 +1,73 @@
 <?php
-    $this->css($this->assetModule('admin/admin.css'));
-    $this->jQuery();
-    $this->js($this->assetModule('script/system-msg.js', 'system'));
+$this->css($this->assetModule('admin/admin.css'));
+$this->jQuery();
+$this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
 <h2 class="page-header"><?php echo _escape($title); ?></h2>
 <div id="asset-list">
-    <table class="table table-hover table-condensed">
+    <table class="table table-hover table-sm">
         <thead>
-            <tr>
-                <th style="width: 250px;"><?php echo _a('Title'); ?></th>
-                <th><?php echo _a('Action'); ?></th>
-            </tr>
-        </thead>        
+        <tr>
+            <th style="width: 250px;"><?php echo _a('Title'); ?></th>
+            <th><?php echo _a('Action'); ?></th>
+        </tr>
+        </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td>
-                    <span class="btn btn-sm btn-primary" data-link="<?php echo $this->url('', array('action' => 'refresh')); ?>"><?php echo _a('Re-publish all'); ?></span>
-                </td>    
-            </tr>
-            <tr>
-                <td colspan="2"><?php echo _a('Modules'); ?></td>
-            </tr>   
-            <?php foreach ($modules as $name => $label) { ?>
+        <tr>
+            <td></td>
+            <td>
+                <span class="btn btn-sm btn-primary"
+                      data-link="<?php echo $this->url('', ['action' => 'refresh']); ?>"><?php echo _a('Re-publish all'); ?></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><?php echo _a('Modules'); ?></td>
+        </tr>
+        <?php foreach ($modules as $name => $label) { ?>
             <tr>
                 <td class="gutter-large">
                     <span class="gutter-large"><?php echo _escape($label); ?></span>
-                </td>    
+                </td>
                 <td>
-                    <span class="btn btn-sm btn-default" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'module', 'name' => $name)); ?>"><?php echo _a('Publish'); ?></span>
+                    <span class="btn btn-sm btn-secondary"
+                          data-link="<?php echo $this->url('', ['action' => 'publish', 'type' => 'module', 'name' => $name]); ?>"><?php echo _a('Publish'); ?></span>
                 </td>
             </tr>
-            <?php } ?>
-            <tr>
-                <td colspan="2"><?php echo _a('Themes'); ?></td>
-            </tr>    
-            <?php foreach ($themes as $name => $label) { ?>
+        <?php } ?>
+        <tr>
+            <td colspan="2"><?php echo _a('Themes'); ?></td>
+        </tr>
+        <?php foreach ($themes as $name => $label) { ?>
             <tr>
                 <td>
                     <span class="gutter-large"><?php echo _escape($label); ?></span>
-                </td>    
+                </td>
                 <td>
-                    <span class="btn btn-sm btn-default" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'theme', 'name' => $name)); ?>"><?php echo _a('Publish'); ?></span>
+                    <span class="btn btn-sm btn-secondary"
+                          data-link="<?php echo $this->url('', ['action' => 'publish', 'type' => 'theme', 'name' => $name]); ?>"><?php echo _a('Publish'); ?></span>
                 </td>
             </tr>
-            <?php } ?>  
-        </tbody>     
+        <?php } ?>
+        </tbody>
     </table>
 </div>
 <script>
-(function($) {
-    $("#asset-list").on("click", ".btn", function() {
-       systemMessage.wait("<?php echo _a('Asset publish in process'); ?>");
-       $.getJSON($(this).attr("data-link")).done(function(result) {
-          if (result.status == 1) {
-             systemMessage.succ(result.message);
-          } else {
-             systemMessage.fail(result.message);
-          }
-       });
-    });
-    var btn = $('.btn-primary');
+    (function ($) {
+        $("#asset-list").on("click", ".btn", function () {
+            systemMessage.wait("<?php echo _a('Asset publish in process'); ?>");
+            $.getJSON($(this).attr("data-link")).done(function (result) {
+                if (result.status == 1) {
+                    systemMessage.succ(result.message);
+                } else {
+                    systemMessage.fail(result.message);
+                }
+            });
+        });
+        var btn = $('.btn-primary');
 
-    /*setInterval(function() {
-        btn.trigger('click');
-    }, 2500);*/
+        /*setInterval(function() {
+         btn.trigger('click');
+         }, 2500);*/
 
-})(jQuery)
+    })(jQuery)
 </script>

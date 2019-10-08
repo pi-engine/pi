@@ -1,79 +1,54 @@
 <?php
-$this->jQuery('ui/jquery-ui.custom.min.js');
-$this->jQuery('extension/fileupload-min.js');
+$this->css($this->assetModule('admin/admin.css'));
+$this->jQuery('ui/jquery-ui.min.js');
 $this->Backbone();
-$imageRoot = Pi::url('upload') . '/' . $module . '/';
-/**
- * $content: model collection of 'caption', 'desc', 'image', 'link', 'detail'
- */
- include $this->templateComponent('form');
+
+echo $this->form($form);
 ?>
 
-<style>
-    button.remove-block {
-        font-size: 30px;
-        position: absolute;
-        right: 8px;
-        top: -15px;
-    }
-    .widget-upload-image {
-        margin-top: 10px;
-    }
-</style>
-<div class="form-group" id="widget-js-list">
-    <label class="col-md-2 control-label"><?php echo _a('Images'); ?></label>
-    <div class="col-md-10">
+<div class="form-group" id="widget-items">
+    <div class="card mb-5 bg-light">
+        <label class="p-3 col-form-label"><?php echo _a('Items'); ?></label>
+    </div>
+    <div class="col-md-12">
         <div class="row">
-            <div class="btn btn-default col-sm-1 widget-block-add" style="margin-left: 15px">
-                <?php echo __('Add'); ?>
+            <div class="col-sm-6 col-md-3 widget-item-add">
+                <div class="thumbnail widget-item-add-mark" title="<?php echo _a('Click to add new item.'); ?>">
+                    <i class="fas fa-plus fa-3x text-muted"></i>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<script id="upload-template" type="text/template">
-    <div class="widget-upload-btn">
-        <div class="thumbnail text-center upload-list-add">
-         <i class="fa fa-plus fa-3x text-muted fileinput-button">
-            <input type="file" name="image" multiple style="width: 100%;" class="hide">
-        </i>
-       </div>
-    </div>
-</script>
-
-<script id="image-template" type="text/template">
-    <button type="button" class="close remove-image">&times;</button>
-    <img src="<%= image %>">
-</script>
-
-<script id="list-template" type="text/template">
-<div class="col-sm-6 col-md-3 widget-block">
-    <button type="button" class="remove-block close">&times;</button>
-    <div class="thumbnail">
-        <div class="widget-upload-image">
-            <%= image %>
+<script id="widget-item-template" type="text/template">
+    <div class="widget-item">
+        <div class="card bg-light p-2">
+            <button type="button" class="close" title="<?php echo _a('Click to remove'); ?>">&times;</button>
+            <p>
+                <label><?php echo _a('Caption'); ?></label>
+                <input type="text" value="<%= caption %>" name="<%= prefix %>caption" class="form-control">
+            </p>
+            <p>
+                <label><?php echo _a('Icon'); ?></label>
+                <input type="text" value="<%= icon %>" name="<%= prefix %>icon" class="form-control">
+            </p>
+            <p>
+                <label><?php echo _a('Link'); ?></label>
+                <input type="text" value="<%= link %>" name="<%= prefix %>link" class="form-control">
+            </p>
+            <p>
+                <label><?php echo _a('Summary'); ?></label>
+                <textarea name="<%= prefix %>summary" class="form-control" rows="5"><%= summary %></textarea>
+            </p>
         </div>
-        <p>
-            <label><?php echo _a('Caption'); ?></label>
-            <input type="text" value="<%= caption %>" name="caption" class="form-control">
-        <p>
-            <label><?php echo _a('Link'); ?></label>
-            <input type="text" value="<%= link %>" name="link" class="form-control">
-        <p>
-            <label><?php echo _a('Desc'); ?></label>
-            <textarea name="desc" class="form-control" rows="5"><%= desc %></textarea>
-        <p>
-            <label><?php echo _a('More detail'); ?></label>
-            <input type="text" value="<%= detail %>" name="detail" class="form-control">
     </div>
-</div>
 </script>
-<link rel="stylesheet" href="<?php echo $this->assetModule('admin/admin.css'); ?>">
+
 <script src="<?php echo $this->assetModule('admin/widget-list.js'); ?>"></script>
 <script>
-widgetListAction({
-    imageRoot: '<?php echo $imageRoot; ?>',
-    imgs: <?php echo $content ?: '[]'; ?>,
-    uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>'
-});
+    widgetAction({
+        prefix: "block-",
+        items: <?php echo $content ?: json_encode([]); ?>
+    });
 </script>

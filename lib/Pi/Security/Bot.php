@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Security;
@@ -22,12 +22,12 @@ class Bot extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public static function check($options = array())
+    public static function check($options = [])
     {
         if (!$options) {
             return null;
         }
-        $key = 'HTTP_USER_AGENT';
+        $key   = 'HTTP_USER_AGENT';
         $agent = '';
         if (isset($_SERVER[$key])) {
             $agent = $_SERVER[$key];
@@ -43,7 +43,7 @@ class Bot extends AbstractAdapter
         }
         // Check bad bots
         $pattern = implode('|', $options);
-        $status = preg_match('/' . $pattern . '/i', $agent) ? false : null;
+        $status  = preg_match('/' . $pattern . '/i', $agent) ? false : null;
 
         return $status;
     }

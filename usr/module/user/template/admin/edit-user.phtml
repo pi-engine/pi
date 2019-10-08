@@ -1,67 +1,70 @@
 <?php $this->jQuery(); ?>
-<legend>
-    <?php echo _a('Edit user: '); ?> <?php echo $user['name']; ?>
-</legend>
+<div class="page-header">
+    <h2>
+        <small><?php echo _a('Edit user: '); ?></small> <?php echo $user['name']; ?></h2>
+</div>
 <ul class="nav nav-tabs">
-    <?php foreach ($nav as $value) { ?>
-    <li class="<?php if($value['name']== $name) { echo 'active'; } ?>">
-    <a href="<?php echo $value['link']; ?>"><?php echo $value['title']; ?></a>
-    <?php } ?>
+    <?php foreach ($nav
+
+    as $value) { ?>
+    <li class="nav-item">
+        <a class="nav-link <?php if ($value['name'] == $name) { echo 'active';} ?>" href="<?php echo $value['link']; ?>"><?php echo $value['title']; ?></a>
+        <?php } ?>
 </ul>
 <?php
-    if (isset($result)) {
-        echo sprintf('<div class="alert %s">%s
+if (isset($result)) {
+    echo sprintf('<div class="alert %s">%s
             <button data-dismiss="alert" class="close" type="button">&times;</button></div>',
-            $result['status'] ? 'alert-success' : 'alert-error',
-            $result['message']);
-    }
+        $result['status'] ? 'alert-success' : 'alert-error',
+        $result['message']);
+}
 ?>
 <?php
-    if ($name == 'info') {
-        include $this->templateComponent('form');
-        return;
-    } 
+if ($name == 'info') {
+    echo $this->form($form);
+    return;
+}
 ?>
 <?php
-    if ($name == 'avatar') {
+if ($name == 'avatar') {
     echo sprintf('
-    <form method="post" action="">
+    <form method="post" action="#">
         <p>%s<p>
         <button class="btn btn-link">%s</button>
     </form>
     ',
-    $avatar,
-    _a('Replace with defalt avatar.'));
+        $avatar,
+        _a('Replace with default avatar.'));
     return;
-    }
+}
 ?>
 <?php
-     if (!$forms) {
-        echo sprintf('<div class="alert">%s</div>', _a('This user doesn\'t have any you can view'));
-        return;
-     }
- ?>
+if (!$forms) {
+    echo sprintf('<div class="alert">%s</div>', _a('This user doesn\'t have any you can view'));
+    return;
+}
+?>
 <?php foreach ($forms as $key => $form) { ?>
     <div class="pi-widget" style="width: 800px;">
         <div class="clearfix pi-widget-header">
             <button type="button" class="close js-user-compound-delete"
-                    data-url="<?php echo $this->url('', array(
-                    'controller' => 'edit', 
-                    'action'     => 'deleteCompound',
-                    'uid'        => $user['id'],
-                    'name'       => $name,
-                    'set'        => $key,
-                    )); ?>">
-            &times;
+                    data-url="<?php echo $this->url('', [
+                        'controller' => 'edit',
+                        'action'     => 'deleteCompound',
+                        'uid'        => $user['id'],
+                        'name'       => $name,
+                        'set'        => $key,
+                    ]); ?>">
+                &times;
             </button>
         </div>
-        <div class="pi-widget-body" style="padding-left: 0;">   
-            <?php include $this->templateComponent('form'); ?>
+        <div class="pi-widget-body" style="padding-left: 0;">
+            <?php echo $this->form($form); ?>
         </div>
     </div>
 <?php } ?>
 <script>
-    $('.js-user-compound-delete').click(function() {
+    $('.js-user-compound-delete').click(function () {
         if (!confirm('<?php echo _a('Are you sure delete this group?'); ?>')) return;
         location.href = $(this).attr('data-url');
     });

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -33,10 +33,11 @@ class NavMenu extends AbstractHtmlElement
      * UL class definitions
      * @var array
      */
-    protected $ulClass = array(
-        'vertical'      => 'nav nav-tabs nav-stacked',
-        'horizontal'    => 'nav nav-tabs',
-    );
+    protected $ulClass
+        = [
+            'vertical'   => 'nav nav-tabs nav-stacked',
+            'horizontal' => 'nav nav-tabs',
+        ];
 
     /**
      * Render a navigation menu
@@ -67,7 +68,7 @@ class NavMenu extends AbstractHtmlElement
      * );
      *  ```
      *
-     * @param array        $items
+     * @param array $items
      *      Navigation data, list of item data or list of assembled list
      * @param array|string $attribs
      *      UL attributes or type (vertical|horizontal)
@@ -75,9 +76,9 @@ class NavMenu extends AbstractHtmlElement
      * @internal param bool $escape To escape HTML tags
      * @return string
      */
-    public function __invoke(array $items, $attribs = array())
+    public function __invoke(array $items, $attribs = [])
     {
-        $list = '';
+        $list    = '';
         $escaper = $this->view->plugin('escapeHtml');
         foreach ($items as $item) {
             if (!is_array($item)) {
@@ -90,19 +91,19 @@ class NavMenu extends AbstractHtmlElement
                 }
                 $class = '';
                 if (isset($item['active'])) {
-                    $class = $item['active'] ? ' class="active"' : '';
+                    $class = $item['active'] ? ' active' : '';
                     unset($item['active']);
                 }
                 $attr = $this->htmlAttribs($item);
-                $list .= '<li' . $class . '><a' . $attr . '>'
-                       . $escaper($label) . '</a></li>' . PHP_EOL;
+                $list .= '<li class="nav-item"><a class="nav-link ' . $class . '" ' . $attr . '>'
+                    . $escaper($label) . '</a></li>' . PHP_EOL;
             }
         }
 
         if (is_string($attribs)) {
-            $attribs = array(
-                'type'  => $attribs,
-            );
+            $attribs = [
+                'type' => $attribs,
+            ];
         }
         if (empty($attribs['class'])) {
             $type = 'vertical';
@@ -118,7 +119,7 @@ class NavMenu extends AbstractHtmlElement
         }
 
         $attribs = $this->htmlAttribs($attribs);
-        $menu = '<ul ' . $attribs . '>' . PHP_EOL . $list . '</ul>' . PHP_EOL;
+        $menu    = '<ul ' . $attribs . '>' . PHP_EOL . $list . '</ul>' . PHP_EOL;
 
         return $menu;
     }

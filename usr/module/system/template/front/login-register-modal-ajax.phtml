@@ -1,0 +1,116 @@
+<script src="<?php echo $this->assetModule('front/jquery-ui.draggable.min.js', 'user') ?>"></script>
+<script src="<?php echo $this->assetModule('front/pwstrength-bootstrap.min.js', 'user') ?>"></script>
+<script src="<?php echo $this->assetModule('front/pwstrength-boostrap.init.js', 'user') ?>"></script>
+<script src="<?php echo $this->assetModule('front/validator.js', 'user') ?>"></script>
+
+<div class="modal fade loginFormWrapper" id="loginRegisterModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span class="modal-action-wrapper"
+                          data-action="login"><?php echo $titleLogin ?: __('Login') ?></span>
+                    <span class="modal-action-wrapper"
+                          data-action="register"><?php echo $titleRegister ?: __('Register') ?></span>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body user-template">
+                <div id="modal-login-wrapper" class="modal-action-wrapper row clearfix" data-action="login">
+                    <?php if (!empty($descriptionLogin)) { ?>
+                        <div class="d-none d-md-block col-md-6">
+                            <?php echo $descriptionLogin; ?>
+                        </div>
+                    <?php } ?>
+                    <div class="<?php echo $classLogin; ?>">
+                        <div class="user-action-bar-title"><?php _e('Login'); ?></div>
+                        <?php echo $this->form($loginForm, 'vertical'); ?>
+
+                        <button type="button" class="btn btn-sm btn-link find-password-link" title="<?php _e('Find password'); ?>"
+                           onclick="location.href='<?php echo Pi::service('user')->getUrl('password'); ?>'"><?php _e('Find password'); ?></button>
+
+                        <div class="clearfix user-action-bar">
+                            <div class="user-action-bar-title"><?php _e('Not already registered ?'); ?></div>
+                            <p>
+                                <button type="button" class="btn btn-secondary toggle-modal-action toggle-modal-action-register"
+                                   title="<?php _e('Register'); ?>">
+                                    <?php _e('Register'); ?>
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="modal-register-wrapper" class="modal-action-wrapper row clearfix" data-action="register">
+                    <?php if (!empty($descriptionRegister)) { ?>
+                        <div class="d-none d-md-block col-md-6">
+                            <?php echo $descriptionRegister; ?>
+                        </div>
+                    <?php } ?>
+                    <div class="<?php echo $classRegister; ?>">
+                        <div class="user-action-bar-title"><?php _e('Register'); ?></div>
+                        <?php echo $this->form($registerForm, 'vertical'); ?>
+
+                        <div class="clearfix user-action-bar">
+                            <div class="user-action-bar-title"><?php _e('Already registered ?'); ?></div>
+                            <p>
+                                <button type="button" class="btn btn-secondary toggle-modal-action toggle-modal-action-login"
+                                   title="<?php _e('Login'); ?>">
+                                    <?php _e('Login'); ?>
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#loginRegisterModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var action = button.data('action');
+        var anchor = button.data('redirect-anchor');
+
+        if (typeof action == 'undefined' || !action) {
+            action = 'login';
+        }
+
+        var modal = $(this);
+        modal.find('.modal-action-wrapper').hide();
+        modal.find('.modal-action-wrapper[data-action="' + action + '"]').show();
+
+        if (typeof anchor != 'undefined') {
+            modal.find('[name=redirect]').each(function () {
+                var redirectValue = $(this).val();
+
+                redirectValue = redirectValue + anchor;
+
+                $(this).val(redirectValue);
+            });
+        }
+
+        if (button.data('redirect')) {
+            modal.find('[name=redirect]').each(function () {
+                var redirectValue = $(this).val();
+
+                redirectValue = redirectValue + anchor;
+                $(this).val(button.data('redirect'));
+            });
+        }
+
+    });
+
+    $('.toggle-modal-action').click(function () {
+        $('#loginRegisterModal .modal-action-wrapper').toggle();
+        return false;
+    });
+
+    window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+            $("#loginRegisterModal").draggable({
+                handle: ".modal-header"
+            });
+        })(jQuery);
+    });
+</script>

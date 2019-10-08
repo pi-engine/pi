@@ -1,24 +1,139 @@
 .widget-desc {
-	height: 40px;
-	overflow: hidden;
-}
-
-.widget-carousel-upload .close {
-	position: absolute;
-	right: 8px;
-	top: -15px;
-	font-size: 30px;
-}
-
-.widget-carousel-upload img,
-.widget-upload-image img {
-	display: block;
-	width: 100%;
-	height: 100px;
+    height: 40px;
+    overflow: hidden;
 }
 
 @media (max-width: 767px) {
-  .widget-desc {
-    height: auto;
-  }
+    .widget-desc {
+        height: auto;
+    }
+}
+
+/*base*/
+
+.ellipsis {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+/*media*/
+.widget-item,
+.widget-tab-module-item li {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.widget-item-add-mark {
+    cursor: pointer;
+    border: 2px dashed #ccc !important;
+    text-align: center;
+}
+
+.widget-file-button {
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.widget-file-button input {
+    opacity: 0;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    filter: alpha(opacity=0);
+}
+
+.widget-item {
+    /* border: 2px solid #ccc; */
+    padding: 2px;
+    /* background: #fff; */
+    margin: 0 10px 10px 0;
+    /* width: 240px; */
+    position: relative;
+    cursor: move;
+}
+
+.widget-item form .col-form-label {
+    width: 50px;
+    font-size: 12px;
+}
+
+.widget-item form .control-group {
+    margin-bottom: 8px;
+}
+
+.widget-item img {
+    display: block;
+    height: 180px !important;
+    margin: 0 auto 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.widget-item .close {
+    position: absolute;
+    right: 8px;
+    top: -15px;
+    font-size: 30px;
+}
+
+.widget-tab-module {
+    background: #ECECEC;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.widget-tab-module-item {
+    margin-bottom: 4px;
+}
+
+.widget-tab-module-item .fa-caret-down {
+    display: none;
+}
+
+.active .fa-caret-down {
+    display: inline-block;
+}
+
+.active .fa-caret-right {
+    display: none;
+}
+
+.widget-tab-module-item ul {
+    display: none;
+}
+
+.widget-tab-module-item.active ul {
+    display: block;
+}
+
+.widget-tab-module-item li {
+    margin: 0 5px 5px 0;
+    cursor: pointer;
+    background: #F3F3F3;
+    padding: 1px 3px;
+    border: 1px solid #D9D9D9;
+}
+
+.widget-tab-module-item li.selected {
+    cursor: not-allowed;
+    background: #858585;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .3);
+}
+
+/*widget-list*/
+.widget-list {
+    min-height: 30px;
+    margin-left: 0;
+}
+
+.widget-list li {
+    display: inline-block;
+    width: 260px;
+    margin: 0 10px 10px 0;
+    vertical-align: top;
 }

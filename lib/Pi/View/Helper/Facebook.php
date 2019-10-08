@@ -1,16 +1,15 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 /**
@@ -22,7 +21,7 @@ use Zend\View\Helper\AbstractHtmlElement;
  *  $this->facebook();
  * ```
  *
- * @author Hossein Azizabadi <djvoltan@gmail.com>
+ * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Facebook extends AbstractHtmlElement
@@ -33,19 +32,20 @@ class Facebook extends AbstractHtmlElement
      * @param array $config
      * @return  string
      */
-    public function __invoke($config = array())
+    public function __invoke($config = [])
     {
-        $dataSend = isset($config['data-send']) ? $config['data-send'] : false;
-        $dataSend = $dataSend ? 'true' : 'false';
-        $dataWidth = isset($config['data-width'])
+        $dataSend      = isset($config['data-send']) ? $config['data-send'] : false;
+        $dataSend      = $dataSend ? 'true' : 'false';
+        $dataWidth     = isset($config['data-width'])
             ? $config['data-width'] : 120;
         $dataShowFaces = isset($config['data-show-faces'])
             ? $config['data-show-faces'] : false;
         $dataShowFaces = $dataShowFaces ? 'true' : 'false';
 
-        $content = <<<'EOT'
+        $content
+                 = <<<'EOT'
 <div id="fb-root"></div>
-<script type="text/javascript">
+<script>
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;

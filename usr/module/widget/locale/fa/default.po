@@ -1,125 +1,219 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-03-20 09:36+0330\n"
-"PO-Revision-Date: 2014-03-20 09:37+0330\n"
+"POT-Creation-Date: 2017-09-06 15:23+0430\n"
+"PO-Revision-Date: 2017-09-06 15:24+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Poedit-KeywordsList: __;_e;_t\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/widget\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:41
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:42
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:55
-msgid "Title"
-msgstr "عنوان"
+#: config/config.php:13
+msgid "Max file size"
+msgstr "بیشترین اندازه فایل"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:52
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:53
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:66
-msgid "Unique name"
-msgstr "نام یکتا"
+#: config/config.php:14
+msgid "Allowed image file to upload (in KB), 0 for no limit"
+msgstr "اجازه برای بارگذاری فایل های تصویری ( به کیلوبایت ) ، ۰ برای عدم محدودیت حجمی"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:63
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:64
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:77
-msgid "Description"
-msgstr "توضیحات"
+#: config/config.php:20
+msgid "File extensions"
+msgstr "پسوند فایل"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:99
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:109
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:135
-msgid "Submit"
-msgstr "ارسال"
+#: config/config.php:21
+msgid "Extensions for images to upload, separate `,`."
+msgstr "پسوند های مجاز برای بارگذاری تصویر ، با `,` از هم جدا کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:74
-msgid "Template"
-msgstr "الگو"
+#: config/config.php:26
+msgid "Max image width"
+msgstr "بیشترین عرض تصویر"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:102
-msgid "Content"
-msgstr "متن"
+#: config/config.php:27
+msgid "Allowed image width, 0 for no limit"
+msgstr "بیشترین عرض تصویر مجاز ، ۰ برای عدم محدودیت"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:20
-msgid "Bootstrap slide"
-msgstr "اسلاید Bootstrap"
+#: config/config.php:33
+msgid "Max image height"
+msgstr "بیشترین ارتفاع تصویر"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:21
-msgid "jCarousel riding Carousel"
-msgstr "اسلاید jCarousel"
+#: config/config.php:34
+msgid "Allowed image height, 0 for no limit"
+msgstr "بیشترین ارتفا تصویر مجاز ، ۰ برای عدم محدودیت"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:22
-msgid "Parallax Content Slider"
-msgstr "اسلاید متنی Parallax"
+#: config/config.php:40
+msgid "Image width for media"
+msgstr "عرض تصویر برای رسانه"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:43
-msgid "Custom: "
-msgstr "بلاک دست ساز:"
+#: config/config.php:41 config/config.php:48 config/config.php:55
+#: config/config.php:62 config/config.php:69 config/config.php:76
+msgid "Default value for widgets"
+msgstr "مقدار پیش فرض برای ویجت ها"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:13
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:15
+#: config/config.php:47
+msgid "Image height for media"
+msgstr "ارتفاع تصویر برای رسانه"
+
+#: config/config.php:54
+msgid "Image width for carousel"
+msgstr "عرض تصویر برای اسلاید"
+
+#: config/config.php:61
+msgid "Image height for carousel"
+msgstr "ارتفاع تصویر برای اسلاید"
+
+#: config/config.php:68
+msgid "Image width for spotlight"
+msgstr "عرض تصویر برای اسپات لایت"
+
+#: config/config.php:75
+msgid "Image height for spotlight"
+msgstr "ارتفاع تصویر برای اسپات لایت"
+
+#: config/config.php:82
+msgid "Open new window"
+msgstr "بازکردن در صفحه جدید"
+
+#: config/config.php:83
+msgid "Open new window for widgets not specified"
+msgstr "بازکردن در صفحه جدید برای ویجت هایی که تنظیم نشده باشند"
+
+#: config/config.php:90
+msgid "Circle image"
+msgstr "تصویر گرد"
+
+#: config/config.php:91
+msgid "Make images circle"
+msgstr "تصاویر گرد نمایش داده شود"
+
+#: config/nav.php:15 config/permission.php:13
 msgid "Script widgets"
 msgstr "ویجت های اسکریپت"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:16
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:24
+#: config/nav.php:25 config/nav.php:49 config/nav.php:104 config/nav.php:138
+#: config/nav.php:172 config/nav.php:206 config/nav.php:240 config/nav.php:274
+msgid "Widget list"
+msgstr "فهرست ویجت ها"
+
+#: config/nav.php:31
+msgid "Activate"
+msgstr "فعال"
+
+#: config/nav.php:40 config/permission.php:16
 msgid "Static widgets"
 msgstr "ویجت های استاتیک"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:19
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:78
-msgid "Carousel widgets"
-msgstr "ویجت های اسلاید"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:22
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:112
-msgid "Compound tabs"
-msgstr "تب های ترکیبی"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:33
-msgid "Static list"
-msgstr "فهرست ویجت های استاتیک"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:40
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:94
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:128
+#: config/nav.php:56 config/nav.php:111 config/nav.php:145 config/nav.php:179
+#: config/nav.php:213 config/nav.php:247 config/nav.php:281
 msgid "Edit"
 msgstr "ویرایش"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:49
+#: config/nav.php:65
 msgid "Add HTML"
 msgstr "HTML جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:58
+#: config/nav.php:74
 msgid "Add text"
 msgstr "متن جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:67
+#: config/nav.php:83
 msgid "Add markdown"
 msgstr "markdown جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:87
-msgid "Carousel list"
-msgstr "فهرست اسلاید"
+#: config/nav.php:95 config/permission.php:19
+msgid "List group"
+msgstr "فهرست گروهی"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:103
+#: config/nav.php:120 config/nav.php:154 config/nav.php:188 config/nav.php:222
+#: config/nav.php:256 config/nav.php:290
 msgid "Add new"
 msgstr "جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:121
-msgid "Tab list"
-msgstr "فهرست بت ها"
+#: config/nav.php:129 config/permission.php:22
+msgid "Media list"
+msgstr "فهرست رسانه ها"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:137
-msgid "Add"
-msgstr "جدید"
+#: config/nav.php:163
+msgid "Carousel"
+msgstr "اسلاید"
+
+#: config/nav.php:197
+msgid "Spotlight"
+msgstr "اسپات لایت"
+
+#: config/nav.php:231 config/permission.php:31
+msgid "Compound tabs"
+msgstr "تب های ترکیبی"
+
+#: config/nav.php:265 config/permission.php:34
+msgid "Video and audio"
+msgstr "ویدیو و صدا"
+
+#: config/permission.php:25
+msgid "Carousel widgets"
+msgstr "ویجت های اسلاید"
+
+#: config/permission.php:28
+msgid "Spotlight widgets"
+msgstr "ویجت های اسپات لایت"
+
+#: src/Controller/Front/IndexController.php:33
+msgid "Block title"
+msgstr "عنوان بلاک"
+
+#: src/Controller/Front/IndexController.php:34
+msgid "Block content placeholder."
+msgstr "نگهدارنده مکان محتوی بلاک"
+
+#: template/front/block-preview.phtml:6
+msgid "Block Preview"
+msgstr "پیش نمایش بلاک"
+
+#: template/front/block-preview.phtml:9
+msgid "Here is placeholder for module generated contents."
+msgstr "اینجا نگهدارنده مکان است برای محتوی تولید شده توسط ماژول"
+
+#~ msgid "Title"
+#~ msgstr "عنوان"
+
+#~ msgid "Unique name"
+#~ msgstr "نام یکتا"
+
+#~ msgid "Description"
+#~ msgstr "توضیحات"
+
+#~ msgid "Submit"
+#~ msgstr "ارسال"
+
+#~ msgid "Template"
+#~ msgstr "الگو"
+
+#~ msgid "Content"
+#~ msgstr "متن"
+
+#~ msgid "Bootstrap slide"
+#~ msgstr "اسلاید Bootstrap"
+
+#~ msgid "jCarousel riding Carousel"
+#~ msgstr "اسلاید jCarousel"
+
+#~ msgid "Parallax Content Slider"
+#~ msgstr "اسلاید متنی Parallax"
+
+#~ msgid "Custom: "
+#~ msgstr "بلاک دست ساز:"
+
+#~ msgid "Static list"
+#~ msgstr "فهرست ویجت های استاتیک"
+
+#~ msgid "Add"
+#~ msgstr "جدید"
 
 #~ msgid "Widget"
 #~ msgstr "ویجت"
@@ -139,9 +233,6 @@ msgstr "جدید"
 #~ msgid "Mouse event to pause cycle"
 #~ msgstr "رویداد کلیک موس برای توقف چرخه"
 
-#~ msgid "Widget list"
-#~ msgstr "فهرست ویجت ها"
-
 #~ msgid "The widget \"%s\" is installed."
 #~ msgstr "ویجت \"%s\" نصب شده است"
 
@@ -159,9 +250,6 @@ msgstr "جدید"
 
 #~ msgid "Invalid data, please check and re-submit."
 #~ msgstr "اطلاعات اشتباه، لطفا بررسی کنید و دوباره ارسال کنید"
-
-#~ msgid "Block edit"
-#~ msgstr "ویرایش بلاک"
 
 #~ msgid "Compound tab widgets"
 #~ msgstr "ویجت تب های ترکیبی"
@@ -187,44 +275,26 @@ msgstr "جدید"
 #~ msgid "Sustainable ecosystem"
 #~ msgstr "Sustainable ecosystem"
 
-#~ msgid ""
-#~ "A sustainable ecosystem built upon open standard, open source code, open "
-#~ "development and open management on Github."
-#~ msgstr ""
-#~ "A sustainable ecosystem built upon open standard, open source code, open "
-#~ "development and open management on Github."
+#~ msgid "A sustainable ecosystem built upon open standard, open source code, open development and open management on Github."
+#~ msgstr "A sustainable ecosystem built upon open standard, open source code, open development and open management on Github."
 
 #~ msgid "Engineered development"
 #~ msgstr "Engineered development"
 
-#~ msgid ""
-#~ "Quality ensured engineering development with short learning curve, low "
-#~ "skill requirements with clean MVC architecture, semantic templating, "
-#~ "sophisticated API and strict starndards."
-#~ msgstr ""
-#~ "Quality ensured engineering development with short learning curve, low "
-#~ "skill requirements with clean MVC architecture, semantic templating, "
-#~ "sophisticated API and strict starndards."
+#~ msgid "Quality ensured engineering development with short learning curve, low skill requirements with clean MVC architecture, semantic templating, sophisticated API and strict starndards."
+#~ msgstr "Quality ensured engineering development with short learning curve, low skill requirements with clean MVC architecture, semantic templating, sophisticated API and strict starndards."
 
 #~ msgid "Visualization of application management"
 #~ msgstr "Visualization of application management"
 
-#~ msgid ""
-#~ "Easy and responsive application and content management based on "
-#~ "visualized mangement tools and interface with page and widget mechanism."
-#~ msgstr ""
-#~ "Easy and responsive application and content management based on "
-#~ "visualized mangement tools and interface with page and widget mechanism."
+#~ msgid "Easy and responsive application and content management based on visualized mangement tools and interface with page and widget mechanism."
+#~ msgstr "Easy and responsive application and content management based on visualized mangement tools and interface with page and widget mechanism."
 
 #~ msgid "Agile compliant development workflow"
 #~ msgstr "Agile compliant development workflow"
 
-#~ msgid ""
-#~ "Role oriented architecture and deployment skeleton supports managable "
-#~ "agile development workflow."
-#~ msgstr ""
-#~ "Role oriented architecture and deployment skeleton supports managable "
-#~ "agile development workflow."
+#~ msgid "Role oriented architecture and deployment skeleton supports managable agile development workflow."
+#~ msgstr "Role oriented architecture and deployment skeleton supports managable agile development workflow."
 
 #~ msgid "Are you sure delete this widget?"
 #~ msgstr "آیا اطمینان دارید که میخواهید این ویجت را حذف کنید؟"
@@ -237,9 +307,6 @@ msgstr "جدید"
 
 #~ msgid "Installed widgets"
 #~ msgstr "ویجت های نصب شده"
-
-#~ msgid "Available widgets"
-#~ msgstr "ویجت های در دسترس"
 
 #~ msgid "Add a static block :"
 #~ msgstr "اضافه کردن بلاک دست ساز"

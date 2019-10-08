@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Installer\Resource;
@@ -31,7 +31,7 @@ use Pi\Db\RowGateway\RowGateway;
  *          'render'        => array('class', 'method'),
  *          // in module/template/block/, no suffix
  *          'template'      => 'template',
- *          // Cache level type, optional: role, locale, user
+ *          // Cache granularity, optional: role, locale, user, guest
  *          'cache_level'   => 'role',
  *          'config'        => array(
  *              'a' => array(
@@ -73,7 +73,6 @@ use Pi\Db\RowGateway\RowGateway;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-
 class Block extends AbstractResource
 {
     /** @var string */
@@ -87,29 +86,29 @@ class Block extends AbstractResource
      */
     protected function canonizeAdd($block)
     {
-        $module = $this->event->getParam('module');
-        $directory = $this->event->getParam('directory');
+        $module      = $this->event->getParam('module');
+        $directory   = $this->event->getParam('directory');
         $classPrefix = sprintf('Module\\%s\Block', ucfirst($directory));
         if (is_array($block['render'])) {
             $block['render'] = implode('::', $block['render']);
         }
         $block['render'] = $classPrefix . '\\' . ucfirst($block['render']);
 
-        $data = array(
-            'name'          => $block['name'],
-            'title'         => $block['title'],
-            'description'   => isset($block['description'])
-                                ? $block['description'] : '',
+        $data = [
+            'name'        => $block['name'],
+            'title'       => $block['title'],
+            'description' => isset($block['description'])
+                ? $block['description'] : '',
 
-            'module'        => $module,
-            'render'        => $block['render'],
-            'template'      => isset($block['template'])
-                                ? $block['template'] : '',
-            'config'        => isset($block['config'])
-                                ? $block['config'] : array(),
-            'cache_level'   => isset($block['cache_level'])
-                                ? $block['cache_level'] : '',
-        );
+            'module'      => $module,
+            'render'      => $block['render'],
+            'template'    => isset($block['template'])
+                ? $block['template'] : '',
+            'config'      => isset($block['config'])
+                ? $block['config'] : [],
+            'cache_level' => isset($block['cache_level'])
+                ? $block['cache_level'] : '',
+        ];
 
         return $data;
     }
@@ -122,30 +121,27 @@ class Block extends AbstractResource
      */
     protected function canonizeUpdate($block)
     {
-        $module = $this->event->getParam('module');
-        $directory = $this->event->getParam('directory');
+        $module      = $this->event->getParam('module');
+        $directory   = $this->event->getParam('directory');
         $classPrefix = sprintf('Module\\%s\Block', ucfirst($directory));
         if (is_array($block['render'])) {
             $block['render'] = implode('::', $block['render']);
         }
         $block['render'] = $classPrefix . '\\' . ucfirst($block['render']);
 
-        $data = array(
-            'title'         => $block['title'],
-            'description'   => isset($block['description'])
-                                ? $block['description'] : '',
+        $data = [
+            'title'       => $block['title'],
+            'description' => isset($block['description'])
+                ? $block['description'] : '',
 
-            'render'        => $block['render'],
-            'template'      => isset($block['template'])
-                                ? $block['template'] : '',
-            'config'        => isset($block['config'])
-                                ? $block['config'] : array(),
-            'cache_level'   => isset($block['cache_level'])
-                                ? $block['cache_level'] : '',
-
-            //'link'          => isset($block['link']) ? $block['link'] : '',
-            //'class'         => isset($block['class']) ? $block['class'] : '',
-        );
+            'render'      => $block['render'],
+            'template'    => isset($block['template'])
+                ? $block['template'] : '',
+            'config'      => isset($block['config'])
+                ? $block['config'] : [],
+            'cache_level' => isset($block['cache_level'])
+                ? $block['cache_level'] : '',
+        ];
 
         return $data;
     }
@@ -165,17 +161,17 @@ class Block extends AbstractResource
             if (empty($block['render'])) {
                 continue;
             }
-            $block['name'] = !empty($block['name']) ? $block['name'] : $key;
+            $block['name']   = !empty($block['name']) ? $block['name'] : $key;
             $block['module'] = $module;
-            $data = $this->canonizeAdd($block);
-            $message = array();
-            $status = $this->addBlock($data, $message);
+            $data            = $this->canonizeAdd($block);
+            $message         = [];
+            $status          = $this->addBlock($data, $message);
             if (!$status) {
                 $message[] = sprintf('Block "%s" is not created.', $key);
-                return array(
-                    'status'    => false,
-                    'message'   => $message,
-                );
+                return [
+                    'status'  => false,
+                    'message' => $message,
+                ];
             }
         }
 
@@ -196,7 +192,7 @@ class Block extends AbstractResource
             return;
         }
 
-        $blocks = $this->config ?: array();
+        $blocks = $this->config ?: [];
 
         $model = Pi::model('block_root');
         foreach ($blocks as $key => $block) {
@@ -204,55 +200,55 @@ class Block extends AbstractResource
             if (empty($block['render'])) {
                 continue;
             }
-            $block['name'] = !empty($block['name']) ? $block['name'] : $key;
+            $block['name']   = !empty($block['name']) ? $block['name'] : $key;
             $block['module'] = $module;
-            $rowset = $model->select(array(
-                'name'      => $block['name'],
-                'module'    => $module,
-            ));
+            $rowset          = $model->select([
+                'name'   => $block['name'],
+                'module' => $module,
+            ]);
             // Add new block
             if (!$rowset->count()) {
-                $data = $this->canonizeAdd($block);
-                $message = array();
-                $status = $this->addBlock($data, $message);
+                $data    = $this->canonizeAdd($block);
+                $message = [];
+                $status  = $this->addBlock($data, $message);
                 if (!$status) {
                     $message[] = sprintf('Block "%s" is not created.', $key);
-                    return array(
-                        'status'    => false,
-                        'message'   => $message,
-                    );
+                    return [
+                        'status'  => false,
+                        'message' => $message,
+                    ];
                 }
-            // Update existent block
+                // Update existent block
             } else {
-                $row = $rowset->current();
-                $data = $this->canonizeUpdate($block);
-                $message = array();
-                $status = $this->updateBlock($row, $data, $message);
+                $row     = $rowset->current();
+                $data    = $this->canonizeUpdate($block);
+                $message = [];
+                $status  = $this->updateBlock($row, $data, $message);
                 if (!$status) {
                     $message[] = sprintf('Block "%s" is not updated.', $key);
-                    return array(
-                        'status'    => false,
-                        'message'   => $message,
-                    );
+                    return [
+                        'status'  => false,
+                        'message' => $message,
+                    ];
                 }
             }
         }
 
         // Remove deprecated blocks
-        $rowset = $model->select(array('module' => $module));
+        $rowset = $model->select(['module' => $module]);
         foreach ($rowset as $row) {
             if (!isset($blocks[$row->name])) {
-                $message = array();
-                $status = $this->deleteBlock($row, $message);
+                $message = [];
+                $status  = $this->deleteBlock($row, $message);
                 if (!$status) {
                     $message[] = sprintf(
                         'Deprecated block "%s" is not updated.',
                         $row->key
                     );
-                    return array(
-                        'status'    => false,
-                        'message'   => $message,
-                    );
+                    return [
+                        'status'  => false,
+                        'message' => $message,
+                    ];
                 }
             }
         }
@@ -267,8 +263,8 @@ class Block extends AbstractResource
     {
         $module = $this->event->getParam('module');
 
-        Pi::model('block')->delete(array('module' => $module));
-        Pi::model('block_root')->delete(array('module' => $module));
+        Pi::model('block')->delete(['module' => $module]);
+        Pi::model('block_root')->delete(['module' => $module]);
         Pi::registry('block')->clear($module);
 
         return true;
@@ -281,8 +277,8 @@ class Block extends AbstractResource
     {
         $module = $this->event->getParam('module');
         Pi::model('block')->update(
-            array('active' => 1),
-            array('module' => $module)
+            ['active' => 1],
+            ['module' => $module]
         );
 
         Pi::registry('block')->clear($module);
@@ -297,8 +293,8 @@ class Block extends AbstractResource
     {
         $module = $this->event->getParam('module');
         Pi::model('block')->update(
-            array('active' => 0),
-            array('module' => $module)
+            ['active' => 0],
+            ['module' => $module]
         );
 
         Pi::registry('block')->clear($module);

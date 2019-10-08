@@ -1,17 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Captcha;
 
-use Pi;
-use Zend\Captcha\Image as ZendImage;
 use Zend\Captcha\Exception;
+use Zend\Captcha\Image as ZendImage;
 use Zend\Stdlib\ErrorException;
 use Zend\Stdlib\ErrorHandler;
 
@@ -47,7 +46,7 @@ class Image extends ZendImage
             $word = $this->generateWord();
             $this->setWord($word);
         }
-        $word = $this->getWord();
+        $word  = $this->getWord();
         $image = $this->generateImage($id, $word);
 
         return $image;
@@ -108,26 +107,26 @@ class Image extends ZendImage
 
         $text_color = imagecolorallocate($img, 0, 0, 0);
         $bg_color   = imagecolorallocate($img, 255, 255, 255);
-        imagefilledrectangle($img, 0, 0, $w-1, $h-1, $bg_color);
+        imagefilledrectangle($img, 0, 0, $w - 1, $h - 1, $bg_color);
         $textbox = imageftbbox($fsize, 0, $font, $word);
-        $x = ($w - ($textbox[2] - $textbox[0])) / 2;
-        $y = ($h - ($textbox[7] - $textbox[1])) / 2;
+        $x       = ($w - ($textbox[2] - $textbox[0])) / 2;
+        $y       = ($h - ($textbox[7] - $textbox[1])) / 2;
         imagefttext($img, $fsize, 0, $x, $y, $text_color, $font, $word);
 
         // generate noise
-        for ($i=0; $i < $this->dotNoiseLevel; $i++) {
-           imagefilledellipse($img, mt_rand(0,$w), mt_rand(0,$h), 2, 2,
-                              $text_color);
+        for ($i = 0; $i < $this->dotNoiseLevel; $i++) {
+            imagefilledellipse($img, mt_rand(0, $w), mt_rand(0, $h), 2, 2,
+                $text_color);
         }
-        for ($i=0; $i < $this->lineNoiseLevel; $i++) {
-           imageline($img, mt_rand(0,$w), mt_rand(0,$h), mt_rand(0,$w),
-                     mt_rand(0,$h), $text_color);
+        for ($i = 0; $i < $this->lineNoiseLevel; $i++) {
+            imageline($img, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w),
+                mt_rand(0, $h), $text_color);
         }
 
         // transformed image
         $img2     = imagecreatetruecolor($w, $h);
         $bg_color = imagecolorallocate($img2, 255, 255, 255);
-        imagefilledrectangle($img2, 0, 0, $w-1, $h-1, $bg_color);
+        imagefilledrectangle($img2, 0, 0, $w - 1, $h - 1, $bg_color);
 
         // apply wave transforms
         $freq1 = $this->randomFreq();
@@ -145,10 +144,10 @@ class Image extends ZendImage
 
         for ($x = 0; $x < $w; $x++) {
             for ($y = 0; $y < $h; $y++) {
-                $sx = $x + (sin($x*$freq1 + $ph1)
-                    + sin($y*$freq3 + $ph3)) * $szx;
-                $sy = $y + (sin($x*$freq2 + $ph2)
-                    + sin($y*$freq4 + $ph4)) * $szy;
+                $sx = $x + (sin($x * $freq1 + $ph1)
+                        + sin($y * $freq3 + $ph3)) * $szx;
+                $sy = $y + (sin($x * $freq2 + $ph2)
+                        + sin($y * $freq4 + $ph4)) * $szy;
 
                 if ($sx < 0 || $sy < 0 || $sx >= $w - 1 || $sy >= $h - 1) {
                     continue;
@@ -175,31 +174,31 @@ class Image extends ZendImage
                     $newcolor = 0;
                 } else {
                     // do antialiasing for border items
-                    $frac_x  = $sx-floor($sx);
-                    $frac_y  = $sy-floor($sy);
-                    $frac_x1 = 1-$frac_x;
-                    $frac_y1 = 1-$frac_y;
+                    $frac_x  = $sx - floor($sx);
+                    $frac_y  = $sy - floor($sy);
+                    $frac_x1 = 1 - $frac_x;
+                    $frac_y1 = 1 - $frac_y;
 
-                    $newcolor = $color    * $frac_x1 * $frac_y1
-                              + $color_x  * $frac_x  * $frac_y1
-                              + $color_y  * $frac_x1 * $frac_y
-                              + $color_xy * $frac_x  * $frac_y;
+                    $newcolor = $color * $frac_x1 * $frac_y1
+                        + $color_x * $frac_x * $frac_y1
+                        + $color_y * $frac_x1 * $frac_y
+                        + $color_xy * $frac_x * $frac_y;
                 }
 
                 imagesetpixel($img2, $x, $y, imagecolorallocate($img2,
-                              $newcolor, $newcolor, $newcolor));
+                    $newcolor, $newcolor, $newcolor));
             }
         }
 
         // generate noise
-        for ($i=0; $i<$this->dotNoiseLevel; $i++) {
-            imagefilledellipse($img2, mt_rand(0,$w), mt_rand(0,$h), 2, 2,
+        for ($i = 0; $i < $this->dotNoiseLevel; $i++) {
+            imagefilledellipse($img2, mt_rand(0, $w), mt_rand(0, $h), 2, 2,
                 $text_color);
         }
 
-        for ($i=0; $i<$this->lineNoiseLevel; $i++) {
-           imageline($img2, mt_rand(0,$w), mt_rand(0,$h), mt_rand(0,$w),
-                     mt_rand(0,$h), $text_color);
+        for ($i = 0; $i < $this->lineNoiseLevel; $i++) {
+            imageline($img2, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w),
+                mt_rand(0, $h), $text_color);
         }
 
         /*
@@ -209,7 +208,7 @@ class Image extends ZendImage
         */
 
         imagedestroy($img);
-        
+
         return $img2;
     }
 }

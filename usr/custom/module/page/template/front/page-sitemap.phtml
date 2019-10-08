@@ -3,8 +3,8 @@ $navigation = $this->nav('front');
 echo $navigation->menu();
 ?>
 
-<div class="pull-right muted">
-    <span><?php echo $this->page('xml-sitemap', __('XML Sitemap'), array('target' => '_blank')); ?></span>
+<div class="float-right muted">
+    <span><?php echo $this->page('xml-sitemap', __('XML Sitemap'), ['target' => '_blank']); ?></span>
     <span>·</span>
-    <span><?php echo $this->page('feed', __('RSS Feed'), array('target' => '_blank')); ?></span>
+    <span><?php echo $this->page('feed', __('RSS Feed'), ['target' => '_blank']); ?></span>
 </div>

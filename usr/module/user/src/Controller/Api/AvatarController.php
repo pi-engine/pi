@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Controller\Api;
@@ -31,7 +31,7 @@ class AvatarController extends ApiController
      */
     public function indexAction()
     {
-        return array('status' => 1);
+        return ['status' => 1];
     }
 
     /**
@@ -41,15 +41,15 @@ class AvatarController extends ApiController
      */
     public function getAction()
     {
-        $uid        = $this->params('id');
-        $size       = $this->params('size');
-        $html       = $this->params('html') ?: false;
+        $uid  = $this->params('id');
+        $size = $this->params('size');
+        $html = $this->params('html') ?: false;
 
-        $result     = Pi::service('avatar')->get($uid, $size, $html);
-        $response   = array(
-            'status'    => 1,
-            'data'      => $result,
-        );
+        $result   = Pi::service('avatar')->get($uid, $size, $html);
+        $response = [
+            'status' => 1,
+            'data'   => $result,
+        ];
 
         return $response;
     }
@@ -61,12 +61,12 @@ class AvatarController extends ApiController
      */
     public function mgetAction()
     {
-        $uid        = $this->params('id');
-        $size       = $this->params('size');
-        $html       = $this->params('html') ?: false;
+        $uid  = $this->params('id');
+        $size = $this->params('size');
+        $html = $this->params('html') ?: false;
 
-        $uids       = $this->splitString($uid);
-        $result     = Pi::service('avatar')->getList($uids, $size, $html);
+        $uids   = $this->splitString($uid);
+        $result = Pi::service('avatar')->getList($uids, $size, $html);
 
         return $result;
     }

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Custom\Demo\Api;
@@ -24,31 +24,31 @@ class Breadcrumbs extends AbstractBreadcrumbs
      */
     public function load()
     {
-        $result = array(
-            array(
+        $result = [
+            [
                 'label' => __('Demo breadcrumbs'),
-                'href'  => Pi::service('url')->assemble('default', array(
-                        'module' => $this->module,
-                    )),
-            ),
-        );
+                'href'  => Pi::service('url')->assemble('default', [
+                    'module' => $this->module,
+                ]),
+            ],
+        ];
 
         if ('page' == _get('controller')) {
             if ('view' == _get('action')) {
-                $result[] = array(
+                $result[] = [
                     'label' => __('Pages'),
-                    'href'  => Pi::service('url')->assemble('default', array(
-                            'module'        => $this->module,
-                            'controller'    => 'page',
-                        )),
-                );
-                $result[] = array(
+                    'href'  => Pi::service('url')->assemble('default', [
+                        'module'     => $this->module,
+                        'controller' => 'page',
+                    ]),
+                ];
+                $result[] = [
                     'label' => __('Content'),
-                );
+                ];
             } else {
-                $result[] = array(
+                $result[] = [
                     'label' => __('Pages'),
-                );
+                ];
             }
         }
         return $result;

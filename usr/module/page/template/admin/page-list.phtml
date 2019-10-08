@@ -2,63 +2,73 @@
 //$this->css($this->assetModule('admin/admin.css', 'system'));
 ?>
 <div class="table-responsive">
-    <form action="<?php echo $this->url('', array('action' => 'menu')); ?>">
-    <table class="table">
-        <thead>
-        <tr>
-            <th><?php echo _a('Page title'); ?></th>
-            <th style="width: 5%;"><?php echo _a('Name'); ?></th>
-            <th style="width: 5%;"><?php echo _a('Slug'); ?></th>
-            <th style="width: 5%;"><?php echo _a('Type'); ?></th>
-            <th style="width: 15%;"><?php echo _a('Time published'); ?></th>
-            <th style="width: 15%;"><?php echo _a('Last Update'); ?></th>
-            <th><?php echo _a('Action'); ?></th>
-            <th style="width: 5%;"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($pages as $page) { ?>
+    <form action="<?php echo $this->url('', ['action' => 'menu']); ?>">
+        <table class="table table-responsive">
+            <thead>
             <tr>
-                <td>
-                    <a href="<?php echo $page['url']; ?>" target="_blank">
-                    <?php echo _escape($page['title']); ?>
-                    </a>
-                </td>
-                <td>
-                    <?php echo _escape($page['name']); ?>
-                </td>
-                <td>
-                    <?php echo _escape($page['slug']); ?>
-                </td>
-                <td>
-                    <?php echo _escape($page['markup']); ?>
-                </td>
-                <td>
-                    <?php echo _date($page['time_created']); ?>
-                </td>
-                <td>
-                    <?php echo $page['time_updated'] ? _date($page['time_updated']) : ''; ?>
-                </td>
-                <td>
-                    <div class="btn-group">
-                        <a class="btn btn-sm btn-primary" href="<?php echo $this->url('', array('action' => 'edit', 'id' => $page['id'])); ?>"><?php echo _a('Edit'); ?></a>
-                        <a class="btn btn-sm btn-primary" href="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>"><?php echo _a('Delete'); ?></a>
-                        <?php if ($page['active']) { ?>
-                        <a class="btn btn-sm btn-primary" href="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>"><?php echo _a('Disable'); ?></a>
-                        <?php } else { ?>
-                            <a class="btn btn-sm btn-warning" href="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>"><?php echo _a('Enable'); ?></a>
-                        <?php }?>
-                    </div>
-                </td>
-                <td>
-                    <input type="text" name="order[<?php echo $page['id']; ?>]" value="<?php echo $page['nav_order']; ?>" class="form-control">
-                </td>
+                <th><?php echo _a('Page title'); ?></th>
+                <th style="width: 5%;"><?php echo _a('Name'); ?></th>
+                <th style="width: 5%;"><?php echo _a('Slug'); ?></th>
+                <th style="width: 5%;"><?php echo _a('Type'); ?></th>
+                <th style="width: 15%;"><?php echo _a('Time published'); ?></th>
+                <th style="width: 15%;"><?php echo _a('Last Update'); ?></th>
+                <th><?php echo _a('Action'); ?></th>
+                <th style="width: 5%;"></th>
             </tr>
-        <?php } ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <?php foreach ($pages as $page) { ?>
+                <tr<?php if (empty($page['active'])) { ?> class="danger"<?php } ?>>
+                    <td>
+                        <?php if (!empty($page['active'])) { ?>
+                            <a href="<?php echo $page['url']; ?>" target="_blank">
+                                <?php echo _escape($page['title']); ?>
+                            </a>
+                        <?php } else { ?>
+                            <?php echo _escape($page['title']); ?>
+                        <?php } ?>
+                    </td>
+                    <td>
+                        <?php echo _escape($page['name']); ?>
+                    </td>
+                    <td>
+                        <?php echo _escape($page['slug']); ?>
+                    </td>
+                    <td>
+                        <?php echo _escape($page['markup']); ?>
+                    </td>
+                    <td class="small">
+                        <?php echo _date($page['time_created']); ?>
+                    </td>
+                    <td class="small">
+                        <?php echo $page['time_updated'] ? _date($page['time_updated']) : ''; ?>
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-primary btn-sm"
+                           href="<?php echo $this->url('', ['action' => 'edit', 'id' => $page['id']]); ?>"><?php echo _a('Edit'); ?></a>
+                        <?php if ($page['active']) { ?>
+                            <a class="btn btn-sm btn-warning btn-sm"
+                               href="<?php echo $this->url('', ['action' => 'activate', 'id' => $page['id']]); ?>"
+                               onclick="return confirm('<?php echo _a('Are you sure to disable this page?'); ?>')"><?php echo _a('Disable'); ?></a>
+                        <?php } else { ?>
+                            <a class="btn btn-sm btn-success btn-sm"
+                               href="<?php echo $this->url('', ['action' => 'activate', 'id' => $page['id']]); ?>"
+                               onclick="return confirm('<?php echo _a('Are you sure to dnable this page?'); ?>')"><?php echo _a('Enable'); ?></a>
+                        <?php } ?>
+                        <a class="btn btn-sm btn-danger btn-sm"
+                           href="<?php echo $this->url('', ['action' => 'delete', 'id' => $page['id']]); ?>"
+                           onclick="return confirm('<?php echo _a('Are you sure to delete this page?'); ?>')"><?php echo _a('Delete'); ?></a>
+                    </td>
+                    <td>
+                        <input type="text" name="order[<?php echo $page['id']; ?>]"
+                               value="<?php echo $page['nav_order']; ?>" class="form-control form-control-sm">
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
         <div class="text-right">
-        <input type="submit" value="<?php echo _a('Add to menu'); ?>" class="btn btn-primary">
+            <input type="submit" value="<?php echo _a('Add to menu'); ?>" class="btn btn-primary">
         </div>
     </form>
 </div>

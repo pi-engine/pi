@@ -1,57 +1,56 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link         http://code.pialog.org for the Pi Engine source repository
- * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt BSD 3-Clause License
+ * @link         http://code.piengine.org for the Pi Engine source repository
+ * @copyright    Copyright (c) Pi Engine http://piengine.org
+ * @license      http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article\Model;
 
-use Pi;
 use Pi\Application\Model\Nest as Nest;
 
 /**
  * Category model class
- * 
- * @author Zongshu Lin <lin40553024@163.com> 
+ *
+ * @author Zongshu Lin <lin40553024@163.com>
  */
 class Category extends Nest
 {
     /**
      * Gett available fields
-     * 
-     * @return array 
+     *
+     * @return array
      */
     public static function getAvailableFields()
     {
-        return array(
+        return [
             'id', 'parent', 'name', 'slug',
-            'title', 'description', 'image'
-        );
+            'title', 'description', 'image',
+        ];
     }
 
     /**
      * Get default columns
-     * 
-     * @return array 
+     *
+     * @return array
      */
     public static function getDefaultColumns()
     {
-        return array('id', 'name', 'slug', 'title', 'image', 'depth');
+        return ['id', 'name', 'slug', 'title', 'image', 'depth'];
     }
 
     /**
      * Get nodes by ids
      *
-     * @param array  $ids      Node ids
-     * @param null   $columns  Columns, null for default
+     * @param array $ids Node ids
+     * @param null $columns Columns, null for default
      * @return array
      */
     public function getRows($ids, $columns = null)
     {
-        $result = $rows = array();
+        $result = $rows = [];
 
         if (null === $columns) {
             $columns = self::getDefaultColumns();
@@ -66,7 +65,7 @@ class Category extends Nest
 
             $select = $this->select()
                 ->columns($columns)
-                ->where(array('id' => $ids));
+                ->where(['id' => $ids]);
 
             $rows = $this->selectWith($select)->toArray();
 
@@ -74,7 +73,7 @@ class Category extends Nest
                 $result[$row['id']] = $row;
             }
 
-            $result = array_filter($result, function($var) {
+            $result = array_filter($result, function ($var) {
                 return is_array($var);
             });
         }
@@ -85,13 +84,13 @@ class Category extends Nest
     /**
      * Get category list
      *
-     * @param null  $columns   Columns, null for default
-     * @param bool  $withRoot  Include root node or not
+     * @param null $columns Columns, null for default
+     * @param bool $withRoot Include root node or not
      * @return array Associative array
      */
     public function getList($columns = null, $withRoot = false)
     {
-        $result = $rows = array();
+        $result = $rows = [];
 
         if (null === $columns) {
             $columns = self::getDefaultColumns();
@@ -105,7 +104,7 @@ class Category extends Nest
             ->columns($columns)
             ->order('left ASC');
         if (!$withRoot) {
-            $select->where(array('depth > 0'));
+            $select->where(['depth > 0']);
         }
         $rows = $this->selectWith($select)->toArray();
 
@@ -121,13 +120,13 @@ class Category extends Nest
     /**
      * Get nodes in level N
      *
-     * @param int   $depth    Level depth
-     * @param null  $columns  Columns, null for default
+     * @param int $depth Level depth
+     * @param null $columns Columns, null for default
      * @return array Associative array
      */
     public function getLevel($depth, $columns = null)
     {
-        $result = $rows = array();
+        $result = $rows = [];
 
         if (null === $columns) {
             $columns = self::getDefaultColumns();
@@ -139,11 +138,11 @@ class Category extends Nest
 
         $select = $this->select()
             ->columns($columns)
-            ->where(array(
+            ->where([
                 'depth' => intval($depth),
-            ))
+            ])
             ->order('left ASC');
-        $rows = $this->selectWith($select)->toArray();
+        $rows   = $this->selectWith($select)->toArray();
 
         foreach ($rows as $row) {
             $result[$row['id']] = $row;
@@ -157,8 +156,8 @@ class Category extends Nest
     /**
      * Get direct parent node info
      *
-     * @param int|Node $objective  Node id
-     * @param null     $cols       Columns, null for all
+     * @param int|Node $objective Node id
+     * @param null $cols Columns, null for all
      * @return bool|array Parent node info
      */
     public function getParentNode($objective, $cols = null)
@@ -168,8 +167,8 @@ class Category extends Nest
             return false;
         }
         $select = $this->select()
-            ->where(array($this->quoteColumn('left') . ' < ?' => $row->left))
-            ->where(array($this->quoteColumn('right') . ' > ?' => $row->right));
+            ->where([$this->quoteColumn('left') . ' < ?' => $row->left])
+            ->where([$this->quoteColumn('right') . ' > ?' => $row->right]);
         if (!empty($cols)) {
             $select->columns($cols);
         }
@@ -178,7 +177,7 @@ class Category extends Nest
             return false;
         }
 
-        $result = array();
+        $result = [];
         foreach ($rowset as $row) {
             $result = $row->toArray();
         }
@@ -189,7 +188,7 @@ class Category extends Nest
     /**
      * Check whether a node have children
      *
-     * @param int|Node  $objective  Node id
+     * @param int|Node $objective Node id
      * @return bool
      */
     public function hasChildren($objective)
@@ -205,17 +204,18 @@ class Category extends Nest
     /**
      * Get ids of all children
      *
-     * @param int|Node  $objective    Node id
-     * @param null      $cols         Columns, null for all
-     * @param bool      $includeSelf  Include self in result or not
+     * @param int|Node $objective Node id
+     * @param null $cols Columns, null for all
+     * @param bool $includeSelf Include self in result or not
      * @return array Node ids
      */
     public function getDescendantIds(
         $objective,
         $cols = null,
         $includeSelf = true
-    ) {
-        $result = array();
+    )
+    {
+        $result = [];
 
         $children = $this->getChildren($objective, $cols);
         if ($children) {
@@ -233,23 +233,24 @@ class Category extends Nest
     /**
      * Get ids of all sons
      *
-     * @param int|Node  $objective    Node id
-     * @param null      $cols         Columns, null for all
-     * @param bool      $includeSelf  Include self in result or not
+     * @param int|Node $objective Node id
+     * @param null $cols Columns, null for all
+     * @param bool $includeSelf Include self in result or not
      * @return array Node ids
      */
     public function getChildrenIds(
         $objective,
         $cols = null,
         $includeSelf = false
-    ) {
-        $result = array();
+    )
+    {
+        $result = [];
 
         if (false === array_search('depth', $cols)) {
             $cols[] = 'depth';
         }
 
-        $self = $this->normalizeNode($objective);
+        $self     = $this->normalizeNode($objective);
         $children = $this->getChildren($objective, $cols);
         foreach ($children as $category) {
             if (!$includeSelf && $objective == $category->id) {
@@ -266,12 +267,12 @@ class Category extends Nest
     /**
      * Get nodes as options of Select element
      *
-     * @param bool   $withRoot  Include root node in result or not
+     * @param bool $withRoot Include root node in result or not
      * @return array Options
      */
     public function getSelectOptions($withRoot = false)
     {
-        $result = array();
+        $result = [];
 
         $allNodes = $this->enumerate(null, null, true);
         if ($allNodes) {
@@ -295,9 +296,9 @@ class Category extends Nest
 
     /**
      * Change category slug to cagetory ID
-     * 
-     * @param string  $slug  Category unique flag
-     * @return int 
+     *
+     * @param string $slug Category unique flag
+     * @return int
      */
     public function slugToId($slug)
     {

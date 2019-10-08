@@ -1,19 +1,19 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
-return array(
+return [
     // Version
-    'version'       => '3.6.4',
+    'version' => '4.4.5',
     // Title of the editor
-    'name'          => 'CKEditor',
+    'name'    => 'CKEditor',
     // Author who adopts the editor into Pi Engine: name, email, website
-    'author'        => 'Taiwen Jiang <taiwenjiang@tsinghua.org.cn>',
+    'author'  => 'Taiwen Jiang <taiwenjiang@tsinghua.org.cn>',
     // Disable
-    'disable'      => false,
-);
+    'disable' => false,
+];

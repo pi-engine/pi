@@ -1,22 +1,20 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
 namespace Pi\Application\Service;
 
 use Pi;
-use Pi\User\BindInterface;
 use Pi\User\Adapter\AbstractAdapter;
 use Pi\User\Adapter\System as DefaultAdapter;
 use Pi\User\Model\AbstractModel as UserModel;
 use Pi\User\Resource\AbstractResource;
-use Zend\Http\PhpEnvironment\RemoteAddress;
 
 /**
  * User service gateway
@@ -150,12 +148,13 @@ class User extends AbstractService
      *
      * @var array
      */
-    protected $resource = array(
-        'avatar'    => null,
-        'message'   => null,
-        'timeline'  => null,
-        'relation'  => null,
-    );
+    protected $resource
+        = [
+            'avatar'   => null,
+            'message'  => null,
+            'timeline' => null,
+            'relation' => null,
+        ];
 
     /**
      * Get config(s)
@@ -200,12 +199,12 @@ class User extends AbstractService
     {
         if (!$this->adapter instanceof AbstractAdapter) {
             $adapter = $this->getOption('adapter');
-            $class = $this->getOption($adapter, 'class');
+            $class   = $this->getOption($adapter, 'class');
             if ($class) {
-                $options    = (array) $this->getOption($adapter, 'options');
+                $options = (array)$this->getOption($adapter, 'options');
             } else {
-                $class      = $this->getOption($adapter);
-                $options    = array();
+                $class   = $this->getOption($adapter);
+                $options = [];
             }
 
             if ($class) {
@@ -223,7 +222,7 @@ class User extends AbstractService
      *
      * @param UserModel|int|string|null $identity
      *      User id, identity or UserModel
-     * @param string                    $field
+     * @param string $field
      *      Field of the identity: id, identity
      *
      * @throws \Exception
@@ -235,15 +234,15 @@ class User extends AbstractService
         if ($identity instanceof UserModel) {
             $model = $identity;
             $this->setPersist($model);
-        // Use current user model
+            // Use current user model
         } elseif ($this->model
             && (null === $identity
                 || $this->model->get($field) == $identity)
         ) {
             $model = $this->model;
-        // Create user model
+            // Create user model
         } else {
-            $data = $this->getPersist() ?: array();
+            $data = $this->getPersist() ?: [];
             // Fetch user data and build user model
             if (null !== $identity
                 && (!isset($data[$field])
@@ -254,7 +253,7 @@ class User extends AbstractService
                     throw new \Exception('User was not found.');
                 }
                 $this->setPersist($model);
-            // Build user model from persist data
+                // Build user model from persist data
             } else {
                 $model = $this->getAdapter()->getUser($data);
                 if (!$model) {
@@ -265,14 +264,6 @@ class User extends AbstractService
         $this->model = $model;
         // Bind user model to service adapter
         $this->getAdapter()->bind($this->model);
-        /*
-        // Bind user model to handlers
-        foreach ($this->resource as $key => $handler) {
-            if ($handler instanceof BindInterface) {
-                $handler->bind($this->model);
-            }
-        }
-        */
 
         // Store current session user model for first time
         if (null === $this->modelSession) {
@@ -295,7 +286,7 @@ class User extends AbstractService
     }
 
     /**
-     * Destory current user session
+     * Destroy current user session
      *
      * @return self
      */
@@ -351,7 +342,7 @@ class User extends AbstractService
         if (!$this->hasIdentity()) {
             $id = 0;
         } else {
-            $id = (int) $this->modelSession['id'];
+            $id = (int)$this->modelSession['id'];
         }
 
         return $id;
@@ -361,7 +352,7 @@ class User extends AbstractService
      * Get current request IP
      *
      * @param bool $proxy Check proxy
-     * @param bool $ipv6  Return IPV6
+     * @param bool $ipv6 Return IPV6
      *
      * @return string
      */
@@ -383,8 +374,8 @@ class User extends AbstractService
     /**
      * Update a user
      *
-     * @param   int         $uid
-     * @param   array       $fields
+     * @param   int $uid
+     * @param   array $fields
      * @return  int|bool
      * @api
      */
@@ -401,9 +392,9 @@ class User extends AbstractService
     /**
      * Set value of a user field
      *
-     * @param int       $uid
-     * @param string    $field
-     * @param mixed     $value
+     * @param int $uid
+     * @param string $field
+     * @param mixed $value
      * @return bool
      * @api
      */
@@ -420,8 +411,8 @@ class User extends AbstractService
     /**
      * Set user role(s)
      *
-     * @param int           $uid
-     * @param string|array  $role
+     * @param int $uid
+     * @param string|array $role
      *
      * @return bool
      */
@@ -439,8 +430,8 @@ class User extends AbstractService
     /**
      * Revoke user role(s)
      *
-     * @param int           $uid
-     * @param string|array  $role
+     * @param int $uid
+     * @param string|array $role
      *
      * @return bool
      */
@@ -458,9 +449,9 @@ class User extends AbstractService
     /**
      * Get user role
      *
-     * @param int    $uid
-     * @param string $section    Section name: admin, front
-     * @param bool   $force      Force to fetch
+     * @param int $uid
+     * @param string $section Section name: admin, front
+     * @param bool $force Force to fetch
      *
      * @return array
      */
@@ -470,16 +461,16 @@ class User extends AbstractService
         if (null === $uid) {
             $uid = $this->getId();
         } else {
-            $uid = (int) $uid;
+            $uid = (int)$uid;
         }
-        $section = $section ?: Pi::engine()->application()->getSection();
-        $isCurrent  = false;
+        $section   = $section ?: Pi::engine()->application()->getSection();
+        $isCurrent = false;
         if (!$force
             && $uid === $this->getId()
             && Pi::engine()->application()->getSection() == $section
         ) {
             $isCurrent = true;
-            $result = $this->getUser()->role();
+            $result    = $this->getUser()->role();
         }
         if (null === $result) {
             $result = $this->getAdapter()->getRole($uid, $section);
@@ -524,21 +515,21 @@ class User extends AbstractService
 
         // Fetch whole data set from user model
         if ($name instanceof UserModel) {
-            $_SESSION['PI_USER']['field'] = array();
+            $_SESSION['PI_USER']['field'] = [];
             foreach ($fields as $field) {
                 if (isset($name[$field])) {
                     $_SESSION['PI_USER']['field'][$field] = $name[$field];
                 }
             }
-        // Set/Update one single parameter
+            // Set/Update one single parameter
         } elseif (is_string($name)) {
             if (!isset($_SESSION['PI_USER']['field'])) {
                 $_SESSION['PI_USER']['field'] = $this->getPersist();
             }
             $_SESSION['PI_USER']['field'][$name] = $value;
-        // Set whole set
+            // Set whole set
         } else {
-            $_SESSION['PI_USER']['field'] = $name ? (array) $name : null;
+            $_SESSION['PI_USER']['field'] = $name ? (array)$name : null;
         }
         if ($ttl) {
             $_SESSION['PI_USER']['time'] = time() + $ttl;
@@ -562,17 +553,17 @@ class User extends AbstractService
         }
 
         $data = isset($_SESSION['PI_USER'])
-            ? (array) $_SESSION['PI_USER'] : array();
+            ? (array)$_SESSION['PI_USER'] : [];
         if (isset($data['time']) && $data['time'] < time()) {
             $result = null;
         } else {
-            $userData = array();
+            $userData = [];
             if (isset($data['field'])) {
                 $userData = $data['field'];
             } else {
                 $fields = $this->getOption('options', 'persist', 'field');
                 if ($fields) {
-                    $uid = $this->getId();
+                    $uid      = $this->getId();
                     $userData = $this->get($uid, $fields);
                     $this->setPersist($userData);
                 }
@@ -594,7 +585,7 @@ class User extends AbstractService
      *
      * @return $this
      */
-    public function reload(array $options = array())
+    public function reload(array $options = [])
     {
         if ($options) {
             $this->setOptions($options);
@@ -613,29 +604,6 @@ class User extends AbstractService
      */
     public function __get($var)
     {
-        /*
-        switch ($var) {
-            // User activity
-            case 'activity':
-            // User data
-            case 'data':
-            // User message
-            case 'message':
-            // User timeline
-            case 'timeline':
-                $result = $this->getResource($var);
-                break;
-            // Avatar
-            case 'avatar':
-                $result = Pi::service('avatar')->setUser($this->getUser());
-                break;
-            // User profile field
-            default:
-                $result = $this->getAdapter()->{$var};
-                break;
-        }
-        */
-
         $result = $this->getAdapter()->{$var};
 
         return $result;
@@ -646,43 +614,14 @@ class User extends AbstractService
      *
      * Call APIs defined in {@link Pi\User\Adapter\AbstractAdapter}
      *
-     * @param  string  $method
-     * @param  array  $args
+     * @param  string $method
+     * @param  array $args
      * @return mixed
      */
     public function __call($method, $args)
     {
-        /*
-        switch ($method) {
-            // User activity
-            case 'activity':
-            // User data
-            case 'data':
-            // User message
-            case 'message':
-            // User timeline
-            case 'timeline':
-                $result = $this->getResource($method, $args);
-                break;
-            // Avatar
-            case 'avatar':
-                $result = Pi::service('avatar')->setUser($this->getUser());
-                if ($args) {
-                    $result = call_user_func_array(array($result,'get'), $args);
-                }
-                break;
-            // User profile adapter methods
-            default:
-                $result = call_user_func_array(
-                    array($this->getAdapter(), $method),
-                    $args
-                );
-                break;
-        }
-        */
-
         $result = call_user_func_array(
-            array($this->getAdapter(), $method),
+            [$this->getAdapter(), $method],
             $args
         );
         return $result;

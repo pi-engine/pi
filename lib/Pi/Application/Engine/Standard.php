@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Engine;
@@ -17,7 +17,7 @@ use Pi\Mvc\Application;
  *
  * Tasks:
  *
- *  - load configs, default listeners, module manager, bootstrap, application;
+ * - load configs, default listeners, module manager, bootstrap, application;
  * - boot application;
  * - run application
  *
@@ -28,7 +28,7 @@ class Standard extends AbstractEngine
     /**
      * {@inheritDoc}
      */
-    const SECTION = self::FRONT;
+    const SECTION = 'front';
 
     /**
      * {@inheritDoc}
@@ -39,10 +39,11 @@ class Standard extends AbstractEngine
      * Resource container
      * @var array
      */
-    protected $resources = array(
-        'options'   => array(),
-        'instances' => array()
-    );
+    protected $resources
+        = [
+            'options'   => [],
+            'instances' => [],
+        ];
 
     /**
      * {@inheritDoc}
@@ -91,8 +92,8 @@ class Standard extends AbstractEngine
     public function application()
     {
         if (!$this->application) {
-            $options = isset($this->options['application'])
-                       ? $this->options['application'] : array();
+            $options           = isset($this->options['application'])
+                ? $this->options['application'] : [];
             $this->application = Application::load($options);
             $this->application->setEngine($this)->setSection($this->section());
         }
@@ -101,7 +102,7 @@ class Standard extends AbstractEngine
     }
 
     /**
-     * Bood Pi application services
+     * Boot Pi application services
      *
      * @return bool
      */
@@ -151,11 +152,11 @@ class Standard extends AbstractEngine
     /**
      * Loads a resource
      *
-     * @param string    $resource
-     * @param array     $options  Custom options
+     * @param string $resource
+     * @param array $options Custom options
      * @return void
      */
-    public function bootResource($resource, $options = array())
+    public function bootResource($resource, $options = [])
     {
         if (!isset($this->resources['instances'][$resource])) {
             // Skip resource if disabled
@@ -163,7 +164,7 @@ class Standard extends AbstractEngine
                 && false === $this->resources['options'][$resource]
             ) {
                 $this->resources['instances'][$resource] = true;
-            // Load resource with native and custom options
+                // Load resource with native and custom options
             } else {
                 if (!empty($this->resources['options'][$resource])) {
                     if (is_string($this->resources['options'][$resource])) {
@@ -178,20 +179,25 @@ class Standard extends AbstractEngine
                         $options = array_merge($opt, $options);
                     }
                 }
-                $resourceName = str_replace(
+                $resourceName     = str_replace(
                     ' ',
                     '',
                     ucwords(str_replace('_', ' ', $resource))
                 );
-                $class = sprintf(
+                $class            = sprintf(
                     'Pi\Application\Bootstrap\Resource\\%s',
                     $resourceName
                 );
                 $resourceInstance = new $class($this, $options);
 
-                $result = $resourceInstance->boot();
-                $this->resources['instances'][$resource] = (null === $result)
-                    ? true : $result;
+                $result                                  = $resourceInstance->boot();
+                $result                                  = (null === $result) ? true : $result;
+                $this->resources['instances'][$resource] = $result;
+                if (Pi::service()->hasService('log')) {
+                    Pi::service('log')->info(
+                        sprintf('Resource "%s" is booted', $resource)
+                    );
+                }
             }
         }
 

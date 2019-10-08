@@ -1,15 +1,14 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**
@@ -24,24 +23,24 @@ class PageEditFilter extends InputFilter
      */
     public function __construct()
     {
-        $this->add(array(
-            'name'      => 'id',
-            'required'  => true,
-        ));
+        $this->add([
+            'name'     => 'id',
+            'required' => true,
+        ]);
 
-        $this->add(array(
-            'name'      => 'cache_type',
-            'required'  => false,
-        ));
+        $this->add([
+            'name'     => 'cache_type',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'      => 'cache_ttl',
-            'required'  => false,
-        ));
+        $this->add([
+            'name'     => 'cache_ttl',
+            'required' => false,
+        ]);
 
-        $this->add(array(
-            'name'      => 'cache_level',
-            'required'  => false,
-        ));
+        $this->add([
+            'name'     => 'cache_level',
+            'required' => false,
+        ]);
     }
 }

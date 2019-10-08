@@ -1,20 +1,19 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Form
  */
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\View\Helper\FormRow as ZendFormRow;
-use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
 use Zend\Form\Element\Collection;
+use Zend\Form\ElementInterface;
 use Zend\Form\FieldsetInterface;
+use Zend\Form\View\Helper\FormRow as ZendFormRow;
 
 /**
  * Element row helper
@@ -80,13 +79,13 @@ class FormRow extends ZendFormRow
         }
 
         if ($this->partial) {
-            $vars = array(
-                'element'           => $element,
-                'label'             => $label,
-                'labelAttributes'   => $this->labelAttributes,
-                'labelPosition'     => $this->labelPosition,
-                'renderErrors'      => $this->renderErrors,
-            );
+            $vars = [
+                'element'         => $element,
+                'label'           => $label,
+                'labelAttributes' => $this->labelAttributes,
+                'labelPosition'   => $this->labelPosition,
+                'renderErrors'    => $this->renderErrors,
+            ];
 
             return $this->view->render($this->partial, $vars);
         }
@@ -98,7 +97,7 @@ class FormRow extends ZendFormRow
         $elementString = $elementHelper->render($element);
 
         if (isset($label) && '' !== $label) {
-            $label = $escapeHtmlHelper($label);
+            $label           = $escapeHtmlHelper($label);
             $labelAttributes = $element->getLabelAttributes();
 
             if (empty($labelAttributes)) {
@@ -125,9 +124,9 @@ class FormRow extends ZendFormRow
                 );
             } else {
                 if ($element->hasAttribute('id')) {
-                    $labelOpen = $labelHelper($element);
+                    $labelOpen  = $labelHelper($element);
                     $labelClose = '';
-                    $label = '';
+                    $label      = '';
                 } else {
                     $labelOpen  = $labelHelper->openTag($labelAttributes);
                     $labelClose = $labelHelper->closeTag();
@@ -146,19 +145,19 @@ class FormRow extends ZendFormRow
                 switch ($this->labelPosition) {
                     case self::LABEL_PREPEND:
                         $markup = $labelOpen . $label . $elementString
-                                . $labelClose;
+                            . $labelClose;
                         break;
                     case self::LABEL_APPEND:
                     default:
                         $markup = $labelOpen . $elementString . $label
-                                . $labelClose;
+                            . $labelClose;
                         break;
                 }
                 /**#@+
                  * For description
                  */
                 $markup = '<dt>' . $labelOpen . $label . $labelClose . '</dt>'
-                        . $elementDescription . $elementString;
+                    . $elementDescription . $elementString;
                 /**#@-*/
             }
 

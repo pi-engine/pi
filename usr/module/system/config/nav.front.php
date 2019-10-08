@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -12,58 +12,58 @@
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
+return [
     // Homepage
-    'nav-home' => array(
-        'order'         => -100,
-        'label'         => _a('Home'),
-        'route'         => 'home',
+    'nav-home' => [
+        'order' => -100,
+        'label' => _a('Home'),
+        'route' => 'home',
 
-        'pages'         => array(
-            'account'   => array(
-                'label'         => _a('Profile'),
-                'route'         => 'sysuser',
-                'controller'    => 'profile',
+        'pages' => [
+            'account' => [
+                'label'      => _a('Profile'),
+                'route'      => 'sysuser',
+                'controller' => 'profile',
 
-                'pages'         => array(
-                    'login'     => array(
-                        'label'         => _a('Login'),
-                        'route'         => 'sysuser',
-                        'controller'    => 'login',
-                        'visible'       => 0,
-                    ),
+                'pages' => [
+                    'login' => [
+                        'label'      => _a('Login'),
+                        'route'      => 'sysuser',
+                        'controller' => 'login',
+                        'visible'    => 0,
+                    ],
 
-                    'register'     => array(
-                        'label'         => _a('Register'),
-                        'route'         => 'sysuser',
-                        'controller'    => 'register',
-                        'visible'       => 0,
-                    ),
+                    'register' => [
+                        'label'      => _a('Register'),
+                        'route'      => 'sysuser',
+                        'controller' => 'register',
+                        'visible'    => 0,
+                    ],
 
-                    'password'     => array(
-                        'label'         => _a('Password'),
-                        'route'         => 'sysuser',
-                        'controller'    => 'password',
-                        'visible'       => 0,
-                    ),
-                ),
-            ),
-            'admin'     => array(
-                'label'     => _a('Admin'),
-                'route'     => 'home',
-                'section'   => 'admin',
-                'target'    => '_blank',
-            ),
-            'feed'     => array(
-                'label'     => _a('RSS Feed'),
-                'route'     => 'feed',
-                'section'   => 'feed',
-                'target'    => '_blank',
-            ),
-        ),
-    ),
+                    'password' => [
+                        'label'      => _a('Password'),
+                        'route'      => 'sysuser',
+                        'controller' => 'password',
+                        'visible'    => 0,
+                    ],
+                ],
+            ],
+            'admin'   => [
+                'label'   => _a('Admin'),
+                'route'   => 'home',
+                'section' => 'admin',
+                'target'  => '_blank',
+            ],
+            'feed'    => [
+                'label'   => _a('RSS Feed'),
+                'route'   => 'feed',
+                'section' => 'feed',
+                'target'  => '_blank',
+            ],
+        ],
+    ],
 
-    'modules'   => array(
-        'callback'  => array('navigation', 'front'),
-    ),
-);
+    'modules' => [
+        'callback' => ['navigation', 'front'],
+    ],
+];

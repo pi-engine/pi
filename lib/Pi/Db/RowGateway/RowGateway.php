@@ -1,20 +1,20 @@
 <?PHP
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Db\RowGateway;
 
+use Pi;
 use Pi\Db\Table\AbstractTableGateway;
-use Zend\Db\RowGateway\RowGateway as AbstractRowGateway;
 use Zend\Db\Adapter\Adapter;
-use Zend\Db\Sql\Sql;
-use Zend\Db\RowGateway\Feature;
 use Zend\Db\RowGateway\Exception;
+use Zend\Db\RowGateway\RowGateway as AbstractRowGateway;
+use Zend\Db\Sql\Sql;
 
 /**
  * Row gateway class
@@ -39,12 +39,14 @@ class RowGateway extends AbstractRowGateway
      */
     protected $model;
 
+    protected $_oldData = array();
+
     /**
      * Table fields/columns.
      *
      * @var string[]
      */
-    protected $columns = array();
+    protected $columns = [];
 
     /**
      * Non-scalar columns to be encoded before saving to DB
@@ -54,14 +56,14 @@ class RowGateway extends AbstractRowGateway
      * false - keep as array object.
      * @var array
      */
-    protected $encodeColumns = array();
+    protected $encodeColumns = [];
 
     /**
      * Constructor
      *
-     * @param string                              $primaryKeyColumn
+     * @param string $primaryKeyColumn
      * @param string|AbstractTableGateway|\Zend\Db\Sql\TableIdentifier $table
-     * @param Adapter|Sql                         $adapterOrSql
+     * @param Adapter|Sql $adapterOrSql
      *
      * @return \Pi\Db\RowGateway\RowGateway
      */
@@ -69,10 +71,11 @@ class RowGateway extends AbstractRowGateway
         $primaryKeyColumn,
         $table,
         $adapterOrSql = null
-    ) {
+    )
+    {
         // setup primary key
         $this->primaryKeyColumn = $primaryKeyColumn ?: $this->primaryKeyColumn;
-        $this->pkColumn = $this->primaryKeyColumn;
+        $this->pkColumn         = $this->primaryKeyColumn;
         if ($table instanceof AbstractTableGateway) {
             $this->setModel($table);
             $table = $table->getTable();
@@ -93,6 +96,14 @@ class RowGateway extends AbstractRowGateway
         $this->model = $model;
 
         return $this;
+    }
+
+    /**
+     * @return AbstractTableGateway
+     */
+    public function getModel()
+    {
+        return $this->model;
     }
 
     /**
@@ -160,7 +171,7 @@ class RowGateway extends AbstractRowGateway
      */
     protected function encodeValue($value)
     {
-        $value = $value ?: array();
+        $value = $value ?: [];
 
         return json_encode($value);
     }
@@ -168,14 +179,14 @@ class RowGateway extends AbstractRowGateway
     /**
      * Decode content
      *
-     * @param string    $value
-     * @param bool      $assoc
+     * @param string $value
+     * @param bool $assoc
      * @return array|resource|object
      */
     protected function decodeValue($value, $assoc = true)
     {
         return $value
-            ? json_decode($value, $assoc) : ($assoc ? array() : $value);
+            ? json_decode($value, $assoc) : ($assoc ? [] : $value);
     }
 
     /**
@@ -211,7 +222,7 @@ class RowGateway extends AbstractRowGateway
     {
         foreach ($this->encodeColumns as $column => $assoc) {
             if (array_key_exists($column, $data)) {
-                // Escape if already a non-scalar
+                // Skip if already a non-scalar
                 if (!is_scalar($data[$column])) {
                     break;
                 }
@@ -250,20 +261,19 @@ class RowGateway extends AbstractRowGateway
      * Populate Data
      *
      * @param array $rowData
-     * @param bool  $rowExistsInDatabase If row is already in DB
+     * @param bool $rowExistsInDatabase If row is already in DB
      * @return $this
      */
     public function populate(array $rowData, $rowExistsInDatabase = false)
     {
         $this->initialize();
 
-        //$this->data = $rowData;
         if ($rowExistsInDatabase == true) {
             $this->data = $this->decode($rowData);
             $this->processPrimaryKeyData();
         } else {
             $this->primaryKeyData = null;
-            $this->data = $rowData;
+            $this->data           = $rowData;
         }
 
         return $this;
@@ -272,7 +282,7 @@ class RowGateway extends AbstractRowGateway
     /**
      * Save a row
      *
-     * @param bool $rePopulate  To re-populate data
+     * @param bool $rePopulate To re-populate data
      * @param bool $filter Filter invalid columns
      *
      * @return int
@@ -282,8 +292,8 @@ class RowGateway extends AbstractRowGateway
         $this->initialize();
 
         /**#@+
-            * Encode data to make it db-ready
-            */
+         * Encode data to make it db-ready
+         */
         $this->data = $this->encode($this->data);
         if ($filter) {
             $columns = $this->columns ?: $this->model->getColumns();
@@ -297,12 +307,27 @@ class RowGateway extends AbstractRowGateway
         }
         /**#@-*/
 
+        /**
+         * Force null value for empty media
+         */
+        $model = $this->getModel();
+        if (Pi::service('module')->isActive('media') && $model instanceof \Pi\Application\Model\Model && $mediaLinks = $model->getMediaLinks()) {
+
+            foreach ($mediaLinks as $key) {
+                if (isset($this->data[$key]) && $this->data[$key] == '') {
+                    $this->data[$key] = null;
+                }
+            }
+        }
+
+        $wasExisting = true;
+
         if ($this->rowExistsInDatabase()) {
 
             // UPDATE
 
-            $data = $this->data;
-            $where = array();
+            $data  = $this->data;
+            $where = [];
 
             // primary key is always an array even if its a single column
             foreach ($this->primaryKeyColumn as $pkColumn) {
@@ -312,14 +337,16 @@ class RowGateway extends AbstractRowGateway
                 }
             }
 
-            $statement = $this->sql->prepareStatementForSqlObject(
+            $statement    = $this->sql->prepareStatementForSqlObject(
                 $this->sql->update()->set($data)->where($where)
             );
-            $result = $statement->execute();
+            $result       = $statement->execute();
             $rowsAffected = $result->getAffectedRows();
             unset($statement, $result); // cleanup
 
         } else {
+
+            $wasExisting = false;
 
             // INSERT
             $insert = $this->sql->insert();
@@ -331,9 +358,9 @@ class RowGateway extends AbstractRowGateway
             if (($primaryKeyValue = $result->getGeneratedValue())
                 && count($this->primaryKeyColumn) == 1
             ) {
-                $this->primaryKeyData = array(
-                    $this->primaryKeyColumn[0] => $primaryKeyValue
-                );
+                $this->primaryKeyData = [
+                    $this->primaryKeyColumn[0] => $primaryKeyValue,
+                ];
             } else {
                 // make primary key data available so that
                 // $where can be complete
@@ -343,12 +370,11 @@ class RowGateway extends AbstractRowGateway
             $rowsAffected = $result->getAffectedRows();
             unset($statement, $result); // cleanup
 
-            $where = array();
+            $where = [];
             // primary key is always an array even if its a single column
             foreach ($this->primaryKeyColumn as $pkColumn) {
                 $where[$pkColumn] = $this->primaryKeyData[$pkColumn];
             }
-
         }
 
         if ($rePopulate) {
@@ -356,16 +382,47 @@ class RowGateway extends AbstractRowGateway
             $statement = $this->sql->prepareStatementForSqlObject(
                 $this->sql->select()->where($where)
             );
-            $result = $statement->execute();
-            $rowData = $result->current();
+            $result    = $statement->execute();
+            $rowData   = $result->current();
             unset($statement, $result); // cleanup
 
             // make sure data and original data are in sync after save
             $this->populate($rowData, true);
         }
 
+        /**
+         * Add trigger event for module observers
+         */
+        if (!$wasExisting) {
+            Pi::service('observer')->triggerInsertedRow($this);
+        } else {
+            Pi::service('observer')->triggerUpdatedRow($this, $this->_oldData);
+        }
+
+        /**
+         * Media management
+         */
+        $model = $this->getModel();
+        if (Pi::service('module')->isActive('media') && $model instanceof \Pi\Application\Model\Model && $model->getMediaLinks()) {
+            Pi::api('link', 'media')->updateLinks($this);
+        }
+
         // return rows affected
         return $rowsAffected;
+    }
+
+    public function delete()
+    {
+        $affectedRows = parent::delete();
+
+        if ($affectedRows == 1 && Pi::service('module')->isActive('media')) {
+            $model = $this->getModel();
+            if ($model instanceof \Pi\Application\Model\Model && $model->getMediaLinks()) {
+                Pi::api('link', 'media')->removeLinks($this);
+            }
+        }
+
+        return $affectedRows;
     }
 
     /**
@@ -385,6 +442,23 @@ class RowGateway extends AbstractRowGateway
     }
 
     /**
+     * Offset set
+     *
+     * @param  string $offset
+     * @param  mixed $value
+     * @return RowGateway
+     */
+    public function offsetSet($offset, $value)
+    {
+        if(isset($this->_oldData) && isset($this->data[$offset])){
+            $this->_oldData[$offset] = $this->data[$offset];
+        }
+
+        $this->data[$offset] = $value;
+        return $this;
+    }
+
+    /**
      * Process primary key
      *
      * @return void
@@ -392,7 +466,7 @@ class RowGateway extends AbstractRowGateway
      */
     protected function processPrimaryKeyData()
     {
-        $this->primaryKeyData = array();
+        $this->primaryKeyData = [];
         foreach ($this->primaryKeyColumn as $column) {
             if (!isset($this->data[$column])) {
                 continue;

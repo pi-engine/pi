@@ -1,16 +1,15 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHelper;
 
 /**
@@ -30,12 +29,12 @@ class TemplateTheme extends AbstractHelper
     /**
      * Get full path to a theme template
      *
-     * @param   string  $template
-     * @param   string|null $theme, not implemented yet
+     * @param   string $template
+     * @param   string|null $theme , not implemented yet
      * @return  string
      */
     public function __invoke($template, $theme = null)
     {
-        return $this->getView()->resolver($template);
+        return $this->getView()->resolver($template, $this->view);
     }
 }

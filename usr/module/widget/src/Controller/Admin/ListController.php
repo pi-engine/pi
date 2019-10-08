@@ -1,80 +1,82 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Widget\Controller\Admin;
 
 use Pi;
-use Module\Widget\Form\BlockListForm as BlockForm;
 
 /**
- * For list block
- * 
+ * For list group block
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class ListController extends CarouselController
+class ListController extends WidgetController
 {
     /**
-     * Widget type
-     * @var string 
+     * {@inheritDoc}
      */
     protected $type = 'list';
 
     /**
-     * Get form instance
-     * 
-     * @return BlockForm
+     * {@inheritDoc}
      */
-    protected function getForm()
-    {
-        $this->form = $this->form ?: new BlockForm('block');
+    protected $editTemplate = 'widget-list';
 
-        return $this->form;
-    }
-
-    /**
-     * Add a list block and default ACL rules
-     */
-    public function addAction()
-    {
-        parent::addAction();
-
-        $this->view()->setTemplate('widget-list');
-    }
-
-    /**
-     * Edit a carousel block
-     */
-    public function editAction()
-    {
-        parent::editAction();
-
-        $this->view()->setTemplate('widget-list');
-    }
-    
     /**
      * {@inheritDoc}
      */
-    protected function canonizeContent($content)
-    {
-        $content = json_decode($content, true);
-        $items = array();
-        foreach ($content as $item) {
-            if ($item['image']) {
-                if (!$this->isAbsoluteUrl($item['image'])) {
-                    $item['image'] = $this->urlRoot() . '/' . $item['image'];
-                }
-            } else {
-                $item['image'] = '';
-            }
-            $items[] = $item;
-        }
+    protected $formClass = 'BlockListForm';
 
-        return json_encode($items);
+    /**
+     * {@inheritDoc}
+     *
+     * Canonize link URLs
+     */
+    protected function canonizePost(array $values)
+    {
+        $items             = json_decode($values['content'], true);
+        $items             = $this->canonizeUrls($items);
+        $values['content'] = json_encode($items);
+        $values            = parent::canonizePost($values);
+
+        return $values;
+    }
+
+    /**
+     * Canonize item URLs
+     *
+     * @param array $list
+     *
+     * @return array
+     */
+    protected function canonizeUrls(array $list)
+    {
+        array_walk($list, function (&$item) {
+            if (!empty($item['link'])) {
+                if (!preg_match('|^http[s]?://|i', $item['link'])) {
+                    $item['link'] = Pi::url('www') . '/' . ltrim($item['link'], '/');
+                }
+            }
+        });
+
+        return $list;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function prepareContent($content)
+    {
+        $items   = $content ? json_decode($content, true) : [];
+        $items   = array_filter($items);
+        $content = json_encode($items);
+
+        return $content;
     }
 }

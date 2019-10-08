@@ -1,0 +1,25 @@
+<?php
+/**
+ * User profile page top-bar for pages outside of user module
+ *
+ * Variables:
+ * `$uid`: int, user id
+ * `$name`: string, user name
+ * `$owner`: bool, if current visitor is the user himself
+ * `$extra`: extra information to display on user topbar
+ *
+ * To load the template for a module other than `user`
+ * load user module css by:
+ * `$this->css($this->assetModule('front/front.css', 'user'));`
+ * load user module default language file by:
+ * `Pi::service('i18n')->load(array('module/user', 'default'));`
+ */
+
+// Load css
+$this->css($this->assetModule('front/front.css', 'user'));
+
+// Load language
+Pi::service('i18n')->load(['module/user', 'default']);
+
+// load template
+include $this->templateModule('front/profile-topbar.phtml', 'user');

@@ -1,22 +1,23 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="card card-default">
+    <div class="card-heading">
         <?php echo __('Demo for script page content.'); ?>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <?php
-            $content =<<<'EOT'
+        $content
+            = <<<'EOT'
 <h3>%s</h3>
 <em>%s</em>
 <p>%s</p>
 EOT;
 
-            $content = sprintf(
-                $content,
-                Pi::config('sitename'),
-                Pi::config('slogan'),
-                Pi::config('description')
-            );
-            echo $content;
+        $content = sprintf(
+            $content,
+            Pi::config('sitename'),
+            Pi::config('slogan'),
+            Pi::config('description')
+        );
+        echo $content;
         ?>
     </div>
 </div>

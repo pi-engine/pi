@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Field;
@@ -13,7 +13,6 @@ use Pi;
 use Pi\Application\Installer\SqlSchema;
 use Pi\Db\Table\AbstractTableGateway;
 use Pi\Form\Form;
-use Zend\Form\Element;
 use Zend\InputFilter\InputFilter;
 
 /**
@@ -60,7 +59,7 @@ abstract class AbstractCustomHandler
      */
     public function __construct($name = '')
     {
-        $name = $name ?: $this->getName();
+        $name       = $name ?: $this->getName();
         $this->name = $name;
     }
 
@@ -82,8 +81,8 @@ abstract class AbstractCustomHandler
     public function getName()
     {
         if (!$this->name) {
-            $class = get_class($this);
-            $className = substr($class, -1 * strrpos($class, '\\'));
+            $class      = get_class($this);
+            $className  = substr($class, -1 * strrpos($class, '\\'));
             $this->name = strtolower($className);
         }
 
@@ -233,7 +232,7 @@ abstract class AbstractCustomHandler
             if ($data[$key] === null) {
                 $data[$key] = '';
             }
-            if (!isset($meta[$key]) ) {
+            if (!isset($meta[$key])) {
                 unset($data[$key]);
             }
         }
@@ -245,7 +244,7 @@ abstract class AbstractCustomHandler
     /**
      * Add user custom compound/field
      *
-     * @param int   $uid
+     * @param int $uid
      * @param mixed $data
      *
      * @return int
@@ -254,10 +253,10 @@ abstract class AbstractCustomHandler
     {
         if ($this->isMultiple) {
             $order = 0;
-            foreach ((array) $data as $set) {
-                $set = $this->canonize($uid, $set);
+            foreach ((array)$data as $set) {
+                $set          = $this->canonize($uid, $set);
                 $set['order'] = $order++;
-                $row = $this->getModel()->createRow($set);
+                $row          = $this->getModel()->createRow($set);
                 $row->save();
             }
         } else {
@@ -265,13 +264,13 @@ abstract class AbstractCustomHandler
             $row->save();
         }
 
-        return (int) $row['id'];
+        return (int)$row['id'];
     }
 
     /**
      * Update user custom compound/field
      *
-     * @param int   $uid
+     * @param int $uid
      * @param mixed $data
      *
      * @return int
@@ -290,13 +289,13 @@ abstract class AbstractCustomHandler
     /**
      * Delete user custom compound/field
      *
-     * @param int   $uid
+     * @param int $uid
      *
      * @return bool
      */
     public function delete($uid)
     {
-        $this->getModel()->delete(array('uid' => (int) $uid));
+        $this->getModel()->delete(['uid' => (int)$uid]);
 
         return true;
     }
@@ -304,8 +303,8 @@ abstract class AbstractCustomHandler
     /**
      * Get user custom compound/field
      *
-     * @param int   $uid
-     * @param bool  $filter     To filter for display
+     * @param int $uid
+     * @param bool $filter To filter for display
      *
      * @return array
      */
@@ -315,7 +314,7 @@ abstract class AbstractCustomHandler
      * Get multiple user custom compound fields
      *
      * @param int[] $uids
-     * @param bool  $filter     To filter for display
+     * @param bool $filter To filter for display
      *
      * @return array
      */
@@ -324,7 +323,7 @@ abstract class AbstractCustomHandler
     /**
      * Get user custom compound/field read for display
      *
-     * @param int|int[]   $uid
+     * @param int|int[] $uid
      * @param array|null $data
      *
      * @return array
@@ -336,18 +335,19 @@ abstract class AbstractCustomHandler
      *
      * @param string $name
      * @param string $action
-     * @param array  $data
-     * @param array  $message
+     * @param array $data
+     * @param array $message
      *
      * @return Form|string
      */
     public function getForm(
         $name = '',
         $action = '',
-        array $data = array(),
-        array $message = array()
-    ) {
-        $form = null;
+        array $data = [],
+        array $message = []
+    )
+    {
+        $form      = null;
         $formClass = $this->form
             ?: 'Custom\User\Form\Form' . ucfirst($this->getName());
         if (class_exists($formClass)) {
@@ -369,12 +369,12 @@ abstract class AbstractCustomHandler
                     $this->getName()
                 );
             if (file_eixsts($template)) {
-                $form = Pi::service('template')->render($template, array(
-                    'name'  => $name,
-                    'action'    => $action,
-                    'data'      => $data,
-                    'message'   => $message,
-                ));
+                $form = Pi::service('template')->render($template, [
+                    'name'    => $name,
+                    'action'  => $action,
+                    'data'    => $data,
+                    'message' => $message,
+                ]);
             }
         }
 
@@ -388,7 +388,7 @@ abstract class AbstractCustomHandler
      */
     public function getFilter()
     {
-        $filter = null;
+        $filter      = null;
         $filterClass = $this->filter
             ?: 'Custom\User\Form\Filter' . ucfirst($this->getName());
         if (class_exists($filterClass)) {

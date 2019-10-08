@@ -40,7 +40,7 @@ Check out [changelog](https://github.com/pi-engine/pi/blob/release-2.4.0/doc/cha
 
 Documentation
 =============
-Checkout Pi development manual and tutorials at [Github wiki](https://github.com/pi-engine/pi/wiki) and APIs and class charts at [Pi API](http://api.pialog.org).
+Checkout Pi development manual and tutorials at [Github wiki](https://github.com/pi-engine/pi/wiki) and APIs and class charts at [Pi API](http://api.piengine.org).
 
 
 ---------------------

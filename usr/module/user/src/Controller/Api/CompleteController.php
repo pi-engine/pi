@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Controller\Api;
@@ -17,10 +17,11 @@ use Zend\InputFilter\InputFilter;
  * Form webservice controller
  *
  * Methods:
- * 
+ *
  * - set: <uid>, <rule>, array(<field>)
  * - get: <uid>, <rule>, array(<data>)
  *
+ * @todo The controller has hard-coded customization and will be refactored. - By @taiwen
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class CompleteController extends ApiController
@@ -29,59 +30,52 @@ class CompleteController extends ApiController
      * Rule file name
      */
     const RULE_FILE = 'profile-complete-rule';
-    
+
     /**
      * Fields donot allow user to read
-     * @var array 
+     * @var array
      */
-    protected $protectedFields = array(
-        'credential', 'salt'
-    );
-    
+    protected $protectedFields
+        = [
+            'credential', 'salt',
+        ];
+
     /**
      * Elements do not need to render
-     * @var array 
+     * @var array
      */
-    protected $skipFields = array(
-        'submit', 'redirect',
-    );
+    protected $skipFields
+        = [
+            'submit', 'redirect',
+        ];
 
     /**
      * Get html of form elements as well as their needed asset file url according
      * to `rule` or direct fields
-     * 
+     *
      * @return ViewModel
      */
     public function getAction()
     {
-        $uid  = $this->params('uid', 0);
+        $uid = $this->params('uid', 0);
         if (empty($uid)) {
-            return array(
+            return [
                 'status' => false,
-            );
+            ];
         }
-        
+
         $rule = $this->params('rule', '');
         if (empty($rule)) {
             $rule = $this->params('appkey', '');
         }
         $fields = $this->params('field');
         $fields = json_decode($fields, true);
-        
+
         $module = $this->getModule();
-        
-        // Get filename that include elements definition or fields elements
-        if (!empty($fields)) {
-            foreach ($fields as $key => $field) {
-                if (in_array($field['name'], $this->protectedFields)) {
-                    unset($fields[$key]);
-                }
-            }
-            $name = $fields;
-        } else {
-            $name = $this->getFormFile($uid, $rule);
-        }
-        
+
+        // Get filename that include elements definition
+        $name = $this->getFormFile($uid, $rule);
+
         // Get form instance, and remove uneed form
         $form = Pi::api('form', $module)->loadForm($name);
         foreach ($this->skipFields as $field) {
@@ -89,18 +83,18 @@ class CompleteController extends ApiController
                 $form->remove($field);
             }
         }
-        
+
         // Get form value
         $data = $this->getValues($uid, $name);
         $form->setData($data);
-        
+
         // Get needed asset file url of elements
         $elements = $form->getElements();
         $fields   = array_keys($elements);
-        $assets   = array(
-            'js'  => array(),
-            'css' => array(),
-        );
+        $assets   = [
+            'js'  => [],
+            'css' => [],
+        ];
         foreach ($fields as $field) {
             if (method_exists($form->get($field), 'requiredAsset')) {
                 $asset = $form->get($field)->requiredAsset();
@@ -114,27 +108,27 @@ class CompleteController extends ApiController
         foreach ($assets as &$item) {
             $item = array_unique($item);
         }
-        
+
         // Render form to html
         $content = Pi::service('view')->render(
-            array(
+            [
                 'section' => 'component',
                 'module'  => 'user',
                 'file'    => 'form',
-            ),
-            array('form' => $form)
+            ],
+            ['form' => $form]
         );
-        
-        return array(
+
+        return [
             'status' => true,
             'data'   => $content,
-            'assets'  => $assets,
-        );
+            'assets' => $assets,
+        ];
     }
-    
+
     /**
      * Check posted data and save to database if correct
-     * 
+     *
      * @return ViewModel
      */
     public function setAction()
@@ -142,37 +136,23 @@ class CompleteController extends ApiController
         $uid  = $this->params('uid', 0);
         $data = $this->params('data');
         if (empty($uid) || empty($data)) {
-            return array(
+            return [
                 'status' => false,
-            );
+            ];
         }
-        
+
         $rule = $this->params('rule', '');
         if (empty($rule)) {
             $rule = $this->params('appkey', '');
         }
         $data   = json_decode($data, true);
         $fields = array_keys($data);
-        
+
         $module = $this->getModule();
-        
-        // Get filename that include elements definition or fields elements
-        if (!empty($fields)) {
-            foreach ($fields as $key => $val) {
-                if (in_array($val['name'], $this->protectedFields)) {
-                    unset($fields[$key]);
-                }
-                if (preg_match('/-/', $val)) {
-                    list($compound, $field) = explode('-', $val);
-                    $fields[$compound][] = $field;
-                    unset($fields[$key]);
-                }
-            }
-            $name = $fields;
-        } else {
-            $name = $this->getFormFile($uid, $rule);
-        }
-        
+
+        // Get filename that include elements definition
+        $name = $this->getFormFile($uid, $rule);
+
         // Get form instance, and remove uneed form
         $form = Pi::api('form', $module)->loadForm($name);
         foreach ($this->skipFields as $field) {
@@ -180,7 +160,7 @@ class CompleteController extends ApiController
                 $form->remove($field);
             }
         }
-        
+
         // Get filter
         $filters = Pi::api('form', $module)->loadFilters($name);
         $filter  = new InputFilter;
@@ -193,10 +173,10 @@ class CompleteController extends ApiController
             // Get needed asset file url of elements
             $elements = $form->getElements();
             $fields   = array_keys($elements);
-            $assets   = array(
-                'js'  => array(),
-                'css' => array(),
-            );
+            $assets   = [
+                'js'  => [],
+                'css' => [],
+            ];
             foreach ($fields as $field) {
                 if (method_exists($form->get($field), 'requiredAsset')) {
                     $asset = $form->get($field)->requiredAsset();
@@ -210,45 +190,45 @@ class CompleteController extends ApiController
             foreach ($assets as &$item) {
                 $item = array_unique($item);
             }
-        
+
             // Render template
             $content = Pi::service('view')->render(
-                array(
+                [
                     'section' => 'component',
                     'module'  => 'user',
                     'file'    => 'form',
-                ),
-                array('form' => $form)
+                ],
+                ['form' => $form]
             );
-            return array(
+            return [
                 'status' => false,
                 'data'   => $content,
-                'assets'  => $assets,
-            );
+                'assets' => $assets,
+            ];
         }
-        
+
         // Update user data
-        $data = $form->getData();
+        $data                  = $form->getData();
         $data['last_modified'] = time();
         Pi::api('user', 'user')->updateUser($uid, $data);
-        
-        return array(
+
+        return [
             'status' => true,
-        );
+        ];
     }
-    
+
     /**
      * Get file name include form elements require user to complete according to rule.
      * If rule file not exist or rule is valid, return false to skip
-     * 
-     * @param string $rule  key value of rule list
-     * @param int    $uid
+     *
+     * @param string $rule key value of rule list
+     * @param int $uid
      * @return string|false
      */
     protected function getFormFile($uid, $rule)
     {
         $module = $this->getModule();
-        
+
         // Get rule file
         $file = sprintf(
             '%s/module/%s/config/%s.php',
@@ -268,7 +248,7 @@ class CompleteController extends ApiController
             }
         }
         $data = include $file;
-        
+
         // Check if condition field is exists or rule is valid
         if (empty($data)
             || !isset($data['rule_field'])
@@ -276,7 +256,7 @@ class CompleteController extends ApiController
         ) {
             return false;
         }
-        
+
         // Get key of the rule list
         if (!empty($rule)) {
             $key = preg_replace('/:/', '&', $rule);
@@ -293,7 +273,7 @@ class CompleteController extends ApiController
             }
             $key = implode('&', $values);
         }
-        
+
         // Use default rule if it is not found
         if (
             !isset($data['items'])
@@ -302,24 +282,24 @@ class CompleteController extends ApiController
         ) {
             $key = 'default';
         }
-        
+
         $item = $data['items'][$key];
         if (!isset($item['active']) || !$item['active']) {
             return false;
         }
-        
+
         if (isset($item['form_file']) && !empty($item['form_file'])) {
             $result = $data['items'][$key]['form_file'];
         }
-        
+
         return $result;
     }
-    
+
     /**
      * Get user data from database
-     * 
-     * @param string $name  Name of file define custom form elements
-     * @param int    $uid
+     *
+     * @param string $name Name of file define custom form elements
+     * @param int $uid
      * @return array
      */
     protected function getValues($uid, $name)
@@ -329,10 +309,10 @@ class CompleteController extends ApiController
         } else {
             $fields = $name;
         }
-        
+
         $module = $this->getModule();
         $meta   = Pi::registry('field', $module)->read();
-        
+
         foreach ($fields as $key => $value) {
             if (!$value || empty($value['element'])) {
                 if ('compound' == $meta[$key]['type']) {
@@ -342,8 +322,8 @@ class CompleteController extends ApiController
             }
         }
         $rowset = Pi::user()->get($uid, $fields);
-        
-        $result = array();
+
+        $result = [];
         foreach ($rowset as $key => $value) {
             if ('compound' == $meta[$key]['type']) {
                 $rows = array_shift($value);
@@ -356,10 +336,10 @@ class CompleteController extends ApiController
                 $result[$key] = $value;
             }
         }
-        
+
         return $result;
     }
-    
+
     /**
      * Load form specs from field config, supporting custom configs
      *
@@ -369,13 +349,13 @@ class CompleteController extends ApiController
      */
     protected function loadConfig($name)
     {
-        $filePath   = sprintf('user/config/form.%s.php', $name);
-        $file       = Pi::path('custom/module') . '/' . $filePath;
+        $filePath = sprintf('user/config/form.%s.php', $name);
+        $file     = Pi::path('custom/module') . '/' . $filePath;
         if (!file_exists($file)) {
             $file = Pi::path('module') . '/' . $filePath;
         }
-        $config     = include $file;
-        $result     = array();
+        $config = include $file;
+        $result = [];
         foreach ($config as $key => $value) {
             if (false === $value) {
                 continue;
@@ -385,8 +365,8 @@ class CompleteController extends ApiController
                     continue;
                 }
                 if (is_string($value)) {
-                    $key    = $value;
-                    $value  = array();
+                    $key   = $value;
+                    $value = [];
                 }
             }
             $result[] = $key;

@@ -1,611 +1,654 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-04-27 12:51+0800\n"
-"PO-Revision-Date: 2014-04-27 12:51+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2017-09-06 15:20+0430\n"
+"PO-Revision-Date: 2018-03-20 10:45+0330\n"
+"Last-Translator: \n"
 "Language-Team: Pi Engine\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-KeywordsList: _\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: c:\\Code\\pi\\\\usr\\locale\\_source\\Validator\n"
+"X-Poedit-Basepath: ../_source/Validator\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Barcode.php:10
+#: Barcode.php:10
 msgid "The input failed checksum validation"
-msgstr ""
+msgstr "ورودی شکست خورده اعتبار کنترلی"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Barcode.php:11
+#: Barcode.php:11
 msgid "The input contains invalid characters"
-msgstr ""
+msgstr "ورودی حاوی نویسههای نامعتبر است"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Barcode.php:12
+#: Barcode.php:12
 #, php-format
 msgid "The input should have a length of %length% characters"
-msgstr ""
+msgstr "The input should have a length of %length% characters"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Barcode.php:13
-#: c:\Code\pi\\usr\locale\_source\Validator/CreditCard.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/EmailAddress.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/Hex.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:11
-#: c:\Code\pi\\usr\locale\_source\Validator/Ip.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/StringLength.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/Uri.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Alpha.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/DateTime.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/PhoneNumber.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Changefreq.php:11
-#: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Lastmod.php:11
-#: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Loc.php:11
+#: Barcode.php:13 CreditCard.php:12 EmailAddress.php:10 Hex.php:10
+#: Hostname.php:11 I18n/Alpha.php:10 I18n/DateTime.php:10
+#: I18n/PhoneNumber.php:12 Ip.php:10 Sitemap/Changefreq.php:11
+#: Sitemap/Lastmod.php:11 Sitemap/Loc.php:11 StringLength.php:10 Uri.php:10
 msgid "Invalid type given. String expected"
-msgstr ""
+msgstr "نوع نامعتبر داده شده است. رشته انتظار می رود"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Between.php:10
+#: Between.php:10
 msgid "The input is not between '%min%' and '%max%', inclusively"
-msgstr ""
+msgstr "ورودی است بین '%min%' و '%max%' نیست، جامع"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Between.php:11
+#: Between.php:11
 msgid "The input is not strictly between '%min%' and '%max%'"
-msgstr ""
+msgstr "ورودی است که به شدت بین '%min%' و '%max% نیست"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Callback.php:10
+#: Callback.php:10
 msgid "The input is not valid"
-msgstr ""
+msgstr "ورودی معتبر نیست"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Callback.php:11
+#: Callback.php:11
 msgid "An exception has been raised within the callback"
-msgstr ""
+msgstr "یک استثنا شده است در پاسخ به تماس مطرح"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Captcha.php:11
+#: Captcha.php:13
 msgid "Empty captcha value"
-msgstr ""
+msgstr "تصویر امنیتی خالی است"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Captcha.php:12
+#: Captcha.php:14
 msgid "Captcha ID field is missing"
-msgstr ""
+msgstr "رشته کد امنیتی ID از دست رفته است"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Captcha.php:13
+#: Captcha.php:15
 msgid "Captcha value is wrong"
-msgstr ""
+msgstr "کد امنیتی اشتباه است"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/CreditCard.php:10
+#: Captcha.php:20
+msgid "Missing captcha fields"
+msgstr "فیلد کپچا تنظیم نشده است"
+
+#: Captcha.php:21
+msgid "Failed to validate captcha"
+msgstr "خطا در تایید کپچا"
+
+#: Captcha.php:22
+msgid "Captcha value is wrong: %value%"
+msgstr "کپچا نا معتبر است : %value%"
+
+#: CreditCard.php:10
 msgid "The input seems to contain an invalid checksum"
-msgstr ""
+msgstr "ورودی به نظر می رسد حاوی کنترلی نامعتبر است"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/CreditCard.php:11
-#: c:\Code\pi\\usr\locale\_source\Validator/Digits.php:10
+#: CreditCard.php:11 Digits.php:10
 msgid "The input must contain only digits"
-msgstr ""
+msgstr "ورودی باید تنها رقم داشته باشد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/CreditCard.php:13
+#: CreditCard.php:13
 msgid "The input contains an invalid amount of digits"
-msgstr ""
+msgstr "ورودی شامل یک مقدار نامعتبر ارقام"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/CreditCard.php:14
+#: CreditCard.php:14
 msgid "The input is not from an allowed institute"
-msgstr ""
+msgstr "ورودی از یک موسسه مجاز نیست"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/CreditCard.php:15
+#: CreditCard.php:15
 msgid "The input seems to be an invalid credit card number"
-msgstr ""
+msgstr "به نظر می رسد ورودی به یک شماره کارت اعتباری نامعتبر"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/CreditCard.php:16
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/PostCode.php:13
+#: CreditCard.php:16 I18n/PostCode.php:13
 msgid "An exception has been raised while validating the input"
-msgstr ""
+msgstr "یک استثناء است در حالی که اعتبار ورودی مطرح شده است"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Csrf.php:11
+#: Csrf.php:11
 msgid "The form submitted did not originate from the expected site"
 msgstr ""
+"زمان زیادی از باز بودن این صفحه به منظور ارسال اطلاعات گذشته است و کوکی فرم "
+"باطل شده است. لطفا مجددا اطلاعات را ارسال فرمایید"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Date.php:10
+#: Date.php:10
 msgid "Invalid type given. String, integer, array or DateTime expected"
 msgstr ""
+"نوع نامعتبر داده شده است. رشته، عدد صحیح، آرایه و یا تاریخ ساعت انتظار می رود"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Date.php:11
+#: Date.php:11
 msgid "The input does not appear to be a valid date"
-msgstr ""
+msgstr "ورودی به نظر نمی رسد به یک تاریخ معتبر"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Date.php:12
+#: Date.php:12
 msgid "The input does not fit the date format '%format%'"
-msgstr ""
+msgstr "ورودی اختصاص فرمت تاریخ '%format%' باید باشد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/DateStep.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/Step.php:11
+#: DateStep.php:10 Step.php:11
 msgid "The input is not a valid step"
-msgstr ""
+msgstr "ورودی است یک گام معتبر نیست"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Digits.php:11
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Alnum.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Alpha.php:12
+#: Db/AbstractDb.php:10
+msgid "No record matching the input was found"
+msgstr "هیچ سابقه تطبیق ورودی مشخص شد"
+
+#: Db/AbstractDb.php:11
+msgid "A record matching the input was found"
+msgstr "سابقه تطبیق ورودی مشخص شد"
+
+#: Digits.php:11 I18n/Alnum.php:12 I18n/Alpha.php:12
 msgid "The input is an empty string"
-msgstr ""
+msgstr "ورودی یک رشته خالی است"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Digits.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/Regex.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Alnum.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Float.php:10
+#: Digits.php:12 I18n/Alnum.php:10 I18n/Float.php:10 Regex.php:10
 msgid "Invalid type given. String, integer or float expected"
-msgstr ""
+msgstr "نوع نامعتبر داده شده است. رشته، عدد صحیح یا شناور انتظار می رود"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/EmailAddress.php:11
+#: EmailAddress.php:11
 msgid ""
 "The input is not a valid email address. Use the basic format local-"
 "part@hostname"
-msgstr ""
+msgstr "ورودی یک آدرس ایمیل معتبر نیست. با استفاده از فرمت local-part@hostname"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/EmailAddress.php:12
+#: EmailAddress.php:12
 msgid "'%hostname%' is not a valid hostname for the email address"
-msgstr ""
+msgstr "'%hostname%' است نام هاست معتبر برای آدرس ایمیل نمی"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/EmailAddress.php:13
+#: EmailAddress.php:13
 msgid ""
 "'%hostname%' does not appear to have any valid MX or A records for the email "
 "address"
 msgstr ""
+"'%hostname%' 'به نظر نمی رسد به هر گونه MX معتبر و یا مدارک برای آدرس ایمیل"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/EmailAddress.php:14
+#: EmailAddress.php:14
 msgid ""
 "'%hostname%' is not in a routable network segment. The email address should "
 "not be resolved from public network"
 msgstr ""
+"'%hostname%' است در یک بخش شبکه قابل دسترسی نیست. آدرس ایمیل باید از شبکه "
+"عمومی حل و فصل نشده"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/EmailAddress.php:15
+#: EmailAddress.php:15
 #, php-format
 msgid "'%localPart%' can not be matched against dot-atom format"
-msgstr ""
+msgstr "'%localPart%' can not be matched against dot-atom format"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/EmailAddress.php:16
+#: EmailAddress.php:16
 #, php-format
 msgid "'%localPart%' can not be matched against quoted-string format"
-msgstr ""
+msgstr "'%localPart%' can not be matched against quoted-string format"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/EmailAddress.php:17
+#: EmailAddress.php:17
 msgid "'%localPart%' is not a valid local part for the email address"
-msgstr ""
+msgstr "'%localPart%' تامین کننده' است که بخشی محلی معتبر برای آدرس ایمیل نمی"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/EmailAddress.php:18
+#: EmailAddress.php:18
 msgid "The input exceeds the allowed length"
-msgstr ""
+msgstr "ورودی بیش از طول مجاز"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Explode.php:10
+#: Explode.php:10
 msgid "Invalid type given"
-msgstr ""
+msgstr "نوع نامعتبر داده شده"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/GreaterThan.php:10
-msgid "The input is not greater than '%min%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/GreaterThan.php:11
-msgid "The input is not greater or equal than '%min%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hex.php:11
-msgid "The input contains non-hexadecimal characters"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:10
-msgid ""
-"The input appears to be a DNS hostname but the given punycode notation "
-"cannot be decoded"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:12
-msgid ""
-"The input appears to be a DNS hostname but contains a dash in an invalid "
-"position"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:13
-msgid "The input does not match the expected structure for a DNS hostname"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:14
-msgid ""
-"The input appears to be a DNS hostname but cannot match against hostname "
-"schema for TLD '%tld%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:15
-msgid "The input does not appear to be a valid local network name"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:16
-msgid "The input does not appear to be a valid URI hostname"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:17
-msgid "The input appears to be an IP address, but IP addresses are not allowed"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:18
-msgid ""
-"The input appears to be a local network name but local network names are not "
-"allowed"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:19
-msgid "The input appears to be a DNS hostname but cannot extract TLD part"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:20
-msgid ""
-"The input appears to be a DNS hostname but cannot match TLD against known "
-"list"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:10
-msgid "Unknown country within the IBAN"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:11
-msgid ""
-"Countries outside the Single Euro Payments Area (SEPA) are not supported"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:12
-msgid "The input has a false IBAN format"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:13
-msgid "The input has failed the IBAN check"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Identical.php:10
-msgid "The two given tokens do not match"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Identical.php:11
-msgid "No token was provided to match against"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/InArray.php:10
-msgid "The input was not found in the haystack"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Ip.php:11
-msgid "The input does not appear to be a valid IP address"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Isbn.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Int.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/PostCode.php:10
-msgid "Invalid type given. String or integer expected"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Isbn.php:11
-msgid "The input is not a valid ISBN number"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/IsInstanceOf.php:10
-msgid "The input is not an instance of '%className%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/LessThan.php:10
-msgid "The input is not less than '%max%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/LessThan.php:11
-msgid "The input is not less or equal than '%max%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/NotEmpty.php:10
-msgid "Value is required and can't be empty"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/NotEmpty.php:11
-msgid "Invalid type given. String, integer, float, boolean or array expected"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Regex.php:11
-msgid "The input does not match against pattern '%pattern%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Regex.php:12
-msgid "There was an internal error while using the pattern '%pattern%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Step.php:10
-msgid "Invalid value given. Scalar expected"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/StringLength.php:11
-msgid "The input is less than %min% characters long"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/StringLength.php:12
-msgid "The input is more than %max% characters long"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Uri.php:11
-msgid "The input does not appear to be a valid Uri"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Db/AbstractDb.php:10
-msgid "No record matching the input was found"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Db/AbstractDb.php:11
-msgid "A record matching the input was found"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Count.php:10
+#: File/Count.php:10
 msgid "Too many files, maximum '%max%' are allowed but '%count%' are given"
 msgstr ""
+"بیش از حد بسیاری از فایل، حداکثر،%max% 'اجازه ولی'٪ تعداد دفعات مشاهده شده٪ "
+"'داده می شود"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Count.php:11
+#: File/Count.php:11
 msgid "Too few files, minimum '%min%' are expected but '%count%' are given"
-msgstr ""
+msgstr "Too few files, minimum '%min%' are expected but '%count%' are given"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Crc32.php:10
+#: File/Crc32.php:10
 msgid "File does not match the given crc32 hashes"
-msgstr ""
+msgstr "فایل کند هش CRC32 داده شده مطابقت ندارد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Crc32.php:11
+#: File/Crc32.php:11
 msgid "A crc32 hash could not be evaluated for the given file"
-msgstr ""
+msgstr "هش CRC32 می تواند برای فایل داده شود مورد بررسی قرار"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Crc32.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/File/ExcludeExtension.php:11
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Extension.php:11
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Hash.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/File/ImageSize.php:15
-#: c:\Code\pi\\usr\locale\_source\Validator/File/IsCompressed.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/File/IsImage.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Md5.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/File/MimeType.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Sha1.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Size.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/File/WordCount.php:12
+#: File/Crc32.php:12 File/ExcludeExtension.php:11 File/Extension.php:11
+#: File/Hash.php:12 File/ImageSize.php:15 File/IsCompressed.php:12
+#: File/IsImage.php:12 File/Md5.php:12 File/MimeType.php:12 File/Sha1.php:12
+#: File/Size.php:12 File/WordCount.php:12
 msgid "File is not readable or does not exist"
-msgstr ""
+msgstr "فایل قابل خواندن نیست یا وجود ندارد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/ExcludeExtension.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Extension.php:10
+#: File/ExcludeExtension.php:10 File/Extension.php:10
 msgid "File has an incorrect extension"
-msgstr ""
+msgstr "فایل پسوندی اشتباه"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Exists.php:10
+#: File/Exists.php:10
 msgid "File does not exist"
-msgstr ""
+msgstr "فایل وجود ندارد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/FilesSize.php:10
+#: File/FilesSize.php:10
 msgid ""
 "All files in sum should have a maximum size of '%max%' but '%size%' were "
 "detected"
 msgstr ""
+"همه فایل ها در مجموع باید حداکثر اندازه '%max%' اما '%size%'' دارند شناسایی "
+"شد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/FilesSize.php:11
+#: File/FilesSize.php:11
 msgid ""
 "All files in sum should have a minimum size of '%min%' but '%size%' were "
 "detected"
 msgstr ""
+"همه فایل ها در مجموع باید به اندازه حداقل از '%min%' اما '%size%'' دارند "
+"شناسایی شد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/FilesSize.php:12
+#: File/FilesSize.php:12
 msgid "One or more files can not be read"
-msgstr ""
+msgstr "یک یا چند فایل نمی تواند بخواند"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Hash.php:10
+#: File/Hash.php:10
 msgid "File does not match the given hashes"
-msgstr ""
+msgstr "فایل کند هش داده شده مطابقت ندارد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Hash.php:11
+#: File/Hash.php:11
 msgid "A hash could not be evaluated for the given file"
-msgstr ""
+msgstr "هش می تواند برای فایل داده شود مورد بررسی قرار"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/ImageSize.php:10
+#: File/ImageSize.php:10
 msgid ""
-"Maximum allowed width for image should be '%maxwidth%' but '%width%' detected"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/File/ImageSize.php:11
-msgid ""
-"Minimum expected width for image should be '%minwidth%' but '%width%' "
+"Maximum allowed width for image should be '%maxwidth%' px but '%width%' px "
 "detected"
 msgstr ""
+"حداکثر عرض تصویر باید '%maxwidth%' پیکسل باشد اما عرض تصویر انتخابی شما "
+"'%width%' است"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/ImageSize.php:12
+#: File/ImageSize.php:11
 msgid ""
-"Maximum allowed height for image should be '%maxheight%' but '%height%' "
+"Minimum expected width for image should be '%minwidth%' px but '%width%' px "
 "detected"
 msgstr ""
+"حداقل عرض تصویر باید '%minwidth%' پیکسل باشد اما عرض تصویر انتخابی شما "
+"'%width%' است"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/ImageSize.php:13
+#: File/ImageSize.php:12
 msgid ""
-"Minimum expected height for image should be '%minheight%' but '%height%' "
-"detected"
+"Maximum allowed height for image should be '%maxheight%' px but '%height%' "
+"px detected"
 msgstr ""
+"حداکثر ارتفاع تصویر باید '%maxheight%' پیکسل باشد اما ارتفاع تصویر انتخابی "
+"شما '%height%' است"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/ImageSize.php:14
+#: File/ImageSize.php:13
+msgid ""
+"Minimum expected height for image should be '%minheight%' px but '%height%' "
+"px detected"
+msgstr ""
+"حداقل ارتفاع تصویر باید '%minheight%' پیکسل باشد اما ارتفاع تصویر انتخابی "
+"شما '%height%' است"
+
+#: File/ImageSize.php:14
 msgid "The size of image could not be detected"
-msgstr ""
+msgstr "اندازه تصویر نمی توان کشف کرد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/IsCompressed.php:10
+#: File/IsCompressed.php:10
 msgid "File is not compressed, '%type%' detected"
-msgstr ""
+msgstr "فایل، فشرده نیست، '%type%'شناسایی"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/IsCompressed.php:11
-#: c:\Code\pi\\usr\locale\_source\Validator/File/IsImage.php:11
-#: c:\Code\pi\\usr\locale\_source\Validator/File/MimeType.php:11
+#: File/IsCompressed.php:11 File/IsImage.php:11 File/MimeType.php:11
 msgid "The mimetype could not be detected from the file"
-msgstr ""
+msgstr "نوعمایم می تواند از فایل تشخیص داده نمی شود"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/IsImage.php:10
+#: File/IsImage.php:10
 msgid "File is no image, '%type%' detected"
-msgstr ""
+msgstr "فایل تصویر است، '%type%' شناسایی"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Md5.php:10
+#: File/Md5.php:10
 msgid "File does not match the given md5 hashes"
-msgstr ""
+msgstr "فایل کند هش MD5 داده شده مطابقت ندارد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Md5.php:11
+#: File/Md5.php:11
 msgid "An md5 hash could not be evaluated for the given file"
-msgstr ""
+msgstr "هش MD5 می تواند برای فایل داده شود مورد بررسی قرار"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/MimeType.php:10
+#: File/MimeType.php:10
 msgid "File has an incorrect mimetype of '%type%'"
-msgstr ""
+msgstr "فایل دارای یک نوعمایم نادرست ' %t YPE٪ '"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/NotExists.php:10
+#: File/NotExists.php:10
 msgid "File exists"
-msgstr ""
+msgstr "پرونده وجود دارد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Sha1.php:10
+#: File/Sha1.php:10
 msgid "File does not match the given sha1 hashes"
-msgstr ""
+msgstr "فایل کند هش SHA1 داده شده مطابقت ندارد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Sha1.php:11
+#: File/Sha1.php:11
 msgid "A sha1 hash could not be evaluated for the given file"
-msgstr ""
+msgstr "هش SHA1 می تواند برای فایل داده شود مورد بررسی قرار"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Size.php:10
+#: File/Size.php:10
 msgid "Maximum allowed size for file is '%max%' but '%size%' detected"
-msgstr ""
+msgstr "حداکثر اندازه مجاز برای فایل '%max%' اما '%size%' است شناسایی"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Size.php:11
+#: File/Size.php:11
 msgid "Minimum expected size for file is '%min%' but '%size%' detected"
-msgstr ""
+msgstr "حداقل اندازه مورد انتظار برای فایل '%min%' اما '%size%' است شناسایی"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:10
+#: File/Upload.php:10
 msgid "File '%value%' exceeds the defined ini size"
-msgstr ""
+msgstr "فایل '%value%' بیش از اندازه های ini تعریف"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:11
+#: File/Upload.php:11
 msgid "File '%value%' exceeds the defined form size"
-msgstr ""
+msgstr "فایل '%value%' بیش از اندازه شکل تعریف شده"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:12
+#: File/Upload.php:12
 msgid "File '%value%' was only partially uploaded"
-msgstr ""
+msgstr "فایل '%value%' تنها بخشی از آپلود شد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:13
+#: File/Upload.php:13
 msgid "File '%value%' was not uploaded"
-msgstr ""
+msgstr "فایل '%value%' آپلود نشده است"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:14
+#: File/Upload.php:14
 msgid "No temporary directory was found for file '%value%'"
-msgstr ""
+msgstr "بدون دایرکتوری موقت برای فایل '%value%' پیدا شد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:15
+#: File/Upload.php:15
 msgid "File '%value%' can't be written"
-msgstr ""
+msgstr "فایل '%value%' نمی تواند نوشته شود"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:16
+#: File/Upload.php:16
 msgid "A PHP extension returned an error while uploading the file '%value%'"
-msgstr ""
+msgstr "پسوند PHP بازگشت خطا هنگام آپلود فایل '%value%'"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:17
+#: File/Upload.php:17
 msgid "File '%value%' was illegally uploaded. This could be a possible attack"
 msgstr ""
+"فایل '%value%' به طور غیر قانونی ارسال شد. این ممکن است به حمله احتمالی"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:18
+#: File/Upload.php:18
 msgid "File '%value%' was not found"
-msgstr ""
+msgstr "فایل '%value%' پیدا نشد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:19
+#: File/Upload.php:19
 msgid "Unknown error while uploading file '%value%'"
-msgstr ""
+msgstr "خطا مشخص نشده است در حالی که آپلود فایل '%value%'"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:10
+#: File/UploadFile.php:10
 msgid "File exceeds the defined ini size"
-msgstr ""
+msgstr "فایل بیش از اندازه های ini تعریف"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:11
+#: File/UploadFile.php:11
 msgid "File exceeds the defined form size"
-msgstr ""
+msgstr "فایل بیش از اندازه شکل تعریف شده"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:12
+#: File/UploadFile.php:12
 msgid "File was only partially uploaded"
-msgstr ""
+msgstr "بارگذاری پرونده درونریزی شد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:13
+#: File/UploadFile.php:13
 msgid "File was not uploaded"
-msgstr ""
+msgstr "فایل آپلود نشد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:14
+#: File/UploadFile.php:14
 msgid "No temporary directory was found for file"
-msgstr ""
+msgstr "بدون دایرکتوری موقت برای فایل پیدا شد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:15
+#: File/UploadFile.php:15
 msgid "File can't be written"
-msgstr ""
+msgstr "فایل نمی تواند نوشته شود"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:16
+#: File/UploadFile.php:16
 msgid "A PHP extension returned an error while uploading the file"
-msgstr ""
+msgstr "پسوند PHP بازگشت خطا هنگام آپلود فایل"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:17
+#: File/UploadFile.php:17
 msgid "File was illegally uploaded. This could be a possible attack"
-msgstr ""
+msgstr "فایل به طور غیر قانونی ارسال شد. این ممکن است به حمله احتمالی"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:18
+#: File/UploadFile.php:18
 msgid "File was not found"
-msgstr ""
+msgstr "فایل یافت نشد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:19
+#: File/UploadFile.php:19
 msgid "Unknown error while uploading file"
-msgstr ""
+msgstr "خطا مشخص نشده است در حالی که آپلود فایل"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/WordCount.php:10
+#: File/WordCount.php:10
 msgid "Too many words, maximum '%max%' are allowed but '%count%' were counted"
 msgstr ""
+"بیش از حد بسیاری از واژه ها، حداکثر،%max% 'اجازه ولی'٪ تعداد دفعات مشاهده شده"
+"٪ 'شمارش شد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/File/WordCount.php:11
+#: File/WordCount.php:11
 msgid "Too few words, minimum '%min%' are expected but '%count%' were counted"
-msgstr ""
+msgstr "Too few words, minimum '%min%' are expected but '%count%' were counted"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Alnum.php:11
+#: GreaterThan.php:10
+msgid "The input is not greater than '%min%'"
+msgstr "ورودی نمی باشد بزرگتر از '%min%'"
+
+#: GreaterThan.php:11
+msgid "The input is not greater or equal than '%min%'"
+msgstr "ورودی است بزرگتر یا مساوی از '%min%'"
+
+#: Hex.php:11
+msgid "The input contains non-hexadecimal characters"
+msgstr "ورودی شامل کاراکتر های غیر هگزادسیمال"
+
+#: Hostname.php:10
+msgid ""
+"The input appears to be a DNS hostname but the given punycode notation "
+"cannot be decoded"
+msgstr ""
+"ورودی به نظر می رسد نام میزبان DNS اما نماد punycode داده شده می توانید "
+"رمزگشایی نمی شود"
+
+#: Hostname.php:12
+msgid ""
+"The input appears to be a DNS hostname but contains a dash in an invalid "
+"position"
+msgstr ""
+"ورودی به نظر می رسد نام میزبان DNS اما شامل یک خط تیره در موقعیت نامعتبر است"
+
+#: Hostname.php:13
+msgid "The input does not match the expected structure for a DNS hostname"
+msgstr "ورودی ساختار انتظار می رود برای یک نام میزبان DNS مطابقت ندارد"
+
+#: Hostname.php:14
+msgid ""
+"The input appears to be a DNS hostname but cannot match against hostname "
+"schema for TLD '%tld%'"
+msgstr ""
+"The input appears to be a DNS hostname but cannot match against hostname "
+"schema for TLD '%tld%'"
+
+#: Hostname.php:15
+msgid "The input does not appear to be a valid local network name"
+msgstr "ورودی به نظر نمی رسد به یک نام شبکه محلی معتبر"
+
+#: Hostname.php:16
+msgid "The input does not appear to be a valid URI hostname"
+msgstr "ورودی به نظر نمی رسد به یک نام میزبان URI معتبر"
+
+#: Hostname.php:17
+msgid "The input appears to be an IP address, but IP addresses are not allowed"
+msgstr "ورودی به نظر می رسد یک آدرس IP، اما آدرس IP امکان پذیر نیست"
+
+#: Hostname.php:18
+msgid ""
+"The input appears to be a local network name but local network names are not "
+"allowed"
+msgstr ""
+"ورودی به نظر می رسد نام شبکه های محلی اما نام شبکه محلی امکان پذیر نیست"
+
+#: Hostname.php:19
+msgid "The input appears to be a DNS hostname but cannot extract TLD part"
+msgstr "ورودی به نظر می رسد نام میزبان DNS اما می تواند TLD بخش استخراج کنید"
+
+#: Hostname.php:20
+msgid ""
+"The input appears to be a DNS hostname but cannot match TLD against known "
+"list"
+msgstr ""
+"ورودی به نظر می رسد نام میزبان DNS اما می تواند TLD در برابر لیست شناخته شده "
+"مطابقت ندارد"
+
+#: I18n/Alnum.php:11
 msgid "The input contains characters which are non alphabetic and no digits"
-msgstr ""
+msgstr "ورودی شامل شخصیت های که رقم غیر الفبایی و می"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Alpha.php:11
+#: I18n/Alpha.php:11
 msgid "The input contains non alphabetic characters"
-msgstr ""
+msgstr "ورودی شامل کاراکتر غیر الفبایی"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/DateTime.php:11
+#: I18n/DateTime.php:11
 msgid "The input does not appear to be a valid datetime"
-msgstr ""
+msgstr "ورودی به نظر نمی رسد به یک حسگر ناحیه رنگی یک معتبر"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Float.php:11
+#: I18n/Float.php:11
 msgid "The input does not appear to be a float"
-msgstr ""
+msgstr "ورودی به نظر نمی رسد به یک شناور"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Int.php:11
+#: I18n/Int.php:10 I18n/PostCode.php:10 Isbn.php:10
+msgid "Invalid type given. String or integer expected"
+msgstr "نوع نامعتبر داده شده است. عدد یا رشته انتظار می رود"
+
+#: I18n/Int.php:11
 msgid "The input does not appear to be an integer"
-msgstr ""
+msgstr "ورودی به نظر نمی رسد به یک عدد صحیح"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/PhoneNumber.php:10
+#: I18n/PhoneNumber.php:10
 msgid "The input does not match a phone number format"
-msgstr ""
+msgstr "ورودی یک فرمت شماره تلفن مطابقت ندارد"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/PhoneNumber.php:11
+#: I18n/PhoneNumber.php:11
 msgid "The country provided is currently unsupported"
-msgstr ""
+msgstr "این کشور ارائه شده است در حال حاضر پشتیبانی نشده"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/PostCode.php:11
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/PostCode.php:12
+#: I18n/PostCode.php:11 I18n/PostCode.php:12
 msgid "The input does not appear to be a postal code"
-msgstr ""
+msgstr "ورودی به نظر نمی رسد که یک کد پستی"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Changefreq.php:10
+#: Iban.php:10
+msgid "Unknown country within the IBAN"
+msgstr "کشور ناشناخته در IBAN"
+
+#: Iban.php:11
+msgid ""
+"Countries outside the Single Euro Payments Area (SEPA) are not supported"
+msgstr "کشورهای خارج از منطقه یورو تنها پرداخت (SEPA) پشتیبانی نمی شوند"
+
+#: Iban.php:12
+msgid "The input has a false IBAN format"
+msgstr "ورودی دارای یک فرمت نادرست IBAN"
+
+#: Iban.php:13
+msgid "The input has failed the IBAN check"
+msgstr "ورودی تا چک IBAN شکست خورده"
+
+#: Identical.php:10
+msgid "The two given tokens do not match"
+msgstr "دو نشانه داده شده مطابقت ندارند"
+
+#: Identical.php:11
+msgid "No token was provided to match against"
+msgstr "بدون رمز برای مطابقت مقابل ارائه شد"
+
+#: InArray.php:10
+msgid "The input was not found in the haystack"
+msgstr "مقدار ورودی یافت نشد"
+
+#: Ip.php:11
+msgid "The input does not appear to be a valid IP address"
+msgstr "ورودی یه IP معتبر نیست"
+
+#: IsInstanceOf.php:10
+msgid "The input is not an instance of '%className%'"
+msgstr "ورودی است یک نمونه از '%className%'"
+
+#: Isbn.php:11
+msgid "The input is not a valid ISBN number"
+msgstr "ورودی یک شماره ISBN معتبر نیست"
+
+#: LessThan.php:10
+msgid "The input is not less than '%max%'"
+msgstr "ورودی کمتر از '%max%'"
+
+#: LessThan.php:11
+msgid "The input is not less or equal than '%max%'"
+msgstr "ورودی است و نه کمتر یا مساوی از '%max%'"
+
+#: NotEmpty.php:10
+msgid "Value is required and can't be empty"
+msgstr "تکمیل این فیلد ضروری است و نمی تواند خالی باشد"
+
+#: NotEmpty.php:11
+msgid "Invalid type given. String, integer, float, boolean or array expected"
+msgstr ""
+"نوع نامعتبر داده شده است. رشته، عدد صحیح، شناور، بولی و یا آرایه انتظار می "
+"رود"
+
+#: Regex.php:11
+msgid "The input does not match against pattern '%pattern%'"
+msgstr "ورودی در مقابل الگوی '%pattern%''مطابقت ندارد"
+
+#: Regex.php:12
+msgid "There was an internal error while using the pattern '%pattern%'"
+msgstr "یک خطای داخلی وجود دارد در حالی که با استفاده از الگوی '%pattern%''"
+
+#: Sitemap/Changefreq.php:10
 msgid "The input is not a valid sitemap changefreq"
-msgstr ""
+msgstr "ورودی است changefreq نقشه سایت معتبر نیست"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Lastmod.php:10
+#: Sitemap/Lastmod.php:10
 msgid "The input is not a valid sitemap lastmod"
-msgstr ""
+msgstr "ورودی است lastmod نقشه سایت معتبر نیست"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Loc.php:10
+#: Sitemap/Loc.php:10
 msgid "The input is not a valid sitemap location"
-msgstr ""
+msgstr "ورودی یک location نقشه سایت معتبر نیست"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Priority.php:10
+#: Sitemap/Priority.php:10
 msgid "The input is not a valid sitemap priority"
-msgstr ""
+msgstr "ورودی است یک priority نقشه سایت معتبر نیست"
 
-#: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Priority.php:11
+#: Sitemap/Priority.php:11
 msgid "Invalid type given. Numeric string, integer or float expected"
-msgstr ""
+msgstr "رشته عددی وارد شده نامعتبر است، عدد صحیح یا اعشاری وارد کنید"
+
+#: Step.php:10
+msgid "Invalid value given. Scalar expected"
+msgstr "مقدار ورودی نا معتبر است، لطفا عدد وارد کنید"
+
+#: StringLength.php:11
+msgid "The input is less than %min% characters long"
+msgstr "ورودی کمتر از%min% کاراکتر است"
+
+#: StringLength.php:12
+msgid "The input is more than %max% characters long"
+msgstr "ورودی بیش از%max% کاراکتر است"
+
+#: Uri.php:11
+msgid "The input does not appear to be a valid Uri"
+msgstr "ورودی یک آدرس معتبر نیست"
+
+#~ msgid ""
+#~ "Maximum allowed width for image should be '%maxwidth%' but '%width%' "
+#~ "detected"
+#~ msgstr ""
+#~ "حداکثر عرض مجاز برای تصویر باید '٪ maxwidth٪' اما '%width%' تشخیص داده می "
+#~ "شود"
+
+#~ msgid ""
+#~ "Minimum expected width for image should be '%minwidth%' but '%width%' "
+#~ "detected"
+#~ msgstr ""
+#~ "حداقل عرض مورد انتظار برای تصویر باید'%minwidth%' اما '%width%' تشخیص "
+#~ "داده می شود"
+
+#~ msgid ""
+#~ "Maximum allowed height for image should be '%maxheight%' but '%height%' "
+#~ "detected"
+#~ msgstr ""
+#~ "حداکثر ارتفاع مجاز برای تصویر باید '٪ بیشترین ارتفاع٪' اما '%height%' "
+#~ "تشخیص داده می شود"
+
+#~ msgid ""
+#~ "Minimum expected height for image should be '%minheight%' but '%height%' "
+#~ "detected"
+#~ msgstr ""
+#~ "حداقل ارتفاع مورد انتظار برای تصویر باید '%minheight%' اما '%height%' "
+#~ "تشخیص داده می شود"

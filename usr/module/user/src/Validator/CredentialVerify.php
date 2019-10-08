@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Validator;
@@ -26,13 +26,13 @@ class CredentialVerify extends AbstractValidator
      * Message templates
      * @var array
      */
-    protected $messageTemplates = array();
+    protected $messageTemplates = [];
 
     public function __construct()
     {
-        $this->messageTemplates = array(
+        $this->messageTemplates = [
             self::INVALID => __('Invalid password.'),
-        );
+        ];
 
         parent::__construct();
     }
@@ -48,7 +48,7 @@ class CredentialVerify extends AbstractValidator
     {
         $this->setValue($value);
 
-        $identity = $context['identity'];
+        $identity   = $context['identity'];
         $credential = $value;
 
         $userRow = Pi::model('user')->find($identity, 'identity');

@@ -1,46 +1,50 @@
 <?php
-$this->css(array(
-  $this->assetModule('front/front.css')
-));
+$this->css($this->assetModule('front/front.css'));
+$this->headMeta('noindex', 'robots');
 ?>
-<div class="row">
-    <?php include $this->template('./profile-sidebar.phtml'); ?>
+<div class="row user-section-wrapper">
+    <div class="col-md-3">
+        <?php include $this->template('./profile-sidebar.phtml'); ?>
+    </div>
     <div class="col-md-9">
-        <div class="user-page-header">
-            <h3><?php _e('Privacy'); ?></h3>
-            <div class="text-muted"><?php _e('Set profile field privacy.'); ?></div>
-        </div>
+        <?php include $this->template('flash-messenger'); ?>
 
-        <?php if (empty($privacy)) {?>
-        <div class="alert alert-info">
-            <?php _e('No available privacy setting'); ?>
+        <div class="page-header">
+            <h1><?php _e('Privacy'); ?>
+                <small><?php _e('Set profile field privacy.'); ?></small>
+            </h1>
         </div>
+        <?php if (empty($privacy)) { ?>
+            <div class="alert alert-info">
+                <?php _e('No available privacy setting'); ?>
+            </div>
         <?php } else { ?>
-        <form class="form-horizontal" method="post">
-            <?php foreach ($privacy as $item) { ?>
-            <div class="form-group">
-                <label class="col-md-2 control-label"><?php echo $item['title']; ?></label>
-                <div class="col-md-4">
-                    <select name="<?php echo $item['field']; ?>" <?php if ($item['is_forced']) echo 'disabled'; ?> class="form-control">
-                        <?php
-                        foreach ($levels as $key => $label) {
-                            echo sprintf('<option value="%s"%s>%s',
-                                $key,
-                                $key == $item['value'] ? ' selected = selected ' : '',
-                                $label
-                             );
-                        }
-                        ?>
-                    </select>
+            <form method="post">
+                <?php foreach ($privacy as $item) { ?>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label"><?php echo $item['title']; ?></label>
+                        <div class="col-md-4">
+                            <select name="<?php echo $item['field']; ?>" <?php if ($item['is_forced']) echo 'disabled'; ?>
+                                    class="form-control">
+                                <?php
+                                foreach ($levels as $key => $label) {
+                                    echo sprintf('<option value="%s"%s>%s',
+                                        $key,
+                                        $key == $item['value'] ? ' selected = selected ' : '',
+                                        $label
+                                    );
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                <?php } ?>
+                <div class="form-group">
+                    <div class="offset-md-2 col-md-4">
+                        <button type="submit" class="btn btn-primary"><?php _e('Submit'); ?></button>
+                    </div>
                 </div>
-            </div>
-            <?php } ?>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-4">
-                    <button type="submit" class="btn btn-primary"><?php _e('Submit'); ?></button>
-                </div>
-            </div>
-        </form>
+            </form>
         <?php } ?>
     </div>
 </div>

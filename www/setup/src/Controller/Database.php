@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Setup\Controller;
@@ -27,13 +27,13 @@ class Database extends AbstractController
     {
         $vars = $this->getPersist(static::PERSIST_DB);
         if (empty($vars)) {
-            $vars = array(
-                    'DB_HOST'       => 'localhost',
-                    'DB_USER'       => '',
-                    'DB_PASS'       => '',
-                    'DB_DBNAME'     => 'pi',
-                    'DB_PREFIX'     => 'p' . substr(md5(time()), 0, 3),
-            );
+            $vars = [
+                'DB_HOST'   => 'localhost',
+                'DB_USER'   => '',
+                'DB_PASS'   => '',
+                'DB_DBNAME' => 'pi',
+                'DB_PREFIX' => 'p' . substr(md5(time()), 0, 3),
+            ];
             $this->setPersist(static::PERSIST_DB, $vars);
         }
 
@@ -52,30 +52,30 @@ class Database extends AbstractController
         } else {
             $dsn .= 'host=' . $vars['DB_HOST'];
         }
-        $params = array(
-            'driver'        => 'pdo',
-            'dsn'           => $dsn,
-            'username'      => $vars['DB_USER'],
-            'password'      => $vars['DB_PASS'],
-            'schema'        => $vars['DB_DBNAME'],
-            'table_prefix'  => $vars['DB_PREFIX'] . '_'
-        );
+        $params = [
+            'driver'       => 'pdo',
+            'dsn'          => $dsn,
+            'username'     => $vars['DB_USER'],
+            'password'     => $vars['DB_PASS'],
+            'schema'       => $vars['DB_DBNAME'],
+            'table_prefix' => $vars['DB_PREFIX'] . '_',
+        ];
 
         return $params;
     }
 
     protected function connection()
     {
-        $dbConfig = $this->wizard->getConfig('database');
-        $vars = $this->normalizeParameters($this->vars);
-        $options = array(
-            PDO::MYSQL_ATTR_INIT_COMMAND    => sprintf(
+        $dbConfig     = $this->wizard->getConfig('database');
+        $vars         = $this->normalizeParameters($this->vars);
+        $options      = [
+            PDO::MYSQL_ATTR_INIT_COMMAND => sprintf(
                 'SET NAMES %s COLLATE %s',
                 $dbConfig['charset'],
                 $dbConfig['collate']
             ),
-            PDO::ATTR_PERSISTENT            => false,
-        );
+            PDO::ATTR_PERSISTENT         => false,
+        ];
         $this->dbLink = new PDO(
             $vars['dsn'],
             $vars['username'],
@@ -98,8 +98,8 @@ class Database extends AbstractController
 
     public function setAction()
     {
-        $var = $this->request->getParam('var');
-        $val = $this->request->getParam('val', '');
+        $var              = $this->request->getParam('var');
+        $val              = $this->request->getParam('val', '');
         $this->vars[$var] = $val;
         $this->setPersist(static::PERSIST_DB, $this->vars);
 
@@ -113,9 +113,9 @@ class Database extends AbstractController
             $vars[$name] = $this->request->getPost($name);
         }
         $this->setPersist(static::PERSIST_DB, $vars);
-        $params = $this->normalizeParameters($vars);
+        $params   = $this->normalizeParameters($vars);
         $dbConfig = $this->wizard->getConfig('database');
-        $params = array_merge($params, $dbConfig);
+        $params   = array_merge($params, $dbConfig);
 
         $error = '';
         try {
@@ -123,7 +123,8 @@ class Database extends AbstractController
         } catch (\Exception $e) {
             $error = $e->getMessage();
         }
-        if (!$error) {
+        // ToDo : fix CREATE DATABASE and add check database exist
+        /* if (!$error) {
             try {
                 // Create database if not exist
                 $sql = sprintf(
@@ -138,10 +139,10 @@ class Database extends AbstractController
             } catch (\Exception $e) {
                 $error = $e->getMessage();
             }
-        }
+        } */
         if (!$error) {
             try {
-                $sql = sprintf(
+                $sql    = sprintf(
                     'ALTER DATABASE `%s` DEFAULT CHARACTER SET %s COLLATE %s',
                     $params['schema'],
                     $params['charset'],
@@ -150,7 +151,7 @@ class Database extends AbstractController
                 $result = $this->dbLink->exec($sql);
                 if (!$result) {
                     $errorInfo = $this->dbLink->errorInfo();
-                    $error = $errorInfo[1] . ':' . $errorInfo[2];
+                    $error     = $errorInfo[1] . ':' . $errorInfo[2];
                 }
             } catch (\Exception $e) {
                 $error = $e->getMessage();
@@ -158,15 +159,15 @@ class Database extends AbstractController
         }
         if ($error) {
             $this->status = -1;
-            $content = '<div class="alert alert-danger">'
+            $content      = '<div class="alert alert-danger">'
                 . '<h1>' . _s('Database validation is failed.') . '</h1>'
                 . '<p>' . $error . '</p>'
                 . '</div>';
         } else {
-            $file = Pi::path('config') . '/service.database.php';
+            $file      = Pi::path('config') . '/service.database.php';
             $file_dist = $this->wizard->getRoot()
                 . '/dist/service.database.php.dist';
-            $content = file_get_contents($file_dist);
+            $content   = file_get_contents($file_dist);
             foreach ($params as $var => $val) {
                 $content = str_replace('%' . $var . '%', $val, $content);
             }
@@ -184,14 +185,17 @@ class Database extends AbstractController
             if (empty($error_dsn)) {
                 $this->status = 1;
             } else {
-                $errorDsn = array('file' => $file, 'content' => $content);
+                $errorDsn = ['file' => $file, 'content' => $content];
             }
 
             if (!empty($errorDsn)) {
-                $content .= '<h3>' . _s('Configuration file write error') . '</h3>'
+                $content .= '<h3>' . _s('Configuration file write error')
+                    . '</h3>'
                     . '<p class="caption" style="margin-top: 10px;">'
                     . sprintf(
-                        _s('The configuration file "%s" is not written correctly.'),
+                        _s(
+                            'The configuration file "%s" is not written correctly.'
+                        ),
                         $errorDsn['file']
                     )
                     . '</p><textarea cols="80" rows="10" class="span12">'
@@ -210,40 +214,48 @@ class Database extends AbstractController
     protected function loadForm()
     {
         $this->hasForm = true;
-        $vars = $this->vars;
+        $vars          = $this->vars;
 
-        $elementInfo = array(
-            'DB_HOST'   => array(
+        $elementInfo = [
+            'DB_HOST'   => [
                 _s('Server hostname'),
-                _s('Hostname (and port, delimited by ":") or Unix socket of the database server. If you are unsure, "localhost" works in most cases, or "127.0.0.1"'),
-            ),
-            'DB_USER'   => array(
+                _s(
+                    'Hostname (and port, delimited by ":") or Unix socket of the database server. If you are unsure, "localhost" works in most cases, or "127.0.0.1"'
+                ),
+            ],
+            'DB_USER'   => [
                 _s('User name'),
-                _s('Name of the user account that will be used to connect to the database server'),
-            ),
-            'DB_PASS'   => array(
+                _s(
+                    'Name of the user account that will be used to connect to the database server'
+                ),
+            ],
+            'DB_PASS'   => [
                 _s('Password'),
                 _s('Password of your database user account'),
-            ),
-            'DB_DBNAME'   => array(
+            ],
+            'DB_DBNAME' => [
                 _s('Database name'),
-                _s('The name of database on the host. The database must be already available.'),
-            ),
-            'DB_PREFIX'     => array(
+                _s(
+                    'The name of database on the host. The database must be already available.'
+                ),
+            ],
+            'DB_PREFIX' => [
                 _s('Table prefix'),
-                _s('This prefix will be added to all new tables created to avoid name conflicts in the database. If you are unsure, just keep the default.'),
-            ),
-        );
+                _s(
+                    'This prefix will be added to all new tables created to avoid name conflicts in the database. If you are unsure, just keep the default.'
+                ),
+            ],
+        ];
 
         $displayInput = function ($item) use ($vars, $elementInfo) {
             $content = '<div class="item">'
-                     . '<label for="' . $item . '" class="">'
-                     . $elementInfo[$item][0] . '</label>'
-                     . '<p class="caption">' . $elementInfo[$item][1] . '</p>'
-                     . '<input type="text" name="' . $item . '" id="'
-                     . $item . '" value="' . $vars[$item] . '" />'
-                     . '<em id="' . $item . '-status" class="">&nbsp;</em>'
-                     . '</div>';
+                . '<label for="' . $item . '" class="">'
+                . $elementInfo[$item][0] . '</label>'
+                . '<p class="caption">' . $elementInfo[$item][1] . '</p>'
+                . '<input type="text" name="' . $item . '" id="'
+                . $item . '" value="' . $vars[$item] . '" />'
+                . '<em id="' . $item . '-status" class="">&nbsp;</em>'
+                . '</div>';
 
             return $content;
         };
@@ -252,29 +264,30 @@ class Database extends AbstractController
         $content .= $displayInput('DB_HOST');
         $content .= $displayInput('DB_USER');
 
-        $item = 'DB_PASS';
+        $item    = 'DB_PASS';
         $content .= '<div class="item">'
-                  . '<label for="' . $item . '">'
-                  . $elementInfo[$item][0] . '</label>'
-                  . '<p class="caption">' . $elementInfo[$item][1] . '</p>'
-                  . '<input type="password" name="' . $item . '" id="'
-                  . $item . '" value="" />'
-                  . '</div>';
+            . '<label for="' . $item . '">'
+            . $elementInfo[$item][0] . '</label>'
+            . '<p class="caption">' . $elementInfo[$item][1] . '</p>'
+            . '<input type="password" name="' . $item . '" id="'
+            . $item . '" value="" />'
+            . '</div>';
 
         $content .= $displayInput('DB_DBNAME');
         $content .= $displayInput('DB_PREFIX');
 
         $contentSetup = '<div class="well">'
-                      . '<h2><span id="db-connection-label" class="">'
-                      . _s('Database setup') . '</span></h2>'
-                      . '<p class="caption">' . _s('Settings for database')
-                      . '</p>'
-                      . $content
-                      . '</div>';
+            . '<h2><span id="db-connection-label" class="">'
+            . _s('Database setup') . '</span></h2>'
+            . '<p class="caption">' . _s('Settings for database')
+            . '</p>'
+            . $content
+            . '</div>';
 
         $this->content = $contentSetup;
 
-        $this->headContent .=<<<'STYLE'
+        $this->headContent
+            .= <<<'STYLE'
 <style type="text/css" media="screen">
     .item {
         margin-top: 20px;
@@ -282,7 +295,8 @@ class Database extends AbstractController
 </style>
 STYLE;
 
-        $this->footContent .=<<<SCRIPT
+        $this->footContent
+            .= <<<SCRIPT
 <script>
 var url="$_SERVER[PHP_SELF]";
 $(document).ready(function(){

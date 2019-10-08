@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Validator;
@@ -20,15 +20,18 @@ use Zend\Validator\AbstractValidator;
 class BlockNameDuplicate extends AbstractValidator
 {
     /** @var string */
-    const TAKEN        = 'blockExists';
+    const TAKEN = 'blockExists';
 
     /**
-     * Message templates
-     * @var array
+     * {@inheritDoc}
      */
-    protected $messageTemplates = array(
-        self::TAKEN     => 'Block name already exists',
-    );
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = [
+            static::TAKEN => __('Block name already exists'),
+        ];
+        parent::__construct($options);
+    }
 
     /**
      * Block name validate
@@ -42,7 +45,7 @@ class BlockNameDuplicate extends AbstractValidator
         $this->setValue($value);
 
         if (null !== $value) {
-            $where = array('name' => $value);
+            $where = ['name' => $value];
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }

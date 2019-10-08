@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Controller\Front;
@@ -26,18 +26,22 @@ class ActivityController extends ActionController
      */
     public function indexAction()
     {
-        $name       = _get('name');
-        $uid        = _get('uid');
-        $ownerUid   = Pi::user()->getId();
-        $limit      = Pi::config('list_limit', 'user');
-        //$isOwner    = 0;
+        // Check front disable
+        if ($this->config('disable_front')) {
+            return $this->jumpToDenied(__('View information is disable'));
+        }
 
+        $name     = _get('name');
+        $uid      = _get('uid');
+        $ownerUid = Pi::user()->getId();
+        $limit    = Pi::config('list_limit', 'user');
+        $page     = _get('page', 'int') ?: 1;
         if (!$uid && !$ownerUid) {
             $this->jump(
-                array(
+                [
                     'controller' => 'profile',
-                    'action'     => 'index'
-                ),
+                    'action'     => 'index',
+                ],
                 __('User was not found.'),
                 'error'
             );
@@ -45,82 +49,44 @@ class ActivityController extends ActionController
 
         // Check is owner
         if (!$uid) {
-            //$isOwner = 1;
-            $uid     = $ownerUid;
+            $uid  = $ownerUid;
+            $view = false;
+        } else {
+            $view = true;
+
         }
         if (!$name) {
             $this->jump(
-                array(
+                [
                     'controller' => 'profile',
-                    'action'     => 'index'
-                ),
+                    'action'     => 'index',
+                ],
                 __('An error occurred.'),
                 'error'
             );
         }
+        // Get activity list for nav display
+        $activityList = Pi::api('activity', 'user')->getList($uid);
 
-        /*
+        // Get current activity data
+        $data = Pi::api('activity', 'user')->get($uid, $name, $limit, $page);
+
         // Get user base info
-        $user = Pi::api('user', 'user')->get(
+        $user         = Pi::api('user', 'user')->get(
             $uid,
-            array('name', 'gender', 'birthdate'),
+            ['name', 'country', 'city', 'time_activated'],
             true,
             true
         );
-        if (!$user) {
-            $this->jump(
-                array(
-                    'controller' => 'profile',
-                    'action'     => 'index'
-                ),
-                __('User was not found.'),
-                'error'
-            );
-        }
-
-        // Get viewer role: public member follower following owner
-        if ($isOwner) {
-            $role = 'owner';
-        } else {
-            $role = Pi::user()->hasIdentity() ? 'member' : 'public';
-        }
-        $user = Pi::api('privacy', 'user')->filterProfile(
-            $uid,
-            $role,
-            $user,
-            'user'
-        );
-        */
-
-        // Get activity list for nav display
-        $activityList = Pi::api('activity', 'user')->getList();
-
-        // Get current activity data
-        $data = Pi::api('activity', 'user')->get($uid, $name, $limit);
-
-        /*
-        // Get nav
-        if ($isOwner) {
-            $nav = Pi::api('nav', 'user')->getList($name);
-        } else {
-            $nav = Pi::api('nav', 'user')->getList($name, $uid);
-        }
-        */
-
-        // Get quick link
-        //$quicklink = Pi::api('quicklink', 'user')->getList();
-
-        $this->view()->assign(array(
-            'list'      => $activityList,
-            'name'      => $name,
-            'data'      => $data,
-            //'user'      => $user,
-            //'nav'       => $nav,
-            'uid'       => $uid,
-            //'quicklink' => $quicklink,
-            //'owner'     => $isOwner,
-        ));
-
+        $user['name'] = isset($user['name']) ? $user['name'] : null;
+        $this->view()->assign([
+            'list' => $activityList,
+            'name' => $name,
+            'data' => $data,
+            'uid'  => $uid,
+            'user' => $user,
+            'view' => $view,
+        ]);
     }
 
     /**

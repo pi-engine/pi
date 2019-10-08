@@ -1,10 +1,10 @@
 <?PHP
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Db\Adapter\Driver;
@@ -36,7 +36,7 @@ class Statement extends PDOStatement
     protected $counter = 0;
 
     /** @var array Bound parameters */
-    protected $parameters = array();
+    protected $parameters = [];
 
     /**
      * Constructor
@@ -60,7 +60,7 @@ class Statement extends PDOStatement
     {
         // Profiling starts
         if ($this->profiler) {
-            $this->counter ++;
+            $this->counter++;
             $start = microtime(true);
         }
         $exception = null;
@@ -71,7 +71,7 @@ class Statement extends PDOStatement
                 $status = parent::execute();
             }
         } catch (\Exception $e) {
-            $status = false;
+            $status    = false;
             $exception = $e;
         }
 
@@ -80,18 +80,18 @@ class Statement extends PDOStatement
             $message = '';
             if (!$status) {
                 $errorInfo = $this->errorInfo();
-                $message = $errorInfo[2];
+                $message   = $errorInfo[2];
             }
-            $parameters = array_merge($this->parameters, (array) $args);
+            $parameters = array_merge($this->parameters, (array)$args);
             // Write to log container
-            $this->profiler->log(array(
-                'start'         => $start,
-                'elapse'        => microtime(true) - $start,
-                'sql'           => $this->queryString,
-                'parameters'    => $parameters,
-                'message'       => $message,
-                'status'        => $status,
-            ));
+            $this->profiler->log([
+                'start'      => $start,
+                'elapse'     => microtime(true) - $start,
+                'sql'        => $this->queryString,
+                'parameters' => $parameters,
+                'message'    => $message,
+                'status'     => $status,
+            ]);
         }
 
         if ($exception) {
@@ -110,7 +110,8 @@ class Statement extends PDOStatement
         $data_type = PDO::PARAM_STR,
         $length = null,
         $driver_options = null
-    ) {
+    )
+    {
         $result = parent::bindParam(
             $parameter,
             $variable,

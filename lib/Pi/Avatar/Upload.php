@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Avatar;
@@ -49,7 +49,7 @@ class Upload extends AbstractAvatar
      */
     public function getSourceList($uids, $size = '')
     {
-        $result = array();
+        $result  = [];
         $avatars = Pi::user()->get($uids, 'avatar');
         foreach ($avatars as $uid => $avatar) {
             if ($avatar
@@ -75,10 +75,10 @@ class Upload extends AbstractAvatar
     /**
      * Build avatar path/URL
      *
-     * @param string    $source
-     * @param string    $size
-     * @param int       $uid
-     * @param bool      $toUrl
+     * @param string $source
+     * @param string $size
+     * @param int $uid
+     * @param bool $toUrl
      *
      * @return string
      */
@@ -87,7 +87,8 @@ class Upload extends AbstractAvatar
         $size = '',
         $uid = null,
         $toUrl = false
-    ) {
+    )
+    {
         if ($toUrl) {
             if (isset($this->options['root_url'])) {
                 $root = $this->options['root_url'];
@@ -108,15 +109,15 @@ class Upload extends AbstractAvatar
         }
         $size = $this->canonizeSize($size, false);
         if (is_callable($pattern)) {
-            $path = call_user_func($pattern, array(
-                'source'    => $source,
-                'size'      => $size,
-                'uid'       => $uid
-            ));
+            $path = call_user_func($pattern, [
+                'source' => $source,
+                'size'   => $size,
+                'uid'    => $uid,
+            ]);
         } else {
             $path = str_replace(
-                array('source', 'size', 'uid'),
-                array($source, $size, $uid),
+                ['source', 'size', 'uid'],
+                [$source, $size, $uid],
                 $pattern
             );
         }
@@ -132,7 +133,6 @@ class Upload extends AbstractAvatar
      * ```
      *  // Get meta of existent avatar
      *  $meta = Pi::service('avatar')->upload->getMeta(123, 'hashed', 'small');
-
      *  // Create meta
      *  $meta = Pi::service('avatar')->upload->getMeta(123, '', 'small');
      *
@@ -144,7 +144,6 @@ class Upload extends AbstractAvatar
      * ```
      *  // Get meta of existent avatars
      *  $meta = Pi::service('avatar')->upload->getMeta(123, 'hashed');
-
      *  // Create meta of avatars
      *  $meta = Pi::service('avatar')->upload->getMeta(123);
      *
@@ -156,11 +155,11 @@ class Upload extends AbstractAvatar
      *  );
      * ```
      *
-     * @param int       $uid    User id
-     * @param string    $source
+     * @param int $uid User id
+     * @param string $source
      *      Filename; A hased filename without extension will be generated
      *      if it is not specified
-     * @param string    $size
+     * @param string $size
      *
      * @return array|bool
      */
@@ -170,13 +169,13 @@ class Upload extends AbstractAvatar
             return false;
         }
 
-        $source = $this->hashSource($uid, $source);
+        $source  = $this->hashSource($uid, $source);
         $getMeta = function ($size) use ($source, $uid) {
-            $meta = array(
-                'src'   => $this->build($source, $size, $uid),
-                'path'  => $this->buildPath($source, $size, $uid),
-                'size'  => $this->canonizeSize($size)
-            );
+            $meta = [
+                'src'  => $this->build($source, $size, $uid),
+                'path' => $this->buildPath($source, $size, $uid),
+                'size' => $this->canonizeSize($size),
+            ];
 
             return $meta;
         };
@@ -184,7 +183,7 @@ class Upload extends AbstractAvatar
         if ($size) {
             $result = $getMeta($size);
         } else {
-            $result = array();
+            $result   = [];
             $sizeList = $this->getSize();
             foreach (array_keys($sizeList) as $name) {
                 $result[$name] = $getMeta($name);
@@ -197,7 +196,7 @@ class Upload extends AbstractAvatar
     /**
      * Generate hashed source name
      *
-     * @param int    $uid
+     * @param int $uid
      * @param string $source
      * @param string $extension
      *
@@ -213,13 +212,13 @@ class Upload extends AbstractAvatar
             }
         }
         if (!empty($this->options['source_hash'])) {
-            $result = call_user_func($this->options['source_hash'], array(
+            $result = call_user_func($this->options['source_hash'], [
                 'uid'       => $uid,
                 'extension' => $extension,
                 'source'    => $source,
-            ));
+            ]);
         } else {
-            $result = md5($uid) .  '.' . $extension;
+            $result = md5($uid) . '.' . $extension;
         }
 
         return $result;

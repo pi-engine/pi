@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Log\Formatter;
@@ -28,18 +28,18 @@ class Debugger implements FormatterInterface
     /**
      * Class constructor
      *
-     * @param  null|string  $format  Format specifier for log messages
+     * @param  null|string $format Format specifier for log messages
      */
     public function __construct($format = null)
     {
         if ($format === null) {
             $format = '<div class="pi-event">' . PHP_EOL
-                    . '<div class="time">%timestamp%</div>' . PHP_EOL
-                    . '<div class="message %priorityName%"'
-                    . ' style="clear: both;">'
-                    . '[%priorityName%] %location%</div>' . PHP_EOL
-                    . '<div class="message">%message%</div>' . PHP_EOL
-                    . '</div>' . PHP_EOL;
+                . '<div class="time">%timestamp%</div>' . PHP_EOL
+                . '<div class="message %priorityName%"'
+                . ' style="clear: both;">'
+                . '[%priorityName%] %location%</div>' . PHP_EOL
+                . '<div class="message">%message%</div>' . PHP_EOL
+                . '</div>' . PHP_EOL;
         }
 
         $this->format = $format;
@@ -58,8 +58,8 @@ class Debugger implements FormatterInterface
             $event['timestamp'] = date(
                     $this->getDateTimeFormat(),
                     intval($event['timestamp'])
-            ) . substr($event['timestamp'],
-                       strpos($event['timestamp'], '.'), 5);
+                ) . substr($event['timestamp'],
+                    strpos($event['timestamp'], '.'), 5);
         }
         if (!empty($event['priorityName'])) {
             $event['priorityName'] = strtolower($event['priorityName']);
@@ -103,7 +103,7 @@ class Debugger implements FormatterInterface
      */
     public function setDateTimeFormat($dateTimeFormat)
     {
-        $this->dateTimeFormat = (string) $dateTimeFormat;
+        $this->dateTimeFormat = (string)$dateTimeFormat;
 
         return $this;
     }

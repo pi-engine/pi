@@ -1,342 +1,166 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Mvc\Router\Http;
 
 use Pi;
+use Pi\Mvc\Router\PriorityList;
 use Pi\Mvc\Router\RoutePluginManager;
-use Zend\Mvc\Router\Http\TreeRouteStack as RouteStack;
-use Zend\Mvc\Router\PriorityList;
-use Zend\Stdlib\RequestInterface as Request;
-//use Zend\Mvc\Router\SimpleRouteStack;
-use Zend\Mvc\Router\Http\RouteInterface;
-use Zend\Uri\Http as HttpUri;
 use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Mvc\Router\Exception;
+use Zend\Mvc\Router\Http\TreeRouteStack as ZendTreeRouteStack;
+use Zend\Stdlib\RequestInterface as Request;
 
 /**
  * Tree RouteStack
  *
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * Note:
+ * Route names for cloned modules are indexed by a string composed of module
+ * name and route name
+ *
+ * @see     Pi\Application\Registry\Route
+ * @author  Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class TreeRouteStack extends RouteStack
+class TreeRouteStack extends ZendTreeRouteStack
 {
     /**
-     * Stack containing all extra routes, potentially for assemble()
-     * @var PriorityList
-     */
-    protected $routesExtra;
-
-    /**
-     * Base URL.
-     * @var string
-     */
-    protected $baseUrl;
-
-    /**
-     * Request URI.
-     * @var HttpUri
-     */
-    protected $requestUri;
-
-    /**
      * Create a new simple route stack.
+     *
+     * @param RoutePluginManager $routePluginManager
      */
-    public function __construct()
+    public function __construct(RoutePluginManager $routePluginManager = null)
     {
-        $this->routes               = new PriorityList();
-        $this->routePluginManager   = new RoutePluginManager();
+        $this->routes = new PriorityList();
+
+        if (null === $routePluginManager) {
+            $routePluginManager = new RoutePluginManager();
+        }
+
+        $this->routePluginManager = $routePluginManager;
 
         $this->init();
     }
 
     /**
-     * init(): defined by SimpleRouteStack.
-     *
-     * @see    SimpleRouteStack::init()
-     * @return void
+     * {@inheritDoc}
      */
     protected function init()
     {
+        $this->routes->setExtraRouteLoader([$this, 'loadExtraRoutes']);
         $this->routePluginManager->setSubNamespace('Http');
     }
 
     /**
      * {@inheritDoc}
+     * Canonize matched route name for cloned modules
      */
-    public function getRoute($name)
+    public function match(
+        Request $request,
+        $pathOffset = null,
+        array $options = []
+    )
     {
-        $route = $this->routes->get($name);
-        if (!$route) {
-            $route = $this->extraRoute($name);
+        $routeMatch = parent::match($request, $pathOffset, $options);
+        if ($routeMatch) {
+            $module    = $routeMatch->getParam('module');
+            $directory = Pi::service('module')->directory($module);
+            if ($directory && $module != $directory) {
+                $name = $routeMatch->getMatchedRouteName();
+                // <module>-<name> => <name>
+                $routeList = Pi::registry('RouteList')->read($directory);
+                if ($routeList && isset($routeList[$name])) {
+                    // Remove prepended module name to route name for cloned modules
+                    $name = substr($name, strlen($module) + 1);
+                    $routeMatch->setMatchedRouteName($name);
+                }
+            }
         }
 
-        return $route;
+        return $routeMatch;
     }
 
     /**
-     * routeFromArray(): defined by SimpleRouteStack.
-     *
-     * @param array|\Traversable $specs
-     *
-     * @throws \RuntimeException
-     * @return RouteInterface
+     * {@inheritDoc}
+     * Canonize route name for cloned modules
      */
-    protected function routeFromArray($specs)
+    public function assemble(array $params = [], array $options = [])
     {
-        $route = parent::routeFromArray($specs);
-
-        if (!$route instanceof RouteInterface) {
-            throw new \RuntimeException(
-                'Given route does not implement HTTP route interface'
-            );
+        if (!empty($options['name']) && !empty($params['module'])) {
+            $module    = $params['module'];
+            $directory = Pi::service('module')->directory($module);
+            if ($module != $directory) {
+                $routeList = Pi::registry('route_list')->read($directory);
+                $names     = explode('/', $options['name'], 2);
+                if ($routeList && isset($routeList[$names[0]])) {
+                    // Prepend module name to route name for cloned modules
+                    $options['name'] = $module . '-' . $options['name'];
+                }
+                // d($params);
+            }
         }
 
-        if (isset($specs['child_routes'])) {
-            $options = array(
-                'route'         => $route,
-                'may_terminate' => (isset($specs['may_terminate'])
-                    && $specs['may_terminate']
-                ),
-                'child_routes'  => $specs['child_routes'],
-                'route_plugins' => $this->routePluginManager,
-            );
-
-            $priority = (isset($route->priority) ? $route->priority : null);
-
-            $route = $this->routePluginManager->get('part', $options);
-            $route->priority = $priority;
-        }
-
-        return $route;
+        return parent::assemble($params, $options);
     }
 
     /**
-     * match(): defined by BaseRoute interface.
+     * Parse by specified route
      *
-     * @see Route::match()
-     *
-     * @param Request   $request
-     * @param string    $routeName
+     * @param Request $request
+     * @param string $name
+     * @param array $options
      *
      * @return RouteMatch|null
      */
-    public function match(Request $request, $routeName = '')
+    public function parse(Request $request, $name, array $options = [])
     {
-        if (!method_exists($request, 'getUri')) {
-            return null;
-        }
-
-        if ($this->baseUrl === null && method_exists($request, 'getBaseUrl')) {
-            $this->setBaseUrl($request->getBaseUrl());
-        }
-
         $uri           = $request->getUri();
         $baseUrlLength = strlen($this->baseUrl) ?: null;
+        $route         = $this->routes->get($name);
 
-        if ($this->requestUri === null) {
-            $this->setRequestUri($uri);
-        }
-
-        // Specified route
-        if ($routeName) {
-            $route  = $this->routes->get($routeName)
-                ?: $this->extraRoute($routeName);
-            $routes = array($routeName => $route);
-        // Not specified
-        } else {
-            $routes = $this->routes;
-        }
-
-        // Match against base URI
         if ($baseUrlLength !== null) {
             $pathLength = strlen($uri->getPath()) - $baseUrlLength;
-            //foreach ($this->routes as $name => $route) {
-            foreach ($routes as $name => $route) {
-                $match = $route->match($request, $baseUrlLength);
-                if (!$match instanceof RouteMatch) {
-                    continue;
-                }
-                $matchedLength = $match->getLength();
-                if ($matchedLength === $pathLength) {
-                    $match->setMatchedRouteName($name);
-
-                    foreach ($this->defaultParams as $key => $value) {
-                        if ($match->getParam($key) === null) {
-                            $match->setParam($key, $value);
-                        }
-                    }
-                    return $match;
-                }
-            }
-        // Match against simple URI
         } else {
-            //return parent::match($request);
-            //foreach ($this->routes as $name => $route) {
-            foreach ($routes as $name => $route) {
-                $match = $route->match($request);
-                if ($match instanceof RouteMatch) {
-                    $match->setMatchedRouteName($name);
+            $pathLength = null;
+        }
+        if (
+            ($match = $route->match($request, $baseUrlLength, $options)) instanceof RouteMatch
+            && ($pathLength === null || $match->getLength() === $pathLength)
+        ) {
+            $match->setMatchedRouteName($name);
 
-                    foreach ($this->defaultParams as $paramName => $value) {
-                        if ($match->getParam($paramName) === null) {
-                            $match->setParam($paramName, $value);
-                        }
-                    }
-
-                    return $match;
+            foreach ($this->defaultParams as $paramName => $value) {
+                if ($match->getParam($paramName) === null) {
+                    $match->setParam($paramName, $value);
                 }
             }
-        }
-
-        return null;
-    }
-
-    /**
-     * assemble(): defined by Route interface.
-     *
-     * @see    Route::assemble()
-     *
-     * @param  array $params
-     * @param  array $options
-     *
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
-     * @return string
-     */
-    public function assemble(array $params = array(), array $options = array())
-    {
-        if (!isset($options['name'])) {
-            throw new Exception\InvalidArgumentException('Missing "name" option');
-        }
-
-        $names = explode('/', $options['name'], 2);
-        $route = $this->routes->get($names[0]);
-
-        /**#@+
-         *  Load extra routes if called route not found in current route list
-         */
-        if (!$route) {
-            $route = $this->extraRoute($names[0]);
-        }
-        /**#@-**/
-
-        if (!$route) {
-            throw new Exception\RuntimeException(sprintf('Route with name "%s" not found', $names[0]));
-        }
-
-        if (isset($names[1])) {
-            if (!$route instanceof TreeRouteStack) {
-                throw new Exception\RuntimeException(sprintf('Route with name "%s" does not have child routes', $names[0]));
-            }
-            $options['name'] = $names[1];
         } else {
-            unset($options['name']);
+            $match = null;
         }
 
-        if (isset($options['only_return_path']) && $options['only_return_path']) {
-            return $this->baseUrl . $route->assemble(array_merge($this->defaultParams, $params), $options);
-        }
-
-        if (!isset($options['uri'])) {
-            $uri = new HttpUri();
-
-            if (isset($options['force_canonical']) && $options['force_canonical']) {
-                if ($this->requestUri === null) {
-                    throw new Exception\RuntimeException('Request URI has not been set');
-                }
-
-                $uri->setScheme($this->requestUri->getScheme())
-                    ->setHost($this->requestUri->getHost())
-                    ->setPort($this->requestUri->getPort());
-            }
-
-            $options['uri'] = $uri;
-        } else {
-            $uri = $options['uri'];
-        }
-
-        $path = $this->baseUrl . $route->assemble(array_merge($this->defaultParams, $params), $options);
-
-        if (isset($options['query'])) {
-            $uri->setQuery($options['query']);
-        }
-
-        if (isset($options['fragment'])) {
-            $uri->setFragment($options['fragment']);
-        }
-
-        if ((isset($options['force_canonical']) && $options['force_canonical']) || $uri->getHost() !== null || $uri->getScheme() !== null) {
-            if (($uri->getHost() === null || $uri->getScheme() === null) && $this->requestUri === null) {
-                throw new Exception\RuntimeException('Request URI has not been set');
-            }
-
-            if ($uri->getHost() === null) {
-                $uri->setHost($this->requestUri->getHost());
-            }
-
-            if ($uri->getScheme() === null) {
-                $uri->setScheme($this->requestUri->getScheme());
-            }
-
-            return $uri->setPath($path)->normalize()->toString();
-        } elseif (!$uri->isAbsolute() && $uri->isValidRelative()) {
-            return $uri->setPath($path)->normalize()->toString();
-        }
-
-        return $path;
+        return $match;
     }
 
     /**
-     * Set the base URL.
+     * Load routes
      *
-     * @param  string $baseUrl
-     * @return $this
-     */
-    public function setBaseUrl($baseUrl)
-    {
-        $this->baseUrl = rtrim($baseUrl, '/');
-
-        return $this;
-    }
-
-    /**
-     * Get the base URL.
+     * @param array $options
      *
-     * @return string
+     * @return void
      */
-    public function getBaseUrl()
+    public function loadRoutes(array $options = [])
     {
-        return $this->baseUrl;
-    }
-
-    /**
-     * Set the request URI.
-     *
-     * @param  HttpUri $uri
-     * @return $this
-     */
-    public function setRequestUri(HttpUri $uri)
-    {
-        $this->requestUri = $uri;
-
-        return $this;
-    }
-
-    /**
-     * Get the request URI.
-     *
-     * @return HttpUri
-     */
-    public function getRequestUri()
-    {
-        return $this->requestUri;
+        $section = !empty($options['section'])
+            ? $options['section'] : Pi::engine()->section();
+        $routes  = Pi::registry('route')->read($section, $exclude = 0);
+        if (!empty($options['routes'])) {
+            $routes = array_merge($routes, $options['routes']);
+        }
+        $this->setRoutes($routes);
     }
 
     /**
@@ -344,24 +168,33 @@ class TreeRouteStack extends RouteStack
      * If the extra routes stack is not loaded,
      * load them from route registry cache
      *
-     * @param string $name
-     * @return RouteInterface|null
+     * @return array
      */
-    protected function extraRoute($name)
+    public function loadExtraRoutes()
     {
-        if (null == $this->routesExtra) {
-            $this->routesExtra = new PriorityList();
-            $extraConfig = (array) Pi::registry('route')->read(
-                Pi::engine()->section(),
-                true
-            );
-            foreach ($extraConfig as $key => $options) {
-                $route = $this->routeFromArray($options);
-                $priority = isset($route->priority) ? $route->priority : null;
-                $this->routesExtra->insert($key, $route, $priority);
-            }
+        $extraRoutes = [];
+        $extraConfig = (array)Pi::registry('route')->read(
+            Pi::engine()->section(),
+            true
+        );
+        foreach ($extraConfig as $key => $options) {
+            $route             = $this->routeFromArray($options);
+            $extraRoutes[$key] = $route;
         }
 
-        return $this->routesExtra->get($name);
+        return $extraRoutes;
+    }
+
+    /**
+     * Reload routes
+     *
+     * @param array $options
+     *
+     * @return void
+     */
+    public function load(array $options = [])
+    {
+        $this->loadRoutes($options);
+        $this->routes->loadExtraRoutes(true);
     }
 }

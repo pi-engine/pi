@@ -1,0 +1,764 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-system\n"
+"POT-Creation-Date: 2019-05-01 12:14+0200\n"
+"PO-Revision-Date: 2019-05-01 12:14+0200\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/Api/Event.php:31
+#, php-format
+msgid "Module `%s` installed"
+msgstr "Le module `%s` a été installé"
+
+#: src/Api/Event.php:33
+#, php-format
+msgid "The module `%s` is installed successfully."
+msgstr "Le module `%s` s'est installé avec succès."
+
+#: src/Api/Event.php:51
+#, php-format
+msgid "Module `%s` uninstalled"
+msgstr "Le module `%s` a été désinstallé"
+
+#: src/Api/Event.php:53
+#, php-format
+msgid "The module `%s` is uninstalled successfully."
+msgstr "Le module `%s` a été désinstallé avec succès."
+
+#: src/Api/Event.php:71
+#, php-format
+msgid "Module `%s` updated"
+msgstr "Le module `%s` a été mis à jour"
+
+#: src/Api/Event.php:73
+#, php-format
+msgid "The module `%s` is updated successfully."
+msgstr "Le module `%s` a été mis à jour avec succès."
+
+#: src/Api/Event.php:91
+#, php-format
+msgid "Module `%s` activated"
+msgstr "Le module `%s` est activé"
+
+#: src/Api/Event.php:93
+#, php-format
+msgid "The module `%s` is activated successfully."
+msgstr "Le module `%s` a été activé avec succès."
+
+#: src/Api/Event.php:111
+#, php-format
+msgid "Module %s deactivated"
+msgstr "Le module %s est déasactivé"
+
+#: src/Api/Event.php:113
+#, php-format
+msgid "The module %s is deactivated successfully."
+msgstr "Le module %s a été désactivé avec succès."
+
+#: src/Controller/Admin/LoginController.php:58
+msgid "Admin login"
+msgstr "Connexion Admin"
+
+#: src/Controller/Admin/ThemeController.php:332
+msgid "Bootstrap compiled successfully."
+msgstr "Bootstrap a été compilé avec succès."
+
+#: src/Controller/Admin/ThemeController.php:375
+msgid "Bootstrap reset successfully."
+msgstr "Boostrap réinitialisé avec succès"
+
+#: src/Controller/Feed/IndexController.php:32
+msgid "What's new"
+msgstr "Nouveautés"
+
+#: src/Controller/Feed/IndexController.php:33
+msgid "Recent module feeds."
+msgstr "Flux récent module"
+
+#: src/Controller/Feed/IndexController.php:45
+#, php-format
+msgid "Resent feeds of %s module"
+msgstr "Renvoyer le flux pour le module %s"
+
+#: src/Controller/Front/LoginController.php:84
+#, php-format
+msgid ""
+"Login with the account is suspended,\n"
+"                            please wait for %d minutes to try again."
+msgstr ""
+"La connexion avec le compte est suspendue,\n"
+"                            merci d'attendre pendant %d minutes pour essayer "
+"de nouveau."
+
+#: src/Controller/Front/LoginController.php:93
+#, php-format
+msgid "You have %d times to try."
+msgstr "Il vous reste %d  essais"
+
+#: src/Controller/Front/LoginController.php:101
+#: template/front/login-disabled.phtml:2
+msgid "User login"
+msgstr "Connexion utilisateur"
+
+#: src/Controller/Front/LoginController.php:106 src/Form/LoginForm.php:123
+#: template/front/login-logout.phtml:14
+#: template/front/login-register-modal-ajax.phtml:12
+#: template/front/login-register-modal-ajax.phtml:27
+#: template/front/login-register-modal-ajax.phtml:58
+#: template/front/login-register-modal-ajax.phtml:59
+#: template/front/register.phtml:8
+msgid "Login"
+msgstr "Connexion"
+
+#: src/Controller/Front/LoginController.php:107
+msgid ""
+"Use this page to connect to our website and participate, share contents, use "
+"our features, and interacts with other members"
+msgstr ""
+"Utiliser cette page pour vous connecter sur le site et participer, partager "
+"des contenus, utiliser nos services et intéragir avec les autres membres"
+
+#: src/Controller/Front/LoginController.php:128
+msgid "Invalid request."
+msgstr "Demande non valide."
+
+#: src/Controller/Front/LoginController.php:174
+msgid "You have tried too many times. Please try later."
+msgstr "Vous avez tenté trop de fois. Merci d'essayer plus tard."
+
+#: src/Controller/Front/LoginController.php:198
+msgid "Invalid credentials provided, please try again."
+msgstr "Identifiants fournis non valides, merci d'essayer de nouveau."
+
+#: src/Controller/Front/LoginController.php:270
+msgid "You logged out successfully."
+msgstr "Vous vous êtes déconnectés avec succès."
+
+#: src/Controller/Front/PasswordController.php:50
+msgid "Find password failed."
+msgstr "Le rappel de mot de passe a échoué."
+
+#: src/Controller/Front/PasswordController.php:118
+msgid ""
+"Confirmation email sent successfully. Please check email and reset password."
+msgstr ""
+"Le mail de confirmation a été envoyé avec succès. Merci de vérifier vos "
+"mails pour réinitialiser votre mot de passe."
+
+#: src/Controller/Front/PasswordController.php:127
+#: src/Controller/Front/PasswordController.php:128
+#: src/Form/FindPasswordForm.php:49
+#: template/front/login-register-modal-ajax.phtml:30
+#: template/front/login-register-modal-ajax.phtml:31
+#: template/front/login.phtml:20 template/front/password-find.phtml:2
+#: template/front/register.phtml:6
+msgid "Find password"
+msgstr "Rappel mot de passe"
+
+#: src/Controller/Front/PasswordController.php:146
+msgid "Invalid token for password reset."
+msgstr "Token non valide pour la réinitialisation du mot de passe."
+
+#: src/Controller/Front/PasswordController.php:200
+msgid "Password reset successfully."
+msgstr "Le mot de passe a été réinitialisé avec succès."
+
+#: src/Controller/Front/ProfileController.php:47
+msgid "Change password"
+msgstr "Changer de mot de passe"
+
+#: src/Controller/Front/ProfileController.php:54
+#: src/Controller/Front/ProfileController.php:63
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: src/Controller/Front/ProfileController.php:57
+msgid "ID"
+msgstr "N°"
+
+#: src/Controller/Front/ProfileController.php:58
+msgid "Username"
+msgstr "Nom de Compte"
+
+#: src/Controller/Front/ProfileController.php:59
+#: src/Form/FindPasswordForm.php:28
+msgid "Email"
+msgstr "Email"
+
+#: src/Controller/Front/ProfileController.php:60 src/Form/RoleForm.php:44
+msgid "Name"
+msgstr "Pseudo"
+
+#: src/Controller/Front/ProfileController.php:61
+msgid "Role"
+msgstr "Rôle"
+
+#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:61
+#: src/Form/RegisterForm.php:65
+msgid "Password"
+msgstr "Mot de passe"
+
+#: src/Controller/Front/ProfileController.php:67
+#: src/Controller/Front/ProfileController.php:75
+#: src/Controller/Front/ProfileController.php:76
+msgid "User profile"
+msgstr "Profil utilisateur"
+
+#: src/Controller/Front/RegisterController.php:58
+#: src/Controller/Front/RegisterController.php:62
+msgid "User account register"
+msgstr "Inscription du compte utilisateur"
+
+#: src/Controller/Front/RegisterController.php:61
+#: src/Controller/Front/RegisterController.php:122
+#: template/front/login-logout.phtml:16
+#: template/front/login-register-modal-ajax.phtml:14
+#: template/front/login-register-modal-ajax.phtml:37
+#: template/front/login-register-modal-ajax.phtml:38
+#: template/front/login-register-modal-ajax.phtml:51
+#: template/front/login.phtml:23
+msgid "Register"
+msgstr "S'inscrire"
+
+#: src/Controller/Front/RegisterController.php:92
+msgid "Invalid input, please try again."
+msgstr "Donnée non valide, merci d'essayer de nouveau."
+
+#: src/Controller/Front/RegisterController.php:111
+msgid "The account is not created in database, please try again."
+msgstr ""
+"Le compte n'a pas été créé dans la base de donnée, merci d'essayer de "
+"nouveau."
+
+#: src/Controller/Front/TestController.php:49
+msgid "site name"
+msgstr "nom du site"
+
+#: src/Controller/Front/TestController.php:179
+#, php-format
+msgid "Greetings in raw body %d"
+msgstr "Remerciements dans le code source %d"
+
+#: src/Controller/Module/IndexController.php:29
+msgid "Admin area"
+msgstr "Zone Admin"
+
+#: src/Form/AccountForm.php:46 src/Form/MemberForm.php:59
+#: src/Form/RegisterForm.php:32
+msgid "User account"
+msgstr "Nom utilisateur"
+
+#: src/Form/AccountForm.php:57 src/Form/MemberForm.php:70
+#: src/Form/RegisterForm.php:43
+msgid "Display name"
+msgstr "Nom"
+
+#: src/Form/AccountForm.php:68
+msgid "Birthdate"
+msgstr "Date de naissance"
+
+#: src/Form/AccountForm.php:92 src/Form/BlockModuleForm.php:259
+#: src/Form/ConfigForm.php:56 src/Form/MemberForm.php:157
+#: src/Form/ModuleForm.php:57 src/Form/NavForm.php:66
+#: src/Form/NavPageForm.php:130 src/Form/PageAddForm.php:92
+#: src/Form/PageEditForm.php:67 src/Form/RegisterForm.php:108
+#: src/Form/ResetPasswordForm.php:72 src/Form/RoleForm.php:115
+#: template/admin/cache-list.phtml:50
+msgid "Submit"
+msgstr "Valider"
+
+#: src/Form/BlockModuleForm.php:66 src/Form/ModuleForm.php:39
+#: src/Form/NavForm.php:39 src/Form/PageAddForm.php:44 src/Form/RoleForm.php:54
+msgid "Title"
+msgstr "Nom"
+
+#: src/Form/BlockModuleForm.php:70
+msgid "Block label for display."
+msgstr "Label du bloc pour l'affichage"
+
+#: src/Form/BlockModuleForm.php:78
+msgid "Hide title"
+msgstr "Cacher le nom"
+
+#: src/Form/BlockModuleForm.php:81
+msgid "Hide block title from display."
+msgstr "Ne pas afficher le nom du bloc"
+
+#: src/Form/BlockModuleForm.php:89
+msgid "Full-size body"
+msgstr "Corps de page (Body) pleine taille"
+
+#: src/Form/BlockModuleForm.php:92
+msgid "Display block body in full-size w/o padding."
+msgstr "Afficher le corps de bloc en pleine taille sans effet padding"
+
+#: src/Form/BlockModuleForm.php:99 src/Form/ModuleForm.php:29
+#: src/Form/NavForm.php:29
+msgid "Unique name"
+msgstr "Nom unique"
+
+#: src/Form/BlockModuleForm.php:103
+msgid "A unique name to be called as widget."
+msgstr "Nom unique pour être appelé comme widget"
+
+#: src/Form/BlockModuleForm.php:111
+msgid "PHTML rendering template, file extension is optional."
+msgstr ""
+"Modèle de présentation PHTML (template), extension fichier optionnelle."
+
+#: src/Form/BlockModuleForm.php:126
+msgid "Template"
+msgstr "Modèle (Template)"
+
+#: src/Form/BlockModuleForm.php:141
+msgid "Description"
+msgstr "Description"
+
+#: src/Form/BlockModuleForm.php:145
+msgid "Set a hint to distinguish the block."
+msgstr "Définir une clef pour distinguer le bloc"
+
+#: src/Form/BlockModuleForm.php:152
+msgid "Subline"
+msgstr "Ligne d'en dessous"
+
+#: src/Form/BlockModuleForm.php:156
+msgid "Header subline. HTML is allowed."
+msgstr "Sous ligne du Header, HTML autorisé."
+
+#: src/Form/BlockModuleForm.php:163
+msgid "Style class"
+msgstr "Style de la classe"
+
+#: src/Form/BlockModuleForm.php:167
+msgid "Specified block container CSS class."
+msgstr "Classe CSS du bloc container spécifié"
+
+#: src/Form/BlockModuleForm.php:191
+msgid "Configs"
+msgstr "Paramètres"
+
+#: src/Form/Element/Controller.php:54 src/Form/NavPageForm.php:77
+msgid "None"
+msgstr "Aucun"
+
+#: src/Form/LoginForm.php:82
+msgid "Remember login status"
+msgstr "Se souvenir de moi"
+
+#: src/Form/MemberForm.php:81 src/Form/RegisterForm.php:54
+msgid "Email address"
+msgstr "Adresse email"
+
+#: src/Form/MemberForm.php:93 src/Form/ResetPasswordForm.php:41
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: src/Form/MemberForm.php:101 src/Form/RegisterForm.php:76
+#: src/Form/ResetPasswordForm.php:51
+msgid "Confirm password"
+msgstr "Confimer le mot de passe"
+
+#: src/Form/MemberForm.php:110
+msgid "User role"
+msgstr "Rôle Utilisateur"
+
+#: src/Form/MemberForm.php:121
+msgid "Management role"
+msgstr "Rôle de Management"
+
+#: src/Form/MemberForm.php:133
+msgid "Active"
+msgstr "Actif"
+
+#: src/Form/NavPageForm.php:29
+msgid "Label"
+msgstr "Label"
+
+#: src/Form/NavPageForm.php:36
+msgid "Route"
+msgstr "Route"
+
+#: src/Form/NavPageForm.php:39
+msgid "Route to assemble URI."
+msgstr "Route pour construire l'URI."
+
+#: src/Form/NavPageForm.php:46
+msgid "Module"
+msgstr "Module"
+
+#: src/Form/NavPageForm.php:53 src/Form/PageAddForm.php:62
+msgid "Controller"
+msgstr "Controller"
+
+#: src/Form/NavPageForm.php:60 src/Form/PageAddForm.php:71
+msgid "Action"
+msgstr "Action"
+
+#: src/Form/NavPageForm.php:67
+msgid "URI"
+msgstr "URI"
+
+#: src/Form/NavPageForm.php:75
+msgid "Open target"
+msgstr "Ouvrir la cible"
+
+#: src/Form/NavPageForm.php:78
+msgid "Current window"
+msgstr "Fenêtre courante"
+
+#: src/Form/NavPageForm.php:79
+msgid "Open a new window"
+msgstr "Ouvrir une nouvelle fenêtre"
+
+#: src/Form/NavPageForm.php:87
+msgid "Permission resource"
+msgstr "Type de permission"
+
+#: src/Form/NavPageForm.php:91
+msgid "The resource identity for permission check."
+msgstr "Type de ressource pour le contrôle des droits."
+
+#: src/Form/NavPageForm.php:99
+msgid "Display"
+msgstr "Affichage"
+
+#: src/Form/NavPageForm.php:102
+msgid "To display in menu."
+msgstr "A afficher dans le menu."
+
+#: src/Form/PageEditForm.php:30
+msgid "Cache type"
+msgstr "Type de cache"
+
+#: src/Form/PageEditForm.php:34
+msgid "Page wide"
+msgstr "Largeur de la page"
+
+#: src/Form/PageEditForm.php:35
+msgid "Action data"
+msgstr "Données actives"
+
+#: src/Form/RegisterForm.php:89
+msgid "Please type the word."
+msgstr "Merci de saisir les caractères affichés."
+
+#: src/Form/RoleForm.php:65
+msgid "Section"
+msgstr "Section"
+
+#: src/Form/RoleForm.php:67
+msgid "Front"
+msgstr "Front"
+
+#: src/Form/RoleForm.php:68
+msgid "Admin"
+msgstr "Admin"
+
+#: src/Menu.php:240
+msgid "Uncategorized"
+msgstr "Non catégorisé"
+
+#: src/Navigation.php:161
+msgid "Edit a block"
+msgstr "Editer un bloc"
+
+#: src/Navigation.php:172
+msgid "Clone a block"
+msgstr "Cloner un block"
+
+#: src/Navigation.php:218
+msgid "Block layout"
+msgstr "Mise en forme du bloc"
+
+#: src/Navigation.php:229
+msgid "Setup page"
+msgstr "Page de configuration"
+
+#: src/Validator/ActionAvailable.php:30
+msgid "The action is not available."
+msgstr "Cette action n'est pas disponible."
+
+#: src/Validator/BlockNameDuplicate.php:31
+msgid "Block name already exists"
+msgstr "Le nom de bloc est existe déja"
+
+#: src/Validator/ControllerAvailable.php:30
+msgid "The controller is not available."
+msgstr "Le contrôleur n'est pas disponible"
+
+#: src/Validator/ModuleName.php:48
+msgid "Module name is reserved"
+msgstr "Ce nom de module est réservé"
+
+#: src/Validator/ModuleName.php:49
+msgid "Module name is already taken"
+msgstr "Ce nom de module est déja pris"
+
+#: src/Validator/ModuleTitle.php:31
+msgid "Module title is already taken"
+msgstr "Ce titre de module est déja pris"
+
+#: src/Validator/NavNameDuplicate.php:31
+msgid "Navigation name is already taken"
+msgstr "Ce nom de Navigation est déja pris"
+
+#: src/Validator/PageDuplicate.php:31
+msgid "The page already exists"
+msgstr "Cette page existe déja"
+
+#: src/Validator/Password.php:37
+msgid "Password is less than %min% characters long"
+msgstr "Le mot de passe a une longueur de moins de %min% caractères"
+
+#: src/Validator/Password.php:38
+msgid "Password is more than %max% characters long"
+msgstr "Le mot de passe a une longueur de plus de %max% caractères"
+
+#: src/Validator/RoleNameDuplicate.php:31
+msgid "Role name is already taken"
+msgstr "Ce nom de rôle est déja pris"
+
+#: src/Validator/UserEmail.php:49
+msgid "User email is reserved"
+msgstr "Cet email utilisateur est réservé"
+
+#: src/Validator/UserEmail.php:50
+msgid "User email is already used"
+msgstr "Cet email utilisateur est déja pris"
+
+#: src/Validator/Username.php:83
+msgid "Invalid username: %formatHint%"
+msgstr "Ce nom de compte n'est pas valide : %formatHint%"
+
+#: src/Validator/Username.php:84
+msgid "Username is reserved"
+msgstr "Ce nom de compte est réservé"
+
+#: src/Validator/Username.php:85
+msgid "Username is already taken"
+msgstr "Ce nom de compte est déja pris"
+
+#: src/Validator/Username.php:89
+msgid "Only alphabetic and digits are allowed"
+msgstr "Seuls les caractères alphabétiques et les nombres sont autorisés"
+
+#: src/Validator/Username.php:90
+msgid "Only alphabetic, digits and spaces are allowed"
+msgstr "Seuls les caractères alphabétiques et numériques sont autorisés"
+
+#: src/Validator/Username.php:91
+msgid "Only ASCII characters are allowed"
+msgstr "Seuls les caractères ASCII sont autorisés"
+
+#: src/Validator/Username.php:92
+msgid "Only ASCII characters and spaces are allowed"
+msgstr "Seuls les caractères ASCII et les espaces sont autorisés"
+
+#: src/Validator/Username.php:93
+msgid "Only multi-byte characters are allowed"
+msgstr "Seuls les caractères multi-byte sont autorisés"
+
+#: src/Validator/Username.php:94
+msgid "Only multi-byte characters and spaces are allowed"
+msgstr "Seuls les caractèrs multi-byte et les espaces sont autorisés"
+
+#: template/admin/cache-list.phtml:51
+msgid "Cancel"
+msgstr "Annuler"
+
+#: template/admin/database-check.phtml:10
+#: template/admin/database-index.phtml:10
+msgid "You can use this page tools for check some database integrity"
+msgstr ""
+"Vous pouvez utiliser cette page Utilitaire pour contrôler l'intégrité de la "
+"base de données"
+
+#: template/admin/theme-customize.phtml:19
+msgid "In process of compiling"
+msgstr "Compilation en cours"
+
+#: template/admin/theme-customize.phtml:20
+msgid "Compile"
+msgstr "Compiler"
+
+#: template/admin/theme-customize.phtml:21
+msgid "Rebuild"
+msgstr "Reconstruire"
+
+#: template/admin/theme-index.phtml:37
+msgid "Customize"
+msgstr "Personnaliser"
+
+#: template/block/user-bar.phtml:121 template/block/user-bar.phtml:124
+#: template/block/user-bar.phtml:340 template/block/user-bar.phtml:343
+msgid "My offer"
+msgstr "Mon offre"
+
+#: template/front/login-disabled.phtml:5
+msgid "Sorry, login is temporarily disabled. Please come back later."
+msgstr ""
+"Désolé, la connexion est temporairement désactivée. Merci de revenir plus "
+"tard."
+
+#: template/front/login-logout.phtml:5 template/front/login-success.phtml:5
+#: template/front/register-success.phtml:5
+msgid "homepage"
+msgstr "accueil"
+
+#: template/front/login-logout.phtml:7
+msgid "re-login"
+msgstr "se reconnecter"
+
+#: template/front/login-logout.phtml:8
+#, php-format
+msgid "You have logged out successfully, please go to %s or to %s."
+msgstr "Vous vous êtes déconnectés avec succès, merci d'aller %s ou de %s."
+
+#: template/front/login-logout.phtml:12 template/front/register.phtml:4
+msgid "Choose: "
+msgstr "Choisissez :"
+
+#: template/front/login-message.phtml:5
+msgid "logout"
+msgstr "deconnexion"
+
+#: template/front/login-message.phtml:6
+#, php-format
+msgid ""
+"You have been logged on with account <strong>%s</strong>, please %s to re-"
+"login."
+msgstr ""
+"Vous vous êtes connectés avec le compte <strong>%s</strong>, merci %s de "
+"vous reconnecter."
+
+#: template/front/login-register-modal-ajax.phtml:34
+msgid "Not already registered ?"
+msgstr "Pas encore inscrit ?"
+
+#: template/front/login-register-modal-ajax.phtml:55
+msgid "Already registered ?"
+msgstr "Déjà inscrit ?"
+
+#: template/front/login-success.phtml:6
+#, php-format
+msgid "You have logged in successfully, please go to %s."
+msgstr "Vous vous êtes connectés avec succès, merci d'aller à %s."
+
+#: template/front/password-process.phtml:1
+msgid "Reset password"
+msgstr "Réinitialiser le mot de passe"
+
+#: template/front/password-process.phtml:8
+msgid "Try to find password again"
+msgstr "Essayer de trouver le mot de passe de nouveau"
+
+#: template/front/password-process.phtml:13
+msgid "Congratulations!"
+msgstr "Félicitations !"
+
+#: template/front/password-process.phtml:14
+msgid "Your new password has worked"
+msgstr "Votre nouveau mot de passe a fonctionné"
+
+#: template/front/password-process.phtml:16
+msgid "Please login"
+msgstr "Merci de vous connecter"
+
+#: template/front/register-disabled.phtml:2
+msgid "User account registration"
+msgstr "Création du compte utilisateur"
+
+#: template/front/register-disabled.phtml:5
+msgid "Sorry, register is temporarily disabled. Please come back later."
+msgstr ""
+"Désolé, l'inscription est temporairement désactivée. Merci de revenir plus "
+"tard."
+
+#: template/front/register-success.phtml:8
+msgid "login"
+msgstr "vous connecter"
+
+#: template/front/register-success.phtml:9
+#, php-format
+msgid "You have registered successfully, please go to %s or to %s."
+msgstr "Vous vous êtes inscrits avec succès, merci d'aller à %s ou %s."
+
+#~ msgid "Welcome"
+#~ msgstr "Bienvenue"
+
+#~ msgid "Add my activity"
+#~ msgstr "Ajouter mon activité"
+
+#~ msgid "You have logged in successfully."
+#~ msgstr "Vous vous êtes connectés avec succès."
+
+#~ msgid "Publish an event"
+#~ msgstr "Publier un évènement"
+
+#~ msgid "Promote my activity"
+#~ msgstr "Promouvoir mon activité"
+
+#~ msgid "Login / register"
+#~ msgstr "Connexion / S'inscrire"
+
+#~ msgid "Remember me"
+#~ msgstr "Se souvenir"
+
+#~ msgid "Please type the word"
+#~ msgstr "Merci de saisir les caractères affichés"
+
+#~ msgid "Recent module updates."
+#~ msgstr "Mises à jour récentes du module"
+
+#~ msgid "My videos"
+#~ msgstr "Mes vidéos"
+
+#~ msgid "My account"
+#~ msgstr "Mon compte"
+
+#~ msgid "Switch to public"
+#~ msgstr "Basculer en mode Visiteur"
+
+#~ msgid "Settings"
+#~ msgstr "Paramétrages"
+
+#~ msgid "Quicklinks"
+#~ msgstr "Liens rapides"
+
+#~ msgid "Switch to own"
+#~ msgstr "Basculer en mode Edition"
+
+#~ msgid "Send message"
+#~ msgstr "Envoyer un message"
+
+#~ msgid "Gender:"
+#~ msgstr "Genre : "
+
+#~ msgid "Birthdate:"
+#~ msgstr "Date naissance :"
+
+#~ msgid "More"
+#~ msgstr "Plus"
+
+#~ msgid "Activate account"
+#~ msgstr "Activer le compte"
+
+#~ msgid "login,register,find,password,user,account"
+#~ msgstr "connexion, inscription, rappel, mot de passe, utilisateur, compte"
+
+#~ msgid "Cache TTL"
+#~ msgstr "Durée de vie du Cache (TTL)"
+
+#~ msgid "Cache level"
+#~ msgstr "Niveau de cache"

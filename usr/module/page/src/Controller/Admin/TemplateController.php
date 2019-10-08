@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Page\Controller\Admin;
@@ -22,28 +22,34 @@ class TemplateController extends ActionController
      */
     public function indexAction()
     {
-        $templates  = array();
-        $path       = Pi::path('custom/module/page/template/front');
-        $iterator   = new \DirectoryIterator($path);
-        foreach ($iterator as $fileinfo) {
+        $filter        = function ($fileinfo) {
             if (!$fileinfo->isFile()) {
-                continue;
+                return false;
             }
-            $name = $fileinfo->getFilename();
+            $name      = $fileinfo->getFilename();
             $extension = pathinfo($name, PATHINFO_EXTENSION);
             if ('phtml' != $extension) {
-                continue;
+                return false;
             }
             $name = pathinfo($name, PATHINFO_FILENAME);
             $file = $fileinfo->getPathname();
-            $template = array(
-                'name'  => $name,
-                'time'  => filemtime($file),
-                'size'  => filesize($file),
-            );
-            $templates[] = $template;
-        }
+            return [
+                'name' => $name,
+                'time' => filemtime($file),
+                'size' => filesize($file),
+            ];
+        };
+        $baseTemplates = Pi::service('file')->getList(
+            'custom/module/page/template/front',
+            $filter
+        );
 
+        $customTemplates = Pi::service('file')->getList(
+            Pi::path('theme') . '/' . Pi::config('theme') . '/custom/page',
+            $filter
+        );
+
+        $templates = array_merge($baseTemplates, $customTemplates);
         $this->view()->assign('templates', $templates);
         $this->view()->assign('title', _a('Template list'));
         $this->view()->setTemplate('template-list');
@@ -56,11 +62,21 @@ class TemplateController extends ActionController
     {
         Pi::service('log')->mute();
         $name = $this->params('name');
+
         $file = sprintf(
-            '%s/module/page/template/front/%s.phtml',
-            Pi::path('custom'),
+            '%s/' . Pi::config('theme') . '/custom/page/%s.phtml',
+            Pi::path('theme'),
             $name
         );
+
+        if (!is_readable($file)) {
+            $file = sprintf(
+                '%s/module/page/template/front/%s.phtml',
+                Pi::path('custom'),
+                $name
+            );
+        }
+
         if (is_readable($file)) {
             ob_start();
             highlight_file($file);
@@ -68,9 +84,9 @@ class TemplateController extends ActionController
         } else {
             $content = '';
         }
-        $this->view()->assign(array(
-            'content' => $content
-        ));
+        $this->view()->assign([
+            'content' => $content,
+        ]);
         $this->view()->setLayout('layout-content')->setTemplate(false);
     }
 }

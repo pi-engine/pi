@@ -1,317 +1,343 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-03-20 09:38+0330\n"
-"PO-Revision-Date: 2014-03-20 09:38+0330\n"
+"POT-Creation-Date: 2018-03-20 10:55+0330\n"
+"PO-Revision-Date: 2018-03-20 10:55+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-KeywordsList: _a;_t\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/page\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/html/local/pi/pi/usr/module/page/src/Validator/PageNameDuplicate.php:14
-msgid "Page name already exists."
-msgstr "نام صفحه هم اکنون استفاده شده است"
+#: config/comment.php:18
+msgid "Page comments"
+msgstr "نظرات صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/page/src/Validator/PageSlugDuplicate.php:14
-msgid "Page slug already exists."
-msgstr "اسلاگ صفحه هم اکنون استفاده شده است"
+#: config/config.php:13
+msgid "Social sharing items"
+msgstr "اشتراک در شبکه های اجتماعی"
 
-#: /var/www/html/local/pi/pi/usr/module/page/src/Validator/PageTemplateAvailable.php:14
-msgid "Template file is not available."
-msgstr "فایل تمپلیت انتخابی موجود نیست"
+#: config/config.php:24
+msgid "Show breadcrumbs"
+msgstr "نمایش ناوبری"
 
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:45
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:9
-msgid "Page title"
-msgstr "عنوان صفحه"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:55
-msgid "Unique name"
-msgstr "نام یکتا"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:59
-msgid "Only alphabet, number and underscore allowed."
-msgstr "فقط حروف الفبای انگلیسی ، اعداد و علامت آندر لاین مجاز است"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:66
-msgid "SEO slug"
-msgstr "اسلاگ"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:70
-msgid "Unique slug for SEO URL."
-msgstr "اسلاگ یکتا برای آدرس سئو"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:78
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/template-list.phtml:8
-msgid "Template name"
-msgstr "نام الگو"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:81
-msgid ""
-"Select a template from `usr/custom/module/page/template/front/` w/o "
-"extension."
-msgstr ""
-"انتخاب یک الگو از مسیر `usr/custom/module/page/template/front/` اگر موجود "
-"باشد"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:104
-msgid "Content"
-msgstr "متن"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:119
-msgid "SEO settings"
-msgstr "تنظیمات سئو"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:127
-msgid "SEO Title"
-msgstr "عنوان سئو"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:131
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:143
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:155
-msgid "To be used for HTML head meta."
-msgstr "برای استفاده به عنوان head meta در HTML"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:139
-msgid "SEO Keywords"
-msgstr "کلمات کلیدی سئو"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:151
-msgid "SEO Description"
-msgstr "توضیحات سئو"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Form/PageForm.php:164
-msgid "Active"
-msgstr "فعال"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Installer/Action/Install.php:78
-msgid "Demo for PHTML page"
-msgstr "نسخه نمایشی برای صفحه PHTML"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Installer/Action/Install.php:85
-msgid "RSS Feed"
-msgstr "خوراک"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Installer/Action/Install.php:92
-msgid "Sitemap"
-msgstr "نقشه سایت"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Installer/Action/Install.php:100
-msgid "XML Sitemap"
-msgstr "نقشه سایت XML"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Installer/Action/Install.php:111
-msgid "Pages added."
-msgstr "صفحات اضافه شدند"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/IndexController.php:44
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:21
-msgid "Page list"
-msgstr "فهرست صفحات"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/IndexController.php:106
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/IndexController.php:209
-msgid "Page data saved successfully."
-msgstr "اطلاعات صفحه با موفقیت ذخیره شد"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/IndexController.php:109
-msgid "Page data not saved."
-msgstr "اطلاعات صفحه ذخیره نشد"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/IndexController.php:112
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/IndexController.php:212
-msgid "Invalid data, please check and re-submit."
-msgstr "اطلاعات اشتباه، لطفا بررسی کنید و دوباره ارسال کنید"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/IndexController.php:134
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:44
-msgid "Add a page"
-msgstr "صفحه جدید"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/IndexController.php:228
-msgid "Page edit"
-msgstr "ویرایش صفحه"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/IndexController.php:249
-msgid "Page deleted successfully."
-msgstr "صفحه با موفقیت حذف شد"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/IndexController.php:270
-msgid "Page updated successfully."
-msgstr "صفحه با موفقیت به روز شد"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/IndexController.php:292
-msgid "Page navigation menu updated successfully."
-msgstr "منو صفحه با موفقیت به روز شد"
-
-#: /var/www/html/local/pi/pi/usr/module/page/src/Controller/Admin/TemplateController.php:48
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:50
-msgid "Template list"
-msgstr "فهرست الگو ها"
-
-#: /var/www/html/local/pi/pi/usr/module/page/config/module.php:14
+#: config/module.php:14
 msgid "Page"
 msgstr "صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/module.php:16
+#: config/module.php:16
 msgid "Single page for direct content display."
-msgstr "صفحه یکتا براینمایش مطلب مستقیم"
+msgstr "ابزار ساخت صفحات یکتا"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/config.php:21
-msgid "Enable Google Plus"
-msgstr "فعال کردن گوگل پلاس"
-
-#: /var/www/html/local/pi/pi/usr/module/page/config/config.php:29
-msgid "Enable Facebook"
-msgstr "فعال کردن فیسبوک"
-
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:13
+#: config/nav.php:13
 msgid "Custom site navigation"
 msgstr "ناوبری شخصی وب سایت"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:28
+#: config/nav.php:21 src/Controller/Admin/IndexController.php:45
+msgid "Page list"
+msgstr "فهرست صفحات"
+
+#: config/nav.php:28
 msgid "Edit page"
 msgstr "ویرایش صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:35
+#: config/nav.php:35
 msgid "Delete page"
 msgstr "حذف صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:60
+#: config/nav.php:44 src/Controller/Admin/IndexController.php:130
+msgid "Add a page"
+msgstr "صفحه جدید"
+
+#: config/nav.php:50 src/Controller/Admin/TemplateController.php:54
+msgid "Template list"
+msgstr "فهرست الگو ها"
+
+#: config/nav.php:60
 msgid "Home"
 msgstr "خانه"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:64
+#: config/nav.php:64
 msgid "About us"
 msgstr "درباره ما"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:69
+#: config/nav.php:69
 msgid "Contact us"
 msgstr "تماس با ما"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:74
+#: config/nav.php:74
 msgid "Terms of use"
 msgstr "شرایط استفاده"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:79
+#: config/nav.php:79
 msgid "Privacy guidelines"
 msgstr "حریم خصوصی"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:84
+#: config/nav.php:84
 msgid "Join us"
 msgstr "به ما بپیوندید"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:88
+#: config/nav.php:88
 msgid "Applications"
 msgstr "اپلیکشن ها"
 
-#: /var/www/html/local/pi/pi/usr/module/page/config/nav.php:93
+#: config/nav.php:93
 msgid "Pi Engine"
 msgstr "پای انجین"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-add.phtml:4
+#: src/Controller/Admin/IndexController.php:102
+#: src/Controller/Admin/IndexController.php:192
+msgid "Page data saved successfully."
+msgstr "اطلاعات صفحه با موفقیت ذخیره شد"
+
+#: src/Controller/Admin/IndexController.php:105
+msgid "Page data not saved."
+msgstr "اطلاعات صفحه ذخیره نشد"
+
+#: src/Controller/Admin/IndexController.php:108
+#: src/Controller/Admin/IndexController.php:195
+msgid "Invalid data, please check and re-submit."
+msgstr "اطلاعات اشتباه، لطفا بررسی کنید و دوباره ارسال کنید"
+
+#: src/Controller/Admin/IndexController.php:211
+msgid "Page edit"
+msgstr "ویرایش صفحه"
+
+#: src/Controller/Admin/IndexController.php:242
+msgid "Page deleted successfully."
+msgstr "صفحه با موفقیت حذف شد"
+
+#: src/Controller/Admin/IndexController.php:279
+msgid "Page updated successfully."
+msgstr "صفحه با موفقیت به روز شد"
+
+#: src/Controller/Admin/IndexController.php:301
+msgid "Page navigation menu updated successfully."
+msgstr "منو صفحه با موفقیت به روز شد"
+
+#: src/Form/PageForm.php:44 template/admin/page-list.phtml:9
+msgid "Page title"
+msgstr "عنوان صفحه"
+
+#: src/Form/PageForm.php:54
+msgid "Unique name"
+msgstr "نام یکتا"
+
+#: src/Form/PageForm.php:58
+msgid "Only alphabet, number and underscore allowed."
+msgstr "فقط حروف الفبای انگلیسی ، اعداد و علامت آندر لاین مجاز است"
+
+#: src/Form/PageForm.php:65
+msgid "SEO slug"
+msgstr "اسلاگ"
+
+#: src/Form/PageForm.php:69
+msgid "Unique slug for SEO URL, space is not allowed."
+msgstr "اسلاگ یکتا برای آدرس سئو - استفاده از اسپیس مجاز نیست"
+
+#: src/Form/PageForm.php:105 template/admin/template-list.phtml:8
+msgid "Template name"
+msgstr "نام الگو"
+
+#: src/Form/PageForm.php:108
+msgid ""
+"Select a template from `usr/custom/module/page/template/front/` w/o "
+"extension. You can also locate it in `usr/themes/yourtheme/custom/page/`"
+msgstr ""
+"یک فایل الگو ار `usr/custom/module/page/template/front/` انتخاب کنید ( بدون "
+"پسوند ) . همچنین شما می توانید فایل الگوی خود را در مسیر `usr/themes/"
+"yourtheme/custom/page/` قرار دهید"
+
+#: src/Form/PageForm.php:131
+msgid "Content"
+msgstr "متن"
+
+#: src/Form/PageForm.php:146
+msgid "SEO settings"
+msgstr "تنظیمات سئو"
+
+#: src/Form/PageForm.php:154
+msgid "SEO Title"
+msgstr "عنوان سئو"
+
+#: src/Form/PageForm.php:158 src/Form/PageForm.php:170
+#: src/Form/PageForm.php:182
+msgid "To be used for HTML head meta."
+msgstr "برای استفاده به عنوان head meta در HTML"
+
+#: src/Form/PageForm.php:166
+msgid "SEO Keywords"
+msgstr "کلمات کلیدی سئو"
+
+#: src/Form/PageForm.php:178
+msgid "SEO Description"
+msgstr "توضیحات سئو"
+
+#: src/Form/PageForm.php:191
+msgid "Active"
+msgstr "فعال"
+
+#: src/Installer/Action/Install.php:100
+msgid "Demo for PHTML page"
+msgstr "نسخه نمایشی برای صفحه PHTML"
+
+#: src/Installer/Action/Install.php:107
+msgid "RSS Feed"
+msgstr "خوراک"
+
+#: src/Installer/Action/Install.php:114
+msgid "Sitemap"
+msgstr "نقشه سایت"
+
+#: src/Installer/Action/Install.php:122
+msgid "XML Sitemap"
+msgstr "نقشه سایت XML"
+
+#: src/Installer/Action/Install.php:133
+msgid "Pages added."
+msgstr "صفحات اضافه شدند"
+
+#: src/Validator/PageNameDuplicate.php:15
+msgid "Page name already exists."
+msgstr "نام صفحه هم اکنون استفاده شده است"
+
+#: src/Validator/PageSlugDuplicate.php:15
+msgid "Page slug already exists."
+msgstr "اسلاگ صفحه هم اکنون استفاده شده است"
+
+#: src/Validator/PageTemplateAvailable.php:15
+msgid "Template file is not available."
+msgstr "فایل تمپلیت انتخابی موجود نیست"
+
+#: template/admin/page-add.phtml:4
 msgid "Page content type:"
 msgstr "نوع متن صفحه :"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-add.phtml:5
-msgid "Only plaintext content is allowed."
-msgstr "فقط استفاده از متن ساده در صفحه مجاز است"
-
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-add.phtml:5
-msgid "Text"
-msgstr "Text"
-
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-add.phtml:6
+#: template/admin/page-add.phtml:7
 msgid "HTML tags allowed in content."
 msgstr "استفاده از تگ های HTML در صفحه مجاز است"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-add.phtml:6
+#: template/admin/page-add.phtml:7
 msgid "HTML"
 msgstr "HTML"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-add.phtml:7
+#: template/admin/page-add.phtml:10
+msgid "Only plaintext content is allowed."
+msgstr "فقط استفاده از متن ساده در صفحه مجاز است"
+
+#: template/admin/page-add.phtml:10
+msgid "Text"
+msgstr "Text"
+
+#: template/admin/page-add.phtml:13
 msgid "Markdown syntax allowed in content."
 msgstr "استفاده از روش Markdown در صفحه مجاز است"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-add.phtml:7
+#: template/admin/page-add.phtml:13
 msgid "Markdown"
 msgstr "Markdown"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-add.phtml:8
+#: template/admin/page-add.phtml:16
 msgid "PHTML template."
 msgstr "الگوی PHTML"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-add.phtml:8
+#: template/admin/page-add.phtml:16
 msgid "PHTML"
 msgstr "PHTML"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:10
+#: template/admin/page-list.phtml:10
 msgid "Name"
 msgstr "نام"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:11
+#: template/admin/page-list.phtml:11
 msgid "Slug"
 msgstr "اسلاگ"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:12
+#: template/admin/page-list.phtml:12
 msgid "Type"
 msgstr "نوع"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:13
+#: template/admin/page-list.phtml:13
 msgid "Time published"
 msgstr "زمان انتشار"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:14
+#: template/admin/page-list.phtml:14
 msgid "Last Update"
 msgstr "آخرین به روز رسانی"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:15
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/template-list.phtml:11
+#: template/admin/page-list.phtml:15 template/admin/template-list.phtml:11
 msgid "Action"
 msgstr "عملکرد"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:44
+#: template/admin/page-list.phtml:48
 msgid "Edit"
 msgstr "ویرایش"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:45
-msgid "Delete"
-msgstr "حذف"
+#: template/admin/page-list.phtml:52
+msgid "Are you sure to disable this page?"
+msgstr "آیا اطمینان دارید که میخواهید این صفحه را غیر فعال کنید؟"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:47
+#: template/admin/page-list.phtml:52
 msgid "Disable"
 msgstr "غیر فعال"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:49
+#: template/admin/page-list.phtml:56
+msgid "Are you sure to dnable this page?"
+msgstr "آیا اطمینان دارید که میخواهید این صفحه را فعال کنید؟"
+
+#: template/admin/page-list.phtml:56
 msgid "Enable"
 msgstr "فعال"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/page-list.phtml:61
+#: template/admin/page-list.phtml:60
+msgid "Are you sure to delete this page?"
+msgstr "آیا اطمینان دارید که می خواهید این صفحه را حذف کنید؟"
+
+#: template/admin/page-list.phtml:60
+msgid "Delete"
+msgstr "حذف"
+
+#: template/admin/page-list.phtml:71
 msgid "Add to menu"
 msgstr "درج در منو"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/template-list.phtml:9
+#: template/admin/template-list.phtml:9
 msgid "Time modified"
 msgstr "زمان ویرایش"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/template-list.phtml:10
+#: template/admin/template-list.phtml:10
 msgid "Filesize"
 msgstr "حجم فایل"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/template-list.phtml:28
+#: template/admin/template-list.phtml:30
 msgid "View"
 msgstr "نمایش"
 
-#: /var/www/html/local/pi/pi/usr/module/page/template/admin/template-list.phtml:29
+#: template/admin/template-list.phtml:32
 msgid "Add to page"
 msgstr "صفحه جدید"
+
+#~ msgid ""
+#~ "Select a template from `usr/custom/module/page/template/front/` w/o "
+#~ "extension."
+#~ msgstr ""
+#~ "انتخاب یک الگو از مسیر `usr/custom/module/page/template/front/` اگر موجود "
+#~ "باشد"
+
+#~ msgid "Enable sharing on social networks"
+#~ msgstr "اشتراک گذاری در شبکه های اجتماعی"
+
+#~ msgid "Enable Google Plus"
+#~ msgstr "فعال کردن گوگل پلاس"
+
+#~ msgid "Enable Facebook"
+#~ msgstr "فعال کردن فیسبوک"
 
 #~ msgid "Sitemap feed"
 #~ msgstr "خواک نقشه سایت"

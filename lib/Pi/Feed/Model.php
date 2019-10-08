@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Feed;
@@ -23,7 +23,7 @@ class Model
      *
      * @param array $data
      */
-    public function __construct(array $data = array())
+    public function __construct(array $data = [])
     {
         $this->initialize();
 
@@ -167,45 +167,42 @@ class Model
      */
     public function initialize()
     {
-        $logoFile = 'public/custom/image/logo.png';
-        if (!file_exists(Pi::path($logoFile))) {
-            $logoFile = 'static/image/logo.png';
-        }
-        $logo = Pi::url($logoFile, true);
+        $logoFile = Pi::service('asset')->logo();
+        $logo     = Pi::url($logoFile, true);
 
-        $this->assign(array(
-            'copyright'     => Pi::config('copyright')
-                    ?: Pi::config('sitename'),
-            'description'   => Pi::config('description')
-                    ?: Pi::config('slogan'),
-            'authors'       => array(array(
-                'name'      => Pi::config('author'),
-                'email'     => Pi::config('adminmail'),
-            )),
-            'generator'     => array(
-                'name'      => 'Pi Engine',
-                'version'   => Pi::config('version'),
-                'uri'       => 'http://pialog.org',
-            ),
-            'image'         => array(
-                'uri'       => $logo,
-                'title'     => Pi::config('sitename'),
-                'link'      => Pi::url('www', true),
-            ),
+        $this->assign([
+            'copyright'   => Pi::config('copyright')
+                ?: Pi::config('sitename'),
+            'description' => Pi::config('description')
+                ?: Pi::config('slogan'),
+            'authors'     => [[
+                                  'name'  => Pi::config('author'),
+                                  'email' => Pi::config('adminmail'),
+                              ]],
+            'generator'   => [
+                'name'    => 'Pi Engine',
+                'version' => Pi::config('version'),
+                'uri'     => 'http://piengine.org',
+            ],
+            'image'       => [
+                'uri'   => $logo,
+                'title' => Pi::config('sitename'),
+                'link'  => Pi::url('www', true),
+            ],
 
-            'language'      => Pi::service('i18n')->locale,
-            'link'          => Pi::url('www', true),
-            'feed_link'     => array(
-                'link'      => Pi::url('www', true),
-                'type'      => $this->type,
-            ),
-            'title'         => sprintf(
+            'language'  => Pi::service('i18n')->locale,
+            'link'      => Pi::url('www', true),
+            'feed_link' => [
+                'link' => Pi::url('www', true),
+                'type' => $this->type,
+            ],
+            'title'     => sprintf(
                 __('Feed of %s'),
                 Pi::config('sitename')
             ),
-            'encoding'      => Pi::service('i18n')->charset,
-            'base_url'      => Pi::url('www', true),
-            'entries'       => array(),
-        ));
+            'encoding'  => Pi::service('i18n')->charset,
+            'base_url'  => Pi::url('www', true),
+            'entries'   => [],
+        ]);
     }
 }

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Bootstrap\Resource;
@@ -25,20 +25,14 @@ class Router extends AbstractResource
      */
     public function boot()
     {
-        $options = $this->options;
+        $options     = $this->options;
         $routerClass = !empty($options['class'])
-                       ? $options['class'] : 'Pi\Mvc\Router\Http\TreeRouteStack';
+            ? $options['class'] : 'Pi\Mvc\Router\Http\TreeRouteStack';
 
-        $section = !empty($options['section'])
-                   ? $options['section'] : Pi::engine()->section();
-        $routes = Pi::registry('route')->read($section, $exclude = 0);
-        if (!empty($options['routes'])) {
-            $routes = array_merge($routes, $options['routes']);
-        }
-        $options['routes'] =  $routes;
-        $router = $routerClass::factory($options);
+        $router = $routerClass::factory();
+        $router->load($options);
 
-        if (is_callable(array($router, 'setBaseUrl'))) {
+        if (is_callable([$router, 'setBaseUrl'])) {
             $router->setBaseUrl(Pi::host()->get('baseUrl'));
         }
 

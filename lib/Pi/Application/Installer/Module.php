@@ -1,18 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Installer;
 
 use Pi;
 use Pi\Db\RowGateway\RowGateway as ModuleRow;
-use Zend\EventManager\EventManager;
 use Zend\EventManager\Event;
+use Zend\EventManager\EventManager;
 
 /**
  * Maintenance of a module
@@ -55,51 +55,51 @@ class Module
     /**
      * Magic method for install, uninstall, update, activate, deactivate, etc.
      *
-     * @param string    $method
-     * @param array     $args
+     * @param string $method
+     * @param array $args
      * @return bool
      * @throws \InvalidArgumentException
      */
     public function __call($method, $args)
     {
         if (!in_array(
-                $method,
-                array('install', 'uninstall', 'update', 'activate', 'deactivate')
-            )
+            $method,
+            ['install', 'uninstall', 'update', 'activate', 'deactivate']
+        )
         ) {
             throw new \InvalidArgumentException(
                 sprintf('Invalid action "%s".', $method)
             );
         }
 
-        $model = null;
-        $module = array_shift($args);
-        $options = empty($args) ? array() : array_shift($args);
+        $model         = null;
+        $module        = array_shift($args);
+        $options       = empty($args) ? [] : array_shift($args);
         $moduleVersion = isset($options['version'])
             ? $options['version'] : null;
-        $moduleTitle = isset($options['title']) ? $options['title'] : '';
+        $moduleTitle   = isset($options['title']) ? $options['title'] : '';
         if ($module instanceof ModuleRow) {
-            $model = $module;
-            $moduleName = $model->name;
+            $model           = $module;
+            $moduleName      = $model->name;
             $moduleDirectory = $model->directory;
-            $moduleTitle = $moduleTitle ?: $model->title;
-            $moduleVersion = $moduleVersion ?: $model->version;
+            $moduleTitle     = $moduleTitle ?: $model->title;
+            $moduleVersion   = $moduleVersion ?: $model->version;
         } else {
-            $moduleName = $module;
+            $moduleName      = $module;
             $moduleDirectory = isset($options['directory'])
                 ? $options['directory'] : $module;
         }
         $event = new Event;
-        $event->setParams(array(
-            'model'         => $model,
-            'module'        => $moduleName,
-            'directory'     => $moduleDirectory,
-            'title'         => $moduleTitle,
-            'version'       => $moduleVersion,
-            'action'        => $method,
-            'config'        => array(),
-            'result'        => array(),
-        ));
+        $event->setParams([
+            'model'     => $model,
+            'module'    => $moduleName,
+            'directory' => $moduleDirectory,
+            'title'     => $moduleTitle,
+            'version'   => $moduleVersion,
+            'action'    => $method,
+            'config'    => [],
+            'result'    => [],
+        ]);
         $this->event = $event;
         $this->attachDefaultListeners();
 
@@ -127,7 +127,7 @@ class Module
             }
             return false;
         };
-        $result = $this->getEventManager()->trigger(
+        $result       = $this->getEventManager()->trigger(
             sprintf('%s.pre', $method),
             null,
             $event,
@@ -144,20 +144,20 @@ class Module
         //$resourceHandler->attach($this->getEventManager());
         $this->attachResource();
         $result = $this->getEventManager()
-                       ->trigger('process', null, $event, $shortCircuit);
+            ->trigger('process', null, $event, $shortCircuit);
         if ($result->stopped()) {
             $action->rollback();
             return false;
         }
 
         $this->getEventManager()
-             ->trigger(sprintf('%s.post', $method), null, $event);
+            ->trigger(sprintf('%s.post', $method), null, $event);
         $this->getEventManager()->trigger('finish', null, $event);
 
         $status = true;
         $result = $event->getParam('result');
         foreach ($result as $action => $state) {
-            if ($state['status'] === false) {
+            if (is_array($state) && isset($state['status']) && $state['status'] === false) {
                 $status = false;
                 break;
             }
@@ -188,10 +188,10 @@ class Module
     protected function attachDefaultListeners()
     {
         $events = $this->getEventManager();
-        $events->attach('start', array($this, 'loadConfig'));
-        $events->attach('start', array($this, 'clearCache'));
-        $events->attach('finish', array($this, 'clearCache'));
-        $events->attach('finish', array($this, 'updateMeta'));
+        $events->attach('start', [$this, 'loadConfig']);
+        $events->attach('start', [$this, 'clearCache']);
+        $events->attach('finish', [$this, 'clearCache']);
+        $events->attach('finish', [$this, 'updateMeta']);
         //$events->attach('install.post', array($this, 'updateMeta'), 9999);
         //$events->attach('uninstall.post', array($this, 'updateMeta'), 9999);
     }
@@ -244,11 +244,11 @@ class Module
         }
         $content = '';
         foreach ($message as $action => $state) {
-            $content .= $action  . ': '
-                      . (($state['status'] === false) ? 'failed' : 'passed');
+            $content .= $action . ': '
+                . (($state['status'] === false) ? 'failed' : 'passed');
             if (!empty($state['message'])) {
                 $content .= '<br />&nbsp;&nbsp;'
-                          . implode('<br />&nbsp;&nbsp;', $state['message']);
+                    . implode('<br />&nbsp;&nbsp;', $state['message']);
             }
         }
 
@@ -277,7 +277,7 @@ class Module
     public function loadConfig(Event $e)
     {
         $directory = $e->getParam('directory');
-        $config = Pi::service('module')->loadMeta($directory, null, true);
+        $config    = Pi::service('module')->loadMeta($directory, null, true);
         $e->setParam('config', $config);
         if (!$e->getParam('title')) {
             $e->setParam('title', $config['meta']['title']);

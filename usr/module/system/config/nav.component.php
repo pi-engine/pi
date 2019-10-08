@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -12,70 +12,70 @@
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-return array(
-    'config'        => array(
-        'label'         => _t('Configurations'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'config',
+return [
+    'config' => [
+        'label'      => _t('Configurations'),
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'config',
 
-        'permission'    => array(
-            'resource'  => 'config',
-        ),
-    ),
+        'permission' => [
+            'resource' => 'config',
+        ],
+    ],
 
-    'block' => array(
-        'label'         => _t('Blocks'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'block',
+    'block' => [
+        'label'      => _t('Blocks'),
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'block',
 
-        'permission'    => array(
-            'resource'  => 'block',
-        ),
-    ),
+        'permission' => [
+            'resource' => 'block',
+        ],
+    ],
 
-    'page' => array(
-        'label'         => _t('Pages'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'page',
+    'page' => [
+        'label'      => _t('Pages'),
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'page',
 
-        'permission'    => array(
-            'resource'  => 'page',
-        ),
-    ),
+        'permission' => [
+            'resource' => 'page',
+        ],
+    ],
 
-    'cache' => array(
-        'label'         => _t('Cache'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'cache',
+    'cache' => [
+        'label'      => _t('Cache'),
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'cache',
 
-        'permission'    => array(
-            'resource'  => 'cache',
-        ),
-    ),
+        'permission' => [
+            'resource' => 'cache',
+        ],
+    ],
 
-    'perm' => array(
-        'label'         => _t('Permission'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'perm',
+    'perm' => [
+        'label'      => _t('Permission'),
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'perm',
 
-        'permission'    => array(
-            'resource'  => 'permission',
-        ),
-    ),
+        'permission' => [
+            'resource' => 'permission',
+        ],
+    ],
 
-    'event' => array(
-        'label'         => _t('Event/Hook'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'event',
+    'event' => [
+        'label'      => _t('Event/Hook'),
+        'route'      => 'admin',
+        'module'     => 'system',
+        'controller' => 'event',
 
-        'permission'    => array(
-            'resource'  => 'event',
-        ),
-    ),
-);
+        'permission' => [
+            'resource' => 'event',
+        ],
+    ],
+];

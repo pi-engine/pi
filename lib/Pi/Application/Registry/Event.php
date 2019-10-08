@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Registry
  */
 
@@ -26,10 +26,10 @@ class Event extends AbstractRegistry
      */
     protected function loadDynamic($options)
     {
-        $result = array(
-            'event'     => '',
-            'listener'  => array(),
-        );
+        $result = [
+            'event'    => '',
+            'listener' => [],
+        ];
         /*
         $modelEvent = Pi::model('event');
         $count = $modelEvent->count(array(
@@ -44,14 +44,14 @@ class Event extends AbstractRegistry
         $result['event'] = $options['module'] . '-' . $options['event'];
 
         $modelListener = Pi::model('event_listener');
-        $select = $modelListener->select()->where(array(
-            'event_module'  => $options['module'],
-            'event_name'    => $options['event'],
-            'active'        => 1
-        ));
-        $listenerList = $modelListener->selectWith($select);
+        $select        = $modelListener->select()->where([
+            'event_module' => $options['module'],
+            'event_name'   => $options['event'],
+            'active'       => 1,
+        ]);
+        $listenerList  = $modelListener->selectWith($select);
         //$directory = Pi::service('module')->directory($options['module']);
-        $listeners = array();
+        $listeners = [];
         foreach ($listenerList as $row) {
             $module = $row['module'];
             if (false === strpos($row['class'], '\\')) {
@@ -62,7 +62,7 @@ class Event extends AbstractRegistry
                 );
                 if (!class_exists($class)) {
                     $directory = Pi::service('module')->directory($module);
-                    $class = sprintf(
+                    $class     = sprintf(
                         'Module\\%s\Api\\%s',
                         ucfirst($directory),
                         ucfirst($row['class'])
@@ -71,7 +71,7 @@ class Event extends AbstractRegistry
             } else {
                 $class = $row['class'];
             }
-            $listeners[] = array($class, $row['method'], $module);
+            $listeners[] = [$class, $row['method'], $module];
         }
 
         $result['listener'] = $listeners;
@@ -81,8 +81,8 @@ class Event extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string    $module
-     * @param string    $event
+     * @param string $module
+     * @param string $event
      */
     public function read($module = '', $event = '')
     {
@@ -94,7 +94,7 @@ class Event extends AbstractRegistry
         if (empty($data['event'])) {
             $result = false;
         } else {
-            $result = (array) $data['listener'];
+            $result = (array)$data['listener'];
         }
 
         return $result;
@@ -102,8 +102,8 @@ class Event extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string    $module
-     * @param string    $event
+     * @param string $module
+     * @param string $event
      */
     public function create($module = '', $event = '')
     {

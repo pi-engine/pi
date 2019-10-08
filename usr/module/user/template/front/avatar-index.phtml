@@ -1,61 +1,70 @@
 <?php
-$this->css(array(
-    $this->assetModule('front/front.css')
-));
-$this->jQuery(array(
+$this->headMeta('noindex', 'robots');
+$this->css([
+    $this->assetModule('front/front.css'),
+]);
+$this->jQuery([
     'extension/ajax-upload.js',
     'extension/jquery.Jcrop.min.js',
-    'extension/jquery.Jcrop.min.css'
-));
-$viewNavTabs = array(
-    array(
+    'extension/jquery.Jcrop.min.css',
+]);
+$viewNavTabs = [
+    [
         'source' => 'upload',
         'text'   => __('Upload'),
-        'href'   => '#fromUpload'
-    ),
-    array(
+        'href'   => '#fromUpload',
+    ],
+    [
         'source' => 'gravatar',
-        'text'   => __('Gavatar'),
-        'href'   => '#fromGravatar'
-    ),
-    array(
+        'text'   => __('Gravatar'),
+        'href'   => '#fromGravatar',
+    ],
+    [
         'source' => 'select',
         'text'   => __('Select'),
-        'href'   => '#formRepository'
-    ),
-    array(
+        'href'   => '#formRepository',
+    ],
+    [
         'source' => 'local',
         'text'   => __('Default'),
-        'href'   => '#formLocal'
-    )
-);
-$viewPreview = '<li class="inline">
+        'href'   => '#formLocal',
+    ],
+];
+$viewPreview
+             = '<li class="inline">
                     <div class="avatar-preview-box" style="width: %spx; height: %spx;">
-                        <img src="%s" class="avatar-preview-img">
+                        <img src="%s" class="avatar-preview-img" alt="">
                     </div>';
 ?>
-<div class="row">
-    <?php include $this->template('./profile-sidebar.phtml'); ?>
+<div class="row user-section-wrapper">
+    <div class="col-md-3">
+        <?php include $this->template('./profile-sidebar.phtml'); ?>
+    </div>
     <div class="col-md-9" id="js-user-avatar">
-        <div class="user-page-header">
-            <h3><?php _e('Change avatar'); ?></h3>
-            <div class="text-muted"><?php _e('Customize your avatar anyway you like'); ?></div>
+        <?php include $this->template('flash-messenger'); ?>
+
+        <div class="page-header">
+            <h1><?php _e('Change avatar'); ?>
+                <small><?php _e('Customize your avatar anyway you like'); ?></small>
+            </h1>
         </div>
-        <div>
-            <h4><?php _e('Current avatar'); ?></h4>
-            <p>
-                <?php echo Pi::service('user')->avatar()->get($uid, '', array('class' => 'img-polaroid')); ?>
-            <p class="text-warning">
-                <?php _e('once switch source and saved,the avatar data from other source will be deleted.'); ?>
+        <div class="user-avatar-box card bg-light mb-3 well">
+            <div class="clearfix row">
+                <div class="col-md-2 col-sm-3"><?php echo Pi::service('user')->avatar()->get($uid, '', ['class' => 'rounded-circle']); ?></div>
+                <div class="col-md-10 col-sm-9">
+                    <h4><?php _e('Current avatar'); ?></h4>
+                    <p><?php _e('Once source type is switched and saved, the old avatar image will be deleted.'); ?></p>
+                </div>
+            </div>
         </div>
         <ul class="nav nav-tabs">
-            <?php 
+            <?php
             foreach ($viewNavTabs as $item) {
                 if (!in_array($item['source'], $adapters)) {
                     continue;
                 }
                 echo sprintf(
-                    '<li><a data-toggle="tab" data-source="%s" href="%s" class="avatar-source-nav">%s</a>',
+                    '<li class="nav-item"><a data-toggle="tab" data-source="%s" href="%s" class="avatar-source-nav nav-link">%s</a></li>',
                     $item['source'],
                     $item['href'],
                     $item['text']
@@ -65,96 +74,105 @@ $viewPreview = '<li class="inline">
         </ul>
         <div class="tab-content">
             <?php if (in_array('upload', $adapters)) { ?>
-            <div class="tab-pane" id="fromUpload">
-                <div class="avatar-upload-box">
-                    <div class="avatar-upload-hit">
-                        <button class="btn btn-success avatar-upload-btn"><?php _e('Upload avatar'); ?></button>
-                        <div class="text-muted">
-                            <?php foreach ($limits as $limit) { ?>
-                            <div><?php echo $limit['label']; ?> <?php echo $limit['text']; ?></div>
-                            <?php } ?>
+                <div class="tab-pane" id="fromUpload">
+                    <div class="avatar-upload-box">
+                        <div class="avatar-upload-hit">
+                            <button class="btn btn-success avatar-upload-btn"><?php _e('Upload avatar'); ?></button>
+                            <div class="text-muted">
+                                <?php foreach ($limits as $limit) { ?>
+                                    <div><?php echo $limit['label']; ?><?php echo $limit['text']; ?></div>
+                                <?php } ?>
+                            </div>
                         </div>
+                        <img class="hide avatar-upload-image" alt=""
+                             src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
                     </div>
-                    <img class="hide avatar-upload-image">
+                    <div class="avatar-preview-header">
+                        <strong><?php _e('Avatar previews'); ?></strong>
+                    </div>
+                    <ul class="list-unstyled avatar-preview-inline">
+                        <?php
+                        foreach ($allSize['upload'] as $key => $value) {
+                            echo sprintf(
+                                $viewPreview,
+                                $value,
+                                $value,
+                                isset($uploads[$key]) ? $uploads[$key] : ''
+                            );
+                        }
+                        ?>
+                    </ul>
                 </div>
-                <div class="avatar-preview-header">
-                    <strong><?php _e('Avatar previews'); ?></strong>
-                </div>
-                <ul class="list-unstyled avatar-preview-inline">
-                    <?php 
-                    foreach ($allSize['upload'] as $key => $value) {
-                        echo sprintf(
-                            $viewPreview,
-                            $value,
-                            $value,
-                            isset($uploads[$key]) ? $uploads[$key] : ''
-                        );
-                    } 
-                    ?>
-                </ul>
-            </div>
             <?php } ?>
             <?php if (in_array('gravatar', $adapters)) { ?>
-            <div class="tab-pane" id="fromGravatar">
-                <p>
-                    <a href="https://gravatar.com" target="_blank"><?php _e('Change from Gravatar') ?></a>
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">
-                            <?php _e('Gravatar email') ?>
-                        </label>
-                        <div class="col-sm-4">
-                            <input name="email" value="<?php echo $email; ?>" type="email" class="form-control">
+                <div class="tab-pane" id="fromGravatar">
+                    <div>
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">
+                                <?php _e('Gravatar email'); ?>
+                            </label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon">@</div>
+                                    <input name="email" value="<?php echo $email; ?>" type="email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <a class="btn btn-success" title="<?php _e('Configure at Gravatar'); ?>"
+                                   href="https://gravatar.com" target="_blank"><i
+                                            class="far fa-picture"></i> <?php _e('Configure at Gravatar'); ?></a>
+                            </div>
                         </div>
                     </div>
+                    <div class="avatar-preview-header">
+                        <strong><?php _e('Avatar previews'); ?></strong>
+                    </div>
+                    <ul class="list-unstyled avatar-preview-inline">
+                        <?php
+                        foreach ($gravatar as $key => $value) {
+                            echo sprintf(
+                                $viewPreview,
+                                $allSize['gravatar'][$key],
+                                $allSize['gravatar'][$key],
+                                $value
+                            );
+                        }
+                        ?>
+                    </ul>
                 </div>
-                <div class="avatar-preview-header">
-                    <strong><?php _e('Avatar previews'); ?></strong>
-                </div>
-                <ul class="list-unstyled avatar-preview-inline">
-                <?php 
-                foreach ($gravatar as $key => $value) {
-                    echo sprintf(
-                        $viewPreview,
-                        $allSize['gravatar'][$key],
-                        $allSize['gravatar'][$key],
-                        $value
-                    );
-                } 
-                ?>
-                </ul>
-            </div>
             <?php } ?>
             <?php if (in_array('select', $adapters)) { ?>
-            <div class="tab-pane" id="formRepository">
-                <ul class="list-unstyled avatar-repository-inline">
-                    <?php foreach($selects as $key => $item) { ?>
-                    <li class="inline">
-                        <img src="<?php echo $item; ?>">
-                        <input type="radio" name="repository-avatar" value="<?php echo $key; ?>">
-                    <?php } ?>
-                </ul>
-                <div class="avatar-preview-header">
-                    <strong><?php _e('Avatar previews'); ?></strong>
+                <div class="tab-pane" id="formRepository">
+                    <ul class="list-unstyled avatar-repository-inline">
+                        <?php foreach ($selects
+
+                        as $key => $item) { ?>
+                        <li class="inline">
+                            <img src="<?php echo $item; ?>" alt="">
+                            <input type="radio" name="repository-avatar" value="<?php echo $key; ?>">
+                            <?php } ?>
+                    </ul>
+                    <div class="avatar-preview-header">
+                        <strong><?php _e('Avatar previews'); ?></strong>
+                    </div>
+                    <ul class="list-unstyled avatar-preview-inline">
+                        <?php
+                        foreach ($selected as $key => $value) {
+                            echo sprintf(
+                                $viewPreview,
+                                $allSize['select'][$key],
+                                $allSize['select'][$key],
+                                $value
+                            );
+                        }
+                        ?>
+                    </ul>
                 </div>
-                <ul class="list-unstyled avatar-preview-inline">
-                    <?php
-                    foreach ($selected as $key => $value) {
-                        echo sprintf(
-                            $viewPreview,
-                            $allSize['select'][$key],
-                            $allSize['select'][$key],
-                            $value
-                        );
-                     }
-                    ?>
-                </ul>
-            </div>
             <?php } ?>
             <div class="tab-pane" id="formLocal">
                 <div class="media">
-                    <div class="pull-left">
-                        <img src="<?php echo $local['normal']; ?>">
+                    <div class="float-left">
+                        <img src="<?php echo $local['normal']; ?>" alt="">
                     </div>
                     <div class="media-body">
                         <?php _e('Apply system avatar as your avatar'); ?>
@@ -165,8 +183,7 @@ $viewPreview = '<li class="inline">
                 </div>
                 <ul class="list-unstyled avatar-preview-inline">
                     <?php foreach ($local as $key => $value) { ?>
-                    <li class="inline">
-                        <img src="<?php echo $value; ?>">
+                        <li class="inline"><img src="<?php echo $value; ?>" alt=""></li>
                     <?php } ?>
                 </ul>
             </div>
@@ -178,16 +195,16 @@ $viewPreview = '<li class="inline">
     </div>
 </div>
 <script>
-$('#js-user-avatar').data('config', {
-    source: '<?php echo $source? : 'local' ?>',
-    urlRoot: '<?php echo $this->url('', array('controller' => 'avatar')); ?>',
-    fake_id: '<?php echo $form->get('fake_id')->getValue(); ?>',
-    format: '<?php echo $config['upload_extension']; ?>'.split(','),
-    uploadText: '<?php _e('Upload avatar'); ?>',
-    processText: '<?php _e('Uploading'); ?>',
-    uploadBoxSize: 300,
-    allSize: <?php echo json_encode($allSize); ?>,
-    filename: '<?php echo $filename; ?>'
-});
+    $('#js-user-avatar').data('config', {
+        source: '<?php echo $source ?: 'local' ?>',
+        urlRoot: '<?php echo Pi::url($this->url('', ['controller' => 'avatar'])); ?>/',
+        fake_id: '<?php echo $form->get('fake_id')->getValue(); ?>',
+        format: '<?php echo $config['upload_extension']; ?>'.split(','),
+        uploadText: '<?php _e('Upload avatar'); ?>',
+        processText: '<?php _e('Uploading'); ?>',
+        uploadBoxSize: 300,
+        allSize: <?php echo json_encode($allSize); ?>,
+        filename: '<?php echo $filename; ?>'
+    });
 </script>
 <script src="<?php echo $this->assetModule('front/avatar.js'); ?>"></script>

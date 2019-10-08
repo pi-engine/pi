@@ -1,16 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Mvc\Controller\Plugin;
 
-use Zend\Mvc\Controller\Plugin\Redirect as ZendRedirect;
 use Zend\Http\Response;
+use Zend\Mvc\Controller\Plugin\Redirect as ZendRedirect;
 
 /**
  * Action redirect plugin for controller
@@ -25,19 +25,20 @@ class Redirect extends ZendRedirect
     /**
      * Generates a URL based on a route
      *
-     * @param string $route     RouteInterface name
-     * @param array  $params    Parameters to use in url generation, if any
-     * @param array  $options   RouteInterface-specific options to use in url generation, if any
-     * @param bool   $reuseMatchedParams
+     * @param string $route RouteInterface name
+     * @param array $params Parameters to use in url generation, if any
+     * @param array $options RouteInterface-specific options to use in url generation, if any
+     * @param bool $reuseMatchedParams
      *
      * @return Response|$this
      */
     public function __invoke(
         $route = null,
-        array $params = array(),
-        $options = array(),
+        array $params = [],
+        $options = [],
         $reuseMatchedParams = false
-    ) {
+    )
+    {
         if (0 == func_num_args()) {
             return $this;
         }
@@ -67,19 +68,20 @@ class Redirect extends ZendRedirect
     /**
      * Generates a URL based on a route
      *
-     * @param string $route      RouteInterface name
-     * @param array  $params     Parameters to use in url generation
-     * @param array  $options    RouteInterface-specific options
-     * @param bool   $reuseMatchedParams
+     * @param string $route RouteInterface name
+     * @param array $params Parameters to use in url generation
+     * @param array $options RouteInterface-specific options
+     * @param bool $reuseMatchedParams
      *
      * @return Response
      */
     public function toRoute(
         $route = null,
-        array $params = array(),
-        $options = array(),
+        $params = [],
+        $options = [],
         $reuseMatchedParams = false
-    ) {
+    )
+    {
         $this->controller->view()->setTemplate(false);
 
         $response = parent::toRoute(

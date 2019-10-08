@@ -1,15 +1,14 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Module;
 
-use Pi;
 use Pi\Mvc\Controller\ActionController;
 
 /**
@@ -27,7 +26,7 @@ class IndexController extends ActionController
     public function indexAction()
     {
         $module = $this->params('module');
-        $title = __('Admin area');
+        $title  = __('Admin area');
         $this->view()->assign('title', $title);
         $this->view()->assign('module', $module);
         $this->view()->setTemplate('index', 'system');

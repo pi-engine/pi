@@ -1,18 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
 namespace Pi\Application\Service;
 
-use Pi;
 use Exception;
 use Memcache as MemcacheExtension;
+use Pi;
 
 /**
  * Memcache service
@@ -22,18 +22,19 @@ use Memcache as MemcacheExtension;
 class Memcache extends AbstractService
 {
     /** @var array Instances */
-    protected static $instances = array();
+    protected static $instances = [];
 
     /** @var array Default options */
-    protected $defaultOptions = array(
-        'port'              => 11211,
-        'persistent'        => true,
-        'weight'            => 1,
-        'timeout'           => 1,
-        'retry_interval'    => 15,
-        'status'            => true,
-        'failure_callback'  => null
-    );
+    protected $defaultOptions
+        = [
+            'port'             => 11211,
+            'persistent'       => true,
+            'weight'           => 1,
+            'timeout'          => 1,
+            'retry_interval'   => 15,
+            'status'           => true,
+            'failure_callback' => null,
+        ];
 
     /**
      * Load options
@@ -49,9 +50,9 @@ class Memcache extends AbstractService
 
         if (isset($config['host'])) {
             // Transform it into associative arrays
-            $config = array(0 => $config);
+            $config = [0 => $config];
         }
-        $servers = array();
+        $servers = [];
         foreach ($config as $idx => $server) {
             $servers[] = array_merge($this->defaultOptions, $server);
         }
@@ -82,7 +83,7 @@ class Memcache extends AbstractService
         }
 
         static::$instances[$configKey] = false;
-        $options = $this->loadOptions($config);
+        $options                       = $this->loadOptions($config);
         if (empty($options)) {
             throw new exception('No valid options!');
         }

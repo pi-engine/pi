@@ -1,19 +1,19 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Form
  * @package         Form
  */
 
 namespace Pi\Form\Element;
 
+use DateTimeZone;
 use Pi;
 use Zend\Form\Element\Select;
-use DateTimeZone;
 
 /**
  * Navigation select element
@@ -23,7 +23,7 @@ use DateTimeZone;
 class Timezone extends Select
 {
     /** @var array Timezones */
-    static protected $timezones = array();
+    static protected $timezones = [];
 
     /**
      * Get options of value select
@@ -35,7 +35,7 @@ class Timezone extends Select
         if (empty($this->valueOptions)) {
             if (!static::$timezones) {
                 Pi::service('i18n')->load('timezone');
-                $groups = array();
+                $groups = [];
                 foreach (DateTimeZone::listIdentifiers() as $timezone) {
                     if ($pos = strpos($timezone, '/')) {
                         $group = substr($timezone, 0, $pos);

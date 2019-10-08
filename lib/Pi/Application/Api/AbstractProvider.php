@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Api;
@@ -75,8 +75,8 @@ abstract class AbstractProvider extends AbstractApi
     /**
      * Get list of entities
      *
-     * @param array         $ids
-     * @param array|null    $fields
+     * @param array $ids
+     * @param array|null $fields
      * @return array
      */
     abstract public function getList($ids, $fields = null);
@@ -84,8 +84,8 @@ abstract class AbstractProvider extends AbstractApi
     /**
      * Render an entity
      *
-     * @param int       $id
-     * @param string    $template
+     * @param int $id
+     * @param string $template
      * @return string
      */
     abstract public function renderEntity($id, $template = '');
@@ -93,8 +93,8 @@ abstract class AbstractProvider extends AbstractApi
     /**
      * Render a list of entities
      *
-     * @param array     $ids
-     * @param string    $template
+     * @param array $ids
+     * @param string $template
      * @return string
      */
     abstract public function renderList($ids, $template = '');

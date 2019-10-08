@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link         http://code.pialog.org for the Pi Engine source repository
- * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt BSD 3-Clause License
+ * @link         http://code.piengine.org for the Pi Engine source repository
+ * @copyright    Copyright (c) Pi Engine http://piengine.org
+ * @license      http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Form;
@@ -20,13 +20,13 @@ use Zend\InputFilter\InputFilter;
 class AvatarFilter extends InputFilter
 {
     /**
-     * Initializing validator and filter 
+     * Initializing validator and filter
      */
     public function __construct()
     {
-        $this->add(array(
+        $this->add([
             'name'     => 'fake_id',
             'required' => true,
-        ));
+        ]);
     }
 }

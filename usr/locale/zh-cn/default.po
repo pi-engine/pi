@@ -1,14 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-03-05 20:32+0800\n"
-"PO-Revision-Date: 2014-03-05 20:33+0800\n"
+"POT-Creation-Date: 2014-08-08 16:58+0800\n"
+"PO-Revision-Date: 2014-08-08 17:18+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: __;_t;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\Code\\pi\\lib\n"
@@ -34,6 +35,22 @@ msgstr "主题资源发布失败"
 #: c:\Code\pi\lib/Pi/Application/Service/Comment.php:548
 msgid "Posted a new comment."
 msgstr "发表新评论。"
+
+#: c:\Code\pi\lib/Pi/Application/Service/Theme.php:133
+msgid "Full layout (header/footer and blocks)"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Application/Service/Theme.php:134
+msgid "Simple layout (header/footer)"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Application/Service/Theme.php:135
+msgid "Content only (with style)"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Application/Service/Theme.php:136
+msgid "Raw content (no style)"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
 msgid "A table must be supplied for the DbTable authentication adapter."
@@ -106,26 +123,24 @@ msgid "Yes"
 msgstr "是"
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:32
-msgid "No level"
-msgstr "所有"
+msgid "As a whole"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:33
-#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:68
-msgid "Language"
+msgid "Per language"
 msgstr "语言"
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:34
-msgid "Authenticated or not"
-msgstr "登录与否"
+msgid "Per role"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:35
-#: c:\Code\pi\lib/Pi/Form/Element/Role.php:55
-msgid "Role"
-msgstr "角色"
+msgid "Guest only"
+msgstr "游客"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:49
-msgid "Cache level"
-msgstr "缓存条件"
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:50
+msgid "Cache granularity"
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:32
 msgid "No cache"
@@ -175,9 +190,17 @@ msgstr "缓存有效期"
 msgid "Text editor"
 msgstr "编辑器"
 
-#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:33
+#: c:\Code\pi\lib/Pi/Form/Element/Layout.php:43
+msgid "Layout"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:34
 msgid "Auto-detection"
 msgstr "自动检测"
+
+#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:69
+msgid "Language"
+msgstr "语言"
 
 #: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:36
 #: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:78
@@ -204,6 +227,10 @@ msgstr "导航"
 msgid "None"
 msgstr "无"
 
+#: c:\Code\pi\lib/Pi/Form/Element/Role.php:55
+msgid "Role"
+msgstr "角色"
+
 #: c:\Code\pi\lib/Pi/Form/Element/RoleAdmin.php:52
 msgid "Admin role"
 msgstr "后台角色"
@@ -220,13 +247,25 @@ msgstr "提交"
 msgid "Tags"
 msgstr "标签"
 
-#: c:\Code\pi\lib/Pi/Form/Element/Theme.php:48
+#: c:\Code\pi\lib/Pi/Form/Element/Theme.php:35
+msgid "Use system theme"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Theme.php:47
 msgid "Theme"
 msgstr "主题"
 
 #: c:\Code\pi\lib/Pi/Form/Element/Timezone.php:78
 msgid "Timezone"
 msgstr "时区"
+
+#: c:\Code\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:59
+msgid "CAPTCHA image"
+msgstr "验证码图片"
+
+#: c:\Code\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:60
+msgid "Click to refresh CAPTCHA"
+msgstr "点击刷新验证码"
 
 #: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:91
 msgid "Day"
@@ -239,14 +278,6 @@ msgstr "年"
 #: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:93
 msgid "Month"
 msgstr "月"
-
-#: c:\Code\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:60
-msgid "CAPTCHA image"
-msgstr "验证码图片"
-
-#: c:\Code\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:61
-msgid "Click to refresh CAPTCHA"
-msgstr "点击刷新验证码"
 
 #: c:\Code\pi\lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."
@@ -269,25 +300,34 @@ msgstr "游客"
 msgid "Tags: "
 msgstr "标签："
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:242
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:249
 msgid "Manager"
 msgstr "管理员"
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:249
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:256
 msgid "Moderator"
 msgstr "版主"
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:256
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:263
 msgid "Editor"
 msgstr "编辑"
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:263
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:270
 msgid "Staff"
 msgstr "员工"
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:270
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:277
 msgid "Member"
 msgstr "成员"
+
+#~ msgid "No level"
+#~ msgstr "所有"
+
+#~ msgid "Authenticated or not"
+#~ msgstr "登录与否"
+
+#~ msgid "Cache level"
+#~ msgstr "缓存条件"
 
 #~ msgid "First"
 #~ msgstr "«"

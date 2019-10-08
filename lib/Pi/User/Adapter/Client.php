@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\User\Adapter;
@@ -45,11 +45,12 @@ class Client extends System
      * {@inheritDoc}
      */
     public function getUids(
-        $condition  = array(),
-        $limit      = 0,
-        $offset     = 0,
-        $order      = ''
-    ) {
+        $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = ''
+    )
+    {
         $result = Pi::api('user', 'uclient')->getUids(
             $condition,
             $limit,
@@ -64,12 +65,13 @@ class Client extends System
      * {@inheritDoc}
      */
     public function getList(
-        array $condition  = array(),
-        $limit      = 0,
-        $offset     = 0,
-        $order      = '',
-        array $field  = array()
-    ) {
+        array $condition = [],
+        $limit = 0,
+        $offset = 0,
+        $order = '',
+        array $field = []
+    )
+    {
         $result = Pi::api('user', 'uclient')->getList(
             $condition,
             $limit,
@@ -84,7 +86,7 @@ class Client extends System
     /**
      * {@inheritDoc}
      */
-    public function getCount($condition = array())
+    public function getCount($condition = [])
     {
         $result = Pi::api('user', 'uclient')->getCount($condition);
 
@@ -154,10 +156,11 @@ class Client extends System
      */
     public function get(
         $uid,
-        $field = array(),
+        $field = [],
         $filter = false,
         $activeOnly = false
-    ) {
+    )
+    {
         return Pi::api('user', 'uclient')->get(
             $uid,
             $field,
@@ -171,10 +174,11 @@ class Client extends System
      */
     public function mget(
         array $uids,
-        $field = array(),
+        $field = [],
         $filter = false,
         $activeOnly = false
-    ) {
+    )
+    {
         return Pi::api('user', 'uclient')->mget(
             $uids,
             $field,
@@ -261,10 +265,10 @@ class Client extends System
     /**
      * {@inheritDoc}
      */
-    public function getResource($name, $args = array())
+    public function getResource($name, $args = [])
     {
         if (!isset($this->resource[$name])) {
-            $resource = Pi::api('user', 'uclient')->getResource($name);
+            $resource              = Pi::api('user', 'uclient')->getResource($name);
             $this->resource[$name] = $resource;
         }
         $result = parent::getResource($name, $args);

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Setup;
@@ -26,16 +26,18 @@ class Translator
     protected static $locale = 'en';
 
     /** @var array */
-    protected static $options = array(
-        'length'    => 0,
-        'delimiter' => ';',
-        'enclosure' => '"'
-    );
+    protected static $options
+        = [
+            'length'    => 0,
+            'delimiter' => ';',
+            'enclosure' => '"',
+        ];
 
     /**
      * Translate a message
      *
      * @param string $messageId
+     *
      * @return string
      */
     public static function translate($messageId)
@@ -50,6 +52,7 @@ class Translator
      * Set base path
      *
      * @param string $path
+     *
      * @return void
      */
     public static function setPath($path)
@@ -61,6 +64,7 @@ class Translator
      * Set locale
      *
      * @param string $locale
+     *
      * @return void
      */
     public static function setLocale($locale)
@@ -72,6 +76,7 @@ class Translator
      * Load translation file of a domain
      *
      * @param string $domain
+     *
      * @return void
      */
     public static function loadDomain($domain)
@@ -85,9 +90,9 @@ class Translator
         //var_dump($filename);
         try {
             if (isset(static::$data)) {
-                static::$data += (array) static::loadFile($filename);
+                static::$data += (array)static::loadFile($filename);
             } else {
-                static::$data = (array) static::loadFile($filename);
+                static::$data = (array)static::loadFile($filename);
             }
         } catch (\Exception $e) {
         }
@@ -98,12 +103,13 @@ class Translator
     /**
      * Load translation data (CSV file reader)
      *
-     * @param  string  $filename  Full path to CSV file
-     * @param  array   $options   OPTIONAL Options to use
+     * @param  string $filename Full path to CSV file
+     * @param  array  $options  OPTIONAL Options to use
+     *
      * @return array
      * @throws \InvalidArgumentException for file failure
      */
-    protected static function loadFile($filename, array $options = array())
+    protected static function loadFile($filename, array $options = [])
     {
         //$result = array();
         //$options = $options + static::$options;
@@ -145,10 +151,12 @@ class Translator
             $littleEndian = true;
         } else {
             fclose($file);
-            throw new \InvalidArgumentException(sprintf(
-                '%s is not a valid gettext file',
-                $filename
-            ));
+            throw new \InvalidArgumentException(
+                sprintf(
+                    '%s is not a valid gettext file',
+                    $filename
+                )
+            );
         }
 
         $readInteger = function () use (
@@ -175,17 +183,19 @@ class Translator
             return unpack('N' . $num, fread($file, 4 * $num));
         };
 
-        $textDomain = array();
+        $textDomain = [];
 
         // Verify major revision (only 0 and 1 supported)
         $majorRevision = ($readInteger() >> 16);
 
         if ($majorRevision !== 0 && $majorRevision !== 1) {
             fclose($file);
-            throw new \InvalidArgumentException(sprintf(
-                '%s has an unknown major revision',
-                $filename
-            ));
+            throw new \InvalidArgumentException(
+                sprintf(
+                    '%s has an unknown major revision',
+                    $filename
+                )
+            );
         }
 
         // Gather main information
@@ -210,17 +220,23 @@ class Translator
             $translationStringSize   = $translationStringTable[$sizeKey];
             $translationStringOffset = $translationStringTable[$offsetKey];
 
-            $originalString = array('');
+            $originalString = [''];
             if ($originalStringSize > 0) {
                 fseek($file, $originalStringOffset);
-                $originalString = explode("\0", fread($file, $originalStringSize));
+                $originalString = explode(
+                    "\0", fread($file, $originalStringSize)
+                );
             }
 
             if ($translationStringSize > 0) {
                 fseek($file, $translationStringOffset);
-                $translationString = explode("\0", fread($file, $translationStringSize));
+                $translationString = explode(
+                    "\0", fread($file, $translationStringSize)
+                );
 
-                if (count($originalString) > 1 && count($translationString) > 1) {
+                if (count($originalString) > 1
+                    && count($translationString) > 1
+                ) {
                     $textDomain[$originalString[0]] = $translationString;
 
                     array_shift($originalString);

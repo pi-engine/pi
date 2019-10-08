@@ -1,31 +1,32 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Paginator;
 
-use Pi;
 use ArrayIterator;
 use Countable;
 use Iterator;
+use Pi;
 use Traversable;
-use Zend\Db\Sql;
 use Zend\Db\ResultSet\AbstractResultSet;
-use Zend\Db\TableGateway\AbstractTableGateway;
 use Zend\Db\Sql\Select as DbSelect;
+use Zend\Db\TableGateway\AbstractTableGateway;
 use Zend\Filter\FilterInterface;
 use Zend\Json\Json;
 use Zend\Paginator\Adapter\AdapterInterface;
+use Zend\Paginator\Exception;
+use Zend\Paginator\Paginator as Pagit;
 use Zend\Paginator\ScrollingStyle\ScrollingStyleInterface;
 use Zend\Stdlib\ArrayUtils;
 use Zend\View;
-use Zend\Paginator\Exception;
-use Zend\Paginator\Paginator as Pagit; // Solely for other API calls, shit!!!
+
+// Solely for other API calls, shit!!!
 
 /**
  * Paginator handler
@@ -199,12 +200,13 @@ class Paginator extends Pagit
      * template, page_param, total_param, params, router, route
      * @var array
      */
-    protected $urlOptions = array(
-        'page_param'    => 'page',
-    );
+    protected $urlOptions
+        = [
+            'page_param' => 'page',
+        ];
 
     /** @var string Pattern for URL replacement */
-    const PAGE_PATTERN = '__page__';
+    const PAGE_PATTERN  = '__page__';
     const TOTAL_PATTERN = '__total__';
 
     /**
@@ -215,7 +217,7 @@ class Paginator extends Pagit
      * @throws Exception\InvalidArgumentException
      * @return self
      */
-    public static function factory($data, $options = array())
+    public static function factory($data, $options = [])
     {
         if ($data instanceof AdapterAggregateInterface) {
             return new static($data->getPaginatorAdapter());
@@ -230,7 +232,7 @@ class Paginator extends Pagit
         } elseif ($data instanceof Iterator) {
             $adapter = 'iterator';
         } elseif (is_integer($data)) {
-            $adapter = 'null';
+            $adapter = 'nullFill';
         } else {
             $type = (is_object($data)) ? get_class($data) : gettype($data);
             throw new Exception\InvalidArgumentException(
@@ -255,7 +257,7 @@ class Paginator extends Pagit
      * - limit => item_count_per_page
      * - page => current_page_number
      *
-     * 
+     *
      * @param array $options
      *
      * @return array
@@ -346,7 +348,7 @@ class Paginator extends Pagit
     public static function createAdapter($adapter, $data)
     {
         $adapterClass = '%s\Paginator\Adapter\\' . ucfirst($adapter);
-        $class = sprintf($adapterClass, 'Pi');
+        $class        = sprintf($adapterClass, 'Pi');
         if (!class_exists($class)) {
             $class = sprintf($adapterClass, 'Zend');
         }
@@ -363,7 +365,7 @@ class Paginator extends Pagit
     protected function createScrollingStyle($style)
     {
         $styleClass = '%s\Paginator\ScrollingStyle\\' . ucfirst($style);
-        $class = sprintf($styleClass, 'Pi');
+        $class      = sprintf($styleClass, 'Pi');
         if (!class_exists($class)) {
             $class = sprintf($styleClass, 'Zend');
         }
@@ -399,7 +401,7 @@ class Paginator extends Pagit
      */
     public static function setDefaultItemCountPerPage($count)
     {
-        static::$defaultItemCountPerPage = (int) $count;
+        static::$defaultItemCountPerPage = (int)$count;
     }
 
     /**
@@ -410,7 +412,8 @@ class Paginator extends Pagit
      */
     public static function setDefaultScrollingStyle(
         $scrollingStyle = 'Sliding'
-    ) {
+    )
+    {
         static::$defaultScrollingStyle = $scrollingStyle;
     }
 
@@ -437,7 +440,7 @@ class Paginator extends Pagit
         $config = static::$config;
 
         if (!empty($config)) {
-            $setupMethods = array('ItemCountPerPage', 'PageRange');
+            $setupMethods = ['ItemCountPerPage', 'PageRange'];
 
             foreach ($setupMethods as $setupMethod) {
                 $key   = strtolower($setupMethod);
@@ -502,7 +505,8 @@ class Paginator extends Pagit
     public function getAbsoluteItemNumber(
         $relativeItemNumber,
         $pageNumber = null
-    ) {
+    )
+    {
         $relativeItemNumber = $this->normalizeItemNumber($relativeItemNumber);
 
         if ($pageNumber == null) {
@@ -533,8 +537,8 @@ class Paginator extends Pagit
     public function getCurrentItemCount()
     {
         if ($this->currentItemCount === null) {
-            $this->currentItemCount =
-                $this->getItemCount($this->getCurrentItems());
+            $this->currentItemCount
+                = $this->getItemCount($this->getCurrentItems());
         }
 
         return $this->currentItemCount;
@@ -548,8 +552,8 @@ class Paginator extends Pagit
     public function getCurrentItems()
     {
         if ($this->currentItems === null) {
-            $this->currentItems =
-                $this->getItemsByPage($this->getCurrentPageNumber());
+            $this->currentItems
+                = $this->getItemsByPage($this->getCurrentPageNumber());
         }
 
         return $this->currentItems;
@@ -573,7 +577,7 @@ class Paginator extends Pagit
      */
     public function setCurrentPageNumber($pageNumber)
     {
-        $this->currentPageNumber = (integer) $pageNumber;
+        $this->currentPageNumber = (integer)$pageNumber;
         $this->currentItems      = null;
         $this->currentItemCount  = null;
 
@@ -621,7 +625,7 @@ class Paginator extends Pagit
             $pageNumber = ($this->count() + 1) + $pageNumber;
         }
 
-        $page = $this->getItemsByPage($pageNumber);
+        $page      = $this->getItemsByPage($pageNumber);
         $itemCount = $this->getItemCount($page);
 
         if ($itemCount == 0) {
@@ -668,7 +672,7 @@ class Paginator extends Pagit
      */
     public function setItemCountPerPage($itemCountPerPage = -1)
     {
-        $this->itemCountPerPage = (integer) $itemCountPerPage;
+        $this->itemCountPerPage = (integer)$itemCountPerPage;
         if ($this->itemCountPerPage < 1) {
             $this->itemCountPerPage = $this->getTotalItemCount();
         }
@@ -708,8 +712,8 @@ class Paginator extends Pagit
     public function getItemsByPage($pageNumber)
     {
         $pageNumber = $this->normalizePageNumber($pageNumber);
-        $offset = ($pageNumber - 1) * $this->getItemCountPerPage();
-        $items = $this->adapter->getItems(
+        $offset     = ($pageNumber - 1) * $this->getItemCountPerPage();
+        $items      = $this->adapter->getItems(
             $offset,
             $this->getItemCountPerPage()
         );
@@ -739,7 +743,7 @@ class Paginator extends Pagit
             return $this->getCurrentItems();
         } catch (\Exception $e) {
             throw new Exception\RuntimeException('Error producing an iterator',
-                                                 null, $e);
+                null, $e);
         }
     }
 
@@ -761,7 +765,7 @@ class Paginator extends Pagit
      */
     public function setPageRange($pageRange)
     {
-        $this->pageRange = (integer) $pageRange;
+        $this->pageRange = (integer)$pageRange;
 
         return $this;
     }
@@ -793,15 +797,15 @@ class Paginator extends Pagit
         $lowerBound = $this->normalizePageNumber($lowerBound);
         $upperBound = $this->normalizePageNumber($upperBound);
 
-        $pages = array();
+        $pages = [];
 
         for ($pageNumber = $lowerBound;
-            $pageNumber <= $upperBound;
-            $pageNumber++) {
-            $pages[$pageNumber] = (object) array(
-                'number'    => $pageNumber,
-                'url'       => $this->buildUrl($pageNumber),
-            );
+             $pageNumber <= $upperBound;
+             $pageNumber++) {
+            $pages[$pageNumber] = (object)[
+                'number' => $pageNumber,
+                'url'    => $this->buildUrl($pageNumber),
+            ];
         }
 
         return $pages;
@@ -844,7 +848,7 @@ class Paginator extends Pagit
      */
     public function normalizeItemNumber($itemNumber)
     {
-        $itemNumber = (integer) $itemNumber;
+        $itemNumber = (integer)$itemNumber;
 
         if ($itemNumber < 1) {
             $itemNumber = 1;
@@ -865,7 +869,7 @@ class Paginator extends Pagit
      */
     public function normalizePageNumber($pageNumber)
     {
-        $pageNumber = (integer) $pageNumber;
+        $pageNumber = (integer)$pageNumber;
 
         if ($pageNumber < 1) {
             $pageNumber = 1;
@@ -920,7 +924,7 @@ class Paginator extends Pagit
      */
     protected function _calculatePageCount()
     {
-        return (int) ceil(
+        return (int)ceil(
             $this->getAdapter()->count() / $this->getItemCountPerPage()
         );
     }
@@ -936,36 +940,36 @@ class Paginator extends Pagit
         $pageCount         = $this->count();
         $currentPageNumber = $this->getCurrentPageNumber();
 
-        $pages = new \stdClass();
+        $pages                   = new \stdClass();
         $pages->pageCount        = $pageCount;
         $pages->itemCountPerPage = $this->getItemCountPerPage();
         $pages->current          = $currentPageNumber;
-        $pages->first            = (object) array(
-            'number'    => 1,
-            'url'       => $this->buildUrl(1),
-        );
-        $pages->last            = (object) array(
-            'number'    => $pageCount,
-            'url'       => $this->buildUrl($pageCount),
-        );
+        $pages->first            = (object)[
+            'number' => 1,
+            'url'    => $this->buildUrl(1),
+        ];
+        $pages->last             = (object)[
+            'number' => $pageCount,
+            'url'    => $this->buildUrl($pageCount),
+        ];
 
         // Previous and next
         if ($currentPageNumber - 1 > 0) {
-            $pages->previous = (object) array(
-                'number'    => $currentPageNumber - 1,
-                'url'       => $this->buildUrl($currentPageNumber - 1),
-            );
+            $pages->previous = (object)[
+                'number' => $currentPageNumber - 1,
+                'url'    => $this->buildUrl($currentPageNumber - 1),
+            ];
         }
 
         if ($currentPageNumber + 1 <= $pageCount) {
-            $pages->next = (object) array(
-                'number'    => $currentPageNumber + 1,
-                'url'       => $this->buildUrl($currentPageNumber + 1),
-            );
+            $pages->next = (object)[
+                'number' => $currentPageNumber + 1,
+                'url'    => $this->buildUrl($currentPageNumber + 1),
+            ];
         }
 
         // Pages in range
-        $scrollingStyle = $this->_loadScrollingStyle($scrollingStyle);
+        $scrollingStyle          = $this->_loadScrollingStyle($scrollingStyle);
         $pages->pagesInRange     = $scrollingStyle->getPages($this);
         $pages->firstPageInRange = min($pages->pagesInRange);
         $pages->lastPageInRange  = max($pages->pagesInRange);
@@ -975,10 +979,10 @@ class Paginator extends Pagit
             $pages->currentItemCount = $this->getCurrentItemCount();
             $pages->itemCountPerPage = $this->getItemCountPerPage();
             $pages->totalItemCount   = $this->getTotalItemCount();
-            $pages->firstItemNumber  =
-                (($currentPageNumber - 1) * $this->getItemCountPerPage()) + 1;
-            $pages->lastItemNumber   =
-                $pages->firstItemNumber + $pages->currentItemCount - 1;
+            $pages->firstItemNumber
+                                     = (($currentPageNumber - 1) * $this->getItemCountPerPage()) + 1;
+            $pages->lastItemNumber
+                                     = $pages->firstItemNumber + $pages->currentItemCount - 1;
         }
 
         return $pages;
@@ -1057,8 +1061,8 @@ class Paginator extends Pagit
     {
         if (!empty($this->urlOptions['template'])) {
             $url = str_replace(
-                array(static::PAGE_PATTERN, static::TOTAL_PATTERN),
-                array($page, $this->count()),
+                [static::PAGE_PATTERN, static::TOTAL_PATTERN],
+                [$page, $this->count()],
                 $this->urlOptions['template']
             );
 
@@ -1066,14 +1070,14 @@ class Paginator extends Pagit
         }
 
         $params = isset($this->urlOptions['params'])
-            ? $this->urlOptions['params'] : array();
+            ? $this->urlOptions['params'] : [];
 
-        $route = isset($this->urlOptions['route'])
+        $route   = isset($this->urlOptions['route'])
             ? $this->urlOptions['route']
             : '';
         $options = isset($this->urlOptions['options'])
             ? $this->urlOptions['options']
-            : array();
+            : [];
         if (!empty($this->urlOptions['router'])) {
             $options['router'] = $this->urlOptions['router'];
         }
@@ -1081,9 +1085,11 @@ class Paginator extends Pagit
             $options['reuse_matched_params'] = true;
         }
 
-        $queryOptions = array(
-            $this->urlOptions['page_param'] => $page,
-        );
+        $queryOptions = [];
+        if ($page != 1) {
+            $queryOptions[$this->urlOptions['page_param']] = $page;
+        }
+
         if (!empty($this->urlOptions['total_param'])) {
             $queryOptions[$this->urlOptions['total_param']] = $this->count();
         }

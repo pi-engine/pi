@@ -1,15 +1,15 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Markup;
 
-use Pi;
+//use Pi;
 use Pi\Markup\Parser\AbstractParser;
 use Pi\Markup\Renderer\AbstractRenderer;
 
@@ -23,68 +23,73 @@ use Pi\Markup\Renderer\AbstractRenderer;
  */
 class Markup
 {
+    /** @var array */
+    protected $options = [];
+
     /**
      * Encoding for renderer
      * @var string
      */
-    protected static $encoding = 'UTF-8';
+    protected $encoding = 'UTF-8';
 
     /**
-     * Default filters, potential: user, tag
+     * Default global filters, potential: user, tag
      * @var array
      */
-    protected static $filters = array(
-        /*
-        'user'  => array(
-        ),
-        'tag'   => array(
-        ),
-        */
-    );
+    protected $filters = [];
+
+    /** @var AbstractParser[] */
+    protected $parsers = [];
+
+    /** @var AbstractRenderer[] */
+    protected $renderers = [];
 
     /**
      * Renderer
      * @var AbstractRenderer
      */
-    protected static $renderer;
+    protected $renderer;
 
     /**
-     * Loaded parsers
-     * @var array of AbstractParser
+     * Set rendering options
+     *
+     * @param array $options
+     *
+     * @return $this
      */
-    protected static $parsers = array();
+    public function setOptions($options = [])
+    {
+        $this->options = $options;
 
-    /**
-     * Loaded renderers
-     * @var array of AbstractRenderer
-     */
-    protected static $renderers = array();
-
-    /**
-     * Disable instantiation
-     */
-    private function __construct() { }
+        return $this;
+    }
 
     /**
      * Set encoding
      *
      * @param string $encoding
-     * @return void
+     *
+     * @return $this
      */
-    public static function setEncoding($encoding)
+    public function setEncoding($encoding)
     {
-        static::$encoding = $encoding;
+        $this->encoding = $encoding;
+
+        return $this;
     }
 
     /**
      * Set filters
      *
      * @param array $filters
-     * @return void
+     *
+     * @return $this
      */
-    public static function setFilters($filters = array())
+    public function setFilters($filters = [])
     {
-        static::$filters = $filters;
+        $this->filters = $filters;
+
+        return $this;
     }
 
     /**
@@ -92,14 +97,17 @@ class Markup
      *
      * @param string|AbstractRenderer $renderer
      * @param array $options
-     * @return void
+     *
+     * @return $this
      */
-    public static function setRenderer($renderer, $options = array())
+    public function setRenderer($renderer, $options = [])
     {
         if (!$renderer instanceof AbstractRenderer) {
-            $renderer = static::loadRenderer($renderer, $options);
+            $renderer = $this->loadRenderer($renderer, $options);
         }
-        static::$renderer = $renderer;
+        $this->renderer = $renderer;
+
+        return $this;
     }
 
     /**
@@ -110,101 +118,102 @@ class Markup
      *
      * @return AbstractParser
      */
-    public static function loadParser($parserName, $options = array())
+    public function loadParser($parserName, $options = [])
     {
         $parser = ucfirst($parserName);
-        if (!isset(static::$parsers[$parser])) {
-            $className = '%s\Markup\Parser\\' . $parser;
-            $class = sprintf($className, 'Pi');
-            if (!class_exists($class)) {
-                $class = sprintf($className, 'Zend');
+        if (!isset($this->parsers[$parser])) {
+            if (isset($this->options['parser'][$parserName])) {
+                $options = array_merge($this->options['parser'][$parserName], $options);
             }
-            if (class_exists($class)) {
-                static::$parsers[$parser] = new $class;
-            } else {
-                static::$parsers[$parser] = $parserName;
-            }
+            $class                  = 'Pi\Markup\Parser\\' . $parser;
+            $this->parsers[$parser] = new $class;
         }
-        if (static::$parsers[$parser] instanceof AbstractParser) {
-            static::$parsers[$parser]->setOptions($options);
-        }
+        $this->parsers[$parser]->setOptions($options);
 
-        return static::$parsers[$parser];
+        return $this->parsers[$parser];
     }
 
     /**
      * Load renderer
      *
-     * @param string $renderer
-     * @param array  $options
+     * @param string $rendererName
+     * @param array $options
+     *
      * @return AbstractRenderer
      */
-    public static function loadRenderer($renderer, $options = array())
+    public function loadRenderer($rendererName = '', $options = [])
     {
-        $renderer = ucfirst($renderer);
-        if (!isset(static::$renderers[$renderer])) {
-            $className = '%s\Markup\Renderer\\' . $renderer;
-            $class = sprintf($className, 'Pi');
-            if (!class_exists($class)) {
-                $class = sprintf($className, 'Zend');
+        $rendererName = $rendererName ?: 'html';
+        $renderer     = ucfirst($rendererName);
+        if (!isset($this->renderers[$renderer])) {
+            if (isset($this->options['renderer'][$rendererName])) {
+                $options = array_merge($this->options['renderer'][$rendererName], $options);
             }
-            if (!isset($options['encoding'])) {
-                $options['encoding'] = static::$encoding;
-            }
-            if (!isset($options['filters'])) {
-                $options['filters'] = static::$filters;
-            }
-            static::$renderers[$renderer] = new $class($options);
-        } else {
-            static::$renderers[$renderer]->setOptions($options);
+            $class                      = 'Pi\Markup\Renderer\\' . $renderer;
+            $this->renderers[$renderer] = new $class;
         }
+        $this->renderers[$renderer]->setOptions($options);
 
-        return static::$renderers[$renderer];
+        return $this->renderers[$renderer];
     }
 
     /**
      * Get renderer, load Raw as default renderer if no one is set
      *
+     * @param array $options
+     *
      * @return AbstractRenderer
      */
-    public static function getRenderer()
+    public function getRenderer($options = [])
     {
-        if (!static::$renderer) {
-            static::$renderer = static::loadRenderer('text');
+        if (!$this->renderer) {
+            $this->renderer = $this->loadRenderer();
         }
-        return static::$renderer;
+        if ($options) {
+            $this->renderer->setOptions($options);
+        }
+
+        return $this->renderer;
     }
 
     /**
      * Render content
      *
-     * @param string $content   Raw content
-     * @param string $renderer  Renderer type
-     * @param string|array $parser String for parser or source type: `markdown`, `html`, `text`; array for options
-     * @param array  $options
+     * @param string $content Raw content
+     * @param string $parser Markup format of raw content: `text`, `html`, `markdown`
+     * @param string|array $renderer Markup type for rendering (`html`, ``), or array for options
+     * @param array $options
      *
      * @return string
      */
-    public static function render(
+    public function render(
         $content,
-        $renderer = null,
         $parser = null,
-        $options = array()
-    ) {
-        if (is_array($parser)) {
-            $options = $parser;
-            $parser = null;
+        $renderer = null,
+        $options = []
+    )
+    {
+        if (is_array($renderer)) {
+            $options  = $renderer;
+            $renderer = null;
+        }
+        if (!$parser) {
+            $parser = $this->loadParser('text');
+        } elseif (!$parser instanceof AbstractParser) {
+            $parser = $this->loadParser($parser);
+        }
+        if (!empty($options['filters'])) {
+            $parser->addFilters($options['filters']);
         }
         if (!$renderer) {
-            $renderer = static::getRenderer();
+            $renderer = $this->getRenderer();
         } elseif (!$renderer instanceof AbstractRenderer) {
-            $renderer = static::loadRenderer($renderer, $options);
+            $renderer = $this->loadRenderer($renderer);
         }
-        if (null !== $parser) {
-            $renderer->setParser($parser ? static::loadParser($parser) : '');
+        if (isset($options['renderer'])) {
+            $renderer->setOptions($options['renderer']);
         }
-
-        $content = $renderer->render($content);
+        $content = $renderer->setParser($parser)->render($content);
 
         return $content;
     }

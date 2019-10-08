@@ -1,17 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\HeadStyle as ZendHeadStyle;
+use stdClass;
+use Zend\View;
 
 /**
  * Helper for setting and retrieving script elements for HTML head section
@@ -45,7 +46,7 @@ class HeadStyle extends ZendHeadStyle
      * Added by Taiwen Jiang
      */
     /** @var string[] Segment names for catch */
-    protected static $captureNames = array();
+    protected static $captureNames = [];
     /**#@-*/
 
     /**#@+
@@ -70,4 +71,73 @@ class HeadStyle extends ZendHeadStyle
         $this->captureEnd();
     }
     /**#@-*/
+
+    /**
+     * Convert content and attributes into valid style tag
+     *
+     * @param  stdClass $item   Item to render
+     * @param  string   $indent Indentation to use
+     * @return string
+     */
+    public function itemToString(stdClass $item, $indent)
+    {
+        $attrString = '';
+        if (!empty($item->attributes)) {
+            $enc = 'UTF-8';
+            if ($this->view instanceof View\Renderer\RendererInterface
+                && method_exists($this->view, 'getEncoding')
+            ) {
+                $enc = $this->view->getEncoding();
+            }
+            $escaper = $this->getEscaper($enc);
+            foreach ($item->attributes as $key => $value) {
+                if (!in_array($key, $this->optionalAttributes)) {
+                    continue;
+                }
+                if ('media' == $key) {
+                    if (false === strpos($value, ',')) {
+                        if (!in_array($value, $this->mediaTypes)) {
+                            continue;
+                        }
+                    } else {
+                        $mediaTypes = explode(',', $value);
+                        $value = '';
+                        foreach ($mediaTypes as $type) {
+                            $type = trim($type);
+                            if (!in_array($type, $this->mediaTypes)) {
+                                continue;
+                            }
+                            $value .= $type .',';
+                        }
+                        $value = substr($value, 0, -1);
+                    }
+                }
+                $attrString .= sprintf(' %s="%s"', $key, $escaper->escapeHtmlAttr($value));
+            }
+        }
+
+        $escapeStart = $indent . '<!--' . PHP_EOL;
+        $escapeEnd = $indent . '-->' . PHP_EOL;
+        if (isset($item->attributes['conditional'])
+            && !empty($item->attributes['conditional'])
+            && is_string($item->attributes['conditional'])
+        ) {
+            $escapeStart = null;
+            $escapeEnd = null;
+        }
+
+        $html = '<style ' . $attrString . '>' . PHP_EOL
+             . $indent . $item->content . PHP_EOL
+            . '</style>';
+
+        if (null == $escapeStart && null == $escapeEnd) {
+            // inner wrap with comment end and start if !IE
+            if (str_replace(' ', '', $item->attributes['conditional']) === '!IE') {
+                $html = '<!-->' . $html . '<!--';
+            }
+            $html = '<!--[if ' . $item->attributes['conditional'] . ']>' . $html . '<![endif]-->';
+        }
+
+        return $html;
+    }
 }

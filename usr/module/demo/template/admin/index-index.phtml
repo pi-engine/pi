@@ -1,0 +1,1 @@
+<h2><?php echo $content; ?></h2>

@@ -1,16 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Setup;
 
-use Pi;
 use Locale;
+use Pi;
 
 /**
  * Setup wizard
@@ -19,10 +19,10 @@ use Locale;
  */
 class Wizard
 {
-    const BASE_NAMESPACE    = 'Pi\Setup';
-    const DIR_CLASS         = 'src';
-    const PERSIST_LOCALE    = 'locale';
-    const PERSIST_CHARSET   = 'charset';
+    const BASE_NAMESPACE  = 'Pi\Setup';
+    const DIR_CLASS       = 'src';
+    const PERSIST_LOCALE  = 'locale';
+    const PERSIST_CHARSET = 'charset';
 
     protected static $root;
 
@@ -31,21 +31,22 @@ class Wizard
     protected $pageIndex;
 
     protected $persist;
-    protected $locale       = '';
-    protected $charset      = 'UTF-8';
-    protected $pages        = array();
-    protected $configs      = array();
-    protected $languages    = array();
-    protected $tmpDir       = '';
+    protected $locale    = '';
+    protected $charset   = 'UTF-8';
+    protected $pages     = [];
+    protected $configs   = [];
+    protected $languages = [];
+    protected $tmpDir    = '';
 
-    public $support = array(
-        'url'   => 'http://pialog.org',
-        'title' => 'Pi Engine',
-    );
+    public $support
+        = [
+            'url'   => 'http://piengine.org',
+            'title' => 'Pi Engine',
+        ];
 
     public function __construct($tmpDir = '')
     {
-        $pwd = dirname($_SERVER["SCRIPT_FILENAME"]);
+        $pwd          = dirname($_SERVER["SCRIPT_FILENAME"]);
         static::$root = str_replace('\\', '/', $pwd);
         spl_autoload_register('static::autoload');
         $this->tmpDir = $tmpDir;
@@ -58,10 +59,10 @@ class Wizard
         ) {
             return;
         }
-        $class = substr($class, strlen(static::BASE_NAMESPACE) + 1);
+        $class     = substr($class, strlen(static::BASE_NAMESPACE) + 1);
         $classFile = static::$root . DIRECTORY_SEPARATOR . static::DIR_CLASS
-                   . DIRECTORY_SEPARATOR
-                   . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+            . DIRECTORY_SEPARATOR
+            . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
 
         include $classFile;
     }
@@ -124,12 +125,12 @@ class Wizard
         $locale = $this->getPersist(static::PERSIST_LOCALE);
         if ($locale) {
             $this->locale = $locale;
-        // Detect via browser
+            // Detect via browser
         } elseif (!$this->locale) {
-            $auto   = 'en';
+            $auto             = 'en';
             $acceptedLanguage = isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])
                 ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '';
-            $matched = preg_match_all(
+            $matched          = preg_match_all(
                 '/([a-z]{2,8}(-[a-z]{2,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i',
                 $acceptedLanguage,
                 $matches
@@ -185,18 +186,18 @@ class Wizard
     public function getLanguages()
     {
         if (!$this->languages) {
-            $languageList = array();
+            $languageList = [];
 
             $lookupIcon = function ($name) {
                 $icon       = '';
                 $root       = $this->getRoot();
                 $pathLocale = sprintf('%s/locale/%s', $root, $name);
                 $pathIcon   = sprintf('%s/asset/image/country', $root);
-                $iconFile   = $pathLocale  . '/icon.gif';
+                $iconFile   = $pathLocale . '/icon.gif';
                 if (is_readable($iconFile)) {
                     $icon = $iconFile;
                 } else {
-                    $iconFile = $pathLocale  . '/icon.png';
+                    $iconFile = $pathLocale . '/icon.png';
                     if (is_readable($iconFile)) {
                         $icon = $iconFile;
                     } else {
@@ -218,10 +219,13 @@ class Wizard
                 if ($icon) {
                     // Get root URI
                     $request = $this->getRequest();
-                    $baseUrl = '//' . $request->getHttpHost() . $request->getBaseUrl();
+                    $baseUrl = '//' . $request->getHttpHost()
+                        . $request->getBaseUrl();
 
                     // Assemble icon URI
-                    $icon = rtrim($baseUrl, '/') . '/' . substr($icon, strlen($root) + 1);
+                    $icon = rtrim($baseUrl, '/') . '/' . substr(
+                            $icon, strlen($root) + 1
+                        );
                 }
 
                 return $icon;
@@ -242,11 +246,11 @@ class Wizard
                 if (class_exists('\Locale')) {
                     $title = Locale::getDisplayName($name) ?: $title;
                 }
-                $iconFile = $lookupIcon($name);
-                $languageList[$name] = array(
+                $iconFile            = $lookupIcon($name);
+                $languageList[$name] = [
                     'title' => $title,
-                    'icon'  => $iconFile
-                );
+                    'icon'  => $iconFile,
+                ];
             }
             asort($languageList);
             $this->languages = $languageList;
@@ -268,7 +272,7 @@ class Wizard
 
     protected function getPage($page)
     {
-        $page = (string) $page;
+        $page     = (string)$page;
         $pageList = array_keys($this->pages);
         if (!isset($this->pages[$page])) {
             if (is_numeric($page)) {
@@ -290,14 +294,14 @@ class Wizard
 
     public function dispatch()
     {
-        $page = $this->getRequest()->getParam('page', '');
-        $page = $this->getPage($page);
+        $page            = $this->getRequest()->getParam('page', '');
+        $page            = $this->getPage($page);
         $this->pageIndex = array_search($page, array_keys($this->pages));
 
-        $controllerClass = __NAMESPACE__ . '\\Controller\\' . ucfirst($page);
-        $action = $this->getRequest()->getParam('action', '')
+        $controllerClass  = __NAMESPACE__ . '\\Controller\\' . ucfirst($page);
+        $action           = $this->getRequest()->getParam('action', '')
             ?: ($this->getRequest()->isPost() ? 'submit' : 'index');
-        $action .= 'Action';
+        $action           .= 'Action';
         $this->controller = new $controllerClass($this);
         $this->controller->$action();
     }
@@ -327,8 +331,8 @@ class Wizard
             exit;
         }
 
-        $pages = $this->pages;
-        $navPages = array();
+        $pages    = $this->pages;
+        $navPages = [];
         foreach ($pages as $key => &$page) {
             $page['url'] = $this->url($key);
             if (empty($page['hide'])) {
@@ -336,21 +340,21 @@ class Wizard
             }
         }
         $pageIndex = $this->pageIndex;
-        $pageList = array_keys($pages);
-        $locale = $this->locale;
-        $charset = $this->charset;
+        $pageList  = array_keys($pages);
+        $locale    = $this->locale;
+        $charset   = $this->charset;
 
-        $currentPage = $pages[$pageList[$pageIndex]];
+        $currentPage        = $pages[$pageList[$pageIndex]];
         $currentPage['key'] = $pageList[$pageIndex];
 
         $title = $currentPage['title'] . ' - ' . _s('Pi Engine Setup Wizard')
-               . '(' . ($this->pageIndex + 1) . '/' . count($this->pages) . ')';
-        $desc = $currentPage['desc'];
+            . '(' . ($this->pageIndex + 1) . '/' . count($this->pages) . ')';
+        $desc  = $currentPage['desc'];
 
         $previousUrl = $nextUrl = '';
         // For non-first page
         if ($pageIndex > 0) {
-            $previousUrl = $this->url('-1', array('r' => 1));
+            $previousUrl = $this->url('-1', ['r' => 1]);
         }
         // For non-last page
         if ($status > -1 && $pageIndex < count($pages) - 1) {
@@ -365,7 +369,7 @@ class Wizard
         $pageHasForm = $this->controller->hasForm();
         $headContent = $this->controller->headContent();
         $footContent = $this->controller->footContent();
-        $baseUrl = $this->getRequest()->getBaseUrl();
+        $baseUrl     = $this->getRequest()->getBaseUrl();
 
         $data = compact(
             'status', 'locale', 'charset', 'title', 'desc',
@@ -378,24 +382,27 @@ class Wizard
         exit;
     }
 
-    public function url($page = '', $params = array())
+    public function url($page = '', $params = [])
     {
         $page = $this->getPage($page);
         if (!empty($page)) {
             $params['page'] = $page;
         }
         $query = http_build_query($params);
-        $url = $this->getRequest()->getBaseUrl() . ($query ? '?' . $query : '');
+        $url   = $this->getRequest()->getBaseUrl() . ($query ? '?' . $query
+                : '');
 
         return $url;
     }
 
-    public function gotoPage($page = '', $params = array())
+    public function gotoPage($page = '', $params = [])
     {
         $url = $this->url($page, $params);
 
-        header('Location: ' . $this->getRequest()->getScheme() . '://'
-               . $this->getRequest()->getHttpHost() . $url);
+        header(
+            'Location: ' . $this->getRequest()->getScheme() . '://'
+            . $this->getRequest()->getHttpHost() . $url
+        );
 
         exit();
     }
@@ -404,7 +411,9 @@ class Wizard
     {
         if (!$this->persist instanceof Persist) {
             if ($this->tmpDir) {
-                $this->persist = new Persist('file', $this->getRoot() . '/' . $this->tmpDir);
+                $this->persist = new Persist(
+                    'file', $this->getRoot() . '/' . $this->tmpDir
+                );
             } else {
                 $this->persist = new Persist;
             }

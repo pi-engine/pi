@@ -1,37 +1,57 @@
 <?php
 $this->css($this->assetModule('front/front.css'));
+$this->headMeta('noindex', 'robots');
+$userSection = $this->isUserSection(Pi::service('module')->current());
+
 ?>
-<?php include $this->template('./profile-topbar.phtml'); ?>
-<div class="clearfix user-min-body">
-    <?php if (!empty($data['content'])) { ?>
-        <?php echo  $data['content'];?>
-    <?php } else { ?>
-    <?php if ($data['items']) { ?>
-    <?php foreach ($data['items'] as $item) { ?>
-    <div class="user-underline-list">
-        <p style="margin-bottom: 5px;">
-            <?php echo $item['message']; ?>
-        </p>
-        <?php if ($item['time']) { ?>
-        <span class="text-muted"><?php echo _date($item['time']); ?></span>
+<div class="row user-section-wrapper">
+    <?php if ($userSection) : ?>
+        <div class="col-md-3">
+            <?php include $this->template('./profile-sidebar.phtml'); ?>
+        </div>
+    <?php endif; ?>
+
+    <div class="<?php echo $userSection ? 'col-md-9' : 'col-md-12' ?>">
+        <?php include $this->template('flash-messenger'); ?>
+
+        <?php if (!$view) { ?>
+            <div class="page-header">
+                <h1><?php _e('My profile'); ?></h1>
+            </div>
         <?php } ?>
+        <?php include $this->template('./profile-topbar.phtml'); ?>
+        <div class="clearfix user-min-body">
+            <?php if (!empty($data['content'])) { ?>
+                <?php echo $data['content']; ?>
+            <?php } else { ?>
+                <?php if ($data['items']) { ?>
+                    <?php foreach ($data['items'] as $item) { ?>
+                        <div class="user-underline-list">
+                            <p style="margin-bottom: 5px;">
+                                <?php echo $item['message']; ?>
+                            </p>
+                            <?php if ($item['time']) { ?>
+                                <span class="text-muted"><?php echo _date($item['time']); ?></span>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+                    <?php
+                    if ($data['link']) {
+                        echo sprintf(
+                            '<a class="btn btn-block" href="%s">%s</a>',
+                            $data['link'],
+                            __('View all')
+                        );
+                    }
+                    ?>
+                <?php } else {
+                    echo sprintf(
+                        '<div class="card bg-light mb-3">%s</div>',
+                        __('No data available.')
+                    );
+                }
+                ?>
+            <?php } ?>
+        </div>
     </div>
-    <?php } ?>
-    <?php 
-    if ($data['link']) { 
-        echo sprintf(
-            '<a class="btn btn-block" href="%s">%s</a>',
-            $data['link'],
-            __('View all')
-        );
-    }
-    ?>
-    <?php } else {
-        echo sprintf(
-            '<div class="well">%s</div>',
-            __('No data available.')
-        );
-    }
-    ?>
-    <?php } ?>
 </div>

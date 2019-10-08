@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Registry
  */
 
@@ -26,15 +26,15 @@ class Field extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $fields = array();
+        $fields = [];
 
-        $where = array('active' => 1);
-        $columns = array();
+        $where   = ['active' => 1];
+        $columns = [];
         switch ($options['action']) {
             case 'edit':
-                $columns[] = 'edit';
+                $columns[]        = 'edit';
                 $where['is_edit'] = 1;
                 break;
 
@@ -44,7 +44,7 @@ class Field extends AbstractRegistry
                 break;
 
             case 'display':
-                $columns[] = 'filter';
+                $columns[]           = 'filter';
                 $where['is_display'] = 1;
                 break;
 
@@ -68,10 +68,10 @@ class Field extends AbstractRegistry
             $columns[] = 'name';
             $columns[] = 'title';
             $columns[] = 'is_required';
-            $columns = array_unique($columns);
+            $columns   = array_unique($columns);
         }
 
-        $model = Pi::model('field', $this->module);
+        $model  = Pi::model('field', $this->module);
         $select = $model->select()->where($where);
         if ($columns) {
             $select->columns($columns);
@@ -94,7 +94,7 @@ class Field extends AbstractRegistry
     public function read($type = '', $action = '')
     {
         $options = compact('type', 'action');
-        $data = $this->loadData($options);
+        $data    = $this->loadData($options);
 
         return $data;
     }

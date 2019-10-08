@@ -1,7 +1,7 @@
 <?php
-    $this->css(array(
-        $this->assetModule('script/block.css'),
-    ));
+$this->css([
+    $this->assetModule('script/block.css'),
+]);
 ?>
 
 <div class="">
@@ -11,8 +11,8 @@
             <span style="padding-right: 10px"><?php echo $this->escape($count) . __(' articles'); ?></span>
             <span style="padding-right: 10px"><?php echo sprintf(__('Created at ') . _date($topic['time_create'])); ?></span>
             <span style="padding-right: 10px"><?php echo $lastAdded
-                ? sprintf(__('Last added at ') . _date($lastAdded))
-                : ''; ?></span>
+                    ? sprintf(__('Last added at ') . _date($lastAdded))
+                    : ''; ?></span>
         </div>
     </div>
     <hr>
@@ -22,25 +22,25 @@
             <?php foreach ($articles as $row) { ?>
                 <li class="text-muted">
                     <div class="list-hover">
-                        <span class="pull-right article-size12">
+                        <span class="float-right article-size12">
                             <?php echo _date($row['time_publish']); ?>
                         </span>
                         <a class="article-list-title" target="_blank" href="<?php echo $this->escape($row['url']); ?>"
                            title="<?php echo $this->escape($row['subject']); ?>">
-                               <?php echo $this->escape($row['subject']); ?>
+                            <?php echo $this->escape($row['subject']); ?>
                         </a>
                     </div>
                 </li>
                 <?php if (!(++$index % 5)) { ?>
                     <hr>
-                <?php } ?>    
-            <?php } ?>   
+                <?php } ?>
+            <?php } ?>
         </ul>
         <?php echo $this->paginationControl(
             $paginator,
             'Sliding',
             'paginator.phtml',
-            array('class' => 'pagination-centered'))
+            ['class' => 'pagination-centered'])
         ?>
     </div>
 </div>

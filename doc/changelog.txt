@@ -5,6 +5,26 @@ Pi 2.5.0
 March 20th, 2014
 ============
 * Added `GeoIp` service for IP geolocation support
+* Added jQuery `Magnific Popup` extension
+* Upgraded Font Awesome lib to 4.1.0
+* Improved route engine to support module clone
+* Implemented `ETag` for browser cache
+* Implemented custom response gzip in case not implemented by web server
+
+* Modified config files:
+  - var/config/application.front.php
+    - resource::render_cache
+  - var/config/config.application.php
+    - service_manager::invokables::SendResponseListener
+    - send_response::compress
+  - var/config/service.log.php
+  - var/config/service.session.php
+  - var/config/service.session-admin.php
+
+* Modified language files:
+  - module/system/locale/en/admin.po, block.po, default.po
+  - module/comment/locale/en/admin.po, default.po
+  - module/user/locale/en/admin.po, default.po
 
 
 Pi 2.4.0
@@ -129,7 +149,7 @@ August 3rd, 2013
 28. Added API engine and routes
 29. Added system user model (by system module) and local user model (by user module)
 30. Refactored Default theme with strict Bootstrap compliance and Pi theme with strict HTML 5 (@sexnothing, @voltan, @loidco, etc.)
-31. Improved inline comments following docblock standards and generated Pi API at http://api.pialog.org
+31. Improved inline comments following docblock standards and generated Pi API at http://api.piengine.org
 32. Upgraded Zend Framework to 2.2.2 as Issue #151
 33. Skipped translation for view helpers
 34. Fixed Isse #166: error strategy should be performed prior to \Zend\Mvc\View\Http\InjectTemplateListener

@@ -1,44 +1,44 @@
 <?php
 // User service configuration
 
-return array(
+return [
     // User data access adapter
-    'adapter'   => 'system',
+    'adapter' => 'system',
 
-    'system'    => array(
-        'class' => 'Pi\User\Adapter\System',
-        'options'   => array(),
-    ),
+    'system' => [
+        'class'   => 'Pi\User\Adapter\System',
+        'options' => [],
+    ],
 
-    'options'   => array(
+    'options' => [
         // For persistent user data
-        'persist'   => array(
+        'persist' => [
             // Expiration, in seconds
             'ttl'   => 300,
             // Fields
-            'field' => array(
+            'field' => [
                 'id',
                 'identity',
                 'name',
                 'email',
                 'avatar',
-                'role'
-            ),
-        ),
-    ),
+                'role',
+            ],
+        ],
+    ],
 
     // Following are adapter specs
 
     // Local user
-    'local'    => array(
-        'class' => 'Pi\User\Adapter\Local',
-        'options'   => array(),
-    ),
+    'local'   => [
+        'class'   => 'Pi\User\Adapter\Local',
+        'options' => [],
+    ],
 
     // Client user
-    'client'    => array(
-        'class' => 'Pi\User\Adapter\Client',
-        'options'   => array(),
-    ),
+    'client'  => [
+        'class'   => 'Pi\User\Adapter\Client',
+        'options' => [],
+    ],
 
-);
+];

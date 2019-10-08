@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -32,8 +32,8 @@ class AssetLocale extends AbstractHelper
     /**
      * Get URI of a theme locale asset
      *
-     * @param   string      $file
-     * @param   string      $locale
+     * @param   string $file
+     * @param   string $locale
      * @param   bool|null $appendVersion
      *
      * @return  string
@@ -42,10 +42,11 @@ class AssetLocale extends AbstractHelper
         $file,
         $locale = '',
         $appendVersion = null
-    ) {
+    )
+    {
         //$type = $isPublic ? 'public' : 'asset';
         $locale = $locale ?: Pi::service('i18n')->locale;
-        $file = sprintf('locale/%s/%s', $locale, $file);
+        $file   = sprintf('locale/%s/%s', $locale, $file);
 
         $result = Pi::service('asset')->getThemeAsset(
             $file,

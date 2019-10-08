@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application;
@@ -41,11 +41,11 @@ class Persist
      *
      * @throws \DomainException
      */
-    public function __construct($config = array())
+    public function __construct($config = [])
     {
-        $storage = ucfirst($config['storage']);
+        $storage       = ucfirst($config['storage']);
         $this->handler = $this->loadHandler($storage, isset($config['options'])
-            ? $config['options'] : array());
+            ? $config['options'] : []);
         if (!$this->handler) {
             throw new \DomainException(
                 sprintf('Storage "%s" is not supported.', $storage)
@@ -58,14 +58,14 @@ class Persist
     /**
      * Loads a backend handler
      *
-     * @param string    $storage
-     * @param array     $options
+     * @param string $storage
+     * @param array $options
      * @return Persist\AbstractStorage|false
      */
-    public function loadHandler($storage, $options = array())
+    public function loadHandler($storage, $options = [])
     {
         $class = __NAMESPACE__ . '\\'
-               . sprintf('Persist\\%sStorage', $storage);
+            . sprintf('Persist\\%sStorage', $storage);
         try {
             $handler = new $class($options);
         } catch (\Exception $e) {
@@ -162,8 +162,8 @@ class Persist
     /**
      * Magic methods call {@link Persist\AbstractStorage}
      *
-     * @param string    $method
-     * @param array     $params
+     * @param string $method
+     * @param array $params
      * @return mixed
      */
     public function __call($method, $params)
@@ -171,6 +171,6 @@ class Persist
         if (!$this->handler) {
             return false;
         }
-        return call_user_func_array(array($this->handler, $method), $params);
+        return call_user_func_array([$this->handler, $method], $params);
     }
 }

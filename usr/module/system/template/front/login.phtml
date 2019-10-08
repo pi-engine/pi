@@ -1,20 +1,27 @@
-<div class="page-header">
-    <h2><?php echo _escape($title); ?></h2>
-</div>
-<?php if (!empty($message)) { ?>
-    <div class="alert alert-danger">
-        <?php echo _escape($message); ?>
+<br />
+<div class="container">
+    <div class="page-header border-bottom mb-4" style="padding-bottom:10px">
+        <h1><?php echo _escape($title); ?></h1>
     </div>
-<?php } ?>
-<?php include $this->templateComponent('form'); ?>
-<div class="row" style="padding: 40px 0;">
-    <div class="col-md-offset-2 col-md-10">
-        <a href="<?php echo Pi::service('user')->getUrl('password'); ?>"
-           style="margin-right: 10px;">
-            <?php _e('Find password'); ?>
-        </a>
-        <a href="<?php echo Pi::service('user')->getUrl('register'); ?>">
-            <?php _e('Register'); ?>
-        </a>
+    <?php if (!empty($message)) { ?>
+        <div class="alert alert-danger">
+            <?php echo _escape($message); ?>
+        </div>
+    <?php } ?>
+    <?php
+    //include $this->templateComponent('form');
+//    echo get_class($form);
+    echo $this->form($form);
+    ?>
+    <div class="row" style="padding: 40px 0;">
+        <div class="offset-md-3 col-md-10">
+            <a href="<?php echo Pi::service('user')->getUrl('password'); ?>"
+               style="margin-right: 10px;">
+                <?php _e('Find password'); ?>
+            </a>
+            <a href="<?php echo Pi::service('user')->getUrl('register'); ?>">
+                <?php _e('Register'); ?>
+            </a>
+        </div>
     </div>
 </div>

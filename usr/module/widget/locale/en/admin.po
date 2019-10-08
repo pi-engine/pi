@@ -1,327 +1,520 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-03-03 14:20+0800\n"
-"PO-Revision-Date: 2014-03-03 14:20+0800\n"
+"POT-Creation-Date: 2016-12-06 14:09+0330\n"
+"PO-Revision-Date: 2016-12-06 14:09+0330\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-KeywordsList: _a;_t\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\module\\widget\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: C:\code\pi\usr\module\widget/config/module.php:14
+#: config/config.php:13
+msgid "Max file size"
+msgstr ""
+
+#: config/config.php:14
+msgid "Allowed image file to upload (in KB), 0 for no limit"
+msgstr ""
+
+#: config/config.php:20
+msgid "File extensions"
+msgstr ""
+
+#: config/config.php:21
+msgid "Extensions for images to upload, separate `,`."
+msgstr ""
+
+#: config/config.php:26
+msgid "Max image width"
+msgstr ""
+
+#: config/config.php:27
+msgid "Allowed image width, 0 for no limit"
+msgstr ""
+
+#: config/config.php:33
+msgid "Max image height"
+msgstr ""
+
+#: config/config.php:34
+msgid "Allowed image height, 0 for no limit"
+msgstr ""
+
+#: config/config.php:40
+msgid "Image width for media"
+msgstr ""
+
+#: config/config.php:41 config/config.php:48 config/config.php:55
+#: config/config.php:62 config/config.php:69 config/config.php:76
+msgid "Default value for widgets"
+msgstr ""
+
+#: config/config.php:47
+msgid "Image height for media"
+msgstr ""
+
+#: config/config.php:54
+msgid "Image width for carousel"
+msgstr ""
+
+#: config/config.php:61
+msgid "Image height for carousel"
+msgstr ""
+
+#: config/config.php:68
+msgid "Image width for spotlight"
+msgstr ""
+
+#: config/config.php:75
+msgid "Image height for spotlight"
+msgstr ""
+
+#: config/config.php:82
+msgid "Open new window"
+msgstr ""
+
+#: config/config.php:83
+msgid "Open new window for widgets not specified"
+msgstr ""
+
+#: config/module.php:14
 msgid "Widget"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/module.php:16
+#: config/module.php:16
 msgid "Management of custom blocks/widgets."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:15
-#: C:\code\pi\usr\module\widget/config/permission.php:13
+#: config/nav.php:15 config/permission.php:13
 msgid "Script widgets"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:24
-#: C:\code\pi\usr\module\widget/config/permission.php:16
+#: config/nav.php:25 config/nav.php:49 config/nav.php:104 config/nav.php:138
+#: config/nav.php:172 config/nav.php:206 config/nav.php:240 config/nav.php:274
+msgid "Widget list"
+msgstr ""
+
+#: config/nav.php:31 template/admin/ng-script.phtml:11
+msgid "Activate"
+msgstr ""
+
+#: config/nav.php:40 config/permission.php:16
 msgid "Static widgets"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:33
-msgid "Static list"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/config/nav.php:40
-#: C:\code\pi\usr\module\widget/config/nav.php:94
-#: C:\code\pi\usr\module\widget/config/nav.php:128
-#: C:\code\pi\usr\module\widget/template/admin/common-list.phtml:14
-#: C:\code\pi\usr\module\widget/template/admin/ng.phtml:21
+#: config/nav.php:56 config/nav.php:111 config/nav.php:145 config/nav.php:179
+#: config/nav.php:213 config/nav.php:247 config/nav.php:281
+#: template/admin/ng.phtml:11
 msgid "Edit"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:49
+#: config/nav.php:65
 msgid "Add HTML"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:58
+#: config/nav.php:74
 msgid "Add text"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:67
+#: config/nav.php:83
 msgid "Add markdown"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:78
-#: C:\code\pi\usr\module\widget/config/permission.php:19
-msgid "Carousel widgets"
+#: config/nav.php:95 config/permission.php:19
+msgid "List group"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:87
-msgid "Carousel list"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/config/nav.php:103
+#: config/nav.php:120 config/nav.php:154 config/nav.php:188 config/nav.php:222
+#: config/nav.php:256 config/nav.php:290
 msgid "Add new"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:112
-#: C:\code\pi\usr\module\widget/config/permission.php:22
+#: config/nav.php:129 config/permission.php:22
+msgid "Media list"
+msgstr ""
+
+#: config/nav.php:163
+msgid "Carousel"
+msgstr ""
+
+#: config/nav.php:197
+msgid "Spotlight"
+msgstr ""
+
+#: config/nav.php:231 config/permission.php:31
 msgid "Compound tabs"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:121
-msgid "Tab list"
+#: config/nav.php:265 config/permission.php:34
+msgid "Video and audio"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:137
-msgid "Add"
+#: config/permission.php:25
+msgid "Carousel widgets"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:11
+#: config/permission.php:28
+msgid "Spotlight widgets"
+msgstr ""
+
+#: meta/navigation.php:11
 msgid "Navigation"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:12
+#: meta/navigation.php:12
 msgid "Block to display navigation menu and breadcrumbs"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:16
+#: meta/navigation.php:16
 msgid "Navigation name"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:22
-#: C:\code\pi\usr\module\widget/meta/navigation.php:48
+#: meta/navigation.php:21 meta/navigation.php:47
 msgid "Display menu"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:28
+#: meta/navigation.php:27
 msgid "ul class for menu"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:29
+#: meta/navigation.php:28
 msgid "Separate classes with space"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:35
+#: meta/navigation.php:34
 msgid "Minimum depth for menu"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:41
+#: meta/navigation.php:40
 msgid "Maximum depth for menu"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:54
+#: meta/navigation.php:53
 msgid "Separator for breadcrumb"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:60
+#: meta/navigation.php:59
 msgid "Minimum depth for breadcrumb"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:66
+#: meta/navigation.php:65
 msgid "Add link to last page"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Api/Block.php:41
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Update.php:53
+#: meta/pi-github.php:11 meta/pi-github.php:22
+msgid "Pi Engine Updates"
+msgstr ""
+
+#: meta/pi-github.php:12
+msgid "Block to display Pi Engine new updates on GitHub"
+msgstr ""
+
+#: src/Api/Block.php:91
 msgid "Image width"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Api/Block.php:46
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Update.php:58
+#: src/Api/Block.php:99
 msgid "Image height"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Api/Block.php:51
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Update.php:63
+#: src/Api/Block.php:106
+msgid "Max rows to display"
+msgstr ""
+
+#: src/Api/Block.php:111
+#, fuzzy
+msgid "No limit"
+msgstr "无缓存"
+
+#: src/Api/Block.php:112
+msgid "1 row"
+msgstr ""
+
+#: src/Api/Block.php:113 src/Api/Block.php:114 src/Api/Block.php:115
+#: src/Api/Block.php:116 src/Api/Block.php:117
+#, php-format
+msgid "%d rows"
+msgstr ""
+
+#: src/Api/Block.php:124
+msgid "Open link in new window"
+msgstr ""
+
+#: src/Api/Block.php:150
 msgid "Time interval (ms)"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Api/Block.php:57
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Update.php:69
+#: src/Api/Block.php:156
 msgid "Mouse event"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Api/Block.php:58
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Update.php:70
+#: src/Api/Block.php:157
 msgid "Event to pause cycle"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/IndexController.php:130
+#: src/Controller/Admin/ScriptController.php:127
 #, php-format
 msgid "The widget \"%s\" is installed."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/IndexController.php:132
+#: src/Controller/Admin/ScriptController.php:129
 #, php-format
 msgid "The widget \"%s\" is not installed."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:30
+#: src/Controller/Admin/StaticController.php:37
 msgid "HTML"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:31
+#: src/Controller/Admin/StaticController.php:38
 msgid "Text"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:32
+#: src/Controller/Admin/StaticController.php:39
 msgid "Markdown"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:97
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:183
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:219
+#: src/Controller/Admin/WidgetController.php:296
+#: src/Controller/Admin/WidgetController.php:334
 msgid "Block data saved successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:102
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:191
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:227
+#: src/Controller/Admin/WidgetController.php:304
+#: src/Controller/Admin/WidgetController.php:342
 msgid "Block data not saved."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:104
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:195
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:229
+#: src/Controller/Admin/WidgetController.php:308
+#: src/Controller/Admin/WidgetController.php:344
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/TabController.php:40
-msgid "Custom blocks"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:92
-msgid "The widget does not exist."
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:100
-#, php-format
-msgid "The widget \"%s\" is uninstalled."
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:105
-#, php-format
-msgid "The widget \"%s\" is not uninstalled."
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:207
+#: src/Controller/Admin/WidgetController.php:319
 msgid "Add a block"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:244
+#: src/Controller/Admin/WidgetController.php:360
 msgid "Block edit"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:109
+#: src/Controller/Admin/WidgetController.php:377
+msgid "The widget is removed."
+msgstr ""
+
+#: src/Controller/Admin/WidgetController.php:380
+msgid "The widget is not removed."
+msgstr ""
+
+#: src/Form/AbstractBaseForm.php:55
+msgid "Title"
+msgstr ""
+
+#: src/Form/AbstractBaseForm.php:66
+msgid "Unique name"
+msgstr ""
+
+#: src/Form/AbstractBaseForm.php:77
+msgid "Description"
+msgstr ""
+
+#: src/Form/AbstractBaseForm.php:118
+msgid "Submit"
+msgstr ""
+
+#: src/Form/BlockMediaForm.php:25
+msgid "Template"
+msgstr ""
+
+#: src/Form/BlockStaticForm.php:53
+msgid "Content"
+msgstr ""
+
+#: src/Form/BlockStaticForm.php:60
 msgid ""
 "Tags supported: `%sitename%` - site name; `%siteurl%` - site root URL; `"
 "%slogan%` - site slogan"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:69
+#: src/Form/BlockStaticForm.php:85
+msgid "Content type"
+msgstr ""
+
+#: src/Form/Element/CarouselTemplate.php:25
+msgid "Bootstrap slide"
+msgstr ""
+
+#: src/Form/Element/CarouselTemplate.php:26
+msgid "Bootstrap two columns"
+msgstr ""
+
+#: src/Form/Element/CarouselTemplate.php:27
+msgid "jQuery riding Carousel"
+msgstr ""
+
+#: src/Form/Element/CarouselTemplate.php:28
+msgid "Parallax Content Slider"
+msgstr ""
+
+#: src/Form/Element/ListTemplate.php:25
+msgid "Title and summary"
+msgstr ""
+
+#: src/Form/Element/ListTemplate.php:26
+msgid "Title only"
+msgstr ""
+
+#: src/Form/Element/ListTemplate.php:27
+msgid "Social network bar"
+msgstr ""
+
+#: src/Form/Element/MediaTemplate.php:48
+msgid "Custom: "
+msgstr ""
+
+#: src/Form/Element/MediaTemplate.php:63
+msgid "List of images on lines"
+msgstr ""
+
+#: src/Form/Element/MediaTemplate.php:64
+msgid "Image on left"
+msgstr ""
+
+#: src/Form/Element/MediaTemplate.php:65
+msgid "Image on right"
+msgstr ""
+
+#: src/Form/Element/SpotlightTemplate.php:25
+msgid "Spot on top"
+msgstr ""
+
+#: src/Form/Element/SpotlightTemplate.php:26
+msgid "Spot on left"
+msgstr ""
+
+#: src/Form/Element/VideoTemplate.php:25
+msgid "Player only"
+msgstr ""
+
+#: src/Form/Element/VideoTemplate.php:26
+msgid "Player and summary"
+msgstr ""
+
+#: src/Installer/Action/Install.php:42
 msgid "Pi Highlights"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:70
+#: src/Installer/Action/Install.php:43
 msgid "Introduction to Pi Engine with carousel."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:76
+#: src/Installer/Action/Install.php:49
 msgid "Sustainable ecosystem"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:77
+#: src/Installer/Action/Install.php:50
 msgid ""
 "A sustainable ecosystem built upon open standard, open source code, open "
 "development and open management on Github."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:82
+#: src/Installer/Action/Install.php:55
 msgid "Engineered development"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:83
+#: src/Installer/Action/Install.php:56
 msgid ""
 "Quality ensured engineering development with short learning curve, low skill "
 "requirements with clean MVC architecture, semantic templating, sophisticated "
-"API and strict starndards."
+"API and strict standards."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:88
+#: src/Installer/Action/Install.php:61
 msgid "Visualization of application management"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:89
+#: src/Installer/Action/Install.php:62
 msgid ""
 "Easy and responsive application and content management based on visualized "
-"mangement tools and interface with page and widget mechanism."
+"management tools and interface with page and widget mechanism."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:94
+#: src/Installer/Action/Install.php:67
 msgid "Agile compliant development workflow"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:95
+#: src/Installer/Action/Install.php:68
 msgid ""
 "Role oriented architecture and deployment skeleton supports managable agile "
 "development workflow."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/template/admin/common-list.phtml:16
-msgid "Are you sure delete this widget?"
+#: src/Render/PiGithub.php:26
+msgid "Updates from GitHub"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/template/admin/common-list.phtml:16
-#: C:\code\pi\usr\module\widget/template/admin/ng.phtml:22
+#: src/Validator/WidgetNameDuplicate.php:28
+msgid "Widget name already exists"
+msgstr ""
+
+#: template/admin/ng.phtml:12
+msgid "Edit configs"
+msgstr ""
+
+#: template/admin/ng.phtml:13
 msgid "Delete"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/template/admin/list-script.phtml:8
-#: C:\code\pi\usr\module\widget/template/admin/ng.phtml:17
-msgid "Installed widgets"
+#: template/admin/widget-list.phtml:10 template/admin/widget-media.phtml:14
+#: template/admin/widget-tab.phtml:11 template/admin/widget-video.phtml:14
+msgid "Items"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/template/admin/list-script.phtml:20
-#: C:\code\pi\usr\module\widget/template/admin/ng.phtml:18
-msgid "Available widgets"
+#: template/admin/widget-list.phtml:14
+msgid "Click to add new item."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/template/admin/list-tab.phtml:2
-msgid "Add a compound"
-msgstr ""
+#: template/admin/widget-list.phtml:24 template/admin/widget-media.phtml:31
+#: template/admin/widget-tab.phtml:47 template/admin/widget-video.phtml:31
+#, fuzzy
+msgid "Click to remove"
+msgstr "主题更新失败。"
 
-#: C:\code\pi\usr\module\widget/template/admin/ng.phtml:19
-msgid "Install"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/template/admin/ng.phtml:20
-msgid "Uninstall"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:12
-msgid "Images"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:33
-#: C:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:43
+#: template/admin/widget-list.phtml:27 template/admin/widget-media.phtml:36
+#: template/admin/widget-video.phtml:40
 msgid "Caption"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:36
-#: C:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:49
+#: template/admin/widget-list.phtml:31
+msgid "Icon"
+msgstr ""
+
+#: template/admin/widget-list.phtml:35 template/admin/widget-media.phtml:40
 msgid "Link"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:39
-msgid "Desc"
+#: template/admin/widget-list.phtml:39 template/admin/widget-media.phtml:44
+#: template/admin/widget-video.phtml:44
+msgid "Summary"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:129
-#, fuzzy
-msgid "No Blocks"
-msgstr "无缓存"
+#: template/admin/widget-media.phtml:18 template/admin/widget-video.phtml:18
+msgid "Click to upload image then add item contents."
+msgstr ""
+
+#: template/admin/widget-tab.phtml:16
+msgid "Select from below available module blocks to add."
+msgstr ""
+
+#: template/admin/widget-tab.phtml:26
+msgid "Module blocks"
+msgstr ""
+
+#: template/admin/widget-video.phtml:36
+msgid "Video (mp4) or audio (mp3) link"
+msgstr ""

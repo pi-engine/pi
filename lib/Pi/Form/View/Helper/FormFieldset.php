@@ -1,24 +1,26 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Form
  */
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\FieldsetInterface;
 use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
-use Zend\Form\View\Helper\AbstractHelper;
+use Zend\Form\FieldsetInterface;
+
+//use Zend\Form\View\Helper\AbstractHelper;
 
 /**
  * Fieldset helper
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ *
+ * ToDo : fix for zend version 2.4.9
  */
 class FormFieldset extends AbstractHelper
 {
@@ -33,26 +35,6 @@ class FormFieldset extends AbstractHelper
     protected $shouldWrap = true;
 
     /**
-     * Invoke helper as function
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  ElementInterface|null $element
-     * @param  bool $wrap
-     * @return string|self
-     */
-    public function __invoke(ElementInterface $element = null, $wrap = true)
-    {
-        if (!$element) {
-            return $this;
-        }
-
-        $this->setShouldWrap($wrap);
-
-        return $this->render($element);
-    }
-
-    /**
      * If set to true, collections are automatically wrapped around a fieldset
      *
      * @param bool $wrap
@@ -60,7 +42,7 @@ class FormFieldset extends AbstractHelper
      */
     public function setShouldWrap($wrap)
     {
-        $this->shouldWrap = (bool) $wrap;
+        $this->shouldWrap = (bool)$wrap;
 
         return $this;
     }
@@ -94,24 +76,30 @@ class FormFieldset extends AbstractHelper
     }
 
     /**
-     * Render a fieldset by iterating through all fieldsets and elements
-     *
-     * @param  ElementInterface $element
-     * @return string
+     * {@inheritDoc}
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element, $options = [])
     {
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
             // Bail early if renderer is not pluggable
             return '';
         }
+        $wrap = null;
+        if (is_bool($options)) {
+            $wrap = $options;
+        } elseif (is_array($options) && isset($options['wrap'])) {
+            $wrap = (bool)$options['wrap'];
+        }
+        if (null !== $wrap) {
+            $this->setShouldWrap($wrap);
+        }
 
-        $markup = '';
+        $markup           = '';
         $escapeHtmlHelper = $this->getEscapeHtmlHelper();
-        $rowHelper = $this->getRowHelper();
+        $rowHelper        = $this->getRowHelper();
 
-        foreach($element->getIterator() as $elementOrFieldset) {
+        foreach ($element->getIterator() as $elementOrFieldset) {
             if ($elementOrFieldset instanceof FieldsetInterface) {
                 $markup .= $this->render($elementOrFieldset);
             } elseif ($elementOrFieldset instanceof ElementInterface) {

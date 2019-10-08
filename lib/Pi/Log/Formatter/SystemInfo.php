@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Log\Formatter;
@@ -27,20 +27,20 @@ class SystemInfo implements FormatterInterface
     /**
      * Class constructor
      *
-     * @param  null|string  $format  Format specifier for log messages
+     * @param  null|string $format Format specifier for log messages
      * @throws \Exception
      */
     public function __construct($format = null)
     {
         if ($format === null) {
             $format = '<div class="pi-event">' . PHP_EOL
-                    . '<div class="message info">'
-                    . '<dl class="dl-horizontal">'
-                    . '<dt>%name%</dt>'
-                    . '<dd>%value%</dd>'
-                    . '</dl>'
-                    . '</div>' . PHP_EOL
-                    . '</div>' . PHP_EOL;
+                . '<div class="message info">'
+                . '<dl class="dl-horizontal">'
+                . '<dt>%name%</dt>'
+                . '<dd>%value%</dd>'
+                . '</dl>'
+                . '</div>' . PHP_EOL
+                . '</div>' . PHP_EOL;
         }
 
         $this->format = $format;
@@ -78,7 +78,7 @@ class SystemInfo implements FormatterInterface
      */
     public function setDateTimeFormat($dateTimeFormat)
     {
-        $this->dateTimeFormat = (string) $dateTimeFormat;
+        $this->dateTimeFormat = (string)$dateTimeFormat;
 
         return $this;
     }

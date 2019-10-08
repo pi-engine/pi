@@ -1,20 +1,20 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Registry
  */
 
 namespace Pi\Application\Registry;
 
-use Pi;
-use RecursiveIteratorIterator;
-use RecursiveDirectoryIterator;
 use DirectoryIterator;
 use FilesystemIterator;
+use Pi;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 /**
  * Theme-specific module asset/resource list
@@ -26,14 +26,14 @@ class ThemeModuleAsset extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $files = array();
+        $files         = [];
         $appendVersion = isset($options['v']) ? $options['v'] : null;
-        $theme = $options['theme'];
+        $theme         = $options['theme'];
         //$type = $options['type'];
         //$path = Pi::service('asset')->getSourcePath('theme/' . $theme . '/', $type) . '/module';
-        $path = Pi::path('theme/' . $theme . '/module');
+        $path      = Pi::path('theme/' . $theme . '/module');
         $component = 'theme/' . $theme . '/module';
         if (is_dir($path)) {
             $iterator = new DirectoryIterator($path);
@@ -76,7 +76,7 @@ class ThemeModuleAsset extends AbstractRegistry
                         )) {
                             continue;
                         }
-                        $fileUrl = Pi::service('asset')->getThemeModuleAsset(
+                        $fileUrl                   = Pi::service('asset')->getThemeModuleAsset(
                             $filePath,
                             $module,
                             $appendVersion
@@ -106,31 +106,32 @@ class ThemeModuleAsset extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string    $module
-     * @param string    $theme
+     * @param string $module
+     * @param string $theme
      * @param bool|null $appendVersion
      */
     public function read(
         $module = '',
         $theme = '',
         $appendVersion = null
-    ) {
+    )
+    {
         //$this->cache = false;
-        $module = $module ?: Pi::service('module')->current();
-        $theme  = $theme ?: Pi::service('theme')->current();
+        $module  = $module ?: Pi::service('module')->current();
+        $theme   = $theme ?: Pi::service('theme')->current();
         $options = compact('theme');
         if (null !== $appendVersion) {
-            $options['v'] = (bool) $appendVersion;
+            $options['v'] = (bool)$appendVersion;
         }
         $data = $this->loadData($options);
 
-        return isset($data[$module]) ? $data[$module] : array();
+        return isset($data[$module]) ? $data[$module] : [];
     }
 
     /**
      * {@inheritDoc}
-     * @param string    $module
-     * @param string    $theme
+     * @param string $module
+     * @param string $theme
      */
     public function create($module = '', $theme = '')
     {

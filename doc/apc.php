@@ -920,7 +920,7 @@ EOB;
 EOB;
 	}
 	echo <<<EOB
-		</br>Fragmentation: $frag
+		<br>Fragmentation: $frag
 		</td>
 		</tr>
 EOB;

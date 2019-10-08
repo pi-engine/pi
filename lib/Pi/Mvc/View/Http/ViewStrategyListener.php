@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Mvc\View\Http;
@@ -15,10 +15,10 @@ use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface as Events;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ArrayUtils;
-use Zend\View\Model\ViewModel;
-use Zend\View\Model\JsonModel;
-use Zend\View\Model\FeedModel;
 use Zend\Stdlib\ResponseInterface as Response;
+use Zend\View\Model\FeedModel;
+use Zend\View\Model\JsonModel;
+use Zend\View\Model\ViewModel;
 
 /**
  * Global view strategy listener
@@ -46,30 +46,29 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Detect request type and disable debug in case necessary
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_BOOTSTRAP,
-            array($this, 'prepareRequestType'),
+            [$this, 'prepareRequestType'],
             99999
-         );
+        );
 
         // Prepare root ViewModel for MvcEvent
         // Must be triggered before ViewManager
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_BOOTSTRAP,
-            array($this, 'prepareRootModel'),
+            [$this, 'prepareRootModel'],
             20000
         );
 
         // Preload variables from system config for theme
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_ROUTE,
-            array($this, 'initThemeAssemble'),
+            [$this, 'initThemeAssemble'],
             10000
         );
-
 
         // Register ob_* functions
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_ROUTE,
-            array($this, 'prepareActionResult'),
+            [$this, 'prepareActionResult'],
             -99999
         );
 
@@ -77,7 +76,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         $sharedEvents->attach(
             'PI_CONTROLLER',
             MvcEvent::EVENT_DISPATCH,
-            array($this, 'canonizeActionResult'),
+            [$this, 'canonizeActionResult'],
             -70
         );
 
@@ -94,40 +93,40 @@ class ViewStrategyListener extends AbstractListenerAggregate
         $sharedEvents->attach(
             'PI_CONTROLLER',
             MvcEvent::EVENT_DISPATCH,
-            array($this, 'injectTemplate'),
+            [$this, 'injectTemplate'],
             -89
         );
 
-        // Render head metas for theme
+        // Render head meta for theme
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_RENDER,
-            array($this, 'renderThemeAssemble'),
+            [$this, 'renderThemeAssemble'],
             10000
         );
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_RENDER_ERROR,
-            array($this, 'renderThemeAssemble'),
+            [$this, 'renderThemeAssemble'],
             10000
         );
 
         // Canonize ViewModel for error/exception
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_RENDER,
-            array($this, 'canonizeErrorResult'),
+            [$this, 'canonizeErrorResult'],
             10
         );
 
         // Canonize theme layout if necessary
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_RENDER,
-            array($this, 'canonizeThemeLayout'),
+            [$this, 'canonizeThemeLayout'],
             5
         );
 
         // Complete meta assemble for theme
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_FINISH,
-            array($this, 'completeThemeAssemble'),
+            [$this, 'completeThemeAssemble'],
             10000
         );
     }
@@ -167,7 +166,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         $type = $this->detectType($e);
 
         // Disable error debugging for AJAX and Flash
-       if ($type) {
+        if ($type) {
             Pi::service('log')->mute();
         }
     }
@@ -197,6 +196,9 @@ class ViewStrategyListener extends AbstractListenerAggregate
      */
     public function prepareActionResult(MvcEvent $e)
     {
+        // Boot theme assemble
+        $this->bootThemeAssemble($e);
+
         // Skip if error
         if ($e->isError()) {
             return;
@@ -260,7 +262,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Cast controller ViewModel
         if ($controllerVew->hasViewModel()) {
             $viewModel = $controllerVew->getViewModel();
-            $template = $viewModel->getTemplate();
+            $template  = $viewModel->getTemplate();
 
             // Controller ViewModel is as the main model if if if is specified
             // with template, MvcEvent result is converted to variables of
@@ -271,14 +273,14 @@ class ViewStrategyListener extends AbstractListenerAggregate
                 && $template
                 && '__NULL__' != $template
             ) {
-                $variables = array();
-                $options = array();
+                $variables = [];
+                $options   = [];
                 if ($result instanceof ViewModel) {
                     $variables = $result->getVariables();
-                    $options = $result->getOptions();
+                    $options   = $result->getOptions();
                 } elseif ($result instanceof FeedDataModel) {
-                    $variables = (array) $result;
-                    $options = array('feed_type' => $result->getType());
+                    $variables = (array)$result;
+                    $options   = ['feed_type' => $result->getType()];
                 } elseif (ArrayUtils::hasStringKeys($result, true)) {
                     $variables = array_merge_recursive($variables, $result);
                 }
@@ -315,14 +317,14 @@ class ViewStrategyListener extends AbstractListenerAggregate
                 if ($result instanceof FeedModel) {
                     $model = $result;
                 } else {
-                    $variables = array();
+                    $variables = [];
                     //$options = array();
                     if ($result instanceof ViewModel) {
                         $variables = $result->getVariables();
-                        $options = $result->getOptions();
+                        $options   = $result->getOptions();
                     } elseif ($result instanceof FeedDataModel) {
-                        $variables = (array) $result;
-                        $options = array('feed_type' => $result->getType());
+                        $variables = (array)$result;
+                        $options   = ['feed_type' => $result->getType()];
                     } else {
                         if ($viewModel) {
                             $variables = $viewModel->getVariables();
@@ -330,13 +332,13 @@ class ViewStrategyListener extends AbstractListenerAggregate
                         }
                         if (ArrayUtils::hasStringKeys($result, true)) {
                             $variables = array_merge_recursive(
-                                (array) $variables,
-                                (array) $result
+                                (array)$variables,
+                                (array)$result
                             );
                         }
-                        $model = new FeedDataModel($variables);
-                        $variables = (array) $model;
-                        $options = array('feed_type' => $model->getType());
+                        $model     = new FeedDataModel($variables);
+                        $variables = (array)$model;
+                        $options   = ['feed_type' => $model->getType()];
                     }
                     $model = new FeedModel($variables, $options);
                 }
@@ -344,20 +346,21 @@ class ViewStrategyListener extends AbstractListenerAggregate
             // For Json
             case 'json':
                 if ($result instanceof JsonModel) {
-                    $model      = $result;
+                    $model = $result;
                 } else {
-                    $options    = array();
+                    $options = [];
                     //$data       = array();
                     if ($result instanceof ViewModel) {
-                        $data = $result->getVariables();
+                        $data    = $result->getVariables();
                         $options = $result->getOptions();
                     } elseif (ArrayUtils::hasStringKeys($result, true)) {
+                        $variables = [];
                         if ($viewModel) {
                             $variables = $viewModel->getVariables();
-                            $options = $viewModel->getOptions();
+                            $options   = $viewModel->getOptions();
                         }
                         $data = array_merge_recursive(
-                            (array) $variables,
+                            (array)$variables,
                             $result
                         );
                     } else {
@@ -369,12 +372,12 @@ class ViewStrategyListener extends AbstractListenerAggregate
 
             // For AJAX/Flash
             case 'ajax':
-            // MISC
+                // MISC
             default:
                 if ($viewModel) {
                     $model = $viewModel;
                 } elseif ($result instanceof ViewModel) {
-                    $model = $result;
+                    $model  = $result;
                     $result = null;
                 } else {
                     $model = new ViewModel;
@@ -385,8 +388,12 @@ class ViewStrategyListener extends AbstractListenerAggregate
                     if ($this->type
                         && (!$template || '__NULL_' == $template)
                     ) {
-                        $model->setVariable('content', is_scalar($result)
-                            ? $result : json_encode($result));
+                        $model->setVariable(
+                            'content',
+                            is_scalar($result)
+                                ? $result
+                                : json_encode($result)
+                        );
                     } elseif (ArrayUtils::hasStringKeys($result, true)) {
                         $model->setVariables($result);
                     } elseif (is_scalar($result)) {
@@ -419,7 +426,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
             return;
         }
 
-        $response = $e->getResponse();
+        $response   = $e->getResponse();
         $statusCode = $response->getStatusCode();
         if ($statusCode < 400) {
             return;
@@ -434,15 +441,15 @@ class ViewStrategyListener extends AbstractListenerAggregate
                     $model->setTemplate('');
                     $model->clearChildren();
                 } else {
-                    $variables = array();
-                    $options = array();
+                    $variables = [];
+                    $options   = [];
                     if ($result instanceof ViewModel) {
-                        $variables  = $result->getVariables();
-                        $options    = $result->getOptions();
-                        $variables  = (array) new FeedDataModel($variables);
+                        $variables = $result->getVariables();
+                        $options   = $result->getOptions();
+                        $variables = (array)new FeedDataModel($variables);
                     } elseif ($result instanceof FeedDataModel) {
-                        $variables  = (array) $result;
-                        $options    = array('feed_type' => $result->getType());
+                        $variables = (array)$result;
+                        $options   = ['feed_type' => $result->getType()];
                     }
                     $model = new FeedModel($variables, $options);
                 }
@@ -454,11 +461,11 @@ class ViewStrategyListener extends AbstractListenerAggregate
                     $model->setTemplate('');
                     $model->clearChildren();
                 } else {
-                    $variables = array();
-                    $options = array();
+                    $variables = [];
+                    $options   = [];
                     if ($result instanceof ViewModel) {
                         $variables = $result->getVariables();
-                        $options = $result->getOptions();
+                        $options   = $result->getOptions();
                     }
                     $model = new JsonModel($variables, $options);
                 }
@@ -466,7 +473,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
 
             // For AJAX/Flash
             case 'ajax':
-            // MISC
+                // MISC
             default:
                 if ($result instanceof ViewModel) {
                     $model = $result;
@@ -514,15 +521,18 @@ class ViewStrategyListener extends AbstractListenerAggregate
             return;
         }
 
+        // Set target explicitly
+        $model->setCaptureTo('content');
+
         // Preload  module/controller/action variables
         // for regular theme template
         $routeMatch = $e->getRouteMatch();
         if ('__NULL__' != $template) {
-            $model->setVariables(array(
-                'module'        => $routeMatch->getParam('module'),
-                'controller'    => $routeMatch->getParam('controller'),
-                'action'        => $routeMatch->getParam('action'),
-            ));
+            $model->setVariables([
+                'module'     => $routeMatch->getParam('module'),
+                'controller' => $routeMatch->getParam('controller'),
+                'action'     => $routeMatch->getParam('action'),
+            ]);
         }
         if ($template || $e->isError()) {
             return;
@@ -530,7 +540,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
 
         // Set template for regular module-controller-action request:
         // module:section/controller-action
-        $engine = $e->getApplication()->getEngine();
+        $engine   = $e->getApplication()->getEngine();
         $template = sprintf(
             '%s:%s/%s-%s',
             $routeMatch->getParam('module'),
@@ -568,12 +578,18 @@ class ViewStrategyListener extends AbstractListenerAggregate
         $viewConfig = $config['view_manager'];
         // Specify AJAX layout
         if ('ajax' == $this->type) {
-            $viewModel->setTemplate(isset($viewConfig['layout_ajax'])
-                ? $viewConfig['layout_ajax'] : 'layout-content');
-        // Specify error page layout
+            $viewModel->setTemplate(
+                isset($viewConfig['layout_ajax'])
+                    ? $viewConfig['layout_ajax']
+                    : 'layout-content'
+            );
+            // Specify error page layout
         } elseif ($e->isError()) {
-            $viewModel->setTemplate(isset($viewConfig['layout_error'])
-                ? $viewConfig['layout_error'] : 'layout-style');
+            $viewModel->setTemplate(
+                isset($viewConfig['layout_error'])
+                    ? $viewConfig['layout_error']
+                    : 'layout-style'
+            );
         }
     }
 
@@ -592,7 +608,25 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Get ViewRenderer
         $viewRenderer = $e->getApplication()->getServiceManager()
             ->get('ViewRenderer');
-        $viewRenderer->assemble()->initStrategy();
+        $viewRenderer->themeAssemble()->initStrategy();
+    }
+
+    /**
+     * Preload head meta data
+     *
+     * @param MvcEvent $e
+     * @return void
+     */
+    public function bootThemeAssemble(MvcEvent $e)
+    {
+        if ($this->skipThemeAssemble($e)) {
+            return;
+        }
+
+        // Get ViewRenderer
+        $viewRenderer = $e->getApplication()->getServiceManager()
+            ->get('ViewRenderer');
+        $viewRenderer->themeAssemble()->bootStrategy($e->getRouteMatch()->getParam('module'));
     }
 
     /**
@@ -610,7 +644,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Get ViewRenderer
         $viewRenderer = $e->getApplication()->getServiceManager()
             ->get('ViewRenderer');
-        $viewRenderer->assemble()->renderStrategy();
+        $viewRenderer->themeAssemble()->renderStrategy($e->getRouteMatch()->getParam('module'));
     }
 
     /**
@@ -627,17 +661,18 @@ class ViewStrategyListener extends AbstractListenerAggregate
 
         // Set response headers for language and charset
         $response = $e->getResponse();
-        $response->getHeaders()->addHeaders(array(
-            'content-type'      => sprintf('text/html; charset=%s',
-                Pi::service('i18n')->charset),
-            'content-language'  => Pi::service('i18n')->locale,
-        ));
+        $response->getHeaders()->addHeaders([
+            'content-type'     => sprintf(
+                'text/html; charset=%s',
+                Pi::service('i18n')->getCharset()
+            ),
+            'content-language' => Pi::service('i18n')->getLocale(),
+        ]);
 
         // Get ViewRenderer
-        $viewRenderer = $e->getApplication()->getServiceManager()
-            ->get('ViewRenderer');
-        $content = $response->getContent();
-        $content = $viewRenderer->assemble()->completeStrategy($content);
+        $viewRenderer = $e->getApplication()->getServiceManager()->get('ViewRenderer');
+        $content      = $response->getContent();
+        $content      = $viewRenderer->themeAssemble()->completeStrategy($content);
         $response->setContent($content);
     }
 
@@ -661,7 +696,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // AJAX
         if ($request->isXmlHttpRequest()) {
             $this->type = 'ajax';
-        // Flash
+            // Flash
         } elseif ($request->isFlashRequest()) {
             $this->type = 'flash';
         }
@@ -670,22 +705,24 @@ class ViewStrategyListener extends AbstractListenerAggregate
         if (!$headers->has('accept')) {
             return $this->type;
         }
-        $accept  = $headers->get('Accept');
+        $accept = $headers->get('Accept');
 
         // Json
         if (($match = $accept->match(
-            'application/json, application/javascript'
-        )) != false) {
+                'application/json, application/javascript'
+            )) != false
+        ) {
             $typeString = $match->getTypeString();
             if ('application/json' == $typeString
                 || 'application/javascript' == $typeString
             ) {
                 $this->type = 'json';
             }
-        // Feed
+            // Feed
         } elseif (($match = $accept->match(
-            'application/rss+xml, application/atom+xml'
-        )) != false) {
+                'application/rss+xml, application/atom+xml'
+            )) != false
+        ) {
             $typeString = $match->getTypeString();
             if ('application/rss+xml' == $typeString
                 || 'application/atom+xml' == $typeString

@@ -1,15 +1,14 @@
 {
     "name": "pi/pi",
     "description": "Pi is a multi-tenant application development engine for cloud ready SaaS platform with support for SSO/OAuth.",
-    "type": "project",
+    "license": "BSD-3-Clause",
     "keywords": [
         "Pi",
         "ZendFramework",
         "MultiTenant",
         "SaaS"
     ],
-    "homepage": "http://pialog.org",
-    "license": "BSD-3-Clause",
+    "homepage": "http://piengine.org",
     "authors": [
         {
             "name": "Taiwen Jiang",
@@ -20,8 +19,11 @@
             "homepage": "https://github.com/pi-engine/pi/graphs/contributors"
         }
     ],
+    "config": {
+        "vendor-dir": "lib/vendor"
+    },
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=7.0.0",
         "ext-ctype": "*",
         "ext-fileinfo": "*",
         "ext-gd": "*",
@@ -29,7 +31,22 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-spl": "*",
-        "lib-curl": "*"
+        "lib-curl": "*",
+        "zendframework/zendframework": "V2.5.2",
+        "hybridauth/hybridauth": "^3",
+        "geoip2/geoip2": "^2.9",
+        "phpseclib/phpseclib": "^2.0",
+        "phayes/geophp": "^1.2",
+        "tecnickcom/tcpdf": "^6.2",
+        "imagine/imagine": "^1.2",
+        "spipu/html2pdf": "^5.2",
+        "matthiasmullie/minify": "^1.3",
+        "ircmaxell/random-lib": "^1.2",
+        "ircmaxell/security-lib": "^1.1",
+        "emcconville/google-map-polyline-encoding-tool": "^1.3",
+        "mongodb/mongodb": "^1.5",
+        "triagens/arangodb": "^3.5",
+        "stripe/stripe-php": "^7.3"
     },
     "require-dev": {
     },
@@ -37,12 +54,6 @@
         "ext-apc": "for opcode cache and system persistent data",
         "ext-discount": "for Markdown text parsing",
         "ext-intl": "for i18n features"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.4-dev",
-            "dev-develop": "2.5-dev"
-        }
     },
     "minimum-stability": "dev"
 }

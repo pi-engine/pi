@@ -1,54 +1,53 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link         http://code.pialog.org for the Pi Engine source repository
- * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt BSD 3-Clause License
+ * @link         http://code.piengine.org for the Pi Engine source repository
+ * @copyright    Copyright (c) Pi Engine http://piengine.org
+ * @license      http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article;
 
-use Pi;
-use Module\Article\Service;
-use Module\Article\Entity;
 use Module\Article\Model\Article;
+use Module\Article\Service;
+use Pi;
 use Zend\Db\Sql\Expression;
 
 /**
  * Topic service class
- * 
+ *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class Topic
 {
     protected static $module = 'article';
-    
+
     /**
      * Get topic id by passed topic name
-     * 
-     * @param string  $name    Topic unique name
-     * @param string  $module
-     * @return int 
+     *
+     * @param string $name Topic unique name
+     * @param string $module
+     * @return int
      */
     public static function getTopicId($name, $module = null)
     {
         $module = $module ?: Pi::service('module')->current();
         $topic  = Pi::model('topic', $module)->find($name, 'name');
-        
+
         return $topic->id;
     }
 
     /**
      * Get articles belonging to a certain topic by passed condition
-     * 
-     * @param array   $where
-     * @param int     $page
-     * @param int     $limit
-     * @param array   $columns
-     * @param string  $order
-     * @param string  $module
-     * @return array 
+     *
+     * @param array $where
+     * @param int $page
+     * @param int $limit
+     * @param array $columns
+     * @param string $order
+     * @param string $module
+     * @return array
      */
     public static function getTopicArticles(
         $where,
@@ -57,25 +56,26 @@ class Topic
         $columns = null,
         $order = null,
         $module = null
-    ) {
+    )
+    {
         $module     = $module ?: Pi::service('module')->current();
-        $topicWhere = array();
+        $topicWhere = [];
         if (!empty($where['topic'])) {
-            $topicId = is_numeric($where['topic']) 
-                ? $where['topic'] 
+            $topicId             = is_numeric($where['topic'])
+                ? $where['topic']
                 : self::getTopicId($where['topic'], $module);
             $topicWhere['topic'] = $topicId;
             unset($where['topic']);
         }
-        
+
         $modelTopic = Pi::model('article_topic', $module);
         $rowTopic   = $modelTopic->select($topicWhere);
-        $articleIds = array();
+        $articleIds = [];
         foreach ($rowTopic as $row) {
             $articleIds[] = $row['article'];
         }
         $where['id'] = $articleIds;
-        
+
         return Entity::getAvailableArticlePage(
             $where,
             $page,
@@ -85,17 +85,17 @@ class Topic
             $module
         );
     }
-    
+
     /**
      * Get topic details by passed condition
-     * 
-     * @param array   $where
-     * @param int     $page
-     * @param int     $limit
-     * @param array   $columns
-     * @param string  $order
-     * @param string  $module
-     * @return array 
+     *
+     * @param array $where
+     * @param int $page
+     * @param int $limit
+     * @param array $columns
+     * @param string $order
+     * @param string $module
+     * @return array
      */
     public static function getTopics(
         $where,
@@ -104,12 +104,13 @@ class Topic
         $columns = null,
         $order = null,
         $module = null
-    ) {
-        $offset     = ($limit && $page) ? $limit * ($page - 1) : null;
-        $where      = empty($where) ? array() : (array) $where;
-        $columns    = empty($columns) ? array('*') : $columns;
-        $module     = $module ?: Pi::service('module')->current();
-        
+    )
+    {
+        $offset  = ($limit && $page) ? $limit * ($page - 1) : null;
+        $where   = empty($where) ? [] : (array)$where;
+        $columns = empty($columns) ? ['*'] : $columns;
+        $module  = $module ?: Pi::service('module')->current();
+
         $modelTopic = Pi::model('topic', $module);
         $select     = $modelTopic->select()->where($where)->columns($columns);
         if (!empty($page)) {
@@ -122,33 +123,29 @@ class Topic
             $select->order($order);
         }
         $rowset = $modelTopic->selectWith($select);
-        $topics = array();
-        $route  = Pi::api('api', $module)->getRouteName();
+        $topics = [];
+        //$route  = Pi::api('api', $module)->getRouteName();
         foreach ($rowset as $row) {
-            $id   = $row->id;
-            $topics[$id] = $row->toArray();
-            $topics[$id]['url'] = Pi::engine()->application()
-                ->getRouter()
-                ->assemble(
-                    array(
-                        'topic' => $row->slug ?: $row->id,
-                    ),
-                    array('name' => $route)
-                );
+            $id                 = $row->id;
+            $topics[$id]        = $row->toArray();
+            $topics[$id]['url'] = Pi::service('url')->assemble('article', [
+                'module' => $module,
+                'topic'  => $row->slug ?: $row->id,
+            ]);
         }
-        
+
         return $topics;
     }
-    
+
     /**
      * Get top visits in period of topic articles
-     * 
-     * @param int     $days
-     * @param int     $limit
-     * @param int     $category
-     * @param int     $topic
-     * @param string  $module
-     * @return array 
+     *
+     * @param int $days
+     * @param int $limit
+     * @param int $category
+     * @param int $topic
+     * @param string $module
+     * @return array
      */
     public static function getVisitsRecently(
         $days,
@@ -156,23 +153,24 @@ class Topic
         $category = null,
         $topic = null,
         $module = null
-    ) {
+    )
+    {
         $module = $module ?: Pi::service('module')->current();
-        
+
         $dateTo   = time();
         $dateFrom = $dateTo - 24 * 3600 * $days;
-        
-        $where    = array(
-            'active'   => 1,
-            'status'   => Article::FIELD_STATUS_PUBLISHED,
-        );
-        
-        $modelVisit    = Pi::model('visit', $module);
-        $tableVisit    = $modelVisit->getTable();
+
+        $where = [
+            'active' => 1,
+            'status' => Article::FIELD_STATUS_PUBLISHED,
+        ];
+
+        $modelVisit                        = Pi::model('visit', $module);
+        $tableVisit                        = $modelVisit->getTable();
         $where[$tableVisit . '.time >= ?'] = $dateFrom;
         $where[$tableVisit . '.time < ?']  = $dateTo;
-        
-        $modelCategory  = Pi::model('category', $module);
+
+        $modelCategory = Pi::model('category', $module);
         if ($category && $category > 1) {
             $categoryIds = $modelCategory->getDescendantIds($category);
 
@@ -180,44 +178,44 @@ class Topic
                 $where['category'] = $categoryIds;
             }
         }
-        
+
         if ($topic) {
             $where['r.topic'] = $topic;
         }
-        
+
         $modelArticle  = Pi::model('article', $module);
         $modelRelation = Pi::model('article_topic', $module);
-        
+
         $tableArticle  = $modelArticle->getTable();
         $tableRelation = $modelRelation->getTable();
-        $select = $modelVisit->select()
-            ->columns(array(
+        $select        = $modelVisit->select()
+            ->columns([
                 'article',
-                'total'      => new Expression('count(*)'),
-            ))
+                'total' => new Expression('count(*)'),
+            ])
             ->join(
-                array('a' => $tableArticle),
+                ['a' => $tableArticle],
                 sprintf('%s.article = a.id', $tableVisit)
             )
             ->join(
-                array('r' => $tableRelation),
+                ['r' => $tableRelation],
                 'a.id = r.article'
             )
             ->where($where)
             ->offset(0)
-            ->group(array(sprintf('%s.article', $tableVisit)))
+            ->group([sprintf('%s.article', $tableVisit)])
             ->limit($limit)
             ->order('total DESC');
-        $rowset = $modelVisit->selectWith($select);
-        
-        $articleIds = array(0);
+        $rowset        = $modelVisit->selectWith($select);
+
+        $articleIds = [0];
         foreach ($rowset as $row) {
             $articleIds[] = $row['article'];
         }
-        
-        $where = array(
+
+        $where = [
             'id' => $articleIds,
-        );
+        ];
         return Entity::getAvailableArticlePage(
             $where,
             1,

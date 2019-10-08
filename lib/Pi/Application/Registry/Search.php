@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Registry
  */
 
@@ -15,17 +15,17 @@ use Pi;
 /**
  * Module search callback list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Search extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
-     * @param   array   $options    Potential values for type:
-     *      active, inactive, all
+     * @param   array $options Potential values for type:
+     *          active, inactive, all
      * @return  array   Keys: dirname => callback, active
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
         $model = Pi::model('search');
 
@@ -36,7 +36,7 @@ class Search extends AbstractRegistry
         }
         $rowset = $model->select($where);
 
-        $modules = array();
+        $modules = [];
         foreach ($rowset as $row) {
             $modules[$row->module] = $row->callback;
         }

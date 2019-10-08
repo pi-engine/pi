@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Registry
  */
 
@@ -15,21 +15,21 @@ use Pi;
 /**
  * Page list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Page extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $model = Pi::model('page');
-        $pageList = $model->select(array(
-            'section'   => $options['section'],
-            'module'    => (string) $options['module']
-        ));
-        $pages = array();
+        $model    = Pi::model('page');
+        $pageList = $model->select([
+            'section' => $options['section'],
+            'module'  => (string)$options['module'],
+        ]);
+        $pages    = [];
         foreach ($pageList as $page) {
             /*
             list($module, $controller, $action) =
@@ -55,7 +55,7 @@ class Page extends AbstractRegistry
      */
     public function read($section = 'front', $module = '')
     {
-        $module = $module ?: Pi::service('module')->current();
+        $module  = $module ?: Pi::service('module')->current();
         $options = compact('section', 'module');
 
         return $this->loadData($options);
@@ -63,8 +63,8 @@ class Page extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string        $section
-     * @param string|null   $module
+     * @param string $section
+     * @param string|null $module
      */
     public function create($section = 'front', $module = '')
     {

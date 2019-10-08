@@ -1,11 +1,12 @@
 <?php
 /**
-* Pi Engine (http://pialog.org)
-*
-* @link            http://code.pialog.org for the Pi Engine source repository
-* @copyright       Copyright (c) Pi Engine http://pialog.org
-* @license         http://pialog.org/license.txt BSD 3-Clause License
-*/
+ * Pi Engine (http://piengine.org)
+ *
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
+ */
+
 namespace Module\User\Controller\Admin;
 
 use Pi;
@@ -13,10 +14,10 @@ use Pi\Mvc\Controller\ActionController;
 use Zend\Db\Sql\Predicate;
 
 /**
-* User manage cases controller
-*
-* @author Liu Chuang <liuchuang@eefocus.com>
-*/
+ * User manage cases controller
+ *
+ * @author Liu Chuang <liuchuang@eefocus.com>
+ */
 class IndexController extends ActionController
 {
     /**
@@ -26,9 +27,9 @@ class IndexController extends ActionController
     public function indexAction()
     {
         $this->view()->setTemplate('user');
-        $this->view()->assign(array(
-            'roles'  => $this->getRoles()
-        ));
+        $this->view()->assign([
+            'roles' => $this->getRoles(),
+        ]);
     }
 
     /**
@@ -38,10 +39,11 @@ class IndexController extends ActionController
      */
     public function allAction()
     {
-        $page   = (int) $this->params('p', 1);
+        $page   = (int)$this->params('p', 1);
         $limit  = Pi::config('list_limit', 'user');
-        $offset = (int) ($page -1) * $limit;
+        $offset = (int)($page - 1) * $limit;
 
+        $condition['activated']     = _get('activated') ?: '';
         $condition['active']        = _get('active') ?: '';
         $condition['enable']        = _get('enable') ?: '';
         $condition['front_role']    = _get('front_role') ?: '';
@@ -53,20 +55,19 @@ class IndexController extends ActionController
         list($users, $count) = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
-        $paginator = array(
-            'count'      => (int) $count,
-            'limit'      => (int) $limit,
-            'page'       => $page,
-        );
+        $paginator = [
+            'count' => (int)$count,
+            'limit' => (int)$limit,
+            'page'  => $page,
+        ];
 
-        $data = array(
-            'users'       => array_values($users),
-            'paginator'   => $paginator,
-            'condition'   => $condition,
-        );
+        $data = [
+            'users'     => array_values($users),
+            'paginator' => $paginator,
+            'condition' => $condition,
+        ];
 
         return $data;
-
     }
 
     /**
@@ -74,9 +75,9 @@ class IndexController extends ActionController
      */
     public function activatedAction()
     {
-        $page   = (int) $this->params('p', 1);
+        $page   = (int)$this->params('p', 1);
         $limit  = Pi::config('list_limit', 'user');
-        $offset = (int) ($page -1) * $limit;
+        $offset = (int)($page - 1) * $limit;
 
         $condition['activated']     = 'activated';
         $condition['active']        = _get('active') ?: '';
@@ -91,17 +92,17 @@ class IndexController extends ActionController
         list($users, $count) = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
-        $paginator = array(
-            'count'      => (int) $count,
-            'limit'      => (int) $limit,
-            'page'       => $page,
-        );
+        $paginator = [
+            'count' => (int)$count,
+            'limit' => (int)$limit,
+            'page'  => $page,
+        ];
 
-        $data = array(
-            'users'       => array_values($users),
-            'paginator'   => $paginator,
-            'condition'   => $condition,
-        );
+        $data = [
+            'users'     => array_values($users),
+            'paginator' => $paginator,
+            'condition' => $condition,
+        ];
 
         return $data;
 
@@ -112,9 +113,9 @@ class IndexController extends ActionController
      */
     public function pendingAction()
     {
-        $page   = (int) $this->params('p', 1);
+        $page   = (int)$this->params('p', 1);
         $limit  = Pi::config('list_limit', 'user');
-        $offset = (int) ($page -1) * $limit;
+        $offset = (int)($page - 1) * $limit;
 
         $condition['activated']     = 'pending';
         $condition['enable']        = _get('enable') ?: '';
@@ -128,17 +129,17 @@ class IndexController extends ActionController
         list($users, $count) = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
-        $paginator = array(
-            'count'      => (int) $count,
-            'limit'      => (int) $limit,
-            'page'       => $page,
-        );
+        $paginator = [
+            'count' => (int)$count,
+            'limit' => (int)$limit,
+            'page'  => $page,
+        ];
 
-        $data = array(
-            'users'       => array_values($users),
-            'paginator'   => $paginator,
-            'condition'   => $condition,
-        );
+        $data = [
+            'users'     => array_values($users),
+            'paginator' => $paginator,
+            'condition' => $condition,
+        ];
 
         return $data;
 
@@ -149,25 +150,25 @@ class IndexController extends ActionController
      */
     public function addUserAction()
     {
-        $result = array(
-            'status' => 0,
+        $result = [
+            'status'  => 0,
             'message' => '',
-        );
+        ];
 
         $identity   = _post('identity');
         $email      = _post('email');
         $name       = _post('name');
         $credential = _post('credential');
-        $activated  = (int) _post('activated');
-        $enable     = (int) _post('enable');
+        $activated  = (int)_post('activated');
+        $enable     = (int)_post('enable');
         $roles      = _post('roles');
 
         // Check duplication
-        $where = array(
+        $where  = [
             'identity' => $identity,
             'name'     => $name,
             'email'    => $email,
-        );
+        ];
         $select = Pi::model('user_account')->select()->where(
             $where,
             Predicate\PredicateSet::OP_OR
@@ -178,14 +179,14 @@ class IndexController extends ActionController
             return $result;
         }
 
-        $data = array(
+        $data = [
             'identity'      => $identity,
             'name'          => $name,
             'email'         => $email,
             'credential'    => $credential,
             'last_modified' => time(),
-            'ip_register'   => Pi::user()->getIp()
-        );
+            'ip_register'   => Pi::user()->getIp(),
+        ];
 
         // Add user
         $uid = Pi::api('user', 'user')->addUser($data);
@@ -224,12 +225,12 @@ class IndexController extends ActionController
      */
     public function checkExistAction()
     {
-        $result = array(
+        $result = [
             'status' => 1,
-        );
+        ];
 
-        $query  = array();
-        foreach (array('identity', 'email', 'name') as $param) {
+        $query = [];
+        foreach (['identity', 'email', 'name'] as $param) {
             $val = $this->params($param);
             if ($val) {
                 $query[$param] = $val;
@@ -244,16 +245,16 @@ class IndexController extends ActionController
         }
 
         $found = 0;
-        $row = Pi::model('user_account')->select($where)->current();
+        $row   = Pi::model('user_account')->select($where)->current();
         if ($row) {
             $uid = $this->params('id');
             if (!$uid || $uid == $row['id']) {
                 $found = 1;
             }
         }
-        $result = array(
-            'status'    => $found,
-        );
+        $result = [
+            'status' => $found,
+        ];
 
         return $result;
     }
@@ -285,24 +286,24 @@ class IndexController extends ActionController
             $condition['admin_role'] = array_filter($condition['admin_role']);
         }
 
-        $page   = (int) $this->params('p', 1);
+        $page   = (int)$this->params('p', 1);
         $limit  = Pi::config('list_limit', 'user');
-        $offset = (int) ($page -1) * $limit;
+        $offset = (int)($page - 1) * $limit;
 
         list($users, $count) = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
-        $paginator = array(
-            'count'      => (int) $count,
-            'limit'      => (int) $limit,
-            'page'       => $page,
-        );
+        $paginator = [
+            'count' => (int)$count,
+            'limit' => (int)$limit,
+            'page'  => $page,
+        ];
 
-        $data = array(
-            'users'       => array_values($users),
-            'paginator'   => $paginator,
-            'condition'   => $condition,
-        );
+        $data = [
+            'users'     => array_values($users),
+            'paginator' => $paginator,
+            'condition' => $condition,
+        ];
 
         return $data;
 
@@ -315,10 +316,10 @@ class IndexController extends ActionController
      */
     public function enableAction()
     {
-        $result = array(
+        $result = [
             'status'  => 0,
             'message' => '',
-        );
+        ];
 
         $uids = _post('ids', '');
         if (!$uids) {
@@ -326,9 +327,9 @@ class IndexController extends ActionController
             return $result;
         }
 
-        $uids  = explode(',', $uids);
-        $count = 0;
-        $enableUids = array();
+        $uids       = explode(',', $uids);
+        $count      = 0;
+        $enableUids = [];
         foreach ($uids as $uid) {
             $status = Pi::api('user', 'user')->enableUser($uid);
             if ($status) {
@@ -340,10 +341,10 @@ class IndexController extends ActionController
             Pi::service('event')->trigger('user_enable', $enableUids);
         }
 
-        $usersStatus = $this->getUserStatus($uids);
+        $usersStatus            = $this->getUserStatus($uids);
         $result['users_status'] = $usersStatus;
-        $result['status']  = 1;
-        $result['message'] = sprintf(_a('%d users enabled.'), $count);
+        $result['status']       = 1;
+        $result['message']      = sprintf(_a('%d users enabled.'), $count);
 
         return $result;
 
@@ -356,20 +357,20 @@ class IndexController extends ActionController
      */
     public function disableAction()
     {
-        $result = array(
+        $result = [
             'status'  => 0,
-            'message' => ''
-        );
-        $uids = _post('ids', '');
+            'message' => '',
+        ];
+        $uids   = _post('ids', '');
 
         if (!$uids) {
             $result['message'] = _a('Disable user failed: invalid uid.');
             return $result;
         }
 
-        $uids  = explode(',', $uids);
-        $count = 0;
-        $disableUids[] = array();
+        $uids          = explode(',', $uids);
+        $count         = 0;
+        $disableUids[] = [];
         foreach ($uids as $uid) {
             $status = Pi::api('user', 'user')->disableUser($uid);
             if ($status) {
@@ -381,10 +382,10 @@ class IndexController extends ActionController
             Pi::service('event')->trigger('user_disable', $disableUids);
         }
 
-        $usersStatus = $this->getUserStatus($uids);
+        $usersStatus            = $this->getUserStatus($uids);
         $result['users_status'] = $usersStatus;
-        $result['status']  = 1;
-        $result['message'] = sprintf(_a('%d disable user successfully'), $count);
+        $result['status']       = 1;
+        $result['message']      = sprintf(_a('%d disable user successfully'), $count);
 
         return $result;
 
@@ -398,10 +399,10 @@ class IndexController extends ActionController
     public function deleteUserAction()
     {
         $uids   = _post('ids');
-        $result = array(
+        $result = [
             'status'  => 0,
             'message' => '',
-        );
+        ];
 
         if (!$uids) {
             $result['message'] = _a('Delete user failed: invalid uid');
@@ -412,6 +413,9 @@ class IndexController extends ActionController
         $count = 0;
         foreach ($uids as $uid) {
             $status = Pi::api('user', 'user')->deleteUser($uid);
+            if (Pi::service('module')->isActive('subscription')) {
+                Pi::api('people', 'subscription')->update(array('status' => 0), $uid);
+            }
             if (!is_array($status) && $status !== false) {
                 $count++;
                 $result['deleted_uids'][] = $uid;
@@ -430,10 +434,10 @@ class IndexController extends ActionController
             );
         }
 
-        $usersStatus = $this->getUserStatus($uids);
+        $usersStatus            = $this->getUserStatus($uids);
         $result['users_status'] = $usersStatus;
-        $result['status']  = 1;
-        $result['message'] = sprintf(_a('%d delete user successfully'), $count);
+        $result['status']       = 1;
+        $result['message']      = sprintf(_a('%d delete user successfully'), $count);
 
         return $result;
 
@@ -447,10 +451,10 @@ class IndexController extends ActionController
     {
         $uids = _post('ids');
 
-        $result = array(
+        $result = [
             'status'  => 0,
-            'message' => ''
-        );
+            'message' => '',
+        ];
 
         if (!$uids) {
             $result['message'] = _a('Activate user failed: invalid uid.');
@@ -463,8 +467,8 @@ class IndexController extends ActionController
             return $result;
         }
 
-        $count = 0;
-        $activateUids = array();
+        $count        = 0;
+        $activateUids = [];
         foreach ($uids as $uid) {
             $status = Pi::api('user', 'user')->activateUser($uid);
             if ($status) {
@@ -477,10 +481,10 @@ class IndexController extends ActionController
             $this->sendNotification($activateUids);
         }
 
-        $usersStatus = $this->getUserStatus($uids);
+        $usersStatus            = $this->getUserStatus($uids);
         $result['users_status'] = $usersStatus;
-        $result['status']  = 1;
-        $result['message'] = sprintf(_a('%d users activated.'), $count);
+        $result['status']       = 1;
+        $result['message']      = sprintf(_a('%d users activated.'), $count);
 
         return $result;
 
@@ -498,11 +502,11 @@ class IndexController extends ActionController
         $type = _post('type');
         $role = _post('role');
 
-        $result = array(
-            'status'    => 0,
-            'data'      => array(),
-            'message'   => '',
-        );
+        $result = [
+            'status'  => 0,
+            'data'    => [],
+            'message' => '',
+        ];
 
         if (!$uids || !$type || !$role) {
             $result['message'] = _a('Role assignment failed: invalid parameters.');
@@ -515,13 +519,13 @@ class IndexController extends ActionController
             return $result;
         }
 
-        if (!in_array($type, array('add', 'remove'))) {
+        if (!in_array($type, ['add', 'remove'])) {
             $result['message'] = _a('Role assignment failed: invalid operation.');
             return $result;
         }
 
         // Add user role
-        $roleAssignUids = array();
+        $roleAssignUids = [];
         if ($type == 'add') {
             foreach ($uids as $uid) {
                 $status = Pi::api('user', 'user')->setRole($uid, $role);
@@ -539,7 +543,7 @@ class IndexController extends ActionController
         }
 
         // Remove user role
-        $roleRemoveUids = array();
+        $roleRemoveUids = [];
         if ($type == 'remove') {
             foreach ($uids as $uid) {
                 $status = Pi::api('user', 'user')->revokeRole($uid, $role);
@@ -556,18 +560,19 @@ class IndexController extends ActionController
             Pi::service('event')->trigger('role_remove', $roleRemoveUids);
         }
 
-        $users = array();
+        $users = [];
         array_walk($uids, function ($uid) use (&$users) {
-            $users[$uid] = array('id' => $uid);
+            $users[$uid] = ['id' => $uid];
         });
-        $data = $this->renderRole($users);
-        $result['data'] = $data;
+        $data              = $this->renderRole($users);
+        $result['data']    = $data;
         $result['status']  = 1;
         $result['message'] = _a('Role assignment succeeded.');
 
         return $result;
 
     }
+
     /**
      * Get users and count according to conditions
      *
@@ -579,13 +584,13 @@ class IndexController extends ActionController
      */
     protected function getUsers($condition, $limit = 0, $offset = 0)
     {
-        $users = array();
+        $users = [];
         $count = 0;
 
         $modelAccount = Pi::model('user_account');
         $modelRole    = Pi::model('user_role');
 
-        $where = array();
+        $where                 = [];
         $where['time_deleted'] = 0;
         if ($condition['active'] == 'active') {
             $where['active'] = 1;
@@ -609,13 +614,13 @@ class IndexController extends ActionController
         }
         if (!empty($condition['uid'])) {
             if ($condition['front_role'] || $condition['admin_role']) {
-                $where['account.id'] = (int) $condition['uid'];
+                $where['account.id'] = (int)$condition['uid'];
             } else {
-                $where['id'] = (int) $condition['uid'];
+                $where['id'] = (int)$condition['uid'];
             }
         }
         if (!empty($condition['email'])) {
-            $where['email like ?'] = '%' .$condition['email'] . '%';
+            $where['email like ?'] = '%' . $condition['email'] . '%';
         }
         if (!empty($condition['identity'])) {
             $where['identity like ?'] = '%' . $condition['identity'] . '%';
@@ -631,7 +636,7 @@ class IndexController extends ActionController
         }
 
         $whereAccount = Pi::db()->where()->create($where);
-        $where = Pi::db()->where();
+        $where        = Pi::db()->where();
         $where->add($whereAccount);
 
         $select = Pi::db()->select();
@@ -639,29 +644,29 @@ class IndexController extends ActionController
             if (is_array($condition['front_role'])) {
                 $i = 1;
                 foreach ($condition['front_role'] as $role) {
-                    $prefix = $i;
-                    $whereRoleFront = Pi::db()->where()->create(array(
+                    $prefix         = $i;
+                    $whereRoleFront = Pi::db()->where()->create([
                         'front' . $prefix . '.role'    => $role,
-                        'front' . $prefix . '.section'  => 'front',
-                    ));
+                        'front' . $prefix . '.section' => 'front',
+                    ]);
                     $where->add($whereRoleFront);
                     $select->join(
-                        array('front' . $prefix => $modelRole->getTable()),
+                        ['front' . $prefix => $modelRole->getTable()],
                         'front' . $prefix . '.uid=account.id',
-                        array()
+                        []
                     );
                     $i++;
                 }
             } else {
-                $whereRoleFront = Pi::db()->where()->create(array(
+                $whereRoleFront = Pi::db()->where()->create([
                     'front.role'    => $condition['front_role'],
                     'front.section' => 'front',
-                ));
+                ]);
                 $where->add($whereRoleFront);
                 $select->join(
-                    array('front' => $modelRole->getTable()),
+                    ['front' => $modelRole->getTable()],
                     'front.uid=account.id',
-                    array()
+                    []
                 );
             }
         }
@@ -670,64 +675,64 @@ class IndexController extends ActionController
             if (is_array($condition['admin_role'])) {
                 $i = 1;
                 foreach ($condition['admin_role'] as $role) {
-                    $prefix = $i;
-                    $whereRoleFront = Pi::db()->where()->create(array(
-                        'admin' . $prefix . '.role'     => $role,
-                        'admin' . $prefix . '.section'  => 'admin',
-                    ));
+                    $prefix         = $i;
+                    $whereRoleFront = Pi::db()->where()->create([
+                        'admin' . $prefix . '.role'    => $role,
+                        'admin' . $prefix . '.section' => 'admin',
+                    ]);
                     $where->add($whereRoleFront);
                     $select->join(
-                        array('admin' . $prefix => $modelRole->getTable()),
+                        ['admin' . $prefix => $modelRole->getTable()],
                         'admin' . $prefix . '.uid=account.id',
-                        array()
+                        []
                     );
                     $i++;
                 }
             } else {
-                $whereRoleFront = Pi::db()->where()->create(array(
+                $whereRoleFront = Pi::db()->where()->create([
                     'admin.role'    => $condition['admin_role'],
                     'admin.section' => 'admin',
-                ));
+                ]);
                 $where->add($whereRoleFront);
                 $select->join(
-                    array('admin' => $modelRole->getTable()),
+                    ['admin' => $modelRole->getTable()],
                     'admin.uid=account.id',
-                    array()
+                    []
                 );
             }
         }
 
         if (!empty($condition['ip_register'])) {
             $profileModel = $this->getModel('profile');
-            $whereProfile = Pi::db()->where()->create(array(
+            $whereProfile = Pi::db()->where()->create([
                 'profile.ip_register like ?' => '%' . $condition['ip_register'] . '%',
-            ));
+            ]);
             $where->add($whereProfile);
             $select->join(
-                array('profile' => $profileModel->getTable()),
+                ['profile' => $profileModel->getTable()],
                 'profile.uid=account.id',
-                array()
+                []
             );
         }
         $select->where($where);
 
         // Fetch count
         $select->from(
-            array('account' => $modelAccount->getTable())
+            ['account' => $modelAccount->getTable()]
         )->columns(
-            array('count' => Pi::db()->expression('COUNT(account.id)'))
+            ['count' => Pi::db()->expression('COUNT(account.id)')]
         );
 
         $rowset = Pi::db()->query($select);
         if ($rowset) {
-            $row = $rowset->current();
-            $count = (int) $row['count'];
+            $row   = $rowset->current();
+            $count = (int)$row['count'];
         }
 
         // Fetch users
         if ($count) {
             $select->columns(
-                array('id')
+                ['id']
             );
             $select->order('account.id DESC');
             if ($limit) {
@@ -737,13 +742,13 @@ class IndexController extends ActionController
                 $select->offset($offset);
             }
             $rowset = Pi::db()->query($select);
-            $uids = array();
+            $uids   = [];
             foreach ($rowset as $row) {
-                $uids[] = (int) $row['id'];
+                $uids[] = (int)$row['id'];
             }
 
             if ($uids) {
-                $columns = array(
+                $columns = [
                     'identity',
                     'name',
                     'email',
@@ -752,26 +757,27 @@ class IndexController extends ActionController
                     'time_activated',
                     'time_created',
                     'ip_register',
-                    'id'
-                );
-                $users = Pi::api('user', 'user')->get($uids, $columns);
+                    'id',
+                    'register_source',
+                ];
+                $users   = Pi::api('user', 'user')->get($uids, $columns);
                 array_walk($users, function (&$user, $uid) {
-                    $user['link'] = Pi::service('user')->getUrl('profile', array(
-                        'id'    => $uid,
-                    ));
-                    $user['active']         = (bool) $user['active'];
+                    $user['link']           = Pi::service('user')->getUrl('profile', [
+                        'id' => $uid,
+                    ]);
+                    $user['active']         = (bool)$user['active'];
                     $user['time_disabled']  = $user['time_disabled']
                         ? _date($user['time_disabled']) : 0;
-                    $user['time_activated']  = $user['time_activated']
+                    $user['time_activated'] = $user['time_activated']
                         ? _date($user['time_activated']) : 0;
-                    $user['time_created']  = $user['time_created']
+                    $user['time_created']   = $user['time_created']
                         ? _date($user['time_created']) : 0;
                 });
                 $users = $this->renderRole($users);
             }
 
         }
-        $result = array($users, $count);
+        $result = [$users, $count];
 
         return $result;
     }
@@ -784,16 +790,16 @@ class IndexController extends ActionController
     protected function getRoles()
     {
         $roles = Pi::registry('role')->read();
-        $data  = array();
+        $data  = [];
         foreach ($roles as $name => $role) {
             if ('guest' == $name) {
                 continue;
             }
-            $data[] = array(
+            $data[] = [
                 'name'  => $name,
                 'title' => $role['title'],
                 'type'  => $role['section'],
-            );
+            ];
         }
 
         return $data;
@@ -868,14 +874,14 @@ class IndexController extends ActionController
             return $users;
         }
 
-        $uids = array_keys($users);
-        $roleList = array();
-        $roles = Pi::registry('role')->read();
-        $rowset = Pi::model('user_role')->select(array('uid' => $uids));
+        $uids     = array_keys($users);
+        $roleList = [];
+        $roles    = Pi::registry('role')->read();
+        $rowset   = Pi::model('user_role')->select(['uid' => $uids]);
         foreach ($rowset as $row) {
-            $uid     = $row['uid'];
-            $section = $row['section'];
-            $roleKey = $section . '_roles';
+            $uid                        = $row['uid'];
+            $section                    = $row['section'];
+            $roleKey                    = $section . '_roles';
             $roleList[$uid][$roleKey][] = $roles[$row['role']]['title'];
         }
         array_walk($users, function (&$user, $uid) use ($roleList) {
@@ -898,21 +904,21 @@ class IndexController extends ActionController
      */
     protected function getUserStatus($uids)
     {
-        $uids  = (array) $uids;
+        $uids  = (array)$uids;
         $users = Pi::api('user', 'user')->get(
             $uids,
-            array(
-                'active', 'time_activated', 'time_disabled'
-            )
+            [
+                'active', 'time_activated', 'time_disabled',
+            ]
         );
 
-        $usersStatus = array();
+        $usersStatus = [];
         foreach ($users as $user) {
-            $usersStatus[$user['id']] = array(
-                'active'    => (int) $user['active'],
+            $usersStatus[$user['id']] = [
+                'active'    => (int)$user['active'],
                 'activated' => $user['time_activated'] ? 1 : 0,
                 'disabled'  => $user['time_disabled'] ? 1 : 0,
-            );
+            ];
         }
 
         return $usersStatus;
@@ -931,14 +937,14 @@ class IndexController extends ActionController
     {
         if ($type) {
             try {
-                Pi::model($field, $type)->delete(array('uid' => $uid));
+                Pi::model($field, $type)->delete(['uid' => $uid]);
                 $status = 1;
             } catch (\Exception $e) {
                 $status = 0;
             }
         } else {
             try {
-                Pi::model($field)->delete(array('uid' => $uid));
+                Pi::model($field)->delete(['uid' => $uid]);
                 $status = 1;
             } catch (\Exception $e) {
                 $status = 0;
@@ -960,34 +966,42 @@ class IndexController extends ActionController
         if (!Pi::user()->config('register_notification')) {
             return true;
         }
-        $uids   = (array) $uid;
-        $users  = Pi::user()->get($uids, array('identity', 'email'));
-        $template = 'register-success-html';
-        $failedUsers = array();
+        $uids        = (array)$uid;
+        $users       = Pi::user()->get($uids, ['identity', 'email']);
+        $template    = 'register-success-html';
+        $failedUsers = [];
         foreach ($users as $id => $data) {
             $redirect = Pi::user()->data()->get($id, 'register_redirect') ?: '';
-            $url = Pi::api('user', 'user')->getUrl('login', array(
-                'redirect'  => $redirect,
-                'section'   => 'front',
-            ));
-            $url = Pi::url($url, true);
-            $params = array(
+            $url      = Pi::api('user', 'user')->getUrl('login', [
+                'redirect' => $redirect,
+                'section'  => 'front',
+            ]);
+            $url      = Pi::url($url, true);
+            $params   = [
                 'username'  => $data['identity'],
                 'login_url' => $url,
-            );
+            ];
 
             // Load from HTML template
-            $template   = Pi::service('mail')->template($template, $params);
-            $subject    = $template['subject'];
-            $body       = $template['body'];
-            $type       = $template['format'];
+            $template = Pi::service('mail')->template($template, $params);
+            $subject  = $template['subject'];
+            $body     = $template['body'];
+            $type     = $template['format'];
 
             //Pi::user()->data()->set($id, 'noti-email', $template); continue;
 
+            // Module message : Notification
+            if (Pi::service('module')->isActive('message')) {
+                $template = Pi::service('mail')->template("notify-register-success-html", $params);
+                Pi::api('api', 'message')->notify(
+                    $id, $template['body'], $template['subject']
+                );
+            }
+
             // Send email
-            $message    = Pi::service('mail')->message($subject, $body, $type);
+            $message = Pi::service('mail')->message($subject, $body, $type);
             $message->addTo($data['email']);
-            $transport  = Pi::service('mail')->transport();
+            $transport = Pi::service('mail')->transport();
             try {
                 $transport->send($message);
             } catch (\Exception $e) {

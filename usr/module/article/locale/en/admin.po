@@ -1,14 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-article\n"
-"POT-Creation-Date: 2014-02-10 19:40+0800\n"
-"PO-Revision-Date: 2014-02-10 19:40+0800\n"
+"POT-Creation-Date: 2014-08-08 17:40+0800\n"
+"PO-Revision-Date: 2014-08-08 17:40+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\article\n"
@@ -59,6 +60,7 @@ msgstr "无"
 #: c:\code\pi\usr\module\article/config/block.php:386
 #: c:\code\pi\usr\module\article/config/block.php:454
 #: c:\code\pi\usr\module\article/config/block.php:556
+#: c:\code\pi\usr\module\article/config/block.php:612
 msgid "Target"
 msgstr ""
 
@@ -70,11 +72,12 @@ msgstr ""
 #: c:\code\pi\usr\module\article/config/block.php:387
 #: c:\code\pi\usr\module\article/config/block.php:455
 #: c:\code\pi\usr\module\article/config/block.php:557
+#: c:\code\pi\usr\module\article/config/block.php:613
 msgid "Open url in which window"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/config/block.php:63
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:239
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:236
 #, fuzzy
 msgid "Category List"
 msgstr "All Categories"
@@ -381,6 +384,30 @@ msgstr ""
 
 #: c:\code\pi\usr\module\article/config/block.php:598
 msgid "Search form for searching articles by article title"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:604
+msgid "RSS Link"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:606
+msgid "Click to subscribe article"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:629
+#: c:\code\pi\usr\module\article/config/config.php:493
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:11
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:108
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:15
+msgid "Description"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:630
+msgid "Description after RSS logo"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:633
+msgid "Subscribe content of this website"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/config/comment.php:18
@@ -899,13 +926,6 @@ msgstr ""
 msgid "Use category"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/config/config.php:493
-#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:11
-#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:108
-#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:15
-msgid "Description"
-msgstr ""
-
 #: c:\code\pi\usr\module\article/config/config.php:494
 msgid "Setup head description."
 msgstr ""
@@ -1024,7 +1044,7 @@ msgid "Edit Category"
 msgstr "All Categories"
 
 #: c:\code\pi\usr\module\article/config/navigation.php:244
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:253
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:250
 msgid "Merge Category"
 msgstr ""
 
@@ -1172,17 +1192,17 @@ msgstr ""
 #: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:71
 #: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:124
 #: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:84
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:198
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:386
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:196
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:385
 msgid "There are some error occured!"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:81
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:93
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:207
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:94
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:205
 #: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:177
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:396
-#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:452
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:395
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:462
 msgid "Can not save data!"
 msgstr ""
 
@@ -1207,11 +1227,11 @@ msgid "Author List"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:259
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:415
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:136
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:489
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:134
 #: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:609
-#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:107
-#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:433
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:102
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:431
 msgid "Invalid ID!"
 msgstr ""
 
@@ -1228,7 +1248,7 @@ msgid "Image width or height is needed"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:410
-#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:488
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:489
 msgid "Invalid fake ID!"
 msgstr ""
 
@@ -1241,50 +1261,50 @@ msgid "Edit Category Info"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:138
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:245
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:437
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:243
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:436
 msgid "Can not update data!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:159
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:227
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:158
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:224
 msgid "Invalid category ID!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:165
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:164
 msgid "Can not find category!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:186
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:185
 msgid "Root node cannot be deleted."
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:192
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:191
 msgid "Cannot remove default category"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:198
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:197
 msgid "Cannot remove category with children"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:206
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:205
 msgid "Cannot remove category in used"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:265
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:262
 msgid "Can not merge category!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:277
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:365
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:275
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:366
 msgid "Category cannot be moved to self or a child!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:285
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:284
 msgid "Cannot merge default category"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:295
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:296
 msgid "Move children error."
 msgstr ""
 
@@ -1292,64 +1312,77 @@ msgstr ""
 msgid "Can not move category!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:433
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:417
+#, fuzzy
+msgid "Sort Category"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:427
+msgid "Can not sort category!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:441
+msgid "Category cannot be moved to another category!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:507
 #: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:626
 msgid "Media is not exists!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:439
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:513
 #: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:632
 msgid "Invalid file extension!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:448
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:522
 #: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:641
 msgid "Can not create image file!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:601
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:675
 msgid "Category is not exists."
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:614
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:688
 msgid "Category cannot be moved to self or a child."
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:116
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:114
 #, fuzzy
 msgid "All Media"
 msgstr "All Categories"
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:153
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:151
 msgid "This page have not been considered yet!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:160
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:158
 msgid "Media Detail"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:183
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:181
 msgid "Add Media"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:227
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:225
 msgid "Edit Media Info"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:256
-#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:270
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:254
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:267
 msgid "Invalid media ID!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:262
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:260
 msgid "Can not find media!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:286
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:284
 msgid "Invalid media ID"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:297
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:295
 msgid "The following medias is in used, and can not be delete: "
 msgstr ""
 
@@ -1381,39 +1414,39 @@ msgstr ""
 msgid "Statistic"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:156
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:451
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:475
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:155
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:450
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:474
 #: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:573
 msgid "Invalid topic ID!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:256
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:255
 #, fuzzy
 msgid "All Articles"
 msgstr "All Categories"
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:283
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:282
 msgid "Target topic is needed!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:287
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:286
 msgid "No articles are selected, please try again!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:369
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:368
 msgid "Add Topic Info"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:418
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:417
 msgid "Edit Topic Info"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:457
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:456
 msgid "Can not find topic!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:554
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:553
 msgid "Topic List"
 msgstr ""
 
@@ -1425,19 +1458,19 @@ msgstr ""
 msgid "Invalid template name!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:60
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:55
 msgid "Raw image width and height data is needed!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:66
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:61
 msgid "The limitation data is needed!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:285
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:282
 msgid "Can not find file!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:461
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:471
 msgid "Media data saved successful!"
 msgstr ""
 
@@ -1457,13 +1490,13 @@ msgstr ""
 msgid "The default category can not be delete, but can be modified!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:33
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:50
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:141
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:146
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:229
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:261
-#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:24
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:35
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:52
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:143
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:148
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:231
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:263
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:26
 #: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:52
 #: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:28
 #: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:117
@@ -1471,40 +1504,40 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:44
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:46
 msgid "Modify Photo"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:52
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:54
 #: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:121
 #, php-format
 msgid "Format supported: %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:59
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:61
 msgid "Please make sure your photo is clearly."
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:64
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:66
 msgid "Size: "
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:70
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:72
 #: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:77
 msgid "Cancel"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:71
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:73
 #: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:78
 #, fuzzy
 msgid "Yes"
 msgstr "是"
 
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:130
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:132
 msgid "In process ..."
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:145
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:147
 msgid "Error occured, please try again!"
 msgstr ""
 
@@ -1531,7 +1564,7 @@ msgid "Biography"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/template/admin/author-list.phtml:41
-#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:58
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:62
 #: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:29
 #: c:\code\pi\usr\module\article/template/admin/media-list.phtml:135
 #: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:50
@@ -1541,7 +1574,7 @@ msgid "Edit"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/template/admin/author-list.phtml:45
-#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:60
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:64
 #: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:4
 #: c:\code\pi\usr\module\article/template/admin/media-list.phtml:43
 #: c:\code\pi\usr\module\article/template/admin/media-list.phtml:85
@@ -1552,54 +1585,66 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:165
-#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:215
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:184
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:233
 msgid "Error ocurred when request saving image!"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:230
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:254
 #: c:\code\pi\usr\module\article/template/admin/category-list.phtml:9
 #: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:47
 #: c:\code\pi\usr\module\article/template/admin/media-list.phtml:103
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:306
 #: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:11
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1747
 msgid "Image"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:231
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:255
 #: c:\code\pi\usr\module\article/template/admin/category-list.phtml:10
 #: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:37
 #: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:48
 #: c:\code\pi\usr\module\article/template/admin/media-list.phtml:74
 #: c:\code\pi\usr\module\article/template/admin/media-list.phtml:104
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:307
 #: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:29
 #: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:12
 #: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:78
 #: c:\code\pi\usr\module\article/template/front/article-pending.phtml:21
 #: c:\code\pi\usr\module\article/template/front/article-published.phtml:66
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1748
 msgid "Title"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:232
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:256
 #: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:49
 #: c:\code\pi\usr\module\article/template/admin/media-list.phtml:107
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:308
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1749
 msgid "Size"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:233
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:257
 #: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:50
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:309
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1750
 msgid "Select"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:57
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:61
 msgid "Add"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:61
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:65
 msgid "Merge"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:62
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:66
 msgid "Move"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:67
+msgid "Sort"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/template/admin/category-merge.phtml:13
@@ -1609,6 +1654,7 @@ msgstr ""
 
 #: c:\code\pi\usr\module\article/template/admin/category-merge.phtml:19
 #: c:\code\pi\usr\module\article/template/admin/category-move.phtml:20
+#: c:\code\pi\usr\module\article/template/admin/category-sort.phtml:20
 msgid "Source Category"
 msgstr ""
 
@@ -1618,6 +1664,7 @@ msgstr ""
 
 #: c:\code\pi\usr\module\article/template/admin/category-merge.phtml:36
 #: c:\code\pi\usr\module\article/template/admin/category-move.phtml:37
+#: c:\code\pi\usr\module\article/template/admin/category-sort.phtml:37
 msgid "Target Category"
 msgstr ""
 
@@ -1625,12 +1672,20 @@ msgstr ""
 msgid "move into"
 msgstr ""
 
+#: c:\code\pi\usr\module\article/template/admin/category-sort.phtml:14
+msgid "Move a category after the target category"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-sort.phtml:33
+msgid "move after"
+msgstr ""
+
 #: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:12
 msgid "Media must be uploaded!"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:48
-#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:146
+#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:153
 #, fuzzy
 msgid "No item!"
 msgstr "无缓存"
@@ -1849,7 +1904,7 @@ msgstr ""
 msgid "Fullsize"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:436
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:471
 msgid "Error occured when required url!"
 msgstr ""
 

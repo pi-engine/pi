@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Mvc\Controller\Plugin;
@@ -31,12 +31,9 @@ class FlashMessenger extends ZendFlashMessenger
         if (!$message) {
             return $this;
         }
-        if ($namespace) {
-            $this->setNamespace($namespace);
-        }
-        $messages = (array) $message;
+        $messages = (array)$message;
         foreach ($messages as $msg) {
-            $this->addMessage($msg);
+            $this->addMessage($msg, $namespace);
         }
 
         return $this;
@@ -52,18 +49,13 @@ class FlashMessenger extends ZendFlashMessenger
     public function load($namespace = '')
     {
         $this->getMessagesFromContainer();
+        $result = [];
         if ($namespace) {
-            $result = $this->setNamespace($namespace)->getMessages();
+            $result = $this->getMessages($namespace);
         } elseif ($this->messages) {
-            $namespaces = array_keys($this->messages);
-            $namespace = array_shift($namespaces);
-            $messages = $this->messages[$namespace]->toArray();
-            $result = array(
-                'namespace' => $namespace,
-                'messages'  => $messages,
-            );
-        } else {
-            $result = array();
+            foreach ($this->messages as $namespace => $msgs) {
+                $result[$namespace] = $msgs->toArray();
+            }
         }
 
         return $result;

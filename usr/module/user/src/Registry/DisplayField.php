@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Registry
  */
 
@@ -26,10 +26,10 @@ class DisplayField extends AbstractRegistry
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = array())
+    protected function loadDynamic($options = [])
     {
-        $list = array();
-        $gids = array();
+        $list = [];
+        $gids = [];
         if (!empty($options['group'])) {
             $gids = $options['group'];
         } else {
@@ -40,7 +40,7 @@ class DisplayField extends AbstractRegistry
                 }
             });
         }
-        $where = array('group' => $gids);
+        $where = ['group' => $gids];
 
         $model  = Pi::model('display_field', $this->module);
         $select = $model->select()->where($where);
@@ -60,7 +60,7 @@ class DisplayField extends AbstractRegistry
     public function read($group = 0)
     {
         $options = compact('group');
-        $result = $this->loadData($options);
+        $result  = $this->loadData($options);
 
         return $result;
     }

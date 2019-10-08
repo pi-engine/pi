@@ -1,17 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Form;
 
-use Pi;
-use Pi\Form\Form as BaseForm;
 use Pi\Application\Db\User\RowGateway\Account;
+use Pi\Form\Form as BaseForm;
 
 /**
  * Member form
@@ -25,15 +24,16 @@ class MemberForm extends BaseForm
      *
      * @var array
      */
-    protected $user = array(
-        'id'            => '',
-        'identity'      => '',
-        'name'          => '',
-        'email'         => '',
-        'active'        => '1',
-        'role'          => 'member',
-        'role_staff'    => '',
-    );
+    protected $user
+        = [
+            'id'         => '',
+            'identity'   => '',
+            'name'       => '',
+            'email'      => '',
+            'active'     => '1',
+            'role'       => 'member',
+            'role_staff' => '',
+        ];
 
     /**
      * Constructor
@@ -41,7 +41,7 @@ class MemberForm extends BaseForm
      * @param null|string|int $name Optional name for the form
      * @param array $user User account data
      */
-    public function __construct($name = null, $user = array())
+    public function __construct($name = null, $user = [])
     {
         $this->user = array_merge($this->user, $user);
         parent::__construct($name);
@@ -52,110 +52,110 @@ class MemberForm extends BaseForm
      */
     public function init()
     {
-        $this->add(array(
-            'type'          => 'text',
-            'name'          => 'identity',
-            'options'       => array(
+        $this->add([
+            'type'       => 'text',
+            'name'       => 'identity',
+            'options'    => [
                 'label' => __('User account'),
-            ),
-            'attributes'    => array(
+            ],
+            'attributes' => [
                 'value' => $this->user['identity'],
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'type'          => 'text',
-            'name'          => 'name',
-            'options'       => array(
+        $this->add([
+            'type'       => 'text',
+            'name'       => 'name',
+            'options'    => [
                 'label' => __('Display name'),
-            ),
-            'attributes'    => array(
+            ],
+            'attributes' => [
                 'value' => $this->user['name'],
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'type'          => 'email',
-            'name'          => 'email',
-            'options'       => array(
+        $this->add([
+            'type'       => 'email',
+            'name'       => 'email',
+            'options'    => [
                 'label' => __('Email address'),
-            ),
-            'attributes'    => array(
+            ],
+            'attributes' => [
                 'value' => $this->user['email'],
-            ),
-        ));
+            ],
+        ]);
 
         if (empty($this->user['id'])) {
-            $this->add(array(
-                'type'          => 'password',
-                'name'          => 'credential',
-                'options'       => array(
+            $this->add([
+                'type'    => 'password',
+                'name'    => 'credential',
+                'options' => [
                     'label' => __('New password'),
-                ),
-            ));
+                ],
+            ]);
 
-            $this->add(array(
-                'type'          => 'password',
-                'name'          => 'credential-confirm',
-                'options'       => array(
+            $this->add([
+                'type'    => 'password',
+                'name'    => 'credential-confirm',
+                'options' => [
                     'label' => __('Confirm password'),
-                ),
-            ));
+                ],
+            ]);
         }
 
-        $this->add(array(
-            'name'          => 'role',
-            'type'          => 'role',
-            'options'       => array(
-                'label'     => __('User role'),
-            ),
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'role',
+            'type'       => 'role',
+            'options'    => [
+                'label' => __('User role'),
+            ],
+            'attributes' => [
                 'value' => $this->user['role'],
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'role_staff',
-            'type'          => 'role',
-            'options'       => array(
-                'label'     => __('Management role'),
-                'section'   => 'admin',
-            ),
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'role_staff',
+            'type'       => 'role',
+            'options'    => [
+                'label'   => __('Management role'),
+                'section' => 'admin',
+            ],
+            'attributes' => [
                 'value' => $this->user['role_staff'],
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'active',
-            'type'          => 'checkbox',
-            'options'       => array(
+        $this->add([
+            'name'       => 'active',
+            'type'       => 'checkbox',
+            'options'    => [
                 'label' => __('Active'),
-            ),
-            'attributes'    => array(
+            ],
+            'attributes' => [
                 'value' => $this->user['active'],
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'  => 'security',
-            'type'  => 'csrf',
-        ));
+        $this->add([
+            'name' => 'security',
+            'type' => 'csrf',
+        ]);
 
-        $this->add(array(
-            'type'  => 'hidden',
-            'name'  => 'id',
-            'attributes'    => array(
+        $this->add([
+            'type'       => 'hidden',
+            'name'       => 'id',
+            'attributes' => [
                 'value' => $this->user['id'],
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            ),
-        ));
+            ],
+        ]);
     }
 }

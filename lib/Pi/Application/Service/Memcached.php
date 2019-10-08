@@ -1,18 +1,18 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
 namespace Pi\Application\Service;
 
-use Pi;
 use Exception;
 use Memcached as MemcachedExtension;
+use Pi;
 
 /**
  * Memcached service
@@ -22,13 +22,13 @@ use Memcached as MemcachedExtension;
 class Memcached extends AbstractService
 {
     /** @var array Instances */
-    protected static $instances = array();
+    protected static $instances = [];
 
     /** @var int Default port */
-    const DEFAULT_PORT =  11211;
+    const DEFAULT_PORT = 11211;
 
     /** @var int Default weight */
-    const DEFAULT_WEIGHT  = 1;
+    const DEFAULT_WEIGHT = 1;
 
     /**
      * Load options
@@ -44,9 +44,9 @@ class Memcached extends AbstractService
             $config = Pi::config()->load(sprintf('memcached.%s.php', $config));
         }
 
-        $options = array();
+        $options = [];
         if (!empty($config['client'])) {
-            $clients = array();
+            $clients = [];
             // setup memcached client options
             foreach ($config['client'] as $name => $value) {
                 $optId = null;
@@ -64,7 +64,7 @@ class Memcached extends AbstractService
                 if ($optId) {
                     if (is_string($value)) {
                         $memcachedValue = 'Memcached::' . strtoupper($value);
-                        $value = defined($memcachedValue)
+                        $value          = defined($memcachedValue)
                             ? constant($memcachedValue) : $value;
                     }
                     $clients[$optId] = $value;
@@ -80,9 +80,9 @@ class Memcached extends AbstractService
         $serverList = isset($config['servers']) ? $config['servers'] : $config;
         if (isset($serverList['host'])) {
             // Transform it into associative arrays
-            $serverList = array(0 => $serverList);
+            $serverList = [0 => $serverList];
         }
-        $servers = array();
+        $servers = [];
         foreach ($serverList as $idx => $server) {
             if (!array_key_exists('port', $server)) {
                 $server['port'] = static::DEFAULT_PORT;
@@ -90,16 +90,16 @@ class Memcached extends AbstractService
             if (!array_key_exists('weight', $server)) {
                 $server['weight'] = static::DEFAULT_WEIGHT;
             }
-            $servers[] = array(
+            $servers[] = [
                 $server['host'],
                 $server['port'],
-                $server['weight']
-            );
+                $server['weight'],
+            ];
         }
         if (!empty($servers)) {
             $options['servers'] = $servers;
         } else {
-            $options = array();
+            $options = [];
         }
 
         return $options;
@@ -128,7 +128,7 @@ class Memcached extends AbstractService
         }
 
         static::$instances[$configKey] = false;
-        $options = $this->loadOptions($config);
+        $options                       = $this->loadOptions($config);
         if (empty($options)) {
             throw new exception('No valid options!');
         }

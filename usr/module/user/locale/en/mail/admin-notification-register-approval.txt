@@ -1,0 +1,17 @@
+[comment]Pi account register notification to admin[/comment]
+
+[format]html[/format]
+
+[subject]%site_name% Account Register[/subject]
+
+[body]
+<p style="margin-bottom: 5px">Dear <strong>%site_name%</strong> admin</p>
+
+<p style="margin-top: 5px">New user account by <strong>%email%</strong> email, <strong>%identity%</strong> identity and <strong>%name%</strong> name registered on website</p>
+<p style="margin-top: 5px">You need active this user account from website admin</p>
+
+<p style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+</p>
+    <div>%site_mail_footer%</div>
+[/body]

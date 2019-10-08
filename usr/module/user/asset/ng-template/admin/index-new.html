@@ -1,122 +1,122 @@
-<form class="form-horizontal" name="userForm" novalidate ng-submit="submit()">
-	<div class="form-group" 
-		ng-class="{'has-error': userForm.identity.$dirty && userForm.identity.$invalid}">
-		<label class="col-md-2 control-label">{{'USERNAME' | translate}}</label>
-		<div class="col-md-4">
-			<input class="form-control" type="text" ng-model="entity.identity" name="identity" 
-			       required pi-unique="uniqueUrl">
-		</div>
-		<div class="col-md-4 help-block">
-			<span ng-show="userForm.identity.$error.required">
+<form name="userForm" novalidate ng-submit="submit()">
+    <div class="form-group row"
+         data-ng-class="{'has-error': userForm.identity.$dirty && userForm.identity.$invalid}">
+        <label class="col-md-2 col-form-label">{{'USERNAME' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="text" data-ng-model="entity.identity" name="identity"
+                   required pi-unique="uniqueUrl">
+        </div>
+        <div class="col-md-4 form-text">
+			<span data-ng-show="userForm.identity.$error.required">
 				{{'REQUIRED' | translate}}
 			</span>
-			<span ng-show="userForm.identity.$error.unique">
+            <span data-ng-show="userForm.identity.$error.unique">
 				{{'USERNAME_TAKEN' | translate}}
 			</span>
-		</div>
-	</div>
-	<div class="form-group"
-		ng-class="{'has-error': userForm.name.$dirty && userForm.name.$invalid}">
-		<label class="col-md-2 control-label">{{'DISPLAYNAME' | translate}}</label>
-		<div class="col-md-4">
-			<input class="form-control" type="text" ng-model="entity.name" name="name" 
-			       required pi-unique="uniqueUrl">
-		</div>
-		<div class="col-md-4 help-block">
-			<span ng-show="userForm.name.$error.required">
+        </div>
+    </div>
+    <div class="form-group row"
+         data-ng-class="{'has-error': userForm.name.$dirty && userForm.name.$invalid}">
+        <label class="col-md-2 col-form-label">{{'DISPLAYNAME' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="text" data-ng-model="entity.name" name="name"
+                   required pi-unique="uniqueUrl">
+        </div>
+        <div class="col-md-4 form-text">
+			<span data-ng-show="userForm.name.$error.required">
 				{{'REQUIRED' | translate}}
 			</span>
-			<span ng-show="userForm.name.$error.unique">
+            <span data-ng-show="userForm.name.$error.unique">
 				{{'DISPLAYNAME_TAKEN' | translate}}
 			</span>
-		</div>
-	</div>
-	<div class="form-group"
-		ng-class="{'has-error': userForm.email.$dirty && userForm.email.$invalid}">
-		<label class="col-md-2 control-label">{{'EMAIL' | translate}}</label>
-		<div class="col-md-4">
-			<input class="form-control" type="email" ng-model="entity.email" name="email" 
-			       required pi-unique="uniqueUrl">
-		</div>
-		<div class="col-md-4 help-block">
-			<span ng-show="userForm.email.$error.required">
+        </div>
+    </div>
+    <div class="form-group row"
+         data-ng-class="{'has-error': userForm.email.$dirty && userForm.email.$invalid}">
+        <label class="col-md-2 col-form-label">{{'EMAIL' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="email" data-ng-model="entity.email" name="email"
+                   required pi-unique="uniqueUrl">
+        </div>
+        <div class="col-md-4 form-text">
+			<span data-ng-show="userForm.email.$error.required">
 				{{'REQUIRED' | translate}}
 			</span>
-			<span ng-show="userForm.email.$error.email">
+            <span data-ng-show="userForm.email.$error.email">
 				{{'INVALID_EMAIL' | translate}}
 			</span>
-			<span ng-show="userForm.email.$error.unique">
+            <span data-ng-show="userForm.email.$error.unique">
 				{{'EMAIL_TAKEN' | translate}}
 			</span>
-		</div>
-	</div>
-	<div class="form-group"
-		ng-class="{'has-error': userForm.credential.$dirty && userForm.credential.$invalid}">
-		<label class="col-md-2 control-label">{{'PASSWORD' | translate}}</label>
-		<div class="col-md-4">
-			<input class="form-control" type="password" ng-model="entity.credential" name="credential" 
-			       required>
-		</div>
-		<div class="col-md-4 help-block">
-			<span ng-show="userForm.credential.$error.required">
+        </div>
+    </div>
+    <div class="form-group row"
+         data-ng-class="{'has-error': userForm.credential.$dirty && userForm.credential.$invalid}">
+        <label class="col-md-2 col-form-label">{{'PASSWORD' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="password" data-ng-model="entity.credential" name="credential"
+                   required>
+        </div>
+        <div class="col-md-4 form-text">
+			<span data-ng-show="userForm.credential.$error.required">
 				{{'REQUIRED' | translate}}
 			</span>
-		</div>
-	</div>
-	<div class="form-group"
-		ng-class="{'has-error': userForm.credential_confirm.$dirty && userForm.credential_confirm.$invalid}">
-		<label class="col-md-2 control-label">{{'CONFIRM_PASSWORD' | translate}}</label>
-		<div class="col-md-4">
-			<input class="form-control" type="password" ng-model="entity.credential_confirm" 
-			       name="credential_confirm" required pi-match="credential">
-		</div>
-		<div class="col-md-4 help-block">
-			<span ng-show="userForm.credential_confirm.$error.required">
+        </div>
+    </div>
+    <div class="form-group row"
+         data-ng-class="{'has-error': userForm.credential_confirm.$dirty && userForm.credential_confirm.$invalid}">
+        <label class="col-md-2 col-form-label">{{'CONFIRM_PASSWORD' | translate}}</label>
+        <div class="col-md-4">
+            <input class="form-control" type="password" data-ng-model="entity.credential_confirm"
+                   name="credential_confirm" required pi-match="credential">
+        </div>
+        <div class="col-md-4 form-text">
+			<span data-ng-show="userForm.credential_confirm.$error.required">
 				{{'REQUIRED' | translate}}
 			</span>
-			<span ng-show="!userForm.credential_confirm.$error.required && userForm.credential_confirm.$error.mismatch">
+            <span data-ng-show="!userForm.credential_confirm.$error.required && userForm.credential_confirm.$error.mismatch">
 				{{'PASSWORD_MATCH' | translate}}
 			</span>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label">{{'ACTIVATE' | translate}}</label>
-		<div class="col-md-4 help-block">
-			<div class="pi-status" ng-class="{'active': entity.activated}"
-           ng-click="entity.activated = !entity.activated">
-        <div class="pi-status-director"></div>
-      </div>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label">{{'ENABLE' | translate}}</label>
-		<div class="col-md-4 help-block">
-			<div class="pi-status" ng-class="{'active': entity.enable}"
-           ng-click="entity.enable = !entity.enable">
-        <div class="pi-status-director"></div>
-      </div>
-		</div>
-	</div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'ASSIGN_FRONT_ROLE' | translate}}</label>
-    <div class="col-md-8">
-      <label class="checkbox-inline" ng-repeat="item in roles | filter: {type: 'front'}">
-        <input type="checkbox" ng-model="item.checked" ng-disabled="item.name == 'member'">{{item.title}}
-      </label>
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label">{{'ASSIGN_ADMIN_ROLE' | translate}}</label>
-    <div class="col-md-8">
-      <label class="checkbox-inline" ng-repeat="item in roles | filter: {type: 'admin'}">
-        <input type="checkbox" ng-model="item.checked">{{item.title}}
-      </label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">{{'ACTIVATE' | translate}}</label>
+        <div class="col-md-4 form-text">
+            <div class="pi-status" data-ng-class="{'active': entity.activated}"
+                 data-ng-click="entity.activated = !entity.activated">
+                <div class="pi-status-director"></div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-		<div class="col-md-offset-2 col-md-10">
-			<input type="submit" value="{{'SUBMIT' | translate}}" class="btn btn-primary" 
-				ng-disabled="userForm.$invalid">
-		</div>
-	</div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">{{'ENABLE' | translate}}</label>
+        <div class="col-md-4 form-text">
+            <div class="pi-status" data-ng-class="{'active': entity.enable}"
+                 data-ng-click="entity.enable = !entity.enable">
+                <div class="pi-status-director"></div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">{{'ASSIGN_FRONT_ROLE' | translate}}</label>
+        <div class="col-md-8">
+            <label class="checkbox-inline" ng-repeat="item in roles | filter: {type: 'front'}">
+                <input type="checkbox" data-ng-model="item.checked" ng-disabled="item.name == 'member'">&nbsp;{{item.title}}&nbsp;&nbsp;
+            </label>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">{{'ASSIGN_ADMIN_ROLE' | translate}}</label>
+        <div class="col-md-8">
+            <label class="checkbox-inline" ng-repeat="item in roles | filter: {type: 'admin'}">
+                <input type="checkbox" data-ng-model="item.checked">&nbsp;{{item.title}}&nbsp;&nbsp;
+            </label>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="offset-md-2 col-md-10">
+            <input type="submit" value="{{'SUBMIT' | translate}}" class="btn btn-primary"
+                   ng-disabled="userForm.$invalid">
+        </div>
+    </div>
 </form>

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Setup;
@@ -21,53 +21,62 @@ class Host
 
     /**
      * Detector file for detecting a path or URL
+     *
      * @var array
      */
-    protected $detector = array(
-        'file'      => 'detector.gif',
-        'mimetype'  => 'image/gif',
-    );
+    protected $detector
+        = [
+            'file'     => 'detector.gif',
+            'mimetype' => 'image/gif',
+        ];
 
     /**
      * List of section paths
+     *
      * @var array
      */
-    protected $paths = array(
-        'www'       => '',
-        'lib'       => '',
-        'var'       => '',
-        'usr'       => '',
-        'static'    => '',
-        'upload'    => '',
-    );
+    protected $paths
+        = [
+            'www'    => '',
+            'lib'    => '',
+            'var'    => '',
+            'usr'    => '',
+            'static' => '',
+            'upload' => '',
+        ];
 
     /**
      * List of path validation: 1 - valid; -1 - invalid; 0 - not check.
+     *
      * @var array
      */
-    protected $validPath = array(
-        'www'       => -1,
-        'var'       => -1,
-        'lib'       => -1,
-        'usr'       => -1,
-        'static'    => 0,
-        'upload'    => -1,
-    );
+    protected $validPath
+        = [
+            'www'    => -1,
+            'var'    => -1,
+            'lib'    => -1,
+            'usr'    => -1,
+            'static' => 0,
+            'upload' => -1,
+        ];
 
     /**
      * List of URI validation: 1 - valid; -1 - invalid; 0 - not check.
+     *
      * @var array
      */
-    protected $validUrl = array(
-        'static'    => -1,
-        'upload'    => -1,
-    );
+    protected $validUrl
+        = [
+            'static' => -1,
+            'upload' => -1,
+        ];
 
     /**
      * Permission error message list of paths
+     *
      * @var array
      */
-    protected $permErrors = array();
+    protected $permErrors = [];
 
     /**
      * Constructor
@@ -77,7 +86,7 @@ class Host
      */
     public function __construct(Wizard $wizard = null, $persist = '')
     {
-        $this->wizard = $wizard;
+        $this->wizard  = $wizard;
         $this->persist = $persist;
     }
 
@@ -85,6 +94,7 @@ class Host
      * Initialize path information
      *
      * @param bool $initPath Whether initialize path URI based on config data
+     *
      * @return void
      */
     public function init($initPath = false)
@@ -94,29 +104,30 @@ class Host
         foreach (array_keys($writablePaths) as $key) {
             $this->permErrors[$key] = false;
         }
-        $paths = $this->wizard->getPersist($this->persist);
+        //$paths = $this->wizard->getPersist($this->persist);
+        $paths = '';
         // Load from persistent
         if ($paths) {
             foreach ($this->paths as $key => &$path) {
-                $path = array(
-                    'path'  => $paths[$key]['path'],
-                    'url'   => isset($paths[$key]['url'])
+                $path = [
+                    'path' => $paths[$key]['path'],
+                    'url'  => isset($paths[$key]['url'])
                         ? $paths[$key]['url'] : '',
-                );
+                ];
             }
-        // Initialize
+            // Initialize
         } else {
             // Initialize www path and URI
-            $request = $this->wizard->getRequest();
-            $baseUrl = $request->getScheme() . '://'
-                     . $request->getHttpHost() . $request->getBaseUrl();
-            $this->paths['www'] = array(
-                'path'  => dirname($this->wizard->getRoot()),
-                'url'   => dirname($baseUrl)
-            );
+            $request            = $this->wizard->getRequest();
+            $baseUrl            = $request->getScheme() . '://'
+                . $request->getHttpHost() . $request->getBaseUrl();
+            $this->paths['www'] = [
+                'path' => dirname($this->wizard->getRoot()),
+                'url'  => dirname($baseUrl),
+            ];
 
             foreach ($this->wizard->getConfig('paths') as $key => $inits) {
-                // Initialize path
+                /* // Initialize path
                 foreach ((array) $inits['path'] as $init) {
                     if ($init{0} === '%') {
                         list($idx, $loc) = explode('/', $init, 2);
@@ -148,7 +159,41 @@ class Host
                     }
                     $this->paths[$key]['url'] = $init;
                     //if (0 <= $this->checkUrl($key)) break;
+                } */
+
+                // Initialize path
+                foreach ((array)$inits['path'] as $init) {
+                    if ($init{0} === '%') {
+                        list($idx, $loc) = explode('/', $init, 2);
+                        $idx = substr($idx, 1);
+                        if (isset($this->paths[$idx]['path'])) {
+                            $init = $this->paths[$idx]['path'] . '/' . $loc;
+                        }
+                    } else {
+                        $init = $this->paths['www']['path'] . '/' . $init;
+                    }
+                    $path = preg_replace('/\w+\/\.\.\//', '', $init);
+                    if (is_dir($path . '/')) {
+                        break;
+                    }
                 }
+
+                // Initialize URI
+                foreach ((array)$inits['url'] as $init) {
+                    if ($init{0} === '%') {
+                        list($idx, $loc) = explode('/', $init, 2);
+                        $idx = substr($idx, 1);
+                        if (isset($this->paths[$idx]['url'])) {
+                            $init = $this->paths[$idx]['url'] . '/' . $loc;
+                        }
+                    }
+                    //if (0 <= $this->checkUrl($key)) break;
+                }
+
+                $this->paths[$key] = [
+                    'path' => $path,
+                    'url'  => $init,
+                ];
             }
 
             $this->wizard->setPersist($this->persist, $this->paths);
@@ -163,11 +208,11 @@ class Host
     protected function setRequest()
     {
         $request = $this->wizard->getRequest();
-        $paths = $this->wizard->getPersist($this->persist);
+        $paths   = $this->wizard->getPersist($this->persist);
         foreach ($this->paths as $key => &$path) {
             $reqKey = 'path_' . $key;
             if (null !== $request->getPost($reqKey)) {
-                $req = str_replace(
+                $req                 = str_replace(
                     '\\',
                     '/',
                     trim($request->getPost($reqKey))
@@ -176,7 +221,7 @@ class Host
             }
             $reqKey = 'url_' . $key;
             if (null !== $request->getPost($reqKey)) {
-                $req = str_replace(
+                $req                = str_replace(
                     '\\',
                     '/',
                     trim($request->getPost($reqKey))
@@ -207,7 +252,9 @@ class Host
             }
         }
         foreach ($this->permErrors as $key => $errs) {
-            if (empty($errs)) continue;
+            if (empty($errs)) {
+                continue;
+            }
             foreach ($errs as $path => $status) {
                 if (empty($status)) {
                     $ret = false;
@@ -223,6 +270,7 @@ class Host
      * Checks if a section path exists
      *
      * @param string $path The key of path to be checked
+     *
      * @return int  Potential values: 1 - valid; -1 - invalid; 0 - not check
      */
     public function checkPath($path = '')
@@ -248,6 +296,7 @@ class Host
      * Checks write permissions of a section path
      *
      * @param string $path The key of path to be checked
+     *
      * @return void
      */
     private function checkPermissions($path)
@@ -259,7 +308,7 @@ class Host
             return;
         }
         $writablePaths = $this->wizard->getConfig('writable');
-        $errors = array();
+        $errors        = [];
         $this->setWritePermission(
             $this->paths[$path]['path'],
             $writablePaths[$path],
@@ -276,6 +325,7 @@ class Host
      * Checks if URI of a section is accessible
      *
      * @param string $key The key of URL to be checked
+     *
      * @return int  Potenial values: 1 - valid; -1 - invalid; 0 - not check
      */
     public function checkUrl($key = '')
@@ -287,7 +337,7 @@ class Host
                 $method = sprintf('validateUrl%s', ucfirst($key));
 
                 // Use dedicated method if available
-                if (is_callable(array($this, $method))) {
+                if (is_callable([$this, $method])) {
                     $res = $this->{$method}($this->paths[$key]['url']);
                 } else {
                     $res = $this->validateUrl($this->paths[$key]['url']);
@@ -309,22 +359,23 @@ class Host
      * Checks if a section path and sub paths are writable and attemps to
      * set right permissions if not writable
      *
-     * @param string    $path The key of path to be checked
+     * @param string $path The key of path to be checked
+     *
      * @return array    Error messages
      */
     public function checkSub($path)
     {
         if (!isset($this->paths[$path]['path'])) {
-            return array();
+            return [];
         }
         if (!isset($this->permErrors[$path])) {
-            return array();
+            return [];
         }
         $writablePaths = $this->wizard->getConfig('writable');
         if (!isset($writablePaths[$path])) {
-            return array();
+            return [];
         }
-        $errors = array();
+        $errors = [];
         $this->setWritePermission(
             $this->paths[$path]['path'],
             $writablePaths[$path],
@@ -344,7 +395,8 @@ class Host
      * Check if an image URI is valid
      *
      * @param string $url
-     * @param bool $appendDetector Wether to append detector file to the URL
+     * @param bool   $appendDetector Wether to append detector file to the URL
+     *
      * @return bool|null
      */
     private function validateImageUrl($url, $appendDetector = false)
@@ -363,6 +415,7 @@ class Host
      * Check if asset URL if valid
      *
      * @param string $url
+     *
      * @return bool|null
      */
     private function validateUrlAsset($url)
@@ -374,6 +427,7 @@ class Host
      * Check if static URL is valid
      *
      * @param string $url
+     *
      * @return bool|null
      */
     private function validateUrlStatic($url)
@@ -385,6 +439,7 @@ class Host
      * Check if upload URL if valid
      *
      * @param string $url
+     *
      * @return bool|null
      */
     private function validateUrlUpload($url)
@@ -402,6 +457,7 @@ class Host
      *  - w/o leading slash '/': prepend Pi Engine 'www' URI
      *
      * @param string $url
+     *
      * @return string
      */
     private function formulateUrl($url)
@@ -412,12 +468,12 @@ class Host
 
         if ($url{0} != '/') {
             $url = (isset($this->paths['www']['url'])
-                 ? $this->paths['www']['url'] : '') . '/' . $url;
+                    ? $this->paths['www']['url'] : '') . '/' . $url;
         } else {
-            $proto  = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
+            $proto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
                 ? 'https' : 'http';
-            $host   = $_SERVER['HTTP_HOST'];
-            $url    = $proto . '://' .  $host . $url;
+            $host  = $_SERVER['HTTP_HOST'];
+            $url   = $proto . '://' . $host . $url;
         }
 
         return $url;
@@ -428,6 +484,7 @@ class Host
      *
      * @param string $url
      * @param string $mimeType
+     *
      * @return bool|null
      */
     private function validateUrl($url = '', $mimeType = '')
@@ -441,15 +498,15 @@ class Host
         $ret = null;
         // Try cURL first if it is available.
         if (function_exists('curl_exec')) {
-            $ch = curl_init();
-            $options = array(
-                CURLOPT_URL             => $url,
-                CURLOPT_NOBODY          => true,
-                CURLOPT_TIMEOUT         => 1,
-                CURLOPT_USERAGENT       => 'Pi Engine',
-                CURLOPT_FOLLOWLOCATION  => false,
-                CURLOPT_MAXREDIRS       => 0,
-            );
+            $ch      = curl_init();
+            $options = [
+                CURLOPT_URL            => $url,
+                CURLOPT_NOBODY         => true,
+                CURLOPT_TIMEOUT        => 1,
+                CURLOPT_USERAGENT      => 'Pi Engine',
+                CURLOPT_FOLLOWLOCATION => false,
+                CURLOPT_MAXREDIRS      => 0,
+            ];
             curl_setopt_array($ch, $options);
             curl_exec($ch);
             if (!curl_errno($ch)) {
@@ -458,10 +515,10 @@ class Host
                     // Content-Type might not be detected correctly by CURL
                     // Thus return null instead of false if not matched
                     $ret = (strpos($contentType, $mimeType) !== false)
-                         ? true : null;
+                        ? true : null;
                 } else {
                     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                    $ret = ($httpCode == 200) ? true : false;
+                    $ret      = ($httpCode == 200) ? true : false;
                 }
             }
             curl_close($ch);
@@ -471,21 +528,23 @@ class Host
         if (null === $ret && ini_get('allow_url_fopen')) {
             // Set options to disable redirects,
             // otherwise get_headers will return multiple responses
-            $opts = array(
-                'http' => array(
+            $opts = [
+                'http' => [
                     'max_redirects' => 0,
-                    'ignore_errors' => 1
-                )
-            );
+                    'ignore_errors' => 1,
+                ],
+            ];
             stream_context_get_default($opts);
             $result = @get_headers($url, 1);
             // Check if HTTP code is 200
-            $ret = preg_match('#HTTP/[^\s]+[\s]200([\s]?)#i', $result[0],
-                              $matches);
+            $ret = preg_match(
+                '#HTTP/[^\s]+[\s]200([\s]?)#i', $result[0],
+                $matches
+            );
             // Check content type match if specified
             if ($ret && !empty($contentType)) {
                 $ret = strpos($result['Content-Type'], $contentType) !== false
-                     ? true : false;
+                    ? true : false;
             }
         }
 
@@ -495,9 +554,10 @@ class Host
     /**
      * Sets write permission to a path
      *
-     * @param string        $parent The key of parent path
-     * @param string|array  $path   Key of path or array of paths/files
-     * @param array         $error   Error messages
+     * @param string       $parent The key of parent path
+     * @param string|array $path   Key of path or array of paths/files
+     * @param array        $error  Error messages
+     *
      * @return void
      */
     private function setWritePermission($parent, $path, &$error)
@@ -505,21 +565,25 @@ class Host
         if (is_array($path)) {
             foreach (array_keys($path) as $item) {
                 if (is_string($item)) {
-                    $error[$parent . '/' . $item] =
-                        $this->makeWritable($parent . '/' . $item);
-                    if (empty($path[$item])) continue;
+                    $error[$parent . '/' . $item]
+                        = $this->makeWritable($parent . '/' . $item);
+                    if (empty($path[$item])) {
+                        continue;
+                    }
                     foreach ($path[$item] as $child) {
-                        $this->setWritePermission($parent . '/' . $item,
-                                                  $child, $error);
+                        $this->setWritePermission(
+                            $parent . '/' . $item,
+                            $child, $error
+                        );
                     }
                 } else {
-                    $error[$parent . '/' . $path[$item]] =
-                        $this->makeWritable($parent . '/' . $path[$item]);
+                    $error[$parent . '/' . $path[$item]]
+                        = $this->makeWritable($parent . '/' . $path[$item]);
                 }
             }
         } else {
-            $error[$parent . '/' . $path] =
-                $this->makeWritable($parent . '/' . $path);
+            $error[$parent . '/' . $path]
+                = $this->makeWritable($parent . '/' . $path);
         }
 
         return;
@@ -529,16 +593,17 @@ class Host
      * Write-enable the specified folder
      *
      * @param string $path
-     * @param bool $recurse
-     * @param bool $create
+     * @param bool   $recurse
+     * @param bool   $create
+     *
      * @return int  1 for successful; 0 for failed
      */
     private function makeWritable($path, $recurse = true, $create = true)
     {
         clearstatcache();
         $modeFolder = intval('0777', 8);
-        $modeFile = intval('0666', 8);
-        $isNew = false;
+        $modeFile   = intval('0666', 8);
+        $isNew      = false;
         if (!file_exists($path)) {
             if (!$create) {
                 return 0;
@@ -559,10 +624,10 @@ class Host
                     continue;
                 }
                 $status = $status * $this->makeWritable(
-                    $fileinfo->getPathname(),
-                    $recurse,
-                    $create
-                );
+                        $fileinfo->getPathname(),
+                        $recurse,
+                        $create
+                    );
                 if (!$status) {
                     break;
                 }
@@ -576,6 +641,7 @@ class Host
      * Get path
      *
      * @param string $name
+     *
      * @return string|null
      */
     public function getPath($name)
@@ -590,6 +656,7 @@ class Host
      *
      * @param string $name
      * @param string $value
+     *
      * @return void
      */
     public function setPath($name, $value)

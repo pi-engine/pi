@@ -1,12 +1,12 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
  * Pi Engine feed application specifications
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
@@ -19,13 +19,13 @@ $config['resource']['authentication'] = false;
 // Permission resource, disabled
 $config['resource']['permission'] = false;
 // Rendering cache resource
-$config['resource']['render_cache'] = array();
+$config['resource']['render_cache'] = [];
 
 // Application service configuration
-$config['application']['listeners'] = array('FeedStrategyListener');
+$config['application']['listeners']                      = ['FeedStrategyListener'];
 $config['application']['view_manager']['mvc_strategies'] = null;
-$config['application']['view_manager']['strategies'] = array('ViewFeedStrategy');
-$config['application']['send_response'] = null;
+$config['application']['view_manager']['strategies']     = ['ViewFeedStrategy'];
+$config['application']['send_response']                  = null;
 
 // Application environment
 //$config['config']['environment'] = 'production';

@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System;
@@ -28,24 +28,24 @@ class Menu
      */
     public static function modes($mode = null)
     {
-        $modes = array(
-            array(
+        $modes = [
+            [
                 'name'  => AdminMode::MODE_ACCESS,
                 'label' => _a('Operation', 'system:admin'),
-                'icon'  => 'fa fa-wrench',
-            ),
-            array(
+                'icon'  => 'fas fa-wrench',
+            ],
+            [
                 'name'  => AdminMode::MODE_ADMIN,
                 'label' => _a('Setting', 'system:admin'),
-                'icon'  => 'fa fa-cogs',
-            ),
-            array(
+                'icon'  => 'fas fa-cogs',
+            ],
+            [
                 'name'  => AdminMode::MODE_DEPLOYMENT,
                 'label' => _a('Deployment', 'system:admin'),
-                'icon'  => 'fa fa-cloud-upload',
+                'icon'  => 'fas fa-cloud-upload-alt',
                 'link'  => '',
-            ),
-        );
+            ],
+        ];
         if (AdminMode::MODE_ADMIN == $mode) {
             $module = Pi::service('url')->getRouteMatch()->getParam('name');
         } else {
@@ -54,12 +54,12 @@ class Menu
         array_walk($modes, function (&$config) use ($mode, $module) {
             $config['active'] = ($mode == $config['name']) ? 1 : 0;
             if (!isset($config['link'])) {
-                $config['link'] = Pi::service('url')->assemble('admin', array(
-                    'module'        => 'system',
-                    'controller'    => 'dashboard',
-                    'action'        => 'mode',
-                    'mode'          => $config['name'],
-                ), array('query' => array('name' => $module)));
+                $config['link'] = Pi::service('url')->assemble('admin', [
+                    'module'     => 'system',
+                    'controller' => 'dashboard',
+                    'action'     => 'mode',
+                    'mode'       => $config['name'],
+                ], ['query' => ['name' => $module]]);
             }
         });
 
@@ -78,13 +78,13 @@ class Menu
         $mode = AdminMode::MODE_ACCESS;
 
         $linkCallback = function ($name) {
-            return Pi::service('url')->assemble('admin', array(
-                'module'        => $name,
-                'controller'    => 'index',
-                'action'        => 'index',
-            ));
+            return Pi::service('url')->assemble('admin', [
+                'module'     => $name,
+                'controller' => 'index',
+                'action'     => 'index',
+            ]);
         };
-        $categories = static::getCategories($mode, $module, $linkCallback);
+        $categories   = static::getCategories($mode, $module, $linkCallback);
 
         return $categories;
     }
@@ -99,16 +99,16 @@ class Menu
      */
     public static function mainComponent($module, $component)
     {
-        $mode   = AdminMode::MODE_ADMIN;
+        $mode = AdminMode::MODE_ADMIN;
 
         $linkCallback = function ($name) use ($component) {
-            return Pi::service('url')->assemble('admin', array(
-                'module'        => 'system',
-                'controller'    => $component,
-                'name'          => $name,
-            ));
+            return Pi::service('url')->assemble('admin', [
+                'module'     => 'system',
+                'controller' => $component,
+                'name'       => $name,
+            ]);
         };
-        $categories = static::getCategories($mode, $module, $linkCallback);
+        $categories   = static::getCategories($mode, $module, $linkCallback);
 
         return $categories;
     }
@@ -121,9 +121,9 @@ class Menu
      *
      * @return string
      */
-    public static function subComponent($module, array $options = array())
+    public static function subComponent($module, array $options = [])
     {
-        $mode = AdminMode::MODE_ADMIN;
+        $mode           = AdminMode::MODE_ADMIN;
         $modulesAllowed = Pi::service('permission')->moduleList($mode);
         if (!in_array($module, $modulesAllowed)) {
             $content = '';
@@ -154,17 +154,17 @@ class Menu
      *
      * @return string[]
      */
-    public static function subOperation($module, array $options = array())
+    public static function subOperation($module, array $options = [])
     {
-        $mode = AdminMode::MODE_ACCESS;
+        $mode           = AdminMode::MODE_ACCESS;
         $modulesAllowed = Pi::service('permission')->moduleList($mode);
         if (!in_array($module, $modulesAllowed)) {
             $content = '';
         } else {
-            $helper = Pi::service('view')->getHelper('navigation');
-            $navigation = $helper(
+            $helper              = Pi::service('view')->getHelper('navigation');
+            $navigation          = $helper(
                 $module . '-admin',
-                array('section' => 'admin')
+                ['section' => 'admin']
             );
             $options['maxDepth'] = 0;
             if (!isset($options['ulClass'])) {
@@ -201,30 +201,30 @@ class Menu
                 continue;
             }
             // Build module meta
-            $moduleList[$name] = array(
-                'name'      => $name,
-                'label'     => $moduleList[$name]['title'],
-                'icon'      => $moduleList[$name]['icon'],
-                'active'    => $name == $module ? 1 : 0,
-                'href'      => call_user_func($linkCallback, $name),
-            );
+            $moduleList[$name] = [
+                'name'   => $name,
+                'label'  => $moduleList[$name]['title'],
+                'icon'   => $moduleList[$name]['icon'],
+                'active' => $name == $module ? 1 : 0,
+                'href'   => call_user_func($linkCallback, $name),
+            ];
 
         }
 
         if (isset($moduleList['system'])) {
-            $category = array(
-                'title'     => '',
-                'icon'      => '',
-                'modules'   => array('system'),
-            );
+            $category = [
+                'title'   => '',
+                'icon'    => '',
+                'modules' => ['system'],
+            ];
             array_unshift($categories, $category);
         }
 
         // Categorize modules
         array_walk($categories, function (&$category) use (&$moduleList) {
-            $category['label'] = $category['title'];
-            $modules = (array) $category['modules'];
-            $category['modules'] = array();
+            $category['label']   = $category['title'];
+            $modules             = (array)$category['modules'];
+            $category['modules'] = [];
             foreach ($modules as $name) {
                 if (isset($moduleList[$name])) {
                     $category['modules'][] = $moduleList[$name];
@@ -236,11 +236,11 @@ class Menu
 
         // Collect un-categorized modules
         if ($moduleList) {
-            $categories[] = array(
-                'label'     => __('Uncategorized'),
-                'icon'      => '',
-                'modules'   => array_values($moduleList),
-            );
+            $categories[] = [
+                'label'   => __('Uncategorized'),
+                'icon'    => '',
+                'modules' => array_values($moduleList),
+            ];
         }
 
         return $categories;

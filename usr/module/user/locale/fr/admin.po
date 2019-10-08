@@ -1,0 +1,1662 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-user\n"
+"POT-Creation-Date: 2019-04-02 16:53+0200\n"
+"PO-Revision-Date: 2019-04-02 16:53+0200\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc / Pi-Team\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: config/block.php:17
+msgid "Profile completeness"
+msgstr "Exhaustivité du profil"
+
+#: config/block.php:23
+msgid "Max percent to active block visibility"
+msgstr "Pourcentage maximal pour activer l'affichage du bloc"
+
+#: config/block.php:30
+msgid "Hide after complete main fields"
+msgstr "Disparaît après saisie complète des champs principaux"
+
+#: config/config.php:25 config/config.php:233
+msgid "Login"
+msgstr "Connexion"
+
+#: config/config.php:29
+msgid "Registration"
+msgstr "Inscription"
+
+#: config/config.php:33 template/admin/inquiry.phtml:25
+msgid "Account"
+msgstr "Compte"
+
+#: config/config.php:37 config/user.php:152
+#: src/Controller/Admin/EditController.php:335
+msgid "Avatar"
+msgstr "Avatar"
+
+#: config/config.php:41
+msgid "OAuth"
+msgstr "OAuth"
+
+#: config/config.php:44
+msgid "Cron"
+msgstr "Cron"
+
+#: config/config.php:52
+msgid "List limit"
+msgstr "Limite de liste"
+
+#: config/config.php:53
+msgid "Number of items on list page."
+msgstr "Nombre d'éléments sur la page de liste"
+
+#: config/config.php:59
+msgid "Birthdate format"
+msgstr "Format date de naissance"
+
+#: config/config.php:60
+msgid "Format for birthdate display."
+msgstr "Format de l\\'affichage de la date de naissance"
+
+#: config/config.php:65
+msgid "Email expiration"
+msgstr "Durée expiration Email"
+
+#: config/config.php:66
+msgid "Expiration time for email/password reset (in hours)."
+msgstr ""
+"Durée d'expiration pour la réinitialisation de l'adresse email/mot de passe "
+"(en heure)"
+
+#: config/config.php:72
+msgid "Email confirmation"
+msgstr "Confirmation de l'Email"
+
+#: config/config.php:73
+msgid "Email confirmation with token is required for email change."
+msgstr "Une confirmation par mail et token est requise pour modifier l'email"
+
+#: config/config.php:80
+msgid "Profile complete"
+msgstr "Profil complet"
+
+#: config/config.php:81
+msgid "Require user to complete profile data."
+msgstr "Exiger de l'utilisateur qu'il complète ses données profil"
+
+#: config/config.php:88
+msgid "Enable modal for login / register"
+msgstr "Activer les modales pour se connecter et s'inscrire"
+
+#: config/config.php:89
+msgid ""
+"Login / register with modal, with GET redirect (hidden input instead). Modal "
+"template are located into system module, because used by user-bar template"
+msgstr ""
+"Se connecter / s'inscrire sous forme de modale, avec un redirect GET (champs "
+"caché sinon). Les templates des modales sont localisés dans le module "
+"Système, car utilisé par le Template user-bar"
+
+#: config/config.php:96
+msgid "Head keywords"
+msgstr "Mots clefs principaux"
+
+#: config/config.php:97
+msgid "Head keywords for SEO."
+msgstr "Mots Clefs principaux pour SEO"
+
+#: config/config.php:98
+msgid ""
+"account,social,tools,privacy,settings,profile,user,login,register,password,"
+"avatar"
+msgstr ""
+"compte, réseaux, sociaux, outils, données confidentielles, utilisateur, "
+"connexion, inscription, mot de passe, avatar"
+
+#: config/config.php:102
+msgid "Enable shortcuts on dashboard"
+msgstr "Activer les raccourcis sur le dashboard"
+
+#: config/config.php:110
+msgid "Active modules for show on side bar"
+msgstr "Activation des modules à afficher dans la barre latérale de menu"
+
+#: config/config.php:116
+msgid "Guide"
+msgstr "Guide"
+
+#: config/config.php:117
+msgid "Media"
+msgstr "Media"
+
+#: config/config.php:118
+msgid "Guide Stats"
+msgstr "Stats Guide"
+
+#: config/config.php:119
+msgid "Shop"
+msgstr "Shop"
+
+#: config/config.php:120
+msgid "Order"
+msgstr "Order"
+
+#: config/config.php:121
+msgid "Message"
+msgstr "Message"
+
+#: config/config.php:122
+msgid "Support"
+msgstr "Support"
+
+#: config/config.php:123
+msgid "Event"
+msgstr "Event"
+
+#: config/config.php:124
+msgid "Vote"
+msgstr "Vote"
+
+#: config/config.php:125
+msgid "Favourite"
+msgstr "Favourite"
+
+#: config/config.php:126
+msgid "Video"
+msgstr "Video"
+
+#: config/config.php:127
+msgid "Audio"
+msgstr "Audio"
+
+#: config/config.php:128
+msgid "Gallery"
+msgstr "Gallery"
+
+#: config/config.php:129
+msgid "Ask"
+msgstr "Ask"
+
+#: config/config.php:130
+msgid "Subscription"
+msgstr "Subscription"
+
+#: config/config.php:131
+msgid "Ads"
+msgstr "Ads"
+
+#: config/config.php:132
+msgid "Notification"
+msgstr "Notification"
+
+#: config/config.php:133
+msgid "Comment"
+msgstr "Comment"
+
+#: config/config.php:158
+msgid "Disable public front"
+msgstr "Désactiver l'affichage public en front"
+
+#: config/config.php:159
+msgid ""
+"Disable public front side of user module if you dont want visitors see user "
+"profile"
+msgstr ""
+"Désactiver l'affichage public du profil si vous ne souhaitez pas que les "
+"visiteurs voient la page profil des membres."
+
+#: config/config.php:167
+msgid "Login disable"
+msgstr "Désactiver la connexion"
+
+#: config/config.php:168
+msgid "Disable user login"
+msgstr "Désactiver la connexion utilisateur"
+
+#: config/config.php:176
+msgid "Login CAPTCHA"
+msgstr "Connexion CAPTCHA"
+
+#: config/config.php:177
+msgid "Enable CAPTCHA for user login"
+msgstr "Activer le CAPTCHA pour la connexion utilisateur"
+
+#: config/config.php:182 config/config.php:273
+msgid "No captcha"
+msgstr "Pas de Captcha"
+
+#: config/config.php:183 config/config.php:274
+msgid "Standard captcha"
+msgstr "Captcha Standard"
+
+#: config/config.php:184 config/config.php:275
+msgid "New re-captcha"
+msgstr "New Re-captcha"
+
+#: config/config.php:194
+msgid "Remember me"
+msgstr "Se souvenir"
+
+#: config/config.php:195
+msgid "Days to remember login, 0 for disable."
+msgstr "Nb jours pour la fonction Se Souvenir, 0 pour désactiver"
+
+#: config/config.php:202
+msgid "Login field"
+msgstr "Champs de connexion"
+
+#: config/config.php:203
+msgid "Identity field(s) for authentication."
+msgstr "Champs d'identité utilisé(s) pour se connecter"
+
+#: config/config.php:211 config/user.php:23 template/admin/inquiry.phtml:17
+#: template/admin/maintenance.phtml:31 template/admin/role.phtml:31
+#: template/admin/user.phtml:22 template/admin/user.phtml:44
+#: template/admin/user.phtml:68
+msgid "Username"
+msgstr "Nom compte"
+
+#: config/config.php:212 config/user.php:57 template/admin/inquiry.phtml:18
+#: template/admin/maintenance.phtml:48 template/admin/role.phtml:33
+#: template/admin/user.phtml:45 template/admin/user.phtml:72
+msgid "Email"
+msgstr "Email"
+
+#: config/config.php:222
+msgid "Maximum attempts"
+msgstr "Nb tentatives maximums"
+
+#: config/config.php:223
+msgid "Maximum attempts allowed to try for user login"
+msgstr "Nb tentatives maximums autorisées pour se connecter"
+
+#: config/config.php:230
+msgid "Login modal title"
+msgstr "Titre modale Connexion"
+
+#: config/config.php:231
+msgid "Title text for login modal in modal header"
+msgstr "Texte du titre sur header modale Connexion"
+
+#: config/config.php:239
+msgid "Login description"
+msgstr "Texte Connexion"
+
+#: config/config.php:240
+msgid "Description text for login page side bar, html allowed"
+msgstr "Texte descriptif pour la page de connexion/sidebar, html autorisé"
+
+#: config/config.php:249
+msgid "Register disable"
+msgstr "Désactiver l'inscription"
+
+#: config/config.php:250
+msgid "Disable user registration"
+msgstr "Désactiver l'inscription utilisateur"
+
+#: config/config.php:258
+msgid "Add newsletter optin when registering"
+msgstr "Ajouter une checkbox Optin newslettre lors inscription"
+
+#: config/config.php:259
+msgid ""
+"Whatever the value, newletter optin will be always available on User "
+"Account, if Subscription module is installed"
+msgstr ""
+"Quelque soit la valeur, la checkbox Opin newslettre sera toujours visible "
+"dans le Profil Compte Utilisateur, si le module Subscription est installé."
+
+#: config/config.php:267
+msgid "Register CAPTCHA"
+msgstr "Inscription CAPTCHA"
+
+#: config/config.php:268
+msgid "Enable CAPTCHA for user registration"
+msgstr "Activer le CAPTCHA pour l'inscription utilisateur"
+
+#: config/config.php:276
+msgid "Invisible re-captcha"
+msgstr "Re-captcha invisible"
+
+#: config/config.php:286 template/admin/inquiry.phtml:19
+msgid "Activation"
+msgstr "Activation"
+
+#: config/config.php:287
+msgid "Activation mode for user accounts"
+msgstr "Mode d'activation pour les comptes utilisateurs"
+
+#: config/config.php:292
+msgid "Automatically activated"
+msgstr "Confirmé automatiquement"
+
+#: config/config.php:293
+msgid "Activated by user email"
+msgstr "Confirmation par mail utilisateur"
+
+#: config/config.php:294
+msgid "Activated by admin approval"
+msgstr "Confirmé par l'approbation administrateur"
+
+#: config/config.php:304
+msgid "Activation expiration"
+msgstr "Expiration de l'activation"
+
+#: config/config.php:305
+msgid "Expiration time for activation email (in hours)."
+msgstr "Durée d'expiration pour l'activation par mail (en heures)."
+
+#: config/config.php:312
+msgid "Email notification"
+msgstr "Email de notification"
+
+#: config/config.php:313
+msgid "Send email notification on register success by admin approval."
+msgstr ""
+"Envoyer un email de notification en cas de succès de l'inscription après la "
+"validation de l'admin"
+
+#: config/config.php:321
+msgid "Email notification to admin"
+msgstr "Email de notification Admin"
+
+#: config/config.php:322
+msgid "Send email notification for new user registration to admin"
+msgstr "Envoyer un email de notification à l'admin pour tout nouvel inscrit"
+
+#: config/config.php:330
+msgid "Register complete"
+msgstr "Terminer l'inscription"
+
+#: config/config.php:331
+msgid "Require user to complete register data in an extra form."
+msgstr ""
+"Exige de l'utilisateur qu'il termine son inscription via un formulaire "
+"additionnel"
+
+#: config/config.php:339
+msgid "Register term and conditions"
+msgstr "CGU/CGV pour l'inscription"
+
+#: config/config.php:340
+msgid "Show term and conditions check box to user"
+msgstr "Afficher la checkbox CGU/CGV côté utilisateur"
+
+#: config/config.php:348
+msgid "Term and conditions page url"
+msgstr "URL de la page CGU/CGV"
+
+#: config/config.php:349
+msgid ""
+"Set term and conditions page url, if empty term and conditions check box not "
+"active"
+msgstr ""
+"Indiquer l'url de la page CGU/CGV, si vide la checkbox ne sera pas active"
+
+#: config/config.php:357
+msgid "Register modal title"
+msgstr "Titre modale Inscription"
+
+#: config/config.php:358
+msgid "Title text for register modal in modal header"
+msgstr "Texte du titre sur header modale Inscription"
+
+#: config/config.php:360
+msgid "Register"
+msgstr "S'inscrire"
+
+#: config/config.php:366
+msgid "Register description"
+msgstr "Texte Inscription"
+
+#: config/config.php:367
+msgid "Description text for register page side bar, html allowed"
+msgstr ""
+"Texte descriptif pour la page d'inscription/sidebar, le html est autorisé"
+
+#: config/config.php:376
+msgid "Username format"
+msgstr "Format Nom Compte"
+
+#: config/config.php:377
+msgid "Format of username for registration."
+msgstr "Format du nom compte lors de l'inscription"
+
+#: config/config.php:382 config/config.php:418
+msgid "Strict: alphabet or number only"
+msgstr "Strict : alphabet ou numérique seulement"
+
+#: config/config.php:383 config/config.php:419
+msgid "Strict: alphabet, number or space only"
+msgstr "Strict : alphabétiques, numériques et espaces seulement"
+
+#: config/config.php:384 config/config.php:420
+msgid "Medium: ASCII characters"
+msgstr "Medium : caractères ASCII"
+
+#: config/config.php:385 config/config.php:421
+msgid "Medium: ASCII characters and spaces"
+msgstr "Moyen : caractères ASCII et espaces"
+
+#: config/config.php:386 config/config.php:422
+msgid "Loose: multi-byte characters"
+msgstr "Bas : caractères multibytes"
+
+#: config/config.php:387 config/config.php:423
+msgid "Loose: multi-byte characters and spaces"
+msgstr "Faible : caractères multi-bit et espaces"
+
+#: config/config.php:397
+msgid "Minimum username"
+msgstr "Minimum Nom de Compte"
+
+#: config/config.php:398
+msgid "Minimum length of username for user registration"
+msgstr "Longueur minimum du nom de compte utilisateur lors de l'inscription"
+
+#: config/config.php:405
+msgid "Maximum username"
+msgstr "Nom compte utilisateur maximum"
+
+#: config/config.php:406
+msgid "Maximum length of username for user registration"
+msgstr "Longueur maximum du nom compte utilisateur lors de l'inscription"
+
+#: config/config.php:412
+msgid "Display name format"
+msgstr "Format du Nom d\\'Affichage/Pseudo"
+
+#: config/config.php:413
+msgid "Format of display name for registration."
+msgstr "Format du Nom d\\'Affichage/Pseudo lors de l'inscription"
+
+#: config/config.php:433
+msgid "Minimum display name"
+msgstr "Minimum Nom d\\'Affichage/Pseudo"
+
+#: config/config.php:434
+msgid "Minimum length of display name for user registration"
+msgstr "Longueur minimum du nom d\\'affichage/pseudo lors de l'inscription"
+
+#: config/config.php:441
+msgid "Maximum display name"
+msgstr "Maximum nom d\\'affichage/pseudo"
+
+#: config/config.php:442
+msgid "Maximum length of display name for user registration"
+msgstr "Longueur maximum du nom d\\'affichage/pseudo lors de l'inscription"
+
+#: config/config.php:449
+msgid "Minimum password"
+msgstr "Mot de passe minimum"
+
+#: config/config.php:450
+msgid "Minimum length of password for user registration"
+msgstr "Longueur minimale du mot de passe lors de l'inscription"
+
+#: config/config.php:457
+msgid "Maximum password"
+msgstr "Mot de passe maximum"
+
+#: config/config.php:458
+msgid "Maximum length of password for user registration"
+msgstr "Longueur maximale du mot de passe lors de l'inscription"
+
+#: config/config.php:465
+msgid "Strenghten password"
+msgstr "Renforcer le mot de passe"
+
+#: config/config.php:466
+msgid ""
+"Add some complexity to password filling : min 1 uppercase character, min 1 "
+"lowercase character, min 1 number"
+msgstr ""
+"Ajouter de la complexité au mot de passe crée : min 1 caractère majuscule, "
+"min 1 caractère minuscule, min 1 chiffre"
+
+#: config/config.php:474
+msgid "Username blacklist"
+msgstr "Liste noire Nom compte utilisateur"
+
+#: config/config.php:475
+msgid ""
+"Reserved and forbidden username list, separated with `|`, regexp syntax is "
+"allowed."
+msgstr ""
+"Liste des noms compte utilisateurs réservés/interdits, séparés par `|`, la "
+"syntaxe regexp est autorisée."
+
+#: config/config.php:482
+msgid "Display blacklist"
+msgstr "Liste noire Nom d\\'Affichage (pseudo)"
+
+#: config/config.php:483
+msgid ""
+"Reserved and forbidden display name list, separated with `|`, regexp syntax "
+"is allowed."
+msgstr ""
+"Liste des noms d\\'affichage/pseudo réservés / interdits, séparés par `|`, "
+"la syntaxe regexp est autorisée."
+
+#: config/config.php:490
+msgid "Email blacklist"
+msgstr "Liste noire Email"
+
+#: config/config.php:491
+msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
+msgstr ""
+"Liste des emails interdits, séparés par `|`, la syntaxe regexp est autorisée"
+
+#: config/config.php:500
+msgid "Max Avatar Width"
+msgstr "Largeur maximale avatar"
+
+#: config/config.php:501
+msgid "Allowed image width, 0 for no limit"
+msgstr "Largeur autorisée de l'image, 0 pour aucune limite"
+
+#: config/config.php:508
+msgid "Max Avatar Height"
+msgstr "Hauteur maximimale avatar"
+
+#: config/config.php:509
+msgid "Allowed image height, 0 for no limit"
+msgstr "Hauteur autorisée de l'image, 0 pour aucune limite"
+
+#: config/config.php:516
+msgid "Max File Size"
+msgstr "Taille maximal fichier"
+
+#: config/config.php:517
+msgid "Allowed avatar file to upload (in KB), 0 for no limit"
+msgstr ""
+"Taille autorisée de l'upload fichier avatar (en KB), 0 pour aucune limite"
+
+#: config/config.php:523
+msgid "High quality in topbar"
+msgstr "Haute qualité dans la topbar"
+
+#: config/config.php:540
+msgid "Temporary Path"
+msgstr "Chemin (path) temporaire"
+
+#: config/config.php:541
+msgid "For temporary storage of avatar"
+msgstr "Pour stocker temporairement l'avatar"
+
+#: config/config.php:549
+msgid "oAuth login"
+msgstr "oAuth login"
+
+#: config/config.php:558
+msgid "Login by google"
+msgstr "Login by google"
+
+#: config/config.php:570
+msgid "Google client id"
+msgstr "Google client id"
+
+#: config/config.php:578
+msgid "Google client secret"
+msgstr "Google client secret"
+
+#: config/config.php:586
+msgid "Login by twitter"
+msgstr "Login by twitter"
+
+#: config/config.php:598
+msgid "Twitter consumer Key (API Key)"
+msgstr "Twitter consumer Key (API Key)"
+
+#: config/config.php:606
+msgid "Twitter consumer Secret (API Secret)"
+msgstr "Twitter consumer Secret (API Secret)"
+
+#: config/config.php:614
+msgid "Login by facebook"
+msgstr "Login by facebook"
+
+#: config/config.php:626
+msgid "Facebook app ID"
+msgstr "Facebook app ID"
+
+#: config/config.php:634
+msgid "Facebook app Secret"
+msgstr "Facebook app Secret"
+
+#: config/config.php:642
+msgid "Login by github"
+msgstr "Login by github"
+
+#: config/config.php:654
+msgid "Github client id"
+msgstr "Github client id"
+
+#: config/config.php:662
+msgid "Github client secret"
+msgstr "Github client secret"
+
+#: config/config.php:671
+msgid "Active this module cron system"
+msgstr "Activerr le système de cron pour ce module"
+
+#: config/config.php:679
+msgid "Session timeout / in days"
+msgstr "Timeout session / en jours"
+
+#: config/config.php:687
+msgid "User post-subscription Feedback days"
+msgstr "Nb jours pour le feedback post inscriptions"
+
+#: config/module.php:17 config/nav.php:21
+msgid "User"
+msgstr "User"
+
+#: config/module.php:18
+msgid "User profile and services."
+msgstr "Management des comptes utilisateurs et services associés"
+
+#: config/nav.php:44
+msgid "All"
+msgstr "Tout"
+
+#: config/nav.php:52
+msgid "Activated user"
+msgstr "Utilisateur confirmé"
+
+#: config/nav.php:60
+msgid "Pending user"
+msgstr "Utilisateur en attente"
+
+#: config/nav.php:68 template/admin/role.phtml:34 template/admin/user.phtml:37
+#: template/admin/user.phtml:67
+msgid "Add user"
+msgstr "Ajouter un utilisateur"
+
+#: config/nav.php:76 template/admin/user.phtml:83
+msgid "Advanced search"
+msgstr "Recherche avancée"
+
+#: config/nav.php:87 template/admin/user.phtml:30
+msgid "Role"
+msgstr "Rôles"
+
+#: config/nav.php:97 template/admin/inquiry.phtml:26
+msgid "Profile"
+msgstr "Profil"
+
+#: config/nav.php:108
+msgid "Profile field"
+msgstr "Champs profil"
+
+#: config/nav.php:116
+msgid "Profile dress up"
+msgstr "Habillage Profil"
+
+#: config/nav.php:124
+msgid "Field privacy"
+msgstr "Confidentialité"
+
+#: config/nav.php:135
+msgid "Form"
+msgstr "Formulaire"
+
+#: config/nav.php:147 config/permission.php:73
+msgid "Plugin management"
+msgstr "Gestion Plugins"
+
+#: config/nav.php:158
+msgid "Timeline"
+msgstr "Activité"
+
+#: config/nav.php:166
+msgid "Activity"
+msgstr "Activité"
+
+#: config/nav.php:174
+msgid "Quicklink"
+msgstr "Lien rapide"
+
+#: config/nav.php:185 config/permission.php:79
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#: config/nav.php:196
+msgid "Stats"
+msgstr "Stats"
+
+#: config/nav.php:204
+msgid "User log"
+msgstr "Logs utilisateur"
+
+#: config/nav.php:212
+msgid "Timeline log"
+msgstr "Log Timeline"
+
+#: config/nav.php:220
+msgid "Deleted users"
+msgstr "Utilisateurs supprimés"
+
+#: config/nav.php:231 config/permission.php:85
+msgid "Inquiry"
+msgstr "Recherche Compte"
+
+#: config/nav.php:239 config/permission.php:91
+msgid "Terms and conditions"
+msgstr "CGU CGV"
+
+#: config/page.php:57
+msgid "Profile view"
+msgstr "Vue Profil"
+
+#: config/page.php:64
+msgid "Activities view"
+msgstr "Vue Activités"
+
+#: config/page.php:71
+msgid "Dashboard view"
+msgstr "Vue Dashboard"
+
+#: config/permission.php:19
+msgid "Profile pages"
+msgstr "Pages de Profil"
+
+#: config/permission.php:28
+msgid "User account"
+msgstr "Compte utilisateur"
+
+#: config/permission.php:34
+msgid "User profile"
+msgstr "Profil utilisateur"
+
+#: config/permission.php:40
+msgid "Roles"
+msgstr "Rôles"
+
+#: config/permission.php:46
+msgid "Profile fields"
+msgstr "Champs profil"
+
+#: config/permission.php:61
+msgid "Avatars"
+msgstr "Avatars"
+
+#: config/permission.php:67
+msgid "Forms"
+msgstr "Formulaire"
+
+#: config/user.php:40 template/admin/user.phtml:47 template/admin/user.phtml:73
+msgid "Password"
+msgstr "Mot de passe"
+
+#: config/user.php:81 template/admin/inquiry.phtml:14
+#: template/admin/role.phtml:32 template/admin/user.phtml:23
+msgid "Display name"
+msgstr "Nom d\\'affichage/Pseudo"
+
+#: config/user.php:97
+msgid "Gender"
+msgstr "Genre"
+
+#: config/user.php:134
+msgid "Birthdate"
+msgstr "Date de naissance"
+
+#: config/user.php:163 template/admin/maintenance.phtml:51
+#: template/admin/user.phtml:27 template/admin/user.phtml:49
+msgid "Active"
+msgstr "Confirmer"
+
+#: config/user.php:173 template/admin/maintenance.phtml:32
+#: template/admin/maintenance.phtml:45 template/admin/user.phtml:31
+msgid "Register time"
+msgstr "Date inscription"
+
+#: config/user.php:183
+msgid "Activation time"
+msgstr "Date activation"
+
+#: config/user.php:193 template/admin/maintenance.phtml:54
+msgid "Disabled time"
+msgstr "Date désactivée"
+
+#: config/user.php:204 template/admin/maintenance.phtml:42
+msgid "Deleted time"
+msgstr "Date supprimée"
+
+#: config/user.php:217
+msgid "Level"
+msgstr "Niveau"
+
+#: config/user.php:226
+msgid "Last modified"
+msgstr "Dernière modification"
+
+#: config/user.php:234
+msgid "Personal website"
+msgstr "Site web personnel"
+
+#: config/user.php:242
+msgid "Short bio"
+msgstr "Courte Bio"
+
+#: config/user.php:250
+msgid "Signature"
+msgstr "Signature"
+
+#: config/user.php:259 template/admin/maintenance.phtml:33
+#: template/admin/user.phtml:79 template/admin/user.phtml:84
+msgid "Register IP"
+msgstr "IP d\\'inscription"
+
+#: config/user.php:268
+msgid "Register source"
+msgstr "Provenance"
+
+#: config/user.php:277
+msgid "Identification number"
+msgstr "Numéro identification"
+
+#: config/user.php:283
+msgid "First Name"
+msgstr "Prénom"
+
+#: config/user.php:289
+msgid "Last Name"
+msgstr "Nom"
+
+#: config/user.php:294
+msgid "Language"
+msgstr "Langue"
+
+#: config/user.php:301
+msgid "Mobile phone"
+msgstr "Mobile"
+
+#: config/user.php:307
+msgid "Telephone"
+msgstr "Téléphone"
+
+#: config/user.php:313
+msgid "Address 1"
+msgstr "Adresse 1"
+
+#: config/user.php:319
+msgid "Address 2"
+msgstr "Adresse 2"
+
+#: config/user.php:325
+msgid "Country"
+msgstr "Pays"
+
+#: config/user.php:331
+msgid "State"
+msgstr "Etat"
+
+#: config/user.php:337
+msgid "City"
+msgstr "Ville"
+
+#: config/user.php:343
+msgid "Zip code"
+msgstr "Code Postal"
+
+#: config/user.php:348
+msgid "Device token"
+msgstr "Device token"
+
+#: config/user.php:355
+msgid "Social tools"
+msgstr "Réseaux sociaux"
+
+#: config/user.php:362
+msgid "Tool name"
+msgstr "Nom réseau"
+
+#: config/user.php:365
+msgid "ID or URL"
+msgstr "Numéro ou URL"
+
+#: config/user.php:374
+msgid "User action"
+msgstr "Action utilisateur"
+
+#: config/user.php:386
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: src/Controller/Admin/EditController.php:47
+#: src/Controller/Admin/EditController.php:177
+msgid "User data update failed."
+msgstr "La mise à jour des données utilisateur a échoué"
+
+#: src/Controller/Admin/EditController.php:65
+#: src/Controller/Admin/EditController.php:218
+msgid "User data update successful."
+msgstr "La mise à jour des données utilisateurs a réussie"
+
+#: src/Controller/Admin/EditController.php:111
+msgid "User avatar change failed."
+msgstr "Le changement d'avatar de l'utilisateur a échoué"
+
+#: src/Controller/Admin/EditController.php:116
+msgid "User avatar change successful."
+msgstr "Modification de l'avatar utilisateur effectuée avec succès"
+
+#: src/Controller/Admin/EditController.php:268
+msgid "Group deleted successfully."
+msgstr "Groupe supprimé avec succès"
+
+#: src/Controller/Admin/EditController.php:328
+msgid "Base info"
+msgstr "Informations générales"
+
+#: src/Controller/Admin/EditController.php:380
+#: src/Controller/Admin/MaintenanceController.php:54
+#: src/Controller/Admin/MaintenanceController.php:99
+msgid "User was not found."
+msgstr "L'utilisateur n'a pas été trouvé"
+
+#: src/Controller/Admin/IndexController.php:178
+msgid "Add user failed: user already exists."
+msgstr "L'ajout de l'utilisateur a échoué : l'utilisateur existe déja."
+
+#: src/Controller/Admin/IndexController.php:194
+msgid "Add user failed: invalid operation."
+msgstr "L'ajout de l'utilisateur a échoué : l'opération n'est pas valide."
+
+#: src/Controller/Admin/IndexController.php:215
+msgid "Add user successfully"
+msgstr "L'ajout de l'utilisateur a réussi"
+
+#: src/Controller/Admin/IndexController.php:326
+msgid "Enable user failed: invalid uid."
+msgstr ""
+"L'activation de l'utilisateur a échoué : l'uid (numéro utilisateur) n'est "
+"pas valide."
+
+#: src/Controller/Admin/IndexController.php:347
+#, php-format
+msgid "%d users enabled."
+msgstr "%d utilisateurs activés."
+
+#: src/Controller/Admin/IndexController.php:367
+msgid "Disable user failed: invalid uid."
+msgstr ""
+"La désactivation de l'utilisateur a échoué : l'uid (numéro utilisateur) "
+"n'est pas valide."
+
+#: src/Controller/Admin/IndexController.php:388
+#, php-format
+msgid "%d disable user successfully"
+msgstr "%d utilisaterus désactivés avec succès"
+
+#: src/Controller/Admin/IndexController.php:408
+msgid "Delete user failed: invalid uid"
+msgstr ""
+"La suppression de l'utilisateur a échoué : l'uid (numéro utilisateur) n'est "
+"pas valide"
+
+#: src/Controller/Admin/IndexController.php:440
+#, php-format
+msgid "%d delete user successfully"
+msgstr "%d utilisateurs supprimés avec succès"
+
+#: src/Controller/Admin/IndexController.php:460
+#: src/Controller/Admin/IndexController.php:466
+msgid "Activate user failed: invalid uid."
+msgstr ""
+"La confirmation de l'utilisateur a échoué : l'uid (numéro utilisateur) n'est "
+"pas valide."
+
+#: src/Controller/Admin/IndexController.php:487
+#, php-format
+msgid "%d users activated."
+msgstr "%d utilisateurs confirmés."
+
+#: src/Controller/Admin/IndexController.php:512
+msgid "Role assignment failed: invalid parameters."
+msgstr "L'affectation du rôle a échoué : paramètres non valides."
+
+#: src/Controller/Admin/IndexController.php:518
+msgid "Role assignment failed: invalid user ids."
+msgstr "L'affectation du rôle a échoué : uid (numéro utilisateur) non valide."
+
+#: src/Controller/Admin/IndexController.php:523
+msgid "Role assignment failed: invalid operation."
+msgstr "L'affectation du rôle a échoué : opération non valide."
+
+#: src/Controller/Admin/IndexController.php:533
+#: src/Controller/Admin/IndexController.php:551
+msgid "Role assignment failed."
+msgstr "L'affectation du rôle a échoué."
+
+#: src/Controller/Admin/IndexController.php:570
+msgid "Role assignment succeeded."
+msgstr "Succès de l'affectation du rôle."
+
+#: src/Controller/Admin/MaintenanceController.php:252
+msgid "Clear failed."
+msgstr "Le nettoyage a échoué."
+
+#: src/Controller/Admin/MaintenanceController.php:262
+#: src/Controller/Admin/MaintenanceController.php:279
+msgid "Clear all deleted user successfully."
+msgstr "Le nettoyage de tous les utilsateurs supprimés a été un succès."
+
+#: src/Controller/Admin/ProfileController.php:242
+msgid "Profile dress-up data saved successfully."
+msgstr "Habillage des données de profil enregistré avec succès."
+
+#: src/Controller/Admin/ProfileController.php:366
+msgid "Privacy set up failed: invalid field."
+msgstr "Le paramétrage de la confidentialité a échoué : champs non valide."
+
+#: src/Controller/Admin/ProfileController.php:371
+msgid "Privacy set up failed: invalid privacy."
+msgstr ""
+"Le paramétrage de la confidentialité a échoué : confidentialité non valide."
+
+#: src/Controller/Admin/ProfileController.php:393
+msgid "Privacy set up failed: update error."
+msgstr "Le paramétrage de la confidentialité a échoué : erreur de mise à jour"
+
+#: src/Controller/Admin/ProfileController.php:408
+msgid "Privacy set up successfully."
+msgstr "Le paramétrage de la confidentialité a été un succès."
+
+#: src/Controller/Admin/RoleController.php:99
+msgid "User removed from the role."
+msgstr "L'utilisateur a été supprimé du rôle."
+
+#: src/Controller/Admin/RoleController.php:103
+msgid "User not in the role."
+msgstr "L'utilisateur n'est pas dans le rôle."
+
+#: src/Controller/Admin/RoleController.php:121
+msgid "User added to the role."
+msgstr "L'utilisateur a été ajouté au rôle."
+
+#: src/Controller/Admin/RoleController.php:132
+msgid "User already in the role."
+msgstr "L'utilisateur est déja dans ce rôle."
+
+#: src/Controller/Admin/RoleController.php:137
+msgid "User not found."
+msgstr "Utilisateur non trouvé."
+
+#: src/Controller/Admin/RoleController.php:190
+#, php-format
+msgid "Users of role %s"
+msgstr "Utilisateurs du rôle %s"
+
+#: src/Installer/Action/Install.php:143
+msgid "Basic profile"
+msgstr "Informations générales"
+
+#: template/admin/edit-user.phtml:4
+msgid "Edit user: "
+msgstr "Editer l\\'utilisateur :"
+
+#: template/admin/edit-user.phtml:37 template/admin/user.phtml:89
+msgid "Replace with default avatar."
+msgstr "Remplacer par l\\'avatar par défaut"
+
+#: template/admin/edit-user.phtml:43
+msgid "This user doesn't have any you can view"
+msgstr "Aucune information n\\'est visible pour cet utilisateur"
+
+#: template/admin/edit-user.phtml:68
+msgid "Are you sure delete this group?"
+msgstr "Es-tu sûr de vouloir supprimer ce groupe?"
+
+#: template/admin/form-profile-complete.phtml:4
+#: template/admin/form-register.phtml:4
+msgid "Register form"
+msgstr "Formulaire d\\'inscription"
+
+#: template/admin/form-profile-complete.phtml:9
+#: template/admin/form-register.phtml:9
+msgid "Profile complete form"
+msgstr "Formulaire profil complété"
+
+#: template/admin/import.phtml:2 template/admin/import.phtml:4
+msgid "Import"
+msgstr "Import"
+
+#: template/admin/inquiry.phtml:15 template/admin/role.phtml:22
+#: template/admin/user.phtml:76
+msgid "Submit"
+msgstr "Valider"
+
+#: template/admin/inquiry.phtml:16
+msgid "Inquire of user via ID, username, display name or email."
+msgstr ""
+"Rechercher le compte par numéro, nom compte, nom d\\'affichage/pseudo ou "
+"email."
+
+#: template/admin/inquiry.phtml:20 template/admin/maintenance.phtml:44
+#: template/admin/user.phtml:26
+msgid "Activated"
+msgstr "Confirmé"
+
+#: template/admin/inquiry.phtml:21
+msgid "Not activated"
+msgstr "Non confirmé"
+
+#: template/admin/inquiry.phtml:22 template/admin/inquiry.phtml:27
+#: template/admin/user.phtml:24
+msgid "Enabled"
+msgstr "Activé"
+
+#: template/admin/inquiry.phtml:23 template/admin/user.phtml:25
+msgid "Disabled"
+msgstr "Désactivé"
+
+#: template/admin/inquiry.phtml:24 template/admin/plugin.phtml:21
+msgid "Yes"
+msgstr "Oui"
+
+#: template/admin/inquiry.phtml:28
+msgid "Unavailable"
+msgstr "Non disponible"
+
+#: template/admin/maintenance.phtml:18 template/admin/user.phtml:54
+msgid "Today"
+msgstr "Aujourd\\'hui"
+
+#: template/admin/maintenance.phtml:19 template/admin/user.phtml:55
+msgid "Last week"
+msgstr "Semaine dernière"
+
+#: template/admin/maintenance.phtml:20 template/admin/user.phtml:56
+msgid "Last month"
+msgstr "Mois dernier"
+
+#: template/admin/maintenance.phtml:21
+msgid "History"
+msgstr "Historique"
+
+#: template/admin/maintenance.phtml:22
+msgid "Register num"
+msgstr "Nombre d\\'inscriptions"
+
+#: template/admin/maintenance.phtml:23
+msgid "Activated num"
+msgstr "Nombre de confirmés"
+
+#: template/admin/maintenance.phtml:24
+msgid "Pending num"
+msgstr "Nombre en attente"
+
+#: template/admin/maintenance.phtml:25
+msgid "Top 10 registered IP"
+msgstr "Top 10 IP enregistrées"
+
+#: template/admin/maintenance.phtml:26
+msgid "None"
+msgstr "Aucun"
+
+#: template/admin/maintenance.phtml:27
+msgid "Sort by key:"
+msgstr "Trier par : "
+
+#: template/admin/maintenance.phtml:28
+msgid "uid"
+msgstr "uid"
+
+#: template/admin/maintenance.phtml:29 template/admin/user.phtml:35
+msgid "Edit"
+msgstr "Editer"
+
+#: template/admin/maintenance.phtml:30 template/admin/user.phtml:86
+msgid "View log"
+msgstr "Voir les logs"
+
+#: template/admin/maintenance.phtml:34 template/admin/maintenance.phtml:56
+msgid "Activated time"
+msgstr "Date de confirmation"
+
+#: template/admin/maintenance.phtml:35
+msgid "Last login time"
+msgstr "Date dernière connexion"
+
+#: template/admin/maintenance.phtml:36 template/admin/maintenance.phtml:52
+msgid "Last login ip"
+msgstr "Dernière IP de connexion"
+
+#: template/admin/maintenance.phtml:37
+msgid "Login count"
+msgstr "Nombre de connexion"
+
+#: template/admin/maintenance.phtml:38
+msgid "Sort by:"
+msgstr "Trié par : "
+
+#: template/admin/maintenance.phtml:39 template/admin/user.phtml:64
+msgid "Are you sure to delete this user?"
+msgstr "Es-tu sûr de vouloir supprimer cet utilisateur?"
+
+#: template/admin/maintenance.phtml:40 template/admin/user.phtml:65
+msgid "Are you sure to delete these users?"
+msgstr "Es-tu sûr de vouloir supprimer ces utilisateurs?"
+
+#: template/admin/maintenance.phtml:41
+msgid "Are you sure to delete all of these users?"
+msgstr "Es-tu sûr de vouloir supprimer tous ces utilisateurs?"
+
+#: template/admin/maintenance.phtml:43
+msgid "IP"
+msgstr "IP"
+
+#: template/admin/maintenance.phtml:46
+msgid "Displayname"
+msgstr "Nom d\\'Affichage/Pseudo"
+
+#: template/admin/maintenance.phtml:47
+msgid "Clear the users"
+msgstr "Nettoyer les utilisateurs"
+
+#: template/admin/maintenance.phtml:49
+msgid "Clear all deleted users"
+msgstr "Nettoyer tous les utilisateurs supprimés"
+
+#: template/admin/maintenance.phtml:50 template/admin/user.phtml:82
+msgid "No user matched your request."
+msgstr "Aucun utilisateur ne correspond à votre requête."
+
+#: template/admin/maintenance.phtml:53
+msgid "Created time"
+msgstr "Date de création"
+
+#: template/admin/maintenance.phtml:55
+msgid "Last login"
+msgstr "Dernière connexion"
+
+#: template/admin/maintenance.phtml:57
+msgid "Null"
+msgstr "Vide"
+
+#: template/admin/maintenance.phtml:58 template/admin/user.phtml:91
+msgid "View"
+msgstr "Voir"
+
+#: template/admin/plugin.phtml:17
+msgid "Item name"
+msgstr "Nom de l\\'élément"
+
+#: template/admin/plugin.phtml:18 template/admin/profile.phtml:28
+msgid "From module"
+msgstr "Du module"
+
+#: template/admin/plugin.phtml:19 template/admin/profile.phtml:24
+msgid "Display"
+msgstr "Affichage"
+
+#: template/admin/plugin.phtml:20
+msgid "Items displayed on the homepage timeline"
+msgstr "Eléments affichés sur la page d\\'activité"
+
+#: template/admin/plugin.phtml:22
+msgid "No"
+msgstr "Non"
+
+#: template/admin/plugin.phtml:23
+msgid "Activities"
+msgstr "Activités"
+
+#: template/admin/plugin.phtml:24
+msgid "Activities items repository"
+msgstr "Répertoire des logs Activité"
+
+#: template/admin/plugin.phtml:25
+msgid ""
+"Items to display on the user\\'s homepage, Drag items vertically to "
+"determine the order displays"
+msgstr ""
+"Eléments à afficher sur la page utilisateur, glisser les éléments "
+"verticalement pour choisir l\\'ordre d\\'affichage"
+
+#: template/admin/plugin.phtml:26
+msgid "Quicklinks"
+msgstr "Liens rapides"
+
+#: template/admin/plugin.phtml:27
+msgid "Quicklinks items repository"
+msgstr "Répertoire des valeurs de liens rapides"
+
+#: template/admin/profile.phtml:18 template/admin/profile.phtml:34
+msgid "Basic field"
+msgstr "Informations générales"
+
+#: template/admin/profile.phtml:19
+msgid "Field title can be edited for display."
+msgstr "Le nom du champs peut être édité pour l\\'affichage."
+
+#: template/admin/profile.phtml:20
+msgid "Field"
+msgstr "Champs"
+
+#: template/admin/profile.phtml:21
+msgid "Default setting"
+msgstr "Paramètre par défaut"
+
+#: template/admin/profile.phtml:22
+msgid "Forced setting"
+msgstr "Paramètre forcé"
+
+#: template/admin/profile.phtml:23
+msgid "Field title"
+msgstr "Nom du champs"
+
+#: template/admin/profile.phtml:25
+msgid "Search"
+msgstr "Rechercher"
+
+#: template/admin/profile.phtml:26
+msgid "Editable"
+msgstr "Editable"
+
+#: template/admin/profile.phtml:27 template/admin/role.phtml:23
+#: template/admin/user.phtml:43 template/admin/user.phtml:77
+msgid "Required"
+msgstr "Requis"
+
+#: template/admin/profile.phtml:29
+msgid "Compound"
+msgstr "Organiser"
+
+#: template/admin/profile.phtml:30
+msgid "Compound to organize a group of fields."
+msgstr "Organiser pour composer un groupe de champs"
+
+#: template/admin/profile.phtml:31
+msgid ""
+"Privacy policy: set default value for profile field privacy setting. If "
+"`Forced` is set, user can not change privacy for corresponding field."
+msgstr ""
+"Politique de confidentialité : choisir la valeur par défaut pour le "
+"paramétrage de la confidentialité du profil. Si la valeur `Forcé` est "
+"choisie, l\\'utilisateur ne peut pas changer la confidentialité du champs "
+"correspondant."
+
+#: template/admin/profile.phtml:32
+msgid "Add group"
+msgstr "Ajouter un groupe"
+
+#: template/admin/profile.phtml:33
+msgid "Field display on profile page"
+msgstr "Champs affiché sur la page de profil"
+
+#: template/admin/profile.phtml:35 template/admin/role.phtml:18
+#: template/admin/role.phtml:21
+msgid "Title"
+msgstr "Titre"
+
+#: template/admin/profile.phtml:36
+msgid "Data will not be saved until `Save` button is hit."
+msgstr ""
+"Les données ne seront pas enregistrées avant que le bouton `Enregistrer` ne "
+"soit cliqué."
+
+#: template/admin/profile.phtml:37
+msgid "Click to choose a group for the field to add."
+msgstr "Cliquer pour choisir le groupe du champs à ajouter."
+
+#: template/admin/profile.phtml:38
+msgid "Click to add a group."
+msgstr "Cliquer pour ajouter un groupe."
+
+#: template/admin/profile.phtml:39
+msgid "Cancel"
+msgstr "Annuler"
+
+#: template/admin/profile.phtml:40
+msgid "Save"
+msgstr "Enregistrer"
+
+#: template/admin/profile.phtml:41
+msgid "Changes are not saved yet. Would you still like to leave this page?"
+msgstr ""
+"Les changements n\\'ont pas été enregistrés. Veux-tu toujours quitter cette "
+"page? "
+
+#: template/admin/profile.phtml:42
+msgid "Create a group before adding."
+msgstr "Créer un groupe avant d\\'ajouter."
+
+#: template/admin/role.phtml:15
+msgid "Admin roles"
+msgstr "Rôles admin"
+
+#: template/admin/role.phtml:16
+msgid "Front roles"
+msgstr "Rôles côté Utilisateur"
+
+#: template/admin/role.phtml:17
+msgid "Name"
+msgstr "Nom"
+
+#: template/admin/role.phtml:19 template/admin/role.phtml:27
+msgid "Users in role"
+msgstr "Utilisateurs dans le rôle"
+
+#: template/admin/role.phtml:20 template/admin/user.phtml:34
+msgid "Action"
+msgstr "Action"
+
+#: template/admin/role.phtml:24
+msgid "Type"
+msgstr "Type"
+
+#: template/admin/role.phtml:25
+msgid "Front"
+msgstr "Accueil"
+
+#: template/admin/role.phtml:26
+msgid "Admin"
+msgstr "Admin"
+
+#: template/admin/role.phtml:28
+msgid "User id or name"
+msgstr "Numéro utilisateur (uid) ou nom"
+
+#: template/admin/role.phtml:29
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: template/admin/role.phtml:30
+msgid "User id"
+msgstr "Numéro utilisateur"
+
+#: template/admin/role.phtml:35
+msgid "None user in this role."
+msgstr "Aucun utilisateur dans ce rôle."
+
+#: template/admin/user.phtml:18 template/admin/user.phtml:66
+msgid "Active State"
+msgstr "Statut confirmation"
+
+#: template/admin/user.phtml:19
+msgid "Enable State"
+msgstr "Statut activation"
+
+#: template/admin/user.phtml:20
+msgid "Select roles"
+msgstr "Selectionner les rôles"
+
+#: template/admin/user.phtml:21
+msgid "Apply"
+msgstr "Appliquer"
+
+#: template/admin/user.phtml:28
+msgid "Inactive"
+msgstr "Non confirmé"
+
+#: template/admin/user.phtml:29
+msgid "Pending"
+msgstr "En attente"
+
+#: template/admin/user.phtml:32
+msgid "Register time from"
+msgstr "Date d\\'inscription après le "
+
+#: template/admin/user.phtml:33
+msgid "Register time to"
+msgstr "Date d\\'inscription avant le"
+
+#: template/admin/user.phtml:36
+msgid "Delete"
+msgstr "Supprimer"
+
+#: template/admin/user.phtml:38
+msgid "Passwords don\\'t match."
+msgstr "Les mots de passe ne correspondent pas."
+
+#: template/admin/user.phtml:39
+msgid "Username is already taken."
+msgstr "Le nom de compte est déja pris."
+
+#: template/admin/user.phtml:40
+msgid "Email is already taken."
+msgstr "L\\'email est déja pris."
+
+#: template/admin/user.phtml:41
+msgid "Display name is already taken."
+msgstr "Le nom d\\'affichage/pseudo est déjà pris"
+
+#: template/admin/user.phtml:42
+msgid "Back to users list"
+msgstr "Retour à la liste utilisateurs"
+
+#: template/admin/user.phtml:46
+msgid "Email invalid"
+msgstr "Email non valide"
+
+#: template/admin/user.phtml:48
+msgid "Password confirm"
+msgstr "Confirmation mot de passe"
+
+#: template/admin/user.phtml:50
+msgid "Enable"
+msgstr "Activer"
+
+#: template/admin/user.phtml:51
+msgid "Disable"
+msgstr "Désactiver"
+
+#: template/admin/user.phtml:52 template/admin/user.phtml:62
+msgid "Front role"
+msgstr "Rôle côté Utilisateur"
+
+#: template/admin/user.phtml:53 template/admin/user.phtml:63
+msgid "Admin role"
+msgstr "Rôle côté Admin"
+
+#: template/admin/user.phtml:57
+msgid "Last three months"
+msgstr "3 derniers mois"
+
+#: template/admin/user.phtml:58
+msgid "Last six months"
+msgstr "6 derniers mois"
+
+#: template/admin/user.phtml:59
+msgid "Last year"
+msgstr "Dernière année"
+
+#: template/admin/user.phtml:60
+msgid "Assign role"
+msgstr "Allouer le rôle"
+
+#: template/admin/user.phtml:61
+msgid "Remove role"
+msgstr "Supprimer le rôle"
+
+#: template/admin/user.phtml:69
+msgid "Are you sure to activate this account? It can not be reverted."
+msgstr "Es-tu sûr de vouloir confirmer ce compte, cela ne peut pas être annulé"
+
+#: template/admin/user.phtml:70
+msgid "Are you sure to activate these accounts? It can not be reverted."
+msgstr "Es-tu sûr de vouloir confirmer ces comptes, cela ne peut être annulé"
+
+#: template/admin/user.phtml:71
+msgid "Choose at least one item before submission."
+msgstr "Choisir au moins un élement avant de soumettre"
+
+#: template/admin/user.phtml:74
+msgid "Confirm password"
+msgstr "Confirmer le mot de passe"
+
+#: template/admin/user.phtml:75
+msgid "Activate"
+msgstr "Confirmer"
+
+#: template/admin/user.phtml:78
+msgid "Invalid email."
+msgstr "Email non valide"
+
+#: template/admin/user.phtml:80
+msgid "Activation state"
+msgstr "Statut confirmation"
+
+#: template/admin/user.phtml:81
+msgid "User ID"
+msgstr "N° Utilisateur"
+
+#: template/admin/user.phtml:85
+msgid "Search result"
+msgstr "Résultat de recherche"
+
+#: template/admin/user.phtml:87
+msgid "No pending user."
+msgstr "Aucun utilisateur en attente."
+
+#: template/admin/user.phtml:88
+msgid "Edit user"
+msgstr "Editer l\\'utilisateur"
+
+#: template/admin/user.phtml:90
+msgid "Are you sure to delete this group?"
+msgstr "Es-tu sûr de vouloir supprimer ce groupe?"
+
+#~ msgid "Guide favourite"
+#~ msgstr "Guide favourite"
+
+#~ msgid "Please type the word."
+#~ msgstr "Merci d'entrer le mot."
+
+#~ msgid "Send email notification for register success."
+#~ msgstr "Envoyer un mail de notification en cas de succès de l'inscription"
+
+#~ msgid "Confirm credential"
+#~ msgstr "Confirmer les identifiants"
+
+#~ msgid "Edit user info failed"
+#~ msgstr "L'édition des informations utilisateurs a échoué"
+
+#~ msgid "Edit user info successfully"
+#~ msgstr "L'édition des informations utilisateurs a réussi"
+
+#~ msgid "Delete this group successfully"
+#~ msgstr "La supprimer du groupe a réussi"
+
+#~ msgid "Replace with defalt avatar."
+#~ msgstr "Remplacer par l\\'avatar par défaut."
+
+#~ msgid "Register ip"
+#~ msgstr "IP d\\'inscription"
+
+#~ msgid "Are you sure to delete this users?"
+#~ msgstr "Etes-vous sûr de vouloir supprimer ces utilisateurs?"
