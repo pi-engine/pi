@@ -1,7 +1,7 @@
 var systemMessage = {
     tmp: '<div class="alert alert-{type}" style="font-size: 14px; line-height: 20px; padding: 5px 20px; text-align: left; white-space: normal;"><i class="icon-{cls}"></i><span style="margin-left: 10px;">{msg}</span></div>',
     _init: function () {
-        this.el = $('<div class="system-layer" style="position: fixed; z-index: 1043; width: 60%; left: 20%; text-align: center;">').appendTo(document.body);
+        this.el = $('<div class="system-layer" style="position: fixed; z-index: 10000; width: 60%; left: 20%; text-align: center;">').appendTo(document.body);
     },
     succ: function (msg, time) {
         this._type('succ', msg, time || 3000);
