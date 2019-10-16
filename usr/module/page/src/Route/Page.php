@@ -146,10 +146,12 @@ class Page extends Standard
         $bypassUri = Pi::config('bypass_uri', 'page');
         $bypassUriArray = explode("\n", $bypassUri);
 
+        array_filter($bypassUriArray);
+
         /** @var \Zend\Http\PhpEnvironment\Request $request */
 
         foreach($bypassUriArray as $bypassUriRow) {
-            if(preg_match('#' . $bypassUriRow . '#', $request->getRequestUri())) {
+            if($bypassUriRow && preg_match('#' . $bypassUriRow . '#', $request->getRequestUri())) {
                 return null;
             }
         }
