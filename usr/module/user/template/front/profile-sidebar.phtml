@@ -142,7 +142,7 @@ if (empty($item)) {
         </a>
 
         <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>"
-           class="nav-link nav-link-all-activities rounded-0 <?php if (($module == 'guide' && $action == 'dashboard') || isset($item['id'])) {echo ' active';} ?>">
+           class="nav-link nav-link-all-activities rounded-0 <?php if (($module == 'guide' && $action == 'dashboard') || (isset($item['id']) && $item['id'])) {echo ' active';} ?>">
             <span class="fa-minimized fas fa-project-diagram d-none"></span>
             <span class="label"><?php echo __('Manage my activities') ?></span>
             <span class='fas fa-angle-right'></span>
