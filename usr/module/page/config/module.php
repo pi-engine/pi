@@ -15,7 +15,7 @@ return [
         // Description, for admin, optional
         'description' => _a('Single page for direct content display.'),
         // Version number, required
-        'version'     => '1.3.1',
+        'version'     => '1.3.2',
         // Distribution license, required
         'license'     => 'New BSD',
         // Logo image, for admin, optional
