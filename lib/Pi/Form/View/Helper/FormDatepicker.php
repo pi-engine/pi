@@ -68,6 +68,7 @@ class FormDatepicker extends FormInput
 
         $format = !empty($options['format']) ? $options['format'] : 'mm/dd/yyy';
         $element->setAttribute('data-date-format', $format);
+        $element->setAttribute('autocomplete', 'off');
 
         $class = $element->getAttribute('class');
         $class = ($class ? $class . ' ' : '') . 'datepicker';
