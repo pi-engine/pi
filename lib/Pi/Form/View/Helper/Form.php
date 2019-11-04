@@ -431,17 +431,18 @@ EOT;
                 unset($hiddenMessages['security']);
             }
             $elementMessages = '';
-            $name = '';
-            $style  = '';
+
             foreach ($hiddenMessages as $elName => $elMessages) {
                 $element = $form->get($elName);
+                $name = '';
+                $hiddenStyle  = '';
                 if ($element) {
                     $attr = $element->getAttributes();
                     if (!isset($attr['error']['noname']) || $attr['error']['noname'] == false) {
                         $name = $element->getLabel() . ' (' . $elName . ')';
                     }
                     if (isset($attr['error']['nocount']) && $attr['error']['nocount'] == true) {
-                        $style = 'style="list-style-type: none;"';
+                        $hiddenStyle = 'style="list-style-type: none;"';
                     }
 
                 }
@@ -455,7 +456,7 @@ EOT;
                 $elementMessages
                     .= <<<EOT
     <h4>{$name}</h4>
-    <ol {$style}>
+    <ol {$hiddenStyle}>
         {$messages}
     </ol>
 EOT;
