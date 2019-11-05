@@ -30,7 +30,6 @@ namespace Stripe;
  */
 class Account extends ApiResource
 {
-
     const OBJECT_NAME = "account";
 
     use ApiOperations\All;
@@ -56,6 +55,7 @@ class Account extends ApiResource
     const CAPABILITY_CARD_PAYMENTS     = 'card_payments';
     const CAPABILITY_LEGACY_PAYMENTS   = 'legacy_payments';
     const CAPABILITY_PLATFORM_PAYMENTS = 'platform_payments';
+    const CAPABILITY_TRANSFERS         = 'transfers';
 
     /**
      * Possible string representations of an account's capability status.
@@ -104,6 +104,8 @@ class Account extends ApiResource
      *     options array containing an `id` key.
      * @param array|string|null $opts
      *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      * @return Account
      */
     public static function retrieve($id = null, $opts = null)
@@ -119,6 +121,8 @@ class Account extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      * @return Account The rejected account.
      */
     public function reject($params = null, $opts = null)
@@ -132,6 +136,8 @@ class Account extends ApiResource
     /**
      * @param array|null $clientId
      * @param array|string|null $opts
+     *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return StripeObject Object containing the response from the API.
      */
@@ -156,6 +162,8 @@ class Account extends ApiResource
      * @param string $capabilityId The ID of the capability to retrieve.
      * @param array|null $params
      * @param array|string|null $opts
+     *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return Capability
      */
@@ -182,6 +190,8 @@ class Account extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      * @return Collection The list of capabilities.
      */
     public static function allCapabilities($id, $params = null, $opts = null)
@@ -193,6 +203,8 @@ class Account extends ApiResource
      * @param string $id The ID of the account on which to create the external account.
      * @param array|null $params
      * @param array|string|null $opts
+     *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return BankAccount|Card
      */
@@ -207,6 +219,8 @@ class Account extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      * @return BankAccount|Card
      */
     public static function retrieveExternalAccount($id, $externalAccountId, $params = null, $opts = null)
@@ -219,6 +233,8 @@ class Account extends ApiResource
      * @param string $externalAccountId The ID of the external account to update.
      * @param array|null $params
      * @param array|string|null $opts
+     *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return BankAccount|Card
      */
@@ -233,6 +249,8 @@ class Account extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      * @return BankAccount|Card
      */
     public static function deleteExternalAccount($id, $externalAccountId, $params = null, $opts = null)
@@ -244,6 +262,8 @@ class Account extends ApiResource
      * @param string $id The ID of the account on which to retrieve the external accounts.
      * @param array|null $params
      * @param array|string|null $opts
+     *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return Collection The list of external accounts (BankAccount or Card).
      */
@@ -257,6 +277,8 @@ class Account extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      * @return LoginLink
      */
     public static function createLoginLink($id, $params = null, $opts = null)
@@ -267,6 +289,8 @@ class Account extends ApiResource
     /**
      * @param array|null $params
      * @param array|string|null $options
+     *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return Collection The list of persons.
      */
@@ -284,6 +308,8 @@ class Account extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      * @return Person
      */
     public static function createPerson($id, $params = null, $opts = null)
@@ -296,6 +322,8 @@ class Account extends ApiResource
      * @param string $personId The ID of the person to retrieve.
      * @param array|null $params
      * @param array|string|null $opts
+     *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return Person
      */
@@ -310,6 +338,8 @@ class Account extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      * @return Person
      */
     public static function updatePerson($id, $personId, $params = null, $opts = null)
@@ -323,6 +353,8 @@ class Account extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      * @return Person
      */
     public static function deletePerson($id, $personId, $params = null, $opts = null)
@@ -334,6 +366,8 @@ class Account extends ApiResource
      * @param string $id The ID of the account on which to retrieve the persons.
      * @param array|null $params
      * @param array|string|null $opts
+     *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return Collection The list of persons.
      */
@@ -371,7 +405,7 @@ class Account extends ApiResource
             $originalValue = [];
         }
         if (($originalValue) && (count($originalValue) > count($additionalOwners))) {
-            throw new \InvalidArgumentException(
+            throw new Exception\InvalidArgumentException(
                 "You cannot delete an item from an array, you must instead set a new array"
             );
         }

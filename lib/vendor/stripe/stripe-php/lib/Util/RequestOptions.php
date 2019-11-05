@@ -2,7 +2,7 @@
 
 namespace Stripe\Util;
 
-use Stripe\Error;
+use Stripe\Exception;
 
 class RequestOptions
 {
@@ -23,6 +23,15 @@ class RequestOptions
         $this->apiKey = $key;
         $this->headers = $headers;
         $this->apiBase = $base;
+    }
+
+    public function __debugInfo()
+    {
+        return [
+            'apiKey' => $this->redactedApiKey(),
+            'headers' => $this->headers,
+            'apiBase' => $this->apiBase,
+        ];
     }
 
     /**
@@ -103,6 +112,17 @@ class RequestOptions
            . 'optional per-request apiKey, which must be a string, or '
            . 'per-request options, which must be an array. (HINT: you can set '
            . 'a global apiKey by "Stripe::setApiKey(<apiKey>)")';
-        throw new Error\Api($message);
+        throw new Exception\InvalidArgumentException($message);
+    }
+
+    private function redactedApiKey()
+    {
+        $pieces = explode('_', $this->apiKey, 3);
+        $last = array_pop($pieces);
+        $redactedLast = strlen($last) > 4
+            ? (str_repeat('*', strlen($last) - 4) . substr($last, -4))
+            : $last;
+        array_push($pieces, $redactedLast);
+        return implode('_', $pieces);
     }
 }

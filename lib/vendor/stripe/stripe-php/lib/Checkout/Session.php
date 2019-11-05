@@ -15,6 +15,7 @@ namespace Stripe\Checkout;
  * @property bool $livemode
  * @property string $payment_intent
  * @property string[] $payment_method_types
+ * @property string $setup_intent
  * @property string $submit_type
  * @property string $subscription
  * @property string $success_url
@@ -23,7 +24,6 @@ namespace Stripe\Checkout;
  */
 class Session extends \Stripe\ApiResource
 {
-
     const OBJECT_NAME = "checkout.session";
 
     use \Stripe\ApiOperations\Create;
