@@ -1,7 +1,7 @@
 <div class="clearfix">
     <h3><?php echo $this->escape($title); ?></h3>
 
-    <?php if ($message) : ?>
+    <?php if (isset($message)) : ?>
         <div class="alert alert-warning"><?php echo $this->escape($message); ?></div>
     <?php endif; ?>
 
