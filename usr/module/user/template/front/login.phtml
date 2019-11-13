@@ -12,6 +12,10 @@ if (!empty($description) || !empty($url)) {
 } else {
     $class = 'col-md-12';
 }
+$registerUrl = Pi::service('user')->getUrl('register');
+if ($redirect) {
+    $registerUrl .= '?redirect=' . $redirect;
+}
 ?>
 <div class="clearfix user-template">
     <div class="page-header">
@@ -38,7 +42,7 @@ if (!empty($description) || !empty($url)) {
                     <h2><?php _e('Not registered yet ?'); ?></h2>
                     <p>
                         <a class="btn btn-secondary" title="<?php _e('Register'); ?>"
-                           href="<?php echo Pi::service('user')->getUrl('register'); ?>">
+                           href="<?php echo $registerUrl ?>">
                             <?php _e('Register'); ?>
                         </a>
                     </p>
