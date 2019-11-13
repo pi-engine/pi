@@ -57,6 +57,7 @@ class LoginController extends ActionController
         if (null !== $redirect) {
             $redirect = $redirect ? urlencode($redirect) : '';
             $form->setData(['redirect' => $redirect]);
+            $this->view()->assign('redirect', $redirect);
         }
         $this->renderForm($form);
     }
@@ -137,6 +138,8 @@ class LoginController extends ActionController
         $form    = $this->getForm($configs);
         $form->setData($post);
         $form->setInputFilter($this->getInputFilter($configs));
+
+        $this->view()->assign('redirect', $post['redirect']);
 
         if (!$form->isValid()) {
 //        print_r($form->getMessages()); die();
@@ -238,6 +241,7 @@ class LoginController extends ActionController
         Pi::service('event')->trigger('user_login', $args);
 
         $this->jump($redirect);
+        $this->view()->assign('redirect', $redirect);
     }
 
     /**
