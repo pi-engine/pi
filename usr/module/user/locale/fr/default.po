@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-10-11 10:28+0200\n"
-"PO-Revision-Date: 2019-10-11 10:28+0200\n"
+"POT-Creation-Date: 2019-11-11 11:42+0100\n"
+"PO-Revision-Date: 2019-11-11 11:43+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -1044,8 +1044,8 @@ msgid "No change!"
 msgstr "Aucune modification !"
 
 #: template/front/account-reset-email.phtml:2
-msgid "Change email"
-msgstr "Modifier l'email"
+msgid "Email modification"
+msgstr "Modification Email"
 
 #: template/front/account-reset-email.phtml:4
 #: template/front/password-process.phtml:18
@@ -1055,8 +1055,7 @@ msgid "Congratulations!"
 msgstr "Félicitations !"
 
 #: template/front/account-reset-email.phtml:6
-#: template/front/register-activate.phtml:10
-msgid "Login right now."
+msgid "Login right now"
 msgstr "Se connecter maintenant."
 
 #: template/front/activity-index.phtml:19 template/front/home-index.phtml:20
@@ -1566,6 +1565,10 @@ msgstr ""
 "Votre compte a été confirmé et est maintenant actif : vous pouvez vous "
 "connecter… et contribuer !"
 
+#: template/front/register-activate.phtml:10
+msgid "Login right now."
+msgstr "Se connecter maintenant."
+
 #: template/front/register-activate.phtml:16
 #: template/front/register-index.phtml:90
 #, php-format
@@ -1640,6 +1643,9 @@ msgstr "Demandez le renvoi du mail d'activation"
 #: template/front/register-index.phtml:179
 msgid "Already sent"
 msgstr "Déja envoyé"
+
+#~ msgid "Change email"
+#~ msgstr "Modifier l'email"
 
 #~ msgid "Deals (Soon)"
 #~ msgstr "Promos/Offres (bientôt)"
