@@ -3,54 +3,88 @@ $this->css($this->assetModule('admin/admin.css'));
 $this->jQuery();
 //$this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
-
 <ul class="nav nav-pills bg-light mb-3 p-3">
     <li class="nav-item">
         <a class="nav-link active" href="<?php echo $this->url('', ['controller' => 'audit', 'action' => 'index']); ?>"
-                          title="<?php echo _a('Audit'); ?>"><?php echo _a('Audit'); ?></a>
+           title="<?php echo _a('Audit'); ?>"><?php echo _a('Audit'); ?></a>
     </li>
     <li class="nav-item">
         <a class="nav-link disabled" href="#" title="<?php echo _a('Mailing'); ?>"><?php echo _a('Mailing'); ?></a>
     </li>
 </ul>
-
 <h2 class="page-header"><?php echo _a('Audit list') ?></h2>
-
-<table class="table table-hover">
-    <thead>
-    <td width="15%"><?php echo _a('time') ?></td>
-    <td width="2%"><?php echo _a('User ID') ?></td>
-    <td width="5%"><?php echo _a('IP') ?></td>
-    <td width="2%">`section`</td>
-    <td width="8%">`module`</td>
-    <td width="8%">`controller`</td>
-    <td width="8%">`action`</td>
-    <td width="2%">`method`</td>
-    <td width="30%"><?php echo _a('Message') ?></td>
-    <td><?php echo _a('extra') ?></td>
-    </thead>
-    <?php foreach ($items as $row) { ?>
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-sm">
+        <thead>
         <tr>
-            <td><?php echo _date($row['time']); ?></td>
-            <td><?php echo $row['user']; ?></td>
-            <td><?php echo $row['ip']; ?></td>
-            <td><?php echo $row['section']; ?></td>
-            <td><?php echo $row['module']; ?></td>
-            <td><?php echo $row['controller']; ?></td>
-            <td><?php echo $row['action']; ?></td>
-            <td><?php echo $row['method']; ?></td>
-            <td>
-                <span title="<?php echo _escape($row['message']); ?>"><?php echo _escape(substr($row['message'], 0, 50)); ?></span>
-            </td>
-            <td>
-                <span title="<?php echo _escape($row['extra']); ?>"><?php echo _escape(substr($row['extra'], 0, 20)); ?></span>
-            </td>
+            <th width="15%"><?php echo _a('time') ?></th>
+            <th width="2%"><?php echo _a('User ID') ?></th>
+            <th width="5%"><?php echo _a('IP') ?></th>
+            <th width="2%">`section`</th>
+            <th width="8%">`module`</th>
+            <th width="8%">`controller`</th>
+            <th width="8%">`action`</th>
+            <th width="2%">`method`</th>
+            <th width="30%"><?php echo _a('Message') ?></th>
+            <th><?php echo _a('Extra information') ?></th>
         </tr>
-    <?php } ?>
-</table>
-
+        </thead>
+        <?php foreach ($items as $row) { ?>
+            <tr>
+                <td><?php echo _date($row['time']); ?></td>
+                <td><?php echo $row['user']; ?></td>
+                <td><?php echo $row['ip']; ?></td>
+                <td><?php echo $row['section']; ?></td>
+                <td><?php echo $row['module']; ?></td>
+                <td><?php echo $row['controller']; ?></td>
+                <td><?php echo $row['action']; ?></td>
+                <td><?php echo $row['method']; ?></td>
+                <td>
+                    <span title="<?php echo _escape($row['message']); ?>"><?php echo _escape(substr($row['message'], 0, 50)); ?></span>
+                </td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#auditModal-<?php echo $row['id']; ?>">
+                        <?php _e('View'); ?>
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="auditModal-<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="auditModalLabel-<?php echo $row['id']; ?>" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="auditModalLabel-<?php echo $row['id']; ?>"><?php echo _a('View') ?></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="<?php echo _a('Close') ?>">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="clearfix">
+                                        <h5 class="mb-3"><?php echo _a('Message') ?></h5>
+                                        <div style="text-align: left; direction: ltr" class="clearfix">
+                                            <pre>
+                                                <?php echo $row['message']; ?>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="clearfix">
+                                        <h5 class="mb-3 mt-3"><?php echo _a('Extra information') ?></h5>
+                                        <div style="text-align: left; direction: ltr" class="clearfix">
+                                            <pre>
+                                                <?php echo $row['extra']; ?>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
+</div>
 <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
-
 <div style="padding: 10px">
     <form method='GET'>
         <div class="form-group">
@@ -66,7 +100,6 @@ $this->jQuery();
         </div>
     </form>
 </div>
-
 <script>
     (function ($) {
         $("#audit-count").change(function () {

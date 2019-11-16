@@ -6,20 +6,20 @@ $this->Backbone();
     <div class="js-alert"></div>
 </div>
 <script id="temp-theme" type="text/template">
-    <div class="thumbnail card bg-light mb-3">
-        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>" class="img-fluid mb-1" />
-        <div class="caption">
-            <h5>
+    <div class=" card bg-light mb-3">
+        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>" class="card-img-top" style="height: 25vw" />
+        <div class="card-body">
+            <h5 class="clearfix card-title">
                 <span class="float-right label"><%= type %></span>
                 <%- title %>
             </h5>
-            <div class="clearfix">
+            <div class="clearfix card-text">
                 <span class="float-right btn btn-primary theme-install"><?php echo _a('Install'); ?></span>
                 <span class="btn btn-link theme-detail"><?php echo _a('Detail'); ?></span>
                 <span class="text-muted">|</span>
                 <span class="btn btn-link theme-Check"><?php echo _a('Check'); ?></span>
             </div>
-            <dl class="hide">
+            <dl class="hide card-text">
                 <dt><?php echo _a('Version'); ?></dt>
                 <dd><%= version %></dd>
                 <dt><?php echo _a('Type'); ?></dt>
@@ -40,7 +40,7 @@ $this->Backbone();
     (function ($) {
         var themeCollection = new Backbone.Collection(<?php echo json_encode(array_values($themes)) ?>);
         var ThemeItemView = Backbone.View.extend({
-            className: 'col-md-4',
+            className: 'col-lg-3 col-md-3',
             template: _.template($('#temp-theme').html()),
             events: {
                 'click .theme-check': 'check',
