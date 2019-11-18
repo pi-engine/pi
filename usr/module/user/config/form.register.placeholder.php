@@ -43,7 +43,7 @@ $form = [
             ],
             'attributes' => [
                 'type'     => 'password',
-                'required' => true,
+                'required' => false,
                 'placeholder' => __('Confirm credential'),
 
             ],
@@ -51,7 +51,7 @@ $form = [
 
         'filter' => [
             //'name'          => 'credential-confirm',
-            'required'   => true,
+            'required'   => false,
             'filters'    => [
                 [
                     'name' => 'StringTrim',
@@ -80,7 +80,7 @@ $form = [
             ],
             'attributes' => [
                 'description' => $term,
-                'required'    => true,
+                'required'    => false,
             ],
         ],
     ],

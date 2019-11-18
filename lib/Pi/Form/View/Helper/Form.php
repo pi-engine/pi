@@ -66,6 +66,10 @@ class Form extends FormHelper
                 $style = 'vertical';
                 $class = '';
                 break;
+            case 'vertical-nomarker':
+                $style = 'vertical-nomarker';
+                $class = '';
+                break;
             case 'inline':
                 $style = 'inline';
                 $class = 'form-inline';
@@ -178,10 +182,10 @@ class Form extends FormHelper
                 case 'inline':
                     $rowClass = 'mr-2';
                     break;
+                case 'vertical-nomarker':
                 case 'vertical':
                     $rowClass = '';
                     break;
-
                 case 'modal':
                 case 'popup':
                 case 'horizontal':
@@ -350,6 +354,11 @@ EOT;
                     $vars['label_size']   = '';
                     $vars['element_size'] = '';
                     break;
+                case 'vertical-nomarker':
+                    $vars['label_size']   = '';
+                    $vars['element_size'] = '';
+                    $markRequired = '';
+                    break;
 
                 case 'horizontal':
                 default:
@@ -388,7 +397,7 @@ EOT;
             /**
              * If vertical and label is empty, remove label tag
              */
-            if ($style == 'vertical' && !$element->getLabel()) {
+            if (($style == 'vertical-nomarker' || $style == 'vertical') && !$element->getLabel()) {
                 $vars['label_html'] = '';
             }
 

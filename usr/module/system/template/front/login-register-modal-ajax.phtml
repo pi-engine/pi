@@ -25,7 +25,7 @@
                     <?php } ?>
                     <div class="<?php echo $classLogin; ?>">
                         <div class="user-action-bar-title"><?php _e('Login'); ?></div>
-                        <?php echo $this->form($loginForm, 'vertical'); ?>
+                        <?php echo $this->form($loginForm, 'vertical-nomarker'); ?>
 
                         <button type="button" class="btn btn-sm btn-link find-password-link" title="<?php _e('Find password'); ?>"
                            onclick="location.href='<?php echo Pi::service('user')->getUrl('password'); ?>'"><?php _e('Find password'); ?></button>
@@ -49,7 +49,7 @@
                     <?php } ?>
                     <div class="<?php echo $classRegister; ?>">
                         <div class="user-action-bar-title"><?php _e('Register'); ?></div>
-                        <?php echo $this->form($registerForm, 'vertical'); ?>
+                        <?php echo $this->form($registerForm, 'vertical-nomarker'); ?>
 
                         <div class="clearfix user-action-bar">
                             <div class="user-action-bar-title"><?php _e('Already registered ?'); ?></div>

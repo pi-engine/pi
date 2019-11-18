@@ -29,6 +29,7 @@ class RegisterForm extends BaseForm
         $this->add([
             'name'       => 'identity',
             'options'    => [
+                'label' => __('User account'),
             ],
             'attributes' => [
                 'type'     => 'text',
@@ -39,6 +40,7 @@ class RegisterForm extends BaseForm
         $this->add([
             'name'       => 'name',
             'options'    => [
+                'label' => __('Display name'),
             ],
             'attributes' => [
                 'type'     => 'text',
@@ -49,17 +51,18 @@ class RegisterForm extends BaseForm
         $this->add([
             'name'       => 'email',
             'options'    => [
+                'label' => __('Email address'),
             ],
             'attributes' => [
                 'type'     => 'text',
                 'required' => true,
-
             ],
         ]);
 
         $this->add([
             'name'       => 'credential',
             'options'    => [
+                'label' => __('Password'),
             ],
             'attributes' => [
                 'type'     => 'password',
@@ -70,11 +73,11 @@ class RegisterForm extends BaseForm
         $this->add([
             'name'       => 'credential-confirm',
             'options'    => [
+                'label' => __('Confirm password'),
             ],
             'attributes' => [
                 'type'     => 'password',
                 'required' => true,
-
             ],
         ]);
 
@@ -83,12 +86,12 @@ class RegisterForm extends BaseForm
                 'name'       => 'captcha',
                 'type'       => 'captcha',
                 'options'    => [
+                    'label'            => __('Please type the word.'),
                     'separator'        => '<br />',
                     'captcha_position' => 'append',
                 ],
                 'attributes' => [
                     'required' => true,
-
                 ],
             ]);
         }
