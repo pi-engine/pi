@@ -116,14 +116,14 @@ class IndexController extends ActionController
          * Login form
          */
         $processPath = Pi::service('url')->assemble('user', ['module' => 'user', 'controller' => 'login', 'action' => 'process']);
-        $loginForm   = Pi::api('form', 'user')->loadForm('login');
+        $loginForm   = Pi::api('form', 'user')->loadForm('login', false, true);
         $loginForm->setAttribute('action', Pi::url($processPath));
 
         /**
          * Register form
          */
         $processPath  = Pi::service('url')->assemble('user', ['module' => 'user', 'controller' => 'register']);
-        $registerForm = Pi::api('form', 'user')->loadForm('register');
+        $registerForm = Pi::api('form', 'user')->loadForm('register', false, true);
         $registerForm->setAttribute('action', Pi::url($processPath));
 
         if ($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()) {
