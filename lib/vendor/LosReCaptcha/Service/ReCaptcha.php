@@ -159,10 +159,14 @@ var onloadCallback = function() {
     
     $('.g-recaptcha').each(function(){
         var elementId = $(this).attr('id');
-        grecaptcha.render(document.getElementById(elementId), {
-            'sitekey' : '{$this->siteKey}',
-            'size' : size,
-        });
+        if (!$(this).hasClass('rendered')) {
+            grecaptcha.render(document.getElementById(elementId), {
+                'sitekey' : '{$this->siteKey}',
+                'size' : size,
+            });
+            $(this).addClass('rendered');
+        }
+        
     });
 };
 JS;
