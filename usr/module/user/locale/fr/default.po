@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-11-20 13:31+0100\n"
-"PO-Revision-Date: 2019-11-20 13:31+0100\n"
+"POT-Creation-Date: 2019-11-25 19:04+0100\n"
+"PO-Revision-Date: 2019-11-25 19:04+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -95,7 +95,7 @@ msgstr "Confirmer le mot de passe"
 msgid "Login"
 msgstr "Se connecter"
 
-#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:133
+#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:137
 #: template/front/login-logout.phtml:27 template/front/login-logout.phtml:28
 #: template/front/login.phtml:44 template/front/login.phtml:46
 #: template/front/register-disabled.phtml:3
@@ -284,7 +284,7 @@ msgid "Valid input."
 msgstr "Saisie non valide."
 
 #: src/Controller/Front/AccountController.php:370
-#: src/Controller/Front/RegisterController.php:386
+#: src/Controller/Front/RegisterController.php:390
 msgid "Invalid input."
 msgstr "Saisie non valide."
 
@@ -447,7 +447,7 @@ msgstr "La reinitialisation du mot de passe a échoué."
 
 #: src/Controller/Front/PasswordController.php:59
 #: src/Controller/Front/PasswordController.php:442
-#: src/Form/RegisterForm.php:140
+#: src/Form/RegisterForm.php:144
 msgid "Whoops, these don't match"
 msgstr "Oups, ils ne coïncident pas"
 
@@ -456,80 +456,80 @@ msgid "Reset password successfully."
 msgstr "La réinitialisation du mot de passe a réussi."
 
 #: src/Controller/Front/PasswordController.php:115
-#: src/Controller/Front/PasswordController.php:370 src/Form/RegisterForm.php:74
+#: src/Controller/Front/PasswordController.php:370 src/Form/RegisterForm.php:78
 msgid "Show my password"
 msgstr "Voir le mot de passe"
 
 #: src/Controller/Front/PasswordController.php:117
-#: src/Controller/Front/PasswordController.php:372 src/Form/RegisterForm.php:76
+#: src/Controller/Front/PasswordController.php:372 src/Form/RegisterForm.php:80
 msgid "Your password is too short"
 msgstr "Votre mot de passe est trop court"
 
 #: src/Controller/Front/PasswordController.php:118
-#: src/Controller/Front/PasswordController.php:373 src/Form/RegisterForm.php:77
+#: src/Controller/Front/PasswordController.php:373 src/Form/RegisterForm.php:81
 msgid "Do not use your email as your password"
 msgstr "N'utilisez pas votre email comme mot de passe"
 
 #: src/Controller/Front/PasswordController.php:119
-#: src/Controller/Front/PasswordController.php:374 src/Form/RegisterForm.php:78
+#: src/Controller/Front/PasswordController.php:374 src/Form/RegisterForm.php:82
 msgid "Your password cannot contain your username"
 msgstr "Votre mot de passe ne peut contenir votre nom de compte"
 
 #: src/Controller/Front/PasswordController.php:120
-#: src/Controller/Front/PasswordController.php:375 src/Form/RegisterForm.php:79
+#: src/Controller/Front/PasswordController.php:375 src/Form/RegisterForm.php:83
 msgid "Use different character classes"
 msgstr "Utiliser des caractères spéciaux"
 
 #: src/Controller/Front/PasswordController.php:121
-#: src/Controller/Front/PasswordController.php:376 src/Form/RegisterForm.php:80
+#: src/Controller/Front/PasswordController.php:376 src/Form/RegisterForm.php:84
 msgid "Too many repetitions"
 msgstr "Trop de répétitions"
 
 #: src/Controller/Front/PasswordController.php:122
-#: src/Controller/Front/PasswordController.php:377 src/Form/RegisterForm.php:81
+#: src/Controller/Front/PasswordController.php:377 src/Form/RegisterForm.php:85
 msgid "Your password contains sequences"
 msgstr "Le mot de passe contient de séquences répétées"
 
 #: src/Controller/Front/PasswordController.php:123
-#: src/Controller/Front/PasswordController.php:378 src/Form/RegisterForm.php:82
+#: src/Controller/Front/PasswordController.php:378 src/Form/RegisterForm.php:86
 msgid "Errors:"
 msgstr "Erreurs : "
 
 #: src/Controller/Front/PasswordController.php:124
-#: src/Controller/Front/PasswordController.php:379 src/Form/RegisterForm.php:83
+#: src/Controller/Front/PasswordController.php:379 src/Form/RegisterForm.php:87
 msgid "Very week"
 msgstr "Trop faible"
 
 #: src/Controller/Front/PasswordController.php:125
-#: src/Controller/Front/PasswordController.php:380 src/Form/RegisterForm.php:84
+#: src/Controller/Front/PasswordController.php:380 src/Form/RegisterForm.php:88
 msgid "Week"
 msgstr "Faible"
 
 #: src/Controller/Front/PasswordController.php:126
-#: src/Controller/Front/PasswordController.php:381 src/Form/RegisterForm.php:85
+#: src/Controller/Front/PasswordController.php:381 src/Form/RegisterForm.php:89
 msgid "Normal"
 msgstr "Normal"
 
 #: src/Controller/Front/PasswordController.php:127
-#: src/Controller/Front/PasswordController.php:382 src/Form/RegisterForm.php:86
+#: src/Controller/Front/PasswordController.php:382 src/Form/RegisterForm.php:90
 msgid "Medium"
 msgstr "Moyen"
 
 #: src/Controller/Front/PasswordController.php:128
-#: src/Controller/Front/PasswordController.php:383 src/Form/RegisterForm.php:87
+#: src/Controller/Front/PasswordController.php:383 src/Form/RegisterForm.php:91
 msgid "Strong"
 msgstr "Fort"
 
 #: src/Controller/Front/PasswordController.php:129
-#: src/Controller/Front/PasswordController.php:384 src/Form/RegisterForm.php:88
+#: src/Controller/Front/PasswordController.php:384 src/Form/RegisterForm.php:92
 msgid "Very Strong"
 msgstr "Robuste"
 
 #: src/Controller/Front/PasswordController.php:131
 #: src/Controller/Front/PasswordController.php:182
 #: src/Controller/Front/PasswordController.php:386
-#: src/Controller/Front/PasswordController.php:439 src/Form/RegisterForm.php:89
-#: src/Form/RegisterForm.php:136
+#: src/Controller/Front/PasswordController.php:439 src/Form/RegisterForm.php:93
+#: src/Form/RegisterForm.php:140
 msgid ""
 "Password must contain at least one uppercase letter, one lowercase letter "
 "and one digit character"
@@ -539,14 +539,14 @@ msgstr ""
 
 #: src/Controller/Front/PasswordController.php:179
 #: src/Controller/Front/PasswordController.php:436
-#: src/Form/RegisterForm.php:133
+#: src/Form/RegisterForm.php:137
 #, php-format
 msgid "Must be more than %s characters"
 msgstr "Doit compter plus de %s caractères"
 
 #: src/Controller/Front/PasswordController.php:180
 #: src/Controller/Front/PasswordController.php:437
-#: src/Form/RegisterForm.php:134
+#: src/Form/RegisterForm.php:138
 msgid "Invalid password"
 msgstr "Mot de passe non valide."
 
@@ -572,7 +572,7 @@ msgid "Invalid token for password reset."
 msgstr "Token pour réinitialiser le mot de passe non valide."
 
 #: src/Controller/Front/PasswordController.php:426
-#: src/Form/RegisterForm.php:129
+#: src/Form/RegisterForm.php:133
 #, php-format
 msgid "Must be less than %s characters"
 msgstr "Doit compter moins de %s caractères"
@@ -643,54 +643,54 @@ msgid "User ID or Profile group ID is invalid."
 msgstr ""
 "Le numéro utilisateur ou le numéro de groupe de profil n'est pas valide."
 
-#: src/Controller/Front/RegisterController.php:134
-#: template/front/register-index.phtml:18
+#: src/Controller/Front/RegisterController.php:138
+#: template/front/register-index.phtml:21
 msgid "Account registration"
 msgstr "Création de compte"
 
-#: src/Controller/Front/RegisterController.php:199
+#: src/Controller/Front/RegisterController.php:203
 msgid "Activation token is invalid."
 msgstr "Le token de confirmation n'est pas valide."
 
-#: src/Controller/Front/RegisterController.php:265
+#: src/Controller/Front/RegisterController.php:269
 msgid "Account Activated successfully."
 msgstr "Le compte a été confirmé avec succès."
 
-#: src/Controller/Front/RegisterController.php:295
+#: src/Controller/Front/RegisterController.php:299
 msgid "Activation email sent failed."
 msgstr "L'envoi de l'email de confirmation-activation a échoué."
 
-#: src/Controller/Front/RegisterController.php:329
+#: src/Controller/Front/RegisterController.php:333
 msgid "Resend activation mail successfully."
 msgstr "Le mail de confirmation-activation a été renvoyé avec succès."
 
-#: src/Controller/Front/RegisterController.php:357
+#: src/Controller/Front/RegisterController.php:361
 msgid "Email was not found."
 msgstr "L'email n'a pas été trouvé."
 
-#: src/Controller/Front/RegisterController.php:362
+#: src/Controller/Front/RegisterController.php:366
 msgid "Account already activated."
 msgstr "Le compte est déjà confirmé."
 
-#: src/Controller/Front/RegisterController.php:373
+#: src/Controller/Front/RegisterController.php:377
 msgid "Activation mail sent successfully."
 msgstr "Le mail de confirmation-activation a été envoyé avec succès."
 
-#: src/Controller/Front/RegisterController.php:378
+#: src/Controller/Front/RegisterController.php:382
 msgid "Activation mail was not sent."
 msgstr "Le mail de confirmation-activation n'a pas été envoyé."
 
-#: src/Controller/Front/RegisterController.php:487
+#: src/Controller/Front/RegisterController.php:491
 msgid "User information was not completed and user account was not saved."
 msgstr ""
 "Toutes les informations utilisateurs n'ont pas été saisies, le compte n'a "
 "pas été crée."
 
-#: src/Controller/Front/RegisterController.php:513
+#: src/Controller/Front/RegisterController.php:517
 msgid "User account was not saved."
 msgstr "Le compte utilisateur n'a pas été enregistré."
 
-#: src/Controller/Front/RegisterController.php:536
+#: src/Controller/Front/RegisterController.php:540
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
@@ -698,7 +698,7 @@ msgstr ""
 "Le compte utilisateur a été crée avec succès mais la confirmation a échoué, "
 "merci de contacter l'administrateur."
 
-#: src/Controller/Front/RegisterController.php:568
+#: src/Controller/Front/RegisterController.php:572
 msgid "Account activation email was not able to send, please contact admin."
 msgstr ""
 "Le mail de confirmation-activation du compte n'a pu être envoyé, merci de "
@@ -724,7 +724,7 @@ msgstr "Nom Affiché"
 msgid "(updated on %s)"
 msgstr "(mis à jour le %s)"
 
-#: src/Form/AccountForm.php:65 src/Form/RegisterForm.php:151
+#: src/Form/AccountForm.php:65 src/Form/RegisterForm.php:155
 msgid "Newsletter subscription"
 msgstr "Inscription Newslettre"
 
@@ -732,7 +732,7 @@ msgstr "Inscription Newslettre"
 #: src/Form/ConditionForm.php:86 src/Form/EditUserForm.php:45
 #: src/Form/EmailForm.php:58 src/Form/MemberForm.php:123
 #: src/Form/PasswordForm.php:87 src/Form/ProfileEditForm.php:42
-#: src/Form/RegisterForm.php:168 src/Form/ResendActivationForm.php:47
+#: src/Form/RegisterForm.php:174 src/Form/ResendActivationForm.php:47
 #: src/Form/ResetPasswordForm.php:79 src/Form/RoleForm.php:99
 #: template/front/account-index.phtml:41 template/front/privacy-index.phtml:44
 msgid "Submit"
@@ -792,11 +792,11 @@ msgstr "Confirmer"
 msgid "Enable"
 msgstr "Activer"
 
-#: src/Form/RegisterForm.php:56
+#: src/Form/RegisterForm.php:60
 msgid "Invalid email"
 msgstr "L'adresse Email doit avoir une forme valide (ex: xxxx@yyy.com)"
 
-#: src/Form/RegisterForm.php:58
+#: src/Form/RegisterForm.php:62
 #, php-format
 msgid ""
 "Oops. This email address is already taken. Do you want to <a href=\"#\" "
@@ -806,13 +806,17 @@ msgstr ""
 "onclick=\"%s\">connecter</a> ou <a href=\"%s\">retrouver votre mot de passe</"
 "a> ?"
 
-#: src/Form/RegisterForm.php:63
+#: src/Form/RegisterForm.php:67
 msgid "Invalid username"
 msgstr "Nom de Compte non valide"
 
-#: src/Form/RegisterForm.php:65
+#: src/Form/RegisterForm.php:69
 msgid "Oops. This username is already taken, malformed or forbidden"
 msgstr "Oups. Ce nom de compte est déjà pris, malformé ou interdit"
+
+#: src/Form/RegisterForm.php:165
+msgid "Registration"
+msgstr "Inscription"
 
 #: src/Form/ResendActivationForm.php:27
 msgid "Email address"
@@ -1049,8 +1053,8 @@ msgstr "Modification Email"
 
 #: template/front/account-reset-email.phtml:4
 #: template/front/password-process.phtml:18
-#: template/front/register-index.phtml:78
-#: template/front/register-index.phtml:110
+#: template/front/register-index.phtml:81
+#: template/front/register-index.phtml:113
 msgid "Congratulations!"
 msgstr "Félicitations !"
 
@@ -1298,19 +1302,19 @@ msgstr "Vous vous êtes connecté avec succès, merci d'aller à %s."
 msgid "Not registered yet ?"
 msgstr "Pas encore inscrit ?"
 
-#: template/front/login.phtml:64 template/front/register-index.phtml:42
+#: template/front/login.phtml:64 template/front/register-index.phtml:45
 msgid "Login with google"
 msgstr "Se connecter avec Google"
 
-#: template/front/login.phtml:72 template/front/register-index.phtml:50
+#: template/front/login.phtml:72 template/front/register-index.phtml:53
 msgid "Login with twitter"
 msgstr "Se connecter avec Twitter"
 
-#: template/front/login.phtml:80 template/front/register-index.phtml:58
+#: template/front/login.phtml:80 template/front/register-index.phtml:61
 msgid "Login with facebook"
 msgstr "Se connecter avec Facebook"
 
-#: template/front/login.phtml:88 template/front/register-index.phtml:66
+#: template/front/login.phtml:88 template/front/register-index.phtml:69
 msgid "Login with github"
 msgstr "Se connecter avec Github"
 
@@ -1570,7 +1574,7 @@ msgid "Login right now."
 msgstr "Se connecter maintenant."
 
 #: template/front/register-activate.phtml:16
-#: template/front/register-index.phtml:90
+#: template/front/register-index.phtml:93
 #, php-format
 msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
 msgstr "Ou retourner à <a href=\"%s\">la page demandée </a> directement."
@@ -1590,7 +1594,7 @@ msgstr ""
 "Désolé, l'inscription est temporairement désactivée. Merci de revenir plus "
 "tard."
 
-#: template/front/register-index.phtml:83
+#: template/front/register-index.phtml:86
 #, php-format
 msgid ""
 "Your account has been registered successfully. Please <a href=\"%s\">login</"
@@ -1599,12 +1603,12 @@ msgstr ""
 "Votre compte a été crée avec succès. Vous pouvez maintenant vous <a href=\"%s"
 "\">connecter</a> avec votre compte."
 
-#: template/front/register-index.phtml:100
-#: template/front/register-index.phtml:119
+#: template/front/register-index.phtml:103
+#: template/front/register-index.phtml:122
 msgid "Registration was not completed."
 msgstr "L'inscription n'est pas été menée à son terme."
 
-#: template/front/register-index.phtml:113
+#: template/front/register-index.phtml:116
 msgid ""
 "You account has been registered successfully. However it needs to be "
 "approved by our admins before you can use it."
@@ -1612,35 +1616,35 @@ msgstr ""
 "Votre compte a été crée avec succès. Cependant il doit être approuvé par les "
 "administrateurs du site avant de pouvoir être utilisé."
 
-#: template/front/register-index.phtml:129
+#: template/front/register-index.phtml:132
 msgid "An email with activation link has been sent to you."
 msgstr "Un email avec un lien de confirmation-activation vous a été envoyé."
 
-#: template/front/register-index.phtml:130
+#: template/front/register-index.phtml:133
 msgid "Email used"
 msgstr "Email utilisé"
 
-#: template/front/register-index.phtml:131
+#: template/front/register-index.phtml:134
 msgid "Please check it to finish the registration."
 msgstr "Merci de vérifier votre boite mail afin de terminer votre inscription."
 
-#: template/front/register-index.phtml:136
+#: template/front/register-index.phtml:139
 msgid "You did not receive the activation email?"
 msgstr "Vous n'avez pas reçu le mail de confirmation ?"
 
-#: template/front/register-index.phtml:138
+#: template/front/register-index.phtml:141
 msgid "Wait a few minutes and check again."
 msgstr "Attendez quelques minutes et vérifiez de nouveau."
 
-#: template/front/register-index.phtml:139
+#: template/front/register-index.phtml:142
 msgid "Check your email spam box."
 msgstr "Vérifiez le répertoire spam de votre boite mail."
 
-#: template/front/register-index.phtml:142
+#: template/front/register-index.phtml:145
 msgid "Request to resend activation email"
 msgstr "Demandez le renvoi du mail d'activation"
 
-#: template/front/register-index.phtml:179
+#: template/front/register-index.phtml:182
 msgid "Already sent"
 msgstr "Déja envoyé"
 

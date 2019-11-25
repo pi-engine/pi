@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2019-11-20 13:31+0100\n"
-"PO-Revision-Date: 2019-11-20 13:31+0100\n"
+"POT-Creation-Date: 2019-11-25 19:04+0100\n"
+"PO-Revision-Date: 2019-11-25 19:04+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -271,9 +271,8 @@ msgstr "Date de naissance"
 #: src/Form/ConfigForm.php:56 src/Form/MemberForm.php:157
 #: src/Form/ModuleForm.php:57 src/Form/NavForm.php:66
 #: src/Form/NavPageForm.php:130 src/Form/PageAddForm.php:92
-#: src/Form/PageEditForm.php:67 src/Form/RegisterForm.php:108
-#: src/Form/ResetPasswordForm.php:72 src/Form/RoleForm.php:115
-#: template/admin/cache-list.phtml:50
+#: src/Form/PageEditForm.php:67 src/Form/ResetPasswordForm.php:72
+#: src/Form/RoleForm.php:115 template/admin/cache-list.phtml:50
 msgid "Submit"
 msgstr "Valider"
 
@@ -452,6 +451,10 @@ msgstr "Données actives"
 #: src/Form/RegisterForm.php:89
 msgid "Please type the word."
 msgstr "Merci de saisir les caractères affichés."
+
+#: src/Form/RegisterForm.php:108
+msgid "Registration"
+msgstr "Inscription"
 
 #: src/Form/RoleForm.php:65
 msgid "Section"
