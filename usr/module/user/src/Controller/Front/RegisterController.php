@@ -51,6 +51,10 @@ class RegisterController extends ActionController
         // Handling register data
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
+
+            $post = $post->toArray();
+            $post['captcha']['recaptcha_response_field'] = $post['g-recaptcha-response'];
+
             $form->loadInputFilter();
             $form->setData($post);
             if ($form->isValid()) {

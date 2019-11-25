@@ -99,6 +99,22 @@
             $.getScript("<?php echo $this->assetModule('front/pwstrength-boostrap.init.js', 'user') ?>", function (data, textStatus, jqxhr) {
                 $.getScript("<?php echo $this->assetModule('front/validator.js', 'user') ?>", function (data, textStatus, jqxhr) {
                     pwstrengthInit();
+
+                    var originalInputSelector = $.fn.validator.Constructor.INPUT_SELECTOR
+                    $.fn.validator.Constructor.INPUT_SELECTOR = originalInputSelector + ', input[data-recaptcha]'
+
+                    $('form[data-toggle="validator"]').validator(
+                        {
+                            custom: {
+                                recaptcha: function ($el) {
+                                    if (!$el.val()) {
+                                        return "Please complete the captcha"
+                                    }
+                                }
+                            }
+                        }
+                    );
+
                     $('form[data-toggle="validator"]').each(function () {
                         var $form = $(this)
                         $.fn.validator.call($form, $form.data())
