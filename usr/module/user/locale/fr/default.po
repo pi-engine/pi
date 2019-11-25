@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-11-11 11:42+0100\n"
-"PO-Revision-Date: 2019-11-11 11:43+0100\n"
+"POT-Creation-Date: 2019-11-20 13:31+0100\n"
+"PO-Revision-Date: 2019-11-20 13:31+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -77,16 +77,16 @@ msgstr "Rôle affecté"
 msgid "Role removed"
 msgstr "Rôle supprimé"
 
-#: config/form.register.php:19
+#: config/form.register.php:19 config/form.register.placeholder.php:19
 msgid "Terms & Conditions"
 msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
 
-#: config/form.register.php:20
+#: config/form.register.php:20 config/form.register.placeholder.php:20
 #, php-format
 msgid "Accept the %s"
 msgstr "Accepter les %s"
 
-#: config/form.register.php:43
+#: config/form.register.php:43 config/form.register.placeholder.php:47
 msgid "Confirm credential"
 msgstr "Confirmer le mot de passe"
 
@@ -97,7 +97,7 @@ msgstr "Se connecter"
 
 #: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:133
 #: template/front/login-logout.phtml:27 template/front/login-logout.phtml:28
-#: template/front/login.phtml:40 template/front/login.phtml:42
+#: template/front/login.phtml:44 template/front/login.phtml:46
 #: template/front/register-disabled.phtml:3
 msgid "Register"
 msgstr "S'inscrire"
@@ -137,10 +137,10 @@ msgstr "Confidentialité"
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
-#: src/Api/Breadcrumbs.php:112 src/Controller/Front/PasswordController.php:294
-#: src/Controller/Front/PasswordController.php:295
-#: src/Form/FindPasswordForm.php:48 template/front/login.phtml:30
-#: template/front/login.phtml:32 template/front/password-find.phtml:3
+#: src/Api/Breadcrumbs.php:112 src/Controller/Front/PasswordController.php:302
+#: src/Controller/Front/PasswordController.php:303
+#: src/Form/FindPasswordForm.php:51 template/front/login.phtml:34
+#: template/front/login.phtml:36 template/front/password-find.phtml:3
 msgid "Find password"
 msgstr "Trouver le mot de passe."
 
@@ -446,7 +446,7 @@ msgid "Reset password failed."
 msgstr "La reinitialisation du mot de passe a échoué."
 
 #: src/Controller/Front/PasswordController.php:59
-#: src/Controller/Front/PasswordController.php:434
+#: src/Controller/Front/PasswordController.php:442
 #: src/Form/RegisterForm.php:140
 msgid "Whoops, these don't match"
 msgstr "Oups, ils ne coïncident pas"
@@ -456,79 +456,79 @@ msgid "Reset password successfully."
 msgstr "La réinitialisation du mot de passe a réussi."
 
 #: src/Controller/Front/PasswordController.php:115
-#: src/Controller/Front/PasswordController.php:362 src/Form/RegisterForm.php:74
+#: src/Controller/Front/PasswordController.php:370 src/Form/RegisterForm.php:74
 msgid "Show my password"
 msgstr "Voir le mot de passe"
 
 #: src/Controller/Front/PasswordController.php:117
-#: src/Controller/Front/PasswordController.php:364 src/Form/RegisterForm.php:76
+#: src/Controller/Front/PasswordController.php:372 src/Form/RegisterForm.php:76
 msgid "Your password is too short"
 msgstr "Votre mot de passe est trop court"
 
 #: src/Controller/Front/PasswordController.php:118
-#: src/Controller/Front/PasswordController.php:365 src/Form/RegisterForm.php:77
+#: src/Controller/Front/PasswordController.php:373 src/Form/RegisterForm.php:77
 msgid "Do not use your email as your password"
 msgstr "N'utilisez pas votre email comme mot de passe"
 
 #: src/Controller/Front/PasswordController.php:119
-#: src/Controller/Front/PasswordController.php:366 src/Form/RegisterForm.php:78
+#: src/Controller/Front/PasswordController.php:374 src/Form/RegisterForm.php:78
 msgid "Your password cannot contain your username"
 msgstr "Votre mot de passe ne peut contenir votre nom de compte"
 
 #: src/Controller/Front/PasswordController.php:120
-#: src/Controller/Front/PasswordController.php:367 src/Form/RegisterForm.php:79
+#: src/Controller/Front/PasswordController.php:375 src/Form/RegisterForm.php:79
 msgid "Use different character classes"
 msgstr "Utiliser des caractères spéciaux"
 
 #: src/Controller/Front/PasswordController.php:121
-#: src/Controller/Front/PasswordController.php:368 src/Form/RegisterForm.php:80
+#: src/Controller/Front/PasswordController.php:376 src/Form/RegisterForm.php:80
 msgid "Too many repetitions"
 msgstr "Trop de répétitions"
 
 #: src/Controller/Front/PasswordController.php:122
-#: src/Controller/Front/PasswordController.php:369 src/Form/RegisterForm.php:81
+#: src/Controller/Front/PasswordController.php:377 src/Form/RegisterForm.php:81
 msgid "Your password contains sequences"
 msgstr "Le mot de passe contient de séquences répétées"
 
 #: src/Controller/Front/PasswordController.php:123
-#: src/Controller/Front/PasswordController.php:370 src/Form/RegisterForm.php:82
+#: src/Controller/Front/PasswordController.php:378 src/Form/RegisterForm.php:82
 msgid "Errors:"
 msgstr "Erreurs : "
 
 #: src/Controller/Front/PasswordController.php:124
-#: src/Controller/Front/PasswordController.php:371 src/Form/RegisterForm.php:83
+#: src/Controller/Front/PasswordController.php:379 src/Form/RegisterForm.php:83
 msgid "Very week"
 msgstr "Trop faible"
 
 #: src/Controller/Front/PasswordController.php:125
-#: src/Controller/Front/PasswordController.php:372 src/Form/RegisterForm.php:84
+#: src/Controller/Front/PasswordController.php:380 src/Form/RegisterForm.php:84
 msgid "Week"
 msgstr "Faible"
 
 #: src/Controller/Front/PasswordController.php:126
-#: src/Controller/Front/PasswordController.php:373 src/Form/RegisterForm.php:85
+#: src/Controller/Front/PasswordController.php:381 src/Form/RegisterForm.php:85
 msgid "Normal"
 msgstr "Normal"
 
 #: src/Controller/Front/PasswordController.php:127
-#: src/Controller/Front/PasswordController.php:374 src/Form/RegisterForm.php:86
+#: src/Controller/Front/PasswordController.php:382 src/Form/RegisterForm.php:86
 msgid "Medium"
 msgstr "Moyen"
 
 #: src/Controller/Front/PasswordController.php:128
-#: src/Controller/Front/PasswordController.php:375 src/Form/RegisterForm.php:87
+#: src/Controller/Front/PasswordController.php:383 src/Form/RegisterForm.php:87
 msgid "Strong"
 msgstr "Fort"
 
 #: src/Controller/Front/PasswordController.php:129
-#: src/Controller/Front/PasswordController.php:376 src/Form/RegisterForm.php:88
+#: src/Controller/Front/PasswordController.php:384 src/Form/RegisterForm.php:88
 msgid "Very Strong"
 msgstr "Robuste"
 
 #: src/Controller/Front/PasswordController.php:131
 #: src/Controller/Front/PasswordController.php:182
-#: src/Controller/Front/PasswordController.php:378
-#: src/Controller/Front/PasswordController.php:431 src/Form/RegisterForm.php:89
+#: src/Controller/Front/PasswordController.php:386
+#: src/Controller/Front/PasswordController.php:439 src/Form/RegisterForm.php:89
 #: src/Form/RegisterForm.php:136
 msgid ""
 "Password must contain at least one uppercase letter, one lowercase letter "
@@ -538,14 +538,14 @@ msgstr ""
 "minuscule et au moins 1 chiffre"
 
 #: src/Controller/Front/PasswordController.php:179
-#: src/Controller/Front/PasswordController.php:428
+#: src/Controller/Front/PasswordController.php:436
 #: src/Form/RegisterForm.php:133
 #, php-format
 msgid "Must be more than %s characters"
 msgstr "Doit compter plus de %s caractères"
 
 #: src/Controller/Front/PasswordController.php:180
-#: src/Controller/Front/PasswordController.php:429
+#: src/Controller/Front/PasswordController.php:437
 #: src/Form/RegisterForm.php:134
 msgid "Invalid password"
 msgstr "Mot de passe non valide."
@@ -556,28 +556,28 @@ msgid "To ensure your account security, complex password is required."
 msgstr ""
 "Pour assurer la sécurité de votre compte, un mot de passe complexe est requis"
 
-#: src/Controller/Front/PasswordController.php:213
+#: src/Controller/Front/PasswordController.php:214
 msgid "Find password failed."
 msgstr "Le mot de passe n'a pas été trouvé."
 
-#: src/Controller/Front/PasswordController.php:285
+#: src/Controller/Front/PasswordController.php:293
 msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr ""
 "Le mail de confirmation vous été envoyé avec succès. Merci de regarder votre "
 "boite mail pour réinitialiser le mot de passe."
 
-#: src/Controller/Front/PasswordController.php:307
+#: src/Controller/Front/PasswordController.php:315
 msgid "Invalid token for password reset."
 msgstr "Token pour réinitialiser le mot de passe non valide."
 
-#: src/Controller/Front/PasswordController.php:418
+#: src/Controller/Front/PasswordController.php:426
 #: src/Form/RegisterForm.php:129
 #, php-format
 msgid "Must be less than %s characters"
 msgstr "Doit compter moins de %s caractères"
 
-#: src/Controller/Front/PasswordController.php:456
+#: src/Controller/Front/PasswordController.php:473
 msgid "Password reset successfully."
 msgstr "Mot de passe réinitialisé avec succès."
 
@@ -733,7 +733,7 @@ msgstr "Inscription Newslettre"
 #: src/Form/EmailForm.php:58 src/Form/MemberForm.php:123
 #: src/Form/PasswordForm.php:87 src/Form/ProfileEditForm.php:42
 #: src/Form/RegisterForm.php:168 src/Form/ResendActivationForm.php:47
-#: src/Form/ResetPasswordForm.php:73 src/Form/RoleForm.php:99
+#: src/Form/ResetPasswordForm.php:79 src/Form/RoleForm.php:99
 #: template/front/account-index.phtml:41 template/front/privacy-index.phtml:44
 msgid "Submit"
 msgstr "Valider"
@@ -1294,23 +1294,23 @@ msgstr ""
 msgid "You have logged in successfully, please go to %s."
 msgstr "Vous vous êtes connecté avec succès, merci d'aller à %s."
 
-#: template/front/login.phtml:38
+#: template/front/login.phtml:42
 msgid "Not registered yet ?"
 msgstr "Pas encore inscrit ?"
 
-#: template/front/login.phtml:60 template/front/register-index.phtml:42
+#: template/front/login.phtml:64 template/front/register-index.phtml:42
 msgid "Login with google"
 msgstr "Se connecter avec Google"
 
-#: template/front/login.phtml:68 template/front/register-index.phtml:50
+#: template/front/login.phtml:72 template/front/register-index.phtml:50
 msgid "Login with twitter"
 msgstr "Se connecter avec Twitter"
 
-#: template/front/login.phtml:76 template/front/register-index.phtml:58
+#: template/front/login.phtml:80 template/front/register-index.phtml:58
 msgid "Login with facebook"
 msgstr "Se connecter avec Facebook"
 
-#: template/front/login.phtml:84 template/front/register-index.phtml:66
+#: template/front/login.phtml:88 template/front/register-index.phtml:66
 msgid "Login with github"
 msgstr "Se connecter avec Github"
 
@@ -1326,7 +1326,7 @@ msgstr "Essayer de trouver le mot de passe de nouveau"
 msgid "Your new password has worked"
 msgstr "Votre nouveau mot de passe a fonctionné"
 
-#: template/front/password-process.phtml:22
+#: template/front/password-process.phtml:21
 msgid "Please login"
 msgstr "Merci de vous connecter"
 
