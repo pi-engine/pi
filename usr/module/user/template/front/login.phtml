@@ -41,7 +41,7 @@ if ($redirect) {
                 <div class="col-md-6 offset-md-3">
                     <h2><?php _e('Not registered yet ?'); ?></h2>
                     <p>
-                        <a class="btn btn-secondary" title="<?php _e('Register'); ?>"
+                        <a class="btn btn-simple toggle-modal-action" title="<?php _e('Register'); ?>"
                            href="<?php echo $registerUrl ?>">
                             <?php _e('Register'); ?>
                         </a>
@@ -50,7 +50,7 @@ if ($redirect) {
             </div>
         </div>
         <?php if (!empty($description)) { ?>
-            <div class="col-md-4 col-sm-5 col-12 ">
+            <div class="col-md-4 col-sm-5 col-12 d-none d-sm-block ">
                 <?php echo $description; ?>
             </div>
         <?php } ?>

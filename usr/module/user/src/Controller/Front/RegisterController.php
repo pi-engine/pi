@@ -44,6 +44,8 @@ class RegisterController extends ActionController
 
         // Get register form
         $form = Pi::api('form', 'user')->loadForm('register');
+        $form->get('submit')->setAttribute('class', $form->get('submit')->getAttribute('class') . ' w-100');
+
         $form->setAttributes([
             'action' => $this->url('', ['action' => 'index']),
         ]);

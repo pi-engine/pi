@@ -549,7 +549,7 @@ EOT;
                     break;
                 case 'horizontal':
                     if ('single' == $column) {
-                        $submitSize = 'offset-sm-3 col-sm-9';
+                        $submitSize = 'offset-sm-3 col-sm-5';
                     } else {
                         $submitSize = 'offset-md-2 col-md-10';
                     }
