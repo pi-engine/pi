@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-11-25 19:04+0100\n"
-"PO-Revision-Date: 2019-11-25 19:04+0100\n"
+"POT-Creation-Date: 2019-11-26 11:52+0100\n"
+"PO-Revision-Date: 2019-11-26 11:52+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -95,7 +95,7 @@ msgstr "Confirmer le mot de passe"
 msgid "Login"
 msgstr "Se connecter"
 
-#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:137
+#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:139
 #: template/front/login-logout.phtml:27 template/front/login-logout.phtml:28
 #: template/front/login.phtml:44 template/front/login.phtml:46
 #: template/front/register-disabled.phtml:3
@@ -284,7 +284,7 @@ msgid "Valid input."
 msgstr "Saisie non valide."
 
 #: src/Controller/Front/AccountController.php:370
-#: src/Controller/Front/RegisterController.php:390
+#: src/Controller/Front/RegisterController.php:392
 msgid "Invalid input."
 msgstr "Saisie non valide."
 
@@ -643,54 +643,54 @@ msgid "User ID or Profile group ID is invalid."
 msgstr ""
 "Le numéro utilisateur ou le numéro de groupe de profil n'est pas valide."
 
-#: src/Controller/Front/RegisterController.php:138
+#: src/Controller/Front/RegisterController.php:140
 #: template/front/register-index.phtml:21
 msgid "Account registration"
 msgstr "Création de compte"
 
-#: src/Controller/Front/RegisterController.php:203
+#: src/Controller/Front/RegisterController.php:205
 msgid "Activation token is invalid."
 msgstr "Le token de confirmation n'est pas valide."
 
-#: src/Controller/Front/RegisterController.php:269
+#: src/Controller/Front/RegisterController.php:271
 msgid "Account Activated successfully."
 msgstr "Le compte a été confirmé avec succès."
 
-#: src/Controller/Front/RegisterController.php:299
+#: src/Controller/Front/RegisterController.php:301
 msgid "Activation email sent failed."
 msgstr "L'envoi de l'email de confirmation-activation a échoué."
 
-#: src/Controller/Front/RegisterController.php:333
+#: src/Controller/Front/RegisterController.php:335
 msgid "Resend activation mail successfully."
 msgstr "Le mail de confirmation-activation a été renvoyé avec succès."
 
-#: src/Controller/Front/RegisterController.php:361
+#: src/Controller/Front/RegisterController.php:363
 msgid "Email was not found."
 msgstr "L'email n'a pas été trouvé."
 
-#: src/Controller/Front/RegisterController.php:366
+#: src/Controller/Front/RegisterController.php:368
 msgid "Account already activated."
 msgstr "Le compte est déjà confirmé."
 
-#: src/Controller/Front/RegisterController.php:377
+#: src/Controller/Front/RegisterController.php:379
 msgid "Activation mail sent successfully."
 msgstr "Le mail de confirmation-activation a été envoyé avec succès."
 
-#: src/Controller/Front/RegisterController.php:382
+#: src/Controller/Front/RegisterController.php:384
 msgid "Activation mail was not sent."
 msgstr "Le mail de confirmation-activation n'a pas été envoyé."
 
-#: src/Controller/Front/RegisterController.php:491
+#: src/Controller/Front/RegisterController.php:493
 msgid "User information was not completed and user account was not saved."
 msgstr ""
 "Toutes les informations utilisateurs n'ont pas été saisies, le compte n'a "
 "pas été crée."
 
-#: src/Controller/Front/RegisterController.php:517
+#: src/Controller/Front/RegisterController.php:519
 msgid "User account was not saved."
 msgstr "Le compte utilisateur n'a pas été enregistré."
 
-#: src/Controller/Front/RegisterController.php:540
+#: src/Controller/Front/RegisterController.php:542
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
@@ -698,7 +698,7 @@ msgstr ""
 "Le compte utilisateur a été crée avec succès mais la confirmation a échoué, "
 "merci de contacter l'administrateur."
 
-#: src/Controller/Front/RegisterController.php:572
+#: src/Controller/Front/RegisterController.php:574
 msgid "Account activation email was not able to send, please contact admin."
 msgstr ""
 "Le mail de confirmation-activation du compte n'a pu être envoyé, merci de "
