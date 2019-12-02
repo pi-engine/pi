@@ -97,19 +97,19 @@ class IndexController extends ActionController
         if (!empty(Pi::user()->config('login_description'))) {
             $descriptionLogin = Pi::user()->config('login_description');
             $titleLogin       = Pi::user()->config('login_modal_title');
-            $classLogin       = 'col-md-6';
+            $classLogin       = 'col-lg-6';
         } else {
             $descriptionLogin = '';
-            $classLogin       = 'col-md-12';
+            $classLogin       = 'col-lg-12';
         }
 
         if (!empty(Pi::user()->config('register_description'))) {
             $descriptionRegister = Pi::user()->config('register_description');
             $titleRegister       = Pi::user()->config('register_modal_title');
-            $classRegister       = 'col-md-6';
+            $classRegister       = 'col-lg-6';
         } else {
             $descriptionRegister = '';
-            $classRegister       = 'col-md-12';
+            $classRegister       = 'col-lg-12';
         }
 
         /*
