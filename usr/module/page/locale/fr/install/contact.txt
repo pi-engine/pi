@@ -1,7 +1,7 @@
 
                     Please contact us with following contacts:<br>
 <br>
-Email: dev@piengine.org<br>
+Email: dev@xoopsengine.org<br>
 Pi Engine Team: <a href="https://github.com/pi-engine/pi/wiki/Pi-Team" target="_blank" title="Click to open">https://github.com/pi-engine/pi/wiki/Pi-Team</a><br>
 Pi Engine Website: <a href="http://www.pi-engine.org" target="_blank" title="Click to open">http://www.pi-engine.org</a><br>
 Pi Engine Github: <a href="http://github.com/pi-engine" target="_blank" title="Click to open">http://github.com/pi-engine</a><br>
@@ -13,4 +13,4 @@ Pi Engine Google+: <a href="https://plus.google.com/communities/1134152435478717
 Pi demo websites:<br>
 Pi Dialogue: <a href="http://piengine.org" target="_blank" title="Click to open">http://piengine.org</a>; <a href="http://pialogue.org" target="_blank" title="Click to open">http://pialogue.org</a><br>
 Pi Demo: <a href="http://pi-demo.org" target="_blank" title="Click to open">http://pi-demo.org</a><br>
-Xoops/Pi: <a href="http://demo.piengine.org" target="_blank" title="Click to open">http://demo.piengine.org</a><br>
+Xoops/Pi: <a href="http://demo.xoopsengine.org" target="_blank" title="Click to open">http://demo.xoopsengine.org</a><br>

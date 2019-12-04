@@ -331,7 +331,7 @@ SCRIPT;
         if (stristr($_SERVER["SERVER_SOFTWARE"], 'nginx')) {
             $status  = 1;
             $message = _s(
-                'Make sure that configurations have been set up correctly for nginx. Refer to <a href="http://nginx.net" title="nginx" target="_blank">nginx</a> and <a href="http://dev.piengine.org" title="Pi Engine" target="_blank">Pi Engine Dev</a> for instructions.'
+                'Make sure that configurations have been set up correctly for nginx. Refer to <a href="http://nginx.net" title="nginx" target="_blank">nginx</a> and <a href="http://dev.xoopsengine.org" title="Pi Engine" target="_blank">Pi Engine Dev</a> for instructions.'
             );
         } elseif (stristr($_SERVER['SERVER_SOFTWARE'], 'LiteSpeed')) {
             $status  = 1;

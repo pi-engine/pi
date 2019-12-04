@@ -56,12 +56,12 @@ $configs['extension'] = [
             'Internationalization extension enables collation and date/time/number/currency formatting, check <a href="http://www.php.net/manual/en/book.intl.php" title="Internationalization extension" target="_blank">Internationalization extension</a> for details.'
         ),
     ],
-    /* 'discount'  => [
+    'discount'  => [
         'title'   => _s('Markdown'),
         'message' => _s(
             'The extension is suggested for text parser, check <a href="http://daringfireball.net/projects/markdown/" title="Markdown project" target="_blank">Markdown</a> for details and download from <a href="http://pecl.php.net/package/markdown" title="PECL project" target="_blank">PECL page</a>.'
         ),
-    ], */
+    ],
     'mbstring'  => [
         'title'   => _s('Mbstring'),
         'message' => _s(
