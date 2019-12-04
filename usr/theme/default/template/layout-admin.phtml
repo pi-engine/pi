@@ -74,8 +74,7 @@ $module = Pi::service('module')->current();
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse">
-            <?php $class = in_array($locale, ['fa', 'ar']) ? 'navbar-nav ml-auto pi-navbar-nav' : 'navbar-nav mr-auto pi-navbar-nav'; ?>
-            <?php echo $this->adminNav()->modes($class); ?>
+            <?php echo $this->adminNav()->modes('navbar-nav mr-auto pi-navbar-nav'); ?>
             <?php echo $this->widget('system-user-bar', [
                 'type'           => 'flat',
                 'float'          => 'right',

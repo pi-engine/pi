@@ -141,10 +141,7 @@ class Autoloader
      */
     public function __construct($options = [])
     {
-        // Check and include autoload file
-        if (!file_exists(Pi::path('vendor/autoload.php'))) {
-            die('Require libraries not installed, please use `composer update` in your terminal before install ! for more information please visit composer website.');
-        }
+        // Include autoload file
         include Pi::path('vendor/autoload.php');
 
         // Include paths, adding vendor path

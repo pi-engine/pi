@@ -128,8 +128,7 @@ $breadcrumbs = $this->breadcrumb(
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse">
-            <?php $class = in_array($locale, ['fa', 'ar']) ? 'navbar-nav ml-auto pi-navbar-nav' : 'navbar-nav mr-auto pi-navbar-nav'; ?>
-            <?php echo $navigation->menu()->setUlClass($class); ?>
+            <?php echo $navigation->menu()->setUlClass('navbar-nav mr-auto pi-navbar-nav'); ?>
             <?php echo $this->widget('system-user-bar'); ?>
             <?php echo $this->widget('search-search'); ?>
         </div>

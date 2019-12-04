@@ -24,9 +24,9 @@ Folder and file skeleton
         // Readme file, for admin, optional
         'readme'        => 'docs/readme.txt',
         // Direct download link, available for wget, optional
-        //'download'      => 'http://dl.piengine.org/core',
+        //'download'      => 'http://dl.xoopsengine.org/core',
         // Demo site link, optional
-        'demo'          => 'http://demo.piengine.org/demo',
+        'demo'          => 'http://demo.xoopsengine.org/demo',
 
         // Module is ready for clone? Default as false
         'clonable'      => false,
@@ -39,7 +39,7 @@ Folder and file skeleton
         // Email address, optional
         'email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'website'   => 'http://www.piengine.org',
+        'website'   => 'http://www.xoopsengine.org',
         // Credits and acknowledgement, optional
         'credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),
