@@ -33,4 +33,7 @@ return [
 
     // optionally create new collections when inserting documents
     'create'             => true,
+
+    // optionally create new collections when inserting documents
+    'forceCreate'        => false,
 ];

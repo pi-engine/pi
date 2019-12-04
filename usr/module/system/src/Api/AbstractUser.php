@@ -602,6 +602,12 @@ abstract class AbstractUser extends AbstractApi
     public function getUrl($type, $var = null)
     {
         $route = $this->getRoute();
+
+        // Temporary fix for php 7.2 / 7.3
+        if ($route == 'sysuser' && Pi::service('module')->isActive('user')) {
+            $route = 'user';
+        }
+
         switch ($type) {
             case 'profile':
                 $params = [];

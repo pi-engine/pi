@@ -29,7 +29,7 @@ return [
         // Readme file, for admin, optional
         'readme'      => 'docs/readme.txt',
         // Direct download link, available for wget, optional
-        //'download'      => 'http://dl.xoopsengine.org/core',
+        //'download'      => 'http://dl.piengine.org/core',
         // Demo site link, optional
         'demo'        => 'http://piengine.org',
 

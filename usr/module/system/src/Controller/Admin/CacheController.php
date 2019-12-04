@@ -47,7 +47,7 @@ class CacheController extends ComponentController
                 ];
                 Pi::model('page')->update($data, [
                     'module'  => $name,
-                    'section' => ['front', 'feed'],
+                    'section' => ['front', 'api', 'feed'],
                 ]);
             } else {
                 $data = [];
@@ -85,13 +85,17 @@ class CacheController extends ComponentController
         $select   = Pi::model('page')->select()
             ->where([
                 'module'  => $name,
-                'section' => ['front', 'feed'],
+                'section' => ['front', 'api', 'feed'],
             ])
             ->order(['custom', 'controller', 'action', 'id']);
         $rowset   = Pi::model('page')->selectWith($select);
         $sections = [
             'front' => [
                 'title' => _a('Front'),
+                'pages' => [],
+            ],
+            'api'  => [
+                'title' => _a('Api'),
                 'pages' => [],
             ],
             'feed'  => [
@@ -115,7 +119,7 @@ class CacheController extends ComponentController
                     'class'   => 'form-control',
                 ],
             ];
-            if ('feed' == $section) {
+            if ('feed' == $section || 'api' == $section) {
                 $spec['attributes']['value'] = 'page';
                 unset($spec['attributes']['options']['action']);
             }

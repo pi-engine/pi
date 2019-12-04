@@ -19,43 +19,51 @@ $this->backbone();
     </li>
 </ul>
 <div id="js-page">
-    <fieldset>
-        <legend><?php echo _a('Theme in use'); ?></legend>
-        <div class="media" style="margin-top: 0;">
+    <h1 class="mb-3 mt-3">
+        <?php echo _a('Theme in use'); ?>
+    </h1>
+
+    <div class="card mb-3 bg-light">
+        <div class="row no-gutters">
             <div class="col-md-4">
                 <img src="<?php echo $theme['screenshot']; ?>"
                      alt="<?php echo isset($theme['title']) ? _escape($theme['title']) : ''; ?>"
-                     class="img-fluid img-thumbnail float-left"/>
-
+                     class="card-img"/>
             </div>
-            <div class="media-body col-md-8">
-                <h4 class="media-heading"><?php echo _escape($theme['title']); ?></h4>
-                <h5><?php echo $theme['version']; ?></h5>
-                <p style="margin-bottom:15px;">
-                    <?php echo _escape($theme['description']); ?>
-                </p>
-                <a href="<?php echo $this->url('', ['action' => 'customize', 'name' => $theme['name']]); ?>"><?php _e('Customize'); ?></a>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo _escape($theme['title']); ?></h5>
+                    <div class="card-text">
+                        <h5><?php echo $theme['version']; ?></h5>
+                        <p style="margin-bottom:15px;">
+                            <?php echo _escape($theme['description']); ?>
+                        </p>
+                        <a class="btn btn-success" href="<?php echo $this->url('', ['action' => 'customize', 'name' => $theme['name']]); ?>">
+                            <?php _e('Customize'); ?>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </fieldset>
-    <fieldset>
-        <legend><?php echo _a('Themes available to use'); ?></legend>
-        <div class="theme-list"></div>
-    </fieldset>
+    </div>
+
+
+
+    <h3 class="mb-3 mt-3">
+        <?php echo _a('Themes available to use'); ?>
+    </h3>
+    <div class="theme-list row clearfix"></div>
 </div>
 <script type="text/template" id="temp-theme">
-    <div class="thumbnail">
-        <a class="theme-screenshot">
-            <img src="<%= screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>"
-                 style="height: 300px;">
-        </a>
-        <div class="caption">
-            <h5><%- title %></h5>
-            <div class="clearfix theme-actions">
+    <div class="card">
+        <img src="<%= screenshot %>" alt="<%= _.escape(title) %>" title="<?php echo _a('Click To preview'); ?>" class="card-img-top" style="height: 25vw">
+        <div class="card-body">
+            <h5 class="card-title"><%- title %></h5>
+            <div class="card-text clearfix theme-actions">
                 <span class="float-right btn btn-secondary theme-apply"><?php echo _a('Apply'); ?></span>
                 <span class="no-select btn btn-link theme-detail"><?php echo _a('Detail'); ?></span>
             </div>
-            <dl class="hide">
+            <dl class="card-text hide">
                 <dt><?php echo _a('Version'); ?></dt>
                 <dd><%= version %></dd>
                 <dt><?php echo _a('Description'); ?></dt>
@@ -67,7 +75,7 @@ $this->backbone();
 <script>
     var themeCollection = new Backbone.Collection(<?php echo json_encode(array_values($themes)) ?>);
     var ThemeItemView = Backbone.View.extend({
-        className: 'col-md-4',
+        className: 'col-lg-3 col-md-3 col-12',
         template: _.template($('#temp-theme').html()),
         events: {
             'click .theme-apply': 'apply',
