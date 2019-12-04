@@ -19,6 +19,12 @@ define('PI_PATH_HOST', '%host%');
 // Physical path to default library directory WITHOUT trailing slash
 define('PI_PATH_LIB', '%lib%');
 
+// Display error for development
+// ToDo : remove it after finish development
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Set default timezone if not available in php.ini
 if (!ini_get('date.timezone')) {
     date_default_timezone_set('UTC');
