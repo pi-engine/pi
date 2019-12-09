@@ -9,6 +9,19 @@
  * @license         http://piengine.org/license.txt BSD 3-Clause License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
+
+use Zend\Mvc\Service\ConsoleExceptionStrategyFactory;
+use Zend\Mvc\Service\ConsoleRouteNotFoundStrategyFactory;
+use Zend\Mvc\Service\ConsoleRouterFactory;
+use Zend\Mvc\Service\HttpDefaultRenderingStrategyFactory;
+use Zend\Mvc\Service\HttpExceptionStrategyFactory;
+use Zend\Mvc\Service\HttpRouteNotFoundStrategyFactory;
+use Zend\Mvc\Service\HttpRouterFactory;
+use Zend\Mvc\Service\ViewFactory;
+use Zend\Mvc\Service\ViewPhpRendererFactory;
+use Zend\Mvc\Service\ViewPhpRendererStrategyFactory;
+use Zend\ServiceManager\Factory\InvokableFactory;
+
 return [
     // ServiceMananger configuration
     'service_manager'    => [
@@ -60,7 +73,7 @@ return [
             'ApiStrategyListener'  => 'Pi\Mvc\View\Http\ApiStrategyListener',
         ],
         'factories'          => [
-            'Application'                                         => Zend\Mvc\Service\ApplicationFactory::class,
+            //'Application'                                         => Zend\Mvc\Service\ApplicationFactory::class,
             //'config'                                            => 'Zend\Mvc\Service\ConfigFactory',
             'ControllerManager'                                   => 'Zend\Mvc\Service\ControllerManagerFactory',
             //'ControllerPluginManager'                           => 'Zend\Mvc\Service\ControllerPluginManagerFactory',
@@ -121,9 +134,6 @@ return [
             'ControllerPluginManager'                             => 'Pi\Mvc\Service\ControllerPluginManagerFactory',
             'MvcTranslator'                                       => 'Pi\Mvc\Service\TranslatorServiceFactory',
             'ViewResolver'                                        => 'Pi\Mvc\Service\ViewResolverFactory',
-        ],
-        'abstract_factories' => [
-            'Zend\Form\FormAbstractServiceFactory',
         ],
     ],
 
