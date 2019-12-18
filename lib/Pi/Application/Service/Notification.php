@@ -19,8 +19,7 @@ use Zend\Http\Client;
  * - Pi::service('notification')->send($to, $template, $information, $module, $uid);
  * - Pi::service('notification')->smsToUser($content, $number);
  * - Pi::service('notification')->smsToAdmin($content, $number);
- * - Pi::service('notification')->fcm($data, $option);
- * - Pi::service('notification')->apns($data, $option);
+ * - Pi::service('notification')->fcm($params, $option);
  *
  * - ToDo : user setting for active / inactive push notification on website and mobile
  * - ToDo : improve send sms on notification module and support local
@@ -47,10 +46,10 @@ class Notification extends AbstractService
      * Send mail and message notification
      *
      * @param array|string $to
-     * @param string $template
-     * @param array $information
-     * @param string $module
-     * @param int $uid
+     * @param string       $template
+     * @param array        $information
+     * @param string       $module
+     * @param int          $uid
      *
      * @return array|string
      */
@@ -131,80 +130,107 @@ class Notification extends AbstractService
      *
      * Notification is required for send message or notification as array
      *
-     * $data = array(
-     *     'message'           => 'my message',   // required
-     *     'id'                => 123,            // Not required
+     * $params = array(
+     *     'title'             => 'title,         // required
+     *     'body'              => 'my message',   // required
+     *     'image'             => 'image_url',    // Not required, set image as url
      *     'registration_ids'  => [],             // Array list of device token. use it or token
-     *     'token'             => '/topics/news', // if registration_ids you can send to topic
+     *     'topic'             => '/topics/news', // if registration_ids you can send to topic
+     *     'priority'          => 'high',         // Not required
      * );
      *
      * You need update /var/config/service.notification.php and set server key / token,
      * Option not required , but you can set custom setting if needed
      *
      * $option = array(
-     *     'priority'         => 'high',
      *     'serverKey'        => 'SET_SERVER_KEY_HERE',
      * );
      *
-     * @param $data
+     * @param $params
      * @param $option
+     *
      * @return array
      */
-    public function fcm($data, $option = [])
+    public function fcm($params, $option = [])
     {
         // Set result
         $result = [
             'status'   => 0,
             'message'  => '',
-            'data'     => $option,
-            'option'   => $data,
             'response' => [],
         ];
 
         // APi url
         $url = 'https://fcm.googleapis.com/fcm/send';
 
-        // Set id
-        $data['id'] = isset($data['id']) ? $data['id'] : uniqid("fcm-");
-
-        // Check option priority
-        $option['priority'] = isset($option['priority']) ? $option['priority'] : 'high';
-
         // Get server key
         $option['serverKey'] = isset($option['serverKey']) ? $option['serverKey'] : $this->getOption('fcm_server_key');
-        if (empty($option['serverKey'])) {
+        if (!isset($option['serverKey']) || empty($option['serverKey'])) {
             $result['message'] = __('Server key not set');
             return $result;
         }
 
-        // Get registration_ids or topic
-        $data['registration_ids'] = isset($data['registration_ids']) ? $data['registration_ids'] : $this->getOption('fcm_registration_ids');
-        $data['registration_ids'] = (!is_array($data['registration_ids'])) ? [$data['registration_ids']] : $data['registration_ids'];
-        $data['token']            = isset($data['token']) ? $data['token'] : $this->getOption('fcm_token');
+        // Set id
+        $params['id'] = isset($params['id']) ? $params['id'] : uniqid("fcm-");
 
-        // Set field
-        $fields = [
-            'priority' => $option['priority'],
+        // Set priority
+        $params['priority'] = isset($params['priority']) ? $params['priority'] : 'high';
+
+        // Set ttl
+        $params['ttl'] = isset($params['ttl']) ? $params['ttl'] : '86400';
+
+        // Set registration_ids
+        $params['registration_ids'] = isset($params['registration_ids']) ? $params['registration_ids'] : $this->getOption('fcm_registration_ids');
+        $params['registration_ids'] = (!is_array($params['registration_ids'])) ? [$params['registration_ids']] : $params['registration_ids'];
+
+        // Set topic
+        $params['topic'] = isset($params['topic']) ? $params['topic'] : $this->getOption('fcm_token');
+
+        // Set request
+        $request = [
+            'notification'      => [
+                'title' => $params['title'],
+                'body'  => $params['body'],
+            ],
+            'data'              => [
+                'title' => $params['title'],
+                'body'  => $params['body'],
+            ],
             'content_available' => true,
+            'priority'          => $params['priority'],
+            'android'           => [
+                'ttl'      => $params['ttl'] . 's',
+                'priority' => $params['priority'],
+            ],
+            'apns'              => [
+                'headers' => [
+                    'apns-expiration' => '1604750400',
+                    'apns-priority'   => ($params['priority'] === 'high') ? '10' : '5',
+                ],
+            ],
+            'webpush'           => [
+                'headers' => [
+                    'TTL'     => $params['ttl'],
+                    'Urgency' => $params['priority'],
+                ],
+            ],
         ];
 
-        if (!empty($data['title'])) {
-            $fields['notification']['title'] = $data['title'];
+        // Set image
+        if (isset($params['image']) && !empty($params['image'])) {
+            $request['data']['image'] = $params['image'];
         }
 
-        if (!empty($data['body'])) {
-            $fields['notification']['body'] = $data['body'];
+        // Set data array if set
+        if (isset($params['data']) && !empty($params['data'])) {
+            $request['data'] = array_unique(array_merge($request['data'], $params['data']));
         }
 
-        if (!empty($data['data'])) {
-            $fields['data'] = $data['data'];
-        }
-
-        if (!empty($data['registration_ids'])) {
-            $fields['registration_ids'] = $data['registration_ids'];
-        }
-        elseif (!empty($data['token'])) {
-            $fields['token'] = $data['token'];
+        // Set registration_ids or to
+        if (!empty($params['registration_ids'])) {
+            $request['registration_ids'] = $params['registration_ids'];
+        } elseif (!empty($params['topic'])) {
+            $request['to'] = $params['topic'];
         } else {
             $result['message'] = __('Registration ids not set');
             return $result;
@@ -219,41 +245,23 @@ class Notification extends AbstractService
         $headers->addHeaderLine('Authorization', 'key=' . $option['serverKey']);
         $client->setMethod('POST');
         $client->setEncType('application/json');
-        $client->setRawBody(json_encode($fields));
+        $client->setRawBody(json_encode($request));
         $client->setHeaders($headers);
         $response = $client->send();
 
+        // Check result
         if ($response->isSuccess()) {
             $result['status']   = 1;
             $result['message']  = __('Notification send successfully');
-            $result['request']     = $fields;
-            $result['option']   = $option;
+            $result['request']  = $request;
             $result['response'] = json_decode($response->getBody(), true);
         } else {
-            $result['message'] = __('Error to send notification');
+            $result['message']  = __('Error to send notification');
+            $result['params']   = $params;
+            $result['option']   = $option;
+            $result['request']  = $request;
+            $result['response'] = $response;
         }
-
-        return $result;
-    }
-
-
-    /**
-     * Apple Push Notification Service
-     *
-     * ToDo : finish Apple Push Notification Service
-     *
-     * @param $data
-     * @param $option
-     * @return array
-     */
-    public function apns($data, $option = [])
-    {
-        // Set result
-        $result = [
-            'status'  => 0,
-            'message' => 'Apple Push Notification Service not finish yet',
-            'data'    => $data,
-        ];
 
         return $result;
     }
