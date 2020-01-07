@@ -205,7 +205,7 @@ if (empty($item)) {
                             <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
                                 <?php if ($config['manage_service']) { ?>
                                     <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'sales', 'item' => $item['id'])); ?>"
-                                       class="nav-link rounded-0 <?php echo $action == "sales" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                                       class="nav-link rounded-0 <?php echo $action == "sales" || $action == "sales-calendars" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
                                         <?php _e('Grid Manager'); ?> <span class='fas fa-angle-right'></span>
                                     </a>
                                 <?php } ?>
