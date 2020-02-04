@@ -75,7 +75,9 @@ class FormDatepicker extends FormInput
         $element->setAttribute('class', $class);
         $html = parent::render($element);
 
-        $dpOptions = [];
+        $dpOptions = [
+            'disableTouchKeyboard:true',
+        ];
         foreach ($options as $key => $val) {
             $key         = lcfirst(str_replace(' ', '', ucwords(str_replace(['_', '-'], ' ', $key))));
             $dpOptions[] = $key . ': "' . $val . '"';
