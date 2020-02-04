@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-11-26 11:52+0100\n"
-"PO-Revision-Date: 2019-11-26 11:52+0100\n"
+"POT-Creation-Date: 2020-01-07 22:24+0100\n"
+"PO-Revision-Date: 2020-01-07 22:24+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -1428,8 +1428,8 @@ msgid "FAST ACTIONS"
 msgstr "ACTIONS RAPIDES"
 
 #: template/front/profile-sidebar.phtml:209
-msgid "Grid Manager"
-msgstr "Grille Gestion"
+msgid "Management Grids"
+msgstr "Grilles de Gestion"
 
 #: template/front/profile-sidebar.phtml:215
 msgid "Bookings/Closings"
@@ -1648,6 +1648,9 @@ msgstr "Demandez le renvoi du mail d'activation"
 msgid "Already sent"
 msgstr "Déja envoyé"
 
+#~ msgid "Grid Manager"
+#~ msgstr "Grille Gestion"
+
 #~ msgid "Change email"
 #~ msgstr "Modifier l'email"
 
@@ -1683,9 +1686,6 @@ msgstr "Déja envoyé"
 
 #~ msgid "Share"
 #~ msgstr "Outils"
-
-#~ msgid "Management"
-#~ msgstr "Gestion"
 
 #~ msgid "Items"
 #~ msgstr "Eléments"
