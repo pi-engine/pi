@@ -383,31 +383,18 @@ function initialize() {
         styles: noPoi 
     };
     var map = new google.maps.Map(document.getElementById('%s'), mapOptions);
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        draggable:true,
+        title: "%s"
+    });
     
-    if ('%s' == 'marker') { 
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            draggable:true,
-            title: "%s"
-        });
-        
-        var icon = %s;
-        if (icon) {
-            marker.setIcon(icon);
-        }
-    } else {
-        new google.maps.Circle({
-            strokeColor: '#03A9F4',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#03A9F4',
-            fillOpacity: 0.35,
-            map: map,
-            center: myLatlng,
-            radius: Math.sqrt(6000),
-        });
+    var icon = %s;
+    if (icon) {
+        marker.setIcon(icon);
     }
+    
     $(window).on('load', function(){
         google.maps.event.trigger(map, 'resize');
         map.setCenter(myLatlng);
@@ -422,7 +409,6 @@ EOT;
                     $locations['zoom'],
                     $mapTypeId,
                     $id,
-                    isset($option['circle']) && $option['circle'] ? 'circle' : 'marker',
                     $locations['title'],
                     isset($option['icon']) ? json_encode($option['icon']) : 'undefined' 
                 );

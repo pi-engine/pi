@@ -46,8 +46,7 @@
         "emcconville/google-map-polyline-encoding-tool": "^1.3",
         "mongodb/mongodb": "^1.5",
         "triagens/arangodb": "^3.5",
-        "stripe/stripe-php": "7.7.1"
-
+        "stripe/stripe-php": "^7.3"
     },
     "require-dev": {
     },

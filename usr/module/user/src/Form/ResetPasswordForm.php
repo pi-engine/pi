@@ -67,12 +67,6 @@ class ResetPasswordForm extends BaseForm
         ]);
 
         $this->add([
-            'name' => 'redirect',
-            'type' => 'hidden',
-        ]);
-
-
-        $this->add([
             'name'       => 'submit',
             'type'       => 'submit',
             'attributes' => [

@@ -33,7 +33,7 @@ class Form extends AbstractApi
      *
      * @return UserForm
      */
-    public function loadForm($name, $withFilter = false, $withPlaceholder = false)
+    public function loadForm($name, $withFilter = false)
     {
         $class         = str_replace(' ', '', ucwords(
             str_replace(['-', '_', '.', '\\', '/'], ' ', $name)
@@ -50,11 +50,11 @@ class Form extends AbstractApi
         if ($withFilter) {
             list($elements, $filters) = $this->loadFields($name, $withFilter);
         } else {
-            $elements = $this->loadFields($name, $withFilter, $withPlaceholder);
+            $elements = $this->loadFields($name, $withFilter);
             $filters  = [];
         }
 
-        $form = new $formClassName($name, $elements, $withPlaceholder);
+        $form = new $formClassName($name, $elements);
         if ($withFilter && $form instanceof UserForm) {
             $form->loadInputFilter($filters);
         }
@@ -70,11 +70,11 @@ class Form extends AbstractApi
      *
      * @return array
      */
-    public function loadFields($name, $withFilter = false, $withPlaceholder = false)
+    public function loadFields($name, $withFilter = false)
     {
         $elements = [];
         $filters  = [];
-        $config   = $this->loadConfig($withPlaceholder ? $name . '.placeholder' : $name);
+        $config   = $this->loadConfig($name);
         $meta     = Pi::registry('field', $this->module)->read();
         foreach ($config as $name => $value) {
             if (!$value || empty($value['element'])) {
@@ -101,7 +101,7 @@ class Form extends AbstractApi
                         }
                     }
                 } else {
-                    $element = $this->getElement($name, $withPlaceholder);
+                    $element = $this->getElement($name);
                     if ($element) {
                         $elements[] = $element;
                     }
@@ -229,7 +229,7 @@ class Form extends AbstractApi
      * @param array $data
      * @return array
      */
-    protected function canonizeElement($data,$withPlaceholder = false)
+    protected function canonizeElement($data)
     {
         $element         = $data['edit']['element'];
         $element['name'] = $data['name'];
@@ -240,11 +240,7 @@ class Form extends AbstractApi
         } else {
             $element['options'] = [];
         }
-        if ($withPlaceholder) {
-            $element['attributes']['placeholder'] = $data['title'];
-        } else {
-            $element['options']['label'] = $data['title'];
-        }
+        $element['options']['label'] = $data['title'];
         if (isset($data['edit']['attributes'])) {
             $element['attributes'] = $data['edit']['attributes'];
         }
@@ -302,12 +298,12 @@ class Form extends AbstractApi
      * @param string $name
      * @return array
      */
-    public function getElement($name, $withPlaceholder = false)
+    public function getElement($name)
     {
         $element  = [];
         $elements = Pi::registry('field', $this->module)->read();
         if (isset($elements[$name]) && isset($elements[$name]['edit'])) {
-            $element = $this->canonizeElement($elements[$name], $withPlaceholder);
+            $element = $this->canonizeElement($elements[$name]);
         }
 
         return $element;

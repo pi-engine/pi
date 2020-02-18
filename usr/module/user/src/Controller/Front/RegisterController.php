@@ -44,8 +44,6 @@ class RegisterController extends ActionController
 
         // Get register form
         $form = Pi::api('form', 'user')->loadForm('register');
-        $form->get('submit')->setAttribute('class', $form->get('submit')->getAttribute('class') . ' w-100');
-
         $form->setAttributes([
             'action' => $this->url('', ['action' => 'index']),
         ]);
@@ -53,10 +51,6 @@ class RegisterController extends ActionController
         // Handling register data
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
-
-            $post = $post->toArray();
-            $post['captcha']['recaptcha_response_field'] = $post['g-recaptcha-response'];
-
             $form->loadInputFilter();
             $form->setData($post);
             if ($form->isValid()) {

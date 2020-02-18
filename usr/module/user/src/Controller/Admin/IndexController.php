@@ -419,6 +419,12 @@ class IndexController extends ActionController
             if (!is_array($status) && $status !== false) {
                 $count++;
                 $result['deleted_uids'][] = $uid;
+                // Clear user other info: user data, role, log, privacy, timeline
+                $this->deleteUser($uid, 'user_data');
+                $this->deleteUser($uid, 'user_role');
+                $this->deleteUser($uid, 'user_log', 'user');
+                $this->deleteUser($uid, 'privacy_user', 'user');
+                $this->deleteUser($uid, 'timeline_log', 'user');
             }
         }
         if (!empty($result['deleted_uids'])) {

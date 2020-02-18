@@ -51,15 +51,11 @@ class RegisterForm extends UserForm
         if ($this->has('email')) {
 
             $passwordLink = Pi::service('user')->getUrl('password');
-            $urlLogin = Pi::url(Pi::service('url')->assemble('user', [
-                'module'     => 'user',
-                'controller' => 'login',
-                'action'     => 'index',
-            ]));
+
             $this->get('email')
                 ->setAttribute('data-error', __('Invalid email'))
                 ->setAttribute('data-remote', $url)
-                ->setAttribute('data-remote-error', sprintf(__('Oops. This email address is already taken. Do you want to <a href="#" onclick="%s">login</a> or <a href="%s">recover your password</a> ?'), "$('.toggle-modal-action-login:visible').length ? $('.toggle-modal-action-login:visible').click() : window.location='" . $urlLogin . "';return false;", $passwordLink));
+                ->setAttribute('data-remote-error', sprintf(__('Oops. This email address is already taken. Do you want to <a href="#" onclick="%s">login</a> or <a href="%s">recover your password</a> ?'), "$('.toggle-modal-action-login').click();return false;", $passwordLink));
         }
 
         if ($this->has('identity')) {
@@ -161,8 +157,6 @@ HTML;
             'name' => 'redirect',
             'type' => 'hidden',
         ]);
-
-        $this->get('submit')->setValue(__('Registration'));
 
         /**
          * For invisible recaptcha, need for button instead of input submit

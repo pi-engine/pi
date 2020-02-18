@@ -1,9 +1,9 @@
 <?php $this->headMeta('noindex', 'robots'); ?>
-    <h1 class="page-header"><?php _e('Email modification'); ?></h1>
+    <h1 class="page-header"><?php _e('Change email'); ?></h1>
 <?php if ($result['status']) { ?>
     <p><?php _e('Congratulations!'); ?></p>
-    <p><?php _e($result['message']); ?></p>
-    <p><a class="btn btn-primary" href="<?php echo Pi::service('authentication')->getUrl('login'); ?>"><?php echo __('Login right now'); ?></a>
+    <p><?php _escape($result['message']); ?></p>
+    <p><a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>"><?php echo __('Login right now.'); ?></a>
     </p>
 <?php } else { ?>
     <p><?php echo _escape($result['message']); ?></p>

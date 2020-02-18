@@ -160,10 +160,8 @@ class Block
 
                 $defaultController = 'dashboard';
 
-
                 // Check guide module is active
                 if (Pi::service('module')->isActive('guide')) {
-
                     $uid = Pi::service('user')->getId();
 
                     $orderModel           = Pi::model('order', 'order');
@@ -171,7 +169,7 @@ class Block
                     $orderDetailModel     = Pi::model('detail', 'order');
                     $orderDetailTableName = $orderDetailModel->getTable();
 
-                    $select = $orderModel->select()->columns(array('id'));
+                    $select = $orderModel->select();
                     $select->join($orderDetailTableName, $orderDetailTableName . '.order = ' . $orderTableName . '.id');
                     $select->where(['uid' => $uid, 'module' => 'guide']);
                     $select->where(new \Zend\Db\Sql\Predicate\In('product_type', ['package', 'item']));

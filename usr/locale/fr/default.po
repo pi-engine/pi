@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2019-11-27 14:51+0100\n"
+"POT-Creation-Date: 2018-06-21 17:41+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.0.8\n"
 "X-Poedit-KeywordsList: __;_t;_e;_a\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -19,15 +19,15 @@ msgstr ""
 "X-Poedit-SearchPath-3: usr/module/user/src/Form/RegisterForm.php\n"
 "X-Poedit-SearchPath-4: usr/module/user/src/Form/LoginForm.php\n"
 "X-Poedit-SearchPath-5: usr/module/user/config/form.register.php\n"
-"X-Poedit-SearchPath-6: usr/custom/module/user/config/form.register.php.dist\n"
-"X-Poedit-SearchPath-7: usr/module/user/config/form.register.php\n"
-"X-Poedit-SearchPath-8: usr/module/system/src/Form/LoginForm.php\n"
-"X-Poedit-SearchPath-9: usr/module/user/src/Controller/Front/"
+"X-Poedit-SearchPath-6: usr/module/system/template/block/partial/login-"
+"register-modal.phtml\n"
+"X-Poedit-SearchPath-7: usr/custom/module/user/config/form.register.php.dist\n"
+"X-Poedit-SearchPath-8: usr/module/user/config/form.register.php\n"
+"X-Poedit-SearchPath-9: usr/module/system/src/Form/LoginForm.php\n"
+"X-Poedit-SearchPath-10: usr/module/user/src/Controller/Front/"
 "PasswordController.php\n"
-"X-Poedit-SearchPath-10: usr/module/user/src/Form/RegisterForm.php\n"
-"X-Poedit-SearchPath-11: usr/module/system/template/block/user-bar.phtml\n"
-"X-Poedit-SearchPath-12: usr/module/system/template/front/login-register-"
-"modal-ajax.phtml\n"
+"X-Poedit-SearchPath-11: usr/module/user/src/Form/RegisterForm.php\n"
+"X-Poedit-SearchPath-12: usr/module/system/template/block/user-bar.phtml\n"
 "X-Poedit-SearchPathExcluded-0: www/static/js/bs-lessdoc-parser.js\n"
 
 #: lib/Pi/Application/Bootstrap/Resource/Permission.php:64
@@ -50,28 +50,6 @@ msgstr "Mise à niveau du Thème réussie."
 #: lib/Pi/Application/Installer/Theme.php:363
 msgid "Theme asset publish failed."
 msgstr "La publication de la ressource Thème a échoué."
-
-#: lib/Pi/Application/Service/ArangoDb.php:118
-#: lib/Pi/Application/Service/ArangoDb.php:162
-#: lib/Pi/Application/Service/ArangoDb.php:205
-#: lib/Pi/Application/Service/ArangoDb.php:247
-#: lib/Pi/Application/Service/ArangoDb.php:297
-#: lib/Pi/Application/Service/ArangoDb.php:342
-msgid ""
-"Error , select collection not exist, please generate collection before make "
-"any type of query"
-msgstr ""
-
-#: lib/Pi/Application/Service/ArangoDb.php:145
-#: lib/Pi/Application/Service/ArangoDb.php:188
-#: lib/Pi/Application/Service/ArangoDb.php:231
-#: lib/Pi/Application/Service/ArangoDb.php:281
-#: lib/Pi/Application/Service/ArangoDb.php:326
-#: lib/Pi/Application/Service/ArangoDb.php:374
-msgid ""
-"Error, ArangoDB not active, please setup database and update service."
-"arangodb.php config file"
-msgstr ""
 
 #: lib/Pi/Application/Service/Comment.php:696
 msgid "Posted a new comment."
@@ -283,17 +261,15 @@ msgstr "Auto-détection"
 msgid "Language"
 msgstr "Langage"
 
-#: lib/Pi/Form/Element/LoginField.php:37 lib/Pi/Form/Element/LoginField.php:83
-#: usr/module/system/src/Form/LoginForm.php:56
+#: lib/Pi/Form/Element/LoginField.php:37 lib/Pi/Form/Element/LoginField.php:79
 msgid "Username"
 msgstr "Nom Compte"
 
-#: lib/Pi/Form/Element/LoginField.php:38 lib/Pi/Form/Element/LoginField.php:86
-#: usr/module/system/src/Form/LoginForm.php:56
+#: lib/Pi/Form/Element/LoginField.php:38 lib/Pi/Form/Element/LoginField.php:82
 msgid "Email"
 msgstr "Email"
 
-#: lib/Pi/Form/Element/LoginField.php:89 lib/Pi/Form/Element/LoginField.php:93
+#: lib/Pi/Form/Element/LoginField.php:85 lib/Pi/Form/Element/LoginField.php:89
 msgid "Identity"
 msgstr "Identité"
 
@@ -319,7 +295,7 @@ msgid "Roles"
 msgstr "Rôles"
 
 #: lib/Pi/Form/Element/Submit.php:38
-#: usr/module/user/src/Form/RegisterForm.php:174
+#: usr/module/user/src/Form/RegisterForm.php:165
 msgid "Submit"
 msgstr "Soumettre"
 
@@ -347,19 +323,15 @@ msgstr "Image CAPTCHA"
 msgid "Click to refresh CAPTCHA"
 msgstr "Cliquez pour rafraîchir le CAPTCHA"
 
-#: lib/Pi/Form/View/Helper/Form.php:232
+#: lib/Pi/Form/View/Helper/Form.php:185
 msgid "Required"
 msgstr "Requis"
 
-#: lib/Pi/Form/View/Helper/Form.php:389
-msgid "This value is required"
-msgstr "Une valeur est requise"
-
-#: lib/Pi/Form/View/Helper/Form.php:614
+#: lib/Pi/Form/View/Helper/Form.php:545
 msgid "Close"
 msgstr "Fermer"
 
-#: lib/Pi/Form/View/Helper/Form.php:615
+#: lib/Pi/Form/View/Helper/Form.php:546
 msgid "Form"
 msgstr "Formulaire"
 
@@ -380,11 +352,11 @@ msgid "The requested action was not found."
 msgstr "L'action demandée n'a pas été trouvée."
 
 #: lib/Pi/Mvc/Controller/Plugin/Terminate.php:40
-#: usr/module/system/src/Form/LoginForm.php:152
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:8
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:23
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:54
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:55
+#: usr/module/system/src/Form/LoginForm.php:119
+#: usr/module/system/template/block/partial/login-register-modal.phtml:55
+#: usr/module/system/template/block/partial/login-register-modal.phtml:68
+#: usr/module/system/template/block/partial/login-register-modal.phtml:99
+#: usr/module/system/template/block/partial/login-register-modal.phtml:100
 msgid "Login"
 msgstr "Connexion"
 
@@ -429,12 +401,11 @@ msgstr "Page"
 msgid "Tags: "
 msgstr "Tags :"
 
-#: usr/module/system/src/Form/LoginForm.php:67
-#: usr/module/system/src/Form/LoginForm.php:85
+#: usr/module/system/src/Form/LoginForm.php:61
 msgid "Password"
 msgstr "Mot de passe"
 
-#: usr/module/system/src/Form/LoginForm.php:111
+#: usr/module/system/src/Form/LoginForm.php:82
 msgid "Remember login status"
 msgstr "Se souvenir de moi"
 
@@ -456,8 +427,8 @@ msgid "Reset password failed."
 msgstr "La remise à zéro de votre mot de passe a échoué."
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:59
-#: usr/module/user/src/Controller/Front/PasswordController.php:442
-#: usr/module/user/src/Form/RegisterForm.php:144
+#: usr/module/user/src/Controller/Front/PasswordController.php:434
+#: usr/module/user/src/Form/RegisterForm.php:137
 msgid "Whoops, these don't match"
 msgstr "Oups, ils ne correspondent pas"
 
@@ -466,95 +437,95 @@ msgid "Reset password successfully."
 msgstr "Le mot de passe a été modifié avec succès."
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:115
-#: usr/module/user/src/Controller/Front/PasswordController.php:370
-#: usr/module/user/src/Form/RegisterForm.php:78
+#: usr/module/user/src/Controller/Front/PasswordController.php:362
+#: usr/module/user/src/Form/RegisterForm.php:71
 msgid "Show my password"
 msgstr "Afficher le mot de passe"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:117
-#: usr/module/user/src/Controller/Front/PasswordController.php:372
-#: usr/module/user/src/Form/RegisterForm.php:80
+#: usr/module/user/src/Controller/Front/PasswordController.php:364
+#: usr/module/user/src/Form/RegisterForm.php:73
 msgid "Your password is too short"
 msgstr "Votre mot de passe est trop court."
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:118
-#: usr/module/user/src/Controller/Front/PasswordController.php:373
-#: usr/module/user/src/Form/RegisterForm.php:81
+#: usr/module/user/src/Controller/Front/PasswordController.php:365
+#: usr/module/user/src/Form/RegisterForm.php:74
 msgid "Do not use your email as your password"
 msgstr "Ne pas utiliser votre email comme mot de passe"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:119
-#: usr/module/user/src/Controller/Front/PasswordController.php:374
-#: usr/module/user/src/Form/RegisterForm.php:82
+#: usr/module/user/src/Controller/Front/PasswordController.php:366
+#: usr/module/user/src/Form/RegisterForm.php:75
 msgid "Your password cannot contain your username"
 msgstr "Votre mot de passe ne doit pas contenir votre nom de compte"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:120
-#: usr/module/user/src/Controller/Front/PasswordController.php:375
-#: usr/module/user/src/Form/RegisterForm.php:83
+#: usr/module/user/src/Controller/Front/PasswordController.php:367
+#: usr/module/user/src/Form/RegisterForm.php:76
 msgid "Use different character classes"
 msgstr "Utilisez différentes chaînes de caractères & caractères spéciaux"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:121
-#: usr/module/user/src/Controller/Front/PasswordController.php:376
-#: usr/module/user/src/Form/RegisterForm.php:84
+#: usr/module/user/src/Controller/Front/PasswordController.php:368
+#: usr/module/user/src/Form/RegisterForm.php:77
 msgid "Too many repetitions"
 msgstr "Trop de répétitions"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:122
-#: usr/module/user/src/Controller/Front/PasswordController.php:377
-#: usr/module/user/src/Form/RegisterForm.php:85
+#: usr/module/user/src/Controller/Front/PasswordController.php:369
+#: usr/module/user/src/Form/RegisterForm.php:78
 msgid "Your password contains sequences"
 msgstr "Votre mot de passe contient des répétitions/séquences devinables"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:123
-#: usr/module/user/src/Controller/Front/PasswordController.php:378
-#: usr/module/user/src/Form/RegisterForm.php:86
+#: usr/module/user/src/Controller/Front/PasswordController.php:370
+#: usr/module/user/src/Form/RegisterForm.php:79
 msgid "Errors:"
 msgstr "Erreurs : "
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:124
-#: usr/module/user/src/Controller/Front/PasswordController.php:379
-#: usr/module/user/src/Form/RegisterForm.php:87
+#: usr/module/user/src/Controller/Front/PasswordController.php:371
+#: usr/module/user/src/Form/RegisterForm.php:80
 msgid "Very week"
 msgstr "Trop faible"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:125
-#: usr/module/user/src/Controller/Front/PasswordController.php:380
-#: usr/module/user/src/Form/RegisterForm.php:88
+#: usr/module/user/src/Controller/Front/PasswordController.php:372
+#: usr/module/user/src/Form/RegisterForm.php:81
 msgid "Week"
 msgstr "Faible"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:126
-#: usr/module/user/src/Controller/Front/PasswordController.php:381
-#: usr/module/user/src/Form/RegisterForm.php:89
+#: usr/module/user/src/Controller/Front/PasswordController.php:373
+#: usr/module/user/src/Form/RegisterForm.php:82
 msgid "Normal"
 msgstr "Normal"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:127
-#: usr/module/user/src/Controller/Front/PasswordController.php:382
-#: usr/module/user/src/Form/RegisterForm.php:90
+#: usr/module/user/src/Controller/Front/PasswordController.php:374
+#: usr/module/user/src/Form/RegisterForm.php:83
 msgid "Medium"
 msgstr "Moyen"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:128
-#: usr/module/user/src/Controller/Front/PasswordController.php:383
-#: usr/module/user/src/Form/RegisterForm.php:91
+#: usr/module/user/src/Controller/Front/PasswordController.php:375
+#: usr/module/user/src/Form/RegisterForm.php:84
 msgid "Strong"
 msgstr "Fort"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:129
-#: usr/module/user/src/Controller/Front/PasswordController.php:384
-#: usr/module/user/src/Form/RegisterForm.php:92
+#: usr/module/user/src/Controller/Front/PasswordController.php:376
+#: usr/module/user/src/Form/RegisterForm.php:85
 msgid "Very Strong"
 msgstr "Robuste"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:131
 #: usr/module/user/src/Controller/Front/PasswordController.php:182
-#: usr/module/user/src/Controller/Front/PasswordController.php:386
-#: usr/module/user/src/Controller/Front/PasswordController.php:439
-#: usr/module/user/src/Form/RegisterForm.php:93
-#: usr/module/user/src/Form/RegisterForm.php:140
+#: usr/module/user/src/Controller/Front/PasswordController.php:378
+#: usr/module/user/src/Controller/Front/PasswordController.php:431
+#: usr/module/user/src/Form/RegisterForm.php:86
+#: usr/module/user/src/Form/RegisterForm.php:133
 msgid ""
 "Password must contain at least one uppercase letter, one lowercase letter "
 "and one digit character"
@@ -563,15 +534,15 @@ msgstr ""
 "minuscule, et 1 chiffre"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:179
-#: usr/module/user/src/Controller/Front/PasswordController.php:436
-#: usr/module/user/src/Form/RegisterForm.php:137
+#: usr/module/user/src/Controller/Front/PasswordController.php:428
+#: usr/module/user/src/Form/RegisterForm.php:130
 #, php-format
 msgid "Must be more than %s characters"
 msgstr "Doit compter plus de %s caractères"
 
 #: usr/module/user/src/Controller/Front/PasswordController.php:180
-#: usr/module/user/src/Controller/Front/PasswordController.php:437
-#: usr/module/user/src/Form/RegisterForm.php:138
+#: usr/module/user/src/Controller/Front/PasswordController.php:429
+#: usr/module/user/src/Form/RegisterForm.php:131
 msgid "Invalid password"
 msgstr "Mot de passe non valide"
 
@@ -584,43 +555,43 @@ msgid "To ensure your account security, complex password is required."
 msgstr ""
 "Pour assurer un bon niveau de sécurité, un mot de passe complexe est requis"
 
-#: usr/module/user/src/Controller/Front/PasswordController.php:214
+#: usr/module/user/src/Controller/Front/PasswordController.php:213
 msgid "Find password failed."
 msgstr "Le rappel mot de passe a échoué."
 
-#: usr/module/user/src/Controller/Front/PasswordController.php:293
+#: usr/module/user/src/Controller/Front/PasswordController.php:285
 msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr ""
 "Le mail de confirmation a été envoyé avec succès. Merci de lire le mail reçu "
 "pour redéfinir votre mot de passe."
 
-#: usr/module/user/src/Controller/Front/PasswordController.php:302
-#: usr/module/user/src/Controller/Front/PasswordController.php:303
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:26
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:27
+#: usr/module/user/src/Controller/Front/PasswordController.php:294
+#: usr/module/user/src/Controller/Front/PasswordController.php:295
+#: usr/module/system/template/block/partial/login-register-modal.phtml:71
+#: usr/module/system/template/block/partial/login-register-modal.phtml:72
 msgid "Find password"
 msgstr "Trouver le mot de passe"
 
-#: usr/module/user/src/Controller/Front/PasswordController.php:315
+#: usr/module/user/src/Controller/Front/PasswordController.php:307
 msgid "Invalid token for password reset."
 msgstr "Token non valide pour la modification mot de passe"
 
-#: usr/module/user/src/Controller/Front/PasswordController.php:426
-#: usr/module/user/src/Form/RegisterForm.php:133
+#: usr/module/user/src/Controller/Front/PasswordController.php:418
+#: usr/module/user/src/Form/RegisterForm.php:126
 #, php-format
 msgid "Must be less than %s characters"
 msgstr "Doit compter moins de %s caractères"
 
-#: usr/module/user/src/Controller/Front/PasswordController.php:473
+#: usr/module/user/src/Controller/Front/PasswordController.php:456
 msgid "Password reset successfully."
 msgstr "Le mot de passe a été modifié avec succès."
 
-#: usr/module/user/src/Form/RegisterForm.php:60
+#: usr/module/user/src/Form/RegisterForm.php:53
 msgid "Invalid email"
 msgstr "L'adresse Email doit avoir une forme valide (ex: xxxx@yyy.com)"
 
-#: usr/module/user/src/Form/RegisterForm.php:62
+#: usr/module/user/src/Form/RegisterForm.php:55
 #, php-format
 msgid ""
 "Oops. This email address is already taken. Do you want to <a href=\"#\" "
@@ -630,55 +601,55 @@ msgstr ""
 "\"\"onclick=\"%s\">connecter</a> ou <a href=\"%s\">retrouver votre mot de "
 "passe</\"\"a> ?"
 
-#: usr/module/user/src/Form/RegisterForm.php:67
+#: usr/module/user/src/Form/RegisterForm.php:60
 msgid "Invalid username"
 msgstr "Nom compte non valide"
 
-#: usr/module/user/src/Form/RegisterForm.php:69
+#: usr/module/user/src/Form/RegisterForm.php:62
 msgid "Oops. This username is already taken, malformed or forbidden"
 msgstr "Oups. Ce nom de compte est déjà pris, malformé ou interdit"
 
-#: usr/module/user/src/Form/RegisterForm.php:155
+#: usr/module/user/src/Form/RegisterForm.php:148
 msgid "Newsletter subscription"
 msgstr "Inscription newslettre"
 
-#: usr/module/user/src/Form/RegisterForm.php:165
-msgid "Registration"
-msgstr "Inscription"
-
-#: usr/module/system/template/block/user-bar.phtml:121
-#: usr/module/system/template/block/user-bar.phtml:124
-#: usr/module/system/template/block/user-bar.phtml:346
-#: usr/module/system/template/block/user-bar.phtml:349
-msgid "My offer"
-msgstr "Mon offre"
-
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:10
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:33
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:34
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:47
+#: usr/module/system/template/block/partial/login-register-modal.phtml:57
+#: usr/module/system/template/block/partial/login-register-modal.phtml:78
+#: usr/module/system/template/block/partial/login-register-modal.phtml:79
+#: usr/module/system/template/block/partial/login-register-modal.phtml:92
 msgid "Register"
-msgstr "S'inscrire"
+msgstr "S'enregistrer"
 
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:30
+#: usr/module/system/template/block/partial/login-register-modal.phtml:75
 msgid "Not already registered ?"
 msgstr "Pas encore inscrit ?"
 
-#: usr/module/system/template/front/login-register-modal-ajax.phtml:51
+#: usr/module/system/template/block/partial/login-register-modal.phtml:96
 msgid "Already registered ?"
 msgstr "Déjà inscrit ?"
 
-#~ msgid "Propose my activity"
-#~ msgstr "Proposer mon activité"
+#: usr/module/system/template/block/user-bar.phtml:19
+msgid "Propose my activity"
+msgstr "Proposer mon activité"
 
-#~ msgid "Publish an event"
-#~ msgstr "Publier un évènement"
+#: usr/module/system/template/block/user-bar.phtml:25
+#: usr/module/system/template/block/user-bar.phtml:27
+#: usr/module/system/template/block/user-bar.phtml:29
+msgid "Publish an event"
+msgstr "Publier un évènement"
 
-#~ msgid "Promote my activity"
-#~ msgstr "Promouvoir mon activité"
+#: usr/module/system/template/block/user-bar.phtml:34
+msgid "Promote my activity"
+msgstr "Promouvoir mon activité"
 
-#~ msgid "Welcome"
-#~ msgstr "Bienvenue"
+#: usr/module/system/template/block/user-bar.phtml:65
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: usr/module/system/template/block/user-bar.phtml:139
+#: usr/module/system/template/block/user-bar.phtml:142
+msgid "My offer"
+msgstr "Mon offre"
 
 #~ msgid "Token not set"
 #~ msgstr "Token non défini"

@@ -105,7 +105,7 @@ class RegisterForm extends BaseForm
             'name'       => 'submit',
             'type'       => 'submit',
             'attributes' => [
-                'value' => __('Registration'),
+                'value' => __('Submit'),
             ],
         ]);
     }

@@ -1,3 +1,7 @@
+<script src="<?php echo $this->assetModule('front/jquery-ui.draggable.min.js', 'user') ?>"></script>
+<script src="<?php echo $this->assetModule('front/pwstrength-bootstrap.min.js', 'user') ?>"></script>
+<script src="<?php echo $this->assetModule('front/pwstrength-boostrap.init.js', 'user') ?>"></script>
+<script src="<?php echo $this->assetModule('front/validator.js', 'user') ?>"></script>
 
 <div class="modal fade loginFormWrapper" id="loginRegisterModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
@@ -15,13 +19,13 @@
             <div class="modal-body user-template">
                 <div id="modal-login-wrapper" class="modal-action-wrapper row clearfix" data-action="login">
                     <?php if (!empty($descriptionLogin)) { ?>
-                        <div class="d-none d-lg-block col-lg-6">
+                        <div class="d-none d-md-block col-md-6">
                             <?php echo $descriptionLogin; ?>
                         </div>
                     <?php } ?>
                     <div class="<?php echo $classLogin; ?>">
                         <div class="user-action-bar-title"><?php _e('Login'); ?></div>
-                        <?php echo $this->form($loginForm, 'vertical-nomarker'); ?>
+                        <?php echo $this->form($loginForm, 'vertical'); ?>
 
                         <button type="button" class="btn btn-sm btn-link find-password-link" title="<?php _e('Find password'); ?>"
                            onclick="location.href='<?php echo Pi::service('user')->getUrl('password'); ?>'"><?php _e('Find password'); ?></button>
@@ -29,7 +33,7 @@
                         <div class="clearfix user-action-bar">
                             <div class="user-action-bar-title"><?php _e('Not already registered ?'); ?></div>
                             <p>
-                                <button type="button" class="btn btn-simple toggle-modal-action toggle-modal-action-register"
+                                <button type="button" class="btn btn-secondary toggle-modal-action toggle-modal-action-register"
                                    title="<?php _e('Register'); ?>">
                                     <?php _e('Register'); ?>
                                 </button>
@@ -39,18 +43,18 @@
                 </div>
                 <div id="modal-register-wrapper" class="modal-action-wrapper row clearfix" data-action="register">
                     <?php if (!empty($descriptionRegister)) { ?>
-                        <div class="d-none d-lg-block col-lg-6">
+                        <div class="d-none d-md-block col-md-6">
                             <?php echo $descriptionRegister; ?>
                         </div>
                     <?php } ?>
                     <div class="<?php echo $classRegister; ?>">
                         <div class="user-action-bar-title"><?php _e('Register'); ?></div>
-                        <?php echo $this->form($registerForm, 'vertical-nomarker'); ?>
+                        <?php echo $this->form($registerForm, 'vertical'); ?>
 
                         <div class="clearfix user-action-bar">
                             <div class="user-action-bar-title"><?php _e('Already registered ?'); ?></div>
                             <p>
-                                <button type="button" class="btn btn-simple toggle-modal-action toggle-modal-action-login"
+                                <button type="button" class="btn btn-secondary toggle-modal-action toggle-modal-action-login"
                                    title="<?php _e('Login'); ?>">
                                     <?php _e('Login'); ?>
                                 </button>
@@ -94,34 +98,6 @@
                 $(this).val(button.data('redirect'));
             });
         }
-
-        $.getScript("<?php echo $this->assetModule('front/pwstrength-bootstrap.min.js', 'user') ?>", function (data, textStatus, jqxhr) {
-            $.getScript("<?php echo $this->assetModule('front/pwstrength-boostrap.init.js', 'user') ?>", function (data, textStatus, jqxhr) {
-                $.getScript("<?php echo $this->assetModule('front/validator.js', 'user') ?>", function (data, textStatus, jqxhr) {
-                    pwstrengthInit();
-
-                    var originalInputSelector = $.fn.validator.Constructor.INPUT_SELECTOR
-                    $.fn.validator.Constructor.INPUT_SELECTOR = originalInputSelector + ', input[data-recaptcha]'
-
-                    $('form[data-toggle="validator"]').validator(
-                        {
-                            custom: {
-                                recaptcha: function ($el) {
-                                    if (!$el.val()) {
-                                        return "Please complete the captcha"
-                                    }
-                                }
-                            }
-                        }
-                    );
-
-                    $('form[data-toggle="validator"]').each(function () {
-                        var $form = $(this)
-                        $.fn.validator.call($form, $form.data())
-                    })
-                })
-            })
-        });
 
     });
 

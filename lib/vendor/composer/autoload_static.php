@@ -80,7 +80,6 @@ class ComposerStaticInite47a2128fb03c94e9559012642f8331a
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Yaml\\' => 23,
-            'Stripe\\' => 7,
             'Spipu\\Html2Pdf\\' => 15,
         ),
         'P' => 
@@ -340,10 +339,6 @@ class ComposerStaticInite47a2128fb03c94e9559012642f8331a
         'Symfony\\Component\\Yaml\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
-        ),
-        'Stripe\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
         'Spipu\\Html2Pdf\\' => 
         array (

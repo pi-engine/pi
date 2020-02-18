@@ -208,7 +208,6 @@ HTML;
             return false;
         }
 
-        $redirect = $this->params('redirect');
         $result = [
             'status'  => 0,
             'message' => __('Find password failed.'),
@@ -241,13 +240,6 @@ HTML;
                     $uid,
                     'find-password',
                     $token,
-                    'user',
-                    $this->config('email_expiration') * 3600
-                );
-                Pi::user()->data()->set(
-                    $uid,
-                    'redirect-password',
-                    $redirect,
                     'user',
                     $this->config('email_expiration') * 3600
                 );
@@ -461,18 +453,8 @@ HTML;
                 Pi::service('event')->trigger('password_change', $uid);
                 // Delete find password verify token
                 Pi::user()->data()->delete($uid, 'find-password');
-                $redirect = Pi::user()->data()->find([
-                    'name'  => 'redirect-password',
-                    'uid' => $uid,
-                ]);
-                if (!$redirect) {
-                    $redirect = Pi::user()->getUrl('profile');
-                }
-                Pi::user()->data()->delete(redirect, 'find-password');
-
                 $result['message'] = __('Password reset successfully.');
                 $result['status']  = 1;
-                $result['redirect'] = $redirect['value'];
             } else {
                 $form->setData(['token' => $token]);
                 $this->view()->assign([

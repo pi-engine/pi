@@ -1099,24 +1099,8 @@ class Asset extends AbstractService
             $file      = $this->getAssetPath($component, $asset);
             if (file_exists($file)) {
                 $src = $this->getAssetUrl($component, $asset);
-            }
-        }
-
-        if ($src == '') {
-            $name = 'social-network.png';
-            $customFile = 'asset/custom/image/' . $name;
-            if (file_exists(Pi::path($customFile))) {
-                $src = Pi::url($customFile);
             } else {
-                $theme     = Pi::service('theme')->current();
-                $component = 'theme/' . $theme;
-                $asset     = 'image/' . $name;
-                $file      = $this->getAssetPath($component, $asset);
-                if (file_exists($file)) {
-                    $src = $this->getAssetUrl($component, $asset);
-                } else {
-                    $src = $this->logo();
-                }
+                $src = $this->logo();
             }
         }
 

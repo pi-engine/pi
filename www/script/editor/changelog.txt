@@ -29,12 +29,6 @@ Go to the plugin area of CKEditor website
 Each time you want to add a new plugin, you have to build a new package of CKEditor from their website, to activate your new plugin.
 Alternatively you can copy/paste the new plugin from full package, but you have to activate it in config.js (config.extraPlugins value - see CKEditor docs) to make it work.
 
-December 11th, 2019
-====================
-1. Upgrade to CKEditor 4.13.1 (using the full package from download page)
-- with no extra plugins
-- with our 2 custom config.js files (specific config.js for admin + front)
-- with the index.html file for sec reason (each main subdirectory)
 
 April 15th, 2019
 ====================

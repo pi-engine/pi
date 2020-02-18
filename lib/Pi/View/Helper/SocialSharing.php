@@ -79,7 +79,7 @@ class SocialSharing extends AbstractHtmlElement
             }
         }
         $render = function ($item) {
-            if (!$item || !isset($item['icon'])) {
+            if (!$item) {
                 return '';
             }
 
@@ -87,18 +87,11 @@ class SocialSharing extends AbstractHtmlElement
                     = <<<'EOT'
 <li class="rrssb-%s">
     <a title="%s" href="%s" class="popup">
-        <span class="rrssb-icon"><i class="%s"></i></span>
+        <span class="rrssb-icon"><i class="fa %s"></i></span>
         <span class="rrssb-text">%s</span>
    </a>
 </li>
 EOT;
-            if($item['icon'] == 'fa-facebook') {
-                $item['icon'] = 'fab fa-facebook-f';
-            }
-
-            if($item['icon'] == 'fa-twitter') {
-                $item['icon'] = 'fab fa-twitter';
-            }
             $button = sprintf($template, $item['identifier'], $item['title'], str_replace(' ', '%20', $item['url']), $item['icon'], $item['title']);
 
             return $button;

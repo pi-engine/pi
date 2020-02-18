@@ -9,7 +9,6 @@
 /usr/theme/*
 !/usr/theme/default/
 !/usr/theme/pi/
-/usr/theme/guil
 
 /*.php
 /www/sitmap.xml

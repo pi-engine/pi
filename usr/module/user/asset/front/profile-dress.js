@@ -194,6 +194,7 @@
             var item = new GroupView({
                 model: model
             });
+            console.log(show);
             if (show) {
                 item.toggleShow();
             }

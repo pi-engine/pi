@@ -97,34 +97,33 @@ class IndexController extends ActionController
         if (!empty(Pi::user()->config('login_description'))) {
             $descriptionLogin = Pi::user()->config('login_description');
             $titleLogin       = Pi::user()->config('login_modal_title');
-            $classLogin       = 'col-lg-6';
+            $classLogin       = 'col-md-6';
         } else {
             $descriptionLogin = '';
-            $classLogin       = 'col-lg-12';
+            $classLogin       = 'col-md-12';
         }
 
         if (!empty(Pi::user()->config('register_description'))) {
             $descriptionRegister = Pi::user()->config('register_description');
             $titleRegister       = Pi::user()->config('register_modal_title');
-            $classRegister       = 'col-lg-6';
+            $classRegister       = 'col-md-6';
         } else {
             $descriptionRegister = '';
-            $classRegister       = 'col-lg-12';
+            $classRegister       = 'col-md-12';
         }
 
         /*
          * Login form
          */
         $processPath = Pi::service('url')->assemble('user', ['module' => 'user', 'controller' => 'login', 'action' => 'process']);
-        $loginForm   = Pi::api('form', 'user')->loadForm('login', false, true);
+        $loginForm   = Pi::api('form', 'user')->loadForm('login');
         $loginForm->setAttribute('action', Pi::url($processPath));
 
         /**
          * Register form
          */
         $processPath  = Pi::service('url')->assemble('user', ['module' => 'user', 'controller' => 'register']);
-        $registerForm = Pi::api('form', 'user')->loadForm('register', false, true);
-        $registerForm->get('submit')->setAttribute('class', $registerForm->get('submit')->getAttribute('class') . ' w-100');
+        $registerForm = Pi::api('form', 'user')->loadForm('register');
         $registerForm->setAttribute('action', Pi::url($processPath));
 
         if ($registerForm->has('redirect') && !$registerForm->get('redirect')->getValue()) {
