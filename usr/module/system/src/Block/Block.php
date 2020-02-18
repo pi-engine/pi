@@ -158,7 +158,7 @@ class Block
                 $defaultController = 'dashboard';
 
 
-                if (Pi::service('module')->isActive('order')) {
+                if (Pi::service('module')->isActive('user')) {
                     $uid = Pi::service('user')->getId();
 
                     $orderModel = Pi::model('order', 'order');
