@@ -161,7 +161,7 @@ class Block
                 $defaultController = 'dashboard';
 
                 // Check guide module is active
-                if (Pi::service('module')->isActive('guide')) {
+                if (Pi::service('module')->isActive('order')) {
                     $uid = Pi::service('user')->getId();
 
                     $orderModel           = Pi::model('order', 'order');
