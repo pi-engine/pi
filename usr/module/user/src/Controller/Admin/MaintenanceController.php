@@ -275,6 +275,14 @@ class MaintenanceController extends ActionController
                         'id'               => $uid,
                         'time_deleted > ?' => 0,
                     ]);
+
+                    // Clear user other info: user data, role, log, privacy, timeline
+                    $this->deleteUser($uid, 'user_data');
+                    $this->deleteUser($uid, 'user_role');
+                    $this->deleteUser($uid, 'user_log', 'user');
+                    $this->deleteUser($uid, 'privacy_user', 'user');
+                    $this->deleteUser($uid, 'timeline_log', 'user');
+
                     $result['status']  = 1;
                     $result['message'] = _a('Clear all deleted user successfully.');
                 } catch (\Exception $e) {
@@ -285,6 +293,35 @@ class MaintenanceController extends ActionController
 
         return $result;
 
+    }
+
+    /**
+     * Delete user field
+     *
+     * @param $uid
+     * @param $field
+     * @param string $type core or user
+     * @return int
+     */
+    protected function deleteUser($uid, $field, $type = '')
+    {
+        if ($type) {
+            try {
+                Pi::model($field, $type)->delete(['uid' => $uid]);
+                $status = 1;
+            } catch (\Exception $e) {
+                $status = 0;
+            }
+        } else {
+            try {
+                Pi::model($field)->delete(['uid' => $uid]);
+                $status = 1;
+            } catch (\Exception $e) {
+                $status = 0;
+            }
+        }
+
+        return $status;
     }
 
     /**

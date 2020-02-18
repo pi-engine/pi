@@ -109,10 +109,10 @@ class ConditionController extends ActionController
 
                     // Set time
                     if (empty($values['active_at'])) {
-                        $values['active_at'] = time();
+                        $values['active_at'] = date('Y-m-d H:i:s');
                     }
                     if (!$values['id']) {
-                        $values['created_at'] = time();
+                        $values['created_at'] = date('Y-m-d H:i:s');
                     }
 
                     // Save values

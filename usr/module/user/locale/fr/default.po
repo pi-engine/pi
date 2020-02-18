@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2019-07-04 22:00+0200\n"
-"PO-Revision-Date: 2019-07-04 22:00+0200\n"
+"POT-Creation-Date: 2020-01-07 22:24+0100\n"
+"PO-Revision-Date: 2020-01-07 22:24+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -77,16 +77,16 @@ msgstr "Rôle affecté"
 msgid "Role removed"
 msgstr "Rôle supprimé"
 
-#: config/form.register.php:19
+#: config/form.register.php:19 config/form.register.placeholder.php:19
 msgid "Terms & Conditions"
 msgstr "Conditions générales d'utilisation et de vente (CGU/CGV)"
 
-#: config/form.register.php:20
+#: config/form.register.php:20 config/form.register.placeholder.php:20
 #, php-format
 msgid "Accept the %s"
 msgstr "Accepter les %s"
 
-#: config/form.register.php:43
+#: config/form.register.php:43 config/form.register.placeholder.php:47
 msgid "Confirm credential"
 msgstr "Confirmer le mot de passe"
 
@@ -95,9 +95,9 @@ msgstr "Confirmer le mot de passe"
 msgid "Login"
 msgstr "Se connecter"
 
-#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:133
+#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:139
 #: template/front/login-logout.phtml:27 template/front/login-logout.phtml:28
-#: template/front/login.phtml:40 template/front/login.phtml:42
+#: template/front/login.phtml:44 template/front/login.phtml:46
 #: template/front/register-disabled.phtml:3
 msgid "Register"
 msgstr "S'inscrire"
@@ -115,32 +115,32 @@ msgstr "Tableau de Bord"
 
 #: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:182
 #: template/front/account-index.phtml:13
-#: template/front/profile-sidebar.phtml:105
+#: template/front/profile-sidebar.phtml:107
 msgid "Account settings"
 msgstr "Paramétrages du compte"
 
 #: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:183
 #: template/front/avatar-index.phtml:47
-#: template/front/profile-sidebar.phtml:113
+#: template/front/profile-sidebar.phtml:115
 #: template/front/profile-topbar.phtml:157
 msgid "Change avatar"
 msgstr "Modifier sa photo"
 
 #: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:13
-#: template/front/profile-sidebar.phtml:125
+#: template/front/profile-sidebar.phtml:127
 msgid "Privacy"
 msgstr "Confidentialité"
 
 #: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:192
 #: template/front/password-index.phtml:17
-#: template/front/profile-sidebar.phtml:109
+#: template/front/profile-sidebar.phtml:111
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
-#: src/Api/Breadcrumbs.php:112 src/Controller/Front/PasswordController.php:294
-#: src/Controller/Front/PasswordController.php:295
-#: src/Form/FindPasswordForm.php:48 template/front/login.phtml:30
-#: template/front/login.phtml:32 template/front/password-find.phtml:3
+#: src/Api/Breadcrumbs.php:112 src/Controller/Front/PasswordController.php:302
+#: src/Controller/Front/PasswordController.php:303
+#: src/Form/FindPasswordForm.php:51 template/front/login.phtml:34
+#: template/front/login.phtml:36 template/front/password-find.phtml:3
 msgid "Find password"
 msgstr "Trouver le mot de passe."
 
@@ -284,7 +284,7 @@ msgid "Valid input."
 msgstr "Saisie non valide."
 
 #: src/Controller/Front/AccountController.php:370
-#: src/Controller/Front/RegisterController.php:386
+#: src/Controller/Front/RegisterController.php:392
 msgid "Invalid input."
 msgstr "Saisie non valide."
 
@@ -446,8 +446,8 @@ msgid "Reset password failed."
 msgstr "La reinitialisation du mot de passe a échoué."
 
 #: src/Controller/Front/PasswordController.php:59
-#: src/Controller/Front/PasswordController.php:434
-#: src/Form/RegisterForm.php:140
+#: src/Controller/Front/PasswordController.php:442
+#: src/Form/RegisterForm.php:144
 msgid "Whoops, these don't match"
 msgstr "Oups, ils ne coïncident pas"
 
@@ -456,80 +456,80 @@ msgid "Reset password successfully."
 msgstr "La réinitialisation du mot de passe a réussi."
 
 #: src/Controller/Front/PasswordController.php:115
-#: src/Controller/Front/PasswordController.php:362 src/Form/RegisterForm.php:74
+#: src/Controller/Front/PasswordController.php:370 src/Form/RegisterForm.php:78
 msgid "Show my password"
 msgstr "Voir le mot de passe"
 
 #: src/Controller/Front/PasswordController.php:117
-#: src/Controller/Front/PasswordController.php:364 src/Form/RegisterForm.php:76
+#: src/Controller/Front/PasswordController.php:372 src/Form/RegisterForm.php:80
 msgid "Your password is too short"
 msgstr "Votre mot de passe est trop court"
 
 #: src/Controller/Front/PasswordController.php:118
-#: src/Controller/Front/PasswordController.php:365 src/Form/RegisterForm.php:77
+#: src/Controller/Front/PasswordController.php:373 src/Form/RegisterForm.php:81
 msgid "Do not use your email as your password"
 msgstr "N'utilisez pas votre email comme mot de passe"
 
 #: src/Controller/Front/PasswordController.php:119
-#: src/Controller/Front/PasswordController.php:366 src/Form/RegisterForm.php:78
+#: src/Controller/Front/PasswordController.php:374 src/Form/RegisterForm.php:82
 msgid "Your password cannot contain your username"
 msgstr "Votre mot de passe ne peut contenir votre nom de compte"
 
 #: src/Controller/Front/PasswordController.php:120
-#: src/Controller/Front/PasswordController.php:367 src/Form/RegisterForm.php:79
+#: src/Controller/Front/PasswordController.php:375 src/Form/RegisterForm.php:83
 msgid "Use different character classes"
 msgstr "Utiliser des caractères spéciaux"
 
 #: src/Controller/Front/PasswordController.php:121
-#: src/Controller/Front/PasswordController.php:368 src/Form/RegisterForm.php:80
+#: src/Controller/Front/PasswordController.php:376 src/Form/RegisterForm.php:84
 msgid "Too many repetitions"
 msgstr "Trop de répétitions"
 
 #: src/Controller/Front/PasswordController.php:122
-#: src/Controller/Front/PasswordController.php:369 src/Form/RegisterForm.php:81
+#: src/Controller/Front/PasswordController.php:377 src/Form/RegisterForm.php:85
 msgid "Your password contains sequences"
 msgstr "Le mot de passe contient de séquences répétées"
 
 #: src/Controller/Front/PasswordController.php:123
-#: src/Controller/Front/PasswordController.php:370 src/Form/RegisterForm.php:82
+#: src/Controller/Front/PasswordController.php:378 src/Form/RegisterForm.php:86
 msgid "Errors:"
 msgstr "Erreurs : "
 
 #: src/Controller/Front/PasswordController.php:124
-#: src/Controller/Front/PasswordController.php:371 src/Form/RegisterForm.php:83
+#: src/Controller/Front/PasswordController.php:379 src/Form/RegisterForm.php:87
 msgid "Very week"
 msgstr "Trop faible"
 
 #: src/Controller/Front/PasswordController.php:125
-#: src/Controller/Front/PasswordController.php:372 src/Form/RegisterForm.php:84
+#: src/Controller/Front/PasswordController.php:380 src/Form/RegisterForm.php:88
 msgid "Week"
 msgstr "Faible"
 
 #: src/Controller/Front/PasswordController.php:126
-#: src/Controller/Front/PasswordController.php:373 src/Form/RegisterForm.php:85
+#: src/Controller/Front/PasswordController.php:381 src/Form/RegisterForm.php:89
 msgid "Normal"
 msgstr "Normal"
 
 #: src/Controller/Front/PasswordController.php:127
-#: src/Controller/Front/PasswordController.php:374 src/Form/RegisterForm.php:86
+#: src/Controller/Front/PasswordController.php:382 src/Form/RegisterForm.php:90
 msgid "Medium"
 msgstr "Moyen"
 
 #: src/Controller/Front/PasswordController.php:128
-#: src/Controller/Front/PasswordController.php:375 src/Form/RegisterForm.php:87
+#: src/Controller/Front/PasswordController.php:383 src/Form/RegisterForm.php:91
 msgid "Strong"
 msgstr "Fort"
 
 #: src/Controller/Front/PasswordController.php:129
-#: src/Controller/Front/PasswordController.php:376 src/Form/RegisterForm.php:88
+#: src/Controller/Front/PasswordController.php:384 src/Form/RegisterForm.php:92
 msgid "Very Strong"
 msgstr "Robuste"
 
 #: src/Controller/Front/PasswordController.php:131
 #: src/Controller/Front/PasswordController.php:182
-#: src/Controller/Front/PasswordController.php:378
-#: src/Controller/Front/PasswordController.php:431 src/Form/RegisterForm.php:89
-#: src/Form/RegisterForm.php:136
+#: src/Controller/Front/PasswordController.php:386
+#: src/Controller/Front/PasswordController.php:439 src/Form/RegisterForm.php:93
+#: src/Form/RegisterForm.php:140
 msgid ""
 "Password must contain at least one uppercase letter, one lowercase letter "
 "and one digit character"
@@ -538,15 +538,15 @@ msgstr ""
 "minuscule et au moins 1 chiffre"
 
 #: src/Controller/Front/PasswordController.php:179
-#: src/Controller/Front/PasswordController.php:428
-#: src/Form/RegisterForm.php:133
+#: src/Controller/Front/PasswordController.php:436
+#: src/Form/RegisterForm.php:137
 #, php-format
 msgid "Must be more than %s characters"
 msgstr "Doit compter plus de %s caractères"
 
 #: src/Controller/Front/PasswordController.php:180
-#: src/Controller/Front/PasswordController.php:429
-#: src/Form/RegisterForm.php:134
+#: src/Controller/Front/PasswordController.php:437
+#: src/Form/RegisterForm.php:138
 msgid "Invalid password"
 msgstr "Mot de passe non valide."
 
@@ -556,28 +556,28 @@ msgid "To ensure your account security, complex password is required."
 msgstr ""
 "Pour assurer la sécurité de votre compte, un mot de passe complexe est requis"
 
-#: src/Controller/Front/PasswordController.php:213
+#: src/Controller/Front/PasswordController.php:214
 msgid "Find password failed."
 msgstr "Le mot de passe n'a pas été trouvé."
 
-#: src/Controller/Front/PasswordController.php:285
+#: src/Controller/Front/PasswordController.php:293
 msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr ""
 "Le mail de confirmation vous été envoyé avec succès. Merci de regarder votre "
 "boite mail pour réinitialiser le mot de passe."
 
-#: src/Controller/Front/PasswordController.php:307
+#: src/Controller/Front/PasswordController.php:315
 msgid "Invalid token for password reset."
 msgstr "Token pour réinitialiser le mot de passe non valide."
 
-#: src/Controller/Front/PasswordController.php:418
-#: src/Form/RegisterForm.php:129
+#: src/Controller/Front/PasswordController.php:426
+#: src/Form/RegisterForm.php:133
 #, php-format
 msgid "Must be less than %s characters"
 msgstr "Doit compter moins de %s caractères"
 
-#: src/Controller/Front/PasswordController.php:456
+#: src/Controller/Front/PasswordController.php:473
 msgid "Password reset successfully."
 msgstr "Mot de passe réinitialisé avec succès."
 
@@ -643,54 +643,54 @@ msgid "User ID or Profile group ID is invalid."
 msgstr ""
 "Le numéro utilisateur ou le numéro de groupe de profil n'est pas valide."
 
-#: src/Controller/Front/RegisterController.php:134
-#: template/front/register-index.phtml:18
+#: src/Controller/Front/RegisterController.php:140
+#: template/front/register-index.phtml:21
 msgid "Account registration"
 msgstr "Création de compte"
 
-#: src/Controller/Front/RegisterController.php:199
+#: src/Controller/Front/RegisterController.php:205
 msgid "Activation token is invalid."
 msgstr "Le token de confirmation n'est pas valide."
 
-#: src/Controller/Front/RegisterController.php:265
+#: src/Controller/Front/RegisterController.php:271
 msgid "Account Activated successfully."
 msgstr "Le compte a été confirmé avec succès."
 
-#: src/Controller/Front/RegisterController.php:295
+#: src/Controller/Front/RegisterController.php:301
 msgid "Activation email sent failed."
 msgstr "L'envoi de l'email de confirmation-activation a échoué."
 
-#: src/Controller/Front/RegisterController.php:329
+#: src/Controller/Front/RegisterController.php:335
 msgid "Resend activation mail successfully."
 msgstr "Le mail de confirmation-activation a été renvoyé avec succès."
 
-#: src/Controller/Front/RegisterController.php:357
+#: src/Controller/Front/RegisterController.php:363
 msgid "Email was not found."
 msgstr "L'email n'a pas été trouvé."
 
-#: src/Controller/Front/RegisterController.php:362
+#: src/Controller/Front/RegisterController.php:368
 msgid "Account already activated."
 msgstr "Le compte est déjà confirmé."
 
-#: src/Controller/Front/RegisterController.php:373
+#: src/Controller/Front/RegisterController.php:379
 msgid "Activation mail sent successfully."
 msgstr "Le mail de confirmation-activation a été envoyé avec succès."
 
-#: src/Controller/Front/RegisterController.php:378
+#: src/Controller/Front/RegisterController.php:384
 msgid "Activation mail was not sent."
 msgstr "Le mail de confirmation-activation n'a pas été envoyé."
 
-#: src/Controller/Front/RegisterController.php:487
+#: src/Controller/Front/RegisterController.php:493
 msgid "User information was not completed and user account was not saved."
 msgstr ""
 "Toutes les informations utilisateurs n'ont pas été saisies, le compte n'a "
 "pas été crée."
 
-#: src/Controller/Front/RegisterController.php:513
+#: src/Controller/Front/RegisterController.php:519
 msgid "User account was not saved."
 msgstr "Le compte utilisateur n'a pas été enregistré."
 
-#: src/Controller/Front/RegisterController.php:536
+#: src/Controller/Front/RegisterController.php:542
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
@@ -698,7 +698,7 @@ msgstr ""
 "Le compte utilisateur a été crée avec succès mais la confirmation a échoué, "
 "merci de contacter l'administrateur."
 
-#: src/Controller/Front/RegisterController.php:568
+#: src/Controller/Front/RegisterController.php:574
 msgid "Account activation email was not able to send, please contact admin."
 msgstr ""
 "Le mail de confirmation-activation du compte n'a pu être envoyé, merci de "
@@ -724,7 +724,7 @@ msgstr "Nom Affiché"
 msgid "(updated on %s)"
 msgstr "(mis à jour le %s)"
 
-#: src/Form/AccountForm.php:65 src/Form/RegisterForm.php:151
+#: src/Form/AccountForm.php:65 src/Form/RegisterForm.php:155
 msgid "Newsletter subscription"
 msgstr "Inscription Newslettre"
 
@@ -732,8 +732,8 @@ msgstr "Inscription Newslettre"
 #: src/Form/ConditionForm.php:86 src/Form/EditUserForm.php:45
 #: src/Form/EmailForm.php:58 src/Form/MemberForm.php:123
 #: src/Form/PasswordForm.php:87 src/Form/ProfileEditForm.php:42
-#: src/Form/RegisterForm.php:168 src/Form/ResendActivationForm.php:47
-#: src/Form/ResetPasswordForm.php:73 src/Form/RoleForm.php:99
+#: src/Form/RegisterForm.php:174 src/Form/ResendActivationForm.php:47
+#: src/Form/ResetPasswordForm.php:79 src/Form/RoleForm.php:99
 #: template/front/account-index.phtml:41 template/front/privacy-index.phtml:44
 msgid "Submit"
 msgstr "Valider"
@@ -792,11 +792,11 @@ msgstr "Confirmer"
 msgid "Enable"
 msgstr "Activer"
 
-#: src/Form/RegisterForm.php:56
+#: src/Form/RegisterForm.php:60
 msgid "Invalid email"
 msgstr "L'adresse Email doit avoir une forme valide (ex: xxxx@yyy.com)"
 
-#: src/Form/RegisterForm.php:58
+#: src/Form/RegisterForm.php:62
 #, php-format
 msgid ""
 "Oops. This email address is already taken. Do you want to <a href=\"#\" "
@@ -806,13 +806,17 @@ msgstr ""
 "onclick=\"%s\">connecter</a> ou <a href=\"%s\">retrouver votre mot de passe</"
 "a> ?"
 
-#: src/Form/RegisterForm.php:63
+#: src/Form/RegisterForm.php:67
 msgid "Invalid username"
 msgstr "Nom de Compte non valide"
 
-#: src/Form/RegisterForm.php:65
+#: src/Form/RegisterForm.php:69
 msgid "Oops. This username is already taken, malformed or forbidden"
 msgstr "Oups. Ce nom de compte est déjà pris, malformé ou interdit"
+
+#: src/Form/RegisterForm.php:165
+msgid "Registration"
+msgstr "Inscription"
 
 #: src/Form/ResendActivationForm.php:27
 msgid "Email address"
@@ -1044,19 +1048,18 @@ msgid "No change!"
 msgstr "Aucune modification !"
 
 #: template/front/account-reset-email.phtml:2
-msgid "Change email"
-msgstr "Modifier l'email"
+msgid "Email modification"
+msgstr "Modification Email"
 
 #: template/front/account-reset-email.phtml:4
 #: template/front/password-process.phtml:18
-#: template/front/register-index.phtml:78
-#: template/front/register-index.phtml:110
+#: template/front/register-index.phtml:81
+#: template/front/register-index.phtml:113
 msgid "Congratulations!"
 msgstr "Félicitations !"
 
 #: template/front/account-reset-email.phtml:6
-#: template/front/register-activate.phtml:10
-msgid "Login right now."
+msgid "Login right now"
 msgstr "Se connecter maintenant."
 
 #: template/front/activity-index.phtml:19 template/front/home-index.phtml:20
@@ -1163,7 +1166,7 @@ msgstr "Mes éléments"
 #: template/front/dashboard-index.phtml:97
 #: template/front/dashboardPro-index.phtml:87
 #: template/front/dashboardPro-index.phtml:91
-#: template/front/profile-sidebar.phtml:314
+#: template/front/profile-sidebar.phtml:325
 msgid "Sponsorship"
 msgstr "Parrainage"
 
@@ -1295,23 +1298,23 @@ msgstr ""
 msgid "You have logged in successfully, please go to %s."
 msgstr "Vous vous êtes connecté avec succès, merci d'aller à %s."
 
-#: template/front/login.phtml:38
+#: template/front/login.phtml:42
 msgid "Not registered yet ?"
 msgstr "Pas encore inscrit ?"
 
-#: template/front/login.phtml:60 template/front/register-index.phtml:42
+#: template/front/login.phtml:64 template/front/register-index.phtml:45
 msgid "Login with google"
 msgstr "Se connecter avec Google"
 
-#: template/front/login.phtml:68 template/front/register-index.phtml:50
+#: template/front/login.phtml:72 template/front/register-index.phtml:53
 msgid "Login with twitter"
 msgstr "Se connecter avec Twitter"
 
-#: template/front/login.phtml:76 template/front/register-index.phtml:58
+#: template/front/login.phtml:80 template/front/register-index.phtml:61
 msgid "Login with facebook"
 msgstr "Se connecter avec Facebook"
 
-#: template/front/login.phtml:84 template/front/register-index.phtml:66
+#: template/front/login.phtml:88 template/front/register-index.phtml:69
 msgid "Login with github"
 msgstr "Se connecter avec Github"
 
@@ -1327,7 +1330,7 @@ msgstr "Essayer de trouver le mot de passe de nouveau"
 msgid "Your new password has worked"
 msgstr "Votre nouveau mot de passe a fonctionné"
 
-#: template/front/password-process.phtml:22
+#: template/front/password-process.phtml:21
 msgid "Please login"
 msgstr "Merci de vous connecter"
 
@@ -1363,148 +1366,152 @@ msgstr "Mettre à jour"
 msgid "Add %s"
 msgstr "Ajouter %s"
 
-#: template/front/profile-sidebar.phtml:35
+#: template/front/profile-sidebar.phtml:37
 msgid "Perso"
 msgstr "Perso"
 
-#: template/front/profile-sidebar.phtml:37
+#: template/front/profile-sidebar.phtml:39
 msgid "Pro"
 msgstr "Pro"
 
-#: template/front/profile-sidebar.phtml:46
+#: template/front/profile-sidebar.phtml:48
 msgid "Personal Dashboard"
 msgstr "Tableau de Bord Perso"
 
-#: template/front/profile-sidebar.phtml:52
+#: template/front/profile-sidebar.phtml:54
 msgid "Bookings"
 msgstr "Réservations"
 
-#: template/front/profile-sidebar.phtml:60
+#: template/front/profile-sidebar.phtml:62
 msgid "Contributions"
 msgstr "Contributions"
 
-#: template/front/profile-sidebar.phtml:69
+#: template/front/profile-sidebar.phtml:71
 msgid "Favorites"
 msgstr "Favoris"
 
-#: template/front/profile-sidebar.phtml:77
+#: template/front/profile-sidebar.phtml:79
 msgid "Reviews/comments"
 msgstr "Avis/commentaires"
 
-#: template/front/profile-sidebar.phtml:85
-#: template/front/profile-sidebar.phtml:378
+#: template/front/profile-sidebar.phtml:87
+#: template/front/profile-sidebar.phtml:389
 msgid "My Media"
 msgstr "Mes Médias"
 
-#: template/front/profile-sidebar.phtml:94
+#: template/front/profile-sidebar.phtml:96
 msgid "My account"
 msgstr "Mon compte"
 
-#: template/front/profile-sidebar.phtml:100
+#: template/front/profile-sidebar.phtml:102
 msgid "Manage account"
 msgstr "Gérer mon compte"
 
-#: template/front/profile-sidebar.phtml:138
+#: template/front/profile-sidebar.phtml:140
 msgid "Pro Dashboard"
 msgstr "Tableau de Bord Pro"
 
-#: template/front/profile-sidebar.phtml:145
+#: template/front/profile-sidebar.phtml:147
 msgid "Manage my activities"
 msgstr "Gérer mes activités"
 
-#: template/front/profile-sidebar.phtml:155
+#: template/front/profile-sidebar.phtml:161
 msgid "Choose an activity"
 msgstr "Choisir une activité"
 
-#: template/front/profile-sidebar.phtml:180
+#: template/front/profile-sidebar.phtml:186
 msgid "Summary"
 msgstr "Résumé"
 
-#: template/front/profile-sidebar.phtml:195
+#: template/front/profile-sidebar.phtml:201
 msgid "FAST ACTIONS"
 msgstr "ACTIONS RAPIDES"
 
-#: template/front/profile-sidebar.phtml:203
-msgid "Grid Manager"
-msgstr "Grille Gestion"
-
 #: template/front/profile-sidebar.phtml:209
+msgid "Management Grids"
+msgstr "Grilles de Gestion"
+
+#: template/front/profile-sidebar.phtml:215
 msgid "Bookings/Closings"
 msgstr "Résas/Fermetures"
 
-#: template/front/profile-sidebar.phtml:217
+#: template/front/profile-sidebar.phtml:223
 msgid "Boost"
 msgstr "Boost"
 
-#: template/front/profile-sidebar.phtml:224
+#: template/front/profile-sidebar.phtml:230
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: template/front/profile-sidebar.phtml:240
+#: template/front/profile-sidebar.phtml:246
 msgid "CONFIGURATION"
 msgstr "CONFIGURATION"
 
-#: template/front/profile-sidebar.phtml:247
+#: template/front/profile-sidebar.phtml:253
 msgid "Description"
 msgstr "Description"
 
-#: template/front/profile-sidebar.phtml:253
+#: template/front/profile-sidebar.phtml:259
 msgid "Products/Prices"
 msgstr "Produits/Tarifs"
 
-#: template/front/profile-sidebar.phtml:260
+#: template/front/profile-sidebar.phtml:266
 msgid "Opening hours"
 msgstr "Horaires ouverture"
 
-#: template/front/profile-sidebar.phtml:266
+#: template/front/profile-sidebar.phtml:272
 msgid "Policies"
 msgstr "Conditions générales"
 
-#: template/front/profile-sidebar.phtml:273
-msgid "Events"
-msgstr "Evènements"
-
 #: template/front/profile-sidebar.phtml:278
+msgid "Payment"
+msgstr "Paiement"
+
+#: template/front/profile-sidebar.phtml:284
 msgid "Deals/Special Offers"
 msgstr "Promos/Offres Spéciales"
 
-#: template/front/profile-sidebar.phtml:290
+#: template/front/profile-sidebar.phtml:296
 msgid "DISTRIBUTION"
 msgstr "DISTRIBUTION"
 
-#: template/front/profile-sidebar.phtml:297
+#: template/front/profile-sidebar.phtml:303
 msgid "Widget"
 msgstr "Widget"
 
-#: template/front/profile-sidebar.phtml:302
+#: template/front/profile-sidebar.phtml:308
+msgid "Events"
+msgstr "Evènements"
+
+#: template/front/profile-sidebar.phtml:313
 msgid "Sales Channels (Soon)"
 msgstr "Canaux Vente (bientôt)"
 
-#: template/front/profile-sidebar.phtml:321
+#: template/front/profile-sidebar.phtml:332
 msgid "My statistics"
 msgstr "Mes Statistiques"
 
-#: template/front/profile-sidebar.phtml:329
+#: template/front/profile-sidebar.phtml:340
 msgid "Messages"
 msgstr "Messages"
 
-#: template/front/profile-sidebar.phtml:336
+#: template/front/profile-sidebar.phtml:347
 msgid "Notifications"
 msgstr "Notifications"
 
-#: template/front/profile-sidebar.phtml:345
+#: template/front/profile-sidebar.phtml:356
 msgid "Support tickets"
 msgstr "Tickets Assistance"
 
-#: template/front/profile-sidebar.phtml:353
+#: template/front/profile-sidebar.phtml:364
 msgid "Orders"
 msgstr "Commandes"
 
-#: template/front/profile-sidebar.phtml:361
+#: template/front/profile-sidebar.phtml:372
 msgid "Credit"
 msgstr "Crédits"
 
-#: template/front/profile-sidebar.phtml:370
+#: template/front/profile-sidebar.phtml:381
 msgid "Videos"
 msgstr "Vidéos"
 
@@ -1562,8 +1569,12 @@ msgstr ""
 "Votre compte a été confirmé et est maintenant actif : vous pouvez vous "
 "connecter… et contribuer !"
 
+#: template/front/register-activate.phtml:10
+msgid "Login right now."
+msgstr "Se connecter maintenant."
+
 #: template/front/register-activate.phtml:16
-#: template/front/register-index.phtml:90
+#: template/front/register-index.phtml:93
 #, php-format
 msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
 msgstr "Ou retourner à <a href=\"%s\">la page demandée </a> directement."
@@ -1583,7 +1594,7 @@ msgstr ""
 "Désolé, l'inscription est temporairement désactivée. Merci de revenir plus "
 "tard."
 
-#: template/front/register-index.phtml:83
+#: template/front/register-index.phtml:86
 #, php-format
 msgid ""
 "Your account has been registered successfully. Please <a href=\"%s\">login</"
@@ -1592,12 +1603,12 @@ msgstr ""
 "Votre compte a été crée avec succès. Vous pouvez maintenant vous <a href=\"%s"
 "\">connecter</a> avec votre compte."
 
-#: template/front/register-index.phtml:100
-#: template/front/register-index.phtml:119
+#: template/front/register-index.phtml:103
+#: template/front/register-index.phtml:122
 msgid "Registration was not completed."
 msgstr "L'inscription n'est pas été menée à son terme."
 
-#: template/front/register-index.phtml:113
+#: template/front/register-index.phtml:116
 msgid ""
 "You account has been registered successfully. However it needs to be "
 "approved by our admins before you can use it."
@@ -1605,37 +1616,43 @@ msgstr ""
 "Votre compte a été crée avec succès. Cependant il doit être approuvé par les "
 "administrateurs du site avant de pouvoir être utilisé."
 
-#: template/front/register-index.phtml:129
+#: template/front/register-index.phtml:132
 msgid "An email with activation link has been sent to you."
 msgstr "Un email avec un lien de confirmation-activation vous a été envoyé."
 
-#: template/front/register-index.phtml:130
+#: template/front/register-index.phtml:133
 msgid "Email used"
 msgstr "Email utilisé"
 
-#: template/front/register-index.phtml:131
+#: template/front/register-index.phtml:134
 msgid "Please check it to finish the registration."
 msgstr "Merci de vérifier votre boite mail afin de terminer votre inscription."
 
-#: template/front/register-index.phtml:136
+#: template/front/register-index.phtml:139
 msgid "You did not receive the activation email?"
 msgstr "Vous n'avez pas reçu le mail de confirmation ?"
 
-#: template/front/register-index.phtml:138
+#: template/front/register-index.phtml:141
 msgid "Wait a few minutes and check again."
 msgstr "Attendez quelques minutes et vérifiez de nouveau."
 
-#: template/front/register-index.phtml:139
+#: template/front/register-index.phtml:142
 msgid "Check your email spam box."
 msgstr "Vérifiez le répertoire spam de votre boite mail."
 
-#: template/front/register-index.phtml:142
+#: template/front/register-index.phtml:145
 msgid "Request to resend activation email"
 msgstr "Demandez le renvoi du mail d'activation"
 
-#: template/front/register-index.phtml:179
+#: template/front/register-index.phtml:182
 msgid "Already sent"
 msgstr "Déja envoyé"
+
+#~ msgid "Grid Manager"
+#~ msgstr "Grille Gestion"
+
+#~ msgid "Change email"
+#~ msgstr "Modifier l'email"
 
 #~ msgid "Deals (Soon)"
 #~ msgstr "Promos/Offres (bientôt)"
@@ -1669,9 +1686,6 @@ msgstr "Déja envoyé"
 
 #~ msgid "Share"
 #~ msgstr "Outils"
-
-#~ msgid "Management"
-#~ msgstr "Gestion"
 
 #~ msgid "Items"
 #~ msgstr "Eléments"

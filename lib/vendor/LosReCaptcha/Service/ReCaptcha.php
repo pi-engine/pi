@@ -142,15 +142,34 @@ class ReCaptcha
         $host = self::API_SERVER;
 
         $langOption = '';
-
+        /**
+         * HACK FROM MICKAEL STAMM / MARC DEROUSSEAUX : Add callback
+         */
         $return = <<<HTML
-<div id="recaptcha_widget_$uniqueId" class="g-recaptcha" data-sitekey="{$this->siteKey}" data-theme="{$this->options['theme']}"></div>
+<div id="recaptcha_widget_$uniqueId" class="g-recaptcha" data-sitekey="{$this->siteKey}" data-callback="verifyRecaptchaCallback$uniqueId" data-expired-callback="expiredRecaptchaCallback$uniqueId" data-theme="{$this->options['theme']}"></div>
+<input type="hidden" class="hidden_recaptcha_widget_$uniqueId" class="form-control" data-recaptcha="true" required>
+
 HTML;
 
         if(empty($GLOBALS['recaptchaScriptLoaded'])){
             $GLOBALS['recaptchaScriptLoaded'] = true;
 
+            /**
+             * HACK FROM MICKAEL STAMM / MARC DEROUSSEAUX :
+             * Add verifyRecaptchaCallback & expiredRecaptchaCallback
+             * Add "rendered" class and test for rendered class
+             */
+
             $script = <<<JS
+            
+            window.verifyRecaptchaCallback$uniqueId = function (response, a,b ) {
+                $('input[data-recaptcha].hidden_recaptcha_widget_$uniqueId').val(response).trigger('change')
+            }
+
+            window.expiredRecaptchaCallback$uniqueId = function () {
+                $('input[data-recaptcha].hidden_recaptcha_widget_$uniqueId').val("").trigger('change')
+            }
+
 var onloadCallback = function() {
     
     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -159,10 +178,14 @@ var onloadCallback = function() {
     
     $('.g-recaptcha').each(function(){
         var elementId = $(this).attr('id');
-        grecaptcha.render(document.getElementById(elementId), {
-            'sitekey' : '{$this->siteKey}',
-            'size' : size,
-        });
+        if (!$(this).hasClass('rendered')) {
+            grecaptcha.render(document.getElementById(elementId), {
+                'sitekey' : '{$this->siteKey}',
+                'size' : size,
+            });
+            $(this).addClass('rendered');
+        }
+        
     });
 };
 JS;

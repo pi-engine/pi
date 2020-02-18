@@ -40,7 +40,10 @@ class FindPasswordForm extends BaseForm
             'name' => 'security',
             'type' => 'csrf',
         ]);
-
+        $this->add([
+            'name' => 'redirect',
+            'type' => 'hidden',
+        ]);
         $this->add(array(
             'name' => 'submit-button',
             'type' => 'submit',

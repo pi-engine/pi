@@ -66,6 +66,10 @@ class Form extends FormHelper
                 $style = 'vertical';
                 $class = '';
                 break;
+            case 'vertical-nomarker':
+                $style = 'vertical-nomarker';
+                $class = '';
+                break;
             case 'inline':
                 $style = 'inline';
                 $class = 'form-inline';
@@ -178,10 +182,10 @@ class Form extends FormHelper
                 case 'inline':
                     $rowClass = 'mr-2';
                     break;
+                case 'vertical-nomarker':
                 case 'vertical':
                     $rowClass = '';
                     break;
-
                 case 'modal':
                 case 'popup':
                 case 'horizontal':
@@ -350,6 +354,11 @@ EOT;
                     $vars['label_size']   = '';
                     $vars['element_size'] = '';
                     break;
+                case 'vertical-nomarker':
+                    $vars['label_size']   = '';
+                    $vars['element_size'] = '';
+                    $markRequired = '';
+                    break;
 
                 case 'horizontal':
                 default:
@@ -388,7 +397,7 @@ EOT;
             /**
              * If vertical and label is empty, remove label tag
              */
-            if ($style == 'vertical' && !$element->getLabel()) {
+            if (($style == 'vertical-nomarker' || $style == 'vertical') && !$element->getLabel()) {
                 $vars['label_html'] = '';
             }
 
@@ -431,23 +440,33 @@ EOT;
                 unset($hiddenMessages['security']);
             }
             $elementMessages = '';
+
             foreach ($hiddenMessages as $elName => $elMessages) {
                 $element = $form->get($elName);
+                $name = '';
+                $hiddenStyle  = '';
                 if ($element) {
-                    $elName = $element->getLabel() . ' (' . $elName . ')';
+                    $attr = $element->getAttributes();
+                    if (!isset($attr['error']['noname']) || $attr['error']['noname'] == false) {
+                        $name = $element->getLabel() . ' (' . $elName . ')';
+                    }
+                    if (isset($attr['error']['nocount']) && $attr['error']['nocount'] == true) {
+                        $hiddenStyle = 'style="list-style-type: none;"';
+                    }
+
                 }
-                $elMessages = '';
+                $messages = '';
                 foreach ($elMessages as $elMessage) {
-                    $elMessages
+                    $messages
                         .= <<<EOT
         <li>{$elMessage}</li>
 EOT;
                 }
                 $elementMessages
                     .= <<<EOT
-    <h4>{$elName}</h4>
-    <ol>
-        {$elMessages}
+    <h4>{$name}</h4>
+    <ol {$hiddenStyle}>
+        {$messages}
     </ol>
 EOT;
             }
@@ -471,8 +490,12 @@ EOT;
             // Render groups
         } else {
             foreach ($groups as $group) {
+                $class = '';
+                if (!empty($group['class'])) {
+                    $class = $group['class'];
+                }
                 if (!empty($group['label'])) {
-                    $htmlForm .= '<fieldset><legend>' . _escape($group['label']) . '</legend>' . PHP_EOL;
+                    $htmlForm .= '<fieldset class="' . $class . '"><legend>' . _escape($group['label']) . '</legend>' . PHP_EOL;
                 }
 
                 foreach ($group['elements'] as $name) {
@@ -526,7 +549,7 @@ EOT;
                     break;
                 case 'horizontal':
                     if ('single' == $column) {
-                        $submitSize = 'offset-sm-3 col-sm-9';
+                        $submitSize = 'offset-sm-3 col-sm-5';
                     } else {
                         $submitSize = 'offset-md-2 col-md-10';
                     }

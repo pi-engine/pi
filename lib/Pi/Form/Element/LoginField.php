@@ -70,6 +70,10 @@ class LoginField extends Text
      */
     public function getLabel()
     {
+        if ($this->getOption('withPlaceholder')) {
+            return null;
+        }
+
         if (null === $this->label) {
             $fields = $this->getFields();
             if (1 == count($fields)) {
