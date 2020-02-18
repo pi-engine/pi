@@ -18,7 +18,7 @@ function translateThisThing(key) {
     return translations[key];
 };
 
-$(window).on('load', function () {
+function pwstrengthInit() {
     if ($('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').not('#credential-verify').length > 0) {
         $('#password-change [name="credential"], [name="register"] #credential, [name="credential-new"]').not('.pwstrengthEnabled').not('#credential-verify').addClass('pwstrengthEnabled').pwstrength({
             common: {
@@ -53,4 +53,7 @@ $(window).on('load', function () {
             }
         });
     }
+}
+$(window).on('load', function () {
+    pwstrengthInit();
 });

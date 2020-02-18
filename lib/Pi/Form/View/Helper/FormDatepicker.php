@@ -68,13 +68,16 @@ class FormDatepicker extends FormInput
 
         $format = !empty($options['format']) ? $options['format'] : 'mm/dd/yyy';
         $element->setAttribute('data-date-format', $format);
+        $element->setAttribute('autocomplete', 'off');
 
         $class = $element->getAttribute('class');
         $class = ($class ? $class . ' ' : '') . 'datepicker';
         $element->setAttribute('class', $class);
         $html = parent::render($element);
 
-        $dpOptions = [];
+        $dpOptions = [
+            'disableTouchKeyboard:true',
+        ];
         foreach ($options as $key => $val) {
             $key         = lcfirst(str_replace(' ', '', ucwords(str_replace(['_', '-'], ' ', $key))));
             $dpOptions[] = $key . ': "' . $val . '"';

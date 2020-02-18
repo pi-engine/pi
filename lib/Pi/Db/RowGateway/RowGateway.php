@@ -415,6 +415,8 @@ class RowGateway extends AbstractRowGateway
     {
         $affectedRows = parent::delete();
 
+        Pi::service('observer')->triggerDeletedRow($this, $this->_oldData);
+
         if ($affectedRows == 1 && Pi::service('module')->isActive('media')) {
             $model = $this->getModel();
             if ($model instanceof \Pi\Application\Model\Model && $model->getMediaLinks()) {

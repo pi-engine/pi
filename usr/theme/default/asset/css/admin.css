@@ -718,3 +718,11 @@ legend {border-bottom:1px solid #ddd}
 
 /* END BS4 OVERRIDE */
 
+
+.form-check-label {
+    font-weight: normal
+}
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+    font-weight: bold;
+}

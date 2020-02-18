@@ -13,6 +13,9 @@ if (!empty($description) || !empty($url)) {
     $class = 'col-md-12';
 }
 ?>
+<script src="<?php echo $this->assetModule('front/pwstrength-bootstrap.min.js', 'user') ?>"></script>
+<script src="<?php echo $this->assetModule('front/pwstrength-boostrap.init.js', 'user') ?>"></script>
+
 <div class="clearfix user-template">
     <div class="page-header">
         <h1><?php _e('Account registration'); ?></h1>
@@ -28,7 +31,7 @@ if (!empty($description) || !empty($url)) {
                 <?php echo $this->form($form); ?>
             </div>
             <?php if (!empty($description)) { ?>
-                <div class="col-md-4 col-sm-5 col-12">
+                <div class="col-md-4 col-sm-5 col-12 d-none d-sm-block">
                     <?php echo $description; ?>
                 </div>
             <?php } ?>
@@ -197,6 +200,31 @@ if (!empty($description) || !empty($url)) {
             userRegisterReactivate({
                 reactivateUrl: '<?php echo $this->url('', ['controller' => 'register', 'action' => 'reactivate', 'uid' => $result['uid']]);?>'
             });
+
         </script>
     <?php } ?>
+
+    <script>
+        $(function() {
+
+            pwstrengthInit();
+
+            var originalInputSelector = $.fn.validator.Constructor.INPUT_SELECTOR
+            $.fn.validator.Constructor.INPUT_SELECTOR = originalInputSelector + ', input[data-recaptcha]'
+
+            $('form[data-toggle="validator"]').validator(
+                {
+                    custom: {
+                        recaptcha: function ($el) {
+                            if (!$el.val()) {
+                                return "Please complete the captcha"
+                            }
+                        }
+                    }
+                }
+            )
+
+        });
+
+    </script>
 </div>

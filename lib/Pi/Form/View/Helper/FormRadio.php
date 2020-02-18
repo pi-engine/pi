@@ -124,7 +124,7 @@ class FormRadio extends ZendFormElement
             }
 
             $labelOpen = $labelHelper->openTag($labelAttributes);
-            $template  = $labelOpen . '%s%s' . $labelClose;
+            $template  = '%s' . $labelOpen . '%s' . $labelClose;
             switch ($labelPosition) {
                 case self::LABEL_PREPEND:
                     $markup = sprintf($template, $label, $input);

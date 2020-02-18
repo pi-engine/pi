@@ -805,3 +805,16 @@ body:not(.sidebar-minimized) .collapse-minimized-only{
     display: table;
     clear: both;
 }
+
+
+.btn-simple {
+    color: #333;
+    background: #fff;
+    border: 1px solid #333;
+    radius: 4px;
+}
+
+.btn-simple:hover {
+    color: #000;
+    border: 1px solid #000;
+}

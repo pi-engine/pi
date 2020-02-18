@@ -27,12 +27,13 @@ class LoginForm extends BaseForm
      * @param string $name
      * @param array $config
      */
-    public function __construct($name, array $config = [])
+    public function __construct($name, array $config = [], $withPlaceholder = false)
     {
         if (!$config) {
             $config = Pi::user()->config();
         }
         $this->config = $config;
+        $this->withPlaceholder = $withPlaceholder;
         parent::__construct($name);
     }
 
@@ -43,27 +44,55 @@ class LoginForm extends BaseForm
     {
         $config = $this->config;
 
-        // Get config data.
-        $this->add([
-            'name'       => 'identity',
-            'type'       => 'Pi\Form\Element\LoginField',
-            'options'    => [
-                'fields' => $config['login_field'],
-            ],
-            'attributes' => [
-                'autocomplete' => in_array('email', $config['login_field']) ? 'email' : 'username',
-            ],
-        ]);
+        if ($this->withPlaceholder) {
+            $identityField = [
+                'name'       => 'identity',
+                'type'       => 'Pi\Form\Element\LoginField',
+                'options'    => [
+                    'fields' => $config['login_field'],
+                    'withPlaceholder' => true,
+                ],
+                'attributes' => [
+                    'placeholder' => in_array('email', $config['login_field']) ? __('Email') : __('Username'),
+                    'autocomplete' => in_array('email', $config['login_field']) ? 'email' : 'username',
+                ],
+            ];
 
-        $this->add([
-            'name'       => 'credential',
-            'options'    => [
-                'label' => __('Password'),
-            ],
-            'attributes' => [
-                'type' => 'password',
-            ],
-        ]);
+            $passwordField = [
+                'name'       => 'credential',
+                'options'    => [
+                ],
+                'attributes' => [
+                    'type' => 'password',
+                    'placeholder' => __('Password'),
+                ],
+            ];
+        } else {
+            $identityField = [
+                'name'       => 'identity',
+                'type'       => 'Pi\Form\Element\LoginField',
+                'options'    => [
+                    'fields' => $config['login_field'],
+                    'withPlaceholder' => false,
+                ],
+                'attributes' => [
+                    'autocomplete' => in_array('email', $config['login_field']) ? 'email' : 'username',
+                ],
+            ];
+            $passwordField = [
+                'name'       => 'credential',
+                'options'    => [
+                    'label' => __('Password'),
+                ],
+                'attributes' => [
+                    'type' => 'password',
+                ],
+            ];
+        }
+
+        // Get config data.
+        $this->add($identityField);
+        $this->add($passwordField);
 
         $captchaMode = $config['login_captcha'];
         if ($captchaElement = Pi::service('form')->getReCaptcha($captchaMode)) {
@@ -121,7 +150,7 @@ class LoginForm extends BaseForm
             'attributes' => [
                 'type'  => 'submit',
                 'value' => __('Login'),
-                'class' => 'btn btn-primary',
+                'class' => 'btn btn-primary w-100' ,
             ],
         ]);
     }

@@ -27,6 +27,9 @@ $isPerso = (bool) (
     || ($module == 'user' && $controller != 'dashboardPro')
 );
 
+if (empty($item)) {
+    $item = ['id' => 0];
+}
 ?>
 
 <div class="clearfix sticky-top sticky-top-sidebar sticky-top-sidebar-usersection <?php echo $isPerso ? 'sticky-top-sidebar-perso' : 'sticky-top-sidebar-pro' ?>">
@@ -143,7 +146,7 @@ $isPerso = (bool) (
 
         <?php if (Pi::service('module')->isActive('guide')) { ?>
         <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>"
-           class="nav-link nav-link-all-activities rounded-0 <?php if (($module == 'guide' && $action == 'dashboard') || isset($item['id'])) {echo ' active';} ?>">
+           class="nav-link nav-link-all-activities rounded-0 <?php if (($module == 'guide' && $action == 'dashboard') || (isset($item['id']) && $item['id'])) {echo ' active';} ?>">
             <span class="fa-minimized fas fa-project-diagram d-none"></span>
             <span class="label"><?php echo __('Manage my activities') ?></span>
             <span class='fas fa-angle-right'></span>
@@ -207,8 +210,8 @@ $isPerso = (bool) (
                             <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
                                 <?php if ($config['manage_service']) { ?>
                                     <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'sales', 'item' => $item['id'])); ?>"
-                                       class="nav-link rounded-0 <?php echo $action == "sales" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
-                                        <?php _e('Grid Manager'); ?> <span class='fas fa-angle-right'></span>
+                                       class="nav-link rounded-0 <?php echo $action == "sales" || $action == "sales-calendars" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                                        <?php _e('Management Grids'); ?> <span class='fas fa-angle-right'></span>
                                     </a>
                                 <?php } ?>
                                 <?php if ($config['calendar_active']) { ?>
@@ -259,7 +262,7 @@ $isPerso = (bool) (
 
                             <?php if ($config['manage_service']) { ?>
                                 <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'service', 'item' => $item['id'])); ?>"
-                                   class="nav-link rounded-0 <?php echo $action == "payment" || $action == "service"|| $action == "manage" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                                   class="nav-link rounded-0 <?php echo $action == "service"|| $action == "manage" || $action == "pricelist" || $action == 'children-policy'  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
                                     <?php _e('Products/Prices'); ?> <span class='fas fa-angle-right'></span>
                                 </a>
                             <?php } ?>
@@ -276,13 +279,13 @@ $isPerso = (bool) (
                                 <?php _e('Policies'); ?> <span class='fas fa-angle-right'></span>
                             </a>
 
-
                             <?php if ($config['manage_service']) { ?>
-                                <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'event-list', 'item' => $item['id'])); ?>"
-                                   class="nav-link rounded-0 <?php echo $action == "event-list" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
-                                    <?php _e('Events'); ?> <span class='fas fa-angle-right'></span>
+                                <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'payment-history', 'item' => $item['id'])); ?>"
+                                   class="nav-link rounded-0 <?php echo in_array($action, ['payment-method', 'payment-tax', 'payment-online', 'payment-history']) ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                                    <?php _e('Payment'); ?> <span class='fas fa-angle-right'></span>
                                 </a>
                             <?php } ?>
+
                             <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'promotion', 'item' => $item['id'])); ?>"
                                class="nav-link rounded-0 <?php echo $action == "promotion" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
                                 <?php _e('Deals/Special Offers'); ?> <span class='fas fa-angle-right'></span>
@@ -306,7 +309,12 @@ $isPerso = (bool) (
                                class="nav-link rounded-0 <?php echo $action == "tools"  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
                                 <?php _e('Widget'); ?> <span class='fas fa-angle-right'></span>
                             </a>
-
+                            <?php if ($config['manage_service']) { ?>
+                                <a href="<?php echo $this->url('', array('controller' => 'manage', 'action' => 'event-list', 'item' => $item['id'])); ?>"
+                                   class="nav-link rounded-0 <?php echo $action == "event-list" ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                                    <?php _e('Events'); ?> <span class='fas fa-angle-right'></span>
+                                </a>
+                            <?php } ?>
                             <a href="#"
                                class="nav-link rounded-0 disabled" style="color:lightgrey!important; background-color:transparent">
                                 <?php _e('Sales Channels (Soon)'); ?> <span class='fas fa-angle-right'></span>

@@ -355,7 +355,7 @@ class Resize extends AbstractHelper
                 . '.' . $targetExtension;
 
             if (!is_file($target)) {
-                ini_set("memory_limit", "512M");
+                ini_set("memory_limit", "1024M");
 
                 $imagine         = new Imagine();
                 $imageProcessing = new ImageProcessing($imagine);
