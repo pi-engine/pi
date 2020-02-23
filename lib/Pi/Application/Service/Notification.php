@@ -218,7 +218,8 @@ class Notification extends AbstractService
 
         // Set image
         if (isset($params['image']) && !empty($params['image'])) {
-            $request['data']['image'] = $params['image'];
+            $request['data']['image']         = $params['image'];
+            $request['notification']['image'] = $params['image'];
         }
 
         // Set data array if set
