@@ -175,6 +175,13 @@ class Block extends AbstractApi
                 'max_rows'   => $maxRows,
                 'target_new' => $targetNew,
             ],
+            'video' => [
+                'hls_mime_type' => [
+                    'title'  => _a('Mime type for HLS video'),
+                    'edit'   => 'text',
+                    'value'  => 'application/x-mpegURL',
+                ],
+            ],
         ];
 
         if (null === $type) {

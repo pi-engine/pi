@@ -1,12 +1,46 @@
 <?php
 $options = (array)$block['options'];
 $items   = (array)$block['items'];
+
 ?>
 <div class="widget-video-list">
     <?php foreach ($items as $item) { ?>
         <?php if (!empty($item['link'])) { ?>
             <div class="widget-video-single pi-player clearfix">
-                <?php echo $this->videojs($item['link'], $item['image']); ?>
+                <?php
+                // Get extension
+                $extension = pathinfo($item['link'], PATHINFO_EXTENSION);
+                switch ($extension) {
+                    case 'mp4':
+                        $type = 'mp4';
+                        break;
+
+                    case 'm3u8':
+                        $type = 'hls';
+                        break;
+
+                    default:
+                        $type = '';
+                        break;
+                }
+                // Check and set player
+                if (!empty($type)) {
+                    echo $this->video(
+                        [
+                            'type'   => $type,
+                            'source' => [
+                                [
+                                    'url'   => $item['link'],
+                                    'title' => $item['caption'],
+                                ],
+                            ],
+                            'layout' => [
+                                'title'       => $item['caption'],
+                                'posterImage' => $item['image'],
+                            ],
+                        ]
+                    );
+                } ?>
             </div>
         <?php } ?>
     <?php } ?>

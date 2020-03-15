@@ -27,7 +27,15 @@ echo $this->form($form);
 ?>
 <div class="form-group" id="widget-items">
     <div class="card mb-5 bg-light">
-        <label class="p-3 col-form-label"><?php echo _a('Items'); ?></label>
+        <div class="card-body">
+            <div class="card-title"><?php echo _a('Items'); ?></div>
+            <div class="card-text">
+                <ul>
+                    <li><?php echo _a('First Upload preview image'); ?></li>
+                    <li><?php echo _a('After that add video URL'); ?></li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="col-md-12">
         <div class="row">

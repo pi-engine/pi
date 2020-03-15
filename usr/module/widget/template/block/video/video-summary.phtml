@@ -9,10 +9,48 @@ $ellipsis = empty($options['max_rows'])
     <?php foreach ($items as $item) { ?>
         <?php if (!empty($item['link'])) { ?>
             <div class="widget-video-single clearfix">
-                <h3><?php echo _escape($item['caption']); ?></h3>
                 <div class="pi-player">
-                    <?php echo $this->videojs($item['link'], $item['image']); ?>
+                    <?php
+                    // Get extension
+                    $extension = pathinfo($item['link'], PATHINFO_EXTENSION);
+                    switch ($extension) {
+                        case 'mp4':
+                            $type     = 'mp4';
+                            $mimeType = '';
+                            break;
+
+                        case 'm3u8':
+                            $type     = 'hls';
+                            $mimeType = $options['hls_mime_type'];
+                            break;
+
+                        default:
+                            $type     = '';
+                            $mimeType = '';
+                            break;
+                    }
+                    // Check and set player
+                    if (!empty($type)) {
+                        echo $mimeType;
+                        echo $this->video(
+                            [
+                                'type'     => $type,
+                                'mimetype' => $mimeType,
+                                'source'   => [
+                                    [
+                                        'url'   => $item['link'],
+                                        'title' => $item['caption'],
+                                    ],
+                                ],
+                                'layout'   => [
+                                    'title'       => $item['caption'],
+                                    'posterImage' => $item['image'],
+                                ],
+                            ]
+                        );
+                    } ?>
                 </div>
+                <h3><?php echo _escape($item['caption']); ?></h3>
                 <div class="<?php echo $ellipsis; ?>">
                     <?php echo $item['summary']; ?>
                 </div>
