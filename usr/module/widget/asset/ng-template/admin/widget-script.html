@@ -1,10 +1,10 @@
 <div class="row">
     <div ng-repeat="item in available" class="col-sm-6 col-md-3">
         <div class="card bg-light mb-3">
-            <div class="card-heading">{{item.title}}</div>
-            <div class="card-text">
-                <p class="widget-desc">{{item.description}}</p>
-                <a data-ng-if="item.installUrl" class="btn btn-link" ng-href="{{item.installUrl}}">
+            <div class="card-header">{{item.title}}</div>
+            <div class="card-body">
+                <p class="widget-desc card-text">{{item.description}}</p>
+                <a data-ng-if="item.installUrl" class="btn btn-link card-link" ng-href="{{item.installUrl}}">
                     {{'INSTALL' | translate}}
                 </a>
             </div>
