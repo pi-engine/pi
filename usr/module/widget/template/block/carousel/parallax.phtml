@@ -37,8 +37,9 @@ $ellipsis = empty($options['max_rows'])
             <p class="<?php echo $ellipsis; ?>"><?php echo $item['summary']; ?></p>
             <a title="<?php echo _escape($item['caption']); ?>" href="<?php echo $item['link']; ?>" class="da-link"
                target="<?php echo $target; ?>"><?php echo _b('More'); ?></a>
-            <div class="da-img"><img src="<?php echo _escape($item['image']); ?>"
-                                     alt="<?php echo _escape($item['caption']); ?>"/></div>
+            <div class="da-img">
+                <img src="<?php echo _escape($item['image']); ?>" alt="<?php echo _escape($item['caption']); ?>"/>
+            </div>
         </div>
     <?php } ?>
     <nav class="da-arrows">

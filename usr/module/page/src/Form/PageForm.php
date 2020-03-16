@@ -9,6 +9,7 @@
 
 namespace Module\Page\Form;
 
+use Pi;
 use Pi\Form\Form as BaseForm;
 
 class PageForm extends BaseForm
@@ -154,6 +155,32 @@ class PageForm extends BaseForm
                     ],
                     'attributes' => [
                         'rows' => 5,
+                    ],
+                ]
+            );
+        }
+
+        // Check media module
+        if (Pi::service('module')->isActive('media')) {
+            $this->add(
+                [
+                    'name'    => 'main_image',
+                    'type'    => 'Module\Media\Form\Element\Media',
+                    'options' => [
+                        'label'  => __('Main image'),
+                        'module' => 'media',
+                    ],
+                ]
+            );
+
+            $this->add(
+                [
+                    'name'    => 'additional_images',
+                    'type'    => 'Module\Media\Form\Element\Media',
+                    'options' => [
+                        'label'         => __('Additional images'),
+                        'media_gallery' => true,
+                        'module'        => 'media',
                     ],
                 ]
             );

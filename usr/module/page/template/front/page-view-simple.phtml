@@ -8,6 +8,28 @@ $this->headMeta($shearContent, 'og:description', 'property');
 $this->headMeta($this->escape($url), 'twitter:url');
 $this->headMeta($title, 'twitter:title');
 $this->headMeta($shearContent, 'twitter:description');
+
+// Set for media
+if (isset($galleryImages) && !empty($galleryImages) && isset($galleryImagesBig) && !empty($galleryImagesBig)) {
+    $script
+        = <<<'EOT'
+window.addEventListener('DOMContentLoaded', function() {
+    $('.gallery').each(function() {
+        $(this).magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            gallery: {
+                enabled:true
+            }
+        });
+    });
+});
+EOT;
+    $this->jQuery(['extension/jquery.magnific-popup.min.js' => ['defer' => 'defer']]);
+    $this->jQuery('extension/magnific-popup.min.css', ['defer' => 'defer']);
+    $this->footScript()->appendScript($script);
+    $this->js(Pi::url('static/vendor/lazysizes/lazysizes.min.js'), ['async' => 'async']);
+}
 ?>
 <div class="clearfix">
     <?php if (!empty($nav)) { ?>
@@ -15,20 +37,27 @@ $this->headMeta($shearContent, 'twitter:description');
         <ul class="nav nav-pills bg-light mb-3 p-3">
             <?php foreach ($nav as $id => $item) { ?>
                 <li class="nav-item">
-                    <a class="nav-link <?php if (!empty($item['active'])) { echo 'active'; } ?>" href="<?php echo $item['url']; ?>"><?php echo _escape($item['title']); ?></a>
+                    <a class="nav-link <?php if (!empty($item['active'])) {
+                        echo 'active';
+                    } ?>" href="<?php echo $item['url']; ?>"><?php echo _escape($item['title']); ?></a>
                 </li>
             <?php } ?>
         </ul>
     </div>
     <div class="col-md-10">
         <?php } ?>
-        <?php if ('phtml' == $markup && $content) { ?>
-            <div class="article-header page-header">
-                <h1><?php echo $this->escape($title); ?></h1>
-            </div>
-            <div class="article-body">
+        <div class="article-header page-header">
+            <?php if (isset($mainImage) && !empty($mainImage)) { ?>
+                <div class="clearfix text-center mb-3">
+                    <img class="img-fluid" src="<?php echo $this->escape($mainImage['resized_url']); ?>"
+                         alt="<?php echo $this->escape($mainImage['title']); ?><?php if ($mainImage['copyright']) echo ' - ' . $mainImage['copyright'] ?>">
+                </div>
+            <?php } ?>
+            <h1><?php echo $this->escape($title); ?></h1>
+        </div>
+        <div class="article-body">
+            <?php if ('phtml' == $markup && $content) { ?>
                 <?php
-
                 $file = sprintf(
                     '%s/' . Pi::config('theme') . '/custom/page/%s.phtml',
                     Pi::path('theme'),
@@ -39,43 +68,43 @@ $this->headMeta($shearContent, 'twitter:description');
                  * Check if theme has parent
                  */
                 $parentTheme = Pi::service('theme')->getParent(Pi::config('theme'));
-
-                if(!is_file($file) && $parentTheme){
-
+                if (!is_file($file) && $parentTheme) {
                     $file = sprintf(
                         '%s/' . $parentTheme . '/custom/page/%s.phtml',
                         Pi::path('theme'),
                         $content
                     );
-                }
-                ?>
+                } ?>
                 <?php if ($file) : ?>
                     <?php include $this->template($file); ?>
                 <?php else : ?>
                     <?php include $this->template('./' . $content); ?>
                 <?php endif; ?>
-            </div>
-            <?php if ($config['social_sharing']) { ?>
-                <div class="article-footer clearfix">
-                    <div class="col-md-5 col-sm-10 col-12">
-                        <?php echo $this->socialSharing($config['social_sharing'], $title, $url); ?>
-                    </div>
-                </div>
-            <?php } ?>
-        <?php } else { ?>
-            <div class="article-header page-header">
-                <h1><?php echo $this->escape($title); ?></h1>
-            </div>
-            <div class="article-body clearfix">
+            <?php } else { ?>
                 <?php echo $content; ?>
-            </div>
-            <?php if ($config['social_sharing']) { ?>
-                <div class="article-footer clearfix">
-                    <div class="col-md-5 col-sm-10 col-12">
-                        <?php echo $this->socialSharing($config['social_sharing'], $title, $url); ?>
-                    </div>
+            <?php } ?>
+            <?php if (isset($galleryImages) && !empty($galleryImages) && isset($galleryImagesBig) && !empty($galleryImagesBig)) { ?>
+                <div class="row clearfix gallery">
+                    <?php foreach ($galleryImages as $key => $galleryImage) { ?>
+                        <div class="u-photo col-lg-3 col-md-4 col-6 thumb mb-3">
+                            <a class="thumbnail" href="<?php echo $galleryImagesBig[$key]['resized_url']; ?>"
+                               title="<?php echo $this->escape($galleryImage['title']); ?><?php if ($galleryImage['copyright']) echo ' - ' . $galleryImage['copyright'] ?>">
+                                <img itemprop="image" class="img-fluid img-thumbnail lazyload"
+                                     src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                     data-src="<?php echo $galleryImage['resized_url']; ?>"
+                                     alt="<?php echo $this->escape($galleryImage['title']); ?>"/>
+                            </a>
+                        </div>
+                    <?php } ?>
                 </div>
             <?php } ?>
+        </div>
+        <?php if ($config['social_sharing']) { ?>
+            <div class="article-footer clearfix">
+                <div class="col-md-5 col-sm-10 col-12">
+                    <?php echo $this->socialSharing($config['social_sharing'], $title, $url); ?>
+                </div>
+            </div>
         <?php } ?>
         <?php if (!empty($nav)) { ?>
     </div>

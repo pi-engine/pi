@@ -10,6 +10,7 @@
 namespace Module\Page\Form;
 
 use Module\Page\Validator;
+use Pi;
 use Zend\InputFilter\InputFilter;
 
 class PageFilter extends InputFilter
@@ -102,6 +103,24 @@ class PageFilter extends InputFilter
                 new Validator\PageTemplateAvailable(),
             ],
         ]);
+
+        // Check media module
+        if (Pi::service('module')->isActive('media')) {
+
+            $this->add(
+                [
+                    'name'     => 'main_image',
+                    'required' => false,
+                ]
+            );
+
+            $this->add(
+                [
+                    'name'     => 'additional_images',
+                    'required' => false,
+                ]
+            );
+        }
 
         $this->add([
             'name'     => 'id',

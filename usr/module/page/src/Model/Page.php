@@ -23,8 +23,25 @@ class Page extends Model
      */
     protected $columns
         = [
-            'id', 'name', 'title', 'slug', 'content', 'markup', 'active',
-            'user', 'time_created', 'time_updated', 'seo_title', 'seo_keywords', 'seo_description',
-            'nav_order', 'theme', 'layout', 'template',
+            'id',
+            'title',
+            'name',
+            'user',
+            'time_created',
+            'time_updated',
+            'active',
+            'content',
+            'markup',
+            'slug',
+            'clicks',
+            'seo_title',
+            'seo_keywords',
+            'seo_description',
+            'main_image',
+            'additional_images',
+            'nav_order',
+            'theme',
+            'layout',
+            'template',
         ];
 }

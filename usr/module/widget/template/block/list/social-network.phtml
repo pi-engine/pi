@@ -10,7 +10,7 @@ $target  = $options['target_new'] ? '_self' : '_blank';
                 <a href="<?php echo $item['link']; ?>" title="<?php echo _escape($item['caption']); ?>"
                    target="<?php echo $target; ?>">
                     <?php if (!empty($item['icon'])) { ?>
-                        <i class="fa <?php echo _escape($item['icon']); ?>"></i>
+                        <i class="<?php echo _escape($item['icon']); ?>"></i>
                     <?php } else { ?>
                         <?php echo _escape($item['caption']); ?>
                     <?php } ?>
