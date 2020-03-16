@@ -49,15 +49,18 @@ class IndexController extends ActionController
 
             // Module config
             $config = Pi::config('', $this->getModule());
+
             // Set SEO data
             $seoTitle       = $row->seo_title ?: $row->title;
             $seoDescription = $row->seo_description ?: $row->title;
             $seoKeywords    = $row->seo_keywords ?: $row->title;
             $filter         = new Filter\HeadKeywords;
             if (isset($config['keywords_replace_space'])) {
-                $filter->setOptions([
-                    'force_replace_space' => (bool)$config['keywords_replace_space'],
-                ]);
+                $filter->setOptions(
+                    [
+                        'force_replace_space' => (bool)$config['keywords_replace_space'],
+                    ]
+                );
             }
             $seoKeywords = $filter($seoKeywords);
             // Set view
@@ -71,6 +74,24 @@ class IndexController extends ActionController
             if ($row->layout) {
                 $this->view()->setLayout($row->layout);
             }
+
+            // Get main image
+            $mainImage = [];
+            if (Pi::service('module')->isActive('media') && $row->main_image > 0) {
+                $mainImage = Pi::api('doc', 'media')->getSingleLinkData(
+                    $row->main_image,
+                    $config['main_image_height'],
+                    $config['main_image_width']
+                );
+            }
+
+            // Get additional images
+            $galleryImages    = [];
+            $galleryImagesBig = [];
+            if (Pi::service('module')->isActive('media') && !empty($row->additional_images)) {
+                $galleryImages    = Pi::api('doc', 'media')->getGalleryLinkData($row->additional_images, 400, 300);
+                $galleryImagesBig = Pi::api('doc', 'media')->getGalleryLinkData($row->additional_images, 900, 600);
+            }
         }
 
         if ($row->template) {
@@ -79,13 +100,18 @@ class IndexController extends ActionController
             $this->view()->setTemplate('page-view');
         }
 
-        $this->view()->assign([
-            'title'        => $title,
-            'content'      => $content,
-            'markup'       => $markup,
-            'url'          => $url,
-            'shearContent' => $shearContent,
-        ]);
+        $this->view()->assign(
+            [
+                'title'            => $title,
+                'content'          => $content,
+                'markup'           => $markup,
+                'url'              => $url,
+                'shearContent'     => $shearContent,
+                'mainImage'        => $mainImage,
+                'galleryImages'    => $galleryImages,
+                'galleryImagesBig' => $galleryImagesBig,
+            ]
+        );
     }
 
     /**
@@ -124,8 +150,8 @@ class IndexController extends ActionController
         /**
          * Redirect to non prefixed url
          */
-        if(preg_match('#\/page\/#', $uri)){
-            return $this->redirect()->toRoute('page', array('slug' => $row->slug))->setStatusCode(301);
+        if (preg_match('#\/page\/#', $uri)) {
+            return $this->redirect()->toRoute('page', ['slug' => $row->slug])->setStatusCode(301);
         }
 
         if ($row && $row->active) {
@@ -146,7 +172,8 @@ class IndexController extends ActionController
     /**
      * Transform an "action" token into a method name
      *
-     * @param  string $action
+     * @param string $action
+     *
      * @return string
      */
     public static function getMethodFromAction($action)
