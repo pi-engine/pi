@@ -34,11 +34,11 @@ class IndexController extends ActionController
         $token = $this->params('token');
 
         // Check token
-        $check = Pi::api('token', 'tools')->check($token, true);
+        $check = Pi::api('token', 'tools')->check($token);
         if ($check['status'] == 1) {
             // Module config
             $config = Pi::config('', $this->getModule());
-            
+
             // Get page id
             $id = $this->params('id');
 
@@ -56,8 +56,13 @@ class IndexController extends ActionController
                     );
                 }
 
+                // Clean html
+                $content = strip_tags($content, "<b><strong><i><p><br><ul><li><ol><h1><h2><h3><h4><h5><h6>");
+                $content = str_replace("<p>&nbsp;</p>", "", $content);
+                $content = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $content);
+
                 // Get main image
-                $mainImage = [];
+                $mainImage = '';
                 if (Pi::service('module')->isActive('media') && $row->main_image > 0) {
                     $mainImage = Pi::api('doc', 'media')->getSingleLinkData(
                         $row->main_image,
