@@ -244,15 +244,28 @@ return [
             'module'     => 'user',
             'controller' => 'condition',
             'action'     => 'index',
+            'pages' => [
+                'list'   => [
+                    'label'      => _t('Terms and conditions'),
+                    'permission' => [
+                        'resource' => 'condition',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'user',
+                    'controller' => 'condition',
+                    'action'     => 'index',
+                ],
+                'manage'   => [
+                    'label'      => _t('Add file'),
+                    'permission' => [
+                        'resource' => 'condition',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'user',
+                    'controller' => 'condition',
+                    'action'     => 'update',
+                ],
+            ],
         ],
-
-        /*
-        'import'  => array(
-            'label'         => _t('Import'),
-            'route'         => 'admin',
-            'module'        => 'user',
-            'controller'    => 'import',
-        ),
-        */
     ],
 ];

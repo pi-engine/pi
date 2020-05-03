@@ -33,6 +33,10 @@ $category = [
         'title' => _t('Account'),
     ],
     [
+        'name'  => 'dashboard',
+        'title' => _t('Dashboard'),
+    ],
+    [
         'name'  => 'avatar',
         'title' => _t('Avatar'),
     ],
@@ -86,16 +90,20 @@ $config = [
 
     'enable_modal' => [
         'title'       => _t('Enable modal for login / register'),
-        'description' => _t('Login / register with modal, with GET redirect (hidden input instead). Modal template are located into system module, because used by user-bar template'),
+        'description' => _t(
+            'Login / register with modal, with GET redirect (hidden input instead). Modal template are located into system module, because used by user-bar template'
+        ),
         'edit'        => 'checkbox',
         'value'       => 0,
         'filter'      => 'int',
     ],
 
-    'head_keywords' => [
-        'title'       => _t('Head keywords'),
-        'description' => _t('Head keywords for SEO.'),
-        'value'       => _t('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+    'disable_front' => [
+        'title'       => _t('Disable public front'),
+        'description' => _t('Disable public front side of user module if you dont want visitors see user profile'),
+        'edit'        => 'checkbox',
+        'value'       => 1,
+        'filter'      => 'int',
     ],
 
     'shortcuts_enable' => [
@@ -113,24 +121,24 @@ $config = [
             'type'    => 'multi_checkbox',
             'options' => [
                 'options' => [
-                    'guide'           => _t('Guide'),
-                    'media'           => _t('Media'),
-                    'stats'           => _t('Guide Stats'),
-                    'shop'            => _t('Shop'),
-                    'order'           => _t('Order'),
-                    'message'         => _t('Message'),
-                    'support'         => _t('Support'),
-                    'event'           => _t('Event'),
-                    'vote'            => _t('Vote'),
-                    'favourite'       => _t('Favourite'),
-                    'video'           => _t('Video'),
-                    'audio'           => _t('Audio'),
-                    'gallery'         => _t('Gallery'),
-                    'ask'             => _t('Ask'),
-                    'subscription'    => _t('Subscription'),
-                    'ads'             => _t('Ads'),
-                    'notification'    => _t('Notification'),
-                    'comment'         => _t('Comment'),
+                    'guide'        => _t('Guide'),
+                    'media'        => _t('Media'),
+                    'stats'        => _t('Guide Stats'),
+                    'shop'         => _t('Shop'),
+                    'order'        => _t('Order'),
+                    'message'      => _t('Message'),
+                    'support'      => _t('Support'),
+                    'event'        => _t('Event'),
+                    'vote'         => _t('Vote'),
+                    'favourite'    => _t('Favourite'),
+                    'video'        => _t('Video'),
+                    'audio'        => _t('Audio'),
+                    'gallery'      => _t('Gallery'),
+                    'ask'          => _t('Ask'),
+                    'subscription' => _t('Subscription'),
+                    'ads'          => _t('Ads'),
+                    'notification' => _t('Notification'),
+                    'comment'      => _t('Comment'),
                 ],
             ],
         ],
@@ -154,12 +162,10 @@ $config = [
         ],
     ],
 
-    'disable_front' => [
-        'title'       => _t('Disable public front'),
-        'description' => _t('Disable public front side of user module if you dont want visitors see user profile'),
-        'edit'        => 'checkbox',
-        'value'       => 0,
-        'filter'      => 'int',
+    'head_keywords' => [
+        'title'       => _t('Head keywords'),
+        'description' => _t('Head keywords for SEO.'),
+        'value'       => _t('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
     ],
 
     // Login
@@ -244,72 +250,74 @@ $config = [
         'category'    => 'login',
     ],
 
+    // Dashboard
+
     'default_pro_dashboard_intro' => [
-        'title'         => _t('Default pro Dashboard intro'),
-        'edit'          => 'textarea',
-        'value'         => '',
-        'filter'        => 'string',
-        'category'     => 'account',
+        'title'    => _t('Default pro Dashboard intro'),
+        'edit'     => 'textarea',
+        'value'    => '',
+        'filter'   => 'string',
+        'category' => 'dashboard',
     ],
 
     'default_pro_dashboard_step_1' => [
-        'title'         => _t('Default pro Dashboard step 1'),
-        'edit'          => 'text',
-        'value'         => '',
-        'filter'        => 'string',
-        'category'     => 'account',
+        'title'    => _t('Default pro Dashboard step 1'),
+        'edit'     => 'text',
+        'value'    => '',
+        'filter'   => 'string',
+        'category' => 'dashboard',
     ],
 
     'default_pro_dashboard_step_2' => [
-        'title'         => _t('Default pro Dashboard step 2'),
-        'edit'          => 'text',
-        'value'         => '',
-        'filter'        => 'string',
-        'category'     => 'account',
+        'title'    => _t('Default pro Dashboard step 2'),
+        'edit'     => 'text',
+        'value'    => '',
+        'filter'   => 'string',
+        'category' => 'dashboard',
     ],
 
     'default_pro_dashboard_step_3' => [
-        'title'         => _t('Default pro Dashboard step 3'),
-        'edit'          => 'text',
-        'value'         => '',
-        'filter'        => 'string',
-        'category'     => 'account',
+        'title'    => _t('Default pro Dashboard step 3'),
+        'edit'     => 'text',
+        'value'    => '',
+        'filter'   => 'string',
+        'category' => 'dashboard',
     ],
 
     'default_perso_dashboard_intro' => [
-        'title'         => _t('Default perso Dashboard intro'),
-        'edit'          => 'textarea',
-        'value'         => '',
-        'filter'        => 'string',
-        'category'     => 'account',
+        'title'    => _t('Default perso Dashboard intro'),
+        'edit'     => 'textarea',
+        'value'    => '',
+        'filter'   => 'string',
+        'category' => 'dashboard',
     ],
 
     'default_perso_dashboard_step_1' => [
-        'title'         => _t('Default perso Dashboard step 1'),
-        'edit'          => 'text',
-        'value'         => '',
-        'filter'        => 'string',
-        'category'     => 'account',
+        'title'    => _t('Default perso Dashboard step 1'),
+        'edit'     => 'text',
+        'value'    => '',
+        'filter'   => 'string',
+        'category' => 'dashboard',
     ],
 
     'default_perso_dashboard_step_2' => [
-        'title'         => _t('Default perso Dashboard step 2'),
-        'edit'          => 'text',
-        'value'         => '',
-        'filter'        => 'string',
-        'category'     => 'account',
+        'title'    => _t('Default perso Dashboard step 2'),
+        'edit'     => 'text',
+        'value'    => '',
+        'filter'   => 'string',
+        'category' => 'dashboard',
     ],
 
     'default_perso_dashboard_step_3' => [
-        'title'         => _t('Default perso Dashboard step 3'),
-        'edit'          => 'text',
-        'value'         => '',
-        'filter'        => 'string',
-        'category'     => 'account',
+        'title'    => _t('Default perso Dashboard step 3'),
+        'edit'     => 'text',
+        'value'    => '',
+        'filter'   => 'string',
+        'category' => 'dashboard',
     ],
 
     // Register
-    'register_disable'  => [
+    'register_disable'               => [
         'title'       => _t('Register disable'),
         'description' => _t('Disable user registration'),
         'edit'        => 'checkbox',

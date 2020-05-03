@@ -362,8 +362,18 @@ class EditController extends ActionController
             ];
         }
 
-        return $result;
+        // Avatar
+        $result[] = [
+            'name'  => 'view',
+            'title' => _a('View'),
+            'link'  => $this->url('', [
+                'controller' => 'View',
+                'action'     => 'index',
+                'uid'        => $uid,
+            ]),
+        ];
 
+        return $result;
     }
 
     protected function getUser($uid)
