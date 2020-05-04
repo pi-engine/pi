@@ -33,6 +33,10 @@ $category = [
         'title' => _t('Account'),
     ],
     [
+        'name'  => 'mobile',
+        'title' => _t('Mobile'),
+    ],
+    [
         'name'  => 'dashboard',
         'title' => _t('Dashboard'),
     ],
@@ -162,6 +166,13 @@ $config = [
         ],
     ],
 
+    'allowed_country_list' => [
+        'title'       => _t('Allowed country list'),
+        'description' => _t('List of allowed countries, separated with `|`.'),
+        'edit'        => 'textarea',
+        'value'       => 'IR|US|FR',
+    ],
+
     'head_keywords' => [
         'title'       => _t('Head keywords'),
         'description' => _t('Head keywords for SEO.'),
@@ -241,7 +252,7 @@ $config = [
         'category'    => 'login',
     ],
 
-    'login_description' => [
+    'login_description'           => [
         'title'       => _t('Login description'),
         'description' => _t('Description text for login page side bar, html allowed'),
         'edit'        => 'textarea',
@@ -251,7 +262,6 @@ $config = [
     ],
 
     // Dashboard
-
     'default_pro_dashboard_intro' => [
         'title'    => _t('Default pro Dashboard intro'),
         'edit'     => 'textarea',
@@ -558,12 +568,39 @@ $config = [
         'category'    => 'account',
     ],
 
-    'email_blacklist'           => [
+    'email_blacklist' => [
         'title'       => _t('Email blacklist'),
         'description' => _t('Forbidden email list, separated with `|`, regexp syntax is allowed.'),
         'edit'        => 'textarea',
         'value'       => 'pi-engine.org$',
         'category'    => 'account',
+    ],
+
+    // Mobile
+    'is_mobile'       => [
+        'title'       => _t('Just mobile number allowed as username'),
+        'description' => _t('if checked, just true mobile number allowed as user name'),
+        'edit'        => 'checkbox',
+        'value'       => 0,
+        'filter'      => 'int',
+        'category'    => 'mobile',
+    ],
+
+    'mobile_length' => [
+        'title'       => _t('Mobile number length'),
+        'description' => _t('Use it if user not set country, is user set country system use Zend validator'),
+        'edit'        => 'text',
+        'value'       => 11,
+        'filter'      => 'int',
+        'category'    => 'mobile',
+    ],
+
+    'mobile_prefix'         => [
+        'title'       => _t('Mobile number prefix'),
+        'description' => _t('Use it if user not set country, is user set country system use Zend validator'),
+        'edit'        => 'text',
+        'value'       => '09',
+        'category'    => 'mobile',
     ],
 
     // Avatar

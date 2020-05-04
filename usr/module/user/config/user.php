@@ -323,6 +323,9 @@ return [
         'country'         => [
             'name'  => 'country',
             'title' => _a('Country'),
+            'edit'   => [
+                'element' => 'Module\User\Form\Element\Country',
+            ],
         ],
 
         // Profile: state

@@ -11,6 +11,7 @@ namespace Module\User\Validator;
 
 use Module\System\Validator\Username as SystemUsername;
 use Pi;
+use Zend\I18n\Validator\PhoneNumber;
 
 /**
  * Validator for username
@@ -21,11 +22,14 @@ use Pi;
 class Username extends SystemUsername
 {
     /** Constants for username length restrict */
-    const TOO_SHORT = 'stringLengthTooShort';
-    const TOO_LONG  = 'stringLengthTooLong';
+    const TOO_SHORT        = 'stringLengthTooShort';
+    const TOO_LONG         = 'stringLengthTooLong';
+    const MOBILE_NUMERICAL = 'mobileIsNotNumerical';
+    const MOBILE_FORMAT    = 'mobileFormat';
 
     /**
      * Maximum/minimum length of username
+     *
      * @var string
      */
     protected $max;
@@ -47,8 +51,10 @@ class Username extends SystemUsername
     public function __construct()
     {
         $this->messageTemplates = $this->messageTemplates + [
-                static::TOO_SHORT => __('Username is less than %min% characters long'),
-                static::TOO_LONG  => __('Username is more than %max% characters long'),
+                static::TOO_SHORT        => __('Username is less than %min% characters long'),
+                static::TOO_LONG         => __('Username is more than %max% characters long'),
+                static::MOBILE_NUMERICAL => __('Mobile number should be numerical'),
+                static::MOBILE_FORMAT    => __('Mobile number format not true'),
             ];
         parent::__construct();
         $this->setConfigOption();
@@ -61,18 +67,47 @@ class Username extends SystemUsername
     {
         $this->setValue($value);
 
-        if ($this->options['max']) {
-            if ($this->options['max'] < strlen($value)) {
-                $this->max = $this->options['max'];
-                $this->error(static::TOO_LONG);
+        if (isset($this->options['is_mobile']) && $this->options['is_mobile'] == 1) {
+            /* if (isset($context['country']) && !empty($context['country'])) {
+                $validator = new PhoneNumber();
+                $validator->allowedTypes(['mobile']);
+                $validator->setCountry($context['country']);
+
+                if (!$validator->isValid($value)) {
+                    $this->error(static::MOBILE_FORMAT);
+                    return false;
+                }
+            } else {
+
+            }*/
+            if (!is_numeric($value)) {
+                $this->error(static::MOBILE_NUMERICAL);
                 return false;
             }
-        }
-        if ($this->options['min']) {
-            if ($this->options['min'] > strlen($value)) {
-                $this->min = $this->options['min'];
-                $this->error(static::TOO_SHORT);
+
+            if (strlen($value) != $this->options['mobile_length']) {
+                $this->error(static::MOBILE_FORMAT);
                 return false;
+            }
+
+            if (substr($value, 0, 1) != $this->options['mobile_prefix']) {
+                $this->error(static::MOBILE_FORMAT);
+                return false;
+            }
+        } else {
+            if ($this->options['max']) {
+                if ($this->options['max'] < strlen($value)) {
+                    $this->max = $this->options['max'];
+                    $this->error(static::TOO_LONG);
+                    return false;
+                }
+            }
+            if ($this->options['min']) {
+                if ($this->options['min'] > strlen($value)) {
+                    $this->min = $this->options['min'];
+                    $this->error(static::TOO_SHORT);
+                    return false;
+                }
             }
         }
 
@@ -89,6 +124,9 @@ class Username extends SystemUsername
     public function setConfigOption()
     {
         $this->options = [
+            'is_mobile'         => Pi::user()->config('is_mobile'),
+            'mobile_prefix'     => Pi::user()->config('mobile_prefix'),
+            'mobile_length'     => Pi::user()->config('mobile_length'),
             'min'               => Pi::user()->config('uname_min'),
             'max'               => Pi::user()->config('uname_max'),
             'blacklist'         => Pi::user()->config('uname_blacklist'),
