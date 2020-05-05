@@ -8,8 +8,8 @@ Notes:
 
 Checkout from Pi Engine project (readonly)
 ------------------------------------------
-* Clone without submodules: ```git clone git://github.com/pig-engine/pi```
-* Clone with submodules: ```git clone --recursive git://github.com/pig-engine/pi```
+* Clone without submodules: ```git clone git://github.com/pi-engine/pi```
+* Clone with submodules: ```git clone --recursive git://github.com/pi-engine/pi```
 
 Make a new fork
 ---------------
