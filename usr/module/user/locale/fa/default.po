@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2020-05-04 13:49+0430\n"
-"PO-Revision-Date: 2020-05-04 14:00+0430\n"
+"POT-Creation-Date: 2020-05-05 10:05+0430\n"
+"PO-Revision-Date: 2020-05-05 10:42+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -285,7 +285,7 @@ msgid "Valid input."
 msgstr "ورودی صحیح."
 
 #: src/Controller/Front/AccountController.php:370
-#: src/Controller/Front/RegisterController.php:432
+#: src/Controller/Front/RegisterController.php:467
 msgid "Invalid input."
 msgstr "ورودی اشتباه."
 
@@ -645,47 +645,47 @@ msgstr "شناسه کاربر یا شناسه گروه حساب کاربری ص�
 msgid "Account registration"
 msgstr "ثبت نام"
 
-#: src/Controller/Front/RegisterController.php:231
+#: src/Controller/Front/RegisterController.php:266
 msgid "Activation token is invalid."
 msgstr "توکن فعال سازی صحیح نیست."
 
-#: src/Controller/Front/RegisterController.php:301
+#: src/Controller/Front/RegisterController.php:336
 msgid "Account Activated successfully."
 msgstr "حساب کاربری با موفقیت فعال شد."
 
-#: src/Controller/Front/RegisterController.php:335
+#: src/Controller/Front/RegisterController.php:370
 msgid "Activation email sent failed."
 msgstr "خطا در ارسال ایمیل فعال سازی."
 
-#: src/Controller/Front/RegisterController.php:373
+#: src/Controller/Front/RegisterController.php:408
 msgid "Resend activation mail successfully."
 msgstr "ارسال مجدد ایمیل فعال سازی با موفقیت انجام شد."
 
-#: src/Controller/Front/RegisterController.php:401
+#: src/Controller/Front/RegisterController.php:436
 msgid "Email was not found."
 msgstr "ایمیل یافت نشد."
 
-#: src/Controller/Front/RegisterController.php:406
+#: src/Controller/Front/RegisterController.php:441
 msgid "Account already activated."
 msgstr "حساب کاربری قبلا فعال شده است."
 
-#: src/Controller/Front/RegisterController.php:419
+#: src/Controller/Front/RegisterController.php:454
 msgid "Activation mail sent successfully."
 msgstr "ایمیل فعال سازی با موفقیت ارسال شد."
 
-#: src/Controller/Front/RegisterController.php:424
+#: src/Controller/Front/RegisterController.php:459
 msgid "Activation mail was not sent."
 msgstr "ایمیل فعال سازی ارسال نشد."
 
-#: src/Controller/Front/RegisterController.php:539
+#: src/Controller/Front/RegisterController.php:574
 msgid "User information was not completed and user account was not saved."
 msgstr "اطلاعات کاربری تکمیل نشده است و حساب کاربری در سیستم ثبت نشده است."
 
-#: src/Controller/Front/RegisterController.php:571
+#: src/Controller/Front/RegisterController.php:606
 msgid "User account was not saved."
 msgstr "حساب کاربری ذخیره نشد."
 
-#: src/Controller/Front/RegisterController.php:597
+#: src/Controller/Front/RegisterController.php:634
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
@@ -693,7 +693,7 @@ msgstr ""
 "حساب کاربری با موفقیت ثبت شده است اما فعال سازی آن با موفقیت همراه نبوده "
 "است، لطفا با مدیر تماس بگیرید."
 
-#: src/Controller/Front/RegisterController.php:635
+#: src/Controller/Front/RegisterController.php:672
 msgid "Account activation email was not able to send, please contact admin."
 msgstr "ناتوان در ارسال ایمیل فعال سازی، با مدیرتماس بگیرید."
 
@@ -995,33 +995,27 @@ msgstr "اطلاعات اصلی"
 
 #: template/admin/view-user.phtml:38
 msgid "Value"
-msgstr ""
+msgstr "مقدار"
 
 #: template/admin/view-user.phtml:58
 msgid "Roles"
-msgstr ""
+msgstr "نقش ها"
 
 #: template/admin/view-user.phtml:62
-#, fuzzy
-#| msgid "Action"
 msgid "Section"
-msgstr "عملکرد"
+msgstr "بخش"
 
 #: template/admin/view-user.phtml:63
 msgid "Role"
-msgstr ""
+msgstr "نقش"
 
 #: template/admin/view-user.phtml:66
-#, fuzzy
-#| msgid "Front role"
 msgid "Front"
-msgstr "نقش های کاربری"
+msgstr "سمت کاربر"
 
 #: template/admin/view-user.phtml:77
-#, fuzzy
-#| msgid "Admin role"
 msgid "Admin"
-msgstr "نقش های مدیریت"
+msgstr "سمت مدیر"
 
 #: template/front/account-index.phtml:24
 msgid "Verify identity"
@@ -1050,10 +1044,8 @@ msgid "No change!"
 msgstr "بدون تغییر !"
 
 #: template/front/account-reset-email.phtml:2
-#, fuzzy
-#| msgid "My notifications"
 msgid "Email modification"
-msgstr "آگاهی رسانی های من"
+msgstr "ویرایش کاربر"
 
 #: template/front/account-reset-email.phtml:4
 #: template/front/password-process.phtml:18
@@ -1063,8 +1055,6 @@ msgid "Congratulations!"
 msgstr "تبریک می گویم!"
 
 #: template/front/account-reset-email.phtml:6
-#, fuzzy
-#| msgid "Login right now."
 msgid "Login right now"
 msgstr "هم اکنون وارد شوید"
 
@@ -1147,7 +1137,7 @@ msgstr "پیشخوان"
 
 #: template/front/dashboard-index.phtml:54
 msgid "Welcome to your personal dashboard"
-msgstr ""
+msgstr "به پیشخوان شخصی خود خوش آمدید"
 
 #: template/front/dashboard-index.phtml:64
 #: template/front/dashboardPro-index.phtml:48
@@ -1233,7 +1223,7 @@ msgstr "درخواست های پشتیبانی من"
 #: template/front/dashboard-index.phtml:224
 #: template/front/dashboardPro-index.phtml:230
 msgid "How it works ?"
-msgstr ""
+msgstr "این بخش چطور کار میکند؟"
 
 #: template/front/dashboard-index.phtml:243
 #: template/front/dashboardPro-index.phtml:252
@@ -1243,7 +1233,7 @@ msgstr ""
 
 #: template/front/dashboard-index.phtml:245
 msgid "Let's go !"
-msgstr ""
+msgstr "برو !"
 
 #: template/front/dashboardPro-index.phtml:37
 msgid "Welcome to your pro dashboard"
@@ -1259,7 +1249,7 @@ msgstr ""
 
 #: template/front/dashboardPro-index.phtml:248
 msgid "To begin, let's create your first establishment :)"
-msgstr ""
+msgstr "برای شروع ، بیایید اولین تأسیس خود را ایجاد کنیم :)"
 
 #: template/front/login-disabled.phtml:3
 msgid "User login"
@@ -1370,11 +1360,11 @@ msgstr "اضافه کردن %s"
 
 #: template/front/profile-sidebar.phtml:37
 msgid "Perso"
-msgstr ""
+msgstr "شخصی"
 
 #: template/front/profile-sidebar.phtml:39
 msgid "Pro"
-msgstr ""
+msgstr "حرفه ای"
 
 #: template/front/profile-sidebar.phtml:48
 msgid "Personal Dashboard"
