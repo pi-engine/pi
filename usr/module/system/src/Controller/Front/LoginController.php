@@ -227,10 +227,17 @@ class LoginController extends ActionController
             unset($_SESSION['PI_LOGIN']);
         }
 
-        if (empty($values['redirect'])) {
-            $redirect = ['route' => 'home'];
-        } else {
+        // Check redirect control from user module
+        if (Pi::service('module')->isActive('user')) {
+            if (Pi::user()->config('login_redirect_home')) {
+                unset($values['redirect']);
+            }
+        }
+
+        if (isset($values['redirect']) && !empty($values['redirect'])) {
             $redirect = urldecode($values['redirect']);
+        } else {
+            $redirect = ['route' => 'home'];
         }
 
         // Trigger login event

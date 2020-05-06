@@ -80,6 +80,7 @@ class Username extends SystemUsername
             } else {
 
             }*/
+
             if (!is_numeric($value)) {
                 $this->error(static::MOBILE_NUMERICAL);
                 return false;
@@ -90,7 +91,7 @@ class Username extends SystemUsername
                 return false;
             }
 
-            if (substr($value, 0, 1) != $this->options['mobile_prefix']) {
+            if (substr($value, 0, strlen($this->options['mobile_prefix'])) != $this->options['mobile_prefix']) {
                 $this->error(static::MOBILE_FORMAT);
                 return false;
             }

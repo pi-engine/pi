@@ -557,6 +557,7 @@ JS;
      * Complete user register
      *
      * @param array $values
+     * @param string $activationMode
      *
      * @return array
      */
@@ -671,6 +672,11 @@ JS;
                 if (!$status) {
                     $result['message'] = __('Account activation email was not able to send, please contact admin.');
                 }
+            }
+        } elseif (Pi::user()->config('is_mobile') && 'auto' == $activationMode) {
+            $status = $this->activateUser($uid);
+            if (!$status) {
+                $result['message'] = __('User account is registered successfully but activation was failed, please contact admin.');
             }
         }
 

@@ -252,12 +252,21 @@ $config = [
         'category'    => 'login',
     ],
 
-    'login_description'           => [
+    'login_description' => [
         'title'       => _t('Login description'),
         'description' => _t('Description text for login page side bar, html allowed'),
         'edit'        => 'textarea',
         'value'       => '',
         'filter'      => 'string',
+        'category'    => 'login',
+    ],
+
+    'login_redirect_home'         => [
+        'title'       => _t('Force redirect to homepage'),
+        'description' => _t('By check this filed, after login user forced redirect to homepage, if not checked user back to source page'),
+        'edit'        => 'checkbox',
+        'value'       => 0,
+        'filter'      => 'int',
         'category'    => 'login',
     ],
 
@@ -595,7 +604,7 @@ $config = [
         'category'    => 'mobile',
     ],
 
-    'mobile_prefix'         => [
+    'mobile_prefix'             => [
         'title'       => _t('Mobile number prefix'),
         'description' => _t('Use it if user not set country, is user set country system use Zend validator'),
         'edit'        => 'text',
