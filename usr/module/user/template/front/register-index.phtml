@@ -82,19 +82,24 @@ if (!empty($description) || !empty($url)) {
                 <h3 class="card-title"><?php _e('Congratulations!'); ?></h3>
             </div>
             <div class="card-body">
-                <p class="card-text">
+                <div class="card-text">
                     <?php echo sprintf(
                         __('Your account has been registered successfully. Please <a href="%s">login</a> with your account.'),
                         Pi::service('authentication')->getUrl('login', $redirect)
                     ); ?>
-                </p>
+                    <div class="mt-3 mb-3">
+                        <a class="btn btn-primary btn-block" href="<?php echo Pi::service('authentication')->getUrl('login', $redirect); ?>">
+                            <?php _e('Go to login page'); ?>
+                        </a>
+                    </div>
+                </div>
                 <?php if ($redirect) { ?>
-                    <p class="card-text">
+                    <div class="card-text">
                         <?php echo sprintf(
                             __('Or go back to <a href="%s">the requested page</a> directly.'),
                             $redirect
                         ) ?>
-                    </p>
+                    </div>
                 <?php } ?>
             </div>
         </div>

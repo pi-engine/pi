@@ -82,7 +82,7 @@ msgstr "انقضا ایمیل"
 
 #: config/config.php:74
 msgid "Expiration time for email/password reset (in hours)."
-msgstr "زمان انقضا برای ایمیل بازیابی کلمه عبور ( به ساعت )"
+msgstr "زمان انقضا برای ایمیل بازیابی رمز عبور ( به ساعت )"
 
 #: config/config.php:80
 msgid "Email confirmation"
@@ -541,30 +541,30 @@ msgstr "بیشترین طول نام نمایشی برای ثبت نام کار�
 
 #: config/config.php:531
 msgid "Minimum password"
-msgstr "کمترین طول کلمه عبور"
+msgstr "کمترین طول رمز عبور"
 
 #: config/config.php:532
 msgid "Minimum length of password for user registration"
-msgstr "کمترین طول کلمه عبور برای ثبت نام کاربر"
+msgstr "کمترین طول رمز عبور برای ثبت نام کاربر"
 
 #: config/config.php:539
 msgid "Maximum password"
-msgstr "بیشترین طول کلمه عبور"
+msgstr "بیشترین طول رمز عبور"
 
 #: config/config.php:540
 msgid "Maximum length of password for user registration"
-msgstr "بیشترین طول کلمه عبور برای ثبت نام کاربر"
+msgstr "بیشترین طول رمز عبور برای ثبت نام کاربر"
 
 #: config/config.php:547
 msgid "Strenghten password"
-msgstr "تقویت کلمه عبور"
+msgstr "تقویت رمز عبور"
 
 #: config/config.php:548
 msgid ""
 "Add some complexity to password filling : min 1 uppercase character, min 1 "
 "lowercase character, min 1 number"
 msgstr ""
-"درج پیچیدگی برای کلمه عبور : حداقل ۱ حرف کوچک، حداقل یک حرف بزرگ> حداقل ۱ عدد"
+"درج پیچیدگی برای رمز عبور : حداقل ۱ حرف کوچک، حداقل یک حرف بزرگ> حداقل ۱ عدد"
 
 #: config/config.php:556
 msgid "Username blacklist"
@@ -1607,7 +1607,7 @@ msgstr "ایمیل اشتباه"
 
 #: template/admin/user.phtml:49
 msgid "Password confirm"
-msgstr "تایید کلمه عبور"
+msgstr "تایید رمز عبور"
 
 #: template/admin/user.phtml:51
 msgid "Enable"
