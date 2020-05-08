@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-03-24 11:58+0430\n"
-"PO-Revision-Date: 2017-03-24 11:58+0430\n"
+"POT-Creation-Date: 2020-05-08 11:47+0430\n"
+"PO-Revision-Date: 2020-05-08 11:47+0430\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -89,54 +89,52 @@ msgstr ""
 msgid "Resent feeds of %s module"
 msgstr ""
 
-#: src/Controller/Front/LoginController.php:71
+#: src/Controller/Front/LoginController.php:85
 #, php-format
 msgid ""
 "Login with the account is suspended,\n"
 "                            please wait for %d minutes to try again."
 msgstr ""
 
-#: src/Controller/Front/LoginController.php:80
+#: src/Controller/Front/LoginController.php:94
 #, php-format
 msgid "You have %d times to try."
 msgstr ""
 
-#: src/Controller/Front/LoginController.php:88
+#: src/Controller/Front/LoginController.php:102
 #: template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr ""
 
-#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:119
-#: template/block/partial/login-register-modal.phtml:54
-#: template/block/partial/login-register-modal.phtml:93
-#: template/block/partial/login-register-modal.phtml:94
-#: template/front/login-logout.phtml:13 template/front/register.phtml:6
+#: src/Controller/Front/LoginController.php:107 src/Form/LoginForm.php:153
+#: template/front/login-logout.phtml:14
+#: template/front/login-register-modal-ajax.phtml:8
+#: template/front/login-register-modal-ajax.phtml:23
+#: template/front/login-register-modal-ajax.phtml:54
+#: template/front/login-register-modal-ajax.phtml:55
+#: template/front/register.phtml:8
 msgid "Login"
 msgstr ""
 
-#: src/Controller/Front/LoginController.php:94
+#: src/Controller/Front/LoginController.php:108
 msgid ""
 "Use this page to connect to our website and participate, share contents, use "
 "our features, and interacts with other members"
 msgstr ""
 
-#: src/Controller/Front/LoginController.php:115
+#: src/Controller/Front/LoginController.php:129
 msgid "Invalid request."
 msgstr ""
 
-#: src/Controller/Front/LoginController.php:159
+#: src/Controller/Front/LoginController.php:177
 msgid "You have tried too many times. Please try later."
 msgstr ""
 
-#: src/Controller/Front/LoginController.php:183
+#: src/Controller/Front/LoginController.php:201
 msgid "Invalid credentials provided, please try again."
 msgstr ""
 
-#: src/Controller/Front/LoginController.php:225
-msgid "You have logged in successfully."
-msgstr ""
-
-#: src/Controller/Front/LoginController.php:244
+#: src/Controller/Front/LoginController.php:275
 msgid "You logged out successfully."
 msgstr ""
 
@@ -152,9 +150,10 @@ msgstr ""
 #: src/Controller/Front/PasswordController.php:127
 #: src/Controller/Front/PasswordController.php:128
 #: src/Form/FindPasswordForm.php:49
-#: template/block/partial/login-register-modal.phtml:68
-#: template/front/login.phtml:17 template/front/password-find.phtml:2
-#: template/front/register.phtml:5
+#: template/front/login-register-modal-ajax.phtml:26
+#: template/front/login-register-modal-ajax.phtml:27
+#: template/front/login.phtml:20 template/front/password-find.phtml:2
+#: template/front/register.phtml:6
 msgid "Find password"
 msgstr ""
 
@@ -184,7 +183,7 @@ msgid "Username"
 msgstr ""
 
 #: src/Controller/Front/ProfileController.php:59
-#: src/Form/FindPasswordForm.php:28
+#: src/Form/FindPasswordForm.php:28 src/Form/LoginForm.php:56
 msgid "Email"
 msgstr ""
 
@@ -196,8 +195,8 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:61
-#: src/Form/RegisterForm.php:65
+#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:67
+#: src/Form/LoginForm.php:86 src/Form/RegisterForm.php:65
 msgid "Password"
 msgstr ""
 
@@ -207,25 +206,27 @@ msgstr ""
 msgid "User profile"
 msgstr ""
 
-#: src/Controller/Front/RegisterController.php:49
-#: src/Controller/Front/RegisterController.php:53
+#: src/Controller/Front/RegisterController.php:58
+#: src/Controller/Front/RegisterController.php:62
 msgid "User account register"
 msgstr ""
 
-#: src/Controller/Front/RegisterController.php:52
-#: src/Controller/Front/RegisterController.php:113
-#: template/block/partial/login-register-modal.phtml:55
-#: template/block/partial/login-register-modal.phtml:73
-#: template/block/partial/login-register-modal.phtml:74
-#: template/front/login-logout.phtml:14 template/front/login.phtml:20
+#: src/Controller/Front/RegisterController.php:61
+#: src/Controller/Front/RegisterController.php:122
+#: template/front/login-logout.phtml:16
+#: template/front/login-register-modal-ajax.phtml:10
+#: template/front/login-register-modal-ajax.phtml:33
+#: template/front/login-register-modal-ajax.phtml:34
+#: template/front/login-register-modal-ajax.phtml:47
+#: template/front/login.phtml:23
 msgid "Register"
 msgstr ""
 
-#: src/Controller/Front/RegisterController.php:83
+#: src/Controller/Front/RegisterController.php:92
 msgid "Invalid input, please try again."
 msgstr ""
 
-#: src/Controller/Front/RegisterController.php:102
+#: src/Controller/Front/RegisterController.php:111
 msgid "The account is not created in database, please try again."
 msgstr ""
 
@@ -238,36 +239,35 @@ msgstr ""
 msgid "Greetings in raw body %d"
 msgstr ""
 
-#: src/Controller/Module/IndexController.php:30
+#: src/Controller/Module/IndexController.php:29
 msgid "Admin area"
 msgstr ""
 
-#: src/Form/AccountForm.php:47 src/Form/MemberForm.php:59
+#: src/Form/AccountForm.php:46 src/Form/MemberForm.php:59
 #: src/Form/RegisterForm.php:32
 msgid "User account"
 msgstr ""
 
-#: src/Form/AccountForm.php:58 src/Form/MemberForm.php:70
+#: src/Form/AccountForm.php:57 src/Form/MemberForm.php:70
 #: src/Form/RegisterForm.php:43
 msgid "Display name"
 msgstr ""
 
-#: src/Form/AccountForm.php:69
+#: src/Form/AccountForm.php:68
 msgid "Birthdate"
 msgstr ""
 
-#: src/Form/AccountForm.php:93 src/Form/BlockModuleForm.php:259
-#: src/Form/ConfigForm.php:58 src/Form/MemberForm.php:157
-#: src/Form/ModuleForm.php:58 src/Form/NavForm.php:67
-#: src/Form/NavPageForm.php:131 src/Form/PageAddForm.php:93
-#: src/Form/PageEditForm.php:68 src/Form/RegisterForm.php:108
-#: src/Form/ResetPasswordForm.php:73 src/Form/RoleForm.php:115
-#: template/admin/cache-list.phtml:49
+#: src/Form/AccountForm.php:92 src/Form/BlockModuleForm.php:259
+#: src/Form/ConfigForm.php:56 src/Form/MemberForm.php:157
+#: src/Form/ModuleForm.php:57 src/Form/NavForm.php:66
+#: src/Form/NavPageForm.php:130 src/Form/PageAddForm.php:92
+#: src/Form/PageEditForm.php:67 src/Form/ResetPasswordForm.php:72
+#: src/Form/RoleForm.php:115 template/admin/cache-list.phtml:50
 msgid "Submit"
 msgstr ""
 
-#: src/Form/BlockModuleForm.php:66 src/Form/ModuleForm.php:40
-#: src/Form/NavForm.php:40 src/Form/PageAddForm.php:45 src/Form/RoleForm.php:54
+#: src/Form/BlockModuleForm.php:66 src/Form/ModuleForm.php:39
+#: src/Form/NavForm.php:39 src/Form/PageAddForm.php:44 src/Form/RoleForm.php:54
 msgid "Title"
 msgstr ""
 
@@ -291,8 +291,8 @@ msgstr ""
 msgid "Display block body in full-size w/o padding."
 msgstr ""
 
-#: src/Form/BlockModuleForm.php:99 src/Form/ModuleForm.php:30
-#: src/Form/NavForm.php:30
+#: src/Form/BlockModuleForm.php:99 src/Form/ModuleForm.php:29
+#: src/Form/NavForm.php:29
 msgid "Unique name"
 msgstr ""
 
@@ -336,11 +336,11 @@ msgstr ""
 msgid "Configs"
 msgstr ""
 
-#: src/Form/Element/Controller.php:53 src/Form/NavPageForm.php:78
+#: src/Form/Element/Controller.php:54 src/Form/NavPageForm.php:77
 msgid "None"
 msgstr ""
 
-#: src/Form/LoginForm.php:82
+#: src/Form/LoginForm.php:112
 msgid "Remember login status"
 msgstr ""
 
@@ -348,12 +348,12 @@ msgstr ""
 msgid "Email address"
 msgstr ""
 
-#: src/Form/MemberForm.php:93 src/Form/ResetPasswordForm.php:42
+#: src/Form/MemberForm.php:93 src/Form/ResetPasswordForm.php:41
 msgid "New password"
 msgstr ""
 
 #: src/Form/MemberForm.php:101 src/Form/RegisterForm.php:76
-#: src/Form/ResetPasswordForm.php:52
+#: src/Form/ResetPasswordForm.php:51
 msgid "Confirm password"
 msgstr ""
 
@@ -369,76 +369,80 @@ msgstr ""
 msgid "Active"
 msgstr ""
 
-#: src/Form/NavPageForm.php:30
+#: src/Form/NavPageForm.php:29
 msgid "Label"
 msgstr ""
 
-#: src/Form/NavPageForm.php:37
+#: src/Form/NavPageForm.php:36
 msgid "Route"
 msgstr ""
 
-#: src/Form/NavPageForm.php:40
+#: src/Form/NavPageForm.php:39
 msgid "Route to assemble URI."
 msgstr ""
 
-#: src/Form/NavPageForm.php:47
+#: src/Form/NavPageForm.php:46
 msgid "Module"
 msgstr ""
 
-#: src/Form/NavPageForm.php:54 src/Form/PageAddForm.php:63
+#: src/Form/NavPageForm.php:53 src/Form/PageAddForm.php:62
 msgid "Controller"
 msgstr ""
 
-#: src/Form/NavPageForm.php:61 src/Form/PageAddForm.php:72
+#: src/Form/NavPageForm.php:60 src/Form/PageAddForm.php:71
 msgid "Action"
 msgstr ""
 
-#: src/Form/NavPageForm.php:68
+#: src/Form/NavPageForm.php:67
 msgid "URI"
 msgstr ""
 
-#: src/Form/NavPageForm.php:76
+#: src/Form/NavPageForm.php:75
 msgid "Open target"
 msgstr ""
 
-#: src/Form/NavPageForm.php:79
+#: src/Form/NavPageForm.php:78
 msgid "Current window"
 msgstr ""
 
-#: src/Form/NavPageForm.php:80
+#: src/Form/NavPageForm.php:79
 msgid "Open a new window"
 msgstr ""
 
-#: src/Form/NavPageForm.php:88
+#: src/Form/NavPageForm.php:87
 msgid "Permission resource"
 msgstr ""
 
-#: src/Form/NavPageForm.php:92
+#: src/Form/NavPageForm.php:91
 msgid "The resource identity for permission check."
 msgstr ""
 
-#: src/Form/NavPageForm.php:100
+#: src/Form/NavPageForm.php:99
 msgid "Display"
 msgstr ""
 
-#: src/Form/NavPageForm.php:103
+#: src/Form/NavPageForm.php:102
 msgid "To display in menu."
 msgstr ""
 
-#: src/Form/PageEditForm.php:31
+#: src/Form/PageEditForm.php:30
 msgid "Cache type"
 msgstr ""
 
-#: src/Form/PageEditForm.php:35
+#: src/Form/PageEditForm.php:34
 msgid "Page wide"
 msgstr ""
 
-#: src/Form/PageEditForm.php:36
+#: src/Form/PageEditForm.php:35
 msgid "Action data"
 msgstr ""
 
 #: src/Form/RegisterForm.php:89
 msgid "Please type the word."
+msgstr ""
+
+#: src/Form/RegisterForm.php:108
+msgid "Registration"
 msgstr ""
 
 #: src/Form/RoleForm.php:65
@@ -473,7 +477,7 @@ msgstr ""
 msgid "Setup page"
 msgstr ""
 
-#: src/Validator/ActionAvailable.php:31
+#: src/Validator/ActionAvailable.php:30
 msgid "The action is not available."
 msgstr ""
 
@@ -481,15 +485,15 @@ msgstr ""
 msgid "Block name already exists"
 msgstr ""
 
-#: src/Validator/ControllerAvailable.php:31
+#: src/Validator/ControllerAvailable.php:30
 msgid "The controller is not available."
 msgstr ""
 
-#: src/Validator/ModuleName.php:47
+#: src/Validator/ModuleName.php:48
 msgid "Module name is reserved"
 msgstr ""
 
-#: src/Validator/ModuleName.php:48
+#: src/Validator/ModuleName.php:49
 msgid "Module name is already taken"
 msgstr ""
 
@@ -517,52 +521,61 @@ msgstr ""
 msgid "Role name is already taken"
 msgstr ""
 
-#: src/Validator/UserEmail.php:48
+#: src/Validator/UserEmail.php:49
 msgid "User email is reserved"
 msgstr ""
 
-#: src/Validator/UserEmail.php:49
+#: src/Validator/UserEmail.php:50
 msgid "User email is already used"
 msgstr ""
 
-#: src/Validator/Username.php:80
+#: src/Validator/Username.php:83
 msgid "Invalid username: %formatHint%"
 msgstr ""
 
-#: src/Validator/Username.php:81
+#: src/Validator/Username.php:84
 msgid "Username is reserved"
 msgstr ""
 
-#: src/Validator/Username.php:82
+#: src/Validator/Username.php:85
 msgid "Username is already taken"
 msgstr ""
 
-#: src/Validator/Username.php:86
+#: src/Validator/Username.php:89
 msgid "Only alphabetic and digits are allowed"
 msgstr ""
 
-#: src/Validator/Username.php:87
+#: src/Validator/Username.php:90
 msgid "Only alphabetic, digits and spaces are allowed"
 msgstr ""
 
-#: src/Validator/Username.php:88
+#: src/Validator/Username.php:91
 msgid "Only ASCII characters are allowed"
 msgstr ""
 
-#: src/Validator/Username.php:89
+#: src/Validator/Username.php:92
 msgid "Only ASCII characters and spaces are allowed"
 msgstr ""
 
-#: src/Validator/Username.php:90
+#: src/Validator/Username.php:93
 msgid "Only multi-byte characters are allowed"
 msgstr ""
 
-#: src/Validator/Username.php:91
+#: src/Validator/Username.php:94
 msgid "Only multi-byte characters and spaces are allowed"
 msgstr ""
 
-#: template/admin/cache-list.phtml:50
+#: template/admin/audit-index.phtml:48
+msgid "View"
+msgstr ""
+
+#: template/admin/cache-list.phtml:51
 msgid "Cancel"
+msgstr ""
+
+#: template/admin/database-check.phtml:10
+#: template/admin/database-index.phtml:10
+msgid "You can use this page tools for check some database integrity"
 msgstr ""
 
 #: template/admin/theme-customize.phtml:19
@@ -577,16 +590,13 @@ msgstr ""
 msgid "Rebuild"
 msgstr ""
 
-#: template/admin/theme-index.phtml:35
+#: template/admin/theme-index.phtml:42
 msgid "Customize"
 msgstr ""
 
-#: template/block/partial/login-register-modal.phtml:71
-msgid "Not already registered ?"
-msgstr ""
-
-#: template/block/partial/login-register-modal.phtml:91
-msgid "Already registered ?"
+#: template/block/user-bar.phtml:121 template/block/user-bar.phtml:124
+#: template/block/user-bar.phtml:346 template/block/user-bar.phtml:349
+msgid "My offer"
 msgstr ""
 
 #: template/front/login-disabled.phtml:5
@@ -620,6 +630,14 @@ msgstr ""
 msgid ""
 "You have been logged on with account <strong>%s</strong>, please %s to re-"
 "login."
+msgstr ""
+
+#: template/front/login-register-modal-ajax.phtml:30
+msgid "Not already registered ?"
+msgstr ""
+
+#: template/front/login-register-modal-ajax.phtml:51
+msgid "Already registered ?"
 msgstr ""
 
 #: template/front/login-success.phtml:6

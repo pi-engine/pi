@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2018-03-20 10:47+0330\n"
-"PO-Revision-Date: 2020-05-08 10:42+0430\n"
+"POT-Creation-Date: 2020-05-08 12:09+0430\n"
+"PO-Revision-Date: 2020-05-08 12:09+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -32,7 +32,7 @@ msgstr "ماژول `%s` از نصب خارج شد"
 #: src/Api/Event.php:53
 #, php-format
 msgid "The module `%s` is uninstalled successfully."
-msgstr "ماژول `%s` با موفقیت از نصب خارج شد"
+msgstr "ماژول `%s` با موفقیت از نصب خارج شد."
 
 #: src/Api/Event.php:71
 #, php-format
@@ -42,7 +42,7 @@ msgstr "ماژول `%s` به روز شد"
 #: src/Api/Event.php:73
 #, php-format
 msgid "The module `%s` is updated successfully."
-msgstr "ماژول `%s` با موفقیت به روز شد"
+msgstr "ماژول `%s` با موفقیت به روز شد."
 
 #: src/Api/Event.php:91
 #, php-format
@@ -52,7 +52,7 @@ msgstr "ماژول `%s` فعال شد"
 #: src/Api/Event.php:93
 #, php-format
 msgid "The module `%s` is activated successfully."
-msgstr "ماژول `%s` با موفقیت فعال شد"
+msgstr "ماژول `%s` با موفقیت فعال شد."
 
 #: src/Api/Event.php:111
 #, php-format
@@ -62,7 +62,7 @@ msgstr "ماژول `%s` غیرفعال شد"
 #: src/Api/Event.php:113
 #, php-format
 msgid "The module %s is deactivated successfully."
-msgstr "ماژول `%s` با موفقیت غیر فعال شد"
+msgstr "ماژول `%s` با موفقیت غیر فعال شد."
 
 #: src/Controller/Admin/LoginController.php:58
 msgid "Admin login"
@@ -70,11 +70,11 @@ msgstr "ورود مدیر"
 
 #: src/Controller/Admin/ThemeController.php:332
 msgid "Bootstrap compiled successfully."
-msgstr "بوت استرپ با موفقیت نصب شد"
+msgstr "بوت استرپ با موفقیت نصب شد."
 
 #: src/Controller/Admin/ThemeController.php:375
 msgid "Bootstrap reset successfully."
-msgstr "بوت استرپ با موفقیت بازیابی شد"
+msgstr "بوت استرپ با موفقیت بازیابی شد."
 
 #: src/Controller/Feed/IndexController.php:32
 msgid "What's new"
@@ -82,14 +82,14 @@ msgstr "تازه ها"
 
 #: src/Controller/Feed/IndexController.php:33
 msgid "Recent module feeds."
-msgstr "خوراک جدید ماژول ها"
+msgstr "خوراک جدید ماژول ها."
 
 #: src/Controller/Feed/IndexController.php:45
 #, php-format
 msgid "Resent feeds of %s module"
 msgstr "خوراک های جدید ماژول %s"
 
-#: src/Controller/Front/LoginController.php:71
+#: src/Controller/Front/LoginController.php:85
 #, php-format
 msgid ""
 "Login with the account is suspended,\n"
@@ -98,57 +98,54 @@ msgstr ""
 "با حساب کاربری وارد شده اید که مسدود است,\n"
 "لطفا برای %d دقیقه صبر کنید و مجددا تلاش کنید."
 
-#: src/Controller/Front/LoginController.php:80
+#: src/Controller/Front/LoginController.php:94
 #, php-format
 msgid "You have %d times to try."
-msgstr "شما میتوانید %d بار دیگر تلاش کنید"
+msgstr "شما میتوانید %d بار دیگر تلاش کنید."
 
-#: src/Controller/Front/LoginController.php:88
+#: src/Controller/Front/LoginController.php:102
 #: template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr "ورود کاربر"
 
-#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:119
-#: template/block/partial/login-register-modal.phtml:55
-#: template/block/partial/login-register-modal.phtml:68
-#: template/block/partial/login-register-modal.phtml:99
-#: template/block/partial/login-register-modal.phtml:100
-#: template/front/login-logout.phtml:14 template/front/register.phtml:8
+#: src/Controller/Front/LoginController.php:107 src/Form/LoginForm.php:153
+#: template/front/login-logout.phtml:14
+#: template/front/login-register-modal-ajax.phtml:8
+#: template/front/login-register-modal-ajax.phtml:23
+#: template/front/login-register-modal-ajax.phtml:54
+#: template/front/login-register-modal-ajax.phtml:55
+#: template/front/register.phtml:8
 msgid "Login"
 msgstr "ورود"
 
-#: src/Controller/Front/LoginController.php:94
+#: src/Controller/Front/LoginController.php:108
 msgid ""
 "Use this page to connect to our website and participate, share contents, use "
 "our features, and interacts with other members"
 msgstr ""
 "برای ورود به وب سایت ما از این صفحه استفاده نمایید بعد از مرود می تواند "
 "مطالب مختلف را به اشتراک بگذارید و از امکانات ما استفاده کرده و با دیگر "
-"کاربران در ارتباط باشید."
+"کاربران در ارتباط باشید"
 
-#: src/Controller/Front/LoginController.php:115
+#: src/Controller/Front/LoginController.php:129
 msgid "Invalid request."
-msgstr "درخواست اشتباه"
+msgstr "درخواست اشتباه."
 
-#: src/Controller/Front/LoginController.php:159
+#: src/Controller/Front/LoginController.php:177
 msgid "You have tried too many times. Please try later."
-msgstr "شما دفعات زیادی تلاش کردید. لطفا بعدا امتحان کنید"
+msgstr "شما دفعات زیادی تلاش کردید. لطفا بعدا امتحان کنید."
 
-#: src/Controller/Front/LoginController.php:183
+#: src/Controller/Front/LoginController.php:201
 msgid "Invalid credentials provided, please try again."
 msgstr "Invalid credentials provided, please try again."
 
-#: src/Controller/Front/LoginController.php:225
-msgid "You have logged in successfully."
-msgstr "شما با موفقیت وارد شدید"
-
-#: src/Controller/Front/LoginController.php:255
+#: src/Controller/Front/LoginController.php:275
 msgid "You logged out successfully."
-msgstr "شما با موفقیت خارج شدید"
+msgstr "شما با موفقیت خارج شدید."
 
 #: src/Controller/Front/PasswordController.php:50
 msgid "Find password failed."
-msgstr "بازیابی رمز عبور موفقیت آمیز نبود"
+msgstr "بازیابی رمز عبور موفقیت آمیز نبود."
 
 #: src/Controller/Front/PasswordController.php:118
 msgid ""
@@ -160,20 +157,20 @@ msgstr ""
 #: src/Controller/Front/PasswordController.php:127
 #: src/Controller/Front/PasswordController.php:128
 #: src/Form/FindPasswordForm.php:49
-#: template/block/partial/login-register-modal.phtml:71
-#: template/block/partial/login-register-modal.phtml:72
-#: template/front/login.phtml:17 template/front/password-find.phtml:2
+#: template/front/login-register-modal-ajax.phtml:26
+#: template/front/login-register-modal-ajax.phtml:27
+#: template/front/login.phtml:20 template/front/password-find.phtml:2
 #: template/front/register.phtml:6
 msgid "Find password"
 msgstr "بازیابی رمز عبور"
 
 #: src/Controller/Front/PasswordController.php:146
 msgid "Invalid token for password reset."
-msgstr "توکن نا معتبر برای بازیابی رمز عبور"
+msgstr "توکن نا معتبر برای بازیابی رمز عبور."
 
 #: src/Controller/Front/PasswordController.php:200
 msgid "Password reset successfully."
-msgstr "رمز عبور با موفقیت بازیابی شد"
+msgstr "رمز عبور با موفقیت بازیابی شد."
 
 #: src/Controller/Front/ProfileController.php:47
 msgid "Change password"
@@ -193,7 +190,7 @@ msgid "Username"
 msgstr "نام کاربری"
 
 #: src/Controller/Front/ProfileController.php:59
-#: src/Form/FindPasswordForm.php:28
+#: src/Form/FindPasswordForm.php:28 src/Form/LoginForm.php:56
 msgid "Email"
 msgstr "ایمیل"
 
@@ -205,8 +202,8 @@ msgstr "نام"
 msgid "Role"
 msgstr "نقش"
 
-#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:61
-#: src/Form/RegisterForm.php:65
+#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:67
+#: src/Form/LoginForm.php:86 src/Form/RegisterForm.php:65
 msgid "Password"
 msgstr "رمز عبور"
 
@@ -216,28 +213,29 @@ msgstr "رمز عبور"
 msgid "User profile"
 msgstr "پروفایل کاربر"
 
-#: src/Controller/Front/RegisterController.php:49
-#: src/Controller/Front/RegisterController.php:53
+#: src/Controller/Front/RegisterController.php:58
+#: src/Controller/Front/RegisterController.php:62
 msgid "User account register"
 msgstr "ایجاد حساب کاربری"
 
-#: src/Controller/Front/RegisterController.php:52
-#: src/Controller/Front/RegisterController.php:113
-#: template/block/partial/login-register-modal.phtml:57
-#: template/block/partial/login-register-modal.phtml:78
-#: template/block/partial/login-register-modal.phtml:79
-#: template/block/partial/login-register-modal.phtml:92
-#: template/front/login-logout.phtml:16 template/front/login.phtml:20
+#: src/Controller/Front/RegisterController.php:61
+#: src/Controller/Front/RegisterController.php:122
+#: template/front/login-logout.phtml:16
+#: template/front/login-register-modal-ajax.phtml:10
+#: template/front/login-register-modal-ajax.phtml:33
+#: template/front/login-register-modal-ajax.phtml:34
+#: template/front/login-register-modal-ajax.phtml:47
+#: template/front/login.phtml:23
 msgid "Register"
 msgstr "ثبت نام"
 
-#: src/Controller/Front/RegisterController.php:83
+#: src/Controller/Front/RegisterController.php:92
 msgid "Invalid input, please try again."
-msgstr "ورودی اشتباه، لطفا دوباره تلاش کنید"
+msgstr "ورودی اشتباه، لطفا دوباره تلاش کنید."
 
-#: src/Controller/Front/RegisterController.php:102
+#: src/Controller/Front/RegisterController.php:111
 msgid "The account is not created in database, please try again."
-msgstr "حساب کاربری در دیتابیس ذخیره نشد. لطفا دوباره تلاش کنید"
+msgstr "حساب کاربری در دیتابیس ذخیره نشد. لطفا دوباره تلاش کنید."
 
 #: src/Controller/Front/TestController.php:49
 msgid "site name"
@@ -270,9 +268,8 @@ msgstr "تاریخ تولد"
 #: src/Form/ConfigForm.php:56 src/Form/MemberForm.php:157
 #: src/Form/ModuleForm.php:57 src/Form/NavForm.php:66
 #: src/Form/NavPageForm.php:130 src/Form/PageAddForm.php:92
-#: src/Form/PageEditForm.php:67 src/Form/RegisterForm.php:108
-#: src/Form/ResetPasswordForm.php:72 src/Form/RoleForm.php:115
-#: template/admin/cache-list.phtml:50
+#: src/Form/PageEditForm.php:67 src/Form/ResetPasswordForm.php:72
+#: src/Form/RoleForm.php:115 template/admin/cache-list.phtml:50
 msgid "Submit"
 msgstr "ارسال"
 
@@ -283,7 +280,7 @@ msgstr "عنوان"
 
 #: src/Form/BlockModuleForm.php:70
 msgid "Block label for display."
-msgstr "عنوان بلاک برای نمایش"
+msgstr "عنوان بلاک برای نمایش."
 
 #: src/Form/BlockModuleForm.php:78
 msgid "Hide title"
@@ -291,7 +288,7 @@ msgstr "مخفی کردن عنوان"
 
 #: src/Form/BlockModuleForm.php:81
 msgid "Hide block title from display."
-msgstr "مخفی کردن عنوان برای نمایش"
+msgstr "مخفی کردن عنوان برای نمایش."
 
 #: src/Form/BlockModuleForm.php:89
 msgid "Full-size body"
@@ -299,7 +296,7 @@ msgstr "بنده تمام اندازه"
 
 #: src/Form/BlockModuleForm.php:92
 msgid "Display block body in full-size w/o padding."
-msgstr "نمایش بنده بلاک در اندازه کامل بدون پدینگ"
+msgstr "نمایش بنده بلاک در اندازه کامل بدون پدینگ."
 
 #: src/Form/BlockModuleForm.php:99 src/Form/ModuleForm.php:29
 #: src/Form/NavForm.php:29
@@ -308,13 +305,13 @@ msgstr "شناسه یکتا"
 
 #: src/Form/BlockModuleForm.php:103
 msgid "A unique name to be called as widget."
-msgstr "نام یکتا برای فراخوانی به صورت ویجت"
+msgstr "نام یکتا برای فراخوانی به صورت ویجت."
 
 #: src/Form/BlockModuleForm.php:111
 msgid "PHTML rendering template, file extension is optional."
 msgstr ""
 "الگوی PHTML ، پسوند فایل انتخابی است. شما میتوانید آن را در قالب یا ماژول یا "
-"ماژول کاستوم قرار دهید"
+"ماژول کاستوم قرار دهید."
 
 #: src/Form/BlockModuleForm.php:126
 msgid "Template"
@@ -326,7 +323,7 @@ msgstr "توضیحات"
 
 #: src/Form/BlockModuleForm.php:145
 msgid "Set a hint to distinguish the block."
-msgstr "تنظیم توضیحات مربوط به بلاک"
+msgstr "تنظیم توضیحات مربوط به بلاک."
 
 #: src/Form/BlockModuleForm.php:152
 msgid "Subline"
@@ -334,7 +331,7 @@ msgstr "زیر خط"
 
 #: src/Form/BlockModuleForm.php:156
 msgid "Header subline. HTML is allowed."
-msgstr "هدر زیر خط ، HTML مجاز است"
+msgstr "هدر زیر خط ، HTML مجاز است."
 
 #: src/Form/BlockModuleForm.php:163
 msgid "Style class"
@@ -342,7 +339,7 @@ msgstr "کلاس سی اس اس"
 
 #: src/Form/BlockModuleForm.php:167
 msgid "Specified block container CSS class."
-msgstr "نام کلاس سی اس اس مخصوص این بلاک"
+msgstr "نام کلاس سی اس اس مخصوص این بلاک."
 
 #: src/Form/BlockModuleForm.php:191
 msgid "Configs"
@@ -352,7 +349,7 @@ msgstr "تنظیمات"
 msgid "None"
 msgstr "هیچ"
 
-#: src/Form/LoginForm.php:82
+#: src/Form/LoginForm.php:112
 msgid "Remember login status"
 msgstr "وضعیت ورود را به یاد داشته باش"
 
@@ -391,7 +388,7 @@ msgstr "روتر"
 
 #: src/Form/NavPageForm.php:39
 msgid "Route to assemble URI."
-msgstr "روتر برای ایجاد آدرس"
+msgstr "روتر برای ایجاد آدرس."
 
 #: src/Form/NavPageForm.php:46
 msgid "Module"
@@ -427,7 +424,7 @@ msgstr "منبع دسترسی"
 
 #: src/Form/NavPageForm.php:91
 msgid "The resource identity for permission check."
-msgstr "هویت منبع دسترسی برای بررسی"
+msgstr "هویت منبع دسترسی برای بررسی."
 
 #: src/Form/NavPageForm.php:99
 msgid "Display"
@@ -435,7 +432,7 @@ msgstr "نمایش"
 
 #: src/Form/NavPageForm.php:102
 msgid "To display in menu."
-msgstr "برای نمایش در منو"
+msgstr "برای نمایش در منو."
 
 #: src/Form/PageEditForm.php:30
 msgid "Cache type"
@@ -451,7 +448,11 @@ msgstr "داده های اکشن"
 
 #: src/Form/RegisterForm.php:89
 msgid "Please type the word."
-msgstr "لطفا این عبارت را وارد کنید"
+msgstr "لطفا این عبارت را وارد کنید."
+
+#: src/Form/RegisterForm.php:108
+msgid "Registration"
+msgstr "ثبت نام"
 
 #: src/Form/RoleForm.php:65
 msgid "Section"
@@ -487,7 +488,7 @@ msgstr "نصب صفحه"
 
 #: src/Validator/ActionAvailable.php:30
 msgid "The action is not available."
-msgstr "این اکشن در دسترس نیست"
+msgstr "این اکشن در دسترس نیست."
 
 #: src/Validator/BlockNameDuplicate.php:31
 msgid "Block name already exists"
@@ -495,7 +496,7 @@ msgstr "این نام برای بلاک قبلا گرفته شده است"
 
 #: src/Validator/ControllerAvailable.php:30
 msgid "The controller is not available."
-msgstr "این کنترولر در دسترس نیست"
+msgstr "این کنترولر در دسترس نیست."
 
 #: src/Validator/ModuleName.php:48
 msgid "Module name is reserved"
@@ -573,6 +574,10 @@ msgstr "فقط کاراکترهای مالتی بایت مجاز است"
 msgid "Only multi-byte characters and spaces are allowed"
 msgstr "فقط کاراکترهای مالتی بایت و اسپیس مجاز است"
 
+#: template/admin/audit-index.phtml:48
+msgid "View"
+msgstr "مشاهده"
+
 #: template/admin/cache-list.phtml:51
 msgid "Cancel"
 msgstr "لغو"
@@ -595,29 +600,18 @@ msgstr "کامپایل"
 msgid "Rebuild"
 msgstr "دوباره سازی"
 
-#: template/admin/theme-index.phtml:41
+#: template/admin/theme-index.phtml:42
 msgid "Customize"
 msgstr "شخصی سازی"
 
-#: template/block/partial/login-register-modal.phtml:75
-msgid "Not already registered ?"
-msgstr "تا کنون ثبت نام نکرده اید؟"
-
-#: template/block/partial/login-register-modal.phtml:96
-msgid "Already registered ?"
-msgstr "قبلا ثبت نام کرده اید؟"
-
-#: template/block/user-bar.phtml:40
-msgid "Welcome"
-msgstr "خوش آمدید"
-
-#: template/block/user-bar.phtml:114 template/block/user-bar.phtml:117
+#: template/block/user-bar.phtml:121 template/block/user-bar.phtml:124
+#: template/block/user-bar.phtml:346 template/block/user-bar.phtml:349
 msgid "My offer"
 msgstr "پیشنهاد های من"
 
 #: template/front/login-disabled.phtml:5
 msgid "Sorry, login is temporarily disabled. Please come back later."
-msgstr "متاسفانه ورود کاربران موقتا ممکن نیست. لطفا بعدا مراجعه کنید"
+msgstr "متاسفانه ورود کاربران موقتا ممکن نیست. لطفا بعدا مراجعه کنید."
 
 #: template/front/login-logout.phtml:5 template/front/login-success.phtml:5
 #: template/front/register-success.phtml:5
@@ -650,10 +644,18 @@ msgstr ""
 "شما با حساب کاربری <strong>%s</strong> وارد شدید. لطفا برای ورود مجدد %s "
 "کنید."
 
+#: template/front/login-register-modal-ajax.phtml:30
+msgid "Not already registered ?"
+msgstr "تا کنون ثبت نام نکرده اید؟"
+
+#: template/front/login-register-modal-ajax.phtml:51
+msgid "Already registered ?"
+msgstr "قبلا ثبت نام کرده اید؟"
+
 #: template/front/login-success.phtml:6
 #, php-format
 msgid "You have logged in successfully, please go to %s."
-msgstr "شما با موفقیت وارد شدید. لطفا به %s مراجعه کنید"
+msgstr "شما با موفقیت وارد شدید. لطفا به %s مراجعه کنید."
 
 #: template/front/password-process.phtml:1
 msgid "Reset password"
@@ -665,11 +667,11 @@ msgstr "دوباره برای بازیابی رمز عبور تلاش کنید"
 
 #: template/front/password-process.phtml:13
 msgid "Congratulations!"
-msgstr "تبریک می گوییم"
+msgstr "تبریک می گوییم!"
 
 #: template/front/password-process.phtml:14
 msgid "Your new password has worked"
-msgstr "رمز عبور جدید شما کار می کند."
+msgstr "رمز عبور جدید شما کار می کند"
 
 #: template/front/password-process.phtml:16
 msgid "Please login"
@@ -681,7 +683,7 @@ msgstr "ثبت حساب کاربری"
 
 #: template/front/register-disabled.phtml:5
 msgid "Sorry, register is temporarily disabled. Please come back later."
-msgstr "متاسفانه ایجاد حساب کاربری موقتا غیر فعال است. لطفا بعدا مراجعه کنید"
+msgstr "متاسفانه ایجاد حساب کاربری موقتا غیر فعال است. لطفا بعدا مراجعه کنید."
 
 #: template/front/register-success.phtml:8
 msgid "login"
@@ -690,7 +692,13 @@ msgstr "ورود"
 #: template/front/register-success.phtml:9
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
-msgstr "حساب کاربری شما با موفقیت ایجاد شد. لطفا به %s یا %s مراجعه کنید"
+msgstr "حساب کاربری شما با موفقیت ایجاد شد. لطفا به %s یا %s مراجعه کنید."
+
+#~ msgid "You have logged in successfully."
+#~ msgstr "شما با موفقیت وارد شدید"
+
+#~ msgid "Welcome"
+#~ msgstr "خوش آمدید"
 
 #~ msgid "Recent module updates."
 #~ msgstr "آخرین به روز رسانی ماژول ها"
