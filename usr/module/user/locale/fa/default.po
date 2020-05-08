@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2020-05-05 10:05+0430\n"
-"PO-Revision-Date: 2020-05-06 19:35+0430\n"
+"POT-Creation-Date: 2020-05-08 11:45+0430\n"
+"PO-Revision-Date: 2020-05-08 11:46+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: config/config.php:669 config/config.php:697 config/config.php:725
-#: config/config.php:753
+#: config/config.php:678 config/config.php:706 config/config.php:734
+#: config/config.php:762
 #, php-format
 msgid "Callback urls is : %s"
 msgstr "آدرس کال بک :‌%s"
@@ -677,15 +677,16 @@ msgstr "ایمیل فعال سازی با موفقیت ارسال شد."
 msgid "Activation mail was not sent."
 msgstr "ایمیل فعال سازی ارسال نشد."
 
-#: src/Controller/Front/RegisterController.php:574
+#: src/Controller/Front/RegisterController.php:575
 msgid "User information was not completed and user account was not saved."
 msgstr "اطلاعات کاربری تکمیل نشده است و حساب کاربری در سیستم ثبت نشده است."
 
-#: src/Controller/Front/RegisterController.php:606
+#: src/Controller/Front/RegisterController.php:607
 msgid "User account was not saved."
 msgstr "حساب کاربری ذخیره نشد."
 
-#: src/Controller/Front/RegisterController.php:634
+#: src/Controller/Front/RegisterController.php:635
+#: src/Controller/Front/RegisterController.php:679
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
@@ -693,7 +694,7 @@ msgstr ""
 "حساب کاربری با موفقیت ثبت شده است اما فعال سازی آن با موفقیت همراه نبوده "
 "است، لطفا با مدیر تماس بگیرید."
 
-#: src/Controller/Front/RegisterController.php:672
+#: src/Controller/Front/RegisterController.php:673
 msgid "Account activation email was not able to send, please contact admin."
 msgstr "ناتوان در ارسال ایمیل فعال سازی، با مدیرتماس بگیرید."
 
@@ -1050,7 +1051,7 @@ msgstr "ویرایش کاربر"
 #: template/front/account-reset-email.phtml:4
 #: template/front/password-process.phtml:18
 #: template/front/register-index.phtml:82
-#: template/front/register-index.phtml:114
+#: template/front/register-index.phtml:121
 msgid "Congratulations!"
 msgstr "تبریک می گویم!"
 
@@ -1558,13 +1559,14 @@ msgid ""
 "Your account has been confirmed and is now active : you can log in... and "
 "contribute !"
 msgstr ""
+"حساب کاربری شما تایید شد و هم اکنون فعال است، می توانید به سامانه وارد شوید !"
 
 #: template/front/register-activate.phtml:10
 msgid "Login right now."
 msgstr "هم اکنون وارد شوید."
 
 #: template/front/register-activate.phtml:16
-#: template/front/register-index.phtml:94
+#: template/front/register-index.phtml:99
 #, php-format
 msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
 msgstr "یا مستقیم به <a href=\"%s\">صفحه مورد نظر</a> برگردید."
@@ -1591,12 +1593,16 @@ msgstr ""
 "حساب کاربری شما با موفقیت ایجاد شد. لطفا به حساب کاربری خود <a href=\"%s"
 "\">وارد شوید</a>."
 
-#: template/front/register-index.phtml:104
-#: template/front/register-index.phtml:123
+#: template/front/register-index.phtml:92
+msgid "Go to login page"
+msgstr "برو به صفحه ورود"
+
+#: template/front/register-index.phtml:109
+#: template/front/register-index.phtml:132
 msgid "Registration was not completed."
 msgstr "ثبت نام تکمیل نشد."
 
-#: template/front/register-index.phtml:117
+#: template/front/register-index.phtml:125
 msgid ""
 "You account has been registered successfully. However it needs to be "
 "approved by our admins before you can use it."
@@ -1604,37 +1610,37 @@ msgstr ""
 "حساب کاربری شما با موفقیت ایجاد شد. ولی برای فعال شدن به تایید مدیر وب سایت "
 "نیاز دارد تا بتوانید از وب سایت استفاده کنید."
 
-#: template/front/register-index.phtml:133
+#: template/front/register-index.phtml:144
 msgid "An email with activation link has been sent to you."
 msgstr "یک ایمیل با لینک فعال سازی حساب کاربری برای شما ارسال شد."
 
-#: template/front/register-index.phtml:134
+#: template/front/register-index.phtml:145
 msgid "Email used"
 msgstr "ایمیل"
 
-#: template/front/register-index.phtml:135
+#: template/front/register-index.phtml:146
 msgid "Please check it to finish the registration."
 msgstr ""
 "لطفا ایمیل خود را بررسی کنید و از طریق متن راهنمای داخل آن ثبت نام خود را "
 "تکمیل کنید."
 
-#: template/front/register-index.phtml:140
+#: template/front/register-index.phtml:151
 msgid "You did not receive the activation email?"
 msgstr "آیا شما ایمیل فعال سازی را دریافت نکرده اید‌ ؟"
 
-#: template/front/register-index.phtml:142
+#: template/front/register-index.phtml:153
 msgid "Wait a few minutes and check again."
 msgstr "چند دقیقه صبر کنید و مجددا بررسی کنید."
 
-#: template/front/register-index.phtml:143
+#: template/front/register-index.phtml:154
 msgid "Check your email spam box."
 msgstr "بخش اسپم ایمیل خود را بررسی کنید."
 
-#: template/front/register-index.phtml:146
+#: template/front/register-index.phtml:157
 msgid "Request to resend activation email"
 msgstr "درخواست ارسال مجددا ایمیل فعال سازی"
 
-#: template/front/register-index.phtml:183
+#: template/front/register-index.phtml:194
 msgid "Already sent"
 msgstr "قبلا ارسال شده است"
 
