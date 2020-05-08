@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
 "POT-Creation-Date: 2018-03-20 10:47+0330\n"
-"PO-Revision-Date: 2018-03-20 10:48+0330\n"
+"PO-Revision-Date: 2020-05-08 10:42+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -22,7 +22,7 @@ msgstr "ماژول `%s` نصب شد"
 #: src/Api/Event.php:33
 #, php-format
 msgid "The module `%s` is installed successfully."
-msgstr "ماژول `%s` با موفقیت نصب شد"
+msgstr "ماژول `%s` با موفقیت نصب شد."
 
 #: src/Api/Event.php:51
 #, php-format
@@ -148,13 +148,13 @@ msgstr "شما با موفقیت خارج شدید"
 
 #: src/Controller/Front/PasswordController.php:50
 msgid "Find password failed."
-msgstr "یافتن کلمه عبور موفقیت آمیز نبود"
+msgstr "بازیابی رمز عبور موفقیت آمیز نبود"
 
 #: src/Controller/Front/PasswordController.php:118
 msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr ""
-"ایمیل تایید با موفقیت ارسال شد. لطفا ایمیل را بررسی کنید و کلمه عبور را "
+"ایمیل تایید با موفقیت ارسال شد. لطفا ایمیل را بررسی کنید و رمز عبور را "
 "بازیابی کنید."
 
 #: src/Controller/Front/PasswordController.php:127
@@ -165,19 +165,19 @@ msgstr ""
 #: template/front/login.phtml:17 template/front/password-find.phtml:2
 #: template/front/register.phtml:6
 msgid "Find password"
-msgstr "یافتن کلمه عبور"
+msgstr "بازیابی رمز عبور"
 
 #: src/Controller/Front/PasswordController.php:146
 msgid "Invalid token for password reset."
-msgstr "توکن نا معتبر برای بازیابی کلمه عبور"
+msgstr "توکن نا معتبر برای بازیابی رمز عبور"
 
 #: src/Controller/Front/PasswordController.php:200
 msgid "Password reset successfully."
-msgstr "کلمه عبور با موفقیت بازیابی شد"
+msgstr "رمز عبور با موفقیت بازیابی شد"
 
 #: src/Controller/Front/ProfileController.php:47
 msgid "Change password"
-msgstr "تعویض کلمه عبور"
+msgstr "تعویض رمز عبور"
 
 #: src/Controller/Front/ProfileController.php:54
 #: src/Controller/Front/ProfileController.php:63
@@ -208,7 +208,7 @@ msgstr "نقش"
 #: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:61
 #: src/Form/RegisterForm.php:65
 msgid "Password"
-msgstr "کلمه عبور"
+msgstr "رمز عبور"
 
 #: src/Controller/Front/ProfileController.php:67
 #: src/Controller/Front/ProfileController.php:75
@@ -362,12 +362,12 @@ msgstr "آدرس ایمیل"
 
 #: src/Form/MemberForm.php:93 src/Form/ResetPasswordForm.php:41
 msgid "New password"
-msgstr "کلمه عبور جدید"
+msgstr "رمز عبور جدید"
 
 #: src/Form/MemberForm.php:101 src/Form/RegisterForm.php:76
 #: src/Form/ResetPasswordForm.php:51
 msgid "Confirm password"
-msgstr "تایید کلمه عبور"
+msgstr "تایید رمز عبور"
 
 #: src/Form/MemberForm.php:110
 msgid "User role"
@@ -519,11 +519,11 @@ msgstr "این صفحه موجود است"
 
 #: src/Validator/Password.php:37
 msgid "Password is less than %min% characters long"
-msgstr "کلمه عبور کمتر از مقدار حداقل %min% کارکتر است"
+msgstr "رمز عبور کمتر از مقدار حداقل %min% کارکتر است"
 
 #: src/Validator/Password.php:38
 msgid "Password is more than %max% characters long"
-msgstr "کلمه عبور بیشتر از مقدار حداکثر %max% کارکتر است"
+msgstr "رمز عبور بیشتر از مقدار حداکثر %max% کارکتر است"
 
 #: src/Validator/RoleNameDuplicate.php:31
 msgid "Role name is already taken"
@@ -661,7 +661,7 @@ msgstr "بازیابی واژه رمز"
 
 #: template/front/password-process.phtml:8
 msgid "Try to find password again"
-msgstr "دوباره برای یافتن کلمه عبور تلاش کنید"
+msgstr "دوباره برای بازیابی رمز عبور تلاش کنید"
 
 #: template/front/password-process.phtml:13
 msgid "Congratulations!"
@@ -669,7 +669,7 @@ msgstr "تبریک می گوییم"
 
 #: template/front/password-process.phtml:14
 msgid "Your new password has worked"
-msgstr "کلمه عبور جدید شما کار می کند."
+msgstr "رمز عبور جدید شما کار می کند."
 
 #: template/front/password-process.phtml:16
 msgid "Please login"
@@ -708,10 +708,10 @@ msgstr "حساب کاربری شما با موفقیت ایجاد شد. لطفا
 #~ msgstr "سطح کَش"
 
 #~ msgid "Current password"
-#~ msgstr "کلمه عبور فعلی"
+#~ msgstr "رمز عبور فعلی"
 
 #~ msgid "login,register,find,password,user,account"
-#~ msgstr "ورود,ثبت نام,یافتن,کلمه عبور,کاربر,حساب کاربری"
+#~ msgstr "ورود,ثبت نام,یافتن,رمز عبور,کاربر,حساب کاربری"
 
 #, fuzzy
 #~ msgid "time"

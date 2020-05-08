@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
 "POT-Creation-Date: 2018-03-20 10:45+0330\n"
-"PO-Revision-Date: 2018-03-20 10:47+0330\n"
+"PO-Revision-Date: 2020-05-06 19:06+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -182,8 +182,7 @@ msgstr "پردازش متن"
 msgid "ReCaptcha"
 msgstr "ریکپچا"
 
-#: config/config.php:57 config/nav.admin.php:300
-#: template/admin/audit-index.phtml:10
+#: config/config.php:57 config/nav.admin.php:300 template/admin/audit-index.phtml:10
 msgid "Mailing"
 msgstr "ارسال میل"
 
@@ -337,19 +336,19 @@ msgstr "حدااکثر طول شناسه‌ی کاربر برای ثبت‌نا�
 
 #: config/config.php:231
 msgid "Minimum password"
-msgstr "کلمه عبور حداقل"
+msgstr "رمز عبور حداقل"
 
 #: config/config.php:232
 msgid "Minimum length of password for user registration"
-msgstr "حداکثر طول کلمه عبور در هنگام ثبت‌نام کاربر"
+msgstr "حداکثر طول رمز عبور در هنگام ثبت‌نام کاربر"
 
 #: config/config.php:239
 msgid "Maximum password"
-msgstr "حداکثر کلمه عبور"
+msgstr "حداکثر رمز عبور"
 
 #: config/config.php:240
 msgid "Maximum length of password for user registration"
-msgstr "حداکثر طول کلمه عبور در هنگام ثبت‌نام کاربر"
+msgstr "حداکثر طول رمز عبور در هنگام ثبت‌نام کاربر"
 
 #: config/config.php:247
 msgid "Username blacklist"
@@ -372,8 +371,8 @@ msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax "
 "is allowed."
 msgstr ""
-"فهرست شناسه‌های ممنوع. آن‌ها را با <strong>|</strong> از هم جدا کنید. .سینتکس "
-"ریجکس را می‌توان استفاده کرد."
+"فهرست شناسه‌های ممنوع. آن‌ها را با <strong>|</strong> از هم جدا کنید. .سینتکس ریجکس "
+"را می‌توان استفاده کرد."
 
 #: config/config.php:263 config/config.php:345
 msgid "Remember me"
@@ -391,13 +390,11 @@ msgstr "فیلد ورود"
 msgid "Identity field(s) for authentication."
 msgstr "فیلدها لازم برای شناسایی"
 
-#: config/config.php:280 config/config.php:362
-#: template/admin/member-index.phtml:27
+#: config/config.php:280 config/config.php:362 template/admin/member-index.phtml:27
 msgid "Username"
 msgstr "شناسه کاربری"
 
-#: config/config.php:281 config/config.php:363
-#: template/admin/member-index.phtml:29
+#: config/config.php:281 config/config.php:363 template/admin/member-index.phtml:29
 msgid "Email"
 msgstr "ایمیل"
 
@@ -475,11 +472,11 @@ msgstr "عنوان هدر برای صفحات وب سایت"
 
 #: config/config.php:429
 msgid ""
-"The keywords meta tag is a series of keywords that represents the content of "
-"your site. Separated keywords by a comma."
+"The keywords meta tag is a series of keywords that represents the content of your "
+"site. Separated keywords by a comma."
 msgstr ""
-"متا تگِ کلمات کلیدی مجموعه‌ای از کلمات کلیدی است که نماینده‌ی محتوای سایت هستند. "
-"این کلمات کلیدی را با ویرگول از هم جدا کنید."
+"متا تگِ کلمات کلیدی مجموعه‌ای از کلمات کلیدی است که نماینده‌ی محتوای سایت هستند. این "
+"کلمات کلیدی را با ویرگول از هم جدا کنید."
 
 #: config/config.php:437
 msgid ""
@@ -560,8 +557,8 @@ msgid ""
 "\"persian\" is suggested for Persian language. See http://www.php.net/manual/en/"
 "class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
 msgstr ""
-"برای زبان فارسی \"persian\" توصیه می‌شود. این آدرس را ببینید:  http://www.php."
-"net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants."
+"برای زبان فارسی \"persian\" توصیه می‌شود. این آدرس را ببینید:  http://www.php.net/"
+"manual/en/class.intldateformatter.php#intl.intldateformatter-constants."
 "calendartypes"
 
 #: config/config.php:493
@@ -681,8 +678,7 @@ msgid "Word to replace censored words"
 msgstr "کلمات مورد نظر برای جایگزینی کلمات سانسور شده"
 
 #: config/config.php:596
-msgid ""
-"Censored words will be replaced with the characters entered in this textbox"
+msgid "Censored words will be replaced with the characters entered in this textbox"
 msgstr ""
 "کلمات سانسور شده با کارکترهایی که در این باکس وارد می‌شوند، جایگزین خواهند شد"
 
@@ -741,11 +737,11 @@ msgstr "فقط عنوان صفحه"
 #: config/config.php:649
 msgid ""
 "The author meta tag defines the name of the author of the document being read. "
-"Supported data formats include the name, email address of the webmaster, "
-"company name or URL."
+"Supported data formats include the name, email address of the webmaster, company "
+"name or URL."
 msgstr ""
-"متا تگ نویسنده نام نویسنده‌ی مطلبی که در حال خوانده شدن است را مشخص می‌کند. "
-"قالب‌های قابل قبول شامل نام، آدرس ایمیل مدیر سایت، شرکت و یا آدرس سایت می‌شود."
+"متا تگ نویسنده نام نویسنده‌ی مطلبی که در حال خوانده شدن است را مشخص می‌کند. قالب‌های "
+"قابل قبول شامل نام، آدرس ایمیل مدیر سایت، شرکت و یا آدرس سایت می‌شود."
 
 #: config/config.php:657
 msgid "Generator of the document being read."
@@ -769,8 +765,8 @@ msgid ""
 "@PiEnable or leave it empty"
 msgstr ""
 "اگر وب سایت شما در تویتر حساب کاربری دارد ، برای استفاده از خدمات تویتر کارت ، "
-"نام کاربری حساب را وارد نمایید. قبل از نام کاربری حتما از @ استفاده کنید ، به "
-"طور مثال @PiEnable یا این گزینه را خالی بگذارید."
+"نام کاربری حساب را وارد نمایید. قبل از نام کاربری حتما از @ استفاده کنید ، به طور "
+"مثال @PiEnable یا این گزینه را خالی بگذارید."
 
 #: config/config.php:679
 msgid "Facebook app id"
@@ -817,8 +813,8 @@ msgstr "کلید سایت (Site key) برای ریکپچا"
 
 #: config/config.php:722
 msgid ""
-"see https://www.google.com/recaptcha to create your public key dedicated to "
-"your website domain. Both keys are mandatory."
+"see https://www.google.com/recaptcha to create your public key dedicated to your "
+"website domain. Both keys are mandatory."
 msgstr ""
 "تنظیمات را در https://www.google.com/recaptcha انجام دهید و کلید عمومی را برای "
 "دامنه خود بسازید و وارد نمایید. هر دو کلید ضروری است"
@@ -829,8 +825,8 @@ msgstr "کلید رمز (Secret key) برای ریکپچا"
 
 #: config/config.php:731
 msgid ""
-"see https://www.google.com/recaptcha to create your private key dedicated to "
-"your website domain. Both keys are mandatory.."
+"see https://www.google.com/recaptcha to create your private key dedicated to your "
+"website domain. Both keys are mandatory.."
 msgstr ""
 "تنظیمات را در https://www.google.com/recaptcha انجام دهید و کلید خصوصی را برای "
 "دامنه خود بسازید و وارد نمایید. هر دو کلید ضروری است"
@@ -956,8 +952,7 @@ msgstr "پیکربندی"
 msgid "Blocks"
 msgstr "بلاک‌ها"
 
-#: config/nav.component.php:39 config/page.php:71
-#: template/admin/block-list.phtml:22
+#: config/nav.component.php:39 config/page.php:71 template/admin/block-list.phtml:22
 msgid "Pages"
 msgstr "صفحه‌ها"
 
@@ -1138,8 +1133,7 @@ msgid "Asset component list"
 msgstr "فهرست مولفه های Asset"
 
 #: src/Controller/Admin/AssetController.php:104
-msgid ""
-"Some old files were not able to remove and asset publish was not completed."
+msgid "Some old files were not able to remove and asset publish was not completed."
 msgstr "برخی فایل‌های قدیمی قابل حذف نبودند و انتشار محتوا کامل نشد"
 
 #: src/Controller/Admin/AssetController.php:109
@@ -1955,8 +1949,7 @@ msgstr "دمو"
 msgid "Author information"
 msgstr "مشخصات نویسنده"
 
-#: template/admin/dashboard-module.phtml:45
-#: template/admin/dashboard-system.phtml:28
+#: template/admin/dashboard-module.phtml:45 template/admin/dashboard-system.phtml:28
 msgid "Summary"
 msgstr "خلاصه"
 
@@ -1998,13 +1991,13 @@ msgstr ""
 #: template/admin/dashboard-system.phtml:31
 msgid ""
 " Pi Project follows the philosophy of open standard, open design, open "
-"development and open structure. Pi is born as a complete open source project "
-"and intended to build a sustainable ecosystem that benefits all contributors "
-"and users."
+"development and open structure. Pi is born as a complete open source project and "
+"intended to build a sustainable ecosystem that benefits all contributors and "
+"users."
 msgstr ""
 "پروژه‌ی پای از فلسفه‌ی استانداردهای باز، طراحی باز و توسعه و ساختار باز تبعیت "
-"می‌کند. پای یک پروژه‌ی تماما متن باز است و هدف این بوده تا محیط مناسبی ایجاد شود "
-"که تمام کاربران و برنامه‌نویس‌ها از آن استفاده کنند. "
+"می‌کند. پای یک پروژه‌ی تماما متن باز است و هدف این بوده تا محیط مناسبی ایجاد شود که "
+"تمام کاربران و برنامه‌نویس‌ها از آن استفاده کنند. "
 
 #: template/admin/database-check.phtml:14
 msgid "Back"
@@ -2145,8 +2138,7 @@ msgstr "جزییات"
 msgid "Directory:"
 msgstr "شاخه"
 
-#: template/admin/module-available.phtml:61
-#: template/admin/theme-available.phtml:17
+#: template/admin/module-available.phtml:61 template/admin/theme-available.phtml:17
 msgid "Install"
 msgstr "نصب"
 
@@ -2192,11 +2184,11 @@ msgstr "به روز رسانی"
 
 #: template/admin/module-index.phtml:66
 msgid ""
-"Are you sure to update all module? make sure have backup from your website "
-"before use this option"
+"Are you sure to update all module? make sure have backup from your website before "
+"use this option"
 msgstr ""
-"آیا اطمینان دارید که میخواهید تمام ماژول ها را به صورت هم زمان به روز کنید؟ "
-"لطفا قبل از این عمل از اطلاعات خود نسخه پشتیبان تهیه فرمایید"
+"آیا اطمینان دارید که میخواهید تمام ماژول ها را به صورت هم زمان به روز کنید؟ لطفا "
+"قبل از این عمل از اطلاعات خود نسخه پشتیبان تهیه فرمایید"
 
 #: template/admin/module-index.phtml:66
 msgid "Update all"
@@ -2248,8 +2240,8 @@ msgid ""
 "edit and finally save menu by blue button."
 msgstr ""
 "یک گزینه جدید برای منو اضافه کنید یا گزینه های موجود را ویرایش کنید ، بعد از "
-"ویرایش هر گزینه حتما همان گزینه را ذخیره نمایید و در انتها با استفاده از دکمه "
-"آبی رنگ بالای صفحه کل تغییرات منو را مجدد ذخیره نمایید."
+"ویرایش هر گزینه حتما همان گزینه را ذخیره نمایید و در انتها با استفاده از دکمه آبی "
+"رنگ بالای صفحه کل تغییرات منو را مجدد ذخیره نمایید."
 
 #: template/admin/nav-data.phtml:18
 msgid "Only click this button to save data"
@@ -2317,8 +2309,7 @@ msgstr "ماژول"
 
 #: template/admin/nav-data.phtml:440
 msgid "You have made unsaved changes. Would you still like to leave this page?"
-msgstr ""
-"تغییراتی که انجام داده‌اید ذخیره نشده‌اند، آیا می‌خواهید این صفحه را ترک کنید؟"
+msgstr "تغییراتی که انجام داده‌اید ذخیره نشده‌اند، آیا می‌خواهید این صفحه را ترک کنید؟"
 
 #: template/admin/nav-index.phtml:11
 msgid "Setup"

@@ -139,7 +139,7 @@ class LoginController extends ActionController
         $form->setData($post);
         $form->setInputFilter($this->getInputFilter($configs));
 
-        $this->view()->assign('redirect', $post['redirect']);
+        $this->view()->assign('redirect', ['route' => 'home']);
 
         if (!$form->isValid()) {
 //        print_r($form->getMessages()); die();
@@ -227,16 +227,10 @@ class LoginController extends ActionController
             unset($_SESSION['PI_LOGIN']);
         }
 
-        // Check redirect control from user module
-        if (Pi::service('module')->isActive('user')) {
-            if (Pi::user()->config('login_redirect_home')) {
-                unset($values['redirect']);
-            }
-        }
-
-        if (isset($values['redirect']) && !empty($values['redirect'])) {
-            $redirect = urldecode($values['redirect']);
+        if (empty($values['redirect'])) {
+            $redirect = ['route' => 'home'];
         } else {
+            //$redirect = urldecode($values['redirect']);
             $redirect = ['route' => 'home'];
         }
 
