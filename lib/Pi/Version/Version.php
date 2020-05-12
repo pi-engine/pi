@@ -80,15 +80,8 @@ class Version
     {
         $version = '';
         switch (strtoupper($service)) {
-            // Zend Framework version
             case 'ZEND':
-                $version = ZendVersion::VERSION;
-                break;
-            // Full version: Pi version plush Zend version as build metadata
             case 'FULL':
-                $version = static::VERSION . '+' . ZendVersion::VERSION;
-                break;
-            // Pi Version
             case 'PI':
             default:
                 $version = static::VERSION;

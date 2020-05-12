@@ -251,9 +251,8 @@ class Debugger extends AbstractWriter
         }
 
         // Application versions
-        $system['Pi Environment'] = PiVersion::version()
-            . ' ' . Pi::environment();
-        $system['Zend Version']   = PiVersion::version('zend');
+        $system['Pi Version'] = PiVersion::version();
+        $system['Pi Environment'] = Pi::environment();
         $system['Persist Engine'] = Pi::persist()->getType();
         if (Pi::service()->hasService('cache')) {
             $class                   = get_class(Pi::service('cache')->storage());
