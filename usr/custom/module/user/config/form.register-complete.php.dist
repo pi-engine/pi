@@ -13,6 +13,19 @@
 
 return array(
     'language',
-    'fist_name',
-    'last_name'
+    'first_name',
+    'last_name',
+    'verify' => [
+        'element' => [
+            'name'       => 'verify',
+            'options'    => [
+                'label' => __('Verify code'),
+            ],
+            'attributes' => [
+                'type'        => 'number',
+                'description' => '',
+                'required'    => true,
+            ],
+        ],
+    ],
 );

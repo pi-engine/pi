@@ -1,4 +1,16 @@
 <div class="clearfix">
+    <div class="page-header">
+        <h2><small><?php echo _a('View user: '); ?></small> <?php echo $user['name']; ?></h2>
+    </div>
+    <ul class="nav nav-tabs">
+        <?php foreach ($nav as $value) { ?>
+            <li class="nav-item">
+                <a class="nav-link <?php if ($value['name'] == $name) { echo 'active';} ?>" href="<?php echo $value['link']; ?>">
+                    <?php echo $value['title']; ?>
+                </a>
+            </li>
+        <?php } ?>
+    </ul>
     <h1 class="clearfix">
         <div class="float-left">
             <?php echo $user['avatar']; ?>

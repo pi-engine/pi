@@ -68,8 +68,51 @@ $showNav = isset($showNav) ? $showNav : 1;
 // Check show setting
 $showSetting = isset($showSetting) ? $showSetting : 1;
 ?>
-<div class="clearfix user-avatar-header">
-    <div class="user-info-right">
+<div class="clearfix row bg-light p-3">
+    <div class="col-12 col-md-2 text-center mb-3">
+        <div class="<?php if (!$owner) { ?>border-radius<?php } ?>">
+            <?php echo Pi::avatar()->get($uid, 'xlarge', [
+                'alt'   => _escape($user['name']),
+                'class' => 'img-fluid rounded',
+            ]); ?>
+        </div>
+        <?php if ($owner) { ?>
+            <a class="user-avatar-upload"
+               href="<?php echo $this->url('user', ['controller' => 'avatar', 'action' => 'index']); ?>">
+                <?php _e('Change avatar'); ?>
+            </a>
+        <?php } ?>
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+        <h1 class="mb-3"><?php echo _escape($user['name']); ?></h1>
+        <?php if (!empty($user['time_activated'])) { ?>
+            <div class="mb-3">
+                <?php _e('Member since'); ?>
+                <?php echo $user['time_activated']; ?>
+            </div>
+        <?php } ?>
+        <?php if (!empty($user['gender'])) { ?>
+            <div class="mb-3">
+                <?php _e('Gender:'); ?>
+                <?php echo _escape($user['gender']); ?>
+            </div>
+        <?php } ?>
+        <?php if (!empty($user['birthdate'])) { ?>
+            <div class="mb-3">
+                <?php _e('Birthdate:'); ?>
+                <?php echo _escape($user['birthdate']); ?>
+            </div>
+        <?php } ?>
+        <?php if (!empty($user['city'])) { ?>
+            <div class="mb-3">
+                <?php echo _escape($user['city']); ?>
+                <?php if (!empty($user['country'])) { ?>
+                    (<?php echo _escape($user['country']); ?>)
+                <?php } ?>
+            </div>
+        <?php } ?>
+    </div>
+    <div class="col-12 col-md-3">
         <?php
         if (!empty($extra)) {
             echo '<span class="user-extra">' . $extra . '</span>';
@@ -146,47 +189,6 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                 </a>
             <?php } ?>
         <?php } ?>
-    </div>
-    <div class="inline user-info-left">
-        <div class="float-left <?php if (!$owner) { ?>border-radius<?php } ?>">
-            <?php echo Pi::avatar()->get($uid, 'xlarge', _escape($user['name'])); ?>
-        </div>
-        <?php if ($owner) { ?>
-            <a class="user-avatar-upload"
-               href="<?php echo $this->url('user', ['controller' => 'avatar', 'action' => 'index']); ?>">
-                <?php _e('Change avatar'); ?>
-            </a>
-        <?php } ?>
-    </div>
-    <div class="inline user-info-center">
-        <h1 class="user-name"><?php echo _escape($user['name']); ?></h1>
-        <?php if (!empty($user['time_activated'])) { ?>
-            <div style="margin-top: 10px;">
-                <?php _e('Member since'); ?>
-                <?php echo $user['time_activated']; ?>
-            </div>
-        <?php } ?>
-        <?php if (!empty($user['gender'])) { ?>
-            <div style="margin-top: 5px;">
-                <?php _e('Gender:'); ?>
-                <?php echo _escape($user['gender']); ?>
-            </div>
-        <?php } ?>
-        <?php if (!empty($user['birthdate'])) { ?>
-            <div style="margin-top: 5px;">
-                <?php _e('Birthdate:'); ?>
-                <?php echo _escape($user['birthdate']); ?>
-            </div>
-        <?php } ?>
-        <?php if (!empty($user['city'])) { ?>
-            <div style="margin-top: 5px;">
-                <?php echo _escape($user['city']); ?>
-                <?php if (!empty($user['country'])) { ?>
-                    (<?php echo _escape($user['country']); ?>)
-                <?php } ?>
-            </div>
-        <?php } ?>
-
     </div>
 </div>
 <?php if ($showNav) { ?>

@@ -32,6 +32,7 @@ class EditController extends ActionController
 
         // Get available edit fields
         list($fields, $formFields, $formFilters) = $this->getEditField();
+
         // Add other elements
         $formFields[] = [
             'name'       => 'uid',
@@ -40,24 +41,38 @@ class EditController extends ActionController
                 'value' => $uid,
             ],
         ];
-        $form         = new EditUserForm('info', $formFields);
+        $formFields[] = [
+            'name'       => 'id',
+            'type'       => 'hidden',
+            'attributes' => [
+                'value' => $uid,
+            ],
+        ];
+
+        // Set form
+        $form = new EditUserForm('info', $formFields);
         if ($this->request->isPost()) {
             $form->setData($this->request->getPost());
             $form->setInputFilter(new EditUserFilter($formFilters));
             $result['message'] = _a('User data update failed.');
             $result['status']  = 0;
             if ($form->isValid()) {
+
                 // Update user
                 $values                  = $form->getData();
                 $values['last_modified'] = time();
-                if (isset($values['credential']) &&
-                    !$values['credential']
+                if (isset($values['credential'])
+                    && !$values['credential']
                 ) {
                     unset($values['credential']);
                 }
+                unset($values['id']);
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
                 if (Pi::service('module')->isActive('subscription')) {
-                    Pi::api('people', 'subscription')->update(array('email' => $values['email'], 'first_name' => $values['first_name'], 'last_name' => $values['last_name'], 'mobile' => $values['mobile']), $uid);
+                    Pi::api('people', 'subscription')->update(
+                        ['email'  => $values['email'], 'first_name' => $values['first_name'], 'last_name' => $values['last_name'],
+                         'mobile' => $values['mobile']], $uid
+                    );
                 }
 
                 if ($status == 1) {
@@ -75,12 +90,14 @@ class EditController extends ActionController
             $form->setData($fieldsData);
         }
 
-        $this->view()->assign([
-            'user' => $user,
-            'nav'  => $this->getNav($uid),
-            'name' => 'info',
-            'form' => $form,
-        ]);
+        $this->view()->assign(
+            [
+                'user' => $user,
+                'nav'  => $this->getNav($uid),
+                'name' => 'info',
+                'form' => $form,
+            ]
+        );
         $this->view()->setTemplate('edit-user');
     }
 
@@ -121,12 +138,14 @@ class EditController extends ActionController
         }
 
 
-        $this->view()->assign([
-            'user'   => $user,
-            'nav'    => $this->getNav($uid),
-            'name'   => 'avatar',
-            'avatar' => Pi::user()->avatar()->get($uid, 'large'),
-        ]);
+        $this->view()->assign(
+            [
+                'user'   => $user,
+                'nav'    => $this->getNav($uid),
+                'name'   => 'avatar',
+                'avatar' => Pi::user()->avatar()->get($uid, 'large'),
+            ]
+        );
         $this->view()->setTemplate('edit-user');
     }
 
@@ -223,12 +242,14 @@ class EditController extends ActionController
             $this->view()->assign('result', $result);
         }
 
-        $this->view()->assign([
-            'user'  => $user,
-            'forms' => $forms,
-            'nav'   => $this->getNav($uid),
-            'name'  => $compound,
-        ]);
+        $this->view()->assign(
+            [
+                'user'  => $user,
+                'forms' => $forms,
+                'nav'   => $this->getNav($uid),
+                'name'  => $compound,
+            ]
+        );
         $this->view()->setTemplate('edit-user');
 
     }
@@ -260,12 +281,14 @@ class EditController extends ActionController
         );
         Pi::service('event')->trigger('user_update', $uid);
 
-        return $this->jump([
-            'controller' => 'edit',
-            'action'     => 'compound',
-            'uid'        => $uid,
-            'name'       => $name,
-        ], _a('Group deleted successfully.'));
+        return $this->jump(
+            [
+                'controller' => 'edit',
+                'action'     => 'compound',
+                'uid'        => $uid,
+                'name'       => $name,
+            ], _a('Group deleted successfully.')
+        );
 
     }
 
@@ -317,6 +340,7 @@ class EditController extends ActionController
 
     /**
      * Get base profile and compound nav
+     *
      * @param $uid
      *
      * @return array
@@ -333,11 +357,13 @@ class EditController extends ActionController
         $result[] = [
             'name'  => 'avatar',
             'title' => _a('Avatar'),
-            'link'  => $this->url('', [
+            'link'  => $this->url(
+                '', [
                 'controller' => 'edit',
                 'action'     => 'avatar',
                 'uid'        => $uid,
-            ]),
+            ]
+            ),
         ];
 
         $rowset = $this->getModel('field')->select(
@@ -353,17 +379,31 @@ class EditController extends ActionController
             $result[] = [
                 'name'  => $row['name'],
                 'title' => $row['title'],
-                'link'  => $this->url('', [
+                'link'  => $this->url(
+                    '', [
                     'controller' => 'edit',
                     'action'     => 'compound',
                     'uid'        => $uid,
                     'name'       => $row['name'],
-                ]),
+                ]
+                ),
             ];
         }
 
-        return $result;
+        // Avatar
+        $result[] = [
+            'name'  => 'view',
+            'title' => _a('View'),
+            'link'  => $this->url(
+                '', [
+                'controller' => 'View',
+                'action'     => 'index',
+                'uid'        => $uid,
+            ]
+            ),
+        ];
 
+        return $result;
     }
 
     protected function getUser($uid)

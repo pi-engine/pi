@@ -1,5 +1,9 @@
 <?php
 $this->css($this->assetModule('front/front.css'));
+$this->js([
+    $this->assetModule('front/pwstrength-bootstrap.min.js'),
+    $this->assetModule('front/pwstrength-boostrap.init.js')
+]);
 
 // oauth
 $url = Pi::api('oauth', 'user')->urlList();
@@ -13,11 +17,8 @@ if (!empty($description) || !empty($url)) {
     $class = 'col-md-12';
 }
 ?>
-<script src="<?php echo $this->assetModule('front/pwstrength-bootstrap.min.js', 'user') ?>"></script>
-<script src="<?php echo $this->assetModule('front/pwstrength-boostrap.init.js', 'user') ?>"></script>
-
 <div class="clearfix user-template">
-    <div class="page-header">
+    <div class="mb-3">
         <h1><?php _e('Account registration'); ?></h1>
     </div>
     <?php if (!empty($form)) { ?>
@@ -80,20 +81,25 @@ if (!empty($description) || !empty($url)) {
             <div class="card-heading">
                 <h3 class="card-title"><?php _e('Congratulations!'); ?></h3>
             </div>
-            <div class="card-text">
-                <p>
+            <div class="card-body">
+                <div class="card-text">
                     <?php echo sprintf(
                         __('Your account has been registered successfully. Please <a href="%s">login</a> with your account.'),
                         Pi::service('authentication')->getUrl('login', $redirect)
                     ); ?>
-                </p>
+                    <div class="mt-3 mb-3">
+                        <a class="btn btn-primary btn-block" href="<?php echo Pi::service('authentication')->getUrl('login', $redirect); ?>">
+                            <?php _e('Go to login page'); ?>
+                        </a>
+                    </div>
+                </div>
                 <?php if ($redirect) { ?>
-                    <p>
+                    <div class="card-text">
                         <?php echo sprintf(
                             __('Or go back to <a href="%s">the requested page</a> directly.'),
                             $redirect
                         ) ?>
-                    </p>
+                    </div>
                 <?php } ?>
             </div>
         </div>
@@ -102,8 +108,10 @@ if (!empty($description) || !empty($url)) {
             <div class="card-heading">
                 <h3 class="card-title"><?php _e('Registration was not completed.'); ?></h3>
             </div>
-            <div class="card-text">
-                <?php echo _escape($result['message']); ?>
+            <div class="card-body">
+                <div class="card-text">
+                    <?php echo _escape($result['message']); ?>
+                </div>
             </div>
         </div>
     <?php } ?>
@@ -112,8 +120,10 @@ if (!empty($description) || !empty($url)) {
             <div class="card-heading">
                 <h3 class="card-title"><?php _e('Congratulations!'); ?></h3>
             </div>
-            <div class="card-text">
-                <?php _e('You account has been registered successfully. However it needs to be approved by our admins before you can use it.'); ?>
+            <div class="card-body">
+                <div class="card-text">
+                    <?php _e('You account has been registered successfully. However it needs to be approved by our admins before you can use it.'); ?>
+                </div>
             </div>
         </div>
     <?php } elseif (empty($result['status'])) { ?>
@@ -121,8 +131,10 @@ if (!empty($description) || !empty($url)) {
             <div class="card-heading">
                 <h3 class="card-title"><?php _e('Registration was not completed.'); ?></h3>
             </div>
-            <div class="card-text">
-                <?php echo _escape($result['message']); ?>
+            <div class="card-body">
+                <div class="card-text">
+                    <?php echo _escape($result['message']); ?>
+                </div>
             </div>
         </div>
     <?php } else { ?>
@@ -181,6 +193,8 @@ if (!empty($description) || !empty($url)) {
                             if (result.status) {
                                 this.renderReactivateMessage('<?php _e('Already sent'); ?>');
                             } else {
+                                console.log(1);
+                                console.log(result.message);
                                 this.renderReactivateMessage(result.message);
                             }
 
@@ -188,6 +202,11 @@ if (!empty($description) || !empty($url)) {
                     },
 
                     renderReactivateMessage: function (message) {
+
+                        console.log(2);
+                        console.log(message);
+
+
                         this.$reactivateMessage.text('( ' + message + ' )').hide().fadeIn();
                     }
                 };
@@ -203,15 +222,11 @@ if (!empty($description) || !empty($url)) {
 
         </script>
     <?php } ?>
-
     <script>
         $(function() {
-
             pwstrengthInit();
-
             var originalInputSelector = $.fn.validator.Constructor.INPUT_SELECTOR
             $.fn.validator.Constructor.INPUT_SELECTOR = originalInputSelector + ', input[data-recaptcha]'
-
             $('form[data-toggle="validator"]').validator(
                 {
                     custom: {
@@ -225,6 +240,5 @@ if (!empty($description) || !empty($url)) {
             )
 
         });
-
     </script>
 </div>

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2017-03-24 11:58+0430\n"
-"PO-Revision-Date: 2017-03-24 11:58+0430\n"
+"POT-Creation-Date: 2020-05-08 11:47+0430\n"
+"PO-Revision-Date: 2020-05-08 11:47+0430\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -112,39 +112,43 @@ msgstr ""
 msgid "Display favourite"
 msgstr ""
 
-#: config/block.php:110 config/nav.front.php:30
+#: config/block.php:106
+msgid "Display offer"
+msgstr ""
+
+#: config/block.php:117 config/nav.front.php:30
 msgid "Login"
 msgstr ""
 
-#: config/block.php:111
+#: config/block.php:118
 msgid "User login block"
 msgstr ""
 
-#: config/block.php:118 config/page.php:116
+#: config/block.php:125 config/page.php:116
 msgid "User"
 msgstr ""
 
-#: config/block.php:119 config/config.php:41
+#: config/block.php:126 config/config.php:49
 msgid "User account"
 msgstr ""
 
-#: config/block.php:126
+#: config/block.php:133
 msgid "Site Info"
 msgstr ""
 
-#: config/block.php:127
+#: config/block.php:134
 msgid "Website information"
 msgstr ""
 
-#: config/block.php:134
+#: config/block.php:141
 msgid "Pi feature"
 msgstr ""
 
-#: config/block.php:135
+#: config/block.php:142
 msgid "Introduction to Pi Engine"
 msgstr ""
 
-#: config/config.php:21 src/Controller/Admin/ConfigController.php:95
+#: config/config.php:21 src/Controller/Admin/ConfigController.php:94
 msgid "General"
 msgstr ""
 
@@ -157,624 +161,710 @@ msgid "Extra head meta"
 msgstr ""
 
 #: config/config.php:33
-msgid "Geo tags"
+msgid "Geo tags and setting"
 msgstr ""
 
 #: config/config.php:37
-msgid "Internationalization"
+msgid "Google"
+msgstr ""
+
+#: config/config.php:41 config/config.php:741
+msgid "Openstreetmap"
 msgstr ""
 
 #: config/config.php:45
+msgid "Internationalization"
+msgstr ""
+
+#: config/config.php:53
 msgid "Admin login"
 msgstr ""
 
-#: config/config.php:49
+#: config/config.php:57
 msgid "Text processing"
 msgstr ""
 
-#: config/config.php:53 config/nav.admin.php:300
-#: template/admin/audit-index.phtml:9
+#: config/config.php:61 config/nav.admin.php:300
+#: template/admin/audit-index.phtml:12
 msgid "Mailing"
 msgstr ""
 
-#: config/config.php:65
+#: config/config.php:73
 msgid "Site name"
 msgstr ""
 
-#: config/config.php:66
+#: config/config.php:74
 msgid "Website name."
 msgstr ""
 
-#: config/config.php:73
+#: config/config.php:81
 msgid "Slogan"
 msgstr ""
 
-#: config/config.php:74
+#: config/config.php:82
 msgid "Website slogan."
 msgstr ""
 
-#: config/config.php:80
+#: config/config.php:88
 msgid "Locale"
 msgstr ""
 
-#: config/config.php:81
+#: config/config.php:89
 msgid "Locale for application content."
 msgstr ""
 
-#: config/config.php:88
+#: config/config.php:96
 msgid "Charset"
 msgstr ""
 
-#: config/config.php:89
+#: config/config.php:97
 msgid "Charset for page display."
 msgstr ""
 
-#: config/config.php:95
+#: config/config.php:103
 msgid "Timezone"
 msgstr ""
 
-#: config/config.php:96
+#: config/config.php:104
 msgid "Timezone for application system."
 msgstr ""
 
-#: config/config.php:102
+#: config/config.php:110
 msgid "List count"
 msgstr ""
 
-#: config/config.php:103
+#: config/config.php:111
 msgid "Number of items on a list."
 msgstr ""
 
-#: config/config.php:110
+#: config/config.php:118
 msgid "Footer"
 msgstr ""
 
-#: config/config.php:111
+#: config/config.php:119
 msgid "Content to be displayed on footer of front pages, HTML tags allowed."
 msgstr ""
 
-#: config/config.php:117
-msgid "GA account"
-msgstr ""
-
-#: config/config.php:118
-msgid ""
-"Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append "
-"to the code `UA-XXXXXXXX-X; XXXX.tld`."
-msgstr ""
-
-#: config/config.php:123
-msgid "ReCaptcha Public Key"
-msgstr ""
-
-#: config/config.php:124
-msgid ""
-"see https://www.google.com/recaptcha to create your public key dedicated to "
-"your website domain. Both keys are mandatory."
-msgstr ""
-
-#: config/config.php:132
-msgid "ReCaptcha Private Key"
-msgstr ""
-
-#: config/config.php:133
-msgid ""
-"see https://www.google.com/recaptcha to create your private key dedicated to "
-"your website domain. Both keys are mandatory.."
-msgstr ""
-
-#: config/config.php:141
+#: config/config.php:125
 msgid "Foot scripts"
 msgstr ""
 
-#: config/config.php:142
+#: config/config.php:126
 msgid ""
 "Scripts that will be appended to each page footer. Either naked or wrapped "
 "js scripts are allowed."
 msgstr ""
 
+#: config/config.php:132
+msgid "Compile CSS"
+msgstr ""
+
+#: config/config.php:140
+msgid "Compile JS"
+msgstr ""
+
 #: config/config.php:148
+msgid "Minify HTML output"
+msgstr ""
+
+#: config/config.php:156
 msgid "Theme"
 msgstr ""
 
-#: config/config.php:155
+#: config/config.php:163
 msgid "Admin theme"
 msgstr ""
 
-#: config/config.php:183
+#: config/config.php:191
 msgid "Username format"
 msgstr ""
 
-#: config/config.php:184
+#: config/config.php:192
 msgid "Format of username for registration."
 msgstr ""
 
-#: config/config.php:189
+#: config/config.php:197
 msgid "Strict: alphabet or number only"
 msgstr ""
 
-#: config/config.php:190
+#: config/config.php:198
 msgid "Strict/space: alphabet, number or space only"
 msgstr ""
 
-#: config/config.php:191
+#: config/config.php:199
 msgid "Medium: ASCII characters"
 msgstr ""
 
-#: config/config.php:192
+#: config/config.php:200
 msgid "Medium/space: ASCII characters and spaces"
 msgstr ""
 
-#: config/config.php:193
+#: config/config.php:201
 msgid "Loose: multi-byte characters"
 msgstr ""
 
-#: config/config.php:194
+#: config/config.php:202
 msgid "Loose/space: multi-byte characters and spaces"
 msgstr ""
 
-#: config/config.php:204
+#: config/config.php:212
 msgid "Minimum username"
 msgstr ""
 
-#: config/config.php:205
+#: config/config.php:213
 msgid "Minimum length of username for user registration"
 msgstr ""
 
-#: config/config.php:212
+#: config/config.php:220
 msgid "Maximum username"
 msgstr ""
 
-#: config/config.php:213
+#: config/config.php:221
 msgid "Maximum length of username for user registration"
 msgstr ""
 
-#: config/config.php:220
+#: config/config.php:228
 msgid "Minimum password"
 msgstr ""
 
-#: config/config.php:221
+#: config/config.php:229
 msgid "Minimum length of password for user registration"
 msgstr ""
 
-#: config/config.php:228
+#: config/config.php:236
 msgid "Maximum password"
 msgstr ""
 
-#: config/config.php:229
+#: config/config.php:237
 msgid "Maximum length of password for user registration"
 msgstr ""
 
-#: config/config.php:236
+#: config/config.php:244
 msgid "Username blacklist"
 msgstr ""
 
-#: config/config.php:237
+#: config/config.php:245
 msgid ""
 "Reserved and forbidden username list. Separate each with a <strong>|</"
 "strong>, regexp syntax is allowed."
 msgstr ""
 
-#: config/config.php:244
+#: config/config.php:252
 msgid "Email blacklist"
 msgstr ""
 
-#: config/config.php:245
+#: config/config.php:253
 msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
 msgstr ""
 
-#: config/config.php:252 config/config.php:334
+#: config/config.php:260 config/config.php:342
 msgid "Remember me"
 msgstr ""
 
-#: config/config.php:253 config/config.php:335
+#: config/config.php:261 config/config.php:343
 msgid "Days to remember login, 0 for disable."
 msgstr ""
 
-#: config/config.php:260 config/config.php:342
+#: config/config.php:268 config/config.php:350
 msgid "Login field"
 msgstr ""
 
-#: config/config.php:261
+#: config/config.php:269
 msgid "Identity field(s) for authentication."
 msgstr ""
 
-#: config/config.php:269 config/config.php:351
-#: template/admin/member-index.phtml:23
+#: config/config.php:277 config/config.php:359
+#: template/admin/member-index.phtml:27
 msgid "Username"
 msgstr ""
 
-#: config/config.php:270 config/config.php:352
-#: template/admin/member-index.phtml:25
+#: config/config.php:278 config/config.php:360
+#: template/admin/member-index.phtml:29
 msgid "Email"
 msgstr ""
 
-#: config/config.php:280 config/config.php:326
+#: config/config.php:288 config/config.php:334
 msgid "Maximum attempts"
 msgstr ""
 
-#: config/config.php:281
+#: config/config.php:289
 msgid "Maximum attempts allowed to try for user login"
 msgstr ""
 
-#: config/config.php:288 config/config.php:362
+#: config/config.php:296 config/config.php:370
 msgid "Login disable"
 msgstr ""
 
-#: config/config.php:289
+#: config/config.php:297
 msgid "Disable user login"
 msgstr ""
 
-#: config/config.php:297
+#: config/config.php:305
 msgid "Register disable"
 msgstr ""
 
-#: config/config.php:298
+#: config/config.php:306
 msgid "Disable user registration"
 msgstr ""
 
-#: config/config.php:306 config/config.php:371
+#: config/config.php:314 config/config.php:379
 msgid "Login CAPTCHA"
 msgstr ""
 
-#: config/config.php:307
+#: config/config.php:315
 msgid "Enable CAPTCHA for user login"
 msgstr ""
 
-#: config/config.php:315
+#: config/config.php:323
 msgid "Register CAPTCHA"
 msgstr ""
 
-#: config/config.php:316
+#: config/config.php:324
 msgid "Enable CAPTCHA for user registration"
 msgstr ""
 
-#: config/config.php:327
+#: config/config.php:335
 msgid "Maximum attempts allowed to try for admin login"
 msgstr ""
 
-#: config/config.php:343
+#: config/config.php:351
 msgid "Identity field(s) for admin authentication."
 msgstr ""
 
-#: config/config.php:363
+#: config/config.php:371
 msgid "Disable admin login"
 msgstr ""
 
-#: config/config.php:372
+#: config/config.php:380
 msgid "Enable CAPTCHA for admin login"
 msgstr ""
 
-#: config/config.php:377
+#: config/config.php:385
 msgid "No captcha"
 msgstr ""
 
-#: config/config.php:378
+#: config/config.php:386
 msgid "Standard captcha"
 msgstr ""
 
-#: config/config.php:379
+#: config/config.php:387
 msgid "New re-captcha"
 msgstr ""
 
-#: config/config.php:410
+#: config/config.php:418
 msgid "Head title for web page"
 msgstr ""
 
-#: config/config.php:418
+#: config/config.php:426
 msgid ""
 "The keywords meta tag is a series of keywords that represents the content of "
 "your site. Separated keywords by a comma."
 msgstr ""
 
-#: config/config.php:426
+#: config/config.php:434
 msgid ""
 "The description meta tag is a general description of what is contained in "
 "your web page"
 msgstr ""
 
-#: config/config.php:435
+#: config/config.php:443
 msgid "Default number style"
 msgstr ""
 
-#: config/config.php:436
+#: config/config.php:444
 msgid ""
 "See http://www.php.net/manual/en/class.numberformatter.php#intl."
 "numberformatter-constants.unumberformatstyle"
 msgstr ""
 
-#: config/config.php:441
+#: config/config.php:449
 msgid "Default format for the locale"
 msgstr ""
 
-#: config/config.php:442
+#: config/config.php:450
 msgid "Decimal format defined by pattern"
 msgstr ""
 
-#: config/config.php:443
+#: config/config.php:451
 msgid "Decimal format"
 msgstr ""
 
-#: config/config.php:444
+#: config/config.php:452
 msgid "Percent format"
 msgstr ""
 
-#: config/config.php:445
+#: config/config.php:453
 msgid "Scientific format"
 msgstr ""
 
-#: config/config.php:446
+#: config/config.php:454
 msgid "Spellout rule-based format"
 msgstr ""
 
-#: config/config.php:447
+#: config/config.php:455
 msgid "Ordinal rule-based format"
 msgstr ""
 
-#: config/config.php:448
+#: config/config.php:456
 msgid "Duration rule-based format"
 msgstr ""
 
-#: config/config.php:449
+#: config/config.php:457
 msgid "Rule-based format defined by pattern"
 msgstr ""
 
-#: config/config.php:458
+#: config/config.php:466
 msgid "Default pattern for selected number style"
 msgstr ""
 
-#: config/config.php:459
+#: config/config.php:467
 msgid "Only if required by style"
 msgstr ""
 
-#: config/config.php:466
+#: config/config.php:474
 msgid "Default currency type"
 msgstr ""
 
-#: config/config.php:467
+#: config/config.php:475
 msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
 msgstr ""
 
-#: config/config.php:474
+#: config/config.php:482
 msgid "Default calendar for the locale"
 msgstr ""
 
-#: config/config.php:475
+#: config/config.php:484
 msgid ""
 "\"persian\" is suggested for Persian language. See http://www.php.net/manual/"
 "en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
 msgstr ""
 
-#: config/config.php:482
+#: config/config.php:492
 msgid "Default date type"
 msgstr ""
 
-#: config/config.php:483 config/config.php:502
+#: config/config.php:493 config/config.php:512
 msgid ""
 "See http://www.php.net/manual/en/class.intldateformatter.php#intl."
 "intldateformatter-constants"
 msgstr ""
 
-#: config/config.php:488 config/config.php:507
+#: config/config.php:498 config/config.php:517
 msgid "Do not include this element"
 msgstr ""
 
-#: config/config.php:489 config/config.php:508
+#: config/config.php:499 config/config.php:518
 msgid ""
 "Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 msgstr ""
 
-#: config/config.php:490 config/config.php:509
+#: config/config.php:500 config/config.php:519
 msgid "Long style (January 12, 1952 or 3:30:32pm)"
 msgstr ""
 
-#: config/config.php:491 config/config.php:510
+#: config/config.php:501 config/config.php:520
 msgid "Medium style (Jan 12, 1952)"
 msgstr ""
 
-#: config/config.php:492 config/config.php:511
+#: config/config.php:502 config/config.php:521
 msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
 msgstr ""
 
-#: config/config.php:501
+#: config/config.php:511
 msgid "Default time type"
 msgstr ""
 
-#: config/config.php:520
+#: config/config.php:530
 msgid "Default formatting pattern for date-time"
 msgstr ""
 
-#: config/config.php:521
+#: config/config.php:531
 msgid "See http://userguide.icu-project.org/formatparse/datetime"
 msgstr ""
 
-#: config/config.php:528
+#: config/config.php:538
 msgid "Default format for legacy date function"
 msgstr ""
 
-#: config/config.php:529
+#: config/config.php:539
 msgid ""
 "The format is required in case Intl extension is not available. See http://"
 "www.php.net/manual/en/function.date.php"
 msgstr ""
 
-#: config/config.php:538
+#: config/config.php:548
 msgid "Admin email"
 msgstr ""
 
-#: config/config.php:539
+#: config/config.php:549
 msgid "Admin email address for contact."
 msgstr ""
 
-#: config/config.php:545
+#: config/config.php:555
 msgid "Admin name"
 msgstr ""
 
-#: config/config.php:546
+#: config/config.php:556
 msgid "User name used to send emails"
 msgstr ""
 
-#: config/config.php:551
+#: config/config.php:561
 msgid "Email encoding"
 msgstr ""
 
-#: config/config.php:552
+#: config/config.php:562
 msgid "Encoding for email contents"
 msgstr ""
 
-#: config/config.php:560
+#: config/config.php:568
+msgid "Mail footer"
+msgstr ""
+
+#: config/config.php:570
+msgid ""
+"Content to be displayed on email footer, HTML tags allowed. Usefull to "
+"diplay Android/iOS links, sign with Official Company Address/Name or logo,"
+"etc."
+msgstr ""
+
+#: config/config.php:579
 msgid "Text editor"
 msgstr ""
 
-#: config/config.php:561
+#: config/config.php:580
 msgid "Default editor for text processing"
 msgstr ""
 
-#: config/config.php:567
+#: config/config.php:586
 msgid "Enable word censoring"
 msgstr ""
 
-#: config/config.php:568
+#: config/config.php:587
 msgid ""
 "Words will be censored if this option is enabled. This option may be turned "
 "off for enhanced site speed."
 msgstr ""
 
-#: config/config.php:576
+#: config/config.php:595
 msgid "Words to censor"
 msgstr ""
 
-#: config/config.php:577
+#: config/config.php:596
 msgid ""
 "Enter words that should be censored in user posts. Separate each with a \"|"
 "\", case insensitive."
 msgstr ""
 
-#: config/config.php:584
+#: config/config.php:603
 msgid "Word to replace censored words"
 msgstr ""
 
-#: config/config.php:585
+#: config/config.php:604
 msgid ""
 "Censored words will be replaced with the characters entered in this textbox"
 msgstr ""
 
-#: config/config.php:592
+#: config/config.php:612
 msgid "Module themes"
 msgstr ""
 
-#: config/config.php:593
+#: config/config.php:613
 msgid "Themes for modules."
 msgstr ""
 
-#: config/config.php:601 config/nav.php:21
+#: config/config.php:621 config/nav.php:21
 msgid "Front navigation"
 msgstr ""
 
-#: config/config.php:602
+#: config/config.php:622
 msgid "Global navigation for front end."
 msgstr ""
 
-#: config/config.php:609 config/nav.php:27
+#: config/config.php:629 config/nav.php:27
 msgid "Admin navigation"
 msgstr ""
 
-#: config/config.php:610
+#: config/config.php:630
 msgid "Global navigation for admin."
 msgstr ""
 
-#: config/config.php:617
+#: config/config.php:637
 msgid "Meta title type"
 msgstr ""
 
-#: config/config.php:618
+#: config/config.php:638
 msgid "Set short or lang meta title type"
 msgstr ""
 
-#: config/config.php:623
+#: config/config.php:643
 msgid "Postfix by page - module - website titles"
 msgstr ""
 
-#: config/config.php:624
+#: config/config.php:644
 msgid "Postfix by page - website titles"
 msgstr ""
 
-#: config/config.php:625
+#: config/config.php:645
 msgid "Prefix by website - module - page titles"
 msgstr ""
 
-#: config/config.php:626
+#: config/config.php:646
 msgid "Prefix by website - page titles"
 msgstr ""
 
-#: config/config.php:627
+#: config/config.php:647
 msgid "Just page title"
 msgstr ""
 
-#: config/config.php:638
+#: config/config.php:659
 msgid ""
 "The author meta tag defines the name of the author of the document being "
 "read. Supported data formats include the name, email address of the "
 "webmaster, company name or URL."
 msgstr ""
 
-#: config/config.php:646
+#: config/config.php:668
 msgid "Generator of the document being read."
 msgstr ""
 
-#: config/config.php:653
-msgid "Website local"
+#: config/config.php:675
+msgid "Website Open Graph locale"
 msgstr ""
 
-#: config/config.php:654
-msgid "Set website local, like en_GB"
+#: config/config.php:676
+msgid "Set website OG locale, like en_GB"
 msgstr ""
 
-#: config/config.php:661
+#: config/config.php:683
 msgid "Twitter account"
 msgstr ""
 
-#: config/config.php:662
+#: config/config.php:684
 msgid ""
 "Username for the website used in the Twitter card. Add @ before username "
 "like @PiEnable or leave it empty"
 msgstr ""
 
-#: config/config.php:668
+#: config/config.php:690
 msgid "Facebook app id"
 msgstr ""
 
-#: config/config.php:669
+#: config/config.php:691
 msgid ""
 "Set facebook app id here for use open graph tags on facebook page, its your "
 "website facebook page id"
 msgstr ""
 
-#: config/config.php:675
+#: config/config.php:697
 msgid "Pinterest domain verify"
 msgstr ""
 
-#: config/config.php:676
+#: config/config.php:698
 msgid ""
 "Set pinterest domain verify code here, if your website have page on pinterest"
 msgstr ""
 
-#: config/config.php:682
+#: config/config.php:706
 msgid "Latitude"
 msgstr ""
 
-#: config/config.php:689
+#: config/config.php:707
+msgid "Global latitude on system"
+msgstr ""
+
+#: config/config.php:713
 msgid "Longitude"
 msgstr ""
 
-#: config/config.php:696
+#: config/config.php:714
+msgid "Global longitude on system"
+msgstr ""
+
+#: config/config.php:720
 msgid "Placename"
 msgstr ""
 
-#: config/config.php:703
+#: config/config.php:721
+msgid "Global place name and map title on system"
+msgstr ""
+
+#: config/config.php:727
 msgid "Region"
+msgstr ""
+
+#: config/config.php:728
+msgid "For example IR-07 for Iran Tehran"
+msgstr ""
+
+#: config/config.php:734
+msgid "Map type"
+msgstr ""
+
+#: config/config.php:735
+msgid "Global setting for use google map or Openstreetmap"
+msgstr ""
+
+#: config/config.php:740
+msgid "Google map"
+msgstr ""
+
+#: config/config.php:752
+msgid "GA account"
+msgstr ""
+
+#: config/config.php:753
+msgid ""
+"Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append "
+"to the code `UA-XXXXXXXX-X; XXXX.tld`."
+msgstr ""
+
+#: config/config.php:761
+msgid "Google map key"
+msgstr ""
+
+#: config/config.php:762
+msgid ""
+"Key for google map, get it from https://developers.google.com/maps/"
+"documentation/javascript/get-api-key"
+msgstr ""
+
+#: config/config.php:770
+msgid "ReCaptcha Site key"
+msgstr ""
+
+#: config/config.php:771
+msgid ""
+"see https://www.google.com/recaptcha to create your public key dedicated to "
+"your website domain. Both keys are mandatory."
+msgstr ""
+
+#: config/config.php:779
+msgid "ReCaptcha Secret key"
+msgstr ""
+
+#: config/config.php:780
+msgid ""
+"see https://www.google.com/recaptcha to create your private key dedicated to "
+"your website domain. Both keys are mandatory.."
+msgstr ""
+
+#: config/config.php:790
+msgid "Openstreetmap tile url"
+msgstr ""
+
+#: config/config.php:791
+msgid ""
+"Setup osm tile on your own server or use mapbox or openstreetmap servers"
+msgstr ""
+
+#: config/config.php:799
+msgid "Openstreetmap route url"
+msgstr ""
+
+#: config/config.php:800
+msgid "Setup osrm route project on your own server or use mapbox"
 msgstr ""
 
 #: config/event.php:21
@@ -806,7 +896,7 @@ msgid "For administration of core functions of the site."
 msgstr ""
 
 #: config/nav.admin.php:17 config/page.php:91
-#: template/admin/asset-index.phtml:23
+#: template/admin/asset-index.phtml:24
 msgid "Modules"
 msgstr ""
 
@@ -827,7 +917,7 @@ msgid "Repository"
 msgstr ""
 
 #: config/nav.admin.php:85 config/page.php:97
-#: template/admin/asset-index.phtml:36
+#: template/admin/asset-index.phtml:38
 msgid "Themes"
 msgstr ""
 
@@ -839,8 +929,8 @@ msgstr ""
 msgid "Navigation"
 msgstr ""
 
-#: config/nav.admin.php:143 src/Controller/Admin/NavController.php:80
-#: src/Controller/Admin/NavController.php:128
+#: config/nav.admin.php:143 src/Controller/Admin/NavController.php:82
+#: src/Controller/Admin/NavController.php:130
 msgid "Navigation list"
 msgstr ""
 
@@ -869,22 +959,26 @@ msgid "Add role"
 msgstr ""
 
 #: config/nav.admin.php:260
-msgid "Cache flush"
+msgid "Asset publish"
 msgstr ""
 
-#: config/nav.admin.php:270
-msgid "Asset publish"
+#: config/nav.admin.php:271
+msgid "Cache flush"
 msgstr ""
 
 #: config/nav.admin.php:281
 msgid "Toolkit"
 msgstr ""
 
-#: config/nav.admin.php:292 template/admin/audit-index.phtml:8
+#: config/nav.admin.php:292 template/admin/audit-index.phtml:9
 msgid "Audit"
 msgstr ""
 
 #: config/nav.admin.php:311
+msgid "Database tools"
+msgstr ""
+
+#: config/nav.admin.php:322
 msgid "Homepage layout"
 msgstr ""
 
@@ -905,7 +999,7 @@ msgstr ""
 msgid "Cache"
 msgstr ""
 
-#: config/nav.component.php:61 template/admin/nav-data.phtml:76
+#: config/nav.component.php:61 template/admin/nav-data.phtml:78
 msgid "Permission"
 msgstr ""
 
@@ -925,7 +1019,7 @@ msgstr ""
 msgid "Register"
 msgstr ""
 
-#: config/nav.front.php:44 template/admin/member-index.phtml:37
+#: config/nav.front.php:44 template/admin/member-index.phtml:43
 msgid "Password"
 msgstr ""
 
@@ -1077,35 +1171,35 @@ msgstr ""
 msgid "Asset component list"
 msgstr ""
 
-#: src/Controller/Admin/AssetController.php:100
+#: src/Controller/Admin/AssetController.php:104
 msgid ""
 "Some old files were not able to remove and asset publish was not completed."
 msgstr ""
 
-#: src/Controller/Admin/AssetController.php:105
+#: src/Controller/Admin/AssetController.php:109
 msgid "Asset publish was not completed, please check and copy manually."
 msgstr ""
 
-#: src/Controller/Admin/AssetController.php:110
+#: src/Controller/Admin/AssetController.php:114
 msgid ""
 "Asset publish was not completed because some old files were not able to "
 "remove."
 msgstr ""
 
-#: src/Controller/Admin/AssetController.php:115
+#: src/Controller/Admin/AssetController.php:119
 msgid ""
 "Asset files are not published correctly, please copy asset files manually."
 msgstr ""
 
-#: src/Controller/Admin/AssetController.php:120
+#: src/Controller/Admin/AssetController.php:124
 msgid "Asset files are published correctly."
 msgstr ""
 
-#: src/Controller/Admin/AssetController.php:187
+#: src/Controller/Admin/AssetController.php:202
 msgid "Publish is not completed, please check and re-publish one by one."
 msgstr ""
 
-#: src/Controller/Admin/AssetController.php:192
+#: src/Controller/Admin/AssetController.php:207
 msgid "All assets published successfully."
 msgstr ""
 
@@ -1129,8 +1223,8 @@ msgstr ""
 
 #: src/Controller/Admin/BlockController.php:198
 #: src/Controller/Admin/BlockController.php:304
-#: src/Controller/Admin/PageController.php:169
-#: src/Controller/Admin/PageController.php:280
+#: src/Controller/Admin/PageController.php:170
+#: src/Controller/Admin/PageController.php:281
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
@@ -1162,36 +1256,40 @@ msgid "Page cache updated successfully."
 msgstr ""
 
 #: src/Controller/Admin/CacheController.php:94
-#: src/Controller/Admin/PageController.php:64 template/admin/event.phtml:24
+#: src/Controller/Admin/PageController.php:65 template/admin/event.phtml:24
 #: template/admin/perm.phtml:15 template/admin/perm.phtml:21
 #: template/admin/role.phtml:35 template/admin/theme-index.phtml:12
 msgid "Front"
 msgstr ""
 
 #: src/Controller/Admin/CacheController.php:98
+msgid "Api"
+msgstr ""
+
+#: src/Controller/Admin/CacheController.php:102
 msgid "Feed"
 msgstr ""
 
-#: src/Controller/Admin/CacheController.php:111
+#: src/Controller/Admin/CacheController.php:115
 msgid "Page wide"
 msgstr ""
 
-#: src/Controller/Admin/CacheController.php:112
+#: src/Controller/Admin/CacheController.php:116
 msgid "Action data"
 msgstr ""
 
-#: src/Controller/Admin/CacheController.php:161
-#: src/Controller/Admin/PageController.php:87
-#: src/Controller/Admin/PageController.php:417
+#: src/Controller/Admin/CacheController.php:165
+#: src/Controller/Admin/PageController.php:88
+#: src/Controller/Admin/PageController.php:418
 msgid "Module wide"
 msgstr ""
 
-#: src/Controller/Admin/CacheController.php:171
-#: src/Controller/Admin/PageController.php:97
+#: src/Controller/Admin/CacheController.php:175
+#: src/Controller/Admin/PageController.php:98
 msgid "Module home"
 msgstr ""
 
-#: src/Controller/Admin/CacheController.php:195
+#: src/Controller/Admin/CacheController.php:199
 #: src/Controller/Admin/FlushController.php:93
 msgid "Cache list"
 msgstr ""
@@ -1201,11 +1299,11 @@ msgstr ""
 msgid "Never updated."
 msgstr ""
 
-#: src/Controller/Admin/ConfigController.php:174
+#: src/Controller/Admin/ConfigController.php:173
 msgid "Configuration data saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/ConfigController.php:188
+#: src/Controller/Admin/ConfigController.php:187
 msgid "Module configurations"
 msgstr ""
 
@@ -1452,105 +1550,106 @@ msgstr ""
 msgid "Title is required."
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:64
-#: src/Controller/Admin/NavController.php:91 template/admin/nav-data.phtml:44
-#: template/admin/nav-index.phtml:37
+#: src/Controller/Admin/NavController.php:66
+#: src/Controller/Admin/NavController.php:93 template/admin/nav-data.phtml:43
+#: template/admin/nav-index.phtml:42
 msgid "Custom"
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:160
+#: src/Controller/Admin/NavController.php:162
 msgid "Navigation set up successfully."
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:194
+#: src/Controller/Admin/NavController.php:196
 msgid "Navigation added successfully."
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:209
+#: src/Controller/Admin/NavController.php:211
 msgid "Add a navigation"
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:245
+#: src/Controller/Admin/NavController.php:247
 msgid "Navigation saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:251
+#: src/Controller/Admin/NavController.php:253
 msgid "Navigation data not saved."
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:289
+#: src/Controller/Admin/NavController.php:291
 msgid "Clone navigation"
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:309
+#: src/Controller/Admin/NavController.php:311
 msgid "The navigation is in use and not allowed to delete."
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:321
+#: src/Controller/Admin/NavController.php:323
 msgid "The navigation is deleted successfully."
-msgstr ""
-
-#: src/Controller/Admin/NavController.php:388
-#, php-format
-msgid "View of navigation details: %s"
 msgstr ""
 
 #: src/Controller/Admin/NavController.php:390
 #, php-format
+msgid "View of navigation details: %s"
+msgstr ""
+
+#: src/Controller/Admin/NavController.php:392
+#, php-format
 msgid "Navigation data edit: %s"
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:476
+#: src/Controller/Admin/NavController.php:478
 msgid "Navigation data saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:483
+#: src/Controller/Admin/NavController.php:485
 msgid "Navigation not found."
 msgstr ""
 
-#: src/Controller/Admin/NavController.php:487
+#: src/Controller/Admin/NavController.php:489
 msgid "Only custom navigations are allowed to manipulate."
 msgstr ""
 
-#: src/Controller/Admin/PageController.php:128
+#: src/Controller/Admin/PageController.php:129
 msgid "Pages list"
 msgstr ""
 
-#: src/Controller/Admin/PageController.php:154
-#: src/Controller/Admin/PageController.php:214
-#: src/Controller/Admin/PageController.php:278
-#: src/Controller/Admin/PageController.php:326
+#: src/Controller/Admin/PageController.php:155
+#: src/Controller/Admin/PageController.php:215
+#: src/Controller/Admin/PageController.php:279
+#: src/Controller/Admin/PageController.php:327
 msgid "Page data saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/PageController.php:166
-#: src/Controller/Admin/PageController.php:236
+#: src/Controller/Admin/PageController.php:167
+#: src/Controller/Admin/PageController.php:237
 msgid "Page data not saved."
 msgstr ""
 
-#: src/Controller/Admin/PageController.php:181 template/admin/page-list.phtml:9
+#: src/Controller/Admin/PageController.php:182
+#: template/admin/page-list.phtml:11
 msgid "Setup a page"
 msgstr ""
 
-#: src/Controller/Admin/PageController.php:294
+#: src/Controller/Admin/PageController.php:295
 msgid "Pages edit"
 msgstr ""
 
-#: src/Controller/Admin/PageController.php:370
+#: src/Controller/Admin/PageController.php:371
 msgid "Page is deleted."
 msgstr ""
 
-#: src/Controller/Admin/PageController.php:375
-#: src/Controller/Admin/PageController.php:550
+#: src/Controller/Admin/PageController.php:376
+#: src/Controller/Admin/PageController.php:551
 msgid "Page is not found."
 msgstr ""
 
-#: src/Controller/Admin/PageController.php:490
+#: src/Controller/Admin/PageController.php:491
 #, php-format
 msgid "%s blocks"
 msgstr ""
 
-#: src/Controller/Admin/PageController.php:576
+#: src/Controller/Admin/PageController.php:577
 msgid "Page block links are updated."
 msgstr ""
 
@@ -1566,53 +1665,53 @@ msgstr ""
 msgid "Permission assigned successfully."
 msgstr ""
 
-#: src/Controller/Admin/RepoController.php:60
-#: src/Controller/Admin/RepoController.php:84
+#: src/Controller/Admin/RepoController.php:59
+#: src/Controller/Admin/RepoController.php:83
 #, php-format
 msgid "A new version %s is available"
 msgstr ""
 
-#: src/Controller/Admin/RepoController.php:65
-#: src/Controller/Admin/RepoController.php:89
+#: src/Controller/Admin/RepoController.php:64
+#: src/Controller/Admin/RepoController.php:88
 msgid "No update available"
 msgstr ""
 
-#: src/Controller/Admin/RepoController.php:69
-#: src/Controller/Admin/RepoController.php:93
+#: src/Controller/Admin/RepoController.php:68
+#: src/Controller/Admin/RepoController.php:92
 msgid "Error occurred, check later."
 msgstr ""
 
-#: src/Controller/Admin/RoleController.php:160
-#: src/Controller/Admin/RoleController.php:214
+#: src/Controller/Admin/RoleController.php:162
+#: src/Controller/Admin/RoleController.php:216
 msgid "Role data saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/RoleController.php:163
-#: src/Controller/Admin/RoleController.php:217
+#: src/Controller/Admin/RoleController.php:165
+#: src/Controller/Admin/RoleController.php:219
 msgid "Role data not saved."
 msgstr ""
 
-#: src/Controller/Admin/RoleController.php:185
+#: src/Controller/Admin/RoleController.php:187
 msgid "Add a role"
 msgstr ""
 
-#: src/Controller/Admin/RoleController.php:243
+#: src/Controller/Admin/RoleController.php:245
 msgid "Edit a role"
 msgstr ""
 
-#: src/Controller/Admin/RoleController.php:263
+#: src/Controller/Admin/RoleController.php:265
 msgid "Only custom roles are allowed to activate/deactivate."
 msgstr ""
 
-#: src/Controller/Admin/RoleController.php:273
+#: src/Controller/Admin/RoleController.php:275
 msgid "Role updated successfully."
 msgstr ""
 
-#: src/Controller/Admin/RoleController.php:312
+#: src/Controller/Admin/RoleController.php:314
 msgid "Only custom roles are allowed to delete."
 msgstr ""
 
-#: src/Controller/Admin/RoleController.php:318
+#: src/Controller/Admin/RoleController.php:320
 msgid "Role deleted successfully."
 msgstr ""
 
@@ -1679,25 +1778,25 @@ msgstr ""
 msgid "No permitted operation available."
 msgstr ""
 
-#: src/Form/ModuleCategoryForm.php:30 template/admin/asset-index.phtml:11
+#: src/Form/ModuleCategoryForm.php:29 template/admin/asset-index.phtml:11
 #: template/admin/block-list.phtml:18 template/admin/cache-list.phtml:14
 #: template/admin/dashboard-system.phtml:26 template/admin/event.phtml:17
 #: template/admin/flush-index.phtml:10 template/admin/module-available.phtml:9
 #: template/admin/module-index.phtml:7 template/admin/nav-index.phtml:10
-#: template/admin/page-list.phtml:13 template/admin/role.phtml:22
+#: template/admin/page-list.phtml:15 template/admin/role.phtml:22
 #: template/admin/role.phtml:30
 msgid "Title"
 msgstr ""
 
-#: src/Form/ModuleCategoryForm.php:40
+#: src/Form/ModuleCategoryForm.php:39
 msgid "Font-awesome icon"
 msgstr ""
 
-#: src/Form/ModuleCategoryForm.php:44
+#: src/Form/ModuleCategoryForm.php:43
 msgid "Check http://fortawesome.github.io/Font-Awesome/icons/"
 msgstr ""
 
-#: src/Form/ModuleCategoryForm.php:51 template/admin/module-category.phtml:78
+#: src/Form/ModuleCategoryForm.php:50 template/admin/module-category.phtml:79
 msgid "Order"
 msgstr ""
 
@@ -1744,67 +1843,75 @@ msgstr ""
 #: template/admin/asset-index.phtml:12 template/admin/block-list.phtml:21
 #: template/admin/event.phtml:18 template/admin/flush-index.phtml:11
 #: template/admin/module-available.phtml:12
-#: template/admin/module-index.phtml:11 template/admin/module-index.phtml:66
-#: template/admin/nav-data.phtml:116 template/admin/nav-index.phtml:13
-#: template/admin/page-list.phtml:14 template/admin/role.phtml:28
+#: template/admin/module-index.phtml:11 template/admin/module-index.phtml:71
+#: template/admin/nav-data.phtml:122 template/admin/nav-index.phtml:13
+#: template/admin/page-list.phtml:16 template/admin/role.phtml:28
 msgid "Action"
 msgstr ""
 
-#: template/admin/asset-index.phtml:19
+#: template/admin/asset-index.phtml:20
 msgid "Re-publish all"
 msgstr ""
 
-#: template/admin/asset-index.phtml:31 template/admin/asset-index.phtml:44
+#: template/admin/asset-index.phtml:33 template/admin/asset-index.phtml:47
 msgid "Publish"
 msgstr ""
 
-#: template/admin/asset-index.phtml:54
+#: template/admin/asset-index.phtml:57
 msgid "Asset publish in process"
 msgstr ""
 
-#: template/admin/audit-index.phtml:12
+#: template/admin/audit-index.phtml:15
 msgid "Audit list"
 msgstr ""
 
-#: template/admin/audit-index.phtml:16
+#: template/admin/audit-index.phtml:20
 msgid "time"
 msgstr ""
 
-#: template/admin/audit-index.phtml:17
+#: template/admin/audit-index.phtml:21
 msgid "User ID"
 msgstr ""
 
-#: template/admin/audit-index.phtml:18
+#: template/admin/audit-index.phtml:22
 msgid "IP"
 msgstr ""
 
-#: template/admin/audit-index.phtml:24
+#: template/admin/audit-index.phtml:28 template/admin/audit-index.phtml:62
 msgid "Message"
 msgstr ""
 
-#: template/admin/audit-index.phtml:25
-msgid "extra"
+#: template/admin/audit-index.phtml:29 template/admin/audit-index.phtml:71
+msgid "Extra information"
 msgstr ""
 
-#: template/admin/audit-index.phtml:48
+#: template/admin/audit-index.phtml:55 template/admin/nav-index.phtml:48
+msgid "View"
+msgstr ""
+
+#: template/admin/audit-index.phtml:56
+msgid "Close"
+msgstr ""
+
+#: template/admin/audit-index.phtml:91
 msgid "Count of items to display: "
 msgstr ""
 
-#: template/admin/audit-index.phtml:51
+#: template/admin/audit-index.phtml:95
 msgid "10"
 msgstr ""
 
-#: template/admin/audit-index.phtml:52
+#: template/admin/audit-index.phtml:96
 msgid "20"
 msgstr ""
 
-#: template/admin/audit-index.phtml:53
+#: template/admin/audit-index.phtml:97
 msgid "50"
 msgstr ""
 
 #: template/admin/block-list.phtml:19 template/admin/module-available.phtml:11
 #: template/admin/module-index.phtml:9 template/admin/theme-available.phtml:27
-#: template/admin/theme-index.phtml:58 template/admin/theme-installed.phtml:33
+#: template/admin/theme-index.phtml:69 template/admin/theme-installed.phtml:33
 msgid "Description"
 msgstr ""
 
@@ -1817,19 +1924,19 @@ msgid "Preview"
 msgstr ""
 
 #: template/admin/block-list.phtml:24 template/admin/dashboard-system.phtml:21
-#: template/admin/member-index.phtml:35 template/admin/nav-index.phtml:48
-#: template/admin/page-list.phtml:27
+#: template/admin/member-index.phtml:40 template/admin/nav-index.phtml:53
+#: template/admin/page-list.phtml:29
 msgid "Edit"
 msgstr ""
 
-#: template/admin/block-list.phtml:25 template/admin/member-index.phtml:39
-#: template/admin/nav-index.phtml:49 template/admin/page-list.phtml:34
+#: template/admin/block-list.phtml:25 template/admin/member-index.phtml:46
+#: template/admin/nav-index.phtml:54 template/admin/page-list.phtml:37
 #: template/admin/role.phtml:19
 msgid "Delete"
 msgstr ""
 
-#: template/admin/block-list.phtml:26 template/admin/module-available.phtml:66
-#: template/admin/nav-index.phtml:45
+#: template/admin/block-list.phtml:26 template/admin/module-available.phtml:67
+#: template/admin/nav-index.phtml:50
 msgid "Clone"
 msgstr ""
 
@@ -1853,7 +1960,7 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
-#: template/admin/cache-list.phtml:38
+#: template/admin/cache-list.phtml:39
 msgid "Force for all pages"
 msgstr ""
 
@@ -1906,7 +2013,7 @@ msgstr ""
 msgid "Announcement"
 msgstr ""
 
-#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:125
+#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:132
 msgid "Save"
 msgstr ""
 
@@ -1942,6 +2049,34 @@ msgid ""
 "and users."
 msgstr ""
 
+#: template/admin/database-check.phtml:14
+msgid "Back"
+msgstr ""
+
+#: template/admin/database-check.phtml:21
+msgid "Results for tables"
+msgstr ""
+
+#: template/admin/database-check.phtml:31
+msgid "Results for columns"
+msgstr ""
+
+#: template/admin/database-check.phtml:41
+msgid "Results for InnoDB check"
+msgstr ""
+
+#: template/admin/database-index.phtml:14
+msgid "Check for encoding"
+msgstr ""
+
+#: template/admin/database-index.phtml:19
+msgid "This tool help you to check non-utf8 data fields for all tables"
+msgstr ""
+
+#: template/admin/database-index.phtml:24
+msgid "Check UTF8 and Innodb"
+msgstr ""
+
 #: template/admin/event.phtml:19
 msgid "Events"
 msgstr ""
@@ -1962,20 +2097,20 @@ msgstr ""
 msgid "Error, please try again later."
 msgstr ""
 
-#: template/admin/flush-index.phtml:17
+#: template/admin/flush-index.phtml:18
 msgid "Flush all"
 msgstr ""
 
-#: template/admin/flush-index.phtml:24 template/admin/flush-index.phtml:33
-#: template/admin/flush-index.phtml:41 template/admin/flush-index.phtml:50
+#: template/admin/flush-index.phtml:26 template/admin/flush-index.phtml:36
+#: template/admin/flush-index.phtml:45 template/admin/flush-index.phtml:55
 msgid "Flush"
 msgstr ""
 
-#: template/admin/flush-index.phtml:39
+#: template/admin/flush-index.phtml:42
 msgid "Registry"
 msgstr ""
 
-#: template/admin/flush-index.phtml:62
+#: template/admin/flush-index.phtml:66
 msgid "Cache flush in process"
 msgstr ""
 
@@ -1983,55 +2118,55 @@ msgstr ""
 msgid "There is no entry page for this module management. Please:"
 msgstr ""
 
-#: template/admin/index.phtml:9
+#: template/admin/index.phtml:11
 msgid "Module config"
 msgstr ""
 
-#: template/admin/index.phtml:9
+#: template/admin/index.phtml:11
 msgid "Go to set up module configs;"
 msgstr ""
 
-#: template/admin/index.phtml:10
+#: template/admin/index.phtml:13
 msgid "System admin"
 msgstr ""
 
-#: template/admin/index.phtml:10
+#: template/admin/index.phtml:13
 msgid "Go back to system dashboard."
 msgstr ""
 
-#: template/admin/member-index.phtml:6
+#: template/admin/member-index.phtml:7
 msgid "Add a member"
 msgstr ""
 
-#: template/admin/member-index.phtml:11
+#: template/admin/member-index.phtml:12
 msgid "Select a role: "
 msgstr ""
 
-#: template/admin/member-index.phtml:24 template/admin/role.phtml:21
+#: template/admin/member-index.phtml:28 template/admin/role.phtml:21
 msgid "Name"
 msgstr ""
 
-#: template/admin/member-index.phtml:26
+#: template/admin/member-index.phtml:30
 msgid "Front role"
 msgstr ""
 
-#: template/admin/member-index.phtml:27
+#: template/admin/member-index.phtml:31
 msgid "Admin role"
 msgstr ""
 
-#: template/admin/member-index.phtml:28 template/admin/role.phtml:25
+#: template/admin/member-index.phtml:32 template/admin/role.phtml:25
 msgid "Active"
 msgstr ""
 
-#: template/admin/member-index.phtml:43
+#: template/admin/member-index.phtml:50
 msgid "Not set"
 msgstr ""
 
-#: template/admin/member-index.phtml:46
+#: template/admin/member-index.phtml:53
 msgid "Yes"
 msgstr ""
 
-#: template/admin/member-index.phtml:46
+#: template/admin/member-index.phtml:53
 msgid "No"
 msgstr ""
 
@@ -2040,19 +2175,19 @@ msgid "Icon"
 msgstr ""
 
 #: template/admin/module-available.phtml:10 template/admin/module-index.phtml:8
-#: template/admin/theme-available.phtml:23 template/admin/theme-index.phtml:56
+#: template/admin/theme-available.phtml:23 template/admin/theme-index.phtml:67
 #: template/admin/theme-installed.phtml:29
 msgid "Version"
 msgstr ""
 
 #: template/admin/module-available.phtml:34
-#: template/admin/module-index.phtml:36 template/admin/theme-available.phtml:18
-#: template/admin/theme-index.phtml:53 template/admin/theme-installed.phtml:22
+#: template/admin/module-index.phtml:40 template/admin/theme-available.phtml:18
+#: template/admin/theme-index.phtml:64 template/admin/theme-installed.phtml:22
 msgid "Detail"
 msgstr ""
 
 #: template/admin/module-available.phtml:37
-#: template/admin/module-index.phtml:40
+#: template/admin/module-index.phtml:44
 msgid "Directory:"
 msgstr ""
 
@@ -2061,23 +2196,23 @@ msgstr ""
 msgid "Install"
 msgstr ""
 
-#: template/admin/module-category.phtml:38
+#: template/admin/module-category.phtml:36
 msgid "Assign to:"
 msgstr ""
 
-#: template/admin/module-category.phtml:56
+#: template/admin/module-category.phtml:54
 msgid "Edit this category"
 msgstr ""
 
-#: template/admin/module-category.phtml:59
+#: template/admin/module-category.phtml:58
 msgid "Delete this category"
 msgstr ""
 
-#: template/admin/module-category.phtml:73
+#: template/admin/module-category.phtml:74
 msgid "Remove"
 msgstr ""
 
-#: template/admin/module-category.phtml:92
+#: template/admin/module-category.phtml:94
 msgid "Sort modules"
 msgstr ""
 
@@ -2085,45 +2220,45 @@ msgstr ""
 msgid "Last Update"
 msgstr ""
 
-#: template/admin/module-index.phtml:28
+#: template/admin/module-index.phtml:32
 msgid "Rename"
 msgstr ""
 
-#: template/admin/module-index.phtml:38
+#: template/admin/module-index.phtml:42
 msgid "Name:"
 msgstr ""
 
-#: template/admin/module-index.phtml:42
+#: template/admin/module-index.phtml:46
 msgid "Author"
 msgstr ""
 
-#: template/admin/module-index.phtml:58 template/admin/theme-installed.phtml:26
+#: template/admin/module-index.phtml:62 template/admin/theme-installed.phtml:26
 msgid "Update"
 msgstr ""
 
-#: template/admin/module-index.phtml:62
+#: template/admin/module-index.phtml:66
 msgid ""
 "Are you sure to update all module? make sure have backup from your website "
 "before use this option"
 msgstr ""
 
-#: template/admin/module-index.phtml:62
+#: template/admin/module-index.phtml:66
 msgid "Update all"
 msgstr ""
 
-#: template/admin/module-index.phtml:70
+#: template/admin/module-index.phtml:75
 msgid "Disable"
 msgstr ""
 
-#: template/admin/module-index.phtml:72
+#: template/admin/module-index.phtml:77
 msgid "Enable"
 msgstr ""
 
-#: template/admin/module-index.phtml:75
+#: template/admin/module-index.phtml:80
 msgid "Are you sure to uninstall this module?"
 msgstr ""
 
-#: template/admin/module-index.phtml:75 template/admin/theme-installed.phtml:20
+#: template/admin/module-index.phtml:80 template/admin/theme-installed.phtml:20
 msgid "Uninstall"
 msgstr ""
 
@@ -2133,12 +2268,12 @@ msgid "Press to continue ..."
 msgstr ""
 
 #: template/admin/module-operation.phtml:17
-#: template/admin/module-refresh.phtml:23
+#: template/admin/module-refresh.phtml:21
 msgid "Failed"
 msgstr ""
 
 #: template/admin/module-operation.phtml:19
-#: template/admin/module-refresh.phtml:25
+#: template/admin/module-refresh.phtml:23
 msgid "Succeeded"
 msgstr ""
 
@@ -2146,11 +2281,11 @@ msgstr ""
 msgid "Module updates finished."
 msgstr ""
 
-#: template/admin/module-refresh.phtml:16
+#: template/admin/module-refresh.phtml:14
 msgid "Update succeeded."
 msgstr ""
 
-#: template/admin/module-refresh.phtml:16
+#: template/admin/module-refresh.phtml:14
 msgid "Update failed."
 msgstr ""
 
@@ -2160,11 +2295,11 @@ msgid ""
 "after edit and finally save menu by blue button."
 msgstr ""
 
-#: template/admin/nav-data.phtml:17
+#: template/admin/nav-data.phtml:18
 msgid "Only click this button to save data"
 msgstr ""
 
-#: template/admin/nav-data.phtml:18
+#: template/admin/nav-data.phtml:19
 msgid "Save menu"
 msgstr ""
 
@@ -2172,19 +2307,19 @@ msgstr ""
 msgid "Add to menu"
 msgstr ""
 
-#: template/admin/nav-data.phtml:35
+#: template/admin/nav-data.phtml:34
 msgid "This navgation is only for viewing"
 msgstr ""
 
-#: template/admin/nav-data.phtml:43
+#: template/admin/nav-data.phtml:42
 msgid "Click to toggle edit"
 msgstr ""
 
-#: template/admin/nav-data.phtml:55
+#: template/admin/nav-data.phtml:54
 msgid "Label"
 msgstr ""
 
-#: template/admin/nav-data.phtml:61
+#: template/admin/nav-data.phtml:60
 msgid "Url"
 msgstr ""
 
@@ -2196,35 +2331,35 @@ msgstr ""
 msgid "Target"
 msgstr ""
 
-#: template/admin/nav-data.phtml:70
+#: template/admin/nav-data.phtml:71
 msgid "None"
 msgstr ""
 
-#: template/admin/nav-data.phtml:71
+#: template/admin/nav-data.phtml:73
 msgid "_blank"
 msgstr ""
 
-#: template/admin/nav-data.phtml:84
+#: template/admin/nav-data.phtml:87
 msgid "To display in menu."
 msgstr ""
 
-#: template/admin/nav-data.phtml:89
+#: template/admin/nav-data.phtml:92
 msgid "Page link by route"
 msgstr ""
 
-#: template/admin/nav-data.phtml:94
+#: template/admin/nav-data.phtml:97
 msgid "Route"
 msgstr ""
 
-#: template/admin/nav-data.phtml:100
+#: template/admin/nav-data.phtml:104
 msgid "Controller"
 msgstr ""
 
-#: template/admin/nav-data.phtml:110
+#: template/admin/nav-data.phtml:115
 msgid "Module"
 msgstr ""
 
-#: template/admin/nav-data.phtml:427
+#: template/admin/nav-data.phtml:438
 msgid "You have made unsaved changes. Would you still like to leave this page?"
 msgstr ""
 
@@ -2236,35 +2371,31 @@ msgstr ""
 msgid "Related"
 msgstr ""
 
-#: template/admin/nav-index.phtml:20
+#: template/admin/nav-index.phtml:24
 msgid "None to use"
 msgstr ""
 
-#: template/admin/nav-index.phtml:31
+#: template/admin/nav-index.phtml:36
 msgid "Set global"
 msgstr ""
 
-#: template/admin/nav-index.phtml:43
-msgid "View"
-msgstr ""
-
-#: template/admin/nav-index.phtml:82
+#: template/admin/nav-index.phtml:87
 msgid "Are you sure to delete this navigation"
 msgstr ""
 
-#: template/admin/page-block.phtml:165 template/admin/role.phtml:31
+#: template/admin/page-block.phtml:192 template/admin/role.phtml:31
 msgid "Submit"
 msgstr ""
 
-#: template/admin/page-block.phtml:171 template/admin/page-block.phtml:172
+#: template/admin/page-block.phtml:198 template/admin/page-block.phtml:199
 msgid "Available Themes"
 msgstr ""
 
-#: template/admin/page-list.phtml:31
+#: template/admin/page-list.phtml:34
 msgid "Dress up"
 msgstr ""
 
-#: template/admin/page-list.phtml:86
+#: template/admin/page-list.phtml:89
 msgid "Are you sure to delete the page?"
 msgstr ""
 
@@ -2337,7 +2468,7 @@ msgstr ""
 msgid "Are you sure to delete this role?"
 msgstr ""
 
-#: template/admin/theme-available.phtml:10 template/admin/theme-index.phtml:47
+#: template/admin/theme-available.phtml:10 template/admin/theme-index.phtml:59
 #: template/admin/theme-installed.phtml:12
 msgid "Click To preview"
 msgstr ""
@@ -2351,11 +2482,11 @@ msgstr ""
 msgid "Theme in use"
 msgstr ""
 
-#: template/admin/theme-index.phtml:40
+#: template/admin/theme-index.phtml:53
 msgid "Themes available to use"
 msgstr ""
 
-#: template/admin/theme-index.phtml:52
+#: template/admin/theme-index.phtml:63
 msgid "Apply"
 msgstr ""
 

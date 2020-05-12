@@ -139,7 +139,7 @@ class LoginController extends ActionController
         $form->setData($post);
         $form->setInputFilter($this->getInputFilter($configs));
 
-        $this->view()->assign('redirect', $post['redirect']);
+        $this->view()->assign('redirect', ['route' => 'home']);
 
         if (!$form->isValid()) {
 //        print_r($form->getMessages()); die();
@@ -230,7 +230,8 @@ class LoginController extends ActionController
         if (empty($values['redirect'])) {
             $redirect = ['route' => 'home'];
         } else {
-            $redirect = urldecode($values['redirect']);
+            //$redirect = urldecode($values['redirect']);
+            $redirect = ['route' => 'home'];
         }
 
         // Trigger login event

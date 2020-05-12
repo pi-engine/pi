@@ -29,25 +29,87 @@ class EditUserFilter extends InputFilter
         );
         */
         foreach ($filters as $filter) {
-            if ($filter['name'] == 'credential') {
-                $this->add([
-                    'name'       => 'credential',
-                    'required'   => false,
-                    'filters'    => [
+            switch ($filter['name']) {
+                case 'credential':
+                    $this->add(
                         [
-                            'name' => 'StringTrim',
-                        ],
-                    ],
-                    'validators' => [
+                            'name'       => 'credential',
+                            'required'   => false,
+                            'filters'    => [
+                                [
+                                    'name' => 'StringTrim',
+                                ],
+                            ],
+                            'validators' => [
+                                [
+                                    'name' => 'Module\User\Validator\Password',
+                                ],
+                            ],
+                        ]
+                    );
+                    break;
+
+                case 'identity':
+                    $this->add(
                         [
-                            'name' => 'Module\User\Validator\Password',
-                        ],
-                    ],
-                ]);
-            } else {
-                $this->add($filter);
+                            'name'       => 'identity',
+                            'required'   => false,
+                            'filters'    => [
+                                [
+                                    'name' => 'StringTrim',
+                                ],
+                            ],
+                            'validators' => [
+                                [
+                                    'name' => 'Module\User\Validator\Username',
+                                ],
+                            ],
+                        ]
+                    );
+                    break;
+
+                case 'email':
+                    $this->add(
+                        [
+                            'name'       => 'email',
+                            'required'   => false,
+                            'filters'    => [
+                                [
+                                    'name' => 'StringTrim',
+                                ],
+                            ],
+                            'validators' => [
+                                [
+                                    'name' => 'Module\User\Validator\UserEmail',
+                                ],
+                            ],
+                        ]
+                    );
+                    break;
+
+                case 'name':
+                    $this->add(
+                        [
+                            'name'       => 'name',
+                            'required'   => false,
+                            'filters'    => [
+                                [
+                                    'name' => 'StringTrim',
+                                ],
+                            ],
+                            'validators' => [
+                                [
+                                    'name' => 'Module\User\Validator\Name',
+                                ],
+                            ],
+                        ]
+                    );
+                    break;
+
+                default:
+                    $this->add($filter);
+                    break;
             }
         }
-
     }
 }

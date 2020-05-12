@@ -1,68 +1,63 @@
 <?php $this->jQuery(); ?>
-<div class="page-header">
-    <h2>
-        <small><?php echo _a('Edit user: '); ?></small> <?php echo $user['name']; ?></h2>
-</div>
-<ul class="nav nav-tabs">
-    <?php foreach ($nav
-
-    as $value) { ?>
-    <li class="nav-item">
-        <a class="nav-link <?php if ($value['name'] == $name) { echo 'active';} ?>" href="<?php echo $value['link']; ?>"><?php echo $value['title']; ?></a>
+<div class="clearfix">
+    <div class="page-header">
+        <h2><small><?php echo _a('Edit user: '); ?></small> <?php echo $user['name']; ?></h2>
+    </div>
+    <ul class="nav nav-tabs">
+        <?php foreach ($nav as $value) { ?>
+            <li class="nav-item">
+                <a class="nav-link <?php if ($value['name'] == $name) { echo 'active';} ?>" href="<?php echo $value['link']; ?>">
+                    <?php echo $value['title']; ?>
+                </a>
+            </li>
         <?php } ?>
-</ul>
-<?php
-if (isset($result)) {
-    echo sprintf('<div class="alert %s">%s
-            <button data-dismiss="alert" class="close" type="button">&times;</button></div>',
-        $result['status'] ? 'alert-success' : 'alert-error',
-        $result['message']);
-}
-?>
-<?php
-if ($name == 'info') {
-    echo $this->form($form);
-    return;
-}
-?>
-<?php
-if ($name == 'avatar') {
-    echo sprintf('
+    </ul>
+    <?php if (isset($result)) {
+        echo sprintf(
+                '<div class="alert %s">%s<button data-dismiss="alert" class="close" type="button">&times;</button></div>',
+            $result['status'] ? 'alert-success' : 'alert-error',
+            $result['message']);
+    } ?>
+    <?php if ($name == 'info') {
+        echo $this->form($form);
+        return;
+    } ?>
+    <?php if ($name == 'avatar') {
+        echo sprintf(
+                '
     <form method="post" action="#">
         <p>%s<p>
         <button class="btn btn-link">%s</button>
     </form>
     ',
-        $avatar,
-        _a('Replace with default avatar.'));
-    return;
-}
-?>
-<?php
-if (!$forms) {
-    echo sprintf('<div class="alert">%s</div>', _a('This user doesn\'t have any you can view'));
-    return;
-}
-?>
-<?php foreach ($forms as $key => $form) { ?>
-    <div class="pi-widget" style="width: 800px;">
-        <div class="clearfix pi-widget-header">
-            <button type="button" class="close js-user-compound-delete"
-                    data-url="<?php echo $this->url('', [
-                        'controller' => 'edit',
-                        'action'     => 'deleteCompound',
-                        'uid'        => $user['id'],
-                        'name'       => $name,
-                        'set'        => $key,
-                    ]); ?>">
-                &times;
-            </button>
+            $avatar,
+            _a('Replace with default avatar.'));
+        return;
+    } ?>
+    <?php if (!$forms) {
+        echo sprintf('<div class="alert">%s</div>', _a('This user doesn\'t have any you can view'));
+        return;
+    } ?>
+    <?php foreach ($forms as $key => $form) { ?>
+        <div class="pi-widget" style="width: 800px;">
+            <div class="clearfix pi-widget-header">
+                <button type="button" class="close js-user-compound-delete"
+                        data-url="<?php echo $this->url('', [
+                            'controller' => 'edit',
+                            'action'     => 'deleteCompound',
+                            'uid'        => $user['id'],
+                            'name'       => $name,
+                            'set'        => $key,
+                        ]); ?>">
+                    &times;
+                </button>
+            </div>
+            <div class="pi-widget-body" style="padding-left: 0;">
+                <?php echo $this->form($form); ?>
+            </div>
         </div>
-        <div class="pi-widget-body" style="padding-left: 0;">
-            <?php echo $this->form($form); ?>
-        </div>
-    </div>
-<?php } ?>
+    <?php } ?>
+</div>
 <script>
     $('.js-user-compound-delete').click(function () {
         if (!confirm('<?php echo _a('Are you sure delete this group?'); ?>')) return;

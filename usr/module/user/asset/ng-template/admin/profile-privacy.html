@@ -5,21 +5,26 @@
     <table class="table table-responsive">
         <thead>
         <tr>
-            <th>{{'FIELD' | translate}}
-            <th>{{'SETTING_DEFAULT' | translate}}
-            <th>{{'SETTING_FORCED' | translate}}
+            <th>{{'FIELD' | translate}}</th>
+            <th>{{'SETTING_DEFAULT' | translate}}</th>
+            <th>{{'SETTING_FORCED' | translate}}</th>
+        </tr>
+        </thead>
         <tbody>
         <tr ng-repeat="item in fields">
-            <td width="20%">{{item.title}}
+            <td width="20%">{{item.title}}</td>
             <td width="20%" style="padding-right: 20px;">
                 <select data-ng-model="item.value" class="form-control"
                         ng-options="limit.value as limit.text for limit in limits"
                         ng-change="setPrivacyAction(item)">
                 </select>
+            </td>
             <td>
                 <div class="pi-status" data-ng-class="{'active': item.is_forced}"
                      data-ng-click="forcePrivacyAction(item)">
                     <div class="pi-status-director"></div>
                 </div>
+            </td>
+        </tbody>
     </table>
 </div>

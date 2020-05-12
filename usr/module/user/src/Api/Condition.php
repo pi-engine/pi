@@ -37,7 +37,7 @@ class Condition extends AbstractApi
         // Get info
         $order  = ['created_at DESC'];
         $select = Pi::model('condition', $this->getModule())->select()->order($order)->where($filters);
-        $rowset = Pi::model('condition', $this->getModule())->selectWith($select);
+        $rowset = Pi::model('condition', $this->getModule())->selectWith($select)->toArray();
 
         return $rowset;
     }

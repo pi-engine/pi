@@ -78,5 +78,62 @@ class ViewController extends ActionController
         $this->view()->setTemplate('view-user');
         $this->view()->assign('user', $user);
         $this->view()->assign('meta', $meta);
+        $this->view()->assign('nav', $this->getNav($uid));
+        $this->view()->assign('name', 'view');
+    }
+
+    protected function getNav($uid)
+    {
+        $result[] = [
+            'name'  => 'info',
+            'title' => _a('Base info'),
+            'link'  => $this->url('', ['controller' => 'edit', 'uid' => $uid]),
+        ];
+
+        // Avatar
+        $result[] = [
+            'name'  => 'avatar',
+            'title' => _a('Avatar'),
+            'link'  => $this->url('', [
+                'controller' => 'edit',
+                'action'     => 'avatar',
+                'uid'        => $uid,
+            ]),
+        ];
+
+        $rowset = $this->getModel('field')->select(
+            [
+                'type'       => 'compound',
+                'is_display' => 1,
+                'is_edit'    => 1,
+                'active'     => 1,
+            ]
+        );
+
+        foreach ($rowset as $row) {
+            $result[] = [
+                'name'  => $row['name'],
+                'title' => $row['title'],
+                'link'  => $this->url('', [
+                    'controller' => 'edit',
+                    'action'     => 'compound',
+                    'uid'        => $uid,
+                    'name'       => $row['name'],
+                ]),
+            ];
+        }
+
+        // Avatar
+        $result[] = [
+            'name'  => 'view',
+            'title' => _a('View'),
+            'link'  => $this->url('', [
+                'controller' => 'View',
+                'action'     => 'index',
+                'uid'        => $uid,
+            ]),
+        ];
+
+        return $result;
     }
 }

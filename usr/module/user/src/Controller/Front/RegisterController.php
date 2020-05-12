@@ -45,37 +45,54 @@ class RegisterController extends ActionController
         // Get register form
         $form = Pi::api('form', 'user')->loadForm('register');
         $form->get('submit')->setAttribute('class', $form->get('submit')->getAttribute('class') . ' w-100');
-
-        $form->setAttributes([
-            'action' => $this->url('', ['action' => 'index']),
-        ]);
+        $form->setAttributes(
+            [
+                'action' => $this->url('', ['action' => 'index']),
+            ]
+        );
 
         // Handling register data
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
 
-            $post = $post->toArray();
+            $post                                        = $post->toArray();
             $post['captcha']['recaptcha_response_field'] = $post['g-recaptcha-response'];
 
             $form->loadInputFilter();
             $form->setData($post);
+
             if ($form->isValid()) {
                 if ($this->config('require_register_complete')) {
                     $values = $form->getData();
-                    $form   = Pi::api('form', 'user')->loadForm('register-complete');
-                    unset($values['submit']);
-                    $form->setData($values);
-                    $form->setAttributes([
-                        'action' => $this->url('', [
-                                'action' => 'complete',
-                            ]
-                        ),
-                    ]);
 
-                    $this->view()->assign([
-                        'form'     => $form,
-                        'complete' => 1,
-                    ]);
+                    // Check for mobile
+                    if (Pi::user()->config('is_mobile') && (!isset($values['email']) || empty($values['email']))) {
+                        $_SESSION['user']['code'] = Pi::api('mobile', 'user')->send($values);
+                    }
+
+                    // Unset submit
+                    unset($values['submit']);
+
+                    // Set form
+                    $form = Pi::api('form', 'user')->loadForm('register-complete');
+                    $form->setData($values);
+                    $form->setAttributes(
+                        [
+                            'action' => $this->url(
+                                '', [
+                                    'action' => 'complete',
+                                ]
+                            ),
+                        ]
+                    );
+
+                    // Set view
+                    $this->view()->assign(
+                        [
+                            'form'     => $form,
+                            'complete' => 1,
+                        ]
+                    );
 
                     return;
                 } else {
@@ -89,11 +106,13 @@ class RegisterController extends ActionController
                 }
             }
 
-            $this->view()->assign([
-                'email' => $post['email'],
-                'result'   => $result,
-                'redirect' => !empty($post['redirect']) ? urldecode($post['redirect']) : '',
-            ]);
+            $this->view()->assign(
+                [
+                    'email'    => (isset($post['email']) && !empty($post['email'])) ? $post['email'] : '',
+                    'result'   => $result,
+                    'redirect' => !empty($post['redirect']) ? urldecode($post['redirect']) : '',
+                ]
+            );
 
             // Set redirect of register source
         } elseif ($form->get('redirect')) {
@@ -104,10 +123,12 @@ class RegisterController extends ActionController
         // load admin language file
         Pi::service('i18n')->load(['module/user', 'admin']);
 
-        $this->view()->assign([
-            'form'       => $form,
-            'activation' => $this->config('register_activation'),
-        ]);
+        $this->view()->assign(
+            [
+                'form'       => $form,
+                'activation' => $this->config('register_activation'),
+            ]
+        );
 
 
         $js = <<<JS
@@ -130,12 +151,9 @@ class RegisterController extends ActionController
 })();
 JS;
 
-
-//        $this->view()->footScript()->prependScript($js);
+        // $this->view()->footScript()->prependScript($js);
         $this->view()->footScript()->prependFile($this->view()->assetModule('front/validator.js'));
-
         $this->view()->setTemplate('register-index');
-
         $this->view()->headTitle(__('Register'));
         $this->view()->headdescription(__('Account registration'), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
@@ -148,43 +166,86 @@ JS;
      */
     public function completeAction()
     {
+        // Check access
         if (!$this->checkAccess()) {
             return;
         }
 
-        if (!$this->config('require_register_complete') ||
-            !$this->request->isPost()
+        // Check register complete option
+        if (!$this->config('require_register_complete')
+            || !$this->request->isPost()
         ) {
-            $this->redirect('', [
-                'controller' => 'register',
-                'action'     => 'index',
-            ]);
+            $this->redirect(
+                '', [
+                    'controller' => 'register',
+                    'action'     => 'index',
+                ]
+            );
         }
 
+        // Set result
         $result = [
             'status' => 0,
         ];
-        $post   = $this->request->getPost();
-        $form   = Pi::api('form', 'user')->loadForm('register-complete', true);
-        $form->setAttributes([
-            'action' => $this->url('', ['action' => 'complete']),
-        ]);
+
+        // Get activation mode
+        $activationMode = $this->config('register_activation');
+
+        // Get info from post
+        $post = $this->request->getPost();
+
+        // Set form
+        $form = Pi::api('form', 'user')->loadForm('register-complete', true);
+        $form->setAttributes(
+            [
+                'action' => $this->url('', ['action' => 'complete']),
+            ]
+        );
         $form->setData($post);
+
+        // Check form valid
         if ($form->isValid()) {
             $values = $form->getData();
-            $result = $this->completeRegister($values);
-            if (!empty($result['uid'])) {
-                $form = null;
+
+            // Check mobile verify
+            $verify = true;
+            if (Pi::user()->config('is_mobile')) {
+                if (
+                    isset($_SESSION['user']['code'])
+                    && !empty($_SESSION['user']['code'])
+                    && isset($values['verify'])
+                    && !empty($values['verify'])
+                    && is_numeric($_SESSION['user']['code'])
+                    && is_numeric($values['verify'])
+                    && $values['verify'] === $_SESSION['user']['code']
+                ) {
+                    $verify         = true;
+                    $activationMode = 'auto';
+                    unset($values['verify']);
+                    unset($_SESSION['user']['code']);
+                } else {
+                    $verify = false;
+                }
+            }
+
+            // Create user account
+            if ($verify) {
+                $result = $this->completeRegister($values, $activationMode);
+                if (!empty($result['uid'])) {
+                    $form = null;
+                }
             }
         }
 
-        $this->view()->assign([
-            'result'     => $result,
-            'complete'   => 1,
-            'form'       => $form,
-            'activation' => $this->config('register_activation'),
-        ]);
-
+        // Set view
+        $this->view()->assign(
+            [
+                'result'     => $result,
+                'complete'   => 1,
+                'form'       => $form,
+                'activation' => $this->config('register_activation'),
+            ]
+        );
         $this->view()->setTemplate('register-index');
     }
 
@@ -203,10 +264,12 @@ JS;
         $view     = $this->view();
         $fallback = function ($message = '') use ($view) {
             $message = $message ?: __('Activation token is invalid.');
-            $view->assign('result', [
-                'status'  => 0,
-                'message' => $message,
-            ]);
+            $view->assign(
+                'result', [
+                    'status'  => 0,
+                    'message' => $message,
+                ]
+            );
         };
 
         $hashUid = $this->params('uid', '');
@@ -217,11 +280,13 @@ JS;
         }
 
         // Search user data
-        $userData = Pi::user()->data()->find([
-            'module' => 'user',
-            'name'   => 'register_activation',
-            'value'  => $token,
-        ]);
+        $userData = Pi::user()->data()->find(
+            [
+                'module' => 'user',
+                'name'   => 'register_activation',
+                'value'  => $token,
+            ]
+        );
         if (!$userData) {
             return $fallback();
         }
@@ -273,19 +338,23 @@ JS;
 
         $activationMode = $this->config('register_activation');
 
-        $status = $this->sendNotification('success', [
-            'email'    => $userRow['email'],
-            'uid'      => $uid,
-            'identity' => $userRow['identity'],
-            'name'     => $userRow['name'],
+        $status = $this->sendNotification(
+            'success', [
+                'email'    => $userRow['email'],
+                'uid'      => $uid,
+                'identity' => $userRow['identity'],
+                'name'     => $userRow['name'],
 
-        ]);
+            ]
+        );
 
-        $this->view()->assign([
-            'result'   => $result,
-            'uid'      => $uid,
-            'redirect' => $redirect,
-        ]);
+        $this->view()->assign(
+            [
+                'result'   => $result,
+                'uid'      => $uid,
+                'redirect' => $redirect,
+            ]
+        );
     }
 
     /**
@@ -315,20 +384,24 @@ JS;
         }
 
         // Check user data
-        $userData = Pi::user()->data()->find([
-            'uid'    => $uid,
-            'module' => $this->getModule(),
-            'name'   => 'register_activation',
-        ]);
+        $userData = Pi::user()->data()->find(
+            [
+                'uid'    => $uid,
+                'module' => $this->getModule(),
+                'name'   => 'register_activation',
+            ]
+        );
         if (!$userData) {
             return $result;
         }
 
-        $status = $this->sendNotification('activation', [
-            'email'    => $user['email'],
-            'uid'      => $user['id'],
-            'identity' => $user['identity'],
-        ]);
+        $status = $this->sendNotification(
+            'activation', [
+                'email'    => $user['email'],
+                'uid'      => $user['id'],
+                'identity' => $user['identity'],
+            ]
+        );
         if ($status) {
             $result = [
                 'status'  => 1,
@@ -368,11 +441,13 @@ JS;
                         'message' => __('Account already activated.'),
                     ];
                 } else {
-                    $status = $this->sendNotification('activation', [
-                        'email'    => $values['email'],
-                        'uid'      => (int)$row['id'],
-                        'identity' => $row['identity'],
-                    ]);
+                    $status = $this->sendNotification(
+                        'activation', [
+                            'email'    => $values['email'],
+                            'uid'      => (int)$row['id'],
+                            'identity' => $row['identity'],
+                        ]
+                    );
                     if ($status) {
                         $result = [
                             'status'  => 1,
@@ -412,13 +487,16 @@ JS;
             'status' => 0,
         ];
 
-        $redirect = $this->params('redirect') ?: $this->url('', [
-            [
-                'module'     => 'user',
-                'controller' => 'dashboard',
-                'action'     => 'index',
-            ],
-        ]);
+        $redirect = $this->params('redirect')
+            ?: $this->url(
+                '', [
+                    [
+                        'module'     => 'user',
+                        'controller' => 'dashboard',
+                        'action'     => 'index',
+                    ],
+                ]
+            );
 
         if (!$this->config('require_profile_complete')) {
             return $this->redirect($redirect);
@@ -427,9 +505,11 @@ JS;
         $uid = Pi::user()->getId();
 
         $form = Pi::api('form', 'user')->loadForm('profile-complete');
-        $form->setAttributes([
-            'action' => $this->url('', ['action' => 'profile.complete']),
-        ]);
+        $form->setAttributes(
+            [
+                'action' => $this->url('', ['action' => 'profile.complete']),
+            ]
+        );
         $form->get('redirect')->setValue($redirect);
 
         if ($this->request->isPost()) {
@@ -477,10 +557,11 @@ JS;
      * Complete user register
      *
      * @param array $values
+     * @param string $activationMode
      *
      * @return array
      */
-    protected function completeRegister(array $values)
+    protected function completeRegister(array $values, $activationMode = '')
     {
         $result = [
             'status'  => 0,
@@ -489,9 +570,16 @@ JS;
         ];
 
         // Check email force set on register form
-        if (!isset($values['email']) || empty($values['email'])) {
-            $result['message'] = __('User information was not completed and user account was not saved.');
-            return $result;
+        if (!Pi::user()->config('is_mobile')) {
+            if (!isset($values['email']) || empty($values['email'])) {
+                $result['message'] = __('User information was not completed and user account was not saved.');
+                return $result;
+            }
+        }
+
+        // Unset email if is empty on identity as mobile mode
+        if (Pi::user()->config('is_mobile') && isset($values['email']) && empty($values['email'])) {
+            unset($values['email']);
         }
 
         // Set email as identity if not set on register form
@@ -533,57 +621,77 @@ JS;
         Pi::api('user', 'user')->setRole($uid, 'member');
 
         $status = 1;
+
         // Process activation
-        $activationMode = $this->config('register_activation');
+        if (!isset($activationMode) || empty($activationMode)) {
+            $activationMode = $this->config('register_activation');
+        }
+
         // Automatically activated
-        if ('auto' == $activationMode) {
+        if (isset($values['email']) && empty($values['email'])) {
+            if ('auto' == $activationMode) {
+                $status = $this->activateUser($uid);
+                if (!$status) {
+                    $result['message'] = __('User account is registered successfully but activation was failed, please contact admin.');
+                }
+                if (Pi::user()->config('register_notification')) {
+                    $this->sendNotification(
+                        'success', [
+                            'email'    => $values['email'],
+                            'uid'      => $uid,
+                            'identity' => $values['identity'],
+                            'name'     => $values['name'],
+
+                        ]
+                    );
+                }
+                // Activated by admin
+            } elseif ('admin' == $activationMode) {
+                if (Pi::user()->config('register_notification')) {
+                    $this->sendNotification(
+                        'admin', [
+                            'email'    => $values['email'],
+                            'uid'      => $uid,
+                            'identity' => $values['identity'],
+                            'name'     => $values['name'],
+
+                        ]
+                    );
+                }
+                // Activated by email
+            } elseif ('email' == $activationMode) {
+                $status = $this->sendNotification(
+                    'activation', [
+                        'email'    => $values['email'],
+                        'uid'      => $uid,
+                        'identity' => $values['identity'],
+                        'name'     => $values['name'],
+
+                    ]
+                );
+                if (!$status) {
+                    $result['message'] = __('Account activation email was not able to send, please contact admin.');
+                }
+            }
+        } elseif (Pi::user()->config('is_mobile') && 'auto' == $activationMode) {
             $status = $this->activateUser($uid);
             if (!$status) {
                 $result['message'] = __('User account is registered successfully but activation was failed, please contact admin.');
             }
-            if (Pi::user()->config('register_notification')) {
-                $this->sendNotification('success', [
-                    'email'    => $values['email'],
-                    'uid'      => $uid,
-                    'identity' => $values['identity'],
-                    'name'     => $values['name'],
-
-                ]);
-            }
-            // Activated by admin
-        } elseif ('admin' == $activationMode) {
-            if (Pi::user()->config('register_notification')) {
-                $this->sendNotification('admin', [
-                    'email'    => $values['email'],
-                    'uid'      => $uid,
-                    'identity' => $values['identity'],
-                    'name'     => $values['name'],
-
-                ]);
-            }
-            // Activated by email
-        } elseif ('email' == $activationMode) {
-            $status = $this->sendNotification('activation', [
-                'email'    => $values['email'],
-                'uid'      => $uid,
-                'identity' => $values['identity'],
-                'name'     => $values['name'],
-
-            ]);
-            if (!$status) {
-                $result['message'] = __('Account activation email was not able to send, please contact admin.');
-            }
         }
+
         $result['status'] = $status;
 
         // Send notification email to admin
         if (Pi::user()->config('register_notification_admin')) {
-            $this->sendNotificationToAdmin($activationMode, [
-                'email'    => $values['email'],
-                'identity' => $values['identity'],
-                'name'     => $values['name'],
-                'uid'      => $uid,
-            ]);
+            $this->sendNotificationToAdmin(
+                $activationMode, [
+                    'email'    => $values['email'],
+                    'identity' => $values['identity'],
+                    'name'     => $values['name'],
+                    'uid'      => $uid,
+                ]
+            );
         }
 
         // Add subscription
@@ -599,18 +707,18 @@ JS;
             }
 
             Pi::api('people', 'subscription')->createPeople(
-                array(
-                    'uid' => $uid,
-                    'status' => $this->config('register_activation') == 'auto' ? 1 : 0,
-                    'campaign' => 0,
-                    'email' => isset($values['email']) ? $values['email'] : null,
-                    'mobile' => isset($values['mobile']) ? $values['mobile'] : null,
+                [
+                    'uid'        => $uid,
+                    'status'     => $this->config('register_activation') == 'auto' ? 1 : 0,
+                    'campaign'   => 0,
+                    'email'      => isset($values['email']) ? $values['email'] : null,
+                    'mobile'     => isset($values['mobile']) ? $values['mobile'] : null,
                     'newsletter' => $values['newsletter'],
                     'first_name' => isset($values['first_name']) ? $values['first_name'] : $values['name'],
-                    'last_name' => isset($values['last_name']) ? $values['last_name'] : $values['name']
-                )
+                    'last_name'  => isset($values['last_name']) ? $values['last_name'] : $values['name'],
+                ]
             );
-            
+
             $log = [
                 'uid'    => $uid,
                 'action' => 'subscribe_newsletter_register',
@@ -648,7 +756,7 @@ JS;
      * For type (3), an email notification is to send.
      *
      * @param string $type
-     * @param array $data Data: email, uid, identity
+     * @param array  $data Data: email, uid, identity
      *
      * @return bool
      */
@@ -657,6 +765,7 @@ JS;
         $params   = [];
         $template = '';
         switch ($type) {
+
             case 'success':
                 $template = 'register-success-html';
                 $redirect = Pi::user()->data()->get($data['uid'], 'register_redirect');
@@ -666,12 +775,14 @@ JS;
                     'login_url' => $url,
                 ];
                 break;
+
             case 'admin':
                 $template = 'register-success-html';
                 $params   = [
                     'username' => $data['name'],
                 ];
                 break;
+
             case 'activation':
                 $token = $this->createToken($data);
                 if ($token) {
@@ -683,17 +794,22 @@ JS;
                         'user',
                         $this->config('activation_expiration') * 3600
                     );
-                    $url    = Pi::url($this->url('', [
-                        'action' => 'activate',
-                        'uid'    => md5($data['uid']),
-                        'token'  => $token,
-                    ]), true);
+                    $url    = Pi::url(
+                        $this->url(
+                            '', [
+                                'action' => 'activate',
+                                'uid'    => md5($data['uid']),
+                                'token'  => $token,
+                            ]
+                        ), true
+                    );
                     $params = [
                         'username'       => $data['name'],
                         'activation_url' => $url,
                     ];
                 }
                 break;
+
             default:
                 break;
         }
@@ -737,7 +853,7 @@ JS;
      * For all types, an email notification is to send to admin after if `register_notification_admin` is enabled
      *
      * @param string $type
-     * @param array $data Data: email, uid, identity
+     * @param array  $data Data: email, uid, identity
      *
      * @return bool
      */
@@ -821,13 +937,17 @@ JS;
         }
 
         if (Pi::service('user')->hasIdentity()) {
-            $this->redirect()->toUrl($this->url('', [
-                [
-                    'module'     => 'user',
-                    'controller' => 'dashboard',
-                    'action'     => 'index',
-                ],
-            ]));
+            $this->redirect()->toUrl(
+                $this->url(
+                    '', [
+                        [
+                            'module'     => 'user',
+                            'controller' => 'dashboard',
+                            'action'     => 'index',
+                        ],
+                    ]
+                )
+            );
             return false;
         }
 

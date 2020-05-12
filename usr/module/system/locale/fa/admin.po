@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2018-03-20 10:45+0330\n"
-"PO-Revision-Date: 2018-03-20 10:47+0330\n"
+"POT-Creation-Date: 2020-05-08 11:47+0430\n"
+"PO-Revision-Date: 2020-05-08 12:06+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -28,7 +28,7 @@ msgstr "نوع نمایش"
 
 #: config/block.php:25
 msgid "Mode to render."
-msgstr "حال رندر"
+msgstr "حال رندر."
 
 #: config/block.php:31
 msgid "Flat"
@@ -39,12 +39,8 @@ msgid "Flat on account / dropdown on other pages"
 msgstr "مسطح در حساب کاربری / کشویی در دیگر بخش ها"
 
 #: config/block.php:33
-msgid ""
-"Flat on account / dropdown on other pages -- No title for notification/message "
-"only"
-msgstr ""
-"مسطح در حساب کاربری / کشویی در دیگر بخش ها - بدون عنوان برای آگاهی رسانی و پیام "
-"و ..."
+msgid "Flat on account / dropdown on other pages -- No title for notification/message only"
+msgstr "مسطح در حساب کاربری / کشویی در دیگر بخش ها - بدون عنوان برای آگاهی رسانی و پیام"
 
 #: config/block.php:34
 msgid "Dropdown menu"
@@ -130,7 +126,7 @@ msgstr "بلاک لاگین کاربر"
 msgid "User"
 msgstr "کاربر"
 
-#: config/block.php:126 config/config.php:41
+#: config/block.php:126 config/config.php:49
 msgid "User account"
 msgstr "حساب کاربری"
 
@@ -163,677 +159,744 @@ msgid "Extra head meta"
 msgstr "متا هدر اضافی"
 
 #: config/config.php:33
-msgid "Geo tags"
-msgstr "نشان‌گذاری جغرافیایی"
+msgid "Geo tags and setting"
+msgstr "تگ های جئو و تنظیمات"
 
 #: config/config.php:37
+msgid "Google"
+msgstr "گوگل"
+
+#: config/config.php:41 config/config.php:741
+msgid "Openstreetmap"
+msgstr "اوپن استریت مپ"
+
+#: config/config.php:45
 msgid "Internationalization"
 msgstr "بین‌المللی سازی"
 
-#: config/config.php:45
+#: config/config.php:53
 msgid "Admin login"
 msgstr "ورود مدیریت"
 
-#: config/config.php:49
+#: config/config.php:57
 msgid "Text processing"
 msgstr "پردازش متن"
 
-#: config/config.php:53
-msgid "ReCaptcha"
-msgstr "ریکپچا"
-
-#: config/config.php:57 config/nav.admin.php:300
-#: template/admin/audit-index.phtml:10
+#: config/config.php:61 config/nav.admin.php:300 template/admin/audit-index.phtml:12
 msgid "Mailing"
 msgstr "ارسال میل"
 
-#: config/config.php:69
+#: config/config.php:73
 msgid "Site name"
 msgstr "نام سایت"
 
-#: config/config.php:70
+#: config/config.php:74
 msgid "Website name."
-msgstr "نام وب‌سایت"
+msgstr "نام وب‌سایت."
 
-#: config/config.php:77
+#: config/config.php:81
 msgid "Slogan"
 msgstr "شعار"
 
-#: config/config.php:78
+#: config/config.php:82
 msgid "Website slogan."
-msgstr "شعار وب سایت"
+msgstr "شعار وب سایت."
 
-#: config/config.php:84
+#: config/config.php:88
 msgid "Locale"
 msgstr "انتخاب زبان"
 
-#: config/config.php:85
+#: config/config.php:89
 msgid "Locale for application content."
-msgstr "زبان برای محتوای برنامه"
+msgstr "زبان برای محتوای برنامه."
 
-#: config/config.php:92
+#: config/config.php:96
 msgid "Charset"
 msgstr "کاراکترسِت"
 
-#: config/config.php:93
+#: config/config.php:97
 msgid "Charset for page display."
-msgstr "کاراکترست برای نمایش صفحه"
+msgstr "کاراکترست برای نمایش صفحه."
 
-#: config/config.php:99
+#: config/config.php:103
 msgid "Timezone"
 msgstr "منطقه زمانی"
 
-#: config/config.php:100
+#: config/config.php:104
 msgid "Timezone for application system."
-msgstr "منطقه زمانی برای سیستم برنامه"
+msgstr "منطقه زمانی برای سیستم برنامه."
 
-#: config/config.php:106
+#: config/config.php:110
 msgid "List count"
 msgstr "تعداد لیست"
 
-#: config/config.php:107
+#: config/config.php:111
 msgid "Number of items on a list."
-msgstr "تعداد گزینه‌های یک لیست"
+msgstr "تعداد گزینه‌های یک لیست."
 
-#: config/config.php:114
+#: config/config.php:118
 msgid "Footer"
 msgstr "فوتر"
 
-#: config/config.php:115
+#: config/config.php:119
 msgid "Content to be displayed on footer of front pages, HTML tags allowed."
 msgstr "محتوی برای نمایش در بخش فوتر در سمت کاربر، تگ های HTML مجاز است."
 
-#: config/config.php:121
+#: config/config.php:125
 msgid "Foot scripts"
 msgstr "اسکریپت‌های فوتر"
 
-#: config/config.php:122
+#: config/config.php:126
 msgid ""
-"Scripts that will be appended to each page footer. Either naked or wrapped js "
-"scripts are allowed."
+"Scripts that will be appended to each page footer. Either naked or wrapped js scripts are "
+"allowed."
 msgstr ""
-"اسکریپت‌هایی که به فوتر هر صفحه متصل می‌شوند، به صورت خالص یا اسکریپت‌های جاوای "
-"پوشیده که مجاز هستند."
+"اسکریپت‌هایی که به فوتر هر صفحه متصل می‌شوند، به صورت خالص یا اسکریپت‌های جاوای پوشیده که "
+"مجاز هستند."
 
-#: config/config.php:128
+#: config/config.php:132
 msgid "Compile CSS"
 msgstr "یکپارچگی فایل های CSS"
 
-#: config/config.php:136
+#: config/config.php:140
 msgid "Compile JS"
 msgstr "یکپارچگی فایل های JS"
 
-#: config/config.php:144
+#: config/config.php:148
 msgid "Minify HTML output"
 msgstr "خلاصه کردن خروجی HTML"
 
-#: config/config.php:153
-msgid "GA account"
-msgstr "حساب گوگل آنالیتیک"
-
-#: config/config.php:154
-msgid ""
-"Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to "
-"the code `UA-XXXXXXXX-X; XXXX.tld`."
-msgstr ""
-"شناسه ردیابی گوگل آنالیتیک `UA-XXXXXXXX-X` . برای جدا کردن میزبان ها ، کد را به "
-"شکل `UA-XXXXXXXX-X; XXXX.tld` درج نمایید."
-
-#: config/config.php:159
+#: config/config.php:156
 msgid "Theme"
 msgstr "قالب"
 
-#: config/config.php:166
+#: config/config.php:163
 msgid "Admin theme"
 msgstr "قالب مدیریت"
 
-#: config/config.php:194
+#: config/config.php:191
 msgid "Username format"
 msgstr "قالب شناسه‌ی کاربری"
 
-#: config/config.php:195
+#: config/config.php:192
 msgid "Format of username for registration."
-msgstr "قالب شناسه برای ثبت‌نام"
+msgstr "قالب شناسه برای ثبت‌نام."
 
-#: config/config.php:200
+#: config/config.php:197
 msgid "Strict: alphabet or number only"
 msgstr "اسکریپت: حروف الفبا یا اعدا"
 
-#: config/config.php:201
+#: config/config.php:198
 msgid "Strict/space: alphabet, number or space only"
 msgstr "اسکریپت/اسپیس: حروف الفبا یا اعدا"
 
-#: config/config.php:202
+#: config/config.php:199
 msgid "Medium: ASCII characters"
 msgstr "متوسط: کاراکترهای ASCII"
 
-#: config/config.php:203
+#: config/config.php:200
 msgid "Medium/space: ASCII characters and spaces"
 msgstr "متوسط/اسپیس: کاراکترهای ASCII"
 
-#: config/config.php:204
+#: config/config.php:201
 msgid "Loose: multi-byte characters"
 msgstr "راحت: کاراکترهای مالتی بایت"
 
-#: config/config.php:205
+#: config/config.php:202
 msgid "Loose/space: multi-byte characters and spaces"
 msgstr "راحت/اسپیس: کاراکترهای مالتی بایت"
 
-#: config/config.php:215
+#: config/config.php:212
 msgid "Minimum username"
 msgstr "شناسه‌ی مینیمم"
 
-#: config/config.php:216
+#: config/config.php:213
 msgid "Minimum length of username for user registration"
 msgstr "حداقل طول شناسه‌ی کاربری برای ثبت‌نام کاربر"
 
-#: config/config.php:223
+#: config/config.php:220
 msgid "Maximum username"
 msgstr "حداکثر شناسه"
 
-#: config/config.php:224
+#: config/config.php:221
 msgid "Maximum length of username for user registration"
 msgstr "حدااکثر طول شناسه‌ی کاربر برای ثبت‌نام"
 
-#: config/config.php:231
+#: config/config.php:228
 msgid "Minimum password"
-msgstr "کلمه عبور حداقل"
+msgstr "رمز عبور حداقل"
 
-#: config/config.php:232
+#: config/config.php:229
 msgid "Minimum length of password for user registration"
-msgstr "حداکثر طول کلمه عبور در هنگام ثبت‌نام کاربر"
+msgstr "حداکثر طول رمز عبور در هنگام ثبت‌نام کاربر"
 
-#: config/config.php:239
+#: config/config.php:236
 msgid "Maximum password"
-msgstr "حداکثر کلمه عبور"
+msgstr "حداکثر رمز عبور"
 
-#: config/config.php:240
+#: config/config.php:237
 msgid "Maximum length of password for user registration"
-msgstr "حداکثر طول کلمه عبور در هنگام ثبت‌نام کاربر"
+msgstr "حداکثر طول رمز عبور در هنگام ثبت‌نام کاربر"
 
-#: config/config.php:247
+#: config/config.php:244
 msgid "Username blacklist"
 msgstr "لیست سیاه نام کاربری"
 
-#: config/config.php:248
+#: config/config.php:245
 msgid ""
-"Reserved and forbidden username list. Separate each with a <strong>|</strong>, "
-"regexp syntax is allowed."
+"Reserved and forbidden username list. Separate each with a <strong>|</strong>, regexp "
+"syntax is allowed."
 msgstr ""
-"فهرست شناسه‌های کاربری رزرو و یا ممنوع.  هر کدام را با یک  <strong>|</strong> از "
-"هم جدا کنید.  سیتکس رجکس قابل استفاده است."
+"فهرست شناسه‌های کاربری رزرو و یا ممنوع.  هر کدام را با یک  <strong>|</strong> از هم جدا "
+"کنید.  سیتکس رجکس قابل استفاده است."
 
-#: config/config.php:255
+#: config/config.php:252
 msgid "Email blacklist"
 msgstr "لیست سیاه ایمیل"
 
-#: config/config.php:256
+#: config/config.php:253
 msgid ""
-"Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax "
-"is allowed."
+"Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is "
+"allowed."
 msgstr ""
-"فهرست شناسه‌های ممنوع. آن‌ها را با <strong>|</strong> از هم جدا کنید. .سینتکس "
-"ریجکس را می‌توان استفاده کرد."
+"فهرست شناسه‌های ممنوع. آن‌ها را با <strong>|</strong> از هم جدا کنید. .سینتکس ریجکس را "
+"می‌توان استفاده کرد."
 
-#: config/config.php:263 config/config.php:345
+#: config/config.php:260 config/config.php:342
 msgid "Remember me"
 msgstr "من را به خاطر بسپار"
 
-#: config/config.php:264 config/config.php:346
+#: config/config.php:261 config/config.php:343
 msgid "Days to remember login, 0 for disable."
 msgstr "روزهایی که برای لاگین باقی مانده، 0 روز تا غیر فعال شدن."
 
-#: config/config.php:271 config/config.php:353
+#: config/config.php:268 config/config.php:350
 msgid "Login field"
 msgstr "فیلد ورود"
 
-#: config/config.php:272
+#: config/config.php:269
 msgid "Identity field(s) for authentication."
-msgstr "فیلدها لازم برای شناسایی"
+msgstr "فیلدها لازم برای شناسایی."
 
-#: config/config.php:280 config/config.php:362
-#: template/admin/member-index.phtml:27
+#: config/config.php:277 config/config.php:359 template/admin/member-index.phtml:27
 msgid "Username"
 msgstr "شناسه کاربری"
 
-#: config/config.php:281 config/config.php:363
-#: template/admin/member-index.phtml:29
+#: config/config.php:278 config/config.php:360 template/admin/member-index.phtml:29
 msgid "Email"
 msgstr "ایمیل"
 
-#: config/config.php:291 config/config.php:337
+#: config/config.php:288 config/config.php:334
 msgid "Maximum attempts"
 msgstr "ماکزیمم تلاش‌ها"
 
-#: config/config.php:292
+#: config/config.php:289
 msgid "Maximum attempts allowed to try for user login"
 msgstr "ماکزیمم تعداد تلاش‌های مجاز برای ورود کاربر"
 
-#: config/config.php:299 config/config.php:373
+#: config/config.php:296 config/config.php:370
 msgid "Login disable"
-msgstr "ورود غیرفعال شده است."
+msgstr "ورود غیرفعال شده است"
 
-#: config/config.php:300
+#: config/config.php:297
 msgid "Disable user login"
-msgstr "ورود کاربر عیرفعال شده است."
+msgstr "ورود کاربر عیرفعال شده است"
 
-#: config/config.php:308
+#: config/config.php:305
 msgid "Register disable"
 msgstr "غیرفعال‌سازی ثبت‌نام"
 
-#: config/config.php:309
+#: config/config.php:306
 msgid "Disable user registration"
 msgstr "ثبت‌نام کاربران غیرفعال شده است"
 
-#: config/config.php:317 config/config.php:382
+#: config/config.php:314 config/config.php:379
 msgid "Login CAPTCHA"
 msgstr "کپچا برای ورود"
 
-#: config/config.php:318
+#: config/config.php:315
 msgid "Enable CAPTCHA for user login"
 msgstr "فعال کردن کپچا برای ورود کاربران"
 
-#: config/config.php:326
+#: config/config.php:323
 msgid "Register CAPTCHA"
 msgstr "کپچا برای ثبت نام"
 
-#: config/config.php:327
+#: config/config.php:324
 msgid "Enable CAPTCHA for user registration"
 msgstr "فعال کردن کپچا برای ثبت‌نام کاربران"
 
-#: config/config.php:338
+#: config/config.php:335
 msgid "Maximum attempts allowed to try for admin login"
-msgstr "ماکزیمم تعداد تلاش‌هایی که برای ورود مدیر مجاز است."
+msgstr "ماکزیمم تعداد تلاش‌هایی که برای ورود مدیر مجاز است"
 
-#: config/config.php:354
+#: config/config.php:351
 msgid "Identity field(s) for admin authentication."
 msgstr "فیلدهایی که برای شناسایی مدیر نیاز است."
 
-#: config/config.php:374
+#: config/config.php:371
 msgid "Disable admin login"
 msgstr "غیرفعال کردن ورود مدیر"
 
-#: config/config.php:383
+#: config/config.php:380
 msgid "Enable CAPTCHA for admin login"
 msgstr "فعال کردن کپچا برای ورود مدیر"
 
-#: config/config.php:388
+#: config/config.php:385
 msgid "No captcha"
 msgstr "بدون کپچا"
 
-#: config/config.php:389
+#: config/config.php:386
 msgid "Standard captcha"
 msgstr "کپچا استاندارد"
 
-#: config/config.php:390
+#: config/config.php:387
 msgid "New re-captcha"
 msgstr "ریکپچا گوگل"
 
-#: config/config.php:421
+#: config/config.php:418
 msgid "Head title for web page"
 msgstr "عنوان هدر برای صفحات وب سایت"
 
-#: config/config.php:429
+#: config/config.php:426
 msgid ""
-"The keywords meta tag is a series of keywords that represents the content of "
-"your site. Separated keywords by a comma."
+"The keywords meta tag is a series of keywords that represents the content of your site. "
+"Separated keywords by a comma."
 msgstr ""
-"متا تگِ کلمات کلیدی مجموعه‌ای از کلمات کلیدی است که نماینده‌ی محتوای سایت هستند. "
-"این کلمات کلیدی را با ویرگول از هم جدا کنید."
+"متا تگِ کلمات کلیدی مجموعه‌ای از کلمات کلیدی است که نماینده‌ی محتوای سایت هستند. این کلمات "
+"کلیدی را با ویرگول از هم جدا کنید."
 
-#: config/config.php:437
+#: config/config.php:434
 msgid ""
-"The description meta tag is a general description of what is contained in your "
-"web page"
-msgstr "متا تگ توضیح، توضیحی عمومی از محتوای صفحه‌ی وب است."
+"The description meta tag is a general description of what is contained in your web page"
+msgstr "متا تگ توضیح، توضیحی عمومی از محتوای صفحه‌ی وب است"
 
-#: config/config.php:446
+#: config/config.php:443
 msgid "Default number style"
-msgstr "فرمت پیش‌فرض اعداد."
+msgstr "فرمت پیش‌فرض اعداد"
 
-#: config/config.php:447
+#: config/config.php:444
 msgid ""
-"See http://www.php.net/manual/en/class.numberformatter.php#intl.numberformatter-"
-"constants.unumberformatstyle"
+"See http://www.php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants."
+"unumberformatstyle"
 msgstr ""
 "این آدرس را ببینید: http://www.php.net/manual/en/class.numberformatter.php#intl."
 "numberformatter-constants.unumberformatstyle"
 
-#: config/config.php:452
+#: config/config.php:449
 msgid "Default format for the locale"
 msgstr "فرمت پیش‌فرض برای زبان"
 
-#: config/config.php:453
+#: config/config.php:450
 msgid "Decimal format defined by pattern"
 msgstr "فرمت ده‌دهی تعریف شده توسط الگو"
 
-#: config/config.php:454
+#: config/config.php:451
 msgid "Decimal format"
 msgstr "فرمت ده‌دهی"
 
-#: config/config.php:455
+#: config/config.php:452
 msgid "Percent format"
 msgstr "فرمت درصد"
 
-#: config/config.php:456
+#: config/config.php:453
 msgid "Scientific format"
 msgstr "فرمت علمی"
 
-#: config/config.php:457
+#: config/config.php:454
 msgid "Spellout rule-based format"
 msgstr "Spellout rule-based format"
 
-#: config/config.php:458
+#: config/config.php:455
 msgid "Ordinal rule-based format"
 msgstr "Ordinal rule-based format"
 
-#: config/config.php:459
+#: config/config.php:456
 msgid "Duration rule-based format"
 msgstr "Duration rule-based format"
 
-#: config/config.php:460
+#: config/config.php:457
 msgid "Rule-based format defined by pattern"
 msgstr "Rule-based format defined by pattern"
 
-#: config/config.php:469
+#: config/config.php:466
 msgid "Default pattern for selected number style"
 msgstr "،فرمت پیش‌فرض برای شیوه‌ی انتخاب شده‌ی اعداد"
 
-#: config/config.php:470
+#: config/config.php:467
 msgid "Only if required by style"
-msgstr "فقط اگر استایل به آن نیاز دارد."
+msgstr "فقط اگر استایل به آن نیاز دارد"
 
-#: config/config.php:477
+#: config/config.php:474
 msgid "Default currency type"
 msgstr "فرمت پیش‌فرض پول"
 
-#: config/config.php:478
+#: config/config.php:475
 msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
 msgstr "کد سه رقمی ISO 4217 که مشخص کننده‌ی پول رایج است."
 
-#: config/config.php:485
+#: config/config.php:482
 msgid "Default calendar for the locale"
-msgstr "تقویم پیش‌فرض برای زبان انتخابی."
+msgstr "تقویم پیش‌فرض برای زبان انتخابی"
 
-#: config/config.php:486
+#: config/config.php:484
 msgid ""
-"\"persian\" is suggested for Persian language. See http://www.php.net/manual/en/"
-"class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
+"\"persian\" is suggested for Persian language. See http://www.php.net/manual/en/class."
+"intldateformatter.php#intl.intldateformatter-constants.calendartypes"
 msgstr ""
-"برای زبان فارسی \"persian\" توصیه می‌شود. این آدرس را ببینید:  http://www.php."
-"net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants."
-"calendartypes"
+"برای زبان فارسی \"persian\" توصیه می‌شود. این آدرس را ببینید:  http://www.php.net/manual/"
+"en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
 
-#: config/config.php:493
+#: config/config.php:492
 msgid "Default date type"
 msgstr "فرمت پیش‌فرض داده"
 
-#: config/config.php:494 config/config.php:513
+#: config/config.php:493 config/config.php:512
 msgid ""
-"See http://www.php.net/manual/en/class.intldateformatter.php#intl."
-"intldateformatter-constants"
+"See http://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-"
+"constants"
 msgstr ""
-"این آدرس را ببینید:  http://www.php.net/manual/en/class.intldateformatter."
-"php#intl.intldateformatter-constants"
+"این آدرس را ببینید:  http://www.php.net/manual/en/class.intldateformatter.php#intl."
+"intldateformatter-constants"
 
-#: config/config.php:499 config/config.php:518
+#: config/config.php:498 config/config.php:517
 msgid "Do not include this element"
 msgstr "این جزو را لحاظ نکنید"
 
-#: config/config.php:500 config/config.php:519
+#: config/config.php:499 config/config.php:518
 msgid "Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 msgstr "فرمت کامل  (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 
-#: config/config.php:501 config/config.php:520
+#: config/config.php:500 config/config.php:519
 msgid "Long style (January 12, 1952 or 3:30:32pm)"
 msgstr "فرمت طولانی(January 12, 1952 or 3:30:32pm)"
 
-#: config/config.php:502 config/config.php:521
+#: config/config.php:501 config/config.php:520
 msgid "Medium style (Jan 12, 1952)"
 msgstr "فرمت متوسط (Jan 12, 1952)"
 
-#: config/config.php:503 config/config.php:522
+#: config/config.php:502 config/config.php:521
 msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
 msgstr "فرمت خلاصه شده که فقط شامل داده‌های ضروری است(12/13/52 or 3:30pm)"
 
-#: config/config.php:512
+#: config/config.php:511
 msgid "Default time type"
 msgstr "فرمت پیش‌فرض نوع"
 
-#: config/config.php:531
+#: config/config.php:530
 msgid "Default formatting pattern for date-time"
 msgstr "فرمت پیش‌فرض برای نمایش تاریخ زمان"
 
-#: config/config.php:532
+#: config/config.php:531
 msgid "See http://userguide.icu-project.org/formatparse/datetime"
 msgstr "این آدرس را ببینید: http://userguide.icu-project.org/formatparse/datetime"
 
-#: config/config.php:539
+#: config/config.php:538
 msgid "Default format for legacy date function"
 msgstr "فرمت پیش‌فرض برای نمایش تابع زمان"
 
-#: config/config.php:540
+#: config/config.php:539
 msgid ""
-"The format is required in case Intl extension is not available. See http://www."
-"php.net/manual/en/function.date.php"
+"The format is required in case Intl extension is not available. See http://www.php.net/"
+"manual/en/function.date.php"
 msgstr ""
-"در صورتی که Intl در دسترس نباشد، قالب مورد نیاز است.  این آدرس را ببینید:  See "
-"http://www.php.net/manual/en/function.date.php"
+"در صورتی که Intl در دسترس نباشد، قالب مورد نیاز است.  این آدرس را ببینید:  See http://www."
+"php.net/manual/en/function.date.php"
 
-#: config/config.php:549
+#: config/config.php:548
 msgid "Admin email"
 msgstr "ایمیل مدیر"
 
-#: config/config.php:550
+#: config/config.php:549
 msgid "Admin email address for contact."
-msgstr "ایمیل مدیر برای برقراری ارتباط"
+msgstr "ایمیل مدیر برای برقراری ارتباط."
 
-#: config/config.php:556
+#: config/config.php:555
 msgid "Admin name"
 msgstr "نام مدیر"
 
-#: config/config.php:557
+#: config/config.php:556
 msgid "User name used to send emails"
-msgstr "شناسه‌‌ای که برای ارسال ایمیل استفاده می‌شود."
+msgstr "شناسه‌‌ای که برای ارسال ایمیل استفاده می‌شود"
 
-#: config/config.php:562
+#: config/config.php:561
 msgid "Email encoding"
 msgstr "کدگذاری ایمیل"
 
-#: config/config.php:563
+#: config/config.php:562
 msgid "Encoding for email contents"
 msgstr "کذگذاری برای محتوای ایمیل"
 
-#: config/config.php:571
+#: config/config.php:568
+msgid "Mail footer"
+msgstr "فوتر ایمیل"
+
+#: config/config.php:570
+msgid ""
+"Content to be displayed on email footer, HTML tags allowed. Usefull to diplay Android/iOS "
+"links, sign with Official Company Address/Name or logo,etc."
+msgstr ""
+"محتوا ای که در فوتر ایمیل ارسالی نمایش داده می شود، تگ های HTML مجاز است. برای دیپلوی "
+"لینک های اندروید و آی او اس ، آدرس رسمی شرکت و لوگو و ... استفاده دارد"
+
+#: config/config.php:579
 msgid "Text editor"
 msgstr "پردازنده‌ی متن"
 
-#: config/config.php:572
+#: config/config.php:580
 msgid "Default editor for text processing"
 msgstr "پردازنده‌ی پیش‌فرض برای پردازش متن"
 
-#: config/config.php:578
+#: config/config.php:586
 msgid "Enable word censoring"
 msgstr "فعال‌سازی سانسور کلمات"
 
-#: config/config.php:579
-msgid ""
-"Words will be censored if this option is enabled. This option may be turned off "
-"for enhanced site speed."
-msgstr ""
-"در صورتی که این گزینه فعال شود، کلمات سانسور می‌شوند. این گزینه را می‌توان برای "
-"بهبود سرعت سایت غیرفعال کرد."
-
 #: config/config.php:587
+msgid ""
+"Words will be censored if this option is enabled. This option may be turned off for "
+"enhanced site speed."
+msgstr ""
+"در صورتی که این گزینه فعال شود، کلمات سانسور می‌شوند. این گزینه را می‌توان برای بهبود سرعت "
+"سایت غیرفعال کرد."
+
+#: config/config.php:595
 msgid "Words to censor"
 msgstr "کلماتی که باید سانسور شوند"
 
-#: config/config.php:588
+#: config/config.php:596
 msgid ""
-"Enter words that should be censored in user posts. Separate each with a \"|\", "
-"case insensitive."
+"Enter words that should be censored in user posts. Separate each with a \"|\", case "
+"insensitive."
 msgstr ""
-"کلماتی را که می‌خواهید در پست‌های کاربران سانسور شوند وارد کنید.  کلمات را با  \"|"
-"\" از هم جدا کنید.  بزرگ و کوچکی مهم نیست."
+"کلماتی را که می‌خواهید در پست‌های کاربران سانسور شوند وارد کنید.  کلمات را با  \"|\" از هم "
+"جدا کنید.  بزرگ و کوچکی مهم نیست."
 
-#: config/config.php:595
+#: config/config.php:603
 msgid "Word to replace censored words"
 msgstr "کلمات مورد نظر برای جایگزینی کلمات سانسور شده"
 
-#: config/config.php:596
-msgid ""
-"Censored words will be replaced with the characters entered in this textbox"
-msgstr ""
-"کلمات سانسور شده با کارکترهایی که در این باکس وارد می‌شوند، جایگزین خواهند شد"
+#: config/config.php:604
+msgid "Censored words will be replaced with the characters entered in this textbox"
+msgstr "کلمات سانسور شده با کارکترهایی که در این باکس وارد می‌شوند، جایگزین خواهند شد"
 
-#: config/config.php:603
+#: config/config.php:612
 msgid "Module themes"
 msgstr "قالب‌های ماژول"
 
-#: config/config.php:604
+#: config/config.php:613
 msgid "Themes for modules."
-msgstr "قالب‌های ماژول"
+msgstr "قالب‌های ماژول."
 
-#: config/config.php:612 config/nav.php:21
+#: config/config.php:621 config/nav.php:21
 msgid "Front navigation"
 msgstr "منو سمت کاربر"
 
-#: config/config.php:613
+#: config/config.php:622
 msgid "Global navigation for front end."
-msgstr "منوی سراسری برای سمت کاربر"
+msgstr "منوی سراسری برای سمت کاربر."
 
-#: config/config.php:620 config/nav.php:27
+#: config/config.php:629 config/nav.php:27
 msgid "Admin navigation"
 msgstr "منو سمت مدیر"
 
-#: config/config.php:621
+#: config/config.php:630
 msgid "Global navigation for admin."
-msgstr "منوی سراسری برای سمت مدیر"
+msgstr "منوی سراسری برای سمت مدیر."
 
-#: config/config.php:628
+#: config/config.php:637
 msgid "Meta title type"
 msgstr "نوع عنوان متا ( Meta title )"
 
-#: config/config.php:629
+#: config/config.php:638
 msgid "Set short or lang meta title type"
 msgstr "تنظیم نوع عنوان صفحه به صورت کوتاه یا بلند"
 
-#: config/config.php:634
+#: config/config.php:643
 msgid "Postfix by page - module - website titles"
 msgstr "پسوند با عنوان صفحه - ماژول - وب‌سایت"
 
-#: config/config.php:635
+#: config/config.php:644
 msgid "Postfix by page - website titles"
 msgstr "پسوند با عنوان صفحه - وب‌سایت"
 
-#: config/config.php:636
+#: config/config.php:645
 msgid "Prefix by website - module - page titles"
 msgstr "پیشوند با عنوان وب‌سایت - ماژول - صفحه"
 
-#: config/config.php:637
+#: config/config.php:646
 msgid "Prefix by website - page titles"
 msgstr "پیشوند با عنوان وب‌سایت - صفحه"
 
-#: config/config.php:638
+#: config/config.php:647
 msgid "Just page title"
 msgstr "فقط عنوان صفحه"
 
-#: config/config.php:649
+#: config/config.php:659
 msgid ""
-"The author meta tag defines the name of the author of the document being read. "
-"Supported data formats include the name, email address of the webmaster, "
-"company name or URL."
+"The author meta tag defines the name of the author of the document being read. Supported "
+"data formats include the name, email address of the webmaster, company name or URL."
 msgstr ""
-"متا تگ نویسنده نام نویسنده‌ی مطلبی که در حال خوانده شدن است را مشخص می‌کند. "
-"قالب‌های قابل قبول شامل نام، آدرس ایمیل مدیر سایت، شرکت و یا آدرس سایت می‌شود."
+"متا تگ نویسنده نام نویسنده‌ی مطلبی که در حال خوانده شدن است را مشخص می‌کند. قالب‌های قابل "
+"قبول شامل نام، آدرس ایمیل مدیر سایت، شرکت و یا آدرس سایت می‌شود."
 
-#: config/config.php:657
+#: config/config.php:668
 msgid "Generator of the document being read."
 msgstr "تولید کننده‌ی مقاله‌ای که در حال خوانده شدن است."
 
-#: config/config.php:664
+#: config/config.php:675
 msgid "Website Open Graph locale"
 msgstr "اوپن گراف محلی وب سایت"
 
-#: config/config.php:665
+#: config/config.php:676
 msgid "Set website OG locale, like en_GB"
 msgstr "تنظیمات OG را انجام دهید ، به طور مثال en_GB"
 
-#: config/config.php:672
+#: config/config.php:683
 msgid "Twitter account"
 msgstr "حساب کاربری در تویتر"
 
-#: config/config.php:673
+#: config/config.php:684
 msgid ""
-"Username for the website used in the Twitter card. Add @ before username like "
-"@PiEnable or leave it empty"
+"Username for the website used in the Twitter card. Add @ before username like @PiEnable "
+"or leave it empty"
 msgstr ""
-"اگر وب سایت شما در تویتر حساب کاربری دارد ، برای استفاده از خدمات تویتر کارت ، "
-"نام کاربری حساب را وارد نمایید. قبل از نام کاربری حتما از @ استفاده کنید ، به "
-"طور مثال @PiEnable یا این گزینه را خالی بگذارید."
+"اگر وب سایت شما در تویتر حساب کاربری دارد ، برای استفاده از خدمات تویتر کارت ، نام کاربری "
+"حساب را وارد نمایید. قبل از نام کاربری حتما از @ استفاده کنید ، به طور مثال @PiEnable یا "
+"این گزینه را خالی بگذارید"
 
-#: config/config.php:679
+#: config/config.php:690
 msgid "Facebook app id"
 msgstr "شناسه آپ فیسبوک"
 
-#: config/config.php:680
+#: config/config.php:691
 msgid ""
-"Set facebook app id here for use open graph tags on facebook page, its your "
-"website facebook page id"
+"Set facebook app id here for use open graph tags on facebook page, its your website "
+"facebook page id"
 msgstr ""
-"اگر وب سایت شما در فیسبوک صفحه ای دارد ، شناسه آپ فیسبوک را برای استفاده از تگ "
-"های  اوپن گراف اینجا وارد کنید. این شناسه در اصل آی دی صفحه فیسبوک شما است"
+"اگر وب سایت شما در فیسبوک صفحه ای دارد ، شناسه آپ فیسبوک را برای استفاده از تگ های  اوپن "
+"گراف اینجا وارد کنید. این شناسه در اصل آی دی صفحه فیسبوک شما است"
 
-#: config/config.php:686
+#: config/config.php:697
 msgid "Pinterest domain verify"
 msgstr "کد تایید دامنه در سایت pinterest"
 
-#: config/config.php:687
-msgid ""
-"Set pinterest domain verify code here, if your website have page on pinterest"
+#: config/config.php:698
+msgid "Set pinterest domain verify code here, if your website have page on pinterest"
 msgstr ""
-"اگر وب سایت شما در pinterest صفحه ای دارد ، کد تایید دامنه وب سایت در pinterest "
-"را اینجا وارد کنید"
+"اگر وب سایت شما در pinterest صفحه ای دارد ، کد تایید دامنه وب سایت در pinterest را اینجا "
+"وارد کنید"
 
-#: config/config.php:693
+#: config/config.php:706
 msgid "Latitude"
 msgstr "عرض جغرافیایی ( Latitude )"
 
-#: config/config.php:700
+#: config/config.php:707
+msgid "Global latitude on system"
+msgstr "عرض جغرافیایی ( Latitude ) سراسری سامانه"
+
+#: config/config.php:713
 msgid "Longitude"
 msgstr "طول جغرافیایی ( Longitude )"
 
-#: config/config.php:707
+#: config/config.php:714
+msgid "Global longitude on system"
+msgstr "طول جغرافیایی ( Longitude ) سراسری سامانه"
+
+#: config/config.php:720
 msgid "Placename"
 msgstr "نام مکان"
 
-#: config/config.php:714
+#: config/config.php:721
+msgid "Global place name and map title on system"
+msgstr "نام مکان و نقشه سراسری سامانه"
+
+#: config/config.php:727
 msgid "Region"
 msgstr "منطقه"
 
-#: config/config.php:721
+#: config/config.php:728
+msgid "For example IR-07 for Iran Tehran"
+msgstr "برای مثال IR-07 برای تهران ایران"
+
+#: config/config.php:734
+msgid "Map type"
+msgstr "نوع نقشه"
+
+#: config/config.php:735
+msgid "Global setting for use google map or Openstreetmap"
+msgstr "تنظیمات سراسری برای استفاده زا نقشه گوگل یا اوپن استریت مپ در سیستم"
+
+#: config/config.php:740
+msgid "Google map"
+msgstr "نقشه گوگل"
+
+#: config/config.php:752
+msgid "GA account"
+msgstr "حساب گوگل آنالیتیک"
+
+#: config/config.php:753
+msgid ""
+"Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to the code "
+"`UA-XXXXXXXX-X; XXXX.tld`."
+msgstr ""
+"شناسه ردیابی گوگل آنالیتیک `UA-XXXXXXXX-X` . برای جدا کردن میزبان ها ، کد را به شکل `UA-"
+"XXXXXXXX-X; XXXX.tld` درج نمایید."
+
+#: config/config.php:761
+msgid "Google map key"
+msgstr "کلید نقشه گوگل"
+
+#: config/config.php:762
+msgid ""
+"Key for google map, get it from https://developers.google.com/maps/documentation/"
+"javascript/get-api-key"
+msgstr ""
+"کلید نقشه گوگل را از لینک https://developers.google.com/maps/documentation/javascript/get-"
+"api-key ایجاد کنید"
+
+#: config/config.php:770
 msgid "ReCaptcha Site key"
 msgstr "کلید سایت (Site key) برای ریکپچا"
 
-#: config/config.php:722
+#: config/config.php:771
 msgid ""
-"see https://www.google.com/recaptcha to create your public key dedicated to "
-"your website domain. Both keys are mandatory."
+"see https://www.google.com/recaptcha to create your public key dedicated to your website "
+"domain. Both keys are mandatory."
 msgstr ""
-"تنظیمات را در https://www.google.com/recaptcha انجام دهید و کلید عمومی را برای "
-"دامنه خود بسازید و وارد نمایید. هر دو کلید ضروری است"
+"تنظیمات را در https://www.google.com/recaptcha انجام دهید و کلید عمومی را برای دامنه خود "
+"بسازید و وارد نمایید. هر دو کلید ضروری است."
 
-#: config/config.php:730
+#: config/config.php:779
 msgid "ReCaptcha Secret key"
 msgstr "کلید رمز (Secret key) برای ریکپچا"
 
-#: config/config.php:731
+#: config/config.php:780
 msgid ""
-"see https://www.google.com/recaptcha to create your private key dedicated to "
-"your website domain. Both keys are mandatory.."
+"see https://www.google.com/recaptcha to create your private key dedicated to your website "
+"domain. Both keys are mandatory.."
 msgstr ""
-"تنظیمات را در https://www.google.com/recaptcha انجام دهید و کلید خصوصی را برای "
-"دامنه خود بسازید و وارد نمایید. هر دو کلید ضروری است"
+"تنظیمات را در https://www.google.com/recaptcha انجام دهید و کلید خصوصی را برای دامنه خود "
+"بسازید و وارد نمایید. هر دو کلید ضروری است."
+
+#: config/config.php:790
+msgid "Openstreetmap tile url"
+msgstr "آدرس تایل اوپن استریت مپ"
+
+#: config/config.php:791
+msgid "Setup osm tile on your own server or use mapbox or openstreetmap servers"
+msgstr ""
+"تایل اوپن استریت مپ را بر روی سرور های خود نصب کنید و یا از خدمات mapbox و سرویس های "
+"مشابه استفاده کنید"
+
+#: config/config.php:799
+msgid "Openstreetmap route url"
+msgstr "آدرس سیستم مسیریابی اوپن استریت مپ"
+
+#: config/config.php:800
+msgid "Setup osrm route project on your own server or use mapbox"
+msgstr ""
+"ابزار OSRM را بر روی سرور های خود نصب کنید و یا از خدمات mapbox و سرویس های مشابه استفاده "
+"کنید"
 
 #: config/event.php:21
 msgid "Module installed"
@@ -841,7 +904,7 @@ msgstr "ماژول نصب شد"
 
 #: config/event.php:24
 msgid "Module uninstalled"
-msgstr "ماژول از نصب خارج شد."
+msgstr "ماژول از نصب خارج شد"
 
 #: config/event.php:27
 msgid "Module activated"
@@ -849,7 +912,7 @@ msgstr "ماژول فعال شد"
 
 #: config/event.php:30
 msgid "Module deactivated"
-msgstr "ماژول غیرفعال شد."
+msgstr "ماژول غیرفعال شد"
 
 #: config/event.php:33
 msgid "Module updated"
@@ -861,7 +924,7 @@ msgstr "سیستم"
 
 #: config/module.php:22
 msgid "For administration of core functions of the site."
-msgstr "برای مدیریت عملکردهای هسته‌ی این سایت"
+msgstr "برای مدیریت عملکردهای هسته‌ی این سایت."
 
 #: config/nav.admin.php:17 config/page.php:91 template/admin/asset-index.phtml:24
 msgid "Modules"
@@ -925,12 +988,12 @@ msgid "Add role"
 msgstr "اضافه کردن نقش"
 
 #: config/nav.admin.php:260
-msgid "Cache flush"
-msgstr "تخلیه‌ی کَش"
-
-#: config/nav.admin.php:270
 msgid "Asset publish"
 msgstr "انتشار Asset"
+
+#: config/nav.admin.php:271
+msgid "Cache flush"
+msgstr "تخلیه‌ی کَش"
 
 #: config/nav.admin.php:281
 msgid "Toolkit"
@@ -956,8 +1019,7 @@ msgstr "پیکربندی"
 msgid "Blocks"
 msgstr "بلاک‌ها"
 
-#: config/nav.component.php:39 config/page.php:71
-#: template/admin/block-list.phtml:22
+#: config/nav.component.php:39 config/page.php:71 template/admin/block-list.phtml:22
 msgid "Pages"
 msgstr "صفحه‌ها"
 
@@ -965,7 +1027,7 @@ msgstr "صفحه‌ها"
 msgid "Cache"
 msgstr "کَش"
 
-#: config/nav.component.php:61 template/admin/nav-data.phtml:80
+#: config/nav.component.php:61 template/admin/nav-data.phtml:78
 msgid "Permission"
 msgstr "دسترسی"
 
@@ -989,9 +1051,9 @@ msgstr "ثبت"
 msgid "Password"
 msgstr "کلمه ی عبور"
 
-#: config/nav.front.php:52 template/admin/event.phtml:25
-#: template/admin/perm.phtml:16 template/admin/perm.phtml:22
-#: template/admin/role.phtml:36 template/admin/theme-index.phtml:21
+#: config/nav.front.php:52 template/admin/event.phtml:25 template/admin/perm.phtml:16
+#: template/admin/perm.phtml:22 template/admin/role.phtml:36
+#: template/admin/theme-index.phtml:17
 msgid "Admin"
 msgstr "مدیر"
 
@@ -1138,17 +1200,15 @@ msgid "Asset component list"
 msgstr "فهرست مولفه های Asset"
 
 #: src/Controller/Admin/AssetController.php:104
-msgid ""
-"Some old files were not able to remove and asset publish was not completed."
-msgstr "برخی فایل‌های قدیمی قابل حذف نبودند و انتشار محتوا کامل نشد"
+msgid "Some old files were not able to remove and asset publish was not completed."
+msgstr "برخی فایل‌های قدیمی قابل حذف نبودند و انتشار محتوا کامل نشد."
 
 #: src/Controller/Admin/AssetController.php:109
 msgid "Asset publish was not completed, please check and copy manually."
 msgstr "انتشار محتوا کامل نشده، لطفا بررسی و به صورت دستی کپی کنید."
 
 #: src/Controller/Admin/AssetController.php:114
-msgid ""
-"Asset publish was not completed because some old files were not able to remove."
+msgid "Asset publish was not completed because some old files were not able to remove."
 msgstr "انتشار محتوا کامل نشد زیار برخی فایل‌های قدیمی را نمی‌شد حذف کرد."
 
 #: src/Controller/Admin/AssetController.php:119
@@ -1165,19 +1225,17 @@ msgstr "انتشار به طور کامل انجام نشده، لطفا برر�
 
 #: src/Controller/Admin/AssetController.php:207
 msgid "All assets published successfully."
-msgstr "تمام محتوا با موفقیت به روز شد"
+msgstr "تمام محتوا با موفقیت به روز شد."
 
 #: src/Controller/Admin/BlockController.php:136
 msgid "Block list"
 msgstr "فهرست بلاک ها"
 
-#: src/Controller/Admin/BlockController.php:152
-#: src/Controller/Admin/BlockController.php:204
+#: src/Controller/Admin/BlockController.php:152 src/Controller/Admin/BlockController.php:204
 msgid "Base block is not found."
-msgstr "بلاک پیدا نشد"
+msgstr "بلاک پیدا نشد."
 
-#: src/Controller/Admin/BlockController.php:188
-#: src/Controller/Admin/BlockController.php:297
+#: src/Controller/Admin/BlockController.php:188 src/Controller/Admin/BlockController.php:297
 msgid "Block data saved successfully."
 msgstr "محتوای بلاک با موفقیت ذخیره شد."
 
@@ -1185,10 +1243,8 @@ msgstr "محتوای بلاک با موفقیت ذخیره شد."
 msgid "Block data not saved."
 msgstr "داده‌ی بلاک ذخیره نشد."
 
-#: src/Controller/Admin/BlockController.php:198
-#: src/Controller/Admin/BlockController.php:304
-#: src/Controller/Admin/PageController.php:170
-#: src/Controller/Admin/PageController.php:281
+#: src/Controller/Admin/BlockController.php:198 src/Controller/Admin/BlockController.php:304
+#: src/Controller/Admin/PageController.php:170 src/Controller/Admin/PageController.php:281
 msgid "Invalid data, please check and re-submit."
 msgstr "داده‌ی نامعتبر، لطفا بررسی کنید و دوباره ارسال کنید."
 
@@ -1204,7 +1260,7 @@ msgstr "کلون بلاک از %s"
 
 #: src/Controller/Admin/BlockController.php:310
 msgid "Block is not found."
-msgstr "بلاک پیدا نشد"
+msgstr "بلاک پیدا نشد."
 
 #: src/Controller/Admin/BlockController.php:332
 #, php-format
@@ -1213,51 +1269,51 @@ msgstr "ویرایش بلاک %s"
 
 #: src/Controller/Admin/BlockController.php:352
 msgid "Block is deleted."
-msgstr "بلاک حذف شده است"
+msgstr "بلاک حذف شده است."
 
 #: src/Controller/Admin/CacheController.php:77
 msgid "Page cache updated successfully."
 msgstr "کَش صفحه با موفقیت به روز شد."
 
-#: src/Controller/Admin/CacheController.php:94
-#: src/Controller/Admin/PageController.php:65 template/admin/event.phtml:24
-#: template/admin/perm.phtml:15 template/admin/perm.phtml:21
-#: template/admin/role.phtml:35 template/admin/theme-index.phtml:14
+#: src/Controller/Admin/CacheController.php:94 src/Controller/Admin/PageController.php:65
+#: template/admin/event.phtml:24 template/admin/perm.phtml:15 template/admin/perm.phtml:21
+#: template/admin/role.phtml:35 template/admin/theme-index.phtml:12
 msgid "Front"
 msgstr "کاربر"
 
 #: src/Controller/Admin/CacheController.php:98
+msgid "Api"
+msgstr "Api"
+
+#: src/Controller/Admin/CacheController.php:102
 msgid "Feed"
 msgstr "خوراک"
 
-#: src/Controller/Admin/CacheController.php:111
+#: src/Controller/Admin/CacheController.php:115
 msgid "Page wide"
 msgstr "صفحه گسترده"
 
-#: src/Controller/Admin/CacheController.php:112
+#: src/Controller/Admin/CacheController.php:116
 msgid "Action data"
 msgstr "داده های اکشن"
 
-#: src/Controller/Admin/CacheController.php:161
-#: src/Controller/Admin/PageController.php:88
+#: src/Controller/Admin/CacheController.php:165 src/Controller/Admin/PageController.php:88
 #: src/Controller/Admin/PageController.php:418
 msgid "Module wide"
 msgstr "تمام صفحات ماژول"
 
-#: src/Controller/Admin/CacheController.php:171
-#: src/Controller/Admin/PageController.php:98
+#: src/Controller/Admin/CacheController.php:175 src/Controller/Admin/PageController.php:98
 msgid "Module home"
 msgstr "صفحه اصلی ماژول"
 
-#: src/Controller/Admin/CacheController.php:195
-#: src/Controller/Admin/FlushController.php:93
+#: src/Controller/Admin/CacheController.php:199 src/Controller/Admin/FlushController.php:93
 msgid "Cache list"
 msgstr "فهرست کَش"
 
 #: src/Controller/Admin/ComponentController.php:74
 #: src/Controller/Admin/ModuleController.php:76
 msgid "Never updated."
-msgstr "هرگز به روز نشده"
+msgstr "هرگز به روز نشده."
 
 #: src/Controller/Admin/ConfigController.php:173
 msgid "Configuration data saved successfully."
@@ -1274,7 +1330,7 @@ msgstr "فهرست رویداد های ماژول %s"
 
 #: src/Controller/Admin/EventController.php:168
 msgid "The item not found."
-msgstr "گزینه‌ی مورد نظر پیدا نشد"
+msgstr "گزینه‌ی مورد نظر پیدا نشد."
 
 #: src/Controller/Admin/EventController.php:183
 msgid "The item is not allowed to activate since module is inactive."
@@ -1282,7 +1338,7 @@ msgstr "به دلیل غیرفعال بودن ماژول، فعال کردن ا�
 
 #: src/Controller/Admin/EventController.php:190
 msgid "The item updated successfully."
-msgstr "این گزینه با موفقیت به روز رسانی شد"
+msgstr "این گزینه با موفقیت به روز رسانی شد."
 
 #: src/Controller/Admin/FlushController.php:37
 msgid "File status cache"
@@ -1320,12 +1376,12 @@ msgstr "کَش صفحه [%s]"
 
 #: src/Controller/Admin/FlushController.php:110
 msgid "Cache is flushed successfully."
-msgstr "کَش با موفقیت خالی شد"
+msgstr "کَش با موفقیت خالی شد."
 
 #: src/Controller/Admin/FlushController.php:113
 #, php-format
 msgid "Cache flush failed: %s"
-msgstr "تخلیه‌ی کَش %s انجام نشد "
+msgstr "تخلیه‌ی کَش : %s"
 
 #: src/Controller/Admin/IndexController.php:31
 msgid "Security: `setup` folder is not removed!"
@@ -1355,19 +1411,19 @@ msgstr "ماژول‌های آماده‌ی نصب"
 
 #: src/Controller/Admin/ModuleController.php:159
 msgid "Module moved successfully."
-msgstr "ماژول با موفقیت منتقل شد"
+msgstr "ماژول با موفقیت منتقل شد."
 
 #: src/Controller/Admin/ModuleController.php:166
 msgid "Category deleted successfully."
-msgstr "طبقه با موفقیت حذف شد"
+msgstr "طبقه با موفقیت حذف شد."
 
 #: src/Controller/Admin/ModuleController.php:206
 msgid "Category updated successfully."
-msgstr "طبقه با موفقیت به روز شد"
+msgstr "طبقه با موفقیت به روز شد."
 
 #: src/Controller/Admin/ModuleController.php:218
 msgid "Modules sorted successfully."
-msgstr "ماژول‌ها با موفقیت ذخیره شدند"
+msgstr "ماژول‌ها با موفقیت ذخیره شدند."
 
 #: src/Controller/Admin/ModuleController.php:251
 msgid "All categorized"
@@ -1383,26 +1439,26 @@ msgstr "شاخه‌ی جدید"
 
 #: src/Controller/Admin/ModuleController.php:321
 msgid "Directory is not specified."
-msgstr "دایرکتوری مشخص نشده"
+msgstr "دایرکتوری مشخص نشده."
 
 #: src/Controller/Admin/ModuleController.php:327
 #, php-format
 msgid "Meta data are not loaded for \"%s\"."
-msgstr "متا دیتا برای  \"%s\" لود نشده"
+msgstr "متا دیتا برای  \"%s\" لود نشده."
 
 #: src/Controller/Admin/ModuleController.php:344
 msgid "The module has already been installed."
-msgstr "این ماژول قبلا نصب شده است"
+msgstr "این ماژول قبلا نصب شده است."
 
 #: src/Controller/Admin/ModuleController.php:359
 #, php-format
 msgid "Module \"%s\" is installed successfully."
-msgstr "ماژول  \"%s\" با موفقیت نصب شد"
+msgstr "ماژول  \"%s\" با موفقیت نصب شد."
 
 #: src/Controller/Admin/ModuleController.php:370
 #, php-format
 msgid "Module \"%s\" is not installed."
-msgstr "ماژول  \"%s\" نصب نشده است"
+msgstr "ماژول  \"%s\" نصب نشده است."
 
 #: src/Controller/Admin/ModuleController.php:374
 msgid "Module is not installed."
@@ -1417,33 +1473,33 @@ msgstr "نصب ماژول"
 #: src/Controller/Admin/ModuleController.php:550
 #: src/Controller/Admin/ModuleController.php:611
 msgid "Module is not specified."
-msgstr "ماژول مشخص نشده است"
+msgstr "ماژول مشخص نشده است."
 
 #: src/Controller/Admin/ModuleController.php:460
 #: src/Controller/Admin/ModuleController.php:559
 #: src/Controller/Admin/ModuleController.php:620
 #: src/Controller/Admin/ModuleController.php:715
 msgid "Module is not found."
-msgstr "ماژول پیدا نشد"
+msgstr "ماژول پیدا نشد."
 
 #: src/Controller/Admin/ModuleController.php:462
 msgid "System module is protected."
-msgstr "ماژول سیستمی محافظت شده است"
+msgstr "ماژول سیستمی محافظت شده است."
 
 #: src/Controller/Admin/ModuleController.php:471
 #, php-format
 msgid "Module \"%s\" is uninstalled successfully."
-msgstr "ماژول  \"%s\"  با موفقیت آن اینستال شد"
+msgstr "ماژول  \"%s\"  با موفقیت آن اینستال شد."
 
 #: src/Controller/Admin/ModuleController.php:479
 #: src/Controller/Admin/ModuleController.php:484
 #, php-format
 msgid "Module \"%s\" is not uninstalled."
-msgstr "ماژول  \"%s\" آن اینستال نشده است"
+msgstr "ماژول  \"%s\" آن اینستال نشده است."
 
 #: src/Controller/Admin/ModuleController.php:488
 msgid "Module is not uninstalled."
-msgstr "ماژول آن اینستال نشده است"
+msgstr "ماژول آن اینستال نشده است."
 
 #: src/Controller/Admin/ModuleController.php:492
 msgid "Module uninstallation"
@@ -1456,17 +1512,17 @@ msgstr "به روز رسانی ماژول‌ها"
 #: src/Controller/Admin/ModuleController.php:568
 #, php-format
 msgid "Module \"%s\" is updated successfully."
-msgstr "ماژول  \"%s\"  با موفقیت به روز شد"
+msgstr "ماژول  \"%s\"  با موفقیت به روز شد."
 
 #: src/Controller/Admin/ModuleController.php:575
 #: src/Controller/Admin/ModuleController.php:577
 #, php-format
 msgid "Module \"%s\" is not updated."
-msgstr "ماژول  \"%s\"به روز نشده است"
+msgstr "ماژول  \"%s\"به روز نشده است."
 
 #: src/Controller/Admin/ModuleController.php:580
 msgid "Module is not updated."
-msgstr "ماژول به روز نشده است"
+msgstr "ماژول به روز نشده است."
 
 #: src/Controller/Admin/ModuleController.php:584
 msgid "Module update"
@@ -1481,11 +1537,11 @@ msgstr "ماژول  \"%s\" با موفقیت فعال شد."
 #: src/Controller/Admin/ModuleController.php:647
 #, php-format
 msgid "Module \"%s\" is not enabled."
-msgstr "ماژول  \"%s\"  فعال نشده است"
+msgstr "ماژول  \"%s\"  فعال نشده است."
 
 #: src/Controller/Admin/ModuleController.php:651
 msgid "Module is not enabled."
-msgstr "ماژول فعال نشده است"
+msgstr "ماژول فعال نشده است."
 
 #: src/Controller/Admin/ModuleController.php:656
 #, php-format
@@ -1496,11 +1552,11 @@ msgstr "ماژول  \"%s\" با موفقیت غیرفعال شد."
 #: src/Controller/Admin/ModuleController.php:669
 #, php-format
 msgid "Module \"%s\" is not disabled."
-msgstr "ماژول  \"%s\" غیرفعال نشده است"
+msgstr "ماژول  \"%s\" غیرفعال نشده است."
 
 #: src/Controller/Admin/ModuleController.php:673
 msgid "Module is not disabled."
-msgstr "ماژول غیرفعال نشده است"
+msgstr "ماژول غیرفعال نشده است."
 
 #: src/Controller/Admin/ModuleController.php:678
 msgid "Module activation"
@@ -1510,19 +1566,18 @@ msgstr "فعال سازی ماژول"
 msgid "Title is required."
 msgstr "عنوان ضروری است."
 
-#: src/Controller/Admin/NavController.php:66
-#: src/Controller/Admin/NavController.php:93 template/admin/nav-data.phtml:45
-#: template/admin/nav-index.phtml:42
+#: src/Controller/Admin/NavController.php:66 src/Controller/Admin/NavController.php:93
+#: template/admin/nav-data.phtml:43 template/admin/nav-index.phtml:42
 msgid "Custom"
 msgstr "شخصی سازی"
 
 #: src/Controller/Admin/NavController.php:162
 msgid "Navigation set up successfully."
-msgstr "منو با موفقیت نصب شد"
+msgstr "منو با موفقیت نصب شد."
 
 #: src/Controller/Admin/NavController.php:196
 msgid "Navigation added successfully."
-msgstr "منو با موفقیت اضافه شد"
+msgstr "منو با موفقیت اضافه شد."
 
 #: src/Controller/Admin/NavController.php:211
 msgid "Add a navigation"
@@ -1530,11 +1585,11 @@ msgstr "منو جدید"
 
 #: src/Controller/Admin/NavController.php:247
 msgid "Navigation saved successfully."
-msgstr "منو با موفقیت ذخیره شد"
+msgstr "منو با موفقیت ذخیره شد."
 
 #: src/Controller/Admin/NavController.php:253
 msgid "Navigation data not saved."
-msgstr "داده‌های منو ذخیره نشده‌اند"
+msgstr "داده‌های منو ذخیره نشده‌اند."
 
 #: src/Controller/Admin/NavController.php:291
 msgid "Clone navigation"
@@ -1542,11 +1597,11 @@ msgstr "کپی برداری از منو"
 
 #: src/Controller/Admin/NavController.php:311
 msgid "The navigation is in use and not allowed to delete."
-msgstr "منو در حال استفاده است و نمی‌توان آن را حذف کرد"
+msgstr "منو در حال استفاده است و نمی‌توان آن را حذف کرد."
 
 #: src/Controller/Admin/NavController.php:323
 msgid "The navigation is deleted successfully."
-msgstr "منو با موفقیت حذف شد"
+msgstr "منو با موفقیت حذف شد."
 
 #: src/Controller/Admin/NavController.php:390
 #, php-format
@@ -1560,31 +1615,28 @@ msgstr "ویرایش داده‌های منو %s"
 
 #: src/Controller/Admin/NavController.php:478
 msgid "Navigation data saved successfully."
-msgstr "داده‌های منو با موفقیت ذخیره شدند"
+msgstr "داده‌های منو با موفقیت ذخیره شدند."
 
 #: src/Controller/Admin/NavController.php:485
 msgid "Navigation not found."
-msgstr "منو یافت نشد"
+msgstr "منو یافت نشد."
 
 #: src/Controller/Admin/NavController.php:489
 msgid "Only custom navigations are allowed to manipulate."
-msgstr "تنها منو های دست ساز را می‌توان تغییر داد"
+msgstr "تنها منو های دست ساز را می‌توان تغییر داد."
 
 #: src/Controller/Admin/PageController.php:129
 msgid "Pages list"
 msgstr "فهرست صفحه‌ها"
 
-#: src/Controller/Admin/PageController.php:155
-#: src/Controller/Admin/PageController.php:215
-#: src/Controller/Admin/PageController.php:279
-#: src/Controller/Admin/PageController.php:327
+#: src/Controller/Admin/PageController.php:155 src/Controller/Admin/PageController.php:215
+#: src/Controller/Admin/PageController.php:279 src/Controller/Admin/PageController.php:327
 msgid "Page data saved successfully."
-msgstr "داده‌های صفحه با موفقیت ذخیره شدند"
+msgstr "داده‌های صفحه با موفقیت ذخیره شدند."
 
-#: src/Controller/Admin/PageController.php:167
-#: src/Controller/Admin/PageController.php:237
+#: src/Controller/Admin/PageController.php:167 src/Controller/Admin/PageController.php:237
 msgid "Page data not saved."
-msgstr "داده‌های صفحه ذخیره نشدند"
+msgstr "داده‌های صفحه ذخیره نشدند."
 
 #: src/Controller/Admin/PageController.php:182 template/admin/page-list.phtml:11
 msgid "Setup a page"
@@ -1596,12 +1648,11 @@ msgstr "ویرایش صفحه"
 
 #: src/Controller/Admin/PageController.php:371
 msgid "Page is deleted."
-msgstr "صفحه حذف شده است"
+msgstr "صفحه حذف شده است."
 
-#: src/Controller/Admin/PageController.php:376
-#: src/Controller/Admin/PageController.php:551
+#: src/Controller/Admin/PageController.php:376 src/Controller/Admin/PageController.php:551
 msgid "Page is not found."
-msgstr "صفحه پیدا نشد"
+msgstr "صفحه پیدا نشد."
 
 #: src/Controller/Admin/PageController.php:491
 #, php-format
@@ -1622,31 +1673,26 @@ msgstr "دیریت ماژول"
 
 #: src/Controller/Admin/PermController.php:329
 msgid "Permission assigned successfully."
-msgstr "دسترسی با موفقیت اعطا شد"
+msgstr "دسترسی با موفقیت اعطا شد."
 
-#: src/Controller/Admin/RepoController.php:59
-#: src/Controller/Admin/RepoController.php:83
+#: src/Controller/Admin/RepoController.php:59 src/Controller/Admin/RepoController.php:83
 #, php-format
 msgid "A new version %s is available"
 msgstr "نسخه‌ی جدید %s موجود است"
 
-#: src/Controller/Admin/RepoController.php:64
-#: src/Controller/Admin/RepoController.php:88
+#: src/Controller/Admin/RepoController.php:64 src/Controller/Admin/RepoController.php:88
 msgid "No update available"
 msgstr "هیچ به روز رسانی وجود ندارد"
 
-#: src/Controller/Admin/RepoController.php:68
-#: src/Controller/Admin/RepoController.php:92
+#: src/Controller/Admin/RepoController.php:68 src/Controller/Admin/RepoController.php:92
 msgid "Error occurred, check later."
 msgstr "بروز خطا، بعدا بررسی کنید."
 
-#: src/Controller/Admin/RoleController.php:162
-#: src/Controller/Admin/RoleController.php:216
+#: src/Controller/Admin/RoleController.php:162 src/Controller/Admin/RoleController.php:216
 msgid "Role data saved successfully."
 msgstr "داده‌های نقش با موفقیت ذخیره شدند."
 
-#: src/Controller/Admin/RoleController.php:165
-#: src/Controller/Admin/RoleController.php:219
+#: src/Controller/Admin/RoleController.php:165 src/Controller/Admin/RoleController.php:219
 msgid "Role data not saved."
 msgstr "داده‌های نقش ذخیره نشدند."
 
@@ -1664,7 +1710,7 @@ msgstr "تنها نقش‌های دست ساز را می‌توان فعال ی�
 
 #: src/Controller/Admin/RoleController.php:275
 msgid "Role updated successfully."
-msgstr "نقش با موفقیت به روز شد"
+msgstr "نقش با موفقیت به روز شد."
 
 #: src/Controller/Admin/RoleController.php:314
 msgid "Only custom roles are allowed to delete."
@@ -1672,7 +1718,7 @@ msgstr "تنها نقش‌های دست ساز را می‌توان حذف کر�
 
 #: src/Controller/Admin/RoleController.php:320
 msgid "Role deleted successfully."
-msgstr "نقش با موفقیت حذف شد"
+msgstr "نقش با موفقیت حذف شد."
 
 #: src/Controller/Admin/ThemeController.php:49
 msgid "admin"
@@ -1702,12 +1748,12 @@ msgstr "قالب‌های آماده برای نصب"
 #: src/Controller/Admin/ThemeController.php:182
 #, php-format
 msgid "The theme \"%s\" is not updated."
-msgstr "قالب  \"%s\" به روز نشده است"
+msgstr "قالب  \"%s\" به روز نشده است."
 
 #: src/Controller/Admin/ThemeController.php:185
 #, php-format
 msgid "The theme \"%s\" is updated."
-msgstr "قالب \"%s\" به روز رسانی شد"
+msgstr "قالب \"%s\" به روز رسانی شد."
 
 #: src/Controller/Admin/ThemeController.php:206
 #, php-format
@@ -1717,21 +1763,21 @@ msgstr "قالب  \"%s\" نصب نشده است."
 #: src/Controller/Admin/ThemeController.php:210
 #, php-format
 msgid "The theme \"%s\" is installed."
-msgstr "قالب \"%s\"  نصب شده است"
+msgstr "قالب \"%s\"  نصب شده است."
 
 #: src/Controller/Admin/ThemeController.php:229
 msgid "Default theme is protected from uninstallation."
-msgstr "قالب پیش‌فرض را نمی‌توان آن اینستال کرد"
+msgstr "قالب پیش‌فرض را نمی‌توان آن اینستال کرد."
 
 #: src/Controller/Admin/ThemeController.php:238
 #, php-format
 msgid "The theme \"%s\" is not uninstalled."
-msgstr "قالب  \"%s\" آن اینستال نشده است"
+msgstr "قالب  \"%s\" آن اینستال نشده است."
 
 #: src/Controller/Admin/ThemeController.php:244
 #, php-format
 msgid "The theme \"%s\" is uninstalled."
-msgstr "قالب \"%s\" آن اینستال شد"
+msgstr "قالب \"%s\" آن اینستال شد."
 
 #: src/Controller/Module/DashboardController.php:96
 msgid "No permitted operation available."
@@ -1755,7 +1801,7 @@ msgstr "آیکن Font-awesome"
 msgid "Check http://fortawesome.github.io/Font-Awesome/icons/"
 msgstr "این آدرس را بررسی کنید  http://fortawesome.github.io/Font-Awesome/icons/"
 
-#: src/Form/ModuleCategoryForm.php:50 template/admin/module-category.phtml:83
+#: src/Form/ModuleCategoryForm.php:50 template/admin/module-category.phtml:79
 msgid "Order"
 msgstr "ترتیب"
 
@@ -1771,11 +1817,11 @@ msgstr "دامنه taxonomy سراسری پیشفرض، اجازه تغییر آ
 msgid "Welcome to Pi powered system."
 msgstr "به سیستم پای خوش آمدید."
 
-#: src/Installer/Action/Install.php:193
+#: src/Installer/Action/Install.php:189
 msgid "Application"
 msgstr "برنامه"
 
-#: src/Installer/Action/Install.php:220
+#: src/Installer/Action/Install.php:216
 msgid "Service"
 msgstr "خدمات"
 
@@ -1802,7 +1848,7 @@ msgstr "به کار بستن"
 #: template/admin/asset-index.phtml:12 template/admin/block-list.phtml:21
 #: template/admin/event.phtml:18 template/admin/flush-index.phtml:11
 #: template/admin/module-available.phtml:12 template/admin/module-index.phtml:11
-#: template/admin/module-index.phtml:71 template/admin/nav-data.phtml:124
+#: template/admin/module-index.phtml:71 template/admin/nav-data.phtml:122
 #: template/admin/nav-index.phtml:13 template/admin/page-list.phtml:16
 #: template/admin/role.phtml:28
 msgid "Action"
@@ -1820,49 +1866,57 @@ msgstr "انتشار"
 msgid "Asset publish in process"
 msgstr "انتشار محتوا در جریان است"
 
-#: template/admin/audit-index.phtml:13
+#: template/admin/audit-index.phtml:15
 msgid "Audit list"
 msgstr "فهرست حسابرسی"
 
-#: template/admin/audit-index.phtml:17
+#: template/admin/audit-index.phtml:20
 msgid "time"
 msgstr "زمان"
 
-#: template/admin/audit-index.phtml:18
+#: template/admin/audit-index.phtml:21
 msgid "User ID"
 msgstr "شناسه‌ی کاربری"
 
-#: template/admin/audit-index.phtml:19
+#: template/admin/audit-index.phtml:22
 msgid "IP"
 msgstr "آی‌پی"
 
-#: template/admin/audit-index.phtml:25
+#: template/admin/audit-index.phtml:28 template/admin/audit-index.phtml:62
 msgid "Message"
 msgstr "پیغام"
 
-#: template/admin/audit-index.phtml:26
-msgid "extra"
-msgstr "اضافه"
+#: template/admin/audit-index.phtml:29 template/admin/audit-index.phtml:71
+msgid "Extra information"
+msgstr "اطلاعات اضافی"
 
-#: template/admin/audit-index.phtml:53
+#: template/admin/audit-index.phtml:55 template/admin/nav-index.phtml:48
+msgid "View"
+msgstr "نمایش"
+
+#: template/admin/audit-index.phtml:56
+msgid "Close"
+msgstr "بستن"
+
+#: template/admin/audit-index.phtml:91
 msgid "Count of items to display: "
-msgstr "تعداد آیتم‌ها برای نمایش"
+msgstr "تعداد آیتم‌ها برای نمایش:"
 
-#: template/admin/audit-index.phtml:57
+#: template/admin/audit-index.phtml:95
 msgid "10"
 msgstr "10"
 
-#: template/admin/audit-index.phtml:58
+#: template/admin/audit-index.phtml:96
 msgid "20"
 msgstr "20"
 
-#: template/admin/audit-index.phtml:59
+#: template/admin/audit-index.phtml:97
 msgid "50"
 msgstr "50"
 
 #: template/admin/block-list.phtml:19 template/admin/module-available.phtml:11
 #: template/admin/module-index.phtml:9 template/admin/theme-available.phtml:27
-#: template/admin/theme-index.phtml:65 template/admin/theme-installed.phtml:33
+#: template/admin/theme-index.phtml:69 template/admin/theme-installed.phtml:33
 msgid "Description"
 msgstr "توضیح"
 
@@ -1893,7 +1947,7 @@ msgstr "کپی برداری"
 
 #: template/admin/block-list.phtml:27
 msgid "No page uses this block yet."
-msgstr "هنوز این بلاک در هیچ صفحه ای استفاده نشده است"
+msgstr "هنوز این بلاک در هیچ صفحه ای استفاده نشده است."
 
 #: template/admin/block-list.phtml:28
 msgid "Search in block title"
@@ -1933,30 +1987,29 @@ msgstr "اطلاعات ماژول"
 
 #: template/admin/dashboard-module.phtml:16
 msgid "Title:"
-msgstr "عنوان"
+msgstr "عنوان:"
 
 #: template/admin/dashboard-module.phtml:18
 msgid "Version:"
-msgstr "نسخه"
+msgstr "نسخه:"
 
 #: template/admin/dashboard-module.phtml:20
 msgid "Update:"
-msgstr "به روز رسانی"
+msgstr "به روز رسانی:"
 
 #: template/admin/dashboard-module.phtml:22
 msgid "Description:"
-msgstr "توضیح"
+msgstr "توضیح:"
 
 #: template/admin/dashboard-module.phtml:25
 msgid "Demo:"
-msgstr "دمو"
+msgstr "دمو:"
 
 #: template/admin/dashboard-module.phtml:29
 msgid "Author information"
 msgstr "مشخصات نویسنده"
 
-#: template/admin/dashboard-module.phtml:45
-#: template/admin/dashboard-system.phtml:28
+#: template/admin/dashboard-module.phtml:45 template/admin/dashboard-system.phtml:28
 msgid "Summary"
 msgstr "خلاصه"
 
@@ -1964,7 +2017,7 @@ msgstr "خلاصه"
 msgid "Announcement"
 msgstr "اعلان"
 
-#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:134
+#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:132
 msgid "Save"
 msgstr "ذخیره"
 
@@ -1986,25 +2039,24 @@ msgstr "با قدرت"
 
 #: template/admin/dashboard-system.phtml:30
 msgid ""
-"Pi Engine is a role oriented application development engine for web and mobile, "
-"designed as the next generation and a successor to Xoops. Pi is developed upon "
-"PHP and MySQL with selected third-party frameworks including but not limited to "
-"Zend Framework library, jQuery, Bootstrap and Backbone."
+"Pi Engine is a role oriented application development engine for web and mobile, designed "
+"as the next generation and a successor to Xoops. Pi is developed upon PHP and MySQL with "
+"selected third-party frameworks including but not limited to Zend Framework library, "
+"jQuery, Bootstrap and Backbone."
 msgstr ""
-"پای انجین یک موتور نقش محور برای توسعه‌ی برنامه‌های وب و موبایل است که نسل بعدی "
-"Xoops است.  پای بر اساس PHP و Mysql طراحی شده و با استفاده از فریم‌ورک‌های Third "
-"party از جمله Zend,Jquery,Bootstrap و Backbone،  ,ولی محدود به آن‌ها نمی‌شود "
+"پای انجین یک موتور نقش محور برای توسعه‌ی برنامه‌های وب و موبایل است که نسل بعدی Xoops است.  "
+"پای بر اساس PHP و Mysql طراحی شده و با استفاده از فریم‌ورک‌های Third party از جمله Zend,"
+"Jquery,Bootstrap و Backbone،  ,ولی محدود به آن‌ها نمی‌شود "
 
 #: template/admin/dashboard-system.phtml:31
 msgid ""
-" Pi Project follows the philosophy of open standard, open design, open "
-"development and open structure. Pi is born as a complete open source project "
-"and intended to build a sustainable ecosystem that benefits all contributors "
-"and users."
+" Pi Project follows the philosophy of open standard, open design, open development and "
+"open structure. Pi is born as a complete open source project and intended to build a "
+"sustainable ecosystem that benefits all contributors and users."
 msgstr ""
-"پروژه‌ی پای از فلسفه‌ی استانداردهای باز، طراحی باز و توسعه و ساختار باز تبعیت "
-"می‌کند. پای یک پروژه‌ی تماما متن باز است و هدف این بوده تا محیط مناسبی ایجاد شود "
-"که تمام کاربران و برنامه‌نویس‌ها از آن استفاده کنند. "
+"پروژه‌ی پای از فلسفه‌ی استانداردهای باز، طراحی باز و توسعه و ساختار باز تبعیت می‌کند. پای یک "
+"پروژه‌ی تماما متن باز است و هدف این بوده تا محیط مناسبی ایجاد شود که تمام کاربران و "
+"برنامه‌نویس‌ها از آن استفاده کنند. "
 
 #: template/admin/database-check.phtml:14
 msgid "Back"
@@ -2018,6 +2070,10 @@ msgstr "نتایج جدول ها"
 msgid "Results for columns"
 msgstr "نتایج ستون ها"
 
+#: template/admin/database-check.phtml:41
+msgid "Results for InnoDB check"
+msgstr "نتیجه بررسی Innodb برای دیتابیس"
+
 #: template/admin/database-index.phtml:14
 msgid "Check for encoding"
 msgstr "بررسی اینکودینگ"
@@ -2027,8 +2083,8 @@ msgid "This tool help you to check non-utf8 data fields for all tables"
 msgstr "این ابزار به شما کمک میکند تمام جدول ها و فیلد های non-utf8 را بررسی کنید"
 
 #: template/admin/database-index.phtml:24
-msgid "Check UTF8"
-msgstr "بررسی UTF-8"
+msgid "Check UTF8 and Innodb"
+msgstr "بررسی UTF8 و  Innodb برای دیتابیس"
 
 #: template/admin/event.phtml:19
 msgid "Events"
@@ -2070,8 +2126,8 @@ msgstr "تخلیه‌ی کَش درحال انجام است."
 #: template/admin/index.phtml:6
 msgid "There is no entry page for this module management. Please:"
 msgstr ""
-"این ماژول فاقد بخش مدیریت است و تمام قسمت های آن از بخش تنظیمات یا بخش کاربری "
-"کنترل می شود. شما می توانید :"
+"این ماژول فاقد بخش مدیریت است و تمام قسمت های آن از بخش تنظیمات یا بخش کاربری کنترل می "
+"شود. شما می توانید :"
 
 #: template/admin/index.phtml:11
 msgid "Module config"
@@ -2079,7 +2135,7 @@ msgstr "پیکربندی ماژول"
 
 #: template/admin/index.phtml:11
 msgid "Go to set up module configs;"
-msgstr "به بخش پیکربندی در تنظیمات ماژول بروید."
+msgstr "به بخش پیکربندی در تنظیمات ماژول بروید;"
 
 #: template/admin/index.phtml:13
 msgid "System admin"
@@ -2095,7 +2151,7 @@ msgstr "یک عضو اضافه کنید"
 
 #: template/admin/member-index.phtml:12
 msgid "Select a role: "
-msgstr "یک نقش انتخاب کنید:"
+msgstr "یک نقش انتخاب کنید: "
 
 #: template/admin/member-index.phtml:28 template/admin/role.phtml:21
 msgid "Name"
@@ -2130,43 +2186,42 @@ msgid "Icon"
 msgstr "آیکون"
 
 #: template/admin/module-available.phtml:10 template/admin/module-index.phtml:8
-#: template/admin/theme-available.phtml:23 template/admin/theme-index.phtml:63
+#: template/admin/theme-available.phtml:23 template/admin/theme-index.phtml:67
 #: template/admin/theme-installed.phtml:29
 msgid "Version"
 msgstr "نسخه"
 
 #: template/admin/module-available.phtml:34 template/admin/module-index.phtml:40
-#: template/admin/theme-available.phtml:18 template/admin/theme-index.phtml:60
+#: template/admin/theme-available.phtml:18 template/admin/theme-index.phtml:64
 #: template/admin/theme-installed.phtml:22
 msgid "Detail"
 msgstr "جزییات"
 
 #: template/admin/module-available.phtml:37 template/admin/module-index.phtml:44
 msgid "Directory:"
-msgstr "شاخه"
+msgstr "شاخه:"
 
-#: template/admin/module-available.phtml:61
-#: template/admin/theme-available.phtml:17
+#: template/admin/module-available.phtml:61 template/admin/theme-available.phtml:17
 msgid "Install"
 msgstr "نصب"
 
-#: template/admin/module-category.phtml:39
+#: template/admin/module-category.phtml:36
 msgid "Assign to:"
-msgstr "تخصیص به"
+msgstr "تخصیص به:"
 
-#: template/admin/module-category.phtml:58
+#: template/admin/module-category.phtml:54
 msgid "Edit this category"
 msgstr "ویرایش این طبقه"
 
-#: template/admin/module-category.phtml:62
+#: template/admin/module-category.phtml:58
 msgid "Delete this category"
 msgstr "حذف این طبقه"
 
-#: template/admin/module-category.phtml:78
+#: template/admin/module-category.phtml:74
 msgid "Remove"
 msgstr "حذف"
 
-#: template/admin/module-category.phtml:98
+#: template/admin/module-category.phtml:94
 msgid "Sort modules"
 msgstr "مرتب‌سازی ماژول‌ها"
 
@@ -2180,7 +2235,7 @@ msgstr "تغییر نام"
 
 #: template/admin/module-index.phtml:42
 msgid "Name:"
-msgstr "نام"
+msgstr "نام:"
 
 #: template/admin/module-index.phtml:46
 msgid "Author"
@@ -2192,11 +2247,11 @@ msgstr "به روز رسانی"
 
 #: template/admin/module-index.phtml:66
 msgid ""
-"Are you sure to update all module? make sure have backup from your website "
-"before use this option"
+"Are you sure to update all module? make sure have backup from your website before use "
+"this option"
 msgstr ""
-"آیا اطمینان دارید که میخواهید تمام ماژول ها را به صورت هم زمان به روز کنید؟ "
-"لطفا قبل از این عمل از اطلاعات خود نسخه پشتیبان تهیه فرمایید"
+"آیا اطمینان دارید که میخواهید تمام ماژول ها را به صورت هم زمان به روز کنید؟ لطفا قبل از "
+"این عمل از اطلاعات خود نسخه پشتیبان تهیه فرمایید"
 
 #: template/admin/module-index.phtml:66
 msgid "Update all"
@@ -2212,7 +2267,7 @@ msgstr "فعال‌سازی"
 
 #: template/admin/module-index.phtml:80
 msgid "Are you sure to uninstall this module?"
-msgstr "مطمئنید که می‌خواهید این ماژول را حذف کنید."
+msgstr "مطمئنید که می‌خواهید این ماژول را حذف کنید؟"
 
 #: template/admin/module-index.phtml:80 template/admin/theme-installed.phtml:20
 msgid "Uninstall"
@@ -2220,36 +2275,36 @@ msgstr "آن اینستال"
 
 #: template/admin/module-operation.phtml:7 template/admin/module-refresh.phtml:7
 msgid "Press to continue ..."
-msgstr "برای ادامه فشار دهید"
+msgstr "برای ادامه فشار دهید."
 
-#: template/admin/module-operation.phtml:17 template/admin/module-refresh.phtml:23
+#: template/admin/module-operation.phtml:17 template/admin/module-refresh.phtml:21
 msgid "Failed"
 msgstr "ناموفق"
 
-#: template/admin/module-operation.phtml:19 template/admin/module-refresh.phtml:25
+#: template/admin/module-operation.phtml:19 template/admin/module-refresh.phtml:23
 msgid "Succeeded"
 msgstr "با موفقیت انجام شد"
 
 #: template/admin/module-refresh.phtml:6
 msgid "Module updates finished."
-msgstr "به روز رسانی ماژول‌ها انجام شد"
+msgstr "به روز رسانی ماژول‌ها انجام شد."
 
-#: template/admin/module-refresh.phtml:16
+#: template/admin/module-refresh.phtml:14
 msgid "Update succeeded."
-msgstr "به روز رسانی با موفقیت انجام شد"
+msgstr "به روز رسانی با موفقیت انجام شد."
 
-#: template/admin/module-refresh.phtml:16
+#: template/admin/module-refresh.phtml:14
 msgid "Update failed."
-msgstr "به روز رسانی انجام نشد"
+msgstr "به روز رسانی انجام نشد."
 
 #: template/admin/nav-data.phtml:13
 msgid ""
-"Add new element on menu or edit current elements, save each element box after "
-"edit and finally save menu by blue button."
+"Add new element on menu or edit current elements, save each element box after edit and "
+"finally save menu by blue button."
 msgstr ""
-"یک گزینه جدید برای منو اضافه کنید یا گزینه های موجود را ویرایش کنید ، بعد از "
-"ویرایش هر گزینه حتما همان گزینه را ذخیره نمایید و در انتها با استفاده از دکمه "
-"آبی رنگ بالای صفحه کل تغییرات منو را مجدد ذخیره نمایید."
+"یک گزینه جدید برای منو اضافه کنید یا گزینه های موجود را ویرایش کنید ، بعد از ویرایش هر "
+"گزینه حتما همان گزینه را ذخیره نمایید و در انتها با استفاده از دکمه آبی رنگ بالای صفحه کل "
+"تغییرات منو را مجدد ذخیره نمایید."
 
 #: template/admin/nav-data.phtml:18
 msgid "Only click this button to save data"
@@ -2259,66 +2314,65 @@ msgstr "این دکمه را برای ذخیره‌سازی داده کلیک ک
 msgid "Save menu"
 msgstr "منوی ذخیره سازی"
 
-#: template/admin/nav-data.phtml:27
+#: template/admin/nav-data.phtml:26
 msgid "Add to menu"
 msgstr "اضافه کردن به منو"
 
-#: template/admin/nav-data.phtml:36
+#: template/admin/nav-data.phtml:34
 msgid "This navgation is only for viewing"
-msgstr "این منو تنها برای مشاهده است."
+msgstr "این منو تنها برای مشاهده است"
 
-#: template/admin/nav-data.phtml:44
+#: template/admin/nav-data.phtml:42
 msgid "Click to toggle edit"
 msgstr "کلیک برای ویرایش"
 
-#: template/admin/nav-data.phtml:56
+#: template/admin/nav-data.phtml:54
 msgid "Label"
 msgstr "برچسب"
 
-#: template/admin/nav-data.phtml:62
+#: template/admin/nav-data.phtml:60
 msgid "Url"
 msgstr "آدرس"
 
-#: template/admin/nav-data.phtml:65
+#: template/admin/nav-data.phtml:63
 msgid "Page link by url or by the after of route"
 msgstr "لینک صفحه با یو آر ال و یا با مسیر یاب"
 
-#: template/admin/nav-data.phtml:69
+#: template/admin/nav-data.phtml:67
 msgid "Target"
 msgstr "هدف"
 
-#: template/admin/nav-data.phtml:73
+#: template/admin/nav-data.phtml:71
 msgid "None"
 msgstr "هیچ کدام"
 
-#: template/admin/nav-data.phtml:75
+#: template/admin/nav-data.phtml:73
 msgid "_blank"
 msgstr "خالی"
 
-#: template/admin/nav-data.phtml:89
+#: template/admin/nav-data.phtml:87
 msgid "To display in menu."
-msgstr "برای نمایش دادن منو"
+msgstr "برای نمایش دادن منو."
 
-#: template/admin/nav-data.phtml:94
+#: template/admin/nav-data.phtml:92
 msgid "Page link by route"
 msgstr "لینک به صفحه با مسیر یاب"
 
-#: template/admin/nav-data.phtml:99
+#: template/admin/nav-data.phtml:97
 msgid "Route"
 msgstr "مسیر یاب"
 
-#: template/admin/nav-data.phtml:106
+#: template/admin/nav-data.phtml:104
 msgid "Controller"
 msgstr "کنترل کننده"
 
-#: template/admin/nav-data.phtml:117
+#: template/admin/nav-data.phtml:115
 msgid "Module"
 msgstr "ماژول"
 
-#: template/admin/nav-data.phtml:440
+#: template/admin/nav-data.phtml:438
 msgid "You have made unsaved changes. Would you still like to leave this page?"
-msgstr ""
-"تغییراتی که انجام داده‌اید ذخیره نشده‌اند، آیا می‌خواهید این صفحه را ترک کنید؟"
+msgstr "تغییراتی که انجام داده‌اید ذخیره نشده‌اند، آیا می‌خواهید این صفحه را ترک کنید؟"
 
 #: template/admin/nav-index.phtml:11
 msgid "Setup"
@@ -2330,19 +2384,15 @@ msgstr "مرتبط"
 
 #: template/admin/nav-index.phtml:24
 msgid "None to use"
-msgstr "چیزی برای استفاده وجود ندارد."
+msgstr "چیزی برای استفاده وجود ندارد"
 
 #: template/admin/nav-index.phtml:36
 msgid "Set global"
 msgstr "تنظیم سراسری"
 
-#: template/admin/nav-index.phtml:48
-msgid "View"
-msgstr "نمایش"
-
 #: template/admin/nav-index.phtml:87
 msgid "Are you sure to delete this navigation"
-msgstr "آیا از پاک کردن این منو مطمئن هستید؟"
+msgstr "آیا از پاک کردن این منو مطمئن هستید"
 
 #: template/admin/page-block.phtml:192 template/admin/role.phtml:31
 msgid "Submit"
@@ -2429,7 +2479,7 @@ msgstr "این نام نقش از پیش گرفته شده است"
 msgid "Are you sure to delete this role?"
 msgstr "آیا مطمئن هستید که می‌خواهید این نقش را پاک کنید؟"
 
-#: template/admin/theme-available.phtml:10 template/admin/theme-index.phtml:53
+#: template/admin/theme-available.phtml:10 template/admin/theme-index.phtml:59
 #: template/admin/theme-installed.phtml:12
 msgid "Click To preview"
 msgstr "برای بازبینی کلیک کنید"
@@ -2438,25 +2488,37 @@ msgstr "برای بازبینی کلیک کنید"
 msgid "Check"
 msgstr "بررسی"
 
-#: template/admin/theme-index.phtml:27
+#: template/admin/theme-index.phtml:23
 msgid "Theme in use"
 msgstr "قالب فعلی"
 
-#: template/admin/theme-index.phtml:46
+#: template/admin/theme-index.phtml:53
 msgid "Themes available to use"
 msgstr "قالب‌های در دسترس برای استفاده"
 
-#: template/admin/theme-index.phtml:59
+#: template/admin/theme-index.phtml:63
 msgid "Apply"
 msgstr "به کار بستن"
 
 #: template/admin/theme-installed.phtml:66
 msgid "Theme Updated successfully."
-msgstr "قالب با موفقیت به روز شد"
+msgstr "قالب با موفقیت به روز شد."
 
 #: template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr "آیا مطمئنید می‌خواهید این قالب را آن اینستال کنید؟"
+
+#~ msgid "Geo tags"
+#~ msgstr "نشان‌گذاری جغرافیایی"
+
+#~ msgid "ReCaptcha"
+#~ msgstr "ریکپچا"
+
+#~ msgid "extra"
+#~ msgstr "اضافه"
+
+#~ msgid "Check UTF8"
+#~ msgstr "بررسی UTF-8"
 
 #~ msgid "Website local"
 #~ msgstr "کد بومی سازی وب سایت"
