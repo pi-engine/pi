@@ -9,7 +9,7 @@
 
 namespace Pi\Mvc\Router;
 
-use Zend\Mvc\Router\RoutePluginManager as ZendRoutePluginManager;
+use Laminas\Mvc\Router\RoutePluginManager as ZendRoutePluginManager;
 
 /**
  * {@inheritDoc}
@@ -49,7 +49,7 @@ class RoutePluginManager extends ZendRoutePluginManager
             );
             if (!class_exists($class)) {
                 $class = sprintf(
-                    'Zend\Mvc\Router\\%s\\%s',
+                    'Laminas\Mvc\Router\\%s\\%s',
                     $this->subNamespace,
                     ucfirst($name)
                 );

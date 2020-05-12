@@ -12,7 +12,7 @@ namespace Pi\Form\Element;
 
 //use Pi;
 use Pi\Validator\Date as DateValidator;
-use Zend\Form\Element\DateSelect as ZendDateSelect;
+use Laminas\Form\Element\DateSelect as ZendDateSelect;
 
 /**
  * Date select element

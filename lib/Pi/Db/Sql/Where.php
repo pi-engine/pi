@@ -9,16 +9,16 @@
 
 namespace Pi\Db\Sql;
 
-use Zend\Db\Sql\Exception;
-use Zend\Db\Sql\Predicate;
-use Zend\Db\Sql\Where as ZendWhere;
+use Laminas\Db\Sql\Exception;
+use Laminas\Db\Sql\Predicate;
+use Laminas\Db\Sql\Where as ZendWhere;
 
 /**
  * Clause class
  *
  * Creates where clause
  *
- * @see Zend\Db\Sql\Where
+ * @see Laminas\Db\Sql\Where
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Where extends ZendWhere
@@ -43,7 +43,7 @@ class Where extends ZendWhere
     /**
      * Canonize predicate elements
      *
-     * @see Zend\Db\Sql\Select::where()
+     * @see Laminas\Db\Sql\Select::where()
      *
      * @param  \Closure|string|array|Predicate\PredicateInterface $predicate
      *

@@ -10,8 +10,8 @@
 namespace Pi\Navigation;
 
 use Traversable;
-use Zend\Navigation\Exception;
-use Zend\Navigation\Navigation as ZendNavigation;
+use Laminas\Navigation\Exception;
+use Laminas\Navigation\Navigation as ZendNavigation;
 
 /**
  * Navigation class
@@ -40,7 +40,7 @@ class Navigation extends ZendNavigation
             if (!is_array($page) && !$page instanceof Traversable) {
                 throw new Exception\InvalidArgumentException(
                     'Invalid argument: $page must be an instance of '
-                    . 'Zend\Navigation\Page\AbstractPage or Traversable,'
+                    . 'Laminas\Navigation\Page\AbstractPage or Traversable,'
                     . ' or an array'
                 );
             }

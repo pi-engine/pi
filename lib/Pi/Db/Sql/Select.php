@@ -9,7 +9,7 @@
 
 namespace Pi\Db\Sql;
 
-use Zend\Db\Sql\Select as ZendSelect;
+use Laminas\Db\Sql\Select as ZendSelect;
 
 /**
  * Select class

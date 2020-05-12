@@ -11,8 +11,8 @@
 namespace Pi\Form\View\Helper;
 
 use Pi;
-use Zend\Form\ElementInterface;
-use Zend\Form\View\Helper\FormDateSelect as ZendFormDateSelect;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\View\Helper\FormDateSelect as LaminasFormDateSelect;
 
 //use IntlDateFormatter;
 
@@ -24,7 +24,7 @@ use Zend\Form\View\Helper\FormDateSelect as ZendFormDateSelect;
  *
  * ToDo : fix for zend version 2.4.9
  */
-class FormDateSelect extends ZendFormDateSelect
+class FormDateSelect extends LaminasFormDateSelect
 {
     /**
      * Constructor

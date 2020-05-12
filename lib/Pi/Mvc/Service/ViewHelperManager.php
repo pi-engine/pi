@@ -9,8 +9,8 @@
 
 namespace Pi\Mvc\Service;
 
-use Zend\View\Helper;
-use Zend\View\HelperPluginManager;
+use Laminas\View\Helper;
+use Laminas\View\HelperPluginManager;
 
 /**
  * View helper manager
@@ -65,7 +65,7 @@ class ViewHelperManager extends HelperPluginManager
             'serverurl'               => 'View\Helper\ServerUrl',
             'viewmodel'               => 'View\Helper\ViewModel',
 
-            // Form helpers from `Zend\Form\View\HelperConfig`
+            // Form helpers from `Laminas\Form\View\HelperConfig`
             'form'                    => 'Form\View\Helper\Form',
             'formbutton'              => 'Form\View\Helper\FormButton',
             'formcaptcha'             => 'Form\View\Helper\FormCaptcha',

@@ -4,7 +4,7 @@
 return [
     // Configs
     'config'            => [
-        'class'      => 'Zend\Session\Config\SessionConfig',
+        'class'      => 'Laminas\Session\Config\SessionConfig',
         // Runtime session configurations
         // @see http://www.php.net/manual/en/session.configuration.php
         'options'    => [
@@ -30,16 +30,16 @@ return [
         ],
         // Validators: validator class => data
         'validators' => [
-            'Zend\Session\Validator\HttpUserAgent'
+            'Laminas\Session\Validator\HttpUserAgent'
             // The following RemoteAddr validator must be disabled when "RememberMe" is enabled
-            //'Zend\Session\Validator\RemoteAddr',
+            //'Laminas\Session\Validator\RemoteAddr',
         ],
     ],
 
     // Storage
     'storage'           => [
-        //'class' => 'Zend\Session\Storage\SessionStorage',
-        'class' => 'Zend\Session\Storage\SessionArrayStorage',
+        //'class' => 'Laminas\Session\Storage\SessionStorage',
+        'class' => 'Laminas\Session\Storage\SessionArrayStorage',
         'input' => [
         ],
     ],

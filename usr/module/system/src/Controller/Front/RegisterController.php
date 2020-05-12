@@ -13,8 +13,8 @@ use Module\System\Form\RegisterFilter;
 use Module\System\Form\RegisterForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Zend\Stdlib\RequestInterface as Request;
-use Zend\Stdlib\ResponseInterface as Response;
+use Laminas\Stdlib\RequestInterface as Request;
+use Laminas\Stdlib\ResponseInterface as Response;
 
 /**
  * User register operations

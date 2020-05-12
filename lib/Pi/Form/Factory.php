@@ -11,8 +11,8 @@
 namespace Pi\Form;
 
 use Pi\Filter\FilterChain;
-use Zend\Form\Factory as ZendFactory;
-use Zend\InputFilter\Factory as InputFilterFactory;
+use Laminas\Form\Factory as ZendFactory;
+use Laminas\InputFilter\Factory as InputFilterFactory;
 
 /**
  * Form factory
@@ -75,7 +75,7 @@ class Factory extends ZendFactory
                     $spec['type'] = $type;
                 } else {
                     $type = sprintf(
-                        'Zend\Form\Element\\%s',
+                        'Laminas\Form\Element\\%s',
                         $canonizedType
                     );
                     if (class_exists($type)) {

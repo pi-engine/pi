@@ -9,7 +9,7 @@
 
 namespace Pi\Authentication\Adapter;
 
-use Zend\Authentication\Adapter\AbstractAdapter as ZendAbstractAdapter;
+use Laminas\Authentication\Adapter\AbstractAdapter as ZendAbstractAdapter;
 
 /**
  * Db authentication abstract adapter

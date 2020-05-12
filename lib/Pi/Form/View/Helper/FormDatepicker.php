@@ -12,9 +12,9 @@ namespace Pi\Form\View\Helper;
 
 use Pi;
 use Pi\Form\Element\Datepicker as Datepicker;
-use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
-use Zend\Form\View\Helper\FormInput;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
+use Laminas\Form\View\Helper\FormInput;
 
 /**
  * Datepicker element helper

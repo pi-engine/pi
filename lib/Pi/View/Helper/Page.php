@@ -10,7 +10,7 @@
 
 namespace Pi\View\Helper;
 
-use Zend\View\Helper\AbstractHtmlElement;
+use Laminas\View\Helper\AbstractHtmlElement;
 
 /**
  * Helper for building page link

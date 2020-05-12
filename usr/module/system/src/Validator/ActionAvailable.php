@@ -9,7 +9,7 @@
 
 namespace Module\System\Validator;
 
-use Zend\Validator\AbstractValidator;
+use Laminas\Validator\AbstractValidator;
 
 /**
  * Page controller-action validator

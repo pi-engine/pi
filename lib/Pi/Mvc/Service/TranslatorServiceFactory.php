@@ -10,8 +10,8 @@
 namespace Pi\Mvc\Service;
 
 use Pi;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Translator service factory

@@ -11,7 +11,7 @@ namespace Module\Page\Form;
 
 use Module\Page\Validator;
 use Pi;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 class PageFilter extends InputFilter
 {

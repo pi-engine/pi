@@ -12,8 +12,8 @@ namespace Pi\View\Helper\Navigation;
 
 use Pi;
 use RecursiveIteratorIterator;
-use Zend\Navigation\AbstractContainer;
-use Zend\View\Helper\Navigation\Menu as ZendMenu;
+use Laminas\Navigation\AbstractContainer;
+use Laminas\View\Helper\Navigation\Menu as ZendMenu;
 
 /**
  * Navigation menu helper
@@ -168,7 +168,7 @@ class Menu extends ZendMenu
                 if ($depth > $prevDepth) {
                     // start new ul tag
                     if ($ulClass && $depth == 0) {
-                        /* @var $escaper \Zend\View\Helper\EscapeHtmlAttr */
+                        /* @var $escaper \Laminas\View\Helper\EscapeHtmlAttr */
                         $escaper = $this->view->plugin('escapeHtmlAttr');
                         $ulClass = ' class="' . $escaper($ulClass) . '"';
                     } else {
@@ -287,7 +287,7 @@ class Menu extends ZendMenu
             $active['page'] = $active['page']->getParent();
         }
 
-        /* @var $escaper \Zend\View\Helper\EscapeHtmlAttr */
+        /* @var $escaper \Laminas\View\Helper\EscapeHtmlAttr */
         $escaper = $this->view->plugin('escapeHtmlAttr');
         $ulClass = $ulClass ? ' class="' . $escaper($ulClass) . '"' : '';
         $html    = $indent . '<ul' . $ulClass . '>' . PHP_EOL;
@@ -349,7 +349,7 @@ class Menu extends ZendMenu
 
         // find deepest active
         $found = $this->findActive($container, $minDepth, $maxDepth);
-        /* @var $escaper \Zend\View\Helper\EscapeHtmlAttr */
+        /* @var $escaper \Laminas\View\Helper\EscapeHtmlAttr */
         $escaper = $this->view->plugin('escapeHtmlAttr');
 
         if ($found) {
@@ -509,7 +509,7 @@ class Menu extends ZendMenu
     /**
      * {@inheritDoc}
      */
-    public function htmlify(\Zend\Navigation\Page\AbstractPage $page, $escapeLabel = true, $addClassToListItem = false)
+    public function htmlify(\Laminas\Navigation\Page\AbstractPage $page, $escapeLabel = true, $addClassToListItem = false)
     {
         if ($page->active) {
             $page->setClass('nav-link active');

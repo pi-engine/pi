@@ -12,14 +12,14 @@ namespace Pi\Authentication\Adapter\DbTable;
 use Pi;
 use Pi\Authentication\Adapter\AbstractAdapter as BaseAbstractAdapter;
 use Pi\Authentication\Result as AuthenticationResult;
-use Zend\Db\Adapter\Adapter as DbAdapter;
-use Zend\Db\RowGateway\AbstractRowGateway;
+use Laminas\Db\Adapter\Adapter as DbAdapter;
+use Laminas\Db\RowGateway\AbstractRowGateway;
 
 /**
  * Pi authentication db table abstract adapter
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @see \Zend\Authentication\DbTable\AbstractAdapter
+ * @see \Laminas\Authentication\DbTable\AbstractAdapter
  */
 abstract class AbstractAdapter extends BaseAbstractAdapter implements
     AdapterInterface

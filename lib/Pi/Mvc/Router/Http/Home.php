@@ -10,8 +10,8 @@
 namespace Pi\Mvc\Router\Http;
 
 use Pi;
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Stdlib\RequestInterface as Request;
+use Laminas\Mvc\Router\Http\RouteMatch;
+use Laminas\Stdlib\RequestInterface as Request;
 
 /**
  * Homepage route for Pi Engine

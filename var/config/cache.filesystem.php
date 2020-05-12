@@ -5,7 +5,7 @@ $config = [
     // Storage adapter
     'adapter' => [
         'name'    => 'filesystem',
-        // Options, see Zend\Cache\Storage\Adapter\FilesystemOptions
+        // Options, see Laminas\Cache\Storage\Adapter\FilesystemOptions
         'options' => [
             'cache_dir'       => Pi::path('cache'),
             'dir_level'       => 1,

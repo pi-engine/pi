@@ -11,8 +11,8 @@
 namespace Pi\View\Helper\Navigation;
 
 use Pi;
-use Zend\Navigation\AbstractContainer;
-use Zend\View\Helper\Navigation\Sitemap as ZendSitemap;
+use Laminas\Navigation\AbstractContainer;
+use Laminas\View\Helper\Navigation\Sitemap as ZendSitemap;
 
 /**
  * Navigation sitemap helper

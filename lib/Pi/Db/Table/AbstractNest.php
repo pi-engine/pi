@@ -11,9 +11,9 @@ namespace Pi\Db\Table;
 
 use Pi\Db\RowGateway\Node;
 use Pi\Db\Sql\Where;
-use Zend\Db\ResultSet\Row;
-use Zend\Db\Sql\Expression;
-use Zend\Db\Sql\Select;
+use Laminas\Db\ResultSet\Row;
+use Laminas\Db\Sql\Expression;
+use Laminas\Db\Sql\Select;
 
 /**
  * Pi Nested Table Gateway

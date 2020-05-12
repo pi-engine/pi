@@ -60,7 +60,7 @@ class Log extends AbstractApi
      * @param $uid
      * @param $action
      * @param $module
-     * @return null|\Zend\Db\ResultSet\ResultSetInterface
+     * @return null|\Laminas\Db\ResultSet\ResultSetInterface
      */
     public function getLogCollectionByUserId($uid, $action, $module = null, $data = null)
     {
@@ -70,7 +70,7 @@ class Log extends AbstractApi
             ->order('time DESC');
 
         $select->where->addPredicate(
-            new \Zend\Db\Sql\Predicate\Like('action', $action . '%')
+            new \Laminas\Db\Sql\Predicate\Like('action', $action . '%')
         );
 
         if ($module) {

@@ -10,8 +10,8 @@
 namespace Pi\Session;
 
 use Pi\Session\SaveHandler\UserAwarenessInterface;
-use Zend\Session\Container;
-use Zend\Session\SessionManager as ZendSessionManager;
+use Laminas\Session\Container;
+use Laminas\Session\SessionManager as ZendSessionManager;
 
 /**
  * Session manager

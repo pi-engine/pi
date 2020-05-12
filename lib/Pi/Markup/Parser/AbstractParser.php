@@ -11,7 +11,7 @@ namespace Pi\Markup\Parser;
 
 use Pi\Filter\FilterChain;
 use Traversable;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Stdlib\ArrayUtils;
 
 /**
  * Markup abstract parser class

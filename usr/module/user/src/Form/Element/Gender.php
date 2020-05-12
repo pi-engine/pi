@@ -9,7 +9,7 @@
 
 namespace Module\User\Form\Element;
 
-use Zend\Form\Element\Radio;
+use Laminas\Form\Element\Radio;
 
 /**
  * Form element for controller selection

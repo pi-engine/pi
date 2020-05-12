@@ -11,7 +11,7 @@ namespace Module\User\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Cgu API
@@ -30,7 +30,7 @@ class Condition extends AbstractApi
 
     /**
      * Get conditions list, order by created_at date
-     * @return null|\Zend\Db\ResultSet\ResultSetInterface
+     * @return null|\Laminas\Db\ResultSet\ResultSetInterface
      */
     public function getConditionList($filters = [])
     {

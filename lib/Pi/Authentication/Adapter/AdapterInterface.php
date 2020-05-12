@@ -9,7 +9,7 @@
 
 namespace Pi\Authentication\Adapter;
 
-use Zend\Authentication\Adapter\ValidatableAdapterInterface as ZendAdapterInterface;
+use Laminas\Authentication\Adapter\ValidatableAdapterInterface as ZendAdapterInterface;
 
 /**
  * Pi authentication adapter interface

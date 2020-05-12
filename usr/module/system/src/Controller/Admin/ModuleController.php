@@ -16,7 +16,7 @@ use Module\System\Form\ModuleForm;
 use Pi;
 use Pi\Application\Installer\Module as ModuleInstaller;
 use Pi\Mvc\Controller\ActionController;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Module manipulation

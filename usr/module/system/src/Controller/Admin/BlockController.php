@@ -12,7 +12,7 @@ namespace Module\System\Controller\Admin;
 use Module\System\Controller\ComponentController;
 use Module\System\Form\BlockModuleForm;
 use Pi;
-use Zend\Db\Sql\Predicate\Expression;
+use Laminas\Db\Sql\Predicate\Expression;
 
 /**
  * Block manipulation controller

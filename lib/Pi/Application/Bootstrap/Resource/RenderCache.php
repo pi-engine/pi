@@ -10,9 +10,9 @@
 namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
-use Zend\Mvc\MvcEvent;
-use Zend\Stdlib\ResponseInterface as Response;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Stdlib\ResponseInterface as Response;
+use Laminas\View\Model\ViewModel;
 
 /**
  * Cache for view content rendering in specific contexts: page, action, block
@@ -24,7 +24,7 @@ class RenderCache extends AbstractResource
 {
     /**
      * Cache storage
-     * @var \Zend\Cache\Storage\Adapter\AbstractAdapter
+     * @var \Laminas\Cache\Storage\Adapter\AbstractAdapter
      */
     protected $storage;
 
@@ -78,7 +78,7 @@ class RenderCache extends AbstractResource
             999
         );
         // Collect cachable content
-        // Go after Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()
+        // Go after Laminas\Mvc\View\Http\InjectTemplateListener::injectTemplate()
         $sharedEvents->attach(
             'PI_CONTROLLER',
             MvcEvent::EVENT_DISPATCH,
@@ -154,7 +154,7 @@ class RenderCache extends AbstractResource
                 Pi::service('log')->info('Page cached');
                 $content  = $renderCache->cachedContent();
 
-                /** @var \Zend\Http\PhpEnvironment\Response $response */
+                /** @var \Laminas\Http\PhpEnvironment\Response $response */
                 $response = $e->getResponse()->setContent($content);
 
                 // Check ETag for response

@@ -11,14 +11,14 @@ namespace Pi\Mvc\View\Http;
 
 use Pi;
 use Pi\Feed\Model as FeedDataModel;
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\EventManagerInterface as Events;
-use Zend\Mvc\MvcEvent;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Stdlib\ResponseInterface as Response;
-use Zend\View\Model\FeedModel;
-use Zend\View\Model\JsonModel;
-use Zend\View\Model\ViewModel;
+use Laminas\EventManager\AbstractListenerAggregate;
+use Laminas\EventManager\EventManagerInterface as Events;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\Stdlib\ResponseInterface as Response;
+use Laminas\View\Model\FeedModel;
+use Laminas\View\Model\JsonModel;
+use Laminas\View\Model\ViewModel;
 
 /**
  * Global view strategy listener
@@ -81,11 +81,11 @@ class ViewStrategyListener extends AbstractListenerAggregate
         );
 
         // Inject ViewModel, should be performed
-        // prior to Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()
+        // prior to Laminas\Mvc\View\Http\InjectTemplateListener::injectTemplate()
         // whose priority is -90
         // and skip following error status:
         // NotFound handled by:
-        // Zend\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()
+        // Laminas\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()
         // whose priority is -90
         // Error handled by:
         // Pi\Mvc\View\Http\ErrorStrategy::prepareErrorViewModel()

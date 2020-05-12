@@ -12,7 +12,7 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Pi\Security\Security as SecurityUtility;
-use Zend\Escaper\Escaper;
+use Laminas\Escaper\Escaper;
 
 /**
  * Security handling service

@@ -10,9 +10,9 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\View\Helper\FormRadio as ZendFormElement;
-use Zend\Form\Element\MultiCheckbox as MultiCheckboxElement;
-use Zend\Form\LabelAwareInterface;
+use Laminas\Form\View\Helper\FormRadio as LaminasFormElement;
+use Laminas\Form\Element\MultiCheckbox as MultiCheckboxElement;
+use Laminas\Form\LabelAwareInterface;
 
 /**
  * Radio element helper
@@ -20,7 +20,7 @@ use Zend\Form\LabelAwareInterface;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class FormRadio extends ZendFormElement
+class FormRadio extends LaminasFormElement
 {
     /** @var array Label attributes */
     protected $labelAttributes

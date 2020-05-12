@@ -10,7 +10,7 @@
 
 namespace Pi\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * Helper for theme template inclusion

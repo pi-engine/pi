@@ -21,7 +21,7 @@ class Router extends AbstractResource
     /**
      * Retrieve router object
      *
-     * @return \Zend\Mvc\Router\RouteStackInterface
+     * @return \Laminas\Mvc\Router\RouteStackInterface
      */
     public function boot()
     {

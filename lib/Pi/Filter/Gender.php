@@ -9,7 +9,7 @@
 
 namespace Pi\Filter;
 
-use Zend\Filter\AbstractFilter;
+use Laminas\Filter\AbstractFilter;
 
 /**
  * Gender display filter

@@ -10,7 +10,7 @@
 
 namespace Pi\Validator;
 
-use Zend\Validator\Date as DateValidator;
+use Laminas\Validator\Date as DateValidator;
 
 class DateSelect extends DateValidator
 {

@@ -12,8 +12,8 @@ namespace Module\Article;
 use Module\Article\Model\Article;
 use Module\Article\Service;
 use Pi;
-use Zend\Db\Sql\Expression;
-use Zend\Mvc\MvcEvent;
+use Laminas\Db\Sql\Expression;
+use Laminas\Mvc\MvcEvent;
 
 /**
  * Stats service API

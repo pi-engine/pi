@@ -10,10 +10,10 @@
 namespace Pi\I18n\Translator;
 
 use Pi;
-use Zend\I18n\Translator\Loader\FileLoaderInterface;
-use Zend\I18n\Translator\TextDomain;
-use Zend\I18n\Translator\Translator as ZendTranslator;
-use Zend\Validator\Translator\TranslatorInterface as ValidatorInterface;
+use Laminas\I18n\Translator\Loader\FileLoaderInterface;
+use Laminas\I18n\Translator\TextDomain;
+use Laminas\I18n\Translator\Translator as ZendTranslator;
+use Laminas\Validator\Translator\TranslatorInterface as ValidatorInterface;
 
 
 /**

@@ -10,7 +10,7 @@
 namespace Pi\Authentication\Storage;
 
 use Pi;
-use Zend\Authentication\Storage\Session as ZendSession;
+use Laminas\Authentication\Storage\Session as ZendSession;
 
 /**
  * Session storage for authentication

@@ -10,7 +10,7 @@
 namespace Pi\Log\Formatter;
 
 use Pi;
-use Zend\Log\Formatter\FormatterInterface;
+use Laminas\Log\Formatter\FormatterInterface;
 
 /**
  * Debugger formatter

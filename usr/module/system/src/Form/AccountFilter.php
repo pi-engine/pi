@@ -11,7 +11,7 @@ namespace Module\System\Form;
 
 use Module\System\Validator\Username as UsernameValidator;
 use Pi;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * Account form filter

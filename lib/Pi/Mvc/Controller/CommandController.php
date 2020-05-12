@@ -10,8 +10,8 @@
 namespace Pi\Mvc\Controller;
 
 use Pi;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Mvc\MvcEvent;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
 
 /**
  * Command controller

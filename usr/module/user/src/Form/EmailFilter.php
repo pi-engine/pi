@@ -10,7 +10,7 @@
 namespace Module\User\Form;
 
 //use Pi;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 //use Module\User\Validator\CredentialVerify;
 

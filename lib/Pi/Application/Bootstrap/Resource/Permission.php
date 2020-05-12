@@ -10,8 +10,8 @@
 namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
-use Zend\Mvc\Controller\AbstractController;
-use Zend\Mvc\MvcEvent;
+use Laminas\Mvc\Controller\AbstractController;
+use Laminas\Mvc\MvcEvent;
 
 /**
  * ACL bootstrap resource

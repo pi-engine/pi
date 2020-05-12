@@ -55,7 +55,7 @@ class Updator160 extends AbstractUpdator
             $model    = Pi::model('profile', 'user');
             $table    = Pi::db()->prefix('profile', 'user');
             $adapter  = $model->getAdapter();
-            $metadata = new \Zend\Db\Metadata\Metadata($adapter);
+            $metadata = new \Laminas\Db\Metadata\Metadata($adapter);
             $adapter->getDriver()->getConnection()->disconnect();
             $columns = $metadata->getColumns($table);
 

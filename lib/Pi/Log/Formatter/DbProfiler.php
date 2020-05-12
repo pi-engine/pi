@@ -11,7 +11,7 @@ namespace Pi\Log\Formatter;
 
 use Pi;
 use Pi\Log\Logger;
-use Zend\Log\Formatter\FormatterInterface;
+use Laminas\Log\Formatter\FormatterInterface;
 
 /**
  * Database profiler formatter

@@ -10,9 +10,9 @@
 namespace Pi\Log;
 
 use Traversable;
-use Zend\Log\Writer;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Stdlib\SplPriorityQueue;
+use Laminas\Log\Writer;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\Stdlib\SplPriorityQueue;
 
 /**
  * Logger
@@ -168,7 +168,7 @@ class Logger
     {
         $class = __NAMESPACE__ . '\Writer\\' . ucfirst($name);
         if (!class_exists($class)) {
-            $class = 'Zend\Log\Writer\\' . ucfirst($name);
+            $class = 'Laminas\Log\Writer\\' . ucfirst($name);
         }
 
         return new $class($options);
@@ -193,7 +193,7 @@ class Logger
             $writer = $this->writerPlugin($writer, $options);
         } elseif (!$writer instanceof Writer\WriterInterface) {
             throw new \InvalidArgumentException(sprintf(
-                'Writer must implement Zend\Log\Writer; received "%s"',
+                'Writer must implement Laminas\Log\Writer; received "%s"',
                 is_object($writer) ? get_class($writer) : gettype($writer)
             ));
         }
@@ -223,13 +223,13 @@ class Logger
     {
         if (!$writers instanceof SplPriorityQueue) {
             throw new \InvalidArgumentException(
-                'Writers must be a SplPriorityQueue of Zend\Log\Writer'
+                'Writers must be a SplPriorityQueue of Laminas\Log\Writer'
             );
         }
         foreach ($writers->toArray() as $writer) {
             if (!$writer instanceof Writer\WriterInterface) {
                 throw new \InvalidArgumentException(
-                    'Writers must be a SplPriorityQueue of Zend\Log\Writer'
+                    'Writers must be a SplPriorityQueue of Laminas\Log\Writer'
                 );
             }
         }

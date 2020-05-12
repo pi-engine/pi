@@ -9,8 +9,8 @@
 
 namespace Pi\Cache\Storage\Adapter;
 
-use Zend\Cache\Storage\Adapter\Exception;
-use Zend\Cache\Storage\Adapter\Memcached as ZendMemcached;
+use Laminas\Cache\Storage\Adapter\Exception;
+use Laminas\Cache\Storage\Adapter\Memcached as ZendMemcached;
 
 /**
  * Memcached cache adapter

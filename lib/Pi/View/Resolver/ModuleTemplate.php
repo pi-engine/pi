@@ -10,8 +10,8 @@
 namespace Pi\View\Resolver;
 
 use Pi;
-use Zend\View\Renderer\RendererInterface as Renderer;
-use Zend\View\Resolver\ResolverInterface;
+use Laminas\View\Renderer\RendererInterface as Renderer;
+use Laminas\View\Resolver\ResolverInterface;
 
 /**
  * Module template resolver

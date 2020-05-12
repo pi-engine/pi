@@ -10,10 +10,10 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\ElementInterface;
-use Zend\Form\FieldsetInterface;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\FieldsetInterface;
 
-//use Zend\Form\View\Helper\AbstractHelper;
+//use Laminas\Form\View\Helper\AbstractHelper;
 
 /**
  * Fieldset helper

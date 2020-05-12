@@ -10,8 +10,8 @@
 namespace Pi\Form\Element;
 
 use Traversable;
-use Zend\Form\Element\Checkbox;
-use Zend\Form\Element;
+use Laminas\Form\Element\Checkbox;
+use Laminas\Form\Element;
 
 
 class Switchbox extends Checkbox

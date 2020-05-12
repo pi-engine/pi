@@ -11,7 +11,7 @@ namespace Module\User\Validator;
 
 use Module\System\Validator\Username as SystemUsername;
 use Pi;
-use Zend\I18n\Validator\PhoneNumber;
+use Laminas\I18n\Validator\PhoneNumber;
 
 /**
  * Validator for username

@@ -37,33 +37,33 @@ return [
         'service_manager'    => [
             // Services that can be instantiated without factories
             'invokables' => [
-                'SharedEventManager'   => 'Zend\EventManager\SharedEventManager',
+                'SharedEventManager'   => 'Laminas\EventManager\SharedEventManager',
 
 
                 // From ServiceListenerFactory
-                'DispatchListener'     => 'Zend\Mvc\DispatchListener',
+                'DispatchListener'     => 'Laminas\Mvc\DispatchListener',
                 'RouteListener'        => 'Pi\Command\Mvc\RouteListener',
-                'SendResponseListener' => 'Zend\Mvc\SendResponseListener',
+                'SendResponseListener' => 'Laminas\Mvc\SendResponseListener',
 
                 // Pi custom service
                 'Config'               => 'Pi\Mvc\Service\Config',
                 'ViewStrategyListener' => 'Pi\Mvc\View\Http\ViewStrategyListener',
-                'ConsoleViewManager'   => 'Zend\Mvc\View\Console\ViewManager',
+                'ConsoleViewManager'   => 'Laminas\Mvc\View\Console\ViewManager',
             ],
 
             // Service factories
             'factories'  => [
-                'EventManager'            => 'Zend\Mvc\Service\EventManagerFactory',
-                'ModuleManager'           => 'Zend\Mvc\Service\ModuleManagerFactory',
+                'EventManager'            => 'Laminas\Mvc\Service\EventManagerFactory',
+                'ModuleManager'           => 'Laminas\Mvc\Service\ModuleManagerFactory',
 
                 // From ServiceListenerFactory
-                'ConsoleAdapter'          => 'Zend\Mvc\Service\ConsoleAdapterFactory',
+                'ConsoleAdapter'          => 'Laminas\Mvc\Service\ConsoleAdapterFactory',
                 'ConsoleRouter'           => 'Pi\Command\Mvc\Service\RouterFactory',
-                'Request'                 => 'Zend\Mvc\Service\RequestFactory',
-                'Response'                => 'Zend\Mvc\Service\ResponseFactory',
+                'Request'                 => 'Laminas\Mvc\Service\RequestFactory',
+                'Response'                => 'Laminas\Mvc\Service\ResponseFactory',
                 'Router'                  => 'Pi\Command\Mvc\Service\RouterFactory',
-                'RoutePluginManager'      => 'Zend\Mvc\Service\RoutePluginManagerFactory',
-                'ViewManager'             => 'Zend\Mvc\Service\ViewManagerFactory',
+                'RoutePluginManager'      => 'Laminas\Mvc\Service\RoutePluginManagerFactory',
+                'ViewManager'             => 'Laminas\Mvc\Service\ViewManagerFactory',
 
                 // Pi custom service
                 'Application'             => 'Pi\Command\Mvc\Service\ApplicationFactory',
@@ -73,12 +73,12 @@ return [
 
             // Aliases
             'aliases'    => [
-                'Zend\EventManager\EventManagerInterface' => 'EventManager',
+                'Laminas\EventManager\EventManagerInterface' => 'EventManager',
 
                 // From ServiceListenerFactory
                 'Configuration'                           => 'Config',
                 'Console'                                 => 'ConsoleAdapter',
-                'Zend\Mvc\Controller\PluginManager'       => 'ControllerPluginManager',
+                'Laminas\Mvc\Controller\PluginManager'       => 'ControllerPluginManager',
                 'ControllerManager'                       => 'ControllerLoader',
             ],
 

@@ -9,7 +9,7 @@
 
 namespace Module\System\Validator;
 
-use Zend\Validator\AbstractValidator;
+use Laminas\Validator\AbstractValidator;
 
 /**
  * Controller availability check

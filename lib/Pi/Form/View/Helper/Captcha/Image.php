@@ -10,10 +10,10 @@
 
 namespace Pi\Form\View\Helper\Captcha;
 
-use Zend\Captcha\Image as CaptchaAdapter;
-use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
-use Zend\Form\View\Helper\Captcha\Image as ZendHelperCaptchaImage;
+use Laminas\Captcha\Image as CaptchaAdapter;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
+use Laminas\Form\View\Helper\Captcha\Image as ZendHelperCaptchaImage;
 
 /**
  * CAPTCHA image helper
@@ -33,7 +33,7 @@ class Image extends ZendHelperCaptchaImage
         if ($captcha === null || !$captcha instanceof CaptchaAdapter) {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the element has a "captcha" attribute'
-                . ' of type Zend\Captcha\Image; none found',
+                . ' of type Laminas\Captcha\Image; none found',
                 __METHOD__
             ));
         }

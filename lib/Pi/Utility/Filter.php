@@ -248,7 +248,7 @@ namespace Pi\Utility {
         /**
          * Get request container
          *
-         * @return \Zend\Stdlib\RequestInterface|null
+         * @return \Laminas\Stdlib\RequestInterface|null
          */
         protected static function getRequest()
         {
@@ -279,7 +279,7 @@ namespace Pi\Utility {
         /**
          * Get RouteMatch
          *
-         * @return \Zend\Mvc\Router\RouteMatch|null
+         * @return \Laminas\Mvc\Router\RouteMatch|null
          */
         protected static function getRouteMatch()
         {
@@ -396,7 +396,7 @@ namespace Pi\Utility {
 namespace {
 
     use Pi\Utility\Filter as FilterManager;
-    use Zend\Escaper\Escaper;
+    use Laminas\Escaper\Escaper;
 
     /**#@+
      * Retrieve request params with PHP filter_var
@@ -467,7 +467,7 @@ namespace {
     /**
      * Escape a string for corresponding context
      *
-     * @see \Zend\Escaper\Escaper
+     * @see \Laminas\Escaper\Escaper
      * @param string $value
      * @param string $context
      *      String context, valid value: html, htmlAttr, js, url, css

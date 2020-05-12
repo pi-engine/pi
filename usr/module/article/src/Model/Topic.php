@@ -10,7 +10,7 @@
 namespace Module\Article\Model;
 
 use Pi\Application\Model\Model;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Topic model class

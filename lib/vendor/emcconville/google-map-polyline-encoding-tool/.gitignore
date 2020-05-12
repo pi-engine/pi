@@ -1,7 +1,0 @@
-dist
-tags
-vendor
-.idea
-*.phar
-*.lock
-phpunit.xml

@@ -12,7 +12,7 @@ namespace Pi\View\Helper;
 
 use Pi;
 use Pi\Mvc\Router\RouteMatch as RouteMatchHandler;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * Helper for loading parameters from routeMatch

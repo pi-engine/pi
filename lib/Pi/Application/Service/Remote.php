@@ -12,9 +12,9 @@ namespace Pi\Application\Service;
 
 use CurlFile;
 use Pi;
-use Zend\Http\Client\Adapter\AdapterInterface;
-use Zend\Http\Response;
-use Zend\Uri\Uri;
+use Laminas\Http\Client\Adapter\AdapterInterface;
+use Laminas\Http\Response;
+use Laminas\Uri\Uri;
 
 /**
  * Remote request handler service
@@ -116,7 +116,7 @@ class Remote extends AbstractService
     {
         $class = sprintf('Pi\Http\Client\Adapter\%s', ucfirst($name));
         if (!class_exists($class)) {
-            $class = sprintf('Zend\Http\Client\Adapter\%s', ucfirst($name));
+            $class = sprintf('Laminas\Http\Client\Adapter\%s', ucfirst($name));
         }
         $adapter = new $class;
         if ($options) {

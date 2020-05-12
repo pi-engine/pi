@@ -11,7 +11,7 @@
 namespace Pi\Application\Registry;
 
 use Pi;
-use Zend\Cache\Storage\Adapter\AbstractAdapter as CacheAdapter;
+use Laminas\Cache\Storage\Adapter\AbstractAdapter as CacheAdapter;
 
 /**
  * Cache registry abstract class

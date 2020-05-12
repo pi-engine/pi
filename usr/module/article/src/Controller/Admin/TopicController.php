@@ -19,7 +19,7 @@ use Module\Article\Model\Topic;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Topic controller
@@ -844,7 +844,7 @@ class TopicController extends ActionController
     /**
      * Render form
      *
-     * @param Zend\Form\Form $form Form instance
+     * @param Laminas\Form\Form $form Form instance
      * @param string $message Message assign to template
      * @param bool $error Whether is error message
      */

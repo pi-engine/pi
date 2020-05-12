@@ -16,12 +16,12 @@ use Pi\Db\Sql\Select;
 use Pi\Db\Sql\Where;
 use Pi\Db\Table\AbstractTableGateway;
 use Pi\Log\DbProfiler;
-use Zend\Db\Metadata\Metadata;
-use Zend\Db\Sql\Delete;
-use Zend\Db\Sql\Expression;
-use Zend\Db\Sql\Insert;
-use Zend\Db\Sql\Sql;
-use Zend\Db\Sql\Update;
+use Laminas\Db\Metadata\Metadata;
+use Laminas\Db\Sql\Delete;
+use Laminas\Db\Sql\Expression;
+use Laminas\Db\Sql\Insert;
+use Laminas\Db\Sql\Sql;
+use Laminas\Db\Sql\Update;
 
 /**
  * Pi DB connection instance and Database service gateway
@@ -236,10 +236,10 @@ class DbGateway
      * Create adapter with configs
      *
      * Configs are canonized to avoid violation of `driver_options`
-     * in {@link \Zend\Db\Adapter\Driver\Pdo\Connection::connect()}
+     * in {@link \Laminas\Db\Adapter\Driver\Pdo\Connection::connect()}
      *
      * @param array $config
-     * @param \Zend\Db\Adapter\AdapterInterface $platform
+     * @param \Laminas\Db\Adapter\AdapterInterface $platform
      * @return Adapter
      */
     public function createAdapter(array $config, $platform = null)
@@ -532,7 +532,7 @@ class DbGateway
      * Execute a sql query
      *
      * @param Sql|Select|Update|Delete|string $sql
-     * @return \Zend\Db\ResultSet\ResultSet
+     * @return \Laminas\Db\ResultSet\ResultSet
      */
     public function query($sql)
     {

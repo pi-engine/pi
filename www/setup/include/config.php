@@ -16,6 +16,7 @@ $configs['system'] = [
     'php'     => _s('PHP'),
     'persist' => _s('Persist options'),
     'pdo'     => _s('PDO drivers'),
+    'vendor'  => _s('Composer update'),
 ];
 
 // PHP extensions

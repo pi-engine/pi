@@ -13,7 +13,7 @@ use Module\Article\Model\Article;
 use Module\Article\Model\Draft as DraftModel;
 use Module\Article\Model\Stats as ModelStats;
 use Pi;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Article service APIs

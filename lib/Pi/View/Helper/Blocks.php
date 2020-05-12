@@ -11,7 +11,7 @@
 namespace Pi\View\Helper;
 
 use Pi;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * Helper for fetching and rendering blocks on a page

@@ -11,7 +11,7 @@
 namespace Pi\View\Helper;
 
 use Pi;
-use Zend\View\Helper\HeadScript as ZendHeadScript;
+use Laminas\View\Helper\HeadScript as ZendHeadScript;
 
 /**
  * Helper for setting and retrieving script elements for HTML head section
@@ -42,7 +42,7 @@ use Zend\View\Helper\HeadScript as ZendHeadScript;
  *  ?>
  * ```
  *
- * @see \Zend\View\Helper\HeadScript for details.
+ * @see \Laminas\View\Helper\HeadScript for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class HeadScript extends ZendHeadScript

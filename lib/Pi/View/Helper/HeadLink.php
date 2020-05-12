@@ -12,13 +12,13 @@ namespace Pi\View\Helper;
 
 use Pi;
 use stdClass;
-use Zend\View\Helper\HeadLink as ZendHeadLink;
-use Zend\View\Helper\Placeholder;
+use Laminas\View\Helper\HeadLink as ZendHeadLink;
+use Laminas\View\Helper\Placeholder;
 
 /**
  * Helper for setting and retrieving link element for HTML head
  *
- * @see \Zend\View\Helper\HeadLink for details.
+ * @see \Laminas\View\Helper\HeadLink for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class HeadLink extends ZendHeadLink

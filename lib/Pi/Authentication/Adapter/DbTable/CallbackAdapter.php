@@ -9,13 +9,13 @@
 
 namespace Pi\Authentication\Adapter\DbTable;
 
-use Zend\Authentication\Result as AuthenticationResult;
+use Laminas\Authentication\Result as AuthenticationResult;
 
 /**
  * Pi authentication db table callback adapter
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @see \Zend\Authentication\DbTable\AbstractAdapter
+ * @see \Laminas\Authentication\DbTable\AbstractAdapter
  */
 class CallbackAdapter extends AbstractAdapter
 {

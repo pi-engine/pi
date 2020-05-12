@@ -12,7 +12,7 @@ namespace Module\System\Form;
 use Pi;
 use Pi\Db\RowGateway\RowGateway as BlockRow;
 use Pi\Form\Form as BaseForm;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * Block module form

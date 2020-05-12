@@ -9,10 +9,10 @@
 
 namespace Pi\Navigation\Page;
 
-use Zend\Http\Request;
-use Zend\Navigation\Exception;
-use Zend\Navigation\Page as ZendPage;
-use Zend\Navigation\Page\Uri as ZendUriPage;
+use Laminas\Http\Request;
+use Laminas\Navigation\Exception;
+use Laminas\Navigation\Page as ZendPage;
+use Laminas\Navigation\Page\Uri as ZendUriPage;
 
 /**
  * URI page
@@ -50,7 +50,7 @@ class Uri extends ZendUriPage
             if (!is_array($page) && !$page instanceof Traversable) {
                 throw new Exception\InvalidArgumentException(
                     'Invalid argument: $page must be an instance of '
-                    . 'Zend\Navigation\Page\AbstractPage or Traversable,'
+                    . 'Laminas\Navigation\Page\AbstractPage or Traversable,'
                     . ' or an array'
                 );
             }

@@ -16,7 +16,7 @@ use Module\Article\Topic as TopicService;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Topic controller

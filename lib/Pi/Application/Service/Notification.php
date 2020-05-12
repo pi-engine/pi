@@ -11,7 +11,7 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Zend\Http\Client;
+use Laminas\Http\Client;
 
 /**
  * Notification service
@@ -239,7 +239,7 @@ class Notification extends AbstractService
 
         // Send
         $config  = [
-            'adapter' => 'Zend\Http\Client\Adapter\Curl',
+            'adapter' => 'Laminas\Http\Client\Adapter\Curl',
         ];
         $client  = new Client($url, $config);
         $headers = $client->getRequest()->getHeaders();

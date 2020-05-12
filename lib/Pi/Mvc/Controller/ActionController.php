@@ -10,11 +10,11 @@
 namespace Pi\Mvc\Controller;
 
 use Pi;
-use Zend\Http\PhpEnvironment\Response as HttpResponse;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Mvc\MvcEvent;
-use Zend\Stdlib\RequestInterface as Request;
-use Zend\Stdlib\ResponseInterface as Response;
+use Laminas\Http\PhpEnvironment\Response as HttpResponse;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Stdlib\RequestInterface as Request;
+use Laminas\Stdlib\ResponseInterface as Response;
 
 /**
  * Basic action controller

@@ -11,8 +11,8 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Zend\Mail as MailHandler;
-use Zend\Mime;
+use Laminas\Mail as MailHandler;
+use Laminas\Mime;
 
 /**
  * Mailing service
@@ -167,7 +167,7 @@ class Mail extends AbstractService
         }
         if ($transportClass) {
             try {
-                $transportClass = 'Zend\Mail\Transport\\' . $transportClass;
+                $transportClass = 'Laminas\Mail\Transport\\' . $transportClass;
                 $transport      = new $transportClass($option);
             } catch (\Exception $eTransport) {
                 trigger_error($eTransport->getMessage());

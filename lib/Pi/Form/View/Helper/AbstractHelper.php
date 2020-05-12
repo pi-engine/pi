@@ -10,8 +10,8 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\ElementInterface;
-use Zend\Form\View\Helper\AbstractHelper as ZendAbstractHelper;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\View\Helper\AbstractHelper as ZendAbstractHelper;
 
 /**
  * Basic class for helpers

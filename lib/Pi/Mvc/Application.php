@@ -11,10 +11,10 @@ namespace Pi\Mvc;
 
 use Pi;
 use Pi\Application\Engine\AbstractEngine;
-use Zend\Mvc\Application as ZendApplication;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Service;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\Mvc\Application as ZendApplication;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Service;
+use Laminas\ServiceManager\ServiceManager;
 
 /**
  * Application handler
@@ -127,7 +127,7 @@ class Application extends ZendApplication
     /**
      * Get RouteMatch of MvcEvent
      *
-     * @return \Zend\Mvc\Router\RouteMatch
+     * @return \Laminas\Mvc\Router\RouteMatch
      */
     public function getRouteMatch()
     {
@@ -137,7 +137,7 @@ class Application extends ZendApplication
     /**
      * Get router of MvcEvent
      *
-     * @return \Zend\Mvc\Router\RouteStackInterface
+     * @return \Laminas\Mvc\Router\RouteStackInterface
      */
     public function getRouter()
     {
@@ -146,7 +146,7 @@ class Application extends ZendApplication
     /**#@-*/
 
     /**#@+
-     * Extended from Zend\Mvc\Application
+     * Extended from Laminas\Mvc\Application
      */
     /**
      * {@inheritdoc}

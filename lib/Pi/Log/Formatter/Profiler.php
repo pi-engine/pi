@@ -9,7 +9,7 @@
 
 namespace Pi\Log\Formatter;
 
-use Zend\Log\Formatter\FormatterInterface;
+use Laminas\Log\Formatter\FormatterInterface;
 
 /**
  * Profiler formatter

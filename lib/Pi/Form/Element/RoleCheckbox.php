@@ -11,7 +11,7 @@
 namespace Pi\Form\Element;
 
 use Pi;
-use Zend\Form\Element\MultiCheckbox;
+use Laminas\Form\Element\MultiCheckbox;
 
 /**
  * Role checkbox element for front or admin

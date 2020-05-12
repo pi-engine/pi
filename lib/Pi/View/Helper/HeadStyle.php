@@ -10,9 +10,9 @@
 
 namespace Pi\View\Helper;
 
-use Zend\View\Helper\HeadStyle as ZendHeadStyle;
+use Laminas\View\Helper\HeadStyle as ZendHeadStyle;
 use stdClass;
-use Zend\View;
+use Laminas\View;
 
 /**
  * Helper for setting and retrieving script elements for HTML head section
@@ -37,7 +37,7 @@ use Zend\View;
  * ?>
  * ```
  *
- * @see \Zend\View\Helper\HeadStyle for details.
+ * @see \Laminas\View\Helper\HeadStyle for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class HeadStyle extends ZendHeadStyle

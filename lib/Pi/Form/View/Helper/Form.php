@@ -10,8 +10,8 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\FormInterface;
-use Zend\Form\View\Helper\Form as FormHelper;
+use Laminas\Form\FormInterface;
+use Laminas\Form\View\Helper\Form as FormHelper;
 
 
 /**
