@@ -12,8 +12,8 @@ namespace Module\Article\Model;
 use Module\Article\Controller\Admin\SetupController as Setup;
 use Pi;
 use Pi\Application\Model\Model;
-use Zend\Db\Sql\Expression;
-use Zend\Stdlib\ArrayObject;
+use Laminas\Db\Sql\Expression;
+use Laminas\Stdlib\ArrayObject;
 
 /**
  * Draft model

@@ -9,7 +9,7 @@
 
 namespace Pi\Version;
 
-use Zend\Json\Json;
+use Laminas\Json\Json;
 use Zend\Version\Version as ZendVersion;
 
 /**

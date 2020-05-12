@@ -11,7 +11,7 @@ namespace Pi\Authentication\Strategy;
 
 use Pi;
 use Pi\Authentication\Storage\StorageInterface;
-use Zend\Authentication\Result as AuthenticationResult;
+use Laminas\Authentication\Result as AuthenticationResult;
 
 //use Pi\Authentication\Adapter\AdapterInterface;
 

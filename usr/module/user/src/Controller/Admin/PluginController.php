@@ -11,7 +11,7 @@ namespace Module\User\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Plugin manage cases controller
@@ -23,7 +23,7 @@ class PluginController extends ActionController
     /**
      * Default action
      *
-     * @return array|\Zend\Mvc\Controller\Plugin\Redirect
+     * @return array|\Laminas\Mvc\Controller\Plugin\Redirect
      */
     public function indexAction()
     {

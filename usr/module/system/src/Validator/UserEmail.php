@@ -10,9 +10,9 @@
 namespace Module\System\Validator;
 
 use Pi;
-use Zend\Validator\EmailAddress;
+use Laminas\Validator\EmailAddress;
 
-//use Zend\Validator\AbstractValidator;
+//use Laminas\Validator\AbstractValidator;
 
 /**
  * User email check

@@ -11,7 +11,7 @@ namespace Pi\Markup\Renderer;
 
 use Pi\Markup\Parser\AbstractParser;
 use Traversable;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Stdlib\ArrayUtils;
 
 /**
  * Abstract render for markup

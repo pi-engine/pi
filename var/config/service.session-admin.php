@@ -4,8 +4,8 @@
 $config                              = include __DIR__ . '/service.session.php';
 $config['config']['options']['name'] = 'pisess-admin';
 $config['config']['validators']      = [
-    'Zend\Session\Validator\HttpUserAgent',
-    'Zend\Session\Validator\RemoteAddr',
+    'Laminas\Session\Validator\HttpUserAgent',
+    'Laminas\Session\Validator\RemoteAddr',
 ];
 if (isset($config['config']['options']['remember_me_seconds'])) {
     unset($config['config']['options']['remember_me_seconds']);

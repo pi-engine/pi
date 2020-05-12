@@ -9,7 +9,7 @@
 
 namespace Pi\Mvc\Controller\Plugin;
 
-use Zend\Mvc\Controller\Plugin\Params as ZendParams;
+use Laminas\Mvc\Controller\Plugin\Params as ZendParams;
 
 /**
  * Plugin for params access

@@ -9,7 +9,7 @@
 
 namespace Pi\Session\SaveHandler;
 
-use Zend\Session\SaveHandler\Cache as ZendCache;
+use Laminas\Session\SaveHandler\Cache as LaminasCache;
 
 /**
  * Cache session save handler
@@ -17,7 +17,7 @@ use Zend\Session\SaveHandler\Cache as ZendCache;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Cache extends ZendCache
+class Cache extends LaminasCache
 {
     /**
      * Constructor

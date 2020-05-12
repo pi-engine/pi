@@ -12,7 +12,7 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Pi\Session\SessionManager;
-use Zend\Session\Container;
+use Laminas\Session\Container;
 
 /**
  * Session service
@@ -105,7 +105,7 @@ class Session extends AbstractService
                 );
             }
 
-            // Set default session manager in case Zend\Session called directly
+            // Set default session manager in case Laminas\Session called directly
             Container::setDefaultManager($this->manager);
         }
 

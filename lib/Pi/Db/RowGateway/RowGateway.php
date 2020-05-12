@@ -11,10 +11,10 @@ namespace Pi\Db\RowGateway;
 
 use Pi;
 use Pi\Db\Table\AbstractTableGateway;
-use Zend\Db\Adapter\Adapter;
-use Zend\Db\RowGateway\Exception;
-use Zend\Db\RowGateway\RowGateway as AbstractRowGateway;
-use Zend\Db\Sql\Sql;
+use Laminas\Db\Adapter\Adapter;
+use Laminas\Db\RowGateway\Exception;
+use Laminas\Db\RowGateway\RowGateway as AbstractRowGateway;
+use Laminas\Db\Sql\Sql;
 
 /**
  * Row gateway class
@@ -62,7 +62,7 @@ class RowGateway extends AbstractRowGateway
      * Constructor
      *
      * @param string $primaryKeyColumn
-     * @param string|AbstractTableGateway|\Zend\Db\Sql\TableIdentifier $table
+     * @param string|AbstractTableGateway|\Laminas\Db\Sql\TableIdentifier $table
      * @param Adapter|Sql $adapterOrSql
      *
      * @return \Pi\Db\RowGateway\RowGateway

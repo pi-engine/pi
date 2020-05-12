@@ -9,7 +9,7 @@
 
 namespace Module\Article\Form;
 
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * Filter and validator of category merge form

@@ -9,7 +9,7 @@
 
 namespace Pi\Filter;
 
-use Zend\Filter\DateTimeFormatter as ZendDateTimeFormatter;
+use Laminas\Filter\DateTimeFormatter as ZendDateTimeFormatter;
 
 /**
  * Time display filter

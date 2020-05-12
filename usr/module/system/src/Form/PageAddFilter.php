@@ -10,7 +10,7 @@
 namespace Module\System\Form;
 
 use Module\System\Validator;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * Page adding form filter

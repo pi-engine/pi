@@ -16,7 +16,7 @@ use Hybridauth\Provider\Twitter as HybridauthTwitter;
 use Pi;
 use Pi\Authentication\Result;
 use Pi\Mvc\Controller\ActionController;
-use Zend\Math\Rand;
+use Laminas\Math\Rand;
 
 /**
  * OAuth controller

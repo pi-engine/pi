@@ -10,7 +10,7 @@
 namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
-use Zend\Mvc\MvcEvent;
+use Laminas\Mvc\MvcEvent;
 
 /**
  * Audit for operations

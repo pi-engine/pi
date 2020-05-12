@@ -10,7 +10,7 @@
 
 namespace Pi\Form\Element;
 
-use Zend\Form\Element\Select;
+use Laminas\Form\Element\Select;
 
 /**
  *  Cache granularity select element

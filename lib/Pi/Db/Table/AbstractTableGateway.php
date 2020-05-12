@@ -13,13 +13,13 @@ use ArrayObject;
 use Pi;
 use Pi\Db\Sql\Sql;
 use Pi\Db\Sql\Where;
-use Zend\Db\Metadata\Metadata;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\AbstractTableGateway as ZendAbstractTableGateway;
-use Zend\Db\TableGateway\Feature;
+use Laminas\Db\Metadata\Metadata;
+use Laminas\Db\ResultSet\ResultSet;
+use Laminas\Db\TableGateway\AbstractTableGateway as ZendAbstractTableGateway;
+use Laminas\Db\TableGateway\Feature;
 
-//use Zend\Db\RowGateway\AbstractRowGateway;
-//use Zend\Db\Sql\Sql;
+//use Laminas\Db\RowGateway\AbstractRowGateway;
+//use Laminas\Db\Sql\Sql;
 
 /**
  * Pi Table Gateway
@@ -209,7 +209,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
             $row = new ArrayObject;
         } elseif (is_subclass_of(
             $this->rowClass,
-            'Zend\Db\RowGateway\AbstractRowGateway'
+            'Laminas\Db\RowGateway\AbstractRowGateway'
         )) {
             $row = new $this->rowClass(
                 $this->primaryKeyColumn,
@@ -359,7 +359,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         $featureClass = sprintf('%s\Feature\\%sFeature', __NAMESPECE, $name);
         if (!class_exists($featureClass)) {
             $featureClass = sprintf(
-                'Zend\Db\TableGateway\Feature\\%sFeature',
+                'Laminas\Db\TableGateway\Feature\\%sFeature',
                 $name
             );
         }
@@ -482,7 +482,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     /**
      * Delete
      *
-     * @param array|\Closure|string|\Zend\Db\Sql\Where $where
+     * @param array|\Closure|string|\Laminas\Db\Sql\Where $where
      *
      * @return int
      */

@@ -10,7 +10,7 @@
 namespace Pi\Markup\Parser;
 
 use Pi;
-use Zend\Escaper\Escaper;
+use Laminas\Escaper\Escaper;
 
 /**
  * Text parser

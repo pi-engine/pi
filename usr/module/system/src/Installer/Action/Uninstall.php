@@ -11,7 +11,7 @@ namespace Module\System\Installer\Action;
 
 use Pi;
 use Pi\Application\Installer\Action\Uninstall as BasicUninstall;
-use Zend\EventManager\Event;
+use Laminas\EventManager\Event;
 
 /**
  * Uninstall handler

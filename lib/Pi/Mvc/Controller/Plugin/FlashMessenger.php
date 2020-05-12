@@ -9,7 +9,7 @@
 
 namespace Pi\Mvc\Controller\Plugin;
 
-use Zend\Mvc\Controller\Plugin\FlashMessenger as ZendFlashMessenger;
+use Laminas\Mvc\Controller\Plugin\FlashMessenger as ZendFlashMessenger;
 
 /**
  * Flash Messenger - implement session-based messages

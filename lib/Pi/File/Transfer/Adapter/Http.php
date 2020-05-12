@@ -9,7 +9,7 @@
 
 namespace Pi\File\Transfer\Adapter;
 
-use Zend\File\Transfer\Adapter\Http as ZendHttp;
+use Laminas\File\Transfer\Adapter\Http as LaminasHttp;
 
 /**
  * File transfer HTTP protocol
@@ -17,7 +17,7 @@ use Zend\File\Transfer\Adapter\Http as ZendHttp;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Http extends ZendHttp
+class Http extends LaminasHttp
 {
     /**
      * {@inheritDoc}

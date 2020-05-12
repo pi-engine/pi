@@ -9,10 +9,10 @@
 
 namespace Pi\Captcha;
 
-use Zend\Captcha\Exception;
-use Zend\Captcha\Image as ZendImage;
-use Zend\Stdlib\ErrorException;
-use Zend\Stdlib\ErrorHandler;
+use Laminas\Captcha\Exception;
+use Laminas\Captcha\Image as ZendImage;
+use Laminas\Stdlib\ErrorException;
+use Laminas\Stdlib\ErrorHandler;
 
 /**
  * CAPTCHA image class

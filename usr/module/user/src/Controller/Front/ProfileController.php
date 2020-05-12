@@ -15,8 +15,8 @@ use Module\User\Form\ProfileEditFilter;
 use Module\User\Form\ProfileEditForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Zend\Stdlib\RequestInterface as Request;
-use Zend\Stdlib\ResponseInterface as Response;
+use Laminas\Stdlib\RequestInterface as Request;
+use Laminas\Stdlib\ResponseInterface as Response;
 
 //use Pi\Paginator\Paginator;
 

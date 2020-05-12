@@ -11,9 +11,9 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Zend\Mvc\View\Http\ViewManager;
-use Zend\View\Helper\AbstractHelper;
-use Zend\View\Model\ViewMode;
+use Laminas\Mvc\View\Http\ViewManager;
+use Laminas\View\Helper\AbstractHelper;
+use Laminas\View\Model\ViewMode;
 
 /**
  * View handling service

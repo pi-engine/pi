@@ -13,7 +13,7 @@ namespace Pi\View\Helper;
 use Module\System\Menu;
 use Pi;
 use Pi\Application\Bootstrap\Resource\AdminMode;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * Back-office navigation helper

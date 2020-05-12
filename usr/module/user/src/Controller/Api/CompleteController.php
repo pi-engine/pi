@@ -11,7 +11,7 @@ namespace Module\User\Controller\Api;
 
 use Pi;
 use Pi\Mvc\Controller\ApiController;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * Form webservice controller

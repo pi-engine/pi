@@ -10,7 +10,7 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\ElementInterface;
+use Laminas\Form\ElementInterface;
 
 /**
  * HTML render helper

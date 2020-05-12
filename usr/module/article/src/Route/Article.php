@@ -10,8 +10,8 @@
 namespace Module\Article\Route;
 
 use Pi\Mvc\Router\Http\Standard;
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Stdlib\RequestInterface as Request;
+use Laminas\Mvc\Router\Http\RouteMatch;
+use Laminas\Stdlib\RequestInterface as Request;
 
 /**
  * Custom default route class, using for SEO
@@ -62,7 +62,7 @@ class Article extends Standard
      *
      * @param Request $request
      * @param int $pathOffset
-     * @return null|\Zend\Mvc\Router\Http\RouteMatch
+     * @return null|\Laminas\Mvc\Router\Http\RouteMatch
      */
     public function match(Request $request, $pathOffset = null)
     {

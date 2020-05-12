@@ -10,7 +10,7 @@
 
 namespace Pi\Form\Element;
 
-use Zend\Form\Element\Url as ZendUrl;
+use Laminas\Form\Element\Url as ZendUrl;
 
 /**
  * URL element

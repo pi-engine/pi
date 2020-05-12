@@ -10,7 +10,7 @@
 namespace Module\System\Form\Element;
 
 use Pi;
-use Zend\Form\Element\Select;
+use Laminas\Form\Element\Select;
 
 /**
  * Form element for controller selection

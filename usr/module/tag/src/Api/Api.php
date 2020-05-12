@@ -11,7 +11,7 @@ namespace Module\Tag\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Tag API

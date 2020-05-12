@@ -11,8 +11,8 @@
 namespace Pi\Form\View\Helper;
 
 use Pi;
-use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
 
 /**
  * Editor element helper

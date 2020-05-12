@@ -10,7 +10,7 @@
 
 namespace Pi\Form\Element;
 
-use Zend\Form\Element\Text;
+use Laminas\Form\Element\Text;
 
 class LoginField extends Text
 {

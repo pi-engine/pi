@@ -12,7 +12,7 @@ namespace Module\Article;
 use Module\Article\Model\Article;
 use Module\Article\Service;
 use Pi;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Topic service class

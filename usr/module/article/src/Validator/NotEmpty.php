@@ -9,7 +9,7 @@
 
 namespace Module\Article\Validator;
 
-use Zend\Validator\AbstractValidator;
+use Laminas\Validator\AbstractValidator;
 
 /**
  * Empty valid class

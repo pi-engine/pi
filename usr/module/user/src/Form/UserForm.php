@@ -11,8 +11,8 @@ namespace Module\User\Form;
 
 use Pi;
 use Pi\Form\Form as BaseForm;
-use Zend\Form\FormInterface;
-use Zend\InputFilter\InputFilter as UserInputFilter;
+use Laminas\Form\FormInterface;
+use Laminas\InputFilter\InputFilter as UserInputFilter;
 
 /**
  * User form with support for predefined user profile fields

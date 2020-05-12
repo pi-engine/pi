@@ -10,17 +10,17 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\View\Helper\FormMultiCheckbox as ZendFormElement;
+use Laminas\Form\View\Helper\FormMultiCheckbox as LaminasFormElement;
 
-use Zend\Form\Element\MultiCheckbox as MultiCheckboxElement;
-use Zend\Form\LabelAwareInterface;
+use Laminas\Form\Element\MultiCheckbox as MultiCheckboxElement;
+use Laminas\Form\LabelAwareInterface;
 
 /**
  * MultiCheckbox element helper
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class FormMultiCheckbox extends ZendFormElement
+class FormMultiCheckbox extends LaminasFormElement
 {
     /** @var array Label attributes */
     protected $labelAttributes

@@ -14,7 +14,7 @@ use Pi\Application\Installer\Action\Install as BasicInstall;
 use Pi\Application\Installer\Module as ModuleInstaller;
 use Pi\Application\Installer\SqlSchema;
 use Pi\Application\Installer\Theme as ThemeInstaller;
-use Zend\EventManager\Event;
+use Laminas\EventManager\Event;
 
 /**
  * Install handler

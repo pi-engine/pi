@@ -12,9 +12,9 @@ namespace Pi\Mvc\Router\Http;
 use Pi;
 use Pi\Mvc\Router\PriorityList;
 use Pi\Mvc\Router\RoutePluginManager;
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Mvc\Router\Http\TreeRouteStack as ZendTreeRouteStack;
-use Zend\Stdlib\RequestInterface as Request;
+use Laminas\Mvc\Router\Http\RouteMatch;
+use Laminas\Mvc\Router\Http\TreeRouteStack as ZendTreeRouteStack;
+use Laminas\Stdlib\RequestInterface as Request;
 
 /**
  * Tree RouteStack

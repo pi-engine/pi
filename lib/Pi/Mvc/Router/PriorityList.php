@@ -10,8 +10,8 @@
 namespace Pi\Mvc\Router;
 
 use Closure;
-use Zend\Mvc\Router\PriorityList as ZendPriorityList;
-use Zend\Mvc\Router\RouteInterface;
+use Laminas\Mvc\Router\PriorityList as ZendPriorityList;
+use Laminas\Mvc\Router\RouteInterface;
 
 /**
  * {@inheritDoc}

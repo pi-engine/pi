@@ -11,7 +11,7 @@ namespace Module\Page\Route;
 
 use Pi;
 use Pi\Mvc\Router\Http\Standard;
-use Zend\Stdlib\RequestInterface as Request;
+use Laminas\Stdlib\RequestInterface as Request;
 
 /**
  * Route for pages
@@ -148,7 +148,7 @@ class Page extends Standard
 
         array_filter($bypassUriArray);
 
-        /** @var \Zend\Http\PhpEnvironment\Request $request */
+        /** @var \Laminas\Http\PhpEnvironment\Request $request */
 
         foreach($bypassUriArray as $bypassUriRow) {
             if($bypassUriRow && preg_match('#' . $bypassUriRow . '#', $request->getRequestUri())) {

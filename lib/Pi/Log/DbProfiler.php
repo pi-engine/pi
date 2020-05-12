@@ -9,8 +9,8 @@
 
 namespace Pi\Log;
 
-use Zend\Log\Writer\WriterInterface;
-use Zend\Stdlib\SplPriorityQueue;
+use Laminas\Log\Writer\WriterInterface;
+use Laminas\Stdlib\SplPriorityQueue;
 
 /**
  * Database query profiler

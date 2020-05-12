@@ -15,7 +15,7 @@ use Module\System\Form\PageAddForm as AddForm;
 use Module\System\Form\PageEditFilter as EditFilter;
 use Module\System\Form\PageEditForm as EditForm;
 use Pi;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Page controller

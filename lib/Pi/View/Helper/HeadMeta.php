@@ -11,14 +11,14 @@
 namespace Pi\View\Helper;
 
 use stdClass;
-use Zend\View\Helper\HeadMeta as ZendHeadMeta;
-use Zend\View\Helper\Placeholder;
+use Laminas\View\Helper\HeadMeta as ZendHeadMeta;
+use Laminas\View\Helper\Placeholder;
 
 /**
  * Helper for setting and building meta elements for HTML head section
  *
  * @todo To reset global meta for keywords/description
- * @see \Zend\View\Helper\HeadMeta for details.
+ * @see \Laminas\View\Helper\HeadMeta for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class HeadMeta extends ZendHeadMeta

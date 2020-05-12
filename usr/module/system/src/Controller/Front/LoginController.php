@@ -14,8 +14,8 @@ use Module\System\Form\LoginForm;
 use Pi;
 use Pi\Authentication\Result;
 use Pi\Mvc\Controller\ActionController;
-use Zend\Stdlib\RequestInterface as Request;
-use Zend\Stdlib\ResponseInterface as Response;
+use Laminas\Stdlib\RequestInterface as Request;
+use Laminas\Stdlib\ResponseInterface as Response;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -260,8 +260,8 @@ class LoginController extends ActionController
         if ($redirect) {
             $redirect = urldecode($redirect);
         } else {
-            $request = new \Zend\Http\Request();
-            $request->setMethod(\Zend\Http\Request::METHOD_GET);
+            $request = new \Laminas\Http\Request();
+            $request->setMethod(\Laminas\Http\Request::METHOD_GET);
             $request->setUri($this->getRequest()->getServer('HTTP_REFERER'));
             $hasPermission = Pi::service('permission')->pagePermission(Pi::engine()->application()->getRouter()->match($request)->getParams());
             if ($hasPermission) {

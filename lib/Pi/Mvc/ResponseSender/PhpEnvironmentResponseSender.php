@@ -9,8 +9,8 @@
 
 namespace Pi\Mvc\ResponseSender;
 
-use Zend\Http\PhpEnvironment\Response;
-use Zend\Mvc\ResponseSender\SendResponseEvent;
+use Laminas\Http\PhpEnvironment\Response;
+use Laminas\Mvc\ResponseSender\SendResponseEvent;
 
 class PhpEnvironmentResponseSender extends HttpResponseSender
 {

@@ -10,8 +10,8 @@
 namespace Pi\Command\Mvc\Service;
 
 use Pi\Command\Mvc\Application;
-use Zend\Mvc\Service\ApplicationFactory as ZendApplicationFactory;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\Mvc\Service\ApplicationFactory as ZendApplicationFactory;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Command line Application factory

@@ -127,7 +127,7 @@ class DraftController extends ActionController
 
         // Validate subject
         if (in_array('subject', $elements)) {
-            $subjectLength = new \Zend\Validator\StringLength([
+            $subjectLength = new \Laminas\Validator\StringLength([
                 'max'      => $config['max_subject_length'],
                 'encoding' => 'utf-8',
             ]);
@@ -160,7 +160,7 @@ class DraftController extends ActionController
 
         // Validate subtitle
         if (in_array('subtitle', $elements)) {
-            $subtitleLength = new \Zend\Validator\StringLength([
+            $subtitleLength = new \Laminas\Validator\StringLength([
                 'max'      => $config['max_subtitle_length'],
                 'encoding' => 'utf-8',
             ]);
@@ -174,7 +174,7 @@ class DraftController extends ActionController
 
         // Validate summary
         if (in_array('summary', $elements)) {
-            $summaryLength = new \Zend\Validator\StringLength([
+            $summaryLength = new \Laminas\Validator\StringLength([
                 'max'      => $config['max_summary_length'],
                 'encoding' => 'utf-8',
             ]);

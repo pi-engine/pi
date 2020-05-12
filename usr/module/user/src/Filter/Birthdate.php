@@ -10,7 +10,7 @@
 namespace Module\User\Filter;
 
 use Pi;
-use Zend\Filter\AbstractFilter;
+use Laminas\Filter\AbstractFilter;
 
 /**
  * Birth date display filter

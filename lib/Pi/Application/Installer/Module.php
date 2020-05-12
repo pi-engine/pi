@@ -11,8 +11,8 @@ namespace Pi\Application\Installer;
 
 use Pi;
 use Pi\Db\RowGateway\RowGateway as ModuleRow;
-use Zend\EventManager\Event;
-use Zend\EventManager\EventManager;
+use Laminas\EventManager\Event;
+use Laminas\EventManager\EventManager;
 
 /**
  * Maintenance of a module

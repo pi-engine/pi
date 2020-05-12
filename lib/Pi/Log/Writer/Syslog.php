@@ -10,8 +10,8 @@
 namespace Pi\Log\Writer;
 
 use Pi\Log\Logger;
-use Zend\Log\Formatter\FormatterInterface;
-use Zend\Log\Writer\AbstractWriter;
+use Laminas\Log\Formatter\FormatterInterface;
+use Laminas\Log\Writer\AbstractWriter;
 
 /**
  * Syslog writer

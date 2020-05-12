@@ -10,7 +10,7 @@
 namespace Module\System;
 
 use Pi;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Navigation handler

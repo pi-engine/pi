@@ -12,7 +12,7 @@ namespace Pi\Session\SaveHandler;
 use Pi;
 use Pi\Application\Model\Model;
 use Pi\Db\RowGateway\RowGateway;
-use Zend\Session\SaveHandler\SaveHandlerInterface;
+use Laminas\Session\SaveHandler\SaveHandlerInterface;
 
 /**
  * DB Table session save handler

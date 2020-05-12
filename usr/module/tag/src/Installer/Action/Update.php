@@ -11,7 +11,7 @@ namespace Module\Tag\Installer\Action;
 
 use Module\Tag\Installer\Schema;
 use Pi\Application\Installer\Action\Update as BasicUpdate;
-use Zend\EventManager\Event;
+use Laminas\EventManager\Event;
 
 class Update extends BasicUpdate
 {

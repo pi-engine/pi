@@ -12,7 +12,7 @@ namespace Pi\Log\Writer;
 use Pi;
 use Pi\Log\Formatter\Audit as AuditFormatter;
 use Pi\Log\Logger;
-use Zend\Log\Writer\AbstractWriter;
+use Laminas\Log\Writer\AbstractWriter;
 
 /**
  * Audit writer

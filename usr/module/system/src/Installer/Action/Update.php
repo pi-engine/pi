@@ -12,7 +12,7 @@ namespace Module\System\Installer\Action;
 use Module\System\Installer\Schema;
 use Pi;
 use Pi\Application\Installer\Action\Update as BasicUpdate;
-use Zend\EventManager\Event;
+use Laminas\EventManager\Event;
 
 /**
  * Module update handler

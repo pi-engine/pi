@@ -108,7 +108,7 @@ class Navigation extends AbstractResource
      */
     protected function canonizePage($page)
     {
-        // @see: Zend\Navigation\Page\AbstractPage for identifying MVC pages
+        // @see: Laminas\Navigation\Page\AbstractPage for identifying MVC pages
         $isMvc = !empty($page['action'])
             || !empty($page['controller'])
             || !empty($page['route']);

@@ -10,7 +10,7 @@
 
 namespace Pi\Form\Element;
 
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 /**
  * Element to render html code w/o input

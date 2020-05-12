@@ -9,7 +9,7 @@
 
 namespace Pi\Authentication;
 
-use Zend\Authentication\Result as BaseResult;
+use Laminas\Authentication\Result as BaseResult;
 
 /**
  * Authentication result

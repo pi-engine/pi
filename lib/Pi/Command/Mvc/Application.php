@@ -10,9 +10,9 @@
 namespace Pi\Command\Mvc;
 
 use Pi\Mvc\Application as PiApplication;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Service;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Service;
+use Laminas\ServiceManager\ServiceManager;
 
 /**
  * Command line Application handler
@@ -22,7 +22,7 @@ use Zend\ServiceManager\ServiceManager;
  */
 class Application extends PiApplication
 {
-    // Default listenser, @see Zend\Mvc\Application
+    // Default listenser, @see Laminas\Mvc\Application
 
     /**
      * Load application handler

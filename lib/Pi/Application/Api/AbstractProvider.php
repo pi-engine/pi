@@ -9,7 +9,7 @@
 
 namespace Pi\Application\Api;
 
-use Zend\View\ViewModel;
+use Laminas\View\ViewModel;
 
 /**
  * Pi Engine Taxonomy content provider API
@@ -22,7 +22,7 @@ abstract class AbstractProvider extends AbstractApi
     /**
      * Get renderer
      *
-     * @return \Zend\View\Renderer
+     * @return \Laminas\View\Renderer
      */
     protected function getRenderer()
     {

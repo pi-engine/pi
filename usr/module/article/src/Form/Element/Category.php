@@ -10,7 +10,7 @@
 namespace Module\Article\Form\Element;
 
 use Pi;
-use Zend\Form\Element\Select;
+use Laminas\Form\Element\Select;
 
 /**
  * Category form class for extending category selection

@@ -9,8 +9,8 @@
 
 namespace Pi\Http\Client\Adapter;
 
-use Zend\Http\Client\Adapter\Curl as ZendCurl;
-use Zend\Http\Client\Adapter\Exception as AdapterException;
+use Laminas\Http\Client\Adapter\Curl as ZendCurl;
+use Laminas\Http\Client\Adapter\Exception as AdapterException;
 
 /**
  * {@inheritDoc}
@@ -217,7 +217,7 @@ class Curl extends ZendCurl
             throw new AdapterException\RuntimeException("Error in cURL request: " . curl_error($this->curl));
         }
 
-        // cURL automatically decodes chunked-messages, this means we have to disallow the Zend\Http\Response to do it again
+        // cURL automatically decodes chunked-messages, this means we have to disallow the Laminas\Http\Response to do it again
         if (stripos($this->response, "Transfer-Encoding: chunked\r\n")) {
             $this->response = str_ireplace("Transfer-Encoding: chunked\r\n", '', $this->response);
         }

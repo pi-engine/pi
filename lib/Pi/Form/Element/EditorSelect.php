@@ -11,7 +11,7 @@
 namespace Pi\Form\Element;
 
 use Pi;
-use Zend\Form\Element\Select;
+use Laminas\Form\Element\Select;
 
 /**
  *  Editor select element

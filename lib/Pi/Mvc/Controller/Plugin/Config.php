@@ -10,7 +10,7 @@
 namespace Pi\Mvc\Controller\Plugin;
 
 use Pi;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 /**
  * Config access plugin for controller

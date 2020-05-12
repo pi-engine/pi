@@ -12,7 +12,7 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Pi\Application\Registry\AbstractRegistry;
-use Zend\Cache\Storage\Adapter\AbstractAdapter as CacheStorage;
+use Laminas\Cache\Storage\Adapter\AbstractAdapter as CacheStorage;
 
 /**
  * Registry service

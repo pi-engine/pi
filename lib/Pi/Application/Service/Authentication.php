@@ -11,7 +11,7 @@
 namespace Pi\Application\Service;
 
 use Pi\Authentication\Strategy\AbstractStrategy;
-use Zend\Authentication\Result as AuthenticationResult;
+use Laminas\Authentication\Result as AuthenticationResult;
 
 /**
  * Authentication service
@@ -47,7 +47,7 @@ use Zend\Authentication\Result as AuthenticationResult;
  *  }
  * ```
  *
- * @see Zend\Authentication\AuthenticationService
+ * @see Laminas\Authentication\AuthenticationService
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Authentication extends AbstractService

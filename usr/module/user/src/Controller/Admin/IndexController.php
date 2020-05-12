@@ -11,7 +11,7 @@ namespace Module\User\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Zend\Db\Sql\Predicate;
+use Laminas\Db\Sql\Predicate;
 
 /**
  * User manage cases controller

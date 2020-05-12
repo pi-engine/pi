@@ -11,7 +11,7 @@ namespace Module\System\Controller\Admin;
 
 use Module\System\Controller\ComponentController;
 use Pi;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Event/listener controller

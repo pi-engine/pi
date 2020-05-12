@@ -9,8 +9,8 @@
 
 namespace Pi\Cache\Storage\Adapter;
 
-use Zend\Cache\Storage\Adapter\Exception;
-use Zend\Cache\Storage\Adapter\Redis as ZendRedis;
+use Laminas\Cache\Storage\Adapter\Exception;
+use Laminas\Cache\Storage\Adapter\Redis as ZendRedis;
 
 /**
  * Redis cache adapter

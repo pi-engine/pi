@@ -13,8 +13,8 @@ namespace Pi\View\Helper;
 use MarkdownDocument;
 use Pi;
 use Pi\Db\RowGateway\RowGateway as BlockRow;
-use Zend\View\Helper\AbstractHelper;
-use Zend\View\Model\ViewModel;
+use Laminas\View\Helper\AbstractHelper;
+use Laminas\View\Model\ViewModel;
 
 /**
  * Helper for fetching and rendering a block

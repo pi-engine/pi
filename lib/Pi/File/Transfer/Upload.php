@@ -160,7 +160,7 @@ class Upload extends Transfer
      * Returns adapter
      *
      * {@inheritDoc}
-     * @note \Zend\File\Transfer\Transfer does not support
+     * @note \Laminas\File\Transfer\Transfer does not support
      *      for $direction = 1 yet
      */
     public function getAdapter($direction = false)

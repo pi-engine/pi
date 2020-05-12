@@ -17,8 +17,8 @@ use Pi\Log\Formatter\Profiler as ProfilerFormatter;
 use Pi\Log\Formatter\SystemInfo as SystemInfoFormatter;
 use Pi\Log\Logger;
 use Pi\Version\Version as PiVersion;
-use Zend\Log\Formatter\FormatterInterface;
-use Zend\Log\Writer\AbstractWriter;
+use Laminas\Log\Formatter\FormatterInterface;
+use Laminas\Log\Writer\AbstractWriter;
 
 /**
  * Debugger writer

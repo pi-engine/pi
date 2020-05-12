@@ -12,7 +12,7 @@ namespace Editor\Ckeditor\View\Helper;
 
 use Pi;
 use Pi\Form\View\Helper\AbstractEditor;
-use Zend\Form\ElementInterface;
+use Laminas\Form\ElementInterface;
 
 /**
  * Editor element helper
