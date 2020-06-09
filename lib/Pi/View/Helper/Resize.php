@@ -5,7 +5,7 @@ namespace Pi\View\Helper;
 use Imagine\Gd\Imagine;
 use Pi;
 use Pi\Application\Service\ImageProcessing;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class Resize extends AbstractHelper
 {

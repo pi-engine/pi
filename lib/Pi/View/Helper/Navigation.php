@@ -13,8 +13,8 @@ namespace Pi\View\Helper;
 use Pi;
 use Pi\Navigation\Navigation as Container;
 use Pi\Navigation\Page\Mvc as MvcPage;
-use Zend\View\Helper\Navigation as NavigationHelper;
-use Zend\View\Helper\Navigation\AbstractHelper as AbstractNavigationHelper;
+use Laminas\View\Helper\Navigation as NavigationHelper;
+use Laminas\View\Helper\Navigation\AbstractHelper as AbstractNavigationHelper;
 
 /**
  * Helper for loading navigation
@@ -156,7 +156,7 @@ class Navigation extends NavigationHelper
 
         $class = __NAMESPACE__ . '\Navigation\\' . ucfirst($proxy);
         if (!class_exists($class)) {
-            $class = 'Zend\View\Helper\Navigation\\' . ucfirst($proxy);
+            $class = 'Laminas\View\Helper\Navigation\\' . ucfirst($proxy);
             if (!class_exists($class)) {
                 if ($strict) {
                     throw new \RuntimeException(
@@ -172,7 +172,7 @@ class Navigation extends NavigationHelper
             if ($strict) {
                 throw new \InvalidArgumentException(sprintf(
                     'Proxy helper "%s" is not an instance of ' .
-                    'Zend\View\Helper\Navigation\Helper',
+                    'Laminas\View\Helper\Navigation\Helper',
                     get_class($helper)
                 ));
             }

@@ -10,7 +10,7 @@
 namespace Module\User\Validator;
 
 use Pi;
-use Zend\Validator\AbstractValidator;
+use Laminas\Validator\AbstractValidator;
 
 /**
  * User credential verification

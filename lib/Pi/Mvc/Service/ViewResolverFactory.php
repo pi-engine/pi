@@ -12,9 +12,9 @@ namespace Pi\Mvc\Service;
 use Pi\View\Resolver\ComponentTemplate as ComponentTemplateResolver;
 use Pi\View\Resolver\ModuleTemplate as ModuleTemplateResolver;
 use Pi\View\Resolver\ThemeTemplate as ThemeTemplateResolver;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\View\Resolver as ViewResolver;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\View\Resolver as ViewResolver;
 
 /**
  * View resolver factory
@@ -26,7 +26,7 @@ class ViewResolverFactory implements FactoryInterface
     /**
      * Create the aggregate view resolver
      *
-     * Creates a Zend\View\Resolver\AggregateResolver and attaches the template
+     * Creates a Laminas\View\Resolver\AggregateResolver and attaches the template
      * map resolver and path stack resolver
      *
      * @param  ServiceLocatorInterface $serviceLocator

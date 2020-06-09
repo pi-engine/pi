@@ -9,7 +9,7 @@
 
 namespace Pi\I18n\Translator;
 
-use Zend\I18n\Translator\LoaderPluginManager as ZendLoaderPluginManager;
+use Laminas\I18n\Translator\LoaderPluginManager as ZendLoaderPluginManager;
 
 /**
  * Plugin manager implementation for translation loaders.
@@ -19,7 +19,7 @@ use Zend\I18n\Translator\LoaderPluginManager as ZendLoaderPluginManager;
  * loaders.
  *
  * {@inheritDoc}
- * @see Zend\I18n\Translator\LoaderPluginManager
+ * @see Laminas\I18n\Translator\LoaderPluginManager
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class LoaderPluginManager extends ZendLoaderPluginManager
@@ -79,7 +79,7 @@ class LoaderPluginManager extends ZendLoaderPluginManager
                 if (class_exists('Pi\I18n\Translator\Loader\\' . $class)) {
                     $name = 'Pi\I18n\Translator\Loader\\' . $class;
                 } else {
-                    $name = 'Zend\I18n\Translator\Loader\\' . $class;
+                    $name = 'Laminas\I18n\Translator\Loader\\' . $class;
                 }
             }
         }

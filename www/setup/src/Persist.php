@@ -225,7 +225,7 @@ class Persist
      *
      * @throws \Exception
      * @return string
-     * @see \Zend\File\Transfer\Adapter\AbstractAdapter::getTmpDir
+     * @see \Laminas\File\Transfer\Adapter\AbstractAdapter::getTmpDir
      */
     public function getTmpDir()
     {

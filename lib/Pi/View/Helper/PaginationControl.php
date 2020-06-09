@@ -11,9 +11,9 @@
 namespace Pi\View\Helper;
 
 use pi;
-use Zend\Paginator\Paginator;
-use Zend\View\Exception;
-use Zend\View\Helper\PaginationControl as ZendPaginationControl;
+use Laminas\Paginator\Paginator;
+use Laminas\View\Exception;
+use Laminas\View\Helper\PaginationControl as ZendPaginationControl;
 
 /**
  * Pagination creation helper

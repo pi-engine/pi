@@ -11,10 +11,10 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Zend\Http\PhpEnvironment\Request;
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Mvc\Router\RouteStackInterface;
-use Zend\Uri\Http as HttpUri;
+use Laminas\Http\PhpEnvironment\Request;
+use Laminas\Mvc\Router\Http\RouteMatch;
+use Laminas\Mvc\Router\RouteStackInterface;
+use Laminas\Uri\Http as HttpUri;
 
 /**
  * URL handling service
@@ -139,7 +139,7 @@ class Url extends AbstractService
     /**
      * Generates an url given the name of a route.
      *
-     * @see    Zend\Mvc\Router\RouteInterface::assemble()
+     * @see    Laminas\Mvc\Router\RouteInterface::assemble()
      *
      * @param  string $route Route name
      * @param  array $params

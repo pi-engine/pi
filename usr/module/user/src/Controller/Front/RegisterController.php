@@ -13,8 +13,8 @@ use Module\User\Form\ResendActivationFilter;
 use Module\User\Form\ResendActivationForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Zend\Stdlib\RequestInterface as Request;
-use Zend\Stdlib\ResponseInterface as Response;
+use Laminas\Stdlib\RequestInterface as Request;
+use Laminas\Stdlib\ResponseInterface as Response;
 
 /**
  * Register controller

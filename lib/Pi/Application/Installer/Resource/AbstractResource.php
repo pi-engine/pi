@@ -10,7 +10,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-use Zend\EventManager\Event;
+use Laminas\EventManager\Event;
 
 /**
  * Pi module installer resource abstract class

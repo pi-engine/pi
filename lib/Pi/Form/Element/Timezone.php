@@ -13,7 +13,7 @@ namespace Pi\Form\Element;
 
 use DateTimeZone;
 use Pi;
-use Zend\Form\Element\Select;
+use Laminas\Form\Element\Select;
 
 /**
  * Navigation select element

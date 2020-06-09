@@ -10,7 +10,7 @@
 namespace Module\Widget\Validator;
 
 use Pi;
-use Zend\Validator\AbstractValidator;
+use Laminas\Validator\AbstractValidator;
 
 class WidgetNameDuplicate extends AbstractValidator
 {

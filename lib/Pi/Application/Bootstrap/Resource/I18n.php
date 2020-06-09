@@ -10,8 +10,8 @@
 namespace Pi\Application\Bootstrap\Resource;
 
 use Pi;
-use Zend\Mvc\MvcEvent;
-use Zend\Validator\AbstractValidator;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Validator\AbstractValidator;
 
 /**
  * I18n bootstrap

@@ -10,9 +10,9 @@
 namespace Pi\Application\Installer;
 
 use Pi;
-use Zend\EventManager\Event;
-use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\ListenerAggregateInterface;
+use Laminas\EventManager\Event;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\EventManager\ListenerAggregateInterface;
 
 /**
  * Module installer resource handler

@@ -10,8 +10,8 @@
 namespace Pi\Cache\Storage\Adapter;
 
 use Exception as BaseException;
-use Zend\Cache\Storage\Adapter\Exception;
-use Zend\Cache\Storage\Adapter\Filesystem as ZendFilesystem;
+use Laminas\Cache\Storage\Adapter\Exception;
+use Laminas\Cache\Storage\Adapter\Filesystem as ZendFilesystem;
 
 /**
  * Filesystem cache adapter

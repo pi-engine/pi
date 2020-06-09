@@ -10,8 +10,8 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\View\Helper\FormCheckbox as ZendFormElement;
-use Zend\Form\ElementInterface;
+use Laminas\Form\View\Helper\FormCheckbox as LaminasFormElement;
+use Laminas\Form\ElementInterface;
 
 /**
  * Radio element helper
@@ -19,7 +19,7 @@ use Zend\Form\ElementInterface;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class FormSwitchbox extends ZendFormElement
+class FormSwitchbox extends LaminasFormElement
 {
     public function render(ElementInterface $element)
     {

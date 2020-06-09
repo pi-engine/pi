@@ -11,7 +11,7 @@
 namespace Pi\Form\View\Helper;
 
 use Pi;
-use Zend\Form\View\Helper\FormTextarea;
+use Laminas\Form\View\Helper\FormTextarea;
 
 /**
  * Editor element helper

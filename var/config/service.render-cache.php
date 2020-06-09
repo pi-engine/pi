@@ -19,7 +19,7 @@ return [
         // Storage adapter
         'adapter'   => array(
             'name'  => 'filesystem',
-            // Options, see Zend\Cache\Storage\Adapter\FilesystemOptions
+            // Options, see Laminas\Cache\Storage\Adapter\FilesystemOptions
             'options'    => array(
                 'cache_dir'         => '/path/to/custom/cache/path',
                 'dir_level'         => 1,
@@ -40,7 +40,7 @@ return [
         // Storage adapter
         'adapter'   => array(
             'name'  => 'memcached',
-            // Options, see Zend\Cache\Storage\Adapter\MemcachedOptions
+            // Options, see Laminas\Cache\Storage\Adapter\MemcachedOptions
             'options'    => array(
                 'servers'   => array(
                     array('127.0.0.1', 11211),

@@ -12,8 +12,8 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Pi\Cache\Storage\AdapterPluginManager;
-use Zend\Cache\Storage\Adapter\AbstractAdapter;
-use Zend\Cache\StorageFactory;
+use Laminas\Cache\Storage\Adapter\AbstractAdapter;
+use Laminas\Cache\StorageFactory;
 
 /**
  * Cache handler service
@@ -82,7 +82,7 @@ class Cache extends AbstractService
      * Set namespace to current cache storage adapter
      *
      * @param string $namespace
-     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
+     * @param \Laminas\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
      * @return $this
@@ -115,7 +115,7 @@ class Cache extends AbstractService
      * Clear cache by namespace to current cache storage adapter
      *
      * @param string $namespace
-     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
+     * @param \Laminas\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
      * @return $this
@@ -171,7 +171,7 @@ class Cache extends AbstractService
      * @param  string $key
      * @param  mixed $value
      * @param  string|array $options
-     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
+     * @param \Laminas\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
      * @return Cache
@@ -226,7 +226,7 @@ class Cache extends AbstractService
      *
      * @param  string $key
      * @param  string|array $options
-     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
+     * @param \Laminas\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
      * @return mixed
@@ -279,7 +279,7 @@ class Cache extends AbstractService
      *
      * @param  string $key
      * @param  string|array $options
-     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
+     * @param \Laminas\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
      * @return $this

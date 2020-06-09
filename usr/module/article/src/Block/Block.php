@@ -14,7 +14,7 @@ use Module\Article\Media;
 use Module\Article\Stats;
 use Module\Article\Topic;
 use Pi;
-use Zend\Db\Sql\Expression;
+use Laminas\Db\Sql\Expression;
 
 /**
  * Block class for providing article blocks

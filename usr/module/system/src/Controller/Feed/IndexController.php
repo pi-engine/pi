@@ -12,7 +12,7 @@ namespace Module\System\Controller\Feed;
 use Pi;
 use Pi\Feed\Model as DataModel;
 use Pi\Mvc\Controller\FeedController;
-use Zend\Db\RowGateway\AbstractRowGateway;
+use Laminas\Db\RowGateway\AbstractRowGateway;
 
 /**
  * Feed action controller

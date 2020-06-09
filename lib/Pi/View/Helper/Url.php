@@ -12,8 +12,8 @@ namespace Pi\View\Helper;
 
 use Pi;
 use Pi\Mvc\Router\RouteMatch;
-use Zend\Mvc\Router\RouteStackInterface;
-use Zend\View\Helper\Url as ZendUrl;
+use Laminas\Mvc\Router\RouteStackInterface;
+use Laminas\View\Helper\Url as ZendUrl;
 
 /**
  * Helper for assembling URL with routes and parameters

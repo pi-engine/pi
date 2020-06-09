@@ -1352,7 +1352,7 @@ class User extends AbstractUseApi
 
             $template = 'post-subscription-feedback-html';
             $select = Pi::Model('user_account')->select();
-            $select->where->addPredicate(new \Zend\Db\Sql\Predicate\Expression("DATE(FROM_UNIXTIME(time_created)) = subdate(current_date, ?)", (int) $config['reminder_user_days']));
+            $select->where->addPredicate(new \Laminas\Db\Sql\Predicate\Expression("DATE(FROM_UNIXTIME(time_created)) = subdate(current_date, ?)", (int) $config['reminder_user_days']));
             $select->where(array(
                 'active' => 1,
             ));

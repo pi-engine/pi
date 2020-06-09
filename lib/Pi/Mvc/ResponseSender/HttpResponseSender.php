@@ -10,11 +10,11 @@
 namespace Pi\Mvc\ResponseSender;
 
 use Pi;
-use Zend\Http\Response;
-use Zend\Mvc\ResponseSender\HttpResponseSender as ZendHttpResponseSender;
-use Zend\Mvc\ResponseSender\SendResponseEvent;
+use Laminas\Http\Response;
+use Laminas\Mvc\ResponseSender\HttpResponseSender as LaminasHttpResponseSender;
+use Laminas\Mvc\ResponseSender\SendResponseEvent;
 
-class HttpResponseSender extends ZendHttpResponseSender
+class HttpResponseSender extends LaminasHttpResponseSender
 {
     /**
      * {@inheritDoc}

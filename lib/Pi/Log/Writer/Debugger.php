@@ -17,8 +17,8 @@ use Pi\Log\Formatter\Profiler as ProfilerFormatter;
 use Pi\Log\Formatter\SystemInfo as SystemInfoFormatter;
 use Pi\Log\Logger;
 use Pi\Version\Version as PiVersion;
-use Zend\Log\Formatter\FormatterInterface;
-use Zend\Log\Writer\AbstractWriter;
+use Laminas\Log\Formatter\FormatterInterface;
+use Laminas\Log\Writer\AbstractWriter;
 
 /**
  * Debugger writer
@@ -66,6 +66,7 @@ class Debugger extends AbstractWriter
      * Mute the debugger
      *
      * @param bool $flag
+     *
      * @return bool Return previous muted value
      */
     public function mute($flag = true)
@@ -138,6 +139,7 @@ class Debugger extends AbstractWriter
      * Register a message to logger.
      *
      * @param array $event event data
+     *
      * @return void
      */
     protected function doWrite(array $event)
@@ -164,6 +166,7 @@ class Debugger extends AbstractWriter
      * Register a message to profiler
      *
      * @param array $event event data
+     *
      * @return void
      */
     public function doProfiler(array $event)
@@ -180,6 +183,7 @@ class Debugger extends AbstractWriter
      * Register a message to DB profiler
      *
      * @param array $event event data
+     *
      * @return void
      */
     public function doDb(array $event)
@@ -201,10 +205,7 @@ class Debugger extends AbstractWriter
         $system = [];
 
         // Execution time
-        $system['Execution time'] = sprintf(
-                '%.4f',
-                microtime(true) - Pi::startTime()
-            ) . ' s';
+        $system['Execution time'] = sprintf( '%.4f',microtime(true) - Pi::startTime()) . ' s';
 
         // Included file count
         $files_included           = get_included_files();
@@ -222,10 +223,7 @@ class Debugger extends AbstractWriter
             // Windows system
             if (strpos(strtolower(PHP_OS), 'win') !== false) {
                 $out = [];
-                exec(
-                    'tasklist /FI "PID eq ' . getmypid() . '" /FO LIST',
-                    $out
-                );
+                exec('tasklist /FI "PID eq ' . getmypid() . '" /FO LIST',$out);
                 $memory = substr($out[5], strpos($out[5], ':') + 1);
             }
         }
@@ -233,16 +231,17 @@ class Debugger extends AbstractWriter
 
         // Sstem environments
         $system['OS'] = PHP_OS ?: 'Not detected';
+
         // PHP_SAPI ?: 'Not detected';
         $system['Web Server']  = $_SERVER['SERVER_SOFTWARE'];
         $system['PHP Version'] = PHP_VERSION;
 
         // MySQL version
-        if (Pi::hasService('database')) {
-            $pdo                     = Pi::hasService('database')->db()->getAdapter()->getDriver()
-                ->getConnection()->connect()->getResource();
-            $server_version          = $pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
-            $client_version          = $pdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
+        if (Pi::service()->hasService('database')) {
+            $pdo            = Pi::Service('database')->db()->getAdapter()->getDriver()->getConnection()->connect()->getResource();
+            $server_version = $pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
+            $client_version = $pdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
+
             $system['MySQL Version'] = sprintf(
                 'Server: %s; Client: %s',
                 $server_version,
@@ -251,17 +250,19 @@ class Debugger extends AbstractWriter
         }
 
         // Application versions
-        $system['Pi Environment'] = PiVersion::version()
-            . ' ' . Pi::environment();
-        $system['Zend Version']   = PiVersion::version('zend');
+        $system['Pi Version']     = PiVersion::version();
+        $system['Pi Environment'] = Pi::environment();
         $system['Persist Engine'] = Pi::persist()->getType();
+
         if (Pi::service()->hasService('cache')) {
             $class                   = get_class(Pi::service('cache')->storage());
             $system['Cache Storage'] = $class;
         }
+
         if (Pi::service()->hasService('module')) {
             $system['Module'] = Pi::service('module')->current() ?: 'N/A';
         }
+
         if (Pi::service()->hasService('theme')) {
             $system['Theme'] = Pi::service('theme')->current();
         }
@@ -269,6 +270,7 @@ class Debugger extends AbstractWriter
         // Affecting PHP's Behaviour
         // See: http://www.php.net/manual/en/refs.basic.php.php
         $extensions = [];
+
         // APC
         $APCEnabled = ini_get('apc.enabled');
         if (PHP_SAPI == 'cli') {
@@ -277,28 +279,39 @@ class Debugger extends AbstractWriter
         if ($APCEnabled) {
             $extensions[] = 'APC: ' . phpversion('apc');
         }
+
         // APD
         if (function_exists('apd_set_pprof_trace')) {
             $extensions[] = 'APD: ' . APD_VERSION;
         }
+
         // XHProf
         if (function_exists('xhprof_enable')) {
             $extensions[] = 'XHProf';
         }
+
         // Xdebug
         if (extension_loaded('xdebug')) {
             $extensions[] = 'Xdebug';
         }
+
         // Intl
         if (extension_loaded('intl')) {
             $extensions[] = 'Intl';
         }
+
         // cURL
         if (function_exists('curl_exec')) {
             $extensions[] = 'cURL';
         }
 
-        if ($extensions) {
+        // Redis
+        if (extension_loaded('redis')) {
+            $extensions[] = 'Redis';
+        }
+
+        // Make list
+        if (!empty($extensions)) {
             $system['Extensions'] = implode('; ', $extensions);
         }
 
@@ -307,8 +320,8 @@ class Debugger extends AbstractWriter
                 'name'  => $key,
                 'value' => $value,
             ];
-            $this->logger['system'][]
-                   = $this->systemInfoFormatter()->format($event);
+
+            $this->logger['system'][] = $this->systemInfoFormatter()->format($event);
         }
     }
 

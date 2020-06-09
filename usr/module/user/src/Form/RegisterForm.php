@@ -170,7 +170,7 @@ HTML;
         if(Pi::user()->config('register_captcha') == 3){
             $this->remove('submit');
 
-            $button = new \Zend\Form\Element\Button('submit-button');
+            $button = new \Laminas\Form\Element\Button('submit-button');
             $button->setLabel(__('Submit'))->setAttribute('class', 'btn btn-secondary');
 
             $this->add($button);

@@ -11,7 +11,7 @@
 namespace Pi\View\Helper\Navigation;
 
 use Pi;
-use Zend\View\Helper\Navigation\Breadcrumbs as ZendBreadcrumbs;
+use Laminas\View\Helper\Navigation\Breadcrumbs as ZendBreadcrumbs;
 
 /**
  * Navigation breadcrumbs helper

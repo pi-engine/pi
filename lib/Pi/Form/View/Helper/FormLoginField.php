@@ -11,8 +11,8 @@
 namespace Pi\Form\View\Helper;
 
 use Pi\Form\Element\LoginField as LoginFieldElement;
-use Zend\Form\ElementInterface;
-use Zend\Form\View\Helper\FormInput;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\View\Helper\FormInput;
 
 /**
  * Login identity element helper

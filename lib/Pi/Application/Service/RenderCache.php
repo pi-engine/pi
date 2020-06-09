@@ -11,7 +11,7 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Zend\Cache\Storage\Adapter\AbstractAdapter;
+use Laminas\Cache\Storage\Adapter\AbstractAdapter;
 
 /**
  * Cache handler for view rendering

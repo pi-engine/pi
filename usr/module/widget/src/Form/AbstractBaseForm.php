@@ -10,7 +10,7 @@
 namespace Module\Widget\Form;
 
 use Pi\Form\Form;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 //use Module\Widget\Validator\WidgetNameDuplicate;
 

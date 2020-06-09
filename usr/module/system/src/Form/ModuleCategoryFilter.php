@@ -9,7 +9,7 @@
 
 namespace Module\System\Form;
 
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * Module category form filter

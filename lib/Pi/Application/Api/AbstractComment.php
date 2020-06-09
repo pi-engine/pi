@@ -10,7 +10,7 @@
 namespace Pi\Application\Api;
 
 use Pi;
-use Zend\Mvc\Router\RouteMatch;
+use Laminas\Mvc\Router\RouteMatch;
 
 /**
  * Abstract class for module comment callback

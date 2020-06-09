@@ -9,7 +9,7 @@
 
 namespace Pi\Authentication\Storage;
 
-use Zend\Authentication\Storage\StorageInterface as ZendStorageInterface;
+use Laminas\Authentication\Storage\StorageInterface as ZendStorageInterface;
 
 /**
  * Pi authentication storage interface

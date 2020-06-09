@@ -10,7 +10,7 @@
 namespace Pi\Mvc\Controller;
 
 use Pi;
-use Zend\Mvc\Controller\ControllerManager as ZendControllerManager;
+use Laminas\Mvc\Controller\ControllerManager as ZendControllerManager;
 
 /**
  * Controller load manager

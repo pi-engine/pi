@@ -10,7 +10,7 @@
 
 namespace Pi\Form;
 
-use Zend\Form\Fieldset as ZendFieldset;
+use Laminas\Form\Fieldset as ZendFieldset;
 
 /**
  * Form Field

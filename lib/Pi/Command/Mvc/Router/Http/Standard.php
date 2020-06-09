@@ -10,16 +10,16 @@
 namespace Pi\Command\Mvc\Router\Http;
 
 use Traversable;
-use Zend\Console\Request as ConsoleRequest;
-use Zend\Console\RouteMatcher\DefaultRouteMatcher;
-use Zend\Console\RouteMatcher\RouteMatcherInterface;
-use Zend\Filter\FilterChain;
-use Zend\Mvc\Exception\InvalidArgumentException;
-use Zend\Mvc\Router\Console\RouteInterface;
-use Zend\Mvc\Router\Console\RouteMatch;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Stdlib\RequestInterface as Request;
-use Zend\Validator\ValidatorChain;
+use Laminas\Console\Request as ConsoleRequest;
+use Laminas\Console\RouteMatcher\DefaultRouteMatcher;
+use Laminas\Console\RouteMatcher\RouteMatcherInterface;
+use Laminas\Filter\FilterChain;
+use Laminas\Mvc\Exception\InvalidArgumentException;
+use Laminas\Mvc\Router\Console\RouteInterface;
+use Laminas\Mvc\Router\Console\RouteMatch;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\Stdlib\RequestInterface as Request;
+use Laminas\Validator\ValidatorChain;
 
 /**
  * @author Zongshu Lin <lin40553024@163.com>
@@ -108,7 +108,7 @@ class Standard implements RouteInterface
     /**
      * factory(): defined by Route interface.
      *
-     * @see    \Zend\Mvc\Router\RouteInterface::factory()
+     * @see    \Laminas\Mvc\Router\RouteInterface::factory()
      * @param  array|Traversable $options
      * @throws InvalidArgumentException
      * @return self
@@ -197,7 +197,7 @@ class Standard implements RouteInterface
     /**
      * assemble(): Defined by Route interface.
      *
-     * @see    \Zend\Mvc\Router\RouteInterface::assemble()
+     * @see    \Laminas\Mvc\Router\RouteInterface::assemble()
      * @param  array $params
      * @param  array $options
      * @return mixed

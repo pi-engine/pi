@@ -9,9 +9,9 @@
 
 namespace Pi\Command\Mvc\Service;
 
-use Zend\Console\Console;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\Console\Console;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class RouterFactory implements FactoryInterface
 {
@@ -25,14 +25,14 @@ class RouterFactory implements FactoryInterface
      * @param  ServiceLocatorInterface $serviceLocator
      * @param  string|null $cName
      * @param  string|null $rName
-     * @return \Zend\Mvc\Router\RouteStackInterface
+     * @return \Laminas\Mvc\Router\RouteStackInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator, $cName = null, $rName = null)
     {
         $config = $serviceLocator->has('Config') ? $serviceLocator->get('Config') : [];
 
         // Defaults
-        $routerClass  = 'Zend\Mvc\Router\Http\TreeRouteStack';
+        $routerClass  = 'Laminas\Mvc\Router\Http\TreeRouteStack';
         $routerConfig = isset($config['router']) ? $config['router'] : [];
 
         // Console environment?
@@ -40,7 +40,7 @@ class RouterFactory implements FactoryInterface
             || ($cName === 'router' && Console::isConsole()) // auto detect console
         ) {
             // We are in a console, use console router defaults.
-            $routerClass  = 'Zend\Mvc\Router\Console\SimpleRouteStack';
+            $routerClass  = 'Laminas\Mvc\Router\Console\SimpleRouteStack';
             $routerConfig = isset($config['console']['router']) ? $config['console']['router'] : [];
         }
 

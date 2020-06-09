@@ -10,8 +10,8 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\ElementInterface;
-use Zend\Form\View\Helper\FormElement as ZendFormElement;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\View\Helper\FormElement as LaminasFormElement;
 
 /**
  * Form element helper
@@ -19,7 +19,7 @@ use Zend\Form\View\Helper\FormElement as ZendFormElement;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class FormElement extends ZendFormElement
+class FormElement extends LaminasFormElement
 {
     /**
      * Render an element

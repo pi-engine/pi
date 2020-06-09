@@ -10,8 +10,8 @@
 
 namespace Pi\Form\Element;
 
-use Zend\Form\Element\Csrf as ZendCsrf;
-use Zend\Form\FormInterface;
+use Laminas\Form\Element\Csrf as ZendCsrf;
+use Laminas\Form\FormInterface;
 
 /**
  * CSRF element

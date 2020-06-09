@@ -522,7 +522,7 @@ class AuthorController extends ActionController
     /**
      * Render form
      *
-     * @param Zend\Form\Form $form Form instance
+     * @param Laminas\Form\Form $form Form instance
      * @param string $message Message assign to template
      * @param bool $error Whether is error message
      */

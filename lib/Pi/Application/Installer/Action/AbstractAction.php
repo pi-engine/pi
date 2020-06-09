@@ -10,8 +10,8 @@
 namespace Pi\Application\Installer\Action;
 
 use Pi;
-use Zend\EventManager\Event;
-use Zend\EventManager\EventManager;
+use Laminas\EventManager\Event;
+use Laminas\EventManager\EventManager;
 
 /**
  * Module installer action abstract class

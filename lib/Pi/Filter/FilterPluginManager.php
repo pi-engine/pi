@@ -10,14 +10,14 @@
 namespace Pi\Filter;
 
 //use Pi;
-use Zend\Filter\FilterPluginManager as ZendFilterPluginManager;
+use Laminas\Filter\FilterPluginManager as LaminasFilterPluginManager;
 
 /**
  * Filter plugin manager
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class FilterPluginManager extends ZendFilterPluginManager
+class FilterPluginManager extends LaminasFilterPluginManager
 {
     /**
      * Default set of loaders
@@ -122,7 +122,7 @@ class FilterPluginManager extends ZendFilterPluginManager
                 if (class_exists('Pi\Filter\\' . $class)) {
                     $name = 'Pi\Filter\\' . $class;
                 } else {
-                    $name = 'Zend\Filter\\' . $class;
+                    $name = 'Laminas\Filter\\' . $class;
                 }
             }
         }

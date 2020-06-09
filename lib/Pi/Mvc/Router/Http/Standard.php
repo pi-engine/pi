@@ -10,10 +10,10 @@
 namespace Pi\Mvc\Router\Http;
 
 use Traversable;
-use Zend\Mvc\Router\Http\RouteInterface;
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Stdlib\RequestInterface as Request;
+use Laminas\Mvc\Router\Http\RouteInterface;
+use Laminas\Mvc\Router\Http\RouteMatch;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\Stdlib\RequestInterface as Request;
 
 /**
  * Default route for Pi Engine

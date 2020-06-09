@@ -9,7 +9,7 @@
 
 namespace Pi\Mvc\Controller;
 
-use Zend\Mvc\Controller\PluginManager as ZendPluginManager;
+use Laminas\Mvc\Controller\PluginManager as ZendPluginManager;
 
 /**
  * Plugin load manager
@@ -25,14 +25,14 @@ class PluginManager extends ZendPluginManager
      */
     protected $invokableClasses
         = [
-            'acceptableviewmodelselector' => 'Zend\Mvc\Controller\Plugin\AcceptableViewModelSelector',
-            'filepostredirectget'         => 'Zend\Mvc\Controller\Plugin\FilePostRedirectGet',
-            'flashmessenger'              => 'Zend\Mvc\Controller\Plugin\FlashMessenger',
-            'layout'                      => 'Zend\Mvc\Controller\Plugin\Layout',
-            'params'                      => 'Zend\Mvc\Controller\Plugin\Params',
-            'postredirectget'             => 'Zend\Mvc\Controller\Plugin\PostRedirectGet',
-            'redirect'                    => 'Zend\Mvc\Controller\Plugin\Redirect',
-            'url'                         => 'Zend\Mvc\Controller\Plugin\Url',
+            'acceptableviewmodelselector' => 'Laminas\Mvc\Controller\Plugin\AcceptableViewModelSelector',
+            'filepostredirectget'         => 'Laminas\Mvc\Controller\Plugin\FilePostRedirectGet',
+            'flashmessenger'              => 'Laminas\Mvc\Controller\Plugin\FlashMessenger',
+            'layout'                      => 'Laminas\Mvc\Controller\Plugin\Layout',
+            'params'                      => 'Laminas\Mvc\Controller\Plugin\Params',
+            'postredirectget'             => 'Laminas\Mvc\Controller\Plugin\PostRedirectGet',
+            'redirect'                    => 'Laminas\Mvc\Controller\Plugin\Redirect',
+            'url'                         => 'Laminas\Mvc\Controller\Plugin\Url',
 
             // Pi custom plugins
             'flashmessenger'              => 'Pi\Mvc\Controller\Plugin\FlashMessenger',
@@ -74,7 +74,7 @@ class PluginManager extends ZendPluginManager
             );
             if (!class_exists($invokableClass)) {
                 $invokableClass = sprintf(
-                    'Zend\Mvc\Controller\Plugin\\%s',
+                    'Laminas\Mvc\Controller\Plugin\\%s',
                     ucfirst($name)
                 );
             }

@@ -172,7 +172,7 @@ class Block
                     $select = $orderModel->select()->columns(array('id'));
                     $select->join($orderDetailTableName, $orderDetailTableName . '.order = ' . $orderTableName . '.id');
                     $select->where(['uid' => $uid, 'module' => 'guide']);
-                    $select->where(new \Zend\Db\Sql\Predicate\In('product_type', ['package', 'item']));
+                    $select->where(new \Laminas\Db\Sql\Predicate\In('product_type', ['package', 'item']));
 
                     $results = $orderModel->selectWith($select);
 

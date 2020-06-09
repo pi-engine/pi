@@ -10,8 +10,8 @@
 namespace Module\Demo\Route;
 
 use Pi\Mvc\Router\Http\Standard;
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Stdlib\RequestInterface as Request;
+use Laminas\Mvc\Router\Http\RouteMatch;
+use Laminas\Stdlib\RequestInterface as Request;
 
 /**
  * Sample for lean URL

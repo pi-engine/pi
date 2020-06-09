@@ -9,9 +9,9 @@
 
 namespace Pi\I18n\Translator\Loader;
 
-use Zend\I18n\Translator\Loader\FileLoaderInterface;
-use Zend\I18n\Translator\TextDomain;
-use Zend\Stdlib\ErrorHandler;
+use Laminas\I18n\Translator\Loader\FileLoaderInterface;
+use Laminas\I18n\Translator\TextDomain;
+use Laminas\Stdlib\ErrorHandler;
 
 /**
  * CSV file content loader

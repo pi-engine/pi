@@ -9,10 +9,10 @@
 
 namespace Pi\Command\Mvc;
 
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\EventManagerInterface;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\Console\RouteMatch;
+use Laminas\EventManager\AbstractListenerAggregate;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Router\Console\RouteMatch;
 
 /**
  * Route listener for command line

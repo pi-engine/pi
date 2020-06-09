@@ -10,7 +10,7 @@
 
 namespace Pi\View\Helper;
 
-use Zend\View\Helper\Escaper;
+use Laminas\View\Helper\Escaper;
 
 /**
  * Helper for escape HTML content, alias to escapeHtml

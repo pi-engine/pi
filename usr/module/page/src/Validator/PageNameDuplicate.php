@@ -3,7 +3,7 @@
 namespace Module\Page\Validator;
 
 use Pi;
-use Zend\Validator\AbstractValidator;
+use Laminas\Validator\AbstractValidator;
 
 class PageNameDuplicate extends AbstractValidator
 {

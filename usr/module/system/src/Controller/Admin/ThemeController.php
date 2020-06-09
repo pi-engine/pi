@@ -12,7 +12,7 @@ namespace Module\System\Controller\Admin;
 use Pi;
 use Pi\Application\Installer\Theme as ThemeInstaller;
 use Pi\Mvc\Controller\ActionController;
-use Zend\Json\Json;
+use Laminas\Json\Json;
 
 /**
  * Theme controller

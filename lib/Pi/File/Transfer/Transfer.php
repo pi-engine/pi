@@ -9,8 +9,8 @@
 
 namespace Pi\File\Transfer;
 
-use Zend\File\Exception;
-use Zend\File\Transfer\Transfer as TransferHandler;
+use Laminas\File\Exception;
+use Laminas\File\Transfer\Transfer as TransferHandler;
 
 /**
  * File transfer
@@ -39,7 +39,7 @@ class Transfer extends TransferHandler
         if ($adapter[0] != '\\') {
             $adapter = '\Pi\File\Transfer\Adapter\\' . ucfirst($adapter);
             if (!class_exists($adapter)) {
-                $adapter = '\Zend\File\Transfer\Adapter\\' . ucfirst($adapter);
+                $adapter = '\Laminas\File\Transfer\Adapter\\' . ucfirst($adapter);
             }
         }
         parent::setAdapter($adapter, $direction, $options);

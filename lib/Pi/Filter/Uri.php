@@ -10,7 +10,7 @@
 namespace Pi\Filter;
 
 use Pi;
-use Zend\Filter\AbstractFilter;
+use Laminas\Filter\AbstractFilter;
 
 /**
  * URI filter

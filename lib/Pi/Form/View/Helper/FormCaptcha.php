@@ -10,9 +10,9 @@
 
 namespace Pi\Form\View\Helper;
 
-//use Zend\Form\View\Helper\AbstractHelper;
-use Zend\Captcha\AdapterInterface as CaptchaAdapter;
-use Zend\Form\ElementInterface;
+//use Laminas\Form\View\Helper\AbstractHelper;
+use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
+use Laminas\Form\ElementInterface;
 
 /**
  * CAPTCHA element helper
@@ -31,7 +31,7 @@ class FormCaptcha extends AbstractHelper
         if ($captcha === null || !$captcha instanceof CaptchaAdapter) {
             throw new \DomainException(sprintf(
                 '%s requires that the element has a "captcha" attribute'
-                . ' implementing Zend\Captcha\AdapterInterface; none found',
+                . ' implementing Laminas\Captcha\AdapterInterface; none found',
                 __METHOD__
             ));
         }

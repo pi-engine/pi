@@ -9,7 +9,7 @@
 
 namespace Pi\Application\Bootstrap\Resource;
 
-use Zend\Mvc\MvcEvent;
+use Laminas\Mvc\MvcEvent;
 
 /**
  * Admin operation mode handling

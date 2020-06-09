@@ -11,8 +11,8 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Zend\Stdlib\StringUtils;
-use Zend\Stdlib\StringWrapper\StringWrapperInterface;
+use Laminas\Stdlib\StringUtils;
+use Laminas\Stdlib\StringWrapper\StringWrapperInterface;
 
 /**
  * String wrapper service
@@ -133,8 +133,8 @@ class String extends AbstractService
         $wrapper = $this->getWrapper();
         if (is_callable([$wrapper, $method])) {
             $result = call_user_func_array([$wrapper, $method], $args);
-        } elseif (is_callable(['Zend\Stdlib\StringUtils', $method])) {
-            $result = call_user_func_array(['Zend\Stdlib\StringUtils', $method], $args);
+        } elseif (is_callable(['Laminas\Stdlib\StringUtils', $method])) {
+            $result = call_user_func_array(['Laminas\Stdlib\StringUtils', $method], $args);
         } else {
             $result = false;
         }

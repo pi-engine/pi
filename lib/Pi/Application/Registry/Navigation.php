@@ -508,7 +508,7 @@ class Navigation extends AbstractRegistry
     {
         $page = $this->canonizeCallback($page, $parent, $pKey);
 
-        // @see: Zend\Navigation\Page\AbstractPage for identifying MVC pages
+        // @see: Laminas\Navigation\Page\AbstractPage for identifying MVC pages
         $isMvc = !empty($page['action'])
             || !empty($page['controller'])
             || !empty($page['route']);

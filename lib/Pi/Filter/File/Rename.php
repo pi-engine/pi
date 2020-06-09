@@ -10,7 +10,7 @@
 namespace Pi\Filter\File;
 
 use Closure;
-use Zend\Filter\File\Rename as ZendRename;
+use Laminas\Filter\File\Rename as ZendRename;
 
 /**
  * File name filter

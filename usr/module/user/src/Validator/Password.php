@@ -11,8 +11,8 @@
 namespace Module\User\Validator;
 
 use Pi;
-use Zend\Validator\AbstractValidator;
-use Zend\Validator\EmailAddress as EmailAddressValidator;
+use Laminas\Validator\AbstractValidator;
+use Laminas\Validator\EmailAddress as EmailAddressValidator;
 
 /**
  * Validator for username

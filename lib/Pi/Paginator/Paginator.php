@@ -14,17 +14,17 @@ use Countable;
 use Iterator;
 use Pi;
 use Traversable;
-use Zend\Db\ResultSet\AbstractResultSet;
-use Zend\Db\Sql\Select as DbSelect;
-use Zend\Db\TableGateway\AbstractTableGateway;
-use Zend\Filter\FilterInterface;
-use Zend\Json\Json;
-use Zend\Paginator\Adapter\AdapterInterface;
-use Zend\Paginator\Exception;
-use Zend\Paginator\Paginator as Pagit;
-use Zend\Paginator\ScrollingStyle\ScrollingStyleInterface;
-use Zend\Stdlib\ArrayUtils;
-use Zend\View;
+use Laminas\Db\ResultSet\AbstractResultSet;
+use Laminas\Db\Sql\Select as DbSelect;
+use Laminas\Db\TableGateway\AbstractTableGateway;
+use Laminas\Filter\FilterInterface;
+use Laminas\Json\Json;
+use Laminas\Paginator\Adapter\AdapterInterface;
+use Laminas\Paginator\Exception;
+use Laminas\Paginator\Paginator as Pagit;
+use Laminas\Paginator\ScrollingStyle\ScrollingStyleInterface;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\View;
 
 // Solely for other API calls, shit!!!
 
@@ -191,7 +191,7 @@ class Paginator extends Pagit
 
     /**
      * View instance used for self rendering
-     * @var \Zend\View\Renderer\RendererInterface
+     * @var \Laminas\View\Renderer\RendererInterface
      */
     protected $view = null;
 
@@ -432,8 +432,8 @@ class Paginator extends Pagit
         } else {
             throw new Exception\InvalidArgumentException(
                 'Zend_Paginator only accepts instances of the type '
-                . 'Zend\Paginator\Adapter\AdapterInterface'
-                . ' or Zend\Paginator\AdapterAggregateInterface.'
+                . 'Laminas\Paginator\Adapter\AdapterInterface'
+                . ' or Laminas\Paginator\AdapterAggregateInterface.'
             );
         }
 
@@ -816,7 +816,7 @@ class Paginator extends Pagit
      *
      * If none registered, instantiates a PhpRenderer instance.
      *
-     * @return \Zend\View\Renderer\RendererInterface|null
+     * @return \Laminas\View\Renderer\RendererInterface|null
      */
     public function getView()
     {
@@ -830,7 +830,7 @@ class Paginator extends Pagit
     /**
      * Sets the view object.
      *
-     * @param  \Zend\View\Renderer\RendererInterface $view
+     * @param  \Laminas\View\Renderer\RendererInterface $view
      * @return self
      */
     public function setView(View\Renderer\RendererInterface $view = null)
@@ -887,7 +887,7 @@ class Paginator extends Pagit
     /**
      * Renders the paginator.
      *
-     * @param  \Zend\View\Renderer\RendererInterface $view
+     * @param  \Laminas\View\Renderer\RendererInterface $view
      * @return string
      */
     public function render(View\Renderer\RendererInterface $view = null)
@@ -1006,7 +1006,7 @@ class Paginator extends Pagit
                 if (!$scrollingStyle instanceof ScrollingStyleInterface) {
                     throw new Exception\InvalidArgumentException(
                         'Scrolling style must implement'
-                        . ' Zend\Paginator\ScrollingStyle\\'
+                        . ' Laminas\Paginator\ScrollingStyle\\'
                         . 'ScrollingStyleInterface'
                     );
                 }
@@ -1022,7 +1022,7 @@ class Paginator extends Pagit
             default:
                 throw new Exception\InvalidArgumentException(
                     'Scrolling style must be a class name or object'
-                    . ' implementing Zend\Paginator\ScrollingStyle\\'
+                    . ' implementing Laminas\Paginator\ScrollingStyle\\'
                     . 'ScrollingStyleInterface'
                 );
         }

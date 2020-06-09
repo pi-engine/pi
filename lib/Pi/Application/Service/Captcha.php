@@ -10,7 +10,7 @@
 
 namespace Pi\Application\Service;
 
-use Zend\Captcha\AdapterInterface;
+use Laminas\Captcha\AdapterInterface;
 
 /**
  * CAPTCHA service
@@ -35,7 +35,7 @@ class Captcha extends AbstractService
         $type  = $type ?: 'image';
         $class = 'Pi\Captcha\\' . ucfirst($type);
         if (!class_exists($class)) {
-            $class = 'Zend\Captcha\\' . ucfirst($type);
+            $class = 'Laminas\Captcha\\' . ucfirst($type);
         }
         if ($options) {
             $options = array_merge($this->options, $options);

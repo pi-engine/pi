@@ -11,7 +11,7 @@ namespace Module\Article\Form;
 
 use Module\Article\Controller\Admin\SetupController as Config;
 use Pi;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * Filter and valid of draft edit form

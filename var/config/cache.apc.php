@@ -5,7 +5,7 @@ $config = [
     // Storage adapter
     'adapter' => [
         'name'    => 'apc',
-        // Options, see Zend\Cache\Storage\Adapter\ApcOptions
+        // Options, see Laminas\Cache\Storage\Adapter\ApcOptions
         'options' => [
         ],
     ],

@@ -9,11 +9,11 @@
 
 namespace Pi\Db\Adapter;
 
-use Zend\Db\Adapter\Adapter as ZendAdapter;
-use Zend\Db\Adapter\Driver;
-use Zend\Db\Adapter\ParameterContainer;
-use Zend\Db\Exception;
-use Zend\Db\ResultSet;
+use Laminas\Db\Adapter\Adapter as ZendAdapter;
+use Laminas\Db\Adapter\Driver;
+use Laminas\Db\Adapter\ParameterContainer;
+use Laminas\Db\Exception;
+use Laminas\Db\ResultSet;
 
 /**
  * {@inheritDoc}

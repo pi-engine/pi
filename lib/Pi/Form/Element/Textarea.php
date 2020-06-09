@@ -10,12 +10,12 @@
 
 namespace Pi\Form\Element;
 
-use Zend\Form\Element\Textarea as ZendTextarea;
+use Laminas\Form\Element\Textarea as LaminasTextarea;
 
 /**
  * {@inheritDoc}
  */
-class Textarea extends ZendTextarea
+class Textarea extends LaminasTextarea
 {
     /**
      * Seed attributes

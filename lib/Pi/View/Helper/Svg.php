@@ -11,7 +11,7 @@
 namespace Pi\View\Helper;
 
 use Pi\View\Resolver\ModuleTemplate as ModuleTemplateResolver;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * Helper for include SVG image and set title property

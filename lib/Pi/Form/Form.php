@@ -12,8 +12,8 @@ namespace Pi\Form;
 
 use Pi;
 use Traversable;
-use Zend\Form\Exception;
-use Zend\Form\Form as ZendForm;
+use Laminas\Form\Exception;
+use Laminas\Form\Form as LaminasForm;
 
 /**
  * Form class
@@ -38,7 +38,7 @@ use Zend\Form\Form as ZendForm;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Form extends ZendForm
+class Form extends LaminasForm
 {
     /**
      * Grouping field names for rendering

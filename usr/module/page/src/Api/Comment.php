@@ -41,7 +41,7 @@ class Comment extends AbstractComment
         if (null == $params) {
             $params = Pi::engine()->application()->getRouteMatch();
         }
-        if ($params instanceof \Zend\Mvc\Router\Http\RouteMatch ) {
+        if ($params instanceof \Laminas\Mvc\Router\Http\RouteMatch ) {
             $params = $params->getParams();
         }
         if ($this->module == $params['module']

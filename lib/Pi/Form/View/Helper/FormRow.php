@@ -10,10 +10,10 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\Element\Collection;
-use Zend\Form\ElementInterface;
-use Zend\Form\FieldsetInterface;
-use Zend\Form\View\Helper\FormRow as ZendFormRow;
+use Laminas\Form\Element\Collection;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\FieldsetInterface;
+use Laminas\Form\View\Helper\FormRow as LaminasFormRow;
 
 /**
  * Element row helper
@@ -21,7 +21,7 @@ use Zend\Form\View\Helper\FormRow as ZendFormRow;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class FormRow extends ZendFormRow
+class FormRow extends LaminasFormRow
 {
     /** @var string CSS class for error display */
     protected $inputErrorClass = 'input-error alert-error';

@@ -11,7 +11,7 @@
 namespace Pi\View\Helper;
 
 use Pi;
-use Zend\View\Helper\AbstractHtmlElement;
+use Laminas\View\Helper\AbstractHtmlElement;
 
 /**
  * Helper for loading video player

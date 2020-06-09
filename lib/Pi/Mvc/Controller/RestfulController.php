@@ -9,16 +9,16 @@
 
 namespace Pi\Mvc\Controller;
 
-use Zend\Http\Request as HttpRequest;
-use Zend\Mvc\Exception;
-use Zend\Mvc\MvcEvent;
-use Zend\Stdlib\RequestInterface as Request;
-use Zend\Stdlib\ResponseInterface as Response;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\Mvc\Exception;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Stdlib\RequestInterface as Request;
+use Laminas\Stdlib\ResponseInterface as Response;
 
 /**
  * Abstract RESTful controller
  *
- * @see Zend\Mvc\AbstractRestfulController
+ * @see Laminas\Mvc\AbstractRestfulController
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class RestfulController extends ActionController

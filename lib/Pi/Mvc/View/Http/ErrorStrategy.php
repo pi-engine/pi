@@ -9,12 +9,12 @@
 
 namespace Pi\Mvc\View\Http;
 
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\EventManagerInterface;
-use Zend\Mvc\MvcEvent;
-use Zend\Stdlib\ResponseInterface as Response;
-use Zend\View\Model\ClearableModelInterface;
-use Zend\View\Model\ViewModel;
+use Laminas\EventManager\AbstractListenerAggregate;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Stdlib\ResponseInterface as Response;
+use Laminas\View\Model\ClearableModelInterface;
+use Laminas\View\Model\ViewModel;
 
 /**
  * Erroneous strategy listener
@@ -23,16 +23,16 @@ use Zend\View\Model\ViewModel;
  *
  * - `Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate()`
  *      whose priority is -89
- * - `\Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()`
+ * - `\Laminas\Mvc\View\Http\InjectTemplateListener::injectTemplate()`
  *      whose priority is -90
  *
  * RouteNotFound is handled by:
- *  `Zend\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()`
+ *  `Laminas\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()`
  *  whose priority is -90
  *
  * @see Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate()
- * @see \Zend\Mvc\View\Http\InjectTemplateListener::injectTemplate()
- * @see \Zend\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()
+ * @see \Laminas\Mvc\View\Http\InjectTemplateListener::injectTemplate()
+ * @see \Laminas\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ErrorStrategy extends AbstractListenerAggregate

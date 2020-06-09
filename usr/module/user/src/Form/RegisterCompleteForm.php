@@ -10,8 +10,8 @@
 namespace Module\User\Form;
 
 use Pi;
-use Zend\Form\Element\Captcha;
-use Zend\Form\Element\Csrf;
+use Laminas\Form\Element\Captcha;
+use Laminas\Form\Element\Csrf;
 
 /**
  * User registration complete form

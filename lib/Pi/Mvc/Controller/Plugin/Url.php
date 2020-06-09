@@ -10,7 +10,7 @@
 namespace Pi\Mvc\Controller\Plugin;
 
 use Pi;
-use Zend\Mvc\Controller\Plugin\Url as ZendUrl;
+use Laminas\Mvc\Controller\Plugin\Url as ZendUrl;
 
 /**
  * URL plugin for controller

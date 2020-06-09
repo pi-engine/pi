@@ -13,7 +13,7 @@ namespace Pi\Authentication\Adapter\DbTable;
  * Pi authentication db table credential treatment adapter
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @see \Zend\Authentication\DbTable\AbstractAdapter
+ * @see \Laminas\Authentication\DbTable\AbstractAdapter
  */
 class CredentialTreatmentAdapter extends AbstractAdapter
 {

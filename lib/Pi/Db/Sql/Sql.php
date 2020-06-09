@@ -9,8 +9,8 @@
 
 namespace Pi\Db\Sql;
 
-use Zend\Db\Sql\Exception;
-use Zend\Db\Sql\Sql as ZendSql;
+use Laminas\Db\Sql\Exception;
+use Laminas\Db\Sql\Sql as ZendSql;
 
 /**
  * Sql class

@@ -322,7 +322,6 @@ SCRIPT;
         return $this->$method();
     }
 
-
     protected function checkSystemServer()
     {
         $status  = 1;
@@ -457,5 +456,27 @@ SCRIPT;
         ];
 
         return $result;
+    }
+
+    protected function checkSystemVendor()
+    {
+        // Set file paths
+        $autoload1 = dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))) . '/lib/vendor/autoload.php';
+        $autoload2 = dirname(dirname($_SERVER['SCRIPT_FILENAME'])) . '/lib/vendor/autoload.php';
+
+        // Check autoload file
+        if (file_exists($autoload1) || file_exists($autoload2)) {
+            return [
+                'status'  => 1,
+                'value'   => _s('Composer packages installed'),
+                'message' => '',
+            ];
+        }
+
+        return [
+            'status'  => -1,
+            'value'   => _s('Require libraries not installed, please use `composer install` or `composer update` in your terminal before install ! for more information please visit composer website.'),
+            'message' => '',
+        ];
     }
 }

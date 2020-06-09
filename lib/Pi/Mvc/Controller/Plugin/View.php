@@ -11,10 +11,10 @@ namespace Pi\Mvc\Controller\Plugin;
 
 use Pi;
 use Pi\Filter;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
-use Zend\Mvc\InjectApplicationEventInterface;
-use Zend\Mvc\MvcEvent;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\InjectApplicationEventInterface;
+use Laminas\Mvc\MvcEvent;
+use Laminas\View\Model\ViewModel;
 
 /**
  * View plugin for controller

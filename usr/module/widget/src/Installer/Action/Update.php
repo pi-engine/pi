@@ -11,7 +11,7 @@ namespace Module\Widget\Installer\Action;
 
 use Pi;
 use Pi\Application\Installer\Action\Update as BasicUpdate;
-use Zend\EventManager\Event;
+use Laminas\EventManager\Event;
 
 /**
  * Module update handler

@@ -9,14 +9,14 @@
 
 namespace Pi\Filter;
 
-use Zend\Filter\FilterChain as ZendFilterChain;
+use Laminas\Filter\FilterChain as LaminasFilterChain;
 
 /**
  * Filter chain with specified plugin manager
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class FilterChain extends ZendFilterChain
+class FilterChain extends LaminasFilterChain
 {
     /**
      * {@inheritDoc}

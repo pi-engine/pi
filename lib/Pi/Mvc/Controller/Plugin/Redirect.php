@@ -9,8 +9,8 @@
 
 namespace Pi\Mvc\Controller\Plugin;
 
-use Zend\Http\Response;
-use Zend\Mvc\Controller\Plugin\Redirect as ZendRedirect;
+use Laminas\Http\Response;
+use Laminas\Mvc\Controller\Plugin\Redirect as ZendRedirect;
 
 /**
  * Action redirect plugin for controller

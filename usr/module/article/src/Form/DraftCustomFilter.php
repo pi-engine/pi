@@ -10,7 +10,7 @@
 namespace Module\Article\Form;
 
 use Module\Article\Controller\Admin\SetupController as Config;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * Filter and valid class for custom draft form

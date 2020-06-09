@@ -2,7 +2,7 @@
 
 namespace Pi\Filter;
 
-use Zend\Filter\AbstractFilter;
+use Laminas\Filter\AbstractFilter;
 
 /**
  * This is the part taken from Doctrine 1.2.3

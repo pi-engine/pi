@@ -12,7 +12,7 @@ namespace Module\System\Controller;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 
-//use Zend\Mvc\MvcEvent;
+//use Laminas\Mvc\MvcEvent;
 
 /**
  * System admin component controller

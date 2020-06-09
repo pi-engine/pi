@@ -10,12 +10,12 @@
 namespace Pi\Navigation\Page;
 
 use Pi;
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\Router\RouteMatch;
-use Zend\Mvc\Router\RouteStackInterface;
-use Zend\Navigation\Exception;
-use Zend\Navigation\Page as ZendPage;
-use Zend\Navigation\Page\Mvc as ZendMvcPage;
+use Laminas\Mvc\ModuleRouteListener;
+use Laminas\Mvc\Router\RouteMatch;
+use Laminas\Mvc\Router\RouteStackInterface;
+use Laminas\Navigation\Exception;
+use Laminas\Navigation\Page as ZendPage;
+use Laminas\Navigation\Page\Mvc as LaminasMvcPage;
 
 /**
  * Mvc page
@@ -23,7 +23,7 @@ use Zend\Navigation\Page\Mvc as ZendMvcPage;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Mvc extends ZendMvcPage
+class Mvc extends LaminasMvcPage
 {
     /**
      * {@inheritDoc}
@@ -49,7 +49,7 @@ class Mvc extends ZendMvcPage
      * @param  bool $recursive [optional] whether page should be considered
      *      active if any child pages are active. Default is false.
      * @return bool             whether page should be considered active
-     * @see Zend\Navigation\Page\AbstractPage::isActive()
+     * @see Laminas\Navigation\Page\AbstractPage::isActive()
      */
     public function isAbstractActive($recursive = false)
     {
@@ -93,7 +93,7 @@ class Mvc extends ZendMvcPage
             if (!is_array($page) && !$page instanceof Traversable) {
                 throw new Exception\InvalidArgumentException(
                     'Invalid argument: $page must be an instance of '
-                    . 'Zend\Navigation\Page\AbstractPage or Traversable,'
+                    . 'Laminas\Navigation\Page\AbstractPage or Traversable,'
                     . ' or an array'
                 );
             }
@@ -274,7 +274,7 @@ class Mvc extends ZendMvcPage
         if (!$router instanceof RouteStackInterface) {
             throw new Exception\DomainException(
                 __METHOD__
-                . ' cannot execute as no Zend\Mvc\Router\RouteStackInterface'
+                . ' cannot execute as no Laminas\Mvc\Router\RouteStackInterface'
                 . ' instance is composed'
             );
         }

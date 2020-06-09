@@ -10,9 +10,9 @@
 namespace Pi\Navigation\Page;
 
 use Traversable;
-use Zend\Navigation\Exception;
-use Zend\Navigation\Page\AbstractPage as ZendAbstractPage;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Navigation\Exception;
+use Laminas\Navigation\Page\AbstractPage as ZendAbstractPage;
+use Laminas\Stdlib\ArrayUtils;
 
 /**
  * Abstract page class
@@ -60,7 +60,7 @@ abstract class AbstractPage extends ZendAbstractPage
                     throw new Exception\InvalidArgumentException(
                         sprintf(
                             'Invalid argument: Detected type "%s", which ' .
-                            'is not an instance of Zend\Navigation\Page',
+                            'is not an instance of Laminas\Navigation\Page',
                             $type
                         )
                     );
