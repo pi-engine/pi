@@ -22,6 +22,10 @@ if (!empty($imgStyle)) {
 $towcols    = empty($options['two_col']) ? false : true;
 $carouselId = uniqid('carousel');
 unset($options['width'], $options['height'], $options['two_col']);
+
+// Set script
+$script = sprintf('$("#%s").carousel(%s);', $carouselId, json_encode($options));
+$this->footScript()->appendScript($script);
 ?>
 
 <?php
@@ -118,42 +122,45 @@ EOT;
     };
 
 } ?>
-    <div class="widget-carousel-bootstrap">
-        <div id="<?php echo $carouselId; ?>" class="carousel slide">
-            <?php if ($count > 1) { ?>
-                <ol class="carousel-indicators">
-                    <li data-target="#<?php echo $carouselId; ?>" data-slide-to="0" class="active"></li>
-                    <?php for ($i = 1; $i < $count; $i++) { ?>
-                        <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
-                    <?php } ?>
-                </ol>
-            <?php } ?>
-            <!-- Carousel items -->
-            <div class="carousel-inner">
-                <div class="carousel-item active w-100">
-                    <?php echo $render(array_shift($items)); ?>
-                </div>
-                <?php if (!empty($items)) { ?>
-                    <?php foreach ($items as $item) { ?>
-                        <div class="carousel-item w-100">
-                            <?php echo $render($item); ?>
-                        </div>
-                    <?php } ?>
+<div class="widget-carousel-bootstrap">
+    <div id="<?php echo $carouselId; ?>" class="carousel slide" data-ride="carousel">
+        <?php if ($count > 1) { ?>
+            <ol class="carousel-indicators">
+                <li data-target="#<?php echo $carouselId; ?>" data-slide-to="0" class="active"></li>
+                <?php for ($i = 1; $i < $count; $i++) { ?>
+                    <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
                 <?php } ?>
+            </ol>
+        <?php } ?>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <?php echo $render(array_shift($items)); ?>
             </div>
-            <?php if ($count > 1) { ?>
-                <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'carousel-control-next' : 'carousel-control-prev'; ?>"
-                   href="#<?php echo $carouselId; ?>" role="button" data-slide="prev">
-                    <i class="icon-prev fas fa-chevron-left"></i>
-                </a>
-                <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'carousel-control-prev' : 'carousel-control-next'; ?>"
-                   href="#<?php echo $carouselId; ?>" role="button" data-slide="next">
-                    <i class="icon-next fas fa-chevron-right"></i>
-                </a>
+            <?php if (!empty($items)) { ?>
+                <?php foreach ($items as $item) { ?>
+                    <div class="carousel-item">
+                        <?php echo $render($item); ?>
+                    </div>
+                <?php } ?>
             <?php } ?>
         </div>
+        <?php if ($count > 1) { ?>
+            <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'carousel-control-next' : 'carousel-control-prev'; ?>"
+               href="#<?php echo $carouselId; ?>" role="button" data-slide="<?php echo in_array($locale, ['fa', 'ar']) ? 'next' : 'prev'; ?>">
+                <i class="icon-prev fas fa-chevron-left"></i>
+            </a>
+            <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'carousel-control-prev' : 'carousel-control-next'; ?>"
+               href="#<?php echo $carouselId; ?>" role="button" data-slide="<?php echo in_array($locale, ['fa', 'ar']) ? 'prev' : 'next'; ?>">
+                <i class="icon-next fas fa-chevron-right"></i>
+            </a>
+
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+
+            </a>
+        <?php } ?>
     </div>
-<?php
-$script = sprintf('$("#%s").carousel(%s);', $carouselId, json_encode($options));
-$this->footScript()->appendScript($script);
-?>
+</div>
