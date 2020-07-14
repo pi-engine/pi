@@ -270,6 +270,17 @@ $config = [
         'category'    => 'login',
     ],
 
+    'login_template' => [
+        'title'       => _t('Login layout'),
+        'description' => _t('Set layout for login page'),
+        'edit'        => [
+            'type'    => 'layout',
+        ],
+        'value'       => 'layout-front',
+        'filter'      => 'string',
+        'category'    => 'login',
+    ],
+
     // Dashboard
     'default_pro_dashboard_intro' => [
         'title'    => _t('Default pro Dashboard intro'),
@@ -458,6 +469,17 @@ $config = [
         'description' => _t('Description text for register page side bar, html allowed'),
         'edit'        => 'textarea',
         'value'       => '',
+        'filter'      => 'string',
+        'category'    => 'register',
+    ],
+
+    'register_template' => [
+        'title'       => _t('Register layout'),
+        'description' => _t('Set layout for register page'),
+        'edit'        => [
+            'type'    => 'layout',
+        ],
+        'value'       => 'layout-front',
         'filter'      => 'string',
         'category'    => 'register',
     ],
