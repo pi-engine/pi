@@ -16,7 +16,7 @@ return [
     'meta'     => [
         'title'       => _a('User'),
         'description' => _a('User profile and services.'),
-        'version'     => '1.7.23',
+        'version'     => '1.7.25',
         'license'     => 'New BSD',
         'demo'        => 'http://demo.piengine.org',
         'icon'        => 'fa-user',

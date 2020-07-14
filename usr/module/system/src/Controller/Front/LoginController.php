@@ -70,30 +70,24 @@ class LoginController extends ActionController
      */
     protected function renderForm($form, $message = '')
     {
+        $loginTemplate = Pi::user()->config('login_template');
+        if ($loginTemplate) {
+            $this->view()->setLayout($loginTemplate);
+        }
+
         $this->view()->setTemplate('login', '', 'front');
         $configs = $this->getConfig();
 
         if (!empty($configs['login_attempts'])) {
-            $attempts = isset($_SESSION['PI_LOGIN']['attempts'])
-                ? $_SESSION['PI_LOGIN']['attempts'] : 0;
+            $attempts = isset($_SESSION['PI_LOGIN']['attempts']) ? $_SESSION['PI_LOGIN']['attempts'] : 0;
             if (!empty($attempts)) {
                 if ($attempts >= $configs['login_attempts']) {
-                    $wait    = Pi::service('session')->manager()
-                            ->getSaveHandler()->getLifeTime() / 60;
-                    $message = sprintf(
-                        __(
-                            'Login with the account is suspended,
-                            please wait for %d minutes to try again.'
-                        ),
-                        $wait
-                    );
+                    $wait    = Pi::service('session')->manager()->getSaveHandler()->getLifeTime() / 60;
+                    $message = sprintf(__( 'Login with the account is suspended, please wait for %d minutes to try again.'), $wait);
                     $this->view()->setTemplate('login-suspended', '', 'front');
                 } else {
                     $remaining = $configs['login_attempts'] - $attempts;
-                    $message   = sprintf(
-                        __('You have %d times to try.'),
-                        $remaining
-                    );
+                    $message   = sprintf(__('You have %d times to try.'), $remaining);
                 }
             }
         }
@@ -142,7 +136,6 @@ class LoginController extends ActionController
         $this->view()->assign('redirect', ['route' => 'home']);
 
         if (!$form->isValid()) {
-//        print_r($form->getMessages()); die();
             $this->renderForm($form);
 
             return;
@@ -167,11 +160,8 @@ class LoginController extends ActionController
         $credential = $values['credential'];
 
         if (!empty($configs['login_attempts'])) {
-            $sessionLogin = isset($_SESSION['PI_LOGIN'])
-                ? $_SESSION['PI_LOGIN'] : [];
-            if (!empty($sessionLogin['attempts'])
-                && $sessionLogin['attempts'] >= $configs['login_attempts']
-            ) {
+            $sessionLogin = isset($_SESSION['PI_LOGIN']) ? $_SESSION['PI_LOGIN'] : [];
+            if (!empty($sessionLogin['attempts']) && $sessionLogin['attempts'] >= $configs['login_attempts']) {
                 $this->jump(
                     ['route' => 'home'],
                     __('You have tried too many times. Please try later.'),
@@ -182,11 +172,7 @@ class LoginController extends ActionController
             }
         }
 
-        $result = Pi::service('authentication')->authenticate(
-            $identity,
-            $credential,
-            $field
-        );
+        $result = Pi::service('authentication')->authenticate($identity, $credential, $field);
         $result = $this->verifyResult($result);
 
         if (!$result->isValid()) {
@@ -194,9 +180,7 @@ class LoginController extends ActionController
                 if (!isset($_SESSION['PI_LOGIN'])) {
                     $_SESSION['PI_LOGIN'] = [];
                 }
-                $_SESSION['PI_LOGIN']['attempts']
-                    = isset($_SESSION['PI_LOGIN']['attempts'])
-                    ? ($_SESSION['PI_LOGIN']['attempts'] + 1) : 1;
+                $_SESSION['PI_LOGIN']['attempts'] = isset($_SESSION['PI_LOGIN']['attempts']) ? ($_SESSION['PI_LOGIN']['attempts'] + 1) : 1;
             }
             $message = __('Invalid credentials provided, please try again.');
             $this->renderForm($form, $message);
@@ -219,8 +203,7 @@ class LoginController extends ActionController
         $rememberMe = 0;
         if ($configs['rememberme'] && $values['rememberme']) {
             $rememberMe = $configs['rememberme'] * 86400;
-            Pi::service('session')->manager()
-                ->rememberme($rememberMe);
+            Pi::service('session')->manager()->rememberme($rememberMe);
         }
 
         if (isset($_SESSION['PI_LOGIN'])) {
@@ -270,10 +253,7 @@ class LoginController extends ActionController
                 $redirect = ['route' => 'home'];
             }
         }
-        $this->jump(
-            $redirect,
-            __('You logged out successfully.')
-        );
+        $this->jump($redirect, __('You logged out successfully.'));
     }
 
     /**
@@ -315,9 +295,7 @@ class LoginController extends ActionController
      */
     protected function checkAccess()
     {
-        if (('local' != Pi::authentication()->getStrategy()->getName())
-            || (Pi::service('module')->isActive('user') && 'user' != $this->getModule())
-        ) {
+        if (('local' != Pi::authentication()->getStrategy()->getName())|| (Pi::service('module')->isActive('user') && 'user' != $this->getModule())) {
             $redirect = $this->params('redirect') ?: '';
             $this->redirect()->toUrl(Pi::authentication()->getUrl('login', $redirect));
             return false;

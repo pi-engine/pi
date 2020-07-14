@@ -153,6 +153,7 @@ JS;
 
         // $this->view()->footScript()->prependScript($js);
         $this->view()->footScript()->prependFile($this->view()->assetModule('front/validator.js'));
+        $this->view()->setLayout($this->config('register_template'));
         $this->view()->setTemplate('register-index');
         $this->view()->headTitle(__('Register'));
         $this->view()->headdescription(__('Account registration'), 'set');
@@ -246,6 +247,7 @@ JS;
                 'activation' => $this->config('register_activation'),
             ]
         );
+        $this->view()->setLayout($this->config('register_template'));
         $this->view()->setTemplate('register-index');
     }
 
@@ -418,6 +420,7 @@ JS;
     public function resendActivationAction()
     {
         $form = new ResendActivationForm();
+        $this->view()->setLayout($this->config('register_template'));
         $this->view()->setTemplate('register-resend-activation');
 
         if ($this->request->isPost()) {
@@ -532,6 +535,7 @@ JS;
         }
 
         $this->view()->assign('form', $form);
+        $this->view()->setLayout($this->config('register_template'));
         $this->view()->setTemplate('register-profile-complete');
     }
 
@@ -932,6 +936,7 @@ JS;
         // If disabled
         $registerDisable = $this->config('register_disable');
         if ($registerDisable) {
+            $this->view()->setLayout($this->config('register_template'));
             $this->view()->setTemplate('register-disabled');
             return false;
         }
