@@ -171,6 +171,14 @@
 
             $scope.AddGroupField = function (title, idx) {
                 var field = $scope.profile[idx];
+                console.log('#userField' + field.name)
+
+
+                $('.modal').modal('hide');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+
+
                 angular.forEach($scope.displays, function (item) {
                     if (item.title == title) {
                         item.$isEditing = 1;
@@ -179,6 +187,8 @@
                         return false;
                     }
                 });
+
+
             }
 
             $scope.removeGroupField = function (fields, idx) {
