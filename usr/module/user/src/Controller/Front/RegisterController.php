@@ -632,7 +632,7 @@ JS;
         }
 
         // Automatically activated
-        if (isset($values['email']) && empty($values['email'])) {
+        if (isset($values['email']) && !empty($values['email'])) {
             if ('auto' == $activationMode) {
                 $status = $this->activateUser($uid);
                 if (!$status) {
