@@ -290,7 +290,7 @@ HTML;
                 Pi::service('mail')->send($message);
 
                 $result['status']  = 1;
-                $result['message'] = __('Confirmation email sent successfully. Please check email and reset password.');
+                $result['message'] = __('We sent an email to reset your password. Please check your email and follow the instructions to reset it.');
             }
 
             $this->view()->assign('result', $result);

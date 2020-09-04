@@ -21,39 +21,47 @@ class FindPasswordForm extends BaseForm
 {
     public function init()
     {
-        $this->add([
-            'name'       => 'email',
-            'options'    => [
-                'label' => __('Email'),
-            ],
-            'attributes' => [
-                'type' => 'text',
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'email',
+                'options'    => [
+                    'label' => __('Email'),
+                ],
+                'attributes' => [
+                    'type' => 'text',
+                ],
+            ]
+        );
 
         $captchaMode = Pi::user()->config('register_captcha');
         if ($captchaElement = Pi::service('form')->getReCaptcha($captchaMode)) {
             $this->add($captchaElement);
         }
 
-        $this->add([
-            'name' => 'security',
-            'type' => 'csrf',
-        ]);
-        $this->add([
-            'name' => 'redirect',
-            'type' => 'hidden',
-        ]);
-        $this->add(array(
-            'name' => 'submit-button',
-            'type' => 'submit',
-            'options'=> array(
-                'label' => __('Find password'),
+        $this->add(
+            [
+                'name' => 'security',
+                'type' => 'csrf',
+            ]
+        );
+        $this->add(
+            [
+                'name' => 'redirect',
+                'type' => 'hidden',
+            ]
+        );
+        $this->add(
+            [
+                'name'       => 'submit-button',
+                'type'       => 'submit',
+                'options'    => [
+                    'label' => __('Send reset link'),
 
-            ),
-            'attributes' => array(
-                'class' => 'btn btn-secondary'
-            )
-        ));
+                ],
+                'attributes' => [
+                    'class' => 'btn btn-secondary',
+                ],
+            ]
+        );
     }
 }
