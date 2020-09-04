@@ -560,7 +560,7 @@ JS;
     /**
      * Complete user register
      *
-     * @param array $values
+     * @param array  $values
      * @param string $activationMode
      *
      * @return array
@@ -836,9 +836,7 @@ JS;
         if (Pi::service('module')->isActive('message')) {
             if ($type == 'success' || $type == 'admin') {
                 $template = Pi::service('mail')->template("notify-register-success-html", $params);
-                Pi::api('api', 'message')->notify(
-                    $data['uid'], $template['body'], $template['subject']
-                );
+                Pi::api('api', 'message')->notify($data['uid'], $template['body'], $template['subject']);
             }
         }
 

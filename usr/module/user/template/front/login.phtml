@@ -31,9 +31,9 @@ if ($redirect) {
             <?php echo $this->form($form); ?>
             <div class="clearfix">
                 <div class="col-md-6 offset-md-3">
-                    <a title="<?php _e('Find password'); ?>"
+                    <a title="<?php _e('Forgot password?'); ?>"
                        href="<?php echo Pi::service('user')->getUrl('password'); ?>">
-                        <?php _e('Find password'); ?>
+                        <?php _e('Forgot password?'); ?>
                     </a>
                 </div>
             </div>
@@ -41,9 +41,9 @@ if ($redirect) {
                 <div class="col-md-6 offset-md-3">
                     <h2><?php _e('Not registered yet ?'); ?></h2>
                     <p>
-                        <a class="btn btn-simple" title="<?php _e('Register'); ?>"
+                        <a class="btn btn-simple" title="<?php _e('Sign up'); ?>"
                            href="<?php echo $registerUrl ?>">
-                            <?php _e('Register'); ?>
+                            <?php _e('Sign up'); ?>
                         </a>
                     </p>
                 </div>
