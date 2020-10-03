@@ -17,6 +17,10 @@ return [
             //'cookie_domain'         => '',
             // path where information is stored
             //'cookie_path'           => '',
+            // Set secure option for cookie
+            // 'cookie_secure'           => 1,
+            // Set sameSite, read more on : https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+            // 'cookie_samesite'         => 'None',
 
             // time-to-live for cached session pages in minutes
             'cache_expire'        => 180,
