@@ -16,7 +16,7 @@ return [
     'meta'     => [
         'title'       => _a('User'),
         'description' => _a('User profile and services.'),
-        'version'     => '1.7.25',
+        'version'     => '1.8.0',
         'license'     => 'New BSD',
         'demo'        => 'http://demo.piengine.org',
         'icon'        => 'fa-user',
@@ -38,12 +38,7 @@ return [
 
     // Resource
     'resource' => [
-        // Database meta
-        'database'   => [
-            // SQL schema/data file
-            'sqlfile' => 'sql/mysql.sql',
-        ],
-        // Permission specs
+        'database'   => 'database.php',
         'permission' => 'permission.php',
         'config'     => 'config.php',
         'page'       => 'page.php',
