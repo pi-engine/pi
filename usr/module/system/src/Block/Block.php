@@ -422,8 +422,8 @@ class Block
      */
     public static function pi()
     {
-        $featureApi
-            = 'https://raw.github.com/pi-engine/pi/master/doc/README.html';
+        $featureApi = 'https://raw.github.com/pi-engine/pi/master/doc/README.html';
+
         return [
             'api' => $featureApi,
         ];
