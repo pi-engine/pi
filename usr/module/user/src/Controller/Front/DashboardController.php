@@ -26,6 +26,17 @@ class DashboardController extends ActionController
      */
     public function indexAction()
     {
+        // Get config
+        $config = Pi::service('registry')->config->read('user');
+
+        // Check dashboard active
+        if (!$config['dashboard_enable']) {
+            return $this->jump([
+                'controller' => 'profile',
+                'action'     => 'index',
+            ]);
+        }
+
         // Check login in
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
