@@ -51,7 +51,7 @@ if($section == 'admin'){
                             <?php echo $block['user']['avatar']; ?>
                         </span>
                         <span class="d-none d-xl-inline">
-                            <?php echo b('Welcome') . ' ' . _escape(
+                            <?php echo _b('Welcome') . ' ' . _escape(
                                     (isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name']
                                         : $block['user']['name']
                                 ); ?>
