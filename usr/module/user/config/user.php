@@ -162,7 +162,7 @@ return [
             'type'   => 'account',
             'name'   => 'time_activated',
             'title'  => _a('Activation time'),
-            'filter' => 'DateTimeFormatter',
+            'filter' => ['Int', 'DateTimeFormatter'],
 
             'is_edit'    => false,
             'is_display' => false,
@@ -173,7 +173,7 @@ return [
             'type'   => 'account',
             'name'   => 'time_disabled',
             'title'  => _a('Disabled time'),
-            'filter' => 'DateTimeFormatter',
+            'filter' => ['Int', 'DateTimeFormatter'],
 
             'is_edit'    => false,
             'is_display' => false,
@@ -185,7 +185,7 @@ return [
             'type'   => 'account',
             'name'   => 'time_deleted',
             'title'  => _a('Deleted time'),
-            'filter' => 'DateTimeFormatter',
+            'filter' => ['Int', 'DateTimeFormatter'],
 
             'is_edit'    => false,
             'is_display' => false,
