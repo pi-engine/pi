@@ -88,7 +88,7 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
         <?php if (!empty($user['time_activated'])) { ?>
             <div class="mb-3">
                 <?php _e('Member since'); ?>
-                <?php echo $user['time_activated']; ?>
+                <?php echo _date($user['time_activated']); ?>
             </div>
         <?php } ?>
         <?php if (!empty($user['gender'])) { ?>
@@ -119,7 +119,7 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
         }
         ?>
         <?php if ($owner) { ?>
-            <?php if ($module == 'user') { ?>
+            <?php if ($module == 'user' && isset($userConfig) && !$userConfig['disable_front']) { ?>
                 <a class="btn btn-secondary"
                    href="<?php echo $this->url('user', ['controller' => 'profile', 'action' => 'view', 'uid' => $uid]); ?>">
                     <i class="far fa-eye"></i>
@@ -142,15 +142,15 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                     </button>
                     <div class="dropdown-menu">
                         <?php foreach ($quicklink as $item) { ?>
-                                <a class="dropdown-item" href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>"
-                                   target="_blank">
-                                    <?php
-                                    if ($item['icon']) {
-                                        echo sprintf('<i class="fa %s"></i>', $item['icon']);
-                                    }
-                                    ?>
-                                    <?php echo $item['title']; ?>
-                                </a>
+                            <a class="dropdown-item" href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>"
+                               target="_blank">
+                                <?php
+                                if ($item['icon']) {
+                                    echo sprintf('<i class="fa %s"></i>', $item['icon']);
+                                }
+                                ?>
+                                <?php echo $item['title']; ?>
+                            </a>
                         <?php } ?>
                     </div>
                 </div>
@@ -251,14 +251,14 @@ $showSetting = isset($showSetting) ? $showSetting : 1;
                 <div class="dropdown-menu">
                     <?php for ($i = $maxItem; $i < $length; $i++) {
                         $item = $list[$i]; ?>
-                            <a class="dropdown-item" href="<?php echo $item['url']; ?>">
-                                <?php
-                                if ($item['icon']) {
-                                    echo '<i class="fa ' . $item['icon'] . '"></i> ';
-                                }
-                                echo _escape($item['title']);
-                                ?>
-                            </a>
+                        <a class="dropdown-item" href="<?php echo $item['url']; ?>">
+                            <?php
+                            if ($item['icon']) {
+                                echo '<i class="fa ' . $item['icon'] . '"></i> ';
+                            }
+                            echo _escape($item['title']);
+                            ?>
+                        </a>
                     <?php } ?>
                 </div>
             </li>

@@ -110,14 +110,6 @@ $config = [
         'filter'      => 'int',
     ],
 
-    'shortcuts_enable' => [
-        'title'  => _t('Enable shortcuts on dashboard'),
-        //        'description' => _t('Login / register with modal, with GET redirect (hidden input instead). Modal template are located into system module, because used by user-bar template'),
-        'edit'   => 'checkbox',
-        'value'  => 0,
-        'filter' => 'int',
-    ],
-
     'side_menu' => [
         'title'       => _t('Active modules for show on side bar'),
         'description' => '',
@@ -261,7 +253,7 @@ $config = [
         'category'    => 'login',
     ],
 
-    'login_redirect_home'         => [
+    'login_redirect_home' => [
         'title'       => _t('Force redirect to homepage'),
         'description' => _t('By check this filed, after login user forced redirect to homepage, if not checked user back to source page'),
         'edit'        => 'checkbox',
@@ -270,11 +262,11 @@ $config = [
         'category'    => 'login',
     ],
 
-    'login_template' => [
+    'login_template'   => [
         'title'       => _t('Login layout'),
         'description' => _t('Set layout for login page'),
         'edit'        => [
-            'type'    => 'layout',
+            'type' => 'layout',
         ],
         'value'       => 'layout-front',
         'filter'      => 'string',
@@ -282,6 +274,22 @@ $config = [
     ],
 
     // Dashboard
+    'dashboard_enable' => [
+        'title'    => _t('Enable dashboard pages'),
+        'edit'     => 'checkbox',
+        'value'    => 1,
+        'filter'   => 'int',
+        'category' => 'dashboard',
+    ],
+
+    'shortcuts_enable' => [
+        'title'    => _t('Enable shortcuts on dashboard'),
+        'edit'     => 'checkbox',
+        'value'    => 0,
+        'filter'   => 'int',
+        'category' => 'dashboard',
+    ],
+
     'default_pro_dashboard_intro' => [
         'title'    => _t('Default pro Dashboard intro'),
         'edit'     => 'textarea',
@@ -477,7 +485,7 @@ $config = [
         'title'       => _t('Register layout'),
         'description' => _t('Set layout for register page'),
         'edit'        => [
-            'type'    => 'layout',
+            'type' => 'layout',
         ],
         'value'       => 'layout-front',
         'filter'      => 'string',
@@ -485,7 +493,7 @@ $config = [
     ],
 
     // User account
-    'uname_format'         => [
+    'uname_format'      => [
         'title'       => _t('Username format'),
         'description' => _t('Format of username for registration.'),
         'edit'        => [

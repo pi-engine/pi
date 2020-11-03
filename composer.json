@@ -89,8 +89,6 @@
         "ircmaxell/random-lib": "*",
         "ircmaxell/security-lib": "*",
         "hybridauth/hybridauth": "*",
-        "mongodb/mongodb": "*",
-        "triagens/arangodb": "*",
         "geoip2/geoip2": "*",
         "phayes/geophp": "*",
         "emcconville/google-map-polyline-encoding-tool": "*",

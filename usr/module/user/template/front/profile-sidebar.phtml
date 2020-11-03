@@ -31,31 +31,33 @@ if (empty($item)) {
     $item = ['id' => 0];
 }
 ?>
-
 <div class="clearfix sticky-top sticky-top-sidebar sticky-top-sidebar-usersection <?php echo $isPerso ? 'sticky-top-sidebar-perso' : 'sticky-top-sidebar-pro' ?>">
-    <div class="custom-control custom-switch custom-switch-usersection p-4">
-        <label class="custom-control-label-perso text-warning" for="switch-pro"><?php _e('Perso') ?></label>
-        <input type="checkbox" class="custom-control-input" id="switch-pro" value="1" <?php if(!$isPerso) echo 'checked="checked"' ?> data-toggle="toggle" data-target="#nav-pro">
-        <label class="custom-control-label custom-control-label-pro <?php echo $isPerso ? 'text-muted' : 'text-warning' ?>" for="switch-pro"><?php _e('Pro') ?></label>
-    </div>
+    <?php if ($userConfig['dashboard_enable']) { ?>
+        <div class="custom-control custom-switch custom-switch-usersection p-4">
+            <label class="custom-control-label-perso text-warning" for="switch-pro"><?php _e('Perso') ?></label>
+            <input type="checkbox" class="custom-control-input" id="switch-pro" value="1" <?php if(!$isPerso) echo 'checked="checked"' ?> data-toggle="toggle" data-target="#nav-pro">
+            <label class="custom-control-label custom-control-label-pro <?php echo $isPerso ? 'text-muted' : 'text-warning' ?>" for="switch-pro"><?php _e('Pro') ?></label>
+        </div>
+    <?php } ?>
 
     <!-- PERSO -->
-
     <div id="nav-perso" class="nav flex-column nav-pills <?php if(!$isPerso) echo 'd-none' ?>">
-        <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'dashboard'])); ?>"
-           class="nav-link rounded-0 <?php echo $controller == 'dashboard' ? 'active' : '' ?>">
-            <span class="fa-minimized fas fa-tachometer-alt d-none"></span>
-            <span class="label"><?php _e('Personal Dashboard') ?></span>
-            <span class='fas fa-angle-right'></span>
-        </a>
+        <?php if ($userConfig['dashboard_enable']) { ?>
+            <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'dashboard'])); ?>"
+               class="nav-link rounded-0 <?php echo $controller == 'dashboard' ? 'active' : '' ?>">
+                <span class="fa-minimized fas fa-tachometer-alt d-none"></span>
+                <span class="label"><?php _e('Personal Dashboard') ?></span>
+                <span class='fas fa-angle-right'></span>
+            </a>
+        <?php } ?>
 
         <?php if (Pi::service('module')->isActive('guide')) { ?>
-        <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'request', 'action' => 'index'])); ?>"
-           class="nav-link rounded-0 <?php if (isset($sideActive) && $sideActive == 'request') {echo ' active';} ?>">
-            <span class="fa-minimized far fa-calendar-check d-none"></span>
-            <span class="label"><?php _e('Bookings'); ?></span>
-            <span class='fas fa-angle-right'></span>
-        </a>
+            <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'request', 'action' => 'index'])); ?>"
+               class="nav-link rounded-0 <?php if (isset($sideActive) && $sideActive == 'request') {echo ' active';} ?>">
+                <span class="fa-minimized far fa-calendar-check d-none"></span>
+                <span class="label"><?php _e('Bookings'); ?></span>
+                <span class='fas fa-angle-right'></span>
+            </a>
         <?php } ?>
 
         <?php if ($guideConfig['manage_active'] && $guideConfig['manage_contribution']) { ?>
@@ -117,25 +119,23 @@ if (empty($item)) {
                    class="nav-link rounded-0 pl-5 <?php if ($controller == 'avatar') {echo ' active';} ?>">
                     <?php _e('Change avatar'); ?> <span class='fas fa-angle-right'></span>
                 </a>
-                <?php
-                foreach ($groups as $key => $group) {
-                    ?>
+                <?php foreach ($groups as $key => $group) { ?>
                     <a href="<?php echo $group['url']; ?>"
                        class="nav-link rounded-0 pl-5 <?php if (isset($group_id)) {echo $group_id == $key ? ' active' : '';} ?>">
                         <?php echo _escape($group['title']); ?> <span class='fas fa-angle-right'></span>
                     </a>
                 <?php } ?>
-                <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'privacy'])); ?>"
-                   class="nav-link rounded-0 pl-5 <?php if ($controller == 'privacy') {echo ' active';} ?>">
-                    <?php _e('Privacy'); ?> <span class='fas fa-angle-right'></span>
-                </a>
+                <?php if (!$userConfig['disable_front']) { ?>
+                    <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'privacy'])); ?>"
+                       class="nav-link rounded-0 pl-5 <?php if ($controller == 'privacy') {echo ' active';} ?>">
+                        <?php _e('Privacy'); ?> <span class='fas fa-angle-right'></span>
+                    </a>
+                <?php } ?>
             </div>
         </div>
     </div>
 
-
     <!-- PRO -->
-
     <div id="nav-pro" class="nav flex-column nav-pills <?php if($isPerso) echo 'd-none' ?>">
         <a href="<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'dashboardPro'])); ?>"
            class="nav-link rounded-0 <?php echo $controller == 'dashboardPro' ? 'active' : '' ?>">
@@ -145,12 +145,12 @@ if (empty($item)) {
         </a>
 
         <?php if (Pi::service('module')->isActive('guide')) { ?>
-        <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>"
-           class="nav-link nav-link-all-activities rounded-0 <?php if (($module == 'guide' && $action == 'dashboard') || (isset($item['id']) && $item['id'])) {echo ' active';} ?>">
-            <span class="fa-minimized fas fa-project-diagram d-none"></span>
-            <span class="label"><?php echo __('Manage my activities') ?></span>
-            <span class='fas fa-angle-right'></span>
-        </a>
+            <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'])); ?>"
+               class="nav-link nav-link-all-activities rounded-0 <?php if (($module == 'guide' && $action == 'dashboard') || (isset($item['id']) && $item['id'])) {echo ' active';} ?>">
+                <span class="fa-minimized fas fa-project-diagram d-none"></span>
+                <span class="label"><?php echo __('Manage my activities') ?></span>
+                <span class='fas fa-angle-right'></span>
+            </a>
         <?php } ?>
 
         <?php if ($module == 'guide' && Pi::service('module')->isActive('guide')) : ?>
@@ -334,12 +334,12 @@ if (empty($item)) {
         <?php } ?>
 
         <?php if (Pi::service('module')->isActive('guide')) { ?>
-        <a href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index')); ?>"
-           class="nav-link rounded-0 <?php echo ($controller == "stats" && empty($item['id']))  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
-            <span class="fa-minimized fas fa-chart-line d-none"></span>
-            <span class="label"><?php _e('My statistics'); ?></span>
-            <span class='fas fa-angle-right'></span>
-        </a>
+            <a href="<?php echo $this->url('guide', array('module' => 'guide', 'controller' => 'stats', 'action' => 'index')); ?>"
+               class="nav-link rounded-0 <?php echo ($controller == "stats" && empty($item['id']))  ? 'active' : '' ?> <?php echo $action == "add"  ? 'disabled' : '' ?>">
+                <span class="fa-minimized fas fa-chart-line d-none"></span>
+                <span class="label"><?php _e('My statistics'); ?></span>
+                <span class='fas fa-angle-right'></span>
+            </a>
         <?php } ?>
 
         <?php if (in_array('message', $userConfig['side_menu']) && Pi::service('module')->isActive('message')) { ?>
@@ -401,14 +401,11 @@ if (empty($item)) {
         <?php } ?>
     </div>
 </div>
-
 <script>
     var DASHBOARD_URL = '<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'dashboard'])); ?>';
     var DASHBOARD_PRO_URL = '<?php echo Pi::url($this->url('user', ['module' => 'user', 'controller' => 'dashboardPro'])); ?>';
 </script>
-
 <script>
-
     // Cookies
     function createCookie(name, value, days) {
         if (days) {
@@ -475,7 +472,6 @@ if (empty($item)) {
         $('body').removeClass('sidebar-minimized');
     }
 </script>
-
 <style>
     .sticky-top-sidebar-usersection{
         background:#0F99E9 no-repeat center center;
@@ -491,4 +487,3 @@ if (empty($item)) {
         background-image:url('<?php echo $this->assetModule('front/img/dashboard-pro.jpg', 'user') ?>');
     }
 </style>
-

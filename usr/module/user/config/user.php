@@ -10,7 +10,7 @@
 /**
  * User profile and resource specs
  *
- * @see Pi\Application\Installer\Resource\User
+ * @see    Pi\Application\Installer\Resource\User
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 return [
@@ -33,6 +33,7 @@ return [
             'is_edit'     => false,
             'is_required' => true,
         ],
+
         // Account: password
         'credential'      => [
             'type'        => 'account',
@@ -50,6 +51,7 @@ return [
             'is_search'   => false,
             'is_required' => true,
         ],
+
         // Account: email
         'email'           => [
             'type'        => 'account',
@@ -74,6 +76,7 @@ return [
             'is_edit'     => false,
             'is_required' => true,
         ],
+
         // Account: display name
         'name'            => [
             'type'        => 'account',
@@ -90,6 +93,7 @@ return [
             'is_edit'     => false,
             'is_required' => true,
         ],
+
         // Account: gender
         'gender'          => [
             'type'   => 'account',
@@ -100,34 +104,8 @@ return [
             ],
             'filter' => 'Gender',
         ],
+
         // Account: birth date
-        /* 'birthdate'  => array(
-            'type'  => 'account',
-            'name'  => 'birthdate',
-            'title' => _a('Birthdate'),
-            'edit'  => array(
-                'element'       => 'date_select',
-                'options'       => array(
-                    'create_empty_option'   => true,
-                    'year_attributes' => array(
-                        'class' => 'form-control-small',
-                    ),
-                    'month_attributes' => array(
-                        'class' => 'form-control-small',
-                    ),
-                    'day_attributes' => array(
-                        'class' => 'form-control-small',
-                    ),
-                ),
-                'filters'   => array(array(
-                    'name'  => 'Pi\Filter\DateSelect',
-                )),
-                'validators'   => array(array(
-                    'name'  => 'Pi\Validator\DateSelect',
-                )),
-            ),
-            'filter'   => 'Module\User\Filter\Birthdate',
-        ), */
         'birthdate'       => [
             'type'   => 'account',
             'name'   => 'birthdate',
@@ -145,6 +123,7 @@ return [
             ],
             'filter' => 'Module\User\Filter\Birthdate',
         ],
+
         // Account: avatar
         'avatar'          => [
             'type'  => 'account',
@@ -166,6 +145,7 @@ return [
             'is_edit'    => false,
             'is_display' => false,
         ],
+
         // Account: Register time
         'time_created'    => [
             'type'   => 'account',
@@ -176,33 +156,36 @@ return [
             'is_edit'    => false,
             'is_display' => false,
         ],
+
         // Account: Activation time
         'time_activated'  => [
             'type'   => 'account',
             'name'   => 'time_activated',
             'title'  => _a('Activation time'),
-            'filter' => 'DateTimeFormatter',
+            'filter' => ['Int', 'DateTimeFormatter'],
 
             'is_edit'    => false,
             'is_display' => false,
         ],
+
         // Account: Disabled time
         'time_disabled'   => [
             'type'   => 'account',
             'name'   => 'time_disabled',
             'title'  => _a('Disabled time'),
-            'filter' => 'DateTimeFormatter',
+            'filter' => ['Int', 'DateTimeFormatter'],
 
             'is_edit'    => false,
             'is_display' => false,
             'is_search'  => false,
         ],
+
         // Account: Deleted time
         'time_deleted'    => [
             'type'   => 'account',
             'name'   => 'time_deleted',
             'title'  => _a('Deleted time'),
-            'filter' => 'DateTimeFormatter',
+            'filter' => ['Int', 'DateTimeFormatter'],
 
             'is_edit'    => false,
             'is_display' => false,
@@ -220,6 +203,7 @@ return [
             'is_edit'    => false,
             'is_search'  => true,
         ],
+
         // Profile: Last modified
         'last_modified'   => [
             'name'       => 'last_modified',
@@ -228,6 +212,7 @@ return [
             'is_edit'    => false,
             'is_search'  => true,
         ],
+
         // Profile: homepage
         'homepage'        => [
             'name'  => 'homepage',
@@ -236,6 +221,7 @@ return [
                 'element' => 'url',
             ],
         ],
+
         // Profile: bio
         'bio'             => [
             'name'  => 'bio',
@@ -244,6 +230,7 @@ return [
                 'element' => 'textarea',
             ],
         ],
+
         // Profile: signature
         'signature'       => [
             'name'  => 'signature',
@@ -262,6 +249,7 @@ return [
             'is_display' => false,
             'is_search'  => false,
         ],
+
         // Profile: register source, could be used for register invitation
         'register_source' => [
             'name'       => 'register_source',
@@ -270,6 +258,7 @@ return [
             'is_display' => false,
             'is_search'  => false,
         ],
+
         // Profile: identification_number
         // See : https://en.wikipedia.org/wiki/National_identification_number
         'id_number'       => [
@@ -288,6 +277,13 @@ return [
             'name'  => 'last_name',
             'title' => _a('Last Name'),
         ],
+
+        // Profile: age
+        'age'             => [
+            'name'  => 'age',
+            'title' => _a('Age'),
+        ],
+
         // Profile: Language
         'language'        => [
             'name'  => 'language',
@@ -323,7 +319,7 @@ return [
         'country'         => [
             'name'  => 'country',
             'title' => _a('Country'),
-            'edit'   => [
+            'edit'  => [
                 'element' => 'Module\User\Form\Element\Country',
             ],
         ],

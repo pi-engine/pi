@@ -1,43 +1,68 @@
 <?php
+// Load language files
 Pi::service('i18n')->loadModule('block', 'system');
 
+// Check is user section
 $userSection = $this->isUserSection(Pi::service('module')->current());
+
+// Set original block type
 $originalBlockType = $block['type'];
 
+// Set new block in user section
 if ($block['type'] == 'mixed' || $block['type'] == 'mixed_light') {
     $block['type'] = $userSection ? 'flat' : 'dropdown';
 }
+
+// Set float class
 $floatClass = ($block['float'] == 'left') ? '' : ' navbar-right';
 
+// Get modal enabled
 $modalEnabled = Pi::user()->config('enable_modal');
 
+// Set section
+$section = Pi::engine()->section();
+if ($section == 'admin') {
+    $modalEnabled = 0;
+}
+
+// Get controller action and module information
 $controller = $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('controller', 'index');
 $action     = $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('action', 'index');
 $module     = $this->getHelperPluginManager()->getServiceLocator()->get('application')->getMvcEvent()->getRouteMatch()->getParam('module', '');
 
-$section = Pi::engine()->section();
-if($section == 'admin'){
-    $modalEnabled = 0;
-}
+// Set and load model scrip
+if ($modalEnabled && !$block['user']['uid']) {
+    $modelScript = <<<'EOT'
+$(function() {
+    $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
+    $('body').append('<div id="user-modal-wrapper"></div>');
+    $('#user-modal-wrapper').load('%s');
+});
+EOT;
 
+    $modelScript = sprintf($modelScript, $this->url('home') . 'system/index/modal');
+    $this->footScript()->appendScript($modelScript);
+}
 ?>
 <div class="pi-userbar usertopbar d-flex">
-    <ul class="nav <?php if($section == 'admin') echo 'navbar-nav float-right' ?> align-self-center">
+    <ul class="nav <?php if ($section == 'admin') echo 'navbar-nav float-right' ?> align-self-center">
         <?php if (!$block['user']['uid']) { ?>
             <li class="nav-item item-login">
-                <button type="button" class="btn btn-sm btn-link nav-link border-0" onclick="location.href='<?php echo $modalEnabled ? '#' : $block['user']['login'] ?>'"
-                   data-target="#loginRegisterModal" data-action="login"
-                   <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
-                   title="<?php echo _b('Login'); ?>">
+                <button type="button" class="btn btn-sm btn-link nav-link border-0"
+                        onclick="location.href='<?php echo $modalEnabled ? '#' : $block['user']['login'] ?>'"
+                        data-target="#loginRegisterModal" data-action="login"
+                        <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
+                        title="<?php echo _b('Login'); ?>">
                     <i class="fas fa-sign-in-alt fa-lg d-sm-none"></i>
                     <span class="d-none d-sm-inline-block"><?php echo _b('Login'); ?></span>
                 </button>
             </li>
             <li class="nav-item item-register">
-                <button type="button" class="btn btn-sm btn-link nav-link border-0" onclick="location.href='<?php echo $modalEnabled ? '#' : $block['user']['register'] ?>'"
-                   data-target="#loginRegisterModal" data-action="register"
-                   <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
-                   title="<?php echo _b('Register'); ?>">
+                <button type="button" class="btn btn-sm btn-link nav-link border-0"
+                        onclick="location.href='<?php echo $modalEnabled ? '#' : $block['user']['register'] ?>'"
+                        data-target="#loginRegisterModal" data-action="register"
+                        <?php if ($modalEnabled) : ?>data-toggle="modal"<?php endif; ?>
+                        title="<?php echo _b('Register'); ?>">
                     <i class="fas fa-user fa-lg d-sm-none"></i>
                     <span class="d-none d-sm-inline-block"><?php echo _b('Register'); ?></span>
                 </button>
@@ -51,7 +76,7 @@ if($section == 'admin'){
                             <?php echo $block['user']['avatar']; ?>
                         </span>
                         <span class="d-none d-xl-inline">
-                            <?php echo b('Welcome') . ' ' . _escape(
+                            <?php echo _b('Welcome') . ' ' . _escape(
                                     (isset($block['user']['first_name']) && $block['user']['first_name']) ? $block['user']['first_name']
                                         : $block['user']['name']
                                 ); ?>
@@ -258,7 +283,7 @@ if($section == 'admin'){
             <?php } ?>
 
             <li class="nav-item userbar-avatar-item">
-                <?php if(!$userSection) : ?>
+                <?php if (!$userSection) : ?>
                     <span class="avatar-name-wrapper d-none d-xl-inline">
                         <?php if (!preg_match('#\/admin\/#', $this->url('', [], null, true))) : ?>
                             <?php echo _b('Welcome'); ?>
@@ -477,20 +502,11 @@ if($section == 'admin'){
 
         <?php if (Pi::engine()->section() != 'admin' && Pi::service('module')->isActive('guide') && !$userSection) : ?>
             <li class="nav-item item-promouvoir d-none dropdown d-md-flex">
-                <button type="button" onclick="location.href='<?php echo $this->url('home'); ?>guide/solutions'" class="nav-link btn btn-warning btn-sm align-self-center">
+                <button type="button" onclick="location.href='<?php echo $this->url('home'); ?>guide/solutions'"
+                        class="nav-link btn btn-warning btn-sm align-self-center">
                     <span class="value"><?php echo _b("Add my activity") ?></span>
                 </button>
             </li>
         <?php endif; ?>
     </ul>
 </div>
-
-<?php if ($modalEnabled && !$block['user']['uid']) : ?>
-    <script>
-        $(function() {
-            $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
-            $( "body" ).append( '<div id="user-modal-wrapper"></div>' );
-            $('#user-modal-wrapper').load('<?php echo $this->url('home') ?>system/index/modal');
-        });
-    </script>
-<?php endif; ?>

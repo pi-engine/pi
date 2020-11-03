@@ -61,9 +61,9 @@ class Block
         $user['profileUrl'] = Pi::service('user')->getUrl('profile');
         $user['avatar']     = Pi::service('user')->avatar(
             $uid, 'large', [
-            'alt'   => $user['name'],
-            'class' => 'img-thumbnail',
-        ]
+                'alt'   => $user['name'],
+                'class' => 'img-thumbnail',
+            ]
         );
         if (Pi::service('module')->isActive('user')) {
             $user['accountUrl'] = Pi::service('user')->getUrl('user', ['controller' => 'account']);
@@ -119,22 +119,18 @@ class Block
             $uid  = Pi::service('user')->getUser()->get('id');
             $name = Pi::service('user')->getUser()->get('name');
 
-            /**
-             * Default quality
-             */
+            // Set avatar default quality
             $avatarSize = 'small';
             $width      = 16;
 
-            /**
-             * High quality
-             */
+            // Set avatar high quality
             if (Pi::user()->config('avatar_topbar_highquality')) {
                 $avatarSize = 'medium';
                 $width      = 28;
             }
 
+            // Get and check avatar
             $avatar = Pi::service('user')->getPersist('avatar-' . $avatarSize);
-
             if (!$avatar) {
                 $avatar = Pi::service('user')->avatar($uid, $avatarSize, ['width' => $width, 'height' => $width]);
                 Pi::service('user')->setPersist('avatar-' . $avatarSize, $avatar);
@@ -146,6 +142,7 @@ class Block
                 $firstName = Pi::service('user')->getUser()->first_name;
             }
 
+            // Set user info
             $user = [
                 'uid'        => Pi::service('user')->getId(),
                 'name'       => $name,
@@ -169,7 +166,7 @@ class Block
                     $orderDetailModel     = Pi::model('detail', 'order');
                     $orderDetailTableName = $orderDetailModel->getTable();
 
-                    $select = $orderModel->select()->columns(array('id'));
+                    $select = $orderModel->select()->columns(['id']);
                     $select->join($orderDetailTableName, $orderDetailTableName . '.order = ' . $orderTableName . '.id');
                     $select->where(['uid' => $uid, 'module' => 'guide']);
                     $select->where(new \Laminas\Db\Sql\Predicate\In('product_type', ['package', 'item']));
@@ -179,6 +176,11 @@ class Block
                     if ($results->count()) {
                         $defaultController = 'dashboardPro';
                     }
+                }
+
+                // Check dashboard is active
+                if (!Pi::user()->config('dashboard_enable')) {
+                    $defaultController = 'profile';
                 }
 
                 $user['dashboard_url'] = Pi::service('url')->assemble(
@@ -340,6 +342,7 @@ class Block
             }
         }
 
+        // Set user information to result
         $result['user'] = $user;
 
         // Set modal
@@ -347,20 +350,17 @@ class Block
 
             $enabledModal = Pi::user()->config('enable_modal');
             if ($enabledModal) {
-                /*
-                * Login form
-                */
+                // Login form
                 $processPath = Pi::service('url')->assemble('user', ['module' => 'user', 'controller' => 'login', 'action' => 'process']);
                 $loginForm   = Pi::api('form', 'user')->loadForm('login');
                 $loginForm->setAttribute('action', Pi::url($processPath));
 
-                /**
-                 * Register form
-                 */
+                // Register form
                 $processPath  = Pi::service('url')->assemble('user', ['module' => 'user', 'controller' => 'register']);
                 $registerForm = Pi::api('form', 'user')->loadForm('register');
                 $registerForm->setAttribute('action', Pi::url($processPath));
 
+                // Set form information to result
                 $result['loginForm']    = $loginForm;
                 $result['registerForm'] = $registerForm;
             }
@@ -422,8 +422,8 @@ class Block
      */
     public static function pi()
     {
-        $featureApi
-            = 'https://raw.github.com/pi-engine/pi/master/doc/README.html';
+        $featureApi = 'https://raw.github.com/pi-engine/pi/master/doc/README.html';
+
         return [
             'api' => $featureApi,
         ];
