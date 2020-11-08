@@ -21,17 +21,32 @@ class FindPasswordForm extends BaseForm
 {
     public function init()
     {
-        $this->add(
-            [
-                'name'       => 'email',
-                'options'    => [
-                    'label' => __('Email'),
-                ],
-                'attributes' => [
-                    'type' => 'text',
-                ],
-            ]
-        );
+        // Check is mobile
+        if (Pi::user()->config('is_mobile')) {
+            $this->add(
+                [
+                    'name'       => 'identity',
+                    'options'    => [
+                        'label' => __('Mobile number'),
+                    ],
+                    'attributes' => [
+                        'type' => 'text',
+                    ],
+                ]
+            );
+        } else {
+            $this->add(
+                [
+                    'name'       => 'email',
+                    'options'    => [
+                        'label' => __('Email'),
+                    ],
+                    'attributes' => [
+                        'type' => 'text',
+                    ],
+                ]
+            );
+        }
 
         $captchaMode = Pi::user()->config('register_captcha');
         if ($captchaElement = Pi::service('form')->getReCaptcha($captchaMode)) {
@@ -59,7 +74,7 @@ class FindPasswordForm extends BaseForm
 
                 ],
                 'attributes' => [
-                    'class' => 'btn btn-secondary',
+                    'class' => 'btn btn-primary',
                 ],
             ]
         );
