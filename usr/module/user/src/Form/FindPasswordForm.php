@@ -30,7 +30,8 @@ class FindPasswordForm extends BaseForm
                         'label' => __('Mobile number'),
                     ],
                     'attributes' => [
-                        'type' => 'text',
+                        'type'     => 'text',
+                        'required' => true,
                     ],
                 ]
             );
@@ -42,7 +43,8 @@ class FindPasswordForm extends BaseForm
                         'label' => __('Email'),
                     ],
                     'attributes' => [
-                        'type' => 'text',
+                        'type'     => 'text',
+                        'required' => true,
                     ],
                 ]
             );

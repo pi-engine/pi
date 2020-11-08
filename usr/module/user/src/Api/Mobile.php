@@ -44,11 +44,16 @@ class Mobile extends AbstractApi
             }
         }
 
-        // Set sms content
-        $content = sprintf(__('Dear %s, Your verify mobile code is : %s - %s'), $params['name'], $code, Pi::config('sitename'));
+        // Check custom
+        if (file_exists(Pi::path('config/custom/user.register.php'))) {
+            include Pi::path('config/custom/user.register.php');
+        } else {
+            // Set sms content
+            $content = sprintf(__('Dear %s, Your verify mobile code is : %s - %s'), $params['name'], $code, Pi::config('sitename'));
 
-        // Send sms
-        Pi::service('notification')->smsToUser($content, $params['identity']);
+            // Send sms
+            Pi::service('notification')->smsToUser($content, $params['identity']);
+        }
 
         return $code;
     }
@@ -64,11 +69,16 @@ class Mobile extends AbstractApi
             ['credential' => $credential]
         );
 
-        // Set sms content
-        $content = sprintf(__('Dear %s, Your new password is : %s - %s'), $params['name'], $credential, Pi::config('sitename'));
+        // Check custom
+        if (file_exists(Pi::path('config/custom/user.password.php'))) {
+            include Pi::path('config/custom/user.password.php');
+        } else {
+            // Set sms content
+            $content = sprintf(__('Dear %s, Your new password is : %s - %s'), $params['name'], $credential, Pi::config('sitename'));
 
-        // Send sms
-        Pi::service('notification')->smsToUser($content, $params['identity']);
+            // Send sms
+            Pi::service('notification')->smsToUser($content, $params['identity']);
+        }
 
         return $credential;
     }

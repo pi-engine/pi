@@ -642,6 +642,15 @@ $config = [
         'category'    => 'mobile',
     ],
 
+    'mobile_custom_template'       => [
+        'title'       => _t('Config and use custom SMS template'),
+        'description' => _t('You need create user.register.php and user.password.php on config/custom folder and setup your codes on it'),
+        'edit'        => 'checkbox',
+        'value'       => 0,
+        'filter'      => 'int',
+        'category'    => 'mobile',
+    ],
+
     // Avatar
     // Allowed width of avatar image, 0 for no limit
     'max_avatar_width'          => [
