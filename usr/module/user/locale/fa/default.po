@@ -1,21 +1,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2020-05-08 11:45+0430\n"
-"PO-Revision-Date: 2020-05-08 11:46+0430\n"
+"POT-Creation-Date: 2020-11-08 12:40+0330\n"
+"PO-Revision-Date: 2020-11-08 12:45+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: config/config.php:678 config/config.php:706 config/config.php:734
-#: config/config.php:762
+#: config/config.php:708 config/config.php:736 config/config.php:764
+#: config/config.php:792
 #, php-format
 msgid "Callback urls is : %s"
 msgstr "آدرس کال بک :‌%s"
@@ -90,13 +90,14 @@ msgid "Confirm credential"
 msgstr "تایید رمز عبور"
 
 #: src/Api/Breadcrumbs.php:39 template/front/login-logout.phtml:23
-#: template/front/login-logout.phtml:24
+#: template/front/login-logout.phtml:24 template/front/password-find.phtml:20
+#: template/front/password-process.phtml:21
+#: template/front/register-index.phtml:91
 msgid "Login"
 msgstr "ورود"
 
-#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:157
+#: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:158
 #: template/front/login-logout.phtml:27 template/front/login-logout.phtml:28
-#: template/front/login.phtml:44 template/front/login.phtml:46
 #: template/front/register-disabled.phtml:3
 msgid "Register"
 msgstr "ثبت نام"
@@ -114,32 +115,30 @@ msgstr "پیشخوان"
 
 #: src/Api/Breadcrumbs.php:64 src/Controller/Front/AccountController.php:182
 #: template/front/account-index.phtml:13
-#: template/front/profile-sidebar.phtml:110
+#: template/front/profile-sidebar.phtml:112
 msgid "Account settings"
 msgstr "تنظیمات حساب کاربری"
 
 #: src/Api/Breadcrumbs.php:77 src/Controller/Front/AvatarController.php:183
 #: template/front/avatar-index.phtml:47
-#: template/front/profile-sidebar.phtml:118
+#: template/front/profile-sidebar.phtml:120
 #: template/front/profile-topbar.phtml:82
 msgid "Change avatar"
 msgstr "تغییر آواتار"
 
 #: src/Api/Breadcrumbs.php:90 template/front/privacy-index.phtml:13
-#: template/front/profile-sidebar.phtml:130
+#: template/front/profile-sidebar.phtml:131
 msgid "Privacy"
 msgstr "حریم خصوصی"
 
-#: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:192
+#: src/Api/Breadcrumbs.php:105 src/Controller/Front/PasswordController.php:198
 #: template/front/password-index.phtml:17
-#: template/front/profile-sidebar.phtml:114
+#: template/front/profile-sidebar.phtml:116
 msgid "Change password"
 msgstr "تغییر رمز عبور"
 
-#: src/Api/Breadcrumbs.php:112 src/Controller/Front/PasswordController.php:302
-#: src/Controller/Front/PasswordController.php:303
-#: src/Form/FindPasswordForm.php:51 template/front/login.phtml:34
-#: template/front/login.phtml:36 template/front/password-find.phtml:3
+#: src/Api/Breadcrumbs.php:112 src/Controller/Front/PasswordController.php:332
+#: src/Controller/Front/PasswordController.php:333
 msgid "Find password"
 msgstr "بازیابی رمز عبور"
 
@@ -157,6 +156,11 @@ msgstr "نمایش اطلاعات حساب کاربری"
 #, php-format
 msgid "Dear %s, Your verify mobile code is : %s - %s"
 msgstr "%s محترم، کد فعال سازی حساب کاربری شما %s است - %s"
+
+#: src/Api/Mobile.php:68
+#, php-format
+msgid "Dear %s, Your new password is : %s - %s"
+msgstr "%s محترم، رمز عبور جدید شما %s است - %s"
 
 #: src/Api/Privacy.php:94
 msgid "Everyone"
@@ -259,7 +263,7 @@ msgid "Newsletter setting has been changed successfully."
 msgstr "تنظیمات خبرنامه با موفقیت به روز شد."
 
 #: src/Controller/Front/AccountController.php:183
-#: src/Controller/Front/DashboardController.php:47
+#: src/Controller/Front/DashboardController.php:58
 #: template/front/account-index.phtml:14
 msgid "Basic settings"
 msgstr "تنظیمات پایه"
@@ -285,7 +289,7 @@ msgid "Valid input."
 msgstr "ورودی صحیح."
 
 #: src/Controller/Front/AccountController.php:370
-#: src/Controller/Front/RegisterController.php:467
+#: src/Controller/Front/RegisterController.php:470
 msgid "Invalid input."
 msgstr "ورودی اشتباه."
 
@@ -386,7 +390,7 @@ msgstr "تصویر با موفلقیت حذف شد."
 msgid "No active condition file"
 msgstr "هیچ فایل شرایط و مقرراتی فعال نیست"
 
-#: src/Controller/Front/DashboardController.php:46
+#: src/Controller/Front/DashboardController.php:57
 msgid "My Personal Dashboard"
 msgstr "پیشخوان"
 
@@ -447,7 +451,7 @@ msgid "Reset password failed."
 msgstr "خطا در بازیابی رمز عبور."
 
 #: src/Controller/Front/PasswordController.php:59
-#: src/Controller/Front/PasswordController.php:442
+#: src/Controller/Front/PasswordController.php:478
 #: src/Form/RegisterForm.php:144
 msgid "Whoops, these don't match"
 msgstr "وارژه رمز وارد شده یکسان نیست"
@@ -457,125 +461,134 @@ msgid "Reset password successfully."
 msgstr "رمز عبور با موفقیت بازیابی شد."
 
 #: src/Controller/Front/PasswordController.php:115
-#: src/Controller/Front/PasswordController.php:370 src/Form/RegisterForm.php:78
+#: src/Controller/Front/PasswordController.php:402 src/Form/RegisterForm.php:78
 msgid "Show my password"
 msgstr "نمایش رمز عبور"
 
 #: src/Controller/Front/PasswordController.php:117
-#: src/Controller/Front/PasswordController.php:372 src/Form/RegisterForm.php:80
+#: src/Controller/Front/PasswordController.php:404 src/Form/RegisterForm.php:80
 msgid "Your password is too short"
 msgstr "رمز عبور شما بسیار کوتاه است"
 
 #: src/Controller/Front/PasswordController.php:118
-#: src/Controller/Front/PasswordController.php:373 src/Form/RegisterForm.php:81
+#: src/Controller/Front/PasswordController.php:405 src/Form/RegisterForm.php:81
 msgid "Do not use your email as your password"
 msgstr "از آدرس ایمیل به عنوان رمز عبور استفاده نکنید"
 
 #: src/Controller/Front/PasswordController.php:119
-#: src/Controller/Front/PasswordController.php:374 src/Form/RegisterForm.php:82
+#: src/Controller/Front/PasswordController.php:406 src/Form/RegisterForm.php:82
 msgid "Your password cannot contain your username"
 msgstr "رمز عبور شما نمی تواند نام کاربری باشد"
 
 #: src/Controller/Front/PasswordController.php:120
-#: src/Controller/Front/PasswordController.php:375 src/Form/RegisterForm.php:83
+#: src/Controller/Front/PasswordController.php:407 src/Form/RegisterForm.php:83
 msgid "Use different character classes"
 msgstr "از شکل کارکتر های دیگر استفاده کنید"
 
 #: src/Controller/Front/PasswordController.php:121
-#: src/Controller/Front/PasswordController.php:376 src/Form/RegisterForm.php:84
+#: src/Controller/Front/PasswordController.php:408 src/Form/RegisterForm.php:84
 msgid "Too many repetitions"
 msgstr "تکرار بسیار زیاد"
 
 #: src/Controller/Front/PasswordController.php:122
-#: src/Controller/Front/PasswordController.php:377 src/Form/RegisterForm.php:85
+#: src/Controller/Front/PasswordController.php:409 src/Form/RegisterForm.php:85
 msgid "Your password contains sequences"
 msgstr "رمز عبور شما دارای توالی است"
 
 #: src/Controller/Front/PasswordController.php:123
-#: src/Controller/Front/PasswordController.php:378 src/Form/RegisterForm.php:86
+#: src/Controller/Front/PasswordController.php:410 src/Form/RegisterForm.php:86
 msgid "Errors:"
 msgstr "خطا:"
 
 #: src/Controller/Front/PasswordController.php:124
-#: src/Controller/Front/PasswordController.php:379 src/Form/RegisterForm.php:87
+#: src/Controller/Front/PasswordController.php:411 src/Form/RegisterForm.php:87
 msgid "Very week"
 msgstr "خیلی ضعیف"
 
 #: src/Controller/Front/PasswordController.php:125
-#: src/Controller/Front/PasswordController.php:380 src/Form/RegisterForm.php:88
+#: src/Controller/Front/PasswordController.php:412 src/Form/RegisterForm.php:88
 msgid "Week"
 msgstr "ضعیف"
 
 #: src/Controller/Front/PasswordController.php:126
-#: src/Controller/Front/PasswordController.php:381 src/Form/RegisterForm.php:89
+#: src/Controller/Front/PasswordController.php:413 src/Form/RegisterForm.php:89
 msgid "Normal"
 msgstr "معمولی"
 
 #: src/Controller/Front/PasswordController.php:127
-#: src/Controller/Front/PasswordController.php:382 src/Form/RegisterForm.php:90
+#: src/Controller/Front/PasswordController.php:414 src/Form/RegisterForm.php:90
 msgid "Medium"
 msgstr "متوسط"
 
 #: src/Controller/Front/PasswordController.php:128
-#: src/Controller/Front/PasswordController.php:383 src/Form/RegisterForm.php:91
+#: src/Controller/Front/PasswordController.php:415 src/Form/RegisterForm.php:91
 msgid "Strong"
 msgstr "قوی"
 
 #: src/Controller/Front/PasswordController.php:129
-#: src/Controller/Front/PasswordController.php:384 src/Form/RegisterForm.php:92
+#: src/Controller/Front/PasswordController.php:416 src/Form/RegisterForm.php:92
 msgid "Very Strong"
 msgstr "خیلی قوی"
 
 #: src/Controller/Front/PasswordController.php:131
-#: src/Controller/Front/PasswordController.php:182
-#: src/Controller/Front/PasswordController.php:386
-#: src/Controller/Front/PasswordController.php:439 src/Form/RegisterForm.php:93
+#: src/Controller/Front/PasswordController.php:186
+#: src/Controller/Front/PasswordController.php:418
+#: src/Controller/Front/PasswordController.php:475 src/Form/RegisterForm.php:93
 #: src/Form/RegisterForm.php:140
 msgid ""
 "Password must contain at least one uppercase letter, one lowercase letter "
 "and one digit character"
 msgstr "رمز عبور باید شامل حداقل یک حرف کوچک، یک حرف بزرگ و یک عدد باشد"
 
-#: src/Controller/Front/PasswordController.php:179
-#: src/Controller/Front/PasswordController.php:436
+#: src/Controller/Front/PasswordController.php:183
+#: src/Controller/Front/PasswordController.php:472
 #: src/Form/RegisterForm.php:137
 #, php-format
 msgid "Must be more than %s characters"
 msgstr "باید بیشتر از %s کارکتر باشد"
 
-#: src/Controller/Front/PasswordController.php:180
-#: src/Controller/Front/PasswordController.php:437
+#: src/Controller/Front/PasswordController.php:184
+#: src/Controller/Front/PasswordController.php:473
 #: src/Form/RegisterForm.php:138
 msgid "Invalid password"
 msgstr "رمز عبور اشتباه"
 
-#: src/Controller/Front/PasswordController.php:193
+#: src/Controller/Front/PasswordController.php:199
 #: template/front/password-index.phtml:18
 msgid "To ensure your account security, complex password is required."
 msgstr "برای تایید امنیت حساب کاربری شما هر دورمز عبور لازم است."
 
-#: src/Controller/Front/PasswordController.php:214
+#: src/Controller/Front/PasswordController.php:220
 msgid "Find password failed."
 msgstr "خطا در بازیابی رمز عبور."
 
-#: src/Controller/Front/PasswordController.php:293
+#: src/Controller/Front/PasswordController.php:264
 msgid ""
-"Confirmation email sent successfully. Please check email and reset password."
+"Your password reset successfully and send as SMS to you, please login to "
+"website by your mobile number and new password"
 msgstr ""
-"ایمیل تایید برای شما با موفقیت ارسال شد، لطفا ایمیل خود را بررسی نموده و طبق "
-"دستور عمل آن رمز عبور خود را بازیابی کنید."
+"رمز عبور شما با موفقیت بازنشانی شد و به از طریق پیام کوتاه برای شما گردید، "
+"لطفاً با شماره تلفن همراه و رمزعبور جدید وارد وب سایت شوید"
 
-#: src/Controller/Front/PasswordController.php:315
+#: src/Controller/Front/PasswordController.php:322
+msgid ""
+"We sent an email to reset your password. Please check your email and follow "
+"the instructions to reset it."
+msgstr ""
+"ما برای بازیابی رمز عبور شما ایمیلی ارسال کردیم. لطفاً ایمیل خود را بررسی "
+"کرده و دستورالعمل های مربوط به تنظیم مجدد آن را دنبال کنید."
+
+#: src/Controller/Front/PasswordController.php:345
 msgid "Invalid token for password reset."
 msgstr "توکن غیر معتبر برای بازیابی رمز عبور."
 
-#: src/Controller/Front/PasswordController.php:426
+#: src/Controller/Front/PasswordController.php:458
 #: src/Form/RegisterForm.php:133
 #, php-format
 msgid "Must be less than %s characters"
 msgstr "باید کمتر از %s کارکتر باشد"
 
-#: src/Controller/Front/PasswordController.php:473
+#: src/Controller/Front/PasswordController.php:511
 msgid "Password reset successfully."
 msgstr "رمز عبور با موفقیت ریست شد."
 
@@ -640,53 +653,53 @@ msgstr "اطلاعات اضافی حساب کاربری حذف نشد."
 msgid "User ID or Profile group ID is invalid."
 msgstr "شناسه کاربر یا شناسه گروه حساب کاربری صحیح نیست."
 
-#: src/Controller/Front/RegisterController.php:158
+#: src/Controller/Front/RegisterController.php:159
 #: template/front/register-index.phtml:22
 msgid "Account registration"
 msgstr "ثبت نام"
 
-#: src/Controller/Front/RegisterController.php:266
+#: src/Controller/Front/RegisterController.php:268
 msgid "Activation token is invalid."
 msgstr "توکن فعال سازی صحیح نیست."
 
-#: src/Controller/Front/RegisterController.php:336
+#: src/Controller/Front/RegisterController.php:338
 msgid "Account Activated successfully."
 msgstr "حساب کاربری با موفقیت فعال شد."
 
-#: src/Controller/Front/RegisterController.php:370
+#: src/Controller/Front/RegisterController.php:372
 msgid "Activation email sent failed."
 msgstr "خطا در ارسال ایمیل فعال سازی."
 
-#: src/Controller/Front/RegisterController.php:408
+#: src/Controller/Front/RegisterController.php:410
 msgid "Resend activation mail successfully."
 msgstr "ارسال مجدد ایمیل فعال سازی با موفقیت انجام شد."
 
-#: src/Controller/Front/RegisterController.php:436
+#: src/Controller/Front/RegisterController.php:439
 msgid "Email was not found."
 msgstr "ایمیل یافت نشد."
 
-#: src/Controller/Front/RegisterController.php:441
+#: src/Controller/Front/RegisterController.php:444
 msgid "Account already activated."
 msgstr "حساب کاربری قبلا فعال شده است."
 
-#: src/Controller/Front/RegisterController.php:454
+#: src/Controller/Front/RegisterController.php:457
 msgid "Activation mail sent successfully."
 msgstr "ایمیل فعال سازی با موفقیت ارسال شد."
 
-#: src/Controller/Front/RegisterController.php:459
+#: src/Controller/Front/RegisterController.php:462
 msgid "Activation mail was not sent."
 msgstr "ایمیل فعال سازی ارسال نشد."
 
-#: src/Controller/Front/RegisterController.php:575
+#: src/Controller/Front/RegisterController.php:579
 msgid "User information was not completed and user account was not saved."
 msgstr "اطلاعات کاربری تکمیل نشده است و حساب کاربری در سیستم ثبت نشده است."
 
-#: src/Controller/Front/RegisterController.php:607
+#: src/Controller/Front/RegisterController.php:611
 msgid "User account was not saved."
 msgstr "حساب کاربری ذخیره نشد."
 
-#: src/Controller/Front/RegisterController.php:635
-#: src/Controller/Front/RegisterController.php:679
+#: src/Controller/Front/RegisterController.php:639
+#: src/Controller/Front/RegisterController.php:683
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
@@ -694,7 +707,7 @@ msgstr ""
 "حساب کاربری با موفقیت ثبت شده است اما فعال سازی آن با موفقیت همراه نبوده "
 "است، لطفا با مدیر تماس بگیرید."
 
-#: src/Controller/Front/RegisterController.php:673
+#: src/Controller/Front/RegisterController.php:677
 msgid "Account activation email was not able to send, please contact admin."
 msgstr "ناتوان در ارسال ایمیل فعال سازی، با مدیرتماس بگیرید."
 
@@ -703,7 +716,7 @@ msgstr "ناتوان در ارسال ایمیل فعال سازی، با مدی�
 msgid "Username"
 msgstr "نام کاربری"
 
-#: src/Form/AccountForm.php:38 src/Form/FindPasswordForm.php:27
+#: src/Form/AccountForm.php:38 src/Form/FindPasswordForm.php:42
 #: src/Form/MemberForm.php:49 src/Form/SearchForm.php:108
 msgid "Email"
 msgstr "ایمیل"
@@ -759,6 +772,14 @@ msgstr "ایمیل جدید"
 #: src/Form/EmailForm.php:37 src/Form/PasswordForm.php:42
 msgid "Current password"
 msgstr "رمز عبور فعلی"
+
+#: src/Form/FindPasswordForm.php:30
+msgid "Mobile number"
+msgstr "شماره موبایل"
+
+#: src/Form/FindPasswordForm.php:73
+msgid "Send reset link"
+msgstr "ارسال لینک تغییر رمز عبور"
 
 #: src/Form/MemberForm.php:58 src/Form/PasswordForm.php:53
 #: src/Form/ResetPasswordForm.php:42
@@ -1050,8 +1071,8 @@ msgstr "ویرایش کاربر"
 
 #: template/front/account-reset-email.phtml:4
 #: template/front/password-process.phtml:18
-#: template/front/register-index.phtml:82
-#: template/front/register-index.phtml:121
+#: template/front/register-index.phtml:83
+#: template/front/register-index.phtml:120
 msgid "Congratulations!"
 msgstr "تبریک می گویم!"
 
@@ -1230,7 +1251,7 @@ msgstr "این بخش چطور کار میکند؟"
 #: template/front/dashboardPro-index.phtml:252
 #: template/front/dashboardPro-index.phtml:254
 msgid "Add commercial"
-msgstr ""
+msgstr "ثبت کثب و کار"
 
 #: template/front/dashboard-index.phtml:245
 msgid "Let's go !"
@@ -1242,11 +1263,11 @@ msgstr "پیشخوان"
 
 #: template/front/dashboardPro-index.phtml:212
 msgid "Add<br>commercial"
-msgstr ""
+msgstr "ثبت کسب و کار"
 
 #: template/front/dashboardPro-index.phtml:221
 msgid "Promote<br>your businesses"
-msgstr ""
+msgstr "کسب و کار خود را تبلیغ کنید"
 
 #: template/front/dashboardPro-index.phtml:248
 msgid "To begin, let's create your first establishment :)"
@@ -1291,28 +1312,56 @@ msgstr ""
 msgid "You have logged in successfully, please go to %s."
 msgstr "با موفقیت وارد شدید. برمی گردید به %s."
 
+#: template/front/login.phtml:34 template/front/login.phtml:36
+msgid "Forgot password?"
+msgstr "بازیابی رمز عبور"
+
 #: template/front/login.phtml:42
 msgid "Not registered yet ?"
 msgstr "هنوز ثبت نام نکرده اید؟"
 
-#: template/front/login.phtml:64 template/front/register-index.phtml:46
+#: template/front/login.phtml:44 template/front/login.phtml:46
+msgid "Sign up"
+msgstr "ثبت نام"
+
+#: template/front/login.phtml:64 template/front/register-index.phtml:47
 msgid "Login with google"
 msgstr "ورود با گوگل"
 
-#: template/front/login.phtml:72 template/front/register-index.phtml:54
+#: template/front/login.phtml:72 template/front/register-index.phtml:55
 msgid "Login with twitter"
 msgstr "ورود با توییتر"
 
-#: template/front/login.phtml:80 template/front/register-index.phtml:62
+#: template/front/login.phtml:80 template/front/register-index.phtml:63
 msgid "Login with facebook"
 msgstr "ورود با فیسبوک"
 
-#: template/front/login.phtml:88 template/front/register-index.phtml:70
+#: template/front/login.phtml:88 template/front/register-index.phtml:71
 msgid "Login with github"
 msgstr "ورود با گیت هاب"
 
-#: template/front/password-process.phtml:7
+#: template/front/password-find.phtml:3
 msgid "Reset password"
+msgstr "بازیابی رمز عبور"
+
+#: template/front/password-find.phtml:7
+msgid ""
+"Enter your mobile phone address below and we’ll reset and send you an new "
+"password by SMS."
+msgstr ""
+"آدرس تلفن همراه خود را در زیر وارد کنید و ما رمز عبور جدید را برای شما تنظیم "
+"کرده و برای شما ارسال خواهیم کرد."
+
+#: template/front/password-find.phtml:9
+msgid ""
+"Enter your email address below and we’ll send you an email allowing you to "
+"reset it."
+msgstr ""
+"آدرس ایمیل خود را در زیر وارد کنید و ما ایمیلی برای شما ارسال خواهیم کرد که "
+"به شما امکان می دهد رمز عبور خود را دوباره تنظیم کنید."
+
+#: template/front/password-process.phtml:7
+msgid "Reset Password"
 msgstr "بازیابی رمز عبور"
 
 #: template/front/password-process.phtml:13
@@ -1320,12 +1369,9 @@ msgid "Try to find password again"
 msgstr "برای بازیابی رمز عبور مجددا تلاش کنید"
 
 #: template/front/password-process.phtml:19
-msgid "Your new password has worked"
-msgstr "رمز عبور جدید شما فعال شد"
-
-#: template/front/password-process.phtml:21
-msgid "Please login"
-msgstr "لطفا وارد شوید"
+msgid ""
+"your password has been reset successfully. You can now login to your account."
+msgstr "واژه رمز شما با موفقیت تغییر کرد. لطفا به حساب کاربری خود وارد شوید."
 
 #: template/front/privacy-index.phtml:19
 msgid "No available privacy setting"
@@ -1367,36 +1413,36 @@ msgstr "شخصی"
 msgid "Pro"
 msgstr "حرفه ای"
 
-#: template/front/profile-sidebar.phtml:48
+#: template/front/profile-sidebar.phtml:49
 msgid "Personal Dashboard"
 msgstr "پیشخوان"
 
-#: template/front/profile-sidebar.phtml:56
+#: template/front/profile-sidebar.phtml:58
 msgid "Bookings"
 msgstr "رزرو ها"
 
-#: template/front/profile-sidebar.phtml:65
+#: template/front/profile-sidebar.phtml:67
 msgid "Contributions"
 msgstr "تبریک می گویم"
 
-#: template/front/profile-sidebar.phtml:74
+#: template/front/profile-sidebar.phtml:76
 msgid "Favorites"
 msgstr "مورد علاقه ها"
 
-#: template/front/profile-sidebar.phtml:82
+#: template/front/profile-sidebar.phtml:84
 msgid "Reviews/comments"
 msgstr "نظر ها و بررسی ها"
 
-#: template/front/profile-sidebar.phtml:90
+#: template/front/profile-sidebar.phtml:92
 #: template/front/profile-sidebar.phtml:398
 msgid "My Media"
 msgstr "فایل های چند رسانه ای من"
 
-#: template/front/profile-sidebar.phtml:99
+#: template/front/profile-sidebar.phtml:101
 msgid "My account"
 msgstr "حساب کاربری من"
 
-#: template/front/profile-sidebar.phtml:105
+#: template/front/profile-sidebar.phtml:107
 msgid "Manage account"
 msgstr "مدیریت حساب"
 
@@ -1478,7 +1524,7 @@ msgstr "رویداد ها"
 
 #: template/front/profile-sidebar.phtml:320
 msgid "Sales Channels (Soon)"
-msgstr ""
+msgstr "کانال های فروش (به زودی)"
 
 #: template/front/profile-sidebar.phtml:340
 msgid "My statistics"
@@ -1566,7 +1612,6 @@ msgid "Login right now."
 msgstr "هم اکنون وارد شوید."
 
 #: template/front/register-activate.phtml:16
-#: template/front/register-index.phtml:99
 #, php-format
 msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
 msgstr "یا مستقیم به <a href=\"%s\">صفحه مورد نظر</a> برگردید."
@@ -1584,25 +1629,21 @@ msgstr "ارسال مجدد ایمیل فعال سازی."
 msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr "متاسفانه ثبت نام در حال حاضر غیر فعال است. لطفا بعدا مراجعه کنید."
 
-#: template/front/register-index.phtml:87
+#: template/front/register-index.phtml:86
 #, php-format
 msgid ""
-"Your account has been registered successfully. Please <a href=\"%s\">login</"
-"a> with your account."
+"An account has been created for you. You can <a href=\"%s\">login</a> to "
+"your account now."
 msgstr ""
 "حساب کاربری شما با موفقیت ایجاد شد. لطفا به حساب کاربری خود <a href=\"%s"
 "\">وارد شوید</a>."
 
-#: template/front/register-index.phtml:92
-msgid "Go to login page"
-msgstr "برو به صفحه ورود"
-
-#: template/front/register-index.phtml:109
-#: template/front/register-index.phtml:132
+#: template/front/register-index.phtml:108
+#: template/front/register-index.phtml:131
 msgid "Registration was not completed."
 msgstr "ثبت نام تکمیل نشد."
 
-#: template/front/register-index.phtml:125
+#: template/front/register-index.phtml:124
 msgid ""
 "You account has been registered successfully. However it needs to be "
 "approved by our admins before you can use it."
@@ -1610,39 +1651,55 @@ msgstr ""
 "حساب کاربری شما با موفقیت ایجاد شد. ولی برای فعال شدن به تایید مدیر وب سایت "
 "نیاز دارد تا بتوانید از وب سایت استفاده کنید."
 
-#: template/front/register-index.phtml:144
+#: template/front/register-index.phtml:143
 msgid "An email with activation link has been sent to you."
 msgstr "یک ایمیل با لینک فعال سازی حساب کاربری برای شما ارسال شد."
 
-#: template/front/register-index.phtml:145
+#: template/front/register-index.phtml:144
 msgid "Email used"
 msgstr "ایمیل"
 
-#: template/front/register-index.phtml:146
+#: template/front/register-index.phtml:145
 msgid "Please check it to finish the registration."
 msgstr ""
 "لطفا ایمیل خود را بررسی کنید و از طریق متن راهنمای داخل آن ثبت نام خود را "
 "تکمیل کنید."
 
-#: template/front/register-index.phtml:151
+#: template/front/register-index.phtml:150
 msgid "You did not receive the activation email?"
 msgstr "آیا شما ایمیل فعال سازی را دریافت نکرده اید‌ ؟"
 
-#: template/front/register-index.phtml:153
+#: template/front/register-index.phtml:152
 msgid "Wait a few minutes and check again."
 msgstr "چند دقیقه صبر کنید و مجددا بررسی کنید."
 
-#: template/front/register-index.phtml:154
+#: template/front/register-index.phtml:153
 msgid "Check your email spam box."
 msgstr "بخش اسپم ایمیل خود را بررسی کنید."
 
-#: template/front/register-index.phtml:157
+#: template/front/register-index.phtml:156
 msgid "Request to resend activation email"
 msgstr "درخواست ارسال مجددا ایمیل فعال سازی"
 
-#: template/front/register-index.phtml:194
+#: template/front/register-index.phtml:193
 msgid "Already sent"
 msgstr "قبلا ارسال شده است"
+
+#~ msgid ""
+#~ "Confirmation email sent successfully. Please check email and reset "
+#~ "password."
+#~ msgstr ""
+#~ "ایمیل تایید برای شما با موفقیت ارسال شد، لطفا ایمیل خود را بررسی نموده و "
+#~ "طبق دستور عمل آن رمز عبور خود را بازیابی کنید."
+
+#~ msgid "Your new password has worked"
+#~ msgstr "رمز عبور جدید شما فعال شد"
+
+#~ msgid "Please login"
+#~ msgstr "لطفا وارد شوید"
+
+#~ msgid "Go to login page"
+#~ msgstr "برو به صفحه ورود"
 
 #~ msgid "Add file"
 #~ msgstr "فایل جدید"
