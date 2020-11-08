@@ -49,6 +49,8 @@ class Mobile extends AbstractApi
 
         // Send sms
         Pi::service('notification')->smsToUser($content, $params['identity']);
+
+        return $code;
     }
 
     public function password($params)
