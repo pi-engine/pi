@@ -12,9 +12,6 @@
  */
 
 return array(
-    'language',
-    'first_name',
-    'last_name',
     'verify' => [
         'element' => [
             'name'       => 'verify',
@@ -23,7 +20,7 @@ return array(
             ],
             'attributes' => [
                 'type'        => 'number',
-                'description' => '',
+                'description' => __('Please put your received code here'),
                 'required'    => true,
             ],
         ],

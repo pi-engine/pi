@@ -9,7 +9,7 @@
 
 namespace Module\User\Form;
 
-//use Pi;
+use Pi;
 use Laminas\InputFilter\InputFilter;
 
 /**
@@ -21,24 +21,41 @@ class FindPasswordFilter extends InputFilter
 {
     public function __construct()
     {
-        $this->add([
-            'name'       => 'email',
-            'required'   => true,
-            'filters'    => [
+        // Check is mobile
+        if (Pi::user()->config('is_mobile')) {
+            $this->add(
                 [
-                    'name' => 'StringTrim',
-                ],
-            ],
-            'validators' => [
-                [
-                    'name'    => 'EmailAddress',
-                    'options' => [
-                        'useMxCheck'     => false,
-                        'useDeepMxCheck' => false,
-                        'useDomainCheck' => false,
+                    'name'     => 'identity',
+                    'required' => true,
+                    'filters'  => [
+                        [
+                            'name' => 'StringTrim',
+                        ],
                     ],
-                ],
-            ],
-        ]);
+                ]
+            );
+        } else {
+            $this->add(
+                [
+                    'name'       => 'email',
+                    'required'   => true,
+                    'filters'    => [
+                        [
+                            'name' => 'StringTrim',
+                        ],
+                    ],
+                    'validators' => [
+                        [
+                            'name'    => 'EmailAddress',
+                            'options' => [
+                                'useMxCheck'     => false,
+                                'useDeepMxCheck' => false,
+                                'useDomainCheck' => false,
+                            ],
+                        ],
+                    ],
+                ]
+            );
+        }
     }
 }

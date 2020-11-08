@@ -170,11 +170,15 @@ HTML;
             ->setAttribute('description', $script);
 
         if ($strenghtenPassword) {
-            $url = Pi::url(Pi::service('url')->assemble('user', [
-                'module'     => 'user',
-                'controller' => 'password',
-                'action'     => 'validateInput',
-            ]));
+            $url = Pi::url(
+                Pi::service('url')->assemble(
+                    'user', [
+                        'module'     => 'user',
+                        'controller' => 'password',
+                        'action'     => 'validateInput',
+                    ]
+                )
+            );
 
             $form->get('credential-new')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
                 ->setAttribute('data-error', __('Invalid password'))
@@ -182,12 +186,14 @@ HTML;
                 ->setAttribute('data-remote-error', __('Password must contain at least one uppercase letter, one lowercase letter and one digit character'));
         }
 
-        $this->view()->assign([
-            'form' => $form,
-            //'groups'    => $groups,
-            //'cur_group' => 'password',
-            //'user'      => $user,
-        ]);
+        $this->view()->assign(
+            [
+                'form' => $form,
+                //'groups'    => $groups,
+                //'cur_group' => 'password',
+                //'user'      => $user,
+            ]
+        );
 
         $this->view()->headTitle(__('Change password'));
         $this->view()->headdescription(__('To ensure your account security, complex password is required.'), 'set');
@@ -209,11 +215,11 @@ HTML;
         }
 
         $redirect = $this->params('redirect');
-        $result = [
+        $result   = [
             'status'  => 0,
             'message' => __('Find password failed.'),
         ];
-        $form   = new FindPasswordForm('find-password');
+        $form     = new FindPasswordForm('find-password');
 
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
@@ -223,74 +229,98 @@ HTML;
                 $value = $form->getData();
 
                 // Check if email exists
-                //$userRow = $this->getModel('account')->find($value['email'], 'email');
-                $userRow = Pi::service('user')->getUser($value['email'], 'email');
+                if (Pi::user()->config('is_mobile')) {
+                    $userRow = Pi::service('user')->getUser($value['identity'], 'identity');
+                } else {
+                    $userRow = Pi::service('user')->getUser($value['email'], 'email');
+                }
+
                 if (!$userRow) {
-                    $this->view()->assign([
-                        'form'   => $form,
-                        'result' => $result,
-                    ]);
+                    $this->view()->assign(
+                        [
+                            'form'   => $form,
+                            'result' => $result,
+                        ]
+                    );
 
                     return;
                 }
 
                 // Set user data
-                $uid   = (int)$userRow->id;
-                $token = $this->createToken($uid, $value['email']);
-                Pi::user()->data()->set(
-                    $uid,
-                    'find-password',
-                    $token,
-                    'user',
-                    $this->config('email_expiration') * 3600
-                );
-                Pi::user()->data()->set(
-                    $uid,
-                    'redirect-password',
-                    $redirect,
-                    'user',
-                    $this->config('email_expiration') * 3600
-                );
+                $uid = (int)$userRow->id;
 
-                // Send verify email
-                $to   = $userRow->email;
-                $url  = $this->url('', [
-                        'action' => 'process',
-                        'token'  => $token,
-                    ]
-                );
-                $link = Pi::url($url, true);
+                if (Pi::user()->config('is_mobile')) {
+                    // Set params
+                    $params = [
+                        'uid'      => $uid,
+                        'identity' => $value['identity'],
+                        'name'     => $userRow->name,
+                    ];
 
-                $params = [
-                    'username'          => $userRow->identity,
-                    'find_password_url' => $link,
-                    'expiration'        => $this->config('email_expiration'),
-                ];
+                    // reset password and send
+                    Pi::api('mobile', 'user')->password($params);
 
-                // Load from HTML template
-                $data = Pi::service('mail')->template(
-                    'find-password-html',
-                    $params
-                );
+                    // jump
+                    $message = __('Your password reset successfully and send as SMS to you, please login to website by your mobile number and new password');
+                    $this->jump(['controller' => 'login', 'action' => 'index'], $message);
+                } else {
+                    $token = $this->createToken($uid, $value['email']);
+                    Pi::user()->data()->set(
+                        $uid,
+                        'find-password',
+                        $token,
+                        'user',
+                        $this->config('email_expiration') * 3600
+                    );
+                    Pi::user()->data()->set(
+                        $uid,
+                        'redirect-password',
+                        $redirect,
+                        'user',
+                        $this->config('email_expiration') * 3600
+                    );
 
-                // Mail body logging
-                Pi::user()->data()->set(
-                    $uid,
-                    'find-password-body',
-                    $data['body']
-                );
+                    // Send verify email
+                    $to   = $userRow->email;
+                    $url  = $this->url(
+                        '', [
+                            'action' => 'process',
+                            'token'  => $token,
+                        ]
+                    );
+                    $link = Pi::url($url, true);
 
-                // Set subject and body
-                $subject = $data['subject'];
-                $body    = $data['body'];
-                $type    = $data['format'];
+                    $params = [
+                        'username'          => $userRow->identity,
+                        'find_password_url' => $link,
+                        'expiration'        => $this->config('email_expiration'),
+                    ];
 
-                $message = Pi::service('mail')->message($subject, $body, $type);
-                $message->addTo($to);
-                Pi::service('mail')->send($message);
+                    // Load from HTML template
+                    $data = Pi::service('mail')->template(
+                        'find-password-html',
+                        $params
+                    );
 
-                $result['status']  = 1;
-                $result['message'] = __('We sent an email to reset your password. Please check your email and follow the instructions to reset it.');
+                    // Mail body logging
+                    Pi::user()->data()->set(
+                        $uid,
+                        'find-password-body',
+                        $data['body']
+                    );
+
+                    // Set subject and body
+                    $subject = $data['subject'];
+                    $body    = $data['body'];
+                    $type    = $data['format'];
+
+                    $message = Pi::service('mail')->message($subject, $body, $type);
+                    $message->addTo($to);
+                    Pi::service('mail')->send($message);
+
+                    $result['status']  = 1;
+                    $result['message'] = __('We sent an email to reset your password. Please check your email and follow the instructions to reset it.');
+                }
             }
 
             $this->view()->assign('result', $result);
@@ -325,10 +355,12 @@ HTML;
             return $fallback();
         }
 
-        $userData = Pi::user()->data()->find([
-            'name'  => 'find-password',
-            'value' => $token,
-        ]);
+        $userData = Pi::user()->data()->find(
+            [
+                'name'  => 'find-password',
+                'value' => $token,
+            ]
+        );
         if (!$userData) {
             return $fallback();
         }
@@ -427,11 +459,15 @@ HTML;
             ->setAttribute('data-minlength', $piConfig['password_min']);
 
         if ($strenghtenPassword) {
-            $url = Pi::url(Pi::service('url')->assemble('user', [
-                'module'     => 'user',
-                'controller' => 'password',
-                'action'     => 'validateInput',
-            ]));
+            $url = Pi::url(
+                Pi::service('url')->assemble(
+                    'user', [
+                        'module'     => 'user',
+                        'controller' => 'password',
+                        'action'     => 'validateInput',
+                    ]
+                )
+            );
 
             $form->get('credential-new')->setAttribute('data-minlength-error', sprintf(__("Must be more than %s characters"), $minChars))
                 ->setAttribute('data-error', __('Invalid password'))
@@ -461,37 +497,43 @@ HTML;
                 Pi::service('event')->trigger('password_change', $uid);
                 // Delete find password verify token
                 Pi::user()->data()->delete($uid, 'find-password');
-                $redirect = Pi::user()->data()->find([
-                    'name'  => 'redirect-password',
-                    'uid' => $uid,
-                ]);
+                $redirect = Pi::user()->data()->find(
+                    [
+                        'name' => 'redirect-password',
+                        'uid'  => $uid,
+                    ]
+                );
                 if (!$redirect) {
                     $redirect = Pi::user()->getUrl('profile');
                 }
                 Pi::user()->data()->delete(redirect, 'find-password');
 
-                $result['message'] = __('Password reset successfully.');
-                $result['status']  = 1;
+                $result['message']  = __('Password reset successfully.');
+                $result['status']   = 1;
                 $result['redirect'] = $redirect['value'];
             } else {
                 $form->setData(['token' => $token]);
-                $this->view()->assign([
-                    'form' => $form,
-                ]);
+                $this->view()->assign(
+                    [
+                        'form' => $form,
+                    ]
+                );
             }
             $this->view()->assign('result', $result);
         } else {
             $form->setData(['token' => $token]);
-            $this->view()->assign([
-                'form' => $form,
-            ]);
+            $this->view()->assign(
+                [
+                    'form' => $form,
+                ]
+            );
         }
     }
 
     /**
      * Creates token
      *
-     * @param int $uid
+     * @param int    $uid
      * @param string $email
      *
      * @return string
