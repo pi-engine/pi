@@ -8,9 +8,9 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
-// PHP 7.0+ is required for Pi Engine
-if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 70000) {
-    die('PHP 7.0+ is required by Pi Engine.');
+// PHP 7.3+ is required for Pi Engine
+if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 70300) {
+    die('PHP 7.3+ is required by Pi Engine.');
 }
 
 // Security check
