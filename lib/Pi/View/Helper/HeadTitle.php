@@ -10,7 +10,7 @@
 
 namespace Pi\View\Helper;
 
-use Laminas\View\Helper\HeadTitle as ZendHeadTitle;
+use Laminas\View\Helper\HeadTitle as LaminasHeadTitle;
 
 /**
  * Helper for setting and retrieving title element for HTML head
@@ -43,7 +43,7 @@ use Laminas\View\Helper\HeadTitle as ZendHeadTitle;
  * @see \Laminas\View\Helper\HeadTitle for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class HeadTitle extends ZendHeadTitle
+class HeadTitle extends LaminasHeadTitle
 {
     /**
      * {@inheritDoc}

@@ -16,7 +16,7 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 /**
  * Translator service factory
  *
- * Overrides Zend translator factory in order to keep a consistent i18n service
+ * Overrides Laminas translator factory in order to keep a consistent i18n service
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

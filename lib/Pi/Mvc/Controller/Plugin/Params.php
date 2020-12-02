@@ -9,7 +9,7 @@
 
 namespace Pi\Mvc\Controller\Plugin;
 
-use Laminas\Mvc\Controller\Plugin\Params as ZendParams;
+use Laminas\Mvc\Controller\Plugin\Params as LaminasParams;
 
 /**
  * Plugin for params access
@@ -32,7 +32,7 @@ use Laminas\Mvc\Controller\Plugin\Params as ZendParams;
  * @see Pi\Utility\Filter  for more sugar syntactic
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Params extends ZendParams
+class Params extends LaminasParams
 {
     /** @var array PUT params */
     protected $putParams;

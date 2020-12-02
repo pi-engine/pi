@@ -9,7 +9,7 @@
 
 namespace Pi\Db\Adapter;
 
-use Laminas\Db\Adapter\Adapter as ZendAdapter;
+use Laminas\Db\Adapter\Adapter as LaminasAdapter;
 use Laminas\Db\Adapter\Driver;
 use Laminas\Db\Adapter\ParameterContainer;
 use Laminas\Db\Exception;
@@ -18,7 +18,7 @@ use Laminas\Db\ResultSet;
 /**
  * {@inheritDoc}
  */
-class Adapter extends ZendAdapter
+class Adapter extends LaminasAdapter
 {
     /**
      * {@inheritDoc}

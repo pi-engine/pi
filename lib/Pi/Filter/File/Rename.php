@@ -10,7 +10,7 @@
 namespace Pi\Filter\File;
 
 use Closure;
-use Laminas\Filter\File\Rename as ZendRename;
+use Laminas\Filter\File\Rename as LaminasRename;
 
 /**
  * File name filter
@@ -31,7 +31,7 @@ use Laminas\Filter\File\Rename as ZendRename;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Rename extends ZendRename
+class Rename extends LaminasRename
 {
     /**
      * File source attributes

@@ -10,15 +10,13 @@
 namespace Pi\Version;
 
 use Laminas\Json\Json;
-use Zend\Version\Version as ZendVersion;
+use Laminas\Version\Version as LaminasVersion;
 
 /**
  * Class to store and retrieve Pi Engine version.
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @see http://semver.org/ for semantic versioning
- * @see Zend\Version\Version  Class to store and retrieve the version of
- *      Zend Framework.
  */
 class Version
 {
@@ -80,7 +78,7 @@ class Version
     {
         $version = '';
         switch (strtoupper($service)) {
-            case 'ZEND':
+            case 'LAMINAS':
             case 'FULL':
             case 'PI':
             default:

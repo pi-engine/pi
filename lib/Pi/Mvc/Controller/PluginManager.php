@@ -9,14 +9,14 @@
 
 namespace Pi\Mvc\Controller;
 
-use Laminas\Mvc\Controller\PluginManager as ZendPluginManager;
+use Laminas\Mvc\Controller\PluginManager as LaminasPluginManager;
 
 /**
  * Plugin load manager
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class PluginManager extends ZendPluginManager
+class PluginManager extends LaminasPluginManager
 {
     /**
      * {@inheritDoc}

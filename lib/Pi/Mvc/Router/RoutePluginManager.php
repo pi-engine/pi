@@ -9,7 +9,7 @@
 
 namespace Pi\Mvc\Router;
 
-use Laminas\Mvc\Router\RoutePluginManager as ZendRoutePluginManager;
+use Laminas\Mvc\Router\RoutePluginManager as LaminasRoutePluginManager;
 
 /**
  * {@inheritDoc}
@@ -17,7 +17,7 @@ use Laminas\Mvc\Router\RoutePluginManager as ZendRoutePluginManager;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class RoutePluginManager extends ZendRoutePluginManager
+class RoutePluginManager extends LaminasRoutePluginManager
 {
     /** @var string Namespace for routes */
     protected $subNamespace = 'Http';

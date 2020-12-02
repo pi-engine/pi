@@ -13,7 +13,7 @@ namespace Pi\View\Helper\Navigation;
 use Pi;
 use RecursiveIteratorIterator;
 use Laminas\Navigation\AbstractContainer;
-use Laminas\View\Helper\Navigation\Menu as ZendMenu;
+use Laminas\View\Helper\Navigation\Menu as LaminasMenu;
 
 /**
  * Navigation menu helper
@@ -21,7 +21,7 @@ use Laminas\View\Helper\Navigation\Menu as ZendMenu;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Menu extends ZendMenu
+class Menu extends LaminasMenu
 {
     /**
      * {@inheritDoc}

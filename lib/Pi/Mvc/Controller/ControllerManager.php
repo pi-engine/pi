@@ -10,14 +10,14 @@
 namespace Pi\Mvc\Controller;
 
 use Pi;
-use Laminas\Mvc\Controller\ControllerManager as ZendControllerManager;
+use Laminas\Mvc\Controller\ControllerManager as LaminasControllerManager;
 
 /**
  * Controller load manager
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class ControllerManager extends ZendControllerManager
+class ControllerManager extends LaminasControllerManager
 {
     /**
      * Canonize name

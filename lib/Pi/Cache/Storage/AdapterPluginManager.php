@@ -9,14 +9,14 @@
 
 namespace Pi\Cache\Storage;
 
-use Laminas\Cache\Storage\AdapterPluginManager as ZendAdapterPluginManager;
+use Laminas\Cache\Storage\AdapterPluginManager as LaminasAdapterPluginManager;
 
 /**
  * Cache adapter plugin manager class
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class AdapterPluginManager extends ZendAdapterPluginManager
+class AdapterPluginManager extends LaminasAdapterPluginManager
 {
     /**
      * Default set of adapters
@@ -35,7 +35,7 @@ class AdapterPluginManager extends ZendAdapterPluginManager
             //'redis'          => 'Laminas\Cache\Storage\Adapter\Redis',
             'dba'            => 'Laminas\Cache\Storage\Adapter\Dba',
             'wincache'       => 'Laminas\Cache\Storage\Adapter\WinCache',
-            'zendserverdisk' => 'Laminas\Cache\Storage\Adapter\ZendServerDisk',
-            'zendservershm'  => 'Laminas\Cache\Storage\Adapter\ZendServerShm',
+            'Laminasserverdisk' => 'Laminas\Cache\Storage\Adapter\LaminasServerDisk',
+            'Laminasservershm'  => 'Laminas\Cache\Storage\Adapter\LaminasServerShm',
         ];
 }

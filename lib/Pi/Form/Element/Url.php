@@ -10,14 +10,14 @@
 
 namespace Pi\Form\Element;
 
-use Laminas\Form\Element\Url as ZendUrl;
+use Laminas\Form\Element\Url as LaminasUrl;
 
 /**
  * URL element
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Url extends ZendUrl
+class Url extends LaminasUrl
 {
     /**
      * {@inheritDoc}

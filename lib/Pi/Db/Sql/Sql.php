@@ -10,14 +10,14 @@
 namespace Pi\Db\Sql;
 
 use Laminas\Db\Sql\Exception;
-use Laminas\Db\Sql\Sql as ZendSql;
+use Laminas\Db\Sql\Sql as LaminasSql;
 
 /**
  * Sql class
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Sql extends ZendSql
+class Sql extends LaminasSql
 {
     /**
      * {@inheritdoc}

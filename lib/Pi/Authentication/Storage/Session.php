@@ -10,14 +10,14 @@
 namespace Pi\Authentication\Storage;
 
 use Pi;
-use Laminas\Authentication\Storage\Session as ZendSession;
+use Laminas\Authentication\Storage\Session as LaminasSession;
 
 /**
  * Session storage for authentication
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Session extends ZendSession
+class Session extends LaminasSession
 {
     /** @var array Options */
     protected $options = [];

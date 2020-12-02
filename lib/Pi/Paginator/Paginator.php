@@ -350,7 +350,7 @@ class Paginator extends Pagit
         $adapterClass = '%s\Paginator\Adapter\\' . ucfirst($adapter);
         $class        = sprintf($adapterClass, 'Pi');
         if (!class_exists($class)) {
-            $class = sprintf($adapterClass, 'Zend');
+            $class = sprintf($adapterClass, 'Laminas');
         }
 
         return new $class($data);
@@ -367,7 +367,7 @@ class Paginator extends Pagit
         $styleClass = '%s\Paginator\ScrollingStyle\\' . ucfirst($style);
         $class      = sprintf($styleClass, 'Pi');
         if (!class_exists($class)) {
-            $class = sprintf($styleClass, 'Zend');
+            $class = sprintf($styleClass, 'Laminas');
         }
 
         return new $class;
@@ -431,7 +431,7 @@ class Paginator extends Pagit
             $this->adapter = $adapter->getPaginatorAdapter();
         } else {
             throw new Exception\InvalidArgumentException(
-                'Zend_Paginator only accepts instances of the type '
+                'Laminas_Paginator only accepts instances of the type '
                 . 'Laminas\Paginator\Adapter\AdapterInterface'
                 . ' or Laminas\Paginator\AdapterAggregateInterface.'
             );

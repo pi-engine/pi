@@ -10,9 +10,9 @@
 
 namespace Pi\Validator;
 
-use Laminas\Validator\Date as ZendDate;
+use Laminas\Validator\Date as LaminasDate;
 
-class Date extends ZendDate
+class Date extends LaminasDate
 {
     /**
      * {@inheritDoc}

@@ -10,7 +10,7 @@
 namespace Pi\Command\Mvc\Service;
 
 use Pi\Command\Mvc\Application;
-use Laminas\Mvc\Service\ApplicationFactory as ZendApplicationFactory;
+use Laminas\Mvc\Service\ApplicationFactory as LaminasApplicationFactory;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
@@ -18,7 +18,7 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
  *
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class ApplicationFactory extends ZendApplicationFactory
+class ApplicationFactory extends LaminasApplicationFactory
 {
     /**
      * {@inheritDoc}

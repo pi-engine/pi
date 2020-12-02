@@ -625,7 +625,7 @@ msgstr ""
 
 #: config/config.php:630 config/config.php:639
 msgid ""
-"Use it if user not set country, is user set country system use Zend validator"
+"Use it if user not set country, is user set country system use Laminas validator"
 msgstr ""
 
 #: config/config.php:638

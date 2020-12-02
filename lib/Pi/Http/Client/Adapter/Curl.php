@@ -9,7 +9,7 @@
 
 namespace Pi\Http\Client\Adapter;
 
-use Laminas\Http\Client\Adapter\Curl as ZendCurl;
+use Laminas\Http\Client\Adapter\Curl as LaminasCurl;
 use Laminas\Http\Client\Adapter\Exception as AdapterException;
 
 /**
@@ -17,7 +17,7 @@ use Laminas\Http\Client\Adapter\Exception as AdapterException;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Curl extends ZendCurl
+class Curl extends LaminasCurl
 {
     /**
      * {@inheritDoc}

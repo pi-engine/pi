@@ -11,7 +11,7 @@
 namespace Pi\View\Helper;
 
 use stdClass;
-use Laminas\View\Helper\HeadMeta as ZendHeadMeta;
+use Laminas\View\Helper\HeadMeta as LaminasHeadMeta;
 use Laminas\View\Helper\Placeholder;
 
 /**
@@ -21,7 +21,7 @@ use Laminas\View\Helper\Placeholder;
  * @see \Laminas\View\Helper\HeadMeta for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class HeadMeta extends ZendHeadMeta
+class HeadMeta extends LaminasHeadMeta
 {
     /**
      * if true, disable escaping

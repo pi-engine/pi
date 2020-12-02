@@ -492,7 +492,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
 
     /**
      * Inject a template into the ViewModel if none present,
-     * to skip Zend native InjectTemplateListener
+     * to skip Laminas native InjectTemplateListener
      *
      * Template is derived from the controller found in the route match, and,
      * optionally, the action, if present.

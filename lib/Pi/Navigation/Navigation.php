@@ -11,7 +11,7 @@ namespace Pi\Navigation;
 
 use Traversable;
 use Laminas\Navigation\Exception;
-use Laminas\Navigation\Navigation as ZendNavigation;
+use Laminas\Navigation\Navigation as LaminasNavigation;
 
 /**
  * Navigation class
@@ -19,7 +19,7 @@ use Laminas\Navigation\Navigation as ZendNavigation;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Navigation extends ZendNavigation
+class Navigation extends LaminasNavigation
 {
     /**
      * Add a page

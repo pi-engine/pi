@@ -10,7 +10,7 @@
 
 namespace Pi\Form\Element;
 
-use Laminas\Form\Element\Csrf as ZendCsrf;
+use Laminas\Form\Element\Csrf as LaminasCsrf;
 use Laminas\Form\FormInterface;
 
 /**
@@ -19,7 +19,7 @@ use Laminas\Form\FormInterface;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Csrf extends ZendCsrf
+class Csrf extends LaminasCsrf
 {
     /**
      * Prepare the form element

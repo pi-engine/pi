@@ -12,7 +12,7 @@ namespace Pi\View\Helper;
 
 use Pi;
 use stdClass;
-use Laminas\View\Helper\HeadLink as ZendHeadLink;
+use Laminas\View\Helper\HeadLink as LaminasHeadLink;
 use Laminas\View\Helper\Placeholder;
 
 /**
@@ -21,7 +21,7 @@ use Laminas\View\Helper\Placeholder;
  * @see \Laminas\View\Helper\HeadLink for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class HeadLink extends ZendHeadLink
+class HeadLink extends LaminasHeadLink
 {
     /**
      * Allowed attributes

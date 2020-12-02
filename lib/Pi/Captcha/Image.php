@@ -10,7 +10,7 @@
 namespace Pi\Captcha;
 
 use Laminas\Captcha\Exception;
-use Laminas\Captcha\Image as ZendImage;
+use Laminas\Captcha\Image as LaminasImage;
 use Laminas\Stdlib\ErrorException;
 use Laminas\Stdlib\ErrorHandler;
 
@@ -19,7 +19,7 @@ use Laminas\Stdlib\ErrorHandler;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Image extends ZendImage
+class Image extends LaminasImage
 {
     /**
      * {@inheritDoc}

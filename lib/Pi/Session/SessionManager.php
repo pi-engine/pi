@@ -11,7 +11,7 @@ namespace Pi\Session;
 
 use Pi\Session\SaveHandler\UserAwarenessInterface;
 use Laminas\Session\Container;
-use Laminas\Session\SessionManager as ZendSessionManager;
+use Laminas\Session\SessionManager as LaminasSessionManager;
 
 /**
  * Session manager
@@ -19,7 +19,7 @@ use Laminas\Session\SessionManager as ZendSessionManager;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class SessionManager extends ZendSessionManager implements
+class SessionManager extends LaminasSessionManager implements
     UserAwarenessInterface
 {
     /**

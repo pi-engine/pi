@@ -41,7 +41,7 @@ Folder and file skeleton
         // Website link, optional
         'website'   => 'http://www.piengine.org',
         // Credits and acknowledgement, optional
-        'credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
+        'credits'   => 'Pi Engine Team; Laminas Framework Team; EEFOCUS Team.'
     ),
 
     // Maintenance resources

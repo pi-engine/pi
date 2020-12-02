@@ -11,8 +11,8 @@ namespace Pi\Navigation\Page;
 
 use Laminas\Http\Request;
 use Laminas\Navigation\Exception;
-use Laminas\Navigation\Page as ZendPage;
-use Laminas\Navigation\Page\Uri as ZendUriPage;
+use Laminas\Navigation\Page as LaminasPage;
+use Laminas\Navigation\Page\Uri as LaminasUriPage;
 
 /**
  * URI page
@@ -20,7 +20,7 @@ use Laminas\Navigation\Page\Uri as ZendUriPage;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Uri extends ZendUriPage
+class Uri extends LaminasUriPage
 {
     /**#@+
      * Re-initialize
@@ -46,7 +46,7 @@ class Uri extends ZendUriPage
             );
         }
 
-        if (!$page instanceof ZendPage\AbstractPage) {
+        if (!$page instanceof LaminasPage\AbstractPage) {
             if (!is_array($page) && !$page instanceof Traversable) {
                 throw new Exception\InvalidArgumentException(
                     'Invalid argument: $page must be an instance of '

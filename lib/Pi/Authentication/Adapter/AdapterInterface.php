@@ -9,14 +9,14 @@
 
 namespace Pi\Authentication\Adapter;
 
-use Laminas\Authentication\Adapter\ValidatableAdapterInterface as ZendAdapterInterface;
+use Laminas\Authentication\Adapter\ValidatableAdapterInterface as LaminasAdapterInterface;
 
 /**
  * Pi authentication adapter interface
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-interface AdapterInterface extends ZendAdapterInterface
+interface AdapterInterface extends LaminasAdapterInterface
 {
     /**
      * Set options

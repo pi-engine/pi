@@ -178,7 +178,7 @@ class ViewHelperManager extends HelperPluginManager
             if (isset($this->invokableList[$cname])) {
                 $invokableClass = 'Pi\\' . $this->invokableList[$cname];
                 if (!class_exists($invokableClass)) {
-                    $invokableClass = 'Zend\\' . $this->invokableList[$cname];
+                    $invokableClass = 'Laminas\\' . $this->invokableList[$cname];
                 }
                 $name = $invokableClass;
                 // Lookup in helper locations
@@ -192,7 +192,7 @@ class ViewHelperManager extends HelperPluginManager
                         $name = $invokableClass;
                         break;
                     } else {
-                        $invokableClass = 'Zend\\' . $location . '\\' . $class;
+                        $invokableClass = 'Laminas\\' . $location . '\\' . $class;
                         if (class_exists($invokableClass)) {
                             $name = $invokableClass;
                             break;

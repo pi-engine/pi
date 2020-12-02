@@ -109,7 +109,7 @@ class FilterPluginManager extends LaminasFilterPluginManager
             if (isset($this->invokableList[$cname])) {
                 $invokableClass = 'Pi\\' . $this->invokableList[$cname];
                 if (!class_exists($invokableClass)) {
-                    $invokableClass = 'Zend\\' . $this->invokableList[$cname];
+                    $invokableClass = 'Laminas\\' . $this->invokableList[$cname];
                 }
                 $name = $invokableClass;
                 // Lookup in helper locations

@@ -13,7 +13,7 @@ namespace Pi\View\Helper;
 use Pi;
 use Pi\Mvc\Router\RouteMatch;
 use Laminas\Mvc\Router\RouteStackInterface;
-use Laminas\View\Helper\Url as ZendUrl;
+use Laminas\View\Helper\Url as LaminasUrl;
 
 /**
  * Helper for assembling URL with routes and parameters
@@ -38,7 +38,7 @@ use Laminas\View\Helper\Url as ZendUrl;
  * ```
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Url extends ZendUrl
+class Url extends LaminasUrl
 {
     /** @var RouteStackInterface Router for URL assemble */
     protected $router;

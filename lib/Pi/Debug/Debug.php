@@ -254,7 +254,7 @@ namespace Pi\Debug {
          * cleans up newlines and indents, and runs
          * htmlspecialchars() before output.
          *
-         * @see Zend\Debug::dump()
+         * @see Laminas\Debug::dump()
          * @param mixed $var The variable to dump.
          * @param bool $display OPTIONAL echo output if true.
          * @param int $skip steps to skip

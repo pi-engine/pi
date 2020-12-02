@@ -9,7 +9,7 @@
 
 namespace Pi\I18n\Translator;
 
-use Laminas\I18n\Translator\LoaderPluginManager as ZendLoaderPluginManager;
+use Laminas\I18n\Translator\LoaderPluginManager as LaminasLoaderPluginManager;
 
 /**
  * Plugin manager implementation for translation loaders.
@@ -22,7 +22,7 @@ use Laminas\I18n\Translator\LoaderPluginManager as ZendLoaderPluginManager;
  * @see Laminas\I18n\Translator\LoaderPluginManager
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class LoaderPluginManager extends ZendLoaderPluginManager
+class LoaderPluginManager extends LaminasLoaderPluginManager
 {
     /**
      * Default set of loaders
@@ -68,7 +68,7 @@ class LoaderPluginManager extends ZendLoaderPluginManager
             if (isset($this->invokableList[$cname])) {
                 $invokableClass = 'Pi\\' . $this->invokableList[$cname];
                 if (!class_exists($invokableClass)) {
-                    $invokableClass = 'Zend\\' . $this->invokableList[$cname];
+                    $invokableClass = 'Laminas\\' . $this->invokableList[$cname];
                 }
                 $name = $invokableClass;
                 // Lookup in helper locations

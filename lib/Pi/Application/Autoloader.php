@@ -21,7 +21,7 @@ use Pi;
  * 1. class map
  * 2. PSR standard
  *    1. module namespace: `class_alias` is used for cloned module classes
- *    2. Pi and Zend namespace
+ *    2. Pi and Laminas namespace
  *    3. registered namespace
  *    4. vendor namespace
  * 3. fallback
@@ -57,7 +57,7 @@ class Autoloader
     const NS_SEPARATOR = '\\';
 
     /**
-     * Top namespace/directory pairs to match; Pi, Zend added by default
+     * Top namespace/directory pairs to match; Pi, Laminas added by default
      * @var array
      */
     protected $tops = [];
@@ -255,8 +255,8 @@ class Autoloader
      *
      * Autoloading order:
      *
-     *  1. Top namespaces: Pi, Zend, ...
-     *  2. Zend namespace
+     *  1. Top namespaces: Pi, Laminas, ...
+     *  2. Laminas namespace
      *  3. registered namespace with specified path
      *  4. vendor namespaces located in include paths
      *
@@ -484,7 +484,7 @@ class Autoloader
      * {@link getRegisteredAutoloaders()}.
      *
      * Note that the class names must be resolvable on the include_path or via
-     * the Zend library, using PSR-0 rules (unless the class has already been
+     * the Laminas library, using PSR-0 rules (unless the class has already been
      * loaded).
      *
      * @param  array|Traversable $options options to use

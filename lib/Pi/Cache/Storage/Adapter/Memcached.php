@@ -10,14 +10,14 @@
 namespace Pi\Cache\Storage\Adapter;
 
 use Laminas\Cache\Storage\Adapter\Exception;
-use Laminas\Cache\Storage\Adapter\Memcached as ZendMemcached;
+use Laminas\Cache\Storage\Adapter\Memcached as LaminasMemcached;
 
 /**
  * Memcached cache adapter
  *
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class Memcached extends ZendMemcached
+class Memcached extends LaminasMemcached
 {
     /**
      * Remove items by given namespace.

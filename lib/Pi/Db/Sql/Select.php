@@ -9,14 +9,14 @@
 
 namespace Pi\Db\Sql;
 
-use Laminas\Db\Sql\Select as ZendSelect;
+use Laminas\Db\Sql\Select as LaminasSelect;
 
 /**
  * Select class
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Select extends ZendSelect
+class Select extends LaminasSelect
 {
     /**
      * {@inheritdoc}
