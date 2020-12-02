@@ -9,14 +9,14 @@
 
 namespace Pi\Authentication\Adapter;
 
-use Laminas\Authentication\Adapter\AbstractAdapter as ZendAbstractAdapter;
+use Laminas\Authentication\Adapter\AbstractAdapter as LaminasAbstractAdapter;
 
 /**
  * Db authentication abstract adapter
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractAdapter extends ZendAbstractAdapter implements
+abstract class AbstractAdapter extends LaminasAbstractAdapter implements
     AdapterInterface
 {
     /** @var array Options */

@@ -647,7 +647,7 @@ msgstr "طول شماره موبایل"
 
 #: config/config.php:630 config/config.php:639
 msgid ""
-"Use it if user not set country, is user set country system use Zend validator"
+"Use it if user not set country, is user set country system use Laminas validator"
 msgstr ""
 "اگر کشور تنظیم نشده بود و شماره موبایل به صورت کشوری وارد نمی شد، از این "
 "گزینه استفاده می شود، در غیر این صورت از ولیدیتور زند استفاده می شود"

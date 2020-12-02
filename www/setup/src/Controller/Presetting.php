@@ -384,9 +384,9 @@ SCRIPT;
         $status  = 1;
         $value   = PHP_VERSION;
         $message = '';
-        if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50400) {
+        if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 70300) {
             $status  = -1;
-            $message = _s('Version 5.4.0 or higher is required.');
+            $message = _s('PHP 7.3+ is required by Pi Engine.');
         }
 
         $result = [

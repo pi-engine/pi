@@ -10,7 +10,7 @@
 namespace Pi\Mvc\Router;
 
 use Closure;
-use Laminas\Mvc\Router\PriorityList as ZendPriorityList;
+use Laminas\Mvc\Router\PriorityList as LaminasPriorityList;
 use Laminas\Mvc\Router\RouteInterface;
 
 /**
@@ -18,7 +18,7 @@ use Laminas\Mvc\Router\RouteInterface;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class PriorityList extends ZendPriorityList
+class PriorityList extends LaminasPriorityList
 {
     /**
      * Internal list of all extra routes.

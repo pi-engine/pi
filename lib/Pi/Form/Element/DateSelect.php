@@ -12,7 +12,7 @@ namespace Pi\Form\Element;
 
 //use Pi;
 use Pi\Validator\Date as DateValidator;
-use Laminas\Form\Element\DateSelect as ZendDateSelect;
+use Laminas\Form\Element\DateSelect as LaminasDateSelect;
 
 /**
  * Date select element
@@ -21,9 +21,9 @@ use Laminas\Form\Element\DateSelect as ZendDateSelect;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  *
- * ToDo : fix for zend version 2.4.9
+ * ToDo : fix for Laminas version 2.4.9
  */
-class DateSelect extends ZendDateSelect
+class DateSelect extends LaminasDateSelect
 {
     /**
      * {@inheritDoc}

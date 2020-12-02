@@ -12,7 +12,7 @@ namespace Pi\I18n\Translator;
 use Pi;
 use Laminas\I18n\Translator\Loader\FileLoaderInterface;
 use Laminas\I18n\Translator\TextDomain;
-use Laminas\I18n\Translator\Translator as ZendTranslator;
+use Laminas\I18n\Translator\Translator as LaminasTranslator;
 use Laminas\Validator\Translator\TranslatorInterface as ValidatorInterface;
 
 
@@ -22,7 +22,7 @@ use Laminas\Validator\Translator\TranslatorInterface as ValidatorInterface;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Translator extends ZendTranslator implements ValidatorInterface
+class Translator extends LaminasTranslator implements ValidatorInterface
 {
     /** @var string Default locale */
     const DEFAULT_LOCALE = 'en';

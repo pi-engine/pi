@@ -10,14 +10,14 @@
 namespace Pi\Cache\Storage\Adapter;
 
 use Laminas\Cache\Storage\Adapter\Exception;
-use Laminas\Cache\Storage\Adapter\Redis as ZendRedis;
+use Laminas\Cache\Storage\Adapter\Redis as LaminasRedis;
 
 /**
  * Redis cache adapter
  *
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class Redis extends ZendRedis
+class Redis extends LaminasRedis
 {
     /**
      * Remove items by given namespace.

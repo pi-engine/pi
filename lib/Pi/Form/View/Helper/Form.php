@@ -21,7 +21,7 @@ use Laminas\Form\View\Helper\Form as FormHelper;
  * - single: Single column or full width
  * - multiple: Multiple columns
  * - popup: For popup windows
- * - others: Zend raw style
+ * - others: Laminas raw style
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -98,7 +98,7 @@ class Form extends FormHelper
                 break;
         }
 
-        // Render Zend Form directly if style is not desired
+        // Render Laminas Form directly if style is not desired
         if (!$style) {
             return parent::render($form);
         }

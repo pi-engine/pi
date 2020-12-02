@@ -2041,11 +2041,11 @@ msgstr "با قدرت"
 msgid ""
 "Pi Engine is a role oriented application development engine for web and mobile, designed "
 "as the next generation and a successor to Xoops. Pi is developed upon PHP and MySQL with "
-"selected third-party frameworks including but not limited to Zend Framework library, "
+"selected third-party frameworks including but not limited to Laminas Framework library, "
 "jQuery, Bootstrap and Backbone."
 msgstr ""
 "پای انجین یک موتور نقش محور برای توسعه‌ی برنامه‌های وب و موبایل است که نسل بعدی Xoops است.  "
-"پای بر اساس PHP و Mysql طراحی شده و با استفاده از فریم‌ورک‌های Third party از جمله Zend,"
+"پای بر اساس PHP و Mysql طراحی شده و با استفاده از فریم‌ورک‌های Third party از جمله Laminas,"
 "Jquery,Bootstrap و Backbone،  ,ولی محدود به آن‌ها نمی‌شود "
 
 #: template/admin/dashboard-system.phtml:31

@@ -14,7 +14,7 @@ use Laminas\Mvc\ModuleRouteListener;
 use Laminas\Mvc\Router\RouteMatch;
 use Laminas\Mvc\Router\RouteStackInterface;
 use Laminas\Navigation\Exception;
-use Laminas\Navigation\Page as ZendPage;
+use Laminas\Navigation\Page as LaminasPage;
 use Laminas\Navigation\Page\Mvc as LaminasMvcPage;
 
 /**
@@ -89,7 +89,7 @@ class Mvc extends LaminasMvcPage
             );
         }
 
-        if (!$page instanceof ZendPage\AbstractPage) {
+        if (!$page instanceof LaminasPage\AbstractPage) {
             if (!is_array($page) && !$page instanceof Traversable) {
                 throw new Exception\InvalidArgumentException(
                     'Invalid argument: $page must be an instance of '

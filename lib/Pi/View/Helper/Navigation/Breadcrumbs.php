@@ -11,7 +11,7 @@
 namespace Pi\View\Helper\Navigation;
 
 use Pi;
-use Laminas\View\Helper\Navigation\Breadcrumbs as ZendBreadcrumbs;
+use Laminas\View\Helper\Navigation\Breadcrumbs as LaminasBreadcrumbs;
 
 /**
  * Navigation breadcrumbs helper
@@ -19,7 +19,7 @@ use Laminas\View\Helper\Navigation\Breadcrumbs as ZendBreadcrumbs;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Breadcrumbs extends ZendBreadcrumbs
+class Breadcrumbs extends LaminasBreadcrumbs
 {
     /**
      * Whether invisible items should be rendered by this helper

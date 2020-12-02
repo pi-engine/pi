@@ -10,7 +10,7 @@
 namespace Module\System\Controller\Admin;
 
 use Pi\Mvc\Controller\ActionController;
-use Zend\Rest\Client\RestClient;
+use Laminas\Rest\Client\RestClient;
 
 /**
  * Check module/theme updates against repos

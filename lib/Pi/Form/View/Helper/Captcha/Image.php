@@ -13,7 +13,7 @@ namespace Pi\Form\View\Helper\Captcha;
 use Laminas\Captcha\Image as CaptchaAdapter;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
-use Laminas\Form\View\Helper\Captcha\Image as ZendHelperCaptchaImage;
+use Laminas\Form\View\Helper\Captcha\Image as LaminasHelperCaptchaImage;
 
 /**
  * CAPTCHA image helper
@@ -21,7 +21,7 @@ use Laminas\Form\View\Helper\Captcha\Image as ZendHelperCaptchaImage;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Image extends ZendHelperCaptchaImage
+class Image extends LaminasHelperCaptchaImage
 {
     /**
      * {@inheritDoc}

@@ -10,14 +10,14 @@
 namespace Pi\Mvc\Controller\Plugin;
 
 use Pi;
-use Laminas\Mvc\Controller\Plugin\Url as ZendUrl;
+use Laminas\Mvc\Controller\Plugin\Url as LaminasUrl;
 
 /**
  * URL plugin for controller
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Url extends ZendUrl
+class Url extends LaminasUrl
 {
     /**
      * Generates a URL based on a route

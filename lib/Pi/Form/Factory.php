@@ -11,7 +11,7 @@
 namespace Pi\Form;
 
 use Pi\Filter\FilterChain;
-use Laminas\Form\Factory as ZendFactory;
+use Laminas\Form\Factory as LaminasFactory;
 use Laminas\InputFilter\Factory as InputFilterFactory;
 
 /**
@@ -20,7 +20,7 @@ use Laminas\InputFilter\Factory as InputFilterFactory;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Factory extends ZendFactory
+class Factory extends LaminasFactory
 {
     /**
      * Get InputFilter factory

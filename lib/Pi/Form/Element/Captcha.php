@@ -12,7 +12,7 @@ namespace Pi\Form\Element;
 
 use Pi;
 use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
-use Laminas\Form\Element\Captcha as ZendCaptcha;
+use Laminas\Form\Element\Captcha as LaminasCaptcha;
 
 /**
  * CAPTCHA element
@@ -20,7 +20,7 @@ use Laminas\Form\Element\Captcha as ZendCaptcha;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Captcha extends ZendCaptcha
+class Captcha extends LaminasCaptcha
 {
     /**
      * Retrieve captcha and instantiate it if not available

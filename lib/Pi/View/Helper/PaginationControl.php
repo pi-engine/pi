@@ -13,7 +13,7 @@ namespace Pi\View\Helper;
 use pi;
 use Laminas\Paginator\Paginator;
 use Laminas\View\Exception;
-use Laminas\View\Helper\PaginationControl as ZendPaginationControl;
+use Laminas\View\Helper\PaginationControl as LaminasPaginationControl;
 
 /**
  * Pagination creation helper
@@ -21,7 +21,7 @@ use Laminas\View\Helper\PaginationControl as ZendPaginationControl;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class PaginationControl extends ZendPaginationControl
+class PaginationControl extends LaminasPaginationControl
 {
     /**
      * Default Scrolling Style

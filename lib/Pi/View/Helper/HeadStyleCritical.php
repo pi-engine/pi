@@ -11,7 +11,7 @@
 namespace Pi\View\Helper;
 
 use Pi;
-use Laminas\View\Helper\HeadStyle as ZendHeadStyle;
+use Laminas\View\Helper\HeadStyle as LaminasHeadStyle;
 use stdClass;
 use Laminas\View;
 
@@ -42,7 +42,7 @@ use Laminas\View;
  * @see \Laminas\View\Helper\HeadStyle for details.
  * @author Frédéric TISSOT
  */
-class HeadStyleCritical extends ZendHeadStyle
+class HeadStyleCritical extends LaminasHeadStyle
 {
     /**#@+
      * Added by Taiwen Jiang

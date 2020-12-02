@@ -11,7 +11,7 @@ namespace Pi\Db\Sql;
 
 use Laminas\Db\Sql\Exception;
 use Laminas\Db\Sql\Predicate;
-use Laminas\Db\Sql\Where as ZendWhere;
+use Laminas\Db\Sql\Where as LaminasWhere;
 
 /**
  * Clause class
@@ -21,7 +21,7 @@ use Laminas\Db\Sql\Where as ZendWhere;
  * @see Laminas\Db\Sql\Where
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Where extends ZendWhere
+class Where extends LaminasWhere
 {
     /**
      * {@inheritdoc}

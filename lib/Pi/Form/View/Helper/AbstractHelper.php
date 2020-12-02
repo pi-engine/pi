@@ -11,14 +11,14 @@
 namespace Pi\Form\View\Helper;
 
 use Laminas\Form\ElementInterface;
-use Laminas\Form\View\Helper\AbstractHelper as ZendAbstractHelper;
+use Laminas\Form\View\Helper\AbstractHelper as LaminasAbstractHelper;
 
 /**
  * Basic class for helpers
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractHelper extends ZendAbstractHelper
+abstract class AbstractHelper extends LaminasAbstractHelper
 {
     /**
      * Invoke helper as functor

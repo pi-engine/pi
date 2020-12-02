@@ -34,7 +34,7 @@ class ModuleName extends AbstractValidator
             // Reserved module name which could be
             // potentially conflicted with system
             'blacklist' => [
-                'pi', 'zend', 'module', 'service', 'theme',
+                'pi', 'Laminas', 'module', 'service', 'theme',
                 'application', 'event', 'registry', 'config',
             ],
         ];

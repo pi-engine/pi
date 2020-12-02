@@ -11,7 +11,7 @@ namespace Pi\Navigation\Page;
 
 use Traversable;
 use Laminas\Navigation\Exception;
-use Laminas\Navigation\Page\AbstractPage as ZendAbstractPage;
+use Laminas\Navigation\Page\AbstractPage as LaminasAbstractPage;
 use Laminas\Stdlib\ArrayUtils;
 
 /**
@@ -20,7 +20,7 @@ use Laminas\Stdlib\ArrayUtils;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractPage extends ZendAbstractPage
+abstract class AbstractPage extends LaminasAbstractPage
 {
     /**
      * {@inheritDoc}

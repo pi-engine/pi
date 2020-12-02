@@ -2038,7 +2038,7 @@ msgid ""
 "Pi Engine is a role oriented application development engine for web and "
 "mobile, designed as the next generation and a successor to Xoops. Pi is "
 "developed upon PHP and MySQL with selected third-party frameworks including "
-"but not limited to Zend Framework library, jQuery, Bootstrap and Backbone."
+"but not limited to Laminas Framework library, jQuery, Bootstrap and Backbone."
 msgstr ""
 
 #: template/admin/dashboard-system.phtml:31

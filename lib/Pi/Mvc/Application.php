@@ -11,7 +11,7 @@ namespace Pi\Mvc;
 
 use Pi;
 use Pi\Application\Engine\AbstractEngine;
-use Laminas\Mvc\Application as ZendApplication;
+use Laminas\Mvc\Application as LaminasApplication;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Mvc\Service;
 use Laminas\ServiceManager\ServiceManager;
@@ -22,7 +22,7 @@ use Laminas\ServiceManager\ServiceManager;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Application extends ZendApplication
+class Application extends LaminasApplication
 {
     /**
      * Section: front, admin, feed, api

@@ -25,7 +25,7 @@
         "vendor-dir": "lib/vendor"
     },
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.3.0",
         "ext-ctype": "*",
         "ext-fileinfo": "*",
         "ext-gd": "*",
@@ -94,7 +94,6 @@
         "emcconville/google-map-polyline-encoding-tool": "*",
         "matthiasmullie/minify": "*",
         "phpseclib/phpseclib": "*",
-        "raiym/instagram-php-scraper": "*",
         "spipu/html2pdf": "*",
         "tecnickcom/tcpdf": "*",
         "stripe/stripe-php": "*"

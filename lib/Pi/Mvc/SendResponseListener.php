@@ -11,7 +11,7 @@ namespace Pi\Mvc;
 
 use Pi\Mvc\ResponseSender\PhpEnvironmentResponseSender;
 use TinyHtmlMinifier\TinyHtmlMinifier;
-use Laminas\Mvc\SendResponseListener as ZendSendResponseListener;
+use Laminas\Mvc\SendResponseListener as LaminasSendResponseListener;
 use Laminas\Mvc\ResponseSender\ConsoleResponseSender;
 use Laminas\Mvc\ResponseSender\SendResponseEvent;
 use Laminas\Mvc\ResponseSender\SimpleStreamResponseSender;
@@ -21,7 +21,7 @@ use Laminas\Stdlib\ResponseInterface as Response;
 use Laminas\Http\PhpEnvironment\Response as PhpEnvironmentResponse;
 use Laminas\Mvc\MvcEvent;
 
-class SendResponseListener extends ZendSendResponseListener
+class SendResponseListener extends LaminasSendResponseListener
 {
     /**
      * {@inheritDoc}

@@ -16,7 +16,7 @@ use Pi\Db\Sql\Sql;
 use Pi\Db\Sql\Where;
 use Laminas\Db\Metadata\Metadata;
 use Laminas\Db\ResultSet\ResultSet;
-use Laminas\Db\TableGateway\AbstractTableGateway as ZendAbstractTableGateway;
+use Laminas\Db\TableGateway\AbstractTableGateway as LaminasAbstractTableGateway;
 use Laminas\Db\TableGateway\Feature;
 
 //use Laminas\Db\RowGateway\AbstractRowGateway;
@@ -27,7 +27,7 @@ use Laminas\Db\TableGateway\Feature;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractTableGateway extends ZendAbstractTableGateway
+abstract class AbstractTableGateway extends LaminasAbstractTableGateway
 {
     /**
      * Class for select result prototype

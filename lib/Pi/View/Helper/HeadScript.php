@@ -11,7 +11,7 @@
 namespace Pi\View\Helper;
 
 use Pi;
-use Laminas\View\Helper\HeadScript as ZendHeadScript;
+use Laminas\View\Helper\HeadScript as LaminasHeadScript;
 
 /**
  * Helper for setting and retrieving script elements for HTML head section
@@ -45,7 +45,7 @@ use Laminas\View\Helper\HeadScript as ZendHeadScript;
  * @see \Laminas\View\Helper\HeadScript for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class HeadScript extends ZendHeadScript
+class HeadScript extends LaminasHeadScript
 {
 
     protected $optionalAttributes = array(

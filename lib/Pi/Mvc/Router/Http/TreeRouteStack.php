@@ -13,7 +13,7 @@ use Pi;
 use Pi\Mvc\Router\PriorityList;
 use Pi\Mvc\Router\RoutePluginManager;
 use Laminas\Mvc\Router\Http\RouteMatch;
-use Laminas\Mvc\Router\Http\TreeRouteStack as ZendTreeRouteStack;
+use Laminas\Mvc\Router\Http\TreeRouteStack as LaminasTreeRouteStack;
 use Laminas\Stdlib\RequestInterface as Request;
 
 /**
@@ -26,7 +26,7 @@ use Laminas\Stdlib\RequestInterface as Request;
  * @see     Pi\Application\Registry\Route
  * @author  Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class TreeRouteStack extends ZendTreeRouteStack
+class TreeRouteStack extends LaminasTreeRouteStack
 {
     /**
      * Create a new simple route stack.

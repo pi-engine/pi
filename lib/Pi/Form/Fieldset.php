@@ -10,7 +10,7 @@
 
 namespace Pi\Form;
 
-use Laminas\Form\Fieldset as ZendFieldset;
+use Laminas\Form\Fieldset as LaminasFieldset;
 
 /**
  * Form Field
@@ -18,9 +18,9 @@ use Laminas\Form\Fieldset as ZendFieldset;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  *
- * ToDo : fix for zend version 2.4.9
+ * ToDo : fix for Laminas version 2.4.9
  */
-class Fieldset extends ZendFieldset
+class Fieldset extends LaminasFieldset
 {
     /**
      * {@inheritdoc}

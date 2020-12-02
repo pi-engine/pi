@@ -67,8 +67,16 @@ class EditController extends ActionController
                     unset($values['credential']);
                 }
                 unset($values['id']);
+
+                // Check if email is empty
+                if (isset($values['email']) && empty($values['email'])) {
+                    $values['email'] = null;
+                }
+
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
-                if (Pi::service('module')->isActive('subscription')) {
+
+                // Subscription
+                if (Pi::service('module')->isActive('subscription') && isset($values['email']) && !empty($values['email'])) {
                     Pi::api('people', 'subscription')->update(
                         ['email'  => $values['email'], 'first_name' => $values['first_name'], 'last_name' => $values['last_name'],
                          'mobile' => $values['mobile']], $uid

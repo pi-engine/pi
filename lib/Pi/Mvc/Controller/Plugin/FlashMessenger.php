@@ -9,14 +9,14 @@
 
 namespace Pi\Mvc\Controller\Plugin;
 
-use Laminas\Mvc\Controller\Plugin\FlashMessenger as ZendFlashMessenger;
+use Laminas\Mvc\Controller\Plugin\FlashMessenger as LaminasFlashMessenger;
 
 /**
  * Flash Messenger - implement session-based messages
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class FlashMessenger extends ZendFlashMessenger
+class FlashMessenger extends LaminasFlashMessenger
 {
     /**
      * Add a message and return messenger

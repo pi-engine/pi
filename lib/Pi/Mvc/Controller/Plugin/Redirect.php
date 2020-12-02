@@ -10,14 +10,14 @@
 namespace Pi\Mvc\Controller\Plugin;
 
 use Laminas\Http\Response;
-use Laminas\Mvc\Controller\Plugin\Redirect as ZendRedirect;
+use Laminas\Mvc\Controller\Plugin\Redirect as LaminasRedirect;
 
 /**
  * Action redirect plugin for controller
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Redirect extends ZendRedirect
+class Redirect extends LaminasRedirect
 {
     /** @var int Response code */
     protected $responseCode;

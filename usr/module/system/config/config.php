@@ -425,7 +425,7 @@ $config['item'] = [
         'title'       => '`keywords`',
         'description' => _t('The keywords meta tag is a series of keywords that represents the content of your site. Separated keywords by a comma.'),
         'edit'        => 'textarea',
-        'value'       => 'Pi Engine,Web application,SaaS,Multi-tenant,PHP,Zend Framework',
+        'value'       => 'Pi Engine,Web application,SaaS,Multi-tenant,PHP,Laminas Framework',
         'category'    => 'head_meta',
     ],
 
@@ -433,7 +433,7 @@ $config['item'] = [
         'title'       => '`description`',
         'description' => _t('The description meta tag is a general description of what is contained in your web page'),
         'edit'        => 'textarea',
-        'value'       => 'Pi Engine is an open source project developed in PHP and MySQL upon frameworks including Zend Framework, jQuery, AngularJS, Bootstrap as well as icons by FontAwesome.',
+        'value'       => 'Pi Engine is an open source project developed in PHP and MySQL upon frameworks including Laminas Framework, jQuery, AngularJS, Bootstrap as well as icons by FontAwesome.',
         'category'    => 'head_meta',
     ],
 

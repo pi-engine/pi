@@ -9,14 +9,14 @@
 
 namespace Pi\Filter;
 
-use Laminas\Filter\DateTimeFormatter as ZendDateTimeFormatter;
+use Laminas\Filter\DateTimeFormatter as LaminasDateTimeFormatter;
 
 /**
  * Time display filter
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class DateTimeFormatter extends ZendDateTimeFormatter
+class DateTimeFormatter extends LaminasDateTimeFormatter
 {
     /**
      * {@inheritDoc}

@@ -12,7 +12,7 @@ namespace Pi\View\Helper\Navigation;
 
 use Pi;
 use Laminas\Navigation\AbstractContainer;
-use Laminas\View\Helper\Navigation\Sitemap as ZendSitemap;
+use Laminas\View\Helper\Navigation\Sitemap as LaminasSitemap;
 
 /**
  * Navigation sitemap helper
@@ -20,7 +20,7 @@ use Laminas\View\Helper\Navigation\Sitemap as ZendSitemap;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Sitemap extends ZendSitemap
+class Sitemap extends LaminasSitemap
 {
     /**
      * Cache container

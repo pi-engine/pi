@@ -11,14 +11,14 @@ namespace Pi\Cache\Storage\Adapter;
 
 use Exception as BaseException;
 use Laminas\Cache\Storage\Adapter\Exception;
-use Laminas\Cache\Storage\Adapter\Filesystem as ZendFilesystem;
+use Laminas\Cache\Storage\Adapter\Filesystem as LaminasFilesystem;
 
 /**
  * Filesystem cache adapter
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Filesystem extends ZendFilesystem
+class Filesystem extends LaminasFilesystem
 {
     /**
      * {@inheritdoc}

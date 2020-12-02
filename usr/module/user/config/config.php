@@ -627,7 +627,7 @@ $config = [
 
     'mobile_length' => [
         'title'       => _t('Mobile number length'),
-        'description' => _t('Use it if user not set country, is user set country system use Zend validator'),
+        'description' => _t('Use it if user not set country, is user set country system use Laminas validator'),
         'edit'        => 'text',
         'value'       => 11,
         'filter'      => 'int',
@@ -636,7 +636,7 @@ $config = [
 
     'mobile_prefix'             => [
         'title'       => _t('Mobile number prefix'),
-        'description' => _t('Use it if user not set country, is user set country system use Zend validator'),
+        'description' => _t('Use it if user not set country, is user set country system use Laminas validator'),
         'edit'        => 'text',
         'value'       => '09',
         'category'    => 'mobile',
