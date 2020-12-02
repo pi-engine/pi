@@ -94,7 +94,6 @@
         "emcconville/google-map-polyline-encoding-tool": "*",
         "matthiasmullie/minify": "*",
         "phpseclib/phpseclib": "*",
-        "raiym/instagram-php-scraper": "*",
         "spipu/html2pdf": "*",
         "tecnickcom/tcpdf": "*",
         "stripe/stripe-php": "*"
