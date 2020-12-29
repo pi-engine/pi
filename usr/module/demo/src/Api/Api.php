@@ -17,8 +17,12 @@ class Api extends AbstractApi
 
     public function test($args)
     {
-        $result = sprintf('Method provider %s - %s: %s',
-            $this->module, __METHOD__, json_encode($args));
+        $result = sprintf(
+            'Method provider %s - %s: %s',
+            $this->module,
+            __METHOD__,
+            json_encode($args)
+        );
 
         return $result;
     }

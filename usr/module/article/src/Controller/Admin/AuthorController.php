@@ -371,7 +371,7 @@ class AuthorController extends ActionController
                 $rowAuthor->photo = '';
                 $affectedRows     = $rowAuthor->save();
             }
-        } else if ($fakeId) {
+        } elseif ($fakeId) {
             $session = Media::getUploadSession($module, 'author');
 
             if (isset($session->$fakeId)) {

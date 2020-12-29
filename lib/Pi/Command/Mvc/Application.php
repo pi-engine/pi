@@ -65,13 +65,15 @@ class Application extends PiApplication
         // Set custom router
         $router = $serviceManager->get('ConsoleRouter');
         $router->addRoute(
-            'Standard', [
+            'Standard',
+            [
             'name'    => 'default',
             'type'    => 'Pi\Command\Mvc\Router\Http\Standard',
             'options' => [
                 'route' => 'default',
             ],
-        ], 0
+        ],
+            0
         );
 
         // Setup MVC Event

@@ -82,7 +82,7 @@ class Compound extends Standard
         // 2012/08/24
         if ($this->dateDelimiter) {
             list($y, $m, $d) = explode($this->dateDelimiter, $dateString);
-            // 20120824
+        // 20120824
         } else {
             $y = substr($dateString, 0, 4);
             $m = substr($dateString, 4, 2);
@@ -120,8 +120,10 @@ class Compound extends Standard
             'slug'     => $this->decode($slug),
         ];
 
-        return new RouteMatch(array_merge($this->defaults, $matches),
-            $pathLength);
+        return new RouteMatch(
+            array_merge($this->defaults, $matches),
+            $pathLength
+        );
     }
 
     /**

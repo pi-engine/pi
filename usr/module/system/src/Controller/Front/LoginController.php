@@ -83,7 +83,7 @@ class LoginController extends ActionController
             if (!empty($attempts)) {
                 if ($attempts >= $configs['login_attempts']) {
                     $wait    = Pi::service('session')->manager()->getSaveHandler()->getLifeTime() / 60;
-                    $message = sprintf(__( 'Login with the account is suspended, please wait for %d minutes to try again.'), $wait);
+                    $message = sprintf(__('Login with the account is suspended, please wait for %d minutes to try again.'), $wait);
                     $this->view()->setTemplate('login-suspended', '', 'front');
                 } else {
                     $remaining = $configs['login_attempts'] - $attempts;

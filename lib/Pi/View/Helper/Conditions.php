@@ -54,7 +54,6 @@ class Conditions extends AbstractHtmlElement
                 $timelineLogCollection = Pi::api('log', 'user')->getLogCollectionByUserId(Pi::user()->getId(), 'accept_conditions', null, $condition->version);
 
                 if (!$timelineLogCollection || $timelineLogCollection->count() == 0) {
-
                     $content
                         = <<<HTML
     <div id="cookie-bar" class="terms-conditions-bar fixed bottom" style="z-index:110000;"><p>{$barLabel} <a href="{$downloadUrl}" class="cb-policy" target="_blank">{$linkLabel}</a> <a href="{$acceptUrl}" class="cb-enable">{$agrementLabel}</a></p></div>

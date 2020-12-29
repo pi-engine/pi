@@ -62,14 +62,13 @@ class Where extends LaminasWhere
             if (is_string($predicate)) {
                 // String $predicate should be passed as an expression
                 $predicate    = (strpos(
-                        $predicate,
-                        Expression::PLACEHOLDER
-                    ) !== false)
+                    $predicate,
+                    Expression::PLACEHOLDER
+                ) !== false)
                     ? new Predicate\Expression($predicate)
                     : new Predicate\Literal($predicate);
                 $predicates[] = $predicate;
             } elseif (is_array($predicate)) {
-
                 foreach ($predicate as $pkey => $pvalue) {
                     // loop through predicates
 
@@ -78,7 +77,6 @@ class Where extends LaminasWhere
                         // the abstraction replacement character ?
                         // as an Expression predicate
                         $predicate = new Predicate\Expression($pkey, $pvalue);
-
                     } elseif (is_string($pkey)) {
                         // Otherwise, if still a string,
                         // do something intelligent with the PHP type provided

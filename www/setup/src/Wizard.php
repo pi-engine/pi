@@ -125,7 +125,7 @@ class Wizard
         $locale = $this->getPersist(static::PERSIST_LOCALE);
         if ($locale) {
             $this->locale = $locale;
-            // Detect via browser
+        // Detect via browser
         } elseif (!$this->locale) {
             $auto             = 'en';
             $acceptedLanguage = isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])
@@ -224,8 +224,9 @@ class Wizard
 
                     // Assemble icon URI
                     $icon = rtrim($baseUrl, '/') . '/' . substr(
-                            $icon, strlen($root) + 1
-                        );
+                        $icon,
+                        strlen($root) + 1
+                    );
                 }
 
                 return $icon;
@@ -372,9 +373,21 @@ class Wizard
         $baseUrl     = $this->getRequest()->getBaseUrl();
 
         $data = compact(
-            'status', 'locale', 'charset', 'title', 'desc',
-            'baseUrl', 'navPages', 'pageIndex', 'currentPage', 'previousUrl',
-            'nextUrl', 'pageHasForm', 'content', 'headContent', 'footContent'
+            'status',
+            'locale',
+            'charset',
+            'title',
+            'desc',
+            'baseUrl',
+            'navPages',
+            'pageIndex',
+            'currentPage',
+            'previousUrl',
+            'nextUrl',
+            'pageHasForm',
+            'content',
+            'headContent',
+            'footContent'
         );
 
         include $this->getRoot() . '/include/template.phtml';
@@ -412,7 +425,8 @@ class Wizard
         if (!$this->persist instanceof Persist) {
             if ($this->tmpDir) {
                 $this->persist = new Persist(
-                    'file', $this->getRoot() . '/' . $this->tmpDir
+                    'file',
+                    $this->getRoot() . '/' . $this->tmpDir
                 );
             } else {
                 $this->persist = new Persist;

@@ -136,5 +136,4 @@ class Timeline extends AbstractApi
         $row = Pi::model('timeline_log', 'user')->delete(['module' => $log['module'], 'data' => "{\"comment\":$id}"]);
         return true;
     }
-
 }

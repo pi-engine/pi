@@ -79,7 +79,6 @@ EOT;
         }
 
         if (version_compare($version, '1.2.0', '<')) {
-
             Pi::model('field', 'user')->update(
                 ['module' => 'user'],
                 ['module' => '']
@@ -114,7 +113,6 @@ EOT;
         }
 
         if (version_compare($version, '1.4.6', '<')) {
-
             $table  = Pi::db()->prefix('condition', 'user');
             $sql
                     = <<<'EOT'
@@ -136,7 +134,6 @@ EOT;
         }
 
         if (version_compare($version, '1.4.7', '<')) {
-
             $table  = Pi::db()->prefix('timeline_log', 'user');
             $sql
                     = <<<'EOT'

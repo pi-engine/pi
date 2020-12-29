@@ -34,7 +34,8 @@ class Select extends AbstractAvatar
             $avatar = Pi::user()->get($uid, 'avatar');
         }
         if ($avatar
-            && ($this->force
+            && (
+                $this->force
                 || 'select' == Pi::service('avatar')->getType($avatar)
             )
         ) {
@@ -53,7 +54,8 @@ class Select extends AbstractAvatar
         $avatars = Pi::user()->get($uids, 'avatar');
         foreach ($avatars as $uid => $avatar) {
             if ($avatar
-                && ($this->force
+                && (
+                    $this->force
                     || 'select' == Pi::service('avatar')->getType($avatar)
                 )
             ) {
@@ -88,7 +90,8 @@ class Select extends AbstractAvatar
         $size = $this->canonizeSize($size, false);
         if (is_callable($pattern)) {
             $path = call_user_func(
-                $pattern, [
+                $pattern,
+                [
                 'source' => $source,
                 'size'   => $size,
             ]

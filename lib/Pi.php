@@ -493,10 +493,10 @@ class Pi
         if ($db instanceof DbGateway) {
             static::$db = $db;
             $result     = $db;
-            // Create a DbGateway
+        // Create a DbGateway
         } elseif ($db && is_array($db)) {
             $result = static::service('database')->db($db);
-            // Load Pi DbGateway, create if not instantiated yet
+        // Load Pi DbGateway, create if not instantiated yet
         } elseif (!$db) {
             if (!isset(static::$db)) {
                 static::$db = static::service('database')->db();

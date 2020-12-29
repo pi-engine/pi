@@ -142,7 +142,13 @@ class Article extends Standard
             }
         }
         $matches = compact(
-            'controller', 'action', 'category', 'tag', 'id', 'slug', 'topic',
+            'controller',
+            'action',
+            'category',
+            'tag',
+            'id',
+            'slug',
+            'topic',
             'sort'
         );
 
@@ -218,7 +224,7 @@ class Article extends Standard
         } elseif (isset($mergedParams['list'])
             and 'all' == $mergedParams['list']
         ) {
-            if (isset ($mergedParams['topic'])) {
+            if (isset($mergedParams['topic'])) {
                 $url .= 'topic';
                 $url .= $this->structureDelimiter . 'list';
                 $url .= $this->keyValueDelimiter . $mergedParams['topic'];

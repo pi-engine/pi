@@ -612,7 +612,8 @@ class TopicController extends ActionController
         }
 
         $extensions = array_filter(
-            explode(',', $this->config('image_extension')));
+            explode(',', $this->config('image_extension'))
+        );
         foreach ($extensions as &$ext) {
             $ext = strtolower(trim($ext));
         }
@@ -710,7 +711,7 @@ class TopicController extends ActionController
                 $row->image   = '';
                 $affectedRows = $row->save();
             }
-        } else if ($fakeId) {
+        } elseif ($fakeId) {
             $session = Media::getUploadSession($module, 'topic');
 
             if (isset($session->$fakeId)) {

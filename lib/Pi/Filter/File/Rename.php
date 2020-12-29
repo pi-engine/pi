@@ -136,10 +136,10 @@ class Rename extends LaminasRename
                 '%microtime%' => microtime(),
             ];
             $file['target'] = str_replace(
-                    array_keys($terms),
-                    array_values($terms),
-                    $file['target']
-                ) . '.' . $extension;
+                array_keys($terms),
+                array_values($terms),
+                $file['target']
+            ) . '.' . $extension;
         }
     }
 

@@ -283,7 +283,6 @@ class RenderCache extends AbstractResource
         // Skip following dispatch events and render dispatch
         // and set cached content directly if content is cached
         if ($renderCache->isCached()) {
-
             if (isset($_GET['CLEAR'])) {
                 Pi::service('log')->info('Action cache cleared');
                 $renderCache->flushCache($namespace, $cacheKey);
@@ -354,7 +353,7 @@ class RenderCache extends AbstractResource
                 'template'  => $response->getTemplate(),
                 'options'   => $response->getOptions(),
             ];
-            //$content = Pi::service('view')->render($response);
+        //$content = Pi::service('view')->render($response);
         } elseif (is_scalar($response)) {
             $data['variables']['content'] = $response;
         } else {

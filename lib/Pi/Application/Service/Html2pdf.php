@@ -25,7 +25,9 @@ class Html2pdf extends AbstractService
 
         $moduleTemplate = new ModuleTemplate();
         $template       = $moduleTemplate->resolve(
-            $template, Pi::engine()->application()->getServiceManager()->get('view_manager')->getRenderer(), strstr($template, 'front')
+            $template,
+            Pi::engine()->application()->getServiceManager()->get('view_manager')->getRenderer(),
+            strstr($template, 'front')
         );
 
         // Get HTML

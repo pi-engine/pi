@@ -49,7 +49,7 @@ class AssetModule extends AbstractHelper
         $customAssets = Pi::registry('theme_module_asset')->read($module);
         if (!empty($customAssets[$file])) {
             $result = $customAssets[$file];
-            // Load original module asset
+        // Load original module asset
         } else {
             $result = Pi::service('asset')->getModuleAsset(
                 $file,

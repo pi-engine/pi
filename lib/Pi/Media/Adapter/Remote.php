@@ -40,9 +40,10 @@ class Remote extends AbstractAdapter
     {
         $query = [];
         array_walk(
-            $data, function ($value, $key) use (&$query) {
-            $query[] = $key . ':' . $value;
-        }
+            $data,
+            function ($value, $key) use (&$query) {
+                $query[] = $key . ':' . $value;
+            }
         );
         $params['query'] = implode(',', $query);
         $uri             = $this->getOption('api', 'add');
@@ -79,9 +80,10 @@ class Remote extends AbstractAdapter
     {
         $params = ['id' => $id];
         array_walk(
-            $data, function ($value, $key) use (&$query) {
-            $query[] = $key . ':' . $value;
-        }
+            $data,
+            function ($value, $key) use (&$query) {
+                $query[] = $key . ':' . $value;
+            }
         );
         $params['query'] = implode(',', $query);
         $uri             = $this->getOption('api', 'update');
@@ -141,9 +143,10 @@ class Remote extends AbstractAdapter
         }
         if ($attr && is_scalar($attr)) {
             array_walk(
-                $result, function (&$data) use ($attr) {
-                $data = $data[$attr];
-            }
+                $result,
+                function (&$data) use ($attr) {
+                    $data = $data[$attr];
+                }
             );
         }
 
@@ -205,9 +208,10 @@ class Remote extends AbstractAdapter
             ['id']
         );
         array_walk(
-            $result, function ($data, $key) use (&$result) {
-            $result[$key] = (int)$data['id'];
-        }
+            $result,
+            function ($data, $key) use (&$result) {
+                $result[$key] = (int)$data['id'];
+            }
         );
 
         return $result;
@@ -227,9 +231,10 @@ class Remote extends AbstractAdapter
         if ($condition) {
             $query = [];
             array_walk(
-                $condition, function ($value, $key) use (&$query) {
-                $query[] = $key . ':' . $value;
-            }
+                $condition,
+                function ($value, $key) use (&$query) {
+                    $query[] = $key . ':' . $value;
+                }
             );
             $params['query'] = implode(',', $query);
         }
@@ -260,9 +265,10 @@ class Remote extends AbstractAdapter
         if ($condition) {
             $query = [];
             array_walk(
-                $condition, function ($value, $key) use (&$query) {
-                $query[] = $key . ':' . $value;
-            }
+                $condition,
+                function ($value, $key) use (&$query) {
+                    $query[] = $key . ':' . $value;
+                }
             );
             $params['query'] = implode(',', $query);
         }

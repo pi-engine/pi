@@ -229,7 +229,7 @@ class Form extends AbstractApi
      * @param array $data
      * @return array
      */
-    protected function canonizeElement($data,$withPlaceholder = false)
+    protected function canonizeElement($data, $withPlaceholder = false)
     {
         $element         = $data['edit']['element'];
         $element['name'] = $data['name'];

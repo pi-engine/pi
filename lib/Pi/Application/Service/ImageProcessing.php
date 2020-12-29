@@ -161,7 +161,6 @@ class ImageProcessing
             if ('thumb' === $command['command'] || 'resize' === $command['command']) {
                 $width  = $command['params'][0];
                 $height = $command['params'][1];
-
             } elseif ('404' === $command['command']) {
                 if (isset($command['params'][0]) && self::valid($command['params'][0])) {
                     $text = self::decode($command['params'][0]);
@@ -463,7 +462,6 @@ class ImageProcessing
                 ->font(__DIR__ . '/../../../../www/static/font/Roboto-Regular.ttf', $fontSize, $fontColor);
             $fontBox  = $font->box($text);
             $fontSize = round($fontSize * 0.8);
-
         } while ($fontSize > 5
         && ($width * $widthFactor < $fontBox->getWidth() || $height * $heightFactor < $fontBox->getHeight()));
 

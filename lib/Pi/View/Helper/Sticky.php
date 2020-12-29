@@ -33,7 +33,6 @@ class Sticky extends AbstractHelper
     public function __invoke(
         $option = []
     ) {
-
         $script = <<<'EOT'
         
         window.addEventListener('DOMContentLoaded', function() {

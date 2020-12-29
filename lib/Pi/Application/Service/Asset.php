@@ -319,7 +319,6 @@ class Asset extends AbstractService
             $parentTheme = Pi::service('theme')->getParent($theme);
 
             if ($parentTheme) {
-
                 $themeAssetPath = $this->getThemeAssetPath($file, $theme, $appendVersion);
 
                 if (!is_file($themeAssetPath)) {
@@ -372,12 +371,10 @@ class Asset extends AbstractService
             $parentTheme = Pi::service('theme')->getParent($theme);
 
             if ($parentTheme) {
-
                 $component      = 'theme/' . $theme;
                 $themeAssetPath = $this->getAssetPath($component, $file, $appendVersion);
 
                 if (!is_file($themeAssetPath)) {
-
                     $theme = $parentTheme;
 
                     /**
@@ -386,12 +383,10 @@ class Asset extends AbstractService
                     $superParentTheme = Pi::service('theme')->getParent($theme);
 
                     if ($superParentTheme) {
-
                         $component      = 'theme/' . $theme;
                         $themeAssetPath = $this->getAssetPath($component, $file, $appendVersion);
 
                         if (!is_file($themeAssetPath)) {
-
                             $theme = $superParentTheme;
                         }
                     }

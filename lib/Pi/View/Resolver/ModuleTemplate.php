@@ -117,11 +117,11 @@ class ModuleTemplate implements ResolverInterface
         $segments = explode(':', $name, 2);
         if (isset($segments[1])) {
             [$module, $template] = $segments;
-            /*
-            if ('module/' == substr($module, 0, 7)) {
-                $module = substr($module, 7);
-            }
-            */
+        /*
+        if ('module/' == substr($module, 0, 7)) {
+            $module = substr($module, 7);
+        }
+        */
         } else {
             $module   = Pi::service('module')->current();
             $template = $name;

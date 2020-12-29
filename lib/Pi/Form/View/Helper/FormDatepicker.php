@@ -60,7 +60,7 @@ class FormDatepicker extends FormInput
             ];
         }
         $view->core_datepicker_initialized = true;
-        // end fix 
+        // end fix
         if (!empty($options['language'])) {
             $bsLoad[] = sprintf('datepicker/locales/bootstrap-datepicker.%s.min.js', $options['language']);
         }

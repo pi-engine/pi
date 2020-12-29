@@ -47,7 +47,7 @@ namespace Pi\View\Helper;
 class Js extends AssetCanonize
 {
     /** @var array Container for loaded files */
-    static protected $loaded = [];
+    protected static $loaded = [];
 
     /**
      * Load JavaScript file

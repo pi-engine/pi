@@ -129,6 +129,5 @@ class FormController extends ActionController
         }
 
         return [$elements, $filters];
-
     }
 }

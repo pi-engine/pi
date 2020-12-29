@@ -161,7 +161,6 @@ EOT;
             if (false === $result) {
                 return $result;
             }
-
         }
 
         return $result;

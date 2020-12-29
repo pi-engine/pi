@@ -208,7 +208,6 @@ class Menu
                 'active' => $name == $module ? 1 : 0,
                 'href'   => call_user_func($linkCallback, $name),
             ];
-
         }
 
         if (isset($moduleList['system'])) {
@@ -231,7 +230,6 @@ class Menu
                     unset($moduleList[$name]);
                 }
             }
-
         });
 
         // Collect un-categorized modules

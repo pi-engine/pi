@@ -224,14 +224,16 @@ class Translator
             if ($originalStringSize > 0) {
                 fseek($file, $originalStringOffset);
                 $originalString = explode(
-                    "\0", fread($file, $originalStringSize)
+                    "\0",
+                    fread($file, $originalStringSize)
                 );
             }
 
             if ($translationStringSize > 0) {
                 fseek($file, $translationStringOffset);
                 $translationString = explode(
-                    "\0", fread($file, $translationStringSize)
+                    "\0",
+                    fread($file, $translationStringSize)
                 );
 
                 if (count($originalString) > 1

@@ -58,6 +58,5 @@ class CompoundForm extends BaseForm
                 'value' => __('Submit'),
             ],
         ]);
-
     }
 }

@@ -93,9 +93,9 @@ class Directive extends AbstractController
             $messageString = '<ul>';
             foreach (array_keys($messages) as $key) {
                 $messageString .= '<li>' . sprintf(
-                        _s('%s is NOT writable.'),
-                        $key
-                    ) . '</li>';
+                    _s('%s is NOT writable.'),
+                    $key
+                ) . '</li>';
             }
             $messageString .= '</ul>';
         }
@@ -128,16 +128,18 @@ class Directive extends AbstractController
                 'environment' => '',
                 'storage'     => 'filesystem',
                 'namespace'   => substr(md5($vars['www']['url']), 0, 4),
-            ], $configEngine
+            ],
+            $configEngine
         );
         $configMap    = [];
         array_walk(
-            $configEngine, function ($val, $var) use (&$configMap) {
-            if (null !== $val) {
-                $configMap['var'][] = '%' . $var . '%';
-                $configMap['val'][] = $val;
+            $configEngine,
+            function ($val, $var) use (&$configMap) {
+                if (null !== $val) {
+                    $configMap['var'][] = '%' . $var . '%';
+                    $configMap['val'][] = $val;
+                }
             }
-        }
         );
 
         // config/host.php
@@ -178,7 +180,9 @@ class Directive extends AbstractController
         }
         */
         $content   = str_replace(
-            $configMap['var'], $configMap['val'], $content
+            $configMap['var'],
+            $configMap['val'],
+            $content
         );
         $configs[] = ['file' => $file, 'content' => $content];
 
@@ -304,7 +308,8 @@ class Directive extends AbstractController
                 'identifier' => 'pi' . substr(md5(mt_rand()), 0, 4),
                 'sitename'   => 'Pi Engine',
                 'slogan'     => _s('Power your web and mobile applications.'),
-            ], $vars
+            ],
+            $vars
         );
 
         $this->setPersist(static::PERSIST_ENGINE, $vars);
@@ -432,7 +437,7 @@ SCRIPT;
         if (extension_loaded('memcached')) {
             $persist       = $persist ?: 'memcached';
             $checkedString = ($persist == 'memcached') ? 'checked' : '';
-            //$valid = true;
+        //$valid = true;
         } else {
             $checkedString = ' disabled';
         }
@@ -445,7 +450,7 @@ SCRIPT;
         if (extension_loaded('memcache')) {
             $persist       = $persist ?: 'memcache';
             $checkedString = ($persist == 'memcache') ? 'checked' : '';
-            //$valid = true;
+        //$valid = true;
         } else {
             $checkedString = ' disabled';
         }

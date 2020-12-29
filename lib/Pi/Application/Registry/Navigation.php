@@ -96,7 +96,7 @@ class Navigation extends AbstractRegistry
             $nav = Pi::model('navigation')->find($name, 'name');
             if (!$nav) {
                 $this->section = 'front';
-                //$this->route = 'default';
+            //$this->route = 'default';
             } else {
                 $this->section = $nav->section;
             }
@@ -603,7 +603,8 @@ class Navigation extends AbstractRegistry
                     'section'  => $section,
                     'module'   => $module,
                     'resource' => $resource,
-                ], array_values($this->roles)
+                ],
+                array_values($this->roles)
             );
 
             return $result;

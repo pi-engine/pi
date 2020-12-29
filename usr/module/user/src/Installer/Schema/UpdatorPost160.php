@@ -43,7 +43,6 @@ class UpdatorPost160 extends AbstractUpdator
     protected function from160($version)
     {
         if (version_compare($version, '1.6.0', '<')) {
-
             $model    = Pi::model('profile', 'user');
             $table    = Pi::db()->prefix('profile', 'user');
             $adapter  = $model->getAdapter();

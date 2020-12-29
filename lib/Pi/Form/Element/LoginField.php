@@ -111,7 +111,6 @@ class LoginField extends Text
             if ($value) {
                 $this->field = current($value);
             }
-
         } else {
             if (is_array($value)) {
                 $value = array_shift($value);
@@ -135,5 +134,4 @@ class LoginField extends Text
 
         return $value;
     }
-
 }

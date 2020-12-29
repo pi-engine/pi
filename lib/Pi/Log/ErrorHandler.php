@@ -34,7 +34,7 @@ class ErrorHandler
      *
      * @var array
      */
-    static protected $errorLevel
+    protected static $errorLevel
         = [
             'production'  => ERROR_REPORTING_PRODUCTION,
             'development' => ERROR_REPORTING_DEVELOPMENT,
@@ -198,7 +198,9 @@ class ErrorHandler
                 $priority = Logger::INFO;
             }
             $this->logger->log(
-                $priority, $errstr, [
+                $priority,
+                $errstr,
+                [
                 'errno'   => $errno,
                 'file'    => $errfile,
                 'line'    => $errline,

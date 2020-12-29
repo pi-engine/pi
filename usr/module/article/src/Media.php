@@ -38,8 +38,7 @@ class Media
         $columns = null,
         $order = null,
         $module = null
-    )
-    {
+    ) {
         $module = $module ?: Pi::service('module')->current();
         $model  = Pi::model('media', $module);
 
@@ -145,8 +144,7 @@ class Media
         $module = null,
         $autoCreate = false,
         $autoSplit = true
-    )
-    {
+    ) {
         $module  = $module ?: Pi::service('module')->current();
         $config  = Pi::config('', $module);
         $pathKey = sprintf('path_%s', strtolower($section));

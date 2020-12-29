@@ -13,7 +13,6 @@ namespace Pi\Form\View\Helper;
 use Laminas\Form\FormInterface;
 use Laminas\Form\View\Helper\Form as FormHelper;
 
-
 /**
  * View helper for form rendering w/o bootstrap style
  *
@@ -82,7 +81,7 @@ class Form extends FormHelper
                 $style = 'popup';
                 $class = '';
                 break;
-            case 'modal-simple' :
+            case 'modal-simple':
                 $style = 'modal-simple';
                 $class = '';
                 break;
@@ -455,7 +454,6 @@ EOT;
                     if (isset($attr['error']['nocount']) && $attr['error']['nocount'] == true) {
                         $hiddenStyle = 'style="list-style-type: none;"';
                     }
-
                 }
                 $messages = '';
                 foreach ($elMessages as $elMessage) {

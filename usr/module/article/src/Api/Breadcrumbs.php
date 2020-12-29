@@ -87,13 +87,13 @@ class Breadcrumbs extends AbstractBreadcrumbs
             $result[] = [
                 'label' => $title,
             ];
-        } else if ('topic' == $params['controller']
+        } elseif ('topic' == $params['controller']
             && 'all-topic' == $params['action']
         ) {
             $result[] = [
                 'label' => __('Topic'),
             ];
-        } else if ('topic' == $params['controller']
+        } elseif ('topic' == $params['controller']
             && ('index' == $params['action'] || 'list' == $params['action'])
         ) {
             $result[] = [

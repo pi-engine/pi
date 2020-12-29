@@ -9,7 +9,6 @@
 
 namespace Pi\Application;
 
-
 /**
  * Gateway for persist handlers
  *
@@ -45,7 +44,8 @@ class Persist
     {
         $storage       = ucfirst($config['storage']);
         $this->handler = $this->loadHandler(
-            $storage, isset($config['options'])
+            $storage,
+            isset($config['options'])
             ? $config['options'] : []
         );
         if (!$this->handler) {

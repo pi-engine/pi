@@ -119,7 +119,6 @@ $(document).ready(function() {
 </script>
 SCRIPT;
         $this->footContent .= sprintf($footContent, $_SERVER['PHP_SELF']);
-
     }
 
     protected function loadRequirementForm()
@@ -285,6 +284,7 @@ SCRIPT;
                 break;
             case 'curl':
                 $status = function_exists('curl_exec') ? 1 : 0;
+                // no break
             default:
                 break;
         }

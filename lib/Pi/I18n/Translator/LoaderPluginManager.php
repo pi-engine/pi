@@ -73,12 +73,14 @@ class LoaderPluginManager extends LaminasLoaderPluginManager
                     $invokableClass = 'Laminas\\' . $this->invokableList[$cname];
                 }
                 $name = $invokableClass;
-                // Lookup in helper locations
+            // Lookup in helper locations
             } else {
                 $class = str_replace(
-                    ' ', '', ucwords(
-                    str_replace(['-', '_', '\\', '/'], ' ', $name)
-                )
+                    ' ',
+                    '',
+                    ucwords(
+                        str_replace(['-', '_', '\\', '/'], ' ', $name)
+                    )
                 );
                 if (class_exists('Pi\I18n\Translator\Loader\\' . $class)) {
                     $name = 'Pi\I18n\Translator\Loader\\' . $class;

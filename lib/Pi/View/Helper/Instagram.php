@@ -147,14 +147,32 @@ EOT;
             switch ($options['type']) {
                 case 'complete':
                     $list[] = sprintf(
-                        $imageCompleteTemplate, $class, $media->getLink(), $shortText, $image, $shortText, $width, $height,
-                        $fullText, $time, $accountUrl, $fullName, $fullName
+                        $imageCompleteTemplate,
+                        $class,
+                        $media->getLink(),
+                        $shortText,
+                        $image,
+                        $shortText,
+                        $width,
+                        $height,
+                        $fullText,
+                        $time,
+                        $accountUrl,
+                        $fullName,
+                        $fullName
                     );
                     break;
 
                 case 'compact':
                     $list[] = sprintf(
-                        $imageCompactTemplate, $class, $media->getLink(), $shortText, $image, $shortText, $width, $height
+                        $imageCompactTemplate,
+                        $class,
+                        $media->getLink(),
+                        $shortText,
+                        $image,
+                        $shortText,
+                        $width,
+                        $height
                     );
                     break;
             }

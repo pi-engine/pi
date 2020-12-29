@@ -60,7 +60,9 @@ class Block
         $user               = Pi::user()->get($uid, $parameters);
         $user['profileUrl'] = Pi::service('user')->getUrl('profile');
         $user['avatar']     = Pi::service('user')->avatar(
-            $uid, 'large', [
+            $uid,
+            'large',
+            [
                 'alt'   => $user['name'],
                 'class' => 'img-thumbnail',
             ]
@@ -154,7 +156,6 @@ class Block
 
             // Check user module is active
             if (Pi::service('module')->isActive('user')) {
-
                 $defaultController = 'dashboard';
 
                 // Check guide module is active
@@ -192,7 +193,6 @@ class Block
                     ]
                 );
             }
-
         }
 
         // Set message and notification type
@@ -247,7 +247,6 @@ class Block
                     $result['count'] = $result['count'] + $count;
                     break;
             }
-
         }
 
         // Set order url
@@ -347,7 +346,6 @@ class Block
 
         // Set modal
         if (Pi::service('module')->isActive('user')) {
-
             $enabledModal = Pi::user()->config('enable_modal');
             if ($enabledModal) {
                 // Login form

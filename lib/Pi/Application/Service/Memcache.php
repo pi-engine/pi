@@ -92,10 +92,14 @@ class Memcache extends AbstractService
         $memcache = new MemcacheExtension;
         foreach ($options as $server) {
             $status = $memcache->addServer(
-                $server['host'], $server['port'], $server['persistent'],
-                $server['weight'], $server['timeout'],
+                $server['host'],
+                $server['port'],
+                $server['persistent'],
+                $server['weight'],
+                $server['timeout'],
                 $server['retry_interval'],
-                $server['status'], $server['failure_callback']
+                $server['status'],
+                $server['failure_callback']
             );
         }
         static::$instances[$configKey] = $memcache;

@@ -235,13 +235,13 @@ class User extends AbstractService
         if ($identity instanceof UserModel) {
             $model = $identity;
             $this->setPersist($model);
-            // Use current user model
+        // Use current user model
         } elseif ($this->model
             && (null === $identity
                 || $this->model->get($field) == $identity)
         ) {
             $model = $this->model;
-            // Create user model
+        // Create user model
         } else {
             $data = $this->getPersist() ?: [];
             // Fetch user data and build user model
@@ -254,7 +254,7 @@ class User extends AbstractService
                     throw new \Exception('User was not found.');
                 }
                 $this->setPersist($model);
-                // Build user model from persist data
+            // Build user model from persist data
             } else {
                 $model = $this->getAdapter()->getUser($data);
                 if (!$model) {
@@ -533,7 +533,7 @@ class User extends AbstractService
                 $_SESSION['PI_USER']['field'] = $this->getPersist();
             }
             $_SESSION['PI_USER']['field'][$name] = $value;
-            // Set whole set
+        // Set whole set
         } else {
             $_SESSION['PI_USER']['field'] = $name ? (array)$name : null;
         }

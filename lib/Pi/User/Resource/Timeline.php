@@ -105,5 +105,4 @@ class Timeline extends AbstractResource
 
         return $result;
     }
-
 }

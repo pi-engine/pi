@@ -88,8 +88,10 @@ class Category extends Standard
             'slug'     => $this->decode($slug),
         ];
 
-        return new RouteMatch(array_merge($this->defaults, $matches),
-            $pathLength);
+        return new RouteMatch(
+            array_merge($this->defaults, $matches),
+            $pathLength
+        );
     }
 
     /**

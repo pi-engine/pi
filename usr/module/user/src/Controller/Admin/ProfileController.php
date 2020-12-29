@@ -157,7 +157,6 @@ class ProfileController extends ActionController
                 if (isset($compounds[$group['name']])) {
                     unset($compounds[$group['name']]);
                 }
-
             } else {
                 // Profile fields
                 foreach ($group['fields'] as $item) {
@@ -242,7 +241,6 @@ class ProfileController extends ActionController
         $result['message'] = _a('Profile dress-up data saved successfully.');
 
         return $result;
-
     }
 
     /**
@@ -278,7 +276,6 @@ class ProfileController extends ActionController
                     return $result;
                 }
             }
-
         } else {
             // Update compound field title
             $select = $compoundModel->select()->where([
@@ -294,7 +291,6 @@ class ProfileController extends ActionController
                 );
                 $result['status'] = 1;
             }
-
         }
 
         // Flush
@@ -302,7 +298,6 @@ class ProfileController extends ActionController
         Pi::registry('field', 'user')->flush();
 
         return $result;
-
     }
 
     /**
@@ -408,7 +403,6 @@ class ProfileController extends ActionController
         $result['message'] = _a('Privacy set up successfully.');
 
         return $result;
-
     }
 
     /**
@@ -473,6 +467,5 @@ class ProfileController extends ActionController
         }
 
         return $result;
-
     }
 }

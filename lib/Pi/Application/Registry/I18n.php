@@ -46,7 +46,7 @@ class I18n extends AbstractRegistry
             $optionsCustom['domain'] = 'custom/' . $options['domain'];
             //d($optionsCustom);
             $custom = $translator->loadResource($optionsCustom);
-            //d($custom);
+        //d($custom);
         } else {
             $custom = [];
         }

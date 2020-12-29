@@ -21,4 +21,3 @@ $metadata['https://openidp.feide.no'] = [
     'SingleLogoutService' => 'https://openidp.feide.no/simplesaml/saml2/idp/SingleLogoutService.php',
     'certFingerprint'     => 'c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb',
 ];
-

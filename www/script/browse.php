@@ -170,7 +170,7 @@ if (!$handle) {
     return;
 }
 while (!feof($handle)) {
-   $buffer = fread($handle, 4096);
-   echo $buffer;
+    $buffer = fread($handle, 4096);
+    echo $buffer;
 }
 fclose($handle);

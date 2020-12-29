@@ -40,8 +40,7 @@ class Draft
         $columns = null,
         $order = null,
         $module = null
-    )
-    {
+    ) {
         $offset = ($limit && $page) ? $limit * ($page - 1) : null;
 
         $module   = $module ?: Pi::service('module')->current();
@@ -150,7 +149,7 @@ class Draft
                     @unlink(Pi::path($featureImage->image));
                     @unlink(Pi::path(Media::getThumbFromOriginal($featureImage->image)));
                 }
-            } else if ($featureImage->image) {
+            } elseif ($featureImage->image) {
                 @unlink(Pi::path($featureImage->image));
                 @unlink(Pi::path(Media::getThumbFromOriginal($featureImage->image)));
             }
@@ -305,9 +304,9 @@ class Draft
                 if (empty($result['author']['photo'])) {
                     $result['author']['photo']
                         = Pi::service('asset')->getModuleAsset(
-                        $config['default_author_photo'],
-                        $module
-                    );
+                            $config['default_author_photo'],
+                            $module
+                        );
                 }
             }
         }
@@ -369,7 +368,7 @@ class Draft
         if (empty($row->seo_keywords) && $config['seo_keywords']) {
             if ($config['seo_keywords'] == Article::FIELD_SEO_KEYWORDS_TAG) {
                 $result['seo']['keywords'] = implode(' ', $result['tag']);
-            } else if ($config['seo_keywords'] == Article::FIELD_SEO_KEYWORDS_CATEGORY) {
+            } elseif ($config['seo_keywords'] == Article::FIELD_SEO_KEYWORDS_CATEGORY) {
                 $rowCategory               = Pi::model('category', $module)->find($row->category);
                 $result['seo']['keywords'] = $rowCategory->title;
             }

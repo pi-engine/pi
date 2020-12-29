@@ -21,7 +21,6 @@ class DatabaseController extends ActionController
      */
     public function indexAction()
     {
-
     }
 
     public function checkAction()
@@ -77,7 +76,7 @@ SQL;
     {
         $table = $this->params('table');
 
-        if($table){
+        if ($table) {
             $sql     = "ALTER TABLE $table ENGINE=InnoDB;";
             Pi::db()->getAdapter()->query($sql, 'execute');
         }

@@ -125,6 +125,5 @@ class RegisterFilter extends InputFilter
                 ],
             ],
         ]);
-
     }
 }

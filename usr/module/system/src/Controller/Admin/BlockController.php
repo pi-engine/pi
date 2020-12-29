@@ -368,7 +368,6 @@ class BlockController extends ComponentController
             $pageIds[] = $row->page;
         }
         if ($pageIds) {
-
             $modules  = Pi::registry('module')->read();
             $select   = Pi::model('page')->select()
                 ->where(['id' => $pageIds])

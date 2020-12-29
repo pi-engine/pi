@@ -35,7 +35,7 @@ abstract class AbstractService
         // Set specified options
         if ($options) {
             $this->setOptions($options);
-            // Load default options from config file
+        // Load default options from config file
         } elseif ($this->fileIdentifier) {
             $this->setOptions('service.' . $this->fileIdentifier . '.php');
         }

@@ -52,7 +52,6 @@ class Updator354 extends AbstractUpdator
         $status = true;
 
         if (version_compare($version, '3.5.4', '<')) {
-
             $table  = Pi::db()->prefix('navigation_node');
             $sql
                     = <<<'EOT'

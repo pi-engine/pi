@@ -83,7 +83,7 @@ class Bootstrap extends AssetCanonize
             $custom = Pi::service('asset')->getAssetPath('theme/' . $theme, $file);
             if (is_readable($custom)) {
                 $url = Pi::service('asset')->getThemeAsset($file, $theme, $appendVersion);
-                // Load original bootstrap
+            // Load original bootstrap
             } else {
                 $url = Pi::service('asset')->getPublicUrl($file, $appendVersion);
             }

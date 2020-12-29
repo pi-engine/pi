@@ -114,7 +114,5 @@ class Uri extends LaminasUriPage
         }
 
         return parent::isActive($recursive);
-
     }
-
 }

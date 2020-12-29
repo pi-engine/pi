@@ -56,7 +56,7 @@ class AccountForm extends BaseForm
             $people = Pi::api('people', 'subscription')->getCurrentPeople();
             $description = null;
             if ($people  != null) {
-                $description = sprintf(__('(updated on %s)'),  _date($people['time_update']));
+                $description = sprintf(__('(updated on %s)'), _date($people['time_update']));
             }
             $this->add([
                 'name'    => 'newsletter',
@@ -95,5 +95,4 @@ class AccountForm extends BaseForm
             'type'       => 'submit',
         ]);
     }
-
 }

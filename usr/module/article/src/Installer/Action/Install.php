@@ -241,7 +241,7 @@ class Install extends BasicInstall
                 );
                 if ($isCorrect) {
                     $zip = new ZipArchive;
-                    if ($zip->open($targetFilename) === TRUE) {
+                    if ($zip->open($targetFilename) === true) {
                         $zip->extractTo(dirname($targetFilename));
                         $zip->close();
                         @unlink($targetFilename);

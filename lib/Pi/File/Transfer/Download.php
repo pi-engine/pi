@@ -208,14 +208,15 @@ class Download
         }
         if (is_array($source)) {
             array_walk(
-                $source, function (&$item) {
-                if (!is_array($item)) {
-                    $item = ['filename' => $item];
-                    if (empty($item['localname'])) {
-                        $item['localname'] = basename($item['filename']);
+                $source,
+                function (&$item) {
+                    if (!is_array($item)) {
+                        $item = ['filename' => $item];
+                        if (empty($item['localname'])) {
+                            $item['localname'] = basename($item['filename']);
+                        }
                     }
                 }
-            }
             );
             $zipFile = tempnam($this->tmp, 'zip');
             $zip     = new ZipArchive;
@@ -240,7 +241,6 @@ class Download
             }
             $options['content_type'] = 'application/zip';
             $this->canonizeDownload($source, $options);
-
         } elseif ('raw' == $options['type']) {
             if (!isset($options['content_length'])) {
                 $options['content_length'] = strlen($source);
@@ -319,5 +319,4 @@ class Download
 
         return true;
     }
-
 }

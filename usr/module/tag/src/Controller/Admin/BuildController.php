@@ -12,7 +12,6 @@ namespace Module\Tag\Controller\Admin;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 
-
 class BuildController extends ActionController
 {
     public function flushAction()

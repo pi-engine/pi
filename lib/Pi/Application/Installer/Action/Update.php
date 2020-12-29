@@ -71,7 +71,8 @@ class Update extends AbstractAction
             $row->save();
         } catch (\Exception $e) {
             $this->setResult(
-                'module', [
+                'module',
+                [
                     'status'  => false,
                     'message' => ['Module upgrade failed'],
                 ]

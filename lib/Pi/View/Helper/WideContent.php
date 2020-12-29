@@ -33,7 +33,8 @@ use Laminas\View\Helper\AbstractHelper;
 class WideContent extends AbstractHelper
 {
     public function __invoke(
-        $content, $module
+        $content,
+        $module
     ) {
 
         // Get config

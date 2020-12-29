@@ -309,8 +309,8 @@ class Remote extends AbstractService
             $httpauth      = !empty($params['httpauth'])
                 ? ucfirst($params['httpauth']) : 'basic';
             $authorization = ucfirst($httpauth) . ' ' . base64_encode(
-                    $params['username'] . ':' . $params['password']
-                );
+                $params['username'] . ':' . $params['password']
+            );
         }
 
         return $authorization;
@@ -357,11 +357,12 @@ class Remote extends AbstractService
         if ($params) {
             // @FIXME: Convert sub arrays to string
             array_walk(
-                $params, function (&$param) {
-                if (is_array($param)) {
-                    $param = implode(',', $param);
+                $params,
+                function (&$param) {
+                    if (is_array($param)) {
+                        $param = implode(',', $param);
+                    }
                 }
-            }
             );
         }
         $uri = $this->canonizeUrl($url, $params);
@@ -475,7 +476,7 @@ class Remote extends AbstractService
         ) {
             $uri  = $url;
             $body = $params;
-            // Pass `CURLOPT_POSTFIELDS` as string
+        // Pass `CURLOPT_POSTFIELDS` as string
         } else {
             $uri  = $this->canonizeUrl($url, $params);
             $body = $uri->getQuery();

@@ -79,7 +79,8 @@ class EditController extends ActionController
                 if (Pi::service('module')->isActive('subscription') && isset($values['email']) && !empty($values['email'])) {
                     Pi::api('people', 'subscription')->update(
                         ['email'  => $values['email'], 'first_name' => $values['first_name'], 'last_name' => $values['last_name'],
-                         'mobile' => $values['mobile']], $uid
+                         'mobile' => $values['mobile']],
+                        $uid
                     );
                 }
 
@@ -164,7 +165,6 @@ class EditController extends ActionController
      */
     public function compoundAction()
     {
-
         $uid      = _get('uid');
         $compound = _get('name');
 
@@ -224,7 +224,6 @@ class EditController extends ActionController
                 // Get new compound
                 $userNewCompound = $userCompound;
                 foreach ($userCompound as $key => $item) {
-
                     if ($key == $values['set']) {
                         $userNewCompound[$key] = $canonizeColumn(
                             $values,
@@ -245,7 +244,6 @@ class EditController extends ActionController
                     $result['message'] = _a('User data update successful.');
                     $result['status']  = 1;
                 }
-
             }
             $this->view()->assign('result', $result);
         }
@@ -259,7 +257,6 @@ class EditController extends ActionController
             ]
         );
         $this->view()->setTemplate('edit-user');
-
     }
 
     /**
@@ -295,9 +292,9 @@ class EditController extends ActionController
                 'action'     => 'compound',
                 'uid'        => $uid,
                 'name'       => $name,
-            ], _a('Group deleted successfully.')
+            ],
+            _a('Group deleted successfully.')
         );
-
     }
 
     /**
@@ -343,7 +340,6 @@ class EditController extends ActionController
         }
 
         return [$fields, $elements, $filters];
-
     }
 
     /**
@@ -366,7 +362,8 @@ class EditController extends ActionController
             'name'  => 'avatar',
             'title' => _a('Avatar'),
             'link'  => $this->url(
-                '', [
+                '',
+                [
                 'controller' => 'edit',
                 'action'     => 'avatar',
                 'uid'        => $uid,
@@ -388,7 +385,8 @@ class EditController extends ActionController
                 'name'  => $row['name'],
                 'title' => $row['title'],
                 'link'  => $this->url(
-                    '', [
+                    '',
+                    [
                     'controller' => 'edit',
                     'action'     => 'compound',
                     'uid'        => $uid,
@@ -403,7 +401,8 @@ class EditController extends ActionController
             'name'  => 'view',
             'title' => _a('View'),
             'link'  => $this->url(
-                '', [
+                '',
+                [
                 'controller' => 'View',
                 'action'     => 'index',
                 'uid'        => $uid,

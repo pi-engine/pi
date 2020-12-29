@@ -65,7 +65,6 @@ class IsUserSection extends AbstractHelper
             if (in_array($a[1]['controller'], ['dashboard', 'dashboardPro', 'account', 'avatar', 'privacy'])) {
                 $userSection = true;
             }
-
         } elseif ($module == 'guide' && $uid > 0) {
             $d = (array)Pi::service('url')->getRouteMatch();
             foreach ($d as $value) {

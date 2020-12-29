@@ -47,7 +47,8 @@ class AbstractUpdator
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
             $this->handler->setResult(
-                'db', [
+                'db',
+                [
                     'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
@@ -75,7 +76,8 @@ class AbstractUpdator
             $sqlHandler->queryContent($sql, $type);
         } catch (\Exception $exception) {
             $this->handler->setResult(
-                'db', [
+                'db',
+                [
                     'status'  => false,
                     'message' => 'SQL schema query failed: '
                         . $exception->getMessage(),

@@ -102,7 +102,6 @@ class ConditionController extends ActionController
                 }
 
                 if ($isValid) {
-
                     if (!isset($values['filename']) || (isset($values['filename']) && $values['filename'] == '')) {
                         unset($values['filename']);
                     }

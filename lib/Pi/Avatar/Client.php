@@ -25,7 +25,8 @@ class Client extends AbstractAvatar
     {
         $uri    = Pi::service('user')->getUrl('avatar', 'get');
         $result = Pi::service('remote')->get(
-            $uri, [
+            $uri,
+            [
             'id'   => $uid,
             'size' => $size,
             'html' => 0,
@@ -43,7 +44,8 @@ class Client extends AbstractAvatar
     {
         $uri    = Pi::service('user')->getUrl('avatar', 'mget');
         $result = Pi::service('remote')->get(
-            $uri, [
+            $uri,
+            [
             'id'   => $uids,
             'size' => $size,
             'html' => 0,

@@ -55,7 +55,6 @@ class Filesystem extends LaminasFilesystem
             }
             $success = (null === $data) ? false : true;
             return $data;
-
         } catch (BaseException $e) {
             $success = false;
             throw $e;
@@ -98,7 +97,8 @@ class Filesystem extends LaminasFilesystem
                 //$nonBlocking, $wouldblock);
                 $data = $this->getFileData(
                     $filespec . '.dat',
-                    $nonBlocking, $wouldblock
+                    $nonBlocking,
+                    $wouldblock
                 );
                 /**#-*/
                 if ($nonBlocking && $wouldblock) {

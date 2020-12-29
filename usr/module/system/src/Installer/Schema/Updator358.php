@@ -52,7 +52,6 @@ class Updator358 extends AbstractUpdator
         $status = true;
 
         if (version_compare($version, '3.5.8', '<')) {
-
             $table  = Pi::db()->prefix('user_account');
             $sql
                     = <<<'EOT'

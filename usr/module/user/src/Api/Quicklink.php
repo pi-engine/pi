@@ -17,7 +17,7 @@ use Pi\Application\Api\AbstractApi;
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
-class  Quicklink extends AbstractApi
+class Quicklink extends AbstractApi
 {
     /**
      * @{inheritDoc}
@@ -65,6 +65,5 @@ class  Quicklink extends AbstractApi
         }
 
         return $result;
-
     }
 }

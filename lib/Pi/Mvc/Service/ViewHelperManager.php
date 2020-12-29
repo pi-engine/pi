@@ -184,12 +184,14 @@ class ViewHelperManager extends HelperPluginManager
                     $invokableClass = 'Laminas\\' . $this->invokableList[$cname];
                 }
                 $name = $invokableClass;
-                // Lookup in helper locations
+            // Lookup in helper locations
             } else {
                 $class = str_replace(
-                    ' ', '', ucwords(
-                    str_replace(['-', '_', '.', '\\', '/'], ' ', $name)
-                )
+                    ' ',
+                    '',
+                    ucwords(
+                        str_replace(['-', '_', '.', '\\', '/'], ' ', $name)
+                    )
                 );
                 foreach ($this->helperLocations as $location) {
                     $invokableClass = 'Pi\\' . $location . '\\' . $class;

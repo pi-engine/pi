@@ -1,4 +1,4 @@
-<?PHP
+<?php
 /**
  * Pi Engine (http://piengine.org)
  *
@@ -209,15 +209,15 @@ abstract class AbstractNest extends AbstractTableGateway
         if ($position == 'nextTo') {
             $node['left']  = $row->right + 1;
             $node['depth'] = $row->depth;
-            // Previous to the object
+        // Previous to the object
         } elseif ($position == 'previousTo') {
             $node['left']  = $row->left;
             $node['depth'] = $row->depth;
-            // Fist child of the object
+        // Fist child of the object
         } elseif ($position == 'firstOf') {
             $node['left']  = $row->left + 1;
             $node['depth'] = $row->depth + 1;
-            // Last child of the object
+        // Last child of the object
         } elseif ($position == 'lastOf') {
             $node['left']  = $row->right;
             $node['depth'] = $row->depth + 1;
@@ -252,14 +252,21 @@ abstract class AbstractNest extends AbstractTableGateway
             if ($right_end) {
                 $where = sprintf(
                     '%s AND %s <= %s',
-                    $where, $column, $right_end
+                    $where,
+                    $column,
+                    $right_end
                 );
             }
             $order = sprintf('%s %s', $column, $direction);
             $sql   = sprintf(
                 'UPDATE %s SET %s = %s %s %d WHERE %s ORDER BY %s',
                 $this->quoteIdentifier($this->table),
-                $column, $column, $operator, $value, $where, $order
+                $column,
+                $column,
+                $operator,
+                $value,
+                $where,
+                $order
             );
             $this->adapter->query($sql, 'execute');
         }
@@ -483,7 +490,8 @@ abstract class AbstractNest extends AbstractTableGateway
             return false;
         }
         $data = array_merge(
-            $data, [
+            $data,
+            [
             $this->column('left')  => $node_left,
             $this->column('right') => $node_left + 1,
         ]
@@ -594,7 +602,8 @@ abstract class AbstractNest extends AbstractTableGateway
         $incrementPlaceholder = $rightExtreme - $source['left'] + 1;
         if (!$this->shift(
             $source['left'],
-            $incrementPlaceholder, $source['right']
+            $incrementPlaceholder,
+            $source['right']
         )
         ) {
             return false;
@@ -620,7 +629,8 @@ abstract class AbstractNest extends AbstractTableGateway
         if ($dest['left'] > $source['left']) {
             if (!$this->shift(
                 $source['right'] + 1,
-                -1 * $increment, $dest['left'] - 1
+                -1 * $increment,
+                $dest['left'] - 1
             )
             ) {
                 return false;
@@ -629,7 +639,8 @@ abstract class AbstractNest extends AbstractTableGateway
         } else {
             if (!$this->shift(
                 $dest['left'],
-                $increment, $source['left'] - 1
+                $increment,
+                $source['left'] - 1
             )
             ) {
                 return false;
@@ -803,7 +814,8 @@ abstract class AbstractNest extends AbstractTableGateway
         $depth     = isset($node['depth']) ? $node['depth'] : 0;
         foreach ($nodes as $node) {
             $data = array_merge(
-                $node, [
+                $node,
+                [
                 $this->column('left')  => $node['left'] + $increment,
                 $this->column('right') => $node['right'] + $increment,
                 $this->column('depth') => $node['depth'] + $depth,
@@ -908,7 +920,7 @@ abstract class AbstractNest extends AbstractTableGateway
                 $list[] = $node;
                 // Append children
                 $list = array_merge($list, $children);
-                // Simply add current node
+            // Simply add current node
             } else {
                 $list[] = $node;
             }

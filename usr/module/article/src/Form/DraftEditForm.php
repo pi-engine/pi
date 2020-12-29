@@ -94,8 +94,7 @@ class DraftEditForm extends BaseForm
      */
     public static function getDefaultElements(
         $mode = Config::FORM_MODE_EXTENDED
-    )
-    {
+    ) {
         $normal = [
             'subject',
             'subtitle',

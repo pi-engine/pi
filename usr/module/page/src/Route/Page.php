@@ -48,7 +48,7 @@ class Page extends Standard
         if (is_numeric($name)) {
             $matches['id'] = (int)$name;
             $name          = '';
-            // Set name
+        // Set name
         } else {
             $name = $this->decode($name);
         }
@@ -136,7 +136,6 @@ class Page extends Standard
     protected function canonizePath(Request $request, $pathOffset = null)
     {
         if (!method_exists($request, 'getUri')) {
-
             return null;
         }
 
@@ -150,8 +149,8 @@ class Page extends Standard
 
         /** @var \Laminas\Http\PhpEnvironment\Request $request */
 
-        foreach($bypassUriArray as $bypassUriRow) {
-            if($bypassUriRow && preg_match('#' . $bypassUriRow . '#', $request->getRequestUri())) {
+        foreach ($bypassUriArray as $bypassUriRow) {
+            if ($bypassUriRow && preg_match('#' . $bypassUriRow . '#', $request->getRequestUri())) {
                 return null;
             }
         }
@@ -173,10 +172,10 @@ class Page extends Standard
             /**
              * Search for no prefixed path
              */
-            if(isset($askedPrefix[0])){
+            if (isset($askedPrefix[0])) {
                 $modules = Pi::service('module')->meta();
 
-                if(!in_array($askedPrefix[0], array_keys($modules))){
+                if (!in_array($askedPrefix[0], array_keys($modules))) {
                     /**
                      * Add module prefix
                      */

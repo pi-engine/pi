@@ -1,4 +1,4 @@
-<?PHP
+<?php
 /**
  * Pi Engine (http://piengine.org)
  *

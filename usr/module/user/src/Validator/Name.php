@@ -71,5 +71,4 @@ class Name extends Username
 
         return $this;
     }
-
 }

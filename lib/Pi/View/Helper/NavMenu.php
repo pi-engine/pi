@@ -12,7 +12,6 @@ namespace Pi\View\Helper;
 
 use Laminas\View\Helper\AbstractHtmlElement;
 
-
 /**
  * Helper for rendering menu
  *

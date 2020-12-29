@@ -580,7 +580,7 @@ class User extends AbstractResource
 
                     unset($items[$key]);
 
-                    // Delete deprecated items
+                // Delete deprecated items
                 } else {
                     if ('field' == $op) {
                         if ($row['handler']) {
@@ -819,7 +819,8 @@ class User extends AbstractResource
                 Pi::db()->query($sql);
             } catch (\Exception $exception) {
                 $this->setResult(
-                    'profile-field', [
+                    'profile-field',
+                    [
                         'status'  => false,
                         'message' => 'Table alter query failed: '
                             . $exception->getMessage(),
@@ -854,7 +855,8 @@ class User extends AbstractResource
                 Pi::db()->query($sql);
             } catch (\Exception $exception) {
                 $this->setResult(
-                    'profile-field', [
+                    'profile-field',
+                    [
                         'status'  => false,
                         'message' => 'Table alter query failed: '
                             . $exception->getMessage(),
@@ -902,5 +904,4 @@ class User extends AbstractResource
 
         return true;
     }
-
 }

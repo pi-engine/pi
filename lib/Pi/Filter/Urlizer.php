@@ -476,11 +476,14 @@ class Urlizer extends AbstractFilter
         $stringToReplace = $excludeDot ? '/[^A-Z^a-z^0-9^\/^.]+/' : '/[^A-Z^a-z^0-9^\/]+/';
         $text            = strtolower(
             preg_replace(
-                $stringToReplace, $separator,
+                $stringToReplace,
+                $separator,
                 preg_replace(
-                    '/([a-z\d])([A-Z])/', '\1_\2',
+                    '/([a-z\d])([A-Z])/',
+                    '\1_\2',
                     preg_replace(
-                        '/([A-Z]+)([A-Z][a-z])/', '\1_\2',
+                        '/([A-Z]+)([A-Z][a-z])/',
+                        '\1_\2',
                         preg_replace('/::/', '/', $text)
                     )
                 )

@@ -132,7 +132,7 @@ class User extends Standard
                         if (is_numeric($parts[0])) {
                             $matches['action']       = 'view';
                             $matches[$this->paramId] = (int)array_shift($parts);
-                            // /home/identity/<...>
+                        // /home/identity/<...>
                         } elseif ($this->paramIdentity == $parts[0]
                             // /home/name/<...>
                             || $this->paramName == $parts[0]
@@ -153,13 +153,13 @@ class User extends Standard
                         if (is_numeric($parts[0])) {
                             $matches['action']       = 'view';
                             $matches[$this->paramId] = (int)array_shift($parts);
-                            // /profile/identity/<...>
+                        // /profile/identity/<...>
                         } elseif ($this->paramIdentity == $parts[0]
                             // /profile/name/<...>
                             || $this->paramName == $parts[0]
                         ) {
                             $matches['action'] = 'view';
-                            // /profile/<action>/<...>
+                        // /profile/<action>/<...>
                         } else {
                             $matches['action'] = array_shift($parts);
                         }
@@ -223,11 +223,11 @@ class User extends Standard
         if ('logout' == $action) {
             $url = 'logout';
 
-            // /<...>
+        // /<...>
         } elseif ('' == $controller || 'index' == $controller) {
             $url = '';
 
-            // /home/<...>
+        // /home/<...>
         } elseif ('home' == $controller) {
             if ('' == $action || 'index' == $action || 'view' == $action) {
                 // /home

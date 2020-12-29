@@ -174,5 +174,4 @@ class Security extends AbstractService
         return SecurityUtility::$method($options);
     }
     /*#@-*/
-
 }

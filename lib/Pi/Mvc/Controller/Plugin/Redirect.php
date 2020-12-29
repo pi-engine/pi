@@ -84,7 +84,10 @@ class Redirect extends LaminasRedirect
         $this->controller->view()->setTemplate(false);
 
         $response = parent::toRoute(
-            $route, $params, $options, $reuseMatchedParams
+            $route,
+            $params,
+            $options,
+            $reuseMatchedParams
         );
         if ($this->responseCode) {
             $response->setStatusCode($this->responseCode);

@@ -139,9 +139,11 @@ class Xss extends AbstractAdapter
         //$patterns[] = '/&#x([a-f0-9]+)/mei';
         //$replaces[] = "chr(0x\\1)";
         $content = preg_replace_callback(
-            '/&#x([a-f0-9]+)/mi', function ($matches) {
-            return "chr(0x" . $matches[1] . ")";
-        }, $content
+            '/&#x([a-f0-9]+)/mi',
+            function ($matches) {
+                return "chr(0x" . $matches[1] . ")";
+            },
+            $content
         );
 
         $patterns[] = '/(&#*\w+)[\x00-\x20]+;/U';

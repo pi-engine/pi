@@ -63,7 +63,6 @@ class FootScript extends HeadScript
 
     public function addHtml($content)
     {
-
         $this->html .= $content;
     }
 

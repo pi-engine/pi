@@ -44,11 +44,11 @@ class Database extends AbstractService
         if ($options instanceof DbGateway) {
             $this->db = $options;
             $result   = $this->db;
-            // Load DbGateway
+        // Load DbGateway
         } elseif ($options && is_array($options)) {
             $db     = $this->loadDb($options);
             $result = $db;
-            // Default DbGateway
+        // Default DbGateway
         } elseif (!$options) {
             if (!$this->db) {
                 $this->db = $this->loadDb();

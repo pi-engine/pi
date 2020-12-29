@@ -78,8 +78,7 @@ class Rule
         $operation = null,
         $category = null,
         $uid = null
-    )
-    {
+    ) {
         $module = Pi::service('module')->current();
 
         // Get role of current section

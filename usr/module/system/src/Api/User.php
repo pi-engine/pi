@@ -90,8 +90,7 @@ class User extends AbstractUseApi
         $limit = 0,
         $offset = 0,
         $order = ''
-    )
-    {
+    ) {
         $result = [];
 
         if ($condition instanceof Where) {
@@ -134,8 +133,7 @@ class User extends AbstractUseApi
         $offset = 0,
         $order = '',
         $field = []
-    )
-    {
+    ) {
         $result = [];
 
         if ($condition instanceof Where) {
@@ -297,8 +295,7 @@ class User extends AbstractUseApi
         $field = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         if (!$uid) {
             return false;
         }
@@ -367,8 +364,7 @@ class User extends AbstractUseApi
         $field = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         $result = $this->get($uids, $field, $filter, $activeOnly);
 
         return $result;
@@ -575,8 +571,7 @@ class User extends AbstractUseApi
         $fields = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         if (!$uid) {
             return false;
         }

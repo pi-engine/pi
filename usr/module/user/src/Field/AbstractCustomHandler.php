@@ -345,8 +345,7 @@ abstract class AbstractCustomHandler
         $action = '',
         array $data = [],
         array $message = []
-    )
-    {
+    ) {
         $form      = null;
         $formClass = $this->form
             ?: 'Custom\User\Form\Form' . ucfirst($this->getName());

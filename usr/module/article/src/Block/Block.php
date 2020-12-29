@@ -204,8 +204,7 @@ class Block
     public static function newestPublishedArticles(
         $options = [],
         $module = null
-    )
-    {
+    ) {
         if (empty($module)) {
             return false;
         }
@@ -522,8 +521,7 @@ class Block
     public static function recommendedSlideshow(
         $options = [],
         $module = null
-    )
-    {
+    ) {
         if (!$module) {
             return false;
         }
@@ -653,8 +651,7 @@ class Block
     protected static function canonizeCategories(
         $categories,
         $options = []
-    )
-    {
+    ) {
         $result = [];
         foreach ($categories as $category) {
             $result[$category['id']] = [

@@ -193,7 +193,6 @@ class MediaController extends ListController
         $values            = parent::canonizePost($values);
 
         return $values;
-
     }
 
     /**

@@ -211,7 +211,7 @@ class Comment extends AbstractResource
                 $row->save();
                 unset($items[$key]);
 
-                // Delete deprecated items
+            // Delete deprecated items
             } else {
                 $itemsDeleted[] = $key;
                 $row->delete();

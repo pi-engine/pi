@@ -773,7 +773,8 @@ class Paginator extends Pagit
         } catch (\Exception $e) {
             throw new Exception\RuntimeException(
                 'Error producing an iterator',
-                null, $e
+                null,
+                $e
             );
         }
     }

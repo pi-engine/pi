@@ -19,7 +19,6 @@ use Pi\Form\Form as BaseForm;
  */
 class FindPasswordForm extends BaseForm
 {
-
     public function init()
     {
         $this->add([

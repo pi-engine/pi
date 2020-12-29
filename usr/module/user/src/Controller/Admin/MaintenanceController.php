@@ -165,7 +165,6 @@ class MaintenanceController extends ActionController
         ];
 
         return $data;
-
     }
 
     /**
@@ -235,7 +234,6 @@ class MaintenanceController extends ActionController
         ];
 
         return $data;
-
     }
 
     /**
@@ -260,7 +258,6 @@ class MaintenanceController extends ActionController
                 $model->delete(['time_deleted > ?' => 0]);
                 $result['status']  = 1;
                 $result['message'] = _a('Clear all deleted user successfully.');
-
             } catch (\Exception $e) {
                 return $result;
             }
@@ -292,7 +289,6 @@ class MaintenanceController extends ActionController
         }
 
         return $result;
-
     }
 
     /**
@@ -361,7 +357,6 @@ class MaintenanceController extends ActionController
             }
 
             return $result;
-
         }
 
         $accountWhere = ['time_deleted' => 0];
@@ -406,7 +401,6 @@ class MaintenanceController extends ActionController
         }
 
         return $result;
-
     }
 
     protected function getCount($sort)
@@ -428,7 +422,6 @@ class MaintenanceController extends ActionController
             } else {
                 return 0;
             }
-
         }
 
         $accountWhere = ['time_deleted' => 0];
@@ -540,7 +533,6 @@ class MaintenanceController extends ActionController
         }
 
         return $logs;
-
     }
 
     /**
@@ -552,21 +544,27 @@ class MaintenanceController extends ActionController
     {
         // Set time
         $today = mktime(
-            0, 0, 0,
+            0,
+            0,
+            0,
             date("m"),
             date("d"),
             date("Y")
         );
 
         $lastWeek = mktime(
-            0, 0, 0,
+            0,
+            0,
+            0,
             date("m"),
             date("d") - 7,
             date("Y")
         );
 
         $lastMonth = mktime(
-            0, 0, 0,
+            0,
+            0,
+            0,
             date("m") - 1,
             date("d"),
             date("Y")
@@ -674,7 +672,6 @@ class MaintenanceController extends ActionController
             }
 
             return $result;
-
         };
 
         // Get ip statistics
@@ -687,6 +684,5 @@ class MaintenanceController extends ActionController
         $userStats['ip'] = $ipStatistics;
 
         return $userStats;
-
     }
 }

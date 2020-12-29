@@ -213,8 +213,7 @@ class Category extends Nest
         $objective,
         $cols = null,
         $includeSelf = true
-    )
-    {
+    ) {
         $result = [];
 
         $children = $this->getChildren($objective, $cols);
@@ -242,8 +241,7 @@ class Category extends Nest
         $objective,
         $cols = null,
         $includeSelf = false
-    )
-    {
+    ) {
         $result = [];
 
         if (false === array_search('depth', $cols)) {

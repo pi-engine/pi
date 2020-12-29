@@ -260,7 +260,7 @@ class Event extends AbstractResource
                 }
                 */
                 $flushList[$row['event_module']] = 1;
-                // Skip existent listeners
+            // Skip existent listeners
             } else {
                 unset($listenerList[$key]);
             }

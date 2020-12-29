@@ -22,7 +22,6 @@ class TimelineController extends ApiController
     public function indexAction()
     {
         return ['status' => 1];
-
     }
 
     /**
@@ -63,7 +62,7 @@ class TimelineController extends ApiController
         $rowset = $this->getModel('timeline')->find($timeline, 'name');
         if (!$rowset && !$appKey) {
             return $result;
-            // Register timeline meta if not exist
+        // Register timeline meta if not exist
         } elseif (!$rowset && $appKey) {
             $data = [
                 'name'    => $timeline,

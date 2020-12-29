@@ -73,9 +73,9 @@ class DbProfiler implements FormatterInterface
             $event['params'] .= '[' . $key . '] ' . $val . ';';
         }
         $event['timestamp'] = date(
-                $this->getDateTimeFormat(),
-                intval($event['start'])
-            ) . substr($event['start'], strpos($event['start'], '.'), 5);
+            $this->getDateTimeFormat(),
+            intval($event['start'])
+        ) . substr($event['start'], strpos($event['start'], '.'), 5);
         $event['timer']     = sprintf('%.4f', $event['elapse']);
         if (!$event['status'] && empty($event['priorityName'])) {
             $event['priorityName'] = Pi::service('log')->logger()

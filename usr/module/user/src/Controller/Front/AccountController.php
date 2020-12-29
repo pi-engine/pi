@@ -142,7 +142,6 @@ class AccountController extends ActionController
                 }
 
                 if ($values['newsletter'] != $data['newsletter'] && Pi::service('module')->isActive('subscription')) {
-
                     if ($people == null) {
                         $values['campaign']   = 0;
                         $values['uid']        = $uid;
@@ -165,10 +164,8 @@ class AccountController extends ActionController
                     ];
 
                     Pi::api('log', 'user')->add(null, null, $log);
-
                 }
                 return $result;
-
             } else {
                 $result['message'] = $form->getMessages();
                 return $result;
@@ -245,7 +242,7 @@ class AccountController extends ActionController
             $field = $config['login_field'];
             $field = array_shift($field);
 
-            if($field == 'email'){
+            if ($field == 'email') {
                 $dataToUpdate['identity'] = $dataToUpdate['email'];
             }
         }
@@ -490,7 +487,6 @@ class AccountController extends ActionController
         );
 
         return $result;
-
     }
 
     /**

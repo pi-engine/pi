@@ -105,7 +105,6 @@ class IndexController extends ActionController
         ];
 
         return $data;
-
     }
 
     /**
@@ -142,7 +141,6 @@ class IndexController extends ActionController
         ];
 
         return $data;
-
     }
 
     /**
@@ -215,7 +213,6 @@ class IndexController extends ActionController
         $result['message'] = _a('Add user successfully');
 
         return $result;
-
     }
 
     /**
@@ -306,7 +303,6 @@ class IndexController extends ActionController
         ];
 
         return $data;
-
     }
 
     /**
@@ -347,7 +343,6 @@ class IndexController extends ActionController
         $result['message']      = sprintf(_a('%d users enabled.'), $count);
 
         return $result;
-
     }
 
     /**
@@ -388,7 +383,6 @@ class IndexController extends ActionController
         $result['message']      = sprintf(_a('%d disable user successfully'), $count);
 
         return $result;
-
     }
 
     /**
@@ -434,7 +428,6 @@ class IndexController extends ActionController
         $result['message']      = sprintf(_a('%d delete user successfully'), $count);
 
         return $result;
-
     }
 
     /**
@@ -481,7 +474,6 @@ class IndexController extends ActionController
         $result['message']      = sprintf(_a('%d users activated.'), $count);
 
         return $result;
-
     }
 
     /**
@@ -564,7 +556,6 @@ class IndexController extends ActionController
         $result['message'] = _a('Role assignment succeeded.');
 
         return $result;
-
     }
 
     /**
@@ -769,7 +760,6 @@ class IndexController extends ActionController
                 });
                 $users = $this->renderRole($users);
             }
-
         }
         $result = [$users, $count];
 
@@ -797,7 +787,6 @@ class IndexController extends ActionController
         }
 
         return $data;
-
     }
 
     /**
@@ -812,7 +801,9 @@ class IndexController extends ActionController
         $time = 0;
         if ($registerDate == 'today') {
             $time = mktime(
-                0, 0, 0,
+                0,
+                0,
+                0,
                 date('m'),
                 date('d'),
                 date('Y')
@@ -821,7 +812,9 @@ class IndexController extends ActionController
 
         if ($registerDate == 'last_week') {
             $time = mktime(
-                0, 0, 0,
+                0,
+                0,
+                0,
                 date('m'),
                 date('d') - 7,
                 date('Y')
@@ -830,7 +823,9 @@ class IndexController extends ActionController
 
         if ($registerDate == 'last_month') {
             $time = mktime(
-                0, 0, 0,
+                0,
+                0,
+                0,
                 date('m') - 1,
                 date('d'),
                 date('Y')
@@ -839,7 +834,9 @@ class IndexController extends ActionController
 
         if ($registerDate == 'last_3_month') {
             $time = mktime(
-                0, 0, 0,
+                0,
+                0,
+                0,
                 date('m') - 3,
                 date('d'),
                 date('Y')
@@ -848,7 +845,9 @@ class IndexController extends ActionController
 
         if ($registerDate == 'last_year') {
             $time = mktime(
-                0, 0, 0,
+                0,
+                0,
+                0,
                 date('m'),
                 date('d'),
                 date('Y') - 1
@@ -856,7 +855,6 @@ class IndexController extends ActionController
         }
 
         return $time;
-
     }
 
     /**
@@ -916,7 +914,6 @@ class IndexController extends ActionController
         }
 
         return $usersStatus;
-
     }
 
     /**
@@ -988,7 +985,9 @@ class IndexController extends ActionController
             if (Pi::service('module')->isActive('message')) {
                 $template = Pi::service('mail')->template("notify-register-success-html", $params);
                 Pi::api('api', 'message')->notify(
-                    $id, $template['body'], $template['subject']
+                    $id,
+                    $template['body'],
+                    $template['subject']
                 );
             }
 
@@ -1005,6 +1004,5 @@ class IndexController extends ActionController
         $result = $failedUsers ? false : true;
 
         return $result;
-
     }
 }

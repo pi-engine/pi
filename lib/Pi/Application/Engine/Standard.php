@@ -118,7 +118,8 @@ class Standard extends AbstractEngine
                             'Service "%s" failed: %s',
                             $service,
                             $e->getMessage()
-                        ), E_USER_ERROR
+                        ),
+                        E_USER_ERROR
                     );
                     return false;
                 }
@@ -167,7 +168,7 @@ class Standard extends AbstractEngine
                 && false === $this->resources['options'][$resource]
             ) {
                 $this->resources['instances'][$resource] = true;
-                // Load resource with native and custom options
+            // Load resource with native and custom options
             } else {
                 if (!empty($this->resources['options'][$resource])) {
                     if (is_string($this->resources['options'][$resource])) {

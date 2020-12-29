@@ -161,7 +161,10 @@ EOT;
             foreach ($data as $item) {
                 if (empty($item['href'])) {
                     $elements .= sprintf(
-                        $patternLink, Pi::engine()->application()->getRequest()->getUriString(), _escape($item['label']), _escape($item['label'])
+                        $patternLink,
+                        Pi::engine()->application()->getRequest()->getUriString(),
+                        _escape($item['label']),
+                        _escape($item['label'])
                     );
                 } else {
                     $elements .= sprintf($patternLink, $item['href'], _escape($item['label']), _escape($item['label']));
@@ -273,5 +276,4 @@ EOT;
     {
         return $this->module;
     }
-
 }

@@ -133,8 +133,10 @@ class SetupController extends ActionController
             }
             $form->setData($post);
             $form->setInputFilter(
-                new DraftCustomFilter($post['mode'],
-                    ['needed' => $neededElements])
+                new DraftCustomFilter(
+                    $post['mode'],
+                    ['needed' => $neededElements]
+                )
             );
 
             if (!$form->isValid()) {

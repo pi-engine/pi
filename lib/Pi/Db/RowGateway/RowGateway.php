@@ -1,4 +1,4 @@
-<?PHP
+<?php
 /**
  * Pi Engine (http://piengine.org)
  *
@@ -322,7 +322,6 @@ class RowGateway extends AbstractRowGateway
          */
         $model = $this->getModel();
         if (Pi::service('module')->isActive('media') && $model instanceof \Pi\Application\Model\Model && $mediaLinks = $model->getMediaLinks()) {
-
             foreach ($mediaLinks as $key) {
                 if (isset($this->data[$key]) && $this->data[$key] == '') {
                     $this->data[$key] = null;
@@ -353,9 +352,7 @@ class RowGateway extends AbstractRowGateway
             $result       = $statement->execute();
             $rowsAffected = $result->getAffectedRows();
             unset($statement, $result); // cleanup
-
         } else {
-
             $wasExisting = false;
 
             // INSERT

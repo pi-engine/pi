@@ -113,16 +113,18 @@ class FilterPluginManager extends LaminasFilterPluginManager
                     $invokableClass = 'Laminas\\' . $this->invokableList[$cname];
                 }
                 $name = $invokableClass;
-                // Lookup in helper locations
+            // Lookup in helper locations
             } else {
                 $class = str_replace(
-                    ' ', '', ucwords(
-                    str_replace(
-                        ['-', '_', '\\', '/'],
-                        ' ',
-                        $name
+                    ' ',
+                    '',
+                    ucwords(
+                        str_replace(
+                            ['-', '_', '\\', '/'],
+                            ' ',
+                            $name
+                        )
                     )
-                )
                 );
                 if (class_exists('Pi\Filter\\' . $class)) {
                     $name = 'Pi\Filter\\' . $class;

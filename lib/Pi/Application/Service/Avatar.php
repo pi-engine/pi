@@ -14,7 +14,6 @@ use Pi;
 use Pi\Avatar\AbstractAvatar;
 use Pi\User\Model\AbstractModel;
 
-
 /**
  * Avatar service
  *
@@ -111,7 +110,6 @@ class Avatar extends AbstractService
         }
 
         return $avatars;
-
     }
 
     /**
@@ -212,7 +210,7 @@ class Avatar extends AbstractService
             // From named to numeric
             if (!is_numeric($size)) {
                 $size = $findSize($size);
-                // Canonize numeric to defined numeric
+            // Canonize numeric to defined numeric
             } else {
                 foreach ($sizeMap as $name => $number) {
                     if ($number >= $size) {
@@ -237,7 +235,6 @@ class Avatar extends AbstractService
         }
 
         return $size;
-
     }
 
     /**

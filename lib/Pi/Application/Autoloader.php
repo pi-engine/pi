@@ -311,7 +311,7 @@ class Autoloader
                 $path
             );
 
-            // Extra classes, Custom\ModuleName\ClassNamespace\ClassName
+        // Extra classes, Custom\ModuleName\ClassNamespace\ClassName
         } elseif (static::TOP_NAMESPACE_CUSTOM === $top) {
             [$top, $module, $trimmedClass] = explode(
                 static::NS_SEPARATOR,
@@ -326,7 +326,7 @@ class Autoloader
                 $path
             );
 
-            // Editor classes, Editor\EditorName\ClassNamespace\ClassName
+        // Editor classes, Editor\EditorName\ClassNamespace\ClassName
         } elseif (static::TOP_NAMESPACE_EDITOR === $top) {
             [$top, $editor, $trimmedClass] = explode(
                 static::NS_SEPARATOR,
@@ -341,7 +341,7 @@ class Autoloader
                 $path
             );
 
-            // Top namespaces
+        // Top namespaces
         } elseif (!empty($this->tops[$top])) {
             // Trim off leader
             $trimmedClass = substr(
@@ -354,8 +354,7 @@ class Autoloader
                 $trimmedClass,
                 $path
             );
-            /*#@-*/
-
+        /*#@-*/
         } else {
             // Lookup in regular namespaces
             foreach ($this->namespaces as $leader => $path) {
@@ -671,12 +670,13 @@ class Autoloader
         );
 
         array_walk(
-            $parts, function ($value, $key) use (&$parts) {
-            if ($value === '..') {
-                unset($parts[$key], $parts[$key - 1]);
-                $parts = array_values($parts);
+            $parts,
+            function ($value, $key) use (&$parts) {
+                if ($value === '..') {
+                    unset($parts[$key], $parts[$key - 1]);
+                    $parts = array_values($parts);
+                }
             }
-        }
         );
 
         if (file_exists($realPath = 'phar:///' . implode('/', $parts))) {

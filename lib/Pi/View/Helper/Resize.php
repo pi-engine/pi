@@ -325,7 +325,6 @@ class Resize extends AbstractHelper
      */
     public function __toString()
     {
-
         if ($this->commands == '') {
             return \Pi::url($this->imgPath);
         }
@@ -338,7 +337,6 @@ class Resize extends AbstractHelper
         $placeholderSource = Pi::service('asset')->getThemeAssetPath('image/placeholder.jpg', $theme, null, true);
 
         try {
-
             if (empty($this->imgParts['dirname'])) {
                 throw new \Exception('No dirname found');
             }
@@ -382,7 +380,6 @@ class Resize extends AbstractHelper
                 }
             }
         } catch (\Exception $e) {
-
             $source          = null;
             $targetExtension = 'jpg';
             $filestring      = '/placeholder';

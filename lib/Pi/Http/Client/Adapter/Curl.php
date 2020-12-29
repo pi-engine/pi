@@ -43,15 +43,15 @@ class Curl extends LaminasCurl
         // ensure correct curl call
         $curlValue = true;
         switch ($method) {
-            case 'GET' :
+            case 'GET':
                 $curlMethod = CURLOPT_HTTPGET;
                 break;
 
-            case 'POST' :
+            case 'POST':
                 $curlMethod = CURLOPT_POST;
                 break;
 
-            case 'PUT' :
+            case 'PUT':
                 // There are two different types of PUT request, either a Raw Data string has been set
                 // or CURLOPT_INFILE and CURLOPT_INFILESIZE are used.
                 if (is_resource($body)) {
@@ -84,27 +84,27 @@ class Curl extends LaminasCurl
                 }
                 break;
 
-            case 'PATCH' :
+            case 'PATCH':
                 $curlMethod = CURLOPT_CUSTOMREQUEST;
                 $curlValue  = "PATCH";
                 break;
 
-            case 'DELETE' :
+            case 'DELETE':
                 $curlMethod = CURLOPT_CUSTOMREQUEST;
                 $curlValue  = "DELETE";
                 break;
 
-            case 'OPTIONS' :
+            case 'OPTIONS':
                 $curlMethod = CURLOPT_CUSTOMREQUEST;
                 $curlValue  = "OPTIONS";
                 break;
 
-            case 'TRACE' :
+            case 'TRACE':
                 $curlMethod = CURLOPT_CUSTOMREQUEST;
                 $curlValue  = "TRACE";
                 break;
 
-            case 'HEAD' :
+            case 'HEAD':
                 $curlMethod = CURLOPT_CUSTOMREQUEST;
                 $curlValue  = "HEAD";
                 break;

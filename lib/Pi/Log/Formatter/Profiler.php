@@ -56,9 +56,9 @@ class Profiler implements FormatterInterface
     {
         $output             = $this->format;
         $event['timestamp'] = date(
-                $this->getDateTimeFormat(),
-                intval($event['timestamp'])
-            ) . substr($event['timestamp'], strpos($event['timestamp'], '.'), 5);
+            $this->getDateTimeFormat(),
+            intval($event['timestamp'])
+        ) . substr($event['timestamp'], strpos($event['timestamp'], '.'), 5);
         $event['timer']     = sprintf('%.4f', $event['timer']);
         foreach ($event as $name => $value) {
             if (!is_scalar($value)) {
