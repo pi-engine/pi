@@ -72,7 +72,6 @@ class OauthController extends ActionController
 
                         //Disconnect the adapter
                         $adapter->disconnect();
-
                     } catch (\Exception $e) {
                         echo 'Oops, we ran into an issue! ' . $e->getMessage();
                     }
@@ -109,7 +108,6 @@ class OauthController extends ActionController
 
                         //Disconnect the adapter
                         $adapter->disconnect();
-
                     } catch (\Exception $e) {
                         echo 'Oops, we ran into an issue! ' . $e->getMessage();
                     }
@@ -146,7 +144,6 @@ class OauthController extends ActionController
 
                         //Disconnect the adapter
                         $adapter->disconnect();
-
                     } catch (\Exception $e) {
                         echo 'Oops, we ran into an issue! ' . $e->getMessage();
                     }
@@ -183,7 +180,6 @@ class OauthController extends ActionController
 
                         //Disconnect the adapter
                         $adapter->disconnect();
-
                     } catch (\Exception $e) {
                         echo 'Oops, we ran into an issue! ' . $e->getMessage();
                     }
@@ -278,7 +274,6 @@ class OauthController extends ActionController
 
                 $this->jump(['route' => 'home'], __('You have logged in successfully.'));
             }
-
         } else {
             $this->jump(['route' => 'home'], __('Information not true'));
         }

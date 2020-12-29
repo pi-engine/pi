@@ -158,8 +158,7 @@ class Draft extends Model
         $offset = null,
         $columns = null,
         $order = null
-    )
-    {
+    ) {
         $result = $rows = [];
 
         $fields        = $this->getValidColumns();

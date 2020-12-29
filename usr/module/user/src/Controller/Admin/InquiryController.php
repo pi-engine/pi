@@ -12,7 +12,6 @@ namespace Module\User\Controller\Admin;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 
-
 /**
  * User manage cases controller
  *
@@ -111,7 +110,8 @@ class InquiryController extends ActionController
 
                 // Compound value
                 $compound = Pi::api('user', 'user')->get(
-                    $uid, $group['compound']
+                    $uid,
+                    $group['compound']
                 );
                 // Generate Result
                 foreach ($compound as $set => $item) {
@@ -122,7 +122,6 @@ class InquiryController extends ActionController
                             'title' => $compoundMeta[$field]['title'],
                             'value' => $item[$field],
                         ];
-
                     }
                     $result[$groupId]['fields'][$set] = $compoundValue;
                 }
@@ -138,7 +137,6 @@ class InquiryController extends ActionController
         }
 
         return $result;
-
     }
 
     /**

@@ -160,7 +160,6 @@ class Install extends BasicAction
                 foreach ($compoundMeta as $meta) {
                     $fieldList[$field['name']][$meta['name']] = 1;
                 }
-
             } else {
                 $fieldList['__BASIC__'][$field['name']] = 1;
             }

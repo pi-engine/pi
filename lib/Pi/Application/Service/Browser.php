@@ -368,11 +368,13 @@ class Browser extends AbstractService
         }
 
         if (preg_match('/\((.*?)\)/im', $u_agent, $parent_matches)) {
-
             preg_match_all(
                 '/(?P<platform>BB\d+;|Android|CrOS|iPhone|iPad|Linux|Macintosh|Windows(\ Phone)?|Silk|linux-gnu|BlackBerry|PlayBook|Nintendo\ (WiiU?|3DS)|Xbox(\ One)?)
 				(?:\ [^;]*)?
-				(?:;|$)/imx', $parent_matches[1], $result, PREG_PATTERN_ORDER
+				(?:;|$)/imx',
+                $parent_matches[1],
+                $result,
+                PREG_PATTERN_ORDER
             );
 
             $priority           = ['Android', 'Xbox One', 'Xbox'];
@@ -398,7 +400,9 @@ class Browser extends AbstractService
             '%(?P<browser>Camino|Kindle(\ Fire\ Build)?|Firefox|Iceweasel|Safari|MSIE|Trident/.*rv|AppleWebKit|Chrome|IEMobile|Opera|OPR|Silk|Lynx|Midori|Version|Wget|curl|NintendoBrowser|PLAYSTATION\ (\d|Vita)+)
 			(?:\)?;?)
 			(?:(?:[:/ ])(?P<version>[0-9A-Z.]+)|/(?:[A-Z]*))%ix',
-            $u_agent, $result, PREG_PATTERN_ORDER
+            $u_agent,
+            $result,
+            PREG_PATTERN_ORDER
         );
 
 
@@ -484,6 +488,5 @@ class Browser extends AbstractService
         }
 
         return ['platform' => $platform, 'browser' => $browser, 'version' => $version];
-
     }
 }

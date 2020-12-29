@@ -150,7 +150,8 @@ class HeadLink extends LaminasHeadLink
             foreach ($this->getContainer()->getArrayCopy() as $key => $item) {
                 if (!empty($item->rel) && !empty($item->type) && !empty($item->href) && $item->rel == 'stylesheet' && $item->type == 'text/css'
                     && preg_match(
-                        '#' . $baseUrl . '#', $item->href
+                        '#' . $baseUrl . '#',
+                        $item->href
                     )
                 ) {
                     $parts = parse_url($item->href);
@@ -229,7 +230,6 @@ class HeadLink extends LaminasHeadLink
 
         foreach ($this as $item) {
             if (!$isUserSectionValue && isset($item->defer)) {
-
                 $itemsDeferNoScript[] = $this->itemToString($item);
 
                 $item->rel    = 'preload';

@@ -184,11 +184,11 @@ class Upload extends Transfer
     {
         if (!Pi::service('file')->isAbsolutePath($value)) {
             $path = Pi::path($value);
-            /*
-            if (!is_dir($path)) {
-                Pi::service('file')->mkdir($path);
-            }
-            */
+        /*
+        if (!is_dir($path)) {
+            Pi::service('file')->mkdir($path);
+        }
+        */
         } else {
             $path = $value;
         }

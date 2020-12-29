@@ -70,8 +70,7 @@ class Stats extends Model
         $limit = null,
         $columns = null,
         $order = null
-    )
-    {
+    ) {
         if (!empty($limit)) {
             $offset = $offset ?: 0;
         }

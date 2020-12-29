@@ -175,6 +175,5 @@ class HomeController extends ActionController
         ]);
 
         return $paginator;
-
     }
 }

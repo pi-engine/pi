@@ -51,7 +51,6 @@ class Updator325 extends AbstractUpdator
     {
         $status = true;
         if (version_compare($version, '3.2.4', '<')) {
-
             Pi::model('route')->update(['name' => 'sysuser'], ['name' => 'user']);
             Pi::registry('route')->flush();
 
@@ -207,7 +206,6 @@ EOD;
             if (false === $status) {
                 return $status;
             }
-
         }
 
         return $status;

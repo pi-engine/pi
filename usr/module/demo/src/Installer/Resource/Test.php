@@ -17,9 +17,11 @@ class Test extends AbstractResource
     {
         return [
             'status'  => true,
-            'message' => sprintf('%s: %s',
+            'message' => sprintf(
+                '%s: %s',
                 __METHOD__,
-                $this->config['config']),
+                $this->config['config']
+            ),
         ];
     }
 
@@ -27,9 +29,11 @@ class Test extends AbstractResource
     {
         return [
             'status'  => true,
-            'message' => sprintf('%s: %s',
+            'message' => sprintf(
+                '%s: %s',
                 __METHOD__,
-                $this->config['config']),
+                $this->config['config']
+            ),
         ];
     }
 }

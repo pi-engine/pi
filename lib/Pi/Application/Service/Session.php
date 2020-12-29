@@ -145,7 +145,8 @@ class Session extends AbstractService
             }
             if ((isset($metadata['EXPIRE'])
                     && $_SERVER['REQUEST_TIME'] > $metadata['EXPIRE'])
-                || (isset($metadata['EXPIRE_HOPS'])
+                || (
+                    isset($metadata['EXPIRE_HOPS'])
                     && $ts > $metadata['EXPIRE_HOPS']['ts']
                     && 0 >= $metadata['EXPIRE_HOPS']['hops']
                 )

@@ -78,7 +78,6 @@ class PluginController extends ActionController
             'timeline'  => $timeline,
             'paginator' => $paginator,
         ];
-
     }
 
     /**
@@ -117,7 +116,6 @@ class PluginController extends ActionController
             'display_list' => $displayList,
             'select_list'  => $selectList,
         ];
-
     }
 
     /**
@@ -181,7 +179,6 @@ class PluginController extends ActionController
         if ($row) {
             if (!$row->active) {
                 $row->assign(['active' => 1]);
-
             } else {
                 $row->assign(['active' => 0]);
             }
@@ -196,7 +193,6 @@ class PluginController extends ActionController
         Pi::registry('timeline', 'user')->clear();
 
         return $result;
-
     }
 
     /**
@@ -242,7 +238,6 @@ class PluginController extends ActionController
         Pi::registry('activity', 'user')->clear();
 
         return $result;
-
     }
 
     /**
@@ -287,6 +282,5 @@ class PluginController extends ActionController
         Pi::registry('quicklink', 'user')->clear();
 
         return $result;
-
     }
 }

@@ -50,7 +50,8 @@ EOT;
         $name = $element->getName();
         [$value, $field] = $element->getValue();
         $attributes = array_replace(
-            $element->getAttributes(), [
+            $element->getAttributes(),
+            [
             'type'  => 'text',
             'value' => $value,
         ]
@@ -68,14 +69,15 @@ EOT;
         }
 
         $html = sprintf(
-            $template, sprintf(
-            $pattern,
-            $name,
-            $attribString,
-            $this->getInlineClosingBracket(),
-            $name,
-            $fieldString
-        )
+            $template,
+            sprintf(
+                $pattern,
+                $name,
+                $attribString,
+                $this->getInlineClosingBracket(),
+                $name,
+                $fieldString
+            )
         );
 
         return $html;

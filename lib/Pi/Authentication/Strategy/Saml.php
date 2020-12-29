@@ -80,7 +80,8 @@ class Saml extends AbstractStrategy
         if ('login' == $type) {
             //$url = $this->getAuthSource()->getLoginURL($return);
             $url = Pi::service('url')->assemble(
-                'default', [
+                'default',
+                [
                 'module'     => 'saml',
                 'controller' => 'index',
                 'action'     => 'login',
@@ -89,7 +90,8 @@ class Saml extends AbstractStrategy
         } elseif ('logout' == $type) {
             //$url = $this->getAuthSource()->getLogoutURL($return);
             $url = Pi::service('url')->assemble(
-                'default', [
+                'default',
+                [
                 'module'     => 'saml',
                 'controller' => 'index',
                 'action'     => 'logout',
@@ -121,9 +123,10 @@ class Saml extends AbstractStrategy
             $profile    = [];
             $attributes = $this->getAuthSource()->getAttributes();
             array_walk(
-                $attributes, function ($data, $key) use (&$profile) {
-                $profile[$key] = is_array($data) ? array_pop($data) : $data;
-            }
+                $attributes,
+                function ($data, $key) use (&$profile) {
+                    $profile[$key] = is_array($data) ? array_pop($data) : $data;
+                }
             );
             $identity = $profile[$field];
             $this->getStorage()->write($profile);

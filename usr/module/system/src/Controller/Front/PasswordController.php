@@ -79,7 +79,9 @@ class PasswordController extends ActionController
 
                 // Send verify email
                 $to   = $userRow->email;
-                $url  = $this->url('', [
+                $url  = $this->url(
+                    '',
+                    [
                         'action' => 'process',
                         'token'  => $token,
                     ]

@@ -10,7 +10,6 @@
 
 namespace Pi\Application\Service;
 
-
 /**
  * Cache handler for view rendering
  *

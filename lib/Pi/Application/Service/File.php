@@ -548,7 +548,10 @@ class File extends AbstractService
             || (defined('PHP_WINDOWS_VERSION_MAJOR') && $copyOnWindows)
         ) {
             $this->mirror(
-                $originDir, $targetDir, null, [
+                $originDir,
+                $targetDir,
+                null,
+                [
                     'copy_on_windows' => $copyOnWindows,
                     'override'        => $override,
                 ]
@@ -732,7 +735,8 @@ class File extends AbstractService
         //$result = preg_match('|^([a-zA-Z]:)?/|', $path);
         $result = false;
         if (strspn($file, '/\\', 0, 1)
-            || (strlen($file) > 3 && ctype_alpha($file[0])
+            || (
+                strlen($file) > 3 && ctype_alpha($file[0])
                 && substr($file, 1, 1) === ':'
                 && (strspn($file, '/\\', 2, 1))
             )

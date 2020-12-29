@@ -79,7 +79,8 @@ class RegisterController extends ActionController
                     $form->setAttributes(
                         [
                             'action' => $this->url(
-                                '', [
+                                '',
+                                [
                                     'action' => 'complete',
                                 ]
                             ),
@@ -114,7 +115,7 @@ class RegisterController extends ActionController
                 ]
             );
 
-            // Set redirect of register source
+        // Set redirect of register source
         } elseif ($form->get('redirect')) {
             $redirect = $this->params('redirect', $_SERVER['HTTP_REFERER']);
             $form->get('redirect')->setValue(rawurlencode($redirect));
@@ -177,7 +178,8 @@ JS;
             || !$this->request->isPost()
         ) {
             $this->redirect(
-                '', [
+                '',
+                [
                     'controller' => 'register',
                     'action'     => 'index',
                 ]
@@ -267,7 +269,8 @@ JS;
         $fallback = function ($message = '') use ($view) {
             $message = $message ?: __('Activation token is invalid.');
             $view->assign(
-                'result', [
+                'result',
+                [
                     'status'  => 0,
                     'message' => $message,
                 ]
@@ -341,7 +344,8 @@ JS;
         $activationMode = $this->config('register_activation');
 
         $status = $this->sendNotification(
-            'success', [
+            'success',
+            [
                 'email'    => $userRow['email'],
                 'uid'      => $uid,
                 'identity' => $userRow['identity'],
@@ -398,7 +402,8 @@ JS;
         }
 
         $status = $this->sendNotification(
-            'activation', [
+            'activation',
+            [
                 'email'    => $user['email'],
                 'uid'      => $user['id'],
                 'identity' => $user['identity'],
@@ -445,7 +450,8 @@ JS;
                     ];
                 } else {
                     $status = $this->sendNotification(
-                        'activation', [
+                        'activation',
+                        [
                             'email'    => $values['email'],
                             'uid'      => (int)$row['id'],
                             'identity' => $row['identity'],
@@ -463,7 +469,6 @@ JS;
                         ];
                     }
                 }
-
             } else {
                 $result = [
                     'status'  => 0,
@@ -492,7 +497,8 @@ JS;
 
         $redirect = $this->params('redirect')
             ?: $this->url(
-                '', [
+                '',
+                [
                     [
                         'module'     => 'user',
                         'controller' => 'dashboard',
@@ -640,7 +646,8 @@ JS;
                 }
                 if (Pi::user()->config('register_notification')) {
                     $this->sendNotification(
-                        'success', [
+                        'success',
+                        [
                             'email'    => $values['email'],
                             'uid'      => $uid,
                             'identity' => $values['identity'],
@@ -653,7 +660,8 @@ JS;
             } elseif ('admin' == $activationMode) {
                 if (Pi::user()->config('register_notification')) {
                     $this->sendNotification(
-                        'admin', [
+                        'admin',
+                        [
                             'email'    => $values['email'],
                             'uid'      => $uid,
                             'identity' => $values['identity'],
@@ -665,7 +673,8 @@ JS;
                 // Activated by email
             } elseif ('email' == $activationMode) {
                 $status = $this->sendNotification(
-                    'activation', [
+                    'activation',
+                    [
                         'email'    => $values['email'],
                         'uid'      => $uid,
                         'identity' => $values['identity'],
@@ -689,7 +698,8 @@ JS;
         // Send notification email to admin
         if (Pi::user()->config('register_notification_admin')) {
             $this->sendNotificationToAdmin(
-                $activationMode, [
+                $activationMode,
+                [
                     'email'    => $values['email'],
                     'identity' => $values['identity'],
                     'name'     => $values['name'],
@@ -800,12 +810,14 @@ JS;
                     );
                     $url    = Pi::url(
                         $this->url(
-                            '', [
+                            '',
+                            [
                                 'action' => 'activate',
                                 'uid'    => md5($data['uid']),
                                 'token'  => $token,
                             ]
-                        ), true
+                        ),
+                        true
                     );
                     $params = [
                         'username'       => $data['name'],
@@ -942,7 +954,8 @@ JS;
         if (Pi::service('user')->hasIdentity()) {
             $this->redirect()->toUrl(
                 $this->url(
-                    '', [
+                    '',
+                    [
                         [
                             'module'     => 'user',
                             'controller' => 'dashboard',
@@ -991,7 +1004,6 @@ JS;
             $firstElementMessages = array_shift($dataMessages);
 
             foreach ($firstElementMessages as $message) {
-
                 $response['message'] = $message;
             }
 
@@ -1001,7 +1013,8 @@ JS;
         }
 
 
-        $this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/json');;
+        $this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/json');
+        ;
         $this->getResponse()->setContent(json_encode($response));
 
         return $this->getResponse();

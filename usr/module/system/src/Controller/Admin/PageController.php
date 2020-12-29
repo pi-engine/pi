@@ -232,7 +232,6 @@ class PageController extends ComponentController
                     ),
                 ];
                 Pi::registry('page')->clear($row->module);
-
             } else {
                 $message = _a('Page data not saved.');
                 $status  = 1;
@@ -331,7 +330,6 @@ class PageController extends ComponentController
                 'title' => $row->title,
             ];
             Pi::registry('page')->clear($row->module);
-
         } else {
             $messages = $form->getMessages();
             $message  = [];

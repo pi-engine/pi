@@ -327,9 +327,10 @@ class Permission extends AbstractService
     public function blockList(array $blocks, $uid = null)
     {
         array_walk(
-            $blocks, function (&$block, $key) {
-            $block = 'block-' . $block;
-        }
+            $blocks,
+            function (&$block, $key) {
+                $block = 'block-' . $block;
+            }
         );
         $condition = [
             'section'  => 'front',
@@ -337,9 +338,10 @@ class Permission extends AbstractService
         ];
         $rules     = $this->getPermission($uid, $condition);
         array_walk(
-            $rules, function (&$rule, $key) {
-            $rule = (int)substr($rule['resource'], 6);
-        }
+            $rules,
+            function (&$rule, $key) {
+                $rule = (int)substr($rule['resource'], 6);
+            }
         );
 
         return $rules;
@@ -389,7 +391,8 @@ class Permission extends AbstractService
                     'section'  => $section,
                     'module'   => $module,
                     'resource' => $resource,
-                ], $uid
+                ],
+                $uid
             );
         }
 
@@ -413,7 +416,8 @@ class Permission extends AbstractService
                 [
                     'resource' => 'module-admin',
                     'item'     => $module,
-                ], $role
+                ],
+                $role
             );
         }
 
@@ -447,7 +451,8 @@ class Permission extends AbstractService
                 [
                     'resource' => 'module-admin',
                     'item'     => $module,
-                ], $uid
+                ],
+                $uid
             );
         }
 
@@ -484,7 +489,7 @@ class Permission extends AbstractService
         // uid => roles
         if (is_numeric($roleOrUid)) {
             $roles = Pi::service('user')->getRole($roleOrUid);
-            // role
+        // role
         } else {
             $roles = (array)$roleOrUid;
         }

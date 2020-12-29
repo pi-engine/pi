@@ -41,8 +41,7 @@ class PageTemplateAvailable extends AbstractValidator
              */
             $parentTheme = Pi::service('theme')->getParent(Pi::config('theme'));
 
-            if(!is_readable($file) && $parentTheme) {
-
+            if (!is_readable($file) && $parentTheme) {
                 $file = sprintf(
                     '%s/' . $parentTheme . '/custom/page/%s.phtml',
                     Pi::path('theme'),

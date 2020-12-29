@@ -146,8 +146,7 @@ class Stats
         $dateFrom,
         $dateTo,
         $module
-    )
-    {
+    ) {
         $where  = [];
         $module = $module ?: Pi::service('module')->current();
 
@@ -191,8 +190,7 @@ class Stats
     public static function getTotalRecentlyByCategory(
         $days = null,
         $module = null
-    )
-    {
+    ) {
         $dateFrom = !is_null($days) ? strtotime(sprintf('-%d day', $days)) : 0;
         $dateTo   = time();
 
@@ -213,8 +211,7 @@ class Stats
         $dateTo,
         $limit = null,
         $module = null
-    )
-    {
+    ) {
         $users  = $where = [];
         $module = $module ?: Pi::service('module')->current();
 
@@ -280,8 +277,7 @@ class Stats
         $days = null,
         $limit = null,
         $module = null
-    )
-    {
+    ) {
         $dateFrom = !is_null($days) ? strtotime(sprintf('-%d day', $days)) : 0;
         $dateTo   = time();
 

@@ -159,7 +159,13 @@ class Article extends Standard
             }
         }
         $matches = compact(
-            'controller', 'action', 'category', 'tag', 'id', 'slug', 'topic',
+            'controller',
+            'action',
+            'category',
+            'tag',
+            'id',
+            'slug',
+            'topic',
             'sort'
         );
         $matches = array_filter($matches);

@@ -106,7 +106,6 @@ class PageFilter extends InputFilter
 
         // Check media module
         if (Pi::service('module')->isActive('media')) {
-
             $this->add(
                 [
                     'name'     => 'main_image',

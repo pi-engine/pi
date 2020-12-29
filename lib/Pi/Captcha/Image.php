@@ -116,14 +116,22 @@ class Image extends LaminasImage
         // generate noise
         for ($i = 0; $i < $this->dotNoiseLevel; $i++) {
             imagefilledellipse(
-                $img, mt_rand(0, $w), mt_rand(0, $h), 2, 2,
+                $img,
+                mt_rand(0, $w),
+                mt_rand(0, $h),
+                2,
+                2,
                 $text_color
             );
         }
         for ($i = 0; $i < $this->lineNoiseLevel; $i++) {
             imageline(
-                $img, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w),
-                mt_rand(0, $h), $text_color
+                $img,
+                mt_rand(0, $w),
+                mt_rand(0, $h),
+                mt_rand(0, $w),
+                mt_rand(0, $h),
+                $text_color
             );
         }
 
@@ -190,10 +198,15 @@ class Image extends LaminasImage
                 }
 
                 imagesetpixel(
-                    $img2, $x, $y, imagecolorallocate(
                     $img2,
-                    $newcolor, $newcolor, $newcolor
-                )
+                    $x,
+                    $y,
+                    imagecolorallocate(
+                        $img2,
+                        $newcolor,
+                        $newcolor,
+                        $newcolor
+                    )
                 );
             }
         }
@@ -201,15 +214,23 @@ class Image extends LaminasImage
         // generate noise
         for ($i = 0; $i < $this->dotNoiseLevel; $i++) {
             imagefilledellipse(
-                $img2, mt_rand(0, $w), mt_rand(0, $h), 2, 2,
+                $img2,
+                mt_rand(0, $w),
+                mt_rand(0, $h),
+                2,
+                2,
                 $text_color
             );
         }
 
         for ($i = 0; $i < $this->lineNoiseLevel; $i++) {
             imageline(
-                $img2, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w),
-                mt_rand(0, $h), $text_color
+                $img2,
+                mt_rand(0, $w),
+                mt_rand(0, $h),
+                mt_rand(0, $w),
+                mt_rand(0, $h),
+                $text_color
             );
         }
 

@@ -548,12 +548,12 @@ class Image extends AbstractService
             // Specified height only
             if (!$size[0]) {
                 $size[0] = $origin->getWidth();
-                // Specified width only
+            // Specified width only
             } elseif (!$size[1]) {
                 $size[1] = $origin->getHeight();
             }
             $box = $this->box($size);
-            // With size ratio
+        // With size ratio
         } elseif (is_float($size)) {
             $box = $origin->scale($size);
         } elseif ($size instanceof Box) {
@@ -844,10 +844,10 @@ class Image extends AbstractService
             // Specified height only
             if (!$size[0]) {
                 $box = $origin->heighten($size[1]);
-                // Specified width only
+            // Specified width only
             } elseif (!$size[1]) {
                 $box = $origin->widen($size[0]);
-                // Specified width and height
+            // Specified width and height
             } else {
                 $box = $this->box($size);
             }

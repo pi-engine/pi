@@ -52,7 +52,6 @@ class Updator340 extends AbstractUpdator
         $status = true;
 
         if (version_compare($version, '3.4.2', '<')) {
-
             $table  = Pi::db()->prefix('user_data');
             $sql
                     = <<<'EOT'
@@ -64,7 +63,6 @@ EOT;
         }
 
         if (version_compare($version, '3.4.1', '<')) {
-
             Pi::model('page')->update(['block' => 1], [
                 'section'    => 'front',
                 'controller' => '',
@@ -82,7 +80,6 @@ EOT;
         }
 
         if (version_compare($version, '3.4.0', '<')) {
-
             $table  = Pi::db()->prefix('user_account');
             $sql
                     = <<<'EOT'
@@ -111,7 +108,6 @@ EOD;
             if (false === $status) {
                 return $status;
             }
-
         }
 
         return $status;

@@ -24,7 +24,6 @@ class Country extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-
             $this->valueOptions = Pi::api('country', 'user')->countryList();
         }
         return $this->valueOptions;

@@ -9,7 +9,6 @@
 
 namespace Pi\Authentication\Adapter;
 
-
 /**
  * Db Authentication Adapter
  *

@@ -34,7 +34,8 @@ class Upload extends AbstractAvatar
             $avatar = Pi::user()->get($uid, 'avatar');
         }
         if ($avatar
-            && ($this->force
+            && (
+                $this->force
                 || 'upload' == Pi::service('avatar')->getType($avatar)
             )
         ) {
@@ -53,7 +54,8 @@ class Upload extends AbstractAvatar
         $avatars = Pi::user()->get($uids, 'avatar');
         foreach ($avatars as $uid => $avatar) {
             if ($avatar
-                && ($this->force
+                && (
+                    $this->force
                     || 'upload' == Pi::service('avatar')->getType($avatar)
                 )
             ) {
@@ -109,7 +111,8 @@ class Upload extends AbstractAvatar
         $size = $this->canonizeSize($size, false);
         if (is_callable($pattern)) {
             $path = call_user_func(
-                $pattern, [
+                $pattern,
+                [
                 'source' => $source,
                 'size'   => $size,
                 'uid'    => $uid,
@@ -214,7 +217,8 @@ class Upload extends AbstractAvatar
         }
         if (!empty($this->options['source_hash'])) {
             $result = call_user_func(
-                $this->options['source_hash'], [
+                $this->options['source_hash'],
+                [
                 'uid'       => $uid,
                 'extension' => $extension,
                 'source'    => $source,

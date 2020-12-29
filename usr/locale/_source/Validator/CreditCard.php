@@ -14,4 +14,3 @@ _("The input contains an invalid amount of digits");
 _("The input is not from an allowed institute");
 _("The input seems to be an invalid credit card number");
 _("An exception has been raised while validating the input");
-

@@ -96,8 +96,7 @@ class Article extends Model
         $offset = null,
         $columns = null,
         $order = null
-    )
-    {
+    ) {
         $result = $rows = [];
 
         if (null === $columns) {

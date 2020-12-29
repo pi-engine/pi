@@ -49,8 +49,7 @@ class Api extends AbstractApi
         $submitter = null,
         $page = null,
         $limit = null
-    )
-    {
+    ) {
         if (empty($submitter)) {
             //$user      = Pi::service('user')->getUser();
             $submitter = Pi::user()->getId();
@@ -179,7 +178,7 @@ class Api extends AbstractApi
         if (!file_exists($resPath)) {
             return $defaultRoute;
         }
-        
+
         $configs = include $resPath;
         $class   = '';
         $name    = '';
@@ -188,11 +187,11 @@ class Api extends AbstractApi
             $name  = $key;
             break;
         }
-        
+
         if (!class_exists($class)) {
             return $defaultRoute;
         }
-        
+
         // Check if the route is already in database
         $routeName = $module . '-' . $name;
         $cacheName = Pi::service('registry')
@@ -201,7 +200,7 @@ class Api extends AbstractApi
         if ($routeName != $cacheName) {
             return $defaultRoute;
         }
-        
+
         return $cacheName;
         */
     }

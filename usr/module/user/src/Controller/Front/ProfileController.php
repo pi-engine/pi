@@ -455,7 +455,6 @@ class ProfileController extends ActionController
         }
 
         return $result;
-
     }
 
     /**
@@ -564,7 +563,6 @@ class ProfileController extends ActionController
         }
 
         return [$elements, $filters];
-
     }
 
     /**

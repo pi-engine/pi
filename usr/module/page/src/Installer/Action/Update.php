@@ -67,9 +67,11 @@ EOD;
             } */
 
             // Alter table field `time` to `time_created`
-            $sql = sprintf('ALTER TABLE %s CHANGE `time` `time_created` int(10)'
+            $sql = sprintf(
+                'ALTER TABLE %s CHANGE `time` `time_created` int(10)'
                 . ' unsigned NOT NULL default \'0\'',
-                $table);
+                $table
+            );
             try {
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
@@ -83,9 +85,11 @@ EOD;
             }
 
             // Add table field `time_updated`
-            $sql = sprintf('ALTER TABLE %s ADD `time_updated` int(10) unsigned'
+            $sql = sprintf(
+                'ALTER TABLE %s ADD `time_updated` int(10) unsigned'
                 . ' NOT NULL default \'0\' AFTER `time_created`',
-                $table);
+                $table
+            );
             try {
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
@@ -100,9 +104,11 @@ EOD;
 
             // Add table field `clicks`
             try {
-                $sql = sprintf('ALTER TABLE %s ADD `clicks` int(10)'
+                $sql = sprintf(
+                    'ALTER TABLE %s ADD `clicks` int(10)'
                     . ' unsigned NOT NULL default \'0\'',
-                    $table);
+                    $table
+                );
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
                 $this->setResult('db', [
@@ -134,8 +140,10 @@ EOD;
         if (version_compare($moduleVersion, '1.0.1', '<')) {
 
             // Alter table add field `seo_title`
-            $sql = sprintf('ALTER TABLE %s ADD `seo_title` varchar(255) NOT NULL',
-                $table);
+            $sql = sprintf(
+                'ALTER TABLE %s ADD `seo_title` varchar(255) NOT NULL',
+                $table
+            );
             try {
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
@@ -149,8 +157,10 @@ EOD;
             }
 
             // Alter table add field `seo_keywords`
-            $sql = sprintf('ALTER TABLE %s ADD `seo_keywords` varchar(255) NOT NULL',
-                $table);
+            $sql = sprintf(
+                'ALTER TABLE %s ADD `seo_keywords` varchar(255) NOT NULL',
+                $table
+            );
             try {
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
@@ -164,8 +174,10 @@ EOD;
             }
 
             // Alter table add field `seo_description`
-            $sql = sprintf('ALTER TABLE %s ADD `seo_description` varchar(255) NOT NULL',
-                $table);
+            $sql = sprintf(
+                'ALTER TABLE %s ADD `seo_description` varchar(255) NOT NULL',
+                $table
+            );
             try {
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
@@ -189,8 +201,10 @@ EOD;
             ]);
 
             // Alter table add field `nav_order`
-            $sql = sprintf('ALTER TABLE %s ADD `nav_order` smallint(5) unsigned NOT NULL default \'0\'',
-                $table);
+            $sql = sprintf(
+                'ALTER TABLE %s ADD `nav_order` smallint(5) unsigned NOT NULL default \'0\'',
+                $table
+            );
             try {
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {
@@ -253,8 +267,10 @@ EOD;
         if (version_compare($moduleVersion, '1.2.6', '<')) {
 
             // Alter table change `content` to MEDIUMTEXT
-            $sql = sprintf("ALTER TABLE %s CHANGE `content` `content` MEDIUMTEXT",
-                $table);
+            $sql = sprintf(
+                "ALTER TABLE %s CHANGE `content` `content` MEDIUMTEXT",
+                $table
+            );
             try {
                 $adapter->query($sql, 'execute');
             } catch (\Exception $exception) {

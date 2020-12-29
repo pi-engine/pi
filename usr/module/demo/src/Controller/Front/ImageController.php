@@ -51,14 +51,14 @@ EOT;
                 $image = Pi::service('image')->resize($origin, $size, $path . '/resize/' . $name);
                 return $image;
             };
-            $large      = $resize([1024, 0], 'large.png');
-            $medium     = $resize([800, 0], 'medium.png');
-            $small      = $resize([640, 0], 'small.png');
-            $specified  = $resize([640, 500], 'specified.png');
-            $height     = $resize([0, 500], 'height.png');
-            $ratio      = $resize(0.2, 'ratio.png');
-            $proportion = $resize([640, 500, true], 'proportion.png');
-            $square     = $resize(500, 'square.png');
+        $large      = $resize([1024, 0], 'large.png');
+        $medium     = $resize([800, 0], 'medium.png');
+        $small      = $resize([640, 0], 'small.png');
+        $specified  = $resize([640, 500], 'specified.png');
+        $height     = $resize([0, 500], 'height.png');
+        $ratio      = $resize(0.2, 'ratio.png');
+        $proportion = $resize([640, 500, true], 'proportion.png');
+        $square     = $resize(500, 'square.png');
         endif;
 
         // Thumbnail
@@ -67,11 +67,11 @@ EOT;
                 $image = Pi::service('image')->thumbnail($origin, $size, $path . '/thumbnail/' . $name);
                 return $image;
             };
-            $width      = $thumbnail([64, 0], 'width.png');
-            $height     = $thumbnail([0, 50], 'height.png');
-            $ratio      = $thumbnail(0.02, 'ratio.png');
-            $proportion = $thumbnail([64, 50, true], 'proportion.png');
-            $specified  = $thumbnail([64, 50], 'specified.png'); // No effect
+        $width      = $thumbnail([64, 0], 'width.png');
+        $height     = $thumbnail([0, 50], 'height.png');
+        $ratio      = $thumbnail(0.02, 'ratio.png');
+        $proportion = $thumbnail([64, 50, true], 'proportion.png');
+        $specified  = $thumbnail([64, 50], 'specified.png'); // No effect
             $square     = $thumbnail(50, 'square.png'); // No effect
         endif;
 
@@ -81,16 +81,16 @@ EOT;
         // Crop
         if (in_array('crop', $ops)):
             $start = [100, 200];
-            $crop  = function ($start, $size, $name) use ($origin, $path) {
-                $image = Pi::service('image')->crop($origin, $start, $size, $path . '/crop/' . $name);
-                return $image;
-            };
+        $crop  = function ($start, $size, $name) use ($origin, $path) {
+            $image = Pi::service('image')->crop($origin, $start, $size, $path . '/crop/' . $name);
+            return $image;
+        };
 
-            $width     = $crop($start, [480, 0], 'width.png');
-            $height    = $crop($start, [0, 300], 'height.png');
-            $ratio     = $crop($start, 0.2, 'ratio.png');
-            $specified = $crop($start, [640, 500], 'specified.png');
-            $square    = $crop($start, 500, 'square.png');
+        $width     = $crop($start, [480, 0], 'width.png');
+        $height    = $crop($start, [0, 300], 'height.png');
+        $ratio     = $crop($start, 0.2, 'ratio.png');
+        $specified = $crop($start, [640, 500], 'specified.png');
+        $square    = $crop($start, 500, 'square.png');
         endif;
 
         // Watermark
@@ -100,19 +100,19 @@ EOT;
                 return $image;
             };
 
-            $default            = $mark('', '', 'default.png');
-            $defaultTopLeft     = $mark('', 'top-left', 'default-top-left.png');
-            $defaultTopRight    = $mark('', 'top-right', 'default-top-right.png');
-            $defaultBottomLeft  = $mark('', 'bottom-left', 'default-bottom-left.png');
-            $defaultBottomRight = $mark('', 'bottom-right', 'default-bottom-right.png');
-            $defaultSpecified   = $mark('', [500, 200], 'default-specified.png');
+        $default            = $mark('', '', 'default.png');
+        $defaultTopLeft     = $mark('', 'top-left', 'default-top-left.png');
+        $defaultTopRight    = $mark('', 'top-right', 'default-top-right.png');
+        $defaultBottomLeft  = $mark('', 'bottom-left', 'default-bottom-left.png');
+        $defaultBottomRight = $mark('', 'bottom-right', 'default-bottom-right.png');
+        $defaultSpecified   = $mark('', [500, 200], 'default-specified.png');
 
-            $watermark            = $path . '/watermark.png';
-            $specifiedTopLeft     = $mark($watermark, 'top-left', 'specified-top-left.png');
-            $specifiedTopRight    = $mark($watermark, 'top-right', 'specified-top-right.png');
-            $specifiedBottomLeft  = $mark($watermark, 'bottom-left', 'specified-bottom-left.png');
-            $specifiedBottomRight = $mark($watermark, 'bottom-right', 'specified-bottom-right.png');
-            $specifiedSpecified   = $mark($watermark, [500, 200], 'specified.png');
+        $watermark            = $path . '/watermark.png';
+        $specifiedTopLeft     = $mark($watermark, 'top-left', 'specified-top-left.png');
+        $specifiedTopRight    = $mark($watermark, 'top-right', 'specified-top-right.png');
+        $specifiedBottomLeft  = $mark($watermark, 'bottom-left', 'specified-bottom-left.png');
+        $specifiedBottomRight = $mark($watermark, 'bottom-right', 'specified-bottom-right.png');
+        $specifiedSpecified   = $mark($watermark, [500, 200], 'specified.png');
         endif;
 
         return 'Manipulation completed with operation(s): ' . implode(', ', $ops);

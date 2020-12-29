@@ -151,7 +151,8 @@ class Version
                 $tags = array_map(
                     function ($tag) {
                         return substr($tag['ref'], 18);
-                    }, $apiResponse
+                    },
+                    $apiResponse
                 );
 
                 // Fetch the latest version number from the array

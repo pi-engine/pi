@@ -301,10 +301,11 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Set type to json if no template is specified
         if (!$this->type && null !== $result) {
             $skip = false;
-            if (($result instanceof ViewModel
+            if ((
+                $result instanceof ViewModel
                     && $result->getTemplate()
                     && $result->getTemplate() != '__NULL__'
-                )
+            )
                 || $result instanceof JsonModel
                 || $result instanceof FeedModel
             ) {
@@ -594,7 +595,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
                     ? $viewConfig['layout_ajax']
                     : 'layout-content'
             );
-            // Specify error page layout
+        // Specify error page layout
         } elseif ($e->isError()) {
             $viewModel->setTemplate(
                 isset($viewConfig['layout_error'])
@@ -714,7 +715,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // AJAX
         if ($request->isXmlHttpRequest()) {
             $this->type = 'ajax';
-            // Flash
+        // Flash
         } elseif ($request->isFlashRequest()) {
             $this->type = 'flash';
         }
@@ -727,8 +728,8 @@ class ViewStrategyListener extends AbstractListenerAggregate
 
         // Json
         if (($match = $accept->match(
-                'application/json, application/javascript'
-            )) != false
+            'application/json, application/javascript'
+        )) != false
         ) {
             $typeString = $match->getTypeString();
             if ('application/json' == $typeString
@@ -738,8 +739,8 @@ class ViewStrategyListener extends AbstractListenerAggregate
             }
             // Feed
         } elseif (($match = $accept->match(
-                'application/rss+xml, application/atom+xml'
-            )) != false
+            'application/rss+xml, application/atom+xml'
+        )) != false
         ) {
             $typeString = $match->getTypeString();
             if ('application/rss+xml' == $typeString

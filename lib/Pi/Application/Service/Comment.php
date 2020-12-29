@@ -108,7 +108,8 @@ class Comment extends AbstractService
             //
 
             $callback = Pi::service('url')->assemble(
-                'comment', [
+                'comment',
+                [
                     'module'     => 'comment',
                     'controller' => 'index',
                     'action'     => 'load',
@@ -151,10 +152,16 @@ EOT;
         Pi::Service('View')->getViewManager()->getHelperManager()->get('jQuery')->__invoke('extension/jquery.magnific-popup.min.js', [], null, false);
         Pi::Service('View')->getViewManager()->getHelperManager()->get('jQuery')->__invoke('extension/magnific-popup.min.css', [], null, false);
         Pi::Service('View')->getViewManager()->getHelperManager()->get('js')->__invoke(
-            Pi::service('asset')->getModuleAsset('script/system-msg.js', 'system'), [], null, false
+            Pi::service('asset')->getModuleAsset('script/system-msg.js', 'system'),
+            [],
+            null,
+            false
         );
         Pi::Service('View')->getViewManager()->getHelperManager()->get('css')->__invoke(
-            Pi::service('asset')->getModuleAsset('css/front.css', 'comment'), [], null, false
+            Pi::service('asset')->getModuleAsset('css/front.css', 'comment'),
+            [],
+            null,
+            false
         );
 
         return $content;
@@ -209,7 +216,6 @@ EOT;
 
     public function loadComments($params = null)
     {
-
         $options = [];
         if (is_string($params)) {
             $uri        = $params;
@@ -683,7 +689,6 @@ EOT;
                 }
             }
         }
-
     }
 
 
@@ -705,10 +710,12 @@ EOT;
         $post   = Pi::api('api', 'comment')->getPost($id);
         $link   = Pi::url(
             Pi::api('api', 'comment')->getUrl(
-                'post', [
+                'post',
+                [
                     'post' => $id,
                 ]
-            ), true
+            ),
+            true
         );
         $params = [
             'uid'      => $uid,
@@ -737,7 +744,5 @@ EOT;
             'data'   => $id,
         ];
         Pi::service('user')->timeline()->delete($params);
-
-
     }
 }

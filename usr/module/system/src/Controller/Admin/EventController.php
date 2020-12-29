@@ -78,8 +78,11 @@ class EventController extends ComponentController
                 'id'     => $row->id,
                 'active' => (int)$row->active,
                 'title'  => sprintf('%s::%s', $row->class, $row->method),
-                'event'  => sprintf('%s-%s',
-                    $row->event_module, $row->event_name),
+                'event'  => sprintf(
+                    '%s-%s',
+                    $row->event_module,
+                    $row->event_name
+                ),
             ];
         }
 
@@ -116,8 +119,11 @@ class EventController extends ComponentController
                 'id'     => $row->id,
                 'active' => $row->active,
                 'title'  => sprintf('%s::%s', $row->class, $row->method),
-                'event'  => sprintf('%s-%s',
-                    $row->event_module, $row->event_name),
+                'event'  => sprintf(
+                    '%s-%s',
+                    $row->event_module,
+                    $row->event_name
+                ),
             ];
         }
 
@@ -170,7 +176,7 @@ class EventController extends ComponentController
             // Disable
             if ($row->active) {
                 $row->active = 0;
-                // Enable
+            // Enable
             } else {
                 if (!Pi::service('module')->isActive($row->module)) {
                     $status = 0;

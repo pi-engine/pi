@@ -23,7 +23,6 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 
-
 /**
  * Draft controller
  *
@@ -136,12 +135,13 @@ class DraftController extends ActionController
                 $result['message']['subject'] = [
                     'isEmpty' => __('Subject cannot be empty.'),
                 ];
-            } else if (!$subjectLength->isValid($data['subject'])) {
+            } elseif (!$subjectLength->isValid($data['subject'])) {
                 $result['status']             = self::RESULT_FALSE;
                 $result['message']['subject'] = $subjectLength->getMessages();
-            } else if ($modelArticle->checkSubjectExists(
+            } elseif ($modelArticle->checkSubjectExists(
                 $data['subject'],
-                $article)
+                $article
+            )
             ) {
                 $result['status']             = self::RESULT_FALSE;
                 $result['message']['subject'] = [
@@ -1658,7 +1658,6 @@ class DraftController extends ActionController
             $rowDraft = $this->getModel('draft')->find($id);
 
             if ($rowDraft && $rowDraft->image) {
-
                 $thumbUrl = Media::getThumbFromOriginal($rowDraft->image);
                 if ($rowDraft->article) {
                     $modelArticle = $this->getModel('article');
@@ -1677,7 +1676,7 @@ class DraftController extends ActionController
                 $rowDraft->image = '';
                 $affectedRows    = $rowDraft->save();
             }
-        } else if ($fakeId) {
+        } elseif ($fakeId) {
             $session = Media::getUploadSession($module, 'feature');
 
             if (isset($session->$fakeId)) {

@@ -47,7 +47,9 @@ class FlushController extends ActionController
             $apcIterator = new \APCIterator('file');
             $size        = $apcIterator->getTotalSize();
             foreach (['', 'K', 'M', 'G'] as $i => $k) {
-                if ($size < 1024) break;
+                if ($size < 1024) {
+                    break;
+                }
                 $size /= 1024;
             }
             $totalSize        = sprintf("%5.1f %s", $size, $k);

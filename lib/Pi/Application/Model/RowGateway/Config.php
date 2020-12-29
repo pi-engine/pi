@@ -165,7 +165,8 @@ class Config extends RowGateway
                 $value = filter_var($value, $filterId);
             } else {
                 $value = filter_var(
-                    $value, $filterId,
+                    $value,
+                    $filterId,
                     ['options' => $options]
                 );
             }

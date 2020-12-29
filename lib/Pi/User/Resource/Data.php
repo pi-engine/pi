@@ -263,7 +263,7 @@ class Data extends AbstractResource
         // Insert new value
         if (!$row) {
             $result = $this->setInt($uid, $name, $value, $expire, $module);
-            // Reset
+        // Reset
         } elseif (0 == $value || null === $row['value_int']) {
             $row['value_int'] = $value;
             $row['expire']    = $expire ? time() + $expire : 0;

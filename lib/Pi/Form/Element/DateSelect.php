@@ -94,5 +94,4 @@ class DateSelect extends LaminasDateSelect
 
         return $this->validator;
     }
-
 }

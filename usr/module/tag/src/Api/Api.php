@@ -426,8 +426,7 @@ class Api extends AbstractApi
         $type = '',
         $limit = 0,
         $offset = 0
-    )
-    {
+    ) {
         $where = [];
         if ($module) {
             $where['module'] = $module;

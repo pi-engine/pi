@@ -49,7 +49,6 @@ class RegisterForm extends UserForm
         ]));
 
         if ($this->has('email')) {
-
             $passwordLink = Pi::service('user')->getUrl('password');
             $urlLogin = Pi::url(Pi::service('url')->assemble('user', [
                 'module'     => 'user',
@@ -70,7 +69,6 @@ class RegisterForm extends UserForm
         }
 
         if ($this->get('credential')) {
-
             $minChars           = $piConfig['password_min'];
             $maxChars           = $piConfig['password_max'];
             $strenghtenPassword = $piConfig['strenghten_password'];
@@ -167,7 +165,7 @@ HTML;
         /**
          * For invisible recaptcha, need for button instead of input submit
          */
-        if(Pi::user()->config('register_captcha') == 3){
+        if (Pi::user()->config('register_captcha') == 3) {
             $this->remove('submit');
 
             $button = new \Laminas\Form\Element\Button('submit-button');
@@ -175,6 +173,5 @@ HTML;
 
             $this->add($button);
         }
-
     }
 }

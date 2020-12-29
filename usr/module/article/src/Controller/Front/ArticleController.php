@@ -330,7 +330,7 @@ class ArticleController extends ActionController
         // The where must be added after array_filter function
         if ($filter == 'active') {
             $where['active'] = 1;
-        } else if ($filter == 'deactive') {
+        } elseif ($filter == 'deactive') {
             $where['active'] = 0;
         }
 

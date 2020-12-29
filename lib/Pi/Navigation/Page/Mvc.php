@@ -179,7 +179,8 @@ class Mvc extends LaminasMvcPage
                     }
                     if ($this->routeMatch->getMatchedRouteName()
                         === $this->getRoute()
-                        && (count(array_intersect_assoc($reqParams, $myParams))
+                        && (
+                            count(array_intersect_assoc($reqParams, $myParams))
                             == count($myParams)
                         )
                     ) {
@@ -192,7 +193,8 @@ class Mvc extends LaminasMvcPage
 
                     if ($this->routeMatch->getMatchedRouteName()
                         === $this->getRoute()
-                        && (count(array_intersect_assoc($reqParams, $myParams))
+                        && (
+                            count(array_intersect_assoc($reqParams, $myParams))
                             == count($myParams)
                         )
                     ) {

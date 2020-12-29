@@ -73,11 +73,11 @@ class Csv implements FileLoaderInterface
         }
 
         while (($data = fgetcsv(
-                $file,
-                $this->options['length'],
-                $this->options['delimiter'],
-                $this->options['enclosure']
-            )) !== false) {
+            $file,
+            $this->options['length'],
+            $this->options['delimiter'],
+            $this->options['enclosure']
+        )) !== false) {
             if (substr($data[0], 0, 1) === '#') {
                 continue;
             }

@@ -173,7 +173,8 @@ abstract class AbstractAction
         );
         if ($count > 0) {
             $this->setResult(
-                'dependent', [
+                'dependent',
+                [
                     'status'  => false,
                     'message' => 'The module has dependants on it.',
                 ]
@@ -207,7 +208,8 @@ abstract class AbstractAction
         }
         if ($missing) {
             $this->setResult(
-                'Independent', [
+                'Independent',
+                [
                     'status'  => false,
                     'message' => 'Modules required by this module: '
                         . implode(', ', $missing),
@@ -244,7 +246,8 @@ abstract class AbstractAction
             if (!$row->save()) {
                 $model->delete(['dependent' => $module]);
                 $this->setResult(
-                    'dependency', [
+                    'dependency',
+                    [
                         'status'  => false,
                         'message' => 'Module dependency is not built.',
                     ]

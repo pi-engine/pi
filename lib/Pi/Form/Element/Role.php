@@ -42,7 +42,6 @@ class Role extends Select
                 $roles[$row->name] = __($row->title);
             }
             $this->valueOptions = $roles;
-
         }
 
         return $this->valueOptions;

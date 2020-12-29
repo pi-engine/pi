@@ -67,10 +67,12 @@ class Home extends Standard
             if (empty($params)
                 || empty($params[0])
                 || ($params[0] == 'system' && empty($params[1]))
-                || ($params[0] == 'system' && $params[1] == 'index'
+                || (
+                    $params[0] == 'system' && $params[1] == 'index'
                     && empty($params[2])
                 )
-                || ($params[0] == 'system' && $params[1] == 'index'
+                || (
+                    $params[0] == 'system' && $params[1] == 'index'
                     && $params[2] == 'index'
                 )
             ) {
@@ -107,7 +109,8 @@ class Home extends Standard
                     'module'     => 'system',
                     'controller' => 'index',
                     'action'     => 'index',
-                ], $options
+                ],
+                $options
             );
         } else {
             $url = '/';

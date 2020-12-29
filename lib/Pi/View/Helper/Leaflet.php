@@ -130,7 +130,9 @@ class Leaflet extends AbstractHelper
         $params['copyright'] = isset($params['copyright'])
             ? $params['copyright']
             : sprintf(
-                '<a href="%s">%s</a>', Pi::url(), Pi::config('sitename')
+                '<a href="%s">%s</a>',
+                Pi::url(),
+                Pi::config('sitename')
             );
 
         // Set map url

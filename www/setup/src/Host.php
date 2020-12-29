@@ -538,7 +538,8 @@ class Host
             $result = @get_headers($url, 1);
             // Check if HTTP code is 200
             $ret = preg_match(
-                '#HTTP/[^\s]+[\s]200([\s]?)#i', $result[0],
+                '#HTTP/[^\s]+[\s]200([\s]?)#i',
+                $result[0],
                 $matches
             );
             // Check content type match if specified
@@ -573,7 +574,8 @@ class Host
                     foreach ($path[$item] as $child) {
                         $this->setWritePermission(
                             $parent . '/' . $item,
-                            $child, $error
+                            $child,
+                            $error
                         );
                     }
                 } else {
@@ -624,10 +626,10 @@ class Host
                     continue;
                 }
                 $status = $status * $this->makeWritable(
-                        $fileinfo->getPathname(),
-                        $recurse,
-                        $create
-                    );
+                    $fileinfo->getPathname(),
+                    $recurse,
+                    $create
+                );
                 if (!$status) {
                     break;
                 }

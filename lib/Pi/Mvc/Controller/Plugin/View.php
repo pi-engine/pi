@@ -242,7 +242,7 @@ class View extends AbstractPlugin
     {
         if (!$template) {
             $template = static::NULL_TEMPLATE;
-            // Set module prefix and section folder
+        // Set module prefix and section folder
         } elseif (false !== $module) {
             if (false === strpos($template, ':')) {
                 $module   = $module ?: $this->getController()->getModule();

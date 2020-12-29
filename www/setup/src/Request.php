@@ -340,7 +340,8 @@ class Request
             // out of baseUrl. $pos !== 0 makes sure it is not matching a value
             // from PATH_INFO or QUERY_STRING
             if ((strlen($requestUri) >= strlen($baseUrl))
-                && ((false !== ($pos = strpos($requestUri, $baseUrl)))
+                && (
+                    (false !== ($pos = strpos($requestUri, $baseUrl)))
                     && ($pos !== 0)
                 )
             ) {

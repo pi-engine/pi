@@ -212,9 +212,10 @@ class Host
         $uri        = isset($_SERVER['REQUEST_URI'])
             ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
         $requestUri = rtrim(
-                $this->getBaseLocation()
-                . ($uri ? '/' . trim($uri, '/') : ''), '/'
-            ) . '/';
+            $this->getBaseLocation()
+                . ($uri ? '/' . trim($uri, '/') : ''),
+            '/'
+        ) . '/';
 
         // Lookup identifier against alias list
         $lookup = function ($conf) use ($requestUri) {
@@ -391,17 +392,17 @@ class Host
         // Path of predefined section, w/o sub path
         if (!empty($this->path[$url])) {
             [$section, $path] = [$url, ''];
-            // Relative path with predefined directory
+        // Relative path with predefined directory
         } elseif (!empty($this->directory[$url])) {
             $directory = $this->directory[$url];
             $section   = $directory['parent'];
             $path      = $directory['folder'];
-            // Relative path
+        // Relative path
         } elseif (false === strpos($url, ':') && $url{0} !== '/') {
             // No '/' included, map to www path
             if (false === strpos($url, '/')) {
                 [$section, $path] = ['www', $url];
-                // Split at the first '/'
+            // Split at the first '/'
             } else {
                 [$section, $path] = explode('/', $url, 2);
                 // If $root is not a section, match to www
@@ -461,28 +462,28 @@ class Host
         // URI of predefined section, w/o sub path
         if (!empty($this->uri[$url])) {
             [$section, $path] = [$url, ''];
-            // Relative URI with predefined directory
+        // Relative URI with predefined directory
         } elseif (!empty($this->directory[$url])
             && !empty($this->uri[$this->directory[$url]['parent']])
         ) {
             $directory = $this->directory[$url];
             $section   = $directory['parent'];
             $path      = $directory['folder'];
-            // Absolute URI with leading `//`
+        // Absolute URI with leading `//`
         } elseif (0 === strpos($url, '//')) {
             $uri = $url;
-            // In-Pi absolute URI with leading `/`
+        // In-Pi absolute URI with leading `/`
         } elseif (0 === strpos($url, '/')) {
             $uri = $this->baseLocation . $url;
-            // Absolute URI with scheme
+        // Absolute URI with scheme
         } elseif (false !== strpos($url, '://')) {
             $uri = $url;
-            // Relative URI
+        // Relative URI
         } else {
             // No '/' included, map to www path
             if (false === strpos($url, '/')) {
                 [$section, $path] = ['www', $url];
-                // Split at the first '/'
+            // Split at the first '/'
             } else {
                 [$section, $path] = explode('/', $url, 2);
                 // If $root is not a section, match to www

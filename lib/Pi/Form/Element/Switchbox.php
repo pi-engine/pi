@@ -13,7 +13,6 @@ use Traversable;
 use Laminas\Form\Element\Checkbox;
 use Laminas\Form\Element;
 
-
 class Switchbox extends Checkbox
 {
     protected $attributes

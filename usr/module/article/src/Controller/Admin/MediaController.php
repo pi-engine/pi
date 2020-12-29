@@ -147,7 +147,8 @@ class MediaController extends FrontMedia
             readfile(Pi::url($media->url));
             exit();
         } else {
-            $this->view()->assign([
+            $this->view()->assign(
+                [
                     'content' => _a('This page have not been considered yet!')]
             );
             $this->view()->setTemplate(false);

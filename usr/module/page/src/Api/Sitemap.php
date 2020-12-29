@@ -10,10 +10,10 @@ class Sitemap extends AbstractApi
     public function sitemap()
     {
         if (!Pi::service('module')->isActive('sitemap')) {
-            return;   
+            return;
         }
         
-         // Remove old links
+        // Remove old links
         Pi::api('sitemap', 'sitemap')->removeAll('page', 'page');
 
         // find and import
@@ -27,7 +27,6 @@ class Sitemap extends AbstractApi
                 $loc = Pi::url(Pi::service("url")->assemble("page", array('controller' => 'page', 'slug' => $row->slug)));
                 Pi::api('sitemap', 'sitemap')->singleLink($loc, 1, 'page', 'page', $row->id);
             }
-            
         }
     }
 }

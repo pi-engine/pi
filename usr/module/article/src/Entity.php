@@ -40,8 +40,7 @@ class Entity
         $limit = null,
         $category = null,
         $module = null
-    )
-    {
+    ) {
         $result = $where = [];
         $module = $module ?: Pi::service('module')->current();
 
@@ -127,8 +126,7 @@ class Entity
         $limit = null,
         $category = null,
         $module = null
-    )
-    {
+    ) {
         $dateTo   = time();
         $dateFrom = $dateTo - 24 * 3600 * $days;
 
@@ -153,8 +151,7 @@ class Entity
         $limit = null,
         $category = null,
         $module = null
-    )
-    {
+    ) {
         $where  = $columns = [];
         $module = $module ?: self::$module;
 
@@ -212,8 +209,7 @@ class Entity
         $limit = null,
         $category = null,
         $module = null
-    )
-    {
+    ) {
         $where  = $columns = [];
         $module = $module ?: self::$module;
 
@@ -269,8 +265,7 @@ class Entity
         $columns = null,
         $order = null,
         $module = null
-    )
-    {
+    ) {
         $offset = ($limit && $page) ? $limit * ($page - 1) : null;
 
         $module     = $module ?: Pi::service('module')->current();
@@ -448,7 +443,7 @@ class Entity
                 }
 
                 /*
-                if ((empty($columns) 
+                if ((empty($columns)
                     || in_array('tag', $columns)) && $config['enable_tag']) {
                     if (!empty($tags[$row['id']])) {
                         $row['tag'] = $tags[$row['id']];
@@ -499,8 +494,7 @@ class Entity
         $columns = null,
         $order = null,
         $module = null
-    )
-    {
+    ) {
         $defaultWhere = [
             'time_publish <= ?' => time(),
             'status'            => Article::FIELD_STATUS_PUBLISHED,
@@ -564,9 +558,9 @@ class Entity
                 if (empty($result['author']['photo'])) {
                     $result['author']['photo']
                         = Pi::service('asset')->getModuleAsset(
-                        $config['default_author_photo'],
-                        $module
-                    );
+                            $config['default_author_photo'],
+                            $module
+                        );
                 }
             }
         }
@@ -699,7 +693,7 @@ class Entity
         foreach ($resultset as $row) {
             if (DraftModel::FIELD_STATUS_DRAFT == $row->status) {
                 $result['draft'] += $row->total;
-            } else if (DraftModel::FIELD_STATUS_PENDING == $row->status) {
+            } elseif (DraftModel::FIELD_STATUS_PENDING == $row->status) {
                 if ('all' == $from
                     and in_array($row->category, $categories)
                 ) {
@@ -707,7 +701,7 @@ class Entity
                 } elseif ('my' == $from) {
                     $result['pending'] += $row->total;
                 }
-            } else if (DraftModel::FIELD_STATUS_REJECTED == $row->status) {
+            } elseif (DraftModel::FIELD_STATUS_REJECTED == $row->status) {
                 $result['rejected'] += $row->total;
             }
         }

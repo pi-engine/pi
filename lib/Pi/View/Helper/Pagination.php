@@ -10,7 +10,6 @@
 
 namespace Pi\View\Helper;
 
-
 /**
  * Pagination creation helper
  *

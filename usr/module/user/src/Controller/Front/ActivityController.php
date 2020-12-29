@@ -53,7 +53,6 @@ class ActivityController extends ActionController
             $view = false;
         } else {
             $view = true;
-
         }
         if (!$name) {
             $this->jump(

@@ -177,7 +177,6 @@ class Block extends AbstractHelper
         if ('tab' == $block['type']) {
             $content = $blockData;
         } else {
-
             $viewModel = new ViewModel;
             // Assemble template
             if (!$block['template']) {
@@ -225,7 +224,7 @@ class Block extends AbstractHelper
         // Render blocks from `widget` module
         if ('widget' == $block['module']) {
             $result = Pi::api('block', 'widget')->render($this, $block, $options);
-            // Render block from regular modules
+        // Render block from regular modules
         } else {
             // Load translations for corresponding module block
             Pi::service('i18n')->loadModule('block', $block['module']);

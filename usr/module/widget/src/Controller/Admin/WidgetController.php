@@ -373,7 +373,7 @@ abstract class WidgetController extends ActionController
         $result = $this->delete($id);
         if ($result) {
             $message = _a('The widget is removed.');
-            //Pi::registry('block')->clear($this->getModule());
+        //Pi::registry('block')->clear($this->getModule());
         } else {
             $message = _a('The widget is not removed.');
         }

@@ -15,7 +15,6 @@ use Laminas\I18n\Translator\TextDomain;
 use Laminas\I18n\Translator\Translator as LaminasTranslator;
 use Laminas\Validator\Translator\TranslatorInterface as ValidatorInterface;
 
-
 /**
  * Translator handler
  *
@@ -355,9 +354,9 @@ class Translator extends LaminasTranslator implements ValidatorInterface
     public function loadResource($options)
     {
         $filename = Pi::service('i18n')->getPath(
-                [$options['domain'], $options['file']],
-                $options['locale']
-            ) . '.' . $this->extension;
+            [$options['domain'], $options['file']],
+            $options['locale']
+        ) . '.' . $this->extension;
         try {
             $result = $this->loader->load($options['locale'], $filename);
             $result = (array)$result;

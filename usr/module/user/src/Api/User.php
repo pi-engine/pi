@@ -93,8 +93,7 @@ class User extends AbstractUseApi
         $limit = 0,
         $offset = 0,
         $order = ''
-    )
-    {
+    ) {
         $result = [];
 
         if ($condition instanceof Where) {
@@ -204,8 +203,7 @@ class User extends AbstractUseApi
         $offset = 0,
         $order = '',
         $field = []
-    )
-    {
+    ) {
         $uids   = $this->getUids(
             $condition,
             $limit,
@@ -255,7 +253,7 @@ class User extends AbstractUseApi
             $select = $modelAccount->select();
             $select->columns(['count' => Pi::db()->expression('COUNT(*)')]);
             $select->where($data['account']);
-            // Account and profile
+        // Account and profile
         } else {
             $select = Pi::db()->select();
             $select->from(['account' => $modelAccount->getTable()]);
@@ -465,8 +463,7 @@ class User extends AbstractUseApi
         $field = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         if (!$uid) {
             return false;
         }
@@ -543,8 +540,7 @@ class User extends AbstractUseApi
         $field = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         $result = $this->get($uids, $field, $filter, $activeOnly);
 
         return $result;
@@ -688,8 +684,7 @@ class User extends AbstractUseApi
         $compound,
         array $rawData,
         $set = 0
-    )
-    {
+    ) {
         $meta        = Pi::registry('compound_field', 'user')->read($compound);
         $canonizeSet = function ($data, $set) use ($uid, $compound, $meta) {
             $result = [];
@@ -1133,8 +1128,7 @@ class User extends AbstractUseApi
         $fields = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         if (!$uid) {
             return false;
         }
@@ -1156,7 +1150,7 @@ class User extends AbstractUseApi
                     || empty($meta[$field]['handler'])
                 ) {
                     $pFields[] = $field;
-                    //continue;
+                //continue;
                 } else {
                     $mFields[] = $field;
                 }
@@ -1198,7 +1192,6 @@ class User extends AbstractUseApi
                     foreach ($data as $id => $user) {
                         $result[$id][$field] = $user;
                     }
-
                 }
             }
         } elseif ('compound' == $type) {
@@ -1267,7 +1260,6 @@ class User extends AbstractUseApi
                     }
                 }
             }
-
         } elseif ('profile' == $type) {
             $model        = Pi::model($type, 'user');
             $row          = $model->select([

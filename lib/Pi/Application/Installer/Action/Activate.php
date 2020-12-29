@@ -43,7 +43,8 @@ class Activate extends AbstractAction
             $row->save();
         } catch (\Exception $e) {
             $this->setResult(
-                'module', [
+                'module',
+                [
                     'status'  => false,
                     'message' => ['Module activate failed'],
                 ]

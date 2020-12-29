@@ -11,7 +11,6 @@ namespace Module\User\Controller\Front;
 
 use Pi\Mvc\Controller\ActionController;
 
-
 /**
  * User feed controller
  *

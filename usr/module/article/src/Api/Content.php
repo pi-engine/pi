@@ -50,8 +50,7 @@ class Content extends AbstractContent
         $limit = 0,
         $offset = 0,
         $order = []
-    )
-    {
+    ) {
         $result = [];
         $model  = Pi::model('article', $this->module);
         $select = $model->select();

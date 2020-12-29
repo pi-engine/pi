@@ -275,5 +275,4 @@ class Persist
 
         return $this->tmpDir;
     }
-
 }

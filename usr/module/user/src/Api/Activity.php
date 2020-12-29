@@ -34,7 +34,6 @@ class Activity extends AbstractApi
         $result = [];
         $list   = Pi::registry('activity', 'user')->read();
         foreach ($list as $name => $activity) {
-
             $callback = $activity['callback'];
             if (!preg_match('|^http[s]?://|i', $callback)) {
                 $module = isset($meta['module']) ? $meta['module'] : null;
@@ -82,7 +81,7 @@ class Activity extends AbstractApi
                 'limit'  => $limit,
                 'offset' => $offset,
             ]);
-        } else if ($callback != null) {
+        } elseif ($callback != null) {
             $reader = new $callback($meta['module']);
             if ($reader instanceof AbstractActivityCallback) {
                 $data = $reader->get($uid, $limit, $offset, $name);

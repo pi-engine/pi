@@ -238,6 +238,7 @@ namespace Pi\Utility {
                         break;
                     case '':
                         $filter = 'full_special_chars';
+                        // no break
                     default:
                         break;
                 }

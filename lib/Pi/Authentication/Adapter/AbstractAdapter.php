@@ -88,5 +88,4 @@ abstract class AbstractAdapter extends LaminasAbstractAdapter implements
 
         return $return;
     }
-
 }

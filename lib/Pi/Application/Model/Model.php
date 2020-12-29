@@ -37,7 +37,6 @@ class Model extends AbstractTableGateway
      */
     public function getMediaLinks()
     {
-
         return $this->mediaLinks;
     }
 }

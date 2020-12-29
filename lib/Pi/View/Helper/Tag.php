@@ -82,9 +82,10 @@ class Tag extends AbstractHtmlElement
         }
 
         array_walk(
-            $tags, function (&$tag) use ($module, $type) {
-            $tag = Pi::service('tag')->render($tag, $module, $type);
-        }
+            $tags,
+            function (&$tag) use ($module, $type) {
+                $tag = Pi::service('tag')->render($tag, $module, $type);
+            }
         );
 
         if ($attribs && is_string($attribs)) {

@@ -89,7 +89,7 @@ class SqlSchema
             if (substr($name, 0, 6) == '{core.') {
                 $tableName = substr($name, 6, -1);
                 $tableName = Pi::db()->prefix($tableName, 'core');
-                // Module tables: {<module_table>}
+            // Module tables: {<module_table>}
             } else {
                 $tableName = substr($name, 1, -1);
                 $tableName = Pi::db()->prefix($tableName, $type);

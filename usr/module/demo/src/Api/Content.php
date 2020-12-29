@@ -50,8 +50,7 @@ class Content extends AbstractContent
         $limit = 0,
         $offset = 0,
         $order = []
-    )
-    {
+    ) {
         $result = [];
 
         for ($i = 1; $i <= $limit; $i++) {

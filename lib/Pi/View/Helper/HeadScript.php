@@ -47,7 +47,6 @@ use Laminas\View\Helper\HeadScript as LaminasHeadScript;
  */
 class HeadScript extends LaminasHeadScript
 {
-
     protected $optionalAttributes
         = [
             'charset',
@@ -203,7 +202,8 @@ class HeadScript extends LaminasHeadScript
                 foreach ($this->getContainer()->getArrayCopy() as $key => $item) {
                     if (!empty($item->type) && !empty($item->attributes['src']) && $item->type == 'text/javascript'
                         && preg_match(
-                            '#' . $baseUrl . '#', $item->attributes['src']
+                            '#' . $baseUrl . '#',
+                            $item->attributes['src']
                         )
                     ) {
                         $parts = parse_url($item->attributes['src']);
@@ -245,7 +245,6 @@ class HeadScript extends LaminasHeadScript
                         $jsObject->attributes['src'] = $compiledJsFileUrl;
 
                         if ($defer == 'defer') {
-
                             $jsObject->attributes['defer'] = 'defer';
                         }
 
@@ -253,7 +252,6 @@ class HeadScript extends LaminasHeadScript
                     }
                 }
             }
-
         }
 
 

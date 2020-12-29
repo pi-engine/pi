@@ -239,14 +239,15 @@ class Theme
         foreach ($message as $action => $state) {
             $content .= '<p>';
             $content .= $action . ': '
-                . (($state['status'] === false)
+                . (
+                    ($state['status'] === false)
                     ? 'failed' : 'passed'
                 );
             if (!empty($state['message'])) {
                 $content .= '<br />&nbsp;&nbsp;' . implode(
-                        '<br />&nbsp;&nbsp;',
-                        (array)$state['message']
-                    );
+                    '<br />&nbsp;&nbsp;',
+                    (array)$state['message']
+                );
             }
             $content .= '</p>';
         }

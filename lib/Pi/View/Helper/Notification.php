@@ -51,7 +51,8 @@ class Notification extends AbstractHtmlElement
         } elseif (Pi::service('module')->isActive('notification')) {
             $url = Pi::url(
                 Pi::service('url')->assemble(
-                    'default', [
+                    'default',
+                    [
                     'module'     => 'notification',
                     'controller' => 'check',
                     'action'     => 'index',

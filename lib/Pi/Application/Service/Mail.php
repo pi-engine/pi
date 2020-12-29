@@ -311,7 +311,7 @@ class Mail extends AbstractService
         // Load directly for absolute path
         if (!is_array($template) && file_exists($template)) {
             $path = $template;
-            // Get realpath
+        // Get realpath
         } else {
             // Canonize path from array('module' => , 'locale' => , 'file' => )
             if (is_array($template)) {
@@ -320,7 +320,7 @@ class Mail extends AbstractService
                 $locale = isset($template['locale'])
                     ? $template['locale'] : null;
                 $file   = $template['file'];
-                // Canonize for current module
+            // Canonize for current module
             } else {
                 $module = Pi::service('module')->current();
                 $locale = null;

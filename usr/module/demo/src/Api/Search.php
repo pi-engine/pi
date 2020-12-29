@@ -27,13 +27,14 @@ class Search extends AbstractSearch
         $limit = 0,
         $offset = 0,
         array $condition = []
-    )
-    {
+    ) {
         $results = [];
         $max     = 1000;
         $count   = 0;
         for ($i = $offset; $i < $max; $i++) {
-            if (++$count > $limit) break;
+            if (++$count > $limit) {
+                break;
+            }
             $item      = [
                 'uid'     => 1,
                 'time'    => time(),

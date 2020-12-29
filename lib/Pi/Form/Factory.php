@@ -55,7 +55,8 @@ class Factory extends LaminasFactory
             if ($type == 'form' || $type == 'fieldset') {
                 $spec['type'] = sprintf(
                     '%s\\%s',
-                    __NAMESPACE__, ucfirst($type)
+                    __NAMESPACE__,
+                    ucfirst($type)
                 );
             } else {
                 $canonizedType = str_replace(

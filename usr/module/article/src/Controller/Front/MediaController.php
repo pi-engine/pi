@@ -230,7 +230,7 @@ class MediaController extends ActionController
                 $row->meta    = '';
                 $affectedRows = $row->save();
             }
-        } else if ($fakeId) {
+        } elseif ($fakeId) {
             $session = Media::getUploadSession($module, 'media');
 
             if (isset($session->$fakeId)) {
@@ -347,15 +347,15 @@ class MediaController extends ActionController
         $compress = count($files) > 1 ? true : false;
         if ($compress) {
             foreach( $files as $file) {
-                if (file_exists($file)) {  
+                if (file_exists($file)) {
                     $zip->addFile( $file , basename($file));
                 }
-            }  
+            }
             $zip->close();
         } else {
             $filename = Pi::path(array_shift($files));
         }
-        
+
         $options = array(
             'file'       => $filename,
             'fileName'   => basename($filename),
@@ -623,7 +623,7 @@ class MediaController extends ActionController
         if (strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false) {
             $options['fileName'] = urlencode($options['fileName']);
         }
-        $options['fileSize'] = isset($options['file']) 
+        $options['fileSize'] = isset($options['file'])
             ? filesize($options['file']) : strlen($options['raw']);
 
         if (ini_get('zlib.output_compression')) {

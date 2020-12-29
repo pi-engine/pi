@@ -155,7 +155,7 @@ EOT;
             );
             $content    .= $buildContent($navigation);
 
-            // Get operation mode navigation
+        // Get operation mode navigation
         } elseif (AdminMode::MODE_ACCESS == $mode) {
             $navigation = Menu::mainOperation($module);
             $content    .= $buildContent($navigation);
@@ -190,7 +190,7 @@ EOT;
         if (AdminMode::MODE_ADMIN == $mode && 'system' == $module) {
             $currentModule = $_SESSION['PI_BACKOFFICE']['module'];
             $navigation    = Menu::subComponent($currentModule, $options);
-            // Module operations
+        // Module operations
         } elseif (AdminMode::MODE_ACCESS == $mode) {
             if (!isset($options['sub'])) {
                 $options['sub'] = [

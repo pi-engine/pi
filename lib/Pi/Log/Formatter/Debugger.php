@@ -57,12 +57,13 @@ class Debugger implements FormatterInterface
         $output = $this->format;
         if (!empty($event['timestamp'])) {
             $event['timestamp'] = date(
-                    $this->getDateTimeFormat(),
-                    intval($event['timestamp'])
-                ) . substr(
-                    $event['timestamp'],
-                    strpos($event['timestamp'], '.'), 5
-                );
+                $this->getDateTimeFormat(),
+                intval($event['timestamp'])
+            ) . substr(
+                $event['timestamp'],
+                strpos($event['timestamp'], '.'),
+                5
+            );
         }
         if (!empty($event['priorityName'])) {
             $event['priorityName'] = strtolower($event['priorityName']);

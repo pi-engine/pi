@@ -136,7 +136,6 @@ class AvatarController extends ActionController
             foreach (array_keys($allSize) as $name) {
                 $metas = $selectAdapter->getMeta($name);
                 if (in_array($filename, array_keys($selects))) {
-
                     $selected[$name] = $metas[$filename];
                 } else {
                     $selected[$name] = array_shift($metas);
@@ -190,7 +189,6 @@ class AvatarController extends ActionController
      */
     public function uploadAction()
     {
-
         $module = $this->getModule();
         $config = Pi::user()->config('');
 
@@ -424,7 +422,6 @@ class AvatarController extends ActionController
 
             $meta  = array_pop($paths);
             $photo = basename($meta['path']);
-
         } elseif ('gravatar' == $source) {
             $email = $this->params('email', '');
             if (empty($email)) {

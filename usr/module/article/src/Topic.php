@@ -56,8 +56,7 @@ class Topic
         $columns = null,
         $order = null,
         $module = null
-    )
-    {
+    ) {
         $module     = $module ?: Pi::service('module')->current();
         $topicWhere = [];
         if (!empty($where['topic'])) {
@@ -104,8 +103,7 @@ class Topic
         $columns = null,
         $order = null,
         $module = null
-    )
-    {
+    ) {
         $offset  = ($limit && $page) ? $limit * ($page - 1) : null;
         $where   = empty($where) ? [] : (array)$where;
         $columns = empty($columns) ? ['*'] : $columns;
@@ -153,8 +151,7 @@ class Topic
         $category = null,
         $topic = null,
         $module = null
-    )
-    {
+    ) {
         $module = $module ?: Pi::service('module')->current();
 
         $dateTo   = time();

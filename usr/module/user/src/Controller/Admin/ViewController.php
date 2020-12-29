@@ -57,22 +57,28 @@ class ViewController extends ActionController
         }
 
         // ToDo : show order module logs
-        if (Pi::service('module')->isActive('order')) {}
+        if (Pi::service('module')->isActive('order')) {
+        }
 
         // ToDo : show guide module logs
-        if (Pi::service('module')->isActive('guide')) {}
+        if (Pi::service('module')->isActive('guide')) {
+        }
 
         // ToDo : show shop module logs
-        if (Pi::service('module')->isActive('shop')) {}
+        if (Pi::service('module')->isActive('shop')) {
+        }
 
         // ToDo : show video module logs
-        if (Pi::service('module')->isActive('video')) {}
+        if (Pi::service('module')->isActive('video')) {
+        }
 
         // ToDo : show vote module logs
-        if (Pi::service('module')->isActive('vote')) {}
+        if (Pi::service('module')->isActive('vote')) {
+        }
 
         // ToDo : show statistics module logs
-        if (Pi::service('module')->isActive('statistics')) {}
+        if (Pi::service('module')->isActive('statistics')) {
+        }
 
         // Set view
         $this->view()->setTemplate('view-user');

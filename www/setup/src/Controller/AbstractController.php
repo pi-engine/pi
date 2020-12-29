@@ -39,7 +39,6 @@ abstract class AbstractController
     {
         $this->wizard = $wizard;
         if ($this->hasBootstrap) {
-
             $vars = $wizard->getPersist(static::PERSIST_HOST);
 
             define('PI_PATH_HOST', $vars['config']['path'] . '/host.php');

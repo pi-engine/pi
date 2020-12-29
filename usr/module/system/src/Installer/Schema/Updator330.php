@@ -51,7 +51,6 @@ class Updator330 extends AbstractUpdator
     {
         $status = true;
         if (version_compare($version, '3.3.0', '<')) {
-
             $table  = Pi::db()->prefix('block');
             $sql
                     = <<<'EOT'

@@ -73,5 +73,4 @@ class Install extends BasicInstall
 
         $result = Pi::api('block', 'widget')->add($block);
     }
-
 }

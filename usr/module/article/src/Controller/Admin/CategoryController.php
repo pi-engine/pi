@@ -183,7 +183,7 @@ class CategoryController extends ActionController
 
         if ($id == 1) {
             return $this->jumpTo404(_a('Root node cannot be deleted.'));
-        } else if ($id) {
+        } elseif ($id) {
             $model = $this->getModel('category');
 
             // Check default category
@@ -589,7 +589,7 @@ class CategoryController extends ActionController
                 $row->image   = '';
                 $affectedRows = $row->save();
             }
-        } else if ($fakeId) {
+        } elseif ($fakeId) {
             $session = Media::getUploadSession($module, 'category');
 
             if (isset($session->$fakeId)) {

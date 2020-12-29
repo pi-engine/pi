@@ -172,7 +172,8 @@ HTML;
         if ($strenghtenPassword) {
             $url = Pi::url(
                 Pi::service('url')->assemble(
-                    'user', [
+                    'user',
+                    [
                         'module'     => 'user',
                         'controller' => 'password',
                         'action'     => 'validateInput',
@@ -283,7 +284,8 @@ HTML;
                     // Send verify email
                     $to   = $userRow->email;
                     $url  = $this->url(
-                        '', [
+                        '',
+                        [
                             'action' => 'process',
                             'token'  => $token,
                         ]
@@ -461,7 +463,8 @@ HTML;
         if ($strenghtenPassword) {
             $url = Pi::url(
                 Pi::service('url')->assemble(
-                    'user', [
+                    'user',
+                    [
                         'module'     => 'user',
                         'controller' => 'password',
                         'action'     => 'validateInput',
@@ -579,7 +582,6 @@ HTML;
             $firstElementMessages = array_shift($dataMessages);
 
             foreach ($firstElementMessages as $message) {
-
                 $response['message'] = $message;
             }
 
@@ -589,7 +591,8 @@ HTML;
         }
 
 
-        $this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/json');;
+        $this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/json');
+        ;
         $this->getResponse()->setContent(json_encode($response));
 
         return $this->getResponse();

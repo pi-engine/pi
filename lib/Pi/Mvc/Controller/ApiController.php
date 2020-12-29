@@ -291,13 +291,14 @@ abstract class ApiController extends ActionController
             $query = $this->splitString($query);
         }
         array_walk(
-            $query, function ($qString) use (&$result) {
-            [$identifier, $value] = explode(':', $qString);
-            $identifier = trim($identifier);
-            if ($identifier) {
-                $result[$identifier] = $value;
+            $query,
+            function ($qString) use (&$result) {
+                [$identifier, $value] = explode(':', $qString);
+                $identifier = trim($identifier);
+                if ($identifier) {
+                    $result[$identifier] = $value;
+                }
             }
-        }
         );
 
         return $result;

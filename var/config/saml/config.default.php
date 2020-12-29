@@ -1,7 +1,7 @@
 <?php
-/* 
+/*
  * The configuration of simpleSAMLphp
- * 
+ *
  * $Id: config.php 3246 2013-05-23 11:43:52Z olavmrk $
  */
 
@@ -44,10 +44,10 @@ $config = [
      * Note: The messages are logged with the DEBUG log level, so you also need to set
      * the 'logging.level' option to LOG_DEBUG.
      */
-    'debug'       => FALSE,
+    'debug'       => false,
 
 
-    'showerrors'                    => TRUE,
+    'showerrors'                    => true,
 
     /**
      * Custom error show function called from SimpleSAML_Error_Error::show.
@@ -61,7 +61,7 @@ $config = [
      * This option allows you to enable validation of XML data against its
      * schemas. A warning will be written to the log if validation fails.
      */
-    'debug.validatexml'             => FALSE,
+    'debug.validatexml'             => false,
 
     /**
      * This password must be kept secret, and modified from the default value 123.
@@ -98,7 +98,7 @@ $config = [
      *
      * See this page for a list of valid timezones: http://php.net/manual/en/timezones.php
      */
-    'timezone'                      => NULL,
+    'timezone'                      => null,
 
     /*
      * Logging.
@@ -248,7 +248,7 @@ $config = [
      * Example:
      *  'session.cookie.domain' => '.example.org',
      */
-    'session.cookie.domain'         => NULL,
+    'session.cookie.domain'         => null,
 
     /*
      * Set the secure flag in the cookie.
@@ -257,13 +257,13 @@ $config = [
      * through https. If the user can access the service through
      * both http and https, this must be set to FALSE.
      */
-    'session.cookie.secure'         => FALSE,
+    'session.cookie.secure'         => false,
 
     /*
      * When set to FALSE fallback to transient session on session initialization
      * failure, throw exception otherwise.
      */
-    'session.disable_fallback'      => FALSE,
+    'session.disable_fallback'      => false,
 
     /*
      * Enable secure POST from HTTPS to HTTP.
@@ -276,14 +276,14 @@ $config = [
      * https://idp.example.org/ssp/, then
      * http://idp.example.org/ssp/module.php/core/postredirect.php must be accessible.
      */
-    'enable.http_post'              => FALSE,
+    'enable.http_post'              => false,
 
     /*
      * Options to override the default settings for php sessions.
      */
     'session.phpsession.cookiename' => null,
     'session.phpsession.savepath'   => null,
-    'session.phpsession.httponly'   => FALSE,
+    'session.phpsession.httponly'   => false,
 
     /*
      * Option to override the default settings for the auth token cookie
@@ -301,13 +301,13 @@ $config = [
      * Options to override the default settings for the language parameter
      */
     'language.parameter.name'       => 'language',
-    'language.parameter.setcookie'  => TRUE,
+    'language.parameter.setcookie'  => true,
 
     /*
      * Options to override the default settings for the language cookie
      */
     'language.cookie.name'          => 'language',
-    'language.cookie.domain'        => NULL,
+    'language.cookie.domain'        => null,
     'language.cookie.path'          => '/',
     'language.cookie.lifetime'      => (60 * 60 * 24 * 900),
 
@@ -347,7 +347,7 @@ $config = [
      *
      * Example: 'attributes.extradictionary' => 'ourmodule:ourattributes',
      */
-    'attributes.extradictionary'    => NULL,
+    'attributes.extradictionary'    => null,
 
     /*
      * Which theme directory should be used?
@@ -363,13 +363,13 @@ $config = [
     /*
      * Whether the discovery service should allow the user to save his choice of IdP.
      */
-    'idpdisco.enableremember'       => TRUE,
-    'idpdisco.rememberchecked'      => TRUE,
+    'idpdisco.enableremember'       => true,
+    'idpdisco.rememberchecked'      => true,
 
     // Disco service only accepts entities it knows.
-    'idpdisco.validate'             => TRUE,
+    'idpdisco.validate'             => true,
 
-    'idpdisco.extDiscoveryStorage'  => NULL,
+    'idpdisco.extDiscoveryStorage'  => null,
 
     /*
      * IdP Discovery service look configuration.
@@ -392,7 +392,7 @@ $config = [
      * option to TRUE. It can also be overridden on a pr. SP basis by adding an option with the
      * same name to the metadata of the SP.
      */
-    'shib13.signresponse'           => TRUE,
+    'shib13.signresponse'           => true,
 
 
     /*
@@ -551,8 +551,8 @@ $config = [
     /*
      * The username and password to use when connecting to the database.
      */
-    'store.sql.username'            => NULL,
-    'store.sql.password'            => NULL,
+    'store.sql.username'            => null,
+    'store.sql.password'            => null,
 
     /*
      * The prefix we should use on our tables.
@@ -642,7 +642,7 @@ $config = [
      * Metadata signing can also be enabled for a individual SP or IdP by setting the
      * same option in the metadata for the SP or IdP.
      */
-    'metadata.sign.enable'          => FALSE,
+    'metadata.sign.enable'          => false,
 
     /*
      * The default key & certificate which should be used to sign generated metadata. These
@@ -654,9 +654,9 @@ $config = [
      * the 'certificate' and 'privatekey' option in the metadata will be used.
      * if those aren't set, signing of metadata will fail.
      */
-    'metadata.sign.privatekey'      => NULL,
-    'metadata.sign.privatekey_pass' => NULL,
-    'metadata.sign.certificate'     => NULL,
+    'metadata.sign.privatekey'      => null,
+    'metadata.sign.privatekey_pass' => null,
+    'metadata.sign.certificate'     => null,
 
 
     /*
@@ -665,7 +665,7 @@ $config = [
      * Example:
      *   'proxy' => 'tcp://proxy.example.com:5100'
      */
-    'proxy'                         => NULL,
+    'proxy'                         => null,
 
     /*
      * Array of URL's to allow a trusted redirect to.
@@ -675,6 +675,6 @@ $config = [
      * Example:
      *   'redirect.trustedsites' => array('sp.example.com', 'othersite.org'),
      */
-    'redirect.trustedsites'         => NULL,
+    'redirect.trustedsites'         => null,
 
 ];

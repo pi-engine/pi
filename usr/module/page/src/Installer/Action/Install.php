@@ -39,9 +39,9 @@ class Install extends BasicInstall
             . '/install';
         if (!is_dir($path)) {
             $path = Pi::service('i18n')->getPath(
-                    ['module/page', ''],
-                    'en'
-                ) . '/install';
+                ['module/page', ''],
+                'en'
+            ) . '/install';
         }
         $metaFile = $path . '/meta.ini';
         $metaList = parse_ini_file($metaFile, true);

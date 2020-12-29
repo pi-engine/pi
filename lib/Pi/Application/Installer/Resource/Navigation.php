@@ -306,7 +306,7 @@ class Navigation extends AbstractResource
 
                 unset($navigations[$row->name]);
                 continue;
-                // Delete deprecated navigation
+            // Delete deprecated navigation
             } else {
                 $status = $this->deleteNavigation($row, $message);
                 if (!$status) {
@@ -348,7 +348,7 @@ class Navigation extends AbstractResource
                 }
                 unset($nodes[$row->navigation]);
                 continue;
-                // Delete deprecated node
+            // Delete deprecated node
             } else {
                 $row->delete();
             }

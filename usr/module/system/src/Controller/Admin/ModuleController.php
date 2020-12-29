@@ -301,7 +301,10 @@ class ModuleController extends ActionController
      */
     public function installAction()
     {
-        $directory = _get('directory', 'regexp', [
+        $directory = _get(
+            'directory',
+            'regexp',
+            [
                 'regexp' => '/^[a-z0-9_]+$/i']
         );
         $name      = _get('name', 'regexp', ['regexp' => '/^[a-z0-9_]+$/i'])
@@ -439,8 +442,11 @@ class ModuleController extends ActionController
     public function uninstallAction()
     {
         $id   = _get('id', 'int');
-        $name = _get('name', 'regexp',
-            ['regexp' => '/^[a-z0-9_]+$/i']);
+        $name = _get(
+            'name',
+            'regexp',
+            ['regexp' => '/^[a-z0-9_]+$/i']
+        );
 
         $result  = false;
         $error   = '';
@@ -538,8 +544,11 @@ class ModuleController extends ActionController
     public function updateAction()
     {
         $id   = _get('id', 'int');
-        $name = _get('name', 'regexp',
-            ['regexp' => '/^[a-z0-9_]+$/i']);
+        $name = _get(
+            'name',
+            'regexp',
+            ['regexp' => '/^[a-z0-9_]+$/i']
+        );
 
         $result  = false;
         $error   = '';
@@ -574,8 +583,10 @@ class ModuleController extends ActionController
         } elseif ($row) {
             $message = sprintf(_a('Module "%s" is not updated.'), $row->title);
         } elseif ($id || $name) {
-            $message = sprintf(_a('Module "%s" is not updated.'),
-                $name ?: $id);
+            $message = sprintf(
+                _a('Module "%s" is not updated.'),
+                $name ?: $id
+            );
         } else {
             $message = _a('Module is not updated.');
         }
@@ -598,8 +609,11 @@ class ModuleController extends ActionController
     public function enableAction()
     {
         $id     = _get('id', 'int');
-        $name   = _get('name', 'regexp',
-            ['regexp' => '/^[a-z0-9_]+$/i']);
+        $name   = _get(
+            'name',
+            'regexp',
+            ['regexp' => '/^[a-z0-9_]+$/i']
+        );
         $active = _get('active', 'int');
 
         $result  = false;
@@ -702,8 +716,11 @@ class ModuleController extends ActionController
             ];
         }
         $id   = _post('id', 'int');
-        $name = _post('name', 'regexp',
-            ['regexp' => '/^[a-z0-9_]+$/i']);
+        $name = _post(
+            'name',
+            'regexp',
+            ['regexp' => '/^[a-z0-9_]+$/i']
+        );
         if ($id) {
             $row = Pi::model('module')->find($id);
         } else {

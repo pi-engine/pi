@@ -47,7 +47,8 @@ class Install extends AbstractAction
         // save module entry into database
         if (!$row->save()) {
             $this->setResult(
-                'module', [
+                'module',
+                [
                     'status'  => false,
                     'message' => ['Module insert failed'],
                 ]

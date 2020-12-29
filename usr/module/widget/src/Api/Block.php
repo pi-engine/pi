@@ -250,8 +250,7 @@ class Block extends AbstractApi
         RenderHelper $helper,
         array $block,
         array $options = []
-    )
-    {
+    ) {
         $transliterateGlobals = function ($content) {
             $globalsMap = [
                 'sitename' => Pi::config('sitename'),

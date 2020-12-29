@@ -159,7 +159,7 @@ class IndexController extends ActionController
             /**
              * Set current theme for getting custom layout
              */
-            if(!empty($data['theme'])){
+            if (!empty($data['theme'])) {
                 $form->get('layout')->setOption('theme', $data['theme']);
             }
 
@@ -190,7 +190,8 @@ class IndexController extends ActionController
                         'name' => $row->name,
                         'id'   => $row->id,
                     ]));
-                    Pi::api('sitemap', 'sitemap')->singleLink($loc,
+                    Pi::api('sitemap', 'sitemap')->singleLink(
+                        $loc,
                         $row->active ? 1 : 2,
                         $this->getModule(),
                         'page',
@@ -212,7 +213,7 @@ class IndexController extends ActionController
             /**
              * Set current theme for getting custom layout
              */
-            if(!empty($data['theme'])){
+            if (!empty($data['theme'])) {
                 $form->get('layout')->setOption('theme', $data['theme']);
             }
 
