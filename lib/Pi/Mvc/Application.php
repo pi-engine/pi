@@ -60,17 +60,18 @@ class Application extends LaminasApplication
      * @param array $configuration
      * @return $this
      */
-    public static function load($configuration = [])
+    public static function init($configuration = [])
     {
-        $smConfig       = isset($configuration['service_manager'])
-            ? $configuration['service_manager'] : [];
-        $listeners      = isset($configuration['listeners'])
-            ? $configuration['listeners'] : [];
-        $serviceManager = new ServiceManager(
-            new Service\ServiceManagerConfig($smConfig)
-        );
-        //$serviceManager->setService('Configuration', $configuration);
+        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : [];
+        $serviceManager = new ServiceManager(new Service\ServiceManagerConfig($smConfig));
+        $serviceManager->setService('ApplicationConfig', $configuration);
         $serviceManager->get('Configuration')->exchangeArray($configuration);
+
+        $listenersFromAppConfig     = isset($configuration['listeners']) ? $configuration['listeners'] : [];
+        $config                     = $serviceManager->get('Config');
+        $listenersFromConfigService = isset($config['listeners']) ? $config['listeners'] : [];
+
+        $listeners = array_unique(array_merge($listenersFromConfigService, $listenersFromAppConfig));
 
         return $serviceManager->get('Application')->setListeners($listeners);
     }
