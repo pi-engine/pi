@@ -130,7 +130,8 @@ class Mail extends AbstractService
      * Load transport
      *
      * @param string $name
-     * @param array $config
+     * @param array  $config
+     *
      * @return MailHandler\Transport\TransportInterface|null
      */
     public function loadTransport($name = null, $config = null)
@@ -197,13 +198,13 @@ class Mail extends AbstractService
     /**
      * get default transport, load it if not previously loaded
      *
-     * @param  MailHandler\Transport\TransportInterface $transport
+     * @param MailHandler\Transport\TransportInterface $transport
+     *
      * @return Mail
      */
     public function setTransport(
         MailHandler\Transport\TransportInterface $transport
-    )
-    {
+    ) {
         $this->transport = $transport;
 
         return $this;
@@ -239,6 +240,7 @@ class Mail extends AbstractService
      * @param string $subject
      * @param string $body
      * @param string $type
+     *
      * @return MailHandler\Message
      */
     public function message($subject = null, $body = null, $type = null)
@@ -276,11 +278,12 @@ class Mail extends AbstractService
     /**
      * Create message from template
      *
+     * @param string|array $template
+     * @param array        $vars
+     *
+     * @return array Associative array of subject, body and format, etc.
      * @see Pi\Service\I18n for template path
      *
-     * @param string|array $template
-     * @param array $vars
-     * @return array Associative array of subject, body and format, etc.
      */
     public function template($template, $vars = [])
     {
@@ -300,6 +303,7 @@ class Mail extends AbstractService
      * Load a template content
      *
      * @param string $template
+     *
      * @return string
      */
     public function loadTemplate($template)
@@ -372,7 +376,8 @@ class Mail extends AbstractService
      *      site_adminmail
      *
      * @param string $content
-     * @param array $vars
+     * @param array  $vars
+     *
      * @return string
      */
     public function assignTemplate($content, $vars = [])
@@ -425,7 +430,8 @@ class Mail extends AbstractService
      *  </code>
      *
      * @param string $content
-     * @param array $elements Names for elements to parse
+     * @param array  $elements Names for elements to parse
+     *
      * @return array
      */
     public function parseTemplate($content, $elements = [])
@@ -459,7 +465,7 @@ class Mail extends AbstractService
      * Create a mime message
      *
      * @param array|string $data
-     * @param null|string $type
+     * @param null|string  $type
      *
      * @return Mime\Message
      */
@@ -469,7 +475,7 @@ class Mail extends AbstractService
             if (is_string($content)) {
                 $content = new Mime\Part($content);
             } elseif (is_array($content)) {
-                list($data, $type) = $content;
+                [$data, $type] = $content;
                 $content = $this->mimePart($data, $type);
             }
             return $content;
@@ -495,8 +501,9 @@ class Mail extends AbstractService
     /**
      * Create a mime part
      *
-     * @param mixed $content
+     * @param mixed        $content
      * @param string|array $type
+     *
      * @return Mime\Part
      */
     public function mimePart($content, $type = null)

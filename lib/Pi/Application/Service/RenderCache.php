@@ -16,7 +16,7 @@ use Laminas\Cache\Storage\Adapter\AbstractAdapter;
 /**
  * Cache handler for view rendering
  *
- * @see Pi\Application\Bootstrap\Resource\Render
+ * @see    Pi\Application\Bootstrap\Resource\Render
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class RenderCache extends AbstractService
@@ -83,6 +83,7 @@ class RenderCache extends AbstractService
      * Canonize cache adapter namespace by prepending 'render_'
      *
      * @param string $namespace
+     *
      * @return string
      */
     protected function canonizeNamespace($namespace)
@@ -94,6 +95,7 @@ class RenderCache extends AbstractService
      * Canonize cache key by prepending theme name and rendering type
      *
      * @param string $key
+     *
      * @return string
      */
     protected function canonizeKey($key)
@@ -106,6 +108,7 @@ class RenderCache extends AbstractService
      * Set cache storage
      *
      * @param AbstractAdapter
+     *
      * @return self
      */
     public function setStorage($storage)
@@ -144,6 +147,7 @@ class RenderCache extends AbstractService
      * Set rendering type
      *
      * @param string $type
+     *
      * @return self
      */
     public function setType($type)
@@ -167,6 +171,7 @@ class RenderCache extends AbstractService
      * Check if content is allowed to cache in a specific context
      *
      * @param bool $flag
+     *
      * @return bool
      */
     public function isCachable($flag = null)
@@ -182,6 +187,7 @@ class RenderCache extends AbstractService
      * Check if cache is opened in a specific context
      *
      * @param bool $flag
+     *
      * @return bool
      */
     public function isOpened($flag = null)
@@ -211,8 +217,9 @@ class RenderCache extends AbstractService
     /**
      * Get/set meta
      *
-     * @param string $meta
+     * @param string     $meta
      * @param mixed|null $value
+     *
      * @return self|mixed
      */
     public function meta($meta, $value = null)
@@ -235,6 +242,7 @@ class RenderCache extends AbstractService
      * set generated content
      *
      * @param string $content
+     *
      * @return self
      */
     public function setContent($content)
@@ -281,6 +289,7 @@ class RenderCache extends AbstractService
      * Save content to cache storage
      *
      * @param string $content
+     *
      * @return self
      */
     public function saveCache($content = null)
@@ -305,8 +314,9 @@ class RenderCache extends AbstractService
      * Flush render cache: a specific item, specified namespace or all
      *
      * @param string|null $namespace Namespace for cache storage,
-     *      usually module name
+     *                               usually module name
      * @param string|null $key
+     *
      * @return self
      */
     public function flushCache($namespace = null, $key = null)

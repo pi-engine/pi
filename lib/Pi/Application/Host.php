@@ -191,8 +191,9 @@ class Host
     /**
      * Lookup host configuration file path in central host configuration
      *
-     * @param array $config
+     * @param array  $config
      * @param string $hostIdentifier
+     *
      * @return array
      */
     protected function lookup($config, $hostIdentifier = '')
@@ -210,8 +211,10 @@ class Host
         // Build current request URI
         $uri        = isset($_SERVER['REQUEST_URI'])
             ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
-        $requestUri = rtrim($this->getBaseLocation()
-                . ($uri ? '/' . trim($uri, '/') : ''), '/') . '/';
+        $requestUri = rtrim(
+                $this->getBaseLocation()
+                . ($uri ? '/' . trim($uri, '/') : ''), '/'
+            ) . '/';
 
         // Lookup identifier against alias list
         $lookup = function ($conf) use ($requestUri) {
@@ -243,6 +246,7 @@ class Host
      * Set host data based on passed config or data loaded from config file
      *
      * @param string|array $config Host file path or array of path settings
+     *
      * @return self
      */
     public function setHost($config)
@@ -338,7 +342,8 @@ class Host
     /**
      * Get a protected variable
      *
-     * @param  string $var
+     * @param string $var
+     *
      * @return mixed
      */
     public function get($var)
@@ -353,8 +358,9 @@ class Host
     /**
      * Get value for a protected variable
      *
-     * @param  string $var
-     * @param  mixed $value
+     * @param string $var
+     * @param mixed  $value
+     *
      * @return self
      */
     public function set($var, $value = null)
@@ -373,6 +379,7 @@ class Host
      *  - Otherwise, first part as section, map to `www` if no section matched
      *
      * @param string $url
+     *
      * @return string
      * @see Pi::path()
      */
@@ -383,7 +390,7 @@ class Host
         $path    = null;
         // Path of predefined section, w/o sub path
         if (!empty($this->path[$url])) {
-            list($section, $path) = [$url, ''];
+            [$section, $path] = [$url, ''];
             // Relative path with predefined directory
         } elseif (!empty($this->directory[$url])) {
             $directory = $this->directory[$url];
@@ -393,13 +400,13 @@ class Host
         } elseif (false === strpos($url, ':') && $url{0} !== '/') {
             // No '/' included, map to www path
             if (false === strpos($url, '/')) {
-                list($section, $path) = ['www', $url];
+                [$section, $path] = ['www', $url];
                 // Split at the first '/'
             } else {
-                list($section, $path) = explode('/', $url, 2);
+                [$section, $path] = explode('/', $url, 2);
                 // If $root is not a section, match to www
                 if (!isset($this->path[$section])) {
-                    list($section, $path) = ['www', $url];
+                    [$section, $path] = ['www', $url];
                 }
             }
             if (!empty($this->directory[$section])) {
@@ -440,8 +447,9 @@ class Host
      *  - If section URI is relative, `www` URI will be appended.
      *
      * @param string $url
-     * @param bool $absolute
+     * @param bool   $absolute
      *  Convert to full URI; Default as relative URI with no hostname
+     *
      * @return string
      * @see Pi::url()
      */
@@ -452,7 +460,7 @@ class Host
         $path    = null;
         // URI of predefined section, w/o sub path
         if (!empty($this->uri[$url])) {
-            list($section, $path) = [$url, ''];
+            [$section, $path] = [$url, ''];
             // Relative URI with predefined directory
         } elseif (!empty($this->directory[$url])
             && !empty($this->uri[$this->directory[$url]['parent']])
@@ -473,13 +481,13 @@ class Host
         } else {
             // No '/' included, map to www path
             if (false === strpos($url, '/')) {
-                list($section, $path) = ['www', $url];
+                [$section, $path] = ['www', $url];
                 // Split at the first '/'
             } else {
-                list($section, $path) = explode('/', $url, 2);
+                [$section, $path] = explode('/', $url, 2);
                 // If $root is not a section, match to www
                 if (!isset($this->uri[$section])) {
-                    list($section, $path) = ['www', $url];
+                    [$section, $path] = ['www', $url];
                 }
             }
             if (!empty($this->directory[$section])) {

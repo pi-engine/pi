@@ -23,12 +23,14 @@ class Breadcrumbs extends LaminasBreadcrumbs
 {
     /**
      * Whether invisible items should be rendered by this helper
+     *
      * @var bool
      */
     protected $renderInvisible = true;
 
     /**
      * Cache container
+     *
      * @var \StdClass
      */
     protected $cache;
@@ -48,9 +50,10 @@ class Breadcrumbs extends LaminasBreadcrumbs
      *
      * Implements {@link HelperInterface::render()}.
      *
-     * @param  AbstractContainer $container
+     * @param AbstractContainer $container
      *      [optional] container to render. Default is
      *      to render the container registered in the helper.
+     *
      * @return string
      */
     public function render($container = null)

@@ -24,15 +24,16 @@ use Laminas\View\Resolver\ResolverInterface;
  *  - Component custom templates
  *    `theme/default/lib/Pi/Captcha/Image/template/`
  *
- * @see Pi\View\Resolver\ModuleTemplate for module template skeleton
- * @see Pi\View\Resolver\ThemeTemplate for theme template skeleton
- * @see Pi\Application\Service\Asset for asset skeleton
+ * @see    Pi\View\Resolver\ModuleTemplate for module template skeleton
+ * @see    Pi\View\Resolver\ThemeTemplate for theme template skeleton
+ * @see    Pi\Application\Service\Asset for asset skeleton
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ComponentTemplate implements ResolverInterface
 {
     /**
      * Theme template directory
+     *
      * @var string
      */
     protected $templateDirectory = 'template';
@@ -40,6 +41,7 @@ class ComponentTemplate implements ResolverInterface
     /**
      * Suffix to use: appends this suffix if the template requested
      * does not use it.
+     *
      * @var string
      */
     protected $suffix = 'phtml';
@@ -47,7 +49,8 @@ class ComponentTemplate implements ResolverInterface
     /**
      * Set default file suffix
      *
-     * @param  string $suffix
+     * @param string $suffix
+     *
      * @return self
      */
     public function setSuffix($suffix)
@@ -71,6 +74,7 @@ class ComponentTemplate implements ResolverInterface
      * Canonize template
      *
      * @param string $name
+     *
      * @return array Pair of component name and template file
      */
     protected function canonizeTemplate($name)
@@ -78,7 +82,7 @@ class ComponentTemplate implements ResolverInterface
         if (substr($name, -6) == '.' . $this->suffix) {
             $name = substr($name, 0, -6);
         }
-        list($component, $template) = explode(':', $name, 2);
+        [$component, $template] = explode(':', $name, 2);
 
         return [$component, $template];
     }
@@ -86,8 +90,9 @@ class ComponentTemplate implements ResolverInterface
     /**
      * Retrieve the filesystem path to a view script
      *
-     * @param  string $name
-     * @param  null|Renderer $renderer
+     * @param string        $name
+     * @param null|Renderer $renderer
+     *
      * @return string|false
      */
     public function resolve($name, Renderer $renderer = null)
@@ -96,7 +101,7 @@ class ComponentTemplate implements ResolverInterface
             return false;
         }
         $renderer->context('component');
-        list($component, $template) = $this->canonizeTemplate($name);
+        [$component, $template] = $this->canonizeTemplate($name);
         // Check custom template in theme
         $path = sprintf(
             '%s/%s/%s/%s/%s.%s',

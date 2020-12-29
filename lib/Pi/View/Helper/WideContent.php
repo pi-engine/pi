@@ -28,13 +28,13 @@ use Laminas\View\Helper\AbstractHelper;
  * --------------
  *
  * @package Pi\View\Helper
- * @author esprit-dev / marc-pi
+ * @author  esprit-dev / marc-pi
  */
 class WideContent extends AbstractHelper
 {
     public function __invoke(
-        $content, $module)
-    {
+        $content, $module
+    ) {
 
         // Get config
         $config = Pi::service('registry')->config->read($module);

@@ -64,8 +64,8 @@ class String extends AbstractService
      * Check if the given character encoding is supported by this wrapper
      * and the character encoding to convert to is also supported.
      *
-     * @param  string $encoding
-     * @param  string|null $convertEncoding
+     * @param string      $encoding
+     * @param string|null $convertEncoding
      *
      * @return bool
      */
@@ -124,7 +124,7 @@ class String extends AbstractService
      * Magic methods to call string wrapper
      *
      * @param string $method String wrapper methods: `strlen`, `substr`, `strpos`, `wordwrap`, `strpad`
-     * @param array $args
+     * @param array  $args
      *
      * @return bool|mixed
      */

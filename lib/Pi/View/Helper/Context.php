@@ -24,7 +24,7 @@ use Laminas\View\Helper\AbstractHelper;
  *  $context = $this->context();
  * ```
  *
- * @see Pi\View\Resolver\ThemeTemplate
+ * @see    Pi\View\Resolver\ThemeTemplate
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Context extends AbstractHelper
@@ -35,7 +35,8 @@ class Context extends AbstractHelper
     /**
      * Set/get context
      *
-     * @param   string|null $context
+     * @param string|null $context
+     *
      * @return  string|this
      */
     public function __invoke($context = null)

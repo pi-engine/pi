@@ -28,6 +28,7 @@ class Relation extends AbstractResource
 {
     /**
      * If relation module available
+     *
      * @var bool|null
      */
     protected $isAvailable = null;
@@ -50,7 +51,8 @@ class Relation extends AbstractResource
      * Placeholder for APIs
      *
      * @param string $method
-     * @param array $args
+     * @param array  $args
+     *
      * @return bool|void
      */
     public function __call($method, $args)

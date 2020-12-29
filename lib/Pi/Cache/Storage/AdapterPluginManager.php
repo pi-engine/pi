@@ -29,12 +29,12 @@ class AdapterPluginManager extends LaminasAdapterPluginManager
             'memcached'  => 'Pi\Cache\Storage\Adapter\Memcached',
             'redis'      => 'Pi\Cache\Storage\Adapter\Redis',
 
-            'apc'            => 'Laminas\Cache\Storage\Adapter\Apc',
+            'apc'               => 'Laminas\Cache\Storage\Adapter\Apc',
             //'memcached'      => 'Laminas\Cache\Storage\Adapter\Memcached',
-            'memory'         => 'Laminas\Cache\Storage\Adapter\Memory',
+            'memory'            => 'Laminas\Cache\Storage\Adapter\Memory',
             //'redis'          => 'Laminas\Cache\Storage\Adapter\Redis',
-            'dba'            => 'Laminas\Cache\Storage\Adapter\Dba',
-            'wincache'       => 'Laminas\Cache\Storage\Adapter\WinCache',
+            'dba'               => 'Laminas\Cache\Storage\Adapter\Dba',
+            'wincache'          => 'Laminas\Cache\Storage\Adapter\WinCache',
             'Laminasserverdisk' => 'Laminas\Cache\Storage\Adapter\LaminasServerDisk',
             'Laminasservershm'  => 'Laminas\Cache\Storage\Adapter\LaminasServerShm',
         ];

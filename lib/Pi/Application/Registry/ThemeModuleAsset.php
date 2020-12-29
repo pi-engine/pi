@@ -38,18 +38,14 @@ class ThemeModuleAsset extends AbstractRegistry
         if (is_dir($path)) {
             $iterator = new DirectoryIterator($path);
             foreach ($iterator as $fileinfo) {
-                if (!$fileinfo->isDir() && !$fileinfo->isLink()
-                    || $fileinfo->isDot()
-                ) {
+                if (!$fileinfo->isDir() && !$fileinfo->isLink() || $fileinfo->isDot()) {
                     continue;
                 }
                 $module = $fileinfo->getFilename();
                 if (preg_match('/[^a-z0-9]+/', $module)) {
                     continue;
                 }
-                $sourceFolder = Pi::service('asset')->getSourcePath(
-                    $component . '/' . $module
-                );
+                $sourceFolder = Pi::service('asset')->getSourcePath($component . '/' . $module);
                 if (!is_dir($sourceFolder)) {
                     continue;
                 }
@@ -73,7 +69,8 @@ class ThemeModuleAsset extends AbstractRegistry
                         if (preg_match(
                             '/(^[^a-z0-9\-]+|\/[^a-z0-9\-]+)/i',
                             dirname($filePath)
-                        )) {
+                        )
+                        ) {
                             continue;
                         }
                         $fileUrl                   = Pi::service('asset')->getThemeModuleAsset(
@@ -106,16 +103,15 @@ class ThemeModuleAsset extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $module
-     * @param string $theme
+     * @param string    $module
+     * @param string    $theme
      * @param bool|null $appendVersion
      */
     public function read(
         $module = '',
         $theme = '',
         $appendVersion = null
-    )
-    {
+    ) {
         //$this->cache = false;
         $module  = $module ?: Pi::service('module')->current();
         $theme   = $theme ?: Pi::service('theme')->current();

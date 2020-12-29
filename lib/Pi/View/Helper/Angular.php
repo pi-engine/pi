@@ -66,9 +66,9 @@ class Angular extends AssetCanonize
     /**
      * Load angular files
      *
-     * @param   null|string|array $files
-     * @param   array $attributes
-     * @param   bool|null $appendVersion
+     * @param null|string|array $files
+     * @param array             $attributes
+     * @param bool|null         $appendVersion
      *
      * @return  $this
      */
@@ -76,8 +76,7 @@ class Angular extends AssetCanonize
         $files = null,
         $attributes = [],
         $appendVersion = null
-    )
-    {
+    ) {
         $files = $this->canonize($files, $attributes);
         $dev   = 'development' == Pi::environment();
         if (isset($files['i18n'])) {

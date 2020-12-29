@@ -60,8 +60,8 @@ use Laminas\View\Helper\AbstractHelper;
  *  $this->googleMap($locations, $apiKey, $type, $htmlClass);
  * ```
  *
- * @see http://www.maplacejs.com
- * @see Google map developer guide
+ * @see    http://www.maplacejs.com
+ * @see    Google map developer guide
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -69,6 +69,7 @@ class GoogleMap extends AbstractHelper
 {
     /**
      * Google map URL
+     *
      * @var string
      */
     protected $jsUrl = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize';
@@ -76,10 +77,10 @@ class GoogleMap extends AbstractHelper
     /**
      * Load GA scripts
      *
-     * @param   array $locations
-     * @param   string $apiKey
-     * @param   string $type point|route|list
-     * @param   array $option Set custom options
+     * @param array  $locations
+     * @param string $apiKey
+     * @param string $type   point|route|list
+     * @param array  $option Set custom options
      *
      * @return  $this
      */
@@ -88,8 +89,7 @@ class GoogleMap extends AbstractHelper
         $apiKey = '',
         $type = 'point',
         $option = []
-    )
-    {
+    ) {
 
         // Set uniq id
         $id = uniqid("google-map-");
@@ -167,8 +167,8 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url, array('defer' => 'defer'));
-                $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
+                $this->view->js($url, ['defer' => 'defer']);
+                $this->view->js(pi::url('static/js/maplace.min.js'), ['defer' => 'defer']);
                 $this->view->footScript()->appendScript($script);
                 break;
 
@@ -227,8 +227,8 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url, array('defer' => 'defer'));
-                $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
+                $this->view->js($url, ['defer' => 'defer']);
+                $this->view->js(pi::url('static/js/maplace.min.js'), ['defer' => 'defer']);
                 $this->view->footScript()->appendScript($script);
                 break;
 
@@ -296,8 +296,8 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url, array('defer' => 'defer'));
-                $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
+                $this->view->js($url, ['defer' => 'defer']);
+                $this->view->js(pi::url('static/js/maplace.min.js'), ['defer' => 'defer']);
                 $this->view->footScript()->appendScript($script);
                 break;
 
@@ -354,8 +354,8 @@ EOT;
                 }
 
                 // Load maplace
-                $this->view->js($url, array('defer' => 'defer'));
-                $this->view->js(pi::url('static/js/maplace.min.js'), array('defer' => 'defer'));
+                $this->view->js($url, ['defer' => 'defer']);
+                $this->view->js(pi::url('static/js/maplace.min.js'), ['defer' => 'defer']);
                 $this->view->footScript()->appendScript($script);
                 break;
 
@@ -424,7 +424,7 @@ EOT;
                     $id,
                     isset($option['circle']) && $option['circle'] ? 'circle' : 'marker',
                     $locations['title'],
-                    isset($option['icon']) ? json_encode($option['icon']) : 'undefined' 
+                    isset($option['icon']) ? json_encode($option['icon']) : 'undefined'
                 );
 
                 // Set url and key
@@ -435,7 +435,7 @@ EOT;
 
                 // Load script
                 $this->view->footScript()->appendScript($script);
-                $this->view->js($url, array('defer' => 'defer'));
+                $this->view->js($url, ['defer' => 'defer']);
                 break;
         }
 

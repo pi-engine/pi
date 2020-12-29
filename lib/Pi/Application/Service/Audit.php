@@ -98,8 +98,8 @@ use Pi;
  *  Pi::service('audit')->log('custom-audit', $args);
  * ```
  *
- * @see var/config/service.audit.php for audit service configuration
- * @see http://www.php.net/manual/en/function.date.php for date format
+ * @see    var/config/service.audit.php for audit service configuration
+ * @see    http://www.php.net/manual/en/function.date.php for date format
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Audit extends AbstractService
@@ -136,8 +136,9 @@ class Audit extends AbstractService
     /**
      * Attach a log
      *
-     * @param string $name
+     * @param string            $name
      * @param array|string|null $options
+     *
      * @return void
      */
     public function attach($name, $options = null)
@@ -167,7 +168,8 @@ class Audit extends AbstractService
      * Write messages to a log
      *
      * @param string $name
-     * @param array $messages
+     * @param array  $messages
+     *
      * @return bool
      */
     public function write($name, $messages)
@@ -183,7 +185,7 @@ class Audit extends AbstractService
 
         $msgs = [];
         foreach ($messages as $message) {
-            list($time, $args) = $message;
+            [$time, $args] = $message;
             $args       = (array)$args;
             $timeString = date($options['timeformat'], $time);
             if ('csv' == strtolower($options['format'])) {
@@ -213,8 +215,9 @@ class Audit extends AbstractService
      *      array(<val1>, <val2>, <val3>, ..., <valn>));
      * ```
      *
-     * @param  string $name Log name
-     * @param  array|string $args Parameters to log
+     * @param string       $name Log name
+     * @param array|string $args Parameters to log
+     *
      * @return void
      */
     public function log($name, $args)

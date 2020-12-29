@@ -106,72 +106,84 @@ use Laminas\View;
  *  ));
  * ```
  * {@inheritDoc}
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Paginator extends Pagit
 {
     /**
      * Configuration file
+     *
      * @var array|null
      */
     protected static $config = null;
 
     /**
      * Default scrolling style
+     *
      * @var string
      */
     protected static $defaultScrollingStyle = 'Sliding';
 
     /**
      * Default item count per page
+     *
      * @var int
      */
     protected static $defaultItemCountPerPage = 10;
 
     /**
      * Scrolling style plugin manager
+     *
      * @var ScrollingStylePluginManager
      */
     protected static $scrollingStyles = null;
 
     /**
      * Adapter
+     *
      * @var AdapterInterface
      */
     protected $adapter = null;
 
     /**
      * Number of items in the current page
+     *
      * @var int|null
      */
     protected $currentItemCount = null;
 
     /**
      * Current page items
+     *
      * @var Traversable
      */
     protected $currentItems = null;
 
     /**
      * Current page number (starting from 1)
+     *
      * @var integer
      */
     protected $currentPageNumber = 1;
 
     /**
      * Result filter
+     *
      * @var FilterInterface
      */
     protected $filter = null;
 
     /**
      * Number of items per page
+     *
      * @var int|null
      */
     protected $itemCountPerPage = null;
 
     /**
      * Number of pages
+     *
      * @var int|null
      */
     protected $pageCount = null;
@@ -179,18 +191,21 @@ class Paginator extends Pagit
     /**
      * Number of local pages (i.e., the number of discrete page numbers
      * that will be displayed, including the current page number)
+     *
      * @var integer
      */
     protected $pageRange = 10;
 
     /**
      * Pages
+     *
      * @var array|null
      */
     protected $pages = null;
 
     /**
      * View instance used for self rendering
+     *
      * @var \Laminas\View\Renderer\RendererInterface
      */
     protected $view = null;
@@ -198,6 +213,7 @@ class Paginator extends Pagit
     /**
      * Options for URL assemble:
      * template, page_param, total_param, params, router, route
+     *
      * @var array
      */
     protected $urlOptions
@@ -206,7 +222,7 @@ class Paginator extends Pagit
         ];
 
     /** @var string Pattern for URL replacement */
-    const PAGE_PATTERN  = '__page__';
+    const PAGE_PATTERN = '__page__';
     const TOTAL_PATTERN = '__total__';
 
     /**
@@ -214,8 +230,9 @@ class Paginator extends Pagit
      *
      * @param mixed $data
      * @param array $options
-     * @throws Exception\InvalidArgumentException
+     *
      * @return self
+     * @throws Exception\InvalidArgumentException
      */
     public static function factory($data, $options = [])
     {
@@ -280,6 +297,7 @@ class Paginator extends Pagit
      * Set options
      *
      * @param array|\Traversable $options
+     *
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
@@ -308,6 +326,7 @@ class Paginator extends Pagit
      * Set a global config
      *
      * @param array|\Traversable $config
+     *
      * @return void
      * @throws Exception\InvalidArgumentException
      */
@@ -342,7 +361,8 @@ class Paginator extends Pagit
      * Creates the adapter
      *
      * @param string $adapter
-     * @param mixed $data
+     * @param mixed  $data
+     *
      * @return AdapterInterface
      */
     public static function createAdapter($adapter, $data)
@@ -360,6 +380,7 @@ class Paginator extends Pagit
      * Creates scrolling style
      *
      * @param string $style
+     *
      * @return ScrollingStyleInterface
      */
     protected function createScrollingStyle($style)
@@ -397,6 +418,7 @@ class Paginator extends Pagit
      * Set the default item count per page
      *
      * @param int $count
+     *
      * @return void
      */
     public static function setDefaultItemCountPerPage($count)
@@ -408,12 +430,12 @@ class Paginator extends Pagit
      * Sets the default scrolling style.
      *
      * @param string $scrollingStyle
+     *
      * @return void
      */
     public static function setDefaultScrollingStyle(
         $scrollingStyle = 'Sliding'
-    )
-    {
+    ) {
         static::$defaultScrollingStyle = $scrollingStyle;
     }
 
@@ -421,6 +443,7 @@ class Paginator extends Pagit
      * Constructor.
      *
      * @param AdapterInterface|AdapterAggregateInterface $adapter
+     *
      * @throws Exception\InvalidArgumentException
      */
     public function __construct($adapter)
@@ -498,15 +521,15 @@ class Paginator extends Pagit
     /**
      * Returns the absolute item number for the specified item.
      *
-     * @param  int $relativeItemNumber Relative item number
-     * @param  int $pageNumber Page number
+     * @param int $relativeItemNumber Relative item number
+     * @param int $pageNumber         Page number
+     *
      * @return int
      */
     public function getAbsoluteItemNumber(
         $relativeItemNumber,
         $pageNumber = null
-    )
-    {
+    ) {
         $relativeItemNumber = $this->normalizeItemNumber($relativeItemNumber);
 
         if ($pageNumber == null) {
@@ -572,7 +595,8 @@ class Paginator extends Pagit
     /**
      * Sets the current page number.
      *
-     * @param  int $pageNumber Page number
+     * @param int $pageNumber Page number
+     *
      * @return self
      */
     public function setCurrentPageNumber($pageNumber)
@@ -597,7 +621,8 @@ class Paginator extends Pagit
     /**
      * Set a filter chain
      *
-     * @param  FilterInterface $filter
+     * @param FilterInterface $filter
+     *
      * @return self
      */
     public function setFilter(FilterInterface $filter)
@@ -612,10 +637,11 @@ class Paginator extends Pagit
      *
      * The current page is used if there's no page specified.
      *
-     * @param  integer $itemNumber Item number (1 to itemCountPerPage)
-     * @param  integer $pageNumber
-     * @throws Exception\InvalidArgumentException
+     * @param integer $itemNumber Item number (1 to itemCountPerPage)
+     * @param integer $pageNumber
+     *
      * @return mixed
+     * @throws Exception\InvalidArgumentException
      */
     public function getItem($itemNumber, $pageNumber = null)
     {
@@ -668,6 +694,7 @@ class Paginator extends Pagit
      * Sets the number of items per page.
      *
      * @param int $itemCountPerPage
+     *
      * @return self
      */
     public function setItemCountPerPage($itemCountPerPage = -1)
@@ -686,7 +713,8 @@ class Paginator extends Pagit
     /**
      * Returns the number of items in a collection.
      *
-     * @param  mixed $items Items
+     * @param mixed $items Items
+     *
      * @return int
      */
     public function getItemCount($items)
@@ -707,6 +735,7 @@ class Paginator extends Pagit
      * Returns the items for a given page.
      *
      * @param int $pageNumber
+     *
      * @return mixed
      */
     public function getItemsByPage($pageNumber)
@@ -734,16 +763,18 @@ class Paginator extends Pagit
     /**
      * Returns a foreach-compatible iterator.
      *
-     * @throws Exception\RuntimeException
      * @return Traversable
+     * @throws Exception\RuntimeException
      */
     public function getIterator()
     {
         try {
             return $this->getCurrentItems();
         } catch (\Exception $e) {
-            throw new Exception\RuntimeException('Error producing an iterator',
-                null, $e);
+            throw new Exception\RuntimeException(
+                'Error producing an iterator',
+                null, $e
+            );
         }
     }
 
@@ -760,7 +791,8 @@ class Paginator extends Pagit
     /**
      * Sets the page range (see property declaration above).
      *
-     * @param  int $pageRange
+     * @param int $pageRange
+     *
      * @return self
      */
     public function setPageRange($pageRange)
@@ -773,7 +805,8 @@ class Paginator extends Pagit
     /**
      * Returns the page collection.
      *
-     * @param  string $scrollingStyle Scrolling style
+     * @param string $scrollingStyle Scrolling style
+     *
      * @return array
      */
     public function getPages($scrollingStyle = null)
@@ -788,8 +821,9 @@ class Paginator extends Pagit
     /**
      * Returns a subset of pages within a given range.
      *
-     * @param  int $lowerBound Lower bound of the range
-     * @param  int $upperBound Upper bound of the range
+     * @param int $lowerBound Lower bound of the range
+     * @param int $upperBound Upper bound of the range
+     *
      * @return array
      */
     public function getPagesInRange($lowerBound, $upperBound)
@@ -799,9 +833,11 @@ class Paginator extends Pagit
 
         $pages = [];
 
-        for ($pageNumber = $lowerBound;
-             $pageNumber <= $upperBound;
-             $pageNumber++) {
+        for (
+            $pageNumber = $lowerBound;
+            $pageNumber <= $upperBound;
+            $pageNumber++
+        ) {
             $pages[$pageNumber] = (object)[
                 'number' => $pageNumber,
                 'url'    => $this->buildUrl($pageNumber),
@@ -830,7 +866,8 @@ class Paginator extends Pagit
     /**
      * Sets the view object.
      *
-     * @param  \Laminas\View\Renderer\RendererInterface $view
+     * @param \Laminas\View\Renderer\RendererInterface $view
+     *
      * @return self
      */
     public function setView(View\Renderer\RendererInterface $view = null)
@@ -843,7 +880,8 @@ class Paginator extends Pagit
     /**
      * Brings the item number in range of the page.
      *
-     * @param  int $itemNumber
+     * @param int $itemNumber
+     *
      * @return int
      */
     public function normalizeItemNumber($itemNumber)
@@ -864,7 +902,8 @@ class Paginator extends Pagit
     /**
      * Brings the page number in range of the paginator.
      *
-     * @param  int $pageNumber
+     * @param int $pageNumber
+     *
      * @return int
      */
     public function normalizePageNumber($pageNumber)
@@ -887,7 +926,8 @@ class Paginator extends Pagit
     /**
      * Renders the paginator.
      *
-     * @param  \Laminas\View\Renderer\RendererInterface $view
+     * @param \Laminas\View\Renderer\RendererInterface $view
+     *
      * @return string
      */
     public function render(View\Renderer\RendererInterface $view = null)
@@ -932,7 +972,8 @@ class Paginator extends Pagit
     /**
      * Creates the page collection.
      *
-     * @param  string $scrollingStyle Scrolling style
+     * @param string $scrollingStyle Scrolling style
+     *
      * @return stdClass
      */
     protected function _createPages($scrollingStyle = null)
@@ -992,6 +1033,7 @@ class Paginator extends Pagit
      * Loads a scrolling style.
      *
      * @param string $scrollingStyle
+     *
      * @return ScrollingStyleInterface
      * @throws Exception\InvalidArgumentException
      */
@@ -1055,6 +1097,7 @@ class Paginator extends Pagit
      * Builds URL for a page
      *
      * @param int $page
+     *
      * @return string
      */
     public function buildUrl($page)

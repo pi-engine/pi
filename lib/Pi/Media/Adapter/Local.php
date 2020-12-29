@@ -148,8 +148,7 @@ class Local extends AbstractAdapter
         $limit = 0,
         $offset = 0,
         $order = ''
-    )
-    {
+    ) {
         $result = $this->handler()->getIds(
             $condition,
             $limit,
@@ -169,8 +168,7 @@ class Local extends AbstractAdapter
         $offset = 0,
         $order = '',
         array $attr = []
-    )
-    {
+    ) {
         $result = $this->handler()->getList(
             $condition,
             $limit,

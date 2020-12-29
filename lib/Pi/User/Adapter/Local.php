@@ -51,8 +51,7 @@ class Local extends System
         $limit = 0,
         $offset = 0,
         $order = ''
-    )
-    {
+    ) {
         $result = Pi::api('user', 'user')->getUids(
             $condition,
             $limit,
@@ -72,8 +71,7 @@ class Local extends System
         $offset = 0,
         $order = '',
         array $field = []
-    )
-    {
+    ) {
         $result = Pi::api('user', 'user')->getList(
             $condition,
             $limit,
@@ -161,8 +159,7 @@ class Local extends System
         $field = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         return Pi::api('user', 'user')->get(
             $uid,
             $field,
@@ -179,8 +176,7 @@ class Local extends System
         $field = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         return Pi::api('user', 'user')->mget(
             $uids,
             $field,

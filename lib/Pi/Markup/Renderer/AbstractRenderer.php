@@ -40,7 +40,7 @@ abstract class AbstractRenderer
     /**
      * Constructor
      *
-     * @param  array|Traversable $options
+     * @param array|Traversable $options
      */
     public function __construct($options = [])
     {
@@ -51,6 +51,7 @@ abstract class AbstractRenderer
      * Set options
      *
      * @param array|\Traversable $options
+     *
      * @return $this
      */
     public function setOptions($options)
@@ -75,6 +76,7 @@ abstract class AbstractRenderer
      * Set the parser
      *
      * @param AbstractParser|string $parser
+     *
      * @return $this
      */
     public function setParser(AbstractParser $parser)
@@ -98,6 +100,7 @@ abstract class AbstractRenderer
      * Render function
      *
      * @param string $content
+     *
      * @return string
      */
     public function render($content)
@@ -112,6 +115,7 @@ abstract class AbstractRenderer
      * Parse content
      *
      * @param string $content
+     *
      * @return string
      */
     abstract protected function renderContent($content);

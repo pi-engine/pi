@@ -59,8 +59,7 @@ class System extends AbstractAdapter
         $limit = 0,
         $offset = 0,
         $order = ''
-    )
-    {
+    ) {
         $result = Pi::api('user', 'system')->getUids(
             $condition,
             $limit,
@@ -80,8 +79,7 @@ class System extends AbstractAdapter
         $offset = 0,
         $order = '',
         array $field = []
-    )
-    {
+    ) {
         $result = Pi::api('user', 'system')->getList(
             $condition,
             $limit,
@@ -169,8 +167,7 @@ class System extends AbstractAdapter
         $field = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         return Pi::api('user', 'system')->get(
             $uid,
             $field,
@@ -187,8 +184,7 @@ class System extends AbstractAdapter
         $field = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         return Pi::api('user', 'system')->mget(
             $uids,
             $field,

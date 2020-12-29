@@ -87,10 +87,12 @@ class Select extends AbstractAvatar
         }
         $size = $this->canonizeSize($size, false);
         if (is_callable($pattern)) {
-            $path = call_user_func($pattern, [
+            $path = call_user_func(
+                $pattern, [
                 'source' => $source,
                 'size'   => $size,
-            ]);
+            ]
+            );
         } else {
             $path = str_replace(
                 ['source', 'size'],

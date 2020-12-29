@@ -40,10 +40,12 @@ class Route extends AbstractRegistry
                 ->equalTo('section', '')
                 ->UNNEST;
         } else {
-            $select->where([
-                'active'       => 1,
-                'section <> ?' => $options['section'],
-            ]);
+            $select->where(
+                [
+                    'active'       => 1,
+                    'section <> ?' => $options['section'],
+                ]
+            );
         }
         $rowset = $model->selectWith($select);
 
@@ -63,7 +65,7 @@ class Route extends AbstractRegistry
     /**
      * {@inheritDoc}
      * @param string $section
-     * @param bool $exclude To exclude the specified section
+     * @param bool   $exclude To exclude the specified section
      */
     public function read($section = 'front', $exclude = false)
     {
@@ -76,7 +78,7 @@ class Route extends AbstractRegistry
     /**
      * {@inheritDoc}
      * @param string $section
-     * @param bool $exclude To exclude the specified section
+     * @param bool   $exclude To exclude the specified section
      */
     public function create($section = 'front', $exclude = false)
     {

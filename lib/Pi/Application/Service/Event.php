@@ -39,8 +39,8 @@ use Pi;
  *      array(<callback-class>, <callback-method>[, <callback-module-name>]));
  * ```
  *
- * @see Pi\Application\Installer\Resource\Event for event specifications
- * @see Pi\Application\Registry\Event for event listing
+ * @see    Pi\Application\Installer\Resource\Event for event specifications
+ * @see    Pi\Application\Registry\Event for event listing
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Event extends AbstractService
@@ -58,17 +58,18 @@ class Event extends AbstractService
     /**
      * Trigger (or notify) callbacks registered to an event
      *
-     * @param string|array $event Event name or module event pair
-     * @param mixed|null $object Object or array
+     * @param string|array  $event        Event name or module event pair
+     * @param mixed|null    $object       Object or array
      * @param Callback|null $shortcircuit Callback to stop the event trigger
+     *
      * @return bool
      */
     public function trigger($event, $object = null, $shortcircuit = null)
     {
         if (is_array($event)) {
-            list($module, $event) = $event;
+            [$module, $event] = $event;
         } elseif (false !== ($pos = strpos($event, '-'))) {
-            list($module, $event) = explode('-', $event, 2);
+            [$module, $event] = explode('-', $event, 2);
         } else {
             $module = Pi::service('module')->current();
         }
@@ -79,7 +80,7 @@ class Event extends AbstractService
             return true;
         }
         $callListener = function (array $specs, $data) {
-            list($class, $method, $module) = $specs;
+            [$class, $method, $module] = $specs;
             $listener = new $class($module);
             $result   = $listener->{$method}($data);
 
@@ -144,7 +145,7 @@ class Event extends AbstractService
             return;
         }
         foreach ($listeners as $item) {
-            list($module, $event) = $item['event'];
+            [$module, $event] = $item['event'];
             $listener = $item['callback'];
             $this->attach($module, $event, $listener);
         }
@@ -155,10 +156,10 @@ class Event extends AbstractService
     /**
      * Attach a predefined observer to an event in run-time
      *
-     * @param string $module Event module
-     * @param string $event Event name
-     * @param array $listener Listener callback:
-     *      <class>, <method>[, <module>]
+     * @param string $module   Event module
+     * @param string $event    Event name
+     * @param array  $listener Listener callback:
+     *                         <class>, <method>[, <module>]
      *
      * @return $this
      */
@@ -176,10 +177,10 @@ class Event extends AbstractService
     /**
      * Detach an observer from an event
      *
-     * @param string $module Event module
-     * @param string $event Event name
+     * @param string     $module   Event module
+     * @param string     $event    Event name
      * @param array|null $listener Listener callback:
-     *      <class>, <method>, <module>
+     *                             <class>, <method>, <module>
      *
      * @return $this
      */

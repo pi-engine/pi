@@ -22,6 +22,7 @@ class Observer extends AbstractService
 {
     /**
      * Start triggering event on inserted row
+     *
      * @param Pi\Db\RowGateway\RowGateway $row
      */
     public function triggerInsertedRow($row)
@@ -43,10 +44,11 @@ class Observer extends AbstractService
 
     /**
      * Start triggering event on updated row
+     *
      * @param $row
      * @param $oldData
      */
-    public function triggerUpdatedRow($row, $oldData = array())
+    public function triggerUpdatedRow($row, $oldData = [])
     {
         // Set module list
         $moduleList = $this->moduleList();
@@ -63,7 +65,7 @@ class Observer extends AbstractService
         }
     }
 
-    public function triggerDeletedRow($row, $oldData = array())
+    public function triggerDeletedRow($row, $oldData = [])
     {
         // Set module list
         $moduleList = $this->moduleList();
@@ -82,9 +84,10 @@ class Observer extends AbstractService
 
     /**
      * Start triggering event on updated table
+     *
      * @param Pi\Db\Table\AbstractTableGateway $table
-     * @param $set
-     * @param $where
+     * @param                                  $set
+     * @param                                  $where
      */
     public function triggerUpdatedTable($table, $set, $where)
     {

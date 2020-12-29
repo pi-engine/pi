@@ -23,6 +23,7 @@ namespace Pi\View\Helper;
  *  $this->tab($data, 'vertical');
  *  $this->tab($data);
  * ```
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Tab extends NavMenu

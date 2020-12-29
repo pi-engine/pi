@@ -31,6 +31,7 @@ class Security extends AbstractService
      * Header outputs on deny
      *
      * @param string $message The message to be displayed
+     *
      * @return void
      */
     public function deny($message = '')
@@ -49,6 +50,7 @@ class Security extends AbstractService
      * Remove path prefix for security considerations
      *
      * @param string $str
+     *
      * @return string
      */
     public function path($str)
@@ -86,6 +88,7 @@ class Security extends AbstractService
      * Remove DB database name and table prefix for security considerations
      *
      * @param string $str
+     *
      * @return string
      */
     public function db($str)
@@ -100,6 +103,7 @@ class Security extends AbstractService
      * Get escaper, and escape HTML content if specified
      *
      * @param string|null $content
+     *
      * @return Escaper|string
      */
     public function escape($content = null)
@@ -124,6 +128,7 @@ class Security extends AbstractService
      * Check for IPs
      *
      * @param array|null $options
+     *
      * @return bool|null
      */
     public function ip($options = null)
@@ -139,6 +144,7 @@ class Security extends AbstractService
      * Check for super globals
      *
      * @param array|null $options
+     *
      * @return bool|null
      */
     public function globals($options = null)
@@ -154,7 +160,8 @@ class Security extends AbstractService
      * Magic method to access custom security settings
      *
      * @param string $method The security setting to be checked
-     * @param array $args arguments for the setting
+     * @param array  $args   arguments for the setting
+     *
      * @return bool|null
      */
     public function __call($method, $args = [])

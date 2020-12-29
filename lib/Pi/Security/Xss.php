@@ -14,7 +14,7 @@ use Pi\Filter\XssSanitizer;
 /**
  * Cross site scripting check
  *
- * @link: http://ha.ckers.org/xss.html
+ * @link   : http://ha.ckers.org/xss.html
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Xss extends AbstractAdapter
@@ -24,12 +24,14 @@ class Xss extends AbstractAdapter
 
     /**
      * To filter malicious code
+     *
      * @var bool
      */
     protected static $filter = true;
 
     /**
      * Minimum length of content to check
+     *
      * @var int
      */
     protected static $length = 0;
@@ -80,7 +82,8 @@ class Xss extends AbstractAdapter
      * Check XSS recursively
      *
      * @param string|array $content String or associative array
-     * @param bool $filter To filter malicious code
+     * @param bool         $filter  To filter malicious code
+     *
      * @return bool
      */
     public static function checkXssRecursive(&$content, $filter = true)
@@ -100,7 +103,7 @@ class Xss extends AbstractAdapter
      * Check XSS code
      *
      * @param string $content Text to be checked
-     * @param bool $filter Filter malicious code or just return status
+     * @param bool   $filter  Filter malicious code or just return status
      *
      * @return string|null
      */
@@ -135,9 +138,11 @@ class Xss extends AbstractAdapter
         // Convert hex
         //$patterns[] = '/&#x([a-f0-9]+)/mei';
         //$replaces[] = "chr(0x\\1)";
-        $content = preg_replace_callback('/&#x([a-f0-9]+)/mi', function ($matches) {
+        $content = preg_replace_callback(
+            '/&#x([a-f0-9]+)/mi', function ($matches) {
             return "chr(0x" . $matches[1] . ")";
-        }, $content);
+        }, $content
+        );
 
         $patterns[] = '/(&#*\w+)[\x00-\x20]+;/U';
         $replaces[] = "\\1;";

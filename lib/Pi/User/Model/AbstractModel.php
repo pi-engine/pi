@@ -20,12 +20,14 @@ abstract class AbstractModel extends ArrayObject
 {
     /**
      * Use property
+     *
      * @var array
      */
     protected $data;
 
     /**
      * User role
+     *
      * @var array
      */
     protected $role;
@@ -34,7 +36,7 @@ abstract class AbstractModel extends ArrayObject
      * Constructor
      *
      * @param array|int|string|null $data
-     * @param string $field
+     * @param string                $field
      *
      * @return \Pi\User\Model\AbstractModel
      */
@@ -124,6 +126,7 @@ abstract class AbstractModel extends ArrayObject
      * Magic method to access properties
      *
      * @param string $name
+     *
      * @return mixed
      */
     public function __get($name)
@@ -135,6 +138,7 @@ abstract class AbstractModel extends ArrayObject
      * Assign account data to current user
      *
      * @param array $data
+     *
      * @return $this
      */
     public function assign(array $data)
@@ -156,6 +160,7 @@ abstract class AbstractModel extends ArrayObject
      * Set role or retrieve from DB
      *
      * @param null|array $role
+     *
      * @return $this|array
      */
     public function role($role = null)
@@ -174,6 +179,7 @@ abstract class AbstractModel extends ArrayObject
      * Get an attribute
      *
      * @param string $name
+     *
      * @return mixed
      */
     abstract public function get($name);
@@ -182,7 +188,8 @@ abstract class AbstractModel extends ArrayObject
      * Load user attributes
      *
      * @param int|string $uid
-     * @param string $field
+     * @param string     $field
+     *
      * @return $this
      */
     abstract public function load($uid, $field = 'id');
@@ -222,6 +229,7 @@ abstract class AbstractModel extends ArrayObject
      * Check if current user has a role in its role ancestors
      *
      * @param string $role
+     *
      * @return bool
      */
     abstract public function hasRole($role);

@@ -35,6 +35,7 @@ class Linkify extends AbstractFilter
      * Filter text
      *
      * @param string $value
+     *
      * @return string
      */
     public function filter($value)
@@ -98,7 +99,8 @@ class Linkify extends AbstractFilter
 
         //$pattern = '!((((f|ht)tp(s)?:)?//|www\.)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i';
         $pattern = '!(^|\s)((((f|ht)tps?:)?//|www\.)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i';
-        $value   = preg_replace_callback($pattern, function ($matches) use ($callback) {
+        $value   = preg_replace_callback(
+            $pattern, function ($matches) use ($callback) {
             $url = $matches[2];
             if ('www.' == $matches[3]) {
                 $href = 'http://' . $url;
@@ -108,7 +110,8 @@ class Linkify extends AbstractFilter
             $link = $matches[1] . $callback($href, $url);
 
             return $link;
-        }, $value);
+        }, $value
+        );
 
         return $value;
     }

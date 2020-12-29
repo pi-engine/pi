@@ -134,17 +134,19 @@ class GeoIp extends AbstractService
             $attribute          = '';
         }
         if ('traits' == $attribute) {
-            foreach ([
-                         'autonomousSystemNumber',
-                         'autonomousSystemOrganization',
-                         'domain',
-                         'isAnonymousProxy',
-                         'isSatelliteProvider',
-                         'isp',
-                         'ipAddress',
-                         'organization',
-                         'userType',
-                     ] as $param) {
+            foreach (
+                [
+                    'autonomousSystemNumber',
+                    'autonomousSystemOrganization',
+                    'domain',
+                    'isAnonymousProxy',
+                    'isSatelliteProvider',
+                    'isp',
+                    'ipAddress',
+                    'organization',
+                    'userType',
+                ] as $param
+            ) {
                 if (isset($record->traits->{$param})) {
                     $result['traits'][$param] = $record->traits->{$param};
                 }

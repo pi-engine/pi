@@ -14,8 +14,8 @@ namespace Pi\Db\Table;
  *
  * Managing Partially Ordered Data with DAG
  *
- * @see http://en.wikipedia.org/wiki/Directed_acyclic_graph
- * @see http://www.codeproject.com/KB/database/Modeling_DAGs_on_SQL_DBs.aspx
+ * @see    http://en.wikipedia.org/wiki/Directed_acyclic_graph
+ * @see    http://www.codeproject.com/KB/database/Modeling_DAGs_on_SQL_DBs.aspx
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class AbstractDag extends AbstractTableGateway
@@ -28,6 +28,7 @@ abstract class AbstractDag extends AbstractTableGateway
      *  - direct: Direct edge column name
      *  - exit: Exit edge column name
      *  - hops: Number of hops from start to end
+     *
      * @var array
      */
     protected $column
@@ -48,6 +49,7 @@ abstract class AbstractDag extends AbstractTableGateway
 
     /**
      * Class for row gateway
+     *
      * @var string
      */
     protected $rowClass = 'Pi\Db\RowGateway\Vertex';
@@ -86,6 +88,7 @@ abstract class AbstractDag extends AbstractTableGateway
      * Get column name
      *
      * @param string $column
+     *
      * @return string|null
      */
     public function column($column)

@@ -22,7 +22,7 @@ use Laminas\View\Helper\AbstractHtmlElement;
  * $this->videojs($source, $poster);
  * $this->videojs($source, $poster, $width, $height);
  *
- * @see http://www.videojs.com/
+ * @see    http://www.videojs.com/
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -31,14 +31,14 @@ class Videojs extends AbstractHtmlElement
     /**
      * Render video/audio player with video-js
      *
-     * @todo The icon is not responsive yet
-     *
      * @param string $source MP4 video or MP3 audio full url
      * @param string $poster Player image full url
-     * @param int $width Player width
-     * @param int $height Player height
+     * @param int    $width  Player width
+     * @param int    $height Player height
      *
      * @return  string
+     * @todo The icon is not responsive yet
+     *
      */
     public function __invoke($source, $poster = '', $width = '', $height = '')
     {

@@ -22,6 +22,7 @@ class Syslog extends AbstractWriter
 {
     /**
      * Maps Pi\Log\Logger priorities to PHP's Syslog priorities
+     *
      * @var array
      */
     protected $priorities
@@ -38,36 +39,42 @@ class Syslog extends AbstractWriter
 
     /**
      * The default log priority - for unmapped custom priorities
+     *
      * @var int
      */
     protected $defaultPriority = LOG_NOTICE;
 
     /**
      * Last application name set by a syslog-writer instance
+     *
      * @var string
      */
     protected static $lastApplication;
 
     /**
      * Last facility name set by a syslog-writer instance
+     *
      * @var string
      */
     protected static $lastFacility;
 
     /**
      * Application name used by this syslog-writer instance
+     *
      * @var string
      */
     protected $appName = 'Pi\Log';
 
     /**
      * Facility used by this syslog-writer instance
+     *
      * @var int
      */
     protected $facility = LOG_USER;
 
     /**
      * Types of program available to logging of message
+     *
      * @var array
      */
     protected $validFacilities = [];
@@ -147,6 +154,7 @@ class Syslog extends AbstractWriter
      * Set syslog facility
      *
      * @param int $facility Syslog facility
+     *
      * @return self
      * @throws \InvalidArgumentException for invalid log facility
      */
@@ -186,6 +194,7 @@ class Syslog extends AbstractWriter
      * Set application name
      *
      * @param string $appName Application name
+     *
      * @return self
      */
     public function setApplicationName($appName)
@@ -214,6 +223,7 @@ class Syslog extends AbstractWriter
      * Write a message to syslog.
      *
      * @param array $event event data
+     *
      * @return void
      */
     protected function doWrite(array $event)

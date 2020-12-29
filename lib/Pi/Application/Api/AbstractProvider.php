@@ -37,6 +37,7 @@ abstract class AbstractProvider extends AbstractApi
      *
      * @param array|null $data
      * @param array|null $options
+     *
      * @return ViewModel
      */
     protected function getViewModel($data = null, $options = null)
@@ -60,6 +61,7 @@ abstract class AbstractProvider extends AbstractApi
      * Check if an entity exists
      *
      * @param int $id
+     *
      * @return bool
      */
     abstract public function hasEntity($id);
@@ -68,6 +70,7 @@ abstract class AbstractProvider extends AbstractApi
      * Get an entity
      *
      * @param int $id
+     *
      * @return mixed
      */
     abstract public function getEntity($id);
@@ -75,8 +78,9 @@ abstract class AbstractProvider extends AbstractApi
     /**
      * Get list of entities
      *
-     * @param array $ids
+     * @param array      $ids
      * @param array|null $fields
+     *
      * @return array
      */
     abstract public function getList($ids, $fields = null);
@@ -84,8 +88,9 @@ abstract class AbstractProvider extends AbstractApi
     /**
      * Render an entity
      *
-     * @param int $id
+     * @param int    $id
      * @param string $template
+     *
      * @return string
      */
     abstract public function renderEntity($id, $template = '');
@@ -93,8 +98,9 @@ abstract class AbstractProvider extends AbstractApi
     /**
      * Render a list of entities
      *
-     * @param array $ids
+     * @param array  $ids
      * @param string $template
+     *
      * @return string
      */
     abstract public function renderList($ids, $template = '');

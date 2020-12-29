@@ -23,7 +23,8 @@ abstract class CommandController extends AbstractActionController
     /**
      * Execute the request
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return mixed
      * @throws \DomainException
      */
@@ -83,8 +84,9 @@ abstract class CommandController extends AbstractActionController
     /**
      * Get database model
      *
-     * @param  string $name
-     * @param  array $options
+     * @param string $name
+     * @param array  $options
+     *
      * @return Pi\Application\Model\Model
      */
     public function getModel($name, $options = [])

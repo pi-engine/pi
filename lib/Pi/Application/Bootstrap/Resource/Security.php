@@ -37,7 +37,9 @@ class Security extends AbstractResource
                 continue;
             }
             $status = Pi::service('security')->{$type}($opt);
-            if ($status) return true;
+            if ($status) {
+                return true;
+            }
             if (false === $status) {
                 return false;
                 //Pi::service('security')->deny($type);

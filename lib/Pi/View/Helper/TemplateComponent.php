@@ -20,7 +20,7 @@ namespace Pi\View\Helper;
  *  include $this->templateComponent('forms');
  * ```
  *
- * @see Pi\View\Resolver\ModuleTemplate
+ * @see    Pi\View\Resolver\ModuleTemplate
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class TemplateComponent extends TemplateModule

@@ -56,7 +56,8 @@ class Module
      * Magic method for install, uninstall, update, activate, deactivate, etc.
      *
      * @param string $method
-     * @param array $args
+     * @param array  $args
+     *
      * @return bool
      * @throws \InvalidArgumentException
      */
@@ -75,8 +76,7 @@ class Module
         $model         = null;
         $module        = array_shift($args);
         $options       = empty($args) ? [] : array_shift($args);
-        $moduleVersion = isset($options['version'])
-            ? $options['version'] : null;
+        $moduleVersion = isset($options['version']) ? $options['version'] : null;
         $moduleTitle   = isset($options['title']) ? $options['title'] : '';
         if ($module instanceof ModuleRow) {
             $model           = $module;
@@ -90,16 +90,18 @@ class Module
                 ? $options['directory'] : $module;
         }
         $event = new Event;
-        $event->setParams([
-            'model'     => $model,
-            'module'    => $moduleName,
-            'directory' => $moduleDirectory,
-            'title'     => $moduleTitle,
-            'version'   => $moduleVersion,
-            'action'    => $method,
-            'config'    => [],
-            'result'    => [],
-        ]);
+        $event->setParams(
+            [
+                'model'     => $model,
+                'module'    => $moduleName,
+                'directory' => $moduleDirectory,
+                'title'     => $moduleTitle,
+                'version'   => $moduleVersion,
+                'action'    => $method,
+                'config'    => [],
+                'result'    => [],
+            ]
+        );
         $this->event = $event;
         $this->attachDefaultListeners();
 
@@ -200,6 +202,7 @@ class Module
      * Clear system caches
      *
      * @param Event $e
+     *
      * @return void
      */
     public function clearCache(Event $e)
@@ -235,6 +238,7 @@ class Module
      * Render messages
      *
      * @param array|null $message
+     *
      * @return string
      */
     public function renderMessage($message = null)
@@ -259,6 +263,7 @@ class Module
      * Update module meta data via re-creating them
      *
      * @param Event $e
+     *
      * @return bool
      */
     public function updateMeta(Event $e)
@@ -272,6 +277,7 @@ class Module
      * Load module meta
      *
      * @param Event $e
+     *
      * @return void
      */
     public function loadConfig(Event $e)

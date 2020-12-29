@@ -62,8 +62,8 @@ class Avatar extends AbstractService
     /**
      * Get user avatar img element
      *
-     * @param int $uid
-     * @param string $size
+     * @param int               $uid
+     * @param string            $size
      *      Size of image to display, integer for width, string for named size:
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
      * @param array|string|bool $attributes
@@ -86,8 +86,8 @@ class Avatar extends AbstractService
     /**
      * Get avatars of a list of users
      *
-     * @param int[] $uids
-     * @param string $size
+     * @param int[]             $uids
+     * @param string            $size
      * @param array|bool|string $attributes
      *
      * @return array
@@ -118,6 +118,7 @@ class Avatar extends AbstractService
      * Get avatar adapter
      *
      * @param string $adapter
+     *
      * @return AbstractAvatar
      */
     public function getAdapter($adapter = '')
@@ -188,8 +189,8 @@ class Avatar extends AbstractService
      * Convert named size to numeric size or convert from number to named size
      *
      * @param string|int $size
-     * @param bool $toInt
-     * @param array $sizeMap
+     * @param bool       $toInt
+     * @param array      $sizeMap
      *
      * @return int|string
      */

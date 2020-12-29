@@ -31,20 +31,21 @@ class FormRadio extends LaminasFormElement
     /**
      * Render options
      *
-     * @param  MultiCheckboxElement $element
-     * @param  array                $options
-     * @param  array                $selectedOptions
-     * @param  array                $attributes
+     * @param MultiCheckboxElement $element
+     * @param array                $options
+     * @param array                $selectedOptions
+     * @param array                $attributes
+     *
      * @return string
      */
     protected function renderOptions(MultiCheckboxElement $element, array $options, array $selectedOptions, array $attributes)
     {
-        $escapeHtmlHelper = $this->getEscapeHtmlHelper();
-        $labelHelper      = $this->getLabelHelper();
-        $labelClose       = $labelHelper->closeTag();
-        $labelPosition    = $this->getLabelPosition();
-        $globalLabelAttributes = array();
-        $closingBracket   = $this->getInlineClosingBracket();
+        $escapeHtmlHelper      = $this->getEscapeHtmlHelper();
+        $labelHelper           = $this->getLabelHelper();
+        $labelClose            = $labelHelper->closeTag();
+        $labelPosition         = $this->getLabelPosition();
+        $globalLabelAttributes = [];
+        $closingBracket        = $this->getInlineClosingBracket();
 
         if ($element instanceof LabelAwareInterface) {
             $globalLabelAttributes = $element->getLabelAttributes();
@@ -54,7 +55,7 @@ class FormRadio extends LaminasFormElement
             $globalLabelAttributes = $this->labelAttributes;
         }
 
-        $combinedMarkup = array();
+        $combinedMarkup = [];
         $count          = 0;
 
         foreach ($options as $key => $optionSpec) {
@@ -71,10 +72,10 @@ class FormRadio extends LaminasFormElement
             $disabled        = (isset($inputAttributes['disabled']) && $inputAttributes['disabled']);
 
             if (is_scalar($optionSpec)) {
-                $optionSpec = array(
+                $optionSpec = [
                     'label' => $optionSpec,
-                    'value' => $key
-                );
+                    'value' => $key,
+                ];
             }
 
             if (isset($optionSpec['value'])) {
@@ -119,7 +120,7 @@ class FormRadio extends LaminasFormElement
                 );
             }
 
-            if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
+            if (!$element instanceof LabelAwareInterface || !$element->getLabelOption('disable_html_escape')) {
                 $label = $escapeHtmlHelper($label);
             }
 

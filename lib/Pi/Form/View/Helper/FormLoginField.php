@@ -48,11 +48,13 @@ class FormLoginField extends FormInput
 EOT;
 
         $name = $element->getName();
-        list($value, $field) = $element->getValue();
-        $attributes = array_replace($element->getAttributes(), [
+        [$value, $field] = $element->getValue();
+        $attributes = array_replace(
+            $element->getAttributes(), [
             'type'  => 'text',
             'value' => $value,
-        ]);
+        ]
+        );
         if (!isset($attributes['class'])) {
             $attributes['class'] = 'form-control';
         }
@@ -65,14 +67,16 @@ EOT;
             $fieldString .= sprintf($patternField, $key, $class, $label);
         }
 
-        $html = sprintf($template, sprintf(
+        $html = sprintf(
+            $template, sprintf(
             $pattern,
             $name,
             $attribString,
             $this->getInlineClosingBracket(),
             $name,
             $fieldString
-        ));
+        )
+        );
 
         return $html;
     }

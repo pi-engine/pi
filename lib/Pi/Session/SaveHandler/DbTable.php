@@ -23,36 +23,42 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
 {
     /**
      * Session table model
+     *
      * @var Model
      */
     protected $model;
 
     /**
      * Session data row
+     *
      * @var RowGateway
      */
     protected $row;
 
     /**
      * Session lifetime in seconds
+     *
      * @var int
      */
     protected $lifetime = 0;
 
     /**
      * Whether or not the lifetime of an existing session should be overridden
+     *
      * @var bool
      */
     protected $overrideLifetime = false;
 
     /**
      * Session save path, not used
+     *
      * @var string
      */
     protected $sessionSavePath;
 
     /**
      * Session name
+     *
      * @var string
      */
     protected $sessionName;
@@ -87,11 +93,11 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      *
      * $lifetime === false resets lifetime to session.gc_maxlifetime
      *
-     * @param int $lifetime
+     * @param int       $lifetime
      * @param bool|null $overrideLifetime (optional)
      *
-     * @throws \InvalidArgumentException
      * @return self
+     * @throws \InvalidArgumentException
      */
     public function setLifetime($lifetime, $overrideLifetime = null)
     {
@@ -127,6 +133,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      * be overridden
      *
      * @param bool $overrideLifetime
+     *
      * @return self
      */
     public function setOverrideLifetime($overrideLifetime)
@@ -152,6 +159,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      *
      * @param string $savePath
      * @param string $name
+     *
      * @return bool
      */
     public function open($savePath, $name)
@@ -176,6 +184,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      * Read session data
      *
      * @param string $id
+     *
      * @return string
      */
     public function read($id)
@@ -204,6 +213,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      *
      * @param string $id
      * @param string $data
+     *
      * @return bool
      */
     public function write($id, $data)
@@ -246,6 +256,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      * Destroy session
      *
      * @param string $id
+     *
      * @return bool
      */
     public function destroy($id)
@@ -263,13 +274,16 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      * Garbage Collection
      *
      * @param int $maxlifetime
+     *
      * @return true
      */
     public function gc($maxlifetime)
     {
-        $this->model->delete($this->model->quoteIdentifier('modified') . ' + '
+        $this->model->delete(
+            $this->model->quoteIdentifier('modified') . ' + '
             . $this->model->quoteIdentifier('lifetime') . ' < '
-            . $this->model->quoteValue(time()));
+            . $this->model->quoteValue(time())
+        );
 
         return true;
     }
@@ -314,6 +328,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      * Retrieve session lifetime
      *
      * @param RowGateway $row
+     *
      * @return int
      */
     protected function retrieveLifetime(RowGateway $row)
@@ -331,6 +346,7 @@ class DbTable implements SaveHandlerInterface, UserAwarenessInterface
      * Retrieve session expiration time
      *
      * @param RowGateway $row
+     *
      * @return int
      */
     protected function getExpirationTime(RowGateway $row)

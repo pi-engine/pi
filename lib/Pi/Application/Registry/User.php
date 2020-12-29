@@ -69,8 +69,7 @@ class User extends AbstractRegistry
                 }
                 if (empty($input['options']['multiOptions'])) {
                     if (!empty($row->options)) {
-                        $input['options']['multiOptions']
-                            = unserialize($row->options);
+                        $input['options']['multiOptions'] = unserialize($row->options);
                     }
                 }
                 if (!empty($input['module'])) {
@@ -118,8 +117,7 @@ class User extends AbstractRegistry
         };
 
         $model  = Pi::model('user_meta');
-        $select = $model->select()->where(['active' => 1])
-            ->order('id ASC');
+        $select = $model->select()->where(['active' => 1])->order('id ASC');
         $rowset = $model->selectWith($select);
         $data   = [];
         foreach ($rowset as $row) {
@@ -155,7 +153,7 @@ class User extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $action
+     * @param string      $action
      * @param string|null $meta
      */
     public function read($action = 'view', $meta = null)

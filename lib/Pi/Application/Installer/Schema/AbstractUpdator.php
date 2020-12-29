@@ -46,11 +46,13 @@ class AbstractUpdator
         try {
             $adapter->query($sql, 'execute');
         } catch (\Exception $exception) {
-            $this->handler->setResult('db', [
-                'status'  => false,
-                'message' => 'Table alter query failed: '
-                    . $exception->getMessage(),
-            ]);
+            $this->handler->setResult(
+                'db', [
+                    'status'  => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ]
+            );
 
             return false;
         }
@@ -72,11 +74,13 @@ class AbstractUpdator
         try {
             $sqlHandler->queryContent($sql, $type);
         } catch (\Exception $exception) {
-            $this->handler->setResult('db', [
-                'status'  => false,
-                'message' => 'SQL schema query failed: '
-                    . $exception->getMessage(),
-            ]);
+            $this->handler->setResult(
+                'db', [
+                    'status'  => false,
+                    'message' => 'SQL schema query failed: '
+                        . $exception->getMessage(),
+                ]
+            );
 
             return false;
         }
@@ -89,8 +93,8 @@ class AbstractUpdator
      *
      * @param string $version
      *
-     * @throws \Exception
      * @return bool
+     * @throws \Exception
      */
     public function upgrade($version)
     {

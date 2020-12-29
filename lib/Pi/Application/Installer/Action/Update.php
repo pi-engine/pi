@@ -38,9 +38,11 @@ class Update extends AbstractAction
     public function process()
     {
         $model = Pi::model('module');
-        $row   = $model->select([
-            'name' => $this->event->getParam('module'),
-        ])->current();
+        $row   = $model->select(
+            [
+                'name' => $this->event->getParam('module'),
+            ]
+        )->current();
 
         $config        = $this->event->getParam('config');
         $configVersion = $config['meta']['version'];
@@ -68,10 +70,12 @@ class Update extends AbstractAction
         try {
             $row->save();
         } catch (\Exception $e) {
-            $this->setResult('module', [
-                'status'  => false,
-                'message' => ['Module upgrade failed'],
-            ]);
+            $this->setResult(
+                'module', [
+                    'status'  => false,
+                    'message' => ['Module upgrade failed'],
+                ]
+            );
             return false;
         }
 

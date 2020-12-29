@@ -24,7 +24,8 @@ class RouteListener extends AbstractListenerAggregate
     /**
      * Attach to an event manager
      *
-     * @param  EventManagerInterface $events
+     * @param EventManagerInterface $events
+     *
      * @return void
      */
     public function attach(EventManagerInterface $events)
@@ -40,7 +41,8 @@ class RouteListener extends AbstractListenerAggregate
      *
      * Seeds the event with the route match on completion.
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return null|Router\RouteMatch
      */
     public function onRoute($e)

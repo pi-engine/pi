@@ -45,15 +45,16 @@ use Laminas\View\Resolver\ResolverInterface;
  *   - for both module "demo" and cloned "democlone":
  *      `module/demo/template/[front/template.html]`
  *
- * @see Pi\View\Resolver\ThemeTemplate for theme template skeleton
- * @see Pi\View\Resolver\ComponentTemplate for component template skeleton
- * @see Pi\Application\Service\Asset for asset skeleton
+ * @see    Pi\View\Resolver\ThemeTemplate for theme template skeleton
+ * @see    Pi\View\Resolver\ComponentTemplate for component template skeleton
+ * @see    Pi\Application\Service\Asset for asset skeleton
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ModuleTemplate implements ResolverInterface
 {
     /**
      * Theme template directory
+     *
      * @var string
      */
     protected $templateDirectory = 'template';
@@ -61,6 +62,7 @@ class ModuleTemplate implements ResolverInterface
     /**
      * Suffix to use: appends this suffix if the template requested
      * does not use it.
+     *
      * @var string
      */
     protected $suffix = 'phtml';
@@ -68,7 +70,8 @@ class ModuleTemplate implements ResolverInterface
     /**
      * Set default file suffix
      *
-     * @param  string $suffix
+     * @param string $suffix
+     *
      * @return self
      */
     public function setSuffix($suffix)
@@ -92,6 +95,7 @@ class ModuleTemplate implements ResolverInterface
      * Canonize template
      *
      * @param string $name
+     *
      * @return array|string Pair of module and template name,
      *      or full path to template
      */
@@ -112,7 +116,7 @@ class ModuleTemplate implements ResolverInterface
         }
         $segments = explode(':', $name, 2);
         if (isset($segments[1])) {
-            list($module, $template) = $segments;
+            [$module, $template] = $segments;
             /*
             if ('module/' == substr($module, 0, 7)) {
                 $module = substr($module, 7);
@@ -131,10 +135,11 @@ class ModuleTemplate implements ResolverInterface
      *
      * @FIXME Is performance a problem?
      *
-     * @param  string $name Relative or full path to template,
-     *      it is highly recommended to remove suffix from relative template
-     * @param  null|Renderer $renderer
-     * @param  bool $forcefront force to find template in the front theme
+     * @param string        $name       Relative or full path to template,
+     *                                  it is highly recommended to remove suffix from relative template
+     * @param null|Renderer $renderer
+     * @param bool          $forcefront force to find template in the front theme
+     *
      * @return string|false
      */
     public function resolve($name, Renderer $renderer = null, $forcefront = false)
@@ -145,7 +150,7 @@ class ModuleTemplate implements ResolverInterface
         if (!is_array($return)) {
             return $return;
         }
-        list($module, $template) = $return;
+        [$module, $template] = $return;
         // Check custom template in theme
         $path = sprintf(
             '%s/%s/module/%s/%s/%s.%s',

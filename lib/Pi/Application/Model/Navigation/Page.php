@@ -34,6 +34,7 @@ class Page extends Nest
      * Set navigation name
      *
      * @param string $navigation
+     *
      * @return $this
      */
     public function setNavigation($navigation)
@@ -59,6 +60,7 @@ class Page extends Nest
      * Remove pages of a navigation
      *
      * @param string $nav Navigation name
+     *
      * @return bool
      */
     public function removeByNavigation($nav)

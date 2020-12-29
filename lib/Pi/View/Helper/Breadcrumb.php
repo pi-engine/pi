@@ -124,11 +124,11 @@ class Breadcrumb extends AbstractHtmlElement
                 ? $options['prefix']
                 : $this->prefix;
 
-            $data      = array_merge($prefix, $data);
+            $data = array_merge($prefix, $data);
             $separator = isset($options['separator'])
                 ? $options['separator']
                 : $this->separator;
-            $attribs   = isset($options['attributes'])
+            $attribs = isset($options['attributes'])
                 ? $options['attributes']
                 : $this->attributes;
 
@@ -160,7 +160,9 @@ EOT;
             $elements = '';
             foreach ($data as $item) {
                 if (empty($item['href'])) {
-                    $elements .= sprintf($patternLink, Pi::engine()->application()->getRequest()->getUriString(), _escape($item['label']), _escape($item['label']));
+                    $elements .= sprintf(
+                        $patternLink, Pi::engine()->application()->getRequest()->getUriString(), _escape($item['label']), _escape($item['label'])
+                    );
                 } else {
                     $elements .= sprintf($patternLink, $item['href'], _escape($item['label']), _escape($item['label']));
                 }
@@ -176,6 +178,7 @@ EOT;
      * Sets breadcrumb separator
      *
      * @param string $separator separator string
+     *
      * @return $this
      */
     public function setSeparator($separator)
@@ -201,6 +204,7 @@ EOT;
      * Sets breadcrumb html attributes
      *
      * @param array $attribs
+     *
      * @return $this
      */
     public function setAttributes(array $attribs)
@@ -224,6 +228,7 @@ EOT;
      * Sets breadcrumb prefix
      *
      * @param array $prefix
+     *
      * @return $this
      */
     public function setPrefix(array $prefix)
@@ -247,6 +252,7 @@ EOT;
      * Sets module
      *
      * @param string $module
+     *
      * @return $this
      */
     public function setModule($module)

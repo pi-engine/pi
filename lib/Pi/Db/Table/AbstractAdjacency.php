@@ -20,6 +20,7 @@ abstract class AbstractAdjacency extends AbstractTableGateway
 {
     /**
      * Predefined columns
+     *
      * @var array
      */
     protected $column
@@ -45,6 +46,7 @@ abstract class AbstractAdjacency extends AbstractTableGateway
      * Get column name
      *
      * @param string $column
+     *
      * @return string|null
      */
     public function column($column)
@@ -55,9 +57,10 @@ abstract class AbstractAdjacency extends AbstractTableGateway
     /**
      * Gets all ancestors of a role
      *
-     * @todo Not ready yet
      * @param int $node
+     *
      * @return string[]
+     * @todo Not ready yet
      */
     public function getAncestors($node)
     {
@@ -65,10 +68,12 @@ abstract class AbstractAdjacency extends AbstractTableGateway
         $select  = $this->getAdapter()->select()
             ->from(['r' => $this->_name])
             ->where(['r.active' => 1])
-            ->joinLeft([
-                'i' =>
-                    $this->getAdapter()->prefix('acl_inherit', 'xo')],
-                'r.name = i.parent')
+            ->joinLeft(
+                [
+                    'i' =>
+                        $this->getAdapter()->prefix('acl_inherit', 'xo')],
+                'r.name = i.parent'
+            )
             ->where(['i.child' => $node]);
         //->order(array('i.order'));
         $result = $select->query()->fetchAll();

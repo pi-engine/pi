@@ -84,7 +84,7 @@ class Remote extends AbstractService
      * Get adapter, instantiate it if not exist yet
      *
      * @param string $name
-     * @param array $options
+     * @param array  $options
      *
      * @return AdapterInterface
      */
@@ -108,7 +108,7 @@ class Remote extends AbstractService
      * Loads http client adapter
      *
      * @param string $name
-     * @param array $options
+     * @param array  $options
      *
      * @return AdapterInterface
      */
@@ -130,8 +130,8 @@ class Remote extends AbstractService
      * Connect to the remote server
      *
      * @param string|Uri $host
-     * @param int $port
-     * @param bool $secure
+     * @param int        $port
+     * @param bool       $secure
      *
      * @return void
      */
@@ -149,12 +149,12 @@ class Remote extends AbstractService
     /**
      * Send request to the remote server
      *
-     * @param string $method
+     * @param string     $method
      * @param Uri|string $url
-     * @param string $httpVer
-     * @param array $headers
-     * @param string $body
-     * @param array $options
+     * @param string     $httpVer
+     * @param array      $headers
+     * @param string     $body
+     * @param array      $options
      *
      * @return string|bool Request as text
      */
@@ -165,8 +165,7 @@ class Remote extends AbstractService
         array $headers = [],
         $body = '',
         array $options = []
-    )
-    {
+    ) {
         $method = strtoupper($method);
         if (!$url instanceof Uri) {
             $url = new Uri($url);
@@ -321,7 +320,7 @@ class Remote extends AbstractService
      * Canonize URL with params, set `appkey` if not specified yet
      *
      * @param string|Uri $uri
-     * @param array $params
+     * @param array      $params
      *
      * @return Uri
      */
@@ -343,9 +342,9 @@ class Remote extends AbstractService
      * Perform a GET request
      *
      * @param string|Uri $url
-     * @param array $params
-     * @param array $headers
-     * @param array $options
+     * @param array      $params
+     * @param array      $headers
+     * @param array      $options
      *
      * @return mixed
      */
@@ -354,15 +353,16 @@ class Remote extends AbstractService
         array $params = [],
         array $headers = [],
         array $options = []
-    )
-    {
+    ) {
         if ($params) {
             // @FIXME: Convert sub arrays to string
-            array_walk($params, function (&$param) {
+            array_walk(
+                $params, function (&$param) {
                 if (is_array($param)) {
                     $param = implode(',', $param);
                 }
-            });
+            }
+            );
         }
         $uri = $this->canonizeUrl($url, $params);
 
@@ -456,9 +456,9 @@ class Remote extends AbstractService
      * Perform a POST request
      *
      * @param string|Uri $url
-     * @param array $params
-     * @param array $headers
-     * @param array $options
+     * @param array      $params
+     * @param array      $headers
+     * @param array      $options
      *
      * @return mixed
      */
@@ -467,8 +467,7 @@ class Remote extends AbstractService
         array $params = [],
         array $headers = [],
         array $options = []
-    )
-    {
+    ) {
         $headers = $this->canonizeHeaders($headers);
         // Pass `CURLOPT_POSTFIELDS` as array with `Content-Type` header set to `multipart/form-data`
         if (isset($headers['Content-Type'])
@@ -503,11 +502,11 @@ class Remote extends AbstractService
      *      - password
      *      - timeout
      *
-     * @param string|Uri $url
+     * @param string|Uri            $url
      * @param string|array|Resource $file
-     * @param array $params
-     * @param array $headers
-     * @param array $options
+     * @param array                 $params
+     * @param array                 $headers
+     * @param array                 $options
      *
      * @return mixed
      */
@@ -517,8 +516,7 @@ class Remote extends AbstractService
         array $params = [],
         array $headers = [],
         array $options = []
-    )
-    {
+    ) {
         @ignore_user_abort(true);
         @set_time_limit(0);
 
@@ -618,11 +616,11 @@ class Remote extends AbstractService
      *      - password
      *      - timeout
      *
-     * @param string|Uri $url
+     * @param string|Uri      $url
      * @param string|Resource $file
-     * @param array $params
-     * @param array $headers
-     * @param array $options
+     * @param array           $params
+     * @param array           $headers
+     * @param array           $options
      *
      * @return mixed
      */
@@ -632,8 +630,7 @@ class Remote extends AbstractService
         array $params = [],
         array $headers = [],
         array $options = []
-    )
-    {
+    ) {
         @ignore_user_abort(true);
         @set_time_limit(0);
 
@@ -682,9 +679,9 @@ class Remote extends AbstractService
      *  - password
      *  - timeout
      *
-     * @param string|Uri $url
+     * @param string|Uri      $url
      * @param string|Resource $file
-     * @param array $options
+     * @param array           $options
      *
      * @return bool
      */
@@ -692,8 +689,7 @@ class Remote extends AbstractService
         $url,
         $file,
         array $options = []
-    )
-    {
+    ) {
         if (is_resource($file)) {
             $resource = $file;
         } else {
@@ -731,9 +727,9 @@ class Remote extends AbstractService
      *  - password
      *  - timeout
      *
-     * @param string|Uri $url
+     * @param string|Uri      $url
      * @param string|Resource $file
-     * @param array $options
+     * @param array           $options
      *
      * @return bool
      */
@@ -741,8 +737,7 @@ class Remote extends AbstractService
         $url,
         $file,
         array $options = []
-    )
-    {
+    ) {
         if (is_resource($file)) {
             $resource = $file;
         } else {
@@ -772,7 +767,7 @@ class Remote extends AbstractService
     /**
      * Build cURL for FTP
      *
-     * @param Uri $uri
+     * @param Uri   $uri
      * @param array $options
      *
      * @return resource

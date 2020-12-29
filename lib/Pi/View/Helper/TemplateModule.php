@@ -23,7 +23,7 @@ use Laminas\View\Helper\AbstractHelper;
  *  include $this->templateModule('admin/public-index.phtml', <module-name>);
  * ```
  *
- * @see Pi\View\Resolver\ModuleTemplate
+ * @see    Pi\View\Resolver\ModuleTemplate
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class TemplateModule extends AbstractHelper
@@ -31,8 +31,9 @@ class TemplateModule extends AbstractHelper
     /**
      * Get full path to a module template
      *
-     * @param   string $template
-     * @param   string|null $module
+     * @param string      $template
+     * @param string|null $module
+     *
      * @return  string|false
      */
     public function __invoke($template, $module = null)

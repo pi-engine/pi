@@ -30,9 +30,11 @@ class RoleCheckbox extends MultiCheckbox
         if (empty($this->valueOptions)) {
             // Roles from section front or admin
             $section = $this->getOption('section') ?: 'front';
-            $rowset  = Pi::model('acl_role')->select([
-                'section' => $section,
-            ]);
+            $rowset  = Pi::model('acl_role')->select(
+                [
+                    'section' => $section,
+                ]
+            );
             $roles   = [];
             foreach ($rowset as $row) {
                 $roles[$row->name] = __($row->title);

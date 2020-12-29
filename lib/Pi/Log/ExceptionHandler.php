@@ -12,7 +12,7 @@ namespace Pi\Log;
 /**
  * Custom exception handler
  *
- * @link http://www.php.net/manual/en/function.set-exception-handler.php
+ * @link   http://www.php.net/manual/en/function.set-exception-handler.php
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ExceptionHandler
@@ -46,6 +46,7 @@ class ExceptionHandler
      * Set active
      *
      * @param bool|null $flag
+     *
      * @return self|bool
      */
     public function active($flag = null)
@@ -71,6 +72,7 @@ class ExceptionHandler
      * Register logging system as an exception handler to log PHP exceptions
      *
      * @param Logger $logger
+     *
      * @return bool
      */
     public function register(Logger $logger = null)
@@ -81,18 +83,20 @@ class ExceptionHandler
         }
         $logger = $this->logger;
 
-        set_exception_handler(function ($exception) use ($logger) {
-            $extra = [
-                'file'  => $exception->getFile(),
-                'line'  => $exception->getLine(),
-                'trace' => $exception->getTrace(),
-                'time'  => microtime(true),
-            ];
-            if (isset($exception->xdebug_message)) {
-                $extra['xdebug'] = $exception->xdebug_message;
+        set_exception_handler(
+            function ($exception) use ($logger) {
+                $extra = [
+                    'file'  => $exception->getFile(),
+                    'line'  => $exception->getLine(),
+                    'trace' => $exception->getTrace(),
+                    'time'  => microtime(true),
+                ];
+                if (isset($exception->xdebug_message)) {
+                    $extra['xdebug'] = $exception->xdebug_message;
+                }
+                $logger->log(Logger::ERR, $exception->getMessage(), $extra);
             }
-            $logger->log(Logger::ERR, $exception->getMessage(), $extra);
-        });
+        );
 
         return true;
     }

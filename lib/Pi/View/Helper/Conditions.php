@@ -36,11 +36,15 @@ class Conditions extends AbstractHtmlElement
         $content = '';
 
         if (Pi::service('module')->isActive('user') && Pi::service('authentication')->hasIdentity()) {
-            $barLabel      = __("New terms and conditions are available. Please accept them.");
+            $barLabel = __("New terms and conditions are available. Please accept them.");
             $agrementLabel = __("I agree");
-            $linkLabel     = __("Read Term and conditions");
-            $downloadUrl   = Pi::url(Pi::service('view')->getHelper('url')->__invoke('user', ['module' => 'user', 'controller' => 'condition', 'action' => 'download']));
-            $acceptUrl     = Pi::url(Pi::service('view')->getHelper('url')->__invoke('user', ['module' => 'user', 'controller' => 'condition', 'action' => 'accept']));
+            $linkLabel = __("Read Term and conditions");
+            $downloadUrl = Pi::url(
+                Pi::service('view')->getHelper('url')->__invoke('user', ['module' => 'user', 'controller' => 'condition', 'action' => 'download'])
+            );
+            $acceptUrl = Pi::url(
+                Pi::service('view')->getHelper('url')->__invoke('user', ['module' => 'user', 'controller' => 'condition', 'action' => 'accept'])
+            );
 
             /**
              * Check if last version of terms and conditions matches with any user timeline log

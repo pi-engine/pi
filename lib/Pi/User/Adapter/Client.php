@@ -49,8 +49,7 @@ class Client extends System
         $limit = 0,
         $offset = 0,
         $order = ''
-    )
-    {
+    ) {
         $result = Pi::api('user', 'uclient')->getUids(
             $condition,
             $limit,
@@ -70,8 +69,7 @@ class Client extends System
         $offset = 0,
         $order = '',
         array $field = []
-    )
-    {
+    ) {
         $result = Pi::api('user', 'uclient')->getList(
             $condition,
             $limit,
@@ -159,8 +157,7 @@ class Client extends System
         $field = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         return Pi::api('user', 'uclient')->get(
             $uid,
             $field,
@@ -177,8 +174,7 @@ class Client extends System
         $field = [],
         $filter = false,
         $activeOnly = false
-    )
-    {
+    ) {
         return Pi::api('user', 'uclient')->mget(
             $uids,
             $field,

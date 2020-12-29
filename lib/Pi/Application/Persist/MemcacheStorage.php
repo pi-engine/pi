@@ -89,16 +89,18 @@ class MemcacheStorage extends AbstractStorage
      */
     protected $options
         = [
-            'servers'       => [[
-                                    'host'             => self::DEFAULT_HOST,
-                                    'port'             => self::DEFAULT_PORT,
-                                    'persistent'       => self::DEFAULT_PERSISTENT,
-                                    'weight'           => self::DEFAULT_WEIGHT,
-                                    'timeout'          => self::DEFAULT_TIMEOUT,
-                                    'retry_interval'   => self::DEFAULT_RETRY_INTERVAL,
-                                    'status'           => self::DEFAULT_STATUS,
-                                    'failure_callback' => self::DEFAULT_FAILURE_CALLBACK,
-                                ]],
+            'servers'       => [
+                [
+                    'host'             => self::DEFAULT_HOST,
+                    'port'             => self::DEFAULT_PORT,
+                    'persistent'       => self::DEFAULT_PERSISTENT,
+                    'weight'           => self::DEFAULT_WEIGHT,
+                    'timeout'          => self::DEFAULT_TIMEOUT,
+                    'retry_interval'   => self::DEFAULT_RETRY_INTERVAL,
+                    'status'           => self::DEFAULT_STATUS,
+                    'failure_callback' => self::DEFAULT_FAILURE_CALLBACK,
+                ],
+            ],
             'compression'   => false,
             'compatibility' => false,
         ];
@@ -114,8 +116,9 @@ class MemcacheStorage extends AbstractStorage
      * Constructor
      *
      * @param array $options associative array of options
-     * @throws \Exception
+     *
      * @return void
+     * @throws \Exception
      */
     public function __construct($options = [])
     {

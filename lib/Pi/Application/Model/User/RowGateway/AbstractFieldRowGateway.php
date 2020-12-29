@@ -21,6 +21,7 @@ abstract class AbstractFieldRowGateway extends RowGateway
 {
     /**
      * Profile meta data
+     *
      * @var array
      */
     protected $meta;
@@ -36,6 +37,7 @@ abstract class AbstractFieldRowGateway extends RowGateway
      * Get meta data of a key or all set
      *
      * @param string|null $key
+     *
      * @return array
      */
     protected function getMeta($key = null)
@@ -57,6 +59,7 @@ abstract class AbstractFieldRowGateway extends RowGateway
      * Filter value for display
      *
      * @param string|string[] $col
+     *
      * @return mixed|mixed[]
      */
     public function filter($col = null)
@@ -86,6 +89,7 @@ abstract class AbstractFieldRowGateway extends RowGateway
      * Filter a field value
      *
      * @param string $field
+     *
      * @return mixed
      */
     protected function filterField($field)

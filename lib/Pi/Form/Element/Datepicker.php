@@ -36,7 +36,7 @@ use Laminas\Form\Element;
  *  ));
  * ```
  *
- * @see http://bootstrap-datepicker.readthedocs.org/en/release/
+ * @see    http://bootstrap-datepicker.readthedocs.org/en/release/
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Datepicker extends Element

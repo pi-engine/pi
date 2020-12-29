@@ -64,9 +64,9 @@ use Traversable;
  * - Published assets
  *   - `www/asset/<encrypted "path/to/component">/`
  *
- * @see Pi\View\Resolver\ModuleTemplate for module template skeleton
- * @see Pi\View\Resolver\ThemeTemplate for theme template skeleton
- * @see Pi\View\Resolver\ComponentTemplate for component template skeleton
+ * @see    Pi\View\Resolver\ModuleTemplate for module template skeleton
+ * @see    Pi\View\Resolver\ThemeTemplate for theme template skeleton
+ * @see    Pi\View\Resolver\ComponentTemplate for component template skeleton
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Asset extends AbstractService
@@ -76,18 +76,21 @@ class Asset extends AbstractService
 
     /**
      * Specified name for assets root folder of all components
+     *
      * @var string
      */
     const DIR_ASSET = 'asset';
 
     /**
      * Specified name for public resource root folder
+     *
      * @var string
      */
     //const DIR_PUBLIC = 'public';
 
     /**
      * Specified name for compressed asset folder
+     *
      * @var string
      */
     const DIR_BUILD = '_build';
@@ -126,6 +129,7 @@ class Asset extends AbstractService
      * but crc32 is good as a trade-off between collisions and hash length
      *
      * @param string $path Folder name to be hashed
+     *
      * @return string
      */
     protected function canonize($path)
@@ -157,8 +161,8 @@ class Asset extends AbstractService
     /**
      * Gets version of an asset
      *
-     * @param string $path
-     * @param string $url
+     * @param string    $path
+     * @param string    $url
      * @param bool|null $appendVersion
      *
      * @return string
@@ -218,7 +222,7 @@ class Asset extends AbstractService
      * Gets path of an asset
      *
      * @param string $component component name
-     * @param string $file file path
+     * @param string $file      file path
      *
      * @return string Full path to an asset
      */
@@ -230,8 +234,8 @@ class Asset extends AbstractService
     /**
      * Gets URL of an asset
      *
-     * @param string $component Component name
-     * @param string $file File path
+     * @param string    $component Component name
+     * @param string    $file      File path
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
@@ -240,8 +244,7 @@ class Asset extends AbstractService
         $component,
         $file,
         $appendVersion = null
-    )
-    {
+    ) {
         $file = $this->versionStamp(
             $this->getAssetPath($component, $file),
             $file,
@@ -254,8 +257,8 @@ class Asset extends AbstractService
     /**
      * Gets URL of an asset in current module
      *
-     * @param string $file File path
-     * @param string $module Module name
+     * @param string    $file   File path
+     * @param string    $module Module name
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
@@ -264,19 +267,18 @@ class Asset extends AbstractService
         $file,
         $module = '',
         $appendVersion = null
-    )
-    {
+    ) {
         $module    = $module ?: Pi::service('module')->current();
         $component = 'module/' . $module;
 
         return $this->getAssetUrl($component, $file, $appendVersion);
     }
-    
+
     /**
      * Gets PATH of an asset in current module
      *
-     * @param string $file File path
-     * @param string $module Module name
+     * @param string    $file   File path
+     * @param string    $module Module name
      * @param bool|null $appendVersion
      *
      * @return string Full PATH to the asset
@@ -285,8 +287,7 @@ class Asset extends AbstractService
         $file,
         $module = '',
         $appendVersion = null
-    )
-    {
+    ) {
         $module    = $module ?: Pi::service('module')->current();
         $component = 'module/' . $module;
 
@@ -296,8 +297,8 @@ class Asset extends AbstractService
     /**
      * Gets URL of an asset in current theme
      *
-     * @param string $file File path
-     * @param string $theme Theme directory
+     * @param string    $file  File path
+     * @param string    $theme Theme directory
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
@@ -306,11 +307,10 @@ class Asset extends AbstractService
         $file,
         $theme = '',
         $appendVersion = null
-    )
-    {
-        $theme     = $theme ?: Pi::service('theme')->current();
+    ) {
+        $theme = $theme ?: Pi::service('theme')->current();
 
-        if(Pi::engine()->section() != 'admin'){
+        if (Pi::engine()->section() != 'admin') {
 
 
             /**
@@ -318,11 +318,11 @@ class Asset extends AbstractService
              */
             $parentTheme = Pi::service('theme')->getParent($theme);
 
-            if($parentTheme){
+            if ($parentTheme) {
 
                 $themeAssetPath = $this->getThemeAssetPath($file, $theme, $appendVersion);
 
-                if(!is_file($themeAssetPath)){
+                if (!is_file($themeAssetPath)) {
                     $theme = $parentTheme;
 
                     $themeAssetPath = $this->getThemeAssetPath($file, $theme, $appendVersion);
@@ -332,10 +332,10 @@ class Asset extends AbstractService
                     */
                     $parentTheme = Pi::service('theme')->getParent($theme);
 
-                    if($parentTheme){
+                    if ($parentTheme) {
                         $themeAssetPath = $this->getThemeAssetPath($file, $theme, $appendVersion);
 
-                        if(!is_file($themeAssetPath)){
+                        if (!is_file($themeAssetPath)) {
                             $theme = $parentTheme;
                         }
                     }
@@ -351,32 +351,32 @@ class Asset extends AbstractService
     /**
      * Gets PATH of an asset in current theme
      *
-     * @param string    $file       File path
-     * @param string    $theme      Theme directory
+     * @param string    $file  File path
+     * @param string    $theme Theme directory
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
      */
     public function getThemeAssetPath(
         $file,
-        $theme          = '',
-        $appendVersion  = null,
+        $theme = '',
+        $appendVersion = null,
         $searchParent = false
     ) {
         $theme = $theme ?: Pi::service('theme')->current();
 
-        if(Pi::engine()->section() != 'admin' && $searchParent){
+        if (Pi::engine()->section() != 'admin' && $searchParent) {
             /**
              * Check if theme has parent
              */
             $parentTheme = Pi::service('theme')->getParent($theme);
 
-            if($parentTheme){
+            if ($parentTheme) {
 
-                $component = 'theme/' . $theme;
+                $component      = 'theme/' . $theme;
                 $themeAssetPath = $this->getAssetPath($component, $file, $appendVersion);
 
-                if(!is_file($themeAssetPath)){
+                if (!is_file($themeAssetPath)) {
 
                     $theme = $parentTheme;
 
@@ -385,12 +385,12 @@ class Asset extends AbstractService
                      */
                     $superParentTheme = Pi::service('theme')->getParent($theme);
 
-                    if($superParentTheme){
+                    if ($superParentTheme) {
 
-                        $component = 'theme/' . $theme;
+                        $component      = 'theme/' . $theme;
                         $themeAssetPath = $this->getAssetPath($component, $file, $appendVersion);
 
-                        if(!is_file($themeAssetPath)){
+                        if (!is_file($themeAssetPath)) {
 
                             $theme = $superParentTheme;
                         }
@@ -407,8 +407,8 @@ class Asset extends AbstractService
     /**
      * Gets URL of a custom module asset in current theme
      *
-     * @param string $file File path
-     * @param string $module
+     * @param string    $file File path
+     * @param string    $module
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
@@ -417,8 +417,7 @@ class Asset extends AbstractService
         $file,
         $module = '',
         $appendVersion = null
-    )
-    {
+    ) {
         $file = sprintf(
             'module/%s/%s',
             $module ?: Pi::service('module')->current(),
@@ -432,7 +431,7 @@ class Asset extends AbstractService
      * Gets source path of an asset
      *
      * @param string $component Component name
-     * @param string $file File path
+     * @param string $file      File path
      *
      * @return string Full path to an asset source
      */
@@ -454,7 +453,7 @@ class Asset extends AbstractService
      * Gets custom source path of an asset
      *
      * @param string $component Component name
-     * @param string $file File path
+     * @param string $file      File path
      *
      * @return string Full path to an asset source
      */
@@ -472,10 +471,10 @@ class Asset extends AbstractService
     /**
      * Publishes component assets folder
      *
-     * @param string $component Component name
-     * @param string $target Target component
-     * @param Traversable $iterator A Traversable instance for directory scan
-     * @param bool $hasCustom
+     * @param string      $component Component name
+     * @param string      $target    Target component
+     * @param Traversable $iterator  A Traversable instance for directory scan
+     * @param bool        $hasCustom
      *
      * @return bool
      */
@@ -484,8 +483,7 @@ class Asset extends AbstractService
         $target = '',
         Traversable $iterator = null,
         $hasCustom = false
-    )
-    {
+    ) {
         // Initialize erroneous file list
         $this->setErrors();
 
@@ -608,10 +606,10 @@ class Asset extends AbstractService
     /**
      * Publishes a file
      *
-     * @param string $sourceFile Source file
-     * @param string $targetFile Destination
-     * @param Traversable $iterator A Traversable instance for directory scan
-     * @param bool $disableSymlink
+     * @param string      $sourceFile Source file
+     * @param string      $targetFile Destination
+     * @param Traversable $iterator   A Traversable instance for directory scan
+     * @param bool        $disableSymlink
      *
      * @return bool
      */
@@ -620,8 +618,7 @@ class Asset extends AbstractService
         $targetFile,
         Traversable $iterator = null,
         $disableSymlink = false
-    )
-    {
+    ) {
         if (!is_dir($sourceFile) && !is_link($sourceFile)) {
             return true;
         }
@@ -649,23 +646,23 @@ class Asset extends AbstractService
                 /**
                  * If production instance, minify CSS and JS
                  */
-                if('production' == Pi::environment()){
+                if ('production' == Pi::environment()) {
                     foreach (glob($targetFile . "/**/*.css") as $filename) {
-                        if(!preg_match('#.min.#', $filename) && preg_match('#.css$#', $filename)){
+                        if (!preg_match('#.min.#', $filename) && preg_match('#.css$#', $filename)) {
                             $minifier = new \MatthiasMullie\Minify\CSS($filename);
                             $minifier->minify($filename);
                         }
                     }
 
                     foreach (glob($targetFile . "/**/*.js") as $filename) {
-                        if(!preg_match('#.min.#', $filename) && preg_match('#.js$#', $filename)){
+                        if (!preg_match('#.min.#', $filename) && preg_match('#.js$#', $filename)) {
                             $minifier = new \MatthiasMullie\Minify\JS($filename);
                             $minifier->minify($filename);
                         }
                     }
                 }
 
-            // Use symlink for performance consideration
+                // Use symlink for performance consideration
             } else {
                 Pi::service('file')->symlink(
                     $sourceFile,
@@ -676,11 +673,15 @@ class Asset extends AbstractService
             }
         } catch (\Exception $e) {
             $result = false;
-            $this->appendErrors(Pi::service('security')->path(sprintf(
-                '%s: %s',
-                $sourceFile,
-                $e->getMessage()
-            )));
+            $this->appendErrors(
+                Pi::service('security')->path(
+                    sprintf(
+                        '%s: %s',
+                        $sourceFile,
+                        $e->getMessage()
+                    )
+                )
+            );
         }
 
         return $result;
@@ -690,8 +691,8 @@ class Asset extends AbstractService
      * Publishes custom assets
      *
      * @param string $component Component name
-     * @param string $target Target component
-     * @param string $source Source path
+     * @param string $target    Target component
+     * @param string $source    Source path
      *
      * @return bool
      */
@@ -729,7 +730,7 @@ class Asset extends AbstractService
      * Publishes online custom assets
      *
      * @param string $component Component name
-     * @param string $target Target component
+     * @param string $target    Target component
      *
      * @return bool
      */
@@ -919,11 +920,15 @@ class Asset extends AbstractService
             Pi::service('file')->remove($path);
         } catch (\Exception $e) {
             $result = false;
-            $this->appendErrors(Pi::service('security')->path(sprintf(
-                '%s: %s',
-                $component,
-                $e->getMessage()
-            )));
+            $this->appendErrors(
+                Pi::service('security')->path(
+                    sprintf(
+                        '%s: %s',
+                        $component,
+                        $e->getMessage()
+                    )
+                )
+            );
         }
 
         return $result;
@@ -993,7 +998,7 @@ class Asset extends AbstractService
     /**
      * Gets URL of a public asset
      *
-     * @param string $file File path
+     * @param string    $file File path
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
@@ -1017,6 +1022,7 @@ class Asset extends AbstractService
      * Gets path of a static asset
      *
      * @param string $file File path
+     *
      * @return string Full path to a static asset
      */
     public function getStaticPath($file)
@@ -1027,7 +1033,7 @@ class Asset extends AbstractService
     /**
      * Gets URL of a static asset
      *
-     * @param string $file File path
+     * @param string    $file File path
      * @param bool|null $appendVersion
      *
      * @return string Full URL to the asset
@@ -1047,7 +1053,7 @@ class Asset extends AbstractService
     /**
      * Get logo URL
      *
-     * @param  string $name Logo filename
+     * @param string $name Logo filename
      *
      * @return string
      */
@@ -1080,7 +1086,7 @@ class Asset extends AbstractService
     /**
      * Get social network logo URL
      *
-     * @param  string $name social network logo filename
+     * @param string $name social network logo filename
      *
      * @return string
      */
@@ -1103,7 +1109,7 @@ class Asset extends AbstractService
         }
 
         if ($src == '') {
-            $name = 'social-network.png';
+            $name       = 'social-network.png';
             $customFile = 'asset/custom/image/' . $name;
             if (file_exists(Pi::path($customFile))) {
                 $src = Pi::url($customFile);

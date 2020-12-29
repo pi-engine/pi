@@ -38,19 +38,20 @@ class Logger
 {
     /**
      * @const int defined from the BSD Syslog message severities
-     * @link http://tools.ietf.org/html/rfc3164
+     * @link  http://tools.ietf.org/html/rfc3164
      */
-    const EMERG  = 0;
-    const ALERT  = 1;
-    const CRIT   = 2;
-    const ERR    = 3;
-    const WARN   = 4;
+    const EMERG = 0;
+    const ALERT = 1;
+    const CRIT = 2;
+    const ERR = 3;
+    const WARN = 4;
     const NOTICE = 5;
-    const INFO   = 6;
-    const DEBUG  = 7;
+    const INFO = 6;
+    const DEBUG = 7;
 
     /**
      * For application data audit
+     *
      * @var int
      */
     const AUDIT = 16;
@@ -110,6 +111,7 @@ class Logger
      * Get priority name
      *
      * @param int $priorityValue
+     *
      * @return string|null
      */
     public function priorityName($priorityValue)
@@ -147,7 +149,9 @@ class Logger
      * Set the format of DateTime
      *
      * @see    http://www.php.net/manual/en/function.date.php
-     * @param  string $format
+     *
+     * @param string $format
+     *
      * @return self
      */
     public function setDateTimeFormat($format)
@@ -160,8 +164,9 @@ class Logger
     /**
      * Get writer instance
      *
-     * @param string $name
+     * @param string     $name
      * @param array|null $options
+     *
      * @return Writer
      */
     public function writerPlugin($name, array $options = null)
@@ -178,24 +183,26 @@ class Logger
      * Add a writer to a logger
      *
      * @param string|Writer $writer
-     * @param int $priority
-     * @param array $options
+     * @param int           $priority
+     * @param array         $options
      *
-     * @throws \InvalidArgumentException
      * @return self
+     * @throws \InvalidArgumentException
      */
     public function addWriter(
         $writer,
         $priority = 1,
-        array $options = [])
-    {
+        array $options = []
+    ) {
         if (is_string($writer)) {
             $writer = $this->writerPlugin($writer, $options);
         } elseif (!$writer instanceof Writer\WriterInterface) {
-            throw new \InvalidArgumentException(sprintf(
-                'Writer must implement Laminas\Log\Writer; received "%s"',
-                is_object($writer) ? get_class($writer) : gettype($writer)
-            ));
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Writer must implement Laminas\Log\Writer; received "%s"',
+                    is_object($writer) ? get_class($writer) : gettype($writer)
+                )
+            );
         }
         $this->writers->insert($writer, $priority);
 
@@ -215,9 +222,10 @@ class Logger
     /**
      * Set the writers
      *
-     * @param  SplPriorityQueue $writers
-     * @throws \InvalidArgumentException
+     * @param SplPriorityQueue $writers
+     *
      * @return self
+     * @throws \InvalidArgumentException
      */
     public function setWriters($writers)
     {
@@ -241,13 +249,13 @@ class Logger
     /**
      * Add a message as a log entry
      *
-     * @param  int $priority
-     * @param  mixed $message
-     * @param  array|Traversable|int $extra
+     * @param int                   $priority
+     * @param mixed                 $message
+     * @param array|Traversable|int $extra
      *
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException if extra can't be iterated over
      * @return self
+     * @throws \InvalidArgumentException if extra can't be iterated over
+     * @throws \RuntimeException
      */
     public function log($priority, $message, $extra = [])
     {
@@ -291,13 +299,15 @@ class Logger
         }
 
         foreach ($this->writers->toArray() as $writer) {
-            $writer->write([
-                'timestamp'    => $time,
-                'priority'     => (int)$priority,
-                'priorityName' => $this->priorities[$priority],
-                'message'      => (string)$message,
-                'extra'        => $extra,
-            ]);
+            $writer->write(
+                [
+                    'timestamp'    => $time,
+                    'priority'     => (int)$priority,
+                    'priorityName' => $this->priorities[$priority],
+                    'message'      => (string)$message,
+                    'extra'        => $extra,
+                ]
+            );
         }
 
         return $this;
@@ -306,8 +316,9 @@ class Logger
     /**
      * Log an EMERG message
      *
-     * @param string $message
+     * @param string            $message
      * @param array|Traversable $extra
+     *
      * @return self
      */
     public function emerg($message, $extra = [])
@@ -318,8 +329,9 @@ class Logger
     /**
      * Log an ALERT message
      *
-     * @param string $message
+     * @param string            $message
      * @param array|Traversable $extra
+     *
      * @return self
      */
     public function alert($message, $extra = [])
@@ -330,8 +342,9 @@ class Logger
     /**
      * Log a CRIT message
      *
-     * @param string $message
+     * @param string            $message
      * @param array|Traversable $extra
+     *
      * @return self
      */
     public function crit($message, $extra = [])
@@ -342,8 +355,9 @@ class Logger
     /**
      * Log an ERR message
      *
-     * @param string $message
+     * @param string            $message
      * @param array|Traversable $extra
+     *
      * @return self
      */
     public function err($message, $extra = [])
@@ -354,8 +368,9 @@ class Logger
     /**
      * Log a WARN message
      *
-     * @param string $message
+     * @param string            $message
      * @param array|Traversable $extra
+     *
      * @return self
      */
     public function warn($message, $extra = [])
@@ -366,8 +381,9 @@ class Logger
     /**
      * Log a NOTICE message
      *
-     * @param string $message
+     * @param string            $message
      * @param array|Traversable $extra
+     *
      * @return self
      */
     public function notice($message, $extra = [])
@@ -378,8 +394,9 @@ class Logger
     /**
      * Log an INFO message
      *
-     * @param string $message
+     * @param string            $message
      * @param array|Traversable $extra
+     *
      * @return self
      */
     public function info($message, $extra = [])
@@ -390,8 +407,9 @@ class Logger
     /**
      * Log a DEBUG message
      *
-     * @param string $message
+     * @param string            $message
      * @param array|Traversable $extra
+     *
      * @return self
      */
     public function debug($message, $extra = [])
@@ -402,8 +420,9 @@ class Logger
     /**
      * Log an AUDIT message
      *
-     * @param string $message
+     * @param string            $message
      * @param array|Traversable $extra
+     *
      * @return self
      */
     public function audit($message, $extra = [])

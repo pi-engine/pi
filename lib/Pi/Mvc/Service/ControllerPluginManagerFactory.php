@@ -22,6 +22,7 @@ class ControllerPluginManagerFactory extends AbstractPluginManagerFactory
 {
     /**
      * Plugin manager class name
+     *
      * @var string
      */
     const PLUGIN_MANAGER_CLASS = 'Pi\Mvc\Controller\PluginManager';
@@ -29,7 +30,8 @@ class ControllerPluginManagerFactory extends AbstractPluginManagerFactory
     /**
      * Create and return the MVC controller plugin manager
      *
-     * @param  ServiceLocatorInterface $serviceLocator
+     * @param ServiceLocatorInterface $serviceLocator
+     *
      * @return PluginManager
      */
     public function createService(ServiceLocatorInterface $serviceLocator)

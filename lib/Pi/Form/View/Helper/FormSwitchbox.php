@@ -23,12 +23,13 @@ class FormSwitchbox extends LaminasFormElement
 {
     public function render(ElementInterface $element)
     {
-        $attributes            = $element->getAttributes();
-        $attributes['id']      = $element->getName();
-        $attributes['class']     .= ' custom-control-input';
+        $attributes          = $element->getAttributes();
+        $attributes['id']    = $element->getName();
+        $attributes['class'] .= ' custom-control-input';
         $element->setAttributes($attributes);
 
-        $rendered =  parent::render($element);
-        return '<div class="custom-control custom-switch">' . $rendered . '  <label class="custom-control-label" for="' . $attributes['name'] . '"></label></div>';
+        $rendered = parent::render($element);
+        return '<div class="custom-control custom-switch">' . $rendered . '  <label class="custom-control-label" for="' . $attributes['name']
+            . '"></label></div>';
     }
 }

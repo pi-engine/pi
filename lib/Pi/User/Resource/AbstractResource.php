@@ -27,6 +27,7 @@ class AbstractResource
 
     /**
      * If user module available for time handling
+     *
      * @var bool|null
      */
     protected $isAvailable = null;
@@ -59,6 +60,7 @@ class AbstractResource
      * Set options
      *
      * @param array $options
+     *
      * @return self
      */
     public function setOptions($options = [])

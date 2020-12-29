@@ -42,9 +42,9 @@ class Message extends AbstractResource
     /**
      * Send a message
      *
-     * @param int $uid
+     * @param int    $uid
      * @param string $message
-     * @param int $from
+     * @param int    $from
      *
      * @return int|bool
      */
@@ -65,7 +65,7 @@ class Message extends AbstractResource
     /**
      * Send a notification
      *
-     * @param int $uid
+     * @param int    $uid
      * @param string $message
      * @param string $subject
      * @param string $tag
@@ -91,6 +91,7 @@ class Message extends AbstractResource
      * Get total count
      *
      * @param int $uid
+     *
      * @return int|bool
      */
     public function getCount($uid)
@@ -109,6 +110,7 @@ class Message extends AbstractResource
      * Alert user the new messages he receives since last visit.
      *
      * @param int $uid
+     *
      * @return int|bool
      */
     public function getAlert($uid)

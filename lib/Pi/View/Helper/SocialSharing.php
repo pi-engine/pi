@@ -44,7 +44,7 @@ use Laminas\View\Helper\AbstractHtmlElement;
  *  $this->socialSharing($items, $pageTitle, $pageUrl, $imageUrl);
  * ```
  *
- * @see https://github.com/kni-labs/rrssb For Ridiculously Responsive Social Sharing Buttons
+ * @see    https://github.com/kni-labs/rrssb For Ridiculously Responsive Social Sharing Buttons
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -53,14 +53,14 @@ class SocialSharing extends AbstractHtmlElement
     /**
      * Display social sharing buttons
      *
-     * @todo The icon is not responsive yet
-     *
      * @param string[]|true|null|   $items List of social network items
-     * @param string $title Title
-     * @param string $url Page URL
-     * @param string $image Image url for pinterest
+     * @param string                $title Title
+     * @param string                $url   Page URL
+     * @param string                $image Image url for pinterest
      *
      * @return  string
+     * @todo The icon is not responsive yet
+     *
      */
     public function __invoke($items, $title, $url, $image = '')
     {
@@ -84,7 +84,7 @@ class SocialSharing extends AbstractHtmlElement
             }
 
             $template
-                    = <<<'EOT'
+                = <<<'EOT'
 <li class="rrssb-%s">
     <a title="%s" href="%s" class="popup">
         <span class="rrssb-icon"><i class="%s"></i></span>
@@ -92,11 +92,11 @@ class SocialSharing extends AbstractHtmlElement
    </a>
 </li>
 EOT;
-            if($item['icon'] == 'fa-facebook') {
+            if ($item['icon'] == 'fa-facebook') {
                 $item['icon'] = 'fab fa-facebook-f';
             }
 
-            if($item['icon'] == 'fa-twitter') {
+            if ($item['icon'] == 'fa-twitter') {
                 $item['icon'] = 'fab fa-twitter';
             }
             $button = sprintf($template, $item['identifier'], $item['title'], str_replace(' ', '%20', $item['url']), $item['icon'], $item['title']);
@@ -112,9 +112,11 @@ EOT;
         // Generate
         if (!empty($buttons)) {
             // Load jQuery and css file
-            $this->view->jQuery([
-                'extension/rrssb.css',
-            ]);
+            $this->view->jQuery(
+                [
+                    'extension/rrssb.css',
+                ]
+            );
             // Load rrssb.min.js on footer
             $url = 'vendor/jquery/extension/rrssb.min.js';
             $url = Pi::service('asset')->getStaticUrl($url);

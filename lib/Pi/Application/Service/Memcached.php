@@ -34,6 +34,7 @@ class Memcached extends AbstractService
      * Load options
      *
      * @param string|array $config
+     *
      * @return array
      * @see http://www.php.net/manual/en/memcached.constants.php
      *      for Memcached predefined constants
@@ -109,6 +110,7 @@ class Memcached extends AbstractService
      * Load a memcached instance
      *
      * @param array|null $config
+     *
      * @return MemcachedExtension
      * @throws exception
      */

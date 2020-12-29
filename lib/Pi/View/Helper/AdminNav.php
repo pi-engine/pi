@@ -29,6 +29,7 @@ class AdminNav extends AbstractHelper
      * Invoke for helper
      *
      * @param string $module
+     *
      * @return self
      */
     public function __invoke($module = '')
@@ -197,7 +198,7 @@ EOT;
                     'maxDepth' => 0,
                 ];
             }
-            list($parent, $leaf) = Menu::subOperation($module, $options);
+            [$parent, $leaf] = Menu::subOperation($module, $options);
             $navigation = $parent . $leaf;
         }
 

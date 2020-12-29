@@ -48,7 +48,7 @@ use Laminas\View\Helper\AbstractHelper;
  *      echo '</div>';
  * ```
  *
- * @see Pi\Application\Registry\Block
+ * @see    Pi\Application\Registry\Block
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Blocks extends AbstractHelper
@@ -56,6 +56,7 @@ class Blocks extends AbstractHelper
     /**
      * Zone map: zone index in database =>
      * zone in layout; 0 for head zone and 99 for foot zone
+     *
      * @var array
      */
     protected $zoneMap
@@ -74,6 +75,7 @@ class Blocks extends AbstractHelper
 
     /**
      * Loaded blocks
+     *
      * @var array
      */
     protected $blocks;
@@ -82,6 +84,7 @@ class Blocks extends AbstractHelper
      * Load blocks of a specified zone
      *
      * @param string|null $zone
+     *
      * @return array
      */
     public function __invoke($zone = null)
@@ -98,6 +101,7 @@ class Blocks extends AbstractHelper
      * Build layout block contents
      *
      * @param string|null $zone
+     *
      * @return array    associative array of blocks
      */
     public function load($zone = null)
@@ -184,7 +188,7 @@ class Blocks extends AbstractHelper
     /**
      * Assign blocks
      *
-     * @param array $blocks
+     * @param array    $blocks
      * @param null|int $zone
      *
      * @return $this

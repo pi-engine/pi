@@ -20,12 +20,14 @@ class SqlSchema
 {
     /**
      * Schema file
+     *
      * @var string
      */
     protected $file;
 
     /**
      * Table types, core or specified module
+     *
      * @var string
      */
     protected static $type;
@@ -46,6 +48,7 @@ class SqlSchema
      * Set schema file
      *
      * @param string $file
+     *
      * @return $this
      */
     public function setFile($file)
@@ -58,6 +61,7 @@ class SqlSchema
      * Set schema type
      *
      * @param string $type
+     *
      * @return void
      */
     public static function setType($type)
@@ -153,7 +157,8 @@ class SqlSchema
      * Fetch schema from a file
      *
      * @param string $file
-     * @param bool $isCore Fetch core schema, default as false
+     * @param bool   $isCore Fetch core schema, default as false
+     *
      * @return array
      */
     public static function fetchSchema($file, $isCore = false)
@@ -167,7 +172,8 @@ class SqlSchema
      * Parse schema names and types
      *
      * @param string $content
-     * @param bool $isCore Fetch core schema, default as false
+     * @param bool   $isCore Fetch core schema, default as false
+     *
      * @return array
      */
     public static function parseSchema($content, $isCore = false)

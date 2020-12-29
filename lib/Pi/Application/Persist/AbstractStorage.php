@@ -44,6 +44,7 @@ abstract class AbstractStorage
      * Set namespace
      *
      * @param string $namespace
+     *
      * @return $this
      */
     public function setNamespace($namespace)
@@ -57,6 +58,7 @@ abstract class AbstractStorage
      * Gets prefixed key or just the global namespace if key is not set
      *
      * @param string|null $key
+     *
      * @return string
      */
     protected function prefix($key = null)
@@ -71,7 +73,8 @@ abstract class AbstractStorage
     /**
      * Test if an item is available for the given id
      *
-     * @param  string $id Item id
+     * @param string $id Item id
+     *
      * @return mixed|false Cached datas
      */
     public function load($id)
@@ -82,9 +85,10 @@ abstract class AbstractStorage
     /**
      * Save some data in a key
      *
-     * @param  mixed $data Data to put in cache
-     * @param  string $id Stored id
-     * @param  int $ttl
+     * @param mixed  $data Data to put in cache
+     * @param string $id   Stored id
+     * @param int    $ttl
+     *
      * @return bool
      */
     public function save($data, $id, $ttl = 0)
@@ -95,7 +99,8 @@ abstract class AbstractStorage
     /**
      * Remove an item
      *
-     * @param  string $id Data id to remove
+     * @param string $id Data id to remove
+     *
      * @return bool
      */
     public function remove($id)

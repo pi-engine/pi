@@ -40,7 +40,8 @@ class Resource implements ListenerAggregateInterface
     /**
      * Attach listeners
      *
-     * @param  EventManagerInterface $events
+     * @param EventManagerInterface $events
+     *
      * @return void
      */
     public function attach(EventManagerInterface $events)
@@ -55,6 +56,7 @@ class Resource implements ListenerAggregateInterface
      * Detach listeners
      *
      * @param EventManagerInterface $events
+     *
      * @return void
      */
     public function detach(EventManagerInterface $events)
@@ -77,6 +79,7 @@ class Resource implements ListenerAggregateInterface
      * </code>
      *
      * @param Event $e
+     *
      * @return void
      */
     public function processResources(Event $e)
@@ -123,10 +126,12 @@ class Resource implements ListenerAggregateInterface
             if ($resource == 'Config' || $resource == 'AbstractResource') {
                 return false;
             }
-            $resourceName = strtolower(implode(
-                '_',
-                array_filter(preg_split('/(?=[A-Z])/', $resource))
-            ));
+            $resourceName = strtolower(
+                implode(
+                    '_',
+                    array_filter(preg_split('/(?=[A-Z])/', $resource))
+                )
+            );
 
             return $resourceName;
         };
@@ -157,6 +162,7 @@ class Resource implements ListenerAggregateInterface
      * </code>
      *
      * @param string $resource Resource name
+     *
      * @return array|null
      */
     protected function loadResource($resource)

@@ -24,6 +24,7 @@ class Sitemap extends LaminasSitemap
 {
     /**
      * Cache container
+     *
      * @var \StdClass
      */
     protected $cache;
@@ -41,9 +42,10 @@ class Sitemap extends LaminasSitemap
     /**
      * Renders helper
      *
-     * @param  AbstractContainer $container
+     * @param AbstractContainer $container
      *      [optional] container to render.
      *      Default is to render the container registered in the helper.
+     *
      * @return string
      */
     public function render($container = null)

@@ -34,11 +34,13 @@ class FormEditor extends AbstractHelper
 
         $name = $element->getName();
         if (empty($name) && $name !== 0) {
-            throw new Exception\DomainException(sprintf(
-                '%s requires that the element has an assigned name;'
-                . ' none discovered',
-                __METHOD__
-            ));
+            throw new Exception\DomainException(
+                sprintf(
+                    '%s requires that the element has an assigned name;'
+                    . ' none discovered',
+                    __METHOD__
+                )
+            );
         }
 
         $options    = array_replace($element->getOptions(), $options);

@@ -17,8 +17,8 @@ use Laminas\View\Helper\Placeholder;
 /**
  * Helper for setting and building meta elements for HTML head section
  *
- * @todo To reset global meta for keywords/description
- * @see \Laminas\View\Helper\HeadMeta for details.
+ * @todo   To reset global meta for keywords/description
+ * @see    \Laminas\View\Helper\HeadMeta for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class HeadMeta extends LaminasHeadMeta
@@ -29,7 +29,7 @@ class HeadMeta extends LaminasHeadMeta
      * @var bool
      */
     protected $_disableEscape = false;
-     
+
     /**
      * {@inheritDoc}
      */
@@ -39,8 +39,7 @@ class HeadMeta extends LaminasHeadMeta
         $keyType = 'name',
         $modifiers = [],
         $placement = null
-    )
-    {
+    ) {
         if (null === $placement) {
             $placement = Placeholder\Container\AbstractContainer::SET;
         }
@@ -67,11 +66,12 @@ class HeadMeta extends LaminasHeadMeta
         }
         return parent::itemToString($item);
     }
-    
+
     /**
      * {@inheritDoc}
      */
-    public function escape($str) {
+    public function escape($str)
+    {
         if ($this->_disableEscape) {
             return $str;
         }
@@ -98,6 +98,7 @@ class HeadMeta extends LaminasHeadMeta
      * Append an element
      *
      * @param stdClass $value
+     *
      * @return void
      */
     public function append($value)
@@ -124,6 +125,7 @@ class HeadMeta extends LaminasHeadMeta
      * Prepend an element
      *
      * @param stdClass $value
+     *
      * @return void
      */
     public function prepend($value)

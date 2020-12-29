@@ -42,6 +42,7 @@ class Form extends LaminasForm
 {
     /**
      * Grouping field names for rendering
+     *
      * @var array
      */
     protected $groups;
@@ -88,8 +89,8 @@ class Form extends LaminasForm
         $translator = \Pi::service('i18n')->getTranslator();
 
         $messages = $this->getMessages();
-        foreach($this->getMessages() as $name => $messageGroup){
-            foreach($messageGroup as $keyMessage => $message){
+        foreach ($this->getMessages() as $name => $messageGroup) {
+            foreach ($messageGroup as $keyMessage => $message) {
                 $messages[$name][$keyMessage] = $translator->translate($message);
             }
         }
@@ -145,6 +146,7 @@ class Form extends LaminasForm
      * Set grouped list
      *
      * @param array $groups
+     *
      * @return $this
      */
     public function setGroups(array $groups)
@@ -167,10 +169,10 @@ class Form extends LaminasForm
     /**
      * Get messages for hidden elements
      *
-     * @param  null|string $elementName
+     * @param null|string $elementName
      *
-     * @throws Exception\InvalidArgumentException
      * @return array
+     * @throws Exception\InvalidArgumentException
      */
     public function getHiddenMessages($elementName = null)
     {
@@ -193,11 +195,13 @@ class Form extends LaminasForm
         }
 
         if (!$this->has($elementName)) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                'Invalid element name "%s" provided to %s',
-                $elementName,
-                __METHOD__
-            ));
+            throw new Exception\InvalidArgumentException(
+                sprintf(
+                    'Invalid element name "%s" provided to %s',
+                    $elementName,
+                    __METHOD__
+                )
+            );
         }
 
         $element = $this->get($elementName);
@@ -207,8 +211,9 @@ class Form extends LaminasForm
     /**
      * Get assembled message
      *
-     * @param bool $OnlyHidden Return only hidden field messages
+     * @param bool   $OnlyHidden Return only hidden field messages
      * @param string $delimiter
+     *
      * @return string
      */
     public function getMessage($OnlyHidden = true, $delimiter = '; ')

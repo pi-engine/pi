@@ -32,6 +32,7 @@ class Config extends RowGateway
      * Encode non-scalar columns
      *
      * @param array $data
+     *
      * @return array
      */
     protected function encode($data)
@@ -50,6 +51,7 @@ class Config extends RowGateway
      * Decode non-scalar columns
      *
      * @param array $data
+     *
      * @return array
      */
     public function decode($data)
@@ -66,8 +68,9 @@ class Config extends RowGateway
     /**
      * Decode value column
      *
-     * @param mixed $value
+     * @param mixed  $value
      * @param string $filter
+     *
      * @return mixed
      */
     protected function decodeValueColumn($value, $filter)
@@ -104,8 +107,9 @@ class Config extends RowGateway
     /**
      * Encode value column
      *
-     * @param mixed $value
+     * @param mixed  $value
      * @param string $filter
+     *
      * @return mixed
      */
     protected function encodeValueColumn($value, $filter)
@@ -143,8 +147,9 @@ class Config extends RowGateway
      *
      * @param mixed $value
      * @param mixed $filter
-     * @param int $filterId
+     * @param int   $filterId
      * @param mixed $options
+     *
      * @return mixed
      */
     protected function filterValue($value, $filter, $filterId, $options)
@@ -159,8 +164,10 @@ class Config extends RowGateway
             if (null === $options) {
                 $value = filter_var($value, $filterId);
             } else {
-                $value = filter_var($value, $filterId,
-                    ['options' => $options]);
+                $value = filter_var(
+                    $value, $filterId,
+                    ['options' => $options]
+                );
             }
         } elseif (is_callable($filter)) {
             $value = call_user_func($filter, $value);

@@ -51,6 +51,7 @@ class MasterSlaveTableGateway extends AbstractTableGateway
      * Get adapter
      *
      * @param string $type
+     *
      * @return Adapter
      */
     public function getAdapter($type = null)

@@ -57,10 +57,10 @@ abstract class AbstractSearch extends AbstractApi
      * Search query
      *
      * @param array|string $terms
-     * @param int $limit
-     * @param int $offset
-     * @param array $condition
-     * @param array $columns
+     * @param int          $limit
+     * @param int          $offset
+     * @param array        $condition
+     * @param array        $columns
      *
      * @return ResultSet
      */
@@ -70,8 +70,7 @@ abstract class AbstractSearch extends AbstractApi
         $offset = 0,
         array $condition = [],
         array $columns = []
-    )
-    {
+    ) {
         $dataAll  = [];
         $countAll = 0;
         $terms    = (array)$terms;
@@ -125,9 +124,9 @@ abstract class AbstractSearch extends AbstractApi
     /**
      * Build query condition
      *
-     * @param array $terms
-     * @param array $condition
-     * @param array $columns
+     * @param array  $terms
+     * @param array  $condition
+     * @param array  $columns
      * @param string $table
      *
      * @return Where
@@ -197,10 +196,10 @@ abstract class AbstractSearch extends AbstractApi
     /**
      * Fetch search result
      *
-     * @param Model $model
-     * @param Where $where
-     * @param int $limit
-     * @param int $offset
+     * @param Model  $model
+     * @param Where  $where
+     * @param int    $limit
+     * @param int    $offset
      * @param string $table
      *
      * @return array
@@ -211,8 +210,7 @@ abstract class AbstractSearch extends AbstractApi
         $limit = 0,
         $offset = 0,
         $table = ''
-    )
-    {
+    ) {
         $data = [];
 
         $select = $model->select();
@@ -263,7 +261,7 @@ abstract class AbstractSearch extends AbstractApi
     /**
      * Build item link URL
      *
-     * @param array $item
+     * @param array  $item
      * @param string $table
      *
      * @return string
@@ -276,7 +274,7 @@ abstract class AbstractSearch extends AbstractApi
     /**
      * Build item image URL
      *
-     * @param array $item
+     * @param array  $item
      * @param string $table
      *
      * @return string
@@ -289,7 +287,7 @@ abstract class AbstractSearch extends AbstractApi
     /**
      * Build search result set
      *
-     * @param int $total
+     * @param int   $total
      * @param array $data
      *
      * @return ResultSet

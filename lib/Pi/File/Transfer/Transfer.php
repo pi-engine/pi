@@ -28,8 +28,7 @@ class Transfer extends TransferHandler
         $adapter,
         $direction = false,
         $options = []
-    )
-    {
+    ) {
         if (!is_string($adapter)) {
             throw new Exception\InvalidArgumentException(
                 'Adapter must be a string'

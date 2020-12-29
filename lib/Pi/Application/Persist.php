@@ -44,12 +44,12 @@ class Persist
     public function __construct($config = [])
     {
         $storage       = ucfirst($config['storage']);
-        $this->handler = $this->loadHandler($storage, isset($config['options'])
-            ? $config['options'] : []);
+        $this->handler = $this->loadHandler(
+            $storage, isset($config['options'])
+            ? $config['options'] : []
+        );
         if (!$this->handler) {
-            throw new \DomainException(
-                sprintf('Storage "%s" is not supported.', $storage)
-            );
+            throw new \DomainException(sprintf('Storage "%s" is not supported.', $storage));
         }
         $this->storage = $storage;
         $this->handler->setNamespace($config['namespace']);
@@ -59,7 +59,8 @@ class Persist
      * Loads a backend handler
      *
      * @param string $storage
-     * @param array $options
+     * @param array  $options
+     *
      * @return Persist\AbstractStorage|false
      */
     public function loadHandler($storage, $options = [])
@@ -107,12 +108,14 @@ class Persist
 
     /**#@+
      * Persist APIs, proxy to handler
+     *
      * @see Persist\AbstractStorage
      */
     /**
      * Load an entity
      *
      * @param string $id
+     *
      * @return mixed
      * @see Persist\AbstractStorage::load()
      */
@@ -124,9 +127,10 @@ class Persist
     /**
      * Save an entity
      *
-     * @param mixed $data
+     * @param mixed  $data
      * @param string $id
-     * @param int $ttl
+     * @param int    $ttl
+     *
      * @return void
      * @see Persist\AbstractStorage::save()
      */
@@ -139,6 +143,7 @@ class Persist
      * Remove an entity
      *
      * @param string $id
+     *
      * @return bool
      * @see Persist\AbstractStorage::remove()
      */
@@ -163,7 +168,8 @@ class Persist
      * Magic methods call {@link Persist\AbstractStorage}
      *
      * @param string $method
-     * @param array $params
+     * @param array  $params
+     *
      * @return mixed
      */
     public function __call($method, $params)

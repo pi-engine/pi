@@ -23,18 +23,21 @@ class Registry extends AbstractService
 {
     /**
      * Cache storage
+     *
      * @var CacheStorage
      */
     protected $cache;
 
     /**
      * Default cache storage
+     *
      * @var CacheStorage
      */
     protected $defaultCache;
 
     /**
      * Handler container
+     *
      * @var AbstractRegistry[]
      */
     protected $handler = [];
@@ -42,8 +45,9 @@ class Registry extends AbstractService
     /**
      * Get registry handler
      *
-     * @param string $name
+     * @param string     $name
      * @param sting|null $module
+     *
      * @return AbstractRegistry
      */
     public function handler($name, $module = null)
@@ -61,8 +65,9 @@ class Registry extends AbstractService
     /**
      * Load registry handler
      *
-     * @param string $name
+     * @param string      $name
      * @param string|null $module
+     *
      * @return AbstractRegistry
      */
     protected function loadHandler($name, $module = null)
@@ -87,6 +92,7 @@ class Registry extends AbstractService
      * Remove cache data by namespace
      *
      * @param string $namespace
+     *
      * @return bool
      */
     public function flush($namespace = '')
@@ -111,6 +117,7 @@ class Registry extends AbstractService
      *  `Pi::service('registry')-><registry-name>-><registry-method>();`
      *
      * @param string $handlerName
+     *
      * @return AbstractRegistry
      */
     public function __get($handlerName)
@@ -127,7 +134,7 @@ class Registry extends AbstractService
      * `Pi::service('registry')-><registry-method>(<registry-name>, $args);`
      *
      * @param string $handlerName
-     * @param array $args
+     * @param array  $args
      *
      * @return mixed
      */
@@ -158,6 +165,7 @@ class Registry extends AbstractService
      * Set cache storage
      *
      * @param CacheStorage $cache
+     *
      * @return void
      */
     public function setCache(CacheStorage $cache)

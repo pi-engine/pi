@@ -33,7 +33,7 @@ class SendResponseListener extends LaminasSendResponseListener
         $events->attach(SendResponseEvent::EVENT_SEND_RESPONSE, new ConsoleResponseSender(), -2000);
         $events->attach(SendResponseEvent::EVENT_SEND_RESPONSE, new SimpleStreamResponseSender(), -3000);
         $events->attach(SendResponseEvent::EVENT_SEND_RESPONSE, new HttpResponseSender(), -4000);
-        $events->attach(SendResponseEvent::EVENT_SEND_RESPONSE, array($this, 'outputCompress'), 100);
+        $events->attach(SendResponseEvent::EVENT_SEND_RESPONSE, [$this, 'outputCompress'], 100);
     }
 
 
@@ -44,13 +44,15 @@ class SendResponseListener extends LaminasSendResponseListener
         // Load general config
         $configGeneral = \Pi::config('', 'system', 'general');
 
-        /** @var PhpEnvironmentResponse $response  */
-        if ($response instanceof PhpEnvironmentResponse && $response->getHeaders()->has('content-type') && \Pi::engine()->section() == 'front' && $configGeneral['minify_html_output']) {
+        /** @var PhpEnvironmentResponse $response */
+        if ($response instanceof PhpEnvironmentResponse && $response->getHeaders()->has('content-type') && \Pi::engine()->section() == 'front'
+            && $configGeneral['minify_html_output']
+        ) {
 
             /**
              * Only public pages
              */
-            if(!\Pi::user()->getId()){
+            if (!\Pi::user()->getId()) {
                 $response->setContent($this->_compress($response->getBody()));
             }
         }
@@ -58,24 +60,24 @@ class SendResponseListener extends LaminasSendResponseListener
 
     private function _compress($content)
     {
-        $minifier = new TinyHtmlMinifier(array());
-        $content = $minifier->minify($content);
+        $minifier = new TinyHtmlMinifier([]);
+        $content  = $minifier->minify($content);
 
 
-        $search = array(
+        $search = [
             '/\>[^\S ]+/s',         //strip whitespaces after tags, except space
             '/[^\S ]+\</s',         //strip whitespaces before tags, except space
             '/(\s)+/s',             // shorten multiple whitespace sequences
-//            '/<!--(.|\s)*?-->/',    //strip HTML comments
+            //            '/<!--(.|\s)*?-->/',    //strip HTML comments
             '#(?://)?<!\[CDATA\[(.*?)(?://)?\]\]>#s', //leave CDATA alone
-        );
-        $replace = array(
+        ];
+        $replace = [
             '>',
             '<',
             '\\1',
-//            '',
-            "//<![CDATA[\n".'\1'."\n//]]>",
-        );
+            //            '',
+            "//<![CDATA[\n" . '\1' . "\n//]]>",
+        ];
         $content = preg_replace($search, $replace, $content);
 
         return $content;

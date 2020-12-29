@@ -39,24 +39,28 @@ abstract class AbstractEngine
 
     /**
      * Section name
+     *
      * @var string
      */
     const SECTION = FRONT;
 
     /**
      * Identifier for file name of option data
+     *
      * @var string
      */
     protected $fileIdentifier = '';
 
     /**
      * Options for application
+     *
      * @var array
      */
     protected $options = [];
 
     /**
      * Application handler
+     *
      * @var Application
      */
     protected $application;
@@ -93,6 +97,7 @@ abstract class AbstractEngine
      *  - Services
      *
      * @param array $options
+     *
      * @return $this
      */
     public function setOption(array $options)

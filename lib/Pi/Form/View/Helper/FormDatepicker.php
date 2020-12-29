@@ -19,7 +19,7 @@ use Laminas\Form\View\Helper\FormInput;
 /**
  * Datepicker element helper
  *
- * @see http://bootstrap-datepicker.readthedocs.org/en/release/
+ * @see    http://bootstrap-datepicker.readthedocs.org/en/release/
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class FormDatepicker extends FormInput
@@ -54,10 +54,10 @@ class FormDatepicker extends FormInput
         if ($view->core_datepicker_initialized) {
             $bsLoad = [];
         } else {
-            $bsLoad = array(
+            $bsLoad = [
                 'datepicker/bootstrap-datepicker.min.css',
-                'datepicker/bootstrap-datepicker.min.js'
-            );
+                'datepicker/bootstrap-datepicker.min.js',
+            ];
         }
         $view->core_datepicker_initialized = true;
         // end fix 

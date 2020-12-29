@@ -86,6 +86,7 @@ class Url extends AbstractService
      * Set router
      *
      * @param RouteStackInterface $router
+     *
      * @return Url
      */
     public function setRouter(RouteStackInterface $router)
@@ -113,6 +114,7 @@ class Url extends AbstractService
      * Set RouteMatch
      *
      * @param RouteMatch $routeMatch
+     *
      * @return Url
      */
     public function setRouteMatch(RouteMatch $routeMatch)
@@ -139,27 +141,26 @@ class Url extends AbstractService
     /**
      * Generates an url given the name of a route.
      *
+     * @param string     $route Route name
+     * @param array      $params
+     *                          Parameters to use in url generation, if any
+     * @param array|bool $options
+     *                          RouteInterface-specific options to use in url generation, if any.
+     *                          If boolean, and no fourth argument, used as $reuseMatchedParams.
+     * @param bool       $reuseMatchedParams
+     *                          Whether to reuse matched parameters
+     *
+     * @return string                   For the link href attribute
+     * @throws \RuntimeException
      * @see    Laminas\Mvc\Router\RouteInterface::assemble()
      *
-     * @param  string $route Route name
-     * @param  array $params
-     *          Parameters to use in url generation, if any
-     * @param  array|bool $options
-     *          RouteInterface-specific options to use in url generation, if any.
-     *          If boolean, and no fourth argument, used as $reuseMatchedParams.
-     * @param  bool $reuseMatchedParams
-     *          Whether to reuse matched parameters
-     *
-     * @throws \RuntimeException
-     * @return string                   For the link href attribute
      */
     public function assemble(
         $route = null,
         array $params = [],
         $options = [],
         $reuseMatchedParams = false
-    )
-    {
+    ) {
         if (is_array($options) && isset($options['router'])) {
             $router = $options['router'];
             unset($options['router']);
@@ -215,8 +216,8 @@ class Url extends AbstractService
      * @param string $url
      * @param string $route
      *
-     * @throws \RuntimeException
      * @return RouteMatch|null
+     * @throws \RuntimeException
      */
     public function match($url, $route = '')
     {
@@ -270,7 +271,7 @@ class Url extends AbstractService
      * Redirect to a URL
      *
      * @param string $url
-     * @param bool $return
+     * @param bool   $return
      *
      * @return void
      */

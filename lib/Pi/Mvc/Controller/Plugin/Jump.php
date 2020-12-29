@@ -33,10 +33,10 @@ class Jump extends AbstractPlugin
     /**
      * Jump to a page with message
      *
-     * @param string|array $params URI or params to assemble URI
-     * @param string $message Message to display on transition page
-     * @param string $namespace success, error, info, default
-     * @param bool $allowExternal Allow external links
+     * @param string|array $params        URI or params to assemble URI
+     * @param string       $message       Message to display on transition page
+     * @param string       $namespace     success, error, info, default
+     * @param bool         $allowExternal Allow external links
      *
      * @return void
      */
@@ -45,8 +45,7 @@ class Jump extends AbstractPlugin
         $message = '',
         $namespace = '',
         $allowExternal = false
-    )
-    {
+    ) {
         if (is_array($params)) {
             if (!isset($params['route'])) {
                 $route = '';

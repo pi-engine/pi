@@ -23,8 +23,8 @@ use Laminas\View\Helper\AbstractHelper;
  *  $this->i18n('module/demo', 'block');
  * ```
  *
- * @see Pi\Application\Service\I18n
- * @see Pi\Application\Service\Asset
+ * @see    Pi\Application\Service\I18n
+ * @see    Pi\Application\Service\Asset
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class I18n extends AbstractHelper
@@ -32,8 +32,9 @@ class I18n extends AbstractHelper
     /**
      * Load an i18n resource
      *
-     * @param   string $component
-     * @param   string $file
+     * @param string $component
+     * @param string $file
+     *
      * @return  self
      */
     public function __invoke($component, $file)

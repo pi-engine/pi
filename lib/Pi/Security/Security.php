@@ -29,6 +29,7 @@ class Security
      * Check against IPs
      *
      * @param array $options
+     *
      * @return bool|null
      */
     public static function ip($options = [])
@@ -78,6 +79,7 @@ class Security
      * Check against super globals contamination
      *
      * @param array $globals Name of super globals to check
+     *
      * @return bool|null
      */
     public static function globals($globals = [])
@@ -112,7 +114,8 @@ class Security
      * Magic method to access against custom security adapters
      *
      * @param string $method Security adapter to be checked
-     * @param array $args Arguments for the setting
+     * @param array  $args   Arguments for the setting
+     *
      * @return bool|null
      */
     public static function __callStatic($method, $args = [])

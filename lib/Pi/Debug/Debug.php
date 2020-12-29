@@ -65,14 +65,17 @@ namespace Pi\Debug {
          * Enable/Disable conditional debugging
          *
          * @param bool $flag
+         *
          * @return void
          */
         public static function enable($flag = true)
         {
             static::$inProcess = $flag;
-            $message           = static::render(sprintf(
-                'Conditional debug %s',
-                $flag ? 'enabled' : 'disabled'),
+            $message           = static::render(
+                sprintf(
+                    'Conditional debug %s',
+                    $flag ? 'enabled' : 'disabled'
+                ),
                 2
             );
             Pi::service('log')->debug($message);
@@ -82,7 +85,8 @@ namespace Pi\Debug {
          * Renders a variable or an object during conditional period
          *
          * @param mixed $data a variable or an object
-         * @param int $skip steps to skip
+         * @param int   $skip steps to skip
+         *
          * @return string|null
          */
         public static function conditional($data, $skip = 0)
@@ -98,6 +102,7 @@ namespace Pi\Debug {
          * Syntactic sugar for displaying debugger information
          *
          * @param mixed $data
+         *
          * @return void
          */
         public static function e($data)
@@ -111,6 +116,7 @@ namespace Pi\Debug {
          * Syntactic sugar for render()
          *
          * @param mixed $data
+         *
          * @return string
          */
         public static function _($data)
@@ -122,6 +128,7 @@ namespace Pi\Debug {
          * Displays debugger information
          *
          * @param mixed $data
+         *
          * @return void
          */
         public static function display($data)
@@ -134,7 +141,8 @@ namespace Pi\Debug {
          * Renders a variable or an object
          *
          * @param mixed $data a variable or an object
-         * @param int $skip steps to skip
+         * @param int   $skip steps to skip
+         *
          * @return string
          */
         public static function render($data, $skip = 0)
@@ -144,7 +152,9 @@ namespace Pi\Debug {
                 . substr($time, strpos($time, '.'), 5) . ' ';
             $list     = debug_backtrace();
             foreach ($list as $item) {
-                if ($skip-- > 0) continue;
+                if ($skip-- > 0) {
+                    continue;
+                }
                 $file     = Pi::service('security')->path($item['file']);
                 $location .= $file . ':' . $item['line'];
                 break;
@@ -195,7 +205,8 @@ namespace Pi\Debug {
          * Displays formatted backtrace information
          *
          * @param bool $display To display or return as a string
-         * @param int $skip steps to skip
+         * @param int  $skip    steps to skip
+         *
          * @return void|string
          */
         public static function backtrace($display = true, $skip = 0)
@@ -254,11 +265,12 @@ namespace Pi\Debug {
          * cleans up newlines and indents, and runs
          * htmlspecialchars() before output.
          *
-         * @see Laminas\Debug::dump()
-         * @param mixed $var The variable to dump.
-         * @param bool $display OPTIONAL echo output if true.
-         * @param int $skip steps to skip
+         * @param mixed $var     The variable to dump.
+         * @param bool  $display OPTIONAL echo output if true.
+         * @param int   $skip    steps to skip
+         *
          * @return string|void
+         * @see Laminas\Debug::dump()
          */
         public static function dump($var, $display = true, $skip = 1)
         {
@@ -267,7 +279,9 @@ namespace Pi\Debug {
                 . substr($time, strpos($time, '.'), 5) . ' ';
             $list     = debug_backtrace();
             foreach ($list as $item) {
-                if ($skip-- > 0) continue;
+                if ($skip-- > 0) {
+                    continue;
+                }
                 $file     = Pi::service('security')->path($item['file']);
                 $location .= $file . ':' . $item['line'];
                 break;
@@ -344,6 +358,7 @@ namespace {
      * Displays a debug message
      *
      * @param mixed $data a variable or an object
+     *
      * @return void
      */
     function d($data = '')
@@ -370,6 +385,7 @@ namespace {
      * Displays a debug message during conditional debug
      *
      * @param mixed $data a variable or an object
+     *
      * @return void
      */
     function dc($data = '')
@@ -384,6 +400,7 @@ namespace {
      * Enable for conditional debug
      *
      * @param bool $flag
+     *
      * @return void
      */
     function denable($flag = true)
@@ -415,6 +432,7 @@ namespace {
      * Dump data with var_dump()
      *
      * @param mixed $data
+     *
      * @return string
      */
     function vd($data)

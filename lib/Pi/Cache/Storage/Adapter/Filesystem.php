@@ -27,8 +27,7 @@ class Filesystem extends LaminasFilesystem
         &$normalizedKey,
         &$success = null,
         &$casToken = null
-    )
-    {
+    ) {
         /**#@+
          * Skip extra file reading cost
          */
@@ -66,7 +65,7 @@ class Filesystem extends LaminasFilesystem
     /**
      * {@inheritdoc}
      */
-    protected function internalGetItems(array & $normalizedKeys)
+    protected function internalGetItems(array &$normalizedKeys)
     {
         $options = $this->getOptions();
         // Don't change argument passed by reference
@@ -121,7 +120,7 @@ class Filesystem extends LaminasFilesystem
     /**
      * {@inheritdoc}
      */
-    protected function internalHasItem(& $normalizedKey)
+    protected function internalHasItem(&$normalizedKey)
     {
         $file = $this->getFileSpec($normalizedKey) . '.dat';
         /**#@+
@@ -138,7 +137,7 @@ class Filesystem extends LaminasFilesystem
     /**
      * {@inheritdoc}
      */
-    protected function internalSetItem(& $normalizedKey, & $value)
+    protected function internalSetItem(&$normalizedKey, &$value)
     {
         $filespec = $this->getFileSpec($normalizedKey);
 
@@ -172,7 +171,7 @@ class Filesystem extends LaminasFilesystem
     /**
      * {@inheritdoc}
      */
-    protected function internalSetItems(array & $normalizedKeyValuePairs)
+    protected function internalSetItems(array &$normalizedKeyValuePairs)
     {
         $oldUmask = null;
 
@@ -215,22 +214,22 @@ class Filesystem extends LaminasFilesystem
     /**
      * Read and validate cache data, return valid content
      *
-     * @param  string $file File complete path
-     * @param  bool $nonBlocking Don't block script if file is locked
-     * @param  bool $wouldblock The optional argument is set to TRUE
-     *      if the lock would block
+     * @param string $file        File complete path
+     * @param bool   $nonBlocking Don't block script if file is locked
+     * @param bool   $wouldblock  The optional argument is set to TRUE
+     *                            if the lock would block
+     *
      * @return string|null
      */
     protected function getFileData(
         $file,
         $nonBlocking = false,
         &$wouldblock = null
-    )
-    {
+    ) {
         $result = null;
         if (file_exists($file)) {
             $content = $this->getFileContent($file, $nonBlocking, $wouldblock);
-            list($expire, $data) = explode(':', $content, 2);
+            [$expire, $data] = explode(':', $content, 2);
             if (empty($expire) || time() < $expire) {
                 $result = $data;
             }
@@ -242,11 +241,12 @@ class Filesystem extends LaminasFilesystem
     /**
      * Assemble content data and write to a cache file
      *
-     * @param  string $file File complete path
-     * @param  string $data Data to write
-     * @param  bool $nonBlocking Don't block script if file is locked
-     * @param  bool $wouldblock The optional argument is set to TRUE
-     *      if the lock would block
+     * @param string $file        File complete path
+     * @param string $data        Data to write
+     * @param bool   $nonBlocking Don't block script if file is locked
+     * @param bool   $wouldblock  The optional argument is set to TRUE
+     *                            if the lock would block
+     *
      * @return void
      */
     protected function putFileData(
@@ -254,8 +254,7 @@ class Filesystem extends LaminasFilesystem
         $data,
         $nonBlocking = false,
         &$wouldblock = null
-    )
-    {
+    ) {
         $expire  = 0;
         $options = $this->getOptions();
         if ($options->ttl) {
@@ -268,7 +267,8 @@ class Filesystem extends LaminasFilesystem
     /**
      * Check if cached file content valid
      *
-     * @param  string $file File complete path
+     * @param string $file File complete path
+     *
      * @return bool
      */
     protected function fileValid($file)

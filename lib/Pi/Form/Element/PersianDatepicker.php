@@ -64,7 +64,7 @@ use Laminas\Form\Element;
  * ```
  *
  * {@inheritDoc}
- * @see https://babakhani.github.io/PersianWebToolkit
+ * @see    https://babakhani.github.io/PersianWebToolkit
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

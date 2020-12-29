@@ -35,6 +35,7 @@ class Rename extends LaminasRename
 {
     /**
      * File source attributes
+     *
      * @var array
      */
     protected $source;
@@ -49,7 +50,7 @@ class Rename extends LaminasRename
      * Class constructor
      *
      * {@inheritDoc}
-     * @param  string|Closure|array|Traversable $options
+     * @param string|Closure|array|Traversable $options
      *      Target file or directory to be renamed
      */
     public function __construct($options)
@@ -107,6 +108,7 @@ class Rename extends LaminasRename
      * Generate upload target by parsing specified file target strategy
      *
      * @param array $file
+     *
      * @return void
      */
     protected function parseStrategy(&$file)
@@ -145,6 +147,7 @@ class Rename extends LaminasRename
      * Set resource
      *
      * @param array $source
+     *
      * @return $this
      */
     public function setSource($source)

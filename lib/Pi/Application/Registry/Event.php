@@ -15,8 +15,8 @@ use Pi;
 /**
  * Event/Listener list
  *
- * @see Pi\Application\Installer\Resource\Event for event specifications
- * @see Pi\Application\Service\Event for event trigger
+ * @see    Pi\Application\Installer\Resource\Event for event specifications
+ * @see    Pi\Application\Service\Event for event trigger
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Event extends AbstractRegistry
@@ -44,11 +44,13 @@ class Event extends AbstractRegistry
         $result['event'] = $options['module'] . '-' . $options['event'];
 
         $modelListener = Pi::model('event_listener');
-        $select        = $modelListener->select()->where([
-            'event_module' => $options['module'],
-            'event_name'   => $options['event'],
-            'active'       => 1,
-        ]);
+        $select        = $modelListener->select()->where(
+            [
+                'event_module' => $options['module'],
+                'event_name'   => $options['event'],
+                'active'       => 1,
+            ]
+        );
         $listenerList  = $modelListener->selectWith($select);
         //$directory = Pi::service('module')->directory($options['module']);
         $listeners = [];
@@ -87,7 +89,9 @@ class Event extends AbstractRegistry
     public function read($module = '', $event = '')
     {
         $module = $module ?: Pi::service('module')->current();
-        if (empty($event)) return false;
+        if (empty($event)) {
+            return false;
+        }
         $options = compact('module', 'event');
 
         $data = $this->loadData($options);

@@ -32,6 +32,7 @@ class Navigation extends NavigationHelper
 {
     /**
      * Cache container
+     *
      * @var \StdClass
      */
     protected $cache;
@@ -39,8 +40,9 @@ class Navigation extends NavigationHelper
     /**
      * Load a navigation
      *
-     * @param string|array $name Navigation name or config
-     * @param array $options Options for navigation and caching
+     * @param string|array $name    Navigation name or config
+     * @param array        $options Options for navigation and caching
+     *
      * @return  self
      */
     public function __invoke($name = null, $options = [])
@@ -116,8 +118,9 @@ class Navigation extends NavigationHelper
      * $blogPages = $this->navigation()->findAllByRoute('blog');
      * ```
      *
-     * @param  string $method helper name or method name in container
-     * @param  array $arguments [optional] arguments to pass
+     * @param string $method    helper name or method name in container
+     * @param array  $arguments [optional] arguments to pass
+     *
      * @return mixed                returns what the proxied call returns
      */
     public function __call($method, array $arguments = [])
@@ -139,9 +142,10 @@ class Navigation extends NavigationHelper
      * Returns the helper matching $proxy
      *
      * @param string $proxy helper name
-     * @param bool $strict
-     *      [optional] whether exceptions should be thrown
-     *      if something goes wrong. Default is true.
+     * @param bool   $strict
+     *                      [optional] whether exceptions should be thrown
+     *                      if something goes wrong. Default is true.
+     *
      * @return AbstractNavigationHelper
      * @throws \Exception  if $strict is true and helper cannot be found
      * @throws \InvalidArgumentException
@@ -170,11 +174,13 @@ class Navigation extends NavigationHelper
 
         if (!$helper instanceof AbstractNavigationHelper) {
             if ($strict) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Proxy helper "%s" is not an instance of ' .
-                    'Laminas\View\Helper\Navigation\Helper',
-                    get_class($helper)
-                ));
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'Proxy helper "%s" is not an instance of ' .
+                        'Laminas\View\Helper\Navigation\Helper',
+                        get_class($helper)
+                    )
+                );
             }
 
             return null;
@@ -198,6 +204,7 @@ class Navigation extends NavigationHelper
      * Register default router and RouteMatch to MvcPage
      *
      * @param Container|array $container
+     *
      * @return self
      */
     public function setContainer($container = null)

@@ -18,22 +18,21 @@ use Laminas\Db\Sql\Where as LaminasWhere;
  *
  * Creates where clause
  *
- * @see Laminas\Db\Sql\Where
+ * @see    Laminas\Db\Sql\Where
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Where extends LaminasWhere
 {
     /**
      * {@inheritdoc}
-     * @param  \Closure|string|array|Predicate\PredicateInterface $predicates
-     * @param  string $defaultCombination
+     * @param \Closure|string|array|Predicate\PredicateInterface $predicates
+     * @param string                                             $defaultCombination
      *      One of the OP_* constants from Predicate\PredicateSet
      */
     public function __construct(
         $predicates = null,
         $defaultCombination = self::COMBINED_BY_AND
-    )
-    {
+    ) {
         parent::__construct(null, $defaultCombination);
         if ($predicates) {
             $this->addPredicates($predicates);
@@ -43,12 +42,12 @@ class Where extends LaminasWhere
     /**
      * Canonize predicate elements
      *
+     * @param \Closure|string|array|Predicate\PredicateInterface $predicate
+     *
+     * @return array
+     * @throws Exception\InvalidArgumentException
      * @see Laminas\Db\Sql\Select::where()
      *
-     * @param  \Closure|string|array|Predicate\PredicateInterface $predicate
-     *
-     * @throws Exception\InvalidArgumentException
-     * @return array
      * @deprecated
      */
     public function canonize($predicate)
@@ -62,8 +61,10 @@ class Where extends LaminasWhere
         } else {
             if (is_string($predicate)) {
                 // String $predicate should be passed as an expression
-                $predicate    = (strpos($predicate,
-                        Expression::PLACEHOLDER) !== false)
+                $predicate    = (strpos(
+                        $predicate,
+                        Expression::PLACEHOLDER
+                    ) !== false)
                     ? new Predicate\Expression($predicate)
                     : new Predicate\Literal($predicate);
                 $predicates[] = $predicate;
@@ -128,8 +129,8 @@ class Where extends LaminasWhere
     /**
      * Create predicate object
      *
-     * @param  string|array $predicate
-     * @param  string $combination
+     * @param string|array $predicate
+     * @param string       $combination
      *
      * @return Predicate\Predicate
      */
@@ -147,8 +148,9 @@ class Where extends LaminasWhere
     /**
      * Add predicate to set
      *
-     * @param  \Closure|string|array|Predicate\PredicateInterface $predicate
-     * @param  string $combination
+     * @param \Closure|string|array|Predicate\PredicateInterface $predicate
+     * @param string                                             $combination
+     *
      * @return $this
      */
     public function add($predicate, $combination = null)

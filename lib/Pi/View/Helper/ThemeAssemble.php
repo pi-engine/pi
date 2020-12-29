@@ -28,6 +28,7 @@ class ThemeAssemble extends AbstractHelper
 {
     /**
      * Section labels
+     *
      * @var array
      */
     protected $sectionLabel;
@@ -35,8 +36,9 @@ class ThemeAssemble extends AbstractHelper
     /**
      * Render a section's anchor
      *
-     * @param   string $section
-     * @param   string|int $indent
+     * @param string     $section
+     * @param string|int $indent
+     *
      * @return  string|self
      */
     public function __invoke($section = null, $indent = null)
@@ -271,6 +273,7 @@ class ThemeAssemble extends AbstractHelper
      * Complete assembling meta contents
      *
      * @param string $content
+     *
      * @return string
      */
     public function completeStrategy($content)
@@ -281,14 +284,16 @@ class ThemeAssemble extends AbstractHelper
         $pos = stripos($content, '</head>');
         if ($pos) {
             $head = '';
-            foreach ([
-                         'headTitle',
-                         'headMeta',
-                         'headStyleCritical',
-                         'headLink',
-                         'headStyle',
-                         'headScript',
-                     ] as $section) {
+            foreach (
+                [
+                    'headTitle',
+                    'headMeta',
+                    'headStyleCritical',
+                    'headLink',
+                    'headStyle',
+                    'headScript',
+                ] as $section
+            ) {
                 $sectionContent = $this->view->plugin($section)->toString();
                 $sectionContent .= $sectionContent ? PHP_EOL : '';
                 if (!empty($this->sectionLabel[$section])) {

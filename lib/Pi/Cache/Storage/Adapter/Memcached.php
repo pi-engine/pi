@@ -25,8 +25,9 @@ class Memcached extends LaminasMemcached
      * will be removed from memcached one by one.
      *
      * @param string $namespace
-     * @throws Exception\RuntimeException
+     *
      * @return bool
+     * @throws Exception\RuntimeException
      */
     public function clearByNamespace($namespace)
     {
@@ -88,7 +89,7 @@ class Memcached extends LaminasMemcached
      *
      * {@inheritDoc}
      */
-    protected function internalSetItem(& $normalizedKey, & $value)
+    protected function internalSetItem(&$normalizedKey, &$value)
     {
         $memc       = $this->getMemcachedResource();
         $expiration = $this->expirationTime();

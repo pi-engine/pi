@@ -32,8 +32,7 @@ class Terminate extends AbstractPlugin
         $message = '',
         $title = '',
         $template = ''
-    )
-    {
+    ) {
         $template = $template ?: 'error.phtml';
         switch ($message) {
             case 'login':
@@ -50,10 +49,12 @@ class Terminate extends AbstractPlugin
         }
         $view = $this->getController()->plugin('view');
         $view->setTemplate($template, false);
-        $view->assign([
-            'message' => $message,
-            'title'   => $title,
-        ]);
+        $view->assign(
+            [
+                'message' => $message,
+                'title'   => $title,
+            ]
+        );
 
         return;
     }

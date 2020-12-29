@@ -83,6 +83,7 @@ class Timeline extends AbstractResource
      *  - time
      *
      * @param array $log
+     *
      * @return bool
      */
     public function add(array $log)

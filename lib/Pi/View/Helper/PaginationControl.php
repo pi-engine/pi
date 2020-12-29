@@ -42,10 +42,11 @@ class PaginationControl extends LaminasPaginationControl
      * if so, uses that.  Also, if no scrolling style or partial are specified,
      * the defaults will be used (if set).
      *
-     * @param  Paginator (Optional) $paginator
-     * @param  string $scrollingStyle (Optional) Scrolling style
-     * @param  string $partial (Optional) View partial
-     * @param  array|string $params (Optional) params to pass to the partial
+     * @param Paginator (Optional) $paginator
+     * @param string       $scrollingStyle (Optional) Scrolling style
+     * @param string       $partial        (Optional) View partial
+     * @param array|string $params         (Optional) params to pass to the partial
+     *
      * @return string
      * @throws Exception\RuntimeException
      *      if no paginator or no view partial provided
@@ -56,8 +57,7 @@ class PaginationControl extends LaminasPaginationControl
         $scrollingStyle = null,
         $partial = null,
         $params = null
-    )
-    {
+    ) {
         if ($paginator === null) {
             if (isset($this->view->paginator)
                 && $this->view->paginator !== null
@@ -114,14 +114,16 @@ class PaginationControl extends LaminasPaginationControl
             $separator = $headTitle->getSeparator();
             $sitename  = Pi::config('sitename');
 
-            $postfix = sprintf(' %s %s %s %s %s',
+            $postfix = sprintf(
+                ' %s %s %s %s %s',
                 $separator,
                 __('Page'),
                 _number($pages['current']),
                 $separator,
                 $sitename
             );
-            $prefix  = sprintf('%s %s %s',
+            $prefix  = sprintf(
+                '%s %s %s',
                 __('Page'),
                 _number($pages['current']),
                 trim($separator)
@@ -133,18 +135,22 @@ class PaginationControl extends LaminasPaginationControl
 
         if (isset($pages['previous'])) {
             $previous = get_object_vars($pages['previous']);
-            $this->view->headLink([
-                'rel'  => 'prev',
-                'href' => Pi::url($previous['url']),
-            ]);
+            $this->view->headLink(
+                [
+                    'rel'  => 'prev',
+                    'href' => Pi::url($previous['url']),
+                ]
+            );
         }
 
         if (isset($pages['next'])) {
             $next = get_object_vars($pages['next']);
-            $this->view->headLink([
-                'rel'  => 'next',
-                'href' => Pi::url($next['url']),
-            ]);
+            $this->view->headLink(
+                [
+                    'rel'  => 'next',
+                    'href' => Pi::url($next['url']),
+                ]
+            );
         }
 
         return $partialHelper($partial, $pages);

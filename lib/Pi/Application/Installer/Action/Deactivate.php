@@ -42,10 +42,12 @@ class Deactivate extends AbstractAction
         try {
             $row->save();
         } catch (\Exception $e) {
-            $this->setResult('module', [
-                'status'  => false,
-                'message' => ['Module deactivate failed'],
-            ]);
+            $this->setResult(
+                'module', [
+                    'status'  => false,
+                    'message' => ['Module deactivate failed'],
+                ]
+            );
             return false;
         }
 

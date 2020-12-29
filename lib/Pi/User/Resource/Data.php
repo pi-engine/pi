@@ -32,9 +32,9 @@ class Data extends AbstractResource
      * Get user data
      *
      * @param int|int[] $uid
-     * @param string $name
-     * @param bool $returnArray
-     * @param string $module
+     * @param string    $name
+     * @param bool      $returnArray
+     * @param string    $module
      *
      * @return int|mixed|array
      */
@@ -92,8 +92,8 @@ class Data extends AbstractResource
      * Delete user data
      *
      * @param int|int[] $uid
-     * @param string $name
-     * @param string $module
+     * @param string    $name
+     * @param string    $module
      *
      * @return bool
      */
@@ -121,10 +121,10 @@ class Data extends AbstractResource
      * Write user data
      *
      * @param int|array $uid
-     * @param string $name
+     * @param string    $name
      * @param mixed|int $value
-     * @param string $module
-     * @param int $expire
+     * @param string    $module
+     * @param int       $expire
      *
      * @return bool
      */
@@ -134,8 +134,7 @@ class Data extends AbstractResource
         $value = null,
         $module = '',
         $expire = 0
-    )
-    {
+    ) {
         if (is_array($uid)) {
             $id = isset($uid['uid']) ? (int)$uid['uid'] : 0;
             extract($uid);
@@ -187,7 +186,7 @@ class Data extends AbstractResource
      * Find a data subject to conditions
      *
      * @param array $conditions
-     * @param bool $returnObject
+     * @param bool  $returnObject
      *
      * @return array|RowGateway|bool
      */
@@ -215,10 +214,10 @@ class Data extends AbstractResource
      * Write user integer data
      *
      * @param int|array $uid
-     * @param string $name
-     * @param int $value
-     * @param string $module
-     * @param int $expire
+     * @param string    $name
+     * @param int       $value
+     * @param string    $module
+     * @param int       $expire
      *
      * @return bool
      */
@@ -228,8 +227,7 @@ class Data extends AbstractResource
         $value = 0,
         $module = '',
         $expire = 0
-    )
-    {
+    ) {
         if (is_array($uid) && isset($uid['value'])) {
             $uid['value'] = (int)$uid['value'];
         }
@@ -244,10 +242,10 @@ class Data extends AbstractResource
      * Positive to increment or negative to decrement; 0 to reset!
      *
      * @param int|int[] $uid
-     * @param string $name
-     * @param int $value
-     * @param string $module
-     * @param int $expire
+     * @param string    $name
+     * @param int       $value
+     * @param string    $module
+     * @param int       $expire
      *
      * @return bool
      */
@@ -305,9 +303,11 @@ class Data extends AbstractResource
      */
     public function gc()
     {
-        Pi::model('user_data')->delete([
-            'expire <> ?' => 0,
-            'expire < ?'  => time(),
-        ]);
+        Pi::model('user_data')->delete(
+            [
+                'expire <> ?' => 0,
+                'expire < ?'  => time(),
+            ]
+        );
     }
 }

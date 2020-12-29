@@ -28,11 +28,13 @@ class Block extends AbstractRegistry
         $module = $options['module'];
         $role   = isset($options['role']) ? $options['role'] : null;
 
-        $pageList = $model->select([
-            'module'  => $module,
-            'section' => 'front',
-            'block'   => 1,
-        ]);
+        $pageList = $model->select(
+            [
+                'module'  => $module,
+                'section' => 'front',
+                'block'   => 1,
+            ]
+        );
         // Created page list indexed by module-controller-action
         $pages = [];
         foreach ($pageList as $page) {
@@ -63,12 +65,13 @@ class Block extends AbstractRegistry
         // Check for active for blocks
         if (!empty($blocksId)) {
             $modelBlock = Pi::model('block');
-            $select     = $modelBlock->select()->columns(['id'])
-                ->where(['id' => array_keys($blocksId), 'active' => 0]);
+            $select     = $modelBlock->select()->columns(['id'])->where(['id' => array_keys($blocksId), 'active' => 0]);
             $rowset     = $modelBlock->selectWith($select);
+
             foreach ($rowset as $row) {
                 unset($blocksId[$row->id]);
             }
+
             $blocksId = array_keys($blocksId);
         }
 
@@ -113,7 +116,7 @@ class Block extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $module
+     * @param string      $module
      * @param string|null $role
      */
     public function read($module = '', $role = null)
@@ -132,7 +135,7 @@ class Block extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $module
+     * @param string      $module
      * @param string|null $role
      */
     public function create($module = '', $role = null)

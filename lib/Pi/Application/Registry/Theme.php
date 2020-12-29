@@ -23,6 +23,7 @@ class Theme extends AbstractRegistry
      * Load installed themes, indexed by dirname, sorted by order
      *
      * @param array $options
+     *
      * @return array    Keys: dirname => title, screenshot
      */
     protected function loadDynamic($options = [])

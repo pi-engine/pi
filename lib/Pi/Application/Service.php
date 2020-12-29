@@ -29,7 +29,8 @@ class Service
      * Load a service
      *
      * @param string $name
-     * @param array $options
+     * @param array  $options
+     *
      * @return Service\AbstractService
      * @throws \Exception
      */
@@ -52,7 +53,8 @@ class Service
             static::$services[$key] = new $class($options);
             if (!static::$services[$key] instanceof Service\AbstractService) {
                 throw new \Exception(
-                    sprintf('Invalid service instantiation "%s"', $name));
+                    sprintf('Invalid service instantiation "%s"', $name)
+                );
             }
             if (method_exists(static::$services[$key], 'shutdown')) {
                 Pi::registerShutdown(
@@ -73,6 +75,7 @@ class Service
      * Check if a services is loaded
      *
      * @param string $name
+     *
      * @return bool
      */
     public function hasService($name)
@@ -86,6 +89,7 @@ class Service
      * Get loaded service
      *
      * @param string|null $name
+     *
      * @return Service\AbstractService|Service\AbstractService[]
      */
     public function getService($name = null)

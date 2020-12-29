@@ -19,15 +19,16 @@ use Laminas\View\Resolver\ResolverInterface;
  * Theme template folders/files skeleton:
  *  `theme/default/template/`
  *
- * @see Pi\View\Resolver\ModuleTemplate for module template skeleton
- * @see Pi\View\Resolver\ComponentTemplate for component template skeleton
- * @see Pi\Application\Service\Asset for asset skeleton
+ * @see    Pi\View\Resolver\ModuleTemplate for module template skeleton
+ * @see    Pi\View\Resolver\ComponentTemplate for component template skeleton
+ * @see    Pi\Application\Service\Asset for asset skeleton
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ThemeTemplate implements ResolverInterface
 {
     /**
      * Theme template diretory
+     *
      * @var string
      */
     protected $templateDirectory = 'template';
@@ -35,6 +36,7 @@ class ThemeTemplate implements ResolverInterface
     /**
      * Suffix to use: appends this suffix if the template requested
      * does not use it.
+     *
      * @var string
      */
     protected $suffix = 'phtml';
@@ -42,7 +44,8 @@ class ThemeTemplate implements ResolverInterface
     /**
      * Set default file suffix
      *
-     * @param  string $suffix
+     * @param string $suffix
+     *
      * @return self
      */
     public function setSuffix($suffix)
@@ -67,6 +70,7 @@ class ThemeTemplate implements ResolverInterface
      *
      * @param string $name
      * @param string $theme
+     *
      * @return string
      */
     protected function canonizeTemplate($name, $theme = null)
@@ -91,8 +95,9 @@ class ThemeTemplate implements ResolverInterface
     /**
      * Retrieve the filesystem path to a view script
      *
-     * @param  string $name
-     * @param  null|Renderer $renderer
+     * @param string        $name
+     * @param null|Renderer $renderer
+     *
      * @return string|false
      */
     public function resolve($name, Renderer $renderer = null)

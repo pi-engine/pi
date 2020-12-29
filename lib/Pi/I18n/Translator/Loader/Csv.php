@@ -16,19 +16,21 @@ use Laminas\Stdlib\ErrorHandler;
 /**
  * CSV file content loader
  *
- * @see http://www.php.net/manual/en/function.fgetcsv.php
+ * @see    http://www.php.net/manual/en/function.fgetcsv.php
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Csv implements FileLoaderInterface
 {
     /**
      * File extension
+     *
      * @var string
      */
     //protected $fileExtension = '.csv';
 
     /**
      * Options for CSV file
+     *
      * @var array
      */
     protected $options
@@ -41,7 +43,8 @@ class Csv implements FileLoaderInterface
     /**
      * Set options
      *
-     * @param  array $options
+     * @param array $options
+     *
      * @return self
      */
     public function setOptions($options = [])

@@ -41,10 +41,10 @@ abstract class AbstractContent extends AbstractApi
      *   - time
      *   - uid
      *
-     * @param string[] $variables
-     * @param array $conditions
-     * @param int $limit
-     * @param int $offset
+     * @param string[]     $variables
+     * @param array        $conditions
+     * @param int          $limit
+     * @param int          $offset
      * @param string|array $order
      *
      * @return array
@@ -55,8 +55,7 @@ abstract class AbstractContent extends AbstractApi
         $limit = 0,
         $offset = 0,
         $order = []
-    )
-    {
+    ) {
         $result = [];
         if (!$this->table) {
             return $result;

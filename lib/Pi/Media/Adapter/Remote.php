@@ -39,9 +39,11 @@ class Remote extends AbstractAdapter
     public function add(array $data)
     {
         $query = [];
-        array_walk($data, function ($value, $key) use (&$query) {
+        array_walk(
+            $data, function ($value, $key) use (&$query) {
             $query[] = $key . ':' . $value;
-        });
+        }
+        );
         $params['query'] = implode(',', $query);
         $uri             = $this->getOption('api', 'add');
         $result          = $this->handler()->post($uri, $params);
@@ -76,9 +78,11 @@ class Remote extends AbstractAdapter
     public function update($id, array $data)
     {
         $params = ['id' => $id];
-        array_walk($data, function ($value, $key) use (&$query) {
+        array_walk(
+            $data, function ($value, $key) use (&$query) {
             $query[] = $key . ':' . $value;
-        });
+        }
+        );
         $params['query'] = implode(',', $query);
         $uri             = $this->getOption('api', 'update');
         $result          = $this->handler()->post($uri, $params);
@@ -136,9 +140,11 @@ class Remote extends AbstractAdapter
             $result = $result['data'];
         }
         if ($attr && is_scalar($attr)) {
-            array_walk($result, function (&$data) use ($attr) {
+            array_walk(
+                $result, function (&$data) use ($attr) {
                 $data = $data[$attr];
-            });
+            }
+            );
         }
 
         return $result;
@@ -190,8 +196,7 @@ class Remote extends AbstractAdapter
         $limit = 0,
         $offset = 0,
         $order = ''
-    )
-    {
+    ) {
         $result = $this->getList(
             $condition,
             $limit,
@@ -199,9 +204,11 @@ class Remote extends AbstractAdapter
             $order,
             ['id']
         );
-        array_walk($result, function ($data, $key) use (&$result) {
+        array_walk(
+            $result, function ($data, $key) use (&$result) {
             $result[$key] = (int)$data['id'];
-        });
+        }
+        );
 
         return $result;
     }
@@ -215,14 +222,15 @@ class Remote extends AbstractAdapter
         $offset = null,
         $order = null,
         array $attr = []
-    )
-    {
+    ) {
         $params = [];
         if ($condition) {
             $query = [];
-            array_walk($condition, function ($value, $key) use (&$query) {
+            array_walk(
+                $condition, function ($value, $key) use (&$query) {
                 $query[] = $key . ':' . $value;
-            });
+            }
+            );
             $params['query'] = implode(',', $query);
         }
         if ($limit) {
@@ -251,9 +259,11 @@ class Remote extends AbstractAdapter
         $params = [];
         if ($condition) {
             $query = [];
-            array_walk($condition, function ($value, $key) use (&$query) {
+            array_walk(
+                $condition, function ($value, $key) use (&$query) {
                 $query[] = $key . ':' . $value;
-            });
+            }
+            );
             $params['query'] = implode(',', $query);
         }
         $uri    = $this->getOption('api', 'count');

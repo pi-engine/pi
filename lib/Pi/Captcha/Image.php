@@ -35,7 +35,7 @@ class Image extends LaminasImage
      * Create image for the CAPTCHA
      *
      * @param string $id
-     * @param bool $refresh
+     * @param bool   $refresh
      *
      * @return resource
      */
@@ -115,12 +115,16 @@ class Image extends LaminasImage
 
         // generate noise
         for ($i = 0; $i < $this->dotNoiseLevel; $i++) {
-            imagefilledellipse($img, mt_rand(0, $w), mt_rand(0, $h), 2, 2,
-                $text_color);
+            imagefilledellipse(
+                $img, mt_rand(0, $w), mt_rand(0, $h), 2, 2,
+                $text_color
+            );
         }
         for ($i = 0; $i < $this->lineNoiseLevel; $i++) {
-            imageline($img, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w),
-                mt_rand(0, $h), $text_color);
+            imageline(
+                $img, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w),
+                mt_rand(0, $h), $text_color
+            );
         }
 
         // transformed image
@@ -185,20 +189,28 @@ class Image extends LaminasImage
                         + $color_xy * $frac_x * $frac_y;
                 }
 
-                imagesetpixel($img2, $x, $y, imagecolorallocate($img2,
-                    $newcolor, $newcolor, $newcolor));
+                imagesetpixel(
+                    $img2, $x, $y, imagecolorallocate(
+                    $img2,
+                    $newcolor, $newcolor, $newcolor
+                )
+                );
             }
         }
 
         // generate noise
         for ($i = 0; $i < $this->dotNoiseLevel; $i++) {
-            imagefilledellipse($img2, mt_rand(0, $w), mt_rand(0, $h), 2, 2,
-                $text_color);
+            imagefilledellipse(
+                $img2, mt_rand(0, $w), mt_rand(0, $h), 2, 2,
+                $text_color
+            );
         }
 
         for ($i = 0; $i < $this->lineNoiseLevel; $i++) {
-            imageline($img2, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w),
-                mt_rand(0, $h), $text_color);
+            imageline(
+                $img2, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w),
+                mt_rand(0, $h), $text_color
+            );
         }
 
         /*

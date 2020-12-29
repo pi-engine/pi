@@ -21,6 +21,7 @@ class PluginManager extends LaminasPluginManager
     /**
      * {@inheritDoc}
      * Default set of plugins
+     *
      * @var array
      */
     protected $invokableClasses
@@ -49,7 +50,8 @@ class PluginManager extends LaminasPluginManager
      * {@inheritDoc}
      * Canonicalize name
      *
-     * @param  string $name
+     * @param string $name
+     *
      * @return string
      */
     protected function canonicalizeName($name)

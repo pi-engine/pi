@@ -25,16 +25,15 @@ abstract class AbstractHelper extends LaminasAbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  null|ElementInterface $element
-     * @param  array|mixed $options
+     * @param null|ElementInterface $element
+     * @param array|mixed           $options
      *
      * @return string|self
      */
     public function __invoke(
         ElementInterface $element = null,
         $options = []
-    )
-    {
+    ) {
         if (null === $element) {
             return $this;
         }
@@ -46,7 +45,7 @@ abstract class AbstractHelper extends LaminasAbstractHelper
      * Render element content
      *
      * @param ElementInterface $element
-     * @param array|mixed $options
+     * @param array|mixed      $options
      *
      * @return string
      */

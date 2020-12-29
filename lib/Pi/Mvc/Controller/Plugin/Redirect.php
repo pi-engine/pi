@@ -25,10 +25,10 @@ class Redirect extends LaminasRedirect
     /**
      * Generates a URL based on a route
      *
-     * @param string $route RouteInterface name
-     * @param array $params Parameters to use in url generation, if any
-     * @param array $options RouteInterface-specific options to use in url generation, if any
-     * @param bool $reuseMatchedParams
+     * @param string $route   RouteInterface name
+     * @param array  $params  Parameters to use in url generation, if any
+     * @param array  $options RouteInterface-specific options to use in url generation, if any
+     * @param bool   $reuseMatchedParams
      *
      * @return Response|$this
      */
@@ -37,8 +37,7 @@ class Redirect extends LaminasRedirect
         array $params = [],
         $options = [],
         $reuseMatchedParams = false
-    )
-    {
+    ) {
         if (0 == func_num_args()) {
             return $this;
         }
@@ -56,6 +55,7 @@ class Redirect extends LaminasRedirect
      * Set response status code
      *
      * @param int $code
+     *
      * @return $this
      */
     public function setStatusCode($code)
@@ -68,10 +68,10 @@ class Redirect extends LaminasRedirect
     /**
      * Generates a URL based on a route
      *
-     * @param string $route RouteInterface name
-     * @param array $params Parameters to use in url generation
-     * @param array $options RouteInterface-specific options
-     * @param bool $reuseMatchedParams
+     * @param string $route   RouteInterface name
+     * @param array  $params  Parameters to use in url generation
+     * @param array  $options RouteInterface-specific options
+     * @param bool   $reuseMatchedParams
      *
      * @return Response
      */
@@ -80,8 +80,7 @@ class Redirect extends LaminasRedirect
         $params = [],
         $options = [],
         $reuseMatchedParams = false
-    )
-    {
+    ) {
         $this->controller->view()->setTemplate(false);
 
         $response = parent::toRoute(
@@ -100,6 +99,7 @@ class Redirect extends LaminasRedirect
      * Redirect to the given URL
      *
      * @param string $url
+     *
      * @return Response
      */
     public function toUrl($url)

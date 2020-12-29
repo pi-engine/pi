@@ -29,24 +29,28 @@ class Translator extends LaminasTranslator implements ValidatorInterface
 
     /**
      * Previous set locale, for restore
+     *
      * @var string
      */
     protected $previousLocale;
 
     /**
      * Text domain
+     *
      * @var string
      */
     protected $textDomain = 'default';
 
     /**
      * Previous text domain, for restore
+     *
      * @var string
      */
     protected $previousTextDomain = 'default';
 
     /**
      * Resource loader
+     *
      * @var FileLoaderInterface
      */
     protected $loader;
@@ -127,7 +131,8 @@ class Translator extends LaminasTranslator implements ValidatorInterface
     /**
      * Set the text domain
      *
-     * @param  string $textDomain
+     * @param string $textDomain
+     *
      * @return self
      */
     public function setTextDomain($textDomain)
@@ -179,6 +184,7 @@ class Translator extends LaminasTranslator implements ValidatorInterface
      * Set resource loader
      *
      * @param FileLoaderInterface $loader
+     *
      * @return self
      */
     public function setLoader($loader)
@@ -220,8 +226,7 @@ class Translator extends LaminasTranslator implements ValidatorInterface
         $number,
         $textDomain = null,
         $locale = null
-    )
-    {
+    ) {
         if (!$textDomain) {
             $textDomain = $this->getTextDomain();
         }
@@ -242,8 +247,7 @@ class Translator extends LaminasTranslator implements ValidatorInterface
         $message,
         $locale = null,
         $textDomain = null
-    )
-    {
+    ) {
         if ($message === '') {
             return '';
         }
@@ -267,8 +271,8 @@ class Translator extends LaminasTranslator implements ValidatorInterface
      * Load translation resource, existent data will be flushed
      *
      * @param array|string $rawDomain
-     * @param string|null $locale
-     * @param bool|null $custom
+     * @param string|null  $locale
+     * @param bool|null    $custom
      *
      * @return bool
      */
@@ -282,10 +286,10 @@ class Translator extends LaminasTranslator implements ValidatorInterface
             if (!array_key_exists(0, $rawDomain)) {
                 extract($rawDomain);
             } else {
-                list($domain, $file) = $rawDomain;
+                [$domain, $file] = $rawDomain;
             }
         } else {
-            list($domain, $file)
+            [$domain, $file]
                 = Pi::service('i18n')->canonizeDomain($rawDomain);
         }
         if ('custom/' == substr($domain, 0, 7)) {
@@ -359,12 +363,14 @@ class Translator extends LaminasTranslator implements ValidatorInterface
             $result = (array)$result;
         } catch (\Exception $e) {
             if (Pi::service()->hasService('log')) {
-                Pi::service()->getService('log')->info(sprintf(
-                    'Translation "%s-%s.%s" load failed: ' . $e->getMessage(),
-                    $options['domain'],
-                    $options['file'],
-                    $options['locale']
-                ));
+                Pi::service()->getService('log')->info(
+                    sprintf(
+                        'Translation "%s-%s.%s" load failed: ' . $e->getMessage(),
+                        $options['domain'],
+                        $options['file'],
+                        $options['locale']
+                    )
+                );
             }
             $result = [];
         }

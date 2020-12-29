@@ -338,14 +338,14 @@ class Browser extends AbstractService
     /**
      * Parses a user agent string into its important parts
      *
+     * @param string|null $u_agent User agent string to parse or null. Uses $_SERVER['HTTP_USER_AGENT'] on NULL
+     *
+     * @return array an array with browser, version and platform keys
+     * @throws \InvalidArgumentException on not having a proper user agent to parse.
      * @author Jesse G. Donat <donatj@gmail.com>
      * @link   https://github.com/donatj/PhpUserAgent
      * @link   http://donatstudios.com/PHP-Parser-HTTP_USER_AGENT
      *
-     * @param string|null $u_agent User agent string to parse or null. Uses $_SERVER['HTTP_USER_AGENT'] on NULL
-     *
-     * @throws \InvalidArgumentException on not having a proper user agent to parse.
-     * @return array an array with browser, version and platform keys
      */
     protected function parse_user_agent($u_agent = null)
     {
@@ -363,13 +363,17 @@ class Browser extends AbstractService
 
         $empty = ['platform' => $platform, 'browser' => $browser, 'version' => $version];
 
-        if (!$u_agent) return $empty;
+        if (!$u_agent) {
+            return $empty;
+        }
 
         if (preg_match('/\((.*?)\)/im', $u_agent, $parent_matches)) {
 
-            preg_match_all('/(?P<platform>BB\d+;|Android|CrOS|iPhone|iPad|Linux|Macintosh|Windows(\ Phone)?|Silk|linux-gnu|BlackBerry|PlayBook|Nintendo\ (WiiU?|3DS)|Xbox(\ One)?)
+            preg_match_all(
+                '/(?P<platform>BB\d+;|Android|CrOS|iPhone|iPad|Linux|Macintosh|Windows(\ Phone)?|Silk|linux-gnu|BlackBerry|PlayBook|Nintendo\ (WiiU?|3DS)|Xbox(\ One)?)
 				(?:\ [^;]*)?
-				(?:;|$)/imx', $parent_matches[1], $result, PREG_PATTERN_ORDER);
+				(?:;|$)/imx', $parent_matches[1], $result, PREG_PATTERN_ORDER
+            );
 
             $priority           = ['Android', 'Xbox One', 'Xbox'];
             $result['platform'] = array_unique($result['platform']);
@@ -390,10 +394,12 @@ class Browser extends AbstractService
             $platform = 'Chrome OS';
         }
 
-        preg_match_all('%(?P<browser>Camino|Kindle(\ Fire\ Build)?|Firefox|Iceweasel|Safari|MSIE|Trident/.*rv|AppleWebKit|Chrome|IEMobile|Opera|OPR|Silk|Lynx|Midori|Version|Wget|curl|NintendoBrowser|PLAYSTATION\ (\d|Vita)+)
+        preg_match_all(
+            '%(?P<browser>Camino|Kindle(\ Fire\ Build)?|Firefox|Iceweasel|Safari|MSIE|Trident/.*rv|AppleWebKit|Chrome|IEMobile|Opera|OPR|Silk|Lynx|Midori|Version|Wget|curl|NintendoBrowser|PLAYSTATION\ (\d|Vita)+)
 			(?:\)?;?)
 			(?:(?:[:/ ])(?P<version>[0-9A-Z.]+)|/(?:[A-Z]*))%ix',
-            $u_agent, $result, PREG_PATTERN_ORDER);
+            $u_agent, $result, PREG_PATTERN_ORDER
+        );
 
 
         // If nothing matched, return null (to avoid undefined index errors)

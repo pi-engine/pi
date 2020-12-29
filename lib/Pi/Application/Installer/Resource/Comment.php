@@ -62,7 +62,6 @@ class Comment extends AbstractResource
             'locator',
             'active',
             'icon',
-
             'module',
             'controller',
             'action',
@@ -84,6 +83,7 @@ class Comment extends AbstractResource
      * Canonize comment specs
      *
      * @param array $config
+     *
      * @return array
      */
     protected function canonize($config)
@@ -97,13 +97,15 @@ class Comment extends AbstractResource
             }
             if (!empty($data['locator'])) {
                 if (is_array($data['locator'])) {
-                    foreach ([
-                                 'module',
-                                 'controller',
-                                 'action',
-                                 'identifier',
-                                 'params',
-                             ] as $key) {
+                    foreach (
+                        [
+                            'module',
+                            'controller',
+                            'action',
+                            'identifier',
+                            'params',
+                        ] as $key
+                    ) {
                         if (isset($data['locator'][$key])) {
                             $data[$key] = $data['locator'][$key];
                         }
@@ -247,10 +249,12 @@ class Comment extends AbstractResource
                 $module
             );
             Pi::db()->query($sql);
-            $modelRoot->delete([
-                'module'   => $module,
-                'category' => $itemsDeleted,
-            ]);
+            $modelRoot->delete(
+                [
+                    'module'   => $module,
+                    'category' => $itemsDeleted,
+                ]
+            );
         }
 
         return true;

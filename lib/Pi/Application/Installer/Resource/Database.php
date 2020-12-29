@@ -114,11 +114,13 @@ class Database extends AbstractResource
         }
         $modelSchema = Pi::model('module_schema');
         foreach ($schemaList as $name => $type) {
-            $status = $modelSchema->insert([
-                'name'   => $name,
-                'type'   => $type,
-                'module' => $module,
-            ]);
+            $status = $modelSchema->insert(
+                [
+                    'name'   => $name,
+                    'type'   => $type,
+                    'module' => $module,
+                ]
+            );
             if (!$status) {
                 return [
                     'status'  => false,
@@ -182,11 +184,13 @@ class Database extends AbstractResource
             }
         }
         foreach ($schemaList as $name => $type) {
-            $status = $modelSchema->insert([
-                'name'   => $name,
-                'type'   => $type,
-                'module' => $module,
-            ]);
+            $status = $modelSchema->insert(
+                [
+                    'name'   => $name,
+                    'type'   => $type,
+                    'module' => $module,
+                ]
+            );
             if (!$status) {
                 return [
                     'status'  => false,

@@ -33,12 +33,14 @@ class Mvc extends LaminasMvcPage
 
     /**
      * Module name to use when assembling URL
+     *
      * @var string
      */
     protected $module;
 
     /**
      * Section name to use when assembling URL
+     *
      * @var string
      */
     protected $section;
@@ -46,8 +48,9 @@ class Mvc extends LaminasMvcPage
     /**
      * Returns whether page should be considered active or not
      *
-     * @param  bool $recursive [optional] whether page should be considered
-     *      active if any child pages are active. Default is false.
+     * @param bool $recursive [optional] whether page should be considered
+     *                        active if any child pages are active. Default is false.
+     *
      * @return bool             whether page should be considered active
      * @see Laminas\Navigation\Page\AbstractPage::isActive()
      */
@@ -363,10 +366,11 @@ class Mvc extends LaminasMvcPage
     /**
      * Sets section name to use when assembling URL
      *
+     * @param string|null $section section name
+     *
+     * @return $this
      * @see getHref()
      *
-     * @param  string|null $section section name
-     * @return $this
      */
     public function setSection($section)
     {
@@ -379,9 +383,9 @@ class Mvc extends LaminasMvcPage
     /**
      * Returns section name to use when assembling URL
      *
+     * @return string|null  module name or null
      * @see getHref()
      *
-     * @return string|null  module name or null
      */
     public function getSection()
     {
@@ -391,12 +395,13 @@ class Mvc extends LaminasMvcPage
     /**
      * Sets module name to use when assembling URL
      *
-     * @see getHref()
+     * @param string|null $module module name
      *
-     * @param  string|null $module module name
      * @return Mvc   fluent interface, returns self
      * @throws Exception\InvalidArgumentException
      *      if invalid module name is given
+     * @see getHref()
+     *
      */
     public function setModule($module)
     {
@@ -415,9 +420,9 @@ class Mvc extends LaminasMvcPage
     /**
      * Returns module name to use when assembling URL
      *
+     * @return string|null  module name or null
      * @see getHref()
      *
-     * @return string|null  module name or null
      */
     public function getModule()
     {

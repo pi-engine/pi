@@ -52,8 +52,8 @@ class Js extends AssetCanonize
     /**
      * Load JavaScript file
      *
-     * @param   string|array $files
-     * @param   string|array $attributes
+     * @param string|array $files
+     * @param string|array $attributes
      *      Only applicable when $files is scalar,
      *      default as string for position,
      *      append or prepend, default as 'append'
@@ -74,8 +74,8 @@ class Js extends AssetCanonize
     /**
      * Load JavaScript file
      *
-     * @param   string|array $files
-     * @param   string|array $attributes
+     * @param string|array $files
+     * @param string|array $attributes
      *      Only applicable when $files is scalar,
      *      default as string for position,
      *      append or prepend, default as 'append'

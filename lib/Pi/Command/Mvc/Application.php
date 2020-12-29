@@ -28,6 +28,7 @@ class Application extends PiApplication
      * Load application handler
      *
      * @param array $configuration
+     *
      * @return $this
      */
     public static function load($configuration = [])
@@ -47,6 +48,7 @@ class Application extends PiApplication
      * Bootstrap application
      *
      * @param array $listeners
+     *
      * @return \Pi\Command\Mvc\Application
      */
     public function bootstrap(array $listeners = [])
@@ -62,13 +64,15 @@ class Application extends PiApplication
 
         // Set custom router
         $router = $serviceManager->get('ConsoleRouter');
-        $router->addRoute('Standard', [
+        $router->addRoute(
+            'Standard', [
             'name'    => 'default',
             'type'    => 'Pi\Command\Mvc\Router\Http\Standard',
             'options' => [
                 'route' => 'default',
             ],
-        ], 0);
+        ], 0
+        );
 
         // Setup MVC Event
         $this->event = $event = new MvcEvent();

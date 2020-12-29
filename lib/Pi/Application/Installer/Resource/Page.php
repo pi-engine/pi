@@ -105,7 +105,7 @@ use Pi;
  *  );
  *  ```
  *
- * @link Pi\Acl\Acl\Resource
+ * @link   Pi\Acl\Acl\Resource
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Page extends AbstractResource
@@ -114,6 +114,7 @@ class Page extends AbstractResource
      * Canonize config specs
      *
      * @param array $config
+     *
      * @return array
      */
     protected function canonize($config)
@@ -172,6 +173,7 @@ class Page extends AbstractResource
      * Canonize page specs
      *
      * @param array $page
+     *
      * @return array
      */
     protected function canonizePage(array $page)
@@ -216,7 +218,9 @@ class Page extends AbstractResource
 
         foreach (array_keys($pages) as $section) {
             // Skip the section if disabled
-            if ($pages[$section] === false) continue;
+            if ($pages[$section] === false) {
+                continue;
+            }
             $pageList = [];
             foreach ($pages[$section] as $key => $page) {
                 //$page['section'] = $section;
@@ -374,7 +378,9 @@ class Page extends AbstractResource
         }
 
         foreach ($pages_exist as $key => $page) {
-            if ($page['custom'] && !$disablePage) continue;
+            if ($page['custom'] && !$disablePage) {
+                continue;
+            }
             $message = [];
             $status  = $this->deletePage($page, $message);
             if (false === $status) {
@@ -415,6 +421,7 @@ class Page extends AbstractResource
      *
      * @param array $page
      * @param array $message
+     *
      * @return bool
      */
     protected function insertPage($page, &$message)
@@ -480,8 +487,10 @@ class Page extends AbstractResource
 
     /**
      * Delete a page
+     *
      * @param int|Pi\Db\RowGateway\RowGateway $page
-     * @param array $message
+     * @param array                           $message
+     *
      * @return bool
      */
     protected function deletePage($page, &$message)

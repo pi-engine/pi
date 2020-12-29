@@ -87,7 +87,7 @@ class Comment extends AbstractService
         $ajaxLoad = Pi::config('ajax_load', 'comment');
 
         if ($ajaxLoad) {
-            
+
             // Determine language for datepicker
             $language = !empty($params['language']) ? $params['language'] : Pi::service('i18n')->getLocale();
             $segs     = explode(' ', str_replace(['-', '_'], ' ', $language));
@@ -95,28 +95,30 @@ class Comment extends AbstractService
             if ($segs) {
                 $language .= '-' . strtoupper(implode('-', $segs));
             }
-            
+
             // Add datepicker js
-            $bsLoad = array(
+            $bsLoad = [
                 'datepicker/bootstrap-datepicker.min.css',
-                'datepicker/bootstrap-datepicker.min.js'
-            );  
-             if ('en' != $language) {
+                'datepicker/bootstrap-datepicker.min.js',
+            ];
+            if ('en' != $language) {
                 $bsLoad[] = sprintf('datepicker/locales/bootstrap-datepicker.%s.min.js', $language);
             }
             Pi::Service('View')->getViewManager()->getHelperManager()->get('bootstrap')->__invoke($bsLoad, [], null, false);
             //
-            
-            $callback = Pi::service('url')->assemble('comment', array(
-                'module'        => 'comment',
-                'controller'    => 'index',
-                'action'        => 'load',
-                'review'        => $review,
-                'caller'        => Pi::service('module')->current(),
-                'owner'         => isset($params['owner']) ? $params['owner'] : null 
-            ));
-            $rand = rand();
-            $content =<<<EOT
+
+            $callback = Pi::service('url')->assemble(
+                'comment', [
+                    'module'     => 'comment',
+                    'controller' => 'index',
+                    'action'     => 'load',
+                    'review'     => $review,
+                    'caller'     => Pi::service('module')->current(),
+                    'owner'      => isset($params['owner']) ? $params['owner'] : null,
+                ]
+            );
+            $rand     = rand();
+            $content  = <<<EOT
             <a id="pi-comment-lead-anchor-$rand" style="display: block;
     position: relative;
     top: -100px;
@@ -140,17 +142,21 @@ class Comment extends AbstractService
 </script>
 EOT;
         } else {
-            $params['uri'] = $_SERVER['REQUEST_URI'];
+            $params['uri']    = $_SERVER['REQUEST_URI'];
             $params['caller'] = Pi::service('module')->current();
-            $content = $this->loadContent($params);
-            $content = '<div class="pi-comment-lead">' . $content . '</div>';
+            $content          = $this->loadContent($params);
+            $content          = '<div class="pi-comment-lead">' . $content . '</div>';
         }
 
         Pi::Service('View')->getViewManager()->getHelperManager()->get('jQuery')->__invoke('extension/jquery.magnific-popup.min.js', [], null, false);
         Pi::Service('View')->getViewManager()->getHelperManager()->get('jQuery')->__invoke('extension/magnific-popup.min.css', [], null, false);
-        Pi::Service('View')->getViewManager()->getHelperManager()->get('js')->__invoke(Pi::service('asset')->getModuleAsset('script/system-msg.js', 'system'), [], null, false);
-        Pi::Service('View')->getViewManager()->getHelperManager()->get('css')->__invoke(Pi::service('asset')->getModuleAsset('css/front.css', 'comment'), [], null, false);
-            
+        Pi::Service('View')->getViewManager()->getHelperManager()->get('js')->__invoke(
+            Pi::service('asset')->getModuleAsset('script/system-msg.js', 'system'), [], null, false
+        );
+        Pi::Service('View')->getViewManager()->getHelperManager()->get('css')->__invoke(
+            Pi::service('asset')->getModuleAsset('css/front.css', 'comment'), [], null, false
+        );
+
         return $content;
     }
 
@@ -173,9 +179,9 @@ EOT;
             $uri        = $params['uri'];
             $routeMatch = Pi::service('url')->match($uri);
         }
-                $params = array_replace($params, $routeMatch->getParams());
-        
-        $review = isset($params['review']) ? $params['review'] : false;
+        $params = array_replace($params, $routeMatch->getParams());
+
+        $review  = isset($params['review']) ? $params['review'] : false;
         $options = [
             'review' => $review,
             'page'   => isset($params['page']) ? $params['page'] : 1,
@@ -185,18 +191,18 @@ EOT;
         if (!$data) {
             return;
         }
-        $data['uri']    = isset($params['uri'])
+        $data['uri'] = isset($params['uri'])
             ? $params['uri']
             : Pi::service('url')->getRequestUri();
         $data['uid'] = Pi::user()->getId();
-        
-        $data['review'] = $review;        
-        $data['owner'] = isset($params['owner']) ? $params['owner'] : false;
-        $data['admin'] =  Pi::service('permission')->isAdmin('comment', $data['uid']);
-        $data['page'] = isset($params['page']) ? $params['page'] : 1;
+
+        $data['review'] = $review;
+        $data['owner']  = isset($params['owner']) ? $params['owner'] : false;
+        $data['admin']  = Pi::service('permission')->isAdmin('comment', $data['uid']);
+        $data['page']   = isset($params['page']) ? $params['page'] : 1;
         $data['caller'] = isset($params['caller']) ? $params['caller'] : null;
-        $template = 'comment:front/comment-lead';
-        $result = Pi::service('view')->render($template, $data);
+        $template       = 'comment:front/comment-lead';
+        $result         = Pi::service('view')->render($template, $data);
 
         return $result;
     }
@@ -245,7 +251,7 @@ EOT;
      * For AJAX request, set `$options['return'] = 1;`
      *
      * @param string $type
-     * @param array $options
+     * @param array  $options
      *
      * @return string
      */
@@ -281,7 +287,7 @@ EOT;
      *
      * @return bool|PostForm
      */
-    public function getFormReply(array $data = array(), array $options = array())
+    public function getFormReply(array $data = [], array $options = [])
     {
         if (!$this->active()) {
             return false;
@@ -289,6 +295,7 @@ EOT;
 
         return Pi::api('api', 'comment')->getFormReply($data, $options);
     }
+
     /**
      * Render post content
      *
@@ -309,7 +316,7 @@ EOT;
      * Render list of posts
      *
      * @param array $posts
-     * @param bool $isAdmin
+     * @param bool  $isAdmin
      *
      * @return array
      */
@@ -390,9 +397,9 @@ EOT;
      * Get multiple comments
      *
      * @param int|array|Where $condition Root id or conditions
-     * @param int $limit
-     * @param int $offset
-     * @param string $order
+     * @param int             $limit
+     * @param int             $offset
+     * @param string          $order
      *
      * @return array|bool
      */
@@ -424,7 +431,7 @@ EOT;
     /**
      * Update a comment
      *
-     * @param int $id
+     * @param int   $id
      * @param array $data
      *
      * @return bool
@@ -457,7 +464,7 @@ EOT;
     /**
      * Approve/Disapprove a comment
      *
-     * @param int $id
+     * @param int  $id
      * @param bool $flag
      *
      * @return bool
@@ -475,7 +482,7 @@ EOT;
      * Enable/Disable comments for a target
      *
      * @param array|int $root
-     * @param bool $flag
+     * @param bool      $flag
      *
      * @return bool
      */
@@ -568,7 +575,7 @@ EOT;
     /**
      * Save comments on leading page to cache
      *
-     * @param int $root
+     * @param int   $root
      * @param array $data
      *
      * @return bool
@@ -594,7 +601,7 @@ EOT;
      * Flush cache for a root or all comments
      *
      * @param int|int[] $id
-     * @param bool $isRoot
+     * @param bool      $isRoot
      *
      * @return bool
      */
@@ -696,9 +703,13 @@ EOT;
         $message = __('Posted a new comment.');
 
         $post   = Pi::api('api', 'comment')->getPost($id);
-        $link   = Pi::url(Pi::api('api', 'comment')->getUrl('post', [
-            'post' => $id,
-        ]), true);
+        $link   = Pi::url(
+            Pi::api('api', 'comment')->getUrl(
+                'post', [
+                    'post' => $id,
+                ]
+            ), true
+        );
         $params = [
             'uid'      => $uid,
             'message'  => $message,

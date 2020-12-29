@@ -40,6 +40,7 @@ class Memcache extends AbstractService
      * Load options
      *
      * @param string|array $config
+     *
      * @return array
      */
     protected function loadOptions($config)
@@ -64,6 +65,7 @@ class Memcache extends AbstractService
      * Load an instance
      *
      * @param array|null $config
+     *
      * @return MemcacheExtension
      * @throws exception
      */

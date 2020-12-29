@@ -28,10 +28,12 @@ class Navigation extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $rowset = Pi::model('navigation')->select([
-                'section' => 'front',
-                'active'  => 1,
-            ]);
+            $rowset = Pi::model('navigation')->select(
+                [
+                    'section' => 'front',
+                    'active'  => 1,
+                ]
+            );
 
             foreach ($rowset as $row) {
                 $this->valueOptions[$row->name] = $row->title;

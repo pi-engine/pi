@@ -28,6 +28,7 @@ class Home extends Standard
 {
     /**
      * Default values.
+     *
      * @var array
      */
     protected $defaults
@@ -40,8 +41,9 @@ class Home extends Standard
     /**
      * Matches homepage route
      *
-     * @param Request $request
+     * @param Request  $request
      * @param int|null $pathOffset
+     *
      * @return RouteMatch|null
      */
     public function match(Request $request, $pathOffset = null)
@@ -86,10 +88,11 @@ class Home extends Standard
     /**
      * assemble(): Defined by Route interface.
      *
-     * @see    Route::assemble()
-     * @param  array $params
-     * @param  array $options
+     * @param array $params
+     * @param array $options
+     *
      * @return string
+     * @see    Route::assemble()
      */
     public function assemble(array $params = [], array $options = [])
     {
@@ -99,11 +102,13 @@ class Home extends Standard
             $section = Pi::engine()->application()->getSection();
         }
         if ('admin' == $section) {
-            $url = Pi::service('url')->getRouter()->getRoute('admin')->assemble([
-                'module'     => 'system',
-                'controller' => 'index',
-                'action'     => 'index',
-            ], $options);
+            $url = Pi::service('url')->getRouter()->getRoute('admin')->assemble(
+                [
+                    'module'     => 'system',
+                    'controller' => 'index',
+                    'action'     => 'index',
+                ], $options
+            );
         } else {
             $url = '/';
         }
@@ -114,8 +119,8 @@ class Home extends Standard
     /**
      * getAssembledParams(): defined by Route interface.
      *
-     * @see    Route::getAssembledParams
      * @return array
+     * @see    Route::getAssembledParams
      */
     public function getAssembledParams()
     {

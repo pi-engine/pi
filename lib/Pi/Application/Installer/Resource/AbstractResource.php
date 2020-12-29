@@ -39,6 +39,7 @@ class AbstractResource
      * Set Event
      *
      * @param Event $event
+     *
      * @return $this
      */
     public function setEvent(Event $event)
@@ -66,6 +67,7 @@ class AbstractResource
      * Check if module version is greater than configuration version
      *
      * @param string $operator
+     *
      * @return bool
      */
     protected function versionCompare($operator = '>=')

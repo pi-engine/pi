@@ -29,7 +29,8 @@ class DbProfiler implements FormatterInterface
     /**
      * Class constructor
      *
-     * @param  null|string $format Format specifier for log messages
+     * @param null|string $format Format specifier for log messages
+     *
      * @throws \Exception
      */
     public function __construct($format = null)
@@ -52,6 +53,7 @@ class DbProfiler implements FormatterInterface
      * Formats data into a single line to be written by the writer.
      *
      * @param array $event Event data
+     *
      * @return string Formatted line to write to the log
      */
     public function format($event)

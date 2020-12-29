@@ -16,7 +16,7 @@ use Laminas\EventManager\EventManager;
 /**
  * Theme maintenance
  *
- * @see Pi\Application\Service\Asset for asset maintenance
+ * @see    Pi\Application\Service\Asset for asset maintenance
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Theme
@@ -90,7 +90,8 @@ class Theme
      * Magic methods for install, uninstall, update, etc.
      *
      * @param string $method
-     * @param array $args
+     * @param array  $args
+     *
      * @return bool
      * @throws \InvalidArgumentException
      */
@@ -106,13 +107,15 @@ class Theme
         $options = empty($args) ? [] : array_shift($args);
         $version = isset($options['version']) ? $options['version'] : null;
         $event   = new Event;
-        $event->setParams([
-            'name'    => $name,
-            'version' => $version,
-            'action'  => $method,
-            'config'  => [],
-            //'result'        => array(),
-        ]);
+        $event->setParams(
+            [
+                'name'    => $name,
+                'version' => $version,
+                'action'  => $method,
+                'config'  => [],
+                //'result'        => array(),
+            ]
+        );
         $this->event = $event;
         $this->attachDefaultListeners();
 
@@ -200,6 +203,7 @@ class Theme
      * Clear registry caches
      *
      * @param Event $e
+     *
      * @return void
      */
     public function clearCache(Event $e)
@@ -211,8 +215,8 @@ class Theme
     /**
      * Get result
      *
-     * @see Module\getResult()
      * @return array
+     * @see Module\getResult()
      */
     public function getResult()
     {
@@ -223,6 +227,7 @@ class Theme
      * Render result messages
      *
      * @param array|null $message
+     *
      * @return string
      */
     public function renderMessage($message = null)
@@ -251,7 +256,9 @@ class Theme
 
     /**
      * Load theme meta
+     *
      * @param Event $e
+     *
      * @return void
      */
     public function loadConfig(Event $e)
@@ -264,6 +271,7 @@ class Theme
      * Canonize theme meta
      *
      * @param array $data
+     *
      * @return array
      */
     protected function canonizeData(array $data)
@@ -374,8 +382,8 @@ class Theme
     /**
      * Uninstall action
      *
-     * @throws \Exception
      * @return array
+     * @throws \Exception
      */
     protected function uninstallAction()
     {
@@ -413,6 +421,7 @@ class Theme
      *
      * @param string $theme
      * @param string $type
+     *
      * @return array
      * @throws \Exception
      */

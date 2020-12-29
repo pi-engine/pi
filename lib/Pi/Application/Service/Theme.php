@@ -29,6 +29,7 @@ class Theme extends AbstractService
      * Set current active theme
      *
      * @param string $theme
+     *
      * @return Theme
      */
     public function setTheme($theme)
@@ -67,6 +68,7 @@ class Theme extends AbstractService
      * Load theme configuration from file
      *
      * @param string $theme
+     *
      * @return array
      */
     public function loadConfig($theme)
@@ -85,6 +87,7 @@ class Theme extends AbstractService
      * Get path to theme location
      *
      * @param string $theme
+     *
      * @return string
      */
     public function path($theme = '')
@@ -99,6 +102,7 @@ class Theme extends AbstractService
      * Get parent theme
      *
      * @param string $theme
+     *
      * @return string
      */
     public function getParent($theme = null)
@@ -159,7 +163,8 @@ class Theme extends AbstractService
     /**
      * @return array|mixed
      */
-    public function getThemeVars(){
+    public function getThemeVars()
+    {
         $themeConfig = $this->loadConfig('');
 
         // First we convert the array to a json string

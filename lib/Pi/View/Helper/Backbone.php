@@ -54,9 +54,9 @@ class Backbone extends AssetCanonize
     /**
      * Load backbone files
      *
-     * @param   null|string|array $files
-     * @param   array $attributes
-     * @param   bool|null $appendVersion
+     * @param null|string|array $files
+     * @param array             $attributes
+     * @param bool|null         $appendVersion
      *
      * @return  $this
      */
@@ -64,8 +64,7 @@ class Backbone extends AssetCanonize
         $files = null,
         $attributes = [],
         $appendVersion = null
-    )
-    {
+    ) {
         $files = $this->canonize($files, $attributes);
         if (!static::$rootLoaded) {
             $autoLoad = [];

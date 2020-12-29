@@ -23,6 +23,7 @@ class Tag extends AbstractFilter
 {
     /**
      * Filter options
+     *
      * @var array
      */
     protected $options
@@ -47,6 +48,7 @@ class Tag extends AbstractFilter
      * Filter text
      *
      * @param string $value
+     *
      * @return string
      */
     public function filter($value)

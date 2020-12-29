@@ -44,10 +44,12 @@ class Timezone extends Select
                     }
                     $groups[$group]['options'][$timezone] = __($timezone);
                 }
-                array_walk($groups, function (&$data, $group) {
+                array_walk(
+                    $groups, function (&$data, $group) {
                     $data['label'] = __($group);
                     $data['value'] = $group;
-                });
+                }
+                );
 
                 static::$timezones = $groups;
             }

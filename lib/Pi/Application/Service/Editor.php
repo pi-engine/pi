@@ -26,7 +26,7 @@ class Editor extends AbstractService
      * Loads an editor view helper with configs
      *
      * @param string $type
-     * @param array $options
+     * @param array  $options
      *
      * @return AbstractEditor
      */

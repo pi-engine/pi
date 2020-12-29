@@ -21,6 +21,7 @@ class Audit implements FormatterInterface
     /**
      * Audit table map
      * {@see module/system/sql/mysql.system.sql}
+     *
      * @var array
      */
     protected $columns
@@ -44,6 +45,7 @@ class Audit implements FormatterInterface
      * Formats data into a single line to be written by the writer.
      *
      * @param array $event Event data
+     *
      * @return array Formatted data to write to the log
      */
     public function format($event)

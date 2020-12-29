@@ -19,19 +19,21 @@ use Laminas\I18n\Translator\LoaderPluginManager as LaminasLoaderPluginManager;
  * loaders.
  *
  * {@inheritDoc}
- * @see Laminas\I18n\Translator\LoaderPluginManager
+ * @see    Laminas\I18n\Translator\LoaderPluginManager
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class LoaderPluginManager extends LaminasLoaderPluginManager
 {
     /**
      * Default set of loaders
+     *
      * @var array
      */
     protected $invokableClasses = [];
 
     /**
      * Default set of filters
+     *
      * @var array
      */
     protected $invokableList
@@ -48,17 +50,17 @@ class LoaderPluginManager extends LaminasLoaderPluginManager
      * createFromInvokable() will use these and pass them to the instance
      * constructor if not null and a non-empty array.
      *
-     * @param  string $name
-     * @param  array $options
-     * @param  bool $usePeeringServiceManagers
+     * @param string $name
+     * @param array  $options
+     * @param bool   $usePeeringServiceManagers
+     *
      * @return object
      */
     public function get(
         $name,
         $options = [],
         $usePeeringServiceManagers = true
-    )
-    {
+    ) {
         // Canonize invokable class from name
         if (!$this->has($name) && !class_exists($name)) {
             // Lookup in default invokable list
@@ -73,9 +75,11 @@ class LoaderPluginManager extends LaminasLoaderPluginManager
                 $name = $invokableClass;
                 // Lookup in helper locations
             } else {
-                $class = str_replace(' ', '', ucwords(
+                $class = str_replace(
+                    ' ', '', ucwords(
                     str_replace(['-', '_', '\\', '/'], ' ', $name)
-                ));
+                )
+                );
                 if (class_exists('Pi\I18n\Translator\Loader\\' . $class)) {
                     $name = 'Pi\I18n\Translator\Loader\\' . $class;
                 } else {

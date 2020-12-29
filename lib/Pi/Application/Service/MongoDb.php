@@ -294,8 +294,8 @@ class MongoDb extends AbstractService
 
             // Return result
             return [
-                'status'        => 1,
-                'deletedCount'  => $deleteResult->getDeletedCount(),
+                'status'       => 1,
+                'deletedCount' => $deleteResult->getDeletedCount(),
             ];
         } else {
             return [
@@ -321,8 +321,8 @@ class MongoDb extends AbstractService
 
             // Return result
             return [
-                'status'        => 1,
-                'deletedCount'  => $deleteResult->getDeletedCount(),
+                'status'       => 1,
+                'deletedCount' => $deleteResult->getDeletedCount(),
             ];
         } else {
             return [

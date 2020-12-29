@@ -58,7 +58,7 @@ class View extends AbstractService
      * Render a template or a view model
      *
      * @param string|array|ViewModel $template
-     * @param array $variables
+     * @param array                  $variables
      *
      * @return string
      */
@@ -88,7 +88,7 @@ class View extends AbstractService
      * Magic methods to ViewManager
      *
      * @param string $method
-     * @param array $args
+     * @param array  $args
      *
      * @return mixed
      * @throws \Exception

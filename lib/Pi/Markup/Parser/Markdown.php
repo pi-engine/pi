@@ -21,7 +21,8 @@ class Markdown extends AbstractParser
     /**
      * Parse a string
      *
-     * @param  string $value
+     * @param string $value
+     *
      * @return string
      */
     public function parseContent($value)

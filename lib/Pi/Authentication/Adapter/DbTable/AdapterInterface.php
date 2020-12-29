@@ -23,6 +23,7 @@ interface AdapterInterface extends BaseInterface
      * Set Db adapter
      *
      * @param DbAdapter $adapter
+     *
      * @return void
      */
     public function setDbAdapter(DbAdapter $adapter = null);

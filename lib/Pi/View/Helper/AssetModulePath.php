@@ -23,7 +23,7 @@ use Laminas\View\Helper\AbstractHelper;
  *  $svgPath = $this->assetModulePath('image/image.svg', 'demo');
  * ```
  *
- * @see Pi\Application\Service\Asset
+ * @see    Pi\Application\Service\Asset
  * @author Mickaël STAMM <contact@sta2m.com>
  */
 class AssetModulePath extends AbstractHelper
@@ -31,9 +31,9 @@ class AssetModulePath extends AbstractHelper
     /**
      * Get URI of a module asset
      *
-     * @param   string $file
-     * @param   string $module
-     * @param   bool|null $appendVersion
+     * @param string    $file
+     * @param string    $module
+     * @param bool|null $appendVersion
      *
      * @return  string
      */
@@ -41,8 +41,7 @@ class AssetModulePath extends AbstractHelper
         $file,
         $module = '',
         $appendVersion = null
-    )
-    {
+    ) {
         //$type = $isPublic ? 'public' : 'asset';
         $module = $module ?: Pi::service('module')->current();
 

@@ -21,6 +21,7 @@ class FilterPluginManager extends LaminasFilterPluginManager
 {
     /**
      * Default set of loaders
+     *
      * @var array
      */
     protected $invokableClasses
@@ -31,6 +32,7 @@ class FilterPluginManager extends LaminasFilterPluginManager
 
     /**
      * Default set of filters
+     *
      * @var array
      */
     protected $invokableList
@@ -98,8 +100,7 @@ class FilterPluginManager extends LaminasFilterPluginManager
         $name,
         $options = [],
         $usePeeringServiceManagers = true
-    )
-    {
+    ) {
         // Canonize invokable class from name
         if (!$this->has($name) && !class_exists($name)) {
             // Lookup in default invokable list
@@ -114,11 +115,15 @@ class FilterPluginManager extends LaminasFilterPluginManager
                 $name = $invokableClass;
                 // Lookup in helper locations
             } else {
-                $class = str_replace(' ', '', ucwords(str_replace(
-                    ['-', '_', '\\', '/'],
-                    ' ',
-                    $name
-                )));
+                $class = str_replace(
+                    ' ', '', ucwords(
+                    str_replace(
+                        ['-', '_', '\\', '/'],
+                        ' ',
+                        $name
+                    )
+                )
+                );
                 if (class_exists('Pi\Filter\\' . $class)) {
                     $name = 'Pi\Filter\\' . $class;
                 } else {

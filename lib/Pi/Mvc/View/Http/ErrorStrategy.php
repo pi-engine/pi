@@ -30,9 +30,9 @@ use Laminas\View\Model\ViewModel;
  *  `Laminas\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()`
  *  whose priority is -90
  *
- * @see Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate()
- * @see \Laminas\Mvc\View\Http\InjectTemplateListener::injectTemplate()
- * @see \Laminas\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()
+ * @see    Pi\Mvc\View\Http\ViewStrategyListener::injectTemplate()
+ * @see    \Laminas\Mvc\View\Http\InjectTemplateListener::injectTemplate()
+ * @see    \Laminas\Mvc\View\Http\RouteNotFoundStrategy::prepareNotFoundViewModel()
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ErrorStrategy extends AbstractListenerAggregate
@@ -70,7 +70,8 @@ class ErrorStrategy extends AbstractListenerAggregate
     /**
      * Create and return a view model for erroneous result
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return void
      */
     public function prepareErrorViewModel(MvcEvent $e)

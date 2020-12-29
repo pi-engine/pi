@@ -31,11 +31,13 @@ class Image extends LaminasHelperCaptchaImage
         $captcha = $element->getCaptcha();
 
         if ($captcha === null || !$captcha instanceof CaptchaAdapter) {
-            throw new Exception\DomainException(sprintf(
-                '%s requires that the element has a "captcha" attribute'
-                . ' of type Laminas\Captcha\Image; none found',
-                __METHOD__
-            ));
+            throw new Exception\DomainException(
+                sprintf(
+                    '%s requires that the element has a "captcha" attribute'
+                    . ' of type Laminas\Captcha\Image; none found',
+                    __METHOD__
+                )
+            );
         }
 
         // Generates ID, but NOT word and image

@@ -27,7 +27,7 @@ class Favicon extends AbstractHelper
     /**
      * Output favicon URL
      *
-     * @param  string $name Favicon filename
+     * @param string $name Favicon filename
      *
      * @return string
      */

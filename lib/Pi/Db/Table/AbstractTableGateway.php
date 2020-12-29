@@ -57,6 +57,7 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
      *
      *  - true: to convert to associative array for decode;
      *  - false: keep as array object.
+     *
      * @var array
      */
     protected $encodeColumns
@@ -91,6 +92,7 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
      * Setup model
      *
      * @param array $options
+     *
      * @return $this
      * @throws \InvalidArgumentException
      */
@@ -174,6 +176,7 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
      * Set adapter
      *
      * @param Adapter $adapter
+     *
      * @return void
      */
     public function setAdapter(Adapter $adapter)
@@ -211,7 +214,8 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
         } elseif (is_subclass_of(
             $this->rowClass,
             'Laminas\Db\RowGateway\AbstractRowGateway'
-        )) {
+        )
+        ) {
             $row = new $this->rowClass(
                 $this->primaryKeyColumn,
                 $this,
@@ -252,6 +256,7 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
      * Set columns to be encode/decode
      *
      * @param array $columns
+     *
      * @return $this
      */
     public function setEncodeColumns(array $columns)
@@ -264,7 +269,8 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
     /**
      * Quote identifier
      *
-     * @param  string $identifier
+     * @param string $identifier
+     *
      * @return string
      */
     public function quoteIdentifier($identifier)
@@ -275,7 +281,8 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
     /**
      * Quote value
      *
-     * @param  string $value
+     * @param string $value
+     *
      * @return string
      */
     public function quoteValue($value)
@@ -286,8 +293,9 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
     /**
      * Format parameter name
      *
-     * @param string $name
+     * @param string      $name
      * @param string|null $type
+     *
      * @return string
      */
     public function formatParameterName($name, $type = null)
@@ -305,8 +313,9 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
      * if key array is provided or a Row object
      * if a single key value is provided.
      *
-     * @param array|string|int $key The value(s) of the key
-     * @param string|null $column Column name of the key
+     * @param array|string|int $key    The value(s) of the key
+     * @param string|null      $column Column name of the key
+     *
      * @return ResultSet|Row Row(s) matching the criteria.
      * @throws \Exception Throw exception if column is not specified
      */
@@ -353,6 +362,7 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
      * Add a feature to FeatureSet
      *
      * @param string $name
+     *
      * @return $this
      */
     public function addFeature($name)
@@ -372,7 +382,7 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
     /**
      * Fetch count against condition
      *
-     * @param array|Where $where
+     * @param array|Where  $where
      * @param array|string $params
      *
      * @return bool|int|ResultSet
@@ -430,8 +440,8 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
      * Perform an increment operation upon certain integer fields
      *
      * @param string|string[] $columns Column(s) to be incremented
-     * @param array|Where $where
-     * @param int $increment
+     * @param array|Where     $where
+     * @param int             $increment
      *
      * @return int
      */
@@ -454,9 +464,10 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
     /**
      * Update
      *
-     * @param  array $set
-     * @param  string|array|\Closure $where
-     * @param  null|array $joins
+     * @param array                 $set
+     * @param string|array|\Closure $where
+     * @param null|array            $joins
+     *
      * @return int
      */
     public function update($set, $where = null, array $joins = null)
@@ -464,7 +475,7 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
         if (!$this->isInitialized) {
             $this->initialize();
         }
-        $sql = $this->sql;
+        $sql    = $this->sql;
         $update = $sql->update();
         $update->set($set);
         if ($where !== null) {
@@ -499,7 +510,7 @@ abstract class AbstractTableGateway extends LaminasAbstractTableGateway
     {
         $results = $this->select($where);
 
-        foreach($results as $row) {
+        foreach ($results as $row) {
             Pi::service('observer')->triggerDeletedRow($row, $row->toArray());
         }
 

@@ -36,6 +36,7 @@ use Laminas\View\Helper\Url as LaminasUrl;
  * ```
  *  $this->url()->routeMatch();
  * ```
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Url extends LaminasUrl
@@ -60,8 +61,7 @@ class Url extends LaminasUrl
         $params = [],
         $options = [],
         $reuseMatchedParams = false
-    )
-    {
+    ) {
         if (!func_num_args()) {
             return $this;
         }

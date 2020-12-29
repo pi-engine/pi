@@ -116,6 +116,7 @@ class Session extends AbstractService
      * Get session container
      *
      * @param string $name
+     *
      * @return Container
      */
     public function container($name = 'PI')
@@ -158,6 +159,7 @@ class Session extends AbstractService
      * Magic method to get session container
      *
      * @param string $name
+     *
      * @return Container
      */
     public function __get($name)
@@ -169,7 +171,8 @@ class Session extends AbstractService
      * Magic method to proxy calls to session manager
      *
      * @param string $method
-     * @param array $args
+     * @param array  $args
+     *
      * @return mixed
      */
     public function __call($method, $args)

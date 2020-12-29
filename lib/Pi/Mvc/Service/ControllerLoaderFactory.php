@@ -33,7 +33,8 @@ class ControllerLoaderFactory implements FactoryInterface
      * This plugin manager is _not_ peered against DI, and as such, will
      * not load unknown classes.
      *
-     * @param  ServiceLocatorInterface $serviceLocator
+     * @param ServiceLocatorInterface $serviceLocator
+     *
      * @return ControllerManager
      */
     public function createService(ServiceLocatorInterface $serviceLocator)

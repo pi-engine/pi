@@ -28,7 +28,7 @@ use Laminas\View\Helper\AbstractHtmlElement;
  * ];
  *
  *
- * @see https://pushjs.org/
+ * @see    https://pushjs.org/
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
 class Notification extends AbstractHtmlElement
@@ -49,12 +49,16 @@ class Notification extends AbstractHtmlElement
         if (isset($option['url']) && !empty($option['url'])) {
             $url = $option['url'];
         } elseif (Pi::service('module')->isActive('notification')) {
-            $url = Pi::url(Pi::service('url')->assemble('default', [
-                'module'     => 'notification',
-                'controller' => 'check',
-                'action'     => 'index',
-                'section'    => $section,
-            ]));
+            $url = Pi::url(
+                Pi::service('url')->assemble(
+                    'default', [
+                    'module'     => 'notification',
+                    'controller' => 'check',
+                    'action'     => 'index',
+                    'section'    => $section,
+                ]
+                )
+            );
         } else {
             return false;
         }

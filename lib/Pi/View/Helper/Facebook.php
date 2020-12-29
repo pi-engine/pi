@@ -30,6 +30,7 @@ class Facebook extends AbstractHtmlElement
      * Add a facebook Like button
      *
      * @param array $config
+     *
      * @return  string
      */
     public function __invoke($config = [])

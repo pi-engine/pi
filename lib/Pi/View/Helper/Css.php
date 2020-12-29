@@ -50,11 +50,12 @@ class Css extends AssetCanonize
     /**
      * Load CSS files
      *
-     * @param   string|array $files
-     * @param   string|array $attributes
+     * @param string|array $files
+     * @param string|array $attributes
      *      Only applicable when $files is scalar,
      *      default as string for position,
      *      append or prepend, default as 'append'
+     *
      * @return  this
      */
     public function __invoke($files = null, $attributes = 'append')
@@ -71,11 +72,12 @@ class Css extends AssetCanonize
     /**
      * Load CSS files
      *
-     * @param   string|array $files
-     * @param   string|array $attributes
+     * @param string|array $files
+     * @param string|array $attributes
      *      Only applicable when $files is scalar,
      *      default as string for position,
      *      append or prepend, default as 'append'
+     *
      * @return  self
      */
     public function load($files = null, $attributes = 'append')

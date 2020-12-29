@@ -42,7 +42,7 @@ use Pi\Db\Sql\Where;
  *
  * - exist: <query<queryKey:queryValue)>
  *
- * @see https://developers.google.com/admin-sdk/directory/v1/reference/users
+ * @see    https://developers.google.com/admin-sdk/directory/v1/reference/users
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class ApiController extends ActionController
@@ -290,13 +290,15 @@ abstract class ApiController extends ActionController
         if (is_string($query)) {
             $query = $this->splitString($query);
         }
-        array_walk($query, function ($qString) use (&$result) {
-            list($identifier, $value) = explode(':', $qString);
+        array_walk(
+            $query, function ($qString) use (&$result) {
+            [$identifier, $value] = explode(':', $qString);
             $identifier = trim($identifier);
             if ($identifier) {
                 $result[$identifier] = $value;
             }
-        });
+        }
+        );
 
         return $result;
     }

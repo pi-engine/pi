@@ -23,6 +23,7 @@ class Curl extends LaminasCurl
      * {@inheritDoc}
      *
      * As of PHP 5.2.0, value must be an array if files are passed to this option with the @ prefix.
+     *
      * @see http://www.php.net/curl_setopt
      */
     public function write($method, $uri, $httpVersion = 1.1, $headers = [], $body = '')
@@ -62,7 +63,9 @@ class Curl extends LaminasCurl
                     if (!isset($headers['Content-Length'])
                         && !isset($this->config['curloptions'][CURLOPT_INFILESIZE])
                     ) {
-                        throw new AdapterException\RuntimeException("Cannot set a file-handle for cURL option CURLOPT_INFILE without also setting its size in CURLOPT_INFILESIZE.");
+                        throw new AdapterException\RuntimeException(
+                            "Cannot set a file-handle for cURL option CURLOPT_INFILE without also setting its size in CURLOPT_INFILESIZE."
+                        );
                     }
 
                     if (isset($headers['Content-Length'])) {
@@ -156,6 +159,7 @@ class Curl extends LaminasCurl
 
         /**
          * Make sure POSTFIELDS is set after $curlMethod is set:
+         *
          * @link http://de2.php.net/manual/en/function.curl-setopt.php#81161
          */
         if ($method == 'POST') {

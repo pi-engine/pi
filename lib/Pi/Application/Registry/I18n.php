@@ -17,7 +17,7 @@ use Pi;
  *
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @see Pi\I18n\Translator\Translator::loadResource() for generator callback
+ * @see    Pi\I18n\Translator\Translator::loadResource() for generator callback
  */
 class I18n extends AbstractRegistry
 {
@@ -65,8 +65,8 @@ class I18n extends AbstractRegistry
     /**
      * {@inheritDoc}
      * @param string|string[]|array $rawDomain
-     * @param string $locale
-     * @param bool|null $custom
+     * @param string                $locale
+     * @param bool|null             $custom
      */
     public function read($rawDomain = '', $locale = '', $custom = null)
     {
@@ -79,10 +79,10 @@ class I18n extends AbstractRegistry
             if (!array_key_exists(0, $rawDomain)) {
                 extract($rawDomain);
             } else {
-                list($domain, $file) = $rawDomain;
+                [$domain, $file] = $rawDomain;
             }
         } else {
-            list($domain, $file)
+            [$domain, $file]
                 = Pi::service('i18n')->canonizeDomain($rawDomain);
             if ('custom/' == substr($domain, 0, 7)) {
                 $custom = true;

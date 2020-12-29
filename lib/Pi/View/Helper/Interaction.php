@@ -68,7 +68,8 @@ class Interaction extends AbstractHtmlElement
      * Load interaction helper, and render if actions are specified
      *
      * @param string|array $locator Locator params: module, type, id
-     * @param array|null $actions
+     * @param array|null   $actions
+     *
      * @return $this
      */
     public function __invoke($locator = '', $actions = null)
@@ -98,8 +99,8 @@ class Interaction extends AbstractHtmlElement
      *
      * @param array $actions
      *
-     * @throws \Exception
      * @return string
+     * @throws \Exception
      */
     public function render(array $actions = [])
     {

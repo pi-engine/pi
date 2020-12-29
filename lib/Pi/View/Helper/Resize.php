@@ -19,7 +19,7 @@ class Resize extends AbstractHelper
      */
     protected $timestamp = null;
 
-    /** @var  string*/
+    /** @var  string */
     protected $cropping;
 
     protected $imgPath;
@@ -51,6 +51,7 @@ class Resize extends AbstractHelper
 
     /**
      * @param $imgPath
+     *
      * @return $this
      */
     public function __invoke($imgPath, $cropping = null)
@@ -74,7 +75,9 @@ class Resize extends AbstractHelper
 
     /**
      * Set custom module config
+     *
      * @param string $module
+     *
      * @return $this
      */
     public function setConfigModule($module)
@@ -128,7 +131,9 @@ class Resize extends AbstractHelper
 
     /**
      * Set default sizes
+     *
      * @param array $defaultSizes
+     *
      * @return $this
      */
     public function setDefaultSizes($defaultSizes)
@@ -140,7 +145,9 @@ class Resize extends AbstractHelper
 
     /**
      * Get default sizes
+     *
      * @param array $defaultSizes
+     *
      * @return array
      */
     public function getDefaultSizes()
@@ -151,6 +158,7 @@ class Resize extends AbstractHelper
     /**
      * @param $widthOrSizeCode
      * @param $height
+     *
      * @return $this
      */
     public function thumb($widthOrSizeCode, $height = null)
@@ -171,6 +179,7 @@ class Resize extends AbstractHelper
     /**
      * @param $widthOrSizeCode
      * @param $height
+     *
      * @return $this
      */
     public function thumbcrop($widthOrSizeCode, $height = null)
@@ -191,6 +200,7 @@ class Resize extends AbstractHelper
     /**
      * @param $widthOrSizeCode
      * @param $height
+     *
      * @return $this
      */
     public function resize($widthOrSizeCode, $height = null)
@@ -210,6 +220,7 @@ class Resize extends AbstractHelper
 
     /**
      * @param $value
+     *
      * @return $this
      */
     public function quality($value = null)
@@ -244,6 +255,7 @@ class Resize extends AbstractHelper
 
     /**
      * @param $correction
+     *
      * @return $this
      */
     public function gamma($correction)
@@ -255,6 +267,7 @@ class Resize extends AbstractHelper
 
     /**
      * @param $hexColor
+     *
      * @return $this
      */
     public function colorize($hexColor)
@@ -276,6 +289,7 @@ class Resize extends AbstractHelper
 
     /**
      * @param null $sigma
+     *
      * @return $this
      */
     public function blur($sigma = null)
@@ -291,6 +305,7 @@ class Resize extends AbstractHelper
      * @param null $color
      * @param null $width
      * @param null $height
+     *
      * @return $this
      */
     public function x404($text = null, $backgroundColor = null, $color = null, $width = null, $height = null)
@@ -319,7 +334,7 @@ class Resize extends AbstractHelper
 
         $options['quality'] = $this->quality;
 
-        $theme = Pi::service('theme')->current();
+        $theme             = Pi::service('theme')->current();
         $placeholderSource = Pi::service('asset')->getThemeAssetPath('image/placeholder.jpg', $theme, null, true);
 
         try {
@@ -344,8 +359,8 @@ class Resize extends AbstractHelper
                 $source = null;
             }
 
-            $filenameCommand = str_replace(',','-', $this->commands); // remove separator parameters
-            $filenameCommand = str_replace('$','', $filenameCommand); // remove separatir commands
+            $filenameCommand = str_replace(',', '-', $this->commands); // remove separator parameters
+            $filenameCommand = str_replace('$', '', $filenameCommand); // remove separatir commands
 
             $filestring = str_replace('upload/media/original', '', $file);
 
@@ -368,12 +383,12 @@ class Resize extends AbstractHelper
             }
         } catch (\Exception $e) {
 
-            $source = null;
+            $source          = null;
             $targetExtension = 'jpg';
-            $filestring = '/placeholder';
+            $filestring      = '/placeholder';
 
-            $filenameCommand = str_replace(',','-', $this->commands); // remove separator parameters
-            $filenameCommand = str_replace('$','', $filenameCommand); // remove separatir commands
+            $filenameCommand = str_replace(',', '-', $this->commands); // remove separator parameters
+            $filenameCommand = str_replace('$', '', $filenameCommand); // remove separatir commands
 
             $target = 'upload/media/processed/'
                 . $filenameCommand . '/'
@@ -392,7 +407,7 @@ class Resize extends AbstractHelper
 
         $finalUrl = \Pi::url($filepath);
 
-        if($this->timestamp){
+        if ($this->timestamp) {
             $finalUrl .= '?' . $this->timestamp;
         }
 
@@ -403,6 +418,7 @@ class Resize extends AbstractHelper
      * base64 encode
      *
      * @param string $data data to encode
+     *
      * @return string encoded data
      */
     public static function encode($data)
@@ -411,7 +427,8 @@ class Resize extends AbstractHelper
     }
 
 
-    public function setTimestamp($timestamp){
+    public function setTimestamp($timestamp)
+    {
         $this->timestamp = $timestamp;
     }
 }

@@ -66,6 +66,7 @@ abstract class AbstractRegistry
 
     /**
      * Roles in process loop
+     *
      * @var array
      */
     protected $roles = [];
@@ -74,6 +75,7 @@ abstract class AbstractRegistry
      * Data generator
      *
      * @param Callback $generator
+     *
      * @return $this
      */
     public function setGenerator($generator)
@@ -87,6 +89,7 @@ abstract class AbstractRegistry
      * Load dynamic data from database
      *
      * @param array $options
+     *
      * @return mixed|bool
      * @throws \Exception
      */
@@ -103,6 +106,7 @@ abstract class AbstractRegistry
      * Get namespace, i.e. namespace prefix of the registry
      *
      * @param string $name
+     *
      * @return string
      */
     protected function getNamespace($name)
@@ -114,6 +118,7 @@ abstract class AbstractRegistry
      * Set namespace of current meta
      *
      * @param string|array $meta
+     *
      * @return $this
      * @throws \Exception
      */
@@ -127,10 +132,7 @@ abstract class AbstractRegistry
                 $namespace           = $meta['module'];
                 $this->namespaceMeta = ['module'];
             } else {
-                throw new \Exception(
-                    'Custom namespace is required for registry '
-                    . get_class($this)
-                );
+                throw new \Exception('Custom namespace is required for registry ' . get_class($this));
             }
             /*
             $namespace = $this->getNamespace($namespace);
@@ -168,6 +170,7 @@ abstract class AbstractRegistry
      * Create key according to meta
      *
      * @param array $meta
+     *
      * @return string
      */
     protected function createKey($meta = [])
@@ -221,6 +224,7 @@ abstract class AbstractRegistry
      * Set cache storage
      *
      * @param CacheAdapter $cache
+     *
      * @return $this
      */
     public function setCache(CacheAdapter $cache)
@@ -248,6 +252,7 @@ abstract class AbstractRegistry
      * Load data matching the meta
      *
      * @param array $meta
+     *
      * @return array|bool
      */
     protected function loadData($meta = [])
@@ -267,6 +272,7 @@ abstract class AbstractRegistry
      * Load cache data matching the meta
      *
      * @param array $meta
+     *
      * @return array|bool
      */
     protected function loadCacheData($meta = [])
@@ -288,6 +294,7 @@ abstract class AbstractRegistry
      *
      * @param mixed $data
      * @param array $meta
+     *
      * @return bool
      */
     protected function saveCache($data, $meta = [])
@@ -312,6 +319,7 @@ abstract class AbstractRegistry
      * Set registry key
      *
      * @param string $key
+     *
      * @return $this
      */
     public function setKey($key)
@@ -325,6 +333,7 @@ abstract class AbstractRegistry
      * Clear cached content
      *
      * @param string $namespace
+     *
      * @return $this
      */
     public function clear($namespace = '')

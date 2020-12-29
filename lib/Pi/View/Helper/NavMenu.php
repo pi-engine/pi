@@ -25,12 +25,14 @@ use Laminas\View\Helper\AbstractHtmlElement;
  *  $this->navMenu($data, 'horizontal');
  *  $this->navMenu($data);
  * ```
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class NavMenu extends AbstractHtmlElement
 {
     /**
      * UL class definitions
+     *
      * @var array
      */
     protected $ulClass
@@ -68,13 +70,13 @@ class NavMenu extends AbstractHtmlElement
      * );
      *  ```
      *
-     * @param array $items
+     * @param array        $items
      *      Navigation data, list of item data or list of assembled list
      * @param array|string $attribs
      *      UL attributes or type (vertical|horizontal)
      *
-     * @internal param bool $escape To escape HTML tags
      * @return string
+     * @internal param bool $escape To escape HTML tags
      */
     public function __invoke(array $items, $attribs = [])
     {

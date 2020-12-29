@@ -25,6 +25,7 @@ class User extends AbstractFilter
 {
     /**
      * Filter options
+     *
      * @var array
      */
     protected $options
@@ -79,6 +80,7 @@ class User extends AbstractFilter
      * Transform text
      *
      * @param string $value
+     *
      * @return string
      */
     public function filter($value)

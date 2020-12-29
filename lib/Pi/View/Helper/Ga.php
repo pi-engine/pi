@@ -36,8 +36,8 @@ class Ga extends AbstractHelper
     /**
      * Load GA scripts
      *
-     * @param   string $trackingId
-     * @param   string $host
+     * @param string $trackingId
+     * @param string $host
      *
      * @return  $this
      */
