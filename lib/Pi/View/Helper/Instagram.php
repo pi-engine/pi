@@ -120,7 +120,7 @@ EOT;
         // Load instagram api
         $instagram = new InstagramPlugin();
         $medias    = $instagram->getMedias($username, $options['count']);
-        $account = $instagram->getAccount($username);
+        $account   = $instagram->getAccount($username);
 
         // Make image template list
         $list = [];
@@ -137,7 +137,7 @@ EOT;
             $time = $this->getTimeAgo($media->getCreatedTime());
 
             // get image size
-            list($width, $height) = getimagesize($image);
+            [$width, $height] = getimagesize($image);
 
             // Get account information
             $fullName   = empty($account->getFullName()) ? $username : $account->getFullName();

@@ -27,7 +27,7 @@ use Laminas\View\Helper\AbstractHelper;
 class Svg extends AbstractHelper
 {
     /**
-     * 
+     *
      * @return  string
      */
     public function __invoke($path, $title = null, $xmlTag = true)
@@ -37,7 +37,7 @@ class Svg extends AbstractHelper
             $svg->title[0] = $title;
         }
 
-        if($xmlTag == false) {
+        if ($xmlTag == false) {
             return str_replace('<?xml version="1.0"?>', '', $svg->asXml());
         }
 

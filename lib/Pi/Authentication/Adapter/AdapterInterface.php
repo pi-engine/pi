@@ -22,6 +22,7 @@ interface AdapterInterface extends LaminasAdapterInterface
      * Set options
      *
      * @param array $options
+     *
      * @return void
      */
     public function setOptions($options = []);
@@ -30,6 +31,7 @@ interface AdapterInterface extends LaminasAdapterInterface
      * Set result data
      *
      * @param array|object $resultRow
+     *
      * @return self
      */
     public function setResultRow($resultRow = []);
@@ -37,8 +39,9 @@ interface AdapterInterface extends LaminasAdapterInterface
     /**
      * Returns the result row
      *
-     * @param  string|array $returnColumns
-     * @param  string|array $omitColumns
+     * @param string|array $returnColumns
+     * @param string|array $omitColumns
+     *
      * @return array
      */
     public function getResultRow($returnColumns = null, $omitColumns = null);

@@ -21,12 +21,14 @@ class Profiler
 {
     /**
      * List logs
+     *
      * @var array
      */
     protected $timers = [];
 
     /**
      * Writers
+     *
      * @var SplPriorityQueue
      */
     protected $writers;
@@ -65,7 +67,8 @@ class Profiler
      * Add a writer to a logger
      *
      * @param WriterInterface $writer
-     * @param int $priority
+     * @param int             $priority
+     *
      * @return self
      */
     public function addWriter(WriterInterface $writer, $priority = 1)
@@ -79,6 +82,7 @@ class Profiler
      * Starts a timer
      *
      * @param string $name Name of the timer
+     *
      * @return self
      */
     public function start($name = 'PI')
@@ -103,6 +107,7 @@ class Profiler
      * End a profiler
      *
      * @param string $name
+     *
      * @return self
      */
     public function end($name = 'PI')
@@ -130,6 +135,7 @@ class Profiler
      * Write a profiler
      *
      * @param string $name
+     *
      * @return Profiler
      */
     protected function write($name = 'PI')

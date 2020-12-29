@@ -116,8 +116,9 @@ class View extends AbstractPlugin
      * If no arguments are given, return the view plugin
      * Otherwise, attempts to set variables for that view model.
      *
-     * @param  null|array|Traversable $variables
-     * @param  array|Traversable $options
+     * @param null|array|Traversable $variables
+     * @param array|Traversable      $options
+     *
      * @return ViewModel|$this
      */
     public function __invoke($variables = null, $options = null)
@@ -163,7 +164,8 @@ class View extends AbstractPlugin
     /**
      * Set View Model
      *
-     * @param  ViewModel $viewModel
+     * @param ViewModel $viewModel
+     *
      * @return $this
      */
     public function setViewModel(ViewModel $viewModel)
@@ -176,8 +178,9 @@ class View extends AbstractPlugin
     /**
      * Create ViewModel
      *
-     * @param  null|array|Traversable $variables
-     * @param  array|Traversable $options
+     * @param null|array|Traversable $variables
+     * @param array|Traversable      $options
+     *
      * @return ViewModel
      */
     public function getViewModel($variables = null, $options = [])
@@ -200,6 +203,7 @@ class View extends AbstractPlugin
      * Set theme
      *
      * @param string $theme
+     *
      * @return $this
      */
     public function setTheme($theme)
@@ -213,6 +217,7 @@ class View extends AbstractPlugin
      * Set template for root model
      *
      * @param string $template
+     *
      * @return $this
      */
     public function setLayout($template)
@@ -225,13 +230,13 @@ class View extends AbstractPlugin
     /**
      * Set the view model template
      *
-     * @see Pi\Mvc\View\InjectTemplateListener::injectTemplate()
-     *
      * @param string $template
      * @param string $module
      * @param string $section
      *
      * @return $this
+     * @see Pi\Mvc\View\InjectTemplateListener::injectTemplate()
+     *
      */
     public function setTemplate($template, $module = '', $section = '')
     {
@@ -255,7 +260,8 @@ class View extends AbstractPlugin
      * Assign variables to view model
      *
      * @param string|array $variable Variable name or array of variables
-     * @param mixed $value Value to assign
+     * @param mixed        $value    Value to assign
+     *
      * @return $this
      */
     public function assign($variable, $value = null)
@@ -282,8 +288,9 @@ class View extends AbstractPlugin
     /**
      * Set head title
      *
-     * @param string $title Head title
+     * @param string $title   Head title
      * @param string $setType Position, default as append
+     *
      * @return $this|AbstractPlugin
      */
     public function headTitle($title = null, $setType = null)
@@ -301,8 +308,9 @@ class View extends AbstractPlugin
     /**
      * Set head description
      *
-     * @param string $description Head description
-     * @param string|null $placement Position, default as set
+     * @param string      $description Head description
+     * @param string|null $placement   Position, default as set
+     *
      * @return $this
      */
     public function headDescription($description, $placement = null)
@@ -323,8 +331,9 @@ class View extends AbstractPlugin
     /**
      * Set head keywords
      *
-     * @param string|array $keywords Head keywords
-     * @param string|null $placement Position, default as set
+     * @param string|array $keywords  Head keywords
+     * @param string|null  $placement Position, default as set
+     *
      * @return $this
      */
     public function headKeywords($keywords, $placement = null)
@@ -355,7 +364,8 @@ class View extends AbstractPlugin
      * - If the helper does define __invoke, it will be called as a functor
      *
      * @param string $method
-     * @param array $argv
+     * @param array  $argv
+     *
      * @return mixed|AbstractPlugin
      */
     public function __call($method, $argv)
@@ -372,6 +382,7 @@ class View extends AbstractPlugin
      * Load view helper
      *
      * @param string $name
+     *
      * @return AbstractPlugin
      */
     public function helper($name)

@@ -24,7 +24,7 @@ use Laminas\View\Helper\AbstractHelper;
  *  $jsUri = $this->assetLocale('rtl.js', 'en);
  * ```
  *
- * @see Pi\Application\Service\Asset
+ * @see    Pi\Application\Service\Asset
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class AssetLocale extends AbstractHelper
@@ -32,9 +32,9 @@ class AssetLocale extends AbstractHelper
     /**
      * Get URI of a theme locale asset
      *
-     * @param   string $file
-     * @param   string $locale
-     * @param   bool|null $appendVersion
+     * @param string    $file
+     * @param string    $locale
+     * @param bool|null $appendVersion
      *
      * @return  string
      */
@@ -42,8 +42,7 @@ class AssetLocale extends AbstractHelper
         $file,
         $locale = '',
         $appendVersion = null
-    )
-    {
+    ) {
         //$type = $isPublic ? 'public' : 'asset';
         $locale = $locale ?: Pi::service('i18n')->locale;
         $file   = sprintf('locale/%s/%s', $locale, $file);

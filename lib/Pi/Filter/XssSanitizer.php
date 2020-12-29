@@ -14,7 +14,7 @@ use Laminas\Filter\AbstractFilter;
 /**
  * Cross site scripting check
  *
- * @link: http://ha.ckers.org/xss.html
+ * @link   : http://ha.ckers.org/xss.html
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class XssSanitizer extends AbstractFilter
@@ -30,6 +30,7 @@ class XssSanitizer extends AbstractFilter
      *  - HTMLpurifier
      *
      * @param string $value
+     *
      * @return string
      */
     public function filter($value)
@@ -49,9 +50,11 @@ class XssSanitizer extends AbstractFilter
         // Convert hex
         //$patterns[] = '/&#x([a-f0-9]+)/mei';
         //$replaces[] = "chr(0x\\1)";
-        $content = preg_replace_callback('/&#x([a-f0-9]+)/mi', function ($matches) {
+        $content = preg_replace_callback(
+            '/&#x([a-f0-9]+)/mi', function ($matches) {
             return "chr(0x" . $matches[1] . ")";
-        }, $content);
+        }, $content
+        );
 
         $patterns[] = '/(&#*\w+)[\x00-\x20]+;/U';
         $replaces[] = "\\1;";

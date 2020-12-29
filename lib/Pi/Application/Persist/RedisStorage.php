@@ -37,6 +37,7 @@ class RedisStorage extends AbstractStorage
      * Constructor
      *
      * @param array $options
+     *
      * @throws \Exception
      */
     public function __construct($options = [])

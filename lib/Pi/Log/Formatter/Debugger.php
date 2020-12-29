@@ -28,7 +28,7 @@ class Debugger implements FormatterInterface
     /**
      * Class constructor
      *
-     * @param  null|string $format Format specifier for log messages
+     * @param null|string $format Format specifier for log messages
      */
     public function __construct($format = null)
     {
@@ -49,6 +49,7 @@ class Debugger implements FormatterInterface
      * Formats data into a single line to be written by the writer.
      *
      * @param array $event Event data
+     *
      * @return string Formatted line to write to the log
      */
     public function format($event)
@@ -58,8 +59,10 @@ class Debugger implements FormatterInterface
             $event['timestamp'] = date(
                     $this->getDateTimeFormat(),
                     intval($event['timestamp'])
-                ) . substr($event['timestamp'],
-                    strpos($event['timestamp'], '.'), 5);
+                ) . substr(
+                    $event['timestamp'],
+                    strpos($event['timestamp'], '.'), 5
+                );
         }
         if (!empty($event['priorityName'])) {
             $event['priorityName'] = strtolower($event['priorityName']);

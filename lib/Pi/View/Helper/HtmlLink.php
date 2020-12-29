@@ -22,9 +22,9 @@ class HtmlLink extends AbstractHtmlElement
     /**
      * Output link
      *
-     * @param string $href URL
-     * @param string $label Label to display
-     * @param array $attribs Attributes
+     * @param string $href    URL
+     * @param string $label   Label to display
+     * @param array  $attribs Attributes
      *
      * @return string
      */

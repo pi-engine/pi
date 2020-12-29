@@ -58,6 +58,7 @@ class Cache extends AbstractService
      *
      * @param array|string $config
      *                  'adapter' - storage adapter; 'plugins'; 'options'
+     *
      * @return AbstractAdapter
      */
     public function loadStorage($config = [])
@@ -81,7 +82,7 @@ class Cache extends AbstractService
     /**
      * Set namespace to current cache storage adapter
      *
-     * @param string $namespace
+     * @param string                                         $namespace
      * @param \Laminas\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
@@ -90,8 +91,7 @@ class Cache extends AbstractService
     public function setNamespace(
         $namespace = '',
         AbstractAdapter $storage = null
-    )
-    {
+    ) {
         $namespace = $this->getNamespace($namespace);
         $storage   = $storage ?: $this->storage();
         $storage->getOptions()->setNamespace($namespace);
@@ -103,6 +103,7 @@ class Cache extends AbstractService
      * Get canonized namespace by prepending Pi Engine identifier
      *
      * @param string $namespace
+     *
      * @return string
      */
     public function getNamespace($namespace = '')
@@ -114,7 +115,7 @@ class Cache extends AbstractService
     /**
      * Clear cache by namespace to current cache storage adapter
      *
-     * @param string $namespace
+     * @param string                                         $namespace
      * @param \Laminas\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
@@ -123,8 +124,7 @@ class Cache extends AbstractService
     public function clearByNamespace(
         $namespace = '',
         AbstractAdapter $storage = null
-    )
-    {
+    ) {
         $namespace = $this->getNamespace($namespace);
         $storage   = $storage ?: $this->storage();
         if (method_exists($storage, 'clearByNamespace')) {
@@ -137,8 +137,9 @@ class Cache extends AbstractService
     /**
      * Canonize cache key
      *
-     * @param string $key Raw key
+     * @param string $key        Raw key
      * @param string $cacheLevel Cache granularity
+     *
      * @return string
      */
     public function canonizeKey($key, $cacheLevel = '')
@@ -168,9 +169,9 @@ class Cache extends AbstractService
     /**
      * Set item with namespace
      *
-     * @param  string $key
-     * @param  mixed $value
-     * @param  string|array $options
+     * @param string                                         $key
+     * @param mixed                                          $value
+     * @param string|array                                   $options
      * @param \Laminas\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
@@ -181,8 +182,7 @@ class Cache extends AbstractService
         $value,
         $options = [],
         AbstractAdapter $storage = null
-    )
-    {
+    ) {
         $storage        = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
 
@@ -224,8 +224,8 @@ class Cache extends AbstractService
     /**
      * Get item with namespace
      *
-     * @param  string $key
-     * @param  string|array $options
+     * @param string                                         $key
+     * @param string|array                                   $options
      * @param \Laminas\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
@@ -235,8 +235,7 @@ class Cache extends AbstractService
         $key,
         $options = [],
         AbstractAdapter $storage = null
-    )
-    {
+    ) {
         $storage        = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
 
@@ -277,8 +276,8 @@ class Cache extends AbstractService
     /**
      * Remove item with namespace
      *
-     * @param  string $key
-     * @param  string|array $options
+     * @param string                                         $key
+     * @param string|array                                   $options
      * @param \Laminas\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
      *
@@ -288,8 +287,7 @@ class Cache extends AbstractService
         $key,
         $options = [],
         AbstractAdapter $storage = null
-    )
-    {
+    ) {
         $storage        = $storage ?: $this->storage();
         $storageOptions = $storage->getOptions();
 
@@ -386,6 +384,7 @@ class Cache extends AbstractService
     /**
      * Flush cache from url and namespace
      * Url without domain
+     *
      * @param $url
      * @param $namespace
      */
@@ -396,7 +395,7 @@ class Cache extends AbstractService
 
         $this->removeItem(
             Pi::config('theme') . '_page_' . $key,
-            array('namespace' => $namespace)
+            ['namespace' => $namespace]
         );
     }
 }

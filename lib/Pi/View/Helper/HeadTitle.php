@@ -40,7 +40,7 @@ use Laminas\View\Helper\HeadTitle as LaminasHeadTitle;
  * ```
  *
  *
- * @see \Laminas\View\Helper\HeadTitle for details.
+ * @see    \Laminas\View\Helper\HeadTitle for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class HeadTitle extends LaminasHeadTitle

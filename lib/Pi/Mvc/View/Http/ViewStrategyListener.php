@@ -29,6 +29,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
 {
     /**
      * Request accept type
+     *
      * @var string
      */
     protected $type;
@@ -135,6 +136,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
      * Set request type explicitly
      *
      * @param string $type
+     *
      * @return $this
      */
     public function setType($type)
@@ -157,7 +159,8 @@ class ViewStrategyListener extends AbstractListenerAggregate
     /**
      * Detect request type and set debug mode
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return void
      */
     public function prepareRequestType(MvcEvent $e)
@@ -175,6 +178,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
      * Prepare root view model for MvcEvent
      *
      * @param MvcEvent $e
+     *
      * @return void
      */
     public function prepareRootModel(MvcEvent $e)
@@ -191,7 +195,8 @@ class ViewStrategyListener extends AbstractListenerAggregate
     /**
      * Prepare for action result collecting
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return void
      */
     public function prepareActionResult(MvcEvent $e)
@@ -216,7 +221,8 @@ class ViewStrategyListener extends AbstractListenerAggregate
     /**
      * Inspect the result, and cast it to a ViewModel
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return void
      */
     public function canonizeActionResult(MvcEvent $e)
@@ -413,7 +419,8 @@ class ViewStrategyListener extends AbstractListenerAggregate
     /**
      * Inspect the result for erroneous action of JSON/AJAX/Feed
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return void
      */
     public function canonizeErrorResult(MvcEvent $e)
@@ -497,9 +504,10 @@ class ViewStrategyListener extends AbstractListenerAggregate
      * Template is derived from the controller found in the route match, and,
      * optionally, the action, if present.
      *
-     * @see Pi\Mvc\Controller\Plugin\View::setTemplate()
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return void
+     * @see Pi\Mvc\Controller\Plugin\View::setTemplate()
      */
     public function injectTemplate(MvcEvent $e)
     {
@@ -528,11 +536,13 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // for regular theme template
         $routeMatch = $e->getRouteMatch();
         if ('__NULL__' != $template) {
-            $model->setVariables([
-                'module'     => $routeMatch->getParam('module'),
-                'controller' => $routeMatch->getParam('controller'),
-                'action'     => $routeMatch->getParam('action'),
-            ]);
+            $model->setVariables(
+                [
+                    'module'     => $routeMatch->getParam('module'),
+                    'controller' => $routeMatch->getParam('controller'),
+                    'action'     => $routeMatch->getParam('action'),
+                ]
+            );
         }
         if ($template || $e->isError()) {
             return;
@@ -555,6 +565,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
      * Canonize layout template for theme
      *
      * @param MvcEvent $e
+     *
      * @return void
      */
     public function canonizeThemeLayout(MvcEvent $e)
@@ -596,7 +607,8 @@ class ViewStrategyListener extends AbstractListenerAggregate
     /**
      * Initialize assemble with config meta
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return void
      */
     public function initThemeAssemble(MvcEvent $e)
@@ -615,6 +627,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
      * Preload head meta data
      *
      * @param MvcEvent $e
+     *
      * @return void
      */
     public function bootThemeAssemble(MvcEvent $e)
@@ -633,6 +646,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
      * Canonize head title by appending site name and/or slogan
      *
      * @param MvcEvent $e
+     *
      * @return void
      */
     public function renderThemeAssemble(MvcEvent $e)
@@ -651,6 +665,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
      * Assemble meta contents
      *
      * @param MvcEvent $e
+     *
      * @return void
      */
     public function completeThemeAssemble(MvcEvent $e)
@@ -661,13 +676,15 @@ class ViewStrategyListener extends AbstractListenerAggregate
 
         // Set response headers for language and charset
         $response = $e->getResponse();
-        $response->getHeaders()->addHeaders([
-            'content-type'     => sprintf(
-                'text/html; charset=%s',
-                Pi::service('i18n')->getCharset()
-            ),
-            'content-language' => Pi::service('i18n')->getLocale(),
-        ]);
+        $response->getHeaders()->addHeaders(
+            [
+                'content-type'     => sprintf(
+                    'text/html; charset=%s',
+                    Pi::service('i18n')->getCharset()
+                ),
+                'content-language' => Pi::service('i18n')->getLocale(),
+            ]
+        );
 
         // Get ViewRenderer
         $viewRenderer = $e->getApplication()->getServiceManager()->get('ViewRenderer');
@@ -680,6 +697,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
      * Detect request type according to HTTP request and headers
      *
      * @param MvcEvent $e
+     *
      * @return string
      */
     protected function detectType(MvcEvent $e)
@@ -738,6 +756,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
      * Detect if theme assemble can be skipped
      *
      * @param MvcEvent $e
+     *
      * @return bool
      */
     protected function skipThemeAssemble(MvcEvent $e)

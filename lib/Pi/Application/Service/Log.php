@@ -127,6 +127,7 @@ class Log extends AbstractService
      * Enable/disable or get activation
      *
      * @param bool|null $flag
+     *
      * @return bool
      */
     public function active($flag = null)
@@ -141,9 +142,11 @@ class Log extends AbstractService
             }
         } elseif (null === $this->active) {
             if (!empty($this->options['ip'])) {
-                $this->active = (bool)Pi::service('security')->ip([
-                    'good' => $this->options['ip'],
-                ]);
+                $this->active = (bool)Pi::service('security')->ip(
+                    [
+                        'good' => $this->options['ip'],
+                    ]
+                );
             } else {
                 $this->active = true;
             }
@@ -156,6 +159,7 @@ class Log extends AbstractService
      * Enable/disable debugger
      *
      * @param bool $flag
+     *
      * @return bool|null Return previous muted value
      *      or null if no debugger available
      */
@@ -173,6 +177,7 @@ class Log extends AbstractService
      * Get logger, instantiate it if not available
      *
      * @param Logger $logger
+     *
      * @return Log|Logger
      */
     public function logger(Logger $logger = null)
@@ -196,6 +201,7 @@ class Log extends AbstractService
      * Get debugger writer, instantiate it if not available
      *
      * @param Debugger $debugger
+     *
      * @return Log|Debugger
      */
     public function debugger(Debugger $debugger = null)
@@ -225,6 +231,7 @@ class Log extends AbstractService
      * Get profiler handler, instantiate it if not available
      *
      * @param Profiler $profiler
+     *
      * @return Log|Profiler
      */
     public function profiler(Profiler $profiler = null)
@@ -254,6 +261,7 @@ class Log extends AbstractService
      * Get DB query profiler, instantiate it if not available
      *
      * @param DbProfiler $dbProfiler
+     *
      * @return Log|DbProfiler
      */
     public function dbProfiler(DbProfiler $dbProfiler = null)
@@ -286,6 +294,7 @@ class Log extends AbstractService
      * Register custom error handler
      *
      * @param array $options
+     *
      * @return Log
      */
     public function registerErrorHandler($options)
@@ -300,6 +309,7 @@ class Log extends AbstractService
      * Register custom exception handler
      *
      * @param array $options
+     *
      * @return Log
      */
     public function registerExceptionHandler($options)
@@ -314,6 +324,7 @@ class Log extends AbstractService
      * Log DB query profiling info
      *
      * @param array $info
+     *
      * @return Log
      */
     public function db($info)
@@ -330,6 +341,7 @@ class Log extends AbstractService
      * Start a profiler
      *
      * @param string $name
+     *
      * @return Log
      */
     public function start($name = 'Pi Engine')
@@ -346,6 +358,7 @@ class Log extends AbstractService
      * End a profiler
      *
      * @param string $name
+     *
      * @return Log
      */
     public function end($name = 'Pi Engine')
@@ -364,8 +377,8 @@ class Log extends AbstractService
      * or
      *   `$log->log('message', 'err')`
      *
-     * @param  string $method priority name
-     * @param  array $args
+     * @param string $method priority name
+     * @param array  $args
      *
      * @return void
      */

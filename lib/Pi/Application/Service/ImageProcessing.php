@@ -51,6 +51,7 @@ class ImageProcessing
      * set the imagine service
      *
      * @param AbstractImagine $imagine
+     *
      * @return $this
      */
     public function setImagineService(AbstractImagine $imagine)
@@ -266,6 +267,7 @@ class ImageProcessing
 
     /**
      * Command image thumb crop
+     *
      * @param $width
      * @param $height
      */
@@ -405,8 +407,8 @@ class ImageProcessing
      * @param string $text
      * @param string $backgroundColor
      * @param string $color
-     * @param int $width
-     * @param int $height
+     * @param int    $width
+     * @param int    $height
      *
      * @return void
      */
@@ -475,6 +477,7 @@ class ImageProcessing
      * base64 encode
      *
      * @param string $data data to encode
+     *
      * @return string encoded data
      */
     public static function encode($data)
@@ -486,6 +489,7 @@ class ImageProcessing
      * base64 decode
      *
      * @param string $data data to decode
+     *
      * @return string decoded data
      */
     public static function decode($data)
@@ -502,6 +506,7 @@ class ImageProcessing
      * base64 check string
      *
      * @param string $data data to check
+     *
      * @return boolean vaild or not
      */
     public static function valid($data)

@@ -45,6 +45,7 @@ class Autoloader
      * Module classes are located in `/usr/module/<module-name>/src/`
      * Custom classes in `/usr/custom/module/<module-name>/src/`
      * Editor classes in `/usr/editor/<module-name>/src/`
+     *
      * @var string
      */
     const SOURCE_DIRECTORY = 'src';
@@ -58,6 +59,7 @@ class Autoloader
 
     /**
      * Top namespace/directory pairs to match; Pi, Laminas added by default
+     *
      * @var array
      */
     protected $tops = [];
@@ -81,6 +83,7 @@ class Autoloader
 
     /**
      * Directory of extra custom
+     *
      * @var string
      */
     protected $customPath = '';
@@ -119,6 +122,7 @@ class Autoloader
 
     /**
      * Namespace/directory pairs to search; ZF library added by default
+     *
      * @var array
      */
     protected $namespaces = [];
@@ -135,7 +139,7 @@ class Autoloader
      *   - namespace:       paths to regular namespaces
      *   - class_map:       class-path map
      *
-     * @param  array|Traversable $options
+     * @param array|Traversable $options
      *
      * @return \Pi\Application\Autoloader
      */
@@ -149,9 +153,7 @@ class Autoloader
 
         // Include paths, adding vendor path
         if (!empty($options['include_path'])) {
-            set_include_path(
-                get_include_path() . PATH_SEPARATOR . $options['include_path']
-            );
+            set_include_path(get_include_path() . PATH_SEPARATOR . $options['include_path']);
         }
         // Module directory
         if (!empty($options['module_path'])) {
@@ -184,6 +186,7 @@ class Autoloader
      * Set persist handler for class/file map
      *
      * @param Persist\AbstractStorage $persist
+     *
      * @return $this
      */
     public function setPersist(Persist\AbstractStorage $persist)
@@ -215,7 +218,8 @@ class Autoloader
     /**
      * Load by class map
      *
-     * @param  string $class
+     * @param string $class
+     *
      * @return void
      */
     public function autoloadMap($class)
@@ -229,7 +233,8 @@ class Autoloader
      * Load by persist class map which is registered in standard autoloader
      * or custom autoloader
      *
-     * @param  string $class
+     * @param string $class
+     *
      * @return void
      */
     public function autoloadPersist($class)
@@ -241,11 +246,13 @@ class Autoloader
         // If class is registered in persist and valid
         if (!empty($path)) {
             if (!include $path) {
-                trigger_error(sprintf(
-                    'Class "%s" is not loaded from "%s"',
-                    $class,
-                    $path
-                ));
+                trigger_error(
+                    sprintf(
+                        'Class "%s" is not loaded from "%s"',
+                        $class,
+                        $path
+                    )
+                );
             }
         }
     }
@@ -260,7 +267,8 @@ class Autoloader
      *  3. registered namespace with specified path
      *  4. vendor namespaces located in include paths
      *
-     * @param   string $class
+     * @param string $class
+     *
      * @return  void
      */
     public function autoloadStandard($class)
@@ -276,7 +284,7 @@ class Autoloader
         $top = substr($class, 0, $pos);
         // Module classes, Module\ModuleName\ClassNamespace\ClassName
         if (static::TOP_NAMESPACE_MODULE === $top) {
-            list($top, $module, $trimmedClass) = explode(
+            [$top, $module, $trimmedClass] = explode(
                 static::NS_SEPARATOR,
                 $class,
                 3
@@ -305,7 +313,7 @@ class Autoloader
 
             // Extra classes, Custom\ModuleName\ClassNamespace\ClassName
         } elseif (static::TOP_NAMESPACE_CUSTOM === $top) {
-            list($top, $module, $trimmedClass) = explode(
+            [$top, $module, $trimmedClass] = explode(
                 static::NS_SEPARATOR,
                 $class,
                 3
@@ -320,7 +328,7 @@ class Autoloader
 
             // Editor classes, Editor\EditorName\ClassNamespace\ClassName
         } elseif (static::TOP_NAMESPACE_EDITOR === $top) {
-            list($top, $editor, $trimmedClass) = explode(
+            [$top, $editor, $trimmedClass] = explode(
                 static::NS_SEPARATOR,
                 $class,
                 3
@@ -394,7 +402,8 @@ class Autoloader
      * Register a custom callback to locate class file
      *
      * @param array|string $callback array of (class, method) or function
-     * @param bool $append append or prepend to callback list
+     * @param bool         $append   append or prepend to callback list
+     *
      * @return $this
      */
     public function registerCallback($callback, $append = true)
@@ -411,10 +420,10 @@ class Autoloader
     /**
      * Register multiple top namespace/directory pairs at once
      *
-     * @param  string[] $namespaces
+     * @param string[] $namespaces
      *
-     * @throws \InvalidArgumentException
      * @return $this
+     * @throws \InvalidArgumentException
      */
     public function registerTops($namespaces)
     {
@@ -434,8 +443,9 @@ class Autoloader
     /**
      * Register a top-namespace/directory pair
      *
-     * @param  string $namespace
-     * @param  string $directory
+     * @param string $namespace
+     * @param string $directory
+     *
      * @return $this
      */
     public function registerTop($namespace, $directory)
@@ -448,8 +458,9 @@ class Autoloader
     /**
      * Transform the class name to a filename following PSR standard
      *
-     * @param  string $class
-     * @param  string $directory
+     * @param string $class
+     * @param string $directory
+     *
      * @return string
      */
     protected function transformClassNameToFilename($class, $directory)
@@ -487,7 +498,8 @@ class Autoloader
      * the Laminas library, using PSR-0 rules (unless the class has already been
      * loaded).
      *
-     * @param  array|Traversable $options options to use
+     * @param array|Traversable $options options to use
+     *
      * @return void
      * @throws \InvalidArgumentException for invalid options
      * @throws \InvalidArgumentException for unloadable autoloader classes
@@ -536,9 +548,9 @@ class Autoloader
      *
      * @param string|array $map
      *
+     * @return $this
      * @throws \InvalidArgumentException
      * @internal param array|string $location
-     * @return $this
      */
     public function registerAutoloadMap($map)
     {
@@ -567,10 +579,10 @@ class Autoloader
     /**
      * Register many autoload maps at once
      *
-     * @param  array $locations
+     * @param array $locations
      *
-     * @throws \InvalidArgumentException
      * @return $this
+     * @throws \InvalidArgumentException
      */
     public function registerAutoloadMaps($locations)
     {
@@ -603,7 +615,8 @@ class Autoloader
      * otherwise, returns whatever was returned by calling include() on the
      * location.
      *
-     * @param  string $location
+     * @param string $location
+     *
      * @return $this|mixed
      * @throws \InvalidArgumentException for nonexistent locations
      */
@@ -633,7 +646,9 @@ class Autoloader
      * Resolve the real_path() to a file within a phar.
      *
      * @see https://bugs.php.net/bug.php?id=52769
+     *
      * @param string $path
+     *
      * @return string
      */
     public static function realPharPath($path)
@@ -646,19 +661,23 @@ class Autoloader
             '/',
             str_replace(['/', '\\'], '/', substr($path, 8))
         );
-        $parts = array_values(array_filter(
-            $parts,
-            function ($p) {
-                return ($p !== '' && $p !== '.');
-            }
-        ));
+        $parts = array_values(
+            array_filter(
+                $parts,
+                function ($p) {
+                    return ($p !== '' && $p !== '.');
+                }
+            )
+        );
 
-        array_walk($parts, function ($value, $key) use (&$parts) {
+        array_walk(
+            $parts, function ($value, $key) use (&$parts) {
             if ($value === '..') {
                 unset($parts[$key], $parts[$key - 1]);
                 $parts = array_values($parts);
             }
-        });
+        }
+        );
 
         if (file_exists($realPath = 'phar:///' . implode('/', $parts))) {
             return $realPath;
@@ -674,8 +693,9 @@ class Autoloader
     /**
      * Register a namespace/directory pair
      *
-     * @param  string $namespace
-     * @param  string $directory
+     * @param string $namespace
+     * @param string $directory
+     *
      * @return $this
      */
     public function registerNamespace($namespace, $directory)
@@ -689,10 +709,10 @@ class Autoloader
     /**
      * Register many namespace/directory pairs at once
      *
-     * @param  array $namespaces
+     * @param array $namespaces
      *
-     * @throws \InvalidArgumentException
      * @return $this
+     * @throws \InvalidArgumentException
      */
     public function registerNamespaces($namespaces)
     {
@@ -712,7 +732,8 @@ class Autoloader
     /**
      * Normalize the directory to include a trailing directory separator
      *
-     * @param  string $directory
+     * @param string $directory
+     *
      * @return string
      */
     protected function normalizeDirectory($directory)
@@ -732,7 +753,7 @@ class Autoloader
 /**
  * Interface for autoloaders to be registered with "spl_autoload_register"
  *
- * @see http://php.net/manual/en/function.spl-autoload-register.php
+ * @see    http://php.net/manual/en/function.spl-autoload-register.php
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 interface SplAutoloader
@@ -742,7 +763,7 @@ interface SplAutoloader
      *
      * Allow configuration of the autoloader via the constructor.
      *
-     * @param  null|array|Traversable $options
+     * @param null|array|Traversable $options
      *
      * @return \Pi\Application\SplAutoloader
      */
@@ -754,7 +775,8 @@ interface SplAutoloader
      * In most cases, $options should be either an associative array or
      * Traversable object.
      *
-     * @param  array|Traversable $options
+     * @param array|Traversable $options
+     *
      * @return SplAutoloader
      */
     public function setOptions($options);

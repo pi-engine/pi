@@ -38,6 +38,7 @@ class FormFieldset extends AbstractHelper
      * If set to true, collections are automatically wrapped around a fieldset
      *
      * @param bool $wrap
+     *
      * @return self
      */
     public function setShouldWrap($wrap)

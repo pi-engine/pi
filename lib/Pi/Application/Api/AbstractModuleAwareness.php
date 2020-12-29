@@ -38,6 +38,7 @@ abstract class AbstractModuleAwareness
      * Set module for the API class
      *
      * @param string $module
+     *
      * @return $this
      */
     public function setModule($module)

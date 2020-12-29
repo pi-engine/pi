@@ -37,6 +37,7 @@ class Standard extends AbstractEngine
 
     /**
      * Resource container
+     *
      * @var array
      */
     protected $resources
@@ -112,11 +113,13 @@ class Standard extends AbstractEngine
                 try {
                     Pi::service($service, $options);
                 } catch (\Exception $e) {
-                    trigger_error(sprintf(
-                        'Service "%s" failed: %s',
-                        $service,
-                        $e->getMessage()
-                    ), E_USER_ERROR);
+                    trigger_error(
+                        sprintf(
+                            'Service "%s" failed: %s',
+                            $service,
+                            $e->getMessage()
+                        ), E_USER_ERROR
+                    );
                     return false;
                 }
             }
@@ -152,7 +155,8 @@ class Standard extends AbstractEngine
      * Loads a resource
      *
      * @param string $resource
-     * @param array $options Custom options
+     * @param array  $options Custom options
+     *
      * @return void
      */
     public function bootResource($resource, $options = [])
@@ -167,10 +171,7 @@ class Standard extends AbstractEngine
             } else {
                 if (!empty($this->resources['options'][$resource])) {
                     if (is_string($this->resources['options'][$resource])) {
-                        $opt = Pi::config()->load(
-                            sprintf('resource.%s.php',
-                                $this->resources['options'][$resource])
-                        );
+                        $opt = Pi::config()->load(sprintf('resource.%s.php', $this->resources['options'][$resource]));
                     } else {
                         $opt = $this->resources['options'][$resource];
                     }
@@ -178,15 +179,8 @@ class Standard extends AbstractEngine
                         $options = array_merge($opt, $options);
                     }
                 }
-                $resourceName     = str_replace(
-                    ' ',
-                    '',
-                    ucwords(str_replace('_', ' ', $resource))
-                );
-                $class            = sprintf(
-                    'Pi\Application\Bootstrap\Resource\\%s',
-                    $resourceName
-                );
+                $resourceName     = str_replace(' ', '', ucwords(str_replace('_', ' ', $resource)));
+                $class            = sprintf('Pi\Application\Bootstrap\Resource\\%s', $resourceName);
                 $resourceInstance = new $class($this, $options);
 
                 $result                                  = $resourceInstance->boot();

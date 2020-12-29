@@ -29,17 +29,16 @@ class Result extends BaseResult
      * Sets the result code, identity, failure messages and success data
      *
      * @param int|array $code
-     * @param mixed $identity
-     * @param array $messages
-     * @param array $data
+     * @param mixed     $identity
+     * @param array     $messages
+     * @param array     $data
      */
     public function __construct(
         $code,
         $identity = '',
         array $messages = [],
         array $data = []
-    )
-    {
+    ) {
         if (is_array($code)) {
             extract($code);
         }
@@ -53,6 +52,7 @@ class Result extends BaseResult
      * Set result data
      *
      * @param array $data
+     *
      * @return self
      */
     public function setData($data)
@@ -65,7 +65,8 @@ class Result extends BaseResult
     /**
      * Returns the result data
      *
-     * @param  string|null $column
+     * @param string|null $column
+     *
      * @return bool|mixed
      */
     public function getData($column = null)

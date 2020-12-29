@@ -16,7 +16,7 @@ use Pi\Log\DbProfiler;
 /**
  * Pi DB custom statement class
  *
- * @see http://www.php.net/manual/en/pdo.setattribute.php
+ * @see    http://www.php.net/manual/en/pdo.setattribute.php
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Statement extends PDOStatement
@@ -53,8 +53,8 @@ class Statement extends PDOStatement
      *
      * @param array|null $args
      *
-     * @throws \Exception
      * @return bool
+     * @throws \Exception
      */
     public function execute($args = null)
     {
@@ -84,14 +84,16 @@ class Statement extends PDOStatement
             }
             $parameters = array_merge($this->parameters, (array)$args);
             // Write to log container
-            $this->profiler->log([
-                'start'      => $start,
-                'elapse'     => microtime(true) - $start,
-                'sql'        => $this->queryString,
-                'parameters' => $parameters,
-                'message'    => $message,
-                'status'     => $status,
-            ]);
+            $this->profiler->log(
+                [
+                    'start'      => $start,
+                    'elapse'     => microtime(true) - $start,
+                    'sql'        => $this->queryString,
+                    'parameters' => $parameters,
+                    'message'    => $message,
+                    'status'     => $status,
+                ]
+            );
         }
 
         if ($exception) {
@@ -110,8 +112,7 @@ class Statement extends PDOStatement
         $data_type = PDO::PARAM_STR,
         $length = null,
         $driver_options = null
-    )
-    {
+    ) {
         $result = parent::bindParam(
             $parameter,
             $variable,

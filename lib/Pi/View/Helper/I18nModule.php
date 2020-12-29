@@ -24,8 +24,8 @@ use Laminas\View\Helper\AbstractHelper;
  *  $this->i18nModule('block', null, 'en');
  * ```
  *
- * @see Pi\Application\Service\I18n
- * @see Pi\Application\Service\Asset
+ * @see    Pi\Application\Service\I18n
+ * @see    Pi\Application\Service\Asset
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class I18nModule extends AbstractHelper
@@ -33,9 +33,10 @@ class I18nModule extends AbstractHelper
     /**
      * Load a module i18n resource
      *
-     * @param   string $domain
-     * @param   string|null $module
-     * @param   string|null $locale
+     * @param string      $domain
+     * @param string|null $module
+     * @param string|null $locale
+     *
      * @return  self
      */
     public function __invoke($domain, $module = null, $locale = null)

@@ -30,7 +30,8 @@ class BasePath extends AbstractHelper
     /**
      * Get base path
      *
-     * @param   string $file
+     * @param string $file
+     *
      * @return  string
      */
     public function __invoke($file = null)

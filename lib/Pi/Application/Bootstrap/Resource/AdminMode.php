@@ -14,9 +14,9 @@ use Laminas\Mvc\MvcEvent;
 /**
  * Admin operation mode handling
  *
- * @see Pi\Application\Bootstrap\Resource\AdminMode
- * @see Pi\View\Helper\AdminNav
- * @see Module\System\Controller\Admin\PermController
+ * @see    Pi\Application\Bootstrap\Resource\AdminMode
+ * @see    Pi\View\Helper\AdminNav
+ * @see    Module\System\Controller\Admin\PermController
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class AdminMode extends AbstractResource
@@ -54,6 +54,7 @@ class AdminMode extends AbstractResource
      * Set operation mode
      *
      * @param MvcEvent $e
+     *
      * @return void
      */
     public function setMode(MvcEvent $e)
@@ -65,8 +66,7 @@ class AdminMode extends AbstractResource
             $module     = $route->getParam('module');
             $controller = $route->getParam('controller');
             if ('system' == $module) {
-                $controllerClass = 'Module\System\Controller\Admin\\'
-                    . ucfirst($controller) . 'Controller';
+                $controllerClass = 'Module\System\Controller\Admin\\' . ucfirst($controller) . 'Controller';
                 /*
                  * @FIXME `is_subclass_of` does not call __autoload in case if first argument is an object.
                  *  If first argument is string, PHP will call __autoload.

@@ -16,13 +16,15 @@ define('ERROR_REPORTING_PRODUCTION', 0);
 /** @var int Development mode, all possible */
 define('ERROR_REPORTING_DEVELOPMENT', -1);
 /** @var int Debug/test mode, all errors except deprecated/notice messages */
-define('ERROR_REPORTING_DEBUG',
-    E_ALL & ~(E_DEPRECATED | E_USER_DEPRECATED | E_NOTICE));
+define(
+    'ERROR_REPORTING_DEBUG',
+    E_ALL & ~(E_DEPRECATED | E_USER_DEPRECATED | E_NOTICE)
+);
 
 /**
  * Custom error handler
  *
- * @link http://www.php.net/manual/en/function.set-error-handler.php
+ * @link   http://www.php.net/manual/en/function.set-error-handler.php
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class ErrorHandler
@@ -99,15 +101,17 @@ class ErrorHandler
             $logFile = is_string($options['fatal_error_log'])
                 ? $options['fatal_error_log']
                 : 'fatal-error';
-            register_shutdown_function(function () use ($logFile) {
-                $error = error_get_last();
-                if (null !== $error && $error['type'] == E_ERROR | E_PARSE) {
-                    $log = [
-                        [time(), [$error['message'], $error['file'], $error['line']]],
-                    ];
-                    Pi::service('audit')->write($logFile, $log);
+            register_shutdown_function(
+                function () use ($logFile) {
+                    $error = error_get_last();
+                    if (null !== $error && $error['type'] == E_ERROR | E_PARSE) {
+                        $log = [
+                            [time(), [$error['message'], $error['file'], $error['line']]],
+                        ];
+                        Pi::service('audit')->write($logFile, $log);
+                    }
                 }
-            });
+            );
         }
 
         return true;
@@ -116,7 +120,8 @@ class ErrorHandler
     /**
      * Register logging system as an error handler to log PHP errors
      *
-     * @param  Logger $logger
+     * @param Logger $logger
+     *
      * @return bool
      */
     public function register(Logger $logger = null)
@@ -146,6 +151,7 @@ class ErrorHandler
      * Set active
      *
      * @param bool|null $flag
+     *
      * @return self|bool
      */
     public function active($flag = null)
@@ -170,11 +176,12 @@ class ErrorHandler
     /**
      * Log error information
      *
-     * @param int $errno
+     * @param int    $errno
      * @param string $errstr
      * @param string $errfile
-     * @param int $errline
-     * @param array $errcontext
+     * @param int    $errline
+     * @param array  $errcontext
+     *
      * @return bool
      */
     public function handleError(
@@ -183,21 +190,22 @@ class ErrorHandler
         $errfile = '',
         $errline = 0,
         $errcontext = []
-    )
-    {
+    ) {
         if ($this->errorReporting & $errno) {
             if (isset($this->errorHandlerMap[$errno])) {
                 $priority = $this->errorHandlerMap[$errno];
             } else {
                 $priority = Logger::INFO;
             }
-            $this->logger->log($priority, $errstr, [
+            $this->logger->log(
+                $priority, $errstr, [
                 'errno'   => $errno,
                 'file'    => $errfile,
                 'line'    => $errline,
                 'context' => $errcontext,
                 'time'    => microtime(true),
-            ]);
+            ]
+            );
         }
 
         return true;

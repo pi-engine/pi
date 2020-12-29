@@ -30,7 +30,8 @@ class Plusone extends AbstractHtmlElement
     /**
      * Add a Google +1 button
      *
-     * @param   array $config
+     * @param array $config
+     *
      * @return  string
      */
     public function __invoke($config = [])

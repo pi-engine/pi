@@ -82,9 +82,9 @@ class SocialSharing extends AbstractService
      * Build item specifications
      *
      * @param string|array $item
-     * @param string $title
-     * @param string $url
-     * @param string $image
+     * @param string       $title
+     * @param string       $url
+     * @param string       $image
      *
      * @return array|null
      */

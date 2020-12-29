@@ -66,6 +66,7 @@ class Route extends AbstractResource
      * by module name and route key as: `<module>-<route-key>`
      *
      * @param array $configs
+     *
      * @return array
      */
     protected function canonize(array $configs)

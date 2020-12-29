@@ -28,6 +28,7 @@ class RowGateway extends AbstractRowGateway
 {
     /**
      * Primary key column, scalar
+     *
      * @var string
      */
     protected $pkColumn = null;
@@ -39,7 +40,7 @@ class RowGateway extends AbstractRowGateway
      */
     protected $model;
 
-    protected $_oldData = array();
+    protected $_oldData = [];
 
     /**
      * Table fields/columns.
@@ -54,6 +55,7 @@ class RowGateway extends AbstractRowGateway
      * specified as pairs of column name and bool value:
      * true - to convert to associative array for decode;
      * false - keep as array object.
+     *
      * @var array
      */
     protected $encodeColumns = [];
@@ -61,9 +63,9 @@ class RowGateway extends AbstractRowGateway
     /**
      * Constructor
      *
-     * @param string $primaryKeyColumn
+     * @param string                                                      $primaryKeyColumn
      * @param string|AbstractTableGateway|\Laminas\Db\Sql\TableIdentifier $table
-     * @param Adapter|Sql $adapterOrSql
+     * @param Adapter|Sql                                                 $adapterOrSql
      *
      * @return \Pi\Db\RowGateway\RowGateway
      */
@@ -71,8 +73,7 @@ class RowGateway extends AbstractRowGateway
         $primaryKeyColumn,
         $table,
         $adapterOrSql = null
-    )
-    {
+    ) {
         // setup primary key
         $this->primaryKeyColumn = $primaryKeyColumn ?: $this->primaryKeyColumn;
         $this->pkColumn         = $this->primaryKeyColumn;
@@ -110,6 +111,7 @@ class RowGateway extends AbstractRowGateway
      * Set columns
      *
      * @param array $columns
+     *
      * @return $this
      */
     public function setColumns(array $columns)
@@ -144,6 +146,7 @@ class RowGateway extends AbstractRowGateway
      * Set columns to be encode/decode
      *
      * @param array $columns
+     *
      * @return $this
      */
     public function setEncodeColumns(array $columns)
@@ -166,7 +169,8 @@ class RowGateway extends AbstractRowGateway
     /**
      * Encode content
      *
-     * @param  array|resource|object $value
+     * @param array|resource|object $value
+     *
      * @return string
      */
     protected function encodeValue($value)
@@ -180,7 +184,8 @@ class RowGateway extends AbstractRowGateway
      * Decode content
      *
      * @param string $value
-     * @param bool $assoc
+     * @param bool   $assoc
+     *
      * @return array|resource|object
      */
     protected function decodeValue($value, $assoc = true)
@@ -193,6 +198,7 @@ class RowGateway extends AbstractRowGateway
      * Encode non-scalar columns
      *
      * @param array $data
+     *
      * @return array
      */
     protected function encode($data)
@@ -216,6 +222,7 @@ class RowGateway extends AbstractRowGateway
      * Decode non-scalar columns
      *
      * @param array $data
+     *
      * @return array
      */
     public function decode($data)
@@ -237,6 +244,7 @@ class RowGateway extends AbstractRowGateway
      * Encode a non-scalar column
      *
      * @param string $column Column/field name
+     *
      * @return string
      */
     public function encodeColumn($column)
@@ -248,7 +256,8 @@ class RowGateway extends AbstractRowGateway
      * Decode a non-scalar column
      *
      * @param string $column Column/field name
-     * @param bool $assoc
+     * @param bool   $assoc
+     *
      * @return array|object|resource
      */
     public function decodeColumn($column, $assoc = true)
@@ -261,7 +270,8 @@ class RowGateway extends AbstractRowGateway
      * Populate Data
      *
      * @param array $rowData
-     * @param bool $rowExistsInDatabase If row is already in DB
+     * @param bool  $rowExistsInDatabase If row is already in DB
+     *
      * @return $this
      */
     public function populate(array $rowData, $rowExistsInDatabase = false)
@@ -283,7 +293,7 @@ class RowGateway extends AbstractRowGateway
      * Save a row
      *
      * @param bool $rePopulate To re-populate data
-     * @param bool $filter Filter invalid columns
+     * @param bool $filter     Filter invalid columns
      *
      * @return int
      */
@@ -446,13 +456,14 @@ class RowGateway extends AbstractRowGateway
     /**
      * Offset set
      *
-     * @param  string $offset
-     * @param  mixed $value
+     * @param string $offset
+     * @param mixed  $value
+     *
      * @return RowGateway
      */
     public function offsetSet($offset, $value)
     {
-        if(isset($this->_oldData) && isset($this->data[$offset])){
+        if (isset($this->_oldData) && isset($this->data[$offset])) {
             $this->_oldData[$offset] = $this->data[$offset];
         }
 

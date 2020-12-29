@@ -54,9 +54,9 @@ class JQuery extends AssetCanonize
     /**
      * Load jQuery files
      *
-     * @param   null|string|array $files
-     * @param   array $attributes
-     * @param   bool|null $appendVersion
+     * @param null|string|array $files
+     * @param array             $attributes
+     * @param bool|null         $appendVersion
      *
      * @return  $this
      */
@@ -64,8 +64,7 @@ class JQuery extends AssetCanonize
         $files = null,
         $attributes = [],
         $appendVersion = null
-    )
-    {
+    ) {
         $files = $this->canonize($files, $attributes);
         if (empty(static::$rootLoaded)) {
             if (isset($files['jquery.min.js'])) {

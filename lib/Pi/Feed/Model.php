@@ -36,6 +36,7 @@ class Model
      * Set feed type
      *
      * @param string $type
+     *
      * @return $this
      */
     public function setType($type)
@@ -63,6 +64,7 @@ class Model
      * Assign data to model
      *
      * @param array $data
+     *
      * @return $this
      */
     public function assign(array $data)
@@ -78,6 +80,7 @@ class Model
      * Magic method for unset
      *
      * @param string $var
+     *
      * @return void
      */
     public function __unset($var)
@@ -91,7 +94,8 @@ class Model
      * Magic method for set
      *
      * @param string $var
-     * @param mixed $val
+     * @param mixed  $val
+     *
      * @return mixed
      */
     public function __set($var, $val)
@@ -116,6 +120,7 @@ class Model
      * Magic method for get
      *
      * @param string $var
+     *
      * @return mixed
      */
     public function __get($var)
@@ -170,39 +175,41 @@ class Model
         $logoFile = Pi::service('asset')->logo();
         $logo     = Pi::url($logoFile, true);
 
-        $this->assign([
-            'copyright'   => Pi::config('copyright')
-                ?: Pi::config('sitename'),
-            'description' => Pi::config('description')
-                ?: Pi::config('slogan'),
-            'authors'     => [[
-                                  'name'  => Pi::config('author'),
-                                  'email' => Pi::config('adminmail'),
-                              ]],
-            'generator'   => [
-                'name'    => 'Pi Engine',
-                'version' => Pi::config('version'),
-                'uri'     => 'http://piengine.org',
-            ],
-            'image'       => [
-                'uri'   => $logo,
-                'title' => Pi::config('sitename'),
-                'link'  => Pi::url('www', true),
-            ],
+        $this->assign(
+            [
+                'copyright'   => Pi::config('copyright')
+                    ?: Pi::config('sitename'),
+                'description' => Pi::config('description')
+                    ?: Pi::config('slogan'),
+                'authors'     => [[
+                                      'name'  => Pi::config('author'),
+                                      'email' => Pi::config('adminmail'),
+                                  ]],
+                'generator'   => [
+                    'name'    => 'Pi Engine',
+                    'version' => Pi::config('version'),
+                    'uri'     => 'http://piengine.org',
+                ],
+                'image'       => [
+                    'uri'   => $logo,
+                    'title' => Pi::config('sitename'),
+                    'link'  => Pi::url('www', true),
+                ],
 
-            'language'  => Pi::service('i18n')->locale,
-            'link'      => Pi::url('www', true),
-            'feed_link' => [
-                'link' => Pi::url('www', true),
-                'type' => $this->type,
-            ],
-            'title'     => sprintf(
-                __('Feed of %s'),
-                Pi::config('sitename')
-            ),
-            'encoding'  => Pi::service('i18n')->charset,
-            'base_url'  => Pi::url('www', true),
-            'entries'   => [],
-        ]);
+                'language'  => Pi::service('i18n')->locale,
+                'link'      => Pi::url('www', true),
+                'feed_link' => [
+                    'link' => Pi::url('www', true),
+                    'type' => $this->type,
+                ],
+                'title'     => sprintf(
+                    __('Feed of %s'),
+                    Pi::config('sitename')
+                ),
+                'encoding'  => Pi::service('i18n')->charset,
+                'base_url'  => Pi::url('www', true),
+                'entries'   => [],
+            ]
+        );
     }
 }

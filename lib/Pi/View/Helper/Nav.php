@@ -34,8 +34,9 @@ class Nav extends Navigation
      * Load a navigation
      *
      * @param string $name navigation name
-     * @param array $options
-     *      Render options: cache_ttl, cache_level, cache_id
+     * @param array  $options
+     *                     Render options: cache_ttl, cache_level, cache_id
+     *
      * @return  self|false
      */
     public function __invoke($name = null, $options = [])

@@ -59,6 +59,7 @@ class Event extends AbstractResource
      * Canonize event spec data
      *
      * @param array $config
+     *
      * @return array
      */
     protected function canonize(array $config)
@@ -93,10 +94,10 @@ class Event extends AbstractResource
             $result['event'][$event['name']] = $event;
         }
         foreach ($listeners as $listener) {
-            list($eventModule, $eventName) = $listener['event'];
+            [$eventModule, $eventName] = $listener['event'];
             $callback = !empty($listener['callback'])
                 ? $listener['callback'] : $listener['listener'];
-            list($class, $method) = $callback;
+            [$class, $method] = $callback;
             $data                 = [];
             $data['event_module'] = $eventModule;
             $data['event_name']   = $eventName;
@@ -188,10 +189,12 @@ class Event extends AbstractResource
                     ];
                 }
                 // Delete listeners
-                $modelListener->delete([
-                    'event_name'   => $row->name,
-                    'event_module' => $row->module,
-                ]);
+                $modelListener->delete(
+                    [
+                        'event_name'   => $row->name,
+                        'event_module' => $row->module,
+                    ]
+                );
                 $status = true;
                 if (!$status) {
                     $message = 'Listeners for deprecated event "%s"'
@@ -234,16 +237,14 @@ class Event extends AbstractResource
         $listeners    = $config['listener'];
         $listenerList = [];
         foreach ($listeners as $listener) {
-            $key                = $listener['event_module'] . '-' . $listener['event_name']
-                . '-' . $listener['class'] . '-' . $listener['method'];
+            $key                = $listener['event_module'] . '-' . $listener['event_name'] . '-' . $listener['class'] . '-' . $listener['method'];
             $listenerList[$key] = $listener;
         }
 
         $rowset    = $modelListener->select(['module' => $module]);
         $flushList = [];
         foreach ($rowset as $row) {
-            $key = $row['event_module'] . '-' . $row['event_name']
-                . '-' . $row['class'] . '-' . $row['method'];
+            $key = $row['event_module'] . '-' . $row['event_name'] . '-' . $row['class'] . '-' . $row['method'];
 
             // Delete deprecated listeners
             if (!isset($listenerList[$key])) {

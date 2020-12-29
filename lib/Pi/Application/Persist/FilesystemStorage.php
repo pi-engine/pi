@@ -48,7 +48,8 @@ class FilesystemStorage extends AbstractStorage
      * Find file name for a cached object
      *
      * @param string $id
-     * @param bool $hash
+     * @param bool   $hash
+     *
      * @return string
      */
     protected function fileName($id, $hash = false)

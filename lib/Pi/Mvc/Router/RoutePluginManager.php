@@ -29,17 +29,17 @@ class RoutePluginManager extends LaminasRoutePluginManager
      * createFromInvokable() will use these and pass them to the instance
      * constructor if not null and a non-empty array.
      *
-     * @param  string $name
-     * @param  array $options
-     * @param  bool $usePeeringServiceManagers
+     * @param string $name
+     * @param array  $options
+     * @param bool   $usePeeringServiceManagers
+     *
      * @return object
      */
     public function get(
         $name,
         $options = [],
         $usePeeringServiceManagers = true
-    )
-    {
+    ) {
         if (!$this->has($name) && !class_exists($name)) {
             $class = sprintf(
                 '%s\\%s\\%s',
@@ -64,6 +64,7 @@ class RoutePluginManager extends LaminasRoutePluginManager
      * Set subnamespace
      *
      * @param string $namespace
+     *
      * @return self
      */
     public function setSubNamespace($namespace)

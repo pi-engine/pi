@@ -131,6 +131,7 @@ class Upload extends Transfer
 {
     /**
      * Destination path for uploaded files
+     *
      * @var string
      */
     protected $destination;
@@ -141,8 +142,8 @@ class Upload extends Transfer
     /**
      * Creates a file upload handler
      *
-     * @param  array $options OPTIONAL Options to set for this adapter
-     * @param  string $adapter Adapter to use
+     * @param array  $options OPTIONAL Options to set for this adapter
+     * @param string $adapter Adapter to use
      */
     public function __construct($options = [], $adapter = 'Http')
     {
@@ -173,9 +174,10 @@ class Upload extends Transfer
     /**
      * Set upload destination
      *
-     * @param string $value Absolute path to store files,
-     *      or path relative to Pi::path('upload')
-     * @param bool $verify To very destination path availability
+     * @param string $value  Absolute path to store files,
+     *                       or path relative to Pi::path('upload')
+     * @param bool   $verify To very destination path availability
+     *
      * @return $this
      */
     public function setDestination($value, $verify = true)
@@ -213,6 +215,7 @@ class Upload extends Transfer
      * Set upload rename filter
      *
      * @param string|Closure|bool $value New name or renaming strategy
+     *
      * @return $this
      * @see Pi\Filter\File\Rename for supported renaming strategy
      */
@@ -232,6 +235,7 @@ class Upload extends Transfer
      * Set upload extensions
      *
      * @param string|array $value
+     *
      * @return $this
      */
     public function setExtension($value)
@@ -245,6 +249,7 @@ class Upload extends Transfer
      * Set upload excluding extensions
      *
      * @param string|array $value
+     *
      * @return $this
      */
     public function setExcludeExtension($value)
@@ -266,6 +271,7 @@ class Upload extends Transfer
      *      - 'useByteString': Use bytestring or real size for messages
      *
      * @param int|array $value
+     *
      * @return $this
      */
     public function setSize($value)
@@ -286,6 +292,7 @@ class Upload extends Transfer
      *  - maxwidth
      *
      * @param array $value
+     *
      * @return $this
      */
     public function setImageSize($value)
@@ -299,7 +306,7 @@ class Upload extends Transfer
      * Get uploaded file name(s)
      *
      * @param string $name Variable name in upload form
-     * @param bool $path To include full path
+     * @param bool   $path To include full path
      *
      * @return string|string[]
      */

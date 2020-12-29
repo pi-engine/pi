@@ -29,21 +29,25 @@ class FormCaptcha extends AbstractHelper
         $captcha = $element->getCaptcha();
 
         if ($captcha === null || !$captcha instanceof CaptchaAdapter) {
-            throw new \DomainException(sprintf(
-                '%s requires that the element has a "captcha" attribute'
-                . ' implementing Laminas\Captcha\AdapterInterface; none found',
-                __METHOD__
-            ));
+            throw new \DomainException(
+                sprintf(
+                    '%s requires that the element has a "captcha" attribute'
+                    . ' implementing Laminas\Captcha\AdapterInterface; none found',
+                    __METHOD__
+                )
+            );
         }
 
         $helper   = $captcha->getHelperName();
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
-            throw new \DomainException(sprintf(
-                '%s requires that the renderer implements plugin();'
-                . ' it does not',
-                __METHOD__
-            ));
+            throw new \DomainException(
+                sprintf(
+                    '%s requires that the renderer implements plugin();'
+                    . ' it does not',
+                    __METHOD__
+                )
+            );
         }
 
         $helper = $renderer->plugin($helper);
@@ -75,9 +79,10 @@ class FormCaptcha extends AbstractHelper
     /**
      * Set separator for display
      *
-     * @see Pi\Form\View\Helper\Captcha\Image
      * @param string $separator
+     *
      * @return FormCaptcha
+     * @see Pi\Form\View\Helper\Captcha\Image
      */
     public function setSeparator($separator)
     {
@@ -89,9 +94,10 @@ class FormCaptcha extends AbstractHelper
     /**
      * Set CAPTCHA image display position
      *
-     * @see Pi\Form\View\Helper\Captcha\Image
      * @param string $position
+     *
      * @return FormCaptcha
+     * @see Pi\Form\View\Helper\Captcha\Image
      */
     public function setCaptchaPosition($position)
     {

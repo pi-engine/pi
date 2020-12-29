@@ -22,6 +22,7 @@ interface StorageInterface extends LaminasStorageInterface
      * Set options
      *
      * @param array $options
+     *
      * @return void
      */
     public function setOptions($options = []);

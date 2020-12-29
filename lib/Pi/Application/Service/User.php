@@ -114,7 +114,7 @@ use Pi\User\Resource\AbstractResource;
  * @property-read AbstractResource $message
  * @property-read AbstractResource $timeline
  *
- * @see Pi\User\Adapter\AbstractAdapter for detailed user specific APIs
+ * @see    Pi\User\Adapter\AbstractAdapter for detailed user specific APIs
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class User extends AbstractService
@@ -178,6 +178,7 @@ class User extends AbstractService
      * Set service adapter
      *
      * @param AbstractAdapter $adapter
+     *
      * @return self
      */
     public function setAdapter(AbstractAdapter $adapter)
@@ -222,11 +223,11 @@ class User extends AbstractService
      *
      * @param UserModel|int|string|null $identity
      *      User id, identity or UserModel
-     * @param string $field
+     * @param string                    $field
      *      Field of the identity: id, identity
      *
-     * @throws \Exception
      * @return self
+     * @throws \Exception
      */
     public function bind($identity = null, $field = 'id')
     {
@@ -352,7 +353,7 @@ class User extends AbstractService
      * Get current request IP
      *
      * @param bool $proxy Check proxy
-     * @param bool $ipv6 Return IPV6
+     * @param bool $ipv6  Return IPV6
      *
      * @return string
      */
@@ -360,10 +361,12 @@ class User extends AbstractService
     {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP'];
-        } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
         } else {
-            $ip = $_SERVER['REMOTE_ADDR'];
+            if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
         }
 //        $remoteAddress = new RemoteAddress;
 //        $ip = $remoteAddress->setUseProxy($proxy)->getIpAddress();
@@ -374,8 +377,9 @@ class User extends AbstractService
     /**
      * Update a user
      *
-     * @param   int $uid
-     * @param   array $fields
+     * @param int   $uid
+     * @param array $fields
+     *
      * @return  int|bool
      * @api
      */
@@ -392,9 +396,10 @@ class User extends AbstractService
     /**
      * Set value of a user field
      *
-     * @param int $uid
+     * @param int    $uid
      * @param string $field
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return bool
      * @api
      */
@@ -411,7 +416,7 @@ class User extends AbstractService
     /**
      * Set user role(s)
      *
-     * @param int $uid
+     * @param int          $uid
      * @param string|array $role
      *
      * @return bool
@@ -430,7 +435,7 @@ class User extends AbstractService
     /**
      * Revoke user role(s)
      *
-     * @param int $uid
+     * @param int          $uid
      * @param string|array $role
      *
      * @return bool
@@ -449,9 +454,9 @@ class User extends AbstractService
     /**
      * Get user role
      *
-     * @param int $uid
+     * @param int    $uid
      * @param string $section Section name: admin, front
-     * @param bool $force Force to fetch
+     * @param bool   $force   Force to fetch
      *
      * @return array
      */
@@ -498,7 +503,8 @@ class User extends AbstractService
      *  - <extra fields>: specified by each adapter
      *
      * @param string|array|bool|UserModel $name
-     * @param null|mixed $value
+     * @param null|mixed                  $value
+     *
      * @return self
      */
     public function setPersist($name, $value = null)
@@ -544,6 +550,7 @@ class User extends AbstractService
      * Get user persist profile
      *
      * @param string|null $name
+     *
      * @return mixed|null
      */
     public function getPersist($name = null)
@@ -600,6 +607,7 @@ class User extends AbstractService
      * Get get resource handler or user variables
      *
      * @param string $var
+     *
      * @return AbstractResource|mixed
      */
     public function __get($var)
@@ -614,8 +622,9 @@ class User extends AbstractService
      *
      * Call APIs defined in {@link Pi\User\Adapter\AbstractAdapter}
      *
-     * @param  string $method
-     * @param  array $args
+     * @param string $method
+     * @param array  $args
+     *
      * @return mixed
      */
     public function __call($method, $args)

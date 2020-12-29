@@ -61,6 +61,7 @@ abstract class AbstractStrategy
      * Set options
      *
      * @param array|string $options Array of options or config file name
+     *
      * @return void
      */
     public function setOptions($options = [])
@@ -85,7 +86,7 @@ abstract class AbstractStrategy
      * Set an option
      *
      * @param string $name
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return $this
      */
@@ -171,7 +172,7 @@ abstract class AbstractStrategy
     /**
      * Get URIs
      *
-     * @param string $type Type for URI: login, logout
+     * @param string       $type Type for URI: login, logout
      * @param array|string $params
      *
      * @return string

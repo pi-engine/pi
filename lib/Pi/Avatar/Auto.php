@@ -64,9 +64,9 @@ class Auto extends AbstractAvatar
     /**
      * Get avatars of a list of users
      *
-     * @param int[] $uids
+     * @param int[]  $uids
      * @param string $size
-     * @param array $attributes
+     * @param array  $attributes
      *
      * @return array
      */
@@ -159,7 +159,7 @@ class Auto extends AbstractAvatar
      *
      * @param string $data
      * @param string $size
-     * @param int $uid
+     * @param int    $uid
      *
      * @return string
      */

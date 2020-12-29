@@ -23,6 +23,7 @@ abstract class FeedController extends ActionController
      * Get feed data model
      *
      * @param array $data
+     *
      * @return DataModel;
      */
     public function getDataModel(array $data = [])

@@ -29,6 +29,7 @@ class SessionManager extends LaminasSessionManager implements
      *      the current session cookie;
      * - clear_storage: whether or not to empty the storage object of
      *      any stored values.
+     *
      * @var array
      */
     protected $defaultDestroyOptions
@@ -46,6 +47,7 @@ class SessionManager extends LaminasSessionManager implements
     /**
      * {@inheritDoc}
      * Start with specified session ID
+     *
      * @param string $sessionId
      */
     public function start($preserveStorage = false, $sessionId = '')
@@ -94,6 +96,7 @@ class SessionManager extends LaminasSessionManager implements
      * Set validators
      *
      * @param array $validators
+     *
      * @return self
      */
     public function setValidators($validators = [])
@@ -111,6 +114,7 @@ class SessionManager extends LaminasSessionManager implements
      * Get container
      *
      * @param string $name
+     *
      * @return Container
      */
     public function container($name = 'Default')
@@ -127,7 +131,8 @@ class SessionManager extends LaminasSessionManager implements
      *
      * Can safely be called in the middle of a session.
      *
-     * @param  null|int $ttl
+     * @param null|int $ttl
+     *
      * @return self
      */
     public function rememberMe($ttl = null)

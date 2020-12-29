@@ -95,12 +95,14 @@ class Download
 {
     /**
      * Exit current execution after the download
+     *
      * @var bool
      */
     protected $exit = true;
 
     /**
      * Path to temporary file for zip file
+     *
      * @var string
      */
     protected $tmp = '';
@@ -108,7 +110,7 @@ class Download
     /**
      * Creates a file download handler
      *
-     * @param  array $options OPTIONAL Options
+     * @param array $options OPTIONAL Options
      */
     public function __construct($options = [])
     {
@@ -119,6 +121,7 @@ class Download
      * Set options
      *
      * @param array $options
+     *
      * @return $this
      */
     public function setOptions($options = [])
@@ -135,11 +138,11 @@ class Download
     /**
      * Send the file to the client (Download)
      *
-     * @param string|array $source File or file meta to download
-     * @param array $options Options for the file(s) to send
+     * @param string|array $source  File or file meta to download
+     * @param array        $options Options for the file(s) to send
      *
-     * @throws \Exception
      * @return bool|void
+     * @throws \Exception
      */
     public function send($source, array $options = [])
     {
@@ -193,8 +196,8 @@ class Download
     /**
      * Canonize download options
      *
-     * @param string|array $source File or file meta to download
-     * @param array $options Options for the file(s) to send
+     * @param string|array $source  File or file meta to download
+     * @param array        $options Options for the file(s) to send
      *
      * @return string
      */
@@ -204,14 +207,16 @@ class Download
             $options['type'] = 'file';
         }
         if (is_array($source)) {
-            array_walk($source, function (&$item) {
+            array_walk(
+                $source, function (&$item) {
                 if (!is_array($item)) {
                     $item = ['filename' => $item];
                     if (empty($item['localname'])) {
                         $item['localname'] = basename($item['filename']);
                     }
                 }
-            });
+            }
+            );
             $zipFile = tempnam($this->tmp, 'zip');
             $zip     = new ZipArchive;
             if ($zip->open($zipFile, ZipArchive::CREATE) !== true) {
@@ -265,9 +270,9 @@ class Download
      * Send content to client
      *
      * @param Resource|string $source
-     * @param string $filename
-     * @param string $contentType
-     * @param int $contentLength
+     * @param string          $filename
+     * @param string          $contentType
+     * @param int             $contentLength
      *
      * @return bool
      */
@@ -276,8 +281,7 @@ class Download
         $filename,
         $contentType,
         $contentLength = 0
-    )
-    {
+    ) {
         $isIe = Pi::service('browser')->isIe();
         if ($isIe) {
             $contentType = $contentType ?: 'application/octet-stream';

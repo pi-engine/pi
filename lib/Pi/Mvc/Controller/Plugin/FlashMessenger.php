@@ -22,7 +22,7 @@ class FlashMessenger extends LaminasFlashMessenger
      * Add a message and return messenger
      *
      * @param string|string[] $message
-     * @param string $namespace
+     * @param string          $namespace
      *
      * @return $this
      */

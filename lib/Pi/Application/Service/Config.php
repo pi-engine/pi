@@ -141,7 +141,7 @@ class Config extends AbstractService
      * Get a config by name from a module,
      * or a category of configs if name not specified
      *
-     * @param string $name Name of the config element
+     * @param string $name   Name of the config element
      * @param string $module Module
      * @param string $domain Domain (category) name
      *
@@ -167,7 +167,7 @@ class Config extends AbstractService
     /**
      * Get a system config
      *
-     * @param string $name Name of the config element
+     * @param string $name   Name of the config element
      * @param string $domain Domain (category) name
      *
      * @return mixed|array    configuration value
@@ -203,9 +203,9 @@ class Config extends AbstractService
     /**
      * Set a config, or a category of configs
      *
-     * @param string|array $name Name of the config element, or associative configs
-     * @param mixed|string $value Config value or config domain if first arg is array
-     * @param string $domain Configuration domain
+     * @param string|array $name   Name of the config element, or associative configs
+     * @param mixed|string $value  Config value or config domain if first arg is array
+     * @param string       $domain Configuration domain
      *
      * @return $this
      */
@@ -225,8 +225,8 @@ class Config extends AbstractService
     /**
      * Set a category of configs
      *
-     * @param array $configs Associative configs
-     * @param string $domain Configuration domain
+     * @param array  $configs Associative configs
+     * @param string $domain  Configuration domain
      *
      * @return $this
      * @deprecated
@@ -239,8 +239,8 @@ class Config extends AbstractService
     /**
      * Set configuration data to a domain (category)
      *
-     * @param array $configs Associative array of config data
-     * @param string $domain Configuration domain
+     * @param array  $configs Associative array of config data
+     * @param string $domain  Configuration domain
      *
      * @return $this
      */
@@ -265,6 +265,7 @@ class Config extends AbstractService
      * Unset configuration data of a domain
      *
      * @param string $domain Configuration domain
+     *
      * @return $this
      */
     public function unsetDomain($domain = '')
@@ -309,7 +310,7 @@ class Config extends AbstractService
      *
      * @param string $configFile
      *      Name for the config file located inside var/config and sub folders
-     * @param bool $checkCustom
+     * @param bool   $checkCustom
      *
      * @return array
      */
@@ -343,8 +344,8 @@ class Config extends AbstractService
      * Write config data into config file
      *
      * @param string $file
-     * @param array $data
-     * @param bool $toCustom
+     * @param array  $data
+     * @param bool   $toCustom
      *
      * @return bool
      */
@@ -382,7 +383,7 @@ class Config extends AbstractService
      * Get full path to a config file
      *
      * @param string $file
-     * @param bool $isCustom
+     * @param bool   $isCustom
      *
      * @return string
      */

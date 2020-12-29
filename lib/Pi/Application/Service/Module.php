@@ -67,6 +67,7 @@ class Module extends AbstractService
      * Set current active module
      *
      * @param string $module
+     *
      * @return self
      */
     public function setModule($module)
@@ -124,6 +125,7 @@ class Module extends AbstractService
      * Initialize the service: load meta data from meta file
      *
      * @param bool $force Force to re-generate module meta data
+     *
      * @return bool
      */
     public function init($force = false)
@@ -165,6 +167,7 @@ class Module extends AbstractService
      * Check if a module is active
      *
      * @param string $module
+     *
      * @return bool
      */
     public function isActive($module)
@@ -192,7 +195,7 @@ class Module extends AbstractService
      *
      * @param string $module
      * @param string $type
-     * @param bool $fetch Fetch resource meta from config file
+     * @param bool   $fetch Fetch resource meta from config file
      *
      * @return array
      */
@@ -316,6 +319,7 @@ class Module extends AbstractService
      * Get path to a module
      *
      * @param string $module
+     *
      * @return string
      */
     public function path($module)
@@ -337,6 +341,7 @@ class Module extends AbstractService
      * while folder or `dirname` by tradition is its key name.
      *
      * @param string $module Module's dirname or identifier name
+     *
      * @return string
      */
     public function directory($module = null)
@@ -355,17 +360,17 @@ class Module extends AbstractService
      * Fetch content of an item from a type of module content by calling
      * `Module\<ModuleName>\Api\Content::getList()`
      *
-     * @param array $variables array of variables to be returned:
-     *                          title, summary, uid, time, etc.
-     * @param array $conditions associative array of conditions:
-     *                          item - item ID or ID list, module, type - optional, user, Where
-     * @param int $limit
-     * @param int $offset
+     * @param array        $variables  array of variables to be returned:
+     *                                 title, summary, uid, time, etc.
+     * @param array        $conditions associative array of conditions:
+     *                                 item - item ID or ID list, module, type - optional, user, Where
+     * @param int          $limit
+     * @param int          $offset
      * @param string|array $order
      *
-     * @throws \Exception
      * @return  array Associative array of returned content,
      *      or list of associative array if $item is an array
+     * @throws \Exception
      */
     public function content(
         array $variables,
@@ -373,8 +378,7 @@ class Module extends AbstractService
         $limit = 0,
         $offset = 0,
         $order = []
-    )
-    {
+    ) {
         if (!isset($conditions['module'])) {
             throw new \Exception('module is required.');
         }

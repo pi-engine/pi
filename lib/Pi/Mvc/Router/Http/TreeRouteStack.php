@@ -63,8 +63,7 @@ class TreeRouteStack extends LaminasTreeRouteStack
         Request $request,
         $pathOffset = null,
         array $options = []
-    )
-    {
+    ) {
         $routeMatch = parent::match($request, $pathOffset, $options);
         if ($routeMatch) {
             $module    = $routeMatch->getParam('module');
@@ -111,8 +110,8 @@ class TreeRouteStack extends LaminasTreeRouteStack
      * Parse by specified route
      *
      * @param Request $request
-     * @param string $name
-     * @param array $options
+     * @param string  $name
+     * @param array   $options
      *
      * @return RouteMatch|null
      */

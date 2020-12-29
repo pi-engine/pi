@@ -41,8 +41,10 @@ abstract class ActionController extends AbstractActionController
      * Stop the event trigger when
      *
      * @events dispatch.pre, dispatch.post
-     * @param  Request $request
-     * @param  null|Response $response
+     *
+     * @param Request       $request
+     * @param null|Response $response
+     *
      * @return Response|mixed
      */
     public function dispatch(Request $request, Response $response = null)
@@ -102,7 +104,8 @@ abstract class ActionController extends AbstractActionController
     /**
      * Execute the request
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return mixed
      * @throws \DomainException
      */
@@ -127,7 +130,7 @@ abstract class ActionController extends AbstractActionController
      *
      * Controller action will be skipped if this method returns false
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
      *
      * @return bool
      */
@@ -139,8 +142,8 @@ abstract class ActionController extends AbstractActionController
     /**
      * Perform tasks after action
      *
-     * @param  MvcEvent $e
-     * @param mixed $result Action result
+     * @param MvcEvent $e
+     * @param mixed    $result Action result
      *
      * @return bool
      */
@@ -174,8 +177,9 @@ abstract class ActionController extends AbstractActionController
     /**
      * Get database model
      *
-     * @param  string $name
-     * @param  array $options
+     * @param string $name
+     * @param array  $options
+     *
      * @return Pi\Application\Model\Model
      */
     public function getModel($name, $options = [])
@@ -187,6 +191,7 @@ abstract class ActionController extends AbstractActionController
      * Redirects to a 404 message page
      *
      * @param string $message
+     *
      * @return $this
      */
     protected function jumpTo404($message = '')
@@ -204,6 +209,7 @@ abstract class ActionController extends AbstractActionController
      * Redirects to a denied message page
      *
      * @param string $message
+     *
      * @return $this
      */
     protected function jumpToDenied($message = '')
@@ -219,8 +225,9 @@ abstract class ActionController extends AbstractActionController
     /**
      * Redirects to an error message page with specified response code
      *
-     * @param string $message
+     * @param string   $message
      * @param null|int $code Responsecode
+     *
      * @return $this
      */
     protected function jumpToException($message = '', $code = null)

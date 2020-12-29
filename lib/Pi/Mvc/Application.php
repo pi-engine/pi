@@ -26,12 +26,14 @@ class Application extends LaminasApplication
 {
     /**
      * Section: front, admin, feed, api
+     *
      * @var string
      */
     protected $section;
 
     /**
      * Engine
+     *
      * @var AbstractEngine
      */
     protected $engine;
@@ -40,6 +42,7 @@ class Application extends LaminasApplication
      * Set listeners
      *
      * @param string[] $listeners
+     *
      * @return $this
      */
     public function setListeners(array $listeners = [])
@@ -58,11 +61,12 @@ class Application extends LaminasApplication
      * Load application handler
      *
      * @param array $configuration
+     *
      * @return $this
      */
     public static function init($configuration = [])
     {
-        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : [];
+        $smConfig       = isset($configuration['service_manager']) ? $configuration['service_manager'] : [];
         $serviceManager = new ServiceManager(new Service\ServiceManagerConfig($smConfig));
         $serviceManager->setService('ApplicationConfig', $configuration);
         $serviceManager->get('Configuration')->exchangeArray($configuration);
@@ -80,6 +84,7 @@ class Application extends LaminasApplication
      * Set section, called by Engine
      *
      * @param string $section
+     *
      * @return $this
      */
     public function setSection($section = null)
@@ -103,6 +108,7 @@ class Application extends LaminasApplication
      * Set application boot engine
      *
      * @param AbstractEngine $engine
+     *
      * @return $this
      */
     public function setEngine(AbstractEngine $engine = null)
@@ -160,13 +166,15 @@ class Application extends LaminasApplication
          */
         if (Pi::service()->hasService('log')) {
             if ($this->getRouteMatch()) {
-                Pi::service('log')->info(sprintf(
-                    'Route: %s:%s-%s-%s.',
-                    $this->getSection(),
-                    $this->getRouteMatch()->getParam('module'),
-                    $this->getRouteMatch()->getParam('controller'),
-                    $this->getRouteMatch()->getParam('action')
-                ));
+                Pi::service('log')->info(
+                    sprintf(
+                        'Route: %s:%s-%s-%s.',
+                        $this->getSection(),
+                        $this->getRouteMatch()->getParam('module'),
+                        $this->getRouteMatch()->getParam('controller'),
+                        $this->getRouteMatch()->getParam('action')
+                    )
+                );
             } else {
                 Pi::service('log')->err($event->getError());
             }

@@ -18,7 +18,7 @@ use Pi\Markup\Renderer\AbstractRenderer;
  *
  * Renders content
  *
- * @see Pi\Application\Service\Markup
+ * @see    Pi\Application\Service\Markup
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Markup
@@ -28,12 +28,14 @@ class Markup
 
     /**
      * Encoding for renderer
+     *
      * @var string
      */
     protected $encoding = 'UTF-8';
 
     /**
      * Default global filters, potential: user, tag
+     *
      * @var array
      */
     protected $filters = [];
@@ -46,6 +48,7 @@ class Markup
 
     /**
      * Renderer
+     *
      * @var AbstractRenderer
      */
     protected $renderer;
@@ -96,7 +99,7 @@ class Markup
      * Set the renderer
      *
      * @param string|AbstractRenderer $renderer
-     * @param array $options
+     * @param array                   $options
      *
      * @return $this
      */
@@ -114,7 +117,7 @@ class Markup
      * Load parser
      *
      * @param string $parserName
-     * @param array $options
+     * @param array  $options
      *
      * @return AbstractParser
      */
@@ -137,7 +140,7 @@ class Markup
      * Load renderer
      *
      * @param string $rendererName
-     * @param array $options
+     * @param array  $options
      *
      * @return AbstractRenderer
      */
@@ -179,10 +182,10 @@ class Markup
     /**
      * Render content
      *
-     * @param string $content Raw content
-     * @param string $parser Markup format of raw content: `text`, `html`, `markdown`
+     * @param string       $content  Raw content
+     * @param string       $parser   Markup format of raw content: `text`, `html`, `markdown`
      * @param string|array $renderer Markup type for rendering (`html`, ``), or array for options
-     * @param array $options
+     * @param array        $options
      *
      * @return string
      */
@@ -191,8 +194,7 @@ class Markup
         $parser = null,
         $renderer = null,
         $options = []
-    )
-    {
+    ) {
         if (is_array($renderer)) {
             $options  = $renderer;
             $renderer = null;

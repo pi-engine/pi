@@ -37,9 +37,9 @@ class Page extends AbstractHtmlElement
     /**
      * Output page link
      *
-     * @param string $name Page name or slug
+     * @param string $name       Page name or slug
      * @param string $title
-     * @param array $attributes Link attributes
+     * @param array  $attributes Link attributes
      *
      * @return string
      */

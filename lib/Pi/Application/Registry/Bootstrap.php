@@ -25,8 +25,7 @@ class Bootstrap extends AbstractRegistry
     protected function loadDynamic($options = [])
     {
         $model  = Pi::model('bootstrap');
-        $select = $model->select()->order('priority ASC, id ASC')
-            ->where(['active' => 1]);
+        $select = $model->select()->order('priority ASC, id ASC')->where(['active' => 1]);
         $rowset = $model->selectWith($select);
 
         $configs = [];

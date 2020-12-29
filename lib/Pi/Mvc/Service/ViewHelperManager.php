@@ -21,12 +21,14 @@ class ViewHelperManager extends HelperPluginManager
 {
     /**
      * Default set of helpers
+     *
      * @var array
      */
     protected $invokableClasses = [];
 
     /**
      * Default set of helpers
+     *
      * @var array
      */
     protected $invokableList
@@ -141,6 +143,7 @@ class ViewHelperManager extends HelperPluginManager
 
     /**
      * Helper locations
+     *
      * @var string[]
      */
     protected $helperLocations
@@ -158,17 +161,17 @@ class ViewHelperManager extends HelperPluginManager
      * createFromInvokable() will use these and pass them to the instance
      * constructor if not null and a non-empty array.
      *
-     * @param  string $name
-     * @param  array $options
-     * @param  bool $usePeeringServiceManagers
+     * @param string $name
+     * @param array  $options
+     * @param bool   $usePeeringServiceManagers
+     *
      * @return Helper\HelperInterface
      */
     public function get(
         $name,
         $options = [],
         $usePeeringServiceManagers = true
-    )
-    {
+    ) {
         // Canonize invokable class from name
         if (!$this->has($name) && !class_exists($name)) {
             // Lookup in default invokable list
@@ -183,9 +186,11 @@ class ViewHelperManager extends HelperPluginManager
                 $name = $invokableClass;
                 // Lookup in helper locations
             } else {
-                $class = str_replace(' ', '', ucwords(
+                $class = str_replace(
+                    ' ', '', ucwords(
                     str_replace(['-', '_', '.', '\\', '/'], ' ', $name)
-                ));
+                )
+                );
                 foreach ($this->helperLocations as $location) {
                     $invokableClass = 'Pi\\' . $location . '\\' . $class;
                     if (class_exists($invokableClass)) {
@@ -208,7 +213,8 @@ class ViewHelperManager extends HelperPluginManager
     /**
      * Skip translation for view helpers
      *
-     * @param  Helper\HelperInterface $helper
+     * @param Helper\HelperInterface $helper
+     *
      * @return void
      */
     public function injectTranslator($helper)

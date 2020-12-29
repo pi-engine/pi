@@ -19,7 +19,7 @@ use Laminas\Db\RowGateway\AbstractRowGateway;
  * Pi authentication db table abstract adapter
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @see \Laminas\Authentication\DbTable\AbstractAdapter
+ * @see    \Laminas\Authentication\DbTable\AbstractAdapter
  */
 abstract class AbstractAdapter extends BaseAbstractAdapter implements
     AdapterInterface
@@ -78,7 +78,8 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
     /**
      * Set the table name to be used in the select query
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return self
      */
     public function setTableName($tableName)
@@ -91,7 +92,8 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
     /**
      * Set the column name to be used as the identity column
      *
-     * @param  string $identityColumn
+     * @param string $identityColumn
+     *
      * @return self
      */
     public function setIdentityColumn($identityColumn)
@@ -104,7 +106,8 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
     /**
      * Set the column name to be used as the credential column
      *
-     * @param  string $credentialColumn
+     * @param string $credentialColumn
+     *
      * @return self
      */
     public function setCredentialColumn($credentialColumn)
@@ -119,7 +122,8 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
      * with unique credentials. It accepts integers (0, 1) or boolean (true,
      * false) parameters. Default is false.
      *
-     * @param  int|bool $flag
+     * @param int|bool $flag
+     *
      * @return self
      */
     public function setAmbiguityIdentity($flag)
@@ -149,8 +153,8 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
      * making sure that this adapter was indeed setup properly with all
      * required pieces of information.
      *
-     * @throws \RuntimeException in the event that setup was not done properly
      * @return bool
+     * @throws \RuntimeException in the event that setup was not done properly
      */
     protected function authenticateSetup()
     {
@@ -186,7 +190,8 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
      * This method attempts to make
      * certain that only one record was returned in the resultset
      *
-     * @param  array $resultIdentities
+     * @param array $resultIdentities
+     *
      * @return bool|AuthenticationResult
      */
     protected function authenticateValidateResultSet(array $resultIdentities)
@@ -263,14 +268,16 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
             $options['adapter'] = $this->dbAdapter;
         }
         if (is_array($this->tableName)) {
-            list($modelName, $module) = $this->tableName;
+            [$modelName, $module] = $this->tableName;
         } else {
-            list($modelName, $module) = [$this->tableName, ''];
+            [$modelName, $module] = [$this->tableName, ''];
         }
         $model            = Pi::model($modelName, $module, $options);
-        $rowset           = $model->select([
-            $this->identityColumn => $this->identity,
-        ]);
+        $rowset           = $model->select(
+            [
+                $this->identityColumn => $this->identity,
+            ]
+        );
         $resultIdentities = [];
         foreach ($rowset as $row) {
             $resultIdentities[] = $row;
@@ -283,7 +290,8 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
      * Validate that the record in the resultset is indeed a record
      * that matched the identity provided to this adapter.
      *
-     * @param  array $resultIdentity
+     * @param array $resultIdentity
+     *
      * @return AuthenticationResult
      */
     abstract protected function authenticateValidateResult($resultIdentity);

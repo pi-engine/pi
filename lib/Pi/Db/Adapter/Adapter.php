@@ -27,8 +27,7 @@ class Adapter extends LaminasAdapter
         $sql,
         $parametersOrQueryMode = self::QUERY_MODE_PREPARE,
         ResultSet\ResultSetInterface $resultPrototype = null
-    )
-    {
+    ) {
         if (is_string($parametersOrQueryMode) && in_array($parametersOrQueryMode, [self::QUERY_MODE_PREPARE, self::QUERY_MODE_EXECUTE])) {
             $mode       = $parametersOrQueryMode;
             $parameters = null;
@@ -64,7 +63,7 @@ class Adapter extends LaminasAdapter
         }
 
         if ($result instanceof Driver\ResultInterface && $result->isQueryResult()) {
-            $resultSet = clone ($resultPrototype ?: $this->queryResultSetPrototype);
+            $resultSet = clone($resultPrototype ?: $this->queryResultSetPrototype);
             $resultSet->initialize($result);
             return $resultSet;
         }

@@ -58,9 +58,9 @@ class Bootstrap extends AssetCanonize
     /**
      * Load bootstrap files
      *
-     * @param   null|string|array $files
-     * @param   array $attributes
-     * @param   bool|null $appendVersion
+     * @param null|string|array $files
+     * @param array             $attributes
+     * @param bool|null         $appendVersion
      *
      * @return  $this
      */
@@ -90,7 +90,7 @@ class Bootstrap extends AssetCanonize
             $attrs         = $this->canonizeFile($bootstrap);
             $attrs['href'] = $url;
 
-            if($deferBootstrapCss){
+            if ($deferBootstrapCss) {
                 $attrs['defer'] = 'defer';
             }
 

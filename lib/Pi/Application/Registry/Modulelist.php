@@ -21,7 +21,8 @@ class Modulelist extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
-     * @param   array $options potential values for type: active, inactive
+     * @param array $options potential values for type: active, inactive
+     *
      * @return  array
      *  - keys: directory, name, title, id, logo, version, update, icon
      */
@@ -67,7 +68,7 @@ class Modulelist extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $type Default as active:
+     * @param string $type          Default as active:
      *                              active - all active modules;
      *                              inactive - all inactive modules.
      */
@@ -81,7 +82,7 @@ class Modulelist extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $type Default as active:
+     * @param string $type          Default as active:
      *                              active - all active modules;
      *                              inactive - all inactive modules.
      */

@@ -20,6 +20,7 @@ class Editor extends Textarea
 {
     /**
      * Seed attributes
+     *
      * @var array
      */
     protected $attributes

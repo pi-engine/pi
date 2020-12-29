@@ -42,8 +42,8 @@ abstract class AbstractComment extends AbstractApi
      *
      * @param int|int[] $id
      *
-     * @throws \Exception
      * @return array|bool
+     * @throws \Exception
      */
     public function get($id)
     {
@@ -73,8 +73,8 @@ abstract class AbstractComment extends AbstractApi
      *
      * @param RouteMatch|array $params
      *
-     * @throws \Exception
      * @return mixed|bool
+     * @throws \Exception
      */
     public function locate($params = null)
     {

@@ -77,8 +77,8 @@ class Upload extends AbstractAvatar
      *
      * @param string $source
      * @param string $size
-     * @param int $uid
-     * @param bool $toUrl
+     * @param int    $uid
+     * @param bool   $toUrl
      *
      * @return string
      */
@@ -87,8 +87,7 @@ class Upload extends AbstractAvatar
         $size = '',
         $uid = null,
         $toUrl = false
-    )
-    {
+    ) {
         if ($toUrl) {
             if (isset($this->options['root_url'])) {
                 $root = $this->options['root_url'];
@@ -109,11 +108,13 @@ class Upload extends AbstractAvatar
         }
         $size = $this->canonizeSize($size, false);
         if (is_callable($pattern)) {
-            $path = call_user_func($pattern, [
+            $path = call_user_func(
+                $pattern, [
                 'source' => $source,
                 'size'   => $size,
                 'uid'    => $uid,
-            ]);
+            ]
+            );
         } else {
             $path = str_replace(
                 ['source', 'size', 'uid'],
@@ -155,10 +156,10 @@ class Upload extends AbstractAvatar
      *  );
      * ```
      *
-     * @param int $uid User id
+     * @param int    $uid User id
      * @param string $source
-     *      Filename; A hased filename without extension will be generated
-     *      if it is not specified
+     *                    Filename; A hased filename without extension will be generated
+     *                    if it is not specified
      * @param string $size
      *
      * @return array|bool
@@ -196,7 +197,7 @@ class Upload extends AbstractAvatar
     /**
      * Generate hashed source name
      *
-     * @param int $uid
+     * @param int    $uid
      * @param string $source
      * @param string $extension
      *
@@ -212,11 +213,13 @@ class Upload extends AbstractAvatar
             }
         }
         if (!empty($this->options['source_hash'])) {
-            $result = call_user_func($this->options['source_hash'], [
+            $result = call_user_func(
+                $this->options['source_hash'], [
                 'uid'       => $uid,
                 'extension' => $extension,
                 'source'    => $source,
-            ]);
+            ]
+            );
         } else {
             $result = md5($uid) . '.' . $extension;
         }

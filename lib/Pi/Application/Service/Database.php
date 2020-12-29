@@ -80,8 +80,8 @@ class Database extends AbstractService
      *
      * @param DbGateway $db
      *
-     * @throws \Exception
      * @return PDO
+     * @throws \Exception
      */
     public function connect(DbGateway $db = null)
     {

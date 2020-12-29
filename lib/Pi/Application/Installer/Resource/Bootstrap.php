@@ -22,6 +22,7 @@ class Bootstrap extends AbstractResource
      * Canonize bootstrap data
      *
      * @param array $data
+     *
      * @return array
      */
     protected function canonize($data)

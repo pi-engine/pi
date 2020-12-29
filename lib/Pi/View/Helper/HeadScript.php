@@ -42,20 +42,21 @@ use Laminas\View\Helper\HeadScript as LaminasHeadScript;
  *  ?>
  * ```
  *
- * @see \Laminas\View\Helper\HeadScript for details.
+ * @see    \Laminas\View\Helper\HeadScript for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class HeadScript extends LaminasHeadScript
 {
 
-    protected $optionalAttributes = array(
-        'charset',
-        'crossorigin',
-        'defer',
-        'async',
-        'language',
-        'src',
-    );
+    protected $optionalAttributes
+        = [
+            'charset',
+            'crossorigin',
+            'defer',
+            'async',
+            'language',
+            'src',
+        ];
 
     /**#@+
      * Added by Taiwen Jiang
@@ -79,7 +80,8 @@ class HeadScript extends LaminasHeadScript
         if (!empty($item->attributes)) {
             foreach ($item->attributes as $key => $value) {
                 if ((!$this->arbitraryAttributesAllowed() && !in_array($key, $this->optionalAttributes))
-                    || in_array($key, array('conditional', 'noescape'))) {
+                    || in_array($key, ['conditional', 'noescape'])
+                ) {
                     continue;
                 }
                 if ('defer' == $key) {
@@ -94,7 +96,7 @@ class HeadScript extends LaminasHeadScript
 
         $type = ($this->autoEscape) ? $this->escape($item->type) : $item->type;
 
-        if($type == 'text/javascript'){
+        if ($type == 'text/javascript') {
             $html = '<script ' . $attrString . '>';
         } else {
             $html = '<script type="' . $type . '"' . $attrString . '>';
@@ -163,7 +165,8 @@ class HeadScript extends LaminasHeadScript
     /**
      * Retrieve string representation
      *
-     * @param  string|int $indent Amount of whitespaces or string to use for indention
+     * @param string|int $indent Amount of whitespaces or string to use for indention
+     *
      * @return string
      */
     public function toString($indent = null)
@@ -181,27 +184,31 @@ class HeadScript extends LaminasHeadScript
         $escapeStart = ($useCdata) ? '//<![CDATA[' : '//<!--';
         $escapeEnd   = ($useCdata) ? '//]]>' : '//-->';
 
-        $items = array();
+        $items = [];
         $this->getContainer()->ksort();
 
         // Load general config
         $configGeneral = Pi::config('', 'system', 'general');
 
         if (Pi::engine()->section() == 'front' && $configGeneral['compile_js']) {
-            $isUserSection = new IsUserSection();
-            $module = Pi::service('module')->current();
+            $isUserSection      = new IsUserSection();
+            $module             = Pi::service('module')->current();
             $isUserSectionValue = $isUserSection->__invoke($module);
 
-            if(!$isUserSectionValue){
-                $assetsByHash = array();
-                $baseUrl = Pi::url();
-                $basePath = Pi::host()->path(null);
+            if (!$isUserSectionValue) {
+                $assetsByHash = [];
+                $baseUrl      = Pi::url();
+                $basePath     = Pi::host()->path(null);
 
                 foreach ($this->getContainer()->getArrayCopy() as $key => $item) {
-                    if(!empty($item->type) && !empty($item->attributes['src']) && $item->type == 'text/javascript' && preg_match('#' . $baseUrl . '#', $item->attributes['src'])){
+                    if (!empty($item->type) && !empty($item->attributes['src']) && $item->type == 'text/javascript'
+                        && preg_match(
+                            '#' . $baseUrl . '#', $item->attributes['src']
+                        )
+                    ) {
                         $parts = parse_url($item->attributes['src']);
 
-                        if(empty($parts['query'])){
+                        if (empty($parts['query'])) {
                             $parts['query'] = '';
                         }
 
@@ -216,28 +223,28 @@ class HeadScript extends LaminasHeadScript
                     }
                 }
 
-                if($assetsByHash){
-                    foreach($assetsByHash as $defer => $assetsByHashDefer){
-                        $finalHash = md5(implode('', array_keys($assetsByHashDefer)));
-                        $compiledJsDirPath = Pi::host()->path('asset/compiled/js');
-                        $compiledJsDirUrl = Pi::url('asset/compiled/js');
+                if ($assetsByHash) {
+                    foreach ($assetsByHash as $defer => $assetsByHashDefer) {
+                        $finalHash          = md5(implode('', array_keys($assetsByHashDefer)));
+                        $compiledJsDirPath  = Pi::host()->path('asset/compiled/js');
+                        $compiledJsDirUrl   = Pi::url('asset/compiled/js');
                         $compiledJsFilePath = $compiledJsDirPath . DIRECTORY_SEPARATOR . $finalHash . '.js';
-                        $compiledJsFileUrl = $compiledJsDirUrl . DIRECTORY_SEPARATOR . $finalHash . '.js';
+                        $compiledJsFileUrl  = $compiledJsDirUrl . DIRECTORY_SEPARATOR . $finalHash . '.js';
 
-                        if(!is_dir($compiledJsDirPath)){
+                        if (!is_dir($compiledJsDirPath)) {
                             mkdir($compiledJsDirPath, 0777, true);
                         }
 
-                        if(!file_exists($compiledJsFilePath)){
+                        if (!file_exists($compiledJsFilePath)) {
                             file_put_contents($compiledJsFilePath, implode("\n\n\n", $assetsByHashDefer));
                         }
 
-                        $jsObject = new \stdClass();
-                        $jsObject->type = 'text/javascript';
+                        $jsObject                    = new \stdClass();
+                        $jsObject->type              = 'text/javascript';
                         $jsObject->attributes['ext'] = 'js';
                         $jsObject->attributes['src'] = $compiledJsFileUrl;
 
-                        if($defer == 'defer'){
+                        if ($defer == 'defer') {
 
                             $jsObject->attributes['defer'] = 'defer';
                         }

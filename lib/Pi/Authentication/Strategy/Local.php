@@ -73,6 +73,7 @@ class Local extends AbstractStrategy
      * Set adapter
      *
      * @param AdapterInterface $adapter
+     *
      * @return $this
      */
     public function setAdapter(AdapterInterface $adapter)
@@ -100,6 +101,7 @@ class Local extends AbstractStrategy
      * Set storage
      *
      * @param StorageInterface $storage
+     *
      * @return $this
      */
     public function setStorage(StorageInterface $storage)
@@ -127,6 +129,7 @@ class Local extends AbstractStrategy
      * Load authentication adapter
      *
      * @param array $config
+     *
      * @return AdapterInterface
      */
     public function loadAdapter($config = [])
@@ -145,6 +148,7 @@ class Local extends AbstractStrategy
      * Load authentication storage
      *
      * @param array $config
+     *
      * @return StorageInterface
      */
     public function loadStorage($config = [])

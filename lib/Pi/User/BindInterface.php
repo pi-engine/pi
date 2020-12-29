@@ -22,6 +22,7 @@ interface BindInterface
      * Bind a user to service
      *
      * @param UserModel $user
+     *
      * @return UserModel
      */
     public function bind(UserModel $user = null);

@@ -55,7 +55,8 @@ class AssetCanonize extends AbstractHelper
      * attached versioning number should be removed for detection
      *
      * @param string $file
-     * @param array $attrs
+     * @param array  $attrs
+     *
      * @return array
      * @see Pi\Application\Service\Asset::versionStamp()
      *      for versioning information
@@ -97,8 +98,9 @@ class AssetCanonize extends AbstractHelper
     /**
      * Canonize files and corresponding attributes
      *
-     * @param   null|string|array $files
-     * @param   array $attributes
+     * @param null|string|array $files
+     * @param array             $attributes
+     *
      * @return array
      */
     protected function canonize($files = null, $attributes = [])

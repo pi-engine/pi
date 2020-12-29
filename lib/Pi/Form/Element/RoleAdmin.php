@@ -28,9 +28,11 @@ class RoleAdmin extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $rowset = Pi::model('acl_role')->select([
-                'section' => 'admin',
-            ]);
+            $rowset = Pi::model('acl_role')->select(
+                [
+                    'section' => 'admin',
+                ]
+            );
             $roles  = [
                 '' => __('None'),
             ];

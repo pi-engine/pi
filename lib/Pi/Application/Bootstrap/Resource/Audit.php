@@ -41,6 +41,7 @@ class Audit extends AbstractResource
      * Logging audit trail
      *
      * @param MvcEvent $e
+     *
      * @return void
      */
     public function log(MvcEvent $e)

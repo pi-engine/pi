@@ -57,7 +57,8 @@ class DbProfiler
      * Add a writer to a logger
      *
      * @param WriterInterface $writer
-     * @param int $priority
+     * @param int             $priority
+     *
      * @return self
      */
     public function addWriter(WriterInterface $writer, $priority = 1)
@@ -71,6 +72,7 @@ class DbProfiler
      * Register query profiler info
      *
      * @param array $info
+     *
      * @return self
      */
     public function log(array $info)

@@ -22,7 +22,8 @@ class ControllerManager extends LaminasControllerManager
     /**
      * Canonize name
      *
-     * @param  string $name
+     * @param string $name
+     *
      * @return string
      */
     protected function canonicalizeName($name)

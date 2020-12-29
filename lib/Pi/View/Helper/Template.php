@@ -41,9 +41,9 @@ use Laminas\View\Helper\AbstractHelper;
  *  include $this->template('header.phtml');
  * ```
  *
- * @see Pi\View\Resolver\ModuleTemplate
- * @see Pi\View\Resolver\ThemeTemplate
- * @see Pi\View\Resolver\ComponentTemplate
+ * @see    Pi\View\Resolver\ModuleTemplate
+ * @see    Pi\View\Resolver\ThemeTemplate
+ * @see    Pi\View\Resolver\ComponentTemplate
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Template extends AbstractHelper
@@ -51,7 +51,8 @@ class Template extends AbstractHelper
     /**
      * Get full path to a module template
      *
-     * @param   string $template
+     * @param string $template
+     *
      * @return  string
      */
     public function __invoke($template)

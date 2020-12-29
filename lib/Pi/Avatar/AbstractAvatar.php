@@ -26,6 +26,7 @@ abstract class AbstractAvatar
 
     /**
      * Options
+     *
      * @var array
      */
     protected $options;
@@ -100,8 +101,8 @@ abstract class AbstractAvatar
     /**
      * Build avatar img element
      *
-     * @param int $uid
-     * @param string $size
+     * @param int               $uid
+     * @param string            $size
      *      Size of image to display, integer for width, string for named size:
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
      * @param array|string|bool $attributes
@@ -149,9 +150,9 @@ abstract class AbstractAvatar
     /**
      * Get avatars of a list of users
      *
-     * @param int[] $uids
+     * @param int[]  $uids
      * @param string $size
-     * @param array $attributes
+     * @param array  $attributes
      *
      * @return array
      */
@@ -191,7 +192,7 @@ abstract class AbstractAvatar
     /**
      * Get user avatar link
      *
-     * @param int $uid
+     * @param int    $uid
      * @param string $size
      *      Size of image to display, integer for width, string for named size:
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
@@ -203,7 +204,7 @@ abstract class AbstractAvatar
     /**
      * Get user avatar links
      *
-     * @param int[] $uids
+     * @param int[]  $uids
      * @param string $size
      *
      * @return array
@@ -213,8 +214,8 @@ abstract class AbstractAvatar
     /**
      * Build user avatar link from corresponding source
      *
-     * @param string $source
-     * @param string $size
+     * @param string   $source
+     * @param string   $size
      *      Size of image to display, integer for width, string for named size:
      *      'mini', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'
      *
@@ -231,7 +232,7 @@ abstract class AbstractAvatar
      *
      * @param string|int $size
      *
-     * @param bool $toInt
+     * @param bool       $toInt
      *
      * @return int|string
      */

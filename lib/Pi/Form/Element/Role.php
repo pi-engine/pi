@@ -30,9 +30,11 @@ class Role extends Select
         if (empty($this->valueOptions)) {
             // Roles from section front or admin
             $section = $this->getOption('section') ?: 'front';
-            $rowset  = Pi::model('acl_role')->select([
-                'section' => $section,
-            ]);
+            $rowset  = Pi::model('acl_role')->select(
+                [
+                    'section' => $section,
+                ]
+            );
             $roles   = [
                 '' => __('None'),
             ];

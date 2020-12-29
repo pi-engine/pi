@@ -47,7 +47,7 @@ use Laminas\Authentication\Result as AuthenticationResult;
  *  }
  * ```
  *
- * @see Laminas\Authentication\AuthenticationService
+ * @see    Laminas\Authentication\AuthenticationService
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Authentication extends AbstractService
@@ -68,7 +68,7 @@ class Authentication extends AbstractService
      * Set strategy
      *
      * @param AbstractStrategy|string $strategy
-     * @param array $options
+     * @param array                   $options
      *
      * @return $this
      */
@@ -114,7 +114,7 @@ class Authentication extends AbstractService
     /**
      * Get URIs
      *
-     * @param string $type Type for URI: login, logout
+     * @param string       $type Type for URI: login, logout
      * @param array|string $params
      *
      * @return string

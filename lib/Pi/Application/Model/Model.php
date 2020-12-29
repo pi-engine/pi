@@ -32,6 +32,7 @@ class Model extends AbstractTableGateway
 
     /**
      * Return media links
+     *
      * @return array
      */
     public function getMediaLinks()

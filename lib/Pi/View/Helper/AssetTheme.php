@@ -23,7 +23,7 @@ use Laminas\View\Helper\AbstractHelper;
  *  $cssUri = $this->assetTheme('css/style.css', 'default');
  * ```
  *
- * @see Pi\Application\Service\Asset
+ * @see    Pi\Application\Service\Asset
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class AssetTheme extends AbstractHelper
@@ -31,9 +31,9 @@ class AssetTheme extends AbstractHelper
     /**
      * Get URI of a theme asset
      *
-     * @param   string $file
-     * @param   string $theme
-     * @param   bool|null $appendVersion
+     * @param string    $file
+     * @param string    $theme
+     * @param bool|null $appendVersion
      *
      * @return  string
      */
@@ -41,8 +41,7 @@ class AssetTheme extends AbstractHelper
         $file,
         $theme = '',
         $appendVersion = null
-    )
-    {
+    ) {
         //$type = $isPublic ? 'public' : 'asset';
 
         $result = Pi::service('asset')->getThemeAsset(

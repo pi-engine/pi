@@ -79,18 +79,22 @@ class Saml extends AbstractStrategy
         $return = Pi::url($return, true);
         if ('login' == $type) {
             //$url = $this->getAuthSource()->getLoginURL($return);
-            $url = Pi::service('url')->assemble('default', [
+            $url = Pi::service('url')->assemble(
+                'default', [
                 'module'     => 'saml',
                 'controller' => 'index',
                 'action'     => 'login',
-            ]);
+            ]
+            );
         } elseif ('logout' == $type) {
             //$url = $this->getAuthSource()->getLogoutURL($return);
-            $url = Pi::service('url')->assemble('default', [
+            $url = Pi::service('url')->assemble(
+                'default', [
                 'module'     => 'saml',
                 'controller' => 'index',
                 'action'     => 'logout',
-            ]);
+            ]
+            );
         } else {
             $url = '';
         }
@@ -116,9 +120,11 @@ class Saml extends AbstractStrategy
         } elseif ($ssoAuthenticated && !$identity) {
             $profile    = [];
             $attributes = $this->getAuthSource()->getAttributes();
-            array_walk($attributes, function ($data, $key) use (&$profile) {
+            array_walk(
+                $attributes, function ($data, $key) use (&$profile) {
                 $profile[$key] = is_array($data) ? array_pop($data) : $data;
-            });
+            }
+            );
             $identity = $profile[$field];
             $this->getStorage()->write($profile);
             Pi::service('user')->setPersist($profile);
@@ -132,6 +138,7 @@ class Saml extends AbstractStrategy
      * Set storage
      *
      * @param StorageInterface $storage
+     *
      * @return $this
      */
     public function setStorage(StorageInterface $storage)
@@ -159,6 +166,7 @@ class Saml extends AbstractStrategy
      * Load authentication storage
      *
      * @param array $config
+     *
      * @return StorageInterface
      */
     public function loadStorage($config = [])

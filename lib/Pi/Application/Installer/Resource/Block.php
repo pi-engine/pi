@@ -82,6 +82,7 @@ class Block extends AbstractResource
      * Canonize block data for creation
      *
      * @param array $block
+     *
      * @return array
      */
     protected function canonizeAdd($block)
@@ -97,17 +98,12 @@ class Block extends AbstractResource
         $data = [
             'name'        => $block['name'],
             'title'       => $block['title'],
-            'description' => isset($block['description'])
-                ? $block['description'] : '',
-
+            'description' => isset($block['description']) ? $block['description'] : '',
             'module'      => $module,
             'render'      => $block['render'],
-            'template'    => isset($block['template'])
-                ? $block['template'] : '',
-            'config'      => isset($block['config'])
-                ? $block['config'] : [],
-            'cache_level' => isset($block['cache_level'])
-                ? $block['cache_level'] : '',
+            'template'    => isset($block['template']) ? $block['template'] : '',
+            'config'      => isset($block['config']) ? $block['config'] : [],
+            'cache_level' => isset($block['cache_level']) ? $block['cache_level'] : '',
         ];
 
         return $data;
@@ -117,6 +113,7 @@ class Block extends AbstractResource
      * Canonize block data for update
      *
      * @param array $block
+     *
      * @return array
      */
     protected function canonizeUpdate($block)
@@ -131,16 +128,11 @@ class Block extends AbstractResource
 
         $data = [
             'title'       => $block['title'],
-            'description' => isset($block['description'])
-                ? $block['description'] : '',
-
+            'description' => isset($block['description']) ? $block['description'] : '',
             'render'      => $block['render'],
-            'template'    => isset($block['template'])
-                ? $block['template'] : '',
-            'config'      => isset($block['config'])
-                ? $block['config'] : [],
-            'cache_level' => isset($block['cache_level'])
-                ? $block['cache_level'] : '',
+            'template'    => isset($block['template']) ? $block['template'] : '',
+            'config'      => isset($block['config']) ? $block['config'] : [],
+            'cache_level' => isset($block['cache_level']) ? $block['cache_level'] : '',
         ];
 
         return $data;
@@ -202,10 +194,12 @@ class Block extends AbstractResource
             }
             $block['name']   = !empty($block['name']) ? $block['name'] : $key;
             $block['module'] = $module;
-            $rowset          = $model->select([
-                'name'   => $block['name'],
-                'module' => $module,
-            ]);
+            $rowset          = $model->select(
+                [
+                    'name'   => $block['name'],
+                    'module' => $module,
+                ]
+            );
             // Add new block
             if (!$rowset->count()) {
                 $data    = $this->canonizeAdd($block);
@@ -305,8 +299,9 @@ class Block extends AbstractResource
     /**
      * Adds a block and its relevant options, ACL rules
      *
-     * @param array $block
+     * @param array  $block
      * @param string $message
+     *
      * @return bool
      */
     protected function addBlock($block, &$message)
@@ -320,8 +315,9 @@ class Block extends AbstractResource
      * Updates a block and its relevant options
      *
      * @param RowGateway $rootRow
-     * @param array $block
-     * @param array $message
+     * @param array      $block
+     * @param array      $message
+     *
      * @return bool
      */
     protected function updateBlock(RowGateway $rootRow, $block, &$message)
@@ -335,7 +331,8 @@ class Block extends AbstractResource
      * Deletes a block root and its relevant views, ACL rules
      *
      * @param RowGateway $rootRow
-     * @param array $message
+     * @param array      $message
+     *
      * @return bool
      */
     protected function deleteBlock(RowGateway $rootRow, &$message)

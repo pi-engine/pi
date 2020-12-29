@@ -30,6 +30,7 @@ class Menu extends LaminasMenu
 
     /**
      * Cache container
+     *
      * @var \StdClass
      */
     protected $cache;
@@ -51,19 +52,19 @@ class Menu extends LaminasMenu
      * Available $options:
      *
      *
-     * @param  AbstractContainer $container
-     *      [optional] container to create menu from.
-     *      Default is to use the container retrieved
-     *      from {@link getContainer()}.
-     * @param  array $options
-     *      [optional] options for controlling rendering:
-     *          ulClass - CSS class for first UL for parent menu;
-     *          indent - initial indentation for parent menu;
-     *          minDepth - minimum depth for parent menu;
-     *          maxDepth - maximum depth for parent menu;
-     *          escapeLabels - to escape labels for parent menu;
-     *          addClassToListItem - to add page class to list
-     *          sub:
+     * @param AbstractContainer $container
+     *           [optional] container to create menu from.
+     *           Default is to use the container retrieved
+     *           from {@link getContainer()}.
+     * @param array             $options
+     *           [optional] options for controlling rendering:
+     *           ulClass - CSS class for first UL for parent menu;
+     *           indent - initial indentation for parent menu;
+     *           minDepth - minimum depth for parent menu;
+     *           maxDepth - maximum depth for parent menu;
+     *           escapeLabels - to escape labels for parent menu;
+     *           addClassToListItem - to add page class to list
+     *           sub:
      *           ulClass - CSS class for first UL for sub menu;
      *           indent - initial indentation for sub menu;
      *           maxDepth - maximum depth for sub menu;
@@ -84,7 +85,7 @@ class Menu extends LaminasMenu
         }
 
         // find deepest active
-        list($minDepth, $maxDepth) = [0, null];
+        [$minDepth, $maxDepth] = [0, null];
         $found = $this->findActive($container, $minDepth, $maxDepth);
         if ($found) {
             $foundPage  = $found['page'];
@@ -266,8 +267,7 @@ class Menu extends LaminasMenu
         $escapeLabels,
         $addClassToListItem,
         $liActiveClass
-    )
-    {
+    ) {
         if (!$active
             = $this->findActive($container, $minDepth - 1, $maxDepth)
         ) {
@@ -343,8 +343,7 @@ class Menu extends LaminasMenu
         $escapeLabels,
         $addClassToListItem,
         $liActiveClass
-    )
-    {
+    ) {
         $html = '';
 
         // find deepest active

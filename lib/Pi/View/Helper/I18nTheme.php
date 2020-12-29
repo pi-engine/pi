@@ -25,8 +25,8 @@ use Laminas\View\Helper\AbstractHelper;
  *  $this->i18nTheme('default', null, 'en');
  * ```
  *
- * @see Pi\Application\Service\I18n
- * @see Pi\Application\Service\Asset
+ * @see    Pi\Application\Service\I18n
+ * @see    Pi\Application\Service\Asset
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class I18nTheme extends AbstractHelper
@@ -34,9 +34,10 @@ class I18nTheme extends AbstractHelper
     /**
      * Load a theme i18n resource
      *
-     * @param   string $domain
-     * @param   string|null $theme
-     * @param   string|null $locale
+     * @param string      $domain
+     * @param string|null $theme
+     * @param string|null $locale
+     *
      * @return  self
      */
     public function __invoke($domain = 'default', $theme = null, $locale = null)

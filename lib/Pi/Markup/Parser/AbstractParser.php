@@ -43,6 +43,7 @@ abstract class AbstractParser
      * Set options
      *
      * @param array|\Traversable $options
+     *
      * @return $this
      */
     public function setOptions($options)

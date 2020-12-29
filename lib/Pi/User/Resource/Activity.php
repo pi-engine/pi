@@ -27,10 +27,10 @@ class Activity extends AbstractResource
      *
      * Returns activity meta data and log list
      *
-     * @param int $uid
+     * @param int    $uid
      * @param string $name
-     * @param int $limit
-     * @param int $offset
+     * @param int    $limit
+     * @param int    $offset
      *
      * @return array
      */

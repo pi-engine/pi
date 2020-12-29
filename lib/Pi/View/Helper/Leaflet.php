@@ -109,13 +109,12 @@ use Laminas\View\Helper\AbstractHelper;
  *
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
-
 class Leaflet extends AbstractHelper
 {
     /**
      * Load Leaflet scripts
      *
-     * @param   array $params
+     * @param array $params
      *
      * @return  $this
      */
@@ -128,9 +127,11 @@ class Leaflet extends AbstractHelper
         $params['htmlClass'] = isset($params['htmlClass']) ? $params['htmlClass'] : 'pi-map-canvas';
 
         // Set copyRight
-        $params['copyright'] = isset($params['copyright']) ? $params['copyright'] : sprintf(
-            '<a href="%s">%s</a>', Pi::url(), Pi::config('sitename')
-        );
+        $params['copyright'] = isset($params['copyright'])
+            ? $params['copyright']
+            : sprintf(
+                '<a href="%s">%s</a>', Pi::url(), Pi::config('sitename')
+            );
 
         // Set map url
         $params['mapUrl'] = isset($params['mapUrl']) ? $params['mapUrl'] : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';

@@ -40,30 +40,35 @@ class Standard implements RouteInterface
 
     /**
      * Path prefix
+     *
      * @var string
      */
     protected $prefix = '';
 
     /**
      * Delimiter between structured values of module, controller and action.
+     *
      * @var string
      */
     protected $structureDelimiter = '/';
 
     /**
      * Delimiter between keys and values.
+     *
      * @var string
      */
     protected $keyValueDelimiter = '/';
 
     /**
      * Delimiter before parameters.
+     *
      * @var array
      */
     protected $paramDelimiter = '/';
 
     /**
      * Default values.
+     *
      * @var array
      */
     protected $defaults
@@ -76,12 +81,13 @@ class Standard implements RouteInterface
     /**
      * Create a new simple console route.
      *
-     * @param  string|RouteMatcherInterface $routeOrRouteMatcher
-     * @param  array $constraints
-     * @param  array $defaults
-     * @param  array $aliases
-     * @param  null|array|Traversable|FilterChain $filters
-     * @param  null|array|Traversable|ValidatorChain $validators
+     * @param string|RouteMatcherInterface          $routeOrRouteMatcher
+     * @param array                                 $constraints
+     * @param array                                 $defaults
+     * @param array                                 $aliases
+     * @param null|array|Traversable|FilterChain    $filters
+     * @param null|array|Traversable|ValidatorChain $validators
+     *
      * @throws InvalidArgumentException
      */
     public function __construct(
@@ -91,8 +97,7 @@ class Standard implements RouteInterface
         array $aliases = [],
         $filters = null,
         $validators = null
-    )
-    {
+    ) {
         if (is_string($routeOrRouteMatcher)) {
             $this->matcher = new DefaultRouteMatcher($routeOrRouteMatcher, $constraints, $defaults, $aliases);
         } elseif ($routeOrRouteMatcher instanceof RouteMatcherInterface) {
@@ -108,10 +113,11 @@ class Standard implements RouteInterface
     /**
      * factory(): defined by Route interface.
      *
-     * @see    \Laminas\Mvc\Router\RouteInterface::factory()
-     * @param  array|Traversable $options
-     * @throws InvalidArgumentException
+     * @param array|Traversable $options
+     *
      * @return self
+     * @throws InvalidArgumentException
+     * @see    \Laminas\Mvc\Router\RouteInterface::factory()
      */
     public static function factory($options = [])
     {
@@ -125,11 +131,13 @@ class Standard implements RouteInterface
             throw new InvalidArgumentException('Missing "route" in options array');
         }
 
-        foreach ([
-                     'constraints',
-                     'defaults',
-                     'aliases',
-                 ] as $opt) {
+        foreach (
+            [
+                'constraints',
+                'defaults',
+                'aliases',
+            ] as $opt
+        ) {
             if (!isset($options[$opt])) {
                 $options[$opt] = [];
             }
@@ -157,10 +165,11 @@ class Standard implements RouteInterface
     /**
      * match(): defined by Route interface.
      *
-     * @see     Route::match()
-     * @param   Request $request
-     * @param   null|int $pathOffset
+     * @param Request  $request
+     * @param null|int $pathOffset
+     *
      * @return  RouteMatch
+     * @see     Route::match()
      */
     public function match(Request $request, $pathOffset = null)
     {
@@ -197,10 +206,11 @@ class Standard implements RouteInterface
     /**
      * assemble(): Defined by Route interface.
      *
-     * @see    \Laminas\Mvc\Router\RouteInterface::assemble()
-     * @param  array $params
-     * @param  array $options
+     * @param array $params
+     * @param array $options
+     *
      * @return mixed
+     * @see    \Laminas\Mvc\Router\RouteInterface::assemble()
      */
     public function assemble(array $params = [], array $options = [])
     {
@@ -210,8 +220,8 @@ class Standard implements RouteInterface
     /**
      * getAssembledParams(): defined by Route interface.
      *
-     * @see    RouteInterface::getAssembledParams
      * @return array
+     * @see    RouteInterface::getAssembledParams
      */
     public function getAssembledParams()
     {

@@ -26,6 +26,7 @@ class Factory extends LaminasFactory
      * Get InputFilter factory
      *
      * @{inheritdoc}
+     *
      * @return InputFilterFactory
      */
     public function getInputFilterFactory()
@@ -60,11 +61,13 @@ class Factory extends LaminasFactory
                 $canonizedType = str_replace(
                     ' ',
                     '',
-                    ucwords(str_replace(
-                        ['_', '-'],
-                        ' ',
-                        $spec['type']
-                    ))
+                    ucwords(
+                        str_replace(
+                            ['_', '-'],
+                            ' ',
+                            $spec['type']
+                        )
+                    )
                 );
                 $type          = sprintf(
                     '%s\Element\\%s',

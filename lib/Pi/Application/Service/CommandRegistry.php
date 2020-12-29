@@ -116,8 +116,9 @@ class CommandRegistry
     /**
      * register a image command
      *
-     * @param  string $command
-     * @param  callable $callback
+     * @param string   $command
+     * @param callable $callback
+     *
      * @return self
      */
     public static function register($command, $callback)

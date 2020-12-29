@@ -23,19 +23,21 @@ namespace Pi\View\Helper;
  *  }
  * ```
  *
- * @see Pi\View\Helper\HeadScript for details.
+ * @see    Pi\View\Helper\HeadScript for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class FootScript extends HeadScript
 {
     /**
      * Registry key for placeholder
+     *
      * @var string
      */
     protected $regKey = 'Pi_View_Helper_FootScript';
 
     /**
      * Pure html
+     *
      * @var string
      */
     protected $html;
@@ -43,10 +45,11 @@ class FootScript extends HeadScript
     /**
      * Create script HTML
      *
-     * @param  mixed $item Item to convert
-     * @param  string $indent String to add before the item
-     * @param  string $escapeStart Starting sequence
-     * @param  string $escapeEnd Ending sequence
+     * @param mixed  $item        Item to convert
+     * @param string $indent      String to add before the item
+     * @param string $escapeStart Starting sequence
+     * @param string $escapeEnd   Ending sequence
+     *
      * @return string
      */
     public function itemToString($item, $indent, $escapeStart, $escapeEnd)

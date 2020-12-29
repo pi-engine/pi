@@ -29,7 +29,7 @@ use Laminas\Mvc\Controller\Plugin\Params as LaminasParams;
  *  $paramFiltered = $this->params()->filter('+1234.5', 'float');
  * ```
  *
- * @see Pi\Utility\Filter  for more sugar syntactic
+ * @see    Pi\Utility\Filter  for more sugar syntactic
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Params extends LaminasParams
@@ -50,7 +50,8 @@ class Params extends LaminasParams
      * Grabs a param from route match by default.
      *
      * @param string|null $param
-     * @param mixed $default
+     * @param mixed       $default
+     *
      * @return mixed
      */
     public function __invoke($param = null, $default = null)
@@ -79,8 +80,9 @@ class Params extends LaminasParams
      *
      * @param string|null $param
      *      Parameter name to retrieve, or null to get all.
-     * @param mixed $default
+     * @param mixed       $default
      *      Default value to use when the parameter is missing.
+     *
      * @return mixed
      */
     public function fromPost($param = null, $default = null)
@@ -115,8 +117,9 @@ class Params extends LaminasParams
      *
      * @param string|null $param
      *      Parameter name to retrieve, or null to get all.
-     * @param mixed $default
+     * @param mixed       $default
      *      Default value to use when the parameter is missing.
+     *
      * @return mixed
      */
     public function fromPut($param = null, $default = null)
@@ -152,8 +155,9 @@ class Params extends LaminasParams
      *
      * @param string|null $param
      *      Parameter name to retrieve, or null to get all.
-     * @param mixed $default
+     * @param mixed       $default
      *      Default value to use when the parameter is missing.
+     *
      * @return mixed
      */
     public function fromRequest($param = null, $default = null)
@@ -172,9 +176,10 @@ class Params extends LaminasParams
     /**
      * Retrieve a variable from query
      *
-     * @param string $variable
+     * @param string     $variable
      * @param int|string $filter
-     * @param mixed $options
+     * @param mixed      $options
+     *
      * @return mixed
      */
     public function get($variable, $filter, $options = null)
@@ -193,9 +198,10 @@ class Params extends LaminasParams
     /**
      * Retrieve a variable from POST
      *
-     * @param string $variable
+     * @param string     $variable
      * @param int|string $filter
-     * @param mixed $options
+     * @param mixed      $options
+     *
      * @return mixed
      */
     public function post($variable, $filter, $options = null)
@@ -211,9 +217,10 @@ class Params extends LaminasParams
     /**
      * Retrieve a variable from PUT
      *
-     * @param string $variable
+     * @param string     $variable
      * @param int|string $filter
-     * @param mixed $options
+     * @param mixed      $options
+     *
      * @return mixed
      */
     public function put($variable, $filter, $options = null)
@@ -229,9 +236,10 @@ class Params extends LaminasParams
     /**
      * Retrieve a variable from current HTTP method: get, post, put
      *
-     * @param string $variable
+     * @param string     $variable
      * @param int|string $filter
-     * @param mixed $options
+     * @param mixed      $options
+     *
      * @return mixed
      */
     public function request($variable, $filter, $options = null)
@@ -247,10 +255,11 @@ class Params extends LaminasParams
     /**
      * Filter value with filter_var
      *
-     * @param mixed $value Value to be filtered
+     * @param mixed      $value Value to be filtered
      * @param int|string $filter
-     *      String for filter name or int for filter_id
-     * @param mixed $options
+     *                          String for filter name or int for filter_id
+     * @param mixed      $options
+     *
      * @return mixed
      */
     public function filter($value, $filter, $options = null)

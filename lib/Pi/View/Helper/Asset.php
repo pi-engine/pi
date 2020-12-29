@@ -24,7 +24,7 @@ use Laminas\View\Helper\AbstractHelper;
  *  $jsUri = $this->asset('module/demo', 'js/demo.js');
  * ```
  *
- * @see Pi\Application\Service\Asset
+ * @see    Pi\Application\Service\Asset
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Asset extends AbstractHelper
@@ -32,9 +32,9 @@ class Asset extends AbstractHelper
     /**
      * Get URI of an asset
      *
-     * @param   string $component
-     * @param   string $file
-     * @param   bool|null $appendVersion
+     * @param string    $component
+     * @param string    $file
+     * @param bool|null $appendVersion
      *
      * @return  string
      */
@@ -42,8 +42,7 @@ class Asset extends AbstractHelper
         $component,
         $file,
         $appendVersion = null
-    )
-    {
+    ) {
         //$type = $isPublic ? 'public' : 'asset';
 
         $result = Pi::service('asset')->getAssetUrl(

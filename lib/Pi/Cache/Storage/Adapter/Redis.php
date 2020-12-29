@@ -25,8 +25,9 @@ class Redis extends LaminasRedis
      * will be removed from memcached one by one.
      *
      * @param string $namespace
-     * @throws Exception\RuntimeException
+     *
      * @return bool
+     * @throws Exception\RuntimeException
      */
     public function clearByNamespace($namespace)
     {
@@ -89,7 +90,7 @@ class Redis extends LaminasRedis
      *
      * {@inheritDoc}
      */
-    protected function internalSetItem(& $normalizedKey, & $value)
+    protected function internalSetItem(&$normalizedKey, &$value)
     {
         $redis = $this->getRedisResource();
 

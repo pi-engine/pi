@@ -22,9 +22,10 @@ class RouterFactory implements FactoryInterface
      * to instantiate the router. Uses the TreeRouteStack implementation by
      * default.
      *
-     * @param  ServiceLocatorInterface $serviceLocator
-     * @param  string|null $cName
-     * @param  string|null $rName
+     * @param ServiceLocatorInterface $serviceLocator
+     * @param string|null             $cName
+     * @param string|null             $rName
+     *
      * @return \Laminas\Mvc\Router\RouteStackInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator, $cName = null, $rName = null)

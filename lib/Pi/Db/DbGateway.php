@@ -136,6 +136,7 @@ class DbGateway
      * Loads adapter
      *
      * @param array $options
+     *
      * @return self
      */
     public function loadAdapter($options)
@@ -157,6 +158,7 @@ class DbGateway
      * Set table prefix
      *
      * @param string $prefix
+     *
      * @return self
      */
     public function setTablePrefix($prefix)
@@ -180,6 +182,7 @@ class DbGateway
      * Set system table prefix
      *
      * @param string $prefix
+     *
      * @return self
      */
     public function setCorePrefix($prefix)
@@ -202,6 +205,7 @@ class DbGateway
      * Set database schema
      *
      * @param string $schema
+     *
      * @return self
      */
     public function setSchema($schema)
@@ -238,8 +242,9 @@ class DbGateway
      * Configs are canonized to avoid violation of `driver_options`
      * in {@link \Laminas\Db\Adapter\Driver\Pdo\Connection::connect()}
      *
-     * @param array $config
+     * @param array                                $config
      * @param \Laminas\Db\Adapter\AdapterInterface $platform
+     *
      * @return Adapter
      */
     public function createAdapter(array $config, $platform = null)
@@ -269,8 +274,9 @@ class DbGateway
     /**
      * Set adapter
      *
-     * @param Adapter $adapter
+     * @param Adapter     $adapter
      * @param null|string $type `master` or `slave`, default as null
+     *
      * @return self
      */
     public function setAdapter(Adapter $adapter, $type = null)
@@ -288,6 +294,7 @@ class DbGateway
      * Get adatper
      *
      * @param null|string $type `master` or `slave`, default as null
+     *
      * @return Adapter
      */
     public function getAdapter($type = null)
@@ -303,6 +310,7 @@ class DbGateway
      * Get adatper
      *
      * @param null|string $type `master` or `slave`, default as null
+     *
      * @return Adapter
      */
     public function adapter($type = null)
@@ -315,6 +323,7 @@ class DbGateway
      *
      * @param string $table
      * @param string $type
+     *
      * @return string
      */
     public function prefix($table = '', $type = '')
@@ -337,7 +346,8 @@ class DbGateway
      *      `Pi::db()->model(<model-name>, array('type' => 'nest'))`
      *
      * @param string $name
-     * @param array $options
+     * @param array  $options
+     *
      * @return AbstractTableGateway
      */
     public function model($name, $options = [])
@@ -347,7 +357,7 @@ class DbGateway
         if (!isset($this->model[$name])) {
             $pos = strpos($name, '/');
             if ($pos) {
-                list($module, $key) = explode('/', $name, 2);
+                [$module, $key] = explode('/', $name, 2);
             } else {
                 $module = '';
                 $key    = $name;
@@ -410,6 +420,7 @@ class DbGateway
      * Creates `Where` object
      *
      * @param string|array|null $predicate
+     *
      * @return Where
      */
     public function where($predicate = null)
@@ -420,17 +431,17 @@ class DbGateway
     /**
      * Creates a SQL expression
      *
-     * @param string $expression
+     * @param string       $expression
      * @param string|array $parameters
-     * @param array $types
+     * @param array        $types
+     *
      * @return Expression
      */
     public function expression(
         $expression = '',
         $parameters = null,
         array $types = []
-    )
-    {
+    ) {
         $expression = new Expression($expression, $parameters, $types);
 
         return $expression;
@@ -440,6 +451,7 @@ class DbGateway
      * Log a query information or load all log information
      *
      * @param DbProfiler|null $profiler
+     *
      * @return DbProfiler|self
      */
     public function profiler(DbProfiler $profiler = null)
@@ -461,7 +473,7 @@ class DbGateway
      * Create SQL
      *
      * @param Adapter $adapter
-     * @param string $table
+     * @param string  $table
      *
      * @return Sql
      */
@@ -532,6 +544,7 @@ class DbGateway
      * Execute a sql query
      *
      * @param Sql|Select|Update|Delete|string $sql
+     *
      * @return \Laminas\Db\ResultSet\ResultSet
      */
     public function query($sql)

@@ -66,9 +66,9 @@ class PermissionResource extends AbstractRegistry
      *
      * Get all resources with specific section, module and type
      *
-     * @param string $section Section name: front, admin, module
-     * @param string $module Module name
-     * @param string|null $type system, callback or page
+     * @param string      $section Section name: front, admin, module
+     * @param string      $module  Module name
+     * @param string|null $type    system, callback or page
      */
     public function read($section = 'front', $module = '', $type = null)
     {
@@ -82,9 +82,9 @@ class PermissionResource extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $section Section name: front, admin, module
-     * @param string $module Module name
-     * @param string|null $type system, page or other custom types
+     * @param string      $section Section name: front, admin, module
+     * @param string      $module  Module name
+     * @param string|null $type    system, page or other custom types
      */
     public function create($section = 'front', $module = '', $type = null)
     {

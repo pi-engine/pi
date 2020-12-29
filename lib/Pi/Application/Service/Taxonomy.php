@@ -59,6 +59,7 @@ class Taxonomy extends AbstractService
      * Canonize taxon data
      *
      * @param array $data
+     *
      * @return void
      * @see Pi\Db\Table\AbstractNest::convertFromNested()
      */
@@ -83,6 +84,7 @@ class Taxonomy extends AbstractService
      * Create taxon data table for a damon and return corresponding model
      *
      * @param string $name Domain name
+     *
      * @return Model|false
      */
     protected function createModel($name)
@@ -107,6 +109,7 @@ class Taxonomy extends AbstractService
      * Delete taxon data table for a damon
      *
      * @param string $name Domain name
+     *
      * @return bool
      */
     protected function deleteModel($name)
@@ -134,6 +137,7 @@ class Taxonomy extends AbstractService
      * Get taxon data model of a domain
      *
      * @param string $name Domain name
+     *
      * @return Model|false
      */
     protected function getModel($name)
@@ -147,11 +151,12 @@ class Taxonomy extends AbstractService
     /**
      * Add taxon data to a taxonomy domain
      *
-     * @param array $taxonData Nested taxon data =>
-     *                  string: name            Domain name, required;
-     *                  string: title           Domain title, optional;
-     *                  string: description     Domain description, optional.
+     * @param array  $taxonData Nested taxon data =>
+     *                          string: name            Domain name, required;
+     *                          string: title           Domain title, optional;
+     *                          string: description     Domain description, optional.
      * @param string $domainName
+     *
      * @return bool
      * @see Pi\Db\Table\AbstractNest::convertFromNested()
      */
@@ -172,6 +177,7 @@ class Taxonomy extends AbstractService
      * Get taxon data model of a taxonomy domain
      *
      * @param string $domainName
+     *
      * @return Model|false
      */
     public function get($domainName = 'taxon')
@@ -186,6 +192,7 @@ class Taxonomy extends AbstractService
      * Empty taxon data model of a taxonomy domain
      *
      * @param string $domainName
+     *
      * @return bool
      */
     public function truncate($domainName = null)
@@ -204,6 +211,7 @@ class Taxonomy extends AbstractService
      * Delete taxon data table of a taxonomy domain
      *
      * @param string $domainName
+     *
      * @return bool
      */
     public function delete($domainName = null)
@@ -217,11 +225,12 @@ class Taxonomy extends AbstractService
     /**
      * Update taxa data for a domain
      *
-     * @param array $taxonData Nested taxon data =>
-     *                  string: name            Domain name, required;
-     *                  string: title           Domain title, optional;
-     *                  string: description     Domain description, optional.
+     * @param array  $taxonData Nested taxon data =>
+     *                          string: name            Domain name, required;
+     *                          string: title           Domain title, optional;
+     *                          string: description     Domain description, optional.
      * @param string $domainName
+     *
      * @return bool
      * @see Pi\Db\Table\AbstractNest::convertFromNested()
      */
@@ -243,7 +252,8 @@ class Taxonomy extends AbstractService
      * Get nested taxon data of a taxonomy domain
      *
      * @param string $domainName
-     * @param array $cols Fields to fetch
+     * @param array  $cols Fields to fetch
+     *
      * @return array|bool
      */
     public function getTree($domainName = null, $cols = [])
@@ -266,7 +276,8 @@ class Taxonomy extends AbstractService
      * Get adjacency list of taxon data of a taxonomy domain
      *
      * @param string $domainName
-     * @param array $cols Fields to fetch
+     * @param array  $cols Fields to fetch
+     *
      * @return array|bool
      */
     public function getList($domainName = null, $cols = [])
@@ -300,6 +311,7 @@ class Taxonomy extends AbstractService
      * Canonize domain data
      *
      * @param array $data
+     *
      * @return array
      */
     protected function canonizeDomain($data)
@@ -319,12 +331,13 @@ class Taxonomy extends AbstractService
     /**
      * Add a taxonomy domain, and add its taxa data if provided
      *
-     * @param array $domainData =>
-     *                  string: name            Domain name, required;
-     *                  string: title           Domain title, optional;
-     *                  string: description     Domain description, optional;
-     *                  string: module          Module name, optional.
+     * @param array       $domainData =>
+     *                                string: name            Domain name, required;
+     *                                string: title           Domain title, optional;
+     *                                string: description     Domain description, optional;
+     *                                string: module          Module name, optional.
      * @param array|false $taxonData
+     *
      * @return int Created ID
      */
     public function addDomain($domainData, $taxonData = [])
@@ -343,13 +356,14 @@ class Taxonomy extends AbstractService
     /**
      * Update a taxonomy domain, and update its taxa data if provided
      *
-     * @param array $domainData =>
-     *                  int:    id              Domain id, optional;
-     *                  string: name            Domain name, required;
-     *                  string: title           Domain title, optional;
-     *                  string: description     Domain description, optional;
-     *                  string: module          Module name, optional.
+     * @param array      $domainData =>
+     *                               int:    id              Domain id, optional;
+     *                               string: name            Domain name, required;
+     *                               string: title           Domain title, optional;
+     *                               string: description     Domain description, optional;
+     *                               string: module          Module name, optional.
      * @param array|bool $taxonData
+     *
      * @return int Created ID
      */
     public function updateDomain($domainData, $taxonData = false)
@@ -378,6 +392,7 @@ class Taxonomy extends AbstractService
      * Get a taxonomy domain
      *
      * @param int|string $entity
+     *
      * @return array|bool
      */
     public function getDomain($entity)
@@ -395,10 +410,10 @@ class Taxonomy extends AbstractService
      * Delete a taxonomy domain, and delete its taxa if required
      *
      * @param int|string $entity
-     * @param bool $deleteTaxa
+     * @param bool       $deleteTaxa
      *
-     * @throws \Exception
      * @return bool
+     * @throws \Exception
      */
     public function deleteDomain($entity, $deleteTaxa = true)
     {

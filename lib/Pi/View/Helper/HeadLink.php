@@ -18,7 +18,7 @@ use Laminas\View\Helper\Placeholder;
 /**
  * Helper for setting and retrieving link element for HTML head
  *
- * @see \Laminas\View\Helper\HeadLink for details.
+ * @see    \Laminas\View\Helper\HeadLink for details.
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class HeadLink extends LaminasHeadLink
@@ -28,21 +28,22 @@ class HeadLink extends LaminasHeadLink
      *
      * @var string[]
      */
-    protected $itemKeys = array(
-        'charset',
-        'href',
-        'hreflang',
-        'id',
-        'media',
-        'rel',
-        'rev',
-        'sizes',
-        'type',
-        'title',
-        'extras',
-        'onload',
-        'as',
-    );
+    protected $itemKeys
+        = [
+            'charset',
+            'href',
+            'hreflang',
+            'id',
+            'media',
+            'rel',
+            'rev',
+            'sizes',
+            'type',
+            'title',
+            'extras',
+            'onload',
+            'as',
+        ];
 
     /** Layout context names */
     const CONTEXT_LAYOUT = 'layout';
@@ -57,8 +58,7 @@ class HeadLink extends LaminasHeadLink
     public function __invoke(
         array $attributes = null,
         $placement = Placeholder\Container\AbstractContainer::APPEND
-    )
-    {
+    ) {
         parent::__invoke($attributes, strtoupper($placement));
 
         return $this;
@@ -133,9 +133,9 @@ class HeadLink extends LaminasHeadLink
             ? $this->getWhitespace($indent)
             : $this->getIndent();
 
-        $items = array();
-        $itemsDefer = array();
-        $itemsDeferNoScript = array();
+        $items              = [];
+        $itemsDefer         = [];
+        $itemsDeferNoScript = [];
 
         $this->getContainer()->ksort();
 
@@ -143,24 +143,28 @@ class HeadLink extends LaminasHeadLink
         $configGeneral = Pi::config('', 'system', 'general');
 
         if (Pi::engine()->section() == 'front' && $configGeneral['compile_css']) {
-            $assetsByHash = array();
-            $baseUrl = Pi::url();
-            $basePath = Pi::host()->path(null);
+            $assetsByHash = [];
+            $baseUrl      = Pi::url();
+            $basePath     = Pi::host()->path(null);
 
             foreach ($this->getContainer()->getArrayCopy() as $key => $item) {
-                if(!empty($item->rel) && !empty($item->type) && !empty($item->href) && $item->rel == 'stylesheet' && $item->type == 'text/css' && preg_match('#' . $baseUrl . '#', $item->href)){
+                if (!empty($item->rel) && !empty($item->type) && !empty($item->href) && $item->rel == 'stylesheet' && $item->type == 'text/css'
+                    && preg_match(
+                        '#' . $baseUrl . '#', $item->href
+                    )
+                ) {
                     $parts = parse_url($item->href);
 
                     $query = !empty($parts['query']) ? $parts['query'] : '';
-                    $hash = md5($parts['path'] . $query);
+                    $hash  = md5($parts['path'] . $query);
 
                     $content = file_get_contents($basePath . str_replace($baseUrl, '', strtok($item->href, '?')));
 
                     $deferHash = !empty($item->defer) && $item->defer == 'defer' ? 'defer' : 'nodefer';
 
-                    $dirName =  dirname($parts['path']);
+                    $dirName = dirname($parts['path']);
 
-                    if(preg_match('#url\(#', $content)){
+                    if (preg_match('#url\(#', $content)) {
                         /**
                          * Keep from external url to be processed
                          */
@@ -188,29 +192,29 @@ class HeadLink extends LaminasHeadLink
                 }
             }
 
-            if($assetsByHash){
-                foreach($assetsByHash as $defer => $assetsByHashDefer){
-                    $finalHash = md5(implode('', array_keys($assetsByHashDefer)));
-                    $compiledCssDirPath = Pi::host()->path('asset/compiled/css');
-                    $compiledCssDirUrl = Pi::url('asset/compiled/css');
+            if ($assetsByHash) {
+                foreach ($assetsByHash as $defer => $assetsByHashDefer) {
+                    $finalHash           = md5(implode('', array_keys($assetsByHashDefer)));
+                    $compiledCssDirPath  = Pi::host()->path('asset/compiled/css');
+                    $compiledCssDirUrl   = Pi::url('asset/compiled/css');
                     $compiledCssFilePath = $compiledCssDirPath . DIRECTORY_SEPARATOR . $finalHash . '.css';
-                    $compiledCssFileUrl = $compiledCssDirUrl . DIRECTORY_SEPARATOR . $finalHash . '.css';
+                    $compiledCssFileUrl  = $compiledCssDirUrl . DIRECTORY_SEPARATOR . $finalHash . '.css';
 
-                    if(!is_dir($compiledCssDirPath)){
+                    if (!is_dir($compiledCssDirPath)) {
                         mkdir($compiledCssDirPath, 0777, true);
                     }
 
-                    if(!file_exists($compiledCssFilePath)){
+                    if (!file_exists($compiledCssFilePath)) {
                         file_put_contents($compiledCssFilePath, implode("\n\n\n", $assetsByHashDefer));
                     }
 
                     $cssObject = new stdClass();
 
-                    $cssObject->href = $compiledCssFileUrl;
-                    $cssObject->rel = 'stylesheet';
+                    $cssObject->href  = $compiledCssFileUrl;
+                    $cssObject->rel   = 'stylesheet';
                     $cssObject->media = 'screen';
 
-                    if($defer == 'defer'){
+                    if ($defer == 'defer') {
                         $cssObject->defer = 'defer';
                     }
 
@@ -219,17 +223,17 @@ class HeadLink extends LaminasHeadLink
             }
         }
 
-        $isUserSection = new IsUserSection();
-        $module = Pi::service('module')->current();
+        $isUserSection      = new IsUserSection();
+        $module             = Pi::service('module')->current();
         $isUserSectionValue = $isUserSection->__invoke($module);
 
         foreach ($this as $item) {
-            if(!$isUserSectionValue && isset($item->defer)){
+            if (!$isUserSectionValue && isset($item->defer)) {
 
                 $itemsDeferNoScript[] = $this->itemToString($item);
 
-                $item->rel = 'preload';
-                $item->as = 'style';
+                $item->rel    = 'preload';
+                $item->as     = 'style';
                 $item->onload = "this.onload=null;this.rel='stylesheet'";
 
                 $this->setAutoEscape(false);
@@ -240,8 +244,8 @@ class HeadLink extends LaminasHeadLink
             }
         }
 
-        if($itemsDefer){
-            $deferString = $indent . implode($this->escape($this->getSeparator()) . $indent, $itemsDefer);
+        if ($itemsDefer) {
+            $deferString         = $indent . implode($this->escape($this->getSeparator()) . $indent, $itemsDefer);
             $deferNoScriptString = $indent . implode($this->escape($this->getSeparator()) . $indent, $itemsDeferNoScript);
 
             /* @var \Pi\Application\Service\View $view */

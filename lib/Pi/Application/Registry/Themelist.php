@@ -22,7 +22,8 @@ class Themelist extends AbstractRegistry
     /**
      * Load raw data
      *
-     * @param   array $options potential values for type: front, admin, both
+     * @param array $options potential values for type: front, admin, both
+     *
      * @return  array   keys: dirname => name, image, author, version
      */
     protected function loadDynamic($options = [])

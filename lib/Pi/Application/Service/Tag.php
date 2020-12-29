@@ -66,8 +66,9 @@ class Tag extends AbstractService
     /**
      * Undefined method handler allows a shortcut
      *
-     * @param  string $method priority name
-     * @param  array $args
+     * @param string $method priority name
+     * @param array  $args
+     *
      * @return mixed
      */
     public function __call($method, $args)

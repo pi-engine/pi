@@ -32,6 +32,7 @@ class Escape extends Escaper\AbstractHelper
      * Escape a value for current escaping strategy
      *
      * @param string $value
+     *
      * @return string
      */
     protected function escape($value)

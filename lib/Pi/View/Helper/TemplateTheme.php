@@ -21,7 +21,7 @@ use Laminas\View\Helper\AbstractHelper;
  *  include $this->templateTheme('header.phtml');
  * ```
  *
- * @see Pi\View\Resolver\ThemeTemplate
+ * @see    Pi\View\Resolver\ThemeTemplate
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class TemplateTheme extends AbstractHelper
@@ -29,8 +29,9 @@ class TemplateTheme extends AbstractHelper
     /**
      * Get full path to a theme template
      *
-     * @param   string $template
-     * @param   string|null $theme , not implemented yet
+     * @param string      $template
+     * @param string|null $theme , not implemented yet
+     *
      * @return  string
      */
     public function __invoke($template, $theme = null)

@@ -21,6 +21,7 @@ class Html extends Element
 {
     /**
      * Seed attributes
+     *
      * @var array
      */
     protected $attributes

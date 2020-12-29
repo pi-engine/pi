@@ -43,6 +43,7 @@ class Account extends AbstractFieldRowGateway
 
     /**
      * Get credential
+     *
      * @return string
      */
     public function getCredential()
@@ -54,6 +55,7 @@ class Account extends AbstractFieldRowGateway
      * Setup credential with encrypt
      *
      * @param string $credential Raw credential
+     *
      * @return $this
      */
     public function setCredential($credential = null)
@@ -81,16 +83,19 @@ class Account extends AbstractFieldRowGateway
      * Transform credential upon raw data
      *
      * @param string $credential Credential
+     *
      * @return string Encrypted credential value
      */
     public function transformCredential($credential)
     {
-        $credential = md5(sprintf(
-            '%s%s%s',
-            $this->offsetGet('salt'),
-            $credential,
-            Pi::config('salt')
-        ));
+        $credential = md5(
+            sprintf(
+                '%s%s%s',
+                $this->offsetGet('salt'),
+                $credential,
+                Pi::config('salt')
+            )
+        );
 
         return $credential;
     }

@@ -109,6 +109,7 @@ class Navigation extends AbstractRegistry
      * Load navigation data
      *
      * @param array $options
+     *
      * @return array
      */
     protected function loadNavigation($options = [])
@@ -146,6 +147,7 @@ class Navigation extends AbstractRegistry
      * Load navigation of front section
      *
      * @param array $options
+     *
      * @return array
      */
     protected function loadFront($options = [])
@@ -164,6 +166,7 @@ class Navigation extends AbstractRegistry
      * NOTE: Only top level items are shown in a non-system module admin menu
      *
      * @param array $options
+     *
      * @return array
      */
     protected function loadAdmin($options = [])
@@ -180,11 +183,11 @@ class Navigation extends AbstractRegistry
     /**
      * {@inheritDoc}
      *
-     * @param string $name
-     * @param string $module
-     * @param string $section
+     * @param string      $name
+     * @param string      $module
+     * @param string      $section
      * @param string|null $role
-     * @param string $locale
+     * @param string      $locale
      */
     public function read(
         $name = '',
@@ -192,8 +195,7 @@ class Navigation extends AbstractRegistry
         $section = '',
         $role = null,
         $locale = ''
-    )
-    {
+    ) {
         //$this->cache = false;
         if (null === $role) {
             if (Pi::service('permission')->isAdmin()) {
@@ -217,19 +219,18 @@ class Navigation extends AbstractRegistry
     /**
      * {@inheritDoc}
      *
-     * @param string $name
-     * @param string $module
-     * @param string $section
+     * @param string      $name
+     * @param string      $module
+     * @param string      $section
      * @param string|null $role
-     * @param string $locale
+     * @param string      $locale
      */
     public function create(
         $name = '',
         $module = '',
         $role = null,
         $locale = ''
-    )
-    {
+    ) {
         $this->clear('');
         $this->read($name, $module, $role, $locale);
 
@@ -265,9 +266,10 @@ class Navigation extends AbstractRegistry
     /**
      * Translate navigation config
      *
-     * @param array $config
+     * @param array  $config
      * @param string $domain
      * @param string $locale
+     *
      * @return array
      */
     protected function translateConfig($config, $domain, $locale)
@@ -406,11 +408,12 @@ class Navigation extends AbstractRegistry
      *      </ul>
      * </ul>
      *
-     * @see     \Module\System\Navigation for details
-     * @param array $page Page data to be canonized
-     * @param array $parent Sibling of parent page
-     * @param string $pKey Key of parent in sibling
+     * @param array  $page   Page data to be canonized
+     * @param array  $parent Sibling of parent page
+     * @param string $pKey   Key of parent in sibling
+     *
      * @return array
+     * @see     \Module\System\Navigation for details
      */
     protected function canonizeCallback($page, &$parent, $pKey)
     {
@@ -423,7 +426,7 @@ class Navigation extends AbstractRegistry
         if (is_string($page['callback']) && is_callable($page['callback'])) {
             $callback = $page['callback'];
         } elseif (is_array($page['callback'])) {
-            list($class, $method) = $page['callback'];
+            [$class, $method] = $page['callback'];
 
             if (!class_exists($class)) {
                 $module = empty($page['module'])
@@ -497,11 +500,12 @@ class Navigation extends AbstractRegistry
     /**
      * Canonize a page
      *
-     * @param array $page Page data to be canonized
-     * @param array $parent Sibling of parent page
-     * @param string $pKey Key of parent in sibling
-     * @param bool $isTop If the page is top level,
-     *      only top level menu is shown in non-system module admin
+     * @param array  $page   Page data to be canonized
+     * @param array  $parent Sibling of parent page
+     * @param string $pKey   Key of parent in sibling
+     * @param bool   $isTop  If the page is top level,
+     *                       only top level menu is shown in non-system module admin
+     *
      * @return array
      */
     protected function canonizePage($page, &$parent, $pKey, $isTop = false)
@@ -539,11 +543,12 @@ class Navigation extends AbstractRegistry
     /**
      * Translate a page
      *
-     * @param array $page Page data to be canonized
-     * @param array $parent Sibling of parent page
-     * @param string $pKey Key of parent in sibling
-     * @param bool $isTop If the page is top level,
-     *      only top level menu is shown in non-system module admin
+     * @param array  $page   Page data to be canonized
+     * @param array  $parent Sibling of parent page
+     * @param string $pKey   Key of parent in sibling
+     * @param bool   $isTop  If the page is top level,
+     *                       only top level menu is shown in non-system module admin
+     *
      * @return array
      */
     protected function translatePage(&$page, &$parent, $pKey, $isTop = false)
@@ -580,6 +585,7 @@ class Navigation extends AbstractRegistry
      * Check if a page is accessible
      *
      * @param array $page
+     *
      * @return bool
      */
     public function isAllowed($page)
@@ -589,16 +595,16 @@ class Navigation extends AbstractRegistry
             && !empty($page['resource']['resource'])
         ) {
             $params   = $page['resource'];
-            $section  = empty($params['section'])
-                ? $this->section : $params['section'];
-            $module   = empty($params['module'])
-                ? $this->module : $params['module'];
+            $section  = empty($params['section']) ? $this->section : $params['section'];
+            $module   = empty($params['module']) ? $this->module : $params['module'];
             $resource = $params['resource'];
-            $result   = Pi::service('permission')->hasPermission([
-                'section'  => $section,
-                'module'   => $module,
-                'resource' => $resource,
-            ], array_values($this->roles));
+            $result   = Pi::service('permission')->hasPermission(
+                [
+                    'section'  => $section,
+                    'module'   => $module,
+                    'resource' => $resource,
+                ], array_values($this->roles)
+            );
 
             return $result;
         }

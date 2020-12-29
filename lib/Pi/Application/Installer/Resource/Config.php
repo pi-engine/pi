@@ -123,6 +123,7 @@ class Config extends AbstractResource
 {
     /**
      * Default category name
+     *
      * @var string
      */
     const DEFAULT_CATEGORY = 'general';
@@ -131,6 +132,7 @@ class Config extends AbstractResource
      * Canonize config category and item list data
      *
      * @param array $config
+     *
      * @return array
      */
     protected function canonize(array $config, $module = '')
@@ -144,10 +146,8 @@ class Config extends AbstractResource
             ];
         } else {
             $ret = [
-                'category' => isset($config['category'])
-                    ? $config['category'] : [],
-                'item'     => isset($config['item'])
-                    ? $config['item'] : [],
+                'category' => isset($config['category']) ? $config['category'] : [],
+                'item'     => isset($config['item']) ? $config['item'] : [],
             ];
         }
         // Formulate category order
@@ -157,10 +157,12 @@ class Config extends AbstractResource
         }
 
         if ('system' != $module) {
-            $rowCategory = Pi::model('config_category')->select([
-                'module' => 'system',
-                'name'   => 'head_meta',
-            ])->current();
+            $rowCategory = Pi::model('config_category')->select(
+                [
+                    'module' => 'system',
+                    'name'   => 'head_meta',
+                ]
+            )->current();
             if ($rowCategory) {
                 $ret['category'][] = [
                     'name'   => $rowCategory->name,
@@ -168,10 +170,12 @@ class Config extends AbstractResource
                     'module' => $module,
                     'order'  => 99,
                 ];
-                $rowset            = Pi::model('config')->select([
-                    'module'   => 'system',
-                    'category' => $rowCategory->name,
-                ]);
+                $rowset            = Pi::model('config')->select(
+                    [
+                        'module'   => 'system',
+                        'category' => $rowCategory->name,
+                    ]
+                );
                 foreach ($rowset as $row) {
                     $configItem = $row->toArray();
                     unset($configItem['id']);
@@ -197,6 +201,7 @@ class Config extends AbstractResource
      * Canonize a config
      *
      * @param array $config
+     *
      * @return array
      */
     protected function canonizeConfig(array $config, $module = '')
@@ -299,7 +304,7 @@ class Config extends AbstractResource
     /**
      * Update module config
      *
-     * @param array $config
+     * @param array  $config
      * @param string $module
      *
      * @return array|bool
@@ -361,7 +366,9 @@ class Config extends AbstractResource
         }
         foreach ($categories as $key => $category) {
             // Skip existent category
-            if (isset($category['id'])) continue;
+            if (isset($category['id'])) {
+                continue;
+            }
             // Insert new category
             $category['module'] = $module;
             $status             = $modelCategory->insert($category);

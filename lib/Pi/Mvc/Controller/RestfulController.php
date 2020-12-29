@@ -18,7 +18,7 @@ use Laminas\Stdlib\ResponseInterface as Response;
 /**
  * Abstract RESTful controller
  *
- * @see Laminas\Mvc\AbstractRestfulController
+ * @see    Laminas\Mvc\AbstractRestfulController
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class RestfulController extends ActionController
@@ -38,7 +38,8 @@ abstract class RestfulController extends ActionController
     /**
      * Return single resource
      *
-     * @param  mixed $id
+     * @param mixed $id
+     *
      * @return mixed
      */
     public function get($id)
@@ -48,7 +49,8 @@ abstract class RestfulController extends ActionController
     /**
      * Create a new resource
      *
-     * @param  mixed $data
+     * @param mixed $data
+     *
      * @return mixed
      */
     public function create($data)
@@ -58,8 +60,9 @@ abstract class RestfulController extends ActionController
     /**
      * Update an existing resource
      *
-     * @param  mixed $id
-     * @param  mixed $data
+     * @param mixed $id
+     * @param mixed $data
+     *
      * @return mixed
      */
     public function update($id, $data)
@@ -69,7 +72,8 @@ abstract class RestfulController extends ActionController
     /**
      * Delete an existing resource
      *
-     * @param  mixed $id
+     * @param mixed $id
+     *
      * @return mixed
      */
     public function delete($id)
@@ -97,8 +101,10 @@ abstract class RestfulController extends ActionController
      * and which method to delegate to.
      *
      * @events dispatch.pre, dispatch.post
-     * @param  Request $request
-     * @param  null|Response $response
+     *
+     * @param Request       $request
+     * @param null|Response $response
+     *
      * @return mixed|Response
      * @throws Exception\InvalidArgumentException
      */
@@ -116,7 +122,8 @@ abstract class RestfulController extends ActionController
     /**
      * Handle the request
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return mixed
      * @throws Exception\DomainException if no route matches in event
      *      or invalid HTTP method
@@ -217,6 +224,7 @@ abstract class RestfulController extends ActionController
      * Process post data and call create
      *
      * @param Request $request
+     *
      * @return mixed
      */
     public function processPostData(Request $request)
@@ -228,7 +236,8 @@ abstract class RestfulController extends ActionController
      * Process put data and call update
      *
      * @param Request $request
-     * @param $routeMatch
+     * @param         $routeMatch
+     *
      * @return mixed
      * @throws Exception\DomainException
      */

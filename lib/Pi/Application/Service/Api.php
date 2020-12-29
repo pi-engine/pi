@@ -43,9 +43,9 @@ class Api extends AbstractService
     /**
      * Instantiate API handler
      *
-     * @param string $api
+     * @param string       $api
      * @param string|array $module
-     * @param array $options
+     * @param array        $options
      *
      * @return AbstractApi|bool
      */
@@ -84,6 +84,7 @@ class Api extends AbstractService
      * ```
      *
      * @param string $name
+     *
      * @return AbstractApi|bool
      */
     public function __get($name)
@@ -103,7 +104,7 @@ class Api extends AbstractService
      * </code>
      *
      * @param string $api
-     * @param array $args
+     * @param array  $args
      *
      * @return AbstractApi|bool
      */

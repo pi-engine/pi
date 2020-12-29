@@ -78,6 +78,7 @@ abstract class AbstractAction
      * Setup EventManager
      *
      * @param EventManager $events
+     *
      * @return $this
      */
     public function setEvents(EventManager $events)
@@ -92,6 +93,7 @@ abstract class AbstractAction
      * Setup Event
      *
      * @param Event $event
+     *
      * @return $this
      */
     public function setEvent(Event $event)
@@ -100,8 +102,7 @@ abstract class AbstractAction
         $this->config    = $event->getParam('config');
         $this->module    = $event->getParam('module');
         $this->directory = $event->getParam('directory');
-        $this->title     = $event->getParam('title')
-            ?: $this->config['meta']['title'];
+        $this->title     = $event->getParam('title') ?: $this->config['meta']['title'];
         return $this;
     }
 
@@ -128,7 +129,8 @@ abstract class AbstractAction
      * </code>
      *
      * @param string $name Operation name
-     * @param array $data Result or message of the operation
+     * @param array  $data Result or message of the operation
+     *
      * @return $this
      */
     public function setResult($name, $data)
@@ -159,18 +161,23 @@ abstract class AbstractAction
      * Check if any module is dependent on the module
      *
      * @param Event $e
+     *
      * @return bool
      */
     public function checkDependent(Event $e)
     {
-        $count = Pi::model('module_dependency')->count([
-            'independent' => $e->getParam('module'),
-        ]);
+        $count = Pi::model('module_dependency')->count(
+            [
+                'independent' => $e->getParam('module'),
+            ]
+        );
         if ($count > 0) {
-            $this->setResult('dependent', [
-                'status'  => false,
-                'message' => 'The module has dependants on it.',
-            ]);
+            $this->setResult(
+                'dependent', [
+                    'status'  => false,
+                    'message' => 'The module has dependants on it.',
+                ]
+            );
             return false;
         }
 
@@ -181,6 +188,7 @@ abstract class AbstractAction
      * Check if the module is dependent on any module
      *
      * @param Event $e
+     *
      * @return bool
      */
     public function checkIndependent(Event $e)
@@ -198,11 +206,13 @@ abstract class AbstractAction
             }
         }
         if ($missing) {
-            $this->setResult('Independent', [
-                'status'  => false,
-                'message' => 'Modules required by this module: '
-                    . implode(', ', $missing),
-            ]);
+            $this->setResult(
+                'Independent', [
+                    'status'  => false,
+                    'message' => 'Modules required by this module: '
+                        . implode(', ', $missing),
+                ]
+            );
             return false;
         }
 
@@ -213,6 +223,7 @@ abstract class AbstractAction
      * Store module dependency in DB
      *
      * @param Event $e
+     *
      * @return bool
      */
     public function createDependency(Event $e)
@@ -224,16 +235,20 @@ abstract class AbstractAction
         $module = $e->getParam('module');
         $model  = Pi::model('module_dependency');
         foreach ($config['dependency'] as $independent) {
-            $row = $model->createRow([
-                'dependent'   => $module,
-                'independent' => $independent,
-            ]);
+            $row = $model->createRow(
+                [
+                    'dependent'   => $module,
+                    'independent' => $independent,
+                ]
+            );
             if (!$row->save()) {
                 $model->delete(['dependent' => $module]);
-                $this->setResult('dependency', [
-                    'status'  => false,
-                    'message' => 'Module dependency is not built.',
-                ]);
+                $this->setResult(
+                    'dependency', [
+                        'status'  => false,
+                        'message' => 'Module dependency is not built.',
+                    ]
+                );
                 return false;
             }
         }
@@ -245,6 +260,7 @@ abstract class AbstractAction
      * Remove module dependency from DB
      *
      * @param Event $e
+     *
      * @return bool
      */
     public function removeDependency(Event $e)

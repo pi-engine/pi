@@ -14,13 +14,14 @@ use Pi\Db\Table\AbstractTableGateway;
 /**
  * Vertex row gateway class for DAG rowset
  *
- * @see Pi\Db\Table\AbstractDag
+ * @see    Pi\Db\Table\AbstractDag
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Vertex extends RowGateway
 {
     /**
      * Table Gateway
+     *
      * @var AbstractTableGateway
      */
     protected $tableGateway;
@@ -29,6 +30,7 @@ class Vertex extends RowGateway
      * Set table gateway
      *
      * @param AbstractTableGateway $tableGateway
+     *
      * @return void
      */
     public function setTableGateway(AbstractTableGateway $tableGateway)
@@ -39,10 +41,10 @@ class Vertex extends RowGateway
     /**
      * Magic method to access properties
      *
-     * @param  string $name
+     * @param string $name
      *
-     * @throws \InvalidArgumentException
      * @return mixed
+     * @throws \InvalidArgumentException
      */
     public function __get($name)
     {

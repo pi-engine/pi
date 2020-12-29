@@ -45,6 +45,7 @@ class Permission extends AbstractResource
      * Check access to module action
      *
      * @param MvcEvent $e
+     *
      * @return void
      */
     public function checkAction(MvcEvent $e)
@@ -58,9 +59,7 @@ class Permission extends AbstractResource
         if (!isset($this->options['check_close'])
             || false !== $this->options['check_close']
         ) {
-            if (Pi::config('site_close')
-                && !Pi::service('permission')->isAdmin()
-            ) {
+            if (Pi::config('site_close') && !Pi::service('permission')->isAdmin()) {
                 $message = __('The website is in maintenance - we are back in a couple of minutes !');
                 $this->denyAccess($e, $message);
                 return;
@@ -139,6 +138,7 @@ class Permission extends AbstractResource
      * Check if current module access is allowed
      *
      * @param MvcEvent $e
+     *
      * @return bool
      */
     public function checkModule(MvcEvent $e)
@@ -162,7 +162,8 @@ class Permission extends AbstractResource
      * Set denied error
      *
      * @param MvcEvent $e
-     * @param $message
+     * @param          $message
+     *
      * @return void
      */
     protected function denyAccess(MvcEvent $e, $message = true)

@@ -321,7 +321,7 @@ namespace Pi\Application\Service {
      *
      * @link    http://www.php.net/manual/en/book.intl.php
      * @see     Pi\Application\Service\Asset for component disptach
-     * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+     * @author  Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
      */
     class I18n extends AbstractService
     {
@@ -405,6 +405,7 @@ namespace Pi\Application\Service {
          * Set translator with current locale
          *
          * @param Translator $translator
+         *
          * @return $this
          */
         public function setTranslator(Translator $translator)
@@ -419,6 +420,7 @@ namespace Pi\Application\Service {
          * Set locale and configure Translator
          *
          * @param string $locale
+         *
          * @return $this
          */
         public function setLocale($locale)
@@ -450,6 +452,7 @@ namespace Pi\Application\Service {
          * Set charset
          *
          * @param string $charset
+         *
          * @return $this
          */
         public function setCharset($charset)
@@ -477,6 +480,7 @@ namespace Pi\Application\Service {
          * Magic method to get variables
          *
          * @param string $name
+         *
          * @return mixed
          */
         public function __get($name)
@@ -521,12 +525,13 @@ namespace Pi\Application\Service {
          * including Translator, Locale, Date, NumberFormatter, etc.
          *
          * @param string $rawDomain
+         *
          * @return string[] Pair of component and domain
          */
         public function canonizeDomain($rawDomain)
         {
             if (false !== strpos($rawDomain, ':')) {
-                list($component, $domain) = explode(':', $rawDomain, 2);
+                [$component, $domain] = explode(':', $rawDomain, 2);
             } else {
                 $component = static::DOMAIN_GLOBAL;
                 $domain    = (null !== $rawDomain)
@@ -540,7 +545,8 @@ namespace Pi\Application\Service {
          * Load translation resource, existent data will be flushed
          *
          * @param array|string $domain
-         * @param string|null $locale
+         * @param string|null  $locale
+         *
          * @return $this
          */
         public function load($domain, $locale = null)
@@ -574,6 +580,7 @@ namespace Pi\Application\Service {
          * @param string $domain
          * @param string $module
          * @param string $locale
+         *
          * @return $this
          */
         public function loadModule($domain, $module = null, $locale = null)
@@ -591,6 +598,7 @@ namespace Pi\Application\Service {
          * @param string $domain
          * @param string $theme
          * @param string $locale
+         *
          * @return $this
          */
         public function loadTheme($domain, $theme = null, $locale = null)
@@ -606,15 +614,16 @@ namespace Pi\Application\Service {
          * Get resource folder path
          *
          * @param array|string|null $domain
-         * @param string $locale
+         * @param string            $locale
+         *
          * @return string
          */
         public function getPath($domain = null, $locale = null)
         {
             if (is_array($domain)) {
-                list($component, $normalizedDomain) = $domain;
+                [$component, $normalizedDomain] = $domain;
             } else {
-                list($component, $normalizedDomain)
+                [$component, $normalizedDomain]
                     = $this->canonizeDomain($domain);
             }
             $locale = (null === $locale) ? $this->getLocale() : $locale;
@@ -634,8 +643,9 @@ namespace Pi\Application\Service {
         /**
          * Clone a translator with specified domain and locale
          *
-         * @param string $domain
+         * @param string      $domain
          * @param string|null $locale
+         *
          * @return Translator
          */
         public function translator($domain = '', $locale = null)
@@ -653,8 +663,9 @@ namespace Pi\Application\Service {
          * Translate a message
          *
          * @param string $message The string to be localized
-         * @param string $domain (optional) textdomain to use
-         * @param string $locale (optional) Locale/Language to use
+         * @param string $domain  (optional) textdomain to use
+         * @param string $locale  (optional) Locale/Language to use
+         *
          * @return string
          */
         public function translate($message, $domain = null, $locale = null)
@@ -673,19 +684,20 @@ namespace Pi\Application\Service {
         /**
          * Load date formatter
          *
-         * @see IntlDateFormatter
-         *
          * @param array|string|null $locale
-         * @param string|null $datetype
+         * @param string|null       $datetype
          *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-         * @param string|null $timetype
+         * @param string|null       $timetype
          *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-         * @param string|null $timezone
-         * @param int|string|null $calendar
-         * @param string|null $pattern
+         * @param string|null       $timezone
+         * @param int|string|null   $calendar
+         * @param string|null       $pattern
          *      Be aware that both datetype and timetype are ignored
          *      if the pattern is set.
+         *
          * @return IntlDateFormatter|null
+         * @see IntlDateFormatter
+         *
          */
         public function getDateFormatter(
             $locale = null,
@@ -694,22 +706,23 @@ namespace Pi\Application\Service {
             $timezone = null,
             $calendar = null,
             $pattern = null
-        )
-        {
+        ) {
             if (!class_exists('IntlDateFormatter')) {
                 return null;
             }
 
             if (is_array($locale)) {
                 $params = $locale;
-                foreach ([
-                             'locale',
-                             'datetype',
-                             'timetype',
-                             'timezone',
-                             'calendar',
-                             'pattern',
-                         ] as $key) {
+                foreach (
+                    [
+                        'locale',
+                        'datetype',
+                        'timetype',
+                        'timezone',
+                        'calendar',
+                        'pattern',
+                    ] as $key
+                ) {
                     ${$key} = isset($params[$key]) ? $params[$key] : null;
                 }
             }
@@ -762,19 +775,19 @@ namespace Pi\Application\Service {
         /**
          * Load number formatter
          *
-         * @see NumberFormatter
-         *
          * @param string|null $style
          * @param string|null $pattern
          * @param string|null $locale
+         *
          * @return NumberFormatter|null
+         * @see NumberFormatter
+         *
          */
         public function getNumberFormatter(
             $style = null,
             $pattern = null,
             $locale = null
-        )
-        {
+        ) {
             if (!class_exists('NumberFormatter')) {
                 return null;
             }
@@ -797,7 +810,8 @@ namespace Pi\Application\Service {
          * Canonize locale name based on locales supported by Pi
          *
          * @param string $locale
-         * @param bool $checkParent
+         * @param bool   $checkParent
+         *
          * @return string
          */
         public function canonize($locale, $checkParent = false)
@@ -863,8 +877,9 @@ namespace {
      * Translate a message
      *
      * @param string $message The string to be localized
-     * @param string $domain (optional) textdomain to use
-     * @param string $locale (optional) Locale/Language to use
+     * @param string $domain  (optional) textdomain to use
+     * @param string $locale  (optional) Locale/Language to use
+     *
      * @return string
      */
     function __($message, $domain = null, $locale = null)
@@ -878,8 +893,9 @@ namespace {
      * Translate and display a message
      *
      * @param string $message The string to be localized
-     * @param string $domain (optional) textdomain to use
-     * @param string $locale (optional) Locale/Language to use
+     * @param string $domain  (optional) textdomain to use
+     * @param string $locale  (optional) Locale/Language to use
+     *
      * @return void
      */
     function _e($message, $domain = null, $locale = null)
@@ -892,8 +908,9 @@ namespace {
      *
      *
      * @param string $message The string to be localized
-     * @param string $domain (optional) textdomain to use
-     * @param string $locale (optional) Locale/Language to use
+     * @param string $domain  (optional) textdomain to use
+     * @param string $locale  (optional) Locale/Language to use
+     *
      * @return string
      */
     function _b($message, $domain = null, $locale = null)
@@ -906,8 +923,9 @@ namespace {
      *
      *
      * @param string $message The string to be localized
-     * @param string $domain (optional) textdomain to use
-     * @param string $locale (optional) Locale/Language to use
+     * @param string $domain  (optional) textdomain to use
+     * @param string $locale  (optional) Locale/Language to use
+     *
      * @return string
      */
     function _a($message, $domain = null, $locale = null)
@@ -919,6 +937,7 @@ namespace {
      * Register a message to translation queue
      *
      * @param string $message The string to be localized
+     *
      * @return string
      */
     function _t($message)
@@ -940,18 +959,18 @@ namespace {
      * Locale-dependent formatting/parsing of date-time
      * using pattern strings and/or canned patterns
      *
-     * @param int|string|null $value
+     * @param int|string|null   $value
      * @param array|string|null $locale
-     * @param string|null $datetype
+     * @param string|null       $datetype
      *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-     * @param string|null $timetype
+     * @param string|null       $timetype
      *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-     * @param string|null $timezone
-     * @param int|string|null $calendar
-     * @param string|null $pattern
+     * @param string|null       $timezone
+     * @param int|string|null   $calendar
+     * @param string|null       $pattern
      *      Be aware that both datetype and timetype are ignored
      *      if the pattern is set.
-     * @param string|null $format
+     * @param string|null       $format
      *      Legacy format for date() in case Intl is not available
      *
      * @return string
@@ -965,8 +984,7 @@ namespace {
         $calendar = null,
         $pattern = null,
         $format = null
-    )
-    {
+    ) {
         if (!$value) {
             $value = time();
         } elseif (is_numeric($value)) {
@@ -1004,7 +1022,7 @@ namespace {
      * Locale-dependent formatting/parsing of number
      * using pattern strings and/or canned patterns
      *
-     * @param int|float $value
+     * @param int|float   $value
      * @param string|null $style
      * @param string|null $pattern
      * @param string|null $locale
@@ -1018,8 +1036,7 @@ namespace {
         $pattern = null,
         $locale = null,
         $type = null
-    )
-    {
+    ) {
         // Return raw data in case Intl is not available
         if (!_intl()) {
             return $value;
@@ -1044,9 +1061,10 @@ namespace {
      * Locale-dependent formatting/parsing of number
      * using pattern strings and/or canned patterns
      *
-     * @param int|float $value
+     * @param int|float   $value
      * @param string|null $currency
      * @param string|null $locale
+     *
      * @return string
      */
     function _currency($value, $currency = null, $locale = null)

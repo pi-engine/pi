@@ -181,7 +181,7 @@ use Pi;
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @see https://github.com/avalanche123/Imagine
+ * @see    https://github.com/avalanche123/Imagine
  */
 class Image extends AbstractService
 {
@@ -195,6 +195,7 @@ class Image extends AbstractService
      * Get image driver
      *
      * @param string $driver
+     *
      * @return ImagineInterface|bool
      */
     public function getDriver($driver = '')
@@ -242,8 +243,8 @@ class Image extends AbstractService
     /**
      * Canonize Box element
      *
-     * @param array|int|Box $width Width or width and height, or Box
-     * @param int $height Height
+     * @param array|int|Box $width  Width or width and height, or Box
+     * @param int           $height Height
      *
      * @return Box
      */
@@ -264,7 +265,7 @@ class Image extends AbstractService
      * Canonize Point element
      *
      * @param array|int|Point $x X or X and Y, or Point
-     * @param int $y
+     * @param int             $y
      *
      * @return Point
      */
@@ -285,7 +286,7 @@ class Image extends AbstractService
      * Canonize Color element
      *
      * @param array|string|ColorInterface $color Color value or color and alpha, or Color
-     * @param int $alpha
+     * @param int                         $alpha
      *
      * @return ColorInterface
      */
@@ -323,7 +324,7 @@ class Image extends AbstractService
     /**
      * Creates a new empty image with an optional background color
      *
-     * @param array|Box $size Width and height
+     * @param array|Box                   $size  Width and height
      * @param string|array|ColorInterface $color Color value and alpha
      *
      * @return ImageInterface|bool
@@ -416,8 +417,8 @@ class Image extends AbstractService
      *
      * The font size is to be specified in points (e.g. 10pt means 10)
      *
-     * @param string $file
-     * @param integer $size
+     * @param string                      $file
+     * @param integer                     $size
      * @param string|array|ColorInterface $color Color value and alpha
      *
      * @return FontInterface|bool
@@ -441,11 +442,11 @@ class Image extends AbstractService
     /**
      * Add watermark to an image
      *
-     * @param string|Image $sourceImage
-     * @param string $to
-     * @param string $watermarkImage
+     * @param string|Image       $sourceImage
+     * @param string             $to
+     * @param string             $watermarkImage
      * @param string|array|Point $position
-     * @param array $options
+     * @param array              $options
      *
      * @return bool
      */
@@ -455,8 +456,7 @@ class Image extends AbstractService
         $watermarkImage = '',
         $position = '',
         array $options = []
-    )
-    {
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -481,7 +481,7 @@ class Image extends AbstractService
             $wSize = $watermark->getSize();
             switch ($position) {
                 case 'top-left':
-                    list($x, $y) = [0, 0];
+                    [$x, $y] = [0, 0];
                     break;
                 case 'top-right':
                     $x = $size->getWidth() - $wSize->getWidth();
@@ -513,11 +513,11 @@ class Image extends AbstractService
      * Crops a specified box out of the source image (modifies the source image)
      * Returns cropped self
      *
-     * @param string|Image $sourceImage
-     * @param array|Point $start
+     * @param string|Image        $sourceImage
+     * @param array|Point         $start
      * @param array|float|int|Box $size
-     * @param string $to
-     * @param array $options Options:
+     * @param string              $to
+     * @param array               $options Options:
      *
      * @return bool
      */
@@ -527,8 +527,7 @@ class Image extends AbstractService
         $size,
         $to = '',
         array $options = []
-    )
-    {
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -576,11 +575,11 @@ class Image extends AbstractService
     /**
      * Resizes current image
      *
-     * @param string|Image $sourceImage
+     * @param string|Image    $sourceImage
      * @param array|float|Box $size
-     * @param string $to
-     * @param string $filter
-     * @param array $options
+     * @param string          $to
+     * @param string          $filter
+     * @param array           $options
      *
      * @return bool
      */
@@ -590,8 +589,7 @@ class Image extends AbstractService
         $to = '',
         $filter = '',
         array $options = []
-    )
-    {
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -616,11 +614,11 @@ class Image extends AbstractService
      * Generates a thumbnail from a current image
      * Returns it as a new image, doesn't modify the current image
      *
-     * @param string|Image $sourceImage
+     * @param string|Image    $sourceImage
      * @param array|float|Box $size
-     * @param string $to
-     * @param string $mode
-     * @param array $options
+     * @param string          $to
+     * @param string          $mode
+     * @param array           $options
      *
      * @return bool|ImageInterface
      */
@@ -630,8 +628,7 @@ class Image extends AbstractService
         $to,
         $mode = '',
         array $options = []
-    )
-    {
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -657,11 +654,11 @@ class Image extends AbstractService
      * Optional $background can be used to specify the fill color of the empty
      * area of rotated image.
      *
-     * @param string|Image $sourceImage
-     * @param int $angle
-     * @param string $to
+     * @param string|Image                $sourceImage
+     * @param int                         $angle
+     * @param string                      $to
      * @param string|array|ColorInterface $background
-     * @param array $options
+     * @param array                       $options
      *
      * @return bool
      */
@@ -671,8 +668,7 @@ class Image extends AbstractService
         $to = '',
         $background = null,
         array $options = []
-    )
-    {
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -699,9 +695,9 @@ class Image extends AbstractService
      *
      * @param string|Image $sourceImage
      * @param string|Image $childImage
-     * @param array|Point $start
-     * @param string $to
-     * @param array $options
+     * @param array|Point  $start
+     * @param string       $to
+     * @param array        $options
      *
      * @return bool
      */
@@ -711,8 +707,7 @@ class Image extends AbstractService
         $start,
         $to,
         array $options = []
-    )
-    {
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -743,8 +738,8 @@ class Image extends AbstractService
      * supported
      *
      * @param string|Image $sourceImage
-     * @param string $to
-     * @param array $options
+     * @param string       $to
+     * @param array        $options
      *
      * @return bool
      */
@@ -771,7 +766,7 @@ class Image extends AbstractService
      * Create path for image file to be stored
      *
      * @param string $file
-     * @param bool $isFile
+     * @param bool   $isFile
      *
      * @return mixed
      */
@@ -786,10 +781,10 @@ class Image extends AbstractService
     /**
      * Save Image to a file
      *
-     * @param ImageInterface $image
-     * @param string $to
+     * @param ImageInterface        $image
+     * @param string                $to
      * @param string|ImageInterface $source
-     * @param array $options
+     * @param array                 $options
      *
      * @return bool|ImageInterface
      */
@@ -798,8 +793,7 @@ class Image extends AbstractService
         $to,
         $source = '',
         array $options = []
-    )
-    {
+    ) {
         if (!$to && $source && !$source instanceof ImageInterface) {
             $to = $source;
         }
@@ -826,7 +820,7 @@ class Image extends AbstractService
      * Canonize image size
      *
      * @param array|int|float|Box $size float, Box, or integer for square, or array: array(width, weight); array(width, 0); array(0, height); array(width, height, keepAspectRatio)
-     * @param Box $origin
+     * @param Box                 $origin
      *
      * @return Box
      */

@@ -23,7 +23,7 @@ use Laminas\View\Helper\AbstractHelper;
  *  $cssPath = $this->assetThemePath('css/style.css', 'default');
  * ```
  *
- * @see Pi\Application\Service\Asset
+ * @see    Pi\Application\Service\Asset
  * @author Frédéric TISSOT
  */
 class AssetThemePath extends AbstractHelper
@@ -31,9 +31,9 @@ class AssetThemePath extends AbstractHelper
     /**
      * Get URI of a theme asset
      *
-     * @param   string      $file
-     * @param   string      $theme
-     * @param   bool|null   $appendVersion
+     * @param string    $file
+     * @param string    $theme
+     * @param bool|null $appendVersion
      *
      * @return  string
      */

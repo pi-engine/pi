@@ -96,6 +96,7 @@ class Navigation extends AbstractResource
 
     /**
      * Route for MVC pages as default
+     *
      * @var string
      */
     protected $route = 'default';
@@ -104,6 +105,7 @@ class Navigation extends AbstractResource
      * Canonize page data
      *
      * @param array $page
+     *
      * @return array
      */
     protected function canonizePage($page)
@@ -151,6 +153,7 @@ class Navigation extends AbstractResource
      * Canonize page list
      *
      * @param array $list
+     *
      * @return void
      */
     protected function canonizePages(array &$list)
@@ -172,6 +175,7 @@ class Navigation extends AbstractResource
      * Normalize specs
      *
      * @param array $config
+     *
      * @return array
      */
     protected function canonizeConfig($config)
@@ -439,6 +443,7 @@ class Navigation extends AbstractResource
      *
      * @param array $node
      * @param array $message
+     *
      * @return bool
      */
     protected function insertNavigationNode($node, &$message)
@@ -471,6 +476,7 @@ class Navigation extends AbstractResource
      *
      * @param array $navigation
      * @param array $message
+     *
      * @return bool
      */
     protected function insertNavigation($navigation, &$message)
@@ -489,14 +495,14 @@ class Navigation extends AbstractResource
      * Delete a navigation
      *
      * @param NavigationRow $navigationRow
-     * @param array $message
+     * @param array         $message
+     *
      * @return bool
      */
     protected function deleteNavigation(
         NavigationRow $navigationRow,
         &$message
-    )
-    {
+    ) {
         try {
             $navigationRow->delete();
         } catch (\Exception $e) {

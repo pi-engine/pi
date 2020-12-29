@@ -17,25 +17,28 @@ use Laminas\View\Model\ViewModel;
 /**
  * Cache for view content rendering in specific contexts: page, action, block
  *
- * @see Pi\Application\Service\Render
+ * @see    Pi\Application\Service\Render
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class RenderCache extends AbstractResource
 {
     /**
      * Cache storage
+     *
      * @var \Laminas\Cache\Storage\Adapter\AbstractAdapter
      */
     protected $storage;
 
     /**
      * Context specific render cache
+     *
      * @var Pi\Application\Service\Render
      */
     protected $renderCache;
 
     /**
      * Namespace for caching
+     *
      * @var string
      */
     protected $namespace = 'render';
@@ -92,7 +95,8 @@ class RenderCache extends AbstractResource
      * Render cached data
      *
      * @param string $type
-     * @param bool $create
+     * @param bool   $create
+     *
      * @return Pi\Application\Service\Render
      */
     public function renderCache($type = null, $create = false)
@@ -114,6 +118,7 @@ class RenderCache extends AbstractResource
      * otherwise generated content will be stored to cache if page is cacable
      *
      * @param MvcEvent $e
+     *
      * @return void
      */
     public function checkPage(MvcEvent $e)
@@ -152,7 +157,7 @@ class RenderCache extends AbstractResource
                 $renderCache->isOpened(true);
             } else {
                 Pi::service('log')->info('Page cached');
-                $content  = $renderCache->cachedContent();
+                $content = $renderCache->cachedContent();
 
                 /** @var \Laminas\Http\PhpEnvironment\Response $response */
                 $response = $e->getResponse()->setContent($content);
@@ -163,11 +168,13 @@ class RenderCache extends AbstractResource
                 ) {
                     $etag     = md5($content);
                     $datetime = new \DateTime();
-                    $response->getHeaders()->addHeaders([
-                        'etag'          => $etag,
-                        'cache-control' => 'must-revalidate, post-check=0, pre-check=0',
-                        'expires'       => $datetime->modify('+1 month')->format('D, d M Y H:i:s \G\M\T'),
-                    ]);
+                    $response->getHeaders()->addHeaders(
+                        [
+                            'etag'          => $etag,
+                            'cache-control' => 'must-revalidate, post-check=0, pre-check=0',
+                            'expires'       => $datetime->modify('+1 month')->format('D, d M Y H:i:s \G\M\T'),
+                        ]
+                    );
                     $ifNoneMatch = $e->getRequest()->getHeader('if_none_match');
                     if ($ifNoneMatch) {
                         $ifNoneMatch = $ifNoneMatch->getFieldValue();
@@ -188,7 +195,8 @@ class RenderCache extends AbstractResource
     /**
      * Save page content to cache
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return void
      */
     public function savePage(MvcEvent $e)
@@ -219,10 +227,12 @@ class RenderCache extends AbstractResource
         if (!empty($this->options['enable_etag'])
             && '1.1' == $response->getVersion()
         ) {
-            $response->getHeaders()->addHeaders([
-                'etag'          => md5($content),
-                'cache-control' => 'must-revalidate, post-check=0, pre-check=0',
-            ]);
+            $response->getHeaders()->addHeaders(
+                [
+                    'etag'          => md5($content),
+                    'cache-control' => 'must-revalidate, post-check=0, pre-check=0',
+                ]
+            );
         }
 
         return;
@@ -235,6 +245,7 @@ class RenderCache extends AbstractResource
      * otherwise generated content will be stored to cache if action is cachable
      *
      * @param MvcEvent $e
+     *
      * @return void
      */
     public function checkAction(MvcEvent $e)
@@ -299,7 +310,8 @@ class RenderCache extends AbstractResource
     /**
      * Save action content to cache
      *
-     * @param  MvcEvent $e
+     * @param MvcEvent $e
+     *
      * @return void
      */
     public function saveAction(MvcEvent $e)
@@ -361,7 +373,8 @@ class RenderCache extends AbstractResource
      * Read cache meta: TTL and level
      *
      * @param MvcEvent $e
-     * @param string $type
+     * @param string   $type
+     *
      * @return bool|array
      */
     protected function cacheMeta(MvcEvent $e, $type = 'page')
@@ -404,6 +417,7 @@ class RenderCache extends AbstractResource
      * Check if action content can be cached, i.e. scalar or array
      *
      * @param mixed $content
+     *
      * @return bool
      */
     protected function isCachable($content)

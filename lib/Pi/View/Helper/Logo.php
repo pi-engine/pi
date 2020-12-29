@@ -28,7 +28,7 @@ class Logo extends AbstractHelper
     /**
      * Output logo URL
      *
-     * @param  string $name Logo filename
+     * @param string $name Logo filename
      *
      * @return string
      */

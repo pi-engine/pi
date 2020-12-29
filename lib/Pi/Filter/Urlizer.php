@@ -15,14 +15,14 @@ use Laminas\Filter\AbstractFilter;
  * Uses 3rd party libraries and functions:
  *         http://sourceforge.net/projects/phputf8
  *
- * @package     Gedmo.Sluggable.Util
- * @subpackage  Urlizer
- * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
- * @link        www.doctrine-project.org
- * @since       1.0
- * @version     $Revision: 3189 $
- * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @author      Jonathan H. Wage <jonwage@gmail.com>
+ * @package        Gedmo.Sluggable.Util
+ * @subpackage     Urlizer
+ * @license        http://www.opensource.org/licenses/lgpl-license.php LGPL
+ * @link           www.doctrine-project.org
+ * @since          1.0
+ * @version        $Revision: 3189 $
+ * @author         Konsta Vesterinen <kvesteri@cc.hut.fi>
+ * @author         Jonathan H. Wage <jonwage@gmail.com>
  * @author         <hsivonen@iki.fi>
  */
 class Urlizer extends AbstractFilter
@@ -32,9 +32,10 @@ class Urlizer extends AbstractFilter
      *
      * Proxies to {@link filter()}
      *
-     * @param  mixed $value
-     * @throws Exception\ExceptionInterface If filtering $value is impossible
+     * @param mixed $value
+     *
      * @return mixed
+     * @throws Exception\ExceptionInterface If filtering $value is impossible
      */
     public function __invoke($value, $separator = '-', $excludeDot = false)
     {
@@ -46,22 +47,38 @@ class Urlizer extends AbstractFilter
      *
      * By bmorel at ssi dot fr
      *
-     * @param  string $string
+     * @param string $string
+     *
      * @return boolean $bool
      */
     public static function seemsUtf8($string)
     {
         for ($i = 0; $i < strlen($string); $i++) {
-            if (ord($string[$i]) < 0x80) continue; # 0bbbbbbb
-            elseif ((ord($string[$i]) & 0xE0) == 0xC0) $n = 1; # 110bbbbb
-            elseif ((ord($string[$i]) & 0xF0) == 0xE0) $n = 2; # 1110bbbb
-            elseif ((ord($string[$i]) & 0xF8) == 0xF0) $n = 3; # 11110bbb
-            elseif ((ord($string[$i]) & 0xFC) == 0xF8) $n = 4; # 111110bb
-            elseif ((ord($string[$i]) & 0xFE) == 0xFC) $n = 5; # 1111110b
-            else return false; # Does not match any model
+            if (ord($string[$i]) < 0x80) {
+                continue;
+            } # 0bbbbbbb
+            elseif ((ord($string[$i]) & 0xE0) == 0xC0) {
+                $n = 1;
+            } # 110bbbbb
+            elseif ((ord($string[$i]) & 0xF0) == 0xE0) {
+                $n = 2;
+            } # 1110bbbb
+            elseif ((ord($string[$i]) & 0xF8) == 0xF0) {
+                $n = 3;
+            } # 11110bbb
+            elseif ((ord($string[$i]) & 0xFC) == 0xF8) {
+                $n = 4;
+            } # 111110bb
+            elseif ((ord($string[$i]) & 0xFE) == 0xFC) {
+                $n = 5;
+            } # 1111110b
+            else {
+                return false;
+            } # Does not match any model
             for ($j = 0; $j < $n; $j++) { # n bytes matching 10bbbbbb follow ?
-                if ((++$i == strlen($string)) || ((ord($string[$i]) & 0xC0) != 0x80))
+                if ((++$i == strlen($string)) || ((ord($string[$i]) & 0xC0) != 0x80)) {
                     return false;
+                }
             }
         }
         return true;
@@ -70,7 +87,8 @@ class Urlizer extends AbstractFilter
     /**
      * Remove any illegal characters, accents, etc.
      *
-     * @param  string $string String to unaccent
+     * @param string $string String to unaccent
+     *
      * @return string $string  Unaccented string
      */
     public static function unaccent($string)
@@ -218,10 +236,14 @@ class Urlizer extends AbstractFilter
      * characters to - it uses a PHP output buffer to do this - it means, memory use will increase,
      * requiring up to the same amount again as the input string
      *
-     * @see http://search.cpan.org/~sburke/Text-Unidecode-0.04/lib/Text/Unidecode.pm
+     * @see    http://search.cpan.org/~sburke/Text-Unidecode-0.04/lib/Text/Unidecode.pm
+     *
      * @param string UTF-8 string to convert
+     *
      * @author <hsivonen@iki.fi>
+     *
      * @param string (default = ?) Character use if character unknown
+     *
      * @return string US-ASCII string
      */
     public static function utf8ToAscii($str, $unknown = '?')
@@ -253,7 +275,8 @@ class Urlizer extends AbstractFilter
                 $ord = (ord($c{0}) - 248) * 16777216 + (ord($c{1}) - 128) * 262144 + (ord($c{2}) - 128) * 4096 + (ord($c{3}) - 128) * 64 + (ord($c{4}) - 128);
             }
             if (ord($c{0}) >= 252 && ord($c{0}) <= 253) {
-                $ord = (ord($c{0}) - 252) * 1073741824 + (ord($c{1}) - 128) * 16777216 + (ord($c{2}) - 128) * 262144 + (ord($c{3}) - 128) * 4096 + (ord($c{4}) - 128) * 64 + (ord($c{5}) - 128);
+                $ord = (ord($c{0}) - 252) * 1073741824 + (ord($c{1}) - 128) * 16777216 + (ord($c{2}) - 128) * 262144 + (ord($c{3}) - 128) * 4096 + (ord($c{4})
+                        - 128) * 64 + (ord($c{5}) - 128);
             }
             if (ord($c{0}) >= 254 && ord($c{0}) <= 255) {
                 $chars{$i} = $unknown;
@@ -287,6 +310,7 @@ class Urlizer extends AbstractFilter
      *
      * @param string $text
      * @param string $separator
+     *
      * @return string
      */
     public function filter($text, $separator = '-', $excludeDot = false)
@@ -300,6 +324,7 @@ class Urlizer extends AbstractFilter
      *
      * @param string $text
      * @param string $separator
+     *
      * @return string $text
      */
     public static function transliterate($text, $separator = '-')
@@ -314,10 +339,12 @@ class Urlizer extends AbstractFilter
      * Tests a string as to whether it's valid UTF-8 and supported by the
      * Unicode standard
      * Note: this function has been modified to simple return true or false
-     * @author <hsivonen@iki.fi>
+     *
      * @param string UTF-8 encoded string
+     *
      * @return boolean true if valid
-     * @see http://hsivonen.iki.fi/php-utf8/
+     * @author <hsivonen@iki.fi>
+     * @see    http://hsivonen.iki.fi/php-utf8/
      */
     public static function validUtf8($str)
     {
@@ -396,13 +423,13 @@ class Urlizer extends AbstractFilter
                         * Check for illegal sequences and codepoints.
                         */
                         // From Unicode 3.1, non-shortest form is illegal
-                        if (((2 == $mBytes) && ($mUcs4 < 0x0080)) ||
-                            ((3 == $mBytes) && ($mUcs4 < 0x0800)) ||
-                            ((4 == $mBytes) && ($mUcs4 < 0x10000)) ||
-                            (4 < $mBytes) ||
-                            // From Unicode 3.2, surrogate characters are illegal
-                            (($mUcs4 & 0xFFFFF800) == 0xD800) ||
-                            // Codepoints outside the Unicode range are illegal
+                        if (((2 == $mBytes) && ($mUcs4 < 0x0080))
+                            || ((3 == $mBytes) && ($mUcs4 < 0x0800))
+                            || ((4 == $mBytes) && ($mUcs4 < 0x10000))
+                            || (4 < $mBytes)
+                            || // From Unicode 3.2, surrogate characters are illegal
+                            (($mUcs4 & 0xFFFFF800) == 0xD800)
+                            || // Codepoints outside the Unicode range are illegal
                             ($mUcs4 > 0x10FFFF)
                         ) {
                             return false;
@@ -429,6 +456,7 @@ class Urlizer extends AbstractFilter
      *
      * @param string $text
      * @param string $separator
+     *
      * @return string
      */
     private static function postProcessText($text, $separator, $excludeDot = false)
@@ -446,10 +474,18 @@ class Urlizer extends AbstractFilter
         // More stripping. Replace spaces with dashes
 
         $stringToReplace = $excludeDot ? '/[^A-Z^a-z^0-9^\/^.]+/' : '/[^A-Z^a-z^0-9^\/]+/';
-        $text            = strtolower(preg_replace($stringToReplace, $separator,
-            preg_replace('/([a-z\d])([A-Z])/', '\1_\2',
-                preg_replace('/([A-Z]+)([A-Z][a-z])/', '\1_\2',
-                    preg_replace('/::/', '/', $text)))));
+        $text            = strtolower(
+            preg_replace(
+                $stringToReplace, $separator,
+                preg_replace(
+                    '/([a-z\d])([A-Z])/', '\1_\2',
+                    preg_replace(
+                        '/([A-Z]+)([A-Z][a-z])/', '\1_\2',
+                        preg_replace('/::/', '/', $text)
+                    )
+                )
+            )
+        );
 
         return trim($text, $separator);
     }

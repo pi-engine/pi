@@ -37,7 +37,7 @@ use Laminas\View\Model\ViewModel;
  *  $this->block()->render($blockModel);
  * ```
  *
- * @see Pi\Application\Registry\Block
+ * @see    Pi\Application\Registry\Block
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Block extends AbstractHelper
@@ -46,6 +46,7 @@ class Block extends AbstractHelper
      * Load a block row from database
      *
      * @param string|int $id
+     *
      * @return BlockRow
      */
     public function load($id)
@@ -65,8 +66,9 @@ class Block extends AbstractHelper
     /**
      * Render a block
      *
-     * @param   string|int|BlockRow $block
-     * @param   array $options
+     * @param string|int|BlockRow $block
+     * @param array               $options
+     *
      * @return  self|array|false
      */
     public function __invoke($block = null, $options = [])
@@ -87,8 +89,9 @@ class Block extends AbstractHelper
     /**
      * Render a block
      *
-     * @param   BlockRow $blockRow
-     * @param   array $options
+     * @param BlockRow $blockRow
+     * @param array    $options
+     *
      * @return  array
      */
     public function render(BlockRow $blockRow, $options = [])
@@ -99,8 +102,9 @@ class Block extends AbstractHelper
     /**
      * Render a block
      *
-     * @param   BlockRow $blockRow
-     * @param   array $options
+     * @param BlockRow $blockRow
+     * @param array    $options
+     *
      * @return  array
      */
     public function renderBlock(BlockRow $blockRow, $options = [])
@@ -111,15 +115,17 @@ class Block extends AbstractHelper
         $block = $blockRow->toArray();
 
         // Override with instant options
-        foreach ([
-                     'title',
-                     'link',
-                     'class',
-                     'cache_ttl',
-                     'cache_level',
-                     'template',
-                     'title_hidden',
-                 ] as $key) {
+        foreach (
+            [
+                'title',
+                'link',
+                'class',
+                'cache_ttl',
+                'cache_level',
+                'template',
+                'title_hidden',
+            ] as $key
+        ) {
             if (isset($options[$key])) {
                 $block[$key] = $options[$key];
             }
@@ -201,7 +207,8 @@ class Block extends AbstractHelper
      * Build the content of the block for output
      *
      * @param BlockRow $blockRow
-     * @param array $configs
+     * @param array    $configs
+     *
      * @return array|string Variable array for module blocks
      *      and string content for custom blocks
      */

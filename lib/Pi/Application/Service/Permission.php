@@ -46,12 +46,14 @@ class Permission extends AbstractService
 
     /**
      * Application section: front, admin
+     *
      * @var string
      */
     protected $section;
 
     /**
      * Predefined roles
+     *
      * @var array
      */
     protected $roles
@@ -119,7 +121,7 @@ class Permission extends AbstractService
      * - resource: <resource-name>, block-<block-id>, module-<access|admin|manage|setting>
      *
      * @param string $role
-     * @param array $resource Specs: section, module, resource
+     * @param array  $resource Specs: section, module, resource
      *
      * @return bool
      */
@@ -151,7 +153,7 @@ class Permission extends AbstractService
      *
      * All permissions will be revoked if no permission is specified
      *
-     * @param array $resource
+     * @param array  $resource
      * @param string $role
      *
      * @return bool
@@ -175,7 +177,7 @@ class Permission extends AbstractService
     /**
      * Check if a user or role(s) has permission
      *
-     * @param array $resource Array: section, module, resource
+     * @param array                    $resource Array: section, module, resource
      * @param null|int|string|string[] $roleOrUid
      *
      * @return bool
@@ -201,7 +203,7 @@ class Permission extends AbstractService
      * Get permitted resources of a role subject to conditions
      *
      * @param null|int|string|string[] $roleOrUid
-     * @param array $condition
+     * @param array                    $condition
      *
      * @return array
      */
@@ -228,11 +230,11 @@ class Permission extends AbstractService
     /**
      * Check permission for a module
      *
-     * @param string $module
-     * @param string $permission
-     *      Permission type: front - access, admin; admin - manage, admin
+     * @param string                   $module
+     * @param string                   $permission
+     *                                      Permission type: front - access, admin; admin - manage, admin
      * @param null|int|string|string[] $uid Int for uid and string for role
-     * @param string $section
+     * @param string                   $section
      *
      * @return bool
      */
@@ -241,8 +243,7 @@ class Permission extends AbstractService
         $permission = '',
         $uid = null,
         $section = ''
-    )
-    {
+    ) {
         if ($this->isAdmin($module, $uid)) {
             return true;
         }
@@ -262,9 +263,9 @@ class Permission extends AbstractService
     /**
      * Get front permitted module list
      *
-     * @param string $permission
-     *      Permission type: access, admin
-     * @param string $section
+     * @param string                   $permission
+     *                                      Permission type: access, admin
+     * @param string                   $section
      * @param null|int|string|string[] $uid Int for uid and string for role
      *
      * @return string[]
@@ -295,7 +296,7 @@ class Permission extends AbstractService
     /**
      * Check permission for a block
      *
-     * @param int $id Block id
+     * @param int                      $id  Block id
      * @param null|int|string|string[] $uid Int for uid and string for role
      *
      * @return bool
@@ -318,24 +319,28 @@ class Permission extends AbstractService
     /**
      * Get permitted block list from a given block list
      *
-     * @param int[] $blocks
+     * @param int[]                    $blocks
      * @param null|int|string|string[] $uid Int for uid and string for role
      *
      * @return int[]
      */
     public function blockList(array $blocks, $uid = null)
     {
-        array_walk($blocks, function (&$block, $key) {
+        array_walk(
+            $blocks, function (&$block, $key) {
             $block = 'block-' . $block;
-        });
+        }
+        );
         $condition = [
             'section'  => 'front',
             'resource' => $blocks,
         ];
         $rules     = $this->getPermission($uid, $condition);
-        array_walk($rules, function (&$rule, $key) {
+        array_walk(
+            $rules, function (&$rule, $key) {
             $rule = (int)substr($rule['resource'], 6);
-        });
+        }
+        );
 
         return $rules;
     }
@@ -343,7 +348,7 @@ class Permission extends AbstractService
     /**
      * Check if a page is accessible
      *
-     * @param array $route
+     * @param array                    $route
      * @param null|int|string|string[] $uid Int for uid and string for role
      *
      * @return bool|null
@@ -379,11 +384,13 @@ class Permission extends AbstractService
             }
         }
         if ($resource) {
-            $access = $this->hasPermission([
-                'section'  => $section,
-                'module'   => $module,
-                'resource' => $resource,
-            ], $uid);
+            $access = $this->hasPermission(
+                [
+                    'section'  => $section,
+                    'module'   => $module,
+                    'resource' => $resource,
+                ], $uid
+            );
         }
 
         return $access;
@@ -402,10 +409,12 @@ class Permission extends AbstractService
         $section = $this->getSection();
         $result  = ($role == $this->roles[$section]['admin']) ? true : false;
         if (!$result && $module) {
-            $result = $this->hasPermission([
-                'resource' => 'module-admin',
-                'item'     => $module,
-            ], $role);
+            $result = $this->hasPermission(
+                [
+                    'resource' => 'module-admin',
+                    'item'     => $module,
+                ], $role
+            );
         }
 
         return $result;
@@ -414,9 +423,9 @@ class Permission extends AbstractService
     /**
      * Check if a user is admin
      *
-     * @param string $module
+     * @param string   $module
      * @param int|null $uid
-     * @param string $section
+     * @param string   $section
      *
      * @return bool
      */
@@ -434,10 +443,12 @@ class Permission extends AbstractService
             $result = true;
         }
         if (!$result && $module) {
-            $result = $this->hasPermission([
-                'resource' => 'module-admin',
-                'item'     => $module,
-            ], $uid);
+            $result = $this->hasPermission(
+                [
+                    'resource' => 'module-admin',
+                    'item'     => $module,
+                ], $uid
+            );
         }
 
         return $result;

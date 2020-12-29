@@ -104,6 +104,7 @@ class Permission extends AbstractResource
      * Canonize resource config
      *
      * @param array $resource
+     *
      * @return array
      */
     protected function canonizeResource(array $resource)
@@ -221,10 +222,12 @@ class Permission extends AbstractResource
         // Update resources
         $config = $this->canonize($this->config);
         $model  = Pi::model('permission_resource');
-        $rowset = $model->select([
-            'module' => $module,
-            //'type'      => array('system', 'custom'),
-        ]);
+        $rowset = $model->select(
+            [
+                'module' => $module,
+                //'type'      => array('system', 'custom'),
+            ]
+        );
         // Find existent resources
         $resourcesExist = [];
         foreach ($rowset as $row) {
@@ -317,10 +320,12 @@ class Permission extends AbstractResource
     {
         $module = $this->event->getParam('module');
 
-        Pi::model('permission_resource')->delete([
-            'module' => $module,
-            //'type'      => array('system', 'custom')
-        ]);
+        Pi::model('permission_resource')->delete(
+            [
+                'module' => $module,
+                //'type'      => array('system', 'custom')
+            ]
+        );
         Pi::model('permission_rule')->delete(['module' => $module]);
 
         Pi::registry('permission_resource')->flush();

@@ -34,6 +34,7 @@ abstract class AbstractAdapter
      * Set options
      *
      * @param array $options
+     *
      * @return  AbstractAdapter
      */
     public function setOptions(array $options = [])
@@ -91,7 +92,7 @@ abstract class AbstractAdapter
      * Upload a local media doc
      *
      * @param string|array|Resource $file
-     * @param array $data Doc attribute data
+     * @param array                 $data Doc attribute data
      *
      * @return int Doc id
      */
@@ -109,7 +110,7 @@ abstract class AbstractAdapter
     /**
      * Update doc details
      *
-     * @param int $id doc ID
+     * @param int   $id   doc ID
      * @param array $data data to update
      *
      * @return bool
@@ -119,7 +120,7 @@ abstract class AbstractAdapter
     /**
      * Activate/deactivate a doc
      *
-     * @param int $id Doc ID
+     * @param int  $id Doc ID
      * @param bool $flag
      *
      * @return bool
@@ -129,7 +130,7 @@ abstract class AbstractAdapter
     /**
      * Get attributes of a doc
      *
-     * @param int $id Doc ID
+     * @param int             $id   Doc ID
      * @param string|string[] $attr attribute key
      *
      * @return mixed
@@ -139,7 +140,7 @@ abstract class AbstractAdapter
     /**
      * Get attributes of files
      *
-     * @param int[] $ids Doc IDs
+     * @param int[]           $ids  Doc IDs
      * @param string|string[] $attr attribute key
      *
      * @return array
@@ -176,9 +177,9 @@ abstract class AbstractAdapter
     /**
      * Get file IDs by given condition
      *
-     * @param array $condition
-     * @param int $limit
-     * @param int $offset
+     * @param array        $condition
+     * @param int          $limit
+     * @param int          $offset
      * @param string|array $order
      *
      * @return int[]
@@ -193,11 +194,11 @@ abstract class AbstractAdapter
     /**
      * Get list by condition
      *
-     * @param array $condition
-     * @param int $limit
-     * @param int $offset
+     * @param array        $condition
+     * @param int          $limit
+     * @param int          $offset
      * @param string|array $order
-     * @param array $attr
+     * @param array        $attr
      *
      * @return array
      */

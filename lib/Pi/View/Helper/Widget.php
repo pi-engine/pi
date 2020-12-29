@@ -37,7 +37,7 @@ use Pi\Db\RowGateway\RowGateway as BlockModel;
  *  $this->widget()->render($blockModel);
  * ```
  *
- * @see Pi\Application\Registry\Block
+ * @see    Pi\Application\Registry\Block
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Widget extends Block
@@ -45,8 +45,9 @@ class Widget extends Block
     /**
      * Render a block model
      *
-     * @param   BlockModel $block
-     * @param   array $options
+     * @param BlockModel $block
+     * @param array      $options
+     *
      * @return  string|false
      */
     public function render(BlockModel $block, $options = [])

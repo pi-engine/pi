@@ -15,6 +15,7 @@ use Laminas\View\Helper\AbstractHelper;
 
 /**
  * Helper for load Sticky
+ *
  * @author Frédéric TISSOT <contact@espritdev.fr>
  */
 class Sticky extends AbstractHelper
@@ -22,17 +23,16 @@ class Sticky extends AbstractHelper
     /**
      * Load Sticky scripts
      *
-     * @param   array $locations
-     * @param   string $apiKey
-     * @param   string $type point|route|list
-     * @param   array $option Set custom options
+     * @param array  $locations
+     * @param string $apiKey
+     * @param string $type   point|route|list
+     * @param array  $option Set custom options
      *
      * @return  $this
      */
     public function __invoke(
         $option = []
-    )
-    {
+    ) {
 
         $script = <<<'EOT'
         
@@ -62,7 +62,7 @@ class Sticky extends AbstractHelper
         });
 EOT;
 
-        $this->view->js(pi::url('static/vendor/jquery/extension/jquery.hc-sticky.min.js'), array('defer' => 'defer'));
+        $this->view->js(pi::url('static/vendor/jquery/extension/jquery.hc-sticky.min.js'), ['defer' => 'defer']);
         $this->view->footScript()->appendScript($script);
 
         return $this;

@@ -85,9 +85,9 @@ namespace Pi\Utility {
      * ```
      *
      * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
-     * @link http://www.php.net/manual/en/filter.filters.validate.php
-     * @link http://www.php.net/manual/en/filter.filters.sanitize.php
-     * @link http://www.php.net/manual/en/filter.filters.flags.php
+     * @link   http://www.php.net/manual/en/filter.filters.validate.php
+     * @link   http://www.php.net/manual/en/filter.filters.sanitize.php
+     * @link   http://www.php.net/manual/en/filter.filters.flags.php
      */
     class Filter
     {
@@ -121,17 +121,17 @@ namespace Pi\Utility {
         /**
          * Filter value with filter_var
          *
-         * @param mixed $value
+         * @param mixed      $value
          * @param int|string $filter
-         * @param mixed $options
+         * @param mixed      $options
+         *
          * @return mixed
          */
         protected static function filterValue(
             $value,
             $filter,
             $options = null
-        )
-        {
+        ) {
             if (empty($filter)) {
                 return $value;
             }
@@ -191,9 +191,10 @@ namespace Pi\Utility {
         /**
          * Filter value with filter_var
          *
-         * @param mixed $value
+         * @param mixed      $value
          * @param int|string $filter
-         * @param mixed $options
+         * @param mixed      $options
+         *
          * @return mixed
          * @link http://www.php.net/manual/en/filter.filters.validate.php
          */
@@ -219,10 +220,11 @@ namespace Pi\Utility {
         /**
          * Sanitize value with filter_var
          *
-         * @param mixed $value
+         * @param mixed      $value
          * @param int|string $filter
          *      Filter name or id, default as 'full_special_chars'
-         * @param mixed $options
+         * @param mixed      $options
+         *
          * @return mixed
          * @link http://www.php.net/manual/en/filter.filters.sanitize.php
          */
@@ -291,9 +293,10 @@ namespace Pi\Utility {
         /**
          * Retrieve a variable from query
          *
-         * @param string $variable
+         * @param string     $variable
          * @param int|string $filter
-         * @param mixed $options
+         * @param mixed      $options
+         *
          * @return mixed
          */
         public static function fromGet($variable, $filter, $options = null)
@@ -312,9 +315,9 @@ namespace Pi\Utility {
         /**
          * Retrieve a variable from POST
          *
-         * @param string $param
+         * @param string     $param
          * @param int|string $filter
-         * @param mixed $options
+         * @param mixed      $options
          *
          * @return mixed
          */
@@ -322,8 +325,7 @@ namespace Pi\Utility {
             $param = null,
             $filter = null,
             $options = null
-        )
-        {
+        ) {
             if (null === static::$postParams) {
                 $request = static::getRequest();
                 if (static::isRequestJson()) {
@@ -353,9 +355,9 @@ namespace Pi\Utility {
         /**
          * Retrieve a variable from PUT
          *
-         * @param string $param
+         * @param string     $param
          * @param int|string $filter
-         * @param mixed $options
+         * @param mixed      $options
          *
          * @return mixed
          */
@@ -363,8 +365,7 @@ namespace Pi\Utility {
             $param = null,
             $filter = null,
             $options = null
-        )
-        {
+        ) {
             if (null === static::$putParams) {
                 $request = static::getRequest();
                 $content = $request->getContent();
@@ -404,9 +405,10 @@ namespace {
     /**
      * Retrieve a variable from query
      *
-     * @param string $variable Variable name
-     * @param int|string $filter Filter name or filter_id
-     * @param array|int|string $options Filter options or flag
+     * @param string           $variable Variable name
+     * @param int|string       $filter   Filter name or filter_id
+     * @param array|int|string $options  Filter options or flag
+     *
      * @return mixed
      */
     function _get($variable = null, $filter = '', $options = null)
@@ -419,9 +421,10 @@ namespace {
     /**
      * Retrieve a variable from POST
      *
-     * @param string $variable Variable name
-     * @param int|string $filter Filter name or filter_id
-     * @param array|int|string $options Filter options or flag
+     * @param string           $variable Variable name
+     * @param int|string       $filter   Filter name or filter_id
+     * @param array|int|string $options  Filter options or flag
+     *
      * @return mixed
      */
     function _post($variable = null, $filter = '', $options = null)
@@ -434,9 +437,10 @@ namespace {
     /**
      * Filter a value with PHP filter_var
      *
-     * @param string $value Variable name
-     * @param int|string $filter Filter name or filter_id
+     * @param string           $value   Variable name
+     * @param int|string       $filter  Filter name or filter_id
      * @param array|int|string $options Filter options or flag
+     *
      * @return mixed
      */
     function _filter($value, $filter = '', $options = null)
@@ -450,12 +454,12 @@ namespace {
      * Sanitize a value with PHP filter_var
      *
      * @param                  $value
-     * @param int|string $filter Filter name or filter_id,
+     * @param int|string       $filter  Filter name or filter_id,
      *                                  default as 'full_special_chars'
      * @param array|int|string $options Filter options or flag
      *
-     * @internal param string $variable Variable name
      * @return mixed
+     * @internal param string $variable Variable name
      */
     function _sanitize($value, $filter = '', $options = null)
     {
@@ -467,11 +471,12 @@ namespace {
     /**
      * Escape a string for corresponding context
      *
-     * @see \Laminas\Escaper\Escaper
      * @param string $value
      * @param string $context
      *      String context, valid value: html, htmlAttr, js, url, css
+     *
      * @return string
+     * @see \Laminas\Escaper\Escaper
      */
     function _escape($value, $context = 'html')
     {
@@ -489,9 +494,10 @@ namespace {
      * Clean a string by stripping HTML tags
      * and removing unrecognizable characters
      *
-     * @param string $text Text to be cleaned
+     * @param string      $text        Text to be cleaned
      * @param string|null $replacement Replacement for stripped characters
-     * @param array $pattern Custom pattern array
+     * @param array       $pattern     Custom pattern array
+     *
      * @return string
      */
     function _strip($text, $replacement = null, $pattern = [])
@@ -519,7 +525,8 @@ namespace {
                 '/&([a-z])'
                 . '(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);/i',
                 '\\1',
-                $text)
+                $text
+            )
             : '';
         $text = $text ? str_replace($pattern, $replacement, $text) : '';
 

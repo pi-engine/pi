@@ -37,8 +37,7 @@ class Command extends Standard
     public function application()
     {
         if (!$this->application) {
-            $options           = isset($this->options['application'])
-                ? $this->options['application'] : [];
+            $options           = isset($this->options['application']) ? $this->options['application'] : [];
             $this->application = Application::init($options);
             $this->application->setEngine($this)->setSection($this->section());
         }

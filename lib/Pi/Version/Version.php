@@ -16,12 +16,13 @@ use Laminas\Version\Version as LaminasVersion;
  * Class to store and retrieve Pi Engine version.
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @see http://semver.org/ for semantic versioning
+ * @see    http://semver.org/ for semantic versioning
  */
 class Version
 {
     /**
      * Pi Engine version identification - see compareVersion()
+     *
      * @var string
      * @see http://semver.org/ for semantic versioning
      */
@@ -29,18 +30,21 @@ class Version
 
     /**
      * The latest stable version Pi Engine available
+     *
      * @var string
      */
     protected static $latestVersion;
 
     /**
      * The latest master commit number from github
+     *
      * @var string
      */
     protected static $latestCommit;
 
     /**
      * API URL to retrieve latest commit from Github
+     *
      * @var string
      */
     protected static $githubApiCommit
@@ -48,6 +52,7 @@ class Version
 
     /**
      * API URL to retrieve release tags from Github
+     *
      * @var string
      */
     protected static $githubApiRelease
@@ -55,6 +60,7 @@ class Version
 
     /**
      * API URL to retrieve latest Pi release
+     *
      * @var string
      */
     protected static $piApiRelease = '';
@@ -72,6 +78,7 @@ class Version
      * Get version number
      *
      * @param string $service
+     *
      * @return string
      */
     public static function version($service = 'PI')
@@ -93,7 +100,8 @@ class Version
      * Compare the specified Pi Engine version string $version
      * with the current Pi\Version::VERSION of Pi Engine.
      *
-     * @param  string $version A version string (e.g. "0.7.1").
+     * @param string $version A version string (e.g. "0.7.1").
+     *
      * @return int
      * @see http://www.php.net/manual/en/function.version-compare.php
      */
@@ -117,9 +125,11 @@ class Version
      * calling the classic style of version retrieval.
      *
      *
-     * @see http://developer.github.com/v3/git/refs/#get-all-references
+     * @see  http://developer.github.com/v3/git/refs/#get-all-references
      * @link https://api.github.com/repos/pi-engine/pi/git/refs/tags/release-
+     *
      * @param string $service Version Service with which to retrieve version
+     *
      * @return string
      */
     public static function getLatest($service = 'PI')
@@ -138,9 +148,11 @@ class Version
                 // Simplify the API response into a simple array of
                 // version numbers
                 // Reliable because we're filtering on 'refs/tags/release-'
-                $tags = array_map(function ($tag) {
-                    return substr($tag['ref'], 18);
-                }, $apiResponse);
+                $tags = array_map(
+                    function ($tag) {
+                        return substr($tag['ref'], 18);
+                    }, $apiResponse
+                );
 
                 // Fetch the latest version number from the array
                 static::$latestVersion = array_reduce(
@@ -176,7 +188,7 @@ class Version
     /**
      * Fetches the last github commit hash number
      *
-     * @see http://developer.github.com/v3/git/refs/#get-a-reference
+     * @see  http://developer.github.com/v3/git/refs/#get-a-reference
      * @link https://api.github.com/repos/pi-engine/pi/git/refs/heads
      * @return array|false
      */

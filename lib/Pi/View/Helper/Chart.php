@@ -18,7 +18,7 @@ use Laminas\View\Helper\AbstractHelper;
  *
  * $this->chart($type, $data, $options, $htmlClass);
  *
- * @see http://www.chartjs.org
+ * @see    http://www.chartjs.org
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
 class Chart extends AbstractHelper
@@ -26,10 +26,10 @@ class Chart extends AbstractHelper
     /**
      * Load chart script
      *
-     * @param   string $type
-     * @param   array $data
-     * @param   array $options
-     * @param   string $htmlClass
+     * @param string $type
+     * @param array  $data
+     * @param array  $options
+     * @param string $htmlClass
      *
      * @return  $this
      */

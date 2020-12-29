@@ -205,7 +205,7 @@ class Debugger extends AbstractWriter
         $system = [];
 
         // Execution time
-        $system['Execution time'] = sprintf( '%.4f',microtime(true) - Pi::startTime()) . ' s';
+        $system['Execution time'] = sprintf('%.4f', microtime(true) - Pi::startTime()) . ' s';
 
         // Included file count
         $files_included           = get_included_files();
@@ -223,7 +223,7 @@ class Debugger extends AbstractWriter
             // Windows system
             if (strpos(strtolower(PHP_OS), 'win') !== false) {
                 $out = [];
-                exec('tasklist /FI "PID eq ' . getmypid() . '" /FO LIST',$out);
+                exec('tasklist /FI "PID eq ' . getmypid() . '" /FO LIST', $out);
                 $memory = substr($out[5], strpos($out[5], ':') + 1);
             }
         }

@@ -51,6 +51,7 @@ class Media extends AbstractService
      * Set service adapter
      *
      * @param AbstractAdapter $adapter
+     *
      * @return self
      */
     public function setAdapter(AbstractAdapter $adapter)
@@ -99,6 +100,7 @@ class Media extends AbstractService
      * Get media variables
      *
      * @param string $var
+     *
      * @return mixed
      */
     public function __get($var)
@@ -112,7 +114,8 @@ class Media extends AbstractService
      * Call APIs defined in media adapter
      *
      * @param string $method
-     * @param array $args
+     * @param array  $args
+     *
      * @return mixed
      */
     public function __call($method, $args)

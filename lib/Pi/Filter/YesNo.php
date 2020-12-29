@@ -22,6 +22,7 @@ class YesNo extends AbstractFilter
      * Filter text
      *
      * @param string $value
+     *
      * @return string
      */
     public function filter($value)

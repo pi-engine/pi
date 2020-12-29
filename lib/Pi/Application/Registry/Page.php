@@ -25,10 +25,12 @@ class Page extends AbstractRegistry
     protected function loadDynamic($options = [])
     {
         $model    = Pi::model('page');
-        $pageList = $model->select([
-            'section' => $options['section'],
-            'module'  => (string)$options['module'],
-        ]);
+        $pageList = $model->select(
+            [
+                'section' => $options['section'],
+                'module'  => (string)$options['module'],
+            ]
+        );
         $pages    = [];
         foreach ($pageList as $page) {
             /*
@@ -63,7 +65,7 @@ class Page extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $section
+     * @param string      $section
      * @param string|null $module
      */
     public function create($section = 'front', $module = '')

@@ -25,11 +25,13 @@ class PageCache extends AbstractRegistry
     protected function loadDynamic($options = [])
     {
         $modelPage = Pi::model('page');
-        $cacheList = $modelPage->select([
-            'section' => $options['section'],
-            'module'  => $options['module'],
-            'cache_ttl >= 0',
-        ]);
+        $cacheList = $modelPage->select(
+            [
+                'section' => $options['section'],
+                'module'  => $options['module'],
+                'cache_ttl >= 0',
+            ]
+        );
         $caches    = [];
         foreach ($cacheList as $cache) {
             $key = $cache['module'];

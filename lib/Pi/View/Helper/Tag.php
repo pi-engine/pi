@@ -45,7 +45,7 @@ class Tag extends AbstractHtmlElement
     /**
      * Renders tag component
      *
-     * @param array|string $data Data or URL to identify tagged item
+     * @param array|string $data    Data or URL to identify tagged item
      * @param array|string $attribs Attributes or template
      *
      * @return string
@@ -77,11 +77,15 @@ class Tag extends AbstractHtmlElement
         }
 
         $tags = Pi::service('tag')->get($module, $item, $type);
-        if (empty($tags)) return '';
+        if (empty($tags)) {
+            return '';
+        }
 
-        array_walk($tags, function (&$tag) use ($module, $type) {
+        array_walk(
+            $tags, function (&$tag) use ($module, $type) {
             $tag = Pi::service('tag')->render($tag, $module, $type);
-        });
+        }
+        );
 
         if ($attribs && is_string($attribs)) {
             $html = $this->getView()->render($attribs, ['tags' => $tags]);

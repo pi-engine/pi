@@ -22,6 +22,7 @@ class ApcStorage extends AbstractStorage
      * Constructor
      *
      * @param array $options
+     *
      * @throws \Exception
      */
     public function __construct($options = [])

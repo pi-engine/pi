@@ -41,8 +41,9 @@ class MemcachedStorage extends AbstractStorage
      * Constructor
      *
      * @param array $options associative array of options
-     * @throws \Exception
+     *
      * @return void
+     * @throws \Exception
      */
     public function __construct($options = [])
     {

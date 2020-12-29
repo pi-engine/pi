@@ -15,7 +15,7 @@ use Laminas\Authentication\Result as AuthenticationResult;
  * Pi authentication db table callback adapter
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- * @see \Laminas\Authentication\DbTable\AbstractAdapter
+ * @see    \Laminas\Authentication\DbTable\AbstractAdapter
  */
 class CallbackAdapter extends AbstractAdapter
 {
@@ -30,6 +30,7 @@ class CallbackAdapter extends AbstractAdapter
      * Set callback for credential validation
      *
      * @param Callable $callback
+     *
      * @return void
      */
     public function setCallback($callback)

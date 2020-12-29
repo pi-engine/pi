@@ -212,6 +212,7 @@ class User extends AbstractResource
      * as `<module-name>_<field_key>`
      *
      * @param array $config
+     *
      * @return array
      */
     protected function canonize($config)
@@ -269,6 +270,7 @@ class User extends AbstractResource
      * Use <compound-name>-<field-name> as compound field key (not field name).
      *
      * @param array $config
+     *
      * @return array
      */
     public function canonizeProfile(array $config)
@@ -327,6 +329,7 @@ class User extends AbstractResource
      * 3. Add edit specs if `is_edit` is `true` or not specified
      *
      * @param array $spec
+     *
      * @return array
      * @see Pi\Application\Service\User::canonizeField()
      */
@@ -389,6 +392,7 @@ class User extends AbstractResource
      *
      * @param array $config
      * @param array $compound Compound specs
+     *
      * @return array
      */
     protected function canonizeCompoundField(array $config, array $compound)
@@ -428,6 +432,7 @@ class User extends AbstractResource
      * Canonize field element edit
      *
      * @param string|array $edit
+     *
      * @return array
      */
     protected function canonizeFieldEdit($edit)
@@ -468,13 +473,15 @@ class User extends AbstractResource
         $profileFields = [];
         $customNew     = [];
         $config        = $this->canonize($this->config);
-        foreach ([
-                     'field',
-                     'compound_field',
-                     'timeline',
-                     'activity',
-                     'quicklink',
-                 ] as $op) {
+        foreach (
+            [
+                'field',
+                'compound_field',
+                'timeline',
+                'activity',
+                'quicklink',
+            ] as $op
+        ) {
             $model = Pi::model($op, 'user');
             foreach ($config[$op] as $key => $spec) {
                 $row    = $model->createRow($spec);
@@ -530,13 +537,15 @@ class User extends AbstractResource
         $fieldsNew    = [];
         $itemsDeleted = [];
         $config       = $this->canonize($this->config);
-        foreach ([
-                     'field',
-                     'compound_field',
-                     'timeline',
-                     'activity',
-                     'quicklink',
-                 ] as $op) {
+        foreach (
+            [
+                'field',
+                'compound_field',
+                'timeline',
+                'activity',
+                'quicklink',
+            ] as $op
+        ) {
             $model             = Pi::model($op, 'user');
             $rowset            = $model->select(['module' => $module]);
             $items             = $config[$op];
@@ -625,33 +634,41 @@ class User extends AbstractResource
                 $this->dropFields($itemsDeleted['field']['profile']);
             }
             if (!empty($itemsDeleted['field']['compound_field'])) {
-                Pi::model('compound_field', 'user')->delete([
-                    'compound' => $itemsDeleted['field']['compound_field'],
-                ]);
+                Pi::model('compound_field', 'user')->delete(
+                    [
+                        'compound' => $itemsDeleted['field']['compound_field'],
+                    ]
+                );
             }
             if (!empty($itemsDeleted['field']['compound'])) {
-                Pi::model('compound', 'user')->delete([
-                    'compound' => $itemsDeleted['field']['compound'],
-                ]);
+                Pi::model('compound', 'user')->delete(
+                    [
+                        'compound' => $itemsDeleted['field']['compound'],
+                    ]
+                );
             }
         }
 
         // Delete deprecated user compound profile data
         if ($itemsDeleted['compound_field']) {
             foreach ($itemsDeleted['compound_field'] as $key) {
-                list($compound, $field) = explode('-', $key);
-                Pi::model('compound', 'user')->delete([
-                    'compound' => $compound,
-                    'field'    => $field,
-                ]);
+                [$compound, $field] = explode('-', $key);
+                Pi::model('compound', 'user')->delete(
+                    [
+                        'compound' => $compound,
+                        'field'    => $field,
+                    ]
+                );
             }
         }
 
         // Delete deprecated timeline log
         if ($itemsDeleted['timeline']) {
-            Pi::model('timeline_log', 'user')->delete([
-                'timeline' => $itemsDeleted['timeline'],
-            ]);
+            Pi::model('timeline_log', 'user')->delete(
+                [
+                    'timeline' => $itemsDeleted['timeline'],
+                ]
+            );
         }
 
         // Custom compound
@@ -699,19 +716,23 @@ class User extends AbstractResource
 
         // Remove module profile data
         if ($compounds) {
-            Pi::model('compound', 'user')->delete([
-                'compound' => $compounds,
-            ]);
+            Pi::model('compound', 'user')->delete(
+                [
+                    'compound' => $compounds,
+                ]
+            );
         }
 
-        foreach ([
-                     'field',
-                     'compound_field',
-                     'timeline',
-                     'activity',
-                     'quicklink',
-                     'timeline_log',
-                 ] as $op) {
+        foreach (
+            [
+                'field',
+                'compound_field',
+                'timeline',
+                'activity',
+                'quicklink',
+                'timeline_log',
+            ] as $op
+        ) {
             $model = Pi::model($op, 'user');
             $model->delete(['module' => $module]);
         }
@@ -739,8 +760,9 @@ class User extends AbstractResource
         Pi::registry('display_group', 'user')->clear();
         Pi::registry('display_field', 'user')->clear();
 
-        foreach (['field', 'timeline', 'activity', 'quicklink']
-                 as $op
+        foreach (
+            ['field', 'timeline', 'activity', 'quicklink']
+            as $op
         ) {
             $model = Pi::model($op, 'user');
             $model->update(['active' => 1], ['module' => $module]);
@@ -765,8 +787,9 @@ class User extends AbstractResource
         Pi::registry('display_group', 'user')->clear();
         Pi::registry('display_field', 'user')->clear();
 
-        foreach (['field', 'timeline', 'activity', 'quicklink']
-                 as $op
+        foreach (
+            ['field', 'timeline', 'activity', 'quicklink']
+            as $op
         ) {
             $model = Pi::model($op, 'user');
             $model->update(['active' => 0], ['module' => $module]);
@@ -795,11 +818,13 @@ class User extends AbstractResource
             try {
                 Pi::db()->query($sql);
             } catch (\Exception $exception) {
-                $this->setResult('profile-field', [
-                    'status'  => false,
-                    'message' => 'Table alter query failed: '
-                        . $exception->getMessage(),
-                ]);
+                $this->setResult(
+                    'profile-field', [
+                        'status'  => false,
+                        'message' => 'Table alter query failed: '
+                            . $exception->getMessage(),
+                    ]
+                );
 
                 return false;
             }
@@ -828,11 +853,13 @@ class User extends AbstractResource
             try {
                 Pi::db()->query($sql);
             } catch (\Exception $exception) {
-                $this->setResult('profile-field', [
-                    'status'  => false,
-                    'message' => 'Table alter query failed: '
-                        . $exception->getMessage(),
-                ]);
+                $this->setResult(
+                    'profile-field', [
+                        'status'  => false,
+                        'message' => 'Table alter query failed: '
+                            . $exception->getMessage(),
+                    ]
+                );
 
                 return false;
             }
@@ -846,7 +873,7 @@ class User extends AbstractResource
      * Custom compound operations
      *
      * @param string $op
-     * @param array $list
+     * @param array  $list
      *
      * @return bool
      */

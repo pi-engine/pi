@@ -39,7 +39,7 @@ use Laminas\View;
  * ?>
  * ```
  *
- * @see \Laminas\View\Helper\HeadStyle for details.
+ * @see    \Laminas\View\Helper\HeadStyle for details.
  * @author Frédéric TISSOT
  */
 class HeadStyleCritical extends LaminasHeadStyle
@@ -48,7 +48,7 @@ class HeadStyleCritical extends LaminasHeadStyle
      * Added by Taiwen Jiang
      */
     /** @var string[] Segment names for catch */
-    protected static $captureNames = array();
+    protected static $captureNames = [];
     /**#@-*/
 
     /**#@+
@@ -59,6 +59,7 @@ class HeadStyleCritical extends LaminasHeadStyle
      * The content will be discarded if content with the name already exists
      *
      * @param string $name
+     *
      * @return void
      */
     public function captureTo($name)
@@ -77,8 +78,9 @@ class HeadStyleCritical extends LaminasHeadStyle
     /**
      * Convert content and attributes into valid style tag
      *
-     * @param  stdClass $item   Item to render
-     * @param  string   $indent Indentation to use
+     * @param stdClass $item   Item to render
+     * @param string   $indent Indentation to use
+     *
      * @return string
      */
     public function itemToString(stdClass $item, $indent)
@@ -103,13 +105,13 @@ class HeadStyleCritical extends LaminasHeadStyle
                         }
                     } else {
                         $mediaTypes = explode(',', $value);
-                        $value = '';
+                        $value      = '';
                         foreach ($mediaTypes as $type) {
                             $type = trim($type);
                             if (!in_array($type, $this->mediaTypes)) {
                                 continue;
                             }
-                            $value .= $type .',';
+                            $value .= $type . ',';
                         }
                         $value = substr($value, 0, -1);
                     }
@@ -119,17 +121,17 @@ class HeadStyleCritical extends LaminasHeadStyle
         }
 
         $escapeStart = $indent . '<!--' . PHP_EOL;
-        $escapeEnd = $indent . '-->' . PHP_EOL;
+        $escapeEnd   = $indent . '-->' . PHP_EOL;
         if (isset($item->attributes['conditional'])
             && !empty($item->attributes['conditional'])
             && is_string($item->attributes['conditional'])
         ) {
             $escapeStart = null;
-            $escapeEnd = null;
+            $escapeEnd   = null;
         }
 
         $html = '<style ' . $attrString . '>' . PHP_EOL
-             . $indent . $item->content . PHP_EOL
+            . $indent . $item->content . PHP_EOL
             . '</style>';
 
         if (null == $escapeStart && null == $escapeEnd) {

@@ -24,17 +24,18 @@ use Laminas\View\Helper\AbstractHelper;
  * ```
  *
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
- * @see https://en.wikipedia.org/wiki/Geotagging
+ * @see    https://en.wikipedia.org/wiki/Geotagging
  */
 class GeoTag extends AbstractHelper
 {
     /**
      * Set head Geo-Tags
      *
-     * @param string $latitude Head geo.position
+     * @param string $latitude  Head geo.position
      * @param string $longitude Head geo.position
      * @param string $placename Head geo.placename
-     * @param string $region Head geo.region
+     * @param string $region    Head geo.region
+     *
      * @return $this
      */
     public function __invoke(
@@ -42,8 +43,7 @@ class GeoTag extends AbstractHelper
         $longitude,
         $placename = '',
         $region = ''
-    )
-    {
+    ) {
         // Set geo.position
         if (!empty($latitude) && !empty($longitude)) {
             $position = sprintf('%s; %s', $latitude, $longitude);

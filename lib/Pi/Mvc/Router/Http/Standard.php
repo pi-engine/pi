@@ -42,30 +42,35 @@ class Standard implements RouteInterface
 {
     /**
      * Path prefix
+     *
      * @var string
      */
     protected $prefix = '';
 
     /**
      * Delimiter between structured values of module, controller and action.
+     *
      * @var string
      */
     protected $structureDelimiter = '/';
 
     /**
      * Delimiter between keys and values.
+     *
      * @var string
      */
     protected $keyValueDelimiter = '/';
 
     /**
      * Delimiter before parameters.
+     *
      * @var array
      */
     protected $paramDelimiter = '/';
 
     /**
      * Default values.
+     *
      * @var array
      */
     protected $defaults
@@ -77,6 +82,7 @@ class Standard implements RouteInterface
 
     /**
      * List of assembled parameters.
+     *
      * @var array
      */
     protected $assembledParams = [];
@@ -88,10 +94,10 @@ class Standard implements RouteInterface
      * Create a new wildcard route.
      *
      * @param string|null $prefix
-     * @param string $structureDelimiter
-     * @param string $keyValueDelimiter
-     * @param string $paramDelimiter
-     * @param array $defaults
+     * @param string      $structureDelimiter
+     * @param string      $keyValueDelimiter
+     * @param string      $paramDelimiter
+     * @param array       $defaults
      *
      * @return \Pi\Mvc\Router\Http\Standard
      */
@@ -101,8 +107,7 @@ class Standard implements RouteInterface
         $keyValueDelimiter = '/',
         $paramDelimiter = '/',
         array $defaults = []
-    )
-    {
+    ) {
         $this->prefix             = (null !== $prefix) ? $prefix : $this->prefix;
         $this->structureDelimiter = $structureDelimiter;
         $this->keyValueDelimiter  = $keyValueDelimiter;
@@ -145,20 +150,22 @@ class Standard implements RouteInterface
     /**
      * factory(): defined by Route interface.
      *
+     * @param array|Traversable $options
+     *
+     * @return RouteInterface
+     * @throws \InvalidArgumentException
      * @see    Route::factory()
      *
-     * @param  array|Traversable $options
-     *
-     * @throws \InvalidArgumentException
-     * @return RouteInterface
      */
     public static function factory($options = [])
     {
         if ($options instanceof Traversable) {
             $options = ArrayUtils::iteratorToArray($options);
         } elseif (!is_array($options)) {
-            throw new \InvalidArgumentException(__METHOD__
-                . ' expects an array or Traversable set of options');
+            throw new \InvalidArgumentException(
+                __METHOD__
+                . ' expects an array or Traversable set of options'
+            );
         }
 
         if (!isset($options['prefix'])) {
@@ -198,7 +205,8 @@ class Standard implements RouteInterface
      * Get cleaned path
      *
      * @param Request $request
-     * @param string $pathOffset
+     * @param string  $pathOffset
+     *
      * @return array
      */
     protected function canonizePath(Request $request, $pathOffset = null)
@@ -241,6 +249,7 @@ class Standard implements RouteInterface
      * Parse matched path into params
      *
      * @param array $params
+     *
      * @return array
      */
     protected function parseParams(array $params)
@@ -275,14 +284,17 @@ class Standard implements RouteInterface
      * Parse matched path into params
      *
      * @param string $path
+     *
      * @return array
      */
     protected function parse($path)
     {
         $matches = [];
         $params  = $path
-            ? explode($this->paramDelimiter,
-                trim($path, $this->paramDelimiter))
+            ? explode(
+                $this->paramDelimiter,
+                trim($path, $this->paramDelimiter)
+            )
             : [];
 
         if ($this->paramDelimiter === $this->structureDelimiter) {
@@ -310,10 +322,11 @@ class Standard implements RouteInterface
     /**
      * match(): defined by Route interface.
      *
-     * @see    Route::match()
-     * @param  Request $request
+     * @param Request  $request
      * @param int|null $pathOffset
+     *
      * @return RouteMatch|null
+     * @see    Route::match()
      */
     public function match(Request $request, $pathOffset = null)
     {
@@ -321,7 +334,7 @@ class Standard implements RouteInterface
         if (null === $result) {
             return null;
         }
-        list($path, $pathLength) = $result;
+        [$path, $pathLength] = $result;
         $matches = $this->parse($path);
         if (!is_array($matches)) {
             return null;
@@ -362,7 +375,7 @@ class Standard implements RouteInterface
     /**
      * Assemble structure
      *
-     * @param array $params
+     * @param array  $params
      * @param string $url URL to append
      *
      * @return string
@@ -410,10 +423,11 @@ class Standard implements RouteInterface
     /**
      * assemble(): Defined by Route interface.
      *
-     * @see    Route::assemble()
-     * @param  array $params
-     * @param  array $options
+     * @param array $params
+     * @param array $options
+     *
      * @return string
+     * @see    Route::assemble()
      */
     public function assemble(array $params = [], array $options = [])
     {
@@ -440,8 +454,8 @@ class Standard implements RouteInterface
     /**
      * getAssembledParams(): defined by Route interface.
      *
-     * @see    Route::getAssembledParams
      * @return array
+     * @see    Route::getAssembledParams
      */
     public function getAssembledParams()
     {
@@ -451,7 +465,7 @@ class Standard implements RouteInterface
     /**
      * Encode a path segment.
      *
-     * @param  string $value
+     * @param string $value
      *
      * @return string
      */
@@ -463,7 +477,7 @@ class Standard implements RouteInterface
     /**
      * Decode a path segment.
      *
-     * @param  string $value
+     * @param string $value
      *
      * @return string
      */

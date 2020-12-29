@@ -38,6 +38,7 @@ class Config extends AbstractPlugin
      * Get config data
      *
      * @param string $name
+     *
      * @return array|mixed
      */
     public function getConfig($name = '')

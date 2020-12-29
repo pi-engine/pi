@@ -29,7 +29,8 @@ class ViewResolverFactory implements FactoryInterface
      * Creates a Laminas\View\Resolver\AggregateResolver and attaches the template
      * map resolver and path stack resolver
      *
-     * @param  ServiceLocatorInterface $serviceLocator
+     * @param ServiceLocatorInterface $serviceLocator
+     *
      * @return ViewResolverAggregateResolver
      */
     public function createService(ServiceLocatorInterface $serviceLocator)

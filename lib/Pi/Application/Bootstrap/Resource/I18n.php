@@ -51,7 +51,7 @@ class I18n extends AbstractResource
         /**
          * Find first locale with current charset, else locale only
          */
-        setlocale(LC_ALL, $isoLocale.'.' . strtoupper($charset), $isoLocale);
+        setlocale(LC_ALL, $isoLocale . '.' . strtoupper($charset), $isoLocale);
 
         // Set encoding for multi-byte handling
         mb_internal_encoding($charset);
@@ -63,9 +63,7 @@ class I18n extends AbstractResource
             $translator = Pi::service('i18n')->getTranslator();
 
             // Load global translations
-            $global = !empty($this->options['translator']['global'])
-                ? $this->options['translator']['global']
-                : [];
+            $global = !empty($this->options['translator']['global']) ? $this->options['translator']['global'] : [];
             if ($global) {
                 foreach ($global as $domain) {
                     $translator->load($domain);
@@ -91,6 +89,7 @@ class I18n extends AbstractResource
      * Load module translation after module is dispatched
      *
      * @param MvcEvent $e
+     *
      * @return void
      */
     public function loadTranslator(MvcEvent $e)
@@ -102,17 +101,19 @@ class I18n extends AbstractResource
 
     /**
      * Convert language to locale (iso)
-     * @todo need to be completed later
+     *
      * @param $language
+     *
      * @return mixed
+     * @todo need to be completed later
      */
-    protected function convertLanguageToLocale($language){
-
-        $mapping = array(
+    protected function convertLanguageToLocale($language)
+    {
+        $mapping = [
             'en' => 'en_UK',
             'fr' => 'fr_FR',
             'fa' => 'fa_IR',
-        );
+        ];
 
         return empty($mapping[$language]) ? $language : $mapping[$language];
     }
