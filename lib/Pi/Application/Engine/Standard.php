@@ -92,9 +92,8 @@ class Standard extends AbstractEngine
     public function application()
     {
         if (!$this->application) {
-            $options           = isset($this->options['application'])
-                ? $this->options['application'] : [];
-            $this->application = Application::load($options);
+            $options           = isset($this->options['application']) ? $this->options['application'] : [];
+            $this->application = Application::init($options);
             $this->application->setEngine($this)->setSection($this->section());
         }
 
