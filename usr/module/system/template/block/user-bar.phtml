@@ -131,6 +131,12 @@ EOT;
                                     </a>
                                 <?php } ?>
                             <?php } ?>
+                            <?php if (isset($block['user']['video_url'])) { ?>
+                                <a class="dropdown-item" href="<?php echo $block['user']['video_url']; ?>" title="<?php echo _b('Purchased Videos'); ?>">
+                                    <i class="fas fa-video"></i>
+                                    <?php echo _b('Purchased Videos'); ?>
+                                </a>
+                            <?php } ?>
                             <?php if (isset($block['user']['support_url'])) { ?>
                                 <a class="dropdown-item <?php echo $module == 'support' ? 'active' : '' ?>" href="<?php echo $block['user']['support_url']; ?>"
                                    title="<?php echo _b('Support'); ?>">
