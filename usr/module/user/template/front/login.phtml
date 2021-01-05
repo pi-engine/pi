@@ -18,7 +18,7 @@ if ($redirect) {
 }
 ?>
 <div class="clearfix user-template">
-    <div class="page-header">
+    <div class="mb-3">
         <h1><?php echo _escape($title); ?></h1>
     </div>
     <?php if (!empty($message)) { ?>
@@ -49,47 +49,49 @@ if ($redirect) {
                 </div>
             </div>
         </div>
-        <?php if (!empty($description)) { ?>
+        <?php if ((isset($description) && !empty($description)) || (isset($url) && !empty($url))) { ?>
             <div class="col-md-4 col-sm-5 col-12 d-none d-sm-block ">
-                <?php echo $description; ?>
-            </div>
-        <?php } ?>
-        <?php if (!empty($url)) { ?>
-            <div class="col-md-4 col-sm-5 col-12">
-                <div class="clearfix ">
-                    <?php if (!empty($url['google'])) { ?>
-                        <div class="oauth-login">
-                            <a class="btn btn-socail btn-google btn-block"
-                               href="<?php echo $this->escape($url['google']); ?>">
-                                <i class="fab fa-google"></i> <?php _e('Login with google'); ?>
-                            </a>
-                        </div>
-                    <?php } ?>
-                    <?php if (!empty($url['twitter'])) { ?>
-                        <div class="oauth-login">
-                            <a class="btn btn-socail btn-twitter btn-block"
-                               href="<?php echo $this->escape($url['twitter']); ?>">
-                                <i class="fab fa-twitter"></i> <?php _e('Login with twitter'); ?>
-                            </a>
-                        </div>
-                    <?php } ?>
-                    <?php if (!empty($url['facebook'])) { ?>
-                        <div class="oauth-login">
-                            <a class="btn btn-socail btn-facebook btn-block"
-                               href="<?php echo $this->escape($url['facebook']); ?>">
-                                <i class="fab fa-facebook-f"></i> <?php _e('Login with facebook'); ?>
-                            </a>
-                        </div>
-                    <?php } ?>
-                    <?php if (!empty($url['github'])) { ?>
-                        <div class="oauth-login">
-                            <a class="btn btn-socail btn-github btn-block"
-                               href="<?php echo $this->escape($url['github']); ?>">
-                                <i class="fab fa-github"></i> <?php _e('Login with github'); ?>
-                            </a>
-                        </div>
-                    <?php } ?>
-                </div>
+                <?php if (isset($description) && !empty($description)) { ?>
+                    <div class="clearfix mb-3">
+                        <?php echo $description; ?>
+                    </div>
+                <?php } ?>
+                <?php if (isset($url) && !empty($url)) { ?>
+                    <div class="clearfix mb-3">
+                        <?php if (!empty($url['google'])) { ?>
+                            <div class="oauth-login">
+                                <a class="btn btn-socail btn-google btn-block"
+                                   href="<?php echo $this->escape($url['google']); ?>">
+                                    <i class="fab fa-google"></i> <?php _e('Login with google'); ?>
+                                </a>
+                            </div>
+                        <?php } ?>
+                        <?php if (!empty($url['twitter'])) { ?>
+                            <div class="oauth-login">
+                                <a class="btn btn-socail btn-twitter btn-block"
+                                   href="<?php echo $this->escape($url['twitter']); ?>">
+                                    <i class="fab fa-twitter"></i> <?php _e('Login with twitter'); ?>
+                                </a>
+                            </div>
+                        <?php } ?>
+                        <?php if (!empty($url['facebook'])) { ?>
+                            <div class="oauth-login">
+                                <a class="btn btn-socail btn-facebook btn-block"
+                                   href="<?php echo $this->escape($url['facebook']); ?>">
+                                    <i class="fab fa-facebook-f"></i> <?php _e('Login with facebook'); ?>
+                                </a>
+                            </div>
+                        <?php } ?>
+                        <?php if (!empty($url['github'])) { ?>
+                            <div class="oauth-login">
+                                <a class="btn btn-socail btn-github btn-block"
+                                   href="<?php echo $this->escape($url['github']); ?>">
+                                    <i class="fab fa-github"></i> <?php _e('Login with github'); ?>
+                                </a>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
             </div>
         <?php } ?>
     </div>
