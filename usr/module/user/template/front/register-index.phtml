@@ -43,32 +43,40 @@ if (!empty($description) || !empty($url)) {
                             <div class="clearfix mb-3">
                                 <?php if (!empty($url['google'])) { ?>
                                     <div class="oauth-login">
-                                        <a class="btn btn-socail btn-google btn-block"
-                                           href="<?php echo $this->escape($url['google']); ?>">
+                                        <?php if (isset($redirect) && !empty($redirect)) {
+                                            $url['google'] = sprintf('%s?redirect=%s', $url['google'], $redirect);
+                                        } ?>
+                                        <a class="btn btn-socail btn-google btn-block" href="<?php echo $this->escape($url['google']); ?>">
                                             <i class="fab fa-google"></i> <?php _e('Login with google'); ?>
                                         </a>
                                     </div>
                                 <?php } ?>
                                 <?php if (!empty($url['twitter'])) { ?>
                                     <div class="oauth-login">
-                                        <a class="btn btn-socail btn-twitter btn-block"
-                                           href="<?php echo $this->escape($url['twitter']); ?>">
+                                        <?php if (isset($redirect) && !empty($redirect)) {
+                                            $url['twitter'] = sprintf('%s?redirect=%s', $url['twitter'], $redirect);
+                                        } ?>
+                                        <a class="btn btn-socail btn-twitter btn-block" href="<?php echo $this->escape($url['twitter']); ?>">
                                             <i class="fab fa-twitter"></i> <?php _e('Login with twitter'); ?>
                                         </a>
                                     </div>
                                 <?php } ?>
                                 <?php if (!empty($url['facebook'])) { ?>
                                     <div class="oauth-login">
-                                        <a class="btn btn-socail btn-facebook btn-block"
-                                           href="<?php echo $this->escape($url['facebook']); ?>">
+                                        <?php if (isset($redirect) && !empty($redirect)) {
+                                            $url['facebook'] = sprintf('%s?redirect=%s', $url['facebook'], $redirect);
+                                        } ?>
+                                        <a class="btn btn-socail btn-facebook btn-block" href="<?php echo $this->escape($url['facebook']); ?>">
                                             <i class="fab fa-facebook-f"></i> <?php _e('Login with facebook'); ?>
                                         </a>
                                     </div>
                                 <?php } ?>
                                 <?php if (!empty($url['github'])) { ?>
                                     <div class="oauth-login">
-                                        <a class="btn btn-socail btn-github btn-block"
-                                           href="<?php echo $this->escape($url['github']); ?>">
+                                        <?php if (isset($redirect) && !empty($redirect)) {
+                                            $url['github'] = sprintf('%s?redirect=%s', $url['github'], $redirect);
+                                        } ?>
+                                        <a class="btn btn-socail btn-github btn-block" href="<?php echo $this->escape($url['github']); ?>">
                                             <i class="fab fa-github"></i> <?php _e('Login with github'); ?>
                                         </a>
                                     </div>
