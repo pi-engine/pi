@@ -22,14 +22,17 @@ class IndexController extends ActionController
 {
     /**
      * Default action
+     *
      * @return array|void
      */
     public function indexAction()
     {
         $this->view()->setTemplate('user');
-        $this->view()->assign([
-            'roles' => $this->getRoles(),
-        ]);
+        $this->view()->assign(
+            [
+                'roles' => $this->getRoles(),
+            ]
+        );
     }
 
     /**
@@ -43,6 +46,7 @@ class IndexController extends ActionController
         $limit  = Pi::config('list_limit', 'user');
         $offset = (int)($page - 1) * $limit;
 
+        $condition                  = [];
         $condition['activated']     = _get('activated') ?: '';
         $condition['active']        = _get('active') ?: '';
         $condition['enable']        = _get('enable') ?: '';
@@ -51,8 +55,9 @@ class IndexController extends ActionController
         $condition['register_date'] = _get('register_date') ?: '';
         $condition['name']          = _get('name') ?: '';
         $condition['email']         = _get('email') ?: '';
+        $condition['identity']      = _get('identity') ?: '';
 
-        list($users, $count) = $this->getUsers($condition, $limit, $offset);
+        [$users, $count] = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
         $paginator = [
@@ -79,6 +84,7 @@ class IndexController extends ActionController
         $limit  = Pi::config('list_limit', 'user');
         $offset = (int)($page - 1) * $limit;
 
+        $condition                  = [];
         $condition['activated']     = 'activated';
         $condition['active']        = _get('active') ?: '';
         $condition['enable']        = _get('enable') ?: '';
@@ -88,8 +94,9 @@ class IndexController extends ActionController
         $condition['search']        = _get('search') ?: '';
         $condition['name']          = _get('name') ?: '';
         $condition['email']         = _get('email') ?: '';
+        $condition['identity']      = _get('identity') ?: '';
 
-        list($users, $count) = $this->getUsers($condition, $limit, $offset);
+        [$users, $count] = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
         $paginator = [
@@ -116,6 +123,7 @@ class IndexController extends ActionController
         $limit  = Pi::config('list_limit', 'user');
         $offset = (int)($page - 1) * $limit;
 
+        $condition                  = [];
         $condition['activated']     = 'pending';
         $condition['enable']        = _get('enable') ?: '';
         $condition['front_role']    = _get('front_role') ?: '';
@@ -124,8 +132,9 @@ class IndexController extends ActionController
         $condition['search']        = _get('search') ?: '';
         $condition['name']          = _get('name') ?: '';
         $condition['email']         = _get('email') ?: '';
+        $condition['identity']      = _get('identity') ?: '';
 
-        list($users, $count) = $this->getUsers($condition, $limit, $offset);
+        [$users, $count] = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
         $paginator = [
@@ -287,7 +296,7 @@ class IndexController extends ActionController
         $limit  = Pi::config('list_limit', 'user');
         $offset = (int)($page - 1) * $limit;
 
-        list($users, $count) = $this->getUsers($condition, $limit, $offset);
+        [$users, $count] = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
         $paginator = [
@@ -408,7 +417,7 @@ class IndexController extends ActionController
         foreach ($uids as $uid) {
             $status = Pi::api('user', 'user')->deleteUser($uid);
             if (Pi::service('module')->isActive('subscription')) {
-                Pi::api('people', 'subscription')->update(array('status' => 0), $uid);
+                Pi::api('people', 'subscription')->update(['status' => 0], $uid);
             }
             if (!is_array($status) && $status !== false) {
                 $count++;
@@ -547,9 +556,11 @@ class IndexController extends ActionController
         }
 
         $users = [];
-        array_walk($uids, function ($uid) use (&$users) {
+        array_walk(
+            $uids, function ($uid) use (&$users) {
             $users[$uid] = ['id' => $uid];
-        });
+        }
+        );
         $data              = $this->renderRole($users);
         $result['data']    = $data;
         $result['status']  = 1;
@@ -561,7 +572,7 @@ class IndexController extends ActionController
     /**
      * Get users and count according to conditions
      *
-     * @param $condition
+     * @param     $condition
      * @param int $limit
      * @param int $offset
      *
@@ -630,10 +641,12 @@ class IndexController extends ActionController
                 $i = 1;
                 foreach ($condition['front_role'] as $role) {
                     $prefix         = $i;
-                    $whereRoleFront = Pi::db()->where()->create([
-                        'front' . $prefix . '.role'    => $role,
-                        'front' . $prefix . '.section' => 'front',
-                    ]);
+                    $whereRoleFront = Pi::db()->where()->create(
+                        [
+                            'front' . $prefix . '.role'    => $role,
+                            'front' . $prefix . '.section' => 'front',
+                        ]
+                    );
                     $where->add($whereRoleFront);
                     $select->join(
                         ['front' . $prefix => $modelRole->getTable()],
@@ -643,10 +656,12 @@ class IndexController extends ActionController
                     $i++;
                 }
             } else {
-                $whereRoleFront = Pi::db()->where()->create([
-                    'front.role'    => $condition['front_role'],
-                    'front.section' => 'front',
-                ]);
+                $whereRoleFront = Pi::db()->where()->create(
+                    [
+                        'front.role'    => $condition['front_role'],
+                        'front.section' => 'front',
+                    ]
+                );
                 $where->add($whereRoleFront);
                 $select->join(
                     ['front' => $modelRole->getTable()],
@@ -661,10 +676,12 @@ class IndexController extends ActionController
                 $i = 1;
                 foreach ($condition['admin_role'] as $role) {
                     $prefix         = $i;
-                    $whereRoleFront = Pi::db()->where()->create([
-                        'admin' . $prefix . '.role'    => $role,
-                        'admin' . $prefix . '.section' => 'admin',
-                    ]);
+                    $whereRoleFront = Pi::db()->where()->create(
+                        [
+                            'admin' . $prefix . '.role'    => $role,
+                            'admin' . $prefix . '.section' => 'admin',
+                        ]
+                    );
                     $where->add($whereRoleFront);
                     $select->join(
                         ['admin' . $prefix => $modelRole->getTable()],
@@ -674,10 +691,12 @@ class IndexController extends ActionController
                     $i++;
                 }
             } else {
-                $whereRoleFront = Pi::db()->where()->create([
-                    'admin.role'    => $condition['admin_role'],
-                    'admin.section' => 'admin',
-                ]);
+                $whereRoleFront = Pi::db()->where()->create(
+                    [
+                        'admin.role'    => $condition['admin_role'],
+                        'admin.section' => 'admin',
+                    ]
+                );
                 $where->add($whereRoleFront);
                 $select->join(
                     ['admin' => $modelRole->getTable()],
@@ -689,9 +708,11 @@ class IndexController extends ActionController
 
         if (!empty($condition['ip_register'])) {
             $profileModel = $this->getModel('profile');
-            $whereProfile = Pi::db()->where()->create([
-                'profile.ip_register like ?' => '%' . $condition['ip_register'] . '%',
-            ]);
+            $whereProfile = Pi::db()->where()->create(
+                [
+                    'profile.ip_register like ?' => '%' . $condition['ip_register'] . '%',
+                ]
+            );
             $where->add($whereProfile);
             $select->join(
                 ['profile' => $profileModel->getTable()],
@@ -746,10 +767,13 @@ class IndexController extends ActionController
                     'register_source',
                 ];
                 $users   = Pi::api('user', 'user')->get($uids, $columns);
-                array_walk($users, function (&$user, $uid) {
-                    $user['link']           = Pi::service('user')->getUrl('profile', [
+                array_walk(
+                    $users, function (&$user, $uid) {
+                    $user['link']           = Pi::service('user')->getUrl(
+                        'profile', [
                         'id' => $uid,
-                    ]);
+                    ]
+                    );
                     $user['active']         = (bool)$user['active'];
                     $user['time_disabled']  = $user['time_disabled']
                         ? _date($user['time_disabled']) : 0;
@@ -757,7 +781,8 @@ class IndexController extends ActionController
                         ? _date($user['time_activated']) : 0;
                     $user['time_created']   = $user['time_created']
                         ? _date($user['time_created']) : 0;
-                });
+                }
+                );
                 $users = $this->renderRole($users);
             }
         }
@@ -876,14 +901,16 @@ class IndexController extends ActionController
             $roleKey                    = $section . '_roles';
             $roleList[$uid][$roleKey][] = $roles[$row['role']]['title'];
         }
-        array_walk($users, function (&$user, $uid) use ($roleList) {
+        array_walk(
+            $users, function (&$user, $uid) use ($roleList) {
             if (isset($roleList[$uid]['front_roles'])) {
                 $user['front_roles'] = $roleList[$uid]['front_roles'];
             }
             if (isset($roleList[$uid]['admin_roles'])) {
                 $user['admin_roles'] = $roleList[$uid]['admin_roles'];
             }
-        });
+        }
+        );
 
         return $users;
     }
@@ -892,6 +919,7 @@ class IndexController extends ActionController
      * Get users status: active, activated, disable
      *
      * @param int[] $uids
+     *
      * @return array
      */
     protected function getUserStatus($uids)
@@ -919,9 +947,10 @@ class IndexController extends ActionController
     /**
      * Delete user field
      *
-     * @param $uid
-     * @param $field
+     * @param        $uid
+     * @param        $field
      * @param string $type core or user
+     *
      * @return int
      */
     protected function deleteUser($uid, $field, $type = '')
@@ -963,10 +992,12 @@ class IndexController extends ActionController
         $failedUsers = [];
         foreach ($users as $id => $data) {
             $redirect = Pi::user()->data()->get($id, 'register_redirect') ?: '';
-            $url      = Pi::api('user', 'user')->getUrl('login', [
+            $url      = Pi::api('user', 'user')->getUrl(
+                'login', [
                 'redirect' => $redirect,
                 'section'  => 'front',
-            ]);
+            ]
+            );
             $url      = Pi::url($url, true);
             $params   = [
                 'username'  => $data['identity'],
