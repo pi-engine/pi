@@ -96,6 +96,20 @@ class ViewController extends ActionController
             'link'  => $this->url('', ['controller' => 'edit', 'uid' => $uid]),
         ];
 
+        // Password
+        $result[] = [
+            'name'  => 'password',
+            'title' => _a('Password'),
+            'link'  => $this->url(
+                '',
+                [
+                    'controller' => 'edit',
+                    'action'     => 'password',
+                    'uid'        => $uid,
+                ]
+            ),
+        ];
+
         // Avatar
         $result[] = [
             'name'  => 'avatar',
@@ -134,7 +148,7 @@ class ViewController extends ActionController
             'name'  => 'view',
             'title' => _a('View'),
             'link'  => $this->url('', [
-                'controller' => 'View',
+                'controller' => 'view',
                 'action'     => 'index',
                 'uid'        => $uid,
             ]),

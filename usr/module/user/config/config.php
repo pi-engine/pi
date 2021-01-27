@@ -715,7 +715,7 @@ $config = [
         'title'       => _a('Login by google'),
         'description' => sprintf(
             __('Callback urls is : %s'),
-            Pi::url('user/oauth/callback/provider-google')
+            Pi::url('user/oauth/callback/provider/google')
         ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
@@ -743,7 +743,7 @@ $config = [
         'title'       => _a('Login by twitter'),
         'description' => sprintf(
             __('Callback urls is : %s'),
-            Pi::url('user/oauth/callback/provider-twitter')
+            Pi::url('user/oauth/callback/provider/twitter')
         ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
@@ -771,7 +771,7 @@ $config = [
         'title'       => _a('Login by facebook'),
         'description' => sprintf(
             __('Callback urls is : %s'),
-            Pi::url('user/oauth/callback/provider-facebook')
+            Pi::url('user/oauth/callback/provider/facebook')
         ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',
@@ -799,7 +799,7 @@ $config = [
         'title'       => _a('Login by github'),
         'description' => sprintf(
             __('Callback urls is : %s'),
-            Pi::url('user/oauth/callback/provider-github')
+            Pi::url('user/oauth/callback/provider/github')
         ),
         'edit'        => 'checkbox',
         'filter'      => 'number_int',

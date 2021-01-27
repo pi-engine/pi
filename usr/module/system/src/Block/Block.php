@@ -108,6 +108,7 @@ class Block
             'show_credit'    => $options['show_credit'],
             'show_support'   => $options['show_support'],
             'show_favourite' => $options['show_favourite'],
+            'show_video'     => $options['show_video'],
             'count'          => 0,
         ];
 
@@ -339,6 +340,20 @@ class Block
                     )
                 );
             }
+        }
+
+        // Set videos
+        if ($options['show_video'] && Pi::service('module')->isActive('video')) {
+            $user['video_url'] = Pi::url(
+                Pi::service('url')->assemble(
+                    'video',
+                    [
+                        'module'     => 'video',
+                        'controller' => 'dashboard',
+                        'action'     => 'purchased',
+                    ]
+                )
+            );
         }
 
         // Set user information to result

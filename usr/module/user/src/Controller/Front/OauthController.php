@@ -35,6 +35,12 @@ class OauthController extends ActionController
         // Get info from url
         $module   = $this->params('module');
         $provider = $this->params('provider');
+        $redirect = $this->params('redirect');
+
+        // Check redirect
+        if (isset($redirect) && !empty($redirect)) {
+            $_SESSION['PI_OAUTH_REDIRECT'] = urldecode($redirect);
+        }
 
         // Get config
         $config = Pi::service('registry')->config->read($module);
@@ -257,8 +263,7 @@ class OauthController extends ActionController
                 $rememberMe = 0;
                 if ($configUser['rememberme']) {
                     $rememberMe = $configUser['rememberme'] * 86400;
-                    Pi::service('session')->manager()
-                        ->rememberme($rememberMe);
+                    Pi::service('session')->manager()->rememberme($rememberMe);
                 }
 
                 if (isset($_SESSION['PI_LOGIN'])) {
@@ -272,7 +277,15 @@ class OauthController extends ActionController
                 ];
                 Pi::service('event')->trigger('user_login', $args);
 
-                $this->jump(['route' => 'home'], __('You have logged in successfully.'));
+                // Set redirect
+                $redirect = ['route' => 'home'];
+                if (isset($_SESSION['PI_OAUTH_REDIRECT']) && !empty($_SESSION['PI_OAUTH_REDIRECT'])) {
+                    $redirect = urldecode($_SESSION['PI_OAUTH_REDIRECT']);
+                    unset($_SESSION['PI_OAUTH_REDIRECT']);
+                }
+
+                // Jump
+                $this->jump($redirect, __('You have logged in successfully.'));
             }
         } else {
             $this->jump(['route' => 'home'], __('Information not true'));

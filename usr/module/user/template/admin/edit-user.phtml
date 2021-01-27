@@ -14,17 +14,17 @@
     </ul>
     <?php if (isset($result)) {
         echo sprintf(
-                '<div class="alert %s">%s<button data-dismiss="alert" class="close" type="button">&times;</button></div>',
-            $result['status'] ? 'alert-success' : 'alert-error',
+            '<div class="alert %s">%s<button data-dismiss="alert" class="close" type="button">&times;</button></div>',
+            $result['status'] ? 'alert-success' : 'alert-danger',
             $result['message']);
     } ?>
-    <?php if ($name == 'info') {
+    <?php if (isset($name) && isset($form) && in_array($name, ['info', 'password'])) {
         echo $this->form($form);
         return;
-    } ?>
-    <?php if ($name == 'avatar') {
-        echo sprintf(
-                '
+    } elseif (isset($name) && isset($avatar) && $name == 'avatar') { ?>
+
+        <?php echo sprintf(
+            '
     <form method="post" action="#">
         <p>%s<p>
         <button class="btn btn-link">%s</button>
@@ -35,7 +35,7 @@
         return;
     } ?>
     <?php if (!$forms) {
-        echo sprintf('<div class="alert">%s</div>', _a('This user doesn\'t have any you can view'));
+        echo sprintf('<div class="alert alert-danger">%s</div>', _a('This user doesn\'t have any you can view'));
         return;
     } ?>
     <?php foreach ($forms as $key => $form) { ?>

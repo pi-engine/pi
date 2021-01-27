@@ -94,6 +94,17 @@ if (empty($item)) {
             </a>
         <?php } ?>
 
+        <?php if (in_array('video', $userConfig['side_menu']) && Pi::service('module')->isActive('video')) { ?>
+            <a href="<?php echo Pi::url($this->url('video', ['module' => 'video', 'controller' => 'dashboard', 'action' => 'index'])); ?>"
+               class="nav-link rounded-0 <?php if ($module == 'videoDashboard') { echo ' active'; } ?>">
+                <?php _e('Manage Videos'); ?> <span class='fas fa-angle-right'></span>
+            </a>
+            <a href="<?php echo Pi::url($this->url('video', ['module' => 'video', 'controller' => 'dashboard', 'action' => 'purchased'])); ?>"
+               class="nav-link rounded-0 <?php if ($module == 'videoPurchased') { echo ' active'; } ?>">
+                <?php _e('Purchased Videos'); ?> <span class='fas fa-angle-right'></span>
+            </a>
+        <?php } ?>
+
         <div class="position-relative">
             <a class="nav-link rounded-0 collapsed" role="button" data-toggle="collapse"
                href="#collapseItemPerso">
@@ -192,7 +203,6 @@ if (empty($item)) {
                     </a>
                 <?php } ?>
 
-
                 <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial')
                     || (isset($item_type) && $item_type == 'commercial')
                     || (isset($item['item_type']) && $item['item_type'] == 'commercial')
@@ -241,8 +251,6 @@ if (empty($item)) {
 
                     </div>
                 <?php } ?>
-
-
 
                 <?php if ((isset($item['item_type']) && $item['item_type'] == 'commercial') || (isset($item_type) && $item_type == 'commercial')) { ?>
                     <br class="minimized-no-display" />
@@ -325,7 +333,6 @@ if (empty($item)) {
             </div>
         <?php endif ?>
 
-
         <?php if (in_array('guide', $userConfig['side_menu']) && Pi::service('module')->isActive('guide') && $guideConfig['manage_active'] && $guideConfig['sponsor_active']) { ?>
             <a href="<?php echo Pi::url($this->url('guide', ['module' => 'guide', 'controller' => 'manage', 'action' => 'sponsor'])); ?>"
                class="nav-link rounded-0 <?php if (isset($sideActive) && $sideActive == 'sponsor') { echo ' active'; } ?>">
@@ -385,9 +392,13 @@ if (empty($item)) {
         <?php } ?>
 
         <?php if (in_array('video', $userConfig['side_menu']) && Pi::service('module')->isActive('video')) { ?>
-            <a href="<?php echo Pi::url($this->url('video', ['module' => 'video', 'controller' => 'channel', 'action' => 'index'])); ?>"
-               class="nav-link rounded-0 <?php if ($module == 'video') { echo ' active'; } ?>">
-                <?php _e('Videos'); ?> <span class='fas fa-angle-right'></span>
+            <a href="<?php echo Pi::url($this->url('video', ['module' => 'video', 'controller' => 'dashboard', 'action' => 'index'])); ?>"
+               class="nav-link rounded-0 <?php if ($module == 'videoDashboard') { echo ' active'; } ?>">
+                <?php _e('Manage Videos'); ?> <span class='fas fa-angle-right'></span>
+            </a>
+            <a href="<?php echo Pi::url($this->url('video', ['module' => 'video', 'controller' => 'dashboard', 'action' => 'purchased'])); ?>"
+               class="nav-link rounded-0 <?php if ($module == 'videoPurchased') { echo ' active'; } ?>">
+                <?php _e('Purchased Videos'); ?> <span class='fas fa-angle-right'></span>
             </a>
         <?php } ?>
 

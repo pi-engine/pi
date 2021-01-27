@@ -213,8 +213,7 @@ class LoginController extends ActionController
         if (empty($values['redirect'])) {
             $redirect = ['route' => 'home'];
         } else {
-            //$redirect = urldecode($values['redirect']);
-            $redirect = ['route' => 'home'];
+            $redirect = urldecode($values['redirect']);
         }
 
         // Trigger login event

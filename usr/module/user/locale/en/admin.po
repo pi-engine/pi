@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2020-11-08 12:36+0330\n"
-"PO-Revision-Date: 2020-11-08 12:36+0330\n"
+"POT-Creation-Date: 2021-01-27 12:12+0330\n"
+"PO-Revision-Date: 2021-01-27 12:12+0330\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -47,8 +47,8 @@ msgid "Dashboard"
 msgstr ""
 
 #: config/config.php:45 config/user.php:131
-#: src/Controller/Admin/EditController.php:359
-#: src/Controller/Admin/ViewController.php:96
+#: src/Controller/Admin/EditController.php:441
+#: src/Controller/Admin/ViewController.php:116
 msgid "Avatar"
 msgstr ""
 
@@ -625,110 +625,121 @@ msgstr ""
 
 #: config/config.php:630 config/config.php:639
 msgid ""
-"Use it if user not set country, is user set country system use Laminas validator"
+"Use it if user not set country, is user set country system use Laminas "
+"validator"
 msgstr ""
 
 #: config/config.php:638
 msgid "Mobile number prefix"
 msgstr ""
 
-#: config/config.php:648
-msgid "Max Avatar Width"
+#: config/config.php:646
+msgid "Config and use custom SMS template"
 msgstr ""
 
-#: config/config.php:649
-msgid "Allowed image width, 0 for no limit"
-msgstr ""
-
-#: config/config.php:656
-msgid "Max Avatar Height"
+#: config/config.php:647
+msgid ""
+"You need create user.register.php and user.password.php on config/custom "
+"folder and setup your codes on it"
 msgstr ""
 
 #: config/config.php:657
-msgid "Allowed image height, 0 for no limit"
+msgid "Max Avatar Width"
 msgstr ""
 
-#: config/config.php:664
-msgid "Max File Size"
+#: config/config.php:658
+msgid "Allowed image width, 0 for no limit"
 msgstr ""
 
 #: config/config.php:665
+msgid "Max Avatar Height"
+msgstr ""
+
+#: config/config.php:666
+msgid "Allowed image height, 0 for no limit"
+msgstr ""
+
+#: config/config.php:673
+msgid "Max File Size"
+msgstr ""
+
+#: config/config.php:674
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 
-#: config/config.php:671
+#: config/config.php:680
 msgid "High quality in topbar"
 msgstr ""
 
-#: config/config.php:688
+#: config/config.php:697
 msgid "Temporary Path"
 msgstr ""
 
-#: config/config.php:689
+#: config/config.php:698
 msgid "For temporary storage of avatar"
 msgstr ""
 
-#: config/config.php:697
+#: config/config.php:706
 msgid "oAuth login"
 msgstr ""
 
-#: config/config.php:706
+#: config/config.php:715
 msgid "Login by google"
 msgstr ""
 
-#: config/config.php:718
+#: config/config.php:727
 msgid "Google client id"
 msgstr ""
 
-#: config/config.php:726
+#: config/config.php:735
 msgid "Google client secret"
 msgstr ""
 
-#: config/config.php:734
+#: config/config.php:743
 msgid "Login by twitter"
 msgstr ""
 
-#: config/config.php:746
+#: config/config.php:755
 msgid "Twitter consumer Key (API Key)"
 msgstr ""
 
-#: config/config.php:754
+#: config/config.php:763
 msgid "Twitter consumer Secret (API Secret)"
 msgstr ""
 
-#: config/config.php:762
+#: config/config.php:771
 msgid "Login by facebook"
 msgstr ""
 
-#: config/config.php:774
+#: config/config.php:783
 msgid "Facebook app ID"
 msgstr ""
 
-#: config/config.php:782
+#: config/config.php:791
 msgid "Facebook app Secret"
 msgstr ""
 
-#: config/config.php:790
+#: config/config.php:799
 msgid "Login by github"
 msgstr ""
 
-#: config/config.php:802
+#: config/config.php:811
 msgid "Github client id"
 msgstr ""
 
-#: config/config.php:810
+#: config/config.php:819
 msgid "Github client secret"
 msgstr ""
 
-#: config/config.php:819
+#: config/config.php:828
 msgid "Active this module cron system"
 msgstr ""
 
-#: config/config.php:827
+#: config/config.php:836
 msgid "Session timeout / in days"
 msgstr ""
 
-#: config/config.php:835
+#: config/config.php:844
 msgid "User post-subscription Feedback days"
 msgstr ""
 
@@ -877,7 +888,9 @@ msgstr ""
 msgid "Forms"
 msgstr ""
 
-#: config/user.php:41 template/admin/user.phtml:48 template/admin/user.phtml:74
+#: config/user.php:41 src/Controller/Admin/EditController.php:427
+#: src/Controller/Admin/ViewController.php:102 template/admin/user.phtml:48
+#: template/admin/user.phtml:74
 msgid "Password"
 msgstr ""
 
@@ -1021,141 +1034,149 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: src/Controller/Admin/EditController.php:57
-#: src/Controller/Admin/EditController.php:196
+#: src/Controller/Admin/EditController.php:60
+#: src/Controller/Admin/EditController.php:265
 msgid "User data update failed."
 msgstr ""
 
-#: src/Controller/Admin/EditController.php:80
-#: src/Controller/Admin/EditController.php:237
+#: src/Controller/Admin/EditController.php:88
+#: src/Controller/Admin/EditController.php:305
 msgid "User data update successful."
 msgstr ""
 
-#: src/Controller/Admin/EditController.php:128
+#: src/Controller/Admin/EditController.php:136
 msgid "User avatar change failed."
 msgstr ""
 
-#: src/Controller/Admin/EditController.php:133
+#: src/Controller/Admin/EditController.php:141
 msgid "User avatar change successful."
 msgstr ""
 
-#: src/Controller/Admin/EditController.php:290
+#: src/Controller/Admin/EditController.php:180
+msgid "User password update failed."
+msgstr ""
+
+#: src/Controller/Admin/EditController.php:203
+msgid "User password change successful."
+msgstr ""
+
+#: src/Controller/Admin/EditController.php:357
 msgid "Group deleted successfully."
 msgstr ""
 
-#: src/Controller/Admin/EditController.php:352
-#: src/Controller/Admin/ViewController.php:89
+#: src/Controller/Admin/EditController.php:420
+#: src/Controller/Admin/ViewController.php:95
 msgid "Base info"
 msgstr ""
 
-#: src/Controller/Admin/EditController.php:396
-#: src/Controller/Admin/ViewController.php:129
+#: src/Controller/Admin/EditController.php:480
+#: src/Controller/Admin/ViewController.php:149
 #: template/admin/maintenance.phtml:59 template/admin/user.phtml:92
 msgid "View"
 msgstr ""
 
-#: src/Controller/Admin/EditController.php:420
+#: src/Controller/Admin/EditController.php:505
 #: src/Controller/Admin/MaintenanceController.php:54
 #: src/Controller/Admin/MaintenanceController.php:99
 msgid "User was not found."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:178
+#: src/Controller/Admin/IndexController.php:176
 msgid "Add user failed: user already exists."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:194
+#: src/Controller/Admin/IndexController.php:192
 msgid "Add user failed: invalid operation."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:215
+#: src/Controller/Admin/IndexController.php:213
 msgid "Add user successfully"
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:326
+#: src/Controller/Admin/IndexController.php:322
 msgid "Enable user failed: invalid uid."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:347
+#: src/Controller/Admin/IndexController.php:343
 #, php-format
 msgid "%d users enabled."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:367
+#: src/Controller/Admin/IndexController.php:362
 msgid "Disable user failed: invalid uid."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:388
+#: src/Controller/Admin/IndexController.php:383
 #, php-format
 msgid "%d disable user successfully"
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:408
+#: src/Controller/Admin/IndexController.php:402
 msgid "Delete user failed: invalid uid"
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:434
+#: src/Controller/Admin/IndexController.php:428
 #, php-format
 msgid "%d delete user successfully"
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:454
-#: src/Controller/Admin/IndexController.php:460
+#: src/Controller/Admin/IndexController.php:447
+#: src/Controller/Admin/IndexController.php:453
 msgid "Activate user failed: invalid uid."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:481
+#: src/Controller/Admin/IndexController.php:474
 #, php-format
 msgid "%d users activated."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:506
+#: src/Controller/Admin/IndexController.php:498
 msgid "Role assignment failed: invalid parameters."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:512
+#: src/Controller/Admin/IndexController.php:504
 msgid "Role assignment failed: invalid user ids."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:517
+#: src/Controller/Admin/IndexController.php:509
 msgid "Role assignment failed: invalid operation."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:527
-#: src/Controller/Admin/IndexController.php:545
+#: src/Controller/Admin/IndexController.php:519
+#: src/Controller/Admin/IndexController.php:537
 msgid "Role assignment failed."
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:564
+#: src/Controller/Admin/IndexController.php:556
 msgid "Role assignment succeeded."
 msgstr ""
 
-#: src/Controller/Admin/MaintenanceController.php:252
+#: src/Controller/Admin/MaintenanceController.php:250
 msgid "Clear failed."
 msgstr ""
 
-#: src/Controller/Admin/MaintenanceController.php:262
-#: src/Controller/Admin/MaintenanceController.php:287
+#: src/Controller/Admin/MaintenanceController.php:260
+#: src/Controller/Admin/MaintenanceController.php:284
 msgid "Clear all deleted user successfully."
 msgstr ""
 
-#: src/Controller/Admin/ProfileController.php:242
+#: src/Controller/Admin/ProfileController.php:241
 msgid "Profile dress-up data saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/ProfileController.php:366
+#: src/Controller/Admin/ProfileController.php:361
 msgid "Privacy set up failed: invalid field."
 msgstr ""
 
-#: src/Controller/Admin/ProfileController.php:371
+#: src/Controller/Admin/ProfileController.php:366
 msgid "Privacy set up failed: invalid privacy."
 msgstr ""
 
-#: src/Controller/Admin/ProfileController.php:393
+#: src/Controller/Admin/ProfileController.php:388
 msgid "Privacy set up failed: update error."
 msgstr ""
 
-#: src/Controller/Admin/ProfileController.php:408
+#: src/Controller/Admin/ProfileController.php:403
 msgid "Privacy set up successfully."
 msgstr ""
 

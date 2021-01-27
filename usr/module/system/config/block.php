@@ -109,6 +109,13 @@ return [
                 'filter'      => 'number_int',
                 'value'       => 1,
             ],
+            'show_video'   => [
+                'title'       => _a('Display video'),
+                'description' => '',
+                'edit'        => 'checkbox',
+                'filter'      => 'number_int',
+                'value'       => 1,
+            ],
         ],
     ],
 
