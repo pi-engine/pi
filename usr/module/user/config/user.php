@@ -291,13 +291,13 @@ return [
             'edit'  => 'locale',
         ],
 
-        // Profile: mobile phone number
+        // Profile: mobile number
         'mobile'          => [
             'name'  => 'mobile',
             'title' => _a('Mobile phone'),
         ],
 
-        // Profile: phone
+        // Profile: phone number
         'phone'           => [
             'name'  => 'phone',
             'title' => _a('Telephone'),

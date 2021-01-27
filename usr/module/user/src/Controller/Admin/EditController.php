@@ -13,6 +13,8 @@ use Module\User\Form\CompoundFilter;
 use Module\User\Form\CompoundForm;
 use Module\User\Form\EditUserFilter;
 use Module\User\Form\EditUserForm;
+use Module\User\Form\EditPasswordFilter;
+use Module\User\Form\EditPasswordForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 
@@ -20,6 +22,7 @@ use Pi\Mvc\Controller\ActionController;
  * Edit user controller
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
+ * @author Hossein Azizabadi <hossein@azizabadi.com>
  */
 class EditController extends ActionController
 {
@@ -31,7 +34,7 @@ class EditController extends ActionController
         $user = $this->getUser($uid);
 
         // Get available edit fields
-        list($fields, $formFields, $formFilters) = $this->getEditField();
+        [$fields, $formFields, $formFilters] = $this->getEditField();
 
         // Add other elements
         $formFields[] = [
@@ -61,11 +64,7 @@ class EditController extends ActionController
                 // Update user
                 $values                  = $form->getData();
                 $values['last_modified'] = time();
-                if (isset($values['credential'])
-                    && !$values['credential']
-                ) {
-                    unset($values['credential']);
-                }
+                unset($values['credential']);
                 unset($values['id']);
 
                 // Check if email is empty
@@ -153,6 +152,68 @@ class EditController extends ActionController
                 'nav'    => $this->getNav($uid),
                 'name'   => 'avatar',
                 'avatar' => Pi::user()->avatar()->get($uid, 'large'),
+            ]
+        );
+        $this->view()->setTemplate('edit-user');
+    }
+
+    /**
+     * Display user avatar and delete
+     */
+    public function passwordAction()
+    {
+        $uid = _get('uid');
+
+        // Get user basic information and user data
+        $user = $this->getUser($uid);
+
+        // Set option
+        $option = [];
+
+        // Set form
+        $form = new EditPasswordForm('password', $option);
+        if ($this->request->isPost()) {
+
+            // Set result
+            $result = [
+                'status'  => 0,
+                'message' => _a('User password update failed.'),
+            ];
+
+            $form->setData($this->request->getPost());
+            $form->setInputFilter(new EditPasswordFilter($option));
+            if ($form->isValid()) {
+
+                // Update user
+                $values = $form->getData();
+
+                // Set update values
+                $updateValues = [
+                    'credential'    => $values['credential-new'],
+                    'last_modified' => time(),
+                ];
+
+                // Delete user avatar
+                $status = Pi::api('user', 'user')->updateUser($uid, $updateValues);
+
+                // Check status
+                if ($status) {
+                    $result = [
+                        'status'  => 1,
+                        'message' => _a('User password change successful.'),
+                    ];
+                    Pi::service('event')->trigger('user_update', $uid);
+                }
+                $this->view()->assign('result', $result);
+            }
+        }
+
+        $this->view()->assign(
+            [
+                'user' => $user,
+                'nav'  => $this->getNav($uid),
+                'name' => 'password',
+                'form' => $form,
             ]
         );
         $this->view()->setTemplate('edit-user');
@@ -308,7 +369,10 @@ class EditController extends ActionController
         $elements = [];
         $filters  = [];
 
-        $meta       = Pi::registry('field', 'user')->read();
+        // Get meta
+        $meta = Pi::registry('field', 'user')->read();
+        unset($meta['credential']);
+
         $editFields = [];
         foreach ($meta as $row) {
             if ($row['edit'] && $row['type'] != 'compound') {
@@ -357,6 +421,20 @@ class EditController extends ActionController
             'link'  => $this->url('', ['controller' => 'edit', 'uid' => $uid]),
         ];
 
+        // Password
+        $result[] = [
+            'name'  => 'password',
+            'title' => _a('Password'),
+            'link'  => $this->url(
+                '',
+                [
+                    'controller' => 'edit',
+                    'action'     => 'password',
+                    'uid'        => $uid,
+                ]
+            ),
+        ];
+
         // Avatar
         $result[] = [
             'name'  => 'avatar',
@@ -364,10 +442,10 @@ class EditController extends ActionController
             'link'  => $this->url(
                 '',
                 [
-                'controller' => 'edit',
-                'action'     => 'avatar',
-                'uid'        => $uid,
-            ]
+                    'controller' => 'edit',
+                    'action'     => 'avatar',
+                    'uid'        => $uid,
+                ]
             ),
         ];
 
@@ -387,11 +465,11 @@ class EditController extends ActionController
                 'link'  => $this->url(
                     '',
                     [
-                    'controller' => 'edit',
-                    'action'     => 'compound',
-                    'uid'        => $uid,
-                    'name'       => $row['name'],
-                ]
+                        'controller' => 'edit',
+                        'action'     => 'compound',
+                        'uid'        => $uid,
+                        'name'       => $row['name'],
+                    ]
                 ),
             ];
         }
@@ -403,10 +481,10 @@ class EditController extends ActionController
             'link'  => $this->url(
                 '',
                 [
-                'controller' => 'View',
-                'action'     => 'index',
-                'uid'        => $uid,
-            ]
+                    'controller' => 'view',
+                    'action'     => 'index',
+                    'uid'        => $uid,
+                ]
             ),
         ];
 
