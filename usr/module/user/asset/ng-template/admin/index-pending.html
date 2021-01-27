@@ -39,13 +39,15 @@
     </div>
     &nbsp;
     <div class="form-group">
-        <input type="text" placeholder="{{'DISPLAYNAME' | translate}}" class="form-control"
-               data-ng-model="filter.name">
+        <input type="text" placeholder="{{'DISPLAYNAME' | translate}}" class="form-control" data-ng-model="filter.name">
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="{{'USERNAME' | translate}}" class="form-control" data-ng-model="filter.identity">
     </div>
     &nbsp;
     <div class="form-group">
-        <input type="text" placeholder="{{'EMAIL' | translate}}" class="form-control"
-               data-ng-model="filter.email">
+        <input type="text" placeholder="{{'EMAIL' | translate}}" class="form-control" data-ng-model="filter.email">
     </div>
     &nbsp;
     <button class="btn btn-info" data-ng-click="filterAction()" style="padding: 4px 20px;">
