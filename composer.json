@@ -64,7 +64,7 @@
         "laminas/laminas-memory": "*",
         "laminas/laminas-mime": "*",
         "laminas/laminas-modulemanager": "*",
-        "laminas/laminas-mvc": "2.6.3",
+        "laminas/laminas-mvc": "3.2.x",
         "laminas/laminas-navigation": "*",
         "laminas/laminas-paginator": "*",
         "laminas/laminas-permissions-acl": "*",
@@ -81,7 +81,7 @@
         "laminas/laminas-text": "*",
         "laminas/laminas-uri": "*",
         "laminas/laminas-validator": "*",
-        "laminas/laminas-view": "2.5.3p2",
+        "laminas/laminas-view": "*",
         "laminas/laminas-xmlrpc": "*",
         "laminas/laminas-dependency-plugin": "*",
 
