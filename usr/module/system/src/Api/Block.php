@@ -251,7 +251,7 @@ class Block extends AbstractApi
         $modelPageBlock = Pi::model('page_block');
 
         if ($entity instanceof RowGateway) {
-            $isRoot = ($entity->module && !$entity->root) ? true : false;
+            $isRoot = ($entity->module && (!isset($entity->root) || !$entity->root)) ? true : false;
             if ($isRoot) {
                 $rootId = $entity->id;
             }
