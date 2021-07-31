@@ -13,6 +13,7 @@ namespace Pi\Form\View\Helper;
 use Laminas\Form\FormInterface;
 use Laminas\Form\View\Helper\Form as FormHelper;
 
+
 /**
  * View helper for form rendering w/o bootstrap style
  *
@@ -20,7 +21,7 @@ use Laminas\Form\View\Helper\Form as FormHelper;
  * - single: Single column or full width
  * - multiple: Multiple columns
  * - popup: For popup windows
- * - others: Laminas raw style
+ * - others: Zend raw style
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -81,7 +82,7 @@ class Form extends FormHelper
                 $style = 'popup';
                 $class = '';
                 break;
-            case 'modal-simple':
+            case 'modal-simple' :
                 $style = 'modal-simple';
                 $class = '';
                 break;
@@ -97,7 +98,7 @@ class Form extends FormHelper
                 break;
         }
 
-        // Render Laminas Form directly if style is not desired
+        // Render Zend Form directly if style is not desired
         if (!$style) {
             return parent::render($form);
         }
@@ -155,22 +156,20 @@ class Form extends FormHelper
             /**
              * Add specific checkbox / radio class
              */
-            if ($type == 'checkbox' || $type == 'multi_checkbox' || $type == 'radio') {
+            if ($type == 'checkbox' || $type == 'multi_checkbox' || $type == 'radio'){
                 $class     = $element->getAttribute('class');
                 $attrClass = 'form-check-input' . ($class ? ' ' . $class : '');
                 $element->setAttribute('class', $attrClass);
-            } else {
-                if ($type != 'file') {
-                    $class     = $element->getAttribute('class');
-                    $attrClass = 'form-control' . ($class ? ' ' . $class : '');
-                    $element->setAttribute('class', $attrClass);
-                }
+            } else if ($type != 'file') {
+                $class     = $element->getAttribute('class');
+                $attrClass = 'form-control' . ($class ? ' ' . $class : '');
+                $element->setAttribute('class', $attrClass);
             }
 
             /**
              * Add invalid class
              */
-            if ($element->getMessages()) {
+            if ($element->getMessages()){
                 $class     = $element->getAttribute('class');
                 $attrClass = 'is-invalid' . ($class ? ' ' . $class : '');
                 $element->setAttribute('class', $attrClass);
@@ -197,9 +196,9 @@ class Form extends FormHelper
 
             if ($element->getOption('style') == 'form-inline') {
                 if ($element->getLabel()) {
-                    $renderPattern = "%label_html% %element_html%";
+                    $renderPattern= "%label_html% %element_html%";
                 } else {
-                    $renderPattern = "%element_html%";
+                    $renderPattern= "%element_html%";
                 }
                 $labelPattern
                     = <<<EOT
@@ -208,8 +207,8 @@ class Form extends FormHelper
 </label>
 EOT;
             } else {
-                $renderPattern
-                    = <<<EOT
+            $renderPattern
+                = <<<EOT
 <div class="$rowClass form-group" data-name="%element_name%">
     %label_html%
     %element_html%
@@ -222,6 +221,7 @@ EOT;
 </label>
 EOT;
             }
+
 
 
             $descPattern
@@ -295,17 +295,17 @@ EOT;
 EOT;
                     break;
                 case 'html-raw':
-                    $labelPattern = '';
-                    $elementPattern
-                                  = <<<EOT
+                $labelPattern = '';
+                $elementPattern
+                        = <<<EOT
    %element_content%
 EOT;
-                    $renderPattern
-                                  = <<<EOT
+$renderPattern
+                = <<<EOT
 
     %element_html%
 EOT;
-                    break;
+                break;
                 default:
                     $elementPattern
                         = <<<EOT
@@ -325,12 +325,12 @@ EOT;
 
             switch ($style) {
                 case 'modal-simple':
-                    $vars['label_size']   = 'col-sm-4';
-                    $vars['element_size'] = 'col-sm-8';
+                    $vars['label_size']     = 'col-sm-4';
+                    $vars['element_size']   = 'col-sm-8';
                     break;
                 case 'modal':
-                    $vars['label_size']   = 'col-sm-3';
-                    $vars['element_size'] = 'col-sm-5';
+                    $vars['label_size']     = 'col-sm-3';
+                    $vars['element_size']   = 'col-sm-5';
                     break;
                 case 'popup':
                     $vars['label_size']   = 'col-sm-4';
@@ -357,7 +357,7 @@ EOT;
                 case 'vertical-nomarker':
                     $vars['label_size']   = '';
                     $vars['element_size'] = '';
-                    $markRequired         = '';
+                    $markRequired = '';
                     break;
 
                 case 'horizontal':
@@ -387,8 +387,7 @@ EOT;
             $vars['element_name']    = $element->getName();
             $vars['element_content'] = $this->view->formElement($element);
             $vars['error_content']   = $this->view->formElementErrors($element) ?: __('This value is required');
-            $vars['desc_content']    = $element->getAttribute('description') . ($element->getAttribute('required') && !$element->getLabel() ? $markRequired
-                    : '');
+            $vars['desc_content']    = $element->getAttribute('description') . ($element->getAttribute('required') && !$element->getLabel() ? $markRequired : '');
             $vars['desc_html']       = $parsePattern($descPattern, $vars);
             $vars['label_content']   = $element->getLabel();
             $vars['mark_required']   = $element->getAttribute('required') && $element->getLabel() ? $markRequired : '';
@@ -443,9 +442,9 @@ EOT;
             $elementMessages = '';
 
             foreach ($hiddenMessages as $elName => $elMessages) {
-                $element     = $form->get($elName);
-                $name        = '';
-                $hiddenStyle = '';
+                $element = $form->get($elName);
+                $name = '';
+                $hiddenStyle  = '';
                 if ($element) {
                     $attr = $element->getAttributes();
                     if (!isset($attr['error']['noname']) || $attr['error']['noname'] == false) {
@@ -454,6 +453,7 @@ EOT;
                     if (isset($attr['error']['nocount']) && $attr['error']['nocount'] == true) {
                         $hiddenStyle = 'style="list-style-type: none;"';
                     }
+
                 }
                 $messages = '';
                 foreach ($elMessages as $elMessage) {
@@ -538,7 +538,7 @@ EOT;
                 case 'modal-simple':
                     $submitSize = 'offset-sm-4 col-sm-8';
                     $htmlSubmit
-                                = <<<EOT
+                        = <<<EOT
         <div class="row form-group">
             <div class="{$submitSize}">
                 {$submit}
@@ -604,15 +604,15 @@ EOT;
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="%s">&times;</button>
             <h4 class="modal-title">%s</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="%s">&times;</button>
         </div>
         <div class="modal-body">
 EOT;
             $modalOpen = sprintf(
                 $openPattern,
-                __('Close'),
-                _escape($form->getLabel() ?: __('Form'))
+                _escape($form->getLabel() ?: __('Form')),
+                __('Close')
             );
 
             $script
