@@ -69,7 +69,7 @@ EOT;
 
         // Load chart
         $this->view->jQuery();
-        $this->view->js(pi::url('static/vendor/chart/Chart.min.js'));
+        $this->view->js(pi::url('static/vendor/chart/chart.min.js'));
         $this->view->footScript()->appendScript($script);
 
         // render html
