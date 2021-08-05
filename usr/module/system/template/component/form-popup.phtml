@@ -2,8 +2,9 @@
 $options = [
     'style' => 'popup',
 ];
+$sidebar = isset($sidebar) && !empty($sidebar) ? $sidebar : [];
 if (!empty($title)) {
     $form->setLabel($title);
 }
-echo $this->form($form, $options);
+echo $this->form($form, $options, $sidebar);
 return;
