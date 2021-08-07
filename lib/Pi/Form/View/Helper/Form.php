@@ -30,13 +30,13 @@ class Form extends FormHelper
      * {@inheritDoc}
      * @param array|string|false $options
      */
-    public function __invoke(FormInterface $form = null, $options = [])
+    public function __invoke(FormInterface $form = null, $options = [], $sidebar = [])
     {
         if (!$form) {
             return $this;
         }
 
-        return $this->render($form, $options);
+        return $this->render($form, $options, $sidebar);
     }
 
     /**
@@ -44,8 +44,9 @@ class Form extends FormHelper
      * @param array|string|false $options Options for rendering:
      *                                    `style`   - horizontal, vertical, inline, popup, raw
      *                                    `column`  - single, multiple
+     * @param array $sidebar sidebar for popup forms
      */
-    public function render(FormInterface $form, $options = [])
+    public function render(FormInterface $form, $options = [], $sidebar = [])
     {
         // Canonize options
         if (!is_array($options)) {
@@ -125,9 +126,8 @@ class Form extends FormHelper
                 $form->setLabel($options['label']);
             }
 
-            $id               = !empty($options['id'])
-                ? $options['id']
-                : ($form->getAttribute('id') ?: 'popup-form');
+            $id = !empty($options['id']) ? $options['id'] : ($form->getAttribute('id') ?: 'popup-form');
+
             $attributes['id'] = $id;
         }
         $form->setAttributes($attributes);
@@ -248,7 +248,6 @@ EOT;
         </label>
     </div>
 </div>
-
 EOT;
                     break;
 
@@ -261,7 +260,6 @@ EOT;
     <div class="invalid-feedback">%error_content%</div>
     %desc_html%
 </div>
-
 EOT;
                     break;
 
@@ -291,7 +289,6 @@ EOT;
     %element_content%
     %desc_html%
 </div>
-
 EOT;
                     break;
                 case 'html-raw':
@@ -315,8 +312,6 @@ EOT;
     %desc_html%
     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 </div>
-
-
 EOT;
                     break;
             }
@@ -595,28 +590,15 @@ EOT;
             'html_alert' => $htmlAlert,
             'html_form'  => $htmlForm,
         ];
+
+        // Do for popup
         if ('popup' == $style) {
             $this->view->jQuery();
             $this->view->bootstrap('js/bootstrap.min.js');
 
-            $openPattern
-                       = <<<EOT
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="%s">&times;</button>
-            <h4 class="modal-title">%s</h4>
-        </div>
-        <div class="modal-body">
-EOT;
-            $modalOpen = sprintf(
-                $openPattern,
-                __('Close'),
-                _escape($form->getLabel() ?: __('Form'))
-            );
-
+            // Set popup js script
             $script
-                        = <<<EOT
+                = <<<EOT
         <script>
             var formModule = (function($) {
                 var formModule = {},
@@ -653,13 +635,81 @@ EOT;
             })(jQuery)
         </script>
 EOT;
-            $modalClose = $script . PHP_EOL . <<<EOT
+
+            // Set popup open pattern
+            $openPattern
+                = <<<EOT
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">%s</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="%s">&times;</button>
+        </div>
+        <div class="modal-body">
+EOT;
+
+            // Set popup close pattern
+            $closePattern
+                = <<<EOT
+        </div>
     </div>
 </div>
 EOT;
+            // Set modal open
+            $modalOpen = sprintf(
+                $openPattern,
+                _escape($form->getLabel() ?: __('Form')),
+                __('Close')
+            );
 
+            // Set modal close
+            $modalClose = $script . PHP_EOL . $closePattern;
+
+            // Set to array
             $vars['html_open']  = $modalOpen;
             $vars['html_close'] = $modalClose;
+
+            // Check sidebar
+            if (isset($sidebar) && !empty($sidebar) && is_array($sidebar)) {
+
+                // Set html sidebar pattern
+                $sidebarPattern = <<<EOT
+<ul class="list-unstyled">
+    <li><strong>%s</strong></li>
+    <li>%s</li>
+</ul>
+EOT;
+
+                // Make side html
+                $htmlSidebar = '';
+                foreach ($sidebar as $sidebarSingle) {
+                    if (
+                        isset($sidebarSingle['title'])
+                        && !empty($sidebarSingle['title'])
+                        && isset($sidebarSingle['value'])
+                        && !empty($sidebarSingle['value'])
+                    ) {
+                        $htmlSidebar .= sprintf($sidebarPattern, $sidebarSingle['title'], $sidebarSingle['value']);
+                    }
+                }
+
+                // Check and set
+                if (!empty($htmlSidebar)) {
+                    // Set sidebar pattern
+                    $sidePattern = <<<EOT
+<div class="row clearfix">
+    <div class="col-sm-9">
+        %s
+    </div>
+    <div class="col-sm-3 bg-light" style="margin-top: -15px; margin-bottom: -15px;">
+        %s
+    </div>
+</div>
+EOT;
+                    // reset html_form
+                    $vars['html_form'] = sprintf($sidePattern, $htmlForm, $htmlSidebar);
+                }
+            }
         }
 
         $html = $parsePattern($htmlPattern, $vars);
