@@ -74,7 +74,17 @@ EOT;
                         Pi::path('theme'),
                         $content
                     );
-                } ?>
+                }
+
+                if (!is_file($file)) {
+                    $file = sprintf(
+                        '%s/module/page/template/front/%s.phtml',
+                        Pi::path('custom'),
+                        $content
+                    );
+                }
+
+                ?>
                 <?php if ($file) : ?>
                     <?php include $this->template($file); ?>
                 <?php else : ?>

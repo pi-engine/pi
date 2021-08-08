@@ -76,6 +76,9 @@ class IndexController extends ActionController
                 if (empty($values['slug'])) {
                     $values['slug'] = null;
                 }
+                if (empty($values['main_image'])) {
+                    unset($values['main_image']);
+                }
                 $values['active']       = 1;
                 $values['user']         = Pi::service('user')->getUser()->id;
                 $values['time_created'] = time();
