@@ -328,8 +328,8 @@ EOT;
                     $vars['element_size'] = 'col-sm-5';
                     break;
                 case 'popup':
-                    $vars['label_size']   = 'col-sm-4';
-                    $vars['element_size'] = 'col-sm-8';
+                    $vars['label_size']   = 'col-sm-12';
+                    $vars['element_size'] = 'col-sm-12';
                     break;
 
                 case 'inline':
