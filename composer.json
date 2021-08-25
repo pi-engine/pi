@@ -84,19 +84,26 @@
         "laminas/laminas-view": "2.5.3p2",
         "laminas/laminas-xmlrpc": "*",
         "laminas/laminas-dependency-plugin": "*",
+        "laminas/laminas-recaptcha": "3.1.0",
 
         "imagine/imagine": "*",
         "ircmaxell/random-lib": "*",
         "ircmaxell/security-lib": "*",
         "hybridauth/hybridauth": "*",
-        "geoip2/geoip2": "*",
         "phayes/geophp": "*",
-        "emcconville/google-map-polyline-encoding-tool": "*",
         "matthiasmullie/minify": "*",
         "phpseclib/phpseclib": "*",
+
         "spipu/html2pdf": "*",
         "tecnickcom/tcpdf": "*",
-        "stripe/stripe-php": "*"
+        "stripe/stripe-php": "*",
+        "geoip2/geoip2": "*",
+        "emcconville/google-map-polyline-encoding-tool": "*",
+        "raiym/instagram-php-scraper": "*",
+        "bigbluebutton/bigbluebutton-api-php": "*",
+        "phpmailer/phpmailer": "*",
+        "php-ffmpeg/php-ffmpeg": "*",
+        "phpoffice/phpspreadsheet": "*"
     },
     "suggest": {
         "ext-apc": "for opcode cache and system persistent data",

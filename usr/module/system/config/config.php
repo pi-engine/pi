@@ -384,7 +384,7 @@ $config['item'] = [
                 'options' => [
                     0 => _t('No captcha'),
                     1 => _t('Standard captcha'),
-                    2 => _t('New re-captcha'),
+                    2 => _t('Google ReCaptcha'),
                 ],
             ],
         ],

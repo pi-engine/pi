@@ -29,10 +29,10 @@
                         <?php } ?>
                     </td>
                     <td>
-                        <?php echo _escape($page['name']); ?>
+                        <?php echo !empty($page['name']) ? _escape($page['name']) : ''; ?>
                     </td>
                     <td>
-                        <?php echo _escape($page['slug']); ?>
+                        <?php echo !empty($page['slug']) ? _escape($page['slug']) : ''; ?>
                     </td>
                     <td>
                         <?php echo _escape($page['markup']); ?>

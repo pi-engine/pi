@@ -11,6 +11,7 @@
 namespace Pi\Application\Service;
 
 use Pi;
+use Laminas\Captcha\ReCaptcha;
 
 /**
  * Form service
@@ -43,31 +44,15 @@ class Form extends AbstractService
                 ],
             ];
         } elseif ($captchaMode == 2 && $captchaPublicKey && $captchaPrivateKey) {
+            $recaptcha = new ReCaptcha();
+            $recaptcha->setSiteKey($captchaPublicKey);
+            $recaptcha->setSecretKey($captchaPrivateKey);
+
             $captchaElement = [
-                'name'    => 'captcha',
                 'type'    => 'captcha',
-                'options' => [
-                    'captcha' => new \LosReCaptcha\Captcha\ReCaptcha(
-                        [
-                            'site_key'   => $captchaPublicKey,
-                            'secret_key' => $captchaPrivateKey,
-                        ]
-                    ),
-                ],
-            ];
-        } elseif ($captchaMode == 3 && $captchaPublicKey && $captchaPrivateKey) {
-            $captchaElement = [
                 'name'    => 'captcha',
-                'type'    => 'captcha',
                 'options' => [
-                    'captcha' => new \LosReCaptcha\Captcha\Invisible(
-                        [
-                            'site_key'   => $captchaPublicKey,
-                            'secret_key' => $captchaPrivateKey,
-                            'callback'   => 'captchaSubmit', // Callback to submit the form
-                            'button_id'  => 'submit-button', // Button id to submit the form
-                        ]
-                    ),
+                    'captcha' => $recaptcha,
                 ],
             ];
         }

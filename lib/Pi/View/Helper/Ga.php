@@ -20,10 +20,7 @@ use Laminas\View\Helper\AbstractHelper;
  *
  * ```
  *  // Specific mode
- *  $this->ga('UA-XXXXX-X', 'pi-engine.tld');
- *
- *  // Or specific mode
- *  $this->ga('UA-XXXXX-X; pi-engine.tld');
+ *  $this->ga('UA-XXXXX-X');
  *
  *  // Default mode
  *  $this->ga();
@@ -37,40 +34,34 @@ class Ga extends AbstractHelper
      * Load GA scripts
      *
      * @param string $trackingId
-     * @param string $host
      *
      * @return  $this
      */
-    public function __invoke($trackingId = '', $host = '')
+    public function __invoke($trackingId = '')
     {
         if (!$trackingId) {
             $trackingId = Pi::config('ga_account');
         }
-        $hostConfig = '';
         if (false !== ($pos = strpos($trackingId, ';'))) {
-            $hostConfig = trim(substr($trackingId, $pos + 1));
             $trackingId = trim(substr($trackingId, 0, $pos));
         }
         if (!$trackingId) {
             return '';
         }
-        if (!$host) {
-            $host = $hostConfig ?: $_SERVER['HTTP_HOST'];
-        }
 
         $gaScripts
             = <<<'EOT'
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', '%s', '%s');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '%s');
 EOT;
 
-        $scripts = sprintf($gaScripts, $trackingId, $host);
+        $scripts = sprintf($gaScripts, $trackingId);
+        $url     = sprintf('https://www.googletagmanager.com/gtag/js?id=%s', $trackingId);
+
+        // Set script
+        $this->view->headScript()->appendFile($url, 'text/javascript', ['async' => 'async']);
         $this->view->headScript()->appendScript($scripts);
 
         return $this;

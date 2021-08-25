@@ -1,0 +1,31 @@
+<?php
+$filter = function ($fileinfo) {
+    if (!$fileinfo->isFile()) {
+        return false;
+    }
+    $name = $fileinfo->getFilename();
+    $file = $fileinfo->getPathname();
+
+    $extension = pathinfo($name, PATHINFO_EXTENSION);
+    $basename  = pathinfo($name, PATHINFO_BASENAME);
+    $filename  = pathinfo($name, PATHINFO_FILENAME);
+    if (!in_array($extension, ['jpg', 'jpeg', 'png'])) {
+        return false;
+    }
+
+    return [
+        'url'  => Pi::url(sprintf('upload/gallery/%s', $basename)),
+        'name' => $filename,
+    ];
+};
+$galleryImages = Pi::service('file')->getList(Pi::path('upload/gallery'), $filter);
+?>
+<div class="clearfix row">
+    <?php foreach ($galleryImages as $image) { ?>
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 mb-3">
+            <div class="card">
+                <img src="<?php echo $image['url']; ?>" class="card-img" alt="<?php echo $image['name']; ?>">
+            </div>
+        </div>
+    <?php } ?>
+</div>
