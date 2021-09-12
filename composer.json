@@ -93,6 +93,7 @@
     "phayes/geophp": "*",
     "matthiasmullie/minify": "*",
     "phpseclib/phpseclib": "*",
+    "voku/anti-xss": "*",
 
     "spipu/html2pdf": "*",
     "tecnickcom/tcpdf": "*",

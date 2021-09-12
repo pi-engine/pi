@@ -10,11 +10,12 @@
 namespace Pi\Filter;
 
 use Laminas\Filter\AbstractFilter;
+use voku\helper\AntiXSS;
 
 /**
  * Cross site scripting check
  *
- * @link   : http://ha.ckers.org/xss.html
+ * @link   : http://ha.ckers.org/xss.html (old)
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class XssSanitizer extends AbstractFilter
@@ -34,6 +35,17 @@ class XssSanitizer extends AbstractFilter
      * @return string
      */
     public function filter($value)
+    {
+        $antiXss = new AntiXSS();
+        $antiXss->xss_clean($value);
+        if ($antiXss->isXssFound()) {
+            return false;
+        }
+        return true;
+    }
+
+    // This is old filter
+    /* public function filter($value)
     {
         // Remove NULL bytes
         $content = str_replace("\0", '', $value);
@@ -102,5 +114,5 @@ class XssSanitizer extends AbstractFilter
         $value = preg_replace($patterns, $replaces, $content);
 
         return $value;
-    }
+    } */
 }

@@ -14,13 +14,19 @@ return [
             // lifetime of the cookie in seconds which is sent to the browser
             'cookie_lifetime'     => 0,
             // domain of the cookie
-            //'cookie_domain'         => '',
+            //'cookie_domain'     => '',
+
             // path where information is stored
-            //'cookie_path'           => '',
+            //'cookie_path'       => '',
+
             // Set secure option for cookie
-            // 'cookie_secure'           => 1,
+            'cookie_secure'       => 1,
+
             // Set sameSite, read more on : https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
-            // 'cookie_samesite'         => 'None',
+            'cookie_samesite'     => 'None',
+
+            // Set HttpOnly flag on cookies
+            'cookie_httponly'     => true,
 
             // time-to-live for cached session pages in minutes
             'cache_expire'        => 180,

@@ -54,7 +54,9 @@ class Ga extends AbstractHelper
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '%s');
+gtag('config', '%s', {
+  cookie_flags: 'SameSite=None;Secure'
+});
 EOT;
 
         $scripts = sprintf($gaScripts, $trackingId);

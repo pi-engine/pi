@@ -41,20 +41,14 @@ class Xss extends AbstractAdapter
      */
     public static function check($options = [])
     {
-        $filter         = isset($options['filter'])
-            ? $options['filter'] : static::$filter;
-        static::$length = isset($options['length'])
-            ? $options['length'] : static::$length;
+        $filter         = isset($options['filter']) ? $options['filter'] : static::$filter;
+        static::$length = isset($options['length']) ? $options['length'] : static::$length;
 
-        if (!empty($options['post']) && !empty($_POST)) {
-            if (static::checkXssRecursive($_POST, $filter) && !$filter) {
-                return false;
-            }
+        if (isset($options['post']) && !empty($options['post']) && isset($_POST) && !empty($_POST)) {
+            return static::checkXssRecursive($_POST, $filter);
         }
-        if (!empty($options['get']) && !empty($_GET)) {
-            if (static::checkXssRecursive($_GET, $filter) && !$filter) {
-                return false;
-            }
+        if (isset($options['get']) && !empty($options['get']) && isset($_GET) && !empty($_GET)) {
+            return static::checkXssRecursive($_GET, $filter);
         }
 
         return;
@@ -90,10 +84,12 @@ class Xss extends AbstractAdapter
     {
         if (is_array($content)) {
             foreach ($content as $key => &$val) {
-                if (static::checkXssRecursive($val, $filter) && !$filter) {
-                    return true;
+                $result = static::checkXssRecursive($val, $filter);
+                if (!$result) {
+                    return $result;
                 }
             }
+            return true;
         } else {
             return static::checkXss($content, $filter);
         }
@@ -109,22 +105,19 @@ class Xss extends AbstractAdapter
      */
     public static function checkXss(&$content, $filter = true)
     {
-        if (!is_string($content)
-            || (static::$length && strlen($content) < static::$length)
-        ) {
+        if (!is_string($content) || (static::$length && strlen($content) < static::$length)) {
             return $filter ? $content : null;
         }
+
         if ($filter) {
             $xssFilter = new XssSanitizer;
-            $content   = $xssFilter->filter($content);
-
-            return $content;
+            return  $xssFilter->filter($content);
         } else {
             return;
         }
 
         // Remove NULL bytes
-        $content = str_replace("\0", '', $content);
+        /* $content = str_replace("\0", '', $content);
 
         $patterns = [];
         $replaces = [];
@@ -193,6 +186,6 @@ class Xss extends AbstractAdapter
             return $content;
         } else {
             return;
-        }
+        } */
     }
 }
