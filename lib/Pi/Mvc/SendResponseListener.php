@@ -10,16 +10,15 @@
 namespace Pi\Mvc;
 
 use Pi\Mvc\ResponseSender\PhpEnvironmentResponseSender;
-use TinyHtmlMinifier\TinyHtmlMinifier;
 use Laminas\Mvc\SendResponseListener as LaminasSendResponseListener;
 use Laminas\Mvc\ResponseSender\ConsoleResponseSender;
 use Laminas\Mvc\ResponseSender\SendResponseEvent;
 use Laminas\Mvc\ResponseSender\SimpleStreamResponseSender;
-
 use Laminas\Mvc\ResponseSender\HttpResponseSender;
 use Laminas\Stdlib\ResponseInterface as Response;
 use Laminas\Http\PhpEnvironment\Response as PhpEnvironmentResponse;
 use Laminas\Mvc\MvcEvent;
+use Nguyenhiep\Minifier\TinyHtmlMinifier;
 
 class SendResponseListener extends LaminasSendResponseListener
 {
@@ -35,7 +34,6 @@ class SendResponseListener extends LaminasSendResponseListener
         $events->attach(SendResponseEvent::EVENT_SEND_RESPONSE, new HttpResponseSender(), -4000);
         $events->attach(SendResponseEvent::EVENT_SEND_RESPONSE, [$this, 'outputCompress'], 100);
     }
-
 
     public function outputCompress($e)
     {
