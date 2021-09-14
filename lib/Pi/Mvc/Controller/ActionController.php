@@ -66,6 +66,9 @@ abstract class ActionController extends AbstractActionController
         });
         */
 
+        // ToDo: improve load check poshition
+        Pi::service('authentication')->checkTwoFactor();
+
         // Define callback used to determine whether or not to short-circuit
         $shortCircuit = function ($r) use ($e) {
             if ($r instanceof Response) {

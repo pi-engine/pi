@@ -17,7 +17,7 @@ return [
     // Fields
     'field'     => [
         // Account: identity
-        'identity'        => [
+        'identity'          => [
             'type'        => 'account',
             'name'        => 'identity',
             'title'       => _a('Username'),
@@ -35,7 +35,7 @@ return [
         ],
 
         // Account: password
-        'credential'      => [
+        'credential'        => [
             'type'        => 'account',
             'name'        => 'credential',
             'title'       => _a('Password'),
@@ -53,7 +53,7 @@ return [
         ],
 
         // Account: email
-        'email'           => [
+        'email'             => [
             'type'        => 'account',
             'name'        => 'email',
             'title'       => _a('Email'),
@@ -78,7 +78,7 @@ return [
         ],
 
         // Account: display name
-        'name'            => [
+        'name'              => [
             'type'        => 'account',
             'name'        => 'name',
             'title'       => _a('Display name'),
@@ -95,7 +95,7 @@ return [
         ],
 
         // Account: gender
-        'gender'          => [
+        'gender'            => [
             'type'   => 'account',
             'name'   => 'gender',
             'title'  => _a('Gender'),
@@ -106,7 +106,7 @@ return [
         ],
 
         // Account: birth date
-        'birthdate'       => [
+        'birthdate'         => [
             'type'   => 'account',
             'name'   => 'birthdate',
             'title'  => _a('Birthdate'),
@@ -125,7 +125,7 @@ return [
         ],
 
         // Account: avatar
-        'avatar'          => [
+        'avatar'            => [
             'type'  => 'account',
             'name'  => 'avatar',
             'title' => _a('Avatar'),
@@ -136,7 +136,7 @@ return [
         ],
 
         // Account: Collective status
-        'active'          => [
+        'active'            => [
             'type'   => 'account',
             'name'   => 'active',
             'title'  => _a('Active'),
@@ -146,8 +146,28 @@ return [
             'is_display' => false,
         ],
 
+        // Account: Two-factor authentication status
+        'two_factor'        => [
+            'type'   => 'account',
+            'name'   => 'two_factor',
+            'title'  => _a('Two factor Status'),
+            'filter' => 'YesNo',
+
+            'is_edit'    => false,
+            'is_display' => false,
+        ],
+
+        // Account: Two-factor authentication secret
+        'two_factor_secret' => [
+            'type'       => 'account',
+            'name'       => 'two_factor_secret',
+            'title'      => _a('Two factor Secret'),
+            'is_edit'    => false,
+            'is_display' => false,
+        ],
+
         // Account: Register time
-        'time_created'    => [
+        'time_created'      => [
             'type'   => 'account',
             'name'   => 'time_created',
             'title'  => _a('Register time'),
@@ -158,7 +178,7 @@ return [
         ],
 
         // Account: Activation time
-        'time_activated'  => [
+        'time_activated'    => [
             'type'   => 'account',
             'name'   => 'time_activated',
             'title'  => _a('Activation time'),
@@ -169,7 +189,7 @@ return [
         ],
 
         // Account: Disabled time
-        'time_disabled'   => [
+        'time_disabled'     => [
             'type'   => 'account',
             'name'   => 'time_disabled',
             'title'  => _a('Disabled time'),
@@ -181,7 +201,7 @@ return [
         ],
 
         // Account: Deleted time
-        'time_deleted'    => [
+        'time_deleted'      => [
             'type'   => 'account',
             'name'   => 'time_deleted',
             'title'  => _a('Deleted time'),
@@ -195,7 +215,7 @@ return [
         // Profile fields
 
         // Profile: Level
-        'level'           => [
+        'level'             => [
             'name'  => 'level',
             'title' => _a('Level'),
 
@@ -205,7 +225,7 @@ return [
         ],
 
         // Profile: Last modified
-        'last_modified'   => [
+        'last_modified'     => [
             'name'       => 'last_modified',
             'title'      => _a('Last modified'),
             'is_display' => false,
@@ -214,7 +234,7 @@ return [
         ],
 
         // Profile: homepage
-        'homepage'        => [
+        'homepage'          => [
             'name'  => 'homepage',
             'title' => _a('Personal website'),
             'edit'  => [
@@ -223,7 +243,7 @@ return [
         ],
 
         // Profile: bio
-        'bio'             => [
+        'bio'               => [
             'name'  => 'bio',
             'title' => _a('Short bio'),
             'edit'  => [
@@ -232,7 +252,7 @@ return [
         ],
 
         // Profile: signature
-        'signature'       => [
+        'signature'         => [
             'name'  => 'signature',
             'title' => _a('Signature'),
             'edit'  => [
@@ -241,7 +261,7 @@ return [
         ],
 
         // Profile: Register IP
-        'ip_register'     => [
+        'ip_register'       => [
             'name'  => 'ip_register',
             'title' => _a('Register IP'),
 
@@ -251,7 +271,7 @@ return [
         ],
 
         // Profile: register source, could be used for register invitation
-        'register_source' => [
+        'register_source'   => [
             'name'       => 'register_source',
             'title'      => _a('Register source'),
             'is_edit'    => false,
@@ -261,62 +281,62 @@ return [
 
         // Profile: identification_number
         // See : https://en.wikipedia.org/wiki/National_identification_number
-        'id_number'       => [
+        'id_number'         => [
             'name'  => 'id_number',
             'title' => _a('Identification number'),
         ],
 
         // Profile: first_name
-        'first_name'      => [
+        'first_name'        => [
             'name'  => 'first_name',
             'title' => _a('First Name'),
         ],
 
         // Profile: last_name
-        'last_name'       => [
+        'last_name'         => [
             'name'  => 'last_name',
             'title' => _a('Last Name'),
         ],
 
         // Profile: age
-        'age'             => [
+        'age'               => [
             'name'  => 'age',
             'title' => _a('Age'),
         ],
 
         // Profile: Language
-        'language'        => [
+        'language'          => [
             'name'  => 'language',
             'title' => _a('Language'),
             'edit'  => 'locale',
         ],
 
         // Profile: mobile number
-        'mobile'          => [
+        'mobile'            => [
             'name'  => 'mobile',
             'title' => _a('Mobile phone'),
         ],
 
         // Profile: phone number
-        'phone'           => [
+        'phone'             => [
             'name'  => 'phone',
             'title' => _a('Telephone'),
         ],
 
         // Profile: address1
-        'address1'        => [
+        'address1'          => [
             'name'  => 'address1',
             'title' => _a('Address 1'),
         ],
 
         // Profile: address2
-        'address2'        => [
+        'address2'          => [
             'name'  => 'address2',
             'title' => _a('Address 2'),
         ],
 
         // Profile: country
-        'country'         => [
+        'country'           => [
             'name'  => 'country',
             'title' => _a('Country'),
             'edit'  => [
@@ -325,31 +345,31 @@ return [
         ],
 
         // Profile: state
-        'state'           => [
+        'state'             => [
             'name'  => 'state',
             'title' => _a('State'),
         ],
 
         // Profile: city
-        'city'            => [
+        'city'              => [
             'name'  => 'city',
             'title' => _a('City'),
         ],
 
         // Profile: zip_code
-        'zip_code'        => [
+        'zip_code'          => [
             'name'  => 'zip_code',
             'title' => _a('Zip code'),
         ],
         // Profile: device_token
-        'device_token'    => [
+        'device_token'      => [
             'name'  => 'device_token',
             'title' => _a('Device token'),
         ],
 
         // Compound fields
         // Compound: Social networking tools
-        'social'          => [
+        'social'            => [
             'name'    => 'social',
             'title'   => _a('Social tools'),
 

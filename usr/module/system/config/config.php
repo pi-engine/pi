@@ -33,6 +33,10 @@ $config['category'] = [
         'title' => _t('Geo tags and setting'),
     ],
     [
+        'name'  => 'security',
+        'title' => _t('Security'),
+    ],
+    [
         'name'  => 'google',
         'title' => _t('Google'),
     ],
@@ -698,6 +702,17 @@ $config['item'] = [
         'description' => _t('Set pinterest domain verify code here, if your website have page on pinterest'),
         'edit'        => 'text',
         'category'    => 'head_meta_extra',
+    ],
+
+    // Security
+
+    'two_factor_authentication' => [
+        'title'    => _t('Active two factor authentication'),
+        'description' => _t('All users forced to use two-factor authentication'),
+        'edit'     => 'checkbox',
+        'value'    => 0,
+        'filter'   => 'int',
+        'category' => 'security',
     ],
 
     // Geo tags and setting

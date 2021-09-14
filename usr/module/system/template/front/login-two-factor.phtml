@@ -1,0 +1,34 @@
+<div class="clearfix">
+    <div class="col-md-8 offset-md-2 col-12">
+        <div class="page-header border-bottom mb-4">
+            <h1><?php _e('Two-Factor Authentication') ?></h1>
+        </div>
+        <?php if (!empty($message)) { ?>
+            <div class="alert alert-danger">
+                <?php echo _escape($message); ?>
+            </div>
+        <?php } ?>
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <?php echo $this->form($form, 'vertical'); ?>
+            </div>
+            <div class="col-md-6 col-12">
+                <?php if (isset($user['two_factor']) && (int)$user['two_factor'] == 1 && isset($user['two_factor_secret']) && !empty($user['two_factor_secret']))  { ?>
+                    <ol class="p-3 m-0">
+                        <li><?php _e('Open an authenticator app on your mobile device'); ?></li>
+                        <li><?php _e('Enter the verification code in the field opposite '); ?></li>
+                    </ol>
+                <?php } else { ?>
+                    <ol class="p-3 m-0">
+                        <li><?php _e('Install an authenticator app on your mobile device'); ?></li>
+                        <li><?php _e('Scan the following QR code in your authenticator app'); ?></li>
+                    </ol>
+                    <div class="p-3 m-0">
+                        <img src="<?php echo $image; ?>" alt="<?php _e('Scan QR code'); ?>">
+                        <p><?php _e('Please enter the following code in your app'); ?> : <strong><?php echo chunk_split($secret, 4, ' '); ?></strong></p>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>

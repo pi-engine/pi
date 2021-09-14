@@ -241,4 +241,49 @@ class Local extends AbstractStrategy
     {
         return Pi::service('user')->get(null, $fields);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function checkTwoFactor(array $params = [])
+    {
+        if ($this->hasIdentity() && Pi::config('two_factor_authentication')) {
+
+            // Get url params
+            $section    = !empty($params['section']) ? $params['section'] : Pi::engine()->section();
+            $route      = Pi::service('url')->getRouteMatch();
+            $controller = $route->getParam('controller');
+
+            // Get user information
+            $uid      = Pi::user()->getId();
+            $userData = Pi::user()->data()->find(
+                [
+                    'uid'    => $uid,
+                    'module' => 'system',
+                    'name'   => 'two_factor_authentication',
+                ]
+            );
+
+            // Set url
+            $url = Pi::service('url')->assemble(
+                'default',
+                [
+                    'module'     => 'system',
+                    'controller' => 'login',
+                    'action'     => 'towFactor',
+                ]
+            );
+
+            // Check
+            if (isset($userData) && !empty($userData) && (int)$userData['value_int'] == 0) {
+                switch ($section) {
+                    case 'front':
+                        if (!in_array($controller, ['login', 'logout'])) {
+                            Pi::service('url')->redirect($url, false, 301);
+                        }
+                        break;
+                }
+            }
+        }
+    }
 }

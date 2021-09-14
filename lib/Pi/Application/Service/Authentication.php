@@ -242,4 +242,9 @@ class Authentication extends AbstractService
     {
         return $this->getStrategy()->getData($fields);
     }
+
+    public function checkTwoFactor(array $params = [])
+    {
+        $this->getStrategy()->checkTwoFactor($params);
+    }
 }

@@ -248,4 +248,13 @@ abstract class AbstractStrategy
      * @return array
      */
     abstract public function getData(array $fields = []);
+
+    /**
+     * Check two factor passed or not
+     *
+     * @param array $fields
+     *
+     * @return void
+     */
+    abstract public function checkTwoFactor(array $fields = []);
 }

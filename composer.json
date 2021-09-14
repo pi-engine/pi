@@ -95,7 +95,7 @@
     "nguyenhiep/tiny-html-minifier": "*",
     "phpseclib/phpseclib": "*",
     "voku/anti-xss": "*",
-    "sonata-project/google-authenticator": "*",
+    "robthree/twofactorauth": "*",
 
     "spipu/html2pdf": "*",
     "tecnickcom/tcpdf": "*",
