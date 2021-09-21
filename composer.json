@@ -92,7 +92,7 @@
     "nguyenhiep/tiny-html-minifier": "*",
     "phpseclib/phpseclib": "*",
     "hybridauth/hybridauth": "*",
-    "sonata-project/google-authenticator": "*",
+    "robthree/twofactorauth": "*",
 
     "spipu/html2pdf": "*",
     "tecnickcom/tcpdf": "*",
