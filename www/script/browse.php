@@ -10,10 +10,8 @@
 /**
  * Pi Engine internal file access
  *
- * @todo Enhance security by protecting files with path filters
- *      besides mimetype filters
- * @todo Add symlink like pi.url/resource/app/mvc/my.css,
- *      pi.url/resource/plugin/comment/some.js
+ * @todo Enhance security by protecting files with path filters besides mimetype filters
+ * @todo Add symlink like pi.url/resource/app/mvc/my.css, pi.url/resource/plugin/comment/some.js
  */
 
 /**#@+
@@ -28,11 +26,13 @@
  *
  * Note: No evidence is collected for so-called better performance yet.
  */
-//define('PI_HEADER_TYPE', 'SENDFILE');
-/*#@-*/
+
+// Just active if needed it in your project
+header('Status: 403 Forbidden');
+die;
 
 // Allowed file extensions
-$allowedExtension = array('css', 'js', 'gif', 'jpg', 'png');
+$allowedExtension = ['css', 'js', 'jpeg', 'jpg', 'png'];
 
 // Disable error_reporting
 //define('APPLICATION_ENV', 'production');
@@ -44,10 +44,13 @@ include $boot;
 // Disable debugger message
 Pi::service('log')->mute();
 
+// Set query string
+$queryString = _escape(htmlspecialchars(strtolower(trim($_SERVER['QUERY_STRING']))));
+
 // Fetch path from query string if path is not set,
 // i.e. through a direct request
-if (!empty($_SERVER['QUERY_STRING'])) {
-    $path = Pi::path(ltrim($_SERVER['QUERY_STRING'], '/'));
+if (!empty($queryString)) {
+    $path = realpath(Pi::path(ltrim($queryString, '/')));
 }
 if (empty($path) || !is_readable($path)) {
     if (substr(PHP_SAPI, 0, 3) == 'cgi') {
@@ -69,53 +72,53 @@ if (empty($path) || !is_readable($path)) {
  * Currently the second policy is used and css/js/gif/jpg/png and image,
  * text files are allowed.
  */
-$mimetypes = array(
-     'pdf'      => 'application/pdf',
-     'js'       => 'application/x-javascript',
-     'swf'      => 'application/x-shockwave-flash',
-     'xhtml'    => 'application/xhtml+xml',
-     'xht'      => 'application/xhtml+xml',
-     'xhtml'    => 'application/xml',
-     'ent'      => 'application/xml-external-parsed-entity',
-     'dtd'      => 'application/xml-dtd',
-     'mod'      => 'application/xml-dtd',
-     'bmp'      => 'image/bmp',
-     'gif'      => 'image/gif',
-     'jpeg'     => 'image/jpeg',
-     'jpg'      => 'image/jpeg',
-     'jpe'      => 'image/jpeg',
-     'png'      => 'image/png',
-     'tiff'     => 'image/tiff',
-     'tif'      => 'image/tif',
-     'wbmp'     => 'image/vnd.wap.wbmp',
-     'pnm'      => 'image/x-portable-anymap',
-     'pbm'      => 'image/x-portable-bitmap',
-     'pgm'      => 'image/x-portable-graymap',
-     'ppm'      => 'image/x-portable-pixmap',
-     'xbm'      => 'image/x-xbitmap',
-     'xpm'      => 'image/x-xpixmap',
-     'ics'      => 'text/calendar',
-     'ifb'      => 'text/calendar',
-     'css'      => 'text/css',
-     'html'     => 'text/html',
-     'htm'      => 'text/html',
-     'asc'      => 'text/plain',
-     'txt'      => 'text/plain',
-     'rtf'      => 'text/rtf',
-     'sgml'     => 'text/x-sgml',
-     'sgm'      => 'text/x-sgml',
-     'tsv'      => 'text/tab-seperated-values',
-     'wml'      => 'text/vnd.wap.wml',
-     'wmls'     => 'text/vnd.wap.wmlscript',
-     'xsl'      => 'text/xml',
-);
+$mimetypes = [
+    'js'    => 'application/x-javascript',
+    'jpeg'  => 'image/jpeg',
+    'jpg'   => 'image/jpeg',
+    'png'   => 'image/png',
+    'css'   => 'text/css',
+    //'pdf'   => 'application/pdf',
+    //'swf'   => 'application/x-shockwave-flash',
+    //'xhtml' => 'application/xhtml+xml',
+    //'xht'   => 'application/xhtml+xml',
+    //'xhtml' => 'application/xml',
+    //'ent'   => 'application/xml-external-parsed-entity',
+    //'dtd'   => 'application/xml-dtd',
+    //'mod'   => 'application/xml-dtd',
+    //'bmp'   => 'image/bmp',
+    //'gif'   => 'image/gif',
+    //'jpe'   => 'image/jpeg',
+    //'tiff'  => 'image/tiff',
+    //'tif'   => 'image/tif',
+    //'wbmp'  => 'image/vnd.wap.wbmp',
+    //'pnm'   => 'image/x-portable-anymap',
+    //'pbm'   => 'image/x-portable-bitmap',
+    //'pgm'   => 'image/x-portable-graymap',
+    //'ppm'   => 'image/x-portable-pixmap',
+    //'xbm'   => 'image/x-xbitmap',
+    //'xpm'   => 'image/x-xpixmap',
+    //'ics'   => 'text/calendar',
+    //'ifb'   => 'text/calendar',
+    //'html'  => 'text/html',
+    //'htm'   => 'text/html',
+    //'asc'   => 'text/plain',
+    //'txt'   => 'text/plain',
+    //'rtf'   => 'text/rtf',
+    //'sgml'  => 'text/x-sgml',
+    //'sgm'   => 'text/x-sgml',
+    //'tsv'   => 'text/tab-seperated-values',
+    //'wml'   => 'text/vnd.wap.wml',
+    //'wmls'  => 'text/vnd.wap.wmlscript',
+    //'xsl'   => 'text/xml',
+];
 
-$suffix = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+$suffix      = strtolower(pathinfo($path, PATHINFO_EXTENSION));
 $contentType = isset($mimetypes[$suffix]) ? $mimetypes[$suffix] : 'text/plain';
 if ($suffix && in_array($suffix, $allowedExtension)) {
 } else {
     $contentTypeCategory = substr($contentType, 0, strpos($contentType, '/'));
-    if (!in_array($contentTypeCategory, array('image', 'text'))) {
+    if (!in_array($contentTypeCategory, ['image', 'text'])) {
         if (substr(PHP_SAPI, 0, 3) == 'cgi') {
             header('Status: 403 Forbidden');
         } else {
@@ -136,6 +139,7 @@ header('Content-type: ' . $contentType);
 /**
  * If gzip is enabled, the filesize is not calcuated correctly
  * thus it will cause browser problems like temporarily hanging.
+ *
  * @see http://www.edginet.org/techie/website/http.html
  * A possible solution would be
  *  <code>
@@ -157,7 +161,7 @@ if (defined('PI_HEADER_TYPE')) {
         header('X-Accel-Redirect: ' . $path);
 
         return;
-    // For apache X-Sendfile
+        // For apache X-Sendfile
     } elseif ('SENDFILE' === PI_HEADER_TYPE) {
         header('X-Sendfile: ' . $path);
 
