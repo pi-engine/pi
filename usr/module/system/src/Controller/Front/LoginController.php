@@ -222,6 +222,28 @@ class LoginController extends ActionController
         ];
         Pi::service('event')->trigger('user_login', $args);
 
+        // Check two-factor authentication
+        if (Pi::config('two_factor_authentication')) {
+
+            // Set two-factor authentication not passed
+            Pi::user()->data()->set(
+                $uid,
+                'two_factor_check',
+                0,
+                'user'
+            );
+
+            // Set redirect
+            if (isset($redirect) && !empty($redirect)) {
+                Pi::user()->data()->set(
+                    $uid,
+                    'redirect',
+                    json_encode($redirect),
+                    'user'
+                );
+            }
+        }
+
         $this->jump($redirect);
         $this->view()->assign('redirect', $redirect);
     }
@@ -266,16 +288,21 @@ class LoginController extends ActionController
         $uid = Pi::user()->getId();
 
         // Set user fields
-        $fields = ['id', 'identity', 'name', 'email', 'two_factor', 'two_factor_secret', 'time_created'];
+        $fields = ['id', 'identity', 'name', 'email', 'two_factor_status', 'two_factor_secret', 'time_created'];
 
         // Get user info
         $user = Pi::user()->get($uid, $fields);
+        $user = array_map('strval', $user);
 
         // Call TwoFactorAuth
         $twoFactorAuth = new TwoFactorAuth(Pi::config('sitename'));
 
         // Check two factor active or not
-        if (isset($user['two_factor']) && (int)$user['two_factor'] == 1 && isset($user['two_factor_secret']) && !empty($user['two_factor_secret'])) {
+        if (isset($user['two_factor_status'])
+            && (int)$user['two_factor_status'] == 1
+            && isset($user['two_factor_secret'])
+            && !empty($user['two_factor_secret'])
+        ) {
             $secret = $user['two_factor_secret'];
             $image  = '';
         } else {
@@ -284,11 +311,11 @@ class LoginController extends ActionController
         }
 
         // Set for option
-        $option = [];
+        $option  = [];
         $message = '';
 
         // Set form
-        $form = new TwoFactorForm('find-password');
+        $form = new TwoFactorForm('two-factor');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $form->setInputFilter(new TwoFactorFilter($option));
@@ -306,9 +333,9 @@ class LoginController extends ActionController
                 if ($result) {
 
                     // Update user profile
-                    if (!isset($user['two_factor']) || (int)$user['two_factor'] == 0) {
+                    if (!isset($user['two_factor_status']) || (int)$user['two_factor_status'] == 0) {
                         $userValues = [
-                            'two_factor'        => 1,
+                            'two_factor_status' => 1,
                             'two_factor_secret' => $secret,
                         ];
                         Pi::api('user', 'user')->updateUser($uid, $userValues);
@@ -318,14 +345,14 @@ class LoginController extends ActionController
                     $userData = Pi::user()->data()->find(
                         [
                             'uid'    => $uid,
-                            'module' => 'system',
+                            'module' => 'user',
                             'name'   => 'redirect',
                         ]
                     );
 
                     // delete
-                    Pi::user()->data()->delete($uid, 'two_factor_authentication');
-                    Pi::user()->data()->delete($uid, 'redirect');
+                    Pi::user()->data()->delete($uid, 'two_factor_check', 'user');
+                    Pi::user()->data()->delete($uid, 'redirect', 'user');
 
                     // jump
                     $this->jump(json_decode($userData['value'], true), __('You logged out successfully.'));
@@ -342,7 +369,8 @@ class LoginController extends ActionController
         }
 
         // Set view
-        $this->view()->setTemplate('login-two-factor');
+        $this->view()->setLayout('layout-simple');
+        $this->view()->setTemplate('login-two-factor', '', 'front');
         $this->view()->assign('form', $form);
         $this->view()->assign('user', $user);
         $this->view()->assign('image', $image);

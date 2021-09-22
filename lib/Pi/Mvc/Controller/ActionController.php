@@ -60,13 +60,11 @@ abstract class ActionController extends AbstractActionController
             ->setResponse($response)
             ->setTarget($this);
 
-        /*
-        $result = $this->getEventManager()->trigger(MvcEvent::EVENT_DISPATCH, $e, function ($test) {
+        /* $result = $this->getEventManager()->trigger(MvcEvent::EVENT_DISPATCH, $e, function ($test) {
             return ($test instanceof Response);
-        });
-        */
+        }); */
 
-        // ToDo: improve load check poshition
+        // Check two-factor authentication
         Pi::service('authentication')->checkTwoFactor();
 
         // Define callback used to determine whether or not to short-circuit

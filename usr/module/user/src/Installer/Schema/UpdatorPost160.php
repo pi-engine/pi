@@ -28,9 +28,7 @@ class UpdatorPost160 extends AbstractUpdator
      */
     public function upgrade($version)
     {
-        $result = $this->from160($version);
-
-        return $result;
+        return $this->from160($version);
     }
 
     /**
@@ -42,6 +40,9 @@ class UpdatorPost160 extends AbstractUpdator
      */
     protected function from160($version)
     {
+        // Set status
+        $status =  true;
+
         if (version_compare($version, '1.6.0', '<')) {
             $model    = Pi::model('profile', 'user');
             $table    = Pi::db()->prefix('profile', 'user');

@@ -146,26 +146,6 @@ return [
             'is_display' => false,
         ],
 
-        // Account: Two-factor authentication status
-        'two_factor'        => [
-            'type'   => 'account',
-            'name'   => 'two_factor',
-            'title'  => _a('Two factor Status'),
-            'filter' => 'YesNo',
-
-            'is_edit'    => false,
-            'is_display' => false,
-        ],
-
-        // Account: Two-factor authentication secret
-        'two_factor_secret' => [
-            'type'       => 'account',
-            'name'       => 'two_factor_secret',
-            'title'      => _a('Two factor Secret'),
-            'is_edit'    => false,
-            'is_display' => false,
-        ],
-
         // Account: Register time
         'time_created'      => [
             'type'   => 'account',
@@ -216,9 +196,8 @@ return [
 
         // Profile: Level
         'level'             => [
-            'name'  => 'level',
-            'title' => _a('Level'),
-
+            'name'       => 'level',
+            'title'      => _a('Level'),
             'is_display' => false,
             'is_edit'    => false,
             'is_search'  => true,
@@ -262,9 +241,8 @@ return [
 
         // Profile: Register IP
         'ip_register'       => [
-            'name'  => 'ip_register',
-            'title' => _a('Register IP'),
-
+            'name'       => 'ip_register',
+            'title'      => _a('Register IP'),
             'is_edit'    => false,
             'is_display' => false,
             'is_search'  => false,
@@ -274,6 +252,24 @@ return [
         'register_source'   => [
             'name'       => 'register_source',
             'title'      => _a('Register source'),
+            'is_edit'    => false,
+            'is_display' => false,
+            'is_search'  => false,
+        ],
+
+        // Profile: Two-factor authentication status
+        'two_factor_status' => [
+            'name'       => 'two_factor_status',
+            'title'      => _a('Two factor Status'),
+            'is_edit'    => false,
+            'is_display' => false,
+            'is_search'  => false,
+        ],
+
+        // Profile: Two-factor authentication secret
+        'two_factor_secret' => [
+            'name'       => 'two_factor_secret',
+            'title'      => _a('Two factor Secret'),
             'is_edit'    => false,
             'is_display' => false,
             'is_search'  => false,
