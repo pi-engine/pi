@@ -110,6 +110,20 @@ class ViewController extends ActionController
             ),
         ];
 
+        // Two-Factor
+        $result[] = [
+            'name'  => 'twoFactor',
+            'title' => _a('Two-Factor'),
+            'link'  => $this->url(
+                '',
+                [
+                    'controller' => 'edit',
+                    'action'     => 'twoFactor',
+                    'uid'        => $uid,
+                ]
+            ),
+        ];
+
         // Avatar
         $result[] = [
             'name'  => 'avatar',

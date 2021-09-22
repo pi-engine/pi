@@ -17,7 +17,7 @@ use Pi\Form\Form as BaseForm;
  *
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
-class ResetPasswordForm extends BaseForm
+class TwoFactorResetForm extends BaseForm
 {
     protected $type;
 
@@ -33,44 +33,27 @@ class ResetPasswordForm extends BaseForm
         parent::__construct($name);
     }
 
-
     public function init()
     {
-        $this->add([
-            'name'       => 'credential-new',
-            'options'    => [
-                'label' => __('New password'),
-            ],
-            'attributes' => [
-                'type' => 'password',
-            ],
-        ]);
-
-        $this->add([
-            'name'       => 'credential-confirm',
-            'options'    => [
-                'label' => __('Confirm password'),
-            ],
-            'attributes' => [
-                'type' => 'password',
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'security',
-            'type' => 'csrf',
-        ]);
-
-        $this->add([
-            'name' => 'token',
-            'type' => 'hidden',
-        ]);
-
-        $this->add([
-            'name' => 'redirect',
-            'type' => 'hidden',
-        ]);
-
+        // reset_two_factor
+        $this->add(
+            [
+                'name'       => 'reset_two_factor',
+                'options'    => [
+                    'label'         => __('Reset Two-Factor'),
+                    'value_options' => [
+                        1 => __('Yes'),
+                        0 => __('No'),
+                    ],
+                ],
+                'type'       => 'radio',
+                'attributes' => [
+                    'description' => __('After resetting, the user must remove two-factor settings on their mobile phone, after that scan and setup two-factor settings again'),
+                    'value'    => 1,
+                    'required' => true,
+                ],
+            ]
+        );
 
         $this->add([
             'name'       => 'submit',
