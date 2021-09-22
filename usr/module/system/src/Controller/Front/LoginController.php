@@ -11,7 +11,7 @@ namespace Module\System\Controller\Front;
 
 use Module\System\Form\LoginFilter;
 use Module\System\Form\LoginForm;
-se Module\System\Form\TwoFactorFilter;
+use Module\System\Form\TwoFactorFilter;
 use Module\System\Form\TwoFactorForm;
 use Pi;
 use Pi\Authentication\Result;
