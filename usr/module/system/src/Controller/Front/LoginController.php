@@ -291,7 +291,8 @@ class LoginController extends ActionController
         $fields = ['id', 'identity', 'name', 'email', 'two_factor_status', 'two_factor_secret', 'time_created'];
 
         // Get user info
-        $user = Pi::user()->get($uid, $fields);
+        // ToDo :  check it
+        $user = Pi::api('user', 'user')->get($uid, $fields);
         $user = array_map('strval', $user);
 
         // Call TwoFactorAuth
