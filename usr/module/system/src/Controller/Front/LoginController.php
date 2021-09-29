@@ -291,8 +291,7 @@ class LoginController extends ActionController
         $fields = ['id', 'identity', 'name', 'email', 'two_factor_status', 'two_factor_secret', 'time_created'];
 
         // Get user info
-        // ToDo :  check it
-        $user = Pi::api('user', 'user')->get($uid, $fields);
+        $user = Pi::user()->get($uid, $fields);
         $user = array_map('strval', $user);
 
         // Call TwoFactorAuth
@@ -304,7 +303,7 @@ class LoginController extends ActionController
             && isset($user['two_factor_secret'])
             && !empty($user['two_factor_secret'])
         ) {
-            $secret = $user['two_factor_secret'];
+            $secret = '';
             $image  = '';
         } else {
             $secret = $twoFactorAuth->createSecret(160);
@@ -324,22 +323,30 @@ class LoginController extends ActionController
             if ($form->isValid()) {
                 $values = $form->getData();
 
-                // Set secret code
-                $secret = !empty($user['two_factor_secret']) ? $user['two_factor_secret'] : $values['secret'];
-
-                // verify code
-                $result = $twoFactorAuth->verifyCode($secret, $values['verification']);
+                // check secret code and verify code
+                if (isset($user['two_factor_secret']) && !empty($user['two_factor_secret'])) {
+                    $result = $twoFactorAuth->verifyCode($user['two_factor_secret'], $values['verification']);
+                } elseif (isset($values['secret']) && !empty($values['secret'])) {
+                    $result = $twoFactorAuth->verifyCode($values['secret'], $values['verification']);
+                } else {
+                    $result = false;
+                }
 
                 // Update user
                 if ($result) {
 
                     // Update user profile
                     if (!isset($user['two_factor_status']) || (int)$user['two_factor_status'] == 0) {
-                        $userValues = [
-                            'two_factor_status' => 1,
-                            'two_factor_secret' => $secret,
-                        ];
-                        Pi::api('user', 'user')->updateUser($uid, $userValues);
+                        if (isset($secret) && !empty($secret)) {
+                            $userValues = [
+                                'two_factor_status' => 1,
+                                'two_factor_secret' => $secret,
+                            ];
+                            Pi::api('user', 'user')->updateUser($uid, $userValues);
+                        } else {
+                            // jump
+                            $this->jump(['action' => 'towFactor'], __('Error to verify code !'));
+                        }
                     }
 
                     // Get user data
@@ -351,12 +358,15 @@ class LoginController extends ActionController
                         ]
                     );
 
-                    // delete
+                    // delete old user data
                     Pi::user()->data()->delete($uid, 'two_factor_check', 'user');
                     Pi::user()->data()->delete($uid, 'redirect', 'user');
 
+                    // Set redirect url
+                    $url = (isset($userData['value']) && !empty($userData['value'])) ? json_decode($userData['value'], true) : '';
+
                     // jump
-                    $this->jump(json_decode($userData['value'], true), __('You logged out successfully.'));
+                    $this->jump($url, __('You logged out successfully.'));
                 } else {
                     $message = __('Error to verify code !');
                 }

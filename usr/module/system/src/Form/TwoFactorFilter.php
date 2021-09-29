@@ -32,7 +32,7 @@ class TwoFactorFilter extends InputFilter
         // secret
         $this->add([
             'name'     => 'secret',
-            'required' => true,
+            'required' => false,
         ]);
     }
 }
