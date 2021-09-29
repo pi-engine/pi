@@ -42,9 +42,10 @@ class TwoFactorForm extends BaseForm
                     'label' => __('Two-factor authentication code'),
                 ],
                 'attributes' => [
-                    'type'        => 'text',
-                    'description' => __("Enter the code from the two-factor app on your mobile device. If you've lost your device, you may enter one of your recovery codes."),
-                    'required'    => true,
+                    'type'         => 'text',
+                    'description'  => __("Enter the code from the two-factor app on your mobile device. If you've lost your device, you may enter one of your recovery codes."),
+                    'required'     => true,
+                    'autocomplete' => 'off',
                 ],
             ]
         );
