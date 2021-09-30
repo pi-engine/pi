@@ -30,9 +30,11 @@ class TwoFactorFilter extends InputFilter
         );
 
         // secret
-        $this->add([
-            'name'     => 'secret',
-            'required' => false,
-        ]);
+        if (isset($option['hasSecret']) && (int) $option['hasSecret'] == 1) {
+            $this->add([
+                'name' => 'secret',
+                'required' => true,
+            ]);
+        }
     }
 }

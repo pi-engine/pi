@@ -307,14 +307,18 @@ class LoginController extends ActionController
         ) {
             $secret = '';
             $image  = '';
+            $hasSecret = 0;
         } else {
             $secret = $twoFactorAuth->createSecret(160);
             $image  = $twoFactorAuth->getQRCodeImageAsDataUri($user['name'], $secret);
+            $hasSecret = 1;
         }
 
         // Set for option
-        $option  = [];
         $message = '';
+        $option  = [
+            'hasSecret' => $hasSecret
+        ];
 
         // Set form
         $form = new TwoFactorForm('two-factor');
@@ -373,7 +377,7 @@ class LoginController extends ActionController
                     $message = __('Error to verify code !');
                 }
             }
-        } else {
+        } elseif ($hasSecret == 1) {
             $form->setData(
                 [
                     'secret' => $secret,

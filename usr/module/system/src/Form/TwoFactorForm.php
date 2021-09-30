@@ -51,10 +51,12 @@ class TwoFactorForm extends BaseForm
         );
 
         // secret
-        $this->add([
-            'name' => 'secret',
-            'type' => 'hidden',
-        ]);
+        if (isset($this->option['hasSecret']) && (int) $this->option['hasSecret'] == 1) {
+            $this->add([
+                'name' => 'secret',
+                'type' => 'hidden',
+            ]);
+        }
 
         // security
         $this->add([
