@@ -321,7 +321,7 @@ class LoginController extends ActionController
         ];
 
         // Set form
-        $form = new TwoFactorForm('two-factor');
+        $form = new TwoFactorForm('two-factor', $option);
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $form->setInputFilter(new TwoFactorFilter($option));
