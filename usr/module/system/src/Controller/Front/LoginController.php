@@ -343,10 +343,10 @@ class LoginController extends ActionController
 
                     // Update user profile
                     if (!isset($user['two_factor_status']) || (int)$user['two_factor_status'] == 0) {
-                        if (isset($secret) && !empty($secret)) {
+                        if (isset($values['secret']) && !empty($values['secret'])) {
                             $userValues = [
                                 'two_factor_status' => 1,
-                                'two_factor_secret' => $secret,
+                                'two_factor_secret' => $values['secret'],
                             ];
                             Pi::api('user', 'user')->updateUser($uid, $userValues);
                         } else {
