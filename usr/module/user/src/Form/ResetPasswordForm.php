@@ -15,7 +15,7 @@ use Pi\Form\Form as BaseForm;
 /**
  * Class for initializing form of password
  *
- * @author Liu Chuang <liuchuang@eefocus.com>
+ * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
 class ResetPasswordForm extends BaseForm
 {

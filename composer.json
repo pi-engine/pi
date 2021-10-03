@@ -25,7 +25,7 @@
     "vendor-dir": "lib/vendor"
   },
   "require": {
-    "php": "^7.3 || ~8.0.0",
+    "php": "^7.4 || ~8.0.0",
     "ext-ctype": "*",
     "ext-fileinfo": "*",
     "ext-gd": "*",
@@ -87,20 +87,18 @@
     "laminas/laminas-recaptcha": "3.1.0",
 
     "imagine/imagine": "*",
-    "ircmaxell/random-lib": "*",
-    "ircmaxell/security-lib": "*",
-    "hybridauth/hybridauth": "*",
-    "phayes/geophp": "*",
+    "voku/anti-xss": "*",
     "matthiasmullie/minify": "*",
     "nguyenhiep/tiny-html-minifier": "*",
     "phpseclib/phpseclib": "*",
-    "voku/anti-xss": "*",
-    "sonata-project/google-authenticator": "*",
+    "hybridauth/hybridauth": "*",
+    "robthree/twofactorauth": "*",
 
     "spipu/html2pdf": "*",
     "tecnickcom/tcpdf": "*",
     "stripe/stripe-php": "*",
     "geoip2/geoip2": "*",
+    "phayes/geophp": "*",
     "emcconville/google-map-polyline-encoding-tool": "*",
     "raiym/instagram-php-scraper": "*",
     "bigbluebutton/bigbluebutton-api-php": "*",

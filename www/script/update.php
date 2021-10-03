@@ -13,13 +13,14 @@ use Pi\Application\Installer\Module as ModuleInstaller;
  * Pi Engine update script to update a module that can not be executed from normal admin
  *
  * Usage guide
- * 1. Edit `var/config/engine.php` (or `var/config/custom/engine.php` is specified), set:
- *      `'site_close'   => true`
- * 2. Execute the script `//pi.tld/script/update.php` to update system module
- * 3. Restore engine config:
- *      `'site_close' => false`
+ * 1. Edit `var/config/engine.php` (or `var/config/custom/engine.php` is specified), set: `'site_close'   => true`
+ * 2. Enable the code inside this file
+ * 3. Execute the script `//pi.tld/script/update.php` to update system module
+ * 4. Restore engine config: `'site_close' => false`
+ * 5. Disable the code inside this file
  */
 
+/*
 // Pi boot with no engine bootup: current file is located in www/script/...
 $boot = dirname(dirname($_SERVER['SCRIPT_FILENAME'])) . '/boot.php';
 include $boot;
@@ -33,7 +34,6 @@ if (!Pi::config('site_close')) {
     }
 
     echo 'Access denied!';
-
     return;
 }
 
@@ -53,9 +53,9 @@ if (empty($module) || !Pi::service('module')->isActive($module)) {
 
     return;
 }
-$row = Pi::model('module')->find($module, 'name');
+$row       = Pi::model('module')->find($module, 'name');
 $installer = new ModuleInstaller;
-$result = $installer->update($row);
+$result    = $installer->update($row);
 //$details = $installer->getResult();
 
 if ($result) {
@@ -64,7 +64,7 @@ if ($result) {
 
     // Refresh assets
     $modules = Pi::registry('module')->read();
-    $themes = Pi::registry('theme')->read();
+    $themes  = Pi::registry('theme')->read();
     foreach (array_keys($modules) as $name) {
         $status = Pi::service('asset')->remove('module/' . $name);
         $status = Pi::service('asset')->publishModule($name);
@@ -89,3 +89,4 @@ if (substr(PHP_SAPI, 0, 3) == 'cgi') {
 echo $message;
 
 return;
+*/

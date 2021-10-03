@@ -267,4 +267,10 @@ class Saml extends AbstractStrategy
 
         return $attributes;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function checkTwoFactor(array $params = [])
+    {}
 }

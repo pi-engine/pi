@@ -11,15 +11,14 @@ namespace Module\System\Controller\Front;
 
 use Module\System\Form\LoginFilter;
 use Module\System\Form\LoginForm;
+use Module\System\Form\TwoFactorFilter;
+use Module\System\Form\TwoFactorForm;
 use Pi;
 use Pi\Authentication\Result;
 use Pi\Mvc\Controller\ActionController;
 use Laminas\Stdlib\RequestInterface as Request;
 use Laminas\Stdlib\ResponseInterface as Response;
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+use RobThree\Auth\TwoFactorAuth;
 
 /**
  * User login/logout controller
@@ -66,7 +65,7 @@ class LoginController extends ActionController
      * Render login form
      *
      * @param LoginForm $form
-     * @param string $message
+     * @param string    $message
      */
     protected function renderForm($form, $message = '')
     {
@@ -99,7 +98,9 @@ class LoginController extends ActionController
         ]);
 
         $this->view()->headTitle(__('Login'));
-        $this->view()->headdescription(__('Use this page to connect to our website and participate, share contents, use our features, and interacts with other members'), 'set');
+        $this->view()->headdescription(
+            __('Use this page to connect to our website and participate, share contents, use our features, and interacts with other members'), 'set'
+        );
         $headKeywords = Pi::user()->config('head_keywords');
         if ($headKeywords) {
             $this->view()->headkeywords($headKeywords, 'set');
@@ -125,7 +126,6 @@ class LoginController extends ActionController
             );
             return;
         }
-
 
         $configs = $this->getConfig();
         $post    = $this->request->getPost();
@@ -220,8 +220,31 @@ class LoginController extends ActionController
         $args = [
             'uid'           => $uid,
             'remember_time' => $rememberMe,
+            'redirect'      => $redirect,
         ];
         Pi::service('event')->trigger('user_login', $args);
+
+        // Check two-factor authentication
+        if (Pi::config('two_factor_authentication')) {
+
+            // Set two-factor authentication not passed
+            Pi::user()->data()->set(
+                $uid,
+                'two_factor_check',
+                0,
+                'user'
+            );
+
+            // Set redirect
+            if (isset($redirect) && !empty($redirect)) {
+                Pi::user()->data()->set(
+                    $uid,
+                    'redirect',
+                    json_encode($redirect),
+                    'user'
+                );
+            }
+        }
 
         $this->jump($redirect);
         $this->view()->assign('redirect', $redirect);
@@ -253,6 +276,123 @@ class LoginController extends ActionController
             }
         }
         $this->jump($redirect, __('You logged out successfully.'));
+    }
+
+    /**
+     * Tow Factor Authentication
+     */
+    public function towFactorAction()
+    {
+        // Check user is login or not
+        Pi::service('authentication')->requireLogin();
+
+        // Get user id
+        $uid = Pi::user()->getId();
+
+        // Set user fields
+        $fields = ['id', 'identity', 'name', 'email', 'two_factor_status', 'two_factor_secret', 'time_created'];
+
+        // Get user info
+        $user = Pi::api('user', 'user')->get($uid, $fields);
+        $user = array_map('strval', $user);
+
+        // Call TwoFactorAuth
+        $twoFactorAuth = new TwoFactorAuth(Pi::config('sitename'));
+
+        // Check two factor active or not
+        if (isset($user['two_factor_status'])
+            && (int)$user['two_factor_status'] == 1
+            && isset($user['two_factor_secret'])
+            && !empty($user['two_factor_secret'])
+        ) {
+            $secret = '';
+            $image  = '';
+            $hasSecret = 0;
+        } else {
+            $secret = $twoFactorAuth->createSecret(160);
+            $image  = $twoFactorAuth->getQRCodeImageAsDataUri($user['name'], $secret);
+            $hasSecret = 1;
+        }
+
+        // Set for option
+        $message = '';
+        $option  = [
+            'hasSecret' => $hasSecret
+        ];
+
+        // Set form
+        $form = new TwoFactorForm('two-factor', $option);
+        if ($this->request->isPost()) {
+            $data = $this->request->getPost();
+            $form->setInputFilter(new TwoFactorFilter($option));
+            $form->setData($data);
+            if ($form->isValid()) {
+                $values = $form->getData();
+
+                // check secret code and verify code
+                if (isset($user['two_factor_secret']) && !empty($user['two_factor_secret'])) {
+                    $result = $twoFactorAuth->verifyCode($user['two_factor_secret'], $values['verification']);
+                } elseif (isset($values['secret']) && !empty($values['secret'])) {
+                    $result = $twoFactorAuth->verifyCode($values['secret'], $values['verification']);
+                } else {
+                    $result = false;
+                }
+
+                // Update user
+                if ($result) {
+
+                    // Update user profile
+                    if (!isset($user['two_factor_status']) || (int)$user['two_factor_status'] == 0) {
+                        if (isset($values['secret']) && !empty($values['secret'])) {
+                            $userValues = [
+                                'two_factor_status' => 1,
+                                'two_factor_secret' => $values['secret'],
+                            ];
+                            Pi::api('user', 'user')->updateUser($uid, $userValues);
+                        } else {
+                            // jump
+                            $this->jump(['action' => 'towFactor'], __('Error to verify code !'));
+                        }
+                    }
+
+                    // Get user data
+                    $userData = Pi::user()->data()->find(
+                        [
+                            'uid'    => $uid,
+                            'module' => 'user',
+                            'name'   => 'redirect',
+                        ]
+                    );
+
+                    // delete old user data
+                    Pi::user()->data()->delete($uid, 'two_factor_check', 'user');
+                    Pi::user()->data()->delete($uid, 'redirect', 'user');
+
+                    // Set redirect url
+                    $url = (isset($userData['value']) && !empty($userData['value'])) ? json_decode($userData['value'], true) : '';
+
+                    // jump
+                    $this->jump($url, __('You logged out successfully.'));
+                } else {
+                    $message = __('Error to verify code !');
+                }
+            }
+        } elseif ($hasSecret == 1) {
+            $form->setData(
+                [
+                    'secret' => $secret,
+                ]
+            );
+        }
+
+        // Set view
+        $this->view()->setLayout('layout-simple');
+        $this->view()->setTemplate('login-two-factor', '', 'front');
+        $this->view()->assign('form', $form);
+        $this->view()->assign('user', $user);
+        $this->view()->assign('image', $image);
+        $this->view()->assign('secret', $secret);
+        $this->view()->assign('message', $message);
     }
 
     /**
@@ -294,7 +434,7 @@ class LoginController extends ActionController
      */
     protected function checkAccess()
     {
-        if (('local' != Pi::authentication()->getStrategy()->getName())|| (Pi::service('module')->isActive('user') && 'user' != $this->getModule())) {
+        if (('local' != Pi::authentication()->getStrategy()->getName()) || (Pi::service('module')->isActive('user') && 'user' != $this->getModule())) {
             $redirect = $this->params('redirect') ?: '';
             $this->redirect()->toUrl(Pi::authentication()->getUrl('login', $redirect));
             return false;

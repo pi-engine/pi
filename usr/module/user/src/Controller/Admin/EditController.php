@@ -15,6 +15,8 @@ use Module\User\Form\EditUserFilter;
 use Module\User\Form\EditUserForm;
 use Module\User\Form\EditPasswordFilter;
 use Module\User\Form\EditPasswordForm;
+use Module\User\Form\TwoFactorResetFilter;
+use Module\User\Form\TwoFactorResetForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 
@@ -158,7 +160,7 @@ class EditController extends ActionController
     }
 
     /**
-     * Display user avatar and delete
+     * Change password
      */
     public function passwordAction()
     {
@@ -213,6 +215,73 @@ class EditController extends ActionController
                 'user' => $user,
                 'nav'  => $this->getNav($uid),
                 'name' => 'password',
+                'form' => $form,
+            ]
+        );
+        $this->view()->setTemplate('edit-user');
+    }
+
+    /**
+     * Reset two factor setting
+     */
+    public function twoFactorAction()
+    {
+        $uid = _get('uid');
+
+        // Get user basic information and user data
+        $user = $this->getUser($uid);
+
+        // Set option
+        $option = [];
+
+        // Set form
+        $form = new TwoFactorResetForm('twoFactorReset', $option);
+        if ($this->request->isPost()) {
+
+            // Set result
+            $result = [
+                'status'  => 0,
+                'message' => _a('Reset two-factor setting failed.'),
+            ];
+
+            $form->setData($this->request->getPost());
+            $form->setInputFilter(new TwoFactorResetFilter($option));
+            if ($form->isValid()) {
+
+                // Update user
+                $values = $form->getData();
+
+                // Check
+                if ((int) $values['reset_two_factor'] == 1) {
+                    // Set update values
+                    $updateValues = [
+                        'two_factor_status' => null,
+                        'two_factor_secret' => null,
+                        'last_modified'     => time(),
+                    ];
+
+                    // Delete user avatar
+                    $status = Pi::api('user', 'user')->updateUser($uid, $updateValues);
+
+                    // Check status
+                    if ($status) {
+                        $result = [
+                            'status'  => 1,
+                            'message' => _a('Reset two-factor setting done successful.'),
+                        ];
+                        Pi::service('event')->trigger('user_update', $uid);
+                    }
+                }
+
+                $this->view()->assign('result', $result);
+            }
+        }
+
+        $this->view()->assign(
+            [
+                'user' => $user,
+                'nav'  => $this->getNav($uid),
+                'name' => 'twoFactor',
                 'form' => $form,
             ]
         );
@@ -430,6 +499,20 @@ class EditController extends ActionController
                 [
                     'controller' => 'edit',
                     'action'     => 'password',
+                    'uid'        => $uid,
+                ]
+            ),
+        ];
+
+        // Two-Factor
+        $result[] = [
+            'name'  => 'twoFactor',
+            'title' => _a('Two-Factor'),
+            'link'  => $this->url(
+                '',
+                [
+                    'controller' => 'edit',
+                    'action'     => 'twoFactor',
                     'uid'        => $uid,
                 ]
             ),

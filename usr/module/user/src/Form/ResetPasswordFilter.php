@@ -17,7 +17,7 @@ use Laminas\InputFilter\InputFilter;
 /**
  * Class for verifying and filtering form
  *
- * @author Liu Chuang <liuchuang@eefocus.com>
+ * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
 class ResetPasswordFilter extends InputFilter
 {

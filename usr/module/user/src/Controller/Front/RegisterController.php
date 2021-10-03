@@ -56,7 +56,7 @@ class RegisterController extends ActionController
             $post = $this->request->getPost();
 
             $post                                        = $post->toArray();
-            $post['captcha']['recaptcha_response_field'] = $post['g-recaptcha-response'];
+            //$post['captcha']['recaptcha_response_field'] = $post['g-recaptcha-response'];
 
             $form->loadInputFilter();
             $form->setData($post);

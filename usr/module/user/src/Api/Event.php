@@ -169,6 +169,28 @@ class Event extends AbstractApi
                 time(),
                 'user'
             );
+
+            // Check two-factor authentication
+            /* if (Pi::config('two_factor_authentication')) {
+
+                // Set two-factor authentication not passed
+                Pi::user()->data()->set(
+                    $params['uid'],
+                    'two_factor_check',
+                    0,
+                    'user'
+                );
+
+                // Set redirect
+                if (isset($params['redirect']) && !empty($params['redirect'])) {
+                    Pi::user()->data()->set(
+                        $params['uid'],
+                        'redirect',
+                        json_encode($params['redirect']),
+                        'user'
+                    );
+                }
+            } */
         }
     }
 
@@ -179,6 +201,23 @@ class Event extends AbstractApi
      */
     public function userLogout($uid)
     {
+        // Check two-factor authentication
+        if (Pi::config('two_factor_authentication')) {
+
+            // Remove two-factor authentication not passed
+            Pi::user()->data()->delete(
+                $uid,
+                'two_factor_check',
+                'user'
+            );
+
+            // Remove redirect
+            Pi::user()->data()->delete(
+                $uid,
+                'redirect',
+                'user'
+            );
+        }
     }
 
     /**
