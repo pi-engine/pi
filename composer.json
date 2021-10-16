@@ -104,7 +104,8 @@
     "bigbluebutton/bigbluebutton-api-php": "*",
     "phpmailer/phpmailer": "*",
     "php-ffmpeg/php-ffmpeg": "*",
-    "phpoffice/phpspreadsheet": "*"
+    "phpoffice/phpspreadsheet": "*",
+    "vonage/client": "2.*"
   },
   "suggest": {
     "ext-apc": "for opcode cache and system persistent data",
