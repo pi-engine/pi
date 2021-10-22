@@ -9,7 +9,8 @@
 
 namespace Pi\Security;
 
-use Pi\Filter\XssSanitizer;
+//use Pi\Filter\XssSanitizer;
+use voku\helper\AntiXSS;
 
 /**
  * Cross site scripting check
@@ -27,31 +28,31 @@ class Xss extends AbstractAdapter
      *
      * @var bool
      */
-    protected static $filter = true;
+    //protected static $filter = true;
 
     /**
      * Minimum length of content to check
      *
      * @var int
      */
-    protected static $length = 0;
+    //protected static $length = 0;
 
     /**
      * {@inheritDoc}
      */
     public static function check($options = [])
     {
-        $filter         = isset($options['filter']) ? $options['filter'] : static::$filter;
-        static::$length = isset($options['length']) ? $options['length'] : static::$length;
+        //$filter         = isset($options['filter']) ? $options['filter'] : static::$filter;
+        //static::$length = isset($options['length']) ? $options['length'] : static::$length;
 
         if (isset($options['post']) && !empty($options['post']) && isset($_POST) && !empty($_POST)) {
-            return static::checkXssRecursive($_POST, $filter);
+            return static::checkXssRecursive($_POST/*, $filter*/);
         }
         if (isset($options['get']) && !empty($options['get']) && isset($_GET) && !empty($_GET)) {
-            return static::checkXssRecursive($_GET, $filter);
+            return static::checkXssRecursive($_GET/*, $filter*/);
         }
 
-        return;
+        return true;
     }
 
     /**
@@ -59,7 +60,7 @@ class Xss extends AbstractAdapter
      *
      * @return void
      */
-    public static function test()
+    /* public static function test()
     {
         $test           = [
             'xxx= "javascript: test',
@@ -70,7 +71,7 @@ class Xss extends AbstractAdapter
         ];
         static::$length = 1;
         static::checkXssRecursive($test);
-    }
+    } */
 
     /**
      * Check XSS recursively
@@ -80,18 +81,18 @@ class Xss extends AbstractAdapter
      *
      * @return bool
      */
-    public static function checkXssRecursive(&$content, $filter = true)
+    public static function checkXssRecursive(&$content/*, $filter = true*/)
     {
         if (is_array($content)) {
             foreach ($content as $key => &$val) {
-                $result = static::checkXssRecursive($val, $filter);
+                $result = static::checkXssRecursive($val/*, $filter*/);
                 if (!$result) {
                     return $result;
                 }
             }
             return true;
         } else {
-            return static::checkXss($content, $filter);
+            return static::checkXss($content/*, $filter*/);
         }
     }
 
@@ -103,18 +104,25 @@ class Xss extends AbstractAdapter
      *
      * @return string|null
      */
-    public static function checkXss(&$content, $filter = true)
+    public static function checkXss(&$content/*, $filter = true*/)
     {
-        if (!is_string($content) || (static::$length && strlen($content) < static::$length)) {
-            return $filter ? $content : null;
+        $antiXss = new AntiXSS();
+        $antiXss->xss_clean($content);
+        if ($antiXss->isXssFound()) {
+            return false;
         }
+        return true;
 
-        if ($filter) {
+        /* if (!is_string($content) || (static::$length && strlen($content) < static::$length)) {
+            return $filter ? $content : null;
+        } */
+
+        /* if ($filter) {
             $xssFilter = new XssSanitizer;
             return  $xssFilter->filter($content);
         } else {
             return;
-        }
+        } */
 
         // Remove NULL bytes
         /* $content = str_replace("\0", '', $content);
