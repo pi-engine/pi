@@ -37,11 +37,7 @@ class XssSanitizer extends AbstractFilter
     public function filter($value)
     {
         $antiXss = new AntiXSS();
-        $antiXss->xss_clean($value);
-        if ($antiXss->isXssFound()) {
-            return false;
-        }
-        return true;
+        return $antiXss->xss_clean($value);
     }
 
     // This is old filter
