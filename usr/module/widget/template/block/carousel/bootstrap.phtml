@@ -93,6 +93,11 @@ EOT;
 } else {
 
     $render = function ($item) use ($imgStyle, $ellipsis, $target) {
+        $buttonPattern
+            = <<<EOT
+                <a class="btn btn-warning text-white" href="%s" target="%s" title="%s">%s</a>
+EOT;
+
         $itemPattern
                  = <<<EOT
             <a href="%s" target="%s" title="%s">
@@ -101,10 +106,20 @@ EOT;
             <div class="carousel-caption">
                 <h4>%s</h4>
                 <p class="%s">%s</p>
+                %s
             </div>
 EOT;
         $link    = $item['link'] ?: '#';
         $caption = _escape($item['caption']);
+
+        $button = empty($item['button']) ? '' : sprintf(
+            $buttonPattern,
+            $link,
+            $target,
+            $caption,
+            _escape($item['button'])
+        );
+
         $content = sprintf(
             $itemPattern,
             $link,
@@ -115,7 +130,8 @@ EOT;
             $imgStyle,
             $caption,
             $ellipsis,
-            $item['summary']
+            $item['summary'],
+            $button
         );
 
         return $content;
@@ -147,11 +163,13 @@ EOT;
         </div>
         <?php if ($count > 1) { ?>
             <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'carousel-control-next' : 'carousel-control-prev'; ?>"
-               href="#<?php echo $carouselId; ?>" role="button" data-slide="<?php echo in_array($locale, ['fa', 'ar']) ? 'next' : 'prev'; ?>">
+               href="#<?php echo $carouselId; ?>" role="button"
+               data-slide="<?php echo in_array($locale, ['fa', 'ar']) ? 'next' : 'prev'; ?>">
                 <i class="icon-prev fas fa-chevron-left"></i>
             </a>
             <a class="<?php echo in_array($locale, ['fa', 'ar']) ? 'carousel-control-prev' : 'carousel-control-next'; ?>"
-               href="#<?php echo $carouselId; ?>" role="button" data-slide="<?php echo in_array($locale, ['fa', 'ar']) ? 'prev' : 'next'; ?>">
+               href="#<?php echo $carouselId; ?>" role="button"
+               data-slide="<?php echo in_array($locale, ['fa', 'ar']) ? 'prev' : 'next'; ?>">
                 <i class="icon-next fas fa-chevron-right"></i>
             </a>
         <?php } ?>

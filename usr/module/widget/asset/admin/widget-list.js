@@ -16,8 +16,8 @@
                         "caption": getVal('caption'),
                         "icon": getVal('icon'),
                         "link": getVal('link'),
+                        "button": getVal('button'),
                         "summary": getVal('summary')
-
                     });
                 });
                 page.form.find("[name=content]").val(JSON.stringify(content));
@@ -77,7 +77,8 @@
                 caption: '',
                 icon: '',
                 link: '',
-                summary: ''
+                summary: '',
+                button: ''
             });
         }
     });
