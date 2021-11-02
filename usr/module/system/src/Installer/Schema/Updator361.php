@@ -53,7 +53,7 @@ class Updator361 extends AbstractUpdator
 
         if (version_compare($version, '3.6.1', '<')) {
             $table  = Pi::db()->prefix('user_account');
-            $sql    = sprintf("ALTER TABLE %s CHANGE `identity` `identity` VARCHAR(64)", $table);
+            $sql    = sprintf("ALTER TABLE %s CHANGE `identity` `identity` VARCHAR(128)", $table);
             $status = $this->queryTable($sql);
 
             if (false === $status) {
