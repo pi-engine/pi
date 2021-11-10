@@ -157,6 +157,26 @@ class Security extends AbstractService
     }
 
     /**
+     * Add security headers to http response
+     *
+     * @param array|null $options
+     */
+    public function setHeaders($options = null)
+    {
+        if (!is_array($options) && isset($this->options['headers'])) {
+            $options = $this->options['headers'];
+        }
+
+        // Check and set headers
+        if (isset($options['check']) && $options['check']) {
+            $response = Pi::engine()->application()->getResponse();
+            foreach ($options['lines'] as $key => $value) {
+                $response->getHeaders()->addHeaderLine($key, $value);
+            }
+        }
+    }
+
+    /**
      * Magic method to access custom security settings
      *
      * @param string $method The security setting to be checked
