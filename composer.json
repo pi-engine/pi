@@ -105,7 +105,8 @@
     "phpmailer/phpmailer": "*",
     "php-ffmpeg/php-ffmpeg": "*",
     "phpoffice/phpspreadsheet": "*",
-    "vonage/client": "2.*"
+    "vonage/client": "2.*",
+    "guzzlehttp/guzzle": "7.4.0"
   },
   "suggest": {
     "ext-apc": "for opcode cache and system persistent data",

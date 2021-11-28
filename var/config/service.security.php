@@ -29,4 +29,22 @@ return [
         'dos' => true,
         'bot' => ['bad bot', 'evil bot'],
     ],
+
+    // Set security headers, reference https://geekflare.com/http-header-implementation/
+    'headers' => [
+        'check' => true,
+        'lines' => [
+            'Strict-Transport-Security'         => 'max-age=31536000; includeSubDomains; preload',
+            'X-Frame-Options'                   => 'DENY',
+            'X-Content-Type-Options'            => 'nosniff',
+            //'Content-Security-Policy'           => "default-src 'self';",
+            'X-Permitted-Cross-Domain-Policies' => 'none',
+            'Referrer-Policy'                   => 'no-referrer',
+            'Permissions-Policy'                => "fullscreen 'none'; microphone 'none'",
+            'Clear-Site-Data'                   => 'cache',
+            'X-XSS-Protection'                  => '1; mode=block',
+            'Feature-Policy'                    => "microphone 'self'; camera 'self'",
+            'Expect-CT'                         => 'enforce,max-age=2592000',
+        ],
+    ],
 ];

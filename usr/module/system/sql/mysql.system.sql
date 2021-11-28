@@ -408,13 +408,13 @@ CREATE TABLE `{core.user_account}`
 (
     `id`                INT(10) UNSIGNED    NOT NULL AUTO_INCREMENT,
     -- Account identity or username
-    `identity`          VARCHAR(32)                        DEFAULT NULL,
+    `identity`          VARCHAR(128)                       DEFAULT NULL,
     -- Credential/password hash
     `credential`        VARCHAR(255)        NOT NULL       DEFAULT '',
     -- Salt for credential hash
     `salt`              VARCHAR(255)        NOT NULL       DEFAULT '',
     -- User email
-    `email`             VARCHAR(64)                        DEFAULT NULL,
+    `email`             VARCHAR(128)                       DEFAULT NULL,
     -- Display name
     `name`              VARCHAR(255)                       DEFAULT NULL,
     -- Avatar image src

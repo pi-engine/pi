@@ -62,6 +62,10 @@ echo $this->form($form);
                 <label><?php echo _a('Summary'); ?></label>
                 <textarea name="<%= prefix %>summary" class="form-control" rows="5"><%= summary %></textarea>
             </p>
+            <p>
+                <label><?php echo _a('Button'); ?></label>
+                <input type="text" value="<%= button %>" name="<%= prefix %>button" class="form-control">
+            </p>
         </div>
     </div>
 </script>

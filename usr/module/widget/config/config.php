@@ -60,7 +60,7 @@ return [
     'image_height_carousel' => [
         'title'       => _t('Image height for carousel'),
         'description' => _t('Default value for widgets'),
-        'value'       => 200,
+        'value'       => 0,
         'filter'      => 'int',
     ],
 

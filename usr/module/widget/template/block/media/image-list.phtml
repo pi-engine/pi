@@ -48,19 +48,19 @@ switch ($options['max_rows']) {
                                  alt="<?php echo _escape($item['caption']); ?>">
                         <?php } ?>
                     </div>
-                    <?php if (!empty($item['summary'])) { ?>
-                        <?php if (!empty($item['caption'])) { ?>
-                            <h4 class="pi-ellipsis pi-ellipsis-1">
-                                <?php if (!empty($item['link'])) { ?>
-                                    <a href="<?php echo $item['link']; ?>"
-                                       title="<?php echo _escape($item['caption']); ?>" target="<?php echo $target; ?>">
-                                        <?php echo _escape($item['caption']); ?>
-                                    </a>
-                                <?php } else { ?>
+                    <?php if (!empty($item['caption'])) { ?>
+                        <h4 class="pi-ellipsis pi-ellipsis-1">
+                            <?php if (!empty($item['link'])) { ?>
+                                <a href="<?php echo $item['link']; ?>"
+                                   title="<?php echo _escape($item['caption']); ?>" target="<?php echo $target; ?>">
                                     <?php echo _escape($item['caption']); ?>
-                                <?php } ?>
-                            </h4>
-                        <?php } ?>
+                                </a>
+                            <?php } else { ?>
+                                <?php echo _escape($item['caption']); ?>
+                            <?php } ?>
+                        </h4>
+                    <?php } ?>
+                    <?php if (!empty($item['summary'])) { ?>
                         <div class="widget-list-media-single-summery clearfix">
                             <?php echo $item['summary']; ?>
                         </div>

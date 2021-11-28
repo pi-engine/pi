@@ -31,6 +31,10 @@ class Security extends AbstractResource
      */
     public function boot()
     {
+        // Set security header
+        Pi::service('security')->setHeaders();
+
+        // Check methods
         $options = $this->options;
         foreach ($options as $type => $opt) {
             if (false === $opt) {

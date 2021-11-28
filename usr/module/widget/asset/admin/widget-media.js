@@ -16,6 +16,7 @@
                         "caption": getVal('caption'),
                         "link": getVal('link'),
                         "summary": getVal('summary'),
+                        "button": getVal('button'),
                         "image": el.find("img").attr("src")
                     });
                 });
@@ -86,7 +87,8 @@
                             image: res.image,
                             caption: '',
                             link: '',
-                            summary: ''
+                            summary: '',
+                            button: ''
                         });
 
                         /* Add Magnific Popup to uploaded image */

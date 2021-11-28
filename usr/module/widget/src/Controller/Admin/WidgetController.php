@@ -347,6 +347,14 @@ abstract class WidgetController extends ActionController
             $row     = $this->getModel('widget')->find($id);
             $content = $this->prepareContent($row->meta);
 
+            $content = json_decode($content, true);
+            foreach ($content as $key => $value) {
+                if (!isset($content[$key]['button'])) {
+                    $content[$key]['button'] = '';
+                }
+            }
+            $content = json_encode($content);
+
             $blockRow          = Pi::model('block_root')->find($row->block);
             $values            = $this->prepareFormValues($blockRow);
             $values['content'] = $content;

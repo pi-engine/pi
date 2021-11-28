@@ -18,18 +18,19 @@
                 && isset($user['two_factor_secret'])
                 && !empty($user['two_factor_secret'])
             ) { ?>
-                <ol class="p-3 m-0">
-                    <li><?php _e('Open an authenticator app on your mobile device'); ?></li>
-                    <li><?php _e('Enter the verification code in the field opposite '); ?></li>
-                </ol>
+                <br />
+                <ul class="p-3 m-0">
+                    <li><?php _e('1- Open an authenticator app on your mobile device'); ?></li>
+                    <li><?php _e('2- Enter the verification code in the field opposite '); ?></li>
+                </ul>
             <?php } else { ?>
-                <ol class="p-3 m-0">
-                    <li><?php _e('Install an authenticator app on your mobile device'); ?></li>
-                    <li><?php _e('Scan the following QR code in your authenticator app'); ?></li>
-                </ol>
+                <ul class="p-3 m-0">
+                    <li><?php _e('1- Install an authenticator app on your mobile device'); ?></li>
+                    <li><?php _e('2- Scan the following QR code in your authenticator app'); ?></li>
+                </ul>
                 <div class="p-3 m-0">
                     <img src="<?php echo $image; ?>" alt="<?php _e('Scan QR code'); ?>">
-                    <p><?php _e('Please enter the following code in your app'); ?> : <strong><?php echo chunk_split($secret, 4, ' '); ?></strong></p>
+                    <p><?php _e('If the QR is not working, please enter the following code in your app'); ?> : <strong><?php echo chunk_split($secret, 4, ' '); ?></strong></p>
                 </div>
             <?php } ?>
         </div>
