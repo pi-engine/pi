@@ -398,7 +398,7 @@ class Host
             $section   = $directory['parent'];
             $path      = $directory['folder'];
         // Relative path
-        } elseif (false === strpos($url, ':') && $url{0} !== '/') {
+        } elseif (false === strpos($url, ':') && $url[0] !== '/') {
             // No '/' included, map to www path
             if (false === strpos($url, '/')) {
                 [$section, $path] = ['www', $url];
@@ -422,7 +422,7 @@ class Host
         if (null === $uri) {
             // Convert section path
             $sectionUri = $this->path[$section];
-            if (false !== strpos($sectionUri, ':') || $sectionUri{0} === '/') {
+            if (false !== strpos($sectionUri, ':') || $sectionUri[0] === '/') {
                 $uri = $sectionUri;
             } else {
                 // Append www path to sectionUri if it is relative
