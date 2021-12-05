@@ -30,7 +30,7 @@ use InstagramScraper\Instagram as InstagramPlugin;
  * ```
  *
  * @see    https://github.com/postaddictme/instagram-php-scraper
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class Instagram extends AbstractHtmlElement
 {

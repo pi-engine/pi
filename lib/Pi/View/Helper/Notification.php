@@ -29,7 +29,7 @@ use Laminas\View\Helper\AbstractHtmlElement;
  *
  *
  * @see    https://pushjs.org/
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class Notification extends AbstractHtmlElement
 {

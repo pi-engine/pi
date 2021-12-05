@@ -21,7 +21,7 @@ use Laminas\Form\View\Helper\FormInput;
  *
  * {@inheritDoc}
  * @see    https://babakhani.github.io/PersianWebToolkit
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class FormPersianDatepicker extends FormInput

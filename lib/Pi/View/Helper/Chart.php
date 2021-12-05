@@ -19,7 +19,7 @@ use Laminas\View\Helper\AbstractHelper;
  * $this->chart($type, $data, $options, $htmlClass);
  *
  * @see    http://www.chartjs.org
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class Chart extends AbstractHelper
 {

@@ -65,7 +65,7 @@ use Laminas\Form\Element;
  *
  * {@inheritDoc}
  * @see    https://babakhani.github.io/PersianWebToolkit
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class PersianDatepicker extends Element

@@ -62,7 +62,7 @@ use Laminas\View\Helper\AbstractHelper;
  *
  * @see    http://www.maplacejs.com
  * @see    Google map developer guide
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class GoogleMap extends AbstractHelper

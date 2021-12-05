@@ -14,7 +14,7 @@ use Laminas\View\Model\ViewModel as LaminasViewModel;
 /**
  * @see    Laminas\View\Model\ViewModel
  * @author Javad Karimi <karimijavad990@gmail.com>
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class ViewModel extends LaminasViewModel
 {

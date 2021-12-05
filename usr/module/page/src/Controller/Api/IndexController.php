@@ -13,7 +13,7 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 
 /**
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class IndexController extends ActionController
 {

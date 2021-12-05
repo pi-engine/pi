@@ -45,7 +45,7 @@ use Laminas\View\Helper\AbstractHtmlElement;
  * ```
  *
  * @see    https://github.com/kni-labs/rrssb For Ridiculously Responsive Social Sharing Buttons
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class SocialSharing extends AbstractHtmlElement

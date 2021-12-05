@@ -13,7 +13,7 @@ namespace Pi\Authentication\Strategy;
 /**
  * Authentication strategy
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class OAuth extends Local
 {

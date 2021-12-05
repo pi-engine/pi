@@ -15,7 +15,7 @@ use Pi\Mvc\Controller\ActionController;
 /**
  * Dashboard controller
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class DashboardController extends ActionController
 {

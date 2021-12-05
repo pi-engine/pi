@@ -10,7 +10,7 @@
 /**
  * User module meta
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 return [
     'completeness' => [

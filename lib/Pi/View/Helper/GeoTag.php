@@ -23,7 +23,7 @@ use Laminas\View\Helper\AbstractHelper;
  *  $this->geoTag($latitude, $longitude, $placename, $region);
  * ```
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  * @see    https://en.wikipedia.org/wiki/Geotagging
  */
 class GeoTag extends AbstractHelper

@@ -25,7 +25,7 @@ use phpseclib\Crypt\DES as CryptDES;
  *
  * Pi::service('encryption')->process($string, $options, $type);
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class Encryption extends AbstractService
 {

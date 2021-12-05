@@ -15,7 +15,7 @@ use Pi\Mvc\Controller\ActionController;
 /**
  * View user controller
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class ViewController extends ActionController
 {

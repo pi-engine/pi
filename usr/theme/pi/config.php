@@ -23,7 +23,7 @@ return [
     // Author information: name, email, website
     'author'      => 'Architecture:'
         . ' Taiwen Jiang <taiwenjiang@tsinghua.org.cn>,'
-        . ' Hossein Azizabadi <azizabadi@faragostaresh.com>;'
+        . ' Hossein Azizabadi Farahani <hossein@azizabadi.com>;'
         . ' Front-end: @sexnothing; Resources: @loidco',
     // Screenshot image
     'screenshot'  => 'image/screenshot.png',
