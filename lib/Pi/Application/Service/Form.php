@@ -12,7 +12,7 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Laminas\Captcha\ReCaptcha;
-
+use Laminas\ReCaptcha\ReCaptcha as LaminasReCaptcha;
 /**
  * Form service
  *
@@ -58,5 +58,22 @@ class Form extends AbstractService
         }
 
         return $captchaElement;
+    }
+
+    public function verifyReCaptcha($data = [])
+    {
+        $captchaPublicKey  = Pi::config('captcha_public_key');
+        $captchaPrivateKey = Pi::config('captcha_private_key');
+
+        $recaptcha = new LaminasReCaptcha();
+        $recaptcha->setSiteKey($captchaPublicKey);
+        $recaptcha->setSecretKey($captchaPrivateKey);
+
+        $result = $recaptcha->verify($data['g-recaptcha-response']);
+        if ($result->isValid()) {
+            return true;
+        }
+
+        return false;
     }
 }
