@@ -10,14 +10,14 @@
 
 namespace Pi\Application\Service;
 
-use phpseclib\Crypt\AES as CryptAES;
-use phpseclib\Crypt\Rijndael as CryptRijndael;
-use phpseclib\Crypt\Twofish as CryptTwofish;
-use phpseclib\Crypt\Blowfish as CryptBlowfish;
-use phpseclib\Crypt\RC4 as CryptRC4;
-use phpseclib\Crypt\RC2 as CryptRC2;
-use phpseclib\Crypt\TripleDES as CryptTripleDES;
-use phpseclib\Crypt\DES as CryptDES;
+use phpseclib3\Crypt\AES as CryptAES;
+use phpseclib3\Crypt\Rijndael as CryptRijndael;
+use phpseclib3\Crypt\Twofish as CryptTwofish;
+use phpseclib3\Crypt\Blowfish as CryptBlowfish;
+use phpseclib3\Crypt\RC4 as CryptRC4;
+use phpseclib3\Crypt\RC2 as CryptRC2;
+use phpseclib3\Crypt\TripleDES as CryptTripleDES;
+use phpseclib3\Crypt\DES as CryptDES;
 
 /**
  * Encryption service, use phpseclib for encrypt and decrypt
@@ -46,10 +46,10 @@ class Encryption extends AbstractService
         // Set options
         $options['method']       = isset($options['method']) ? $options['method'] : $this->options['method'];
         $options['key']          = isset($options['key']) ? $options['key'] : $this->options['key'];
-        $options['vi']           = isset($options['vi']) ? $options['vi'] : $this->options['vi'];
+        $options['iv']           = isset($options['iv']) ? $options['iv'] : $this->options['iv'];
         $options['length']       = isset($options['length']) ? $options['length'] : $this->options['length'];
         $options['block_length'] = isset($options['block_length']) ? $options['block_length'] : $this->options['block_length'];
-        $options['mode']         = isset($options['mode']) ? $options['mode'] : '';
+        $options['mode']         = isset($options['mode']) ? $options['mode'] : $this->options['mode'];
 
         // Start process
         switch ($options['method']) {
@@ -94,12 +94,12 @@ class Encryption extends AbstractService
         // Encryption
         $cipher = new CryptAES($options['mode']);
         $cipher->setKey($options['key']);
-        $cipher->setIV($options['vi']);
+        $cipher->setIV($options['iv']);
         $cipher->setKeyLength($options['length']);
         if ($type == 'decrypt') {
-            $output = $cipher->decrypt(hex2bin($input));
+            $output = $cipher->decrypt($input);
         } else {
-            $output = bin2hex($cipher->encrypt($input));
+            $output = $cipher->encrypt($input);
         }
 
         return $output;
@@ -119,7 +119,7 @@ class Encryption extends AbstractService
         // Encryption
         $cipher = new CryptRijndael($options['mode']);
         $cipher->setKey($options['key']);
-        $cipher->setIV($options['vi']);
+        $cipher->setIV($options['iv']);
         $cipher->setKeyLength($options['length']);
         $cipher->setBlockLength($options['block_length']);
         if ($type == 'decrypt') {
@@ -143,8 +143,9 @@ class Encryption extends AbstractService
     protected function Twofish($input, $options, $type = 'encrypt')
     {
         // Encryption
-        $cipher = new CryptTwofish();
+        $cipher = new CryptTwofish($options['mode']);
         $cipher->setKey($options['key']);
+        $cipher->setIV($options['iv']);
         if ($type == 'decrypt') {
             $output = $cipher->decrypt(hex2bin($input));
         } else {
@@ -166,8 +167,9 @@ class Encryption extends AbstractService
     protected function Blowfish($input, $options, $type = 'encrypt')
     {
         // Encryption
-        $cipher = new CryptBlowfish();
+        $cipher = new CryptBlowfish($options['mode']);
         $cipher->setKey($options['key']);
+        $cipher->setIV($options['iv']);
         if ($type == 'decrypt') {
             $output = $cipher->decrypt(hex2bin($input));
         } else {
@@ -189,8 +191,9 @@ class Encryption extends AbstractService
     protected function RC4($input, $options, $type = 'encrypt')
     {
         // Encryption
-        $cipher = new CryptRC4();
+        $cipher = new CryptRC4($options['mode']);
         $cipher->setKey($options['key']);
+        $cipher->setIV($options['iv']);
         if ($type == 'decrypt') {
             $output = $cipher->decrypt(hex2bin($input));
         } else {
@@ -212,8 +215,9 @@ class Encryption extends AbstractService
     protected function RC2($input, $options, $type = 'encrypt')
     {
         // Encryption
-        $cipher = new CryptRC2();
+        $cipher = new CryptRC2($options['mode']);
         $cipher->setKey($options['key']);
+        $cipher->setIV($options['iv']);
         if ($type == 'decrypt') {
             $output = $cipher->decrypt(hex2bin($input));
         } else {
@@ -237,7 +241,7 @@ class Encryption extends AbstractService
         // Encryption
         $cipher = new CryptTripleDES($options['mode']);
         $cipher->setKey($options['key']);
-        $cipher->setIV($options['vi']);
+        $cipher->setIV($options['iv']);
         if ($type == 'decrypt') {
             $output = $cipher->decrypt(hex2bin($input));
         } else {
@@ -261,7 +265,7 @@ class Encryption extends AbstractService
         // Encryption
         $cipher = new CryptDES($options['mode']);
         $cipher->setKey($options['key']);
-        $cipher->setIV($options['vi']);
+        $cipher->setIV($options['iv']);
         if ($type == 'decrypt') {
             $output = $cipher->decrypt(hex2bin($input));
         } else {

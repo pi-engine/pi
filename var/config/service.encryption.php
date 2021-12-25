@@ -5,8 +5,9 @@
 
 return [
     'method'       => 'Blowfish',
-    'key'          => '',
-    'vi'           => '',
+    'key'          => '2468abcd',
+    'iv'           => '2468abcd',
     'length'       => 128,
     'block_length' => 128,
+    'mode'         => 'CBC',
 ];
