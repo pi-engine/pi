@@ -31,7 +31,7 @@ use MongoDB\BSON\Regex;
  * Pi::service('mongoDb')->deleteOne($params, $collection);
  * Pi::service('mongoDb')->deleteMany($params, $collection);
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class MongoDb extends AbstractService
 {

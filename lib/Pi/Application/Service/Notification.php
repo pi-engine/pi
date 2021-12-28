@@ -25,7 +25,7 @@ use Laminas\Http\Client;
  * - ToDo : improve send sms on notification module and support local
  * - Todo : improve notification module to support custom notification for change module contents
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class Notification extends AbstractService
 {

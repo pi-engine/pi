@@ -20,7 +20,7 @@ use Pi;
  * Save log by audit service on Var/Log/cron.log
  * Each module can add custom log by audit service on Var/Log/cron.log
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class Cron extends AbstractService
 {

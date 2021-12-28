@@ -107,7 +107,7 @@ use Laminas\View\Helper\AbstractHelper;
  *
  * $this->leaflet($params);
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class Leaflet extends AbstractHelper
 {

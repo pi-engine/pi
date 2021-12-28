@@ -14,7 +14,7 @@ use Laminas\InputFilter\InputFilter;
 /**
  * Class for verifying and filtering form
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class TwoFactorResetFilter extends InputFilter
 {

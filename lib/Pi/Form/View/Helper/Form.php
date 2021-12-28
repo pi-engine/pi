@@ -61,6 +61,7 @@ class Form extends FormHelper
         if (!isset($options['style'])) {
             $options['style'] = '';
         }
+
         switch ($options['style']) {
             case 'vertical':
                 $style = 'vertical';
@@ -69,6 +70,9 @@ class Form extends FormHelper
             case 'vertical-nomarker':
                 $style = 'vertical-nomarker';
                 $class = '';
+            case 'vertical-cols':
+                $style = 'vertical-cols';
+                $class = 'row';
                 break;
             case 'inline':
                 $style = 'inline';
@@ -184,6 +188,7 @@ class Form extends FormHelper
                     $rowClass = 'mr-2';
                     break;
                 case 'vertical-nomarker':
+                case 'vertical-cols':
                 case 'vertical':
                     $rowClass = '';
                     break;
@@ -208,13 +213,26 @@ class Form extends FormHelper
 </label>
 EOT;
             } else {
-                $renderPattern
-                    = <<<EOT
+                if ($style == 'vertical-cols') {
+                    $renderPattern
+                        = <<<EOT
+<div class="col-md-6 col-12">
+    <div class="$rowClass form-group" data-name="%element_name%">
+        %label_html%
+        %element_html%
+    </div>
+</div>
+EOT;
+                } else {
+                    $renderPattern
+                        = <<<EOT
 <div class="$rowClass form-group" data-name="%element_name%">
     %label_html%
     %element_html%
 </div>
 EOT;
+                }
+
                 $labelPattern
                     = <<<EOT
 <label class="%label_size% col-form-label">
@@ -349,6 +367,7 @@ EOT;
                     $vars['label_size']   = '';
                     $vars['element_size'] = '';
                     break;
+                case 'vertical-cols':
                 case 'vertical-nomarker':
                     $vars['label_size']   = '';
                     $vars['element_size'] = '';
@@ -393,7 +412,7 @@ EOT;
             /**
              * If vertical and label is empty, remove label tag
              */
-            if (($style == 'vertical-nomarker' || $style == 'vertical') && !$element->getLabel()) {
+            if (($style == 'vertical-cols' || $style == 'vertical-nomarker' || $style == 'vertical') && !$element->getLabel()) {
                 $vars['label_html'] = '';
             }
 
@@ -518,6 +537,17 @@ EOT;
 
             $cancel = !empty($elements['cancel']) ? $this->view->formElement($elements['cancel']) : '';
             switch ($style) {
+                case 'vertical-cols':
+                    $htmlSubmit
+                        = <<<EOT
+<div class="col-md-12 col-12">
+    <div class="form-group">
+        {$submit}
+        {$cancel}
+    </div>
+</div>
+EOT;
+                    break;
                 case 'modal':
                 case 'popup':
                     $waiting = '<img src="' . $this->view->assetTheme('image/wait.gif') . '" class="d-none">';

@@ -22,7 +22,7 @@ use Laminas\View\Helper\AbstractHtmlElement;
  *  $this->plusone(array('datas-size' => 'small'));
  * ```
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Plusone extends AbstractHtmlElement

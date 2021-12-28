@@ -23,7 +23,7 @@ use Laminas\View\Helper\AbstractHtmlElement;
  * $this->videojs($source, $poster, $width, $height);
  *
  * @see    http://www.videojs.com/
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Videojs extends AbstractHtmlElement

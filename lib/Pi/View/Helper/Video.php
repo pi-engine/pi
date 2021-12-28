@@ -79,7 +79,7 @@ use Laminas\View\Helper\AbstractHtmlElement;
  *
  * $this->video($option);
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class Video extends AbstractHtmlElement
 {

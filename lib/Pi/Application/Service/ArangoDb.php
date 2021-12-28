@@ -34,7 +34,7 @@ use ArangoDBClient\UpdatePolicy as ArangoUpdatePolicy;
  * Pi::service('arangoDb')->delete($id, $collection);
  * Pi::service('arangoDb')->export($params, $collection);
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 class ArangoDb extends AbstractService
 {

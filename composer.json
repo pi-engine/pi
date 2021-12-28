@@ -90,7 +90,7 @@
     "voku/anti-xss": "*",
     "matthiasmullie/minify": "*",
     "nguyenhiep/tiny-html-minifier": "*",
-    "phpseclib/phpseclib": "*",
+    "phpseclib/phpseclib": "~3.0",
     "hybridauth/hybridauth": "*",
     "robthree/twofactorauth": "*",
 

@@ -21,7 +21,7 @@ use Laminas\View\Helper\AbstractHtmlElement;
  *  $this->facebook();
  * ```
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Facebook extends AbstractHtmlElement

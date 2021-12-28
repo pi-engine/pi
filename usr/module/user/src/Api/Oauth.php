@@ -15,7 +15,7 @@ use Pi\Application\Api\AbstractApi;
 /**
  * User OAuth APIs
  *
- * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @author Hossein Azizabadi Farahani <hossein@azizabadi.com>
  */
 
 /**
