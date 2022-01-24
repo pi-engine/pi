@@ -36,7 +36,7 @@ class ThemeAssemble extends AbstractHelper
     /**
      * Render a section's anchor
      *
-     * @param string     $section
+     * @param string $section
      * @param string|int $indent
      *
      * @return  string|self
@@ -136,6 +136,8 @@ class ThemeAssemble extends AbstractHelper
         $sitename      = Pi::config('sitename');
         $slogan        = Pi::config('slogan');
         $description   = Pi::config('description');
+        $author        = Pi::config('author');
+        $generator     = Pi::config('generator');
         $locale        = Pi::service('i18n')->getLocale();
         $ogLocale      = Pi::config('og_local');
         $twitter       = Pi::config('twitter_account');
@@ -146,13 +148,22 @@ class ThemeAssemble extends AbstractHelper
         $geoPlacename  = Pi::config('geo_placename');
         $geoRegion     = Pi::config('geo_region');
 
+        // Set full site name
+        $sitenameFull = $sitename;
+        if (!empty($slogan)) {
+            $sitenameFull = sprintf('%s - %s', $sitename, $slogan);
+        }
+
+        // Check twitter
+        $twitter = !empty($twitter) ? $twitter : $sitename;
+
         // Meta author and generator
-        $headMeta($sitename, 'author');
-        $headMeta($sitename, 'generator');
+        $headMeta($author, 'author');
+        $headMeta($generator, 'generator');
 
         // Open Graph
-        $headMeta($sitename, 'og:title', 'property');
-        $headMeta($sitename, 'og:site_name', 'property');
+        $headMeta($sitenameFull, 'og:title', 'property');
+        $headMeta($sitenameFull, 'og:site_name', 'property');
         $headMeta($description, 'og:description', 'property');
         $headMeta(Pi::url(), 'og:url', 'property');
         $headMeta($ogLocale, 'og:locale', 'property');
