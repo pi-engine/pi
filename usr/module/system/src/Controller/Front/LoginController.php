@@ -281,7 +281,7 @@ class LoginController extends ActionController
     /**
      * Tow Factor Authentication
      */
-    public function towFactorAction()
+    public function twoFactorAction()
     {
         // Check user is login or not
         Pi::service('authentication')->requireLogin();
@@ -351,7 +351,7 @@ class LoginController extends ActionController
                             Pi::api('user', 'user')->updateUser($uid, $userValues);
                         } else {
                             // jump
-                            $this->jump(['action' => 'towFactor'], __('Error to verify code !'));
+                            $this->jump(['action' => 'twoFactor'], __('Error to verify code !'));
                         }
                     }
 
