@@ -274,7 +274,7 @@ class Local extends AbstractStrategy
                     [
                         'module'     => 'system',
                         'controller' => 'login',
-                        'action'     => 'towFactor',
+                        'action'     => 'twoFactor',
                     ]
                 );
 
