@@ -160,7 +160,7 @@ HTML;
             'type' => 'hidden',
         ]);
 
-        $this->get('submit')->setValue(__('Registration'));
+        $this->get('submit')->setValue(__('Register'));
 
         /**
          * For invisible recaptcha, need for button instead of input submit
