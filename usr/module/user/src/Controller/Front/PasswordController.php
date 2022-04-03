@@ -312,13 +312,15 @@ HTML;
                     );
 
                     // Set subject and body
-                    $subject = $data['subject'];
+                    /* $subject = $data['subject'];
                     $body    = $data['body'];
                     $type    = $data['format'];
 
                     $message = Pi::service('mail')->message($subject, $body, $type);
                     $message->addTo($to);
-                    Pi::service('mail')->send($message);
+                    Pi::service('mail')->send($message); */
+
+                    Pi::service('notification')->send($to, 'find-password-html', $params, 'user');
 
                     $result['status']  = 1;
                     $result['message'] = __('We sent an email to reset your password. Please check your email and follow the instructions to reset it.');

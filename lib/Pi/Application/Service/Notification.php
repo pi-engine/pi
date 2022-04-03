@@ -10,8 +10,10 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
 use Laminas\Http\Client;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use Pi;
 
 /**
  * Notification service
@@ -55,6 +57,15 @@ class Notification extends AbstractService
      */
     public function send($to, $template, $information, $module, $uid = 0)
     {
+        // Set mail options
+        $this->setOptions('service.mail.php');
+
+        // Set mail class
+        $mailClass = 'laminas-mail';
+        if (isset($this->options['class']) && in_array($this->options['class'], ['laminas-mail', 'phpmailer'])) {
+            $mailClass = $this->options['class'];
+        }
+
         // Set template
         $data = Pi::service('mail')->template(
             [
@@ -82,11 +93,45 @@ class Notification extends AbstractService
             );
         }
 
-        // Send mail
-        try {
-            return Pi::service('mail')->send($message);
-        } catch (\Exception $e) {
-            return false;
+        switch ($mailClass) {
+            default:
+            case 'laminas-mail':
+                // Send mail
+                try {
+                    return Pi::service('mail')->send($message);
+                } catch (\Exception $e) {
+                    return false;
+                }
+                break;
+
+            case 'phpmailer':
+                if (is_array($to)) {
+                    $to = array_keys($to);
+                    $to = array_shift($to);
+                }
+
+                $mail = new PHPMailer(true);
+                try {
+                    $mail->isSMTP();
+                    $mail->Host        = $this->options['smtp']['host'];
+                    $mail->Port        = $this->options['smtp']['port'];
+                    $mail->CharSet     = 'UTF-8';
+                    $mail->SMTPAuth    = true;
+                    $mail->SMTPSecure  = $this->options['smtp']['connection_config']['ssl'];
+                    $mail->SMTPOptions = $this->options['smtp']['connection_config']['option'];
+                    $mail->Username    = $this->options['smtp']['connection_config']['username'];
+                    $mail->Password    = $this->options['smtp']['connection_config']['password'];
+                    $mail->Subject     = $data['subject'];
+                    $mail->Body        = $data['body'];
+                    $mail->XMailer     = '  ';
+                    $mail->setFrom(Pi::config('adminmail'), Pi::config('adminname'));
+                    $mail->addAddress($to, '');
+                    $mail->IsHTML(true);
+                    return $mail->send();
+                } catch (Exception $e) {
+                    return false;
+                }
+                break;
         }
     }
 
