@@ -9,12 +9,12 @@
 
 namespace Module\User\Controller\Front;
 
+use Laminas\Stdlib\RequestInterface as Request;
+use Laminas\Stdlib\ResponseInterface as Response;
 use Module\User\Form\ResendActivationFilter;
 use Module\User\Form\ResendActivationForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Laminas\Stdlib\RequestInterface as Request;
-use Laminas\Stdlib\ResponseInterface as Response;
 
 /**
  * Register controller
@@ -55,7 +55,7 @@ class RegisterController extends ActionController
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
 
-            $post                                        = $post->toArray();
+            $post = $post->toArray();
             //$post['captcha']['recaptcha_response_field'] = $post['g-recaptcha-response'];
 
             $form->loadInputFilter();
@@ -115,7 +115,7 @@ class RegisterController extends ActionController
                 ]
             );
 
-        // Set redirect of register source
+            // Set redirect of register source
         } elseif ($form->get('redirect')) {
             $redirect = $this->params('redirect', $_SERVER['HTTP_REFERER']);
             $form->get('redirect')->setValue(rawurlencode($redirect));
@@ -834,7 +834,7 @@ JS;
         }
 
         // Load from HTML template
-        $template = Pi::service('mail')->template($template, $params);
+        /* $template = Pi::service('mail')->template($template, $params);
         $subject  = $template['subject'];
         $body     = $template['body'];
         $typeMail = $template['format'];
@@ -850,10 +850,14 @@ JS;
                 $template = Pi::service('mail')->template("notify-register-success-html", $params);
                 Pi::api('api', 'message')->notify($data['uid'], $template['body'], $template['subject']);
             }
+        } */
+
+        $uid = 0;
+        if ($type == 'success' || $type == 'admin') {
+            $uid = $data['uid'];
         }
 
-
-        return $result;
+        return Pi::service('notification')->send($data['email'], $template, $params, 'user', $uid);
     }
 
     /**
@@ -906,7 +910,7 @@ JS;
         ];
 
         // Load from HTML template
-        $template = Pi::service('mail')->template($template, $params);
+        /* $template = Pi::service('mail')->template($template, $params);
         $subject  = $template['subject'];
         $body     = $template['body'];
         $type     = $template['format'];
@@ -914,9 +918,9 @@ JS;
         // Send email
         $message = Pi::service('mail')->message($subject, $body, $type);
         $message->addTo($toAdmin);
-        $result = Pi::service('mail')->send($message);
+        $result = Pi::service('mail')->send($message); */
 
-        return $result;
+        return Pi::service('notification')->send($toAdmin, $template, $params, 'user');
     }
 
     /**
@@ -1013,8 +1017,7 @@ JS;
         }
 
 
-        $this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/json');
-        ;
+        $this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/json');;
         $this->getResponse()->setContent(json_encode($response));
 
         return $this->getResponse();
