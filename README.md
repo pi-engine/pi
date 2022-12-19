@@ -1,7 +1,10 @@
 
+
 {
   "_links": {
+
     "self": {
+
       "href": "https://api.mainnet.minepi.com/accounts/GAACEURLLZLGKVEGU5HDX5D72EYPDYJOTBD3I5OAIL2KMWFCBQAPAT2U"
     },
     "transactions": {
