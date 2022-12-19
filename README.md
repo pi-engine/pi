@@ -68,6 +68,7 @@
   "data": {},
   "num_sponsoring": 0,
   "num_sponsored": 0,
-  "paging_token": "GAACEURLLZLGKVEGU5HDX5D72EYPDYJOTBD3I5OAIL2KMWFCBQAPAT2U"
+  "paging_token": "GAACEURLLZLGKVEG
+  U5HDX5D72EYPDYJOTBD3I5OAIL2KMWFCBQAPAT2U"
 }
 
