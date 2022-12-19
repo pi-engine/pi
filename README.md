@@ -2,11 +2,12 @@
 
 -PI Engine
 
-  "_links": {
+  "_links":
 
-    "self": {
+    "self":
 
-      "href": "https://api.mainnet.minepi.com/accounts/GAACEURLLZLGKVEGU5HDX5D72EYPDYJOTBD3I5OAIL2KMWFCBQAPAT2U"
+      "href":
+      "https://api.mainnet.minepi.com/accounts/GAACEURLLZLGKVEGU5HDX5D72EYPDYJOTBD3I5OAIL2KMWFCBQAPAT2U"
     },
     "transactions": {
       "href": "https://api.mainnet.minepi.com/accounts/GAACEURLLZLGKVEGU5HDX5D72EYPDYJOTBD3I5OAIL2KMWFCBQAPAT2U/transactions{?cursor,limit,order}",
