@@ -49,22 +49,23 @@
     "auth_required": false,
     "auth_revocable": false,
     "auth_immutable": false,
-    "auth_clawback_enabled": false
+    "auth_clawback_enabled": false 
   },
-  "balances": [
+
+ "balances": [
     {
       "balance": "83.9799974",
       "buying_liabilities": "0.0000000",
       "selling_liabilities": "0.0000000",
       "asset_type": "native"
-    }
+    
   ],
   "signers": [
     {
       "weight": 1,
       "key": "GAACEURLLZLGKVEGU5HDX5D72EYPDYJOTBD3I5OAIL2KMWFCBQAPAT2U",
       "type": "ed25519_public_key"
-    }
+    
   ],
   "data": {},
   "num_sponsoring": 0,
